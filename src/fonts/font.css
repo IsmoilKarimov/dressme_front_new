@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "AeonicProAir";
+  src: url("/src/fonts/AeonikPro-Air.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProAir";
+  src: url("/src/fonts/AeonikPro-AirItalic.otf") format('otf');
+} 
+@font-face {
+  font-family: "AeonicProAir";
+  src: url("/src/fonts/AeonikPro-Black.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProAir";
+  src: url("/src/fonts/AeonikPro-BlackItalic.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProAir";
+  src: url("/src/fonts/AeonikPro-Bold.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProAir";
+  src: url("/src/fonts/AeonikPro-BoldItalic.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProAir";
+  src: url("/src/fonts/AeonikPro-Light.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProAir";
+  src: url("/src/fonts/AeonikPro-LightItalic.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProAir";
+  src: url("/src/fonts/AeonikPro-Medium.otf") format('otf');
+}
+@font-face { 
+  font-family: "AeonicProAir";
+  src: url("/src/fonts/AeonikPro-MediumItalic.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProAir";
+  src: url("/src/fonts/AeonikPro-Regular.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProAir";
+  src: url("/src/fonts/AeonikPro-RegularItalic.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProAir";
+  src: url("/src/fonts/AeonikPro-Thin.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProAir";
+  src: url("/src/fonts/AeonikPro-ThinItalic.otf") format('otf');
+}
+/* @font-face {
+  font-family: "AeonicProAir";
+  src: url("/src/fonts/AeonikPro-Air.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProAirItalic";
+  src: url("/src/fonts/AeonikPro-AirItalic.otf") format('otf');
+} 
+@font-face {
+  font-family: "AeonicProBlack";
+  src: url("/src/fonts/AeonikPro-Black.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProBlackItalic";
+  src: url("/src/fonts/AeonikPro-BlackItalic.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProBold";
+  src: url("/src/fonts/AeonikPro-Bold.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProBoldItalic";
+  src: url("/src/fonts/AeonikPro-BoldItalic.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProLight";
+  src: url("/src/fonts/AeonikPro-Light.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProLightItalic";
+  src: url("/src/fonts/AeonikPro-LightItalic.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProMedium";
+  src: url("/src/fonts/AeonikPro-Medium.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProMediumItalic";
+  src: url("/src/fonts/AeonikPro-MediumItalic.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProRegular";
+  src: url("/src/fonts/AeonikPro-Regular.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProRegularItalic";
+  src: url("/src/fonts/AeonikPro-RegularItalic.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProThin";
+  src: url("/src/fonts/AeonikPro-Thin.otf") format('otf');
+}
+@font-face {
+  font-family: "AeonicProThinItalic";
+  src: url("/src/fonts/AeonikPro-ThinItalic.otf") format('otf');
+} */

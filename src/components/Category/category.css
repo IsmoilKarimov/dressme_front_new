@@ -1,0 +1,148 @@
+.categoryScroll::-webkit-scrollbar {
+  width: 2px;
+}
+
+.categoryScroll::-webkit-scrollbar-thumb {
+  background-color: #1e1e20;
+  height: 30px;
+  border-radius: 8px;
+}
+
+/* .openedBrands {
+    height: 0;
+    overflow: hidden;
+} */
+
+.openBrands.open .openedBrands {
+  height: auto;
+}
+
+.input-range {
+  top: 37px;
+}
+
+.input-range__track {
+  height: 4px;
+  width: 99%;
+}
+
+.input-range__slider {
+  background-color: #fff !important;
+  border: 0.5px solid #000 !important;
+}
+
+.input-range__label-container {
+  color: #2a86b8;
+  font-weight: 500;
+}
+
+.input-range__label--max,
+.input-range__label--min {
+  display: none;
+}
+
+/* --------------------React Slider */
+
+.horizontal-slider {
+  width: 95%;
+  margin: auto;
+  z-index: 33;
+  border-radius: 5px;
+}
+
+.example-thumb {
+  background-image: url("../../assets/imgs/Star.svg");
+  width: 16px;
+  height: 16px;
+  cursor: grab;
+  background: #fff;
+  border-radius: 50%;
+  border: 1px solid #000;
+  margin-top: 10px;
+}
+
+.example-thumb.active {
+  background-color: white;
+}
+
+.example-track {
+  position: relative;
+  background: #f8f8f8;
+  margin-top: -5px;
+}
+
+.example-track.example-track-1 {
+  background: #007dca;
+  margin-top: -5px;
+}
+
+.example-track.example-track-2 {
+  background: #f8f8f8;
+  margin-top: -5px;
+}
+
+.horizontal-slider .example-track {
+  top: 20px;
+  height: 5px;
+}
+
+/* --------------------React Slider */
+
+.horizontal-slider {
+  width: 100%;
+  margin: auto;
+  z-index: 33;
+}
+
+.example-thumb1 {
+  background: rgba(0, 125, 202, 1)
+    url("../../assets/imgs/Category/ReactSliderMenu.svg");
+  width: 24px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+  border-radius: 16px;
+  border: 1px solid #007dca;
+  margin-top: 10px;
+}
+
+.example-thumb1.active {
+  border: 1px solid #007dca;
+}
+
+.example-track1 {
+  position: relative;
+  background: #fff;
+  margin-top: 0px;
+  border: 1px solid #d2d2d2;
+}
+
+.example-track1.example-track1-1 {
+  background: #007dca;
+  margin-top: 0px;
+}
+
+.example-track1.example-track1-2 {
+  background: #fff;
+  margin-top: 0px;
+  border: 1px solid #d2d2d2;
+}
+
+.horizontal-slider .example-track1 {
+  top: 16px;
+  height: 6px;
+  border-radius: 5px;
+  padding: 2px;
+}
+/* 
+.horizontal-slider .example-thumb {
+  top: 1px;
+  width: 23px;
+  height: 23px;
+  line-height: 23px;
+} */

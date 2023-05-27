@@ -1,0 +1,71 @@
+.mainOne {
+    width: 8px;
+    position: absolute;
+    height: 20px;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    padding: 2px 1px;
+    border-radius: 3px;
+    border: 1px solid black;
+    background-color: white;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    z-index: 22;
+
+}
+
+.mainTwo {
+    width: 8px;
+    height: 20px;
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: white;
+
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    z-index: 21;
+    transform: rotate(45deg);
+    left: 0.5px;
+    top: -9px;
+
+}
+
+
+.MainHtree {
+    width: 8px;
+    height: 20px;
+    position: absolute;
+    /* border: 1px solid black; */
+    border-radius: 3px;
+    background-color: white;
+
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    z-index: 20;
+    transition: .3s;
+    /* display: none; */
+    transform: rotate(45deg);
+    left: 1px;
+    top: -9px;
+}
+
+.mainThreerotate {
+    width: 8px;
+    height: 20px;
+    position: absolute;
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: white;
+
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    z-index: 20;
+    transform: rotate(90deg);
+    left: 3px;
+    top: -4px;
+    transition: .3s;
+
+
+}

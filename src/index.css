@@ -1,0 +1,265 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* @import '../src//fonts//font.css'; */
+
+@font-face {
+  font-family: "AeonikProMedium";
+  src: url("/src/fonts/AeonikPro-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "AeonikProRegular";
+  src: url("/src/fonts/AeonikPro-Regular.woff") format("woff");
+}
+
+/* otf */
+
+@font-face {
+  font-family: "OTFAeonikProMedium";
+  /* font-family: "Aeoniok Pro"; */
+  src: url("/src/fonts/AeonikPro-Medium.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "OTFAeonikProRegular";
+  /* font-family: "Aeoniok Pro"; */
+  src: url("/src/fonts/AeonikPro-Regular.otf") format("truetype");
+}
+
+/* @layer base {
+  html {
+    font-family: 'Rubik', sans-serif;
+  }
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.slick-slider {
+  overflow: hidden;
+}
+
+.slick-slide > div {
+  margin: 0 10px;
+}
+
+.slick-list {
+  margin: 0 -10px;
+}
+
+.MoonLoad {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  font-size: 18px;
+  color: #0d263b;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+button,
+:focus,
+input,
+textarea,
+select {
+  outline: none;
+}
+
+.openFile {
+  display: none;
+  transform: translateX(-100%);
+  transition: 0.5s;
+  z-index: -1;
+  height: 0;
+  background-color: #fff;
+}
+
+.closeFile {
+  display: block;
+  transform: translateX(0%);
+  transition: 0.5s;
+  z-index: -10;
+  background-color: #fff;
+}
+
+.followers {
+  /* top: -1px; */
+  left: 0;
+  z-index: -30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease-out;
+}
+
+.nav-link:hover + .followers {
+  left: 31px;
+  z-index: 10;
+}
+
+.btnModel:hover .btnModelTxt {
+  color: #fff;
+  transition: all ease-in 0.3s;
+}
+
+.btnModel:hover .btnModel img {
+  fill: #fff;
+}
+
+.ant-modal,
+.ant-modal-content {
+  padding: 0 !important;
+}
+.ant-modal-content .ant-modal-close {
+  right: 10px !important;
+}
+
+.modelSlider .slick-dots {
+  height: 32px;
+  display: flex;
+  width: 320px;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 8px;
+  border: 1px solid #f2f2f2;
+  bottom: 20px;
+}
+
+.ant-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px !important;
+  height: 44px !important;
+  background-color: #fcfcfc !important;
+  right: 28px !important;
+  top: 10px !important;
+  opacity: 80% !important;
+  border: 1px solid #f2f2f2 !important;
+  border-radius: 8px !important;
+  padding-bottom: 7px !important;
+}
+
+.modalSetMobile .ant-modal-body {
+  display: flex;
+  justify-content: center;
+}
+
+/* ----------------Loading Animation ----------------*/
+
+.LoadingAnimation {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  /* opacity: 0.2; */
+  /* animation: load 1s ease-out; */
+  -webkit-animation: fadeInFromNone 0.8s ease-out;
+  -moz-animation: fadeInFromNone 0.8s ease-out;
+  -o-animation: fadeInFromNone 0.8s ease-out;
+  animation: fadeInFromNone 0.8s ease-out;
+}
+@keyframes fadeInFromNone {
+  0% {
+    opacity: 0;
+  }
+  /* 50% {
+    opacity: 0.01;
+  } */
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ------------------- */
+/* simple - enter transition 300ms, exit 150ms */
+.fade-appear,
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+.fade-appear-active,
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms linear 150ms;
+}
+
+.fade-exit {
+  opacity: 1;
+  z-index: 1;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transition: opacity 150ms linear;
+}
+
+/* .fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 250ms ease-in;
+} */
+
+/* ----------CateGory----------- */
+.categoryLinearText {
+  background: linear-gradient(
+    to right,
+    rgba(167, 207, 223, 0) 50%,
+    rgba(255, 255, 255, 0.99) 100%
+  );
+}
+
+/* Table */
+
+table,
+tr,
+td,
+th {
+  border: 1px solid #f2f2f2;
+  padding: 8px 8px;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 14px;
+}
+table tr td {
+  color: #a1a1a1;
+  font-size: 12px;
+}
+table tr td:nth-child(1) {
+  font-weight: bold;
+  font-size: 14px;
+  color: #000;
+}
+table tr th {
+  background-color: #fcfcfc;
+}
+table tr th:nth-child(1) {
+  font-weight: bold;
+  font-size: 14px;
+  color: #000;
+  padding: 8px 8px;
+}
