@@ -588,23 +588,6 @@ export default function CategoryCards() {
                     </p> */}
                   </div>
                 </div>
-                <div className="w-full  flex absolute bottom-[31px] pb-[6px] pr-[5px] justify-end ">
-                  <p
-                    onClick={() => setClothesSetWear(false)}
-                    className="group w-8 hover:w-[138px] bg-bgCard hover:bg-white   duration-300 rounded-lg overflow-hidden border border-borderColorCard flex items-center justify-between"
-                  >
-                    <span className="  flex flex-nowrap items-center ml-[-100px] group-hover:ml-[10px] w-[92px]   not-italic overflow-hidden    duration-300   font-AeonikProMedium leading-3  text-black text-[11px] ">
-                      Страница образа
-                    </span>
-                    <span className="w-8 h-8 flex items-center justify-center">
-                      <img
-                        className="ml-[2px]"
-                        src={setpersonIcons}
-                        alt="setpersonIcons"
-                      />
-                    </span>
-                  </p>
-                </div>
 
                 <div className="absolute w-full flex justify-between items-center px-1 bottom-0 border-solid xs:h-[38px] lg:h-8 ss:h-[30px] xs:px-2 md:px-4 bg-white hover:backdrop-brightness-125 hover:bg-white/60 transition ease-out duration-500">
                   {data?.changeColor.map((itemValue) => {
