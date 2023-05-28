@@ -20,6 +20,7 @@ export default function ShoppingStore() {
              <div className="w-full">
                 <ShoppingBrands />
              </div>
+             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro autem alias maiores laudantium. Accusantium natus necessitatibus delectus nostrum pariatur aliquid enim maiores tempore. Harum quisquam consequuntur magnam ex voluptatem repellat.
         </div>
     )
 }
