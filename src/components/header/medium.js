@@ -74,7 +74,7 @@ const MediumHeader = () => {
     priceToggleMobile: false,
     brandToggleMobile: false,
     selectColorToggleMobile: false,
-    BasketOpen: false,
+    getActive: "",
   });
 
   useEffect(() => {
@@ -97,6 +97,7 @@ const MediumHeader = () => {
     state?.selectColorToggleMobile,
   ]);
 
+  let redColors = "#D50000";
   let dataStyle = "";
   let genderStyle = "";
   let hoverText = "";
@@ -576,14 +577,27 @@ const MediumHeader = () => {
               {/* Heart section */}
               <NavLink
                 to="/favourites"
-                className={({ isActive }) =>
-                  isActive
-                    ? authenActiveStyle
-                    : "bg-btnBgColor rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex"
+                className={
+                  "bg-btnBgColor rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex"
                 }
               >
-                {/* <FaRegHeart /> */}
-                <img src={heart} className={"w-5 h-5"} alt="heart" />
+                {({ isActive, isPending }) => (
+                  <svg
+                    width="16"
+                    height="14"
+                    viewBox="0 0 16 14"
+                    fill={`${isActive ? "#D50000" : "none"}`}
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8.41337 12.8733C8.18671 12.9533 7.81337 12.9533 7.58671 12.8733C5.65337 12.2133 1.33337 9.45998 1.33337 4.79332C1.33337 2.73332 2.99337 1.06665 5.04004 1.06665C6.25337 1.06665 7.32671 1.65332 8.00004 2.55998C8.67337 1.65332 9.75337 1.06665 10.96 1.06665C13.0067 1.06665 14.6667 2.73332 14.6667 4.79332C14.6667 9.45998 10.3467 12.2133 8.41337 12.8733Z"
+                      stroke={`${isActive ? "#D50000" : "#000"}`}
+                      strokeWidth="1.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                )}
               </NavLink>
 
               {/* Bucket section */}
@@ -592,7 +606,7 @@ const MediumHeader = () => {
                 className=" bg-btnBgColor rounded-lg flex items-center justify-center w-11 h-11 relative md:flex ss:hidden"
               >
                 <img src={bucket} alt="bucket" />
-                <span className="count bg-red-700 w-4 h-4 text-white text-[10px] rounded-lg flex items-center justify-center absolute top-0 right-0 font-AeonikProMedium">
+                <span className="count bg-RedColor w-4 h-4 text-white text-[10px] rounded-lg flex items-center justify-center absolute top-0 right-0 font-AeonikProMedium">
                   {" "}
                   4{" "}
                 </span>

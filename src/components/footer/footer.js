@@ -1,83 +1,59 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  adduser,
-  arrowBottomBlack,
-  arrowBottomRight,
-  arrowTop,
   AutummBoy,
-  autummBrand,
   AutummChild,
   AutummFemale,
   AutummGirl,
   AutummMale,
-  baby,
-  babyBlack,
-  BacktopScroll,
-  blackBrand,
-  business,
-  call,
-  categoryContact,
-  childBlack,
-  children,
-  dashborad,
-  downIcons,
-  englishFlag,
-  error,
-  feedbackIcon,
-  femaleContact,
-  footer,
-  girlBlack,
-  girls,
-  homeTrend,
-  list,
-  locate,
-  location,
-  logo,
-  logoo,
-  man,
-  manBlack,
-  map,
-  maps,
-  markets,
-  message,
-  privateCheck,
-  ru,
-  russiaFlag,
-  shop,
   SpringBoy,
-  springBrand,
   SpringChild,
   SpringFemale,
   SpringGirl,
   SpringMale,
   SummerBoy,
-  summerBrand,
   SummerChild,
   SummerFemale,
   SummerGirl,
   SummerMale,
-  toRightIcons,
-  upload,
-  uzbekFlag,
   WinterBoy,
-  winterBrand,
   WinterChild,
   WinterFemale,
   WinterGirl,
   WinterMale,
-  womanBlack,
-} from "../../assets/imgs";
-import { styles } from "../../util/style";
+} from "../../AssetsMain";
 import { FiInstagram } from "react-icons/fi";
 import { AiOutlineYoutube } from "react-icons/ai";
 import { TbBrandTelegram } from "react-icons/tb";
 import { RiFacebookCircleLine, RiMessengerLine } from "react-icons/ri";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { BiChevronDown } from "react-icons/bi";
-import { Button, Divider, Popover, Segmented } from "antd";
+import { Popover } from "antd";
 import ScrollToTop from "react-scroll-to-top";
 import { ReactComponent as MySVG } from "../../assets/imgs/backTop/backTop.svg";
+import {
+  BrandBlack,
+  EnglishFlag,
+  RussianFlag,
+  UzbekFlag,
+} from "../../AssetsMain";
+import {
+  ArrowTopIcons,
+  CommentIcons,
+  CotegoryIcons,
+  FooterOriginalIcons,
+  HouseStatisticIcons,
+  ListCollectionIcons,
+  LocationIcons,
+  MapIcons,
+  MapSitesIcons,
+  MarketIcons,
+  PersonPlusIcons,
+  PhoneIcons,
+  PrivateCheckIcons,
+  UploadIcons,
+  WarningSircleIcons,
+} from "../../AssetsMain/icons";
 
 const catalogTypes = [
   { id: 1, name: "Студент" },
@@ -146,16 +122,12 @@ const Footer = () => {
     },
   ];
   // -----Language Change-------------------
-  const [selectLang, setselectLang] = useState(1);
-  const handleLangValue = (value) => {
-    setselectLang(value);
-  };
+
   const LanguageList = [
-    { id: 1, type: "Uzbekcha", icons: uzbekFlag, img: arrowTop },
-    { id: 2, type: "Russian", icons: russiaFlag, img: arrowTop },
-    { id: 3, type: "English", icons: englishFlag, img: arrowTop },
+    { id: 1, type: "Uzbekcha", icons: UzbekFlag, img: <ArrowTopIcons /> },
+    { id: 2, type: "Russian", icons: RussianFlag, img: <ArrowTopIcons /> },
+    { id: 3, type: "English", icons: EnglishFlag, img: <ArrowTopIcons /> },
   ];
-  const [openLanguage, setOpenLanguage] = useState(false);
   let dataStyle = "";
   let footerTextWeatherColor = "";
   if (dressInfo?.type == 1111) {
@@ -174,22 +146,6 @@ const Footer = () => {
     dataStyle = " hover:text-borderWinter ";
     footerTextWeatherColor = "text-sky-600 border-sky-600";
   }
-
-  // -------City Change -------------
-  const [selectCity, setselectCity] = useState("Tashkent");
-  const handleCityValue = (value) => {
-    setselectCity(value);
-  };
-
-  const CityList = [
-    { id: 1, type: "Samarqand" },
-    { id: 2, type: "Sirdaryo" },
-    { id: 3, type: "Jizzax" },
-    { id: 4, type: "Andijon" },
-    { id: 5, type: "Xorazm" },
-    { id: 6, type: "Navoiy" },
-  ];
-  const [openCity, setOpenCity] = useState(false);
 
   // ----------------------Price State Management----------------------
   const [openPriceFooter, setOpenOriceFooter] = useState(false);
@@ -315,9 +271,9 @@ const Footer = () => {
     setOpenLanguageFooter(false);
   };
   const LanguageFooter = [
-    { id: 1, type: "Uzbekcha", icons: uzbekFlag },
-    { id: 2, type: "Russian", icons: russiaFlag },
-    { id: 3, type: "English", icons: englishFlag },
+    { id: 1, type: "Uzbekcha", icons: UzbekFlag },
+    { id: 2, type: "Russian", icons: RussianFlag },
+    { id: 3, type: "English", icons: EnglishFlag },
   ];
   const contentLanguage = (
     <div className="w-[150px] h-fit m-0 p-0">
@@ -355,9 +311,9 @@ const Footer = () => {
     setOpenLanguageMobile(false);
   };
   const LanguageMobile = [
-    { id: 1, type: "Uzbekcha", icons: uzbekFlag },
-    { id: 2, type: "Russian", icons: russiaFlag },
-    { id: 3, type: "English", icons: englishFlag },
+    { id: 1, type: "Uzbekcha", icons: UzbekFlag },
+    { id: 2, type: "Russian", icons: RussianFlag },
+    { id: 3, type: "English", icons: EnglishFlag },
   ];
   const contentLanguageMobile = (
     <div className="w-[150px] h-fit m-0 p-0">
@@ -411,7 +367,7 @@ const Footer = () => {
             <div className="flex items-center md:px-0 ">
               <div className="flex flex-col">
                 <Link to="/" className="md:mb-[14px]">
-                  <img src={blackBrand} alt="logo" className="w-full" />
+                  <img src={BrandBlack} alt="logo" className="w-full" />
                 </Link>
                 <div className="text-textColor mb-[18px] text-sm hidden md:flex">
                   Торговая площадка одежды
@@ -425,7 +381,7 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center mb-[46px]">
                   <div className="border border-searchBgColor flex items-center justify-center rounded-lg mr-3 w-24 h-12 ss:bg-white md:bg-transparent">
-                    <img src={location} alt="location" />
+                    <LocationIcons />
                   </div>
                   <div className="font-AeonikProRegular text-sm underline underline-offset-4">
                     Мирзо-Улугбекский район, проспект Амира Темура, 60 -
@@ -436,20 +392,18 @@ const Footer = () => {
 
               <Link
                 to="#"
-                className="hidden items-center bg-bgColor pl-16 py-[15px] border border-searchBgColor rounded-lg ml-auto md:flex"
+                className="hidden items-center bg-bgColor px-4 py-[15px] border border-searchBgColor rounded-lg ml-auto md:flex"
               >
-                <img src={feedbackIcon} alt="" />
-                <span className="text-base font-AeonikProMedium leading-4 ml-[12.5px] mr-[32.37px]">
+                <UploadIcons />
+                <span className="text-base font-AeonikProMedium leading-4 mt-1 ml-[12.5px] mr-[32.37px]">
                   Форма для обратной связи
                 </span>
-                <img
-                  src={arrowBottomRight}
-                  alt="arrow-right-black"
-                  className="mr-5"
-                />
+                <span className="rotate-90 ">
+                  <ArrowTopIcons />
+                </span>
               </Link>
               <Link to="#" className="flex items-center ml-auto md:hidden">
-                <img src={homeTrend} alt="" />
+                <HouseStatisticIcons colors={"#000"} />
                 <span className="ml-2 font-AeonikProMedium text-sm">
                   Дашборд
                 </span>
@@ -463,7 +417,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center mb-[46px]">
                 <div className="border border-searchBgColor flex items-center justify-center rounded-lg mr-3 w-24 h-12 ss:bg-white md:bg-transparent">
-                  <img src={location} alt="location" />
+                  <LocationIcons />
                 </div>
                 <div className="font-AeonikProRegular text-sm underline underline-offset-4">
                   Мирзо-Улугбекский район, проспект Амира Темура, 60 - Ташкент,
@@ -531,7 +485,7 @@ const Footer = () => {
                   <div className="basis-1/3">
                     <li className="ss:mb-1 md:mb-4">
                       <Link to="#" className="flex items-center">
-                        <img src={error} alt="" />
+                        <WarningSircleIcons />
                         <span className="font-AeonikProRegular ml-2">
                           О нас
                         </span>
@@ -539,7 +493,7 @@ const Footer = () => {
                     </li>
                     <li className="ss:mb-1 md:mb-4">
                       <Link to="#" className="flex items-center">
-                        <img src={adduser} alt="" />
+                        <PersonPlusIcons colors={"#000"} />
                         <span className="font-AeonikProRegular ml-2">
                           Вакансия
                         </span>
@@ -547,7 +501,7 @@ const Footer = () => {
                     </li>
                     <li className="ss:mb-1 md:mb-4">
                       <Link to="#" className="flex items-center">
-                        <img src={list} alt="" />
+                        <ListCollectionIcons />
                         <span className="font-AeonikProRegular ml-2">
                           Наш блог
                         </span>
@@ -555,7 +509,7 @@ const Footer = () => {
                     </li>
                     <li className="ss:mb-1 md:mb-4">
                       <Link to="#" className="flex items-center">
-                        <img src={categoryContact} alt="" />
+                        <CotegoryIcons />
                         <span className="font-AeonikProRegular ml-2">
                           Каталог
                         </span>
@@ -563,7 +517,7 @@ const Footer = () => {
                     </li>
                     <li className="ss:mb-1 md:mb-4">
                       <Link to="#" className="flex items-center">
-                        <img src={maps} alt="" />
+                        <MapSitesIcons />
                         <span className="font-AeonikProRegular ml-2">
                           Карта сайта
                         </span>
@@ -573,7 +527,7 @@ const Footer = () => {
                   <div className="basis-1/3">
                     <li className="ss:mb-1 md:mb-4">
                       <Link to="#" className="flex items-center">
-                        <img src={shop} alt="" />
+                        <MarketIcons colors={"#000"} />
                         <span className="font-AeonikProRegular ml-2">
                           Магазины
                         </span>
@@ -581,7 +535,7 @@ const Footer = () => {
                     </li>
                     <li className="ss:mb-1 md:mb-4">
                       <Link to="#" className="flex items-center">
-                        <img src={homeTrend} alt="" />
+                        <HouseStatisticIcons colors={"#000"} />
                         <span className="font-AeonikProRegular ml-2">
                           Бизнес
                         </span>
@@ -589,7 +543,7 @@ const Footer = () => {
                     </li>
                     <li className="ss:mb-1 md:mb-4">
                       <Link to="#" className="flex items-center">
-                        <img src={map} alt="" />
+                        <MapIcons />
                         <span className="font-AeonikProRegular ml-2">
                           Карта
                         </span>
@@ -597,7 +551,7 @@ const Footer = () => {
                     </li>
                     <li className="ss:mb-1 md:mb-4">
                       <Link to="#" className="flex items-center">
-                        <img src={list} alt="" />
+                        <ListCollectionIcons />
                         <span className="font-AeonikProRegular ml-2">
                           Мои заказы
                         </span>
@@ -605,7 +559,7 @@ const Footer = () => {
                     </li>
                     <li className="ss:mb-1 md:mb-4">
                       <Link to="#" className="flex items-center">
-                        <img src={privateCheck} alt="" />
+                        <PrivateCheckIcons />
                         <span className="font-AeonikProRegular ml-2">
                           Политика конфиденциальности
                         </span>
@@ -615,7 +569,7 @@ const Footer = () => {
                   <div className="basis-1/3">
                     <li className="ss:mb-1 md:mb-4">
                       <Link to="#" className="flex items-center">
-                        <img src={homeTrend} alt="" />
+                        <HouseStatisticIcons colors={"#000"} />
                         <span className="font-AeonikProRegular ml-2">
                           Дашборд
                         </span>
@@ -623,7 +577,7 @@ const Footer = () => {
                     </li>
                     <li className="ss:mb-1 md:mb-4">
                       <Link to="#" className="flex items-center">
-                        <img src={message} alt="" />
+                        <CommentIcons colors={"#000"} />
                         <span className="font-AeonikProRegular ml-2">
                           Помощь
                         </span>
@@ -631,7 +585,7 @@ const Footer = () => {
                     </li>
                     <li className="ss:mb-1 md:mb-4">
                       <Link to="#" className="flex items-center">
-                        <img src={call} alt="" />
+                        <PhoneIcons />
                         <span className="font-AeonikProRegular ml-2">
                           Контакты
                         </span>
@@ -704,13 +658,13 @@ const Footer = () => {
                 <ul className="text-sm">
                   <li className="mb-4">
                     <Link to="#" className="flex items-center">
-                      <img src={error} alt="" />
+                      <WarningSircleIcons />
                       <span className="font-AeonikProRegular ml-2">О нас</span>
                     </Link>
                   </li>
                   <li className="mb-4">
                     <Link to="#" className="flex items-center">
-                      <img src={adduser} alt="" />
+                      <PersonPlusIcons colors={"#000"} />
                       <span className="font-AeonikProRegular ml-2">
                         Вакансия
                       </span>
@@ -718,7 +672,7 @@ const Footer = () => {
                   </li>
                   <li className="mb-4">
                     <Link to="#" className="flex items-center">
-                      <img src={list} alt="" />
+                      <ListCollectionIcons />
                       <span className="font-AeonikProRegular ml-2">
                         Наш блог
                       </span>
@@ -726,7 +680,7 @@ const Footer = () => {
                   </li>
                   <li className="mb-4">
                     <Link to="#" className="flex items-center">
-                      <img src={categoryContact} alt="" />
+                      <CotegoryIcons />
                       <span className="font-AeonikProRegular ml-2">
                         Каталог
                       </span>
@@ -734,7 +688,7 @@ const Footer = () => {
                   </li>
                   <li className="mb-4">
                     <Link to="#" className="flex items-center">
-                      <img src={maps} alt="" />
+                      <MapSitesIcons />
                       <span className="font-AeonikProRegular ml-2">
                         Карта сайта
                       </span>
@@ -797,12 +751,12 @@ const Footer = () => {
               to="#"
               className="flex items-center bg-bgColor pl-3 py-[15px] border border-searchBgColor rounded-lg ss:my-[35px] md:my-0 ls:pl-6 md:pl-16 md:mb-0 md:hidden"
             >
-              <img src={feedbackIcon} alt="" />
+              <img src={UploadIcons} alt="" />
               <span className="text-base font-AeonikProMedium leading-4 ml-[12.5px] mr-2 ls:mr-6 md:mr-[32.37px]">
                 Форма для обратной связи
               </span>
               <img
-                src={arrowBottomRight}
+                src={ArrowTopIcons}
                 alt="arrow-right-black"
                 className="mr-2 ls:mr-3 md:mr-5"
               />
@@ -814,7 +768,7 @@ const Footer = () => {
                 <div className="basis-1/2">
                   <li className="mb-4">
                     <Link to="#" className="flex items-center">
-                      <img src={shop} alt="" />
+                      <MarketIcons colors={"#000"} />
                       <span className="font-AeonikProRegular ml-2">
                         Магазины
                       </span>
@@ -822,19 +776,19 @@ const Footer = () => {
                   </li>
                   <li className="mb-4">
                     <Link to="#" className="flex items-center">
-                      <img src={homeTrend} alt="" />
+                      <HouseStatisticIcons colors={"#000"} />
                       <span className="font-AeonikProRegular ml-2">Бизнес</span>
                     </Link>
                   </li>
                   <li className="mb-4">
                     <Link to="#" className="flex items-center">
-                      <img src={map} alt="" />
+                      <MapIcons />
                       <span className="font-AeonikProRegular ml-2">Карта</span>
                     </Link>
                   </li>
                   <li className="mb-4">
                     <Link to="#" className="flex items-center">
-                      <img src={list} alt="" />
+                      <ListCollectionIcons />
                       <span className="font-AeonikProRegular ml-2">
                         Мои заказы
                       </span>
@@ -842,7 +796,7 @@ const Footer = () => {
                   </li>
                   <li className="mb-4">
                     <Link to="#" className="flex items-center">
-                      <img src={privateCheck} alt="" />
+                      <PrivateCheckIcons />
                       <span className="font-AeonikProRegular ml-2">
                         Политика конфиденциальности
                       </span>
@@ -852,13 +806,13 @@ const Footer = () => {
                 <div className="basis-1/2 pl-6">
                   <li className="mb-4">
                     <Link to="#" className="flex items-center">
-                      <img src={message} alt="" />
+                      <CommentIcons colors={"#000"} />
                       <span className="font-AeonikProRegular ml-2">Помощь</span>
                     </Link>
                   </li>
                   <li className="mb-4">
                     <Link to="#" className="flex items-center">
-                      <img src={call} alt="" />
+                      <PhoneIcons />
                       <span className="font-AeonikProRegular ml-2">
                         Контакты
                       </span>
@@ -879,7 +833,7 @@ const Footer = () => {
                 placement="bottom"
                 content={contentMobile}
               >
-                <img src={location} alt="" />
+                <LocationIcons />
                 <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black">
                   {selectRegionMobile}
                 </span>
@@ -1032,7 +986,9 @@ const Footer = () => {
               <div className="w-full block justify-between">
                 <div className="w-full flex items-center justify-between text-sm font-AeonikProMedium lg:w-fit">
                   <div className="flex justify-between items-center ">
-                    <img src={footer} alt="" className="mr-2" />
+                    <span className="mr-2 mt-[-4px]">
+                      <FooterOriginalIcons />
+                    </span>
                     <span className="text-sm">2022 — Dress.me</span>
                   </div>
                   <div className="md:ml-4 md:mr-4">
@@ -1071,14 +1027,12 @@ const Footer = () => {
                   <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black">
                     {selectPriceFooter}
                   </span>
-                  <img
-                    src={arrowTop}
+                  <ArrowTopIcons
                     className={`${
                       openPriceFooter
                         ? "rotate-[-180deg] transition ease-linear duration-200"
                         : "transition ease-linear duration-200"
                     }`}
-                    alt="icon"
                   />
                 </Popover>
                 <Popover
@@ -1090,18 +1044,16 @@ const Footer = () => {
                   placement="bottom"
                   content={contentRegion}
                 >
-                  <img src={location} alt="" />
+                  <LocationIcons />
                   <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black">
                     {selectRegionFooter}
                   </span>
-                  <img
-                    src={arrowTop}
+                  <ArrowTopIcons
                     className={`${
                       openRegionFooter
                         ? "rotate-[-180deg] transition ease-linear duration-200"
                         : "transition ease-linear duration-200"
                     }`}
-                    alt="icon"
                   />
                 </Popover>
                 {LanguageList.filter(
@@ -1124,14 +1076,12 @@ const Footer = () => {
                       <span className="text-sm font-AeonikProMedium not-italic">
                         {data?.type}
                       </span>
-                      <img
-                        src={arrowTop}
+                      <ArrowTopIcons
                         className={`${
                           openLanguageFooter
                             ? "rotate-[-180deg] transition ease-linear duration-200"
                             : "transition ease-linear duration-200"
                         }`}
-                        alt="icon"
                       />
                     </Popover>
                   );

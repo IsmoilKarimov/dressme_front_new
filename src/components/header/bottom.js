@@ -2,25 +2,25 @@ import React, { useContext, useState, useMemo } from "react";
 import {
   AutummFemale,
   AutummMale,
-  clothing,
-  dollarLogo,
-  DotIcon,
-  InputCheck,
-  inputCheckBlack,
-  plus,
   SpringFemale,
   SpringMale,
   SummerFemale,
   SummerMale,
   WinterFemale,
   WinterMale,
-} from "../../assets/imgs";
+} from "../../AssetsMain";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { BiChevronDown } from "react-icons/bi";
 import { Popover } from "antd";
 
 import style from "./bottom.module.css";
 import { Link } from "react-router-dom";
+import {
+  ClothesIcons,
+  DollorIcons,
+  InputCheckedTrueIcons,
+  PlusIcons,
+} from "../../AssetsMain/icons";
 
 const BottomHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -135,63 +135,87 @@ const BottomHeader = () => {
     </div>
   );
   const changeColor = [
-    { id: 1, data: 1, icons: InputCheck, action: false, colors: "bg-black" },
-    { id: 2, data: 2, icons: InputCheck, action: false, colors: "bg-white" },
-    { id: 3, data: 3, icons: InputCheck, action: false, colors: "bg-zinc-500" },
+    {
+      id: 1,
+      data: 1,
+      icons: <InputCheckedTrueIcons />,
+      action: false,
+      colors: "bg-black",
+    },
+    {
+      id: 2,
+      data: 2,
+      icons: <InputCheckedTrueIcons />,
+      action: false,
+      colors: "bg-white",
+    },
+    {
+      id: 3,
+      data: 3,
+      icons: <InputCheckedTrueIcons />,
+      action: false,
+      colors: "bg-zinc-500",
+    },
     {
       id: 4,
       data: 4,
-      icons: InputCheck,
+      icons: <InputCheckedTrueIcons />,
       action: false,
       colors: "bg-purple-500",
     },
-    { id: 5, data: 5, icons: InputCheck, action: false, colors: "bg-sky-600" },
+    {
+      id: 5,
+      data: 5,
+      icons: <InputCheckedTrueIcons />,
+      action: false,
+      colors: "bg-sky-600",
+    },
     {
       id: 6,
       data: 6,
-      icons: InputCheck,
+      icons: <InputCheckedTrueIcons />,
       action: false,
       colors: "bg-amber-400 ",
     },
     {
       id: 7,
       data: 7,
-      icons: InputCheck,
+      icons: <InputCheckedTrueIcons />,
       action: false,
       colors: "bg-green-700 ",
     },
     {
       id: 8,
       data: 8,
-      icons: InputCheck,
+      icons: <InputCheckedTrueIcons />,
       action: false,
       colors: "bg-amber-600 ",
     },
     {
       id: 9,
       data: 9,
-      icons: InputCheck,
+      icons: <InputCheckedTrueIcons />,
       action: false,
       colors: "bg-red-700  ",
     },
     {
       id: 10,
       data: 10,
-      icons: InputCheck,
+      icons: <InputCheckedTrueIcons />,
       action: false,
       colors: "bg-purple-800 ",
     },
     {
       id: 11,
       data: 11,
-      icons: InputCheck,
+      icons: <InputCheckedTrueIcons />,
       action: false,
       colors: "bg-blue-900  ",
     },
     {
       id: 12,
       data: 12,
-      icons: InputCheck,
+      icons: <InputCheckedTrueIcons />,
       action: false,
       colors: "bg-yellow-900 ",
     },
@@ -214,7 +238,7 @@ const BottomHeader = () => {
           content={contentWear}
         >
           <span>
-            <img src={clothing} alt="clothing" className="" />{" "}
+            <ClothesIcons />
           </span>
           <span className="not-italic font-AeonikProMedium text-center mt-1 text-sm leading-4 text-black">
             {selectWear}
@@ -239,7 +263,7 @@ const BottomHeader = () => {
           content={contentPrice}
         >
           <p className="w-[48px] h-full flex items-center justify-center border-r border-searchBgColor">
-            <img src={dollarLogo} alt="dollar full" />{" "}
+            <DollorIcons />
           </p>
           <p className=" w-[142px] h-full flex justify-between items-center px-3">
             <span className="not-italic font-AeonikProMedium text-center text-sm mt-1 leading-4 text-black ">
@@ -267,7 +291,21 @@ const BottomHeader = () => {
             <div className=" w-fit h-fit flex items-center justify-center relative  select-none ">
               {/* <div className={`w-[8px] h-[20px] flex items-end justify-center  py-[2px] border border-black  rounded-[3px] z-[25] bg-white rounded-b-[5px]`}> */}
               <div className={style.mainOne}>
-                <img src={DotIcon} alt="DotIcon" />
+                <svg
+                  width="4"
+                  height="4"
+                  viewBox="0 0 4 4"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2.00002 2.83334C2.46026 2.83334 2.83335 2.46024 2.83335 2C2.83335 1.53977 2.46026 1.16667 2.00002 1.16667C1.53978 1.16667 1.16669 1.53977 1.16669 2C1.16669 2.46024 1.53978 2.83334 2.00002 2.83334Z"
+                    stroke="black"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
               {/* <div className={`w-[8px] h-[20px] border left-[-3px] top-[2px] z-[24] bg-white relative border-black rounded-[3px] duration-200  rounded-b-[5px] ${!textToColor ? "rotate-[45deg] " : "left-[-8px] top-[0px] rotate-[0deg]"}`}> */}
               <div className={style.mainTwo}></div>
@@ -300,15 +338,13 @@ const BottomHeader = () => {
                       }  border-borderColorCard	`}
                     >
                       {data?.id == getRadio && data?.id == 2 ? (
-                        <img
-                          className="w-[14px]"
-                          src={inputCheckBlack}
-                          alt=""
-                        />
+                        <span>
+                          <InputCheckedTrueIcons colors={"#000"} />
+                        </span>
                       ) : null}
 
                       {data?.id == getRadio && data?.id !== 2 ? (
-                        <img className="w-[14px]" src={InputCheck} alt="" />
+                        <InputCheckedTrueIcons colors={"#fff"} />
                       ) : null}
                     </label>
                     <input
@@ -357,7 +393,9 @@ const BottomHeader = () => {
           to="/sign_in"
           className="bg-btnBgColor font-AeonikProMedium w-[44px] h-[44px] flex items-center justify-center border border-searchBgColor rounded-lg "
         >
-          <img src={plus} alt="" />
+          <span>
+            <PlusIcons />
+          </span>
         </Link>
       </div>
     </div>

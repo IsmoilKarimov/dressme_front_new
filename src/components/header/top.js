@@ -1,10 +1,18 @@
 import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { MenuClose, business, englishFlag, glasses, help, location, order, russiaFlag, shop, uzbekFlag } from "../../assets/imgs";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { Modal, Popover } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import WeatherInfo from "../Weather/WeatherInfo";
+import {
+  CommentIcons,
+  HouseStatisticIcons,
+  LocationIcons,
+  MarketIcons,
+  MenuCloseIcons,
+  MyPurchaseIcons,
+} from "../../AssetsMain/icons";
+import { EnglishFlag, RussianFlag, UzbekFlag } from "../../AssetsMain";
 const TopHeader = () => {
   const [dressInfo] = useContext(dressMainData);
 
@@ -13,13 +21,7 @@ const TopHeader = () => {
     weatherSet: "",
   });
 
-  const showModal = () => {
-    setState({ ...state, isModalOpen: true });
-  };
   const handleOk = () => {
-    setState({ ...state, isModalOpen: false });
-  };
-  const handleCancel = () => {
     setState({ ...state, isModalOpen: false });
   };
 
@@ -59,9 +61,9 @@ const TopHeader = () => {
   const [selectLang, setselectLang] = useState(1);
 
   const LanguageList = [
-    { id: 1, type: "English", icons: englishFlag },
-    { id: 2, type: "Русский", icons: russiaFlag },
-    { id: 3, type: "O'zbekcha", icons: uzbekFlag },
+    { id: 1, type: "English", icons: EnglishFlag },
+    { id: 2, type: "Русский", icons: RussianFlag },
+    { id: 3, type: "O'zbekcha", icons: UzbekFlag },
   ];
 
   const [openLang, setOpenLang] = useState(false);
@@ -146,10 +148,10 @@ const TopHeader = () => {
         <div className="left h-full flex items-center  ">
           <Link to="/" className="flex w-fit items-center">
             {/* Location svg img */}
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7.99992 8.95333C9.14867 8.95333 10.0799 8.02209 10.0799 6.87333C10.0799 5.72458 9.14867 4.79333 7.99992 4.79333C6.85117 4.79333 5.91992 5.72458 5.91992 6.87333C5.91992 8.02209 6.85117 8.95333 7.99992 8.95333Z" stroke="black" stroke-width="1.5"/>
-                <path d="M2.4133 5.66C3.72664 -0.113333 12.28 -0.106666 13.5866 5.66667C14.3533 9.05333 12.2466 11.92 10.4 13.6933C9.05997 14.9867 6.93997 14.9867 5.5933 13.6933C3.7533 11.92 1.64664 9.04667 2.4133 5.66Z" stroke="black" stroke-width="1.5"/>
-            </svg>
+            <span>
+              <LocationIcons />
+            </span>
+
             <span className="text-textColor text-[13px] ml-2 mr-[6px] font-AeonikProMedium">
               Город:
             </span>
@@ -173,8 +175,13 @@ const TopHeader = () => {
             open={state?.isModalOpen}
             footer={null}
           >
-            <div onClick={handleOk} className="flex justify-end p-2 cursor-pointer">
-              <img src={MenuClose} alt="" />
+            <div
+              onClick={handleOk}
+              className="flex justify-end p-2 cursor-pointer"
+            >
+              <span>
+                <MenuCloseIcons />
+              </span>
             </div>
             <div className="w-fit h-fit  ">
               {" "}
@@ -210,26 +217,37 @@ const TopHeader = () => {
         </div>
         <div className="right h-full flex items-center ">
           <Link to="#" className="flex items-center h-full ">
-            <img src={help} alt="help" className="mr-2" />
+            <span className="mr-2">
+              <CommentIcons colors={"#707070"} />
+            </span>
             <span className="text-textColor text-[13px]   font-AeonikProMedium  ">
               Помощь
             </span>
           </Link>
           <Link to="#" className="flex items-center h-full  ml-6 ">
-            <img src={business} alt="business" className="mr-2" />
+            <span className="mr-2">
+              <HouseStatisticIcons colors={"#707070"} />
+            </span>
             <span className="text-textColor text-[13px]   font-AeonikProMedium  ">
               Бизнес
             </span>
           </Link>
           <div className="line h-5 border text-textColor ml-6"></div>
           <Link to="#" className="flex items-center h-full  ml-6 ">
-            <img src={order} alt="my orders" className="mr-2" />
+            <span className="mr-2">
+              <MyPurchaseIcons colors={"#707070"} />
+            </span>
             <span className="text-textColor  text-[13px]   font-AeonikProMedium  ">
               Мои заказы
             </span>
           </Link>
-          <NavLink to='/stores' className="flex items-center bg-white rounded cursor-pointer h-full  ml-6 px-3">
-            <img src={shop} alt="shop" className="mr-2" />
+          <NavLink
+            to="/stores"
+            className="flex items-center bg-white rounded cursor-pointer h-full  ml-6 px-3"
+          >
+            <span className="mr-2">
+              <MarketIcons colors={"#707070"} />
+            </span>{" "}
             <span className="font-AeonikProMedium  text-[13px]    ">
               Магазины
             </span>
