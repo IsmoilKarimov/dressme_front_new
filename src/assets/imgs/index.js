@@ -236,7 +236,7 @@ export { default as shirtMaps } from "./maps/shirtsMaps.svg";
 export { default as FullScreen } from "./maps/fullSecren.svg";
 export { default as maximize } from "./maps/maximize.svg";
 
-// ------------------------SignIn------------
+// ------------------------signIn------------
 export { default as SignInSpring } from "./formImgs/Signin/SignInSpring.svg";
 export { default as SignInAutumm } from "./formImgs/Signin/SignInAutumm.svg";
 export { default as SignInSummer } from "./formImgs/Signin/SignInSummer.svg";

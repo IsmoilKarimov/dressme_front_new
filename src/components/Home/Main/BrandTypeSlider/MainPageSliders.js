@@ -16,6 +16,7 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { NavLink } from "react-router-dom";
+import { NoImg, SircleNext } from "../../../../AssetsMain/icons";
 // import required modules``
 export default function MainPageSliders() {
   const [dressInfo] = useContext(dressMainData);
@@ -268,13 +269,7 @@ export default function MainPageSliders() {
                             key={value?.id}
                             className={`w-full h-full border border-solid	${value?.colors} rounded-lg`}
                           >
-                            {data?.img ? (
-                              <img
-                                className="h-full w-full"
-                                src={data?.img}
-                                alt="student"
-                              />
-                            ) : null}
+                            <SircleNext />
                           </div>
                         );
                       })}
@@ -300,43 +295,7 @@ export default function MainPageSliders() {
             return (
               <div key={data?.id} className="ll:w-[100px] ss:w-[80px] ">
                 <div className="w-[100%] h-[80px] flex items-center justify-center	p-1 bg-btnBgColor border border-searchBgColor	rounded-lg ">
-                  <img
-                    className="border-0 w-fit h-fit	"
-                    src={
-                      data?.img || (
-                        <svg
-                          width="36"
-                          height="36"
-                          viewBox="0 0 36 36"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M13.5 33H22.5C30 33 33 30 33 22.5V13.5C33 6 30 3 22.5 3H13.5C6 3 3 6 3 13.5V22.5C3 30 6 33 13.5 33Z"
-                            stroke="#E8E8E8"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          <path
-                            d="M13.5 15C15.1569 15 16.5 13.6569 16.5 12C16.5 10.3431 15.1569 9 13.5 9C11.8431 9 10.5 10.3431 10.5 12C10.5 13.6569 11.8431 15 13.5 15Z"
-                            stroke="#E8E8E8"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          <path
-                            d="M4.00488 28.425L11.3999 23.46C12.5849 22.665 14.2949 22.755 15.3599 23.67L15.8549 24.105C17.0249 25.11 18.9149 25.11 20.0849 24.105L26.3249 18.75C27.4949 17.745 29.3849 17.745 30.5549 18.75L32.9999 20.85"
-                            stroke="#E8E8E8"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      )
-                    }
-                    alt="."
-                  />
+                  <NoImg />
                 </div>
                 <div className="w-full py-1 flex items-center">
                   <p className="not-italic font-AeonikProMedium text-sm leading-6 text-black">
@@ -358,37 +317,7 @@ export default function MainPageSliders() {
           <span className="not-italic mt-1 font-AeonikProMedium text-base leading-4 text-center">
             Посмотреть все категории
           </span>
-          <span className="ml-2">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                stroke={dataStyle}
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M8.5 12H14.5"
-                stroke={dataStyle}
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M12.5 15L15.5 12L12.5 9"
-                stroke={dataStyle}
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
+          <SircleNext colors={dataStyle} />
         </button>
       </div>
       <div className="w-full 	mt-[60px] ss:hidden xs:block">

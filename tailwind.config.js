@@ -47,6 +47,9 @@ module.exports = {
         // BgCategory...
         bgCategory: "#F8F8F8",
         textOpacity: "#D9D9D9",
+        RedColor: "#D50000",
+
+        // Hear red color
 
         // Basket Result Money
         BasketMoneyColor: "#008F0E",

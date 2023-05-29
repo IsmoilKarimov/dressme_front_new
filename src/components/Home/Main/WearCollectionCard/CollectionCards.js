@@ -1,21 +1,15 @@
 import React, { useContext, useState } from "react";
-import {
-  discount,
-  bucket,
-  video,
-  delivery,
-  heart,
-  shirt,
-  addBag,
-  cardImg,
-  star,
-  setpersonIcons,
-  InputCheck,
-  ticketDiscount,
-} from "../../../../assets/imgs";
+
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 
 import { useNavigate } from "react-router-dom";
+import {
+  HeartIcons,
+  InputCheckedTrueIcons,
+  NoImg,
+  SaveBasketIcons,
+  StarIcons,
+} from "../../../../AssetsMain/icons";
 
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -82,11 +76,7 @@ export default function CollectionCards() {
                     alt="ProducImg"
                   />
                 ) : (
-                  <img
-                    className="w-full h-fit"
-                    src={data.noProductImg}
-                    alt="noProductImg"
-                  />
+                  <NoImg />
                 )}
                 <div className="w-full flex absolute top-px p-[5px]  ss:justify-end xs:justify-between">
                   <ul className="nav-lists flex-col gap-y-1 justify-center h-full ss:hidden xs:flex">
@@ -118,7 +108,7 @@ export default function CollectionCards() {
 
                   <div className="flex flex-col gap-y-1">
                     <p className="w-8 h-8  rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
-                      <img src={heart} alt="" />
+                      <HeartIcons />{" "}
                     </p>
                     {/* <p className="w-8 h-8 ss:hidden rounded-lg bg-bgCard xs:flex items-center justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
                           <img src={bucket} alt="" />
@@ -136,7 +126,7 @@ export default function CollectionCards() {
                         htmlFor="Color1"
                       >
                         {itemValue?.action ? (
-                          <img className="w-[14px]" src={InputCheck} alt="" />
+                          <InputCheckedTrueIcons colors={"#fff"} />
                         ) : null}
                       </div>
                     );
@@ -153,9 +143,8 @@ export default function CollectionCards() {
                     <div className="flex items-center justify-between">
                       <span>
                         {" "}
-                        <img src={star} alt="" />
+                        <StarIcons />
                       </span>
-                      {/* <span><img src={} alt=""/></span> */}
                       <span className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex items-center">
                         <span className="font-AeonikProMedium text-[10px] ls:text-xs not-italic mx-1 text-black md:mr-[6px] md:text-[13px]">
                           5.0{" "}
@@ -196,7 +185,7 @@ export default function CollectionCards() {
                   </div>
                   <div className="flex items-center">
                     <button className="w-[32px] h-[32px] md:w-[36px] md:h-[36px] ll:mb-1 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-                      <img src={addBag} alt="addbag" className="w-8" />
+                      <SaveBasketIcons />
                     </button>
                   </div>
                 </div>

@@ -1,15 +1,7 @@
 import React, { useContext } from "react";
-import {
-  AutummSquare,
-  category,
-  noProductImg,
-  SpringSquare,
-  SummerSquare,
-  WinterSquare,
-} from "../../../../assets/imgs";
 
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
-import { SeasonSquare } from "../../../../AssetsMain/icons";
+import { NoImg, SeasonSquare } from "../../../../AssetsMain/icons";
 
 export default function TypeSection() {
   const [dressInfo] = useContext(dressMainData);
@@ -50,64 +42,6 @@ export default function TypeSection() {
         { id: 4, img: "", title: "Галстук" },
       ],
     },
-    // {
-    //     id: 4,
-    //     type: "Muslim Wear",
-    //     buy: "Купить",
-    //     locat: "/wears",
-    //     group: [
-    //         { id: 1, img: "", title: "T-Short" },
-    //         { id: 2, img: "", title: "Shirt" },
-    //         { id: 3, img: "", title: "Shapka" },
-    //         { id: 4, img: "", title: "glasses" },
-    //     ]
-
-    // },
-    // {
-    //     id: 5,
-    //     type: "Student Wear",
-    //     buy: "Купить",
-    //     locat: "/wears",
-    //     group: [
-    //         { id: 1, img: "", title: "T-Short" },
-    //         { id: 2, img: "", title: "Shirt" },
-    //         { id: 3, img: "", title: "Shapka" },
-    //         { id: 4, img: "", title: "glasses" },
-    //     ]
-
-    // },
-    // {
-    //     id: 6,
-    //     type: "Travel Wear",
-    //     buy: "Купить",
-    //     locat: "/wears",
-    //     group: [
-    //         { id: 1, img: "", title: "T-Short" },
-    //         { id: 2, img: "", title: "Shirt" },
-    //         { id: 3, img: "", title: "Shapka" },
-    //         { id: 4, img: "", title: "glasses" },
-    //     ]
-
-    // },
-    // {
-    //     id: 7,
-    //     type: "Relaxed Wear",
-    //     buy: "Купить",
-    //     locat: "/wears",
-    //     group: [
-    //         { id: 1, img: "", title: "T-Short" },
-    //         { id: 2, img: "", title: "Shirt" },
-    //         { id: 3, img: "", title: "Shapka" },
-    //         { id: 4, img: "", title: "glasses" },
-    //     ]
-
-    // },
-  ];
-  const service = [
-    { id: 1111, type: "Spring", imgFull: SpringSquare },
-    { id: 2222, type: "Summer", imgFull: SummerSquare },
-    { id: 3333, type: "Autumm", imgFull: AutummSquare },
-    { id: 4444, type: "Winter", imgFull: WinterSquare },
   ];
 
   let dataStyle = "";
@@ -132,12 +66,12 @@ export default function TypeSection() {
   return (
     <div className="flex flex-col">
       <div className="w-[100%] h-fit flex flex-col justify-center py-8">
-        <div className="w-full h-[60px]  block xs:hidden flex items-center justify-center text-center  rounded cursor-pointer  bg-bgColor border border-solid border-searchBgColor">
+        <div className="w-full h-[60px]  block xs:hidden flex items-center justify-center text-center  rounded-lg cursor-pointer  bg-bgColor border border-solid border-searchBgColor">
           <span className="mr-3 not-italic font-AeonikProMedium text-base leading-4 text-center">
             Одежды, которые вам подходят
           </span>
           <span>
-            <img src={category} alt="market" />
+            <SeasonSquare colors={"#000"} />
           </span>
         </div>
       </div>
@@ -170,7 +104,11 @@ export default function TypeSection() {
                         className="w-[177px] h-[168px] p-[10px] bg-btnBgColor border	border-searchBgColor rounded-lg   flex flex-wrap content-between"
                       >
                         <div className="w-full h-3/4 rounded-lg  border border-searchBgColor flex items-center justify-center">
-                          <img src={data?.img || noProductImg} alt="data" />
+                          {data?.img ? (
+                            <img src={data?.img} alt="data" />
+                          ) : (
+                            <NoImg />
+                          )}
                         </div>
                         <div className="w-full h-1/5 flex items-center not-italic font-AeonikProMedium text-base leading-4 text-black justify-start">
                           {data?.title || "title"}
