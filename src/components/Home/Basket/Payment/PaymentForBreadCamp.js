@@ -1,28 +1,22 @@
 import React, { useContext, useState } from "react";
+
 import {
-  AutummFemale,
   AutummMale,
-  BreadcrumbPayme,
-  SpringFemale,
   SpringMale,
-  SummerFemale,
   SummerMale,
-  WinterFemale,
   WinterMale,
-  backIcon,
-  bucket,
-  clothing,
-  homeBreadcrumb,
-  iIcons,
-  passwordCheck,
-  plusIcon,
-  shopBreadcrumb,
-} from "../../../../assets/imgs";
+} from "../../../../AssetsMain";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
-import { MdAdd } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
+import {
+  CircleSuccessIcons,
+  HomeIcons,
+  ItailIcons,
+  MarketIcons,
+  PaymeSystemIcons,
+} from "../../../../AssetsMain/icons";
 
 const PaymentForBreadCamp = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -57,10 +51,10 @@ const PaymentForBreadCamp = () => {
   }
 
   const personItems = [
-    { id: 1111, man: SpringMale, woman: SpringFemale },
-    { id: 2222, man: SummerMale, woman: SummerFemale },
-    { id: 3333, man: AutummMale, woman: AutummFemale },
-    { id: 4444, man: WinterMale, woman: WinterFemale },
+    { id: 1111, man: SpringMale },
+    { id: 2222, man: SummerMale },
+    { id: 3333, man: AutummMale },
+    { id: 4444, man: WinterMale },
   ];
 
   const handleOpenChangeWear = (newOpen) => {
@@ -105,19 +99,23 @@ const PaymentForBreadCamp = () => {
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
             <div className="h-5 w-5 flex justify-center items-center">
               {" "}
-              <img src={homeBreadcrumb} alt="" />
+              <span>
+                <HomeIcons colors={"#000"} />
+              </span>
             </div>
 
             <NavLink className="flex items-center cursor-pointer pt-[4px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
               Главная
             </NavLink>
             <span>
-              <img className="" src={iIcons} alt="" />
+              <ItailIcons colors={"#000"} />
             </span>
           </div>
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
             <div className="h-5 w-5 flex justify-center items-center">
-              <img src={shopBreadcrumb} alt="" />
+              <span>
+                <MarketIcons colors={"#000"} />
+              </span>{" "}
             </div>{" "}
             <NavLink
               to="/basket-check-out"
@@ -126,36 +124,14 @@ const PaymentForBreadCamp = () => {
               Корзинка{" "}
             </NavLink>
             <span>
-              <img className="" src={iIcons} alt="" />
+              <ItailIcons colors={"#000"} />
             </span>
           </div>
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
             <div className="h-5 w-5 flex justify-center items-center">
-              {" "}
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M9.99996 18.3327C14.5833 18.3327 18.3333 14.5827 18.3333 9.99935C18.3333 5.41602 14.5833 1.66602 9.99996 1.66602C5.41663 1.66602 1.66663 5.41602 1.66663 9.99935C1.66663 14.5827 5.41663 18.3327 9.99996 18.3327Z"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  stroke="#000"
-                  // fill="#000"
-                />
-                <path
-                  d="M6.45837 10.0009L8.81671 12.3592L13.5417 7.64258"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  stroke="#000"
-                  // fill="#000"
-                />
-              </svg>{" "}
+              <span>
+                <CircleSuccessIcons colors={"#000"} />
+              </span>{" "}
             </div>{" "}
             <NavLink
               to="/basket-check-out"
@@ -164,14 +140,13 @@ const PaymentForBreadCamp = () => {
               Оформление заказа{" "}
             </NavLink>
             <span>
-              <img className="" src={iIcons} alt="" />
+              <ItailIcons colors={"#000"} />
             </span>
           </div>
 
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
             <div className="h-5 w-5 flex justify-center items-center">
-              {" "}
-              <img src={BreadcrumbPayme} alt="" />
+              <PaymeSystemIcons colors={"#A1A1A1"} />
             </div>{" "}
             <NavLink className="flex items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
               Оплата

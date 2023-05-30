@@ -1,26 +1,19 @@
 import React, { useContext, useState } from "react";
-import {
-  AutummFemale,
-  AutummMale,
-  SpringFemale,
-  SpringMale,
-  SummerFemale,
-  SummerMale,
-  WinterFemale,
-  WinterMale,
-  backIcon,
-  bucket,
-  clothing,
-  homeBreadcrumb,
-  iIcons,
-  passwordCheck,
-  plusIcon,
-} from "../../../../../assets/imgs";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
-import { MdAdd } from "react-icons/md";
 import { NavLink, useParams } from "react-router-dom";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
+import {
+  BasketIcons,
+  HomeIcons,
+  ItailIcons,
+} from "../../../../../AssetsMain/icons";
+import {
+  AutummMale,
+  SpringMale,
+  SummerMale,
+  WinterMale,
+} from "../../../../../AssetsMain";
 
 const SingleProductTop = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -55,10 +48,10 @@ const SingleProductTop = () => {
   }
 
   const personItems = [
-    { id: 1111, man: SpringMale, woman: SpringFemale },
-    { id: 2222, man: SummerMale, woman: SummerFemale },
-    { id: 3333, man: AutummMale, woman: AutummFemale },
-    { id: 4444, man: WinterMale, woman: WinterFemale },
+    { id: 1111, man: SpringMale },
+    { id: 2222, man: SummerMale },
+    { id: 3333, man: AutummMale },
+    { id: 4444, man: WinterMale },
   ];
 
   const handleOpenChangeWear = (newOpen) => {
@@ -104,8 +97,9 @@ const SingleProductTop = () => {
         <div className="flex items-center ">
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
             <div className="h-5 w-5 flex justify-center items-center">
-              {" "}
-              <img src={homeBreadcrumb} alt="" />
+              <span>
+                <HomeIcons colors={"#000"} />
+              </span>
             </div>
 
             <NavLink
@@ -115,14 +109,15 @@ const SingleProductTop = () => {
               Главная
             </NavLink>
             <span>
-              <img className="" src={iIcons} alt="" />
+              <ItailIcons colors={"#000"} />
             </span>
           </div>
 
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
             <div className="h-5 w-5 flex justify-center items-center">
-              {" "}
-              <img src={bucket} alt="" />
+              <span>
+                <BasketIcons />
+              </span>
             </div>{" "}
             <NavLink className="flex w-fit items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
               {Newid}{" "}

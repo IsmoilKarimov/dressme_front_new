@@ -10,13 +10,11 @@ import "react-input-range/lib/css/index.css";
 import { BiChevronDown } from "react-icons/bi";
 
 export default function FavouriteTop() {
-  
-    const [value, SetValue] = useState({ min: 20, max: 150 });
+  const [value, SetValue] = useState({ min: 20, max: 150 });
 
   return (
     <div className="flex flex-col min-h-[44px]  justify-center items-center m-0 p-0 box-border border-b border-searchBgColor">
       <div className="max-w-[1280px] w-full flex justify-between items-center m-auto py-5  ">
-        
         <div className="text-2xl font-AeonikProMedium">Избранное</div>
         <div className="w-[fit] flex items-center ">
           <div className="flex items-center w-fit mr-4">
@@ -35,7 +33,6 @@ export default function FavouriteTop() {
             </button>
           </div>
         </div>
-
       </div>
     </div>
   );
