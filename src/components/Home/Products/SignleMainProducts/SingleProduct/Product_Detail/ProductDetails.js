@@ -1,25 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
-import {
-  InputCheck,
-  ProductArticle,
-  ProductBing,
-  ProductSize,
-  ProductStar,
-  ProductSuccess,
-  ProductSwitch,
-  ProductWarning,
-  autummSeason,
-  bucket,
-  delivery,
-  discount,
-  heart,
-  inputCheckBlack,
-  springSeason,
-  summerSeason,
-  winterSeason,
-} from "../../../../../../assets/imgs";
+import React, { useContext, useState } from "react";
+
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { BsCircleFill } from "react-icons/bs";
+import {
+  BasketIcons,
+  CircleSuccessIcons,
+  CircleWarningIcons,
+  DeliveryIcons,
+  DiscountShapeIcons,
+  HeartIcons,
+  InputCheckedTrueIcons,
+  ProductArticleIcons,
+  ProductSizeIcons,
+  ProductSwitchIcons,
+  StarIcons,
+} from "../../../../../../AssetsMain/icons";
+import {
+  summerSeason,
+  autummSeason,
+  winterSeason,
+} from "../../../../../../AssetsMain";
 const ProductDetails = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
@@ -51,13 +51,13 @@ const ProductDetails = () => {
   ]);
 
   const [selectSize, setSelectSize] = useState([
-    { id: 1, size: "S", bingIcons: "" },
-    { id: 2, size: "M", bingIcons: "" },
-    { id: 3, size: "L", bingIcons: "" },
-    { id: 4, size: "XL", bingIcons: ProductBing },
-    { id: 5, size: "XXL", bingIcons: "" },
-    { id: 6, size: "3XL", bingIcons: "" },
-    { id: 7, size: "4XL", bingIcons: ProductBing },
+    { id: 1, size: "S" },
+    { id: 2, size: "M" },
+    { id: 3, size: "L" },
+    { id: 4, size: "XL" },
+    { id: 5, size: "XXL" },
+    { id: 6, size: "3XL" },
+    { id: 7, size: "4XL" },
   ]);
   const [getCheckColor, setGetCheckColor] = useState("");
   const handleColorCheck = (value) => {
@@ -88,11 +88,11 @@ const ProductDetails = () => {
         <div className="h-fit flex justify-between ">
           <div className="flex items-center justify-start ">
             <div className="w-fit flex items-center gap-x-[1px]">
-              <img src={ProductStar} alt="" />
-              <img src={ProductStar} alt="" />
-              <img src={ProductStar} alt="" />
-              <img src={ProductStar} alt="" />
-              <img src={ProductStar} alt="" />
+              <StarIcons />
+              <StarIcons />
+              <StarIcons />
+              <StarIcons />
+              <StarIcons />
             </div>
             <div className="flex items-center w-fit ml-2">
               <div className="not-italic font-AeonikProMedium text-[13px] mt-2 leading-4 text-black tracking-[1%]">
@@ -109,7 +109,7 @@ const ProductDetails = () => {
           </div>
           <div className="flex items-center ">
             <div>
-              <img src={ProductArticle} alt="" />
+              <ProductArticleIcons />
             </div>
             <div className="ml-[2px] mr-[6px] not-italic font-AeonikProRegular mt-1 text-[13px] leading-4 text-right text-black tracking-[1%]">
               Article:
@@ -127,7 +127,7 @@ const ProductDetails = () => {
         <div className="h-fit flex mt-4">
           <div className="w-fit flex items-center">
             <div>
-              <img src={bucket} alt="" />
+              <BasketIcons />
             </div>
             <div className="not-italic flex items-center mt-1  font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
               Магазин:
@@ -139,14 +139,11 @@ const ProductDetails = () => {
             </span>
           </div>
         </div>
-        <div
-          className="h-fit flex justify-between
-       mt-4"
-        >
+        <div className="h-fit flex justify-between mt-4">
           <div className="flex items-center">
             <div className="flex items-center">
               <span>
-                <img src={delivery} alt="" />
+                <DeliveryIcons />
               </span>
               <span className="ml-2 not-italic font-AeonikProMedium mt-1 text-[14px] leading-4 text-black tracking-[1%]">
                 Доставка:
@@ -154,7 +151,7 @@ const ProductDetails = () => {
             </div>
             <div className="flex items-center ml-[31px]">
               <span>
-                <img src={ProductSuccess} alt="" />
+                <CircleSuccessIcons colors={"#008F0E"} />
               </span>
               <span className="ml-2 not-italic font-AeonikProMedium mt-1 text-sm leading-4 text-green-800 tracking-[1%]">
                 Доступно
@@ -167,6 +164,7 @@ const ProductDetails = () => {
             </div>
             <div className="flex items-center">
               <img src={winterSeason} alt="" />
+
               <span className="not-italic mt-1 ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
                 Зима
               </span>
@@ -191,7 +189,7 @@ const ProductDetails = () => {
       <div className=" border-y border-searchBgColor py-7 mt-5">
         <div className="flex items-center ">
           <span>
-            <img src={ProductSwitch} alt="" />
+            <ProductSwitchIcons />
           </span>
           <span className="not-italic ml-2 mr-3 mt-1 font-AeonikProMedium text-[14px] leading-4 text-black">
             Цвет:
@@ -213,10 +211,10 @@ const ProductDetails = () => {
                 } ${data.out} `}
               >
                 {data.action && getCheckColor == 3 ? (
-                  <img className="w-fit" src={inputCheckBlack} alt="" />
+                  <InputCheckedTrueIcons colors={"#000"} />
                 ) : null}
                 {data.action && getCheckColor !== 3 ? (
-                  <img className="w-fit" src={InputCheck} alt="" />
+                  <InputCheckedTrueIcons colors={"#fff"} />
                 ) : null}
               </div>
             );
@@ -224,7 +222,7 @@ const ProductDetails = () => {
         </div>
         <div className="flex items-center mt-3">
           <span>
-            <img src={ProductSize} alt="" />
+            <ProductSizeIcons />
           </span>
           <span className="not-italic ml-2 mr-3 mt-1 font-AeonikProMedium text-[14px] leading-4 text-black">
             Размер:
@@ -240,14 +238,9 @@ const ProductDetails = () => {
               return (
                 <div className="h-[44px] cursor-pointer rounded-lg  border border-searchBgColor focus:border-fullBlue px-4 flex items-center justify-center">
                   <span
-                    className={`mt-1 not-italic font-AeonikProMedium text-[14px] leading-4 text-center ${
-                      data?.bingIcons ? "text-textOpacity" : "text-black"
-                    } tracking-[1%]`}
+                    className={`mt-1 not-italic font-AeonikProMedium text-[14px] leading-4 text-center text-black tracking-[1%]`}
                   >
                     {data?.size}
-                  </span>
-                  <span className={`${data?.bingIcons ? "ml-[10px]" : ""}`}>
-                    <img src={data?.bingIcons} alt="" />
                   </span>
                 </div>
               );
@@ -255,7 +248,7 @@ const ProductDetails = () => {
           </div>
           <div className="w-[1px] border-r border-searchBgColor h-8 mx-4"></div>
           <div className="w-11 h-11 flex items-center justify-center rounded-lg border border-searchBgColor">
-            <img src={ProductWarning} alt="" />
+            <CircleWarningIcons colors={"#000"} />
           </div>
         </div>
       </div>
@@ -269,7 +262,7 @@ const ProductDetails = () => {
           </span>
           <div className="w-[108px] cursor-pointer ml-8  flex items-center justify-center h-11 border border-searchBgColor rounded-lg">
             <span>
-              <img src={discount} alt="" />
+              <DiscountShapeIcons />
             </span>
             <span className="ml-[6px] not-italic mt-1 font-AeonikProMedium text-[16px] leading-5 text-red-700">
               -30%
@@ -291,7 +284,7 @@ const ProductDetails = () => {
           </div>
           <div className="w-fit ml-3">
             <button className="w-[52px] h-[52px] flex items-center justify-center rounded-lg border border-searchBgColor">
-              <img src={heart} alt="" />
+              <HeartIcons colors={"#000"} />
             </button>
           </div>
           <div className={`w-fit ml-8 ${dataStyle}`}>

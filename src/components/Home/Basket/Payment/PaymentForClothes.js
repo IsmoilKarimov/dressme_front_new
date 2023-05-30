@@ -1,65 +1,44 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  arrowBottomPayment,
-  bucket,
-  calendarPayment,
-  calendatPayment,
-  callPayment,
-  clickLogoPayment,
-  confirmCheckPayment,
-  emailPayment,
-  formArrowBottom,
-  formArrowRightCircle,
-  formUzFlag,
-  kartaLogoPayment,
-  paymeLogoPayment,
-  profilePayment,
-} from "../../../../assets/imgs";
+
 import { NavLink } from "react-router-dom";
 import { PaymentForBreadCamp } from "./PaymentForBreadCamp";
 import InputMask from "react-input-mask";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
-import { plasticCardPayment } from "../../../../assets/imgs";
+import {
+  ArrowTopIcons,
+  CalendarIcons,
+  CircleSuccessIcons,
+  EmailIcons,
+  LocationIcons,
+  PaymeSystemIcons,
+  PersonIcons,
+  PhoneIcons,
+  SircleNext,
+} from "../../../../AssetsMain/icons";
+import { PaymentClick, Paymentpayme, UzbekFlag } from "../../../../AssetsMain";
 
 export default function PaymentForClothes() {
-  const [state, setState] = useState({
-    clothesCount: 1,
-  });
-
   const [phone, setPhone] = useState("");
   const [codes, setCodes] = useState({
     phoneCode: "+998",
   });
 
-  const handleDecrement = () => {
-    if (state?.clothesCount > 0) {
-      setState({
-        ...state,
-        clothesCount: state.clothesCount - 1,
-      });
-    }
-  };
-
   const [paymentData, setPaymentData] = useState(true);
   const [dressInfo] = useContext(dressMainData);
 
   let dataStyle = "";
-  let shadowStyle = "";
+
   if (dressInfo?.type === 1111) {
     dataStyle = "text-borderSpring ";
-    shadowStyle = "hover:shadow-green-300/100 ";
   }
   if (dressInfo?.type === 2222) {
     dataStyle = "text-borderSummer";
-    shadowStyle = "hover:shadow-amber-200/100  ";
   }
   if (dressInfo?.type === 3333) {
     dataStyle = "text-borderAutumm";
-    shadowStyle = "hover:shadow-orange-200/100   ";
   }
   if (dressInfo?.type === 4444) {
     dataStyle = "text-borderWinter";
-    shadowStyle = "hover:shadow-sky-200/100  ";
   }
   useEffect(() => {
     window.scrollTo({
@@ -75,30 +54,30 @@ export default function PaymentForClothes() {
         <div className="max-w-[1280px] w-[100%] h-full flex items-center border-x border-searchBgColor justify-between m-auto">
           <div className="w-[65.1%] h-full px-8 border-r border-searchBgColor flex  items-center justify-between">
             <div className="w-fit  flex  items-center">
-                <p className="flex not-italic font-AeonikProMedium text-2xl leading-7 text-black tracking-[1%]">
-                  Данные
-                </p>
+              <p className="flex not-italic font-AeonikProMedium text-2xl leading-7 text-black tracking-[1%]">
+                Данные
+              </p>
             </div>
             <div className="w-fit h-full flex  items-center">
-                <span className="not-italic font-AeonikProMedium text-base leading-4 text-right text-setTexOpacity">
-                  У тебя есть аккаунт?
-                </span>
-                <NavLink
-                  className={
-                    "not-italic ml-2 font-AeonikProMedium text-base leading-4 text-right text-fullBlue tracking-[1%]"
-                  }
-                >
-                  Авторизуйся
-                </NavLink>
+              <span className="not-italic font-AeonikProMedium text-base leading-4 text-right text-setTexOpacity">
+                У тебя есть аккаунт?
+              </span>
+              <NavLink
+                className={
+                  "not-italic ml-2 font-AeonikProMedium text-base leading-4 text-right text-fullBlue tracking-[1%]"
+                }
+              >
+                Авторизуйся
+              </NavLink>
             </div>
           </div>
           <div className="w-[34.9%] h-full px-8  flex  items-center justify-between">
-              <p className="not-italic mt-1 font-AeonikProMedium text-2xl leading-7 text-black tracking-[1%]">
-                Оплата
-              </p>
-              <p className="not-italic mt-1 font-AeonikProMedium text-2xl leading-7 text-black tracking-[1%]">
-                527 000 сум{" "}
-              </p>
+            <p className="not-italic mt-1 font-AeonikProMedium text-2xl leading-7 text-black tracking-[1%]">
+              Оплата
+            </p>
+            <p className="not-italic mt-1 font-AeonikProMedium text-2xl leading-7 text-black tracking-[1%]">
+              527 000 сум{" "}
+            </p>
           </div>
         </div>
       </div>
@@ -124,7 +103,9 @@ export default function PaymentForClothes() {
                     placeholder="Имя"
                     className="bg-transparent w-full pr-3"
                   />
-                  <img src={profilePayment} alt="" className="cursor-pointer" />
+                  <span>
+                    <PersonIcons colors={"#A1A1A1"} />
+                  </span>
                 </div>
               </div>
               <div className="w-1/2 flex flex-col">
@@ -142,7 +123,9 @@ export default function PaymentForClothes() {
                     placeholder="Фамилия"
                     className="bg-transparent w-full pr-3"
                   />
-                  <img src={profilePayment} alt="" className="cursor-pointer" />
+                  <span>
+                    <PersonIcons colors={"#A1A1A1"} />
+                  </span>{" "}
                 </div>
               </div>
             </div>
@@ -156,14 +139,16 @@ export default function PaymentForClothes() {
                 </label>
                 <div className="flex items-center justify-center overflow-hidden border border-searchBgColor rounded-lg px-4 bg-btnBgColor h-12">
                   <div className="w-[35%] h-12 flex items-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
-                    <img src={formUzFlag} alt="form-arrow-bottom" />
+                    <img src={UzbekFlag} alt="form-arrow-bottom" />
                     <input
                       className="w-[45px] h-full select-none mx-3 not-italic font-AeonikProMedium text-base leading-4 text-black bg-transparent"
                       type="text"
                       value={codes.phoneCode}
                       readOnly
                     />
-                    <img src={formArrowBottom} alt="form-arrow-bottom" />
+                    <span className="rotate-[180deg]">
+                      <ArrowTopIcons />
+                    </span>
                   </div>
                   <div className="w-[60%] h-12 overflow-hidden">
                     <InputMask
@@ -176,7 +161,9 @@ export default function PaymentForClothes() {
                       placeholder={"(77) 777-77-77"}
                     ></InputMask>
                   </div>
-                  <img src={callPayment} alt="" />
+                  <span>
+                    <PhoneIcons />
+                  </span>
                 </div>
               </div>
               <div className="w-1/2 flex flex-col">
@@ -199,7 +186,9 @@ export default function PaymentForClothes() {
                     placeholder="Адрес электронной почты"
                     className="bg-transparent w-full pr-3"
                   />
-                  <img src={emailPayment} alt="" className="cursor-pointer" />
+                  <span>
+                    <EmailIcons colors={"#D2D2D2"} />
+                  </span>{" "}
                 </div>
               </div>
             </div>
@@ -226,11 +215,9 @@ export default function PaymentForClothes() {
                       placeholder="Выберите город или область"
                       className="bg-transparent w-full pr-3"
                     />
-                    <img
-                      src={arrowBottomPayment}
-                      alt=""
-                      className="cursor-pointer"
-                    />
+                    <span className="rotate-[180deg]">
+                      <ArrowTopIcons />
+                    </span>
                   </div>
                 </div>
                 <div className="w-1/2 flex flex-col">
@@ -242,11 +229,9 @@ export default function PaymentForClothes() {
                       placeholder="Выберите район"
                       className="bg-transparent w-full pr-3"
                     />
-                    <img
-                      src={arrowBottomPayment}
-                      alt=""
-                      className="cursor-pointer"
-                    />
+                    <span className="rotate-[180deg]">
+                      <ArrowTopIcons />
+                    </span>
                   </div>
                 </div>
               </div>
@@ -259,11 +244,9 @@ export default function PaymentForClothes() {
                   className="bg-transparent w-[88%] px-4"
                 />
                 <button className="flex items-center text-sm font-AeonikProMedium border border-searchBgColor bg-white rounded-lg px-4 py-[10px]">
-                  <img
-                    src={kartaLogoPayment}
-                    alt="Karta-logo-payment"
-                    className="mr-[10px] -pt-1"
-                  />
+                  <span className="mr-[10px] -pt-1">
+                    <LocationIcons />
+                  </span>
                   Карта
                 </button>
               </div>
@@ -297,7 +280,9 @@ export default function PaymentForClothes() {
             </div>
             <div className="w-full rounded-lg h-12 flex items-center border border-searchBgColor bg-btnBgColor mb-4">
               <button className="flex items-center flex-nowrap text-sm px-4 rounded-[6px] bg-searchBgColor h-11 ml-[1px]">
-                <img src={plasticCardPayment} alt="" className="mr-2" />
+                <span className="mr-2">
+                  <PaymeSystemIcons colors={"#000"} />
+                </span>
                 Номер карты
               </button>
               <input
@@ -311,7 +296,9 @@ export default function PaymentForClothes() {
             <div className="w-full flex justify-between border-b">
               <div className="w-[50%] h-12 rounded-lg flex items-center border border-searchBgColor bg-btnBgColor mb-8">
                 <button className="w-[66%] flex items-center flex-nowrap text-sm px-4 rounded-[6px] bg-searchBgColor h-11 ml-[1px]">
-                  <img src={calendarPayment} alt="" className="mr-2" />
+                  <span className="mr-2">
+                    <CalendarIcons colors={"#000"} />
+                  </span>
                   Срок дейс.
                 </button>
                 <input
@@ -322,12 +309,16 @@ export default function PaymentForClothes() {
                   className="w-[34%] bg-transparent pl-2 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
               </div>
-              <button className="w-[96px] px-4 h-12 flex items-center font-AeonikProMedium border border-searchBgColor rounded-lg">
-                <img src={clickLogoPayment} alt="" className="mr-1 w-[40%]" />
+              <button className=" w-[96px] justify-center px-4 h-12 flex items-center font-AeonikProMedium border border-searchBgColor rounded-lg">
+                <span className="h-[70%] flex items-center mr-2">
+                  <img src={PaymentClick} alt="" />
+                </span>
                 click
               </button>
               <button className="h-12 border border-searchBgColor rounded-lg px-4">
-                <img src={paymeLogoPayment} alt="" />
+                <span className="h-[70%]">
+                  <img src={Paymentpayme} alt="" />
+                </span>{" "}
               </button>
             </div>
             <div className="w-full flex items-center mt-5 mb-11">
@@ -337,7 +328,9 @@ export default function PaymentForClothes() {
 
             <div className="w-full px-8 flex flex-col items-center">
               <button className="h-[56px] w-full flex items-center justify-center rounded-lg bg-fullBlue text-white active:scale-95	active:opacity-70">
-                <img src={confirmCheckPayment} alt="" className="mr-[10px]" />
+                <span className="mr-[10px]">
+                  <CircleSuccessIcons colors={"#fff"} />
+                </span>
                 Подтвердить заказ
               </button>
             </div>

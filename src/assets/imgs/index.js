@@ -55,7 +55,6 @@ export { default as feedbackIcon } from "./feedback-icon.svg";
 export { default as inputCheckBlack } from "./checked-black.svg";
 export { default as arrowRightCircle } from "./arrow-right-circle.svg";
 export { default as arrowLeftCircle } from "./arrow-left-circle.svg";
-export { default as modelToSet } from "./model-to-set.svg";
 
 // -----Contact--------
 export { default as dashborad } from "./Contact/dashboard.svg";
@@ -272,7 +271,7 @@ export { default as shopBreadcrumb } from "./BreadcrumbIcons/shop.svg";
 export { default as BreadcrumbPayme } from "./BreadcrumbIcons/payment.svg";
 export { default as likeFav } from "./BreadcrumbIcons/likeFav.svg";
 
-// ----------- ProductID Icon ----CategoryMenu-ticketDiscount------
+// ----------- ProductID Icon ----CategoryMenu-------
 export { default as ProductArticle } from "./products/ProductArticle.svg";
 export { default as ProductBing } from "./products/ProductBing.svg";
 export { default as ProductSize } from "./products/ProductSize.svg";
@@ -281,7 +280,7 @@ export { default as ProductSuccess } from "./products/ProductSuccess.svg";
 export { default as ProductWarning } from "./products/ProductWarning.svg";
 export { default as ProductSwitch } from "./products/ProductSwitch.svg";
 
-// ----------- STORE FOR BRANDS ICONS -----------
+// ----------- STORE FOR BRANDS ICONS --discount---------
 export { default as allStore } from "./StoreForBrands/all.svg";
 export { default as videoStore } from "./StoreForBrands/video.svg";
 export { default as starForStore } from "./StoreForBrands/starForStore.svg";

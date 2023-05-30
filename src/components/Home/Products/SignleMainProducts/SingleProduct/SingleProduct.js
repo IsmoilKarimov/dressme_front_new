@@ -4,13 +4,14 @@ import { ProductCarousel } from "./Product_Carousel/ProductCarousel";
 import { ProductDetails } from "./Product_Detail/ProductDetails";
 import { SingleProductTop } from "../SingleProductTop/SingleProductTop";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
+
 import {
-  InputCheck,
-  addBag,
-  heart,
-  setpersonIcons,
-  star,
-} from "../../../../../assets/imgs";
+  HeartIcons,
+  InputCheckedTrueIcons,
+  NoImg,
+  SaveBasketIcons,
+  StarIcons,
+} from "../../../../../AssetsMain/icons";
 
 const SingleProduct = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -28,24 +29,6 @@ const SingleProduct = () => {
     }
   });
 
-  let dataStyle = "";
-  let shadowStyle = "";
-  if (dressInfo?.type === 1111) {
-    dataStyle = "text-borderSpring ";
-    shadowStyle = "hover:shadow-green-300/100 ";
-  }
-  if (dressInfo?.type === 2222) {
-    dataStyle = "text-borderSummer";
-    shadowStyle = "hover:shadow-amber-200/100  ";
-  }
-  if (dressInfo?.type === 3333) {
-    dataStyle = "text-borderAutumm";
-    shadowStyle = "hover:shadow-orange-200/100   ";
-  }
-  if (dressInfo?.type === 4444) {
-    dataStyle = "text-borderWinter";
-    shadowStyle = "hover:shadow-sky-200/100  ";
-  }
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/product/:${id}`);
@@ -65,8 +48,6 @@ const SingleProduct = () => {
     //     });
     //   });
   };
-
-  const [clothesSetWear, setClothesSetWear] = useState(true);
 
   return (
     <div className="flex flex-col  m-0 p-0 box-border">
@@ -105,11 +86,7 @@ const SingleProduct = () => {
                           alt="ProducImg"
                         />
                       ) : (
-                        <img
-                          className="w-full h-fit"
-                          src={data.noProductImg}
-                          alt="noProductImg"
-                        />
+                        <NoImg />
                       )}
                       <div className="w-full flex absolute top-px p-[5px]  ss:justify-end xs:justify-between">
                         <ul className="nav-lists flex-col gap-y-1 justify-center h-full ss:hidden xs:flex">
@@ -141,29 +118,14 @@ const SingleProduct = () => {
 
                         <div className="flex flex-col gap-y-1">
                           <p className="w-8 h-8  rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
-                            <img src={heart} alt="" />
+                            <span>
+                              <HeartIcons colors={"#000"} />
+                            </span>{" "}
                           </p>
                           {/* <p className="w-8 h-8 ss:hidden rounded-lg bg-bgCard xs:flex items-center justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
                           <img src={bucket} alt="" />
                         </p> */}
                         </div>
-                      </div>
-                      <div className="w-full  flex absolute bottom-[31px] pb-[6px] pr-[5px] justify-end ">
-                        <p
-                          onClick={() => setClothesSetWear(false)}
-                          className="group w-8 hover:w-[138px] bg-bgCard hover:bg-white   duration-300 rounded-lg overflow-hidden border border-borderColorCard flex items-center justify-between"
-                        >
-                          <span className="  flex flex-nowrap items-center ml-[-100px] group-hover:ml-[10px] w-[92px]   not-italic overflow-hidden    duration-300   font-AeonikProMedium leading-3  text-black text-[11px] ">
-                            Страница образа
-                          </span>
-                          <span className="w-8 h-8 flex items-center justify-center">
-                            <img
-                              className="ml-[2px]"
-                              src={setpersonIcons}
-                              alt="setpersonIcons"
-                            />
-                          </span>
-                        </p>
                       </div>
 
                       <div className="absolute w-full flex justify-between items-center px-1 bottom-0 border-solid xs:h-[38px] lg:h-8 ss:h-[30px] xs:px-2 md:px-4 bg-white hover:backdrop-brightness-125 hover:bg-white/60 transition ease-out duration-500">
@@ -178,11 +140,7 @@ const SingleProduct = () => {
                               htmlFor="Color1"
                             >
                               {itemValue?.action ? (
-                                <img
-                                  className="w-[14px]"
-                                  src={InputCheck}
-                                  alt=""
-                                />
+                                <InputCheckedTrueIcons colors={"#fff"} />
                               ) : null}
                             </div>
                           );
@@ -199,7 +157,7 @@ const SingleProduct = () => {
                           <div className="flex items-center justify-between">
                             <span>
                               {" "}
-                              <img src={star} alt="" />
+                              <StarIcons />
                             </span>
                             {/* <span><img src={} alt=""/></span> */}
                             <span className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex items-center">
@@ -242,7 +200,9 @@ const SingleProduct = () => {
                         </div>
                         <div className="flex items-center">
                           <button className="w-[32px] h-[32px] md:w-[36px] md:h-[36px] ll:mb-1 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-                            <img src={addBag} alt="addbag" className="w-8" />
+                            <span className="w-8">
+                              <SaveBasketIcons />
+                            </span>{" "}
                           </button>
                         </div>
                       </div>
@@ -274,11 +234,7 @@ const SingleProduct = () => {
                           alt="ProducImg"
                         />
                       ) : (
-                        <img
-                          className="w-full h-fit"
-                          src={data.noProductImg}
-                          alt="noProductImg"
-                        />
+                        <NoImg />
                       )}
                       <div className="w-full flex absolute top-px p-[5px]  ss:justify-end xs:justify-between">
                         <ul className="nav-lists flex-col gap-y-1 justify-center h-full ss:hidden xs:flex">
@@ -310,29 +266,14 @@ const SingleProduct = () => {
 
                         <div className="flex flex-col gap-y-1">
                           <p className="w-8 h-8  rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
-                            <img src={heart} alt="" />
+                            <span>
+                              <HeartIcons colors={"#000"} />
+                            </span>{" "}
                           </p>
                           {/* <p className="w-8 h-8 ss:hidden rounded-lg bg-bgCard xs:flex items-center justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
                           <img src={bucket} alt="" />
                         </p> */}
                         </div>
-                      </div>
-                      <div className="w-full  flex absolute bottom-[31px] pb-[6px] pr-[5px] justify-end ">
-                        <p
-                          onClick={() => setClothesSetWear(false)}
-                          className="group w-8 hover:w-[138px] bg-bgCard hover:bg-white   duration-300 rounded-lg overflow-hidden border border-borderColorCard flex items-center justify-between"
-                        >
-                          <span className="  flex flex-nowrap items-center ml-[-100px] group-hover:ml-[10px] w-[92px]   not-italic overflow-hidden    duration-300   font-AeonikProMedium leading-3  text-black text-[11px] ">
-                            Страница образа
-                          </span>
-                          <span className="w-8 h-8 flex items-center justify-center">
-                            <img
-                              className="ml-[2px]"
-                              src={setpersonIcons}
-                              alt="setpersonIcons"
-                            />
-                          </span>
-                        </p>
                       </div>
 
                       <div className="absolute w-full flex justify-between items-center px-1 bottom-0 border-solid xs:h-[38px] lg:h-8 ss:h-[30px] xs:px-2 md:px-4 bg-white hover:backdrop-brightness-125 hover:bg-white/60 transition ease-out duration-500">
@@ -347,11 +288,7 @@ const SingleProduct = () => {
                               htmlFor="Color1"
                             >
                               {itemValue?.action ? (
-                                <img
-                                  className="w-[14px]"
-                                  src={InputCheck}
-                                  alt=""
-                                />
+                                <InputCheckedTrueIcons colors={"#fff"} />
                               ) : null}
                             </div>
                           );
@@ -368,7 +305,7 @@ const SingleProduct = () => {
                           <div className="flex items-center justify-between">
                             <span>
                               {" "}
-                              <img src={star} alt="" />
+                              <StarIcons />
                             </span>
                             {/* <span><img src={} alt=""/></span> */}
                             <span className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex items-center">
@@ -411,7 +348,9 @@ const SingleProduct = () => {
                         </div>
                         <div className="flex items-center">
                           <button className="w-[32px] h-[32px] md:w-[36px] md:h-[36px] ll:mb-1 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-                            <img src={addBag} alt="addbag" className="w-8" />
+                            <span className="w-8">
+                              <SaveBasketIcons />
+                            </span>{" "}
                           </button>
                         </div>
                       </div>

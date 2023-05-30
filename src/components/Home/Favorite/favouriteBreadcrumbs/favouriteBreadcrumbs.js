@@ -1,25 +1,20 @@
 import { NavLink } from "react-router-dom";
-import {
-  AutummFemale,
-  AutummMale,
-  SpringFemale,
-  SpringMale,
-  SummerFemale,
-  SummerMale,
-  WinterFemale,
-  WinterMale,
-  heart,
-  homeBreadcrumb,
-  iIcons,
-  likeFav,
-  shopBreadcrumb,
-} from "../../../../assets/imgs";
+
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 import { useContext, useState } from "react";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
-import { Liked } from "../../../../assets/imgs";
-
+import {
+  AutummMale,
+  SpringMale,
+  SummerMale,
+  WinterMale,
+} from "../../../../AssetsMain";
+import {
+  HeartIcons,
+  HomeIcons,
+  ItailIcons,
+} from "../../../../AssetsMain/icons";
 const FavoutireBreadCrumbs = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
@@ -53,10 +48,10 @@ const FavoutireBreadCrumbs = () => {
   }
 
   const personItems = [
-    { id: 1111, man: SpringMale, woman: SpringFemale },
-    { id: 2222, man: SummerMale, woman: SummerFemale },
-    { id: 3333, man: AutummMale, woman: AutummFemale },
-    { id: 4444, man: WinterMale, woman: WinterFemale },
+    { id: 1111, man: SpringMale },
+    { id: 2222, man: SummerMale },
+    { id: 3333, man: AutummMale },
+    { id: 4444, man: WinterMale },
   ];
 
   const handleOpenChangeWear = (newOpen) => {
@@ -101,8 +96,9 @@ const FavoutireBreadCrumbs = () => {
         <div className="flex items-center ">
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
             <div className="h-5 w-5 flex justify-center items-center">
-              {" "}
-              <img src={homeBreadcrumb} alt="" />
+              <span>
+                <HomeIcons colors={"#000"} />
+              </span>
             </div>
 
             <NavLink
@@ -112,18 +108,19 @@ const FavoutireBreadCrumbs = () => {
               Главная
             </NavLink>
             <span>
-              <img className="" src={iIcons} alt="" />
+              <ItailIcons colors={"#000"} />
             </span>
           </div>
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
             <div className="h-5 w-5 flex justify-center items-center">
-              {" "}
-              <img src={heart} alt="" />
+              <span>
+                <HeartIcons colors={"#000"} />
+              </span>
             </div>
 
             <NavLink
               to="/"
-              className="flex items-center cursor-pointer pt-[4px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
+              className="flex items-center cursor-pointer pt-[4px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]"
             >
               Избранное
             </NavLink>
