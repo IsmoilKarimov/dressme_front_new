@@ -90,18 +90,18 @@ const NoImg = () => {
     </svg>
   );
 };
-const HeartIcons = () => {
+const HeartIcons = ({ colors }) => {
   return (
     <svg
-      width="16"
-      height="14"
-      viewBox="0 0 16 14"
-      fill="none"
+      width="20"
+      height="18"
+      viewBox="0 0 20 18"
+      fill={`${colors ? "#D50000" : "none"}`}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
         d="M8.41337 12.8733C8.18671 12.9533 7.81337 12.9533 7.58671 12.8733C5.65337 12.2133 1.33337 9.45998 1.33337 4.79332C1.33337 2.73332 2.99337 1.06665 5.04004 1.06665C6.25337 1.06665 7.32671 1.65332 8.00004 2.55998C8.67337 1.65332 9.75337 1.06665 10.96 1.06665C13.0067 1.06665 14.6667 2.73332 14.6667 4.79332C14.6667 9.45998 10.3467 12.2133 8.41337 12.8733Z"
-        stroke="black"
+        stroke={`${colors ? "#D50000" : "#000"}`}
         stroke-width="1.2"
         stroke-linecap="round"
         stroke-linejoin="round"
@@ -127,60 +127,62 @@ const StarIcons = () => {
 };
 const SaveBasketIcons = () => {
   return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect width="24" height="24" rx="4" fill="#FCFCFC" />
-      <path
-        d="M9 9.11334V8.46667C9 6.96667 10.2067 5.49334 11.7067 5.35334C13.4933 5.18001 15 6.58667 15 8.34001V9.26001"
-        stroke="black"
-        stroke-width="1.2"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M9.99988 18.6667H13.9999C16.6799 18.6667 17.1599 17.5934 17.2999 16.2867L17.7999 12.2867C17.9799 10.66 17.5132 9.33337 14.6666 9.33337H9.33322C6.48655 9.33337 6.01988 10.66 6.19988 12.2867L6.69988 16.2867C6.83988 17.5934 7.31988 18.6667 9.99988 18.6667Z"
-        stroke="black"
-        stroke-width="1.2"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M14.3306 12H14.3366"
-        stroke="black"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M9.66268 12H9.66867"
-        stroke="black"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <rect x="1" y="13" width="10" height="10" rx="5" fill="#FCFCFC" />
-      <path
-        d="M4 18H8"
-        stroke="black"
-        stroke-width="1.2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M6 20V16"
-        stroke="black"
-        stroke-width="1.2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </svg>
+    <span className="w-8">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="24" height="24" rx="4" fill="#FCFCFC" />
+        <path
+          d="M9 9.11334V8.46667C9 6.96667 10.2067 5.49334 11.7067 5.35334C13.4933 5.18001 15 6.58667 15 8.34001V9.26001"
+          stroke="black"
+          stroke-width="1.2"
+          stroke-miterlimit="10"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M9.99988 18.6667H13.9999C16.6799 18.6667 17.1599 17.5934 17.2999 16.2867L17.7999 12.2867C17.9799 10.66 17.5132 9.33337 14.6666 9.33337H9.33322C6.48655 9.33337 6.01988 10.66 6.19988 12.2867L6.69988 16.2867C6.83988 17.5934 7.31988 18.6667 9.99988 18.6667Z"
+          stroke="black"
+          stroke-width="1.2"
+          stroke-miterlimit="10"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M14.3306 12H14.3366"
+          stroke="black"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M9.66268 12H9.66867"
+          stroke="black"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <rect x="1" y="13" width="10" height="10" rx="5" fill="#FCFCFC" />
+        <path
+          d="M4 18H8"
+          stroke="black"
+          stroke-width="1.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M6 20V16"
+          stroke="black"
+          stroke-width="1.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </span>
   );
 };
 const InputCheckedTrueIcons = ({ colors }) => {
@@ -327,6 +329,39 @@ const HouseStatisticIcons = ({ colors }) => {
       <path
         d="M12.0833 9.5835H13.75V11.2502"
         stroke={colors}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+const DashboardStatisticIcons = () => {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M13.75 7.9165L10.25 11.4165L8.91667 9.4165L6.25 12.0832"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M12.0833 7.9165H13.75V9.58317"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M7.49999 18.3332H12.5C16.6667 18.3332 18.3333 16.6665 18.3333 12.4998V7.49984C18.3333 3.33317 16.6667 1.6665 12.5 1.6665H7.49999C3.33332 1.6665 1.66666 3.33317 1.66666 7.49984V12.4998C1.66666 16.6665 3.33332 18.3332 7.49999 18.3332Z"
+        stroke="black"
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
@@ -483,7 +518,7 @@ const ListCollectionIcons = () => {
     </svg>
   );
 };
-const CotegoryIcons = () => {
+const CotegoryIcons = ({ colors }) => {
   return (
     <svg
       width="18"
@@ -494,7 +529,7 @@ const CotegoryIcons = () => {
     >
       <path
         d="M3.75 7.5H5.25C6.75 7.5 7.5 6.75 7.5 5.25V3.75C7.5 2.25 6.75 1.5 5.25 1.5H3.75C2.25 1.5 1.5 2.25 1.5 3.75V5.25C1.5 6.75 2.25 7.5 3.75 7.5Z"
-        stroke="black"
+        stroke={colors}
         stroke-width="1.5"
         stroke-miterlimit="10"
         stroke-linecap="round"
@@ -502,7 +537,7 @@ const CotegoryIcons = () => {
       />
       <path
         d="M12.75 7.5H14.25C15.75 7.5 16.5 6.75 16.5 5.25V3.75C16.5 2.25 15.75 1.5 14.25 1.5H12.75C11.25 1.5 10.5 2.25 10.5 3.75V5.25C10.5 6.75 11.25 7.5 12.75 7.5Z"
-        stroke="black"
+        stroke={colors}
         stroke-width="1.5"
         stroke-miterlimit="10"
         stroke-linecap="round"
@@ -510,7 +545,7 @@ const CotegoryIcons = () => {
       />
       <path
         d="M12.75 16.5H14.25C15.75 16.5 16.5 15.75 16.5 14.25V12.75C16.5 11.25 15.75 10.5 14.25 10.5H12.75C11.25 10.5 10.5 11.25 10.5 12.75V14.25C10.5 15.75 11.25 16.5 12.75 16.5Z"
-        stroke="black"
+        stroke={colors}
         stroke-width="1.5"
         stroke-miterlimit="10"
         stroke-linecap="round"
@@ -518,9 +553,49 @@ const CotegoryIcons = () => {
       />
       <path
         d="M3.75 16.5H5.25C6.75 16.5 7.5 15.75 7.5 14.25V12.75C7.5 11.25 6.75 10.5 5.25 10.5H3.75C2.25 10.5 1.5 11.25 1.5 12.75V14.25C1.5 15.75 2.25 16.5 3.75 16.5Z"
-        stroke="black"
+        stroke={colors}
         stroke-width="1.5"
         stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+const CotegoryMenuIcons = ({ colors }) => {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M16.6667 1.66699H3.33332C2.41285 1.66699 1.66666 2.41318 1.66666 3.33366V16.667C1.66666 17.5875 2.41285 18.3337 3.33332 18.3337H16.6667C17.5871 18.3337 18.3333 17.5875 18.3333 16.667V3.33366C18.3333 2.41318 17.5871 1.66699 16.6667 1.66699Z"
+        stroke="black"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M1.66666 5.83398H18.3333"
+        stroke="black"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M1.66666 10H18.3333"
+        stroke="black"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M1.66666 14.167H18.3333"
+        stroke="black"
+        stroke-width="1.6"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
@@ -811,6 +886,36 @@ const MenuCloseIcons = () => {
     </svg>
   );
 };
+const MenuOpenIcons = () => {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M3 7H21"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <path
+        d="M3 12H21"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <path
+        d="M3 17H21"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+    </svg>
+  );
+};
 const EyesOpenIcons = ({ colors }) => {
   return (
     <svg
@@ -1003,6 +1108,257 @@ const BasketIcons = () => {
     </svg>
   );
 };
+const SearchIcons = () => {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9.80553 17.296C13.9424 17.296 17.296 13.9424 17.296 9.80549C17.296 5.66862 13.9424 2.31503 9.80553 2.31503C5.66866 2.31503 2.31506 5.66862 2.31506 9.80549C2.31506 13.9424 5.66866 17.296 9.80553 17.296Z"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M15.0153 15.4043L17.9519 18.3333"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+const VolumeIcons = ({ colors }) => {
+  return (
+    <svg
+      width="20"
+      height="16"
+      viewBox="0 0 20 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M1.29339 8.00011C1.29083 9.12729 1.24053 10.6647 1.93788 11.2394C2.58834 11.7755 3.04614 11.6373 4.23368 11.7245C5.42207 11.8125 7.93014 15.3058 9.86363 14.2008C10.8611 13.4165 10.9352 11.7722 10.9352 8.00011C10.9352 4.22804 10.8611 2.58372 9.86363 1.79938C7.93014 0.693574 5.42207 4.18775 4.23368 4.27572C3.04614 4.36287 2.58834 4.22475 1.93788 4.7608C1.24053 5.33549 1.29083 6.87292 1.29339 8.00011Z"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M16.9523 2.41199C19.2898 5.77709 19.2975 10.2159 16.9523 13.5876"
+        stroke={colors}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M14.6578 4.62152C15.8599 6.72132 15.8599 9.28563 14.6578 11.3789"
+        stroke={colors}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+const BrushColorIcons = () => {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g clip-path="url(#clip0_1379_14327)">
+        <path
+          d="M7.91668 16.25V15H3.75001C3.29168 15 2.87501 14.8167 2.57501 14.5084C2.26668 14.2084 2.08334 13.7917 2.08334 13.3334C2.08334 12.475 2.75001 11.7584 3.59168 11.675C3.64168 11.6667 3.69168 11.6667 3.75001 11.6667H16.25C16.3083 11.6667 16.3583 11.6667 16.4083 11.675C16.8083 11.7084 17.1583 11.8834 17.425 12.1584C17.7667 12.4917 17.95 12.9667 17.9083 13.4834C17.8333 14.3584 17.0417 15 16.1583 15H12.0833V16.25C12.0833 17.4 11.15 18.3334 10 18.3334C8.85001 18.3334 7.91668 17.4 7.91668 16.25Z"
+          stroke="black"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M16.8083 4.41669L16.4083 11.675C16.3583 11.6667 16.3083 11.6667 16.25 11.6667H3.75001C3.69168 11.6667 3.64168 11.6667 3.59168 11.675L3.19168 4.41669C3.04168 2.94169 4.20001 1.66669 5.67501 1.66669H14.325C15.8 1.66669 16.9583 2.94169 16.8083 4.41669Z"
+          stroke="black"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M6.65833 1.66669V5.83335"
+          stroke="black"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M10 1.66669V3.33335"
+          stroke="black"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_1379_14327">
+          <rect width="20" height="20" fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+  );
+};
+const TopBrandsIcon = () => {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M5.83334 8.95001V11.6167"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M10 7.5V13.0667"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M14.1667 8.95001V11.6167"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M7.49999 18.3334H12.5C16.6667 18.3334 18.3333 16.6667 18.3333 12.5V7.50002C18.3333 3.33335 16.6667 1.66669 12.5 1.66669H7.49999C3.33332 1.66669 1.66666 3.33335 1.66666 7.50002V12.5C1.66666 16.6667 3.33332 18.3334 7.49999 18.3334Z"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+const ItailIcons = ({ colors }) => {
+  return (
+    <svg
+      width="6"
+      height="13"
+      viewBox="0 0 6 13"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M1.305 12.95L5.55 0.0499997H4.335L0.09 12.95H1.305Z"
+        fill={colors}
+      />
+    </svg>
+  );
+};
+const DeliveryIcons = () => {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12.5 1.66663V9.99996C12.5 10.9166 11.75 11.6666 10.8333 11.6666H1.66666V4.99996C1.66666 3.15829 3.15832 1.66663 4.99999 1.66663H12.5Z"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M18.3333 11.6666V14.1666C18.3333 15.55 17.2167 16.6666 15.8333 16.6666H15C15 15.75 14.25 15 13.3333 15C12.4167 15 11.6667 15.75 11.6667 16.6666H8.33332C8.33332 15.75 7.58332 15 6.66666 15C5.74999 15 4.99999 15.75 4.99999 16.6666H4.16666C2.78332 16.6666 1.66666 15.55 1.66666 14.1666V11.6666H10.8333C11.75 11.6666 12.5 10.9166 12.5 9.99996V4.16663H14.0333C14.6333 4.16663 15.1833 4.49163 15.4833 5.0083L16.9083 7.49996H15.8333C15.375 7.49996 15 7.87496 15 8.33329V10.8333C15 11.2916 15.375 11.6666 15.8333 11.6666H18.3333Z"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M6.66667 18.3333C7.58714 18.3333 8.33333 17.5871 8.33333 16.6667C8.33333 15.7462 7.58714 15 6.66667 15C5.74619 15 5 15.7462 5 16.6667C5 17.5871 5.74619 18.3333 6.66667 18.3333Z"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M13.3333 18.3333C14.2538 18.3333 15 17.5871 15 16.6667C15 15.7462 14.2538 15 13.3333 15C12.4128 15 11.6667 15.7462 11.6667 16.6667C11.6667 17.5871 12.4128 18.3333 13.3333 18.3333Z"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M18.3333 10V11.6667H15.8333C15.375 11.6667 15 11.2917 15 10.8333V8.33333C15 7.875 15.375 7.5 15.8333 7.5H16.9083L18.3333 10Z"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+const TicketDiscountIcons = () => {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M13 8.33366C13 7.41366 13.7466 6.66699 14.6666 6.66699V6.00033C14.6666 3.33366 14 2.66699 11.3333 2.66699H4.66665C1.99998 2.66699 1.33331 3.33366 1.33331 6.00033V6.33366C2.25331 6.33366 2.99998 7.08033 2.99998 8.00033C2.99998 8.92033 2.25331 9.66699 1.33331 9.66699V10.0003C1.33331 12.667 1.99998 13.3337 4.66665 13.3337H11.3333C14 13.3337 14.6666 12.667 14.6666 10.0003C13.7466 10.0003 13 9.25366 13 8.33366Z"
+        stroke="#D50000"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M6 9.83301L10 5.83301"
+        stroke="#D50000"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M9.99636 9.83333H10.0023"
+        stroke="#D50000"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M5.99636 6.16634H6.00235"
+        stroke="#D50000"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
 
 export {
   SeasonSquare,
@@ -1016,12 +1372,14 @@ export {
   ArrowTopIcons,
   LocationIcons,
   UploadIcons,
-  HouseStatisticIcons,
+  HouseStatisticIcons, //Footer
+  DashboardStatisticIcons,
   WarningSircleIcons,
   PersonIcons,
   PersonPlusIcons,
   ListCollectionIcons,
   CotegoryIcons,
+  CotegoryMenuIcons, //CategoryMenu
   MapSitesIcons,
   MapIcons,
   MarketIcons,
@@ -1031,9 +1389,17 @@ export {
   FooterOriginalIcons,
   MyPurchaseIcons, //my order
   MenuCloseIcons,
+  MenuOpenIcons,
   EyesOpenIcons,
   ClothesIcons,
   DollorIcons,
   PlusIcons,
-  HomeIcons,
+  HomeIcons, //BreadCamp
+  ItailIcons, //BreadCamp
+  SearchIcons,
+  VolumeIcons,
+  BrushColorIcons,
+  TopBrandsIcon, //Top Brandsicons
+  DeliveryIcons,
+  TicketDiscountIcons,
 };

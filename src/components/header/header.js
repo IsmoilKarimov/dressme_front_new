@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import TopHeader from "./top";
 import MediumHeader from "./medium";
-import BottomHeader from "./bottom";
 import NavMenu from "./nav-menu";
 import "./header.css";
 import { Outlet, useLocation } from "react-router-dom";
 import NavbarBottomIndex from "./NavbarBottomIndex";
-import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 const Header = () => {
   // ----------------NavBar----------------
   const [show, setShow] = useState(true);

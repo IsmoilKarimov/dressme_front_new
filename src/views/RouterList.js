@@ -13,11 +13,10 @@ import Footer from "../components/footer/footer";
 import SkeletonHomeIndex from "../components/Home/Main/Skeleton/SkeletonHomeIndex";
 import SignInSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import SignUpSkeletonIndex from "../components/Authentication/SignUpSkeleton";
-import AuthenIndex from "../components/header/AuthenticationNavbar/AuthenIndex";
 // import YandexMapsIndex from "../components";
 import YandexSkeletonIndex from "../components/YandexMap/YandexMapsSkeleton/YandexSkeletonIndex";
 // import ForgetPasswordIndex from "../components/Authentication/SignInDetail";
-import ConfirmPassword from "../components/Authentication/ConfirmPassword/ConfirmPassword";
+// import ConfirmPassword from "../components/Authentication/ConfirmPassword/ConfirmPassword";
 
 import LoadingOpacity from "../Page/Loading/LoadingOpacity";
 
@@ -90,7 +89,7 @@ const RouterList = () => {
         </Route>
 
         {/* Registration page  */}
-        <Route element={<AuthenIndex />}>
+        <Route>
           <Route
             path="/sign_in"
             element={
@@ -161,7 +160,7 @@ const RouterList = () => {
               </React.Suspense>
             }
           />
-          <Route
+          {/* <Route
             path="/confirm_password"
             element={
               <React.Suspense
@@ -174,7 +173,7 @@ const RouterList = () => {
                 <ConfirmPassword />
               </React.Suspense>
             }
-          />
+          /> */}
         </Route>
       </Routes>
 

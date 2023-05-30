@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { formArrowRightCircle, formPhone } from "../../../assets/imgs";
 import { NavLink } from "react-router-dom";
+import { PhoneIcons, SircleNext } from "../../../AssetsMain/icons";
 
 export default function ForgetConfirmPassword() {
   const [timerDecrase, setTimerDecrase] = useState(60);
@@ -36,7 +36,9 @@ export default function ForgetConfirmPassword() {
               placeholder="Phone number"
               required
             />
-            <img src={formPhone} alt="" />
+            <span>
+              <PhoneIcons />
+            </span>{" "}
           </div>
         </div>
         <div className="flex justify-between items-center mt-6">
@@ -107,7 +109,9 @@ export default function ForgetConfirmPassword() {
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
             Подтвердить
           </span>
-          <img className="" src={formArrowRightCircle} alt="female" />
+          <span>
+            <SircleNext colors={"#fff"} />
+          </span>{" "}
         </NavLink>
       </div>
     </div>

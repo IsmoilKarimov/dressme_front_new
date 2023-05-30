@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { formArrowRightCircle, formPhone } from "../../../assets/imgs";
 import { NavLink } from "react-router-dom";
+import { PhoneIcons, SircleNext } from "../../../AssetsMain/icons";
 
 export default function ForgetPassword() {
   return (
@@ -27,7 +28,9 @@ export default function ForgetPassword() {
               placeholder="Phone number"
               required
             />
-            <img src={formPhone} alt="" />
+            <span>
+              <PhoneIcons />
+            </span>{" "}
           </div>
         </div>
 
@@ -38,7 +41,9 @@ export default function ForgetPassword() {
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
             Сбросит пароль{" "}
           </span>
-          <img className="" src={formArrowRightCircle} alt="female" />
+          <span>
+            <SircleNext colors={"#fff"} />
+          </span>{" "}
         </NavLink>
       </div>
     </div>

@@ -1,17 +1,16 @@
 import React, { useContext, useState, useEffect } from "react";
-import {
-  Person3Dyarim,
-  formArrowBottom,
-  formArrowRightCircle,
-  formPhone,
-  formUser,
-  formUzFlag,
-  person3D,
-} from "../../../assets/imgs";
+
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import InputMask from "react-input-mask";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
+import {
+  ArrowTopIcons,
+  PersonIcons,
+  PhoneIcons,
+  SircleNext,
+} from "../../../AssetsMain/icons";
+import { UzbekFlag } from "../../../AssetsMain";
 
 export default function SignUp() {
   const [phone, setPhone] = useState("");
@@ -81,7 +80,9 @@ export default function SignUp() {
                   placeholder="Имя"
                   required
                 />
-                <img src={formUser} alt="" />
+                <span>
+                  <PersonIcons colors={"#D2D2D2"} />
+                </span>
               </div>
             </div>
             <div className="mt-4 w-full h-fit">
@@ -95,7 +96,9 @@ export default function SignUp() {
                   placeholder="Фамилия"
                   required
                 />
-                <img src={formUser} alt="" />
+                <span>
+                  <PersonIcons colors={"#D2D2D2"} />
+                </span>{" "}
               </div>
             </div>
 
@@ -105,14 +108,16 @@ export default function SignUp() {
               </div>
               <div className="flex items-center justify-center overflow-hidden border border-searchBgColor rounded-lg">
                 <div className="ss:w-[35%] md:w-[30%] h-12 flex items-center justify-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
-                  <img src={formUzFlag} alt="form-arrow-bottom" />
+                  <img src={UzbekFlag} alt="form-arrow-bottom" />
                   <input
                     className="w-[40px]  h-full select-none mx-2 not-italic font-AeonikProMedium text-base leading-4 text-black"
                     type="text"
                     value={state.phoneCode}
                     readOnly
                   />
-                  <img src={formArrowBottom} alt="form-arrow-bottom" />
+                  <span className="rotate-[180deg]">
+                    <ArrowTopIcons />
+                  </span>
                 </div>
                 <div className="ss:w-[65%] md:w-[70%] h-12 overflow-hidden">
                   <InputMask
@@ -150,7 +155,9 @@ export default function SignUp() {
                   placeholder="Адрес электронной почты"
                   required
                 />
-                <img src={formUser} alt="" />
+                <span>
+                  <PersonIcons colors={"#D2D2D2"} />
+                </span>{" "}
               </div>
             </div>
             <div className="mt-4 w-full h-fit">
@@ -190,7 +197,9 @@ export default function SignUp() {
               <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
                 Войти в систему
               </span>
-              <img className="" src={formArrowRightCircle} alt="female" />
+              <span>
+                <SircleNext colors={"#fff"} />
+              </span>{" "}
             </NavLink>
           </div>
         </div>
@@ -217,7 +226,9 @@ export default function SignUp() {
                   placeholder="Phone number"
                   required
                 />
-                <img src={formPhone} alt="" />
+                <span>
+                  <PhoneIcons />
+                </span>{" "}
               </div>
             </div>
             <div className="flex justify-between items-center mt-6">
@@ -288,7 +299,9 @@ export default function SignUp() {
               <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
                 Подтвердить
               </span>
-              <img className="" src={formArrowRightCircle} alt="female" />
+              <span>
+                <SircleNext colors={"#fff"} />
+              </span>{" "}
             </div>
           </div>
         </div>

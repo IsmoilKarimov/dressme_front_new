@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { formArrowRightCircle, formPhone } from "../../../assets/imgs";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { SircleNext } from "../../../AssetsMain/icons";
 
 export default function SetNewPassword() {
   const [state, setState] = useState({
@@ -83,7 +83,9 @@ export default function SetNewPassword() {
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
             Сбросит пароль{" "}
           </span>
-          <img className="" src={formArrowRightCircle} alt="female" />
+          <span>
+            <SircleNext colors={"#fff"} />
+          </span>{" "}
         </NavLink>
       </div>
     </div>

@@ -1,68 +1,61 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
-import {
-  adidas,
-  arrowBottomBlack,
-  arrowBottomRight,
-  autummBrand,
-  AutummCategory,
-  AutummFemale,
-  AutummMale,
-  autummSeason,
-  autummVolume,
-  blog,
-  booking,
-  brush,
-  bucket,
-  businessBlack,
-  chanel,
-  close,
-  clothing,
-  contact,
-  dashboard,
-  dolce,
-  dollar,
-  eng,
-  gucci,
-  heart,
-  helpBlack,
-  hm,
-  lacoste,
-  location,
-  louis,
-  map,
-  menu,
-  nike,
-  prada,
-  puma,
-  search,
-  shop,
-  springBrand,
-  SpringCategory,
-  SpringFemale,
-  SpringMale,
-  springSeason,
-  springVolume,
-  summerBrand,
-  SummerCategory,
-  SummerFemale,
-  SummerMale,
-  summerSeason,
-  summerVolume,
-  tommy,
-  topBrands,
-  user,
-  winterBrand,
-  WinterCategory,
-  WinterFemale,
-  WinterMale,
-  winterSeason,
-  winterVolume,
-  zara,
-} from "../../assets/imgs";
+
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { GrClose } from "react-icons/gr";
 import { Popover } from "antd";
+import {
+  ArrowTopIcons,
+  BasketIcons,
+  BrushColorIcons,
+  ClothesIcons,
+  CommentIcons,
+  CotegoryIcons,
+  DashboardStatisticIcons,
+  DollorIcons,
+  HeartIcons,
+  HouseStatisticIcons,
+  ListCollectionIcons,
+  LocationIcons,
+  MapIcons,
+  MarketIcons,
+  MenuCloseIcons,
+  MenuOpenIcons,
+  PersonIcons,
+  PhoneIcons,
+  SearchIcons,
+  TopBrandsIcon,
+  VolumeIcons,
+} from "../../AssetsMain/icons";
+import {
+  BrandAutumm,
+  BrandSpring,
+  BrandSummer,
+  BrandWinter,
+  SpringMale,
+  SummerMale,
+  AutummMale,
+  WinterMale,
+  SpringFemale,
+  SummerFemale,
+  AutummFemale,
+  WinterFemale,
+  // ------
+  adidas,
+  chanel,
+  hm,
+  lacoste,
+  nike,
+  puma,
+  tommy,
+  zara,
+  //
+  springSeason,
+  summerSeason,
+  winterSeason,
+  autummSeason,
+  UzbekFlag,
+} from "../../AssetsMain";
 
 const MediumHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -97,12 +90,14 @@ const MediumHeader = () => {
     state?.selectColorToggleMobile,
   ]);
 
-  let redColors = "#D50000";
+  let IconsColor = "";
   let dataStyle = "";
   let genderStyle = "";
   let hoverText = "";
   let authenActiveStyle = "";
   if (dressInfo?.type === 1111) {
+    IconsColor = "#008F0E";
+
     dataStyle = "bg-bgSpring bg-opacity-10	  text-borderSpring ";
     hoverText = " hover:text-borderSpring ";
     authenActiveStyle =
@@ -111,6 +106,8 @@ const MediumHeader = () => {
       "focus:text-borderSpring focus:bg-bgSpring focus:border focus:border-borderSpring focus:text-borderSpring";
   }
   if (dressInfo?.type === 2222) {
+    IconsColor = "#EAA700";
+
     dataStyle = "bg-bgSummer  bg-opacity-10  text-borderSummer";
     hoverText = " hover:text-borderSummer ";
     authenActiveStyle =
@@ -119,6 +116,8 @@ const MediumHeader = () => {
       "focus:text-borderSummer focus:bg-bgSummer focus:border focus:border-borderSummer focus:text-borderSummer";
   }
   if (dressInfo?.type === 3333) {
+    IconsColor = "#E17A02";
+
     dataStyle = "bg-bgAutumm bg-opacity-10  text-borderAutumm";
     hoverText = " hover:text-borderAutumm ";
     authenActiveStyle =
@@ -127,6 +126,8 @@ const MediumHeader = () => {
       "focus:text-borderAutumm focus:bg-bgAutumm focus:border focus:border-borderAutumm focus:text-borderAutumm";
   }
   if (dressInfo?.type === 4444) {
+    IconsColor = "#007DCA";
+
     dataStyle = "bg-bgWinter bg-opacity-10  text-borderWinter";
     hoverText = " hover:text-borderWinter ";
     authenActiveStyle =
@@ -142,23 +143,12 @@ const MediumHeader = () => {
     { id: 4444, type: "Winter", icons: winterSeason },
   ];
   const BrandTypeArray = [
-    { id: 1111, type: "Spring", icons: springBrand },
-    { id: 2222, type: "Summer", icons: summerBrand },
-    { id: 3333, type: "Autumm", icons: autummBrand },
-    { id: 4444, type: "Winter", icons: winterBrand },
+    { id: 1111, type: "Spring", icons: BrandSpring },
+    { id: 2222, type: "Summer", icons: BrandSummer },
+    { id: 3333, type: "Autumm", icons: BrandAutumm },
+    { id: 4444, type: "Winter", icons: BrandWinter },
   ];
-  const VolumeTypeArray = [
-    { id: 1111, type: "Spring", icons: springVolume },
-    { id: 2222, type: "Summer", icons: summerVolume },
-    { id: 3333, type: "Autumm", icons: autummVolume },
-    { id: 4444, type: "Winter", icons: winterVolume },
-  ];
-  const CategoryTypeArray = [
-    { id: 1111, type: "Spring", icons: SpringCategory },
-    { id: 2222, type: "Summer", icons: SummerCategory },
-    { id: 3333, type: "Autumm", icons: AutummCategory },
-    { id: 4444, type: "Winter", icons: WinterCategory },
-  ];
+
   const personItems = [
     { id: 1111, man: SpringMale, woman: SpringFemale },
     { id: 2222, man: SummerMale, woman: SummerFemale },
@@ -225,16 +215,12 @@ const MediumHeader = () => {
   const campany = [
     { id: 1, imgFull: adidas },
     { id: 2, imgFull: chanel },
-    { id: 3, imgFull: dolce },
-    { id: 4, imgFull: gucci },
-    { id: 5, imgFull: hm },
-    { id: 6, imgFull: lacoste },
-    { id: 7, imgFull: louis },
-    { id: 8, imgFull: nike },
-    { id: 9, imgFull: prada },
-    { id: 10, imgFull: puma },
-    { id: 11, imgFull: tommy },
-    { id: 12, imgFull: zara },
+    { id: 3, imgFull: hm },
+    { id: 4, imgFull: lacoste },
+    { id: 5, imgFull: nike },
+    { id: 6, imgFull: puma },
+    { id: 7, imgFull: tommy },
+    { id: 8, imgFull: zara },
   ];
 
   // ----------------Wear state management----------------------------
@@ -283,11 +269,15 @@ const MediumHeader = () => {
                 onClick={toggleHamburger}
                 className={`flex items-center justify-center bg-btnBgColor border border-searchBgColor w-12 h-12 -lg-lg cursor-pointer md:hidden rounded-lg`}
               >
-                <img
-                  src={!state?.hamburgerMenu ? close : menu}
-                  alt="voice"
-                  className={`${close ? "w-6 h-6" : ""} `}
-                />
+                {!state?.hamburgerMenu ? (
+                  <span>
+                    <MenuCloseIcons />
+                  </span>
+                ) : (
+                  <span>
+                    <MenuOpenIcons />
+                  </span>
+                )}
 
                 {/*Starting of Opened Hamburger menu section */}
                 <div
@@ -299,11 +289,10 @@ const MediumHeader = () => {
                 >
                   {/* Searching section */}
                   <div className="search flex items-center justify-between rounded-lg font-AeonikProMedium h-10 mt-3 mb-3 border border-searchBg ss:mt-3 md:hidden w-full">
-                    <img
-                      src={search}
-                      alt="search"
-                      className=" flex ss:pl-[11.65px] md:hidden"
-                    />
+                    <span className=" flex ss:pl-[11.65px] md:hidden">
+                      <SearchIcons />
+                    </span>
+
                     <input
                       type="text"
                       placeholder="Search products or brands"
@@ -313,20 +302,18 @@ const MediumHeader = () => {
                   {/* Music and Map selection for Mobile */}
                   <div className="flex items-center justify-between h-11 mb-3">
                     <button className="left py-[9px] px-10 rounded-lg flex items-center justify-center font-AeonikProMedium rouded border border-gray-300 bg-bgColor ss:w-[48%]">
-                      {VolumeTypeArray.filter(
-                        (data) => data?.id == dressInfo?.type
-                      ).map((data) => {
-                        return (
-                          <img key={data?.id} src={data?.icons} alt="misic" />
-                        );
-                      })}
+                      <span>
+                        <VolumeIcons colors={IconsColor} />
+                      </span>
                       <span className=" ml-[10px]">Music</span>
                     </button>
                     <Link
                       to="#"
                       className="right px-10 py-[9px] rounded-lg flex items-center justify-center font-AeonikProMedium border border-gray-300 bg-bgColor ss:w-[48%]"
                     >
-                      <img src={map} alt="map" />
+                      <span>
+                        <MapIcons />
+                      </span>
                       <span className="ml-[10px]">Map</span>
                     </Link>
                   </div>
@@ -337,75 +324,65 @@ const MediumHeader = () => {
                       <button className="flex items-center bg-btnBgColor font-AeonikProMedium h-12 border rounded-lg border-gray-300 px-5 mb-3 w-full">
                         <div className="flex items-center">
                           <span className="border-r border-gray-300 py-3 pr-5">
-                            <img src={dashboard} alt="" />
+                            <DashboardStatisticIcons />
                           </span>
                           <span className="ml-[11.67px]">Dashboard (demo)</span>
                         </div>
-                        <img
-                          src={arrowBottomRight}
-                          alt=""
-                          className="arrowRotate ml-auto"
-                        />
+                        <span className="arrowRotate ml-auto rotate-[90deg]">
+                          <ArrowTopIcons />
+                        </span>
                       </button>
                     </li>
                     <li>
                       <button className="flex items-center bg-btnBgColor font-AeonikProMedium h-12 border rounded-lg border-gray-300 px-5 mb-3 w-full">
                         <div className="flex items-center">
                           <span className="border-r border-gray-300 py-3 pr-5">
-                            <img src={businessBlack} alt="" />
+                            <HouseStatisticIcons colors={"#000"} />
                           </span>
                           <span className="ml-[11.67px]">Business</span>
                         </div>
-                        <img
-                          src={arrowBottomRight}
-                          alt=""
-                          className="arrowRotate ml-auto"
-                        />
+                        <span className="arrowRotate ml-auto rotate-[90deg]">
+                          <ArrowTopIcons />
+                        </span>
                       </button>
                     </li>
                     <li>
                       <button className="flex items-center bg-btnBgColor font-AeonikProMedium h-12 border rounded-lg border-gray-300 px-5 mb-3 w-full">
                         <div className="flex items-center">
                           <span className="border-r border-gray-300 py-3 pr-5">
-                            <img src={booking} alt="" />
+                            <ListCollectionIcons />
                           </span>
                           <span className="ml-[11.67px]">My orders</span>
                         </div>
-                        <img
-                          src={arrowBottomRight}
-                          alt=""
-                          className="arrowRotate ml-auto"
-                        />
+                        <span className="arrowRotate ml-auto rotate-[90deg]">
+                          <ArrowTopIcons />
+                        </span>
                       </button>
                     </li>
                     <li>
                       <button className="flex items-center bg-btnBgColor font-AeonikProMedium h-12 border rounded-lg border-gray-300 px-5 mb-3 w-full">
                         <div className="flex items-center">
                           <span className="border-r border-gray-300 py-3 pr-5">
-                            <img src={shop} alt="" />
+                            <MarketIcons colors={"#000"} />
                           </span>
                           <span className="ml-[11.67px]">Shop</span>
                         </div>
-                        <img
-                          src={arrowBottomRight}
-                          alt=""
-                          className="arrowRotate ml-auto"
-                        />
+                        <span className="arrowRotate ml-auto rotate-[90deg]">
+                          <ArrowTopIcons />
+                        </span>
                       </button>
                     </li>
                     <li>
                       <button className="flex items-center bg-btnBgColor font-AeonikProMedium h-12 border rounded-lg border-gray-300 px-5 mb-3 w-full">
                         <div className="flex items-center">
                           <span className="border-r border-gray-300 py-3 pr-5">
-                            <img src={blog} alt="" />
+                            <ListCollectionIcons />
                           </span>
                           <span className="ml-[11.67px]">My blog</span>
                         </div>
-                        <img
-                          src={arrowBottomRight}
-                          alt=""
-                          className="arrowRotate ml-auto"
-                        />
+                        <span className="arrowRotate ml-auto rotate-[90deg]">
+                          <ArrowTopIcons />
+                        </span>
                       </button>
                     </li>
                   </ul>
@@ -413,14 +390,18 @@ const MediumHeader = () => {
                   {/*Help and Contact selection for Mobile */}
                   <div className="flex items-center justify-between h-11 mb-3">
                     <button className="left py-[9px] px-10 rounded-lg flex items-center justify-center font-AeonikProMedium rouded border border-gray-300 bg-bgColor ss:w-[48%]">
-                      <img src={helpBlack} alt="misic" />
+                      <span>
+                        <CommentIcons colors={"#000"} />
+                      </span>
                       <span className="ml-[10px]">Help</span>
                     </button>
                     <Link
                       to="#"
                       className="left py-[9px] px-10 rounded-lg flex items-center justify-center font-AeonikProMedium rouded border border-gray-300 bg-bgColor ss:w-[48%]"
                     >
-                      <img src={contact} alt="map" />
+                      <span>
+                        <PhoneIcons />
+                      </span>
                       <span className="ml-[10px]">Contact</span>
                     </Link>
                   </div>
@@ -431,17 +412,23 @@ const MediumHeader = () => {
                   {/* Location and Language */}
                   <div className="flex items-center justify-between h-11 mb-3">
                     <button className="left py-[9px] px-10 rounded-lg flex items-center justify-center font-AeonikProMedium rouded border border-gray-300 bg-bgColor ss:w-[48%]">
-                      <img src={location} alt="music" />
+                      <span>
+                        <LocationIcons />
+                      </span>
                       <span className="ml-[10px] mr-5">Tashkent</span>
-                      <img src={arrowBottomBlack} alt="" />
+                      <span className="">
+                        <ArrowTopIcons />
+                      </span>{" "}
                     </button>
                     <Link
                       to="#"
                       className="left py-[9px] px-10 rounded-lg flex items-center justify-center font-AeonikProMedium rouded border border-gray-300 bg-bgColor ss:w-[48%]"
                     >
-                      <img src={eng} alt="map" />
+                      <img src={UzbekFlag} alt="." />
                       <span className="ml-[10px] mr-5">English</span>
-                      <img src={arrowBottomBlack} alt="map" />
+                      <span className="">
+                        <ArrowTopIcons />
+                      </span>
                     </Link>
                   </div>
                 </div>
@@ -471,18 +458,9 @@ const MediumHeader = () => {
               <div
                 className={` bg-btnBgColor w-11 h-11 ml-[25px] rounded-lg cursor-pointer hidden items-center justify-center md:flex`}
               >
-                {VolumeTypeArray.filter(
-                  (data) => data.id == dressInfo.type
-                ).map((data) => {
-                  return (
-                    <img
-                      key={data?.id}
-                      className="w-[22px]"
-                      src={data?.icons}
-                      alt="logo"
-                    />
-                  );
-                })}
+                <span className="w-[22px]">
+                  <VolumeIcons colors={IconsColor} />
+                </span>
               </div>
 
               {/* Weather seection */}
@@ -522,32 +500,25 @@ const MediumHeader = () => {
                 <button
                   className={`items-center ${dataStyle}  pl-5 pr-7 h-[44px] rounded-l-lg cursor-pointer hidden md:flex`}
                 >
-                  {CategoryTypeArray.filter(
-                    (data) => data.id === dressInfo?.type
-                  ).map((data) => {
-                    return (
-                      <img
-                        key={data?.id}
-                        src={data?.icons}
-                        alt={data?.type}
-                        className="w-[18px]"
-                      />
-                    );
-                  })}
+                  <span>
+                    <CotegoryIcons colors={IconsColor} />
+                  </span>
                   <span
                     className={` px-[9.5px] not-italic font-AeonikProMedium text-sm leading-4 mt-1`}
                   >
                     Каталог
                   </span>
                 </button>
-                <img src={search} alt="search" className="flex md:hidden" />
+                <span className="flex md:hidden">
+                  <SearchIcons />
+                </span>
                 <input
                   type="text"
                   placeholder="Поиск продуктов или брендов"
                   className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor "
                 />
                 <button className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-lg  hidden md:flex -ml-[2px]">
-                  <img src={search} alt="search" />
+                  <SearchIcons />
                 </button>
               </div>
 
@@ -559,7 +530,9 @@ const MediumHeader = () => {
                 to="/delivery-points"
                 className="items-center justify-center bg-btnBgColor rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex"
               >
-                <img src={map} alt="map" className="pr-[6px]" />
+                <span className="pr-[6px]">
+                  <MapIcons />
+                </span>
                 <span className="font-AeonikProMedium text-sm  ">Карта</span>
               </NavLink>
 
@@ -571,33 +544,17 @@ const MediumHeader = () => {
                 to="/sign_in"
                 className=" bg-btnBgColor rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex"
               >
-                <img src={user} alt="" />
+                <PersonIcons colors={"#000"} />
               </NavLink>
 
               {/* Heart section */}
               <NavLink
                 to="/favourites"
                 className={
-                  "bg-btnBgColor rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex"
+                  "bg-btnBgColor rounded-lg  items-center justify-center w-11 h-11 mr-2 hidden md:flex"
                 }
               >
-                {({ isActive, isPending }) => (
-                  <svg
-                    width="16"
-                    height="14"
-                    viewBox="0 0 16 14"
-                    fill={`${isActive ? "#D50000" : "none"}`}
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M8.41337 12.8733C8.18671 12.9533 7.81337 12.9533 7.58671 12.8733C5.65337 12.2133 1.33337 9.45998 1.33337 4.79332C1.33337 2.73332 2.99337 1.06665 5.04004 1.06665C6.25337 1.06665 7.32671 1.65332 8.00004 2.55998C8.67337 1.65332 9.75337 1.06665 10.96 1.06665C13.0067 1.06665 14.6667 2.73332 14.6667 4.79332C14.6667 9.45998 10.3467 12.2133 8.41337 12.8733Z"
-                      stroke={`${isActive ? "#D50000" : "#000"}`}
-                      strokeWidth="1.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                )}
+                {({ isActive }) => <HeartIcons colors={isActive} />}
               </NavLink>
 
               {/* Bucket section */}
@@ -605,7 +562,9 @@ const MediumHeader = () => {
                 to="/basket-check-out"
                 className=" bg-btnBgColor rounded-lg flex items-center justify-center w-11 h-11 relative md:flex ss:hidden"
               >
-                <img src={bucket} alt="bucket" />
+                <span>
+                  <BasketIcons colors={"#000"} />
+                </span>
                 <span className="count bg-RedColor w-4 h-4 text-white text-[10px] rounded-lg flex items-center justify-center absolute top-0 right-0 font-AeonikProMedium">
                   {" "}
                   4{" "}
@@ -805,7 +764,9 @@ const MediumHeader = () => {
             <div className="flex items-center justify-between w-full ">
               {/* Searching section */}
               <div className="search flex items-center rounded-lg font-AeonikProMedium h-10  border ss:w-[100%]">
-                <img src={search} alt="search" className="pl-[11.65px]" />
+                <span className="pl-[11.65px]">
+                  <SearchIcons />
+                </span>
                 <input
                   type="text"
                   placeholder="Search..."
@@ -818,7 +779,9 @@ const MediumHeader = () => {
                 to="/delivery-points"
                 className="flex items-center w-full justify-center bg-btnBgColor border border-searchBgColor rounded-lg ss:px-4 h-10 ml-2  ss:w-[94px] "
               >
-                <img src={map} alt="map" className="pr-[6px]" />
+                <span className="pr-[6px]">
+                  <MapIcons />
+                </span>
                 <div className="font-AeonikProMedium">Map</div>
               </Link>
             </div>
@@ -856,16 +819,17 @@ const MediumHeader = () => {
                 className="flex items-center bg-btnBgColor font-AeonikProMedium h-12 rounded-lg border border-gray-200 px-5 ss:w-full  ss:mt-4 "
               >
                 <div className="flex items-center ml-auto">
-                  <img src={clothing} alt="" />
+                  <ClothesIcons />
                   <span className="ml-[11.67px]">Clothing options</span>
                 </div>
-                <img
-                  src={arrowBottomBlack}
-                  alt=""
+
+                <span
                   className={`arrowRotate ml-auto ${
                     state?.toggle ? "rotate-180" : ""
                   } duration-500`}
-                />
+                >
+                  <ArrowTopIcons />
+                </span>
               </button>
             </div>
 
@@ -887,15 +851,13 @@ const MediumHeader = () => {
                   <button className="ss:w-full flex items-center bg-btnBgColor font-AeonikProMedium h-12 border rounded-lg border-searchBgColor px-5 mb-3 md:hidden">
                     <div className="flex items-center">
                       <span className="w-[52px]  border-r border-searchBgColor py-3 pr-5">
-                        <img src={clothing} alt="" />
+                        <ClothesIcons />
                       </span>
                       <span className="ml-[11.67px]">{selectWearMobile}</span>
                     </div>
-                    <img
-                      src={arrowBottomRight}
-                      alt=""
-                      className="arrowRotate ml-auto"
-                    />
+                    <span className="arrowRotate ml-auto rotate-[90deg]">
+                      <ArrowTopIcons />
+                    </span>
                   </button>
                 </li>
                 <li
@@ -909,22 +871,20 @@ const MediumHeader = () => {
                   <button className="flex items-center w-full bg-btnBgColor font-AeonikProMedium h-12 border rounded-lg border-searchBgColor px-5 mb-3 md:hidden">
                     <div className="flex items-center">
                       <span className="w-[52px]  border-r border-searchBgColor py-3 pr-5">
-                        <img src={dollar} alt="" />
+                        <DollorIcons />
                       </span>
                       <span className="ml-[11.67px]">{selectPriceMobile}</span>
                     </div>
-                    <img
-                      src={arrowBottomRight}
-                      alt=""
-                      className="arrowRotate ml-auto"
-                    />
+                    <span className="arrowRotate  rotate-[90deg] ml-auto">
+                      <ArrowTopIcons />
+                    </span>
                   </button>
                 </li>
 
                 <li>
                   <button className="w-full flex items-center justify-between bg-btnBgColor font-AeonikProMedium h-12 border rounded-lg border-searchBgColor px-5 mb-3 md:hidden">
                     <span className="w-[52px] border-r border-searchBgColor py-3 pr-5">
-                      <img src={brush} alt="" />
+                      <BrushColorIcons />
                     </span>
                     <div
                       onClick={() =>
@@ -951,12 +911,10 @@ const MediumHeader = () => {
                         );
                       })}
                     </div>
-                    <span className="w-[40px]">
-                      <img
-                        src={arrowBottomRight}
-                        alt=""
-                        className="arrowRotate ml-auto"
-                      />
+                    <span className="w-[40px]  flex justify-end">
+                      <span className="arrowRotate  rotate-[90deg] ml-auto">
+                        <ArrowTopIcons />
+                      </span>
                     </span>
                   </button>
                 </li>
@@ -971,15 +929,13 @@ const MediumHeader = () => {
                   <button className="w-full flex items-center bg-btnBgColor font-AeonikProMedium h-12 border rounded-lg border-searchBgColor px-5 mb-3 md:hidden">
                     <div className="flex items-center">
                       <span className="w-[52px]  border-r border-searchBgColor py-3 pr-5">
-                        <img src={topBrands} alt="" />
+                        <TopBrandsIcon />
                       </span>
                       <span className="ml-[11.67px]">Top Brands</span>
                     </div>
-                    <img
-                      src={arrowBottomRight}
-                      alt=""
-                      className="arrowRotate ml-auto"
-                    />
+                    <span className="arrowRotate  rotate-[90deg] ml-auto">
+                      <ArrowTopIcons />
+                    </span>
                   </button>
                 </li>
               </ul>
