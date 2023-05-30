@@ -12,9 +12,9 @@ root.render(
   // <StrictMode>
   <QueryClientProvider client={queryClient}>
     <DressMenu>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
     </DressMenu>
   </QueryClientProvider>
   // </StrictMode>
