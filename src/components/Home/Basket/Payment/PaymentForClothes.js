@@ -75,30 +75,30 @@ export default function PaymentForClothes() {
         <div className="max-w-[1280px] w-[100%] h-full flex items-center border-x border-searchBgColor justify-between m-auto">
           <div className="w-[65.1%] h-full px-8 border-r border-searchBgColor flex  items-center justify-between">
             <div className="w-fit  flex  items-center">
-              <p className="flex not-italic font-AeonikProMedium text-2xl leading-7 text-black tracking-[1%]">
-                Данные
-              </p>
+                <p className="flex not-italic font-AeonikProMedium text-2xl leading-7 text-black tracking-[1%]">
+                  Данные
+                </p>
             </div>
             <div className="w-fit h-full flex  items-center">
-              <span className="not-italic font-AeonikProMedium text-base leading-4 text-right text-setTexOpacity">
-                У тебя есть аккаунт?
-              </span>
-              <NavLink
-                className={
-                  "not-italic ml-2 font-AeonikProMedium text-base leading-4 text-right text-fullBlue tracking-[1%]"
-                }
-              >
-                Авторизуйся
-              </NavLink>
+                <span className="not-italic font-AeonikProMedium text-base leading-4 text-right text-setTexOpacity">
+                  У тебя есть аккаунт?
+                </span>
+                <NavLink
+                  className={
+                    "not-italic ml-2 font-AeonikProMedium text-base leading-4 text-right text-fullBlue tracking-[1%]"
+                  }
+                >
+                  Авторизуйся
+                </NavLink>
             </div>
           </div>
           <div className="w-[34.9%] h-full px-8  flex  items-center justify-between">
-            <p className="not-italic mt-1 font-AeonikProMedium text-2xl leading-7 text-black tracking-[1%]">
-              Оплата
-            </p>
-            <p className="not-italic mt-1 font-AeonikProMedium text-2xl leading-7 text-black tracking-[1%]">
-              527 000 сум{" "}
-            </p>
+              <p className="not-italic mt-1 font-AeonikProMedium text-2xl leading-7 text-black tracking-[1%]">
+                Оплата
+              </p>
+              <p className="not-italic mt-1 font-AeonikProMedium text-2xl leading-7 text-black tracking-[1%]">
+                527 000 сум{" "}
+              </p>
           </div>
         </div>
       </div>
