@@ -509,7 +509,7 @@ const Footer = () => {
                     </li>
                     <li className="ss:mb-1 md:mb-4">
                       <Link to="#" className="flex items-center">
-                        <CotegoryIcons />
+                        <CotegoryIcons colors={"#000"} />
                         <span className="font-AeonikProRegular ml-2">
                           Каталог
                         </span>
@@ -680,7 +680,7 @@ const Footer = () => {
                   </li>
                   <li className="mb-4">
                     <Link to="#" className="flex items-center">
-                      <CotegoryIcons />
+                      <CotegoryIcons colors={"#000"} />
                       <span className="font-AeonikProRegular ml-2">
                         Каталог
                       </span>

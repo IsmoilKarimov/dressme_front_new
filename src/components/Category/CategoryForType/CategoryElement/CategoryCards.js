@@ -1,561 +1,62 @@
 import React, { useContext, useState } from "react";
-import { discount, bucket, video, delivery, heart, shirt, addBag, cardImg, star, setpersonIcons, InputCheck, ticketDiscount, PrevCate, NextCate } from "../../../../assets/imgs";
 
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
+import {
+  ArrowTopIcons,
+  HeartIcons,
+  InputCheckedTrueIcons,
+  NoImg,
+  SaveBasketIcons,
+  StarIcons,
+  TicketDiscountIcons,
+} from "../../../../AssetsMain/icons";
 
 export default function CategoryCards() {
-  const [productList, setProductList] = useState([
-    {
-      id: 1,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg: "",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "258.000",
-      price: "372.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 2,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg: "",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "258.000",
-      price: "372.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 3,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg: "",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "",
-      price: "372.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 4,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg:
-        "https://images.uzum.uz/cfh16dd40v9uauhi42hg/t_product_540_high.jpg#1677855222081",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "258.000",
-      price: "372.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 5,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg:
-        "https://images.uzum.uz/cfmebc7hgiopn8lcdoh0/t_product_540_high.jpg#1677855264045",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "258.000",
-      price: "372.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 6,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg:
-        "https://images.uzum.uz/cf557s8l08k0o9qi31gg/t_product_540_high.jpg#1677855329602",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "258.000",
-      price: "372.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 7,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg:
-        "https://images.uzum.uz/cfmebc7hgiopn8lcdoh0/t_product_540_high.jpg#1677855264045",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "258.000",
-      price: "372.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 8,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg:
-        "https://images.uzum.uz/cf2h9jqvtie1lhbgt6mg/t_product_540_high.jpg#1677855329588",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "258.000",
-      price: "372.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 9,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg:
-        "https://images.uzum.uz/cf53ng0v1htd23al4sqg/t_product_540_high.jpg#1677855423341",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "15.000",
-      price: "372.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 10,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg:
-        "https://images.uzum.uz/cf5vfb2vtie1lhbh7h50/t_product_540_high.jpg#1677855423352",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "258.000",
-      price: "372.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 11,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg:
-        "https://images.uzum.uz/cf53ng0v1htd23al4sqg/t_product_540_high.jpg#1677855423341",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "",
-      price: "75.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 12,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg:
-        "https://images.uzum.uz/cf8g3tivtie1lhbhf1p0/t_product_540_high.jpg#1677855423420",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "258.000",
-      price: "372.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 13,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg:
-        "https://images.uzum.uz/cfcdqlavtie1lhbhs490/t_product_540_high.jpg#1677855423521",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "258.000",
-      price: "372.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 14,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg:
-        "https://images.uzum.uz/cfmebc7hgiopn8lcdoh0/t_product_540_high.jpg#1677855264045",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "",
-      price: "140.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 15,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg:
-        "https://images.uzum.uz/cfcdvh0l08k0o9qiqgcg/t_product_540_high.jpg#1677855423619",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "",
-      price: "372.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 16,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg: "",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "",
-      price: "372.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 17,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg: "",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "258.000",
-      price: "372.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 18,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg: "",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "258.000",
-      price: "372.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 19,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg: "",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "",
-      price: "372.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-    {
-      id: 20,
-      discount: "-30%",
-      video: true,
-      diliver: true,
-      like: true,
-      buy: true,
-      ProducImg:
-        "https://images.uzum.uz/cfh16dd40v9uauhi42hg/t_product_540_high.jpg#1677855222081",
-      noProductImg: cardImg,
-      title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
-
-      starCount: 256,
-      shirtSize: "M | 3XL",
-      sale: "258.000",
-      price: "372.000",
-      changeColor: [
-        { id: 1, value: 1, action: false, colors: "bg-purple-700" },
-        { id: 2, value: 2, action: false, colors: "bg-green-600" },
-        { id: 3, value: 3, action: false, colors: "bg-red-700" },
-        { id: 4, value: 4, action: false, colors: "bg-yellow-500" },
-        { id: 5, value: 5, action: false, colors: "bg-black" },
-        { id: 6, value: 6, action: false, colors: "bg-sky-500" },
-      ],
-    },
-  ]);
-
-  const [dressInfo] = useContext(dressMainData);
-
-  let dataStyle = "";
-  let shadowStyle = "";
-  if (dressInfo?.type === 1111) {
-    dataStyle = "text-borderSpring ";
-    shadowStyle = "hover:shadow-green-300/100 ";
-  }
-  if (dressInfo?.type === 2222) {
-    dataStyle = "text-borderSummer";
-    shadowStyle = "hover:shadow-amber-200/100  ";
-  }
-  if (dressInfo?.type === 3333) {
-    dataStyle = "text-borderAutumm";
-    shadowStyle = "hover:shadow-orange-200/100   ";
-  }
-  if (dressInfo?.type === 4444) {
-    dataStyle = "text-borderWinter";
-    shadowStyle = "hover:shadow-sky-200/100  ";
-  }
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const onColorChecked = (itemId, colorId) => {
-    setProductList((current) => {
-      return current?.map((data) => {
-        if (data?.id == itemId) {
-          let newDataColor = data.changeColor.map((e) => {
-            if (e.id == colorId) {
-              return { ...e, action: !e.action };
-            } else return e;
-          });
-          return { ...data, changeColor: [...newDataColor] };
-        } else return data;
-      });
-    });
+    // setProductList((current) => {
+    //   return current?.map((data) => {
+    //     if (data?.id == itemId) {
+    //       let newDataColor = data.changeColor.map((e) => {
+    //         if (e.id == colorId) {
+    //           return { ...e, action: !e.action };
+    //         } else return e;
+    //       });
+    //       return { ...data, changeColor: [...newDataColor] };
+    //     } else return data;
+    //   });
+    // });
   };
-
-  const [clothesSetWear, setClothesSetWear] = useState(true);
 
   return (
     <div className="flex flex-col box-border ">
       <div className="flex justify-between flex-wrap gap-y-2 gap-x-2">
-        {productList.map((data) => {
+        {dressInfo?.ProductList.map((data) => {
           return (
             <div
               key={data.id}
               // onClick={() => handleGetCardId(data?.id)}
               className={` ss:w-[48%] md:w-[24%] lg:w-[240px]   xs:h-[456px] lg:h-[440px] border border-solid borderColorCard overflow-hidden rounded-lg`}
             >
-              <div className="relative w-full cursor-pointer ss:h-[206px] ls:h-[238px] xs:h-[309px] bg-btnBgColor lg:h-[320px] flex content-between items-center overflow-hidden border-b border-solid flex-nowrap">
-                <img
-                  className=" m-auto hover:scale-105 transition duration-700 ease-in-out "
-                  src={data?.ProducImg || cardImg}
-                  alt="ProducImg"
-                />
+              <div className="relative w-full cursor-pointer ss:h-[206px] ls:h-[238px] xs:h-[309px] bg-btnBgColor lg:h-[320px] flex  items-center justify-center overflow-hidden border-b border-solid flex-nowrap">
+                {data?.ProducImg ? (
+                  <img
+                    className=" m-auto hover:scale-105 transition duration-700 ease-in-out "
+                    src={data?.ProducImg}
+                    alt="ProducImg"
+                  />
+                ) : (
+                  <span>
+                    <NoImg />
+                  </span>
+                )}
 
                 <div className="w-full flex absolute top-px p-[5px]  ss:justify-end xs:justify-between">
                   <ul className="nav-lists flex-col gap-y-1 justify-center h-full ss:hidden xs:flex">
                     <p className="group w-8 hover:w-[70px] bg-bgCard hover:bg-white  duration-300 rounded-lg overflow-hidden border border-borderColorCard flex items-center">
                       <span className="w-8 h-8 flex items-center justify-center  ">
-                        <img src={ticketDiscount} alt="" />
+                        <TicketDiscountIcons />
                       </span>
                       <span className=" w-0 flex items-center -mr-[1px] group-hover:w-10 duration-300  text-red-700 not-italic  font-AeonikProRegular text-[11px]">
                         -30%
@@ -581,7 +82,7 @@ export default function CategoryCards() {
 
                   <div className="flex flex-col gap-y-1">
                     <p className="w-8 h-8  rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
-                      <img src={heart} alt="" />
+                      <HeartIcons colors={"#000"} />
                     </p>
                     {/* <p className="w-8 h-8 ss:hidden rounded-lg bg-bgCard xs:flex items-center justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
                       <img src={bucket} alt="" />
@@ -599,7 +100,9 @@ export default function CategoryCards() {
                         htmlFor="Color1"
                       >
                         {itemValue?.action ? (
-                          <img className="w-[14px]" src={InputCheck} alt="" />
+                          <span className="w-[14px]">
+                            <InputCheckedTrueIcons colors={"#fff"} />
+                          </span>
                         ) : null}
                       </div>
                     );
@@ -616,7 +119,7 @@ export default function CategoryCards() {
                     <div className="flex items-center justify-between">
                       <span>
                         {" "}
-                        <img src={star} alt="" />
+                        <StarIcons />
                       </span>
                       {/* <span><img src={} alt=""/></span> */}
                       <span className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex items-center">
@@ -659,7 +162,9 @@ export default function CategoryCards() {
                   </div>
                   <div className="flex items-center">
                     <button className="w-[32px] h-[32px] mb-[4px]  rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-                      <img src={addBag} alt="addbag" className="w-8" />
+                      <span className="w-8">
+                        <SaveBasketIcons />
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -671,8 +176,10 @@ export default function CategoryCards() {
 
       <div className="w-full h-fit flex items-center justify-center mt-[75px] gap-x-6">
         <div className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
-          <img src={PrevCate} />
-          <span className="not-italic ml-1  font-AeonikProRegular text-lg leading-4 text-fullBlue">
+          <span className="rotate-[-90deg]">
+            <ArrowTopIcons />
+          </span>{" "}
+          <span className="not-italic ml-1 mt-1  font-AeonikProRegular text-lg leading-4 text-fullBlue">
             Previous
           </span>
         </div>
@@ -708,10 +215,12 @@ export default function CategoryCards() {
           </ul>
         </div>
         <div className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
-          <span className="not-italic font-AeonikProRegular mr-1 text-lg leading-4 text-fullBlue">
+          <span className="not-italic mt-1 font-AeonikProRegular mr-1 text-lg leading-4 text-fullBlue">
             Next
           </span>
-          <img src={NextCate} />
+          <span className="rotate-[90deg]">
+            <ArrowTopIcons />
+          </span>
         </div>
       </div>
     </div>

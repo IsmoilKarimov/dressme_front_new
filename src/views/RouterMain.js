@@ -7,11 +7,10 @@ import "../index.css";
 import Header from "../components/header/header";
 // import Footer from "../components/footer/footer";
 
-import AuthenIndex from "../components/header/AuthenticationNavbar/AuthenIndex";
 // import YandexMapsIndex from "../components";
 import YandexSkeletonIndex from "../components/YandexMap/YandexMapsSkeleton/YandexSkeletonIndex";
 // import ForgetPasswordIndex from "../components/Authentication/SignInDetail";
-import ConfirmPassword from "../components/Authentication/ConfirmPassword/ConfirmPassword";
+// import ConfirmPassword from "../components/Authentication/ConfirmPassword/ConfirmPassword";
 
 import LoadingOpacity from "../Page/Loading/LoadingOpacity";
 // import HomePage from "../Page/Home/Home";
@@ -218,7 +217,7 @@ const RouterMain = () => {
                 </Suspense>
               }
             />
-            <Route
+            {/* <Route
               path="/confirm_password"
               element={
                 <Suspense
@@ -231,7 +230,7 @@ const RouterMain = () => {
                   <ConfirmPassword />
                 </Suspense>
               }
-            />
+            /> */}
 
             {/* </Route> */}
           </Routes>

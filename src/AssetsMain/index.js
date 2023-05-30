@@ -52,3 +52,9 @@ export { default as WinterFemale } from "./PersonSvg/PersonWinter/female.svg";
 export { default as WinterBoy } from "./PersonSvg/PersonWinter/boy.svg";
 export { default as WinterGirl } from "./PersonSvg/PersonWinter/girl.svg";
 export { default as WinterChild } from "./PersonSvg/PersonWinter/child.svg";
+// ----------------SeasonType---------
+
+export { default as summerSeason } from "./Season/SummerSeason.svg";
+export { default as autummSeason } from "./Season/autummSeason.svg";
+export { default as winterSeason } from "./Season/winterSeason.svg";
+export { default as springSeason } from "./Season/spirngSeason.svg";

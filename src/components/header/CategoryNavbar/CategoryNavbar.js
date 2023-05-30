@@ -1,24 +1,15 @@
 import React, { useContext, useState } from "react";
-import {
-  AutummFemale,
-  AutummMale,
-  SpringFemale,
-  SpringMale,
-  SummerFemale,
-  SummerMale,
-  WinterFemale,
-  WinterMale,
-  backIcon,
-  clothing,
-  iIcons,
-  passwordCheck,
-  plusIcon,
-} from "../../../assets/imgs";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
-import { MdAdd } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
+import { HomeIcons, ItailIcons } from "../../../AssetsMain/icons";
+import {
+  AutummMale,
+  SpringMale,
+  SummerMale,
+  WinterMale,
+} from "../../../AssetsMain";
 
 const CategoryNavbar = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -53,10 +44,10 @@ const CategoryNavbar = () => {
   }
 
   const personItems = [
-    { id: 1111, man: SpringMale, woman: SpringFemale },
-    { id: 2222, man: SummerMale, woman: SummerFemale },
-    { id: 3333, man: AutummMale, woman: AutummFemale },
-    { id: 4444, man: WinterMale, woman: WinterFemale },
+    { id: 1111, man: SpringMale },
+    { id: 2222, man: SummerMale },
+    { id: 3333, man: AutummMale },
+    { id: 4444, man: WinterMale },
   ];
 
   const handleOpenChangeWear = (newOpen) => {
@@ -98,12 +89,22 @@ const CategoryNavbar = () => {
     <div className="flex flex-col min-h-[44px]  justify-center items-center m-0 p-0 box-border ">
       <div className="max-w-[1280px] w-[100%] flex items-center justify-between items-center m-auto   ">
         <div className="flex items-center ">
-          <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%]">
-            <NavLink to='/' className="flex items-center cursor-pointer pt-[4px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+          <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+            <div className="h-5 w-5 flex justify-center items-center">
+              {" "}
+              <span>
+                <HomeIcons colors={"#000"} />
+              </span>
+            </div>
+
+            <NavLink
+              to="/"
+              className="flex items-center cursor-pointer pt-[4px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
+            >
               Главная
             </NavLink>
             <span>
-              <img className="" src={iIcons} alt="" />
+              <ItailIcons colors={"#000"} />
             </span>
           </div>
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%]">
@@ -111,7 +112,7 @@ const CategoryNavbar = () => {
               Мужская одежда
             </NavLink>
             <span>
-              <img className="" src={iIcons} alt="" />
+              <ItailIcons colors={"#000"} />
             </span>
           </div>
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%]">
@@ -119,7 +120,7 @@ const CategoryNavbar = () => {
               Все категории
             </NavLink>
             <span>
-              <img className="" src={iIcons} alt="" />
+              <ItailIcons colors={"#000"} />
             </span>
           </div>
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%]">
@@ -127,7 +128,7 @@ const CategoryNavbar = () => {
               Спортивное
             </NavLink>
             <span>
-              <img className="" src={iIcons} alt="" />
+              <ItailIcons colors={"#A1A1A1"} />
             </span>
           </div>
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%]">

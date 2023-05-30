@@ -272,7 +272,7 @@ export { default as shopBreadcrumb } from "./BreadcrumbIcons/shop.svg";
 export { default as BreadcrumbPayme } from "./BreadcrumbIcons/payment.svg";
 export { default as likeFav } from "./BreadcrumbIcons/likeFav.svg";
 
-// ----------- ProductID Icon -----------
+// ----------- ProductID Icon ----CategoryMenu-ticketDiscount------
 export { default as ProductArticle } from "./products/ProductArticle.svg";
 export { default as ProductBing } from "./products/ProductBing.svg";
 export { default as ProductSize } from "./products/ProductSize.svg";

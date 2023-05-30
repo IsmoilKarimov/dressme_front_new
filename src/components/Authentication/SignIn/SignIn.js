@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { formArrowRightCircle, formPhone } from "../../../assets/imgs";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
+import { PhoneIcons, SircleNext } from "../../../AssetsMain/icons";
 
 export default function SignIn() {
   const [state, setState] = useState({
@@ -29,7 +29,9 @@ export default function SignIn() {
               placeholder="Phone number"
               required
             />
-            <img src={formPhone} alt="" />
+            <span>
+              <PhoneIcons />
+            </span>
           </div>
         </div>
         <div className="mt-4 w-full h-fit">
@@ -87,7 +89,9 @@ export default function SignIn() {
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
             Войти в систему
           </span>
-          <img className="" src={formArrowRightCircle} alt="female" />
+          <span>
+            <SircleNext colors={"#fff"} />
+          </span>
         </div>
         <div className="md:hidden block mt-6 text-center">
           {" "}

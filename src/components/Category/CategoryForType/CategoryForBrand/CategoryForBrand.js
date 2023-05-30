@@ -1,16 +1,12 @@
 import React, { useState } from "react";
-import {
-  DownCate,
-  InputCheck,
-  StarWithColor,
-  StarWithoutColor,
-  search,
-} from "../../../../assets/imgs";
 import { BsCheckLg } from "react-icons/bs";
-import { FiStar } from "react-icons/fi";
-import InputRange from "react-input-range";
-import "react-input-range/lib/css/index.css";
 import ReactSlider from "react-slider";
+import {
+  ArrowTopIcons,
+  InputCheckedTrueIcons,
+  SearchIcons,
+  StarIcons,
+} from "../../../../AssetsMain/icons";
 
 export default function CategoryForBrand() {
   const [product, setProduct] = useState({
@@ -177,13 +173,13 @@ export default function CategoryForBrand() {
               <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Бренды
               </span>
-              <img
-                src={DownCate}
+              <span
                 className={`${
                   state?.brandShow ? "rotate-[180deg]" : ""
                 } duration-300 mt-[-2px]`}
-                alt=""
-              />
+              >
+                <ArrowTopIcons />
+              </span>
             </div>
             <span className="not-italic font-AeonikProMedium text-sm leading-4 text-fullBlue cursor-pointer">
               Очистить все
@@ -205,7 +201,9 @@ export default function CategoryForBrand() {
                 placeholder="Поиск бренда"
                 autoComplete="off"
               />
-              <img src={search} className="" />
+              <span>
+                <SearchIcons />
+              </span>
             </div>
 
             {/* Field */}
@@ -258,13 +256,13 @@ export default function CategoryForBrand() {
               <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Budget
               </span>
-              <img
-                src={DownCate}
+              <span
                 className={`${
                   state?.budgetShow ? "rotate-[180deg]" : ""
                 } duration-300 mt-[-2px]`}
-                alt=""
-              />
+              >
+                <ArrowTopIcons />
+              </span>
             </div>
           </div>
           <div
@@ -330,13 +328,13 @@ export default function CategoryForBrand() {
               <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Цвет
               </span>
-              <img
-                src={DownCate}
+              <span
                 className={`${
                   state?.ColorsShow ? "rotate-[180deg]" : ""
-                } duration-300`}
-                alt=""
-              />
+                } duration-300 mt-[-2px]`}
+              >
+                <ArrowTopIcons />
+              </span>
             </div>
             <span className="not-italic font-AeonikProMedium text-sm leading-4 text-fullBlue cursor-pointer">
               Очистить все
@@ -359,7 +357,9 @@ export default function CategoryForBrand() {
                   htmlFor="Color1"
                 >
                   {item?.action ? (
-                    <img className="w-[14px]" src={InputCheck} alt="" />
+                    <span className="w-[14px]">
+                      <InputCheckedTrueIcons colors={"#fff"} />
+                    </span>
                   ) : null}
                 </div>
               );
@@ -384,13 +384,13 @@ export default function CategoryForBrand() {
               <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Доступность
               </span>
-              <img
-                src={DownCate}
+              <span
                 className={`${
                   state?.availability ? "rotate-[180deg]" : ""
-                } duration-300`}
-                alt=""
-              />
+                } duration-300 mt-[-2px]`}
+              >
+                <ArrowTopIcons />
+              </span>
             </div>
           </div>
 
@@ -452,13 +452,13 @@ export default function CategoryForBrand() {
               <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Отзывы клиентов
               </span>
-              <img
-                src={DownCate}
+              <span
                 className={`${
                   state?.customerRreviews ? "rotate-[180deg]" : ""
-                } duration-300`}
-                alt=""
-              />
+                } duration-300 mt-[-2px]`}
+              >
+                <ArrowTopIcons />
+              </span>
             </div>
           </div>
           <div
@@ -482,11 +482,11 @@ export default function CategoryForBrand() {
                     )}
                   </div>
                   <div className="flex items-center not-italic mr-2 font-AeonikProRegular  text-lg leading-4 text-black">
-                    <img src={StarWithColor} alt="" />
-                    <img src={StarWithColor} alt="" />
-                    <img src={StarWithColor} alt="" />
-                    <img src={StarWithoutColor} alt="" />
-                    <img src={StarWithoutColor} alt="" />
+                    <StarIcons />
+                    <StarIcons />
+                    <StarIcons />
+                    <StarIcons />
+                    <StarIcons />
                   </div>
                   <div className="flex items-endnot-italic font-AeonikProMedium text-base leading-4 text-black mt-[4px]">
                     {data?.text || null}
@@ -514,13 +514,13 @@ export default function CategoryForBrand() {
               <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Размер одежды
               </span>
-              <img
-                src={DownCate}
+              <span
                 className={`${
                   state?.ClothingShow ? "rotate-[180deg]" : ""
-                } duration-300`}
-                alt=""
-              />
+                } duration-300 mt-[-2px]`}
+              >
+                <ArrowTopIcons />
+              </span>
             </div>
             <span className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
               3XL
@@ -563,13 +563,13 @@ export default function CategoryForBrand() {
               <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Размер брюк
               </span>
-              <img
-                src={DownCate}
+              <span
                 className={`${
                   state?.TrouserShow ? "rotate-[180deg]" : ""
-                } duration-300`}
-                alt=""
-              />
+                } duration-300 mt-[-2px]`}
+              >
+                <ArrowTopIcons />
+              </span>
             </div>
             <span className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
               2XL
@@ -612,13 +612,13 @@ export default function CategoryForBrand() {
               <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Размер обуви
               </span>
-              <img
-                src={DownCate}
+              <span
                 className={`${
                   state?.ShoesShow ? "rotate-[180deg]" : ""
-                } duration-300`}
-                alt=""
-              />
+                } duration-300 mt-[-2px]`}
+              >
+                <ArrowTopIcons />
+              </span>
             </div>
             <span className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
               44
