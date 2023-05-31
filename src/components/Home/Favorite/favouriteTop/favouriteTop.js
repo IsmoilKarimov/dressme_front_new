@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  CategoryMenu,
-  DownCate,
-  clothing,
-  delivery,
-} from "../../../../assets/imgs";
-import InputRange from "react-input-range";
-import "react-input-range/lib/css/index.css";
-import { BiChevronDown } from "react-icons/bi";
+import { ArrowTopIcons } from "../../../../AssetsMain/icons";
 
 export default function FavouriteTop() {
   const [value, SetValue] = useState({ min: 20, max: 150 });
@@ -28,7 +20,7 @@ export default function FavouriteTop() {
                 Последние добавленные{" "}
               </span>
               <span>
-                <img src={DownCate} className={`rotate-[180deg]`} alt="" />
+                <ArrowTopIcons />
               </span>
             </button>
           </div>

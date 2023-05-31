@@ -51,7 +51,7 @@
 }
 
 .example-thumb {
-  background-image: url("../../assets/imgs/Star.svg");
+  background-image: url("../../AssetsMain//Category/Star.svg");
   width: 16px;
   height: 16px;
   cursor: grab;
@@ -96,7 +96,7 @@
 
 .example-thumb1 {
   background: rgba(0, 125, 202, 1)
-    url("../../assets/imgs/Category/ReactSliderMenu.svg");
+    url("../../AssetsMain//Category//ReactSliderMenu.svg");
   width: 24px;
   height: 16px;
   background-repeat: no-repeat;

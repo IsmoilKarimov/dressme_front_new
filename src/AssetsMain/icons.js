@@ -253,6 +253,7 @@ const LocationIcons = () => {
     </svg>
   );
 };
+
 const UploadIcons = () => {
   return (
     <svg
@@ -1878,6 +1879,160 @@ const VideoStoreIcons = () => {
     </svg>
   );
 };
+const ClockIcons = ({ colors }) => {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M18.3337 10.0001C18.3337 14.6001 14.6003 18.3334 10.0003 18.3334C5.40033 18.3334 1.66699 14.6001 1.66699 10.0001C1.66699 5.40008 5.40033 1.66675 10.0003 1.66675C14.6003 1.66675 18.3337 5.40008 18.3337 10.0001Z"
+        stroke={colors}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M13.0914 12.65L10.5081 11.1083C10.0581 10.8416 9.69141 10.2 9.69141 9.67497V6.2583"
+        stroke={colors}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+const ClothesHangIcons = ({ colors }) => {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M10.8337 5.41675V5.00008C10.8337 4.44755 10.6142 3.91764 10.2235 3.52694C9.83276 3.13624 9.30286 2.91675 8.75033 2.91675V2.91675C8.19779 2.91675 7.66789 3.13624 7.27719 3.52694C6.88649 3.91764 6.66699 4.44755 6.66699 5.00008V5.00008C6.66589 5.55736 6.82677 6.10295 7.13007 6.57046C7.43336 7.03798 7.86599 7.40727 8.37533 7.63342L17.3503 11.6667C17.6402 11.797 17.8867 12.0074 18.061 12.2732C18.2352 12.539 18.3298 12.849 18.3337 13.1667V15.4167C18.3337 15.8588 18.1581 16.2827 17.8455 16.5953C17.5329 16.9078 17.109 17.0834 16.667 17.0834H3.33366C2.89163 17.0834 2.46771 16.9078 2.15515 16.5953C1.84259 16.2827 1.66699 15.8588 1.66699 15.4167V13.2084C1.66833 12.876 1.76902 12.5517 1.95613 12.2769C2.14323 12.0022 2.4082 11.7897 2.71699 11.6667L10.0003 8.75008"
+        stroke={colors}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+const MarkerMapsIcons = ({ colors }) => {
+  return (
+    <svg
+      width="48"
+      height="48"
+      viewBox="0 0 48 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="48" height="48" rx="24" fill="#007DCA" />
+      <path
+        d="M23.9983 15.9059L31.3154 11L30.6751 13.1146L25.4617 17.4285L26.6507 18.8664L25.0044 22.2498L26.3763 24.2253L23.9983 31.5843V15.9059Z"
+        fill="white"
+      />
+      <path
+        d="M23.9983 15.9059L16.6812 11L17.3215 13.1146L22.5349 17.4285L21.3459 18.8664L22.9922 22.2498L21.6202 24.2253L23.9983 31.5843V15.9059Z"
+        fill="white"
+      />
+      <path
+        d="M31.2693 11L23.9994 33.4157V41L33.2018 25.1573C30.846 20.7753 34.1834 19.2303 36.1466 19.0056L38.9994 11H31.2693Z"
+        fill="white"
+      />
+      <path
+        d="M16.7295 11L23.9994 33.4157V41L14.7969 25.1573C17.1528 20.7753 13.8153 19.2303 11.8521 19.0056L8.99939 11H16.7295Z"
+        fill="white"
+      />
+    </svg>
+  );
+};
+const MaximazeMapsIcons = ({ colors }) => {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M17.5 7.5V2.5H12.5"
+        stroke="#4D4D4D"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M2.5 12.5V17.5H7.5"
+        stroke="#4D4D4D"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M17.5 2.5L11.25 8.75"
+        stroke="#4D4D4D"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M8.75 11.25L2.5 17.5"
+        stroke="#4D4D4D"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+const FullScreenMapsIcons = ({ colors }) => {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M1.66699 7.50002V5.41669C1.66699 3.34169 3.34199 1.66669 5.41699 1.66669H7.50033"
+        stroke="#4D4D4D"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M12.5 1.66669H14.5833C16.6583 1.66669 18.3333 3.34169 18.3333 5.41669V7.50002"
+        stroke="#4D4D4D"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M18.333 13.3333V14.5833C18.333 16.6583 16.658 18.3333 14.583 18.3333H13.333"
+        stroke="#4D4D4D"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M7.50033 18.3333H5.41699C3.34199 18.3333 1.66699 16.6583 1.66699 14.5833V12.5"
+        stroke="#4D4D4D"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
 
 export {
   SeasonSquare,
@@ -1935,4 +2090,10 @@ export {
   WomanGenIcons,
   ManGenIcons,
   VideoStoreIcons,
+  // maps
+  ClockIcons,
+  ClothesHangIcons,
+  MarkerMapsIcons,
+  MaximazeMapsIcons,
+  FullScreenMapsIcons,
 };

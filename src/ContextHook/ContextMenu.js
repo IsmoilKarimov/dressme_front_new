@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { cardImg } from "../assets/imgs";
+import { NoImg } from "../AssetsMain/icons";
 export const dressMainData = createContext();
 export const DressMenu = ({ children }) => {
   const [dressInfo, setDressInfo] = useState({
@@ -20,7 +20,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cfrous7hj8j9g698ann0/t_product_540_high.jpg#1677854670106",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Футболка женская однотонная 100% хлопок, белая черная",
         starCount: 256,
         shirtSize: "M | 3XL",
@@ -44,7 +44,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cfvjvm7hj8j9g698q1qg/t_product_540_high.jpg#1677854670118",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
         starCount: 256,
         shirtSize: "M | 3XL",
@@ -68,7 +68,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cee9lmov1htd23aj6gjg/t_product_540_high.jpg#1677855157929",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: " Комплект мужской одежды Zero-Limited",
 
         starCount: 256,
@@ -93,7 +93,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cfh16dd40v9uauhi42hg/t_product_540_high.jpg#1677855222081",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title:
           "Базовая мужская однотонная футболка, 100% хлопок, мужская женская, белая, черная",
 
@@ -119,7 +119,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cfmebc7hgiopn8lcdoh0/t_product_540_high.jpg#1677855264045",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Футболка мужская Playowo",
 
         starCount: 256,
@@ -144,7 +144,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cf557s8l08k0o9qi31gg/t_product_540_high.jpg#1677855329602",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -169,7 +169,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cfmebc7hgiopn8lcdoh0/t_product_540_high.jpg#1677855264045",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -194,7 +194,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cf2h9jqvtie1lhbgt6mg/t_product_540_high.jpg#1677855329588",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -219,7 +219,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cf53ng0v1htd23al4sqg/t_product_540_high.jpg#1677855423341",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -244,7 +244,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cf5vfb2vtie1lhbh7h50/t_product_540_high.jpg#1677855423352",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -269,7 +269,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cf53ng0v1htd23al4sqg/t_product_540_high.jpg#1677855423341",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -294,7 +294,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cf8g3tivtie1lhbhf1p0/t_product_540_high.jpg#1677855423420",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -319,7 +319,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cfcdqlavtie1lhbhs490/t_product_540_high.jpg#1677855423521",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -344,7 +344,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cfmebc7hgiopn8lcdoh0/t_product_540_high.jpg#1677855264045",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -369,7 +369,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cfcdvh0l08k0o9qiqgcg/t_product_540_high.jpg#1677855423619",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -394,7 +394,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cfrous7hj8j9g698ann0/t_product_540_high.jpg#1677854670106",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Футболка женская однотонная 100% хлопок, белая черная",
         starCount: 256,
         shirtSize: "M | 3XL",
@@ -418,7 +418,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cfvjvm7hj8j9g698q1qg/t_product_540_high.jpg#1677854670118",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
         starCount: 256,
         shirtSize: "M | 3XL",
@@ -442,7 +442,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cee9lmov1htd23aj6gjg/t_product_540_high.jpg#1677855157929",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: " Комплект мужской одежды Zero-Limited",
 
         starCount: 256,
@@ -467,7 +467,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cfh16dd40v9uauhi42hg/t_product_540_high.jpg#1677855222081",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title:
           "Базовая мужская однотонная футболка, 100% хлопок, мужская женская, белая, черная",
 
@@ -493,7 +493,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cfmebc7hgiopn8lcdoh0/t_product_540_high.jpg#1677855264045",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Футболка мужская Playowo",
 
         starCount: 256,
@@ -518,7 +518,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cf557s8l08k0o9qi31gg/t_product_540_high.jpg#1677855329602",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -543,7 +543,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cfmebc7hgiopn8lcdoh0/t_product_540_high.jpg#1677855264045",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -568,7 +568,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cf2h9jqvtie1lhbgt6mg/t_product_540_high.jpg#1677855329588",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -585,7 +585,7 @@ export const DressMenu = ({ children }) => {
         ],
       },
       {
-        id:24,
+        id: 24,
         discount: "-30%",
         video: true,
         diliver: true,
@@ -593,7 +593,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cf53ng0v1htd23al4sqg/t_product_540_high.jpg#1677855423341",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -618,7 +618,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cf5vfb2vtie1lhbh7h50/t_product_540_high.jpg#1677855423352",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -643,7 +643,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cf53ng0v1htd23al4sqg/t_product_540_high.jpg#1677855423341",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -668,7 +668,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cf8g3tivtie1lhbhf1p0/t_product_540_high.jpg#1677855423420",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -693,7 +693,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cfcdqlavtie1lhbhs490/t_product_540_high.jpg#1677855423521",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -718,7 +718,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cfmebc7hgiopn8lcdoh0/t_product_540_high.jpg#1677855264045",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,
@@ -743,7 +743,7 @@ export const DressMenu = ({ children }) => {
         buy: true,
         ProducImg:
           "https://images.uzum.uz/cfcdvh0l08k0o9qiqgcg/t_product_540_high.jpg#1677855423619",
-        noProductImg: cardImg,
+        noProductImg: <NoImg />,
         title: "Line-Pattern Zipper Sweatshirt (Original Quality)",
 
         starCount: 256,

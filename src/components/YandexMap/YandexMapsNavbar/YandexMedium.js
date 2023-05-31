@@ -1,33 +1,29 @@
 import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
-import {
-  autummBrand,
-  AutummCategory,
-  autummSeason,
-  autummVolume,
-  bucket,
-  heart,
-  map,
-  MenuClose,
-  MenuOpen,
-  search,
-  springBrand,
-  SpringCategory,
-  springSeason,
-  springVolume,
-  summerBrand,
-  SummerCategory,
-  summerSeason,
-  summerVolume,
-  user,
-  winterBrand,
-  WinterCategory,
-  winterSeason,
-  winterVolume,
-} from "../../../assets/imgs";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 // import { GrClose } from "react-icons/gr";
 import { Popover } from "antd";
+import {
+  CotegoryIcons,
+  MenuCloseIcons,
+  MenuOpenIcons,
+  MapIcons,
+  PersonIcons,
+  BasketIcons,
+  HeartIcons,
+  VolumeIcons,
+  SearchIcons,
+} from "../../../AssetsMain/icons";
+import {
+  BrandSpring,
+  BrandSummer,
+  BrandAutumm,
+  BrandWinter,
+  autummSeason,
+  springSeason,
+  summerSeason,
+  winterSeason,
+} from "../../../AssetsMain";
 
 const YandexMedium = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -39,27 +35,32 @@ const YandexMedium = () => {
   let dataStyle = "";
   let hoverText = "";
   let IconsColor = "";
+  let MapsIconsColor = "";
 
   if (dressInfo?.type === 1111) {
     dataStyle = "bg-bgSpring bg-opacity-10	  text-borderSpring ";
     hoverText = " hover:text-borderSpring ";
+    MapsIconsColor = "#008F0E";
     IconsColor =
       "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderSpring text-borderSpring";
   }
   if (dressInfo?.type === 2222) {
     dataStyle = "bg-bgSummer  bg-opacity-10  text-borderSummer";
+    MapsIconsColor = "#EAA700";
     IconsColor =
       "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderSummer text-borderSummer";
     hoverText = " hover:text-borderSummer ";
   }
   if (dressInfo?.type === 3333) {
     dataStyle = "bg-bgAutumm bg-opacity-10  text-borderAutumm";
+    MapsIconsColor = "#E17A02";
     IconsColor =
       "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderAutumm text-borderAutumm";
     hoverText = " hover:text-borderAutumm ";
   }
   if (dressInfo?.type === 4444) {
     dataStyle = "bg-bgWinter bg-opacity-10  text-borderWinter";
+    MapsIconsColor = "#007DCA";
     IconsColor =
       "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderWinter text-borderWinter";
     hoverText = " hover:text-borderWinter ";
@@ -72,22 +73,10 @@ const YandexMedium = () => {
     { id: 4444, type: "Winter", icons: winterSeason },
   ];
   const BrandTypeArray = [
-    { id: 1111, type: "Spring", icons: springBrand },
-    { id: 2222, type: "Summer", icons: summerBrand },
-    { id: 3333, type: "Autumm", icons: autummBrand },
-    { id: 4444, type: "Winter", icons: winterBrand },
-  ];
-  const VolumeTypeArray = [
-    { id: 1111, type: "Spring", icons: springVolume },
-    { id: 2222, type: "Summer", icons: summerVolume },
-    { id: 3333, type: "Autumm", icons: autummVolume },
-    { id: 4444, type: "Winter", icons: winterVolume },
-  ];
-  const CategoryTypeArray = [
-    { id: 1111, type: "Spring", icons: SpringCategory },
-    { id: 2222, type: "Summer", icons: SummerCategory },
-    { id: 3333, type: "Autumm", icons: AutummCategory },
-    { id: 4444, type: "Winter", icons: WinterCategory },
+    { id: 1111, type: "Spring", icons: BrandSpring },
+    { id: 2222, type: "Summer", icons: BrandSummer },
+    { id: 3333, type: "Autumm", icons: BrandAutumm },
+    { id: 4444, type: "Winter", icons: BrandWinter },
   ];
 
   // ----------------Wear state management----------------------------
@@ -134,9 +123,13 @@ const YandexMedium = () => {
             className="w-12 h-12 bg-white ss:block md:hidden  rounded-lg ss:flex items-center justify-center "
           >
             {dressInfo?.openMainMenu ? (
-              <img src={MenuOpen} alt="" />
+              <span>
+                <MenuOpenIcons />
+              </span>
             ) : (
-              <img src={MenuClose} alt="" />
+              <span>
+                <MenuCloseIcons />
+              </span>
             )}
           </div>
 
@@ -144,7 +137,6 @@ const YandexMedium = () => {
           <NavLink
             to="/"
             className="flex justify-center items-center rounded-lg h-[48px] ss:w-[calc(100%-96px)] ss:p-2 ll:p-1  md:p-0 md:w-[155px] ss:ml-2 md:ml-[0px]  ss:bg-btnBgColor md:bg-transparent"
-
           >
             {BrandTypeArray.filter((data) => data.id == dressInfo.type).map(
               (data) => {
@@ -164,18 +156,9 @@ const YandexMedium = () => {
           <div
             className={` bg-white w-11 h-11 ml-[25px] rounded-lg cursor-pointer hidden items-center justify-center md:flex`}
           >
-            {VolumeTypeArray.filter((data) => data.id == dressInfo.type).map(
-              (data) => {
-                return (
-                  <img
-                    key={data?.id}
-                    className="w-[22px]"
-                    src={data?.icons}
-                    alt="logo"
-                  />
-                );
-              }
-            )}
+            <span>
+              <VolumeIcons colors={MapsIconsColor} />
+            </span>
           </div>
 
           {/* Weather seection */}
@@ -215,32 +198,27 @@ const YandexMedium = () => {
             <button
               className={`items-center ${dataStyle}  pl-5 pr-7 h-[44px] rounded-l-lg cursor-pointer hidden md:flex`}
             >
-              {CategoryTypeArray.filter(
-                (data) => data.id === dressInfo?.type
-              ).map((data) => {
-                return (
-                  <img
-                    key={data?.id}
-                    src={data?.icons}
-                    alt={data?.type}
-                    className="w-[18px]"
-                  />
-                );
-              })}
+              <span>
+                <CotegoryIcons colors={MapsIconsColor} />
+              </span>
               <span
                 className={` px-[9.5px] not-italic font-AeonikProMedium text-sm leading-4 mt-1`}
               >
                 Каталог
               </span>
             </button>
-            <img src={search} alt="search" className="flex md:hidden" />
+            <span className="flex md:hidden">
+              <SearchIcons />
+            </span>
             <input
               type="text"
               placeholder="Поиск продуктов или брендов"
               className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor "
             />
             <button className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-lg  hidden md:flex -ml-[2px]">
-              <img src={search} alt="search" />
+              <span className="">
+                <SearchIcons />
+              </span>{" "}
             </button>
           </div>
 
@@ -251,14 +229,16 @@ const YandexMedium = () => {
           <NavLink
             to="/delivery-points"
             className={({ isActive }) =>
-              isActive 
+              isActive
                 ? IconsColor
                 : "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex"
             }
             // className={`items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex`}
           >
-            <img src={map} alt="map" className="pr-[6px]" />
-          
+            <span className="pr-[6px]">
+              <MapIcons colors={MapsIconsColor} />
+            </span>
+
             <span className="font-AeonikProMedium text-sm  ">Карта</span>
           </NavLink>
 
@@ -270,18 +250,22 @@ const YandexMedium = () => {
             to="/sign_in"
             className=" bg-yandexWhite rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex"
           >
-            <img src={user} alt="" />
+            <PersonIcons colors={"#000"} />
           </NavLink>
 
           {/* Heart section */}
           <button className="bg-yandexWhite rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex">
             {/* <FaRegHeart /> */}
-            <img src={heart} className={"w-5 h-5"} alt="heart" />
+            <span>
+              <HeartIcons colors={"#000"} />
+            </span>
           </button>
 
           {/* Bucket section */}
           <button className=" bg-yandexWhite rounded-lg flex items-center justify-center w-11 h-11 relative md:flex ss:hidden">
-            <img src={bucket} alt="bucket" />
+            <span>
+              <BasketIcons />
+            </span>
             <span className="count bg-red-700 w-4 h-4 text-yandexWhite text-[10px] rounded-lg flex items-center justify-center absolute top-0 right-0 font-AeonikProMedium">
               {" "}
               4{" "}

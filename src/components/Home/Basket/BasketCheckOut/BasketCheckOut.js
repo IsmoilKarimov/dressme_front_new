@@ -1,32 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BasketCheckOutTop } from "./BasketCheckOutTop";
-import {
-  bucket,
-  formArrowRightCircle,
-  TrashDelet,
-} from "../../../../assets/imgs";
+
 import { NavLink } from "react-router-dom";
 
-import {
-  discount,
-  video,
-  delivery,
-  heart,
-  shirt,
-  addBag,
-  cardImg,
-  star,
-  setpersonIcons,
-  InputCheck,
-  ticketDiscount,
-  PrevCate,
-  NextCate,
-} from "../../../../assets/imgs";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import {
+  BasketIcons,
   DeleteIcons,
+  HeartIcons,
   MarketIcons,
+  NoImg,
   SircleNext,
+  StarIcons,
 } from "../../../../AssetsMain/icons";
 
 export default function BasketCheckOut() {
@@ -282,15 +267,18 @@ export default function BasketCheckOut() {
                   className={`w-[240px] h-[440px] border border-solid borderColorCard overflow-hidden rounded-lg`}
                 >
                   <div className="relative w-full cursor-pointer bg-btnBgColor h-[319px] flex content-between items-center overflow-hidden border-b border-solid flex-nowrap">
-                    <img
-                      className=" m-auto hover:scale-105 transition duration-700 ease-in-out "
-                      src={data?.ProducImg || cardImg}
-                      alt="ProducImg"
-                    />
-
+                    {data?.ProducImg ? (
+                      <img
+                        className=" m-auto hover:scale-105 transition duration-700 ease-in-out "
+                        src={data?.ProducImg}
+                        alt="ProducImg"
+                      />
+                    ) : (
+                      <NoImg />
+                    )}
                     <div className="w-full flex absolute top-px p-[5px] justify-end">
                       <p className="w-8 h-8 rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
-                        <img src={heart} alt="" />
+                        <HeartIcons colors={"#000"} />
                       </p>
                     </div>
                   </div>
@@ -304,7 +292,7 @@ export default function BasketCheckOut() {
                         <div className="flex items-center justify-between">
                           <span>
                             {" "}
-                            <img src={star} alt="" />
+                            <StarIcons />
                           </span>
                           <span className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex items-center">
                             <span className="font-AeonikProMedium text-[10px] ls:text-xs not-italic mx-1 text-black md:mr-[6px] md:text-[13px]">
@@ -346,7 +334,9 @@ export default function BasketCheckOut() {
                       </div>
                       <div className="flex items-center">
                         <button className="w-[32px] h-[32px] mb-[4px]  rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-                          <img src={addBag} alt="addbag" className="w-8" />
+                          <span className="w-8">
+                            <BasketIcons />
+                          </span>
                         </button>
                       </div>
                     </div>
