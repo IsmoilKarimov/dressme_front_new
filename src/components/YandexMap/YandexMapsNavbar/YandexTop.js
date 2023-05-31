@@ -1,22 +1,18 @@
 import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import {
-  MenuClose,
-  business,
-  englishFlag,
-  glasses,
-  help,
-  location,
-  order,
-  russiaFlag,
-  shop,
-  uzbekFlag,
-  weatherBrandIcon,
-} from "../../../assets/imgs";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { Modal, Popover } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import WeatherInfo from "../../Weather/WeatherInfo";
+import {
+  CommentIcons,
+  HouseStatisticIcons,
+  LocationIcons,
+  MarketIcons,
+  MenuCloseIcons,
+  MyPurchaseIcons,
+} from "../../../AssetsMain/icons";
+import { EnglishFlag, RussianFlag, UzbekFlag } from "../../../AssetsMain";
 const YandexTop = () => {
   const [dressInfo] = useContext(dressMainData);
 
@@ -70,9 +66,9 @@ const YandexTop = () => {
   const [selectLang, setselectLang] = useState(1);
 
   const LanguageList = [
-    { id: 1, type: "English", icons: englishFlag },
-    { id: 2, type: "Русский", icons: russiaFlag },
-    { id: 3, type: "O'zbekcha", icons: uzbekFlag },
+    { id: 1, type: "English", icons: EnglishFlag },
+    { id: 2, type: "Русский", icons: RussianFlag },
+    { id: 3, type: "O'zbekcha", icons: UzbekFlag },
   ];
 
   const handleOpenChangeWear = (newOpen) => {
@@ -152,7 +148,9 @@ const YandexTop = () => {
     <div className="  flex justify-between items-center m-auto ">
       <div className="left h-full flex items-center  ">
         <div className="flex w-fit items-center">
-          <img src={location} alt="location" className="mr-2" />
+          <span className="mr-2">
+            <LocationIcons />
+          </span>
           <span className="text-textColor text-[13px] mr-[6px] font-AeonikProMedium">
             Город:
           </span>
@@ -178,7 +176,7 @@ const YandexTop = () => {
               onClick={showModal}
               className={"flex items-center cursor-pointer"}
             >
-              <span className="mr-[6px]"> 
+              <span className="mr-[6px]">
                 <img
                   className="w-[32px] h-[32px]"
                   src={state?.weatherSet?.current?.condition?.icon}
@@ -197,19 +195,24 @@ const YandexTop = () => {
           )}
         </div>
         <Modal
-            closable={false}
-            className="!w-fit !h-fit "
-            open={state?.isModalOpen}
-            footer={null}
+          closable={false}
+          className="!w-fit !h-fit "
+          open={state?.isModalOpen}
+          footer={null}
+        >
+          <div
+            onClick={handleOk}
+            className="flex justify-end p-2 cursor-pointer"
           >
-            <div onClick={handleOk} className="flex justify-end p-2 cursor-pointer">
-              <img src={MenuClose} alt="" />
-            </div>
-            <div className="w-fit h-fit  ">
-              {" "}
-              <WeatherInfo />
-            </div>
-          </Modal>
+            <span>
+              <MenuCloseIcons />
+            </span>
+          </div>
+          <div className="w-fit h-fit  ">
+            {" "}
+            <WeatherInfo />
+          </div>
+        </Modal>
 
         <div className="w-fit h-full rounded bg-white font-AeonikProMedium select-none cursor-pointer">
           {LanguageList.filter((data) => data.id === selectLang).map((data) => {
@@ -234,40 +237,44 @@ const YandexTop = () => {
             );
           })}
         </div>
-
-        <div className="flex h-[32px] px-[11px] items-center bg-white rounded-lg ml-3 cursor-pointer ">
-          <img src={glasses} alt="glasses" className="mr-2" />
-          <span className="h-full flex items-center font-AeonikProMedium text-[13px] ">
-            Спец. возможности
-          </span>
-        </div>
       </div>
       <div className="right h-full flex items-center ">
         <Link to="#" className="flex items-center h-full ">
-          <img src={help} alt="help" className="mr-2" />
+          <span className="mr-2">
+            <CommentIcons colors={"#707070"} />
+          </span>
           <span className="text-textColor text-[13px]   font-AeonikProMedium  ">
             Помощь
           </span>
         </Link>
         <Link to="#" className="flex items-center h-full  ml-6 ">
-          <img src={business} alt="business" className="mr-2" />
+          <span className="mr-2">
+            <HouseStatisticIcons colors={"#707070"} />
+          </span>
           <span className="text-textColor text-[13px]   font-AeonikProMedium  ">
             Бизнес
           </span>
         </Link>
         <div className="line h-5 border text-textColor ml-6"></div>
         <Link to="#" className="flex items-center h-full  ml-6 ">
-          <img src={order} alt="my orders" className="mr-2" />
+          <span className="mr-2">
+            <MyPurchaseIcons colors={"#707070"} />
+          </span>
           <span className="text-textColor  text-[13px]   font-AeonikProMedium  ">
             Мои заказы
           </span>
         </Link>
-        <button className="flex items-center bg-white rounded-lg cursor-pointer h-[32px] ml-6 px-3">
-          <img src={shop} alt="shop" className="mr-2" />
+        <NavLink
+          to="/stores"
+          className="flex items-center bg-white rounded cursor-pointer h-full  ml-6 px-3"
+        >
+          <span className="mr-2">
+            <MarketIcons colors={"#707070"} />
+          </span>{" "}
           <span className="font-AeonikProMedium  text-[13px]    ">
             Магазины
           </span>
-        </button>
+        </NavLink>
       </div>
     </div>
   );

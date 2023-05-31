@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { formArrowRightCircle, formPhone } from "../../../assets/imgs";
 import { NavLink } from "react-router-dom";
 import { PhoneIcons, SircleNext } from "../../../AssetsMain/icons";
 

@@ -62,3 +62,7 @@ export { default as springSeason } from "./Season/spirngSeason.svg";
 // --------- PAYMENTS ----------
 export { default as Paymentpayme } from "./Payments/payme-logo.svg";
 export { default as PaymentClick } from "./Payments/click-logo.svg";
+
+// ------------------------Yandex Maps------------
+export { default as markerIcons } from "./maps/markerIcons.svg";
+export { default as locationIcons } from "./maps/locationMaps.svg";

@@ -1,23 +1,20 @@
 import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
-import {
-  autummBrand,
-  autummSeason,
-  autummVolume,
-  springBrand,
-  springSeason,
-  springVolume,
-  summerBrand,
-  summerSeason,
-  summerVolume,
-  winterBrand,
-  winterSeason,
-  winterVolume,
-} from "../../../assets/imgs";
 import { Popover } from "antd";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import { VolumeIcons } from "../../../AssetsMain/icons";
+import {
+  BrandAutumm,
+  BrandSpring,
+  BrandSummer,
+  BrandWinter,
+  autummSeason,
+  springSeason,
+  summerSeason,
+  winterSeason,
+} from "../../../AssetsMain";
 
 export default function NavbarTopOpenMenu() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -44,17 +41,26 @@ export default function NavbarTopOpenMenu() {
     { id: 4444, type: "Winter", icons: winterSeason },
   ];
   const BrandTypeArray = [
-    { id: 1111, type: "Spring", icons: springBrand },
-    { id: 2222, type: "Summer", icons: summerBrand },
-    { id: 3333, type: "Autumm", icons: autummBrand },
-    { id: 4444, type: "Winter", icons: winterBrand },
+    { id: 1111, type: "Spring", icons: BrandSpring },
+    { id: 2222, type: "Summer", icons: BrandSummer },
+    { id: 3333, type: "Autumm", icons: BrandAutumm },
+    { id: 4444, type: "Winter", icons: BrandWinter },
   ];
-  const VolumeTypeArray = [
-    { id: 1111, type: "Spring", icons: springVolume },
-    { id: 2222, type: "Summer", icons: summerVolume },
-    { id: 3333, type: "Autumm", icons: autummVolume },
-    { id: 4444, type: "Winter", icons: winterVolume },
-  ];
+
+  let IconsColor = "";
+
+  if (dressInfo?.type === 1111) {
+    IconsColor = "#008F0E";
+  }
+  if (dressInfo?.type === 2222) {
+    IconsColor = "#EAA700";
+  }
+  if (dressInfo?.type === 3333) {
+    IconsColor = "#E17A02";
+  }
+  if (dressInfo?.type === 4444) {
+    IconsColor = "#007DCA";
+  }
   // ----------------Wear state management----------------------------
   const [openwear, setOpenwear] = useState(false);
   const handleOpenChangeWear = (newOpen) => {
@@ -116,7 +122,6 @@ export default function NavbarTopOpenMenu() {
       </div>
     );
   };
-  
 
   let settings1 = {
     nextArrow: <NextArrow />,
@@ -128,7 +133,6 @@ export default function NavbarTopOpenMenu() {
     slidesToShow: 8,
     slidesToScroll: 1,
     initialSlide: 0,
-    
 
     responsive: [
       {
@@ -171,7 +175,7 @@ export default function NavbarTopOpenMenu() {
       },
     ],
   };
-  
+
   return (
     <div className="  w-[100%] overflow-hidden mr-auto  border border-searchBgColor  h-[60px] flex items-center rounded-[12px] bg-yandexNavbar   backdrop-blur-sm ">
       <div className="w-[27%] flex items-center ml-6  ">
@@ -198,18 +202,9 @@ export default function NavbarTopOpenMenu() {
         <div
           className={` bg-white w-[44px] h-[44px] ml-[25px] rounded-lg cursor-pointer hidden items-center justify-center md:flex`}
         >
-          {VolumeTypeArray.filter((data) => data.id == dressInfo.type).map(
-            (data) => {
-              return (
-                <img
-                  key={data?.id}
-                  className="w-[22px]"
-                  src={data?.icons}
-                  alt="logo"
-                />
-              );
-            }
-          )}
+          <span>
+            <VolumeIcons colors={IconsColor} />
+          </span>
         </div>
         <div className="w-12 h-[44px  ] md:w-[120px] md:h-11 bg-white border border-searchBgColor rounded-lg  md:rounded-lg ml-2">
           {SeasonTypeArray.filter((data) => data.id == dressInfo.type).map(

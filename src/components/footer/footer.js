@@ -30,7 +30,7 @@ import { dressMainData } from "../../ContextHook/ContextMenu";
 import { BiChevronDown } from "react-icons/bi";
 import { Popover } from "antd";
 import ScrollToTop from "react-scroll-to-top";
-import { ReactComponent as MySVG } from "../../assets/imgs/backTop/backTop.svg";
+import { ReactComponent as MySVG } from "../../AssetsMain/backTop/backTop.svg";
 import {
   BrandBlack,
   EnglishFlag,
