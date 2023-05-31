@@ -108,7 +108,9 @@ export default function CollectionCards() {
 
                   <div className="flex flex-col gap-y-1">
                     <p className="w-8 h-8  rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
-                      <HeartIcons />{" "}
+                      <span className="w-8 h-8">
+                        <HeartIcons colors={"#000"} />{" "}
+                      </span>
                     </p>
                     {/* <p className="w-8 h-8 ss:hidden rounded-lg bg-bgCard xs:flex items-center justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
                           <img src={bucket} alt="" />

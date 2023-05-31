@@ -289,7 +289,7 @@ const Footer = () => {
             <span className="mr-1">
               <img src={data?.icons} alt="" />
             </span>
-            <span className="not-italic font-AeonikProMedium text-sm leading-4 tracking-[1%]">
+            <span className="not-italic mt-1 ml-2 font-AeonikProMedium text-sm leading-4 tracking-[1%]">
               {data?.type}
             </span>
           </div>
@@ -1073,7 +1073,7 @@ const Footer = () => {
                       <span className="mr-1">
                         <img src={data?.icons} alt="" />
                       </span>
-                      <span className="text-sm font-AeonikProMedium not-italic">
+                      <span className="text-sm  font-AeonikProMedium not-italic">
                         {data?.type}
                       </span>
                       <ArrowTopIcons

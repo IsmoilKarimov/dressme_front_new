@@ -19,7 +19,7 @@ export default function FavouriteTop() {
               <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]  mt-1">
                 Последние добавленные{" "}
               </span>
-              <span>
+              <span className="rotate-[180deg]">
                 <ArrowTopIcons />
               </span>
             </button>
