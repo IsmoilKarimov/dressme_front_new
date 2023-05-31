@@ -66,3 +66,7 @@ export { default as PaymentClick } from "./Payments/click-logo.svg";
 // ------------------------Yandex Maps------------
 export { default as markerIcons } from "./maps/markerIcons.svg";
 export { default as locationIcons } from "./maps/locationMaps.svg";
+
+// ---------------------
+export { default as AddBasket } from "./backTop/AddBasket.svg";
+export { default as HeartImg } from "./backTop/heart.svg";

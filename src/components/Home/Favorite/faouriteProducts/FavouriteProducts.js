@@ -10,6 +10,7 @@ import {
   SaveBasketIcons,
   StarIcons,
 } from "../../../../AssetsMain/icons";
+import { AddBasket, HeartImg } from "../../../../AssetsMain";
 
 export default function FavouriteProducts() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -80,9 +81,7 @@ export default function FavouriteProducts() {
 
                         <div className="flex flex-col gap-y-1">
                           <p className="w-8 h-8  rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
-                            <span>
-                              <HeartIcons colors={"#000"} />
-                            </span>
+                            <img src={HeartImg} alt="" />
                           </p>
                         </div>
                       </div>
@@ -160,9 +159,7 @@ export default function FavouriteProducts() {
                         </div>
                         <div className="flex items-center">
                           <button className="w-[32px] h-[32px] md:w-[36px] md:h-[36px] ll:mb-1 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-                            <span className="w-8">
-                              <SaveBasketIcons />
-                            </span>
+                            <img src={AddBasket} alt="addbag" className="w-8" />
                           </button>
                         </div>
                       </div>
@@ -175,9 +172,7 @@ export default function FavouriteProducts() {
             <div className="md:my-[50px] mx-auto">
               <div className="w-[800px] text-center p-8 flex flex-col items-center justify-center">
                 <div className="w-16 h-16 flex justify-center items-center mb-3">
-                  <span className="w-[50px]">
-                    <BasketIcons />
-                  </span>
+                  <img src={AddBasket} alt="" className="w-[50px]" />
                 </div>
                 <div className="text-3xl font-AeonikProMedium mb-3">
                   Добавьте то, что понравилось

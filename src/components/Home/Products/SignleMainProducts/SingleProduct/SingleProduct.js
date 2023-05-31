@@ -12,6 +12,7 @@ import {
   SaveBasketIcons,
   StarIcons,
 } from "../../../../../AssetsMain/icons";
+import { AddBasket, HeartImg } from "../../../../../AssetsMain";
 
 const SingleProduct = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -55,11 +56,11 @@ const SingleProduct = () => {
         <SingleProductTop />
       </div>
       <div className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box mb-[60px]">
-        <div className="w-[100%] h-fit mt-6 flex justify-between">
-          <div className="w-1/2 h-full">
+        <div className="w-[100%] h-fit mt-6 flex justify-between border border-red-500">
+          <div className="w-1/2 h-full   border border-green-500">
             <ProductCarousel />
           </div>
-          <div className="w-1/2 h-full ">
+          <div className="w-1/2 h-full   border border-green-500">
             <ProductDetails />
           </div>
         </div>
@@ -118,9 +119,7 @@ const SingleProduct = () => {
 
                         <div className="flex flex-col gap-y-1">
                           <p className="w-8 h-8  rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
-                            <span>
-                              <HeartIcons colors={"#000"} />
-                            </span>{" "}
+                            <img src={HeartImg} alt="" />
                           </p>
                           {/* <p className="w-8 h-8 ss:hidden rounded-lg bg-bgCard xs:flex items-center justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
                           <img src={bucket} alt="" />
@@ -200,9 +199,7 @@ const SingleProduct = () => {
                         </div>
                         <div className="flex items-center">
                           <button className="w-[32px] h-[32px] md:w-[36px] md:h-[36px] ll:mb-1 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-                            <span className="w-8">
-                              <SaveBasketIcons />
-                            </span>{" "}
+                            <img src={AddBasket} alt="addbag" className="w-8" />
                           </button>
                         </div>
                       </div>
@@ -266,9 +263,7 @@ const SingleProduct = () => {
 
                         <div className="flex flex-col gap-y-1">
                           <p className="w-8 h-8  rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
-                            <span>
-                              <HeartIcons colors={"#000"} />
-                            </span>{" "}
+                            <img src={HeartImg} alt="" />
                           </p>
                           {/* <p className="w-8 h-8 ss:hidden rounded-lg bg-bgCard xs:flex items-center justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
                           <img src={bucket} alt="" />
@@ -348,9 +343,7 @@ const SingleProduct = () => {
                         </div>
                         <div className="flex items-center">
                           <button className="w-[32px] h-[32px] md:w-[36px] md:h-[36px] ll:mb-1 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-                            <span className="w-8">
-                              <SaveBasketIcons />
-                            </span>{" "}
+                            <img src={AddBasket} alt="addbag" className="w-8" />
                           </button>
                         </div>
                       </div>
