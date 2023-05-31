@@ -69,7 +69,7 @@ export default function BasketCheckOut() {
         <div className="max-w-[1280px] w-[100%] h-full flex items-center border-x border-searchBgColor justify-between items-center m-auto   ">
           <div className="w-[68%] h-full px-8 border-r border-searchBgColor flex  items-center justify-between">
             <div className="w-fit  flex  items-center">
-              <p className="flex not-italic font-AeonikProMedium text-2xl leading-7 text-black tracking-[1%]">
+              <p className="flex not-italic font-AeonikProMedium text-[20px] leading-7 text-black tracking-[1%]">
                 Корзина{" "}
                 <span className="w-6 h-6 ml-2 pt-1 rounded-full flex items-center justify-center bg-red-500 not-italic font-AeonikProMedium text-base leading-4 text-center text-white">
                   {bucket_products.length}
@@ -83,7 +83,7 @@ export default function BasketCheckOut() {
                     <DeleteIcons colors={"#A1A1A1"} />
                   </span>
 
-                  <span className="not-italic ml-2 mt-1 font-AeonikProMedium text-base text-textOpacity leading-4 tracking-[1%]">
+                  <span className="not-italic ml-2 mt-1 font-AeonikProMedium text-[14px] text-textOpacity leading-4 tracking-[1%]">
                     {" "}
                     Удалить
                   </span>
@@ -91,7 +91,7 @@ export default function BasketCheckOut() {
               </div>
               <div className="ml-8 flex items-center">
                 <p className="flex">
-                  <span className="not-italic mt-1 font-AeonikProMedium text-base leading-4 text-right text-black">
+                  <span className="not-italic mt-1 font-AeonikProMedium text-[14px] leading-4 text-right text-black">
                     {" "}
                     Выбрать все
                   </span>
@@ -103,10 +103,10 @@ export default function BasketCheckOut() {
             </div>
           </div>
           <div className="w-[32%] h-full px-8  flex  items-center justify-between">
-            <p className="not-italic mt-1 font-AeonikProMedium text-2xl leading-7 text-black tracking-[1%]">
+            <p className="not-italic mt-1 font-AeonikProMedium text-[20px] leading-7 text-black tracking-[1%]">
               Итого
             </p>
-            <p className="not-italic mt-1 font-AeonikProMedium text-2xl leading-7 text-black tracking-[1%]">
+            <p className="not-italic mt-1 font-AeonikProMedium text-[20px] leading-7 text-black tracking-[1%]">
               527 000 сум
             </p>
           </div>
@@ -187,10 +187,10 @@ export default function BasketCheckOut() {
                         </button>
                       </div>
                       <div className="w-full ">
-                        <p className="not-italic font-AeonikProRegular text-xl leading-6 text-setTexOpacity line-through	 tracking-[1%]">
+                        <p className="not-italic font-AeonikProRegular text-[16px] leading-6 text-setTexOpacity line-through	 tracking-[1%]">
                           {data.old_prize}
                         </p>
-                        <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black tracking-[1%]">
+                        <p className="not-italic font-AeonikProMedium text-[20px] leading-7 text-black tracking-[1%]">
                           {data.new_prize} сум
                         </p>
                       </div>
@@ -216,7 +216,7 @@ export default function BasketCheckOut() {
               <span className="not-italic font-AeonikProMedium text-base leading-4 text-black tracking-[1%]">
                 Товары ({bucket_products.length})
               </span>
-              <span className="not-italic font-AeonikProMedium text-xl leading-6 text-right text-setTexOpacity">
+              <span className="not-italic font-AeonikProMedium text-[18px] leading-6 text-right text-setTexOpacity">
                 516 000 сум
               </span>
             </div>
@@ -224,7 +224,7 @@ export default function BasketCheckOut() {
               <span className="not-italic font-AeonikProMedium text-base leading-4 text-black tracking-[1%]">
                 Доставка
               </span>
-              <span className="not-italic font-AeonikProMedium text-xl leading-6 text-right text-setTexOpacity">
+              <span className="not-italic font-AeonikProMedium text-[18px] leading-6 text-right text-setTexOpacity">
                 9 000 сум
               </span>
             </div>
@@ -232,7 +232,7 @@ export default function BasketCheckOut() {
               <span className="not-italic font-medium text-base leading-4 text-AeonikProMedium text-BasketMoneyColor tracking-[1%]">
                 Вы экономите:{" "}
               </span>
-              <span className="not-italic font-medium text-base leading-4 text-AeonikProMedium text-BasketMoneyColor tracking-[1%]">
+              <span className="not-italic font-medium text-[18px] leading-4 text-AeonikProMedium text-BasketMoneyColor tracking-[1%]">
                 228 000 сум{" "}
               </span>
             </div>
