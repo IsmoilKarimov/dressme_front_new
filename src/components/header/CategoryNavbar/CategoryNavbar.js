@@ -90,16 +90,9 @@ const CategoryNavbar = () => {
       <div className="max-w-[1280px] w-[100%] flex items-center justify-between items-center m-auto   ">
         <div className="flex items-center ">
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-            <div className="h-5 w-5 flex justify-center items-center">
-              {" "}
-              <span>
-                <HomeIcons colors={"#000"} />
-              </span>
-            </div>
-
             <NavLink
               to="/"
-              className="flex items-center cursor-pointer pt-[4px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
+              className="flex items-center cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
             >
               Главная
             </NavLink>
