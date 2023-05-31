@@ -97,7 +97,14 @@ const PaymentForBreadCamp = () => {
       <div className="max-w-[1280px] w-[100%] flex justify-between items-center m-auto">
         <div className="flex items-center ">
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-            <NavLink className="flex items-center cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+            <div className="h-5 w-5 flex justify-center items-center">
+              {" "}
+              <span>
+                <HomeIcons colors={"#000"} />
+              </span>
+            </div>
+
+            <NavLink className="flex items-center cursor-pointer pt-[4px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
               Главная
             </NavLink>
             <span>
@@ -105,9 +112,14 @@ const PaymentForBreadCamp = () => {
             </span>
           </div>
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+            <div className="h-5 w-5 flex justify-center items-center">
+              <span>
+                <MarketIcons colors={"#000"} />
+              </span>{" "}
+            </div>{" "}
             <NavLink
               to="/basket-check-out"
-              className="flex items-center cursor-pointer mt-[6px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
+              className="flex items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
             >
               Корзинка{" "}
             </NavLink>
@@ -116,9 +128,14 @@ const PaymentForBreadCamp = () => {
             </span>
           </div>
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+            <div className="h-5 w-5 flex justify-center items-center">
+              <span>
+                <CircleSuccessIcons colors={"#000"} />
+              </span>{" "}
+            </div>{" "}
             <NavLink
               to="/basket-check-out"
-              className="flex items-center cursor-pointer mt-[6px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
+              className="flex items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
             >
               Оформление заказа{" "}
             </NavLink>
@@ -128,7 +145,10 @@ const PaymentForBreadCamp = () => {
           </div>
 
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-            <NavLink className="flex items-center cursor-pointer mt-[6px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
+            <div className="h-5 w-5 flex justify-center items-center">
+              <PaymeSystemIcons colors={"#A1A1A1"} />
+            </div>{" "}
+            <NavLink className="flex items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
               Оплата
             </NavLink>
           </div>

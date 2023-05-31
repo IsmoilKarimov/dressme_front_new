@@ -3,10 +3,43 @@ import { Link, NavLink } from "react-router-dom";
 import {
   BasketIcons,
   CotegoryIcons,
-  HeartLinkIcons,
+  HeartIcons,
   HomeIcons,
   PersonIcons,
 } from "../../AssetsMain/icons";
+
+const menus = [
+  {
+    link: "#",
+    name: "Главная",
+    icon: <HomeIcons colors={"#000"} />,
+    id: 1,
+  },
+  {
+    link: "#",
+    name: "Каталог",
+    icon: <BasketIcons />,
+    id: 2,
+  },
+  {
+    link: "#",
+    name: "Корзина",
+    icon: <CotegoryIcons colors={"#000"} />,
+    id: 3,
+  },
+  {
+    link: "#",
+    name: "Избранное",
+    icon: <HeartIcons colors={"#000"} />,
+    id: 4,
+  },
+  {
+    link: "/sign_in",
+    name: "Профиль",
+    icon: <PersonIcons colors={"#000"} />,
+    id: 5,
+  },
+];
 
 const NavMenu = () => {
   return (
@@ -74,7 +107,7 @@ const NavMenu = () => {
               className={`relative h-full flex items-center mx-auto cursor-pointer `}
             >
               <span className=" flex items-center mb-1 h-6 ">
-                <HeartLinkIcons colors={"#000"} />
+                <HeartIcons colors={"#000"} />
               </span>
             </div>
             <span>

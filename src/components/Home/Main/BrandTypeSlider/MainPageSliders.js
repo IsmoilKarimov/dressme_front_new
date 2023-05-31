@@ -317,9 +317,7 @@ export default function MainPageSliders() {
           <span className="not-italic mt-1 font-AeonikProMedium text-base leading-4 text-center">
             Посмотреть все категории
           </span>
-          <span className="ml-2 ">
-            <SircleNext colors={dataStyle} />
-          </span>
+          <SircleNext colors={dataStyle} />
         </button>
       </div>
       <div className="w-full 	mt-[60px] ss:hidden xs:block">

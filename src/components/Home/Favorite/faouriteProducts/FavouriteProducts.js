@@ -61,7 +61,7 @@ export default function FavouriteProducts() {
                   <div
                     key={data.id}
                     // onClick={() => handleGetCardId(data?.id)}
-                    className={`ss:w-[49%] md:w-[24%] lg:w-[240px] xs:h-[456px] lg:h-[428px] border border-solid borderColorCard overflow-hidden rounded-lg`}
+                    className={`${shadowStyle} hover:shadow-cardShadow ss:w-[49%] md:w-[24%] lg:w-[240px] xs:h-[456px] lg:h-[428px] border border-solid borderColorCard overflow-hidden rounded-lg`}
                   >
                     <div className="relative w-full cursor-pointer ss:h-[200px] ls:h-[220px] ll:h-[238px] xs:h-[309px] bg-btnBgColor lg:h-[320px] flex content-between items-center overflow-hidden border-b border-solid flex-nowrap">
                       {data.ProducImg ? (
