@@ -93,9 +93,9 @@ const NoImg = () => {
 const HeartIcons = ({ colors }) => {
   return (
     <svg
-      width="100%"
-      height="100%"
-      viewBox="0 0 20 18"
+      width="24"
+      height="20"
+      viewBox="0 0 16 16"
       fill={`none`}
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -112,8 +112,8 @@ const HeartIcons = ({ colors }) => {
 const HeartLinkIcons = ({ colors }) => {
   return (
     <svg
-      width="20"
-      height="18"
+      width="24"
+      height="22"
       viewBox="0 0 20 18"
       fill={`${colors ? "#D50000" : "none"}`}
       xmlns="http://www.w3.org/2000/svg"

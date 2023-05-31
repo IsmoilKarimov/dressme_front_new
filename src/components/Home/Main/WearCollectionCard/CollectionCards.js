@@ -10,6 +10,7 @@ import {
   SaveBasketIcons,
   StarIcons,
 } from "../../../../AssetsMain/icons";
+import { AddBasket, HeartImg } from "../../../../AssetsMain";
 
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -108,9 +109,7 @@ export default function CollectionCards() {
 
                   <div className="flex flex-col gap-y-1">
                     <p className="w-8 h-8  rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
-                      <span className="w-8 h-8">
-                        <HeartIcons colors={"#000"} />{" "}
-                      </span>
+                      <img src={HeartImg} alt="" />
                     </p>
                     {/* <p className="w-8 h-8 ss:hidden rounded-lg bg-bgCard xs:flex items-center justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
                           <img src={bucket} alt="" />
@@ -187,7 +186,7 @@ export default function CollectionCards() {
                   </div>
                   <div className="flex items-center">
                     <button className="w-[32px] h-[32px] md:w-[36px] md:h-[36px] ll:mb-1 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-                      <SaveBasketIcons />
+                      <img src={AddBasket} alt="addbag" className="w-8" />
                     </button>
                   </div>
                 </div>

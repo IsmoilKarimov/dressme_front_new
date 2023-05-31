@@ -13,6 +13,7 @@ import {
   SircleNext,
   StarIcons,
 } from "../../../../AssetsMain/icons";
+import { AddBasket, HeartImg } from "../../../../AssetsMain";
 
 export default function BasketCheckOut() {
   const bucket_products = [
@@ -277,8 +278,8 @@ export default function BasketCheckOut() {
                       <NoImg />
                     )}
                     <div className="w-full flex absolute top-px p-[5px] justify-end">
-                      <p className="w-8 h-8 rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
-                        <HeartIcons colors={"#000"} />
+                      <p className="w-8 h-8  rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
+                        <img src={HeartImg} alt="" />
                       </p>
                     </div>
                   </div>
@@ -333,10 +334,8 @@ export default function BasketCheckOut() {
                         )}
                       </div>
                       <div className="flex items-center">
-                        <button className="w-[32px] h-[32px] mb-[4px]  rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-                          <span className="w-8">
-                            <BasketIcons />
-                          </span>
+                        <button className="w-[32px] h-[32px] md:w-[36px] md:h-[36px] ll:mb-1 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
+                          <img src={AddBasket} alt="addbag" className="w-8" />
                         </button>
                       </div>
                     </div>
