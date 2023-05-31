@@ -13,7 +13,7 @@ import {
   CotegoryIcons,
   DashboardStatisticIcons,
   DollorIcons,
-  HeartIcons,
+  HeartLinkIcons,
   HouseStatisticIcons,
   ListCollectionIcons,
   LocationIcons,
@@ -554,7 +554,7 @@ const MediumHeader = () => {
                   "bg-btnBgColor rounded-lg  items-center justify-center w-11 h-11 mr-2 hidden md:flex"
                 }
               >
-                {({ isActive }) => <HeartIcons colors={isActive} />}
+                {({ isActive }) => <HeartLinkIcons colors={isActive} />}
               </NavLink>
 
               {/* Bucket section */}
