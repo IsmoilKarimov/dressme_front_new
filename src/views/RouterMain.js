@@ -139,7 +139,10 @@ const RouterMain = () => {
 
             <Route path="/favourites" element={<Favourites />} />
             <Route path="/stores" element={<ShoppingStore />} />
-            <Route path="/shopping_store" element={<ShoppingStoreOfficial />} />
+            <Route
+              path="/shopping_store/:id"
+              element={<ShoppingStoreOfficial />}
+            />
 
             <Route
               path="/forget_password"

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 import { nike } from "../../../../../AssetsMain";
 import {
@@ -9,7 +9,7 @@ import {
   WomanGenIcons,
 } from "../../../../../AssetsMain/icons";
 
-const ShoppingStoreOfficialTop = () => {
+const ShoppingStoreOfficialTop = ({ name }) => {
   return (
     <div className="flex flex-col justify-center items-center my-5">
       <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
@@ -22,9 +22,7 @@ const ShoppingStoreOfficialTop = () => {
               <img src={nike} alt="" />
             </div>
             <div className="flex flex-col ml-[210px]">
-              <div className="text-xl font-AeonikProMedium mb-3">
-                Nike Store Official Dealer
-              </div>
+              <div className="text-xl font-AeonikProMedium mb-3">{name}</div>
               <div className="">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center -mt-1 mr-2">
