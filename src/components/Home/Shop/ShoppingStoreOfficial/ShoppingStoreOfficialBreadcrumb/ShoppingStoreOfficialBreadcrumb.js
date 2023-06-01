@@ -16,7 +16,7 @@ import {
   MarketIcons,
 } from "../../../../../AssetsMain/icons";
 
-const ShoppingStoreOfficialBreadCrumb = () => {
+const ShoppingStoreOfficialBreadCrumb = ({ name }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const [state, setState] = useState({
@@ -122,7 +122,7 @@ const ShoppingStoreOfficialBreadCrumb = () => {
               to="#"
               className="flex items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-[15px] leading-4 tracking-[1%] text-setTexOpacity"
             >
-              NIKE Official Dealer (Chilonzor)
+              {name}
             </NavLink>
           </div>
         </div>

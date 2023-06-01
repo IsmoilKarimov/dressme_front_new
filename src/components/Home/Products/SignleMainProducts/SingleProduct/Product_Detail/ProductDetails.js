@@ -19,6 +19,7 @@ import {
   summerSeason,
   autummSeason,
   winterSeason,
+  HeartImg,
 } from "../../../../../../AssetsMain";
 const ProductDetails = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -284,7 +285,7 @@ const ProductDetails = () => {
           </div>
           <div className="w-fit ml-3">
             <button className="w-[52px] h-[52px] flex items-center justify-center rounded-lg border border-searchBgColor">
-              <HeartIcons colors={"#000"} />
+              <img src={HeartImg} alt="" className="w-5 h-5" />
             </button>
           </div>
           <div className={`w-fit ml-8 ${dataStyle}`}>

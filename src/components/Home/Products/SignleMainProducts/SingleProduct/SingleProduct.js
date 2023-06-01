@@ -13,6 +13,7 @@ import {
   StarIcons,
 } from "../../../../../AssetsMain/icons";
 import { AddBasket, HeartImg } from "../../../../../AssetsMain";
+import ProductComment from "./ProductComment/ProductComment";
 
 const SingleProduct = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -100,6 +101,10 @@ const SingleProduct = () => {
           <div className="w-1/2 h-full   ">
             <ProductDetails />
           </div>
+        </div>
+        {/* Products Comment */}
+        <div className="mt-20 w-full">
+          <ProductComment />
         </div>
         <div className="w-full h-fit  ">
           <div className="w-full  mt-[120px]">
