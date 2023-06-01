@@ -120,7 +120,7 @@ const ShoppingStoreOfficialBreadCrumb = ({ name }) => {
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4  tracking-[1%] mr-[10px]">
             <NavLink
               to="#"
-              className="flex items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-[15px] leading-4 tracking-[1%] text-setTexOpacity"
+              className="flex items-center cursor-pointer mt-[6px] not-italic font-AeonikProMedium text-[15px] leading-4 tracking-[1%] text-setTexOpacity"
             >
               {name}
             </NavLink>

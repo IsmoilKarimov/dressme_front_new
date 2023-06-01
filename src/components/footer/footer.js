@@ -124,9 +124,24 @@ const Footer = () => {
   // -----Language Change-------------------
 
   const LanguageList = [
-    { id: 1, type: "Uzbekcha", icons: UzbekFlag, img: <ArrowTopIcons /> },
-    { id: 2, type: "Russian", icons: RussianFlag, img: <ArrowTopIcons /> },
-    { id: 3, type: "English", icons: EnglishFlag, img: <ArrowTopIcons /> },
+    {
+      id: 1,
+      type: "Uzbekcha",
+      icons: UzbekFlag,
+      img: <ArrowTopIcons colors={"#000"} />,
+    },
+    {
+      id: 2,
+      type: "Russian",
+      icons: RussianFlag,
+      img: <ArrowTopIcons colors={"#000"} />,
+    },
+    {
+      id: 3,
+      type: "English",
+      icons: EnglishFlag,
+      img: <ArrowTopIcons colors={"#000"} />,
+    },
   ];
   let dataStyle = "";
   let footerTextWeatherColor = "";
@@ -755,11 +770,9 @@ const Footer = () => {
               <span className="text-base font-AeonikProMedium leading-4 ml-[12.5px] mr-2 ls:mr-6 md:mr-[32.37px]">
                 Форма для обратной связи
               </span>
-              <img
-                src={ArrowTopIcons}
-                alt="arrow-right-black"
-                className="mr-2 ls:mr-3 md:mr-5"
-              />
+              <span className="mr-2 ls:mr-3 md:mr-5 rotate-[90deg]">
+                <ArrowTopIcons colors={"#000"} />
+              </span>
             </Link>
 
             {/* Menu for Mobile */}
@@ -1027,7 +1040,9 @@ const Footer = () => {
                   <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black">
                     {selectPriceFooter}
                   </span>
+
                   <ArrowTopIcons
+                    colors={"#000"}
                     className={`${
                       openPriceFooter
                         ? "rotate-[-180deg] transition ease-linear duration-200"
@@ -1049,6 +1064,7 @@ const Footer = () => {
                     {selectRegionFooter}
                   </span>
                   <ArrowTopIcons
+                    colors={"#000"}
                     className={`${
                       openRegionFooter
                         ? "rotate-[-180deg] transition ease-linear duration-200"
@@ -1077,6 +1093,7 @@ const Footer = () => {
                         {data?.type}
                       </span>
                       <ArrowTopIcons
+                        colors={"#000"}
                         className={`${
                           openLanguageFooter
                             ? "rotate-[-180deg] transition ease-linear duration-200"

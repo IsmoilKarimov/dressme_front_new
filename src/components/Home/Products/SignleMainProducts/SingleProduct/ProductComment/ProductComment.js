@@ -88,7 +88,10 @@ export default function ProductComment() {
             <span className="not-italic font-AeonikProRegular text-base leading-4 text-black">
               описане
             </span>
-            <textarea className="w-full h-[200px] mt-2 p-2 border border-searchBgColor rounded-lg bg-btnBgColor"></textarea>
+            <textarea
+              className="w-full h-[200px] mt-2 p-2 border border-searchBgColor rounded-lg bg-skeltonColor"
+              placeholder="Izoh qoldiring..."
+            ></textarea>
           </div>
         </div>
       </div>

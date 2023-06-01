@@ -233,14 +233,14 @@ const TopHeader = () => {
             </span>
           </Link>
           <div className="line h-5 border text-textColor ml-6"></div>
-          <Link to="#" className="flex items-center h-full  ml-6 ">
+          <NavLink to="/my-order" className="flex items-center h-full  ml-6 ">
             <span className="mr-2">
               <MyPurchaseIcons colors={"#707070"} />
             </span>
             <span className="text-textColor  text-[13px]   font-AeonikProMedium  ">
               Мои заказы
             </span>
-          </Link>
+          </NavLink>
           <NavLink
             to="/stores"
             className="flex items-center bg-white rounded cursor-pointer h-full  ml-6 px-3"

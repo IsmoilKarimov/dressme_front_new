@@ -93,12 +93,14 @@ const SingleProduct = () => {
           <div
             className={`w-1/2 h-full  sticky duration-500
             ${
-              show ? "visible  z-[29] top-[110px]" : "visible  z-[29] top-[0px]"
+              show
+                ? "visible  z-[29] top-[110px]"
+                : "visible  z-[29] top-[16px]"
             }`}
           >
             <ProductCarousel />
           </div>
-          <div className="w-1/2 h-full   ">
+          <div className=" w-1/2 h-full   ">
             <ProductDetails />
           </div>
         </div>

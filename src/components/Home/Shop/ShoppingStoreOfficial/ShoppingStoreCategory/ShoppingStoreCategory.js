@@ -1,4 +1,3 @@
-import { ArrowTopIcons } from "../../../../../AssetsMain/icons";
 import CategoryForType from "../../../../Category/CategoryForType/CategoryForType";
 
 const ShoppingStoreCategory = () => {
