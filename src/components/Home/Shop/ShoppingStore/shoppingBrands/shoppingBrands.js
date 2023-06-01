@@ -1,8 +1,9 @@
 import { useState } from "react";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { UzbekFlag, nike } from "../../../../../AssetsMain";
 import {
+  ArrowTopIcons,
   LocationIcons,
   ManGenIcons,
   StarIcons,
@@ -23,7 +24,7 @@ const ShoppingBrands = () => {
     },
     {
       id: 2,
-      name: "Nike Store Official Dealer",
+      name: "Red Tag Store Official Dealer",
       logo: "",
       votes: 859,
       orders: 4589,
@@ -32,7 +33,7 @@ const ShoppingBrands = () => {
     },
     {
       id: 3,
-      name: "Nike Store Official Dealer",
+      name: "Button Store Official Dealer",
       logo: "",
       votes: 859,
       orders: 4589,
@@ -41,7 +42,7 @@ const ShoppingBrands = () => {
     },
     {
       id: 4,
-      name: "Nike Store Official Dealer",
+      name: "Vip Brand Store Official Dealer",
       logo: "",
       votes: 859,
       orders: 4589,
@@ -49,16 +50,20 @@ const ShoppingBrands = () => {
       zipcode: "Tashkent 100017",
     },
   ]);
+  const navigate = useNavigate();
+  const gotoOfficial = (id) => {
+    navigate(`/shopping_store/:${id}`);
+  };
 
   return (
     <div className="flex flex-col min-h-[44px]  justify-center items-center my-3">
       <div className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto mt-[50px] mb-[90px]">
         <div className="w-full">
           {allShops.map((data) => (
-            <NavLink
-              to="/shopping_store"
+            <div
+              onClick={() => gotoOfficial(data?.name)}
               key={data.id}
-              className="relative w-full h-[100px] flex items-center justify-between border border-searchBgColor rounded-lg mb-[30px]"
+              className="relative w-full cursor-pointer h-[100px] flex items-center justify-between border border-searchBgColor rounded-lg mb-[30px]"
             >
               <div className="absolute w-[120px] h-[120px] left-[55px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
                 <img src={nike} alt="" />
@@ -121,8 +126,57 @@ const ShoppingBrands = () => {
                   <WomanGenIcons />
                 </button>
               </div>
-            </NavLink>
+            </div>
           ))}
+        </div>
+        <div className="w-full h-fit flex items-center justify-center mt-[75px] gap-x-6">
+          <div className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
+            <span className="rotate-[-90deg]">
+              <ArrowTopIcons />
+            </span>{" "}
+            <span className="not-italic ml-1 mt-1  font-AeonikProRegular text-lg leading-4 text-fullBlue">
+              Previous
+            </span>
+          </div>
+          <div className="flex items-center">
+            <ul className="flex items-center gap-x-3">
+              <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg bg-fullBlue text-white flex items-center justify-center cursor-pointer ">
+                1
+              </li>
+              <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
+                2
+              </li>
+              <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
+                3
+              </li>
+              <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
+                4
+              </li>
+              <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
+                5
+              </li>
+              <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
+                6
+              </li>
+              <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
+                7
+              </li>
+              <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
+                8{" "}
+              </li>
+              <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
+                . . .
+              </li>
+            </ul>
+          </div>
+          <div className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
+            <span className="not-italic mt-1 font-AeonikProRegular mr-1 text-lg leading-4 text-fullBlue">
+              Next
+            </span>
+            <span className="rotate-[90deg]">
+              <ArrowTopIcons />
+            </span>
+          </div>
         </div>
       </div>
     </div>
