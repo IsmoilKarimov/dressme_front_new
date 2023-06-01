@@ -175,7 +175,7 @@ const ShoppingTop = () => {
               </span>
               <span>
                 <span className={`rotate-[0deg]`}>
-                  <ArrowTopIcons />
+                  <ArrowTopIcons colors={"#000"} />
                 </span>
               </span>
             </button>

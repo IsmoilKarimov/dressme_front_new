@@ -116,7 +116,7 @@ export default function SignUp() {
                     readOnly
                   />
                   <span className="rotate-[180deg]">
-                    <ArrowTopIcons />
+                    <ArrowTopIcons colors={"#000"} />
                   </span>
                 </div>
                 <div className="ss:w-[65%] md:w-[70%] h-12 overflow-hidden">

@@ -147,7 +147,7 @@ export default function PaymentForClothes() {
                       readOnly
                     />
                     <span className="rotate-[180deg]">
-                      <ArrowTopIcons />
+                      <ArrowTopIcons colors={"#A1A1A1"} />
                     </span>
                   </div>
                   <div className="w-[60%] h-12 overflow-hidden">
@@ -216,7 +216,7 @@ export default function PaymentForClothes() {
                       className="bg-transparent w-full pr-3"
                     />
                     <span className="rotate-[180deg]">
-                      <ArrowTopIcons />
+                      <ArrowTopIcons colors={"#A1A1A1"} />
                     </span>
                   </div>
                 </div>
@@ -230,7 +230,7 @@ export default function PaymentForClothes() {
                       className="bg-transparent w-full pr-3"
                     />
                     <span className="rotate-[180deg]">
-                      <ArrowTopIcons />
+                      <ArrowTopIcons colors={"#A1A1A1"} />
                     </span>
                   </div>
                 </div>

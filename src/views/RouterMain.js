@@ -16,6 +16,9 @@ import SignInSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import ShoppingStore from "../components/Home/Shop/ShoppingStore";
 import Favourites from "../components/Home/Favorite";
 import ShoppingStoreOfficial from "../components/Home/Shop/ShoppingStoreOfficial";
+import { MyOrderBreadCamp } from "../components/Home/MyOrder/MyOrderBreadCamp/MyOrderBreadCamp";
+import MyOrderList from "../components/Home/MyOrder/MyOrderList/MyOrderList";
+import MyOrderSettings from "../components/Home/MyOrder/MyOrderSettings/MyOrderSettings";
 
 // -------------------------------------
 const HomePage = React.lazy(() => import("../Page/Home/Home"));
@@ -52,143 +55,160 @@ const RouterMain = () => {
   return (
     <>
       <Header />
-      {/* Transition group opacity pagedan pagega o'tganda */}
-      <TransitionGroup>
+      {/* <TransitionGroup>
         <CSSTransition
           key={location.pathname}
           timeout={300}
           classNames={"fade"}
           exit={false}
-        >
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Suspense
-                  fallback={
-                    <div>
-                      <SkeletonHomeIndex />
-                    </div>
-                  }
-                >
-                  <HomePage />
-                </Suspense>
+        > */}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SkeletonHomeIndex />
+                </div>
               }
-            />
+            >
+              <HomePage />
+            </Suspense>
+          }
+        />
 
-            <Route path="/delivery-points" element={<YandexMapDressMe />} />
-            <Route
-              path="/categoriesType"
-              element={
-                <Suspense
-                  fallback={
-                    <div>
-                      <SkeletonHomeIndex />
-                    </div>
-                  }
-                >
-                  <CategoryMainType />
-                </Suspense>
+        <Route path="/delivery-points" element={<YandexMapDressMe />} />
+        <Route
+          path="/categoriesType"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SkeletonHomeIndex />
+                </div>
               }
-            />
-            <Route
-              path="/basket-check-out"
-              element={
-                <Suspense
-                  fallback={
-                    <div>
-                      <SkeletonHomeIndex />
-                    </div>
-                  }
-                >
-                  <BasketCheckOut />
-                </Suspense>
+            >
+              <CategoryMainType />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/basket-check-out"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SkeletonHomeIndex />
+                </div>
               }
-            />
-            <Route
-              path="/payment"
-              element={
-                <Suspense
-                  fallback={
-                    <div>
-                      <SkeletonHomeIndex />
-                    </div>
-                  }
-                >
-                  <PaymentForClothes />
-                </Suspense>
+            >
+              <BasketCheckOut />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/payment"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SkeletonHomeIndex />
+                </div>
               }
-            />
-            <Route
-              path="/product/:id"
-              element={
-                <Suspense
-                  fallback={
-                    <div>
-                      <SkeletonHomeIndex />
-                    </div>
-                  }
-                >
-                  <SingleMainProduct />
-                </Suspense>
+            >
+              <PaymentForClothes />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/product/:id"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SkeletonHomeIndex />
+                </div>
               }
-            />
+            >
+              <SingleMainProduct />
+            </Suspense>
+          }
+        />
 
-            <Route path="/sign_in" element={<SignIn />} />
-            <Route path="/sign_up" element={<SignUp />} />
+        <Route path="/sign_in" element={<SignIn />} />
+        <Route path="/sign_up" element={<SignUp />} />
+        {/* <Route path="/my-order" element={<MyOrderBreadCamp />} /> */}
 
-            <Route path="/favourites" element={<Favourites />} />
-            <Route path="/stores" element={<ShoppingStore />} />
-            <Route
-              path="/shopping_store/:id"
-              element={<ShoppingStoreOfficial />}
-            />
+        <Route path="/my-order" element={<MyOrderBreadCamp />}>
+          <Route index element={<MyOrderList />} />
+          {/* <Route path='/profile/mycourse/all_course' element={<CoursePrivateInfo />} /> */}
+          <Route index path="/my-order/list" element={<MyOrderList />} />
+          <Route path="/my-order/settings" element={<MyOrderSettings />} />
+          {/* <Route
+                path="/profile/mycourse/active_course"
+                element={<MyActiveCourse />}
+              />
+              <Route
+                path="/profile/mycourse/active_course/:id"
+                element={<CoursePrivateInfo />}
+              />
+              <Route
+                path="/profile/mycourse/done_course"
+                element={<MyDoneCourse />}
+              /> */}
+        </Route>
 
-            <Route
-              path="/forget_password"
-              element={
-                <Suspense
-                  fallback={
-                    <div>
-                      <SignInSkeletonIndex />
-                    </div>
-                  }
-                >
-                  <ForgetPassword />
-                </Suspense>
+        <Route path="/favourites" element={<Favourites />} />
+        <Route path="/stores" element={<ShoppingStore />} />
+        <Route path="/shopping_store/:id" element={<ShoppingStoreOfficial />} />
+
+        <Route
+          path="/forget_password"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SignInSkeletonIndex />
+                </div>
               }
-            />
-            <Route
-              path="/set_new_password"
-              element={
-                <Suspense
-                  fallback={
-                    <div>
-                      <SignInSkeletonIndex />
-                    </div>
-                  }
-                >
-                  <SetNewPassword />
-                </Suspense>
+            >
+              <ForgetPassword />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/set_new_password"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SignInSkeletonIndex />
+                </div>
               }
-            />
-            <Route
-              path="/enter_password_validate"
-              element={
-                <Suspense
-                  fallback={
-                    <div>
-                      <SignInSkeletonIndex />
-                    </div>
-                  }
-                >
-                  <ForgetConfirmPassword />
-                </Suspense>
+            >
+              <SetNewPassword />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/enter_password_validate"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SignInSkeletonIndex />
+                </div>
               }
-            />
-          </Routes>
-        </CSSTransition>
-      </TransitionGroup>
+            >
+              <ForgetConfirmPassword />
+            </Suspense>
+          }
+        />
+      </Routes>
+      {/* </CSSTransition>
+      </TransitionGroup> */}
 
       {locationWindow !== "/add_user_private_data" &&
       locationWindow !== "/add_user_body_data" &&
@@ -198,6 +218,9 @@ const RouterMain = () => {
       locationWindow !== "/forget_password" &&
       locationWindow !== "/sign_up" &&
       locationWindow !== "/sign_in" &&
+      locationWindow !== "/my-order/settings" &&
+      locationWindow !== "/my-order/list" &&
+      locationWindow !== "/my-order" &&
       locationWindow !== "/delivery-points" ? (
         <Suspense fallback={<>Loading...</>}>
           <Footer />

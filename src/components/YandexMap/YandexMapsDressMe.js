@@ -774,7 +774,7 @@ function YandexMapsDressMe() {
                         <span className="ml-[11.67px]">Dashboard (demo)</span>
                       </div>
                       <span className="arrowRotate ml-auto rotate-[90deg]">
-                        <ArrowTopIcons />
+                        <ArrowTopIcons colors={"#000"} />
                       </span>
                     </button>
                   </li>
@@ -787,7 +787,7 @@ function YandexMapsDressMe() {
                         <span className="ml-[11.67px]">Business</span>
                       </div>
                       <span className="arrowRotate ml-auto rotate-[90deg]">
-                        <ArrowTopIcons />
+                        <ArrowTopIcons colors={"#000"} />
                       </span>
                     </button>
                   </li>
@@ -800,7 +800,7 @@ function YandexMapsDressMe() {
                         <span className="ml-[11.67px]">My orders</span>
                       </div>
                       <span className="arrowRotate ml-auto rotate-[90deg]">
-                        <ArrowTopIcons />
+                        <ArrowTopIcons colors={"#000"} />
                       </span>
                     </button>
                   </li>
@@ -813,7 +813,7 @@ function YandexMapsDressMe() {
                         <span className="ml-[11.67px]">Shop</span>
                       </div>
                       <span className="arrowRotate ml-auto rotate-[90deg]">
-                        <ArrowTopIcons />
+                        <ArrowTopIcons colors={"#000"} />
                       </span>
                     </button>
                   </li>
@@ -826,7 +826,7 @@ function YandexMapsDressMe() {
                         <span className="ml-[11.67px]">My blog</span>
                       </div>
                       <span className="arrowRotate ml-auto rotate-[90deg]">
-                        <ArrowTopIcons />
+                        <ArrowTopIcons colors={"#000"} />
                       </span>
                     </button>
                   </li>
@@ -862,7 +862,7 @@ function YandexMapsDressMe() {
                     </span>
                     <span className="ml-[10px] mr-5">Tashkent</span>
                     <span className="">
-                      <ArrowTopIcons />
+                      <ArrowTopIcons colors={"#000"} />
                     </span>{" "}
                   </button>
                   <Link
@@ -872,7 +872,7 @@ function YandexMapsDressMe() {
                     <img src={UzbekFlag} alt="." />
                     <span className="ml-[10px] mr-5">English</span>
                     <span className="">
-                      <ArrowTopIcons />
+                      <ArrowTopIcons colors={"#000"} />
                     </span>
                   </Link>
                 </div>

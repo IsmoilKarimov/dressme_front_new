@@ -52,9 +52,9 @@ export default function FavouriteProducts() {
   const [clothesSetWear, setClothesSetWear] = useState(true);
 
   return (
-    <div className="flex flex-col min-h-[44px]  justify-center items-center my-3">
-      <div className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto mt-[50px] mb-[90px]">
-        <div className="flex flex-col box-border md:mt-9">
+    <div className="flex flex-col min-h-[44px]  justify-center items-center mt-8">
+      <div className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto  mb-[90px]">
+        <div className="flex flex-col box-border ">
           {dressInfo?.ProductList.length ? (
             <div className="flex flex-wrap  md:mx-0 gap-x-5 gap-y-5 ">
               {dressInfo?.ProductList.map((data) => {

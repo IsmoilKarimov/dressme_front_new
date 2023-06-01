@@ -230,7 +230,7 @@ const InputCheckedTrueIcons = ({ colors }) => {
     </svg>
   );
 };
-const ArrowTopIcons = () => {
+const ArrowTopIcons = ({ colors }) => {
   return (
     <svg
       width="10"
@@ -241,7 +241,7 @@ const ArrowTopIcons = () => {
     >
       <path
         d="M0.77661 4.62647L4.25394 1.14913C4.66461 0.738465 5.33661 0.738465 5.74728 1.14913L9.22461 4.62646"
-        stroke="black"
+        stroke={colors}
         stroke-width="1.5"
         stroke-miterlimit="10"
         stroke-linecap="round"
@@ -2052,6 +2052,42 @@ const FullScreenMapsIcons = ({ colors }) => {
     </svg>
   );
 };
+const LogOutIcons = ({ colors }) => {
+  return (
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 22 22"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6.01343 8.59835L3.66676 10.945L6.01343 13.2917"
+        stroke={colors}
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M13.0532 10.945L3.73072 10.945"
+        stroke={colors}
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M11.2199 3.66665C15.2716 3.66665 18.5532 6.41665 18.5532 11C18.5532 15.5833 15.2716 18.3333 11.2199 18.3333"
+        stroke={colors}
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
 
 export {
   SeasonSquare,
@@ -2116,4 +2152,6 @@ export {
   MarkerMapsIcons,
   MaximazeMapsIcons,
   FullScreenMapsIcons,
+  //Logout
+  LogOutIcons,
 };

@@ -20,7 +20,7 @@ export default function FavouriteTop() {
                 Последние добавленные{" "}
               </span>
               <span className="rotate-[180deg]">
-                <ArrowTopIcons />
+                <ArrowTopIcons colors={"#000"} />
               </span>
             </button>
           </div>

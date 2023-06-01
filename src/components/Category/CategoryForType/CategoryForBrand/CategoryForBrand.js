@@ -178,7 +178,7 @@ export default function CategoryForBrand() {
                   state?.brandShow ? "rotate-[180deg]" : ""
                 } duration-300 mt-[-2px]`}
               >
-                <ArrowTopIcons />
+                <ArrowTopIcons colors={"#000"} />
               </span>
             </div>
             <span className="not-italic font-AeonikProMedium text-sm leading-4 text-fullBlue cursor-pointer">
@@ -261,7 +261,7 @@ export default function CategoryForBrand() {
                   state?.budgetShow ? "rotate-[180deg]" : ""
                 } duration-300 mt-[-2px]`}
               >
-                <ArrowTopIcons />
+                <ArrowTopIcons colors={"#000"} />
               </span>
             </div>
           </div>
@@ -333,7 +333,7 @@ export default function CategoryForBrand() {
                   state?.ColorsShow ? "rotate-[180deg]" : ""
                 } duration-300 mt-[-2px]`}
               >
-                <ArrowTopIcons />
+                <ArrowTopIcons colors={"#000"} />
               </span>
             </div>
             <span className="not-italic font-AeonikProMedium text-sm leading-4 text-fullBlue cursor-pointer">
@@ -389,7 +389,7 @@ export default function CategoryForBrand() {
                   state?.availability ? "rotate-[180deg]" : ""
                 } duration-300 mt-[-2px]`}
               >
-                <ArrowTopIcons />
+                <ArrowTopIcons colors={"#000"} />
               </span>
             </div>
           </div>
@@ -457,7 +457,7 @@ export default function CategoryForBrand() {
                   state?.customerRreviews ? "rotate-[180deg]" : ""
                 } duration-300 mt-[-2px]`}
               >
-                <ArrowTopIcons />
+                <ArrowTopIcons colors={"#000"} />
               </span>
             </div>
           </div>
@@ -519,7 +519,7 @@ export default function CategoryForBrand() {
                   state?.ClothingShow ? "rotate-[180deg]" : ""
                 } duration-300 mt-[-2px]`}
               >
-                <ArrowTopIcons />
+                <ArrowTopIcons colors={"#000"} />
               </span>
             </div>
             <span className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
@@ -568,7 +568,7 @@ export default function CategoryForBrand() {
                   state?.TrouserShow ? "rotate-[180deg]" : ""
                 } duration-300 mt-[-2px]`}
               >
-                <ArrowTopIcons />
+                <ArrowTopIcons colors={"#000"} />
               </span>
             </div>
             <span className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
@@ -617,7 +617,7 @@ export default function CategoryForBrand() {
                   state?.ShoesShow ? "rotate-[180deg]" : ""
                 } duration-300 mt-[-2px]`}
               >
-                <ArrowTopIcons />
+                <ArrowTopIcons colors={"#000"} />
               </span>
             </div>
             <span className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
