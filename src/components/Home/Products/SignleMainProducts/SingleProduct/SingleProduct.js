@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ProductCarousel } from "./Product_Carousel/ProductCarousel";
 import { ProductDetails } from "./Product_Detail/ProductDetails";
@@ -35,6 +35,38 @@ const SingleProduct = () => {
     navigate(`/product/:${id}`);
   };
 
+  const [show, setShow] = useState(true);
+  const [scrollPost, setscrollPost] = useState(0);
+
+  // ----------------NavMenu----------------
+  const [ShowNavMenu, setShowNavMenu] = useState(true);
+  const [ScrollPostNavMenu, setScrollPostNavMenu] = useState(0);
+
+  // ----------------NavBar----------------
+  const handleScroll = () => {
+    setscrollPost(document.body.getBoundingClientRect().top);
+    if (parseInt(Math.abs(scrollPost)) > 300) {
+      setShow(document.body.getBoundingClientRect().top > scrollPost);
+    }
+  };
+
+  // ----------------NavMenu----------------
+  const handleScrollNavMenu = () => {
+    setScrollPostNavMenu(document.body.getBoundingClientRect().top);
+    setShowNavMenu(
+      document.body.getBoundingClientRect().top < ScrollPostNavMenu
+    );
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScrollNavMenu);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScrollNavMenu);
+    };
+  }, [show, scrollPost, ShowNavMenu, ScrollPostNavMenu]);
   const onColorChecked = (itemId, colorId) => {
     //   setProductList((current) => {
     //     return current?.map((data) => {
@@ -56,11 +88,16 @@ const SingleProduct = () => {
         <SingleProductTop />
       </div>
       <div className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box mb-[60px]">
-        <div className="w-[100%] h-fit mt-6 flex justify-between border border-red-500">
-          <div className="w-1/2 h-full   border border-green-500">
+        <div className="relative w-[100%] h-fit mt-6 flex justify-between ">
+          <div
+            className={`w-1/2 h-full  sticky duration-500
+            ${
+              show ? "visible  z-[29] top-[110px]" : "visible  z-[29] top-[0px]"
+            }`}
+          >
             <ProductCarousel />
           </div>
-          <div className="w-1/2 h-full   border border-green-500">
+          <div className="w-1/2 h-full   ">
             <ProductDetails />
           </div>
         </div>

@@ -5,6 +5,7 @@ import NavMenu from "./nav-menu";
 import "./header.css";
 import { Outlet, useLocation } from "react-router-dom";
 import NavbarBottomIndex from "./NavbarBottomIndex";
+
 const Header = () => {
   // ----------------NavBar----------------
   const [show, setShow] = useState(true);
@@ -39,8 +40,8 @@ const Header = () => {
       window.removeEventListener("scroll", handleScrollNavMenu);
     };
   }, [show, scrollPost, ShowNavMenu, ScrollPostNavMenu]);
-  const location = useLocation();
 
+  const location = useLocation();
   const [locationWindow, setLocationWindow] = useState("");
   useEffect(() => {
     setLocationWindow(location.pathname);
