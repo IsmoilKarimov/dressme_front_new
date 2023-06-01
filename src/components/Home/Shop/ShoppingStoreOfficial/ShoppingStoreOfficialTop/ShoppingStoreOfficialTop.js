@@ -14,10 +14,14 @@ const ShoppingStoreOfficialTop = ({ name }) => {
     <div className="flex flex-col justify-center items-center my-5">
       <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
         <div className="w-full flex flex-col">
-          <div className="w-full h-[360px] border border-searchBgColor bg-btnBgColor rounded-t-lg">
-            <img src="" alt="" />
+          <div className="w-full h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
+            <img
+              className="h-full w-full"
+              src="https://storage2.alifshop.uz/files?k1=07bc1bca-7404-4f08-a5dd-1c49126c5afd&k2=dde491d3e034894170e0366666da4f078f92216e7c708decaa7f72d45f4de79bca3355df5beec19676aaaf30f0911495c3fb56cce0045c6ae88d98f03af159be"
+              alt=""
+            />
           </div>
-          <div className="relative w-full h-[100px] flex items-center justify-between border-t-0 border border-searchBgColor rounded-b-lg ">
+          <div className="relative w-full h-[90px] flex items-center justify-between border-t-0 border border-searchBgColor rounded-b-lg ">
             <div className="absolute w-[150px] h-[150px] left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
               <img src={nike} alt="" />
             </div>
@@ -46,7 +50,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center ">
               <NavLink
                 to="/delivery-points"
                 className="flex items-center justify-center w-12 h-12 rounded-lg border border-searchBgColor cursor-pointer"
@@ -62,7 +66,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                 <p className="text-sm font-AeonikProRegular">Tashkent 100017</p>
               </NavLink>
             </div>
-            <div className="flex items-center mr-5">
+            <div className="flex items-center mr-5 ">
               <button className="flex items-center justify-center border border-searchBgColor w-12 h-12 rounded-lg mr-3">
                 <VideoStoreIcons />
               </button>

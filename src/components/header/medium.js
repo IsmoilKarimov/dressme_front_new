@@ -330,7 +330,7 @@ const MediumHeader = () => {
                           <span className="ml-[11.67px]">Dashboard (demo)</span>
                         </div>
                         <span className="arrowRotate ml-auto rotate-[90deg]">
-                          <ArrowTopIcons />
+                          <ArrowTopIcons colors={"#000"} />
                         </span>
                       </button>
                     </li>
@@ -343,7 +343,7 @@ const MediumHeader = () => {
                           <span className="ml-[11.67px]">Business</span>
                         </div>
                         <span className="arrowRotate ml-auto rotate-[90deg]">
-                          <ArrowTopIcons />
+                          <ArrowTopIcons colors={"#000"} />
                         </span>
                       </button>
                     </li>
@@ -356,7 +356,7 @@ const MediumHeader = () => {
                           <span className="ml-[11.67px]">My orders</span>
                         </div>
                         <span className="arrowRotate ml-auto rotate-[90deg]">
-                          <ArrowTopIcons />
+                          <ArrowTopIcons colors={"#000"} />
                         </span>
                       </button>
                     </li>
@@ -369,7 +369,7 @@ const MediumHeader = () => {
                           <span className="ml-[11.67px]">Shop</span>
                         </div>
                         <span className="arrowRotate ml-auto rotate-[90deg]">
-                          <ArrowTopIcons />
+                          <ArrowTopIcons colors={"#000"} />
                         </span>
                       </button>
                     </li>
@@ -382,7 +382,7 @@ const MediumHeader = () => {
                           <span className="ml-[11.67px]">My blog</span>
                         </div>
                         <span className="arrowRotate ml-auto rotate-[90deg]">
-                          <ArrowTopIcons />
+                          <ArrowTopIcons colors={"#000"} />
                         </span>
                       </button>
                     </li>
@@ -418,7 +418,7 @@ const MediumHeader = () => {
                       </span>
                       <span className="ml-[10px] mr-5">Tashkent</span>
                       <span className="">
-                        <ArrowTopIcons />
+                        <ArrowTopIcons colors={"#000"} />
                       </span>{" "}
                     </button>
                     <Link
@@ -428,7 +428,7 @@ const MediumHeader = () => {
                       <img src={UzbekFlag} alt="." />
                       <span className="ml-[10px] mr-5">English</span>
                       <span className="">
-                        <ArrowTopIcons />
+                        <ArrowTopIcons colors={"#000"} />
                       </span>
                     </Link>
                   </div>
@@ -849,7 +849,7 @@ const MediumHeader = () => {
                     state?.toggle ? "rotate-180" : ""
                   } duration-500`}
                 >
-                  <ArrowTopIcons />
+                  <ArrowTopIcons colors={"#000"} />
                 </span>
               </button>
             </div>
@@ -877,7 +877,7 @@ const MediumHeader = () => {
                       <span className="ml-[11.67px]">{selectWearMobile}</span>
                     </div>
                     <span className="arrowRotate ml-auto rotate-[90deg]">
-                      <ArrowTopIcons />
+                      <ArrowTopIcons colors={"#000"} />
                     </span>
                   </button>
                 </li>
@@ -897,7 +897,7 @@ const MediumHeader = () => {
                       <span className="ml-[11.67px]">{selectPriceMobile}</span>
                     </div>
                     <span className="arrowRotate  rotate-[90deg] ml-auto">
-                      <ArrowTopIcons />
+                      <ArrowTopIcons colors={"#000"} />
                     </span>
                   </button>
                 </li>
@@ -934,7 +934,7 @@ const MediumHeader = () => {
                     </div>
                     <span className="w-[40px]  flex justify-end">
                       <span className="arrowRotate  rotate-[90deg] ml-auto">
-                        <ArrowTopIcons />
+                        <ArrowTopIcons colors={"#000"} />
                       </span>
                     </span>
                   </button>
@@ -955,7 +955,7 @@ const MediumHeader = () => {
                       <span className="ml-[11.67px]">Top Brands</span>
                     </div>
                     <span className="arrowRotate  rotate-[90deg] ml-auto">
-                      <ArrowTopIcons />
+                      <ArrowTopIcons colors={"#000"} />
                     </span>
                   </button>
                 </li>
