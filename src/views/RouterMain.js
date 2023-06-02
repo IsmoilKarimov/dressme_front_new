@@ -140,25 +140,13 @@ const RouterMain = () => {
         <Route path="/sign_up" element={<SignUp />} />
         {/* <Route path="/my-order" element={<MyOrderBreadCamp />} /> */}
 
-        <Route path="/my-order" element={<MyOrderBreadCamp />}>
-          <Route index element={<MyOrderList />} />
-          {/* <Route path='/profile/mycourse/all_course' element={<CoursePrivateInfo />} /> */}
-          <Route index path="/my-order/list" element={<MyOrderList />} />
-          <Route path="/my-order/settings" element={<MyOrderSettings />} />
-          {/* <Route
-                path="/profile/mycourse/active_course"
-                element={<MyActiveCourse />}
-              />
-              <Route
-                path="/profile/mycourse/active_course/:id"
-                element={<CoursePrivateInfo />}
-              />
-              <Route
-                path="/profile/mycourse/done_course"
-                element={<MyDoneCourse />}
-              /> */}
-        </Route>
-
+        {localStorage.getItem("dressMeLogin") && (
+          <Route path="/my-order" element={<MyOrderBreadCamp />}>
+            <Route index element={<MyOrderList />} />
+            <Route index path="/my-order/list" element={<MyOrderList />} />
+            <Route path="/my-order/settings" element={<MyOrderSettings />} />
+          </Route>
+        )}
         <Route path="/favourites" element={<Favourites />} />
         <Route path="/stores" element={<ShoppingStore />} />
         <Route path="/shopping_store/:id" element={<ShoppingStoreOfficial />} />

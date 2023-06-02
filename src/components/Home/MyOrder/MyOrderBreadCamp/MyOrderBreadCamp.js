@@ -126,7 +126,7 @@ const MyOrderBreadCamp = () => {
                     }`
               }
             >
-              Мои заказы
+              заказы
             </NavLink>
           </div>
           <div>
