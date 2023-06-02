@@ -11,6 +11,7 @@ import {
   WinterMale,
 } from "../../../../AssetsMain";
 import {
+  ArrowTopIcons,
   HeartIcons,
   HomeIcons,
   ItailIcons,
@@ -126,43 +127,63 @@ const FavoutireBreadCrumbs = () => {
             </NavLink>
           </div>
         </div>
-        <div>
-          <Popover
-            open={state?.openwear}
-            onOpenChange={handleOpenChangeWear}
-            className="w-[168px] px-[17px] h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
-            trigger="click"
-            options={["Hide"]}
-            placement="bottom"
-            content={contentWear}
-          >
-            <span>
-              {personItems
-                ?.filter((value) => value.id === dressInfo?.type)
-                .map((data) => {
-                  return (
-                    <img
-                      key={data.id}
-                      className="mr-3"
-                      src={data?.man}
-                      alt="female"
-                    />
-                  );
-                })}
-            </span>
-            <span className="not-italic font-AeonikProMedium text-center mt-1 text-sm leading-4 text-black">
-              Абдулазиз{" "}
-            </span>
-            <span>
-              <BiChevronDown
-                size={22}
-                style={{ color: "#000" }}
-                className={`${
-                  state?.openwear ? "rotate-[-180deg]" : ""
-                } duration-200`}
-              />{" "}
-            </span>
-          </Popover>
+        <div className="flex items-center">
+          <div className="w-[fit] flex items-center ">
+            <div className="flex items-center w-fit mr-4">
+              <span className="not-italic font-normal text-sm leading-4 text-setTexOpacity tractking-[1%]">
+                Сортировка:
+              </span>
+            </div>
+            <div>
+              <button className="w-[260px] h-[44px] px-4 rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between  cursor-pointer select-none group  ">
+                <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]  mt-1">
+                  Последние добавленные{" "}
+                </span>
+                <span className="rotate-[180deg]">
+                  <ArrowTopIcons colors={"#000"} />
+                </span>
+              </button>
+            </div>
+          </div>
+          <div className="border border-searchBgColor w-[1px] h-[20px] mx-3"></div>
+          <div>
+            <Popover
+              open={state?.openwear}
+              onOpenChange={handleOpenChangeWear}
+              className="w-[168px] px-[17px] h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
+              trigger="click"
+              options={["Hide"]}
+              placement="bottom"
+              content={contentWear}
+            >
+              <span>
+                {personItems
+                  ?.filter((value) => value.id === dressInfo?.type)
+                  .map((data) => {
+                    return (
+                      <img
+                        key={data.id}
+                        className="mr-3"
+                        src={data?.man}
+                        alt="female"
+                      />
+                    );
+                  })}
+              </span>
+              <span className="not-italic font-AeonikProMedium text-center mt-1 text-sm leading-4 text-black">
+                Абдулазиз{" "}
+              </span>
+              <span>
+                <BiChevronDown
+                  size={22}
+                  style={{ color: "#000" }}
+                  className={`${
+                    state?.openwear ? "rotate-[-180deg]" : ""
+                  } duration-200`}
+                />{" "}
+              </span>
+            </Popover>
+          </div>
         </div>
       </div>
     </div>
