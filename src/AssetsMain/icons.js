@@ -687,14 +687,14 @@ const MarketIcons = ({ colors }) => {
       />
       <path
         d="M4.23003 9C5.46753 9 6.58503 7.995 6.70503 6.7575L6.87003 5.1L7.23003 1.5H4.94253C2.97753 1.5 2.22753 2.25 1.95753 4.2L1.75503 6.2625C1.60503 7.77 2.71503 9 4.23003 9Z"
-        stroke="black"
+        stroke={colors}
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
         d="M9 12.75C7.7475 12.75 7.125 13.3725 7.125 14.625V16.5H10.875V14.625C10.875 13.3725 10.2525 12.75 9 12.75Z"
-        stroke="black"
+        stroke={colors}
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"

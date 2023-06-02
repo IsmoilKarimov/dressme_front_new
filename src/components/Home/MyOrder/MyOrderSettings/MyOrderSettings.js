@@ -9,6 +9,7 @@ import {
 } from "../../../../AssetsMain/icons";
 import InputMask from "react-input-mask";
 import { UzbekFlag } from "../../../../AssetsMain";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function MyOrderSettings() {
   const [phone, setPhone] = useState("");
@@ -34,6 +35,17 @@ export default function MyOrderSettings() {
   let arr3 = state.phoneCode.split("+");
   let data3 = arr3.join("");
   const sendMessagePhoneNumber = data3 + data2;
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const LogOut = () => {
+    localStorage.removeItem("dressMeLogin");
+    if (location?.pathname?.includes("my-order/settings")) {
+      navigate("/");
+    } else {
+      navigate(location.pathname);
+    }
+  };
   return (
     <div className=" pt-8 w-full flex justify-center ss:px-4 md:px-0">
       <div className="max-w-[820px] w-[100%] h-fit   border border-searchBgColor rounded-lg">
@@ -201,7 +213,10 @@ export default function MyOrderSettings() {
         </div>
         <div className="w-full flex items-center justify-between md:px-[40px] md:py-[30px] ">
           <div>
-            <button className="flex items-center active:scale-95  active:opacity-70 ">
+            <button
+              onClick={LogOut}
+              className="flex items-center active:scale-95  active:opacity-70 "
+            >
               <span>
                 <LogOutIcons colors={"#D50000"} />
               </span>
