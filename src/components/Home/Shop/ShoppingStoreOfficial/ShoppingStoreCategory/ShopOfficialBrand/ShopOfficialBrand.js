@@ -177,7 +177,7 @@ export default function ShopOfficialBrand() {
               className="flex items-center cursor-pointer select-none"
             >
               <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Доступность
+                Каталоги
               </span>
               <span
                 className={`${

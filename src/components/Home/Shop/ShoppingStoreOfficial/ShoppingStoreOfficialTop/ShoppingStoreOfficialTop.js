@@ -11,8 +11,10 @@ import {
 } from "../../../../../AssetsMain/icons";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import { useRef, useState } from "react";
 
 const ShoppingStoreOfficialTop = ({ name }) => {
+  const [prevSliderBtn, setPrevSliderBtn] = useState(false);
   const wearGroup = [
     { id: 1, name: "Футболки" },
     { id: 2, name: "Рубашки" },
@@ -28,14 +30,17 @@ const ShoppingStoreOfficialTop = ({ name }) => {
     { id: 12, name: "Юбки" },
     { id: 13, name: "Ремень" },
   ];
-
+  const data = (onClick) => {
+    onClick();
+    setPrevSliderBtn(true);
+  };
   const NextArrow = (props) => {
     const { onClick } = props;
     return (
       <div
-        className={`absolute text-center cursor-pointer no-underline  w-12 h-12 flex items-center justify-center top-[2px] z-50	right-[4px]  rounded-full bg-searchBgColor  duration-200 border  border-borderColor2
+        className={`absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-50	right-[4px]  rounded-full bg-white    duration-200 border  border-borderColor2
         		`}
-        onClick={onClick}
+        onClick={() => data(onClick)}
       >
         <button className="next">
           <GrFormNext size={20} />
@@ -48,7 +53,9 @@ const ShoppingStoreOfficialTop = ({ name }) => {
     const { onClick } = props;
     return (
       <div
-        className={`absolute text-center cursor-pointer no-underline  w-12 h-12 flex items-center justify-center top-[2px] z-10	left-[2px]  rounded-full bg-searchBgColor  duration-200 border  border-borderColor2
+        className={` ${
+          prevSliderBtn ? "block" : "hidden"
+        } absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-10	left-[2px]  rounded-full bg-white   duration-200 border  border-borderColor2
         `}
         onClick={onClick}
       >
@@ -69,6 +76,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
     slidesToShow: 8,
     slidesToScroll: 1,
     initialSlide: 0,
+    // beforeChange: (current, next) => setCurrentSlide(next),
 
     responsive: [
       {
@@ -212,6 +220,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
               <div className="w-full mt-3 h-[52px] flex flex-col items-center ">
                 <Slider
                   {...settings1}
+                  // ref={sliderRef}
                   className="w-[100%] h-full items-center flex xs:justify-between    "
                 >
                   {wearGroup?.map((data) => {
