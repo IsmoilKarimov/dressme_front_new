@@ -24,6 +24,8 @@ const MyOrderBreadCamp = () => {
     openwear: false,
     openPrice: false,
     textToColor: false,
+    LinkSetting: false,
+    LinkOrder: true,
   });
 
   let dataStyle = "";
@@ -97,21 +99,31 @@ const MyOrderBreadCamp = () => {
         <div className="max-w-[1280px] w-[100%] flex items-center justify-between items-center m-auto   ">
           <div className="flex items-center gap-x-6">
             <NavLink
+              onClick={() =>
+                setState({ ...state, LinkOrder: false, LinkSetting: true })
+              }
               to="/my-order/settings"
               className={({ isActive }) =>
                 isActive
-                  ? "not-italic font-AeonikProMedium text-lg leading-5 text-black"
-                  : "not-italic font-AeonikProMedium text-lg leading-5 text-setTexOpacity"
+                  ? `not-italic font-AeonikProMedium text-lg leading-5 text-black`
+                  : `not-italic font-AeonikProMedium text-lg leading-5  ${
+                      state?.LinkSetting ? "text-black" : "text-setTexOpacity"
+                    }`
               }
             >
               Настройки
             </NavLink>
             <NavLink
+              onClick={() =>
+                setState({ ...state, LinkOrder: true, LinkSetting: false })
+              }
               to="/my-order/list"
               className={({ isActive }) =>
                 isActive
-                  ? "not-italic font-AeonikProMedium text-lg leading-5 text-black"
-                  : "not-italic font-AeonikProMedium text-lg leading-5 text-setTexOpacity"
+                  ? `not-italic font-AeonikProMedium text-lg leading-5 text-black`
+                  : `not-italic font-AeonikProMedium text-lg leading-5  ${
+                      state?.LinkOrder ? "text-black" : "text-setTexOpacity"
+                    }`
               }
             >
               Мои заказы
