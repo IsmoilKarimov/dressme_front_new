@@ -142,9 +142,13 @@ const RouterMain = () => {
 
         {localStorage.getItem("dressMeLogin") && (
           <Route path="/my-order" element={<MyOrderBreadCamp />}>
-            <Route index element={<MyOrderList />} />
-            <Route index path="/my-order/list" element={<MyOrderList />} />
-            <Route path="/my-order/settings" element={<MyOrderSettings />} />
+            <Route index element={<MyOrderSettings />} />
+            <Route
+              index
+              path="/my-order/settings"
+              element={<MyOrderSettings />}
+            />
+            <Route path="/my-order/list" element={<MyOrderList />} />
           </Route>
         )}
         <Route path="/favourites" element={<Favourites />} />

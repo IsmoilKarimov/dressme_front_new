@@ -73,7 +73,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
     arrows: true,
     speed: 500,
     dots: false,
-    slidesToShow: 8,
+    slidesToShow: 9,
     slidesToScroll: 1,
     initialSlide: 0,
     // beforeChange: (current, next) => setCurrentSlide(next),
