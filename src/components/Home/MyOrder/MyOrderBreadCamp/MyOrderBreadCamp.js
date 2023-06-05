@@ -24,8 +24,8 @@ const MyOrderBreadCamp = () => {
     openwear: false,
     openPrice: false,
     textToColor: false,
-    LinkSetting: false,
-    LinkOrder: true,
+    LinkSetting: true,
+    LinkOrder: false,
   });
 
   let dataStyle = "";
@@ -126,7 +126,7 @@ const MyOrderBreadCamp = () => {
                     }`
               }
             >
-              заказы
+              Мои заказы
             </NavLink>
           </div>
           <div>
