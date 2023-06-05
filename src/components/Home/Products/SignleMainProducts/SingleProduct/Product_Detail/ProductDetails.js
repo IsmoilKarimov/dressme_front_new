@@ -90,10 +90,6 @@ const ProductDetails = () => {
           <div className="flex items-center justify-start ">
             <div className="w-fit flex items-center gap-x-[1px]">
               <StarIcons />
-              <StarIcons />
-              <StarIcons />
-              <StarIcons />
-              <StarIcons />
             </div>
             <div className="flex items-center w-fit ml-2">
               <div className="not-italic font-AeonikProMedium text-[13px] mt-2 leading-4 text-black tracking-[1%]">
