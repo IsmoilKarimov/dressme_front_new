@@ -5,6 +5,9 @@ import {
   ArrowTopIcons,
   CotegoryMenuIcons,
   DeliveryIcons,
+  FilterIcons,
+  HeartIcons,
+  SortIcons,
 } from "../../../../AssetsMain/icons";
 
 export default function CategoryTopDetail() {
@@ -12,8 +15,9 @@ export default function CategoryTopDetail() {
   const Max = "120 000";
   const [values, setValues] = useState([Min, Max]);
   return (
-    <div className="flex flex-col min-h-[44px]  justify-center items-center m-0 pb-2 pt-2 box-border  border-b border-searchBgColor">
-      <div className="max-w-[1280px] w-[100%] flex items-center justify-between items-center m-auto py-3  ">
+    // ------------------------------HIdden------------------------------
+    <div className="flex flex-col min-h-[44px]  justify-center items-center m-0 md:pb-2 pb-3 pt-2 box-border  border-b border-searchBgColor">
+      <div className="max-w-[1280px] w-[100%] hidden md:block md:flex items-center justify-between items-center m-auto py-3  ">
         <div>
           <button className="w-fit h-[44px] px-3 rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center  cursor-pointer select-none group  ">
             <span>
@@ -92,6 +96,35 @@ export default function CategoryTopDetail() {
               </span>
             </button>
           </div>
+        </div>
+      </div>
+      <div className="max-w-[1280px] w-[100%] md:hidden  flex flex-col items-center m-auto px-4">
+        <div className="w-full flex items-center justify-between mt-4">
+          <button className="not-italic font-AeonikProMedium text-xl leading-6 text-black tracking-[1%]">
+            Мужские кроссовки
+          </button>
+          <span className="not-italic font-AeonikProRegular text-sm leading-4 text-right text-setTexOpacity tracking-[1%]">
+            {" "}
+            82 товара
+          </span>
+        </div>
+        <div className="w-full flex items-center justify-between mt-6">
+          <button className="h-[44px] w-[48%] rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center">
+            <span>
+              <FilterIcons colors={"#000"} />
+            </span>
+            <span className="ml-2 not-italic font-AeonikProMedium mt-1  text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+              Фильтры
+            </span>
+          </button>
+          <button className="h-[44px] w-[48%] rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center">
+            <span>
+              <SortIcons colors={"#000"} />
+            </span>
+            <span className="ml-2 not-italic font-AeonikProMedium mt-1  text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+              Популярные
+            </span>
+          </button>
         </div>
       </div>
     </div>
