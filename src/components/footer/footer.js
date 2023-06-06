@@ -356,7 +356,7 @@ const Footer = () => {
   );
 
   return (
-    <div className="flex flex-col justify-center items-center m-0 p-0 ss:px-4 md:px-0 box-border mt-40 mb-[40px] md:mb-[60px]">
+    <div className="flex flex-col h-fit justify-center items-center m-0 p-0 ss:px-4 md:px-0 box-border border-t border-searchBgColor pt-[120px] mt-[40px] mb-[40px] md:mb-[60px] bg-btnBgColor md:bg-white md:border-t-0">
       <div className="backTopMenu  mt-[-100px]">
         <ScrollToTop
           smooth
@@ -379,7 +379,7 @@ const Footer = () => {
         <div className="w-[100%] h-fit ss:p-0 md:p-[30px]  md:border md:border-searchBgColor border-solid rounded-lg">
           <div>
             {/* Footer LOGO and Fedback form */}
-            <div className="flex items-center md:px-0 ">
+            <div className="flex items-center md:px-0 mt-3 md:mt-0">
               <div className="flex flex-col">
                 <Link to="/" className="md:mb-[14px]">
                   <img src={BrandBlack} alt="logo" className="w-full" />
@@ -395,7 +395,7 @@ const Footer = () => {
                   Юридический адрес :
                 </div>
                 <div className="flex items-center mb-[46px]">
-                  <div className="border border-searchBgColor flex items-center justify-center rounded-lg mr-3 w-24 h-12 ss:bg-white md:bg-transparent">
+                  <div className="border border-searchBgColor flex items-center justify-center rounded-lg mr-3 w-12 h-12 ss:bg-white md:bg-transparent">
                     <LocationIcons />
                   </div>
                   <div className="font-AeonikProRegular text-sm underline underline-offset-4">
@@ -764,7 +764,7 @@ const Footer = () => {
             {/* Feedback for mobile */}
             <Link
               to="#"
-              className="flex items-center bg-bgColor pl-3 py-[15px] border border-searchBgColor rounded-lg ss:my-[35px] md:my-0 ls:pl-6 md:pl-16 md:mb-0 md:hidden"
+              className="flex justify-center items-center bg-bgColor pl-3 py-[15px] border border-searchBgColor rounded-lg ss:my-[35px] md:my-0 ls:pl-6 md:pl-16 md:mb-0 md:hidden"
             >
               <img src={UploadIcons} alt="" />
               <span className="text-base font-AeonikProMedium leading-4 ml-[12.5px] mr-2 ls:mr-6 md:mr-[32.37px]">

@@ -54,15 +54,15 @@ export default function FavouriteProducts() {
   return (
     <div className="flex flex-col min-h-[44px]  justify-center items-center mt-8">
       <div className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto mb-[90px] ss:px-4 md:px-0">
-        <div className="flex flex-col box-border ">
+        <div className="w-full flex flex-col box-border ">
           {dressInfo?.ProductList.length ? (
-            <div className="flex flex-wrap  md:mx-0 gap-x-5 gap-y-5 ">
+            <div className="w-full flex justify-between flex-wrap  md:mx-0 gap-x-2 gap-y-3 md:gap-x-5 md:gap-y-5">
               {dressInfo?.ProductList.map((data) => {
                 return (
                   <div
                     key={data.id}
                     // onClick={() => handleGetCardId(data?.id)}
-                    className={`ss:w-[49%] md:w-[24%] lg:w-[240px] xs:h-[456px] lg:h-[428px] border border-solid borderColorCard overflow-hidden rounded-lg`}
+                    className={`ss:w-[48%] md:w-[24%] lg:w-[240px] xs:h-[456px] lg:h-[428px] border border-solid borderColorCard overflow-hidden rounded-lg`}
                   >
                     <div className="relative w-full cursor-pointer ss:h-[200px] ls:h-[220px] ll:h-[238px] xs:h-[309px] bg-btnBgColor lg:h-[320px] flex content-between items-center overflow-hidden border-b border-solid flex-nowrap">
                       {data.ProducImg ? (
@@ -191,6 +191,13 @@ export default function FavouriteProducts() {
             </div>
           )}
         </div>
+
+        <div className="w-full h-fit flex items-center justify-center mt-14 md:hidden">
+          <div className="w-[760px] h-[60px] cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-black flex items-center justify-center rounded-lg border border-searchBgColor bg-btnBgColor">
+            Показать ещё 30 наборов
+          </div>
+        </div>
+
       </div>
     </div>
   );

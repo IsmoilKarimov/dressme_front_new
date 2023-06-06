@@ -15,6 +15,7 @@ import {
   HeartIcons,
   HomeIcons,
   ItailIcons,
+  SortIcons,
 } from "../../../../AssetsMain/icons";
 const FavoutireBreadCrumbs = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -93,97 +94,109 @@ const FavoutireBreadCrumbs = () => {
 
   return (
     <div className="flex flex-col min-h-[44px]  justify-center items-center my-3 ">
-        <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
-            <div className="flex items-center ">
-                <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-                {/* <div className="h-5 w-5 flex justify-center items-center">
-                    <span>
-                    <HomeIcons colors={"#000"} />
-                    </span>
-                </div> */}
-
-                <NavLink
-                    to="/"
-                    className="flex items-center cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
-                >
-                    Главная
-                </NavLink>
-                <span>
-                    <ItailIcons colors={"#000"} />
-                </span>
-                </div>
-                <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-                {/* <div className="h-5 w-5 flex justify-center items-center">
-                    <span>
-                    <HeartIcons colors={"#000"} />
-                    </span>
-                </div> */}
-
-                <NavLink
-                    to="/"
-                    className="flex items-center cursor-pointer pt-[4px]  not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]"
-                >
-                    Избранное
-                </NavLink>
-                </div>
-            </div>
-            <div className="flex items-center">
-                <div className="w-[fit] flex items-center ">
-                    <div className="flex items-center w-fit mr-4">
-                        <span className="not-italic font-normal text-sm leading-4 text-setTexOpacity tractking-[1%]">
-                        Сортировка:
-                        </span>
-                    </div>
-                    <div>
-                        <button className="w-[260px] h-[44px] px-4 rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between  cursor-pointer select-none group  ">
-                        <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]  mt-1">
-                            Последние добавленные{" "}
-                        </span>
-                        <span className="rotate-[180deg]">
-                            <ArrowTopIcons colors={"#000"} />
-                        </span>
-                        </button>
-                    </div>
-                </div>
-                <div className="border border-searchBgColor w-[1px] h-[20px] mx-3"></div>
-                <div>
-                    <Popover
-                        open={state?.openwear}
-                        onOpenChange={handleOpenChangeWear}
-                        className="w-[168px] px-[17px] h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
-                        trigger="click"
-                        options={["Hide"]}
-                        placement="bottom"
-                        content={contentWear}
+        <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto px-4 md:px-0">
+            <div className="w-full flex justify-between flex-col md:flex-row ">
+            
+              <div className="flex items-center mb-5 md:mb-0">
+                  <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+                    <NavLink
+                        to="/"
+                        className="flex items-center cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProRegular md:font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
                     >
-                        <span>
-                        {personItems
-                            ?.filter((value) => value.id === dressInfo?.type)
-                            .map((data) => {
-                            return (
-                                <img
-                                key={data.id}
-                                className="mr-3"
-                                src={data?.man}
-                                alt="female"
-                                />
-                            );
-                            })}
-                        </span>
-                        <span className="not-italic font-AeonikProMedium text-center mt-1 text-sm leading-4 text-black">
-                        Абдулазиз{" "}
-                        </span>
-                        <span>
-                        <BiChevronDown
-                            size={22}
-                            style={{ color: "#000" }}
-                            className={`${
-                            state?.openwear ? "rotate-[-180deg]" : ""
-                            } duration-200`}
-                        />{" "}
-                        </span>
-                    </Popover>
-                </div>
+                        Главная
+                    </NavLink>
+                    <span>
+                        <ItailIcons colors={"#000"} />
+                    </span>
+                  </div>
+                  <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+                  <NavLink
+                      to="/"
+                      className="flex items-center cursor-pointer pt-[4px]  not-italic font-AeonikProRegular md:font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]"
+                  >
+                      Избранное
+                  </NavLink>
+                  </div>
+                  <div className="block md:hidden ml-auto">
+                    <span className="text-sm font-AeonikProMedium">82 товара</span>
+                  </div>
+              </div>
+              
+              <div className="flex items-center">
+
+                  <div className="w-[fit] flex items-center">
+                      <div className="hidden items-center w-fit mr-4 md:flex">
+                          <span className="not-italic font-normal text-sm leading-4 text-setTexOpacity tractking-[1%]">
+                          Сортировка:
+                          </span>
+                      </div>
+                      <div className="hidden md:flex">
+                          <button className="w-[260px] h-[44px] px-4 rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between  cursor-pointer select-none group  ">
+                            <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]  mt-1">
+                                Последние добавленные{" "}
+                            </span>
+                            <span className="rotate-[180deg]">
+                                <ArrowTopIcons colors={"#000"} />
+                            </span>
+                          </button>
+                      </div>
+                  </div>
+                  <div className="w-full block md:hidden">
+                      <span className="font-normal text-sm leading-4tractking-[1%]">
+                      Сортировка:
+                      </span>
+                      <button className="w-full h-[44px] px-4 rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between  cursor-pointer select-none group mt-[10px] ">
+                          <div className="flex items-center font-AeonikProMedium text-sm text-black">
+                              < SortIcons />
+                              <span className="ml-3 mt-1">Последние добавленные</span>
+                          </div>
+                          <span className="rotate-[180deg]">
+                              <ArrowTopIcons colors={"#000"} />
+                          </span>
+                      </button>
+                  </div>
+
+                  <div className="border border-searchBgColor w-[1px] h-[20px] mx-3 hidden md:block"></div>
+                  <div className="hidden md:flex">
+                      <Popover
+                          open={state?.openwear}
+                          onOpenChange={handleOpenChangeWear}
+                          className="w-[168px] px-[17px] h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
+                          trigger="click"
+                          options={["Hide"]}
+                          placement="bottom"
+                          content={contentWear}
+                      >
+                          <span>
+                          {personItems
+                              ?.filter((value) => value.id === dressInfo?.type)
+                              .map((data) => {
+                              return (
+                                  <img
+                                  key={data.id}
+                                  className="mr-3"
+                                  src={data?.man}
+                                  alt="female"
+                                  />
+                              );
+                              })}
+                          </span>
+                          <span className="not-italic font-AeonikProMedium text-center mt-1 text-sm leading-4 text-black">
+                          Абдулазиз{" "}
+                          </span>
+                          <span>
+                          <BiChevronDown
+                              size={22}
+                              style={{ color: "#000" }}
+                              className={`${
+                              state?.openwear ? "rotate-[-180deg]" : ""
+                              } duration-200`}
+                          />{" "}
+                          </span>
+                      </Popover>
+                  </div>
+              </div>
+            
             </div>
         </div>
     </div>
