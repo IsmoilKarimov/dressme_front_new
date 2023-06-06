@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BsCheckLg } from "react-icons/bs";
 import ReactSlider from "react-slider";
 
@@ -8,8 +8,11 @@ import {
   InputCheckedTrueIcons,
   SearchIcons,
 } from "../../../../../../AssetsMain/icons";
+import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 
-export default function ShopOfficialBrand() {
+const ShopOfficialBrand = () => {
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
+
   const [product, setProduct] = useState({
     Catolog: [
       { id: 1, action: false, name: "Головной убор" },
@@ -148,7 +151,13 @@ export default function ShopOfficialBrand() {
   };
 
   return (
-    <div className="w-full h-hull border border-searchBgColor py-5 rounded-lg overflow-hidden ">
+    <div
+      className={`w-full h-hull ${
+        dressInfo?.openShopIdFilter
+          ? " border-0 "
+          : " border border-searchBgColor"
+      } py-5 rounded-lg overflow-hidden `}
+    >
       <div className="w-full px-3 ">
         <div className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px]">
           <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg">
@@ -708,4 +717,5 @@ export default function ShopOfficialBrand() {
       </div>
     </div>
   );
-}
+};
+export { ShopOfficialBrand };
