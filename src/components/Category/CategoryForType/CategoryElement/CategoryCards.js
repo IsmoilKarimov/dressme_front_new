@@ -17,6 +17,7 @@ export default function CategoryCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const wearGroup = [
     { id: 1, name: "Футболки" },
+
     { id: 2, name: "Рубашки" },
     { id: 3, name: "Шорты" },
     { id: 4, name: "Джинсы" },
