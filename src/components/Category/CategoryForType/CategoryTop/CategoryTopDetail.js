@@ -9,11 +9,22 @@ import {
   HeartIcons,
   SortIcons,
 } from "../../../../AssetsMain/icons";
+import { useContext } from "react";
+import { dressMainData } from "../../../../ContextHook/ContextMenu";
 
 export default function CategoryTopDetail() {
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const handleFilter = () => {
+    setDressInfo({
+      ...dressInfo,
+      openCategoryFilter: !dressInfo.openCategoryFilter,
+    });
+  };
+
   const Min = "60 000";
   const Max = "120 000";
   const [values, setValues] = useState([Min, Max]);
+
   return (
     // ------------------------------HIdden------------------------------
     <div className="flex flex-col min-h-[44px]  justify-center items-center m-0 md:pb-2 pb-3 pt-2 box-border  border-b border-searchBgColor">
@@ -109,7 +120,10 @@ export default function CategoryTopDetail() {
           </span>
         </div>
         <div className="w-full flex items-center justify-between mt-6">
-          <button className="h-[44px] w-[48%] rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center">
+          <button
+            onClick={handleFilter}
+            className="h-[44px] w-[48%] rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+          >
             <span>
               <FilterIcons colors={"#000"} />
             </span>

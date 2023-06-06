@@ -10,6 +10,8 @@ export const DressMenu = ({ children }) => {
     yandexOpenMarket: false,
     openMainMenu: true,
     yandexFullScreen: false,
+    // Category
+    openCategoryFilter: false,
     ProductList: [
       {
         id: 1,
