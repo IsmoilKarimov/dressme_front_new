@@ -53,7 +53,7 @@ export default function FavouriteProducts() {
 
   return (
     <div className="flex flex-col min-h-[44px]  justify-center items-center mt-8">
-      <div className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto  mb-[90px]">
+      <div className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto mb-[90px] ss:px-4 md:px-0">
         <div className="flex flex-col box-border ">
           {dressInfo?.ProductList.length ? (
             <div className="flex flex-wrap  md:mx-0 gap-x-5 gap-y-5 ">
