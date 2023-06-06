@@ -11,6 +11,7 @@ import {
   TicketDiscountIcons,
 } from "../../../../../../AssetsMain/icons";
 import { AddBasket, HeartImg } from "../../../../../../AssetsMain";
+import { ShopIdFilterGroup } from "../../ShopIdFilterGroup/ShopIdFilterGroup";
 
 export default function ShopOfficialCard() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -29,9 +30,40 @@ export default function ShopOfficialCard() {
     //   });
     // });
   };
+  const wearGroup = [
+    { id: 1, name: "Футболки" },
 
+    { id: 2, name: "Рубашки" },
+    { id: 3, name: "Шорты" },
+    { id: 4, name: "Джинсы" },
+    { id: 5, name: "Свитер" },
+    { id: 6, name: "Куртки" },
+    { id: 7, name: "Толстовки" },
+    { id: 8, name: "Обуви" },
+    { id: 9, name: "Куртки" },
+    { id: 10, name: "Сапоги" },
+    { id: 11, name: "Платья" },
+    { id: 12, name: "Юбки" },
+    { id: 13, name: "Ремень" },
+  ];
   return (
-    <div className="flex flex-col box-border ">
+    <div className="flex flex-col box-border  ">
+      <div className=" w-full md:hidden mb-8">
+        <ShopIdFilterGroup _class="items gap-x-2 ">
+          {wearGroup?.map((data) => {
+            return (
+              <div
+                key={data.id}
+                className={`flex items-center justify-center px-4 py-3 border border-searchBgColor rounded-[20px]   bg-btnBgColor`}
+              >
+                <p className=" cursor-pointer  not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
+                  {data?.name || "0"}
+                </p>
+              </div>
+            );
+          })}
+        </ShopIdFilterGroup>{" "}
+      </div>
       <div className="flex justify-between flex-wrap gap-y-2 gap-x-2">
         {dressInfo?.ProductList.map((data) => {
           return (
@@ -43,7 +75,7 @@ export default function ShopOfficialCard() {
               <div className="relative w-full cursor-pointer ss:h-[206px] ls:h-[238px] xs:h-[309px] bg-btnBgColor lg:h-[320px] flex  items-center justify-center overflow-hidden border-b border-solid flex-nowrap">
                 {data?.ProducImg ? (
                   <img
-                    className=" m-auto hover:scale-105 transition duration-700 ease-in-out "
+                    className=" m-auto  w-full h-full md:w-auto md:h-auto hover:scale-105 transition duration-700 ease-in-out "
                     src={data?.ProducImg}
                     alt="ProducImg"
                   />
@@ -113,7 +145,7 @@ export default function ShopOfficialCard() {
               <div className="w-full rounded-b-1xl bg-white  flex flex-wrap   ss:h-[124px] xs:h-[147px] lg:h-[120px] ">
                 <div className="w-full  xs:px-3 ss:px-3 xs:mt-3 ss:mt-2">
                   <div className="relative w-full  whitespace-nowrap overflow-hidden py-1 not-italic font-AeonikProRegular text-[10px] ls:text-xs lg:text-[14px] leading-4 text-black mb-2 md:mb-0  cursor-pointer">
-                    <div className="absolute categoryLinearText left-0 w-full h-full z-[51] top-0"></div>
+                    <div className="absolute categoryLinearText left-0 w-full h-full z-[20] top-0"></div>
                     <span>{data?.title || "NoData"}</span>
                   </div>
                   <div className="w-full flex justify-between items-center xs:mt-3">
@@ -172,8 +204,12 @@ export default function ShopOfficialCard() {
           );
         })}
       </div>
-
-      <div className="w-full h-fit flex items-center justify-center mt-[75px] gap-x-6">
+      <div className="w-full h-fit md:hidden flex items-center justify-center mt-14">
+        <div className="w-[760px] h-[60px] cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-black flex items-center justify-center rounded-lg border border-searchBgColor bg-btnBgColor">
+          Показать ещё 30 наборов
+        </div>
+      </div>{" "}
+      <div className="w-full hidden h-fit md:block md:flex items-center justify-center mt-[75px] gap-x-6">
         <div className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
           <span className="rotate-[-90deg]">
             <ArrowTopIcons colors={"#007DCA"} />

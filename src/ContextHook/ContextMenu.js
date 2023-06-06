@@ -12,6 +12,8 @@ export const DressMenu = ({ children }) => {
     yandexFullScreen: false,
     // Category
     openCategoryFilter: false,
+    // Shop/:Id
+    openShopIdFilter: false,
     ProductList: [
       {
         id: 1,

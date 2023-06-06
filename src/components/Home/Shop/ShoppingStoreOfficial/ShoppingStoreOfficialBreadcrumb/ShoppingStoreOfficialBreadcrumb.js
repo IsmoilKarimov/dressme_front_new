@@ -94,7 +94,7 @@ const ShoppingStoreOfficialBreadCrumb = ({ name }) => {
   return (
     <div className="flex flex-col min-h-[44px]  justify-center items-center my-3">
       <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
-        <div className="flex items-center ">
+        <div className="flex items-center px-4 md:px-0">
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
             <NavLink
               to="/"
@@ -126,7 +126,7 @@ const ShoppingStoreOfficialBreadCrumb = ({ name }) => {
             </NavLink>
           </div>
         </div>
-        <div>
+        <div className="hidden md:block">
           <Popover
             open={state?.openwear}
             onOpenChange={handleOpenChangeWear}
