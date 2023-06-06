@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BsCheckLg } from "react-icons/bs";
 import ReactSlider from "react-slider";
 import {
@@ -7,8 +7,11 @@ import {
   SearchIcons,
   StarIcons,
 } from "../../../../AssetsMain/icons";
+import { dressMainData } from "../../../../ContextHook/ContextMenu";
 
-export default function CategoryForBrand() {
+const CategoryForBrand = () => {
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
+
   const [product, setProduct] = useState({
     brandWear: [
       { id: 1, action: true, name: "Adidas", count: 125 },
@@ -139,7 +142,13 @@ export default function CategoryForBrand() {
   };
 
   return (
-    <div className="w-full h-hull border border-searchBgColor py-5 rounded-lg overflow-hidden ">
+    <div
+      className={`w-full h-hull ${
+        dressInfo?.openCategoryFilter
+          ? " border-0 "
+          : " border border-searchBgColor"
+      } py-5 rounded-lg overflow-hidden `}
+    >
       <div className="w-full px-3 ">
         <div className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px]">
           <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg">
@@ -651,4 +660,5 @@ export default function CategoryForBrand() {
       </div>
     </div>
   );
-}
+};
+export { CategoryForBrand };

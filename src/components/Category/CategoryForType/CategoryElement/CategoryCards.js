@@ -47,8 +47,8 @@ export default function CategoryCards() {
   };
 
   return (
-    <div className="flex flex-col box-border mt-3">
-      <div className=" w-full ">
+    <div className="flex flex-col box-border mt-2">
+      <div className=" w-full md:hidden">
         <ClothesFilterGroup _class="items gap-x-2 ">
           {wearGroup?.map((data) => {
             return (
@@ -75,7 +75,7 @@ export default function CategoryCards() {
               <div className="relative w-full cursor-pointer ss:h-[206px] ls:h-[238px] xs:h-[309px] bg-btnBgColor lg:h-[320px] flex  items-center justify-center overflow-hidden border-b border-solid flex-nowrap">
                 {data?.ProducImg ? (
                   <img
-                    className=" m-auto hover:scale-105 transition duration-700 ease-in-out "
+                    className=" m-auto w-full h-full md:w-auto md:h-auto hover:scale-105 transition duration-700 ease-in-out "
                     src={data?.ProducImg}
                     alt="ProducImg"
                   />
@@ -145,7 +145,7 @@ export default function CategoryCards() {
               <div className="w-full rounded-b-1xl bg-white  flex flex-wrap   ss:h-[124px] xs:h-[147px] lg:h-[120px] ">
                 <div className="w-full  xs:px-3 ss:px-3 xs:mt-3 ss:mt-2">
                   <div className="relative w-full  whitespace-nowrap overflow-hidden py-1 not-italic font-AeonikProRegular text-[10px] ls:text-xs lg:text-[14px] leading-4 text-black mb-2 md:mb-0  cursor-pointer">
-                    <div className="absolute categoryLinearText left-0 w-full h-full z-[51] top-0"></div>
+                    <div className="absolute categoryLinearText left-0 w-full h-full z-[20] top-0"></div>
                     <span>{data?.title || "NoData"}</span>
                   </div>
                   <div className="w-full flex justify-between items-center xs:mt-3">
