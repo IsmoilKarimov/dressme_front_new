@@ -1,65 +1,62 @@
 .navbaritem {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
 }
 
 .activeOne {
-    visibility: visible;
-    transition: all 0.5s;
-    z-index: 333;
+  visibility: visible;
+  transition: all 0.5s;
+  z-index: 333;
 }
 
 .hiddenOne {
-    visibility: hidden;
-    transition: all 0.5s;
-    z-index: 333;
-    transform: translateY(-100%);
+  visibility: hidden;
+  transition: all 0.5s;
+  z-index: 333;
+  transform: translateY(-100%);
 }
-
-
 
 /* pulse */
 
 .pulse {
-    width: 32px;
-    height: 32px;
-    border: 1px solid #007DCA;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    background-color: rgba(252, 252, 252, 0.5);
-    /* background: linear-gradient(#8a82fb, #407ed7); */
+  width: 32px;
+  height: 32px;
+  border: 1px solid #007dca;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background-color: rgba(252, 252, 252, 0.5);
+  /* background: linear-gradient(#8a82fb, #407ed7); */
 }
 
-.pulse::after, .pulse::before {
-    content: "";
-    position: absolute;
-    height: 32px;
-    width: 32px;
-    background-color: rgb(178, 208, 226);
-    border-radius: 50%;
-    z-index: -1;
-    opacity: 0.7;
-    /* animation: pulse 4s ease-out infinite; */
-
+.pulse::after,
+.pulse::before {
+  content: "";
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  background-color: rgb(178, 208, 226);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0.7;
+  /* animation: pulse 4s ease-out infinite; */
 }
 
 .pulse::before {
-    animation: pulse 1s ease-out infinite;
+  animation: pulse 1s ease-out infinite;
 }
 
 .pulse::after {
-    animation: 1s 0.6s ease-out infinite;
+  animation: 1s 0.6s ease-out infinite;
 }
 
 @keyframes pulse {
-
-    100% {
-        transform: scale(2);
-        opacity: 0;
-    }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
 }
 
 /* 
@@ -74,3 +71,12 @@
 .pulse span:nth-child(3) {
     animation-delay: 3s;
 } */
+.categoryScroll::-webkit-scrollbar {
+  width: 30px;
+}
+
+.categoryScroll::-webkit-scrollbar-thumb {
+  background-color: #1e1e20;
+  height: 5px;
+  border-radius: 8px;
+}
