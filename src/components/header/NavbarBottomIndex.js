@@ -156,7 +156,7 @@ const NavbarBottomIndex = () => {
               </>
             ) : null}
             {locationWindow === "/" ? (
-              <div className=" my-3">
+              <div className=" md:my-3">
                 <BottomHeader />
               </div>
             ) : null}

@@ -74,7 +74,7 @@ const MediumHeader = () => {
 
   useEffect(() => {
     if (
-      !state?.hamburgerMenu ||
+      state?.hamburgerMenu ||
       state?.clothesTypeMobile ||
       state?.priceToggleMobile ||
       state?.brandToggleMobile ||
@@ -268,7 +268,7 @@ const MediumHeader = () => {
     setLocationWindow(location.pathname);
     // console.log(locationWindow, "locationWindow");
   }, [location.pathname]);
-
+  // md:mt-[99px] ss:mt-0
   return (
     <div className="flex flex-col justify-center items-center m-0 p-0 box-border ">
       <div className="max-w-[1280px] w-[100%] block md:flex px-3 md:px-0 md:py-0 justify-center  items-center m-auto ">
@@ -477,7 +477,7 @@ const MediumHeader = () => {
           >
             <div className={`w-full h-full `}>
               {/* Searching section */}
-              <div className="search flex items-center bg-btnBgColor justify-between rounded-lg font-AeonikProMedium h-12 mt-3 mb-3 border border-searchBg ss:mt-3 md:hidden w-full">
+              <div className="search flex items-center bg-btnBgColor justify-between rounded-lg font-AeonikProMedium h-12 mt-3 mb-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
                 <span className=" flex ss:pl-[11.65px] md:hidden">
                   <SearchIcons />
                 </span>
@@ -829,7 +829,7 @@ const MediumHeader = () => {
           <div className={`md:hidden   `}>
             <div className="flex items-center justify-between w-full ">
               {/* Searching section */}
-              <div className="search flex items-center rounded-lg font-AeonikProMedium h-10  border ss:w-[100%]">
+              <div className="search flex items-center rounded-lg font-AeonikProMedium h-12  border ss:w-[100%]">
                 <span className="pl-[11.65px]">
                   <SearchIcons />
                 </span>
@@ -843,7 +843,7 @@ const MediumHeader = () => {
               {/* Map section */}
               <Link
                 to="/delivery-points"
-                className="flex items-center w-full justify-center bg-btnBgColor border border-searchBgColor rounded-lg ss:px-4 h-10 ml-2  ss:w-[94px] "
+                className="flex items-center w-full justify-center bg-btnBgColor border border-searchBgColor rounded-lg ss:px-4 h-12 ml-2  ss:w-[94px] "
               >
                 <span className="pr-[6px]">
                   <MapIcons />
@@ -867,13 +867,13 @@ const MediumHeader = () => {
                         className="w-full flex items-center justify-between "
                       >
                         <button
-                          className={` ${genderStyle} border rounded-lg bg-btnBgColor  border-searchBgColor font-AeonikProMedium w-[48%] h-[44px] px-4 flex items-center  focus:rounded-lg`}
+                          className={` ${genderStyle} border rounded-lg bg-btnBgColor  border-searchBgColor font-AeonikProMedium w-[48%] h-[52px] px-4 flex items-center  focus:rounded-lg`}
                         >
                           <img src={data?.woman} alt="female" />
                           <span className="ml-3">Женщинам</span>
                         </button>
                         <button
-                          className={` font-AeonikProMedium ${genderStyle} border rounded-lg bg-btnBgColor  border-searchBgColor w-[48%] h-[44px] px-4 justify-center flex items-center  focus:rounded-lg`}
+                          className={` font-AeonikProMedium ${genderStyle} border rounded-lg bg-btnBgColor  border-searchBgColor w-[48%] h-[52px] px-4 justify-center flex items-center  focus:rounded-lg`}
                         >
                           <img src={data?.man} alt="male" />
                           <span className="ml-3"> Мужчинам</span>
@@ -886,7 +886,7 @@ const MediumHeader = () => {
                   onClick={() => {
                     setState({ ...state, toggle: !state.toggle });
                   }}
-                  className="flex items-center bg-btnBgColor font-AeonikProMedium h-12 rounded-lg border border-gray-200 px-5 ss:w-full  ss:mt-4 "
+                  className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] rounded-lg border border-searchBgColor px-5 ss:w-full  ss:mt-4 "
                 >
                   <div className="flex items-center ml-auto">
                     <ClothesIcons />
@@ -910,7 +910,7 @@ const MediumHeader = () => {
                 state?.toggle ? "h-[280px]" : "h-0"
               } duration-500  overflow-hidden md:hidden`}
             >
-              <ul className="ss:w-full mt-4 bg-white">
+              <ul className="ss:w-full  bg-white">
                 <li
                   onClick={() => {
                     setState({
@@ -919,7 +919,7 @@ const MediumHeader = () => {
                     });
                   }}
                 >
-                  <button className="ss:w-full flex items-center bg-btnBgColor font-AeonikProMedium h-12 border rounded-lg border-searchBgColor px-5 mb-3 md:hidden">
+                  <button className="ss:w-full flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 md:hidden">
                     <div className="flex items-center">
                       <span className="w-[52px]  border-r border-searchBgColor py-3 pr-5">
                         <ClothesIcons />
@@ -939,7 +939,7 @@ const MediumHeader = () => {
                     })
                   }
                 >
-                  <button className="flex items-center w-full bg-btnBgColor font-AeonikProMedium h-12 border rounded-lg border-searchBgColor px-5 mb-3 md:hidden">
+                  <button className="flex items-center w-full bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 md:hidden">
                     <div className="flex items-center">
                       <span className="w-[52px]  border-r border-searchBgColor py-3 pr-5">
                         <DollorIcons />
@@ -953,7 +953,7 @@ const MediumHeader = () => {
                 </li>
 
                 <li>
-                  <button className="w-full flex items-center justify-between bg-btnBgColor font-AeonikProMedium h-12 border rounded-lg border-searchBgColor px-5 mb-3 md:hidden">
+                  <button className="w-full flex items-center justify-between bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 md:hidden">
                     <span className="w-[52px] border-r border-searchBgColor py-3 pr-5">
                       <BrushColorIcons />
                     </span>
@@ -997,7 +997,7 @@ const MediumHeader = () => {
                     })
                   }
                 >
-                  <button className="w-full flex items-center bg-btnBgColor font-AeonikProMedium h-12 border rounded-lg border-searchBgColor px-5 mb-3 md:hidden">
+                  <button className="w-full flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 md:hidden">
                     <div className="flex items-center">
                       <span className="w-[52px]  border-r border-searchBgColor py-3 pr-5">
                         <TopBrandsIcon />
