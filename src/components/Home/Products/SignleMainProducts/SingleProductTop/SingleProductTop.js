@@ -93,7 +93,7 @@ const SingleProductTop = () => {
   const Newid = id?.replace(":", " ");
   return (
     <div className="flex flex-col min-h-[44px]  justify-center items-center m-0 py-3 box-border border-b border-searchBgColor">
-      <div className="max-w-[1280px] w-[100%] flex items-center justify-between items-center m-auto   ">
+      <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
         <div className="flex items-center ">
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
             <NavLink
@@ -109,7 +109,7 @@ const SingleProductTop = () => {
 
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
             <NavLink className="flex w-fit items-center cursor-pointer mt-[6px] pxr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
-              {Newid}{" "}
+              {Newid}
             </NavLink>
           </div>
         </div>
