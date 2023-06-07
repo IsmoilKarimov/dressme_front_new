@@ -293,7 +293,11 @@ export default function MainPageSliders() {
         {carosuelData?.map((data) => {
           return data.Category.map((data) => {
             return (
-              <div key={data?.id} className="ll:w-[100px] ss:w-[80px] ">
+              <NavLink
+                to="/categoriesType"
+                key={data?.id}
+                className="ll:w-[100px] ss:w-[80px] "
+              >
                 <div className="w-[100%] h-[80px] flex items-center justify-center	p-1 bg-btnBgColor border border-searchBgColor	rounded-lg ">
                   <NoImg />
                 </div>
@@ -305,7 +309,7 @@ export default function MainPageSliders() {
                     </span>
                   </p>
                 </div>
-              </div>
+              </NavLink>
             );
           });
         })}

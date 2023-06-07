@@ -10,7 +10,7 @@ import {
   SummerMale,
   WinterMale,
 } from "../../../AssetsMain";
-import "../header.css";
+// import "../header.css";
 const CategoryNavbar = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
@@ -88,46 +88,48 @@ const CategoryNavbar = () => {
   return (
     <div className="flex flex-col min-h-[44px]  justify-center items-center m-0 p-0 box-border ">
       <div className="max-w-[1280px] w-[100%] overflow-hidden	 flex items-center justify-between items-center m-auto   ">
-        <div className=" w-[600px] md:w-fit  flex items-center overflow-x-auto flex-nowrap		md:overflow-x-none	">
-          <div className="w-fit not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-            <NavLink
-              to="/"
-              className="flex items-center cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
-            >
-              Главная
-            </NavLink>
-            <span>
-              <ItailIcons colors={"#000"} />
+        <div className=" w-[100%] md:w-fit  	flex items-center  p-1">
+          <div className=" h-10 w-[100%] md:w-fit  flex items-center  overflow-x-auto">
+            <span className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+              <NavLink
+                to="/"
+                className="flex items-center whitespace-nowrap cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
+              >
+                Главная
+              </NavLink>
+              <span>
+                <ItailIcons colors={"#000"} />
+              </span>
             </span>
-          </div>
-          <div className="w-fit not-italic font-AeonikProRegular flex  flex-nowrap	 items-center  text-sm leading-4 text-black tracking-[1%]">
-            <NavLink className="flex flex-nowrap	 items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-              Мужская одежда
-            </NavLink>
-            <span>
-              <ItailIcons colors={"#000"} />
+            <span className="not-italic font-AeonikProRegular flex  	 items-center  text-sm leading-4 text-black tracking-[1%]">
+              <NavLink className="flex 	whitespace-nowrap  items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                Мужская одежда
+              </NavLink>
+              <span>
+                <ItailIcons colors={"#000"} />
+              </span>
             </span>
-          </div>
-          <div className="w-fit not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%]">
-            <NavLink className="flex flex-nowrap items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-              Все категории
-            </NavLink>
-            <span>
-              <ItailIcons colors={"#000"} />
+            <span className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%]">
+              <NavLink className="flex flex-row whitespace-nowrap items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                Все категории
+              </NavLink>
+              <span>
+                <ItailIcons colors={"#000"} />
+              </span>
             </span>
-          </div>
-          <div className="w-fit not-italic font-AeonikProRegular flex items-center flex-nowrap  text-sm leading-4 text-black tracking-[1%]">
-            <NavLink className="flex items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-              Спортивное
-            </NavLink>
-            <span>
-              <ItailIcons colors={"#A1A1A1"} />
+            <span className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+              <NavLink className="flex items-center whitespace-nowrap cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                Спортивное
+              </NavLink>
+              <span>
+                <ItailIcons colors={"#A1A1A1"} />
+              </span>
             </span>
-          </div>
-          <div className="w-fit not-italic font-AeonikProRegular flex items-center flex-nowrap  text-sm leading-4 text-black tracking-[1%]">
-            <NavLink className="flex items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
-              Кроссовки
-            </NavLink>
+            <span className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+              <NavLink className="flex items-center whitespace-nowrap  cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
+                Кроссовки
+              </NavLink>
+            </span>
           </div>
         </div>
         <div className="md:flex items-center hidden md:block ">

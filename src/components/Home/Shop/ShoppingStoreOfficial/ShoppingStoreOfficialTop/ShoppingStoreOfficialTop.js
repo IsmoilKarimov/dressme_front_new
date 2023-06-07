@@ -137,9 +137,9 @@ const ShoppingStoreOfficialTop = ({ name }) => {
       <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
         <div className="w-[100%] h-fit">
           <div className="w-full flex flex-col">
-            <div className="w-full h-[240px] md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
+            <div className="w-full h-fit md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
               <img
-                className="h-full w-full "
+                className=" object-cover"
                 src="https://storage2.alifshop.uz/files?k1=07bc1bca-7404-4f08-a5dd-1c49126c5afd&k2=dde491d3e034894170e0366666da4f078f92216e7c708decaa7f72d45f4de79bca3355df5beec19676aaaf30f0911495c3fb56cce0045c6ae88d98f03af159be"
                 alt=""
               />
@@ -155,11 +155,11 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                     {name}
                   </div>
                   <div className="">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center -mt-1 mr-2">
+                    <div className="flex items-center ">
+                      <div className="flex items-center  mr-[6px]">
                         <StarIcons />
                       </div>
-                      <div className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex items-center text-sm">
+                      <div className="not-italic font-AeonikProRegular text-[10px]   ls:text-xs leading-4 text-right text-gray-500 md:ml-1 flex items-center text-sm">
                         <div className="font-AeonikProMedium text-black mr-1">
                           5.0
                         </div>

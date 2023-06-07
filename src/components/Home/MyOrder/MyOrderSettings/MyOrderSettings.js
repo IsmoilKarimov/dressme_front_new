@@ -42,6 +42,8 @@ export default function MyOrderSettings() {
     localStorage.removeItem("dressMeLogin");
     if (location?.pathname?.includes("my-order/settings")) {
       navigate("/");
+    } else if (location?.pathname?.includes("my-order")) {
+      navigate("/");
     } else {
       navigate(location.pathname);
     }
