@@ -289,16 +289,16 @@ export default function MainPageSliders() {
         </Slider>
       </div>
       {/* carosuel hidden bloack */}
-      <div className="w-full h-fit xs:hidden grid grid-cols-3  gap-4 ll:gap-x-[38px] ls:gap-x-[35px] overflow-hidden  my-0 py-0 md:my-5 md:py-7 ">
+      <div className="w-full h-fit xs:hidden grid grid-cols-3 gap-2 overflow-hidden  my-0 py-0 md:my-5 md:py-7 ">
         {carosuelData?.map((data) => {
           return data.Category.map((data) => {
             return (
               <NavLink
                 to="/categoriesType"
                 key={data?.id}
-                className="ll:w-[100px] ss:w-[80px] "
+                className="w-[100%] "
               >
-                <div className="w-[100%] h-[80px] flex items-center justify-center	p-1 bg-btnBgColor border border-searchBgColor	rounded-lg ">
+                <div className="w-[100%] h-[140px] flex items-center justify-center	p-1 bg-btnBgColor border border-searchBgColor	rounded-lg ">
                   <NoImg />
                 </div>
                 <div className="w-full py-1 flex items-center">

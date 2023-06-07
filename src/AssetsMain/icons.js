@@ -702,7 +702,7 @@ const MarketIcons = ({ colors }) => {
     </svg>
   );
 };
-const MapIcons = () => {
+const MapIcons = ({ colors }) => {
   return (
     <svg
       width="20"
@@ -713,21 +713,21 @@ const MapIcons = () => {
     >
       <path
         d="M7.49996 18.3333H12.5C16.6666 18.3333 18.3333 16.6667 18.3333 12.5V7.5C18.3333 3.33333 16.6666 1.66667 12.5 1.66667H7.49996C3.33329 1.66667 1.66663 3.33333 1.66663 7.5V12.5C1.66663 16.6667 3.33329 18.3333 7.49996 18.3333Z"
-        stroke="black"
+        stroke={colors}
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
         d="M7.5 1.66667L11.625 18.3333"
-        stroke="black"
+        stroke={colors}
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
         d="M9.60832 10.1833L1.66663 12.5"
-        stroke="black"
+        stroke={colors}
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"

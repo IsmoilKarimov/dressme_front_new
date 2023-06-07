@@ -388,7 +388,7 @@ const MediumHeader = () => {
                 className="items-center justify-center bg-btnBgColor rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex"
               >
                 <span className="pr-[6px]">
-                  <MapIcons />
+                  <MapIcons colors={"#000"} />
                 </span>
                 <span className="font-AeonikProMedium text-sm  ">Карта</span>
               </NavLink>
@@ -468,11 +468,13 @@ const MediumHeader = () => {
           {/* Ending of Full Screen page sesction Map*/}
 
           {/* Open Meain Menu at the  Mobile version */}
+          {/* <div className="max-w-[440px] w-[100%] h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg"> */}
+
           <div
-            className={`w-full fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${
+            className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${
               state?.hamburgerMenu
                 ? "hamburger flex flex-col ease-linear duration-500 overscroll-none z-30"
-                : "left-[-800px] z-[-10] ease-linear duration-500"
+                : "left-[-800px] z-[-80] ease-linear duration-500"
             }`}
           >
             <div className={`w-full h-full `}>
@@ -507,7 +509,7 @@ const MediumHeader = () => {
                   className="right  h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium border border-searchBgColor bg-btnBgColor ss:w-[48%]"
                 >
                   <span>
-                    <MapIcons />
+                    <MapIcons colors={"#000"} />
                   </span>
                   <span className="ml-[10px]">Карта</span>
                 </NavLink>
@@ -846,7 +848,7 @@ const MediumHeader = () => {
                 className="flex items-center w-full justify-center bg-btnBgColor border border-searchBgColor rounded-lg ss:px-4 h-12 ml-2  ss:w-[94px] "
               >
                 <span className="pr-[6px]">
-                  <MapIcons />
+                  <MapIcons colors={"#000"} />
                 </span>
                 <div className="font-AeonikProMedium">Map</div>
               </Link>
