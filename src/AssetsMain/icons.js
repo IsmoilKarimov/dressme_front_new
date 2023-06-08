@@ -1102,7 +1102,7 @@ const HomeIcons = ({ colors }) => {
     </svg>
   );
 };
-const BasketIcons = () => {
+const BasketIcons = ({colors}) => {
   return (
     <svg
       width="20"
@@ -1113,7 +1113,7 @@ const BasketIcons = () => {
     >
       <path
         d="M6.25 6.39167V5.58333C6.25 3.70833 7.75833 1.86667 9.63333 1.69167C11.8667 1.475 13.75 3.23333 13.75 5.425V6.575"
-        stroke="black"
+        stroke={colors}
         stroke-width="1.5"
         stroke-miterlimit="10"
         stroke-linecap="round"
@@ -1121,7 +1121,7 @@ const BasketIcons = () => {
       />
       <path
         d="M7.49998 18.3333H12.5C15.85 18.3333 16.45 16.9917 16.625 15.3583L17.25 10.3583C17.475 8.325 16.8916 6.66666 13.3333 6.66666H6.66664C3.10831 6.66666 2.52498 8.325 2.74998 10.3583L3.37498 15.3583C3.54998 16.9917 4.14998 18.3333 7.49998 18.3333Z"
-        stroke="black"
+        stroke={colors}
         stroke-width="1.5"
         stroke-miterlimit="10"
         stroke-linecap="round"
@@ -1129,14 +1129,14 @@ const BasketIcons = () => {
       />
       <path
         d="M12.9129 10H12.9204"
-        stroke="black"
+        stroke={colors}
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
         d="M7.07872 10H7.0862"
-        stroke="black"
+        stroke={colors}
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
