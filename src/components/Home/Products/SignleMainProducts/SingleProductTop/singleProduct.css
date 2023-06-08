@@ -1,0 +1,14 @@
+
+.scrollBreadcrumb::-webkit-scrollbar {
+    height: 2px;
+  }
+  
+.scrollBreadcrumb::-webkit-scrollbar-thumb {
+    background-color: #a1a1a1;
+    height: 2px;
+    border-radius: 4px;
+}
+
+.webkit-center {
+    text-align: '-webkit-center';
+}

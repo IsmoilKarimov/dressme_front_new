@@ -1,18 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Slider from "react-slick";
+import { BasketIcons, SaveBasketIcons } from "../../../../../../AssetsMain/icons";
 
 const ProductCarousel = () => {
   const [imgGroup, setImgGroup] = useState([
     {
       id: 1,
       action: true,
-      img: "https://images.uzum.uz/cgcp9n7g49devoab8a50/t_product_240_high.jpg",
+      img: "https://images.uzum.uz/ch15okj57mg9720fq5h0/original.jpg",
     },
     {
       id: 2,
       action: false,
-      img: "https://images.uzum.uz/ch15okj57mg9720fq5h0/original.jpg",
+      img: "https://images.uzum.uz/cgcp9n7g49devoab8a50/t_product_240_high.jpg",
     },
     {
       id: 3,
@@ -97,10 +98,11 @@ const ProductCarousel = () => {
 
     speed: 500,
   };
+
   return (
-    <div className="w-fit h-full ">
-      <div className="w-fit flex h-[560px]  gap-x-[5px]">
-        <div className="w-[90px] flex flex-col  ">
+    <div className="w-full md:w-fit h-full">
+      <div className="w-full md:w-fit flex h-[560px] md:gap-x-[5px]">
+        <div className="hidden md:flex w-[90px] flex-col  ">
           {" "}
           <Slider
             asNavFor={nav1}
@@ -123,7 +125,7 @@ const ProductCarousel = () => {
             })}
           </Slider>
         </div>
-        <div className="w-[420px] h-[560px]  ">
+        <div className="relative w-full h-fit md:w-[420px] md:h-[560px]">
           <Slider
             className="w-full h-full rounded-lg"
             asNavFor={nav2}
@@ -141,6 +143,11 @@ const ProductCarousel = () => {
               );
             })}
           </Slider>
+          <button className="absolute w-full flex md:hidden items-center h-[60px] rounded-lg -bottom-3 bg-SignInBgColor text-white px-5 text-lg font-medium">
+            <BasketIcons />
+            <span className="ml-2">Добавить в корзину</span>
+            <span className="ml-auto">258 000</span>
+          </button>
         </div>
       </div>
     </div>

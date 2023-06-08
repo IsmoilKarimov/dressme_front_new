@@ -89,9 +89,9 @@ const SingleProduct = () => {
         <SingleProductTop />
       </div>
       <div className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box mb-[60px]">
-        <div className="relative w-[100%] h-fit mt-6 flex justify-between ">
+        <div className="relative w-[100%] h-fit mt-6 flex justify-between flex-col md:flex-row">
           <div
-            className={`w-1/2 h-full  sticky duration-500
+            className={`w-full h-fit md:w-1/2 md:h-full  md:sticky md:duration-500
             ${
               show
                 ? "visible  z-[29] top-[110px]"
@@ -100,13 +100,13 @@ const SingleProduct = () => {
           >
             <ProductCarousel />
           </div>
-          <div className=" w-1/2 h-full   ">
+          <div className="w-full md:w-1/2 h-full">
             <ProductDetails />
           </div>
         </div>
         {/* Products Comment */}
         <div className="mt-20 w-full">
-          <ProductComment />
+          {/* <ProductComment /> */}
         </div>
         <div className="w-full h-fit  ">
           <div className="w-full  mt-[120px]">
