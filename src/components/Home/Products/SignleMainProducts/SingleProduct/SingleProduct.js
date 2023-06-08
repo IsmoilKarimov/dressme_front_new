@@ -88,7 +88,7 @@ const SingleProduct = () => {
       <div>
         <SingleProductTop />
       </div>
-      <div className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box mb-[60px]">
+      <div className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto border-box mb-20 md:mb-[60px]">
         <div className="relative w-[100%] h-fit mt-6 flex justify-between flex-col md:flex-row">
           <div
             className={`w-full h-fit md:w-1/2 md:h-full  md:sticky md:duration-500
@@ -105,23 +105,23 @@ const SingleProduct = () => {
           </div>
         </div>
         {/* Products Comment */}
-        <div className="mt-20 w-full">
+        <div className="md:mt-20 w-full">
           {/* <ProductComment /> */}
         </div>
         <div className="w-full h-fit  ">
-          <div className="w-full  mt-[120px]">
+          <div className="w-full mt-20 md:mt-[120px]">
             <div>
               <span className="not-italic font-AeonikProMedium text-[16px] leading-7 text-black">
                 Похожие продукты
               </span>
             </div>
-            <div className="flex flex-wrap justify-between mt-10  ">
+            <div className="flex flex-wrap justify-between mt-6 md:mt-10 gap-x-3 gap-y-3 md:gap-x-5 md:gap-y-5">
               {LikeProduct.map((data) => {
                 return (
                   <div
                     key={data.id}
                     onClick={() => goDetail(data?.title)}
-                    className={`ss:w-[49%] md:w-[24%] lg:w-[240px]  xs:h-[456px] lg:h-[428px] border border-solid borderColorCard overflow-hidden rounded-lg`}
+                    className={`ss:w-[48%] md:w-[24%] lg:w-[240px]  xs:h-[456px] lg:h-[428px] border border-solid borderColorCard overflow-hidden rounded-lg`}
                   >
                     <div className="relative w-full cursor-pointer ss:h-[200px] ls:h-[220px] ll:h-[238px] xs:h-[309px] bg-btnBgColor lg:h-[320px] flex content-between items-center overflow-hidden border-b border-solid flex-nowrap">
                       {data.ProducImg ? (
@@ -253,7 +253,7 @@ const SingleProduct = () => {
               })}
             </div>
           </div>
-          <div className="w-full  mt-[120px]">
+          <div className="hidden md:block w-full md:mt-[120px]">
             <div>
               <span className="not-italic font-AeonikProMedium text-[16px] leading-7 text-black">
                 Недавно просмотренные продукты{" "}
