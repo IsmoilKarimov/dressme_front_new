@@ -144,7 +144,7 @@ const ProductCarousel = () => {
             })}
           </Slider>
           <button className="absolute w-full flex md:hidden items-center h-[60px] rounded-lg -bottom-3 bg-SignInBgColor text-white px-5 text-lg font-medium">
-            <BasketIcons />
+            <BasketIcons colors={"#fff"}/>
             <span className="ml-2">Добавить в корзину</span>
             <span className="ml-auto">258 000</span>
           </button>
