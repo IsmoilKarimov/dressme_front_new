@@ -8,7 +8,7 @@ export default function SingleMainProducts() {
     });
   });
   return (
-    <div className="w-full ">
+    <div className="w-full px-4">
       <SingleProduct />
     </div>
   );
