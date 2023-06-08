@@ -54,14 +54,14 @@ export default function CollectionCards() {
   };
 
   return (
-    <div className="flex flex-col box-border mt-[50px] md:mt-[86px]">
+    <div className="flex flex-col box-border mt-[50px] ">
       <div className="w-full ss:block sm:flex justify-start items-center mb-[25px] md:mb-0 md:px-0">
         <div className="not-italic font-AeonikProMedium lg:w-fit lg:text-2xl xl:text-3xl flex items-center leading-8 text-black">
-          <span>Коллекция одежд</span>
+          <span>Коллекция одежд, которые вам подходят</span>
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-between md:justify-start md:mx-0 md:mt-[50px] gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
+      <div className="flex flex-wrap justify-between md:justify-start md:mx-0 md:mt-[35px] gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
         {dressInfo.ProductList.map((data) => {
           return (
             <div
