@@ -94,78 +94,67 @@ const SingleProductTop = () => {
   return (
     <div className="flex flex-col md:min-h-[44px] justify-center items-center m-0 py-3 box-border border-b border-searchBgColor">
         <div className="max-w-[1280px] h-full w-[100%] flex items-center justify-between m-auto">
-            <div className="w-full overflow-x-auto scrollBreadcrumb h-full">
-                <div className="w-[230%] md:w-full h-full flex items-center">
-                    <div className="font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-                        <NavLink
-                            to="/"
-                            className="flex items-center cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
-                        >
-                            Главная
-                        </NavLink>
-                        <span><ItailIcons colors={"#000"} /></span>
-                    </div>
-                    <div className="font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-                        <NavLink
-                            to="/"
-                            className="flex items-center cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
-                        >
-                            Мужская одежда
-                        </NavLink>
-                        <span><ItailIcons colors={"#000"} /></span>
-                    </div>
-                    <div className="font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-                    <NavLink
-                        to="/"
-                        className="flex items-center cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
-                    >
-                        Все категории
-                    </NavLink>
-                    <span>
-                        <ItailIcons colors={"#000"} />
-                    </span>
-                    </div>
-                    <div className="font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-                    <NavLink
-                        to="/"
-                        className="flex items-center cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
-                    >
-                        Спортивное
-                    </NavLink>
-                    <span>
-                        <ItailIcons colors={"#000"} />
-                    </span>
-                    </div>
-                    <div className="font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-                    <NavLink
-                        to="/"
-                        className="flex items-center cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
-                    >
-                        Кроссовки
-                    </NavLink>
-                    <span>
-                        <ItailIcons colors={"#000"} />
-                    </span>
-                    </div>
-                    <div className="font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-                    <NavLink
-                        to="/"
-                        className="flex items-center cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
-                    >
-                        Nike
-                    </NavLink>
-                    <span>
-                        <ItailIcons colors={"#000"} />
-                    </span>
-                    </div>
-                    <div className="font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-                    <NavLink className="flex w-fit items-center cursor-pointer mt-[6px] pxr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
-                        {/* {Newid} */}
-                        Nike RUN Sneakers (Sport Wears)
-                    </NavLink>
-                    </div>
-                </div>
+            <div className=" w-[100%] md:w-fit  	flex items-center  p-1">
+              <div className=" h-10 w-[100%] md:w-fit  flex items-center  overflow-x-auto">
+                <span className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+                  <NavLink
+                    to="/"
+                    className="flex items-center whitespace-nowrap cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
+                  >
+                    Главная
+                  </NavLink>
+                  <span>
+                    <ItailIcons colors={"#A1A1A1"} />
+                  </span>
+                </span>
+                <span className="not-italic font-AeonikProRegular flex  	 items-center  text-sm leading-4 text-black tracking-[1%]">
+                  <NavLink className="flex 	whitespace-nowrap  items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                    Мужская одежда
+                  </NavLink>
+                  <span>
+                    <ItailIcons colors={"#A1A1A1"} />
+                  </span>
+                </span>
+                <span className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%]">
+                  <NavLink className="flex flex-row whitespace-nowrap items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                    Все категории
+                  </NavLink>
+                  <span>
+                    <ItailIcons colors={"#A1A1A1"} />
+                  </span>
+                </span>
+                <span className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+                  <NavLink className="flex items-center whitespace-nowrap cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                    Спортивное
+                  </NavLink>
+                  <span>
+                    <ItailIcons colors={"#A1A1A1"} />
+                  </span>
+                </span>
+                <span className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+                  <NavLink className="flex items-center whitespace-nowrap  cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 tracking-[1%]">
+                    Кроссовки
+                  </NavLink>
+                  <span>
+                    <ItailIcons colors={"#A1A1A1"} />
+                  </span>
+                </span>
+                <span className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+                  <NavLink className="flex items-center whitespace-nowrap cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                  Nike
+                  </NavLink>
+                  <span>
+                    <ItailIcons colors={"#A1A1A1"} />
+                  </span>
+                </span>
+                <span className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+                  <NavLink className="flex items-center whitespace-nowrap  cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
+                  Nike RUN Sneakers (Sport Wears)
+                  </NavLink>
+                </span>
+              </div>
             </div>
+
             <div className="hidden md:flex">
                 <Popover
                 open={state?.openwear}
