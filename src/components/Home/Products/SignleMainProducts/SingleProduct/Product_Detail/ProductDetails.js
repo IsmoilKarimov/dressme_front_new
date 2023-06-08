@@ -341,29 +341,29 @@ const ProductDetails = () => {
                 </div>
             </div>
             
-            <div className="flex items-center md:mt-8">
-                <div className="w-fit">
-                    <button className="w-[226px] h-12 md:w-[260px] md:h-[52px] mt-1 rounded-lg not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex items-center justify-center bg-fullBlue">
+            <div className="w-full flex justify-between items-center gap-x-3 md:gap-x-0 md:mt-8">
+                <div className="w-[65%] md:w-[260px]">
+                    <button className="w-full h-12 md:w-[260px] md:h-[52px] mt-1 rounded-lg not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex items-center justify-center bg-fullBlue">
                         Добавить в корзину
                     </button>
                 </div>
-                <div className="w-fit ml-3">
+                <div className="w-[35%] md:w-[142px]">
                     <button
-                        className={`w-[120px] h-12 md:w-[142px] md:h-[52px] mt-1 rounded-lg not-italic border font-AeonikProMedium text-base leading-4 text-center flex items-center justify-center ${genderStyle} `}
+                        className={`w-full h-12 md:w-[142px] md:h-[52px] mt-1 rounded-lg not-italic border font-AeonikProMedium text-base leading-4 text-center flex items-center justify-center ${genderStyle} `}
                     >   
                         Купить <span className="hidden md:block">сейчас</span>
                     </button>
                 </div>
-                <div className="w-fit ml-3">
+                <div className="w-fit md:ml-3 hidden md:block">
                     <button className="w-[52px] h-[52px] hidden md:flex items-center justify-center rounded-lg border border-searchBgColor">
                         <img src={HeartImg} alt="" className="w-5 h-5" />
                     </button>
                 </div>
-                <div className={`w-fit ml-8 ${dataStyle} hidden md:flex`}>
+                <div className={`w-fit ml-8 ${dataStyle} items-center hidden md:flex`}>
                     <span className="not-italic mt-1 font-AeonikProRegular text-[14px] leading-5 text-right tracking-[1%]">
                         В наличии:
                     </span>
-                    <span className="not-italic mt-1 ml-1 font-AeonikProMedium text-[14px] leading-6 text-right tracking-[1%]">
+                    <span className="not-italic mt-1 ml-2 font-AeonikProMedium text-[14px] leading-6 text-right tracking-[1%]">
                         28
                     </span>
                 </div>
