@@ -350,8 +350,7 @@ const ProductDetails = () => {
                 <div className="w-fit ml-3">
                     <button
                         className={`w-[120px] h-12 md:w-[142px] md:h-[52px] mt-1 rounded-lg not-italic border font-AeonikProMedium text-base leading-4 text-center flex items-center justify-center ${genderStyle} `}
-                    >
-                        
+                    >   
                         Купить <span className="hidden md:block">сейчас</span>
                     </button>
                 </div>
@@ -371,7 +370,7 @@ const ProductDetails = () => {
             </div>
         </div>
 
-        <div className="w-full block md:hidden">
+        {/* <div className="w-full block md:hidden">
             <span className="w-full font-AeonikProMedium text-base mb-6">О продукте:</span>
             <div className="rounded-lg overflow-hidden  h-[42px] md:h-[52px] ss:w-full md:w-[308px] md:mx-0 flex justify-between bg-slate-50 border border-solid ss:mt-5 md:mt-0 mx-auto ">
           <button
@@ -399,11 +398,11 @@ const ProductDetails = () => {
           </button>
         </div>
 
-        </div>
+        </div> */}
 
 
         {/* Text Items */}
-        {/* <div className="mt-12 md:mt-20">
+        <div className="mt-12 md:mt-20 hiddden md:block">
             <span className="not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]">
                 Кратко о товаре
             </span>
@@ -446,9 +445,9 @@ const ProductDetails = () => {
                 <BsCircleFill size={5} className="mx-2" /> Отличная фиксация стопы
                 </li>
             </ul>
-        </div> */}
+        </div>
         {/* Table */}
-        {/* <div className="mt-[60px] ">
+        <div className="mt-[60px] hidden md:block">
             <div className="">
                 <div>
                     <span className="not-italic mt-1 font-AeonikProRegular text-[14px] leading-5 text-right tracking-[1%]">
@@ -514,9 +513,9 @@ const ProductDetails = () => {
                     </tr>
                 </table>
             </div>
-        </div> */}
+        </div>
 
-        {/* <div className="mt-[60px] flex flex-col gap-y-5">
+        <div className="mt-[60px] flex-col gap-y-5 hidden md:flex">
             <span className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
                 {" "}
                 Бренд GRN занимает №4 место в Юго-Восточной Азии, относится к ТОПовому
@@ -545,7 +544,7 @@ const ProductDetails = () => {
                 Отличительные черты продукции GRN – высокое качество, комфортные
                 лекала и стиль.
             </span>
-        </div> */}
+        </div>
     </div>
   );
 };
