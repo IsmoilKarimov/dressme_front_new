@@ -23,6 +23,7 @@ import {
   springSeason,
   summerSeason,
   winterSeason,
+  ActivePersonImg,
 } from "../../../AssetsMain";
 
 const YandexMedium = () => {
@@ -246,23 +247,44 @@ const YandexMedium = () => {
           <div className="line h-5 border-x-[1px]   text-textColor ss:hidden md:block mx-3"></div>
 
           {/* User section */}
-          <NavLink
-            to="/sign_in"
-            className=" bg-yandexWhite rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex"
-          >
-            <PersonIcons colors={"#000"} />
-          </NavLink>
+          {localStorage.getItem("dressMeLogin") ? (
+            <NavLink
+              to="/my-order"
+              className=" bg-btnBgColor rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex"
+            >
+              {({ isActive }) =>
+                isActive ? (
+                  <img src={ActivePersonImg} alt="" />
+                ) : (
+                  <PersonIcons colors={"#000"} />
+                )
+              }
+            </NavLink>
+          ) : (
+            <NavLink
+              to="/sign_in"
+              className=" bg-btnBgColor rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex"
+            >
+              <PersonIcons colors={"#000"} />
+            </NavLink>
+          )}
 
           {/* Heart section */}
-          <button className="bg-yandexWhite rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex">
+          <NavLink
+            to="/favourites"
+            className="bg-yandexWhite rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex"
+          >
             {/* <FaRegHeart /> */}
             <span>
               <HeartIcons colors={"#000"} />
             </span>
-          </button>
+          </NavLink>
 
           {/* Bucket section */}
-          <button className=" bg-yandexWhite rounded-lg flex items-center justify-center w-11 h-11 relative md:flex ss:hidden">
+          <NavLink
+            to="/basket-check-out"
+            className=" bg-yandexWhite rounded-lg flex items-center justify-center w-11 h-11 relative md:flex ss:hidden"
+          >
             <span>
               <BasketIcons />
             </span>
@@ -270,7 +292,7 @@ const YandexMedium = () => {
               {" "}
               4{" "}
             </span>
-          </button>
+          </NavLink>
         </div>
       </div>
     </div>

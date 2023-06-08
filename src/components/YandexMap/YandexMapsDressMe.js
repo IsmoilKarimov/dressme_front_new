@@ -16,7 +16,7 @@ import { dressMainData } from "../../ContextHook/ContextMenu";
 import { GrFormDown } from "react-icons/gr";
 import NavbarTopOpenMenu from "./YandexMapsNavbar/NavbarTopOpenMenu";
 import NavMenu from "../header/nav-menu";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import ScrollFilter from "./YandexMapsNavbar/ScrollFilter";
 import {
   ArrowTopIcons,
@@ -728,63 +728,59 @@ function YandexMapsDressMe() {
             </div>
             {/* Yandex Main menu */}
             <div
-              className={`fixed top-[70px] left-0 right-0 overscroll-none overflow-y-scroll ${
+              className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${
                 dressInfo?.openMainMenu
-                  ? "left-[-500px] md:left-[-5000px]  z-[53] ease-in-out  duration-500 "
-                  : "left-0 z-[53] ease-linear duration-500 "
-              } w-[100%] h-[100%] bg-white`}
+                  ? "left-[-500px] md:left-[-5000px] z-[-80] ease-linear duration-500"
+                  : "hamburger flex flex-col ease-linear duration-500 overscroll-none z-[53]"
+              }`}
             >
-              <div className="w-full h-full  px-3 overflow-hidden">
-                <div className="search flex items-center justify-between rounded-lg font-AeonikProMedium h-10 mt-3 mb-3 border border-searchBg ss:mt-3 md:hidden w-full">
+              <div className={`w-full h-full `}>
+                {/* Searching section */}
+                <div className="search flex items-center bg-btnBgColor justify-between rounded-lg font-AeonikProMedium h-12 mt-3 mb-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
                   <span className=" flex ss:pl-[11.65px] md:hidden">
                     <SearchIcons />
                   </span>
+
                   <input
                     type="text"
-                    placeholder="Search products or brands"
-                    className="bg-transparent w-full px-3 h-10 text-[14px] border border-transparent md:border-searchBgColor md:mx-0 md:-ml-[3px] md:px-3 md:h-10"
+                    placeholder="Искать товары или бренды"
+                    className="bg-transparent w-full px-3 h-12 text-[14px] bg-btnBgColor border border-transparent md:border-searchBgColor md:mx-0 md:-ml-[3px] md:px-3 md:h-12
+                  placeholder-italic placeholder-AeonikProMedium placeholder-sm leading-4 placeholder-setTexOpacity placeholder-[1px]
+                  "
                   />
                 </div>
-
                 {/* Music and Map selection for Mobile */}
-                <div className="flex items-center justify-between h-11 mb-3">
-                  <button className="left py-[9px] px-10 rounded-lg flex items-center justify-center font-AeonikProMedium rouded border border-searchBgColor bg-btnBgColor ss:w-[48%]">
-                    <VolumeIcons colors={IconsColor} />
-                    <span className=" ml-[10px]">Music</span>
-                  </button>
-                  <Link
-                    to="/delivery-points"
-                    className="right px-10 py-[9px] rounded-lg flex items-center justify-center font-AeonikProMedium border border-searchBgColor bg-btnBgColor ss:w-[48%]"
+                <div className="flex items-center justify-between h-fit mb-3">
+                  <button
+                    // onClick={() => setState({ ...state, hamburgerMenu: false })}
+                    className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
                   >
                     <span>
-                      <MapIcons />
+                      <VolumeIcons colors={IconsColor} />
                     </span>
-                    <span className="ml-[10px]">Map</span>
-                  </Link>
+                    <span className=" ml-[10px]">Музика</span>
+                  </button>
+                  <NavLink
+                    // onClick={() => setState({ ...state, hamburgerMenu: false })}
+                    to="/delivery-points"
+                    className="right  h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium border border-searchBgColor bg-btnBgColor ss:w-[48%]"
+                  >
+                    <span>
+                      <MapIcons colors={"#000"} />
+                    </span>
+                    <span className="ml-[10px]">Карта</span>
+                  </NavLink>
                 </div>
 
                 {/* Categories */}
                 <ul className="flex flex-col">
                   <li>
-                    <button className="flex items-center bg-btnBgColor font-AeonikProMedium h-12 border rounded-lg border-gray-300 px-5 mb-3 w-full">
+                    <button className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 w-full">
                       <div className="flex items-center">
-                        <span className="border-r border-gray-300 py-3 pr-5">
-                          <DashboardStatisticIcons />
-                        </span>
-                        <span className="ml-[11.67px]">Dashboard (demo)</span>
-                      </div>
-                      <span className="arrowRotate ml-auto rotate-[90deg]">
-                        <ArrowTopIcons colors={"#000"} />
-                      </span>
-                    </button>
-                  </li>
-                  <li>
-                    <button className="flex items-center bg-btnBgColor font-AeonikProMedium h-12 border rounded-lg border-gray-300 px-5 mb-3 w-full">
-                      <div className="flex items-center">
-                        <span className="border-r border-gray-300 py-3 pr-5">
+                        <span className=" py-3 pr-3">
                           <HouseStatisticIcons colors={"#000"} />
                         </span>
-                        <span className="ml-[11.67px]">Business</span>
+                        <span className="ml-[11.67px]">Бизнес</span>
                       </div>
                       <span className="arrowRotate ml-auto rotate-[90deg]">
                         <ArrowTopIcons colors={"#000"} />
@@ -792,49 +788,59 @@ function YandexMapsDressMe() {
                     </button>
                   </li>
                   <li>
-                    <button className="flex items-center bg-btnBgColor font-AeonikProMedium h-12 border rounded-lg border-gray-300 px-5 mb-3 w-full">
-                      <div className="flex items-center">
-                        <span className="border-r border-gray-300 py-3 pr-5">
-                          <ListCollectionIcons />
+                    {localStorage.getItem("dressMeLogin") ? (
+                      <NavLink
+                        to="/my-order"
+                        className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 w-full"
+                      >
+                        <div className="flex items-center">
+                          <span className=" py-3 pr-3">
+                            <ListCollectionIcons />
+                          </span>
+                          <span className="ml-[11.67px]">Мои заказы</span>
+                        </div>
+                        <span className="arrowRotate ml-auto rotate-[90deg]">
+                          <ArrowTopIcons colors={"#000"} />
                         </span>
-                        <span className="ml-[11.67px]">My orders</span>
-                      </div>
-                      <span className="arrowRotate ml-auto rotate-[90deg]">
-                        <ArrowTopIcons colors={"#000"} />
-                      </span>
-                    </button>
+                      </NavLink>
+                    ) : (
+                      <NavLink
+                        to="/sign_in"
+                        className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 w-full"
+                      >
+                        <div className="flex items-center">
+                          <span className=" py-3 pr-3">
+                            <ListCollectionIcons />
+                          </span>
+                          <span className="ml-[11.67px]">Мои заказы</span>
+                        </div>
+                        <span className="arrowRotate ml-auto rotate-[90deg]">
+                          <ArrowTopIcons colors={"#000"} />
+                        </span>
+                      </NavLink>
+                    )}
                   </li>
                   <li>
-                    <button className="flex items-center bg-btnBgColor font-AeonikProMedium h-12 border rounded-lg border-gray-300 px-5 mb-3 w-full">
+                    <NavLink
+                      to="/stores"
+                      className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 w-full"
+                    >
                       <div className="flex items-center">
-                        <span className="border-r border-gray-300 py-3 pr-5">
+                        <span className=" py-3 pr-3">
                           <MarketIcons colors={"#000"} />
                         </span>
-                        <span className="ml-[11.67px]">Shop</span>
+                        <span className="ml-[11.67px]">Магазины</span>
                       </div>
                       <span className="arrowRotate ml-auto rotate-[90deg]">
                         <ArrowTopIcons colors={"#000"} />
                       </span>
-                    </button>
-                  </li>
-                  <li>
-                    <button className="flex items-center bg-btnBgColor font-AeonikProMedium h-12 border rounded-lg border-gray-300 px-5 mb-3 w-full">
-                      <div className="flex items-center">
-                        <span className="border-r border-gray-300 py-3 pr-5">
-                          <ListCollectionIcons />
-                        </span>
-                        <span className="ml-[11.67px]">My blog</span>
-                      </div>
-                      <span className="arrowRotate ml-auto rotate-[90deg]">
-                        <ArrowTopIcons colors={"#000"} />
-                      </span>
-                    </button>
+                    </NavLink>
                   </li>
                 </ul>
 
                 {/*Help and Contact selection for Mobile */}
-                <div className="flex items-center justify-between h-11 mb-3">
-                  <button className="left py-[9px] px-10 rounded-lg flex items-center justify-center font-AeonikProMedium rouded border border-gray-300 bg-bgColor ss:w-[48%]">
+                <div className="flex items-center justify-between h-fit mb-3">
+                  <button className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium -lg-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
                     <span>
                       <CommentIcons colors={"#000"} />
                     </span>
@@ -842,7 +848,7 @@ function YandexMapsDressMe() {
                   </button>
                   <Link
                     to="#"
-                    className="left py-[9px] px-10 rounded-lg flex items-center justify-center font-AeonikProMedium rouded border border-gray-300 bg-bgColor ss:w-[48%]"
+                    className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
                   >
                     <span>
                       <PhoneIcons />
@@ -852,11 +858,11 @@ function YandexMapsDressMe() {
                 </div>
 
                 {/* Line */}
-                <div className="line border-b w-[300px] border-gray-300 mb-3 ls:w-full"></div>
+                <div className="line border-b w-[300px] border-searchBgColor mb-3 ls:w-full"></div>
 
                 {/* Location and Language */}
-                <div className="flex items-center justify-between h-11 mb-3">
-                  <button className="left py-[9px] px-10 rounded-lg flex items-center justify-center font-AeonikProMedium rouded border border-gray-300 bg-bgColor ss:w-[48%]">
+                <div className="flex items-center justify-between h-fit mb-3">
+                  <button className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
                     <span>
                       <LocationIcons />
                     </span>
@@ -867,7 +873,7 @@ function YandexMapsDressMe() {
                   </button>
                   <Link
                     to="#"
-                    className="left py-[9px] px-10 rounded-lg flex items-center justify-center font-AeonikProMedium rouded border border-gray-300 bg-bgColor ss:w-[48%]"
+                    className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
                   >
                     <img src={UzbekFlag} alt="." />
                     <span className="ml-[10px] mr-5">English</span>

@@ -558,7 +558,7 @@ const Footer = () => {
                     </li>
                     <li className="ss:mb-1 md:mb-4">
                       <Link to="#" className="flex items-center">
-                        <MapIcons />
+                        <MapIcons colors={"#000"} />
                         <span className="font-AeonikProRegular ml-2">
                           Карта
                         </span>
@@ -795,7 +795,7 @@ const Footer = () => {
                   </li>
                   <li className="mb-4">
                     <Link to="#" className="flex items-center">
-                      <MapIcons />
+                      <MapIcons colors={"#000"} />
                       <span className="font-AeonikProRegular ml-2">Карта</span>
                     </Link>
                   </li>
