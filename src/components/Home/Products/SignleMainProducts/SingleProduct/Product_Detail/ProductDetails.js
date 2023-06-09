@@ -86,291 +86,294 @@ const ProductDetails = () => {
   //   });
   // };
 
-  const [productDescription, setProductDescription] = useState(true)
+  const [productDescription, setProductDescription] = useState(true);
 
   return (
     <div className="w-full h-full mt-8 md:mt-0">
-        
-        <div className="w-full">
-            <div className="h-fit flex justify-between mb-4">
-                <div className="flex items-center justify-start ">
-                    <div className="w-fit flex items-center gap-x-[1px]">
-                        <StarIcons />
-                    </div>
-                    <div className="flex items-center w-fit ml-2 text-base md:text-[13px]">
-                        <div className="not-italic font-AeonikProMedium mt-2 leading-4 text-black tracking-[1%]">
-                        4.7
-                        </div>
-                        <div className=" pl-1 not-italic font-AeonikProRegular mt-2 leading-4 text-setTexOpacity tracking-[1%]">
-                        (265 votes)
-                        </div>
-                        <div className="text-searchBgColor mx-[10px]">|</div>
-                        <div className=" not-italic font-AeonikProRegular mt-2 leading-4 text-setTexOpacity tracking-[1%]">
-                        (678 orders)
-                        </div>
-                    </div>
-                </div>
-                <button className="w-11 h-11 flex md:hidden items-center justify-center rounded-lg border border-searchBgColor">
-                    <img src={HeartImg} alt="" className="w-5 h-5" />
-                </button>
-                <div className="hidden items-center md:flex">
-                    <div>
-                        <ProductArticleIcons />
-                    </div>
-                    <div className="ml-[2px] mr-[6px] not-italic font-AeonikProRegular mt-1 text-[13px] leading-4 text-right text-black tracking-[1%]">
-                        Article:
-                    </div>
-                    <div className="not-italic font-AeonikProRegular mt-1 text-[13px] leading-4 text-right text-setTexOpacity tracking-[1%]">
-                        AA009842
-                    </div>
-                </div>
-            </div>  
-            <div className="w-full  mb-8">
-                <span className="not-italic font-AeonikProMedium text-xl md:text-[22px] leading-7 text-TextTitle tracking-[1%]">
-                Спортивная мужская кроссовка Nike RUN
-                </span>
+      <div className="w-full">
+        <div className="h-fit flex justify-between mb-4">
+          <div className="flex items-center justify-start ">
+            <div className="w-fit flex items-center gap-x-[1px]">
+              <StarIcons />
             </div>
-            {/* Desktop */}
-            <div className="h-fit hidden md:flex mb-4">
-                <div className="w-fit flex items-center">
-                    <div>
-                        <BasketIcons />
-                    </div>
-                    <div className="not-italic flex items-center mt-1  font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
-                        Магазин:
-                    </div>
-                </div>
-                <div className="w-fit ml-10">
-                    <span className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                        Nike Store Official Dealer
-                    </span>
-                </div>
+            <div className="flex items-center w-fit ml-2 text-base md:text-[13px]">
+              <div className="not-italic font-AeonikProMedium mt-2 leading-4 text-black tracking-[1%]">
+                4.7
+              </div>
+              <div className=" pl-1 not-italic font-AeonikProRegular mt-2 leading-4 text-setTexOpacity tracking-[1%]">
+                (265 votes)
+              </div>
+              <div className="text-searchBgColor mx-[10px]">|</div>
+              <div className=" not-italic font-AeonikProRegular mt-2 leading-4 text-setTexOpacity tracking-[1%]">
+                (678 orders)
+              </div>
             </div>
-            {/* Mobile Dostavka*/}
-            <div className="h-fit flex justify-between mb-4 md:mb-7">
-                <div className="flex items-center">
-                    <div className="flex items-center">
-                        <span>
-                            <DeliveryIcons />
-                        </span>
-                        <span className="ml-2 not-italic font-AeonikProMedium mt-1 text-base md:text-[14px] leading-4 text-black tracking-[1%]">
-                            Доставка:
-                        </span>
-                    </div>
-                    <div className="flex items-center ml-2 md:ml-[32px]">
-                        <span>
-                            <CircleSuccessIcons colors={"#008F0E"} />
-                        </span>
-                        <span className="hidden md:block ml-2 not-italic font-AeonikProMedium mt-1 text-sm leading-4 text-green-800 tracking-[1%]">
-                        Доступно
-                        </span>
-                    </div>
-                </div>
-                <div className="flex md:hidden items-center text-base md:text-[13px]">
-                    <div>
-                        <ProductArticleIcons />
-                    </div>
-                    <div className="ml-[2px] mr-[6px] not-italic font-AeonikProRegular mt-1 leading-4 text-right text-black tracking-[1%]">
-                        Article:
-                    </div>
-                    <div className="not-italic font-AeonikProRegular mt-1 leading-4 text-right text-setTexOpacity tracking-[1%]">
-                        AA009842
-                    </div>
-                </div>
-
-                <div className="w-fit hidden md:flex items-center h-fit ">
-                    <div className="not-italic mr-3 mt-1 font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%]">
-                        Сезон:
-                    </div>
-                    <div className="flex items-center">
-                        <img src={winterSeason} alt="" />
-
-                        <span className="not-italic mt-1 ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                        Зима
-                        </span>
-                    </div>
-                    <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
-                    <div className="flex items-center">
-                        <img src={summerSeason} alt="" />
-                        <span className="not-italic mt-1 ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                        Весна
-                        </span>
-                    </div>
-                    <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
-                    <div className="flex items-center">
-                        <img src={autummSeason} alt="" />
-                        <span className="not-italic mt-1 ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                        Осень
-                        </span>
-                    </div>
-                </div>
+          </div>
+          <button className="w-11 h-11 flex md:hidden items-center justify-center rounded-lg border border-searchBgColor">
+            <img src={HeartImg} alt="" className="w-5 h-5" />
+          </button>
+          <div className="hidden items-center md:flex">
+            <div>
+              <ProductArticleIcons />
             </div>
-            <div className="w-fit flex md:hidden items-center h-fit text-base md:text-sm mb-10 md:mb-0">
-                    <div className="not-italic mr-3 mt-1 font-AeonikProMedium leading-4 text-black tracking-[1%]">
-                        Сезон:
-                    </div>
-                    <div className="flex items-center">
-                        <img src={winterSeason} alt="" />
-
-                        <span className="not-italic mt-1 ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
-                        Зима
-                        </span>
-                    </div>
-                    <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
-                    <div className="flex items-center">
-                        <img src={summerSeason} alt="" />
-                        <span className="not-italic mt-1 ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
-                        Весна
-                        </span>
-                    </div>
-                    <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
-                    <div className="flex items-center">
-                        <img src={autummSeason} alt="" />
-                        <span className="not-italic mt-1 ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
-                        Осень
-                        </span>
-                    </div>
+            <div className="ml-[2px] mr-[6px] not-italic font-AeonikProRegular mt-1 text-[13px] leading-4 text-right text-black tracking-[1%]">
+              Article:
             </div>
+            <div className="not-italic font-AeonikProRegular mt-1 text-[13px] leading-4 text-right text-setTexOpacity tracking-[1%]">
+              AA009842
+            </div>
+          </div>
         </div>
-        <div className="w-full border-y border-searchBgColor pt-7 pb-12">
-            <div className="w-full flex items-center mb-6 text-base font-AeonikProMedium">
-                <span>
-                <ProductSwitchIcons />
-                </span>
-                <span className="not-italic ml-2 mr-3 mt-1 font-AeonikProRegular md:font-AeonikProMedium leading-4 text-black">
-                Цвет:
-                </span>
-                <span className="not-italic mt-1 leading-4 text-black">
-                Синий океан
-                </span>
-            </div>
-            <div className="w-full flex items-center gap-x-3 py-1 mb-7">
-                {selectColor.map((data) => {
-                    return (
-                        <div
-                        key={data?.id}
-                        onClick={() => handleColorCheck(data.id)}
-                        className={`w-[50px] h-[50px] md:w-[64px] md:h-[72px] flex items-center justify-center rounded-lg ${
-                            data.color
-                        } border border-searchBgColor cursor-pointer ${
-                            data.action ? "outline outline-offset-2 outline-2" : ""
-                        } ${data.out} `}
-                        >
-                        {data.action && getCheckColor == 3 ? (
-                            <InputCheckedTrueIcons colors={"#000"} />
-                        ) : null}
-                        {data.action && getCheckColor !== 3 ? (
-                            <InputCheckedTrueIcons colors={"#fff"} />
-                        ) : null}
-                        </div>
-                    );
-                })}
-            </div>
-            <div className="w-full flex items-center mb-4 text-[16px] md:text-sm">
-                <span>
-                <ProductSizeIcons />
-                </span>
-                <span className="not-italic ml-2 mr-3 mt-1 font-AeonikProRegular md:font-AeonikProMedium leading-4 text-black">
-                Размер:
-                </span>
-                <span className="not-italic mt-1 font-AeonikProMedium text-[16px] md:text-sm leading-4 text-black">
-                3XL{" "}
-                </span>
-            </div>
-            <div className="w-full flex items-center">
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-3">
-                    {selectSize.map((data) => {
-                        return (
-                        <div className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg  border border-searchBgColor focus:border-fullBlue px-4 flex items-center justify-center">
-                            <span
-                            className={`mt-1 not-italic font-AeonikProMedium text-[14px] leading-4 text-center text-black tracking-[1%]`}
-                            >
-                            {data?.size}
-                            </span>
-                        </div>
-                        );
-                    })}
-                    <div className="w-[80px] h-11 flex md:hidden items-center justify-center rounded-lg border border-searchBgColor">
-                        <CircleWarningIcons colors={"#000"} />
-                    </div>
-                </div>
-                <div className="hidden md:block w-[1px] border-r border-searchBgColor h-8 mx-4"></div>
-                <div className="w-11 h-11 hidden md:flex items-center justify-center rounded-lg border border-searchBgColor">
-                    <CircleWarningIcons colors={"#000"} />
-                </div>
-            </div>
+        <div className="w-full  mb-8">
+          <span className="not-italic font-AeonikProMedium text-xl md:text-[22px] leading-7 text-TextTitle tracking-[1%]">
+            Спортивная мужская кроссовка Nike RUN
+          </span>
         </div>
-       
-        <div className="w-full pb-8 pt-6 md:mt-5 border-b boder mb-12 md:mb-0">
-            <div className="w-full flex items-center justify-between md:justify-start mb-[14px] md:mb-0">
-                <div className="flex md:hidden">
-                    <DollorIcons/>
-                    <span className="text-base font-AeonikProRegular ml-[6px]">Цена:</span>
-                </div>
-                <span className="hidden md:block not-italic mt-1 font-AeonikProMedium text-[20px] leading-9 text-black trcking-[1%]">
-                    452 000 сум
-                </span>
-                <span className="hidden md:block not-italic ml-4 mt-1 font-AeonikProRegular line-through text-[14px] leading-7 text-setTexOpacity">
-                    652 000 сум
-                </span>
-                <div className="w-[84px] h-9 md:w-[108px] md:h-11 cursor-pointer ml-8 flex items-center justify-center border border-searchBgColor rounded-lg">
-                    <span>
-                        <DiscountShapeIcons />
-                    </span>
-                    <span className="ml-[6px] not-italic mt-1 font-AeonikProMedium text-sm md:text-[16px] leading-5 text-red-700">
-                        -30%
-                    </span>
-                </div>
+        {/* Desktop */}
+        <div className="h-fit hidden md:flex mb-4">
+          <div className="w-fit flex items-center">
+            <div>
+              <BasketIcons colors={"#000"} />
             </div>
-            <div className="w-full flex items-center justify-between mb-6 md:mb-0">
-                <div className="flex items-center">
-                    <span className="block md:hidden not-italic mt-1 font-AeonikProMedium text-[32px] leading-9 text-black trcking-[1%]">
-                        452 000
-                    </span>
-                    <span className="block md:hidden not-italic ml-2 mt-[10px] font-AeonikProRegular line-through text-[18px] leading-7 text-setTexOpacity">
-                        652 000 
-                    </span>
-                </div>
-                <div className={`w-fit mt-2 ${dataStyle} flex md:hidden `}>
-                    <span className="font-AeonikProRegular text-[14px] leading-4">
-                        В наличии:
-                    </span>
-                    <span className="ml-2 font-AeonikProMedium text-[16px] leading-4">
-                        284
-                    </span>
-                </div>
+            <div className="not-italic flex items-center mt-1  font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
+              Магазин:
             </div>
-            
-            <div className="w-full flex justify-between items-center gap-x-3 md:gap-x-0 md:mt-8">
-                <div className="w-[65%] md:w-[260px]">
-                    <button className="w-full h-12 md:w-[260px] md:h-[52px] mt-1 rounded-lg not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex items-center justify-center bg-fullBlue">
-                        Добавить в корзину
-                    </button>
-                </div>
-                <div className="w-[35%] md:w-[142px]">
-                    <button
-                        className={`w-full h-12 md:w-[142px] md:h-[52px] mt-1 rounded-lg not-italic border font-AeonikProMedium text-base leading-4 text-center flex items-center justify-center ${genderStyle} `}
-                    >   
-                        Купить <span className="hidden md:block">сейчас</span>
-                    </button>
-                </div>
-                <div className="w-fit md:ml-3 hidden md:block">
-                    <button className="w-[52px] h-[52px] hidden md:flex items-center justify-center rounded-lg border border-searchBgColor">
-                        <img src={HeartImg} alt="" className="w-5 h-5" />
-                    </button>
-                </div>
-                <div className={`w-fit ml-8 ${dataStyle} items-center hidden md:flex`}>
-                    <span className="not-italic mt-1 font-AeonikProRegular text-[14px] leading-5 text-right tracking-[1%]">
-                        В наличии:
-                    </span>
-                    <span className="not-italic mt-1 ml-2 font-AeonikProMedium text-[14px] leading-6 text-right tracking-[1%]">
-                        28
-                    </span>
-                </div>
+          </div>
+          <div className="w-fit ml-10">
+            <span className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+              Nike Store Official Dealer
+            </span>
+          </div>
+        </div>
+        {/* Mobile Dostavka*/}
+        <div className="h-fit flex justify-between mb-4 md:mb-7">
+          <div className="flex items-center">
+            <div className="flex items-center">
+              <span>
+                <DeliveryIcons />
+              </span>
+              <span className="ml-2 not-italic font-AeonikProMedium mt-1 text-base md:text-[14px] leading-4 text-black tracking-[1%]">
+                Доставка:
+              </span>
             </div>
+            <div className="flex items-center ml-2 md:ml-[32px]">
+              <span>
+                <CircleSuccessIcons colors={"#008F0E"} />
+              </span>
+              <span className="hidden md:block ml-2 not-italic font-AeonikProMedium mt-1 text-sm leading-4 text-green-800 tracking-[1%]">
+                Доступно
+              </span>
+            </div>
+          </div>
+          <div className="flex md:hidden items-center text-base md:text-[13px]">
+            <div>
+              <ProductArticleIcons />
+            </div>
+            <div className="ml-[2px] mr-[6px] not-italic font-AeonikProRegular mt-1 leading-4 text-right text-black tracking-[1%]">
+              Article:
+            </div>
+            <div className="not-italic font-AeonikProRegular mt-1 leading-4 text-right text-setTexOpacity tracking-[1%]">
+              AA009842
+            </div>
+          </div>
+
+          <div className="w-fit hidden md:flex items-center h-fit ">
+            <div className="not-italic mr-3 mt-1 font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%]">
+              Сезон:
+            </div>
+            <div className="flex items-center">
+              <img src={winterSeason} alt="" />
+
+              <span className="not-italic mt-1 ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+                Зима
+              </span>
+            </div>
+            <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
+            <div className="flex items-center">
+              <img src={summerSeason} alt="" />
+              <span className="not-italic mt-1 ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+                Весна
+              </span>
+            </div>
+            <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
+            <div className="flex items-center">
+              <img src={autummSeason} alt="" />
+              <span className="not-italic mt-1 ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+                Осень
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="w-fit flex md:hidden items-center h-fit text-base md:text-sm mb-10 md:mb-0">
+          <div className="not-italic mr-3 mt-1 font-AeonikProMedium leading-4 text-black tracking-[1%]">
+            Сезон:
+          </div>
+          <div className="flex items-center">
+            <img src={winterSeason} alt="" />
+
+            <span className="not-italic mt-1 ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
+              Зима
+            </span>
+          </div>
+          <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
+          <div className="flex items-center">
+            <img src={summerSeason} alt="" />
+            <span className="not-italic mt-1 ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
+              Весна
+            </span>
+          </div>
+          <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
+          <div className="flex items-center">
+            <img src={autummSeason} alt="" />
+            <span className="not-italic mt-1 ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
+              Осень
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className="w-full border-y border-searchBgColor pt-7 pb-12">
+        <div className="w-full flex items-center mb-6 text-base font-AeonikProMedium">
+          <span>
+            <ProductSwitchIcons />
+          </span>
+          <span className="not-italic ml-2 mr-3 mt-1 font-AeonikProRegular md:font-AeonikProMedium leading-4 text-black">
+            Цвет:
+          </span>
+          <span className="not-italic mt-1 leading-4 text-black">
+            Синий океан
+          </span>
+        </div>
+        <div className="w-full flex items-center gap-x-3 py-1 mb-7">
+          {selectColor.map((data) => {
+            return (
+              <div
+                key={data?.id}
+                onClick={() => handleColorCheck(data.id)}
+                className={`w-[50px] h-[50px] md:w-[64px] md:h-[72px] flex items-center justify-center rounded-lg ${
+                  data.color
+                } border border-searchBgColor cursor-pointer ${
+                  data.action ? "outline outline-offset-2 outline-2" : ""
+                } ${data.out} `}
+              >
+                {data.action && getCheckColor == 3 ? (
+                  <InputCheckedTrueIcons colors={"#000"} />
+                ) : null}
+                {data.action && getCheckColor !== 3 ? (
+                  <InputCheckedTrueIcons colors={"#fff"} />
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
+        <div className="w-full flex items-center mb-4 text-[16px] md:text-sm">
+          <span>
+            <ProductSizeIcons />
+          </span>
+          <span className="not-italic ml-2 mr-3 mt-1 font-AeonikProRegular md:font-AeonikProMedium leading-4 text-black">
+            Размер:
+          </span>
+          <span className="not-italic mt-1 font-AeonikProMedium text-[16px] md:text-sm leading-4 text-black">
+            3XL{" "}
+          </span>
+        </div>
+        <div className="w-full flex items-center">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-3">
+            {selectSize.map((data) => {
+              return (
+                <div className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg  border border-searchBgColor focus:border-fullBlue px-4 flex items-center justify-center">
+                  <span
+                    className={`mt-1 not-italic font-AeonikProMedium text-[14px] leading-4 text-center text-black tracking-[1%]`}
+                  >
+                    {data?.size}
+                  </span>
+                </div>
+              );
+            })}
+            <div className="w-[80px] h-11 flex md:hidden items-center justify-center rounded-lg border border-searchBgColor">
+              <CircleWarningIcons colors={"#000"} />
+            </div>
+          </div>
+          <div className="hidden md:block w-[1px] border-r border-searchBgColor h-8 mx-4"></div>
+          <div className="w-11 h-11 hidden md:flex items-center justify-center rounded-lg border border-searchBgColor">
+            <CircleWarningIcons colors={"#000"} />
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full pb-8 pt-6 md:mt-5 border-b boder mb-12 md:mb-0">
+        <div className="w-full flex items-center justify-between md:justify-start mb-[14px] md:mb-0">
+          <div className="flex md:hidden">
+            <DollorIcons />
+            <span className="text-base font-AeonikProRegular ml-[6px]">
+              Цена:
+            </span>
+          </div>
+          <span className="hidden md:block not-italic mt-1 font-AeonikProMedium text-[20px] leading-9 text-black trcking-[1%]">
+            452 000 сум
+          </span>
+          <span className="hidden md:block not-italic ml-4 mt-1 font-AeonikProRegular line-through text-[14px] leading-7 text-setTexOpacity">
+            652 000 сум
+          </span>
+          <div className="w-[84px] h-9 md:w-[108px] md:h-11 cursor-pointer ml-8 flex items-center justify-center border border-searchBgColor rounded-lg">
+            <span>
+              <DiscountShapeIcons />
+            </span>
+            <span className="ml-[6px] not-italic mt-1 font-AeonikProMedium text-sm md:text-[16px] leading-5 text-red-700">
+              -30%
+            </span>
+          </div>
+        </div>
+        <div className="w-full flex items-center justify-between mb-6 md:mb-0">
+          <div className="flex items-center">
+            <span className="block md:hidden not-italic mt-1 font-AeonikProMedium text-[32px] leading-9 text-black trcking-[1%]">
+              452 000
+            </span>
+            <span className="block md:hidden not-italic ml-2 mt-[10px] font-AeonikProRegular line-through text-[18px] leading-7 text-setTexOpacity">
+              652 000
+            </span>
+          </div>
+          <div className={`w-fit mt-2 ${dataStyle} flex md:hidden `}>
+            <span className="font-AeonikProRegular text-[14px] leading-4">
+              В наличии:
+            </span>
+            <span className="ml-2 font-AeonikProMedium text-[16px] leading-4">
+              284
+            </span>
+          </div>
         </div>
 
-        {/* <div className="w-full block md:hidden">
+        <div className="w-full flex justify-between items-center gap-x-3 md:gap-x-0 md:mt-8">
+          <div className="w-[65%] md:w-[260px]">
+            <button className="w-full h-12 md:w-[260px] md:h-[52px] mt-1 rounded-lg not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex items-center justify-center bg-fullBlue">
+              Добавить в корзину
+            </button>
+          </div>
+          <div className="w-[35%] md:w-[142px]">
+            <button
+              className={`w-full h-12 md:w-[142px] md:h-[52px] mt-1 rounded-lg not-italic border font-AeonikProMedium text-base leading-4 text-center flex items-center justify-center ${genderStyle} `}
+            >
+              Купить <span className="hidden md:block">сейчас</span>
+            </button>
+          </div>
+          <div className="w-fit md:ml-3 hidden md:block">
+            <button className="w-[52px] h-[52px] hidden md:flex items-center justify-center rounded-lg border border-searchBgColor">
+              <img src={HeartImg} alt="" className="w-5 h-5" />
+            </button>
+          </div>
+          <div
+            className={`w-fit ml-8 ${dataStyle} items-center hidden md:flex`}
+          >
+            <span className="not-italic mt-1 font-AeonikProRegular text-[14px] leading-5 text-right tracking-[1%]">
+              В наличии:
+            </span>
+            <span className="not-italic mt-1 ml-2 font-AeonikProMedium text-[14px] leading-6 text-right tracking-[1%]">
+              28
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* <div className="w-full block md:hidden">
             <span className="w-full font-AeonikProMedium text-base mb-6">О продукте:</span>
             <div className="rounded-lg overflow-hidden  h-[42px] md:h-[52px] ss:w-full md:w-[308px] md:mx-0 flex justify-between bg-slate-50 border border-solid ss:mt-5 md:mt-0 mx-auto ">
           <button
@@ -400,151 +403,150 @@ const ProductDetails = () => {
 
         </div> */}
 
+      {/* Text Items */}
+      <div className="mt-12 md:mt-20 hiddden md:block">
+        <span className="not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]">
+          Кратко о товаре
+        </span>
+        <ul className="pl-2">
+          <li
+            className={
+              "flex items-center not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]"
+            }
+          >
+            <BsCircleFill size={5} className="mx-2" /> Подошва 100% EVA
+          </li>
+          <li
+            className={
+              "flex items-center not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]"
+            }
+          >
+            <BsCircleFill size={5} className="mx-2" /> Подметка 100% резина
+            высокого трения
+          </li>
+          <li
+            className={
+              "flex items-center not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]"
+            }
+          >
+            <BsCircleFill size={5} className="mx-2" /> Нереально легкие и мягкие
+          </li>
+          <li
+            className={
+              "flex items-center not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]"
+            }
+          >
+            <BsCircleFill size={5} className="mx-2" /> Стрейчевый верх –
+            комфортные как носки
+          </li>
+          <li
+            className={
+              "flex items-center not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]"
+            }
+          >
+            <BsCircleFill size={5} className="mx-2" /> Отличная фиксация стопы
+          </li>
+        </ul>
+      </div>
+      {/* Table */}
+      <div className="mt-[60px] hidden md:block">
+        <div className="">
+          <div>
+            <span className="not-italic mt-1 font-AeonikProRegular text-[14px] leading-5 text-right tracking-[1%]">
+              таблица соответствия мужских размеров
+            </span>
+          </div>
+          <table className="w-full border border-searchBgColor  border-collapse	mt-5">
+            <tr className="">
+              <td>обхват груди см</td>
+              <td>86-90</td>
+              <td>86-90</td>
+              <td>86-90</td>
+              <td>86-90</td>
+              <td>86-90</td>
+              <td>86-90</td>
+              <td>86-90</td>
+              <td>86-90</td>
+              <td>86-90</td>
+              <td>86-90</td>
+            </tr>
+            <tr>
+              <td>обхват груди см</td>
+              <td>74-78</td>
+              <td>74-78</td>
+              <td>74-78</td>
+              <td>74-78</td>
+              <td>74-78</td>
+              <td>74-78</td>
+              <td>74-78</td>
+              <td>74-78</td>
+              <td>74-78</td>
+              <td>74-78</td>
+            </tr>
+            <tr>
+              <td>обхват груди см</td>
+              <td>94-97</td>
+              <td>94-97</td>
+              <td>94-97</td>
+              <td>94-97</td>
+              <td>94-97</td>
+              <td>94-97</td>
+              <td>94-97</td>
+              <td>94-97</td>
+              <td>94-97</td>
+              <td>94-97</td>
+            </tr>
+            <tr>
+              <td>обхват груди см</td>
+              <td>36-38</td>
+              <td colSpan={2}>36-38</td>
+              <td colSpan={2}>36-38</td>
+              <td colSpan={2}>36-38</td>
+              <td colSpan={2}>36-38</td>
+              <td>36-38</td>
+            </tr>
+            <tr>
+              <th>Русский размер РУС</th>
+              <th colSpan={2}>S</th>
+              <th colSpan={2}>M</th>
+              <th colSpan={2}>L</th>
+              <th colSpan={2}>XL</th>
+              <th colSpan={2}>XXL</th>
+            </tr>
+          </table>
+        </div>
+      </div>
 
-        {/* Text Items */}
-        <div className="mt-12 md:mt-20 hiddden md:block">
-            <span className="not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]">
-                Кратко о товаре
-            </span>
-            <ul className="pl-2">
-                <li
-                className={
-                    "flex items-center not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]"
-                }
-                >
-                <BsCircleFill size={5} className="mx-2" /> Подошва 100% EVA
-                </li>
-                <li
-                className={
-                    "flex items-center not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]"
-                }
-                >
-                <BsCircleFill size={5} className="mx-2" /> Подметка 100% резина
-                высокого трения
-                </li>
-                <li
-                className={
-                    "flex items-center not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]"
-                }
-                >
-                <BsCircleFill size={5} className="mx-2" /> Нереально легкие и мягкие
-                </li>
-                <li
-                className={
-                    "flex items-center not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]"
-                }
-                >
-                <BsCircleFill size={5} className="mx-2" /> Стрейчевый верх –
-                комфортные как носки
-                </li>
-                <li
-                className={
-                    "flex items-center not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]"
-                }
-                >
-                <BsCircleFill size={5} className="mx-2" /> Отличная фиксация стопы
-                </li>
-            </ul>
-        </div>
-        {/* Table */}
-        <div className="mt-[60px] hidden md:block">
-            <div className="">
-                <div>
-                    <span className="not-italic mt-1 font-AeonikProRegular text-[14px] leading-5 text-right tracking-[1%]">
-                        таблица соответствия мужских размеров
-                    </span>
-                </div>
-                <table className="w-full border border-searchBgColor  border-collapse	mt-5">
-                    <tr className="">
-                        <td>обхват груди см</td>
-                        <td>86-90</td>
-                        <td>86-90</td>
-                        <td>86-90</td>
-                        <td>86-90</td>
-                        <td>86-90</td>
-                        <td>86-90</td>
-                        <td>86-90</td>
-                        <td>86-90</td>
-                        <td>86-90</td>
-                        <td>86-90</td>
-                    </tr>
-                    <tr>
-                        <td>обхват груди см</td>
-                        <td>74-78</td>
-                        <td>74-78</td>
-                        <td>74-78</td>
-                        <td>74-78</td>
-                        <td>74-78</td>
-                        <td>74-78</td>
-                        <td>74-78</td>
-                        <td>74-78</td>
-                        <td>74-78</td>
-                        <td>74-78</td>
-                    </tr>
-                    <tr>
-                        <td>обхват груди см</td>
-                        <td>94-97</td>
-                        <td>94-97</td>
-                        <td>94-97</td>
-                        <td>94-97</td>
-                        <td>94-97</td>
-                        <td>94-97</td>
-                        <td>94-97</td>
-                        <td>94-97</td>
-                        <td>94-97</td>
-                        <td>94-97</td>
-                    </tr>
-                    <tr>
-                        <td>обхват груди см</td>
-                        <td>36-38</td>
-                        <td colSpan={2}>36-38</td>
-                        <td colSpan={2}>36-38</td>
-                        <td colSpan={2}>36-38</td>
-                        <td colSpan={2}>36-38</td>
-                        <td>36-38</td>
-                    </tr>
-                    <tr>
-                        <th>Русский размер РУС</th>
-                        <th colSpan={2}>S</th>
-                        <th colSpan={2}>M</th>
-                        <th colSpan={2}>L</th>
-                        <th colSpan={2}>XL</th>
-                        <th colSpan={2}>XXL</th>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
-        <div className="mt-[60px] flex-col gap-y-5 hidden md:flex">
-            <span className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
-                {" "}
-                Бренд GRN занимает №4 место в Юго-Восточной Азии, относится к ТОПовому
-                сегменту качества. Бренд GRN один из самых старейших брендов обуви и
-                одежды в Азии - был основан в 1978 году.
-            </span>
-            <span className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
-                {" "}
-                Бренд GRN имеет более 12000 магазинов собственной розницы в таких
-                странах как: Китай, Япония, Вьетнам, Малайзия, Марокко, Югославия,
-                Словения, Польша.
-            </span>
-            <span className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
-                {" "}
-                Бренд GRN ориентирован на выпуск высококачественной одежды и обуви для
-                спорта и для носки на каждый день.
-            </span>
-            <span className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
-                {" "}
-                Суммарные объемы выпускаемой обуви – 20.000.000 пар в год, что делает
-                бренд GRN одним из самых крупных брендов не только в Азии, но и в
-                мире.
-            </span>
-            <span className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
-                {" "}
-                Отличительные черты продукции GRN – высокое качество, комфортные
-                лекала и стиль.
-            </span>
-        </div>
+      <div className="mt-[60px] flex-col gap-y-5 hidden md:flex">
+        <span className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
+          {" "}
+          Бренд GRN занимает №4 место в Юго-Восточной Азии, относится к ТОПовому
+          сегменту качества. Бренд GRN один из самых старейших брендов обуви и
+          одежды в Азии - был основан в 1978 году.
+        </span>
+        <span className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
+          {" "}
+          Бренд GRN имеет более 12000 магазинов собственной розницы в таких
+          странах как: Китай, Япония, Вьетнам, Малайзия, Марокко, Югославия,
+          Словения, Польша.
+        </span>
+        <span className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
+          {" "}
+          Бренд GRN ориентирован на выпуск высококачественной одежды и обуви для
+          спорта и для носки на каждый день.
+        </span>
+        <span className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
+          {" "}
+          Суммарные объемы выпускаемой обуви – 20.000.000 пар в год, что делает
+          бренд GRN одним из самых крупных брендов не только в Азии, но и в
+          мире.
+        </span>
+        <span className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
+          {" "}
+          Отличительные черты продукции GRN – высокое качество, комфортные
+          лекала и стиль.
+        </span>
+      </div>
     </div>
   );
 };

@@ -47,17 +47,17 @@ export default function MyOrderList() {
             return (
               <div
                 key={data.id}
-                className="w-full h-[338px] border border-searchBgColor rounded-lg flex overflow-hidden flex-col content-between"
+                className="w-full h-fit md:h-[338px] border border-searchBgColor rounded-lg flex overflow-hidden flex-col content-between"
               >
-                <div className="w-full border-b border-searchBgColor h-[64px] flex items-center px-10">
+                <div className="w-full border-b border-searchBgColor h-[64px] flex items-center px-4 md:px-10">
                   <span className="not-italic mt-1 font-AeonikProMedium text-xl leading-6 text-black tracking-[1%]">
                     ID заказа {data?.orderId}
                   </span>
                 </div>
-                <div className="w-full   h-[224px] px-10 py-6 flex flex-wrap content-between">
+                <div className="w-full  h-fit md:h-[224px] px-4 md:px-10 py-5 md:py-6 gap-y-4 md:gap-y-0 flex flex-wrap content-between">
                   {/* 1 */}
                   <div className="w-full flex items-center ">
-                    <div className="w-[180px] not-italic font-AeonikProMedium tracking-[1%] text-base leading-4 text-setTexOpacity ">
+                    <div className="w-[150px] md:w-[180px] not-italic font-AeonikProMedium tracking-[1%] text-base leading-4 text-setTexOpacity ">
                       Статус:
                     </div>
                     <div className="w-fit flex items-center">
@@ -72,7 +72,7 @@ export default function MyOrderList() {
                   </div>
                   {/* 2 */}
                   <div className="w-full flex items-center ">
-                    <div className="w-[180px] not-italic font-AeonikProMedium tracking-[1%] text-base leading-4 text-setTexOpacity ">
+                    <div className="w-[150px] md:w-[180px] not-italic font-AeonikProMedium tracking-[1%] text-base leading-4 text-setTexOpacity  ">
                       Дата заказа:
                     </div>
                     <div className="w-fit flex items-center">
@@ -83,18 +83,18 @@ export default function MyOrderList() {
                   </div>
                   {/* 3 */}
                   <div className="w-full flex items-center ">
-                    <div className="w-[180px] not-italic font-AeonikProMedium tracking-[1%] text-base leading-4 text-setTexOpacity ">
+                    <div className="w-[150px] md:w-[180px] not-italic font-AeonikProMedium tracking-[1%] text-base leading-4 text-setTexOpacity  ">
                       Адрес магазина:{" "}
                     </div>
-                    <div className="w-fit flex items-center">
-                      <span className="not-italic font-AeonikProMedium text-base leading-4 text-black tracking-[1%]">
+                    <div className="w-fit flex flex-wrap items-center ">
+                      <span className=" not-italic font-AeonikProMedium text-base leading-4 text-black tracking-[1%]">
                         г. Ташкент, Чиланзарский район 17-тый квартал, дом 37{" "}
                       </span>
                     </div>
                   </div>
                   {/* 4 */}
                   <div className="w-full flex items-center ">
-                    <div className="w-[180px] not-italic font-AeonikProMedium tracking-[1%] text-base leading-4 text-setTexOpacity ">
+                    <div className="w-[150px] md:w-[180px] not-italic font-AeonikProMedium tracking-[1%] text-base leading-4 text-setTexOpacity  ">
                       Доставка:{" "}
                     </div>
                     <div className="w-fit flex items-center">
@@ -109,7 +109,7 @@ export default function MyOrderList() {
                   </div>
                   {/* 5 */}
                   <div className="w-full flex items-center ">
-                    <div className="w-[180px] not-italic font-AeonikProMedium tracking-[1%] text-base leading-4 text-setTexOpacity ">
+                    <div className="w-[150px] md:w-[180px] not-italic font-AeonikProMedium tracking-[1%] text-base leading-4 text-setTexOpacity ">
                       Сумма заказа:{" "}
                     </div>
                     <div className="w-fit flex items-center">

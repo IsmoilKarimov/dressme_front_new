@@ -286,7 +286,7 @@ const YandexMedium = () => {
             className=" bg-yandexWhite rounded-lg flex items-center justify-center w-11 h-11 relative md:flex ss:hidden"
           >
             <span>
-              <BasketIcons />
+              <BasketIcons colors={"#000"} />
             </span>
             <span className="count bg-red-700 w-4 h-4 text-yandexWhite text-[10px] rounded-lg flex items-center justify-center absolute top-0 right-0 font-AeonikProMedium">
               {" "}
