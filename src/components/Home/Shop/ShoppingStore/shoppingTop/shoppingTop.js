@@ -85,7 +85,7 @@ const ShoppingTop = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-[44px]  justify-center items-center my-5">
+    <div className="hidden md:flex flex-col min-h-[44px]  justify-center items-center my-5">
       <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
         <div className="flex items-center">
           <div className="w-[98%] flex items-center border rounded-lg bg-slate-50 mr-6">

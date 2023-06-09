@@ -6,12 +6,14 @@ import {
   ArrowTopIcons,
   LocationIcons,
   ManGenIcons,
+  MenuMore,
   StarIcons,
   VideoStoreIcons,
   WomanGenIcons,
 } from "../../../../../AssetsMain/icons";
 
 const ShoppingBrands = () => {
+  
   const [allShops, setAllShops] = useState([
     {
       id: 1,
@@ -57,38 +59,37 @@ const ShoppingBrands = () => {
 
   return (
     <div className="flex flex-col min-h-[44px]  justify-center items-center my-3">
-      <div className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto mt-[50px] mb-[90px]">
+      <div className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto md:mt-[50px] mb-20 md:mb-[90px]">
         <div className="w-full">
           {allShops.map((data) => (
             <div
               onClick={() => gotoOfficial(data?.name)}
               key={data.id}
-              className="relative w-full cursor-pointer h-[100px] flex items-center justify-between border border-searchBgColor rounded-lg mb-[30px]"
+              className="relative w-full cursor-pointer h-fit md:h-[100px] flex items-center justify-between md:border md:border-searchBgColor rounded-lg mb-[30px]"
             >
-              <div className="absolute w-[120px] h-[120px] left-[55px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
-                <img src={nike} alt="" />
+              <div className="absolute w-[60px] h-[60px] md:w-[120px] md:h-[120px] md:left-[55px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
+                <img src={nike} alt="" className="w-[70%] md:w-fit"/>
               </div>
-              <div className="flex flex-col ml-[210px]">
-                <div className="text-xl font-AeonikProMedium mb-3">
+              <div className="flex flex-col ml-[86px] md:ml-[210px]">
+                <div className="text-lg md:text-xl font-AeonikProMedium mb-[9px] md:mb-3">
                   {data.name}
                 </div>
                 <div className="">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center -mt-1 mr-2">
+                  <div className="flex items-center md:justify-between">
+                    <div className="flex items-center -mt-1 mr-[6px] md:mr-2">
+                      <StarIcons />
+                      {/* <StarIcons />
                       <StarIcons />
                       <StarIcons />
-                      <StarIcons />
-                      <StarIcons />
-                      <StarIcons />
+                      <StarIcons /> */}
                     </div>
                     <div className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex items-center text-sm">
                       <div className="font-AeonikProMedium text-black mr-1">
-                        {" "}
-                        5.0{" "}
+                        5.0
                       </div>
                       <div className="text-setTexOpacity font-AeonikProRegular">
-                        ({data.votes} votes){" "}
-                        <span className="ml-[10px]">|</span>{" "}
+                        ({data.votes} votes)
+                        <span className="ml-[10px]">|</span>
                       </div>
                       <div className="font-AeonikProRegular ml-[10px] text-setTexOpacity">
                         {data.orders} orders
@@ -97,7 +98,7 @@ const ShoppingBrands = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex items-center">
+              <div className="hidden md:flex items-center">
                 <NavLink
                   to="/delivery-points"
                   className="flex items-center justify-center w-12 h-12 rounded-lg border border-searchBgColor cursor-pointer"
@@ -115,7 +116,7 @@ const ShoppingBrands = () => {
                   </p>
                 </NavLink>
               </div>
-              <div className="flex items-center mr-5">
+              <div className="hidden md:flex items-center mr-5">
                 <button className="flex items-center justify-center border border-searchBgColor w-12 h-12 rounded-lg mr-3">
                   <VideoStoreIcons />
                 </button>
@@ -126,15 +127,19 @@ const ShoppingBrands = () => {
                   <WomanGenIcons />
                 </button>
               </div>
+              <button className="w-12 h-12 flex md:hidden items-center justify-center rounded-xl border border-searchBgColor">
+                  <MenuMore />
+              </button>
             </div>
           ))}
         </div>
-        <div className="w-full h-fit flex items-center justify-center mt-[75px] gap-x-6">
-          <div className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
+        
+        <div className="w-full h-fit flex items-center justify-center mt-10 md:mt-[75px] gap-x-6">
+          <div className="flex items-center cursor-pointer bg-searchBgColor py-5 px-[18px] md:px-5 md:py-3 rounded-lg">
             <span className="rotate-[-90deg]">
               <ArrowTopIcons colors={"#007DCA"} />
             </span>{" "}
-            <span className="not-italic ml-1 mt-1  font-AeonikProRegular text-lg leading-4 text-fullBlue">
+            <span className="hidden md:block not-italic ml-1 mt-1  font-AeonikProRegular text-lg leading-4 text-fullBlue">
               Previous
             </span>
           </div>
@@ -150,27 +155,12 @@ const ShoppingBrands = () => {
                 3
               </li>
               <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-                4
-              </li>
-              <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-                5
-              </li>
-              <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-                6
-              </li>
-              <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-                7
-              </li>
-              <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-                8{" "}
-              </li>
-              <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-                . . .
+                ...
               </li>
             </ul>
           </div>
-          <div className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
-            <span className="not-italic mt-1 font-AeonikProRegular mr-1 text-lg leading-4 text-fullBlue">
+          <div className="flex items-center cursor-pointer bg-searchBgColor py-5 px-[18px] md:px-5 md:py-3 rounded-lg">
+            <span className="hidden md:block not-italic mt-1 font-AeonikProRegular mr-1 text-lg leading-4 text-fullBlue">
               Next
             </span>
             <span className="rotate-[90deg]">
