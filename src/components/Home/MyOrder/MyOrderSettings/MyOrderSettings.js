@@ -49,16 +49,16 @@ export default function MyOrderSettings() {
     }
   };
   return (
-    <div className=" pt-8 w-full flex justify-center ss:px-4 md:px-0">
-      <div className="max-w-[820px] w-[100%] h-fit   border border-searchBgColor rounded-lg">
-        <div className="md:px-[40px] md:py-[30px] border-b border-searchBgColor">
-          <div>
+    <div className="pt-3 md:pt-8 w-full flex justify-center ss:px-4 md:px-0">
+      <div className="md:max-w-[820px] max-w-[440px] w-[100%] h-fit p-4 md:px-0  border border-searchBgColor rounded-lg mb-20 md:mb-0">
+        <div className="md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
+          <div className="">
             <span className="not-italic font-AeonikProMedium text-xl leading-6 text-black tracking-[1%]">
               Мои данные
             </span>
           </div>
-          <div className="flex justify-between items-center mt-6">
-            <div className=" w-[48%] h-fit">
+          <div className="flex flex-col md:flex-row justify-between items-center mt-6">
+            <div className="w-full md:w-[48%] h-fit">
               <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
                 Имя{" "}
               </div>
@@ -74,7 +74,7 @@ export default function MyOrderSettings() {
                 </span>
               </div>
             </div>
-            <div className=" w-[48%] h-fit">
+            <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
               <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
                 Фамилия{" "}
               </div>
@@ -92,14 +92,14 @@ export default function MyOrderSettings() {
             </div>
           </div>
         </div>
-        <div className="md:px-[40px] md:py-[30px] border-b border-searchBgColor">
-          <div className="flex justify-between items-center">
-            <div className=" w-[48%] h-fit">
+        <div className="md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
+          <div className="flex  flex-col md:flex-row justify-between items-center">
+            <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
               <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
                 Номер телефона{" "}
               </div>
-              <div className="flex items-center justify-center overflow-hidden border border-searchBgColor rounded-lg">
-                <div className="ss:w-[35%] md:w-[30%] h-12 flex bg-btnBgColor items-center justify-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
+              <div className="flex mt-[6px] items-center justify-center overflow-hidden border border-searchBgColor rounded-lg">
+                <div className="ss:w-[35%] md:w-[30%]   h-12 flex bg-btnBgColor items-center justify-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
                   <img src={UzbekFlag} alt="form-arrow-bottom" />
                   <input
                     className="w-[40px] bg-btnBgColor h-full select-none mx-2 not-italic font-AeonikProMedium text-base leading-4 text-black"
@@ -124,8 +124,8 @@ export default function MyOrderSettings() {
                 </div>
               </div>
             </div>
-            <div className=" w-[48%] h-fit">
-              <div className="flex justify-between w-full items-center not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
+            <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
+              <div className="flex justify-between mt-[6px]  w-full items-center not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
                 <span>Электронная почта</span>
                 <span>*необязательная</span>
               </div>
@@ -144,12 +144,12 @@ export default function MyOrderSettings() {
           </div>
         </div>
         <div className="md:px-[40px] md:py-[30px] ">
-          <div className="flex justify-between items-center">
-            <div className=" w-[48%] h-fit">
+          <div className="flex  flex-col md:flex-row justify-between items-center">
+            <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
               <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
                 Пол
               </div>
-              <div className="w-full flex items-center justify-center bg-btnBgColor overflow-hidden border border-searchBgColor rounded-lg">
+              <div className="w-full mt-[6px]  flex items-center justify-center bg-btnBgColor overflow-hidden border border-searchBgColor rounded-lg">
                 <button
                   className={`w-1/2 h-12 flex items-center justify-center border-r border-searchBgColor not-italic font-AeonikProMedium tracking-[1%] text-base leading-4 text-center ${
                     state.Male ? "text-fullBlue" : "text-black"
@@ -172,11 +172,11 @@ export default function MyOrderSettings() {
                 </button>
               </div>
             </div>
-            <div className=" w-[48%] h-fit">
+            <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
               <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
                 Дата рождения
               </div>
-              <div className="w-full h-12 flex items-center  bg-btnBgColor overflow-hidden border border-searchBgColor rounded-lg">
+              <div className="w-full mt-[6px]  h-12 flex items-center  bg-btnBgColor overflow-hidden border border-searchBgColor rounded-lg">
                 <button
                   className={`w-[48px] h-full  flex items-center justify-center border-r border-searchBgColor`}
                 >
@@ -213,7 +213,7 @@ export default function MyOrderSettings() {
             </div>
           </div>
         </div>
-        <div className="w-full flex items-center justify-between md:px-[40px] md:py-[30px] ">
+        <div className="w-full md:w-[48%] md:w-full mx-auto flex items-center justify-between  md:px-[40px] md:py-[30px] mt-6 md:mt-0  ">
           <div>
             <button
               onClick={LogOut}
@@ -222,13 +222,13 @@ export default function MyOrderSettings() {
               <span>
                 <LogOutIcons colors={"#D50000"} />
               </span>
-              <span className="not-italic ml-2 mt-1 font-AeonikProMedium text-base leading-4 tracking-[1%] text-RedColor text-center">
+              <span className="not-italic hidden md:block ml-2 mt-1 font-AeonikProMedium text-base leading-4 tracking-[1%] text-RedColor text-center">
                 Выйти из системы
               </span>
             </button>
           </div>
-          <div>
-            <button className="w-[244px] h-[52px] rounded-lg bg-fullBlue text-white active:scale-95  active:opacity-70 rounded-lg flex items-center justify-center">
+          <div className="w-[80%] xs:w-[60%] md:w-auto ">
+            <button className="w-[100%] md:w-[244px] h-[52px] rounded-lg bg-fullBlue text-white active:scale-95  active:opacity-70 rounded-lg flex items-center justify-center">
               <span className="not-italic mt-1 font-AeonikProMedium text-base leading-4 text-center tracking-[1%]">
                 Сохранить данные
               </span>

@@ -95,9 +95,9 @@ const MyOrderBreadCamp = () => {
   );
   return (
     <>
-      <div className="flex flex-col min-h-[44px]  justify-center items-center m-0 py-3 box-border border-b border-searchBgColor">
-        <div className="max-w-[1280px] w-[100%] flex items-center justify-between items-center m-auto   ">
-          <div className="flex items-center gap-x-6">
+      <div className="flex flex-col min-h-[44px]  justify-center items-center m-0 py-3 box-border md:border-b border-searchBgColor">
+        <div className="max-w-[1280px] w-[100%] flex items-center justify-between items-center m-auto  px-4 md:px-0 ">
+          <div className="flex items-center md:gap-x-6 gap-x-4">
             <NavLink
               onClick={() =>
                 setState({ ...state, LinkOrder: false, LinkSetting: true })
@@ -105,8 +105,8 @@ const MyOrderBreadCamp = () => {
               to="/my-order/settings"
               className={({ isActive }) =>
                 isActive
-                  ? `not-italic font-AeonikProMedium text-lg leading-5 text-black`
-                  : `not-italic font-AeonikProMedium text-lg leading-5  ${
+                  ? `not-italic font-AeonikProMedium text-base md:text-lg leading-5 text-black`
+                  : `not-italic font-AeonikProMedium text-base md:text-lg leading-5  ${
                       state?.LinkSetting ? "text-black" : "text-setTexOpacity"
                     }`
               }
@@ -120,8 +120,8 @@ const MyOrderBreadCamp = () => {
               to="/my-order/list"
               className={({ isActive }) =>
                 isActive
-                  ? `not-italic font-AeonikProMedium text-lg leading-5 text-black`
-                  : `not-italic font-AeonikProMedium text-lg leading-5  ${
+                  ? `not-italic font-AeonikProMedium text-base md:text-lg leading-5 text-black`
+                  : `not-italic font-AeonikProMedium text-base md:text-lg leading-5  ${
                       state?.LinkOrder ? "text-black" : "text-setTexOpacity"
                     }`
               }
@@ -133,7 +133,7 @@ const MyOrderBreadCamp = () => {
             <Popover
               open={state?.openwear}
               onOpenChange={handleOpenChangeWear}
-              className="w-[168px] px-[17px] h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
+              className="w-[74px] md:w-[168px] px-3 md:px-[17px] h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
               trigger="click"
               options={["Hide"]}
               placement="bottom"
@@ -153,7 +153,7 @@ const MyOrderBreadCamp = () => {
                     );
                   })}
               </span>
-              <span className="not-italic font-AeonikProMedium text-center mt-1 text-sm leading-4 text-black">
+              <span className="not-italic font-AeonikProMedium text-center mt-1 text-sm leading-4 text-black hidden md:block">
                 Абдулазиз{" "}
               </span>
               <span>

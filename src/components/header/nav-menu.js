@@ -36,7 +36,7 @@ const NavMenu = () => {
               className={`relative h-full flex items-center mx-auto cursor-pointer `}
             >
               <span className=" flex items-center mb-1 h-6 ">
-                <BasketIcons />
+                <BasketIcons colors={"#000"} />
               </span>
             </div>
             <span>

@@ -857,6 +857,9 @@ const MediumHeader = () => {
             {/* Gender selection for Mobile */}
             {locationWindow !== "/categoriesType" &&
             locationWindow !== "/shopping_store/:id" &&
+            locationWindow !== "/my-order/settings" &&
+            locationWindow !== "/my-order" &&
+            locationWindow !== "/my-order/list" &&
             locationWindow !== "/favourites" &&
             locationWindow !== "/product/:id" ? (
               <div className="flex flex-wrap items-center justify-between mt-3 rounded-lg  mb-4 w-full  ">
