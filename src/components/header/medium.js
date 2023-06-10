@@ -5,6 +5,7 @@ import { dressMainData } from "../../ContextHook/ContextMenu";
 import { GrClose } from "react-icons/gr";
 import { Popover } from "antd";
 import {
+  ActivePersonIcons,
   ArrowTopIcons,
   BasketIcons,
   BrushColorIcons,
@@ -404,7 +405,7 @@ const MediumHeader = () => {
                 >
                   {({ isActive }) =>
                     isActive ? (
-                      <img src={ActivePersonImg} alt="" />
+                      <ActivePersonIcons colors={IconsColor} />
                     ) : (
                       <PersonIcons colors={"#000"} />
                     )
@@ -860,7 +861,9 @@ const MediumHeader = () => {
             locationWindow !== "/my-order/settings" &&
             locationWindow !== "/my-order" &&
             locationWindow !== "/my-order/list" &&
+            locationWindow !== "/payment" &&
             locationWindow !== "/favourites" &&
+            locationWindow !== "/basket-check-out" &&
             locationWindow !== "/product/:id" ? (
               <div className="flex flex-wrap items-center justify-between mt-3 rounded-lg  mb-4 w-full  ">
                 {personItems

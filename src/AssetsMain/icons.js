@@ -268,6 +268,22 @@ const InputCheckedTrueIcons = ({ colors }) => {
     </svg>
   );
 };
+const CheckedStatusIcons = ({ colors }) => {
+  return (
+    <svg
+      width="12"
+      height="9"
+      viewBox="0 0 12 9"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.66662 7.115L10.7946 0.986328L11.738 1.92899L4.66662 9.00033L0.42395 4.75766L1.36662 3.81499L4.66662 7.115Z"
+        fill={colors}
+      />
+    </svg>
+  );
+};
 const ArrowTopIcons = ({ colors }) => {
   return (
     <svg
@@ -2435,6 +2451,7 @@ export {
   SaveBasketIcons,
   BasketIcons,
   InputCheckedTrueIcons,
+  CheckedStatusIcons,
   ArrowTopIcons,
   LocationIcons,
   UploadIcons,
