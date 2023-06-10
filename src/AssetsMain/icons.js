@@ -90,6 +90,25 @@ const NoImg = () => {
     </svg>
   );
 };
+const ActiveHeartIcons = ({ colors }) => {
+  return (
+    <svg
+      width="24"
+      height="20"
+      viewBox="0 0 16 16"
+      fill={colors}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M8.41337 12.8733C8.18671 12.9533 7.81337 12.9533 7.58671 12.8733C5.65337 12.2133 1.33337 9.45998 1.33337 4.79332C1.33337 2.73332 2.99337 1.06665 5.04004 1.06665C6.25337 1.06665 7.32671 1.65332 8.00004 2.55998C8.67337 1.65332 9.75337 1.06665 10.96 1.06665C13.0067 1.06665 14.6667 2.73332 14.6667 4.79332C14.6667 9.45998 10.3467 12.2133 8.41337 12.8733Z"
+        stroke={colors}
+        stroke-width="1.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
 const HeartIcons = ({ colors }) => {
   return (
     <svg
@@ -109,6 +128,25 @@ const HeartIcons = ({ colors }) => {
     </svg>
   );
 };
+// const HeartIcons = ({ colors }) => {
+//   return (
+//     <svg
+//       width="20"
+//       height="18"
+//       viewBox="0 0 15 14"
+//       fill="#D50000"
+//       xmlns="http://www.w3.org/2000/svg"
+//     >
+//       <path
+//         d="M8.41337 12.8733C8.18671 12.9533 7.81337 12.9533 7.58671 12.8733C5.65337 12.2133 1.33337 9.45998 1.33337 4.79332C1.33337 2.73332 2.99337 1.06665 5.04004 1.06665C6.25337 1.06665 7.32671 1.65332 8.00004 2.55998C8.67337 1.65332 9.75337 1.06665 10.96 1.06665C13.0067 1.06665 14.6667 2.73332 14.6667 4.79332C14.6667 9.45998 10.3467 12.2133 8.41337 12.8733Z"
+//         stroke="#D50000"
+//         stroke-width="1.2"
+//         stroke-linecap="round"
+//         stroke-linejoin="round"
+//       />
+//     </svg>
+//   );
+// };
 const HeartLinkIcons = ({ colors }) => {
   return (
     <svg
@@ -496,6 +534,38 @@ const PersonIcons = ({ colors }) => {
     </svg>
   );
 };
+const ActivePersonIcons = ({ colors }) => {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M11.9847 15.3462C8.11713 15.3462 4.81427 15.931 4.81427 18.2729C4.81427 20.6148 8.09617 21.2205 11.9847 21.2205C15.8524 21.2205 19.1543 20.6348 19.1543 18.2938C19.1543 15.9529 15.8733 15.3462 11.9847 15.3462Z"
+        stroke={colors}
+        fill={colors}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M11.9847 12.0059C14.5228 12.0059 16.58 9.94779 16.58 7.40969C16.58 4.8716 14.5228 2.81445 11.9847 2.81445C9.44664 2.81445 7.38852 4.8716 7.38852 7.40969C7.37997 9.93922 9.42378 11.9973 11.9524 12.0059H11.9847Z"
+        stroke={colors}
+        fill={colors}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
 const ListCollectionIcons = () => {
   return (
     <svg
@@ -582,6 +652,94 @@ const CotegoryIcons = ({ colors }) => {
     </svg>
   );
 };
+const ActiveCotegoryIcons = ({ colors }) => {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill={colors}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M3.75 7.5H5.25C6.75 7.5 7.5 6.75 7.5 5.25V3.75C7.5 2.25 6.75 1.5 5.25 1.5H3.75C2.25 1.5 1.5 2.25 1.5 3.75V5.25C1.5 6.75 2.25 7.5 3.75 7.5Z"
+        stroke={colors}
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M12.75 7.5H14.25C15.75 7.5 16.5 6.75 16.5 5.25V3.75C16.5 2.25 15.75 1.5 14.25 1.5H12.75C11.25 1.5 10.5 2.25 10.5 3.75V5.25C10.5 6.75 11.25 7.5 12.75 7.5Z"
+        stroke={colors}
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M12.75 16.5H14.25C15.75 16.5 16.5 15.75 16.5 14.25V12.75C16.5 11.25 15.75 10.5 14.25 10.5H12.75C11.25 10.5 10.5 11.25 10.5 12.75V14.25C10.5 15.75 11.25 16.5 12.75 16.5Z"
+        stroke={colors}
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M3.75 16.5H5.25C6.75 16.5 7.5 15.75 7.5 14.25V12.75C7.5 11.25 6.75 10.5 5.25 10.5H3.75C2.25 10.5 1.5 11.25 1.5 12.75V14.25C1.5 15.75 2.25 16.5 3.75 16.5Z"
+        stroke={colors}
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+// const ActiveCotegoryIcons = ({ colors }) => {
+//   return (
+//     <svg
+//       width="18"
+//       height="18"
+//       viewBox="0 0 18 18"
+//       fill={colors}
+//       xmlns="http://www.w3.org/2000/svg"
+//     >
+//       <path
+//         d="M3.75 7.5H5.25C6.75 7.5 7.5 6.75 7.5 5.25V3.75C7.5 2.25 6.75 1.5 5.25 1.5H3.75C2.25 1.5 1.5 2.25 1.5 3.75V5.25C1.5 6.75 2.25 7.5 3.75 7.5Z"
+//         stroke={colors}
+//         stroke-width="1.5"
+//         stroke-miterlimit="10"
+//         stroke-linecap="round"
+//         stroke-linejoin="round"
+//       />
+//       <path
+//         d="M12.75 7.5H14.25C15.75 7.5 16.5 6.75 16.5 5.25V3.75C16.5 2.25 15.75 1.5 14.25 1.5H12.75C11.25 1.5 10.5 2.25 10.5 3.75V5.25C10.5 6.75 11.25 7.5 12.75 7.5Z"
+//         stroke={colors}
+//         stroke-width="1.5"
+//         stroke-miterlimit="10"
+//         stroke-linecap="round"
+//         stroke-linejoin="round"
+//       />
+//       <path
+//         d="M12.75 16.5H14.25C15.75 16.5 16.5 15.75 16.5 14.25V12.75C16.5 11.25 15.75 10.5 14.25 10.5H12.75C11.25 10.5 10.5 11.25 10.5 12.75V14.25C10.5 15.75 11.25 16.5 12.75 16.5Z"
+//         stroke={colors}
+//         stroke-width="1.5"
+//         stroke-miterlimit="10"
+//         stroke-linecap="round"
+//         stroke-linejoin="round"
+//       />
+//       <path
+//         d="M3.75 16.5H5.25C6.75 16.5 7.5 15.75 7.5 14.25V12.75C7.5 11.25 6.75 10.5 5.25 10.5H3.75C2.25 10.5 1.5 11.25 1.5 12.75V14.25C1.5 15.75 2.25 16.5 3.75 16.5Z"
+//         stroke={colors}
+//         stroke-width="1.5"
+//         stroke-miterlimit="10"
+//         stroke-linecap="round"
+//         stroke-linejoin="round"
+//       />
+//     </svg>
+//   );
+// };
 const CotegoryMenuIcons = ({ colors }) => {
   return (
     <svg
@@ -1079,21 +1237,21 @@ const PlusIcons = () => {
 const HomeIcons = ({ colors }) => {
   return (
     <svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
+      width="22"
+      height="22"
+      viewBox="0 0 22 22"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M10 15V12.5"
+        d="M9.23075 2.58494L2.87825 7.67244C2.16325 8.24078 1.70492 9.44161 1.86075 10.3399L3.07992 17.6366C3.29992 18.9383 4.54658 19.9924 5.86658 19.9924H16.1333C17.4441 19.9924 18.6999 18.9291 18.9199 17.6366L20.1391 10.3399C20.2858 9.44161 19.8274 8.24078 19.1216 7.67244L12.7691 2.59411C11.7883 1.80578 10.2024 1.80578 9.23075 2.58494Z"
         stroke={colors}
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
-        d="M8.39166 2.35053L2.61666 6.97553C1.96666 7.49219 1.55 8.58386 1.69166 9.40053L2.8 16.0339C3 17.2172 4.13333 18.1755 5.33333 18.1755H14.6667C15.8583 18.1755 17 17.2089 17.2 16.0339L18.3083 9.40053C18.4417 8.58386 18.025 7.49219 17.3833 6.97553L11.6083 2.35886C10.7167 1.64219 9.275 1.64219 8.39166 2.35053Z"
+        d="M11 16.5V13.75"
         stroke={colors}
         stroke-width="1.5"
         stroke-linecap="round"
@@ -1102,7 +1260,33 @@ const HomeIcons = ({ colors }) => {
     </svg>
   );
 };
-const BasketIcons = ({colors}) => {
+const ActiveHomeIcons = ({ colors }) => {
+  return (
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 22 22"
+      fill={colors}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9.23075 2.58494L2.87825 7.67244C2.16325 8.24078 1.70492 9.44161 1.86075 10.3399L3.07992 17.6366C3.29992 18.9383 4.54658 19.9924 5.86658 19.9924H16.1333C17.4441 19.9924 18.6999 18.9291 18.9199 17.6366L20.1391 10.3399C20.2858 9.44161 19.8274 8.24078 19.1216 7.67244L12.7691 2.59411C11.7883 1.80578 10.2024 1.80578 9.23075 2.58494Z"
+        stroke={colors}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M11 16.5V13.75"
+        stroke="#fff"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+const BasketIcons = ({ colors }) => {
   return (
     <svg
       width="20"
@@ -1112,31 +1296,75 @@ const BasketIcons = ({colors}) => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M6.25 6.39167V5.58333C6.25 3.70833 7.75833 1.86667 9.63333 1.69167C11.8667 1.475 13.75 3.23333 13.75 5.425V6.575"
-        stroke={colors}
+        d="M6.875 7.03084V6.14167C6.875 4.07917 8.53417 2.05334 10.5967 1.86084C13.0533 1.62251 15.125 3.55667 15.125 5.96751V7.23251"
+        stroke={"#000"}
         stroke-width="1.5"
         stroke-miterlimit="10"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
-        d="M7.49998 18.3333H12.5C15.85 18.3333 16.45 16.9917 16.625 15.3583L17.25 10.3583C17.475 8.325 16.8916 6.66666 13.3333 6.66666H6.66664C3.10831 6.66666 2.52498 8.325 2.74998 10.3583L3.37498 15.3583C3.54998 16.9917 4.14998 18.3333 7.49998 18.3333Z"
-        stroke={colors}
+        d="M8.25009 20.1667H13.7501C17.4351 20.1667 18.0951 18.6909 18.2876 16.8942L18.9751 11.3942C19.2226 9.15754 18.5809 7.33337 14.6668 7.33337H7.33342C3.41925 7.33337 2.77759 9.15754 3.02509 11.3942L3.71259 16.8942C3.90509 18.6909 4.56509 20.1667 8.25009 20.1667Z"
+        stroke={"#000"}
         stroke-width="1.5"
         stroke-miterlimit="10"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
-        d="M12.9129 10H12.9204"
-        stroke={colors}
+        d="M14.2043 11H14.2125"
+        stroke="#000"
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
-        d="M7.07872 10H7.0862"
+        d="M7.78655 11H7.79478"
+        stroke="#000"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
+
+const ActiveBasketIcons = ({ colors }) => {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6.875 7.03084V6.14167C6.875 4.07917 8.53417 2.05334 10.5967 1.86084C13.0533 1.62251 15.125 3.55667 15.125 5.96751V7.23251"
         stroke={colors}
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M8.25009 20.1667H13.7501C17.4351 20.1667 18.0951 18.6909 18.2876 16.8942L18.9751 11.3942C19.2226 9.15754 18.5809 7.33337 14.6668 7.33337H7.33342C3.41925 7.33337 2.77759 9.15754 3.02509 11.3942L3.71259 16.8942C3.90509 18.6909 4.56509 20.1667 8.25009 20.1667Z"
+        fill={colors}
+        stroke={colors}
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M14.2043 11H14.2125"
+        stroke="white"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M7.78655 11H7.79478"
+        stroke="white"
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
@@ -2173,23 +2401,31 @@ const ProductShopIcons = ({ colors }) => {
   );
 };
 const MenuMore = () => {
-  return(
-    <svg 
-      width="20" 
-      height="20" 
-      viewBox="0 0 20 20" 
-      fill="none" 
-      xmlns="http://www.w3.org/2000/svg">
-        <path 
-        fill-rule="evenodd" 
-        clip-rule="evenodd" 
-        d="M10 3.33333C10.9205 3.33333 11.6667 2.58714 11.6667 1.66667C11.6667 0.746192 10.9205 0 10 0C9.07954 0 8.33334 0.746192 8.33334 1.66667C8.33334 2.58714 9.07954 3.33333 10 3.33333ZM10 11.6667C10.9205 11.6667 11.6667 10.9205 11.6667 10C11.6667 9.07952 10.9205 8.33333 10 8.33333C9.07954 8.33333 8.33334 9.07952 8.33334 10C8.33334 10.9205 9.07954 11.6667 10 11.6667ZM11.6667 18.3333C11.6667 19.2538 10.9205 20 10 20C9.07954 20 8.33334 19.2538 8.33334 18.3333C8.33334 17.4129 9.07954 16.6667 10 16.6667C10.9205 16.6667 11.6667 17.4129 11.6667 18.3333Z" 
-        fill="#161616"/>
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M10 3.33333C10.9205 3.33333 11.6667 2.58714 11.6667 1.66667C11.6667 0.746192 10.9205 0 10 0C9.07954 0 8.33334 0.746192 8.33334 1.66667C8.33334 2.58714 9.07954 3.33333 10 3.33333ZM10 11.6667C10.9205 11.6667 11.6667 10.9205 11.6667 10C11.6667 9.07952 10.9205 8.33333 10 8.33333C9.07954 8.33333 8.33334 9.07952 8.33334 10C8.33334 10.9205 9.07954 11.6667 10 11.6667ZM11.6667 18.3333C11.6667 19.2538 10.9205 20 10 20C9.07954 20 8.33334 19.2538 8.33334 18.3333C8.33334 17.4129 9.07954 16.6667 10 16.6667C10.9205 16.6667 11.6667 17.4129 11.6667 18.3333Z"
+        fill="#161616"
+      />
     </svg>
-  )
-}
+  );
+};
 
 export {
+  ActivePersonIcons,
+  ActiveHomeIcons,
+  ActiveCotegoryIcons,
+  ActiveBasketIcons,
+  ActiveHeartIcons,
+  // ActiveHeartIcons,
   SeasonSquare,
   SircleNext,
   NoImg,
