@@ -184,7 +184,7 @@ const NavMenu = () => {
         </li>
         <li className="w-[72px] h-[56px] ">
           <NavLink
-            to={"/sign_in"}
+            to={localStorage.getItem("dressMeLogin") ? "/my-order" : "/sign_in"}
             className="w-full h-full flex items-center justify-center text-center "
           >
             {({ isActive }) =>

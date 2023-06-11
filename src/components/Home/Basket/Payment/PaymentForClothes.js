@@ -51,9 +51,9 @@ export default function PaymentForClothes() {
         <PaymentForBreadCamp />
       </div>
       <div className="w-full h-[84px] border-b border-searchBgColor">
-        <div className="max-w-[1280px] w-[100%] h-full flex items-center border-x border-searchBgColor justify-between m-auto">
-          <div className="w-[65.1%] h-full px-8 border-r border-searchBgColor flex  items-center justify-between">
-            <div className="w-fit  flex  items-center">
+        <div className="max-w-[1280px] w-[100%] h-full flex items-center md:border-x border-searchBgColor justify-between m-auto">
+          <div className="w-full md:w-[65.1%] h-full px-4 md:px-8 md:border-r border-searchBgColor flex  items-center justify-between">
+            <div className="w-fit  flex  items-center justify-between md:justify-normal">
               <p className="flex not-italic font-AeonikProMedium text-2xl leading-7 text-black tracking-[1%]">
                 Данные
               </p>
@@ -71,7 +71,7 @@ export default function PaymentForClothes() {
               </NavLink>
             </div>
           </div>
-          <div className="w-[34.9%] h-full px-8  flex  items-center justify-between">
+          <div className="w-[34.9%] hidden md:block h-fullpx-8  md:flex  items-center justify-between">
             <p className="not-italic mt-1 font-AeonikProMedium text-2xl leading-7 text-black tracking-[1%]">
               Оплата
             </p>
@@ -84,9 +84,9 @@ export default function PaymentForClothes() {
 
       {/* -------------------------------- */}
 
-      <div className="max-w-[1280px] w-[100%] h-fit flex  justify-between  m-auto ">
-        <form className="flex w-full">
-          <div className="w-[65%] border-t-0 border border-searchBgColor  flex flex-col">
+      <div className="max-w-[1280px] w-[100%] h-fit flex  justify-between  m-auto px-4 md:px-0">
+        <form className="block md:flex w-full">
+          <div className="md:w-[65%] border-t-0 border border-searchBgColor  flex flex-col">
             <div className="w-full h-fit flex flex-row gap-x-5 px-8 py-4">
               <div className="w-1/2 flex flex-col">
                 <label
@@ -252,7 +252,7 @@ export default function PaymentForClothes() {
               </div>
             </div>
           </div>
-          <div className="w-[35%] flex flex-col px-6 pb-8  border-t-0 border-l-0 border border-searchBgColor rounded-br-lg">
+          <div className="md:w-[35%] flex flex-col px-6 pb-8  border-t-0 border-l-0 border border-searchBgColor rounded-br-lg">
             <div className="w-full flex  items-center mb-[34px] mt-5">
               <div className="rounded-lg overflow-hidden h-[52px] w-full md:mx-0 flex justify-between bg-slate-50 border border-solid ss:mt-5 md:mt-0 mx-auto ">
                 <button
