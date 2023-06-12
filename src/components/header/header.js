@@ -50,7 +50,7 @@ const Header = () => {
   return (
     <div>
       {locationWindow !== "/delivery-points" ? (
-        <header className="border border-searchBgColor">
+        <header className="md:border border-searchBgColor">
           <div className={`ss:block md:hidden`}>
             <TopHeader />
             <MediumHeader />

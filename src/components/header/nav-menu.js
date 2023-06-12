@@ -194,7 +194,7 @@ const NavMenu = () => {
                     {" "}
                     <ActivePersonIcons colors={IconsColor} />
                   </span>
-                  <span className="mt-2">
+                  <span className="mt-1">
                     <span>Профиль</span>
                   </span>{" "}
                 </span>
@@ -203,7 +203,7 @@ const NavMenu = () => {
                   <span className="">
                     <PersonIcons colors={"#000"} />
                   </span>
-                  <span className="mt-2">
+                  <span className="mt-1">
                     <span>Профиль</span>
                   </span>
                 </span>

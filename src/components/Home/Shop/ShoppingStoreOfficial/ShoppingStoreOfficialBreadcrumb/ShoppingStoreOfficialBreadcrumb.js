@@ -92,7 +92,7 @@ const ShoppingStoreOfficialBreadCrumb = ({ name }) => {
   );
 
   return (
-    <div className="flex flex-col min-h-[44px]  justify-center items-center my-3">
+    <div className="flex flex-col min-h-[44px]  justify-center items-center md:my-3">
       <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
         <div className="flex items-center px-4 md:px-0">
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
@@ -120,7 +120,7 @@ const ShoppingStoreOfficialBreadCrumb = ({ name }) => {
           <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4  tracking-[1%] mr-[10px]">
             <NavLink
               to="#"
-              className="flex items-center cursor-pointer mt-[6px] not-italic font-AeonikProMedium text-[15px] leading-4 tracking-[1%] text-setTexOpacity"
+              className="flex items-center  whitespace-nowrap  cursor-pointer mt-[6px] not-italic font-AeonikProMedium text-[15px] leading-4 tracking-[1%] text-setTexOpacity"
             >
               {name}
             </NavLink>
