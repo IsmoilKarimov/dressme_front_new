@@ -10,7 +10,7 @@ import {
   SummerMale,
   WinterMale,
 } from "../../../AssetsMain";
-// import "../header.css";
+import "../header.css";
 const CategoryNavbar = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
@@ -88,8 +88,8 @@ const CategoryNavbar = () => {
   return (
     <div className="flex flex-col min-h-[44px]  justify-center items-center m-0 p-0 box-border ">
       <div className="max-w-[1280px] w-[100%] overflow-hidden	 flex items-center justify-between items-center m-auto   ">
-        <div className=" w-[100%] md:w-fit  	flex items-center  p-1">
-          <div className=" h-10 w-[100%] md:w-fit  flex items-center  overflow-x-auto">
+        <div className=" w-[100%] md:w-fit  	flex items-center  md:p-1">
+          <div className=" h-10 w-[100%] md:w-fit  flex items-center categoryScroll overflow-x-auto ">
             <span className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
               <NavLink
                 to="/"

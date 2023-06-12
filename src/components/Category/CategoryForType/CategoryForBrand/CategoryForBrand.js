@@ -3,6 +3,7 @@ import { BsCheckLg } from "react-icons/bs";
 import ReactSlider from "react-slider";
 import {
   ArrowTopIcons,
+  CheckedStatusIcons,
   InputCheckedTrueIcons,
   SearchIcons,
   StarIcons,
@@ -84,6 +85,19 @@ const CategoryForBrand = () => {
       { id: 3, check: false, value: 2, text: "" },
     ],
   });
+
+  const CheckStatus = (value) => {
+    // setProduct((current) => {
+    //   return current?.brandWear.map((e) => {
+    //     if (e?.id == value) {
+    //       return { ...e, action: !e.action };
+    //     } else {
+    //       return e;
+    //     }
+    //   });
+    // });
+  };
+
   const Min = "100";
   const Max = "12 000";
   const [values, setValues] = useState([Min, Max]);
@@ -223,18 +237,21 @@ const CategoryForBrand = () => {
                 return (
                   <div
                     key={data?.id}
-                    onClick={() => HandleBrandFilter(data?.id)}
-                    className="flex items-center cursor-pointer select-none mb-4 "
+                    // onClick={() => HandleBrandFilter(data?.id)}
+                    onClick={() => CheckStatus(data?.id)}
+                    className="flex items-center cursor-pointer select-none mb-4 border border-red-500"
                   >
-                    <div
-                      className={`w-[22px] h-[22px] p-1 flex items-center ${
-                        data?.action ? "bg-fullBlue " : "bg-white"
-                      }  mr-[10px] rounded border border-borderColorCard`}
+                    <button
+                      className={`w-6 h-6 p-1 mr-2 flex items-center ${
+                        data?.action
+                          ? "bg-fullBlue border-fullBlue"
+                          : "bg-white border-borderColorCard"
+                      }  rounded-lg ml-3 border `}
                     >
-                      <span className="text-white">
-                        <BsCheckLg size={12} />
-                      </span>
-                    </div>
+                      {data?.action ? (
+                        <CheckedStatusIcons colors={"#fff"} />
+                      ) : null}
+                    </button>{" "}
                     <div className="flex items-center not-italic mt-1  font-AeonikProRegular text-sm leading-4 text-black">
                       {data?.name}
                       <span className=" not-italic ml-2 font-AeonikProRegular text-sm leading-4 text-setTexOpacity">
