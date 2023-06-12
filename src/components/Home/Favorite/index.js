@@ -8,7 +8,7 @@ export default function Favourites() {
     window.scrollTo({
       top: 0,
     });
-  });
+  }, []);
 
   return (
     <div className="w-full flex flex-col items-center ">

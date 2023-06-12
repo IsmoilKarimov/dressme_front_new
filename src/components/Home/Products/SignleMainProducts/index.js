@@ -6,7 +6,7 @@ export default function SingleMainProducts() {
     window.scrollTo({
       top: 0,
     });
-  });
+  }, []);
   return (
     <div className="w-full px-4">
       <SingleProduct />
