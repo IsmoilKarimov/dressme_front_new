@@ -766,7 +766,9 @@ const Footer = () => {
               to="#"
               className="flex justify-center items-center bg-bgColor pl-3 py-[15px] border border-searchBgColor rounded-lg ss:my-[35px] md:my-0 ls:pl-6 md:pl-16 md:mb-0 md:hidden"
             >
-              <img src={UploadIcons} alt="" />
+              <span>
+                <UploadIcons />
+              </span>
               <span className="text-base font-AeonikProMedium leading-4 ml-[12.5px] mr-2 ls:mr-6 md:mr-[32.37px]">
                 Форма для обратной связи
               </span>

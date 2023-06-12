@@ -7,6 +7,7 @@ import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import {
   ArrowTopIcons,
   CalendarIcons,
+  CheckedStatusIcons,
   CircleSuccessIcons,
   EmailIcons,
   LocationIcons,
@@ -19,6 +20,7 @@ import { PaymentClick, Paymentpayme, UzbekFlag } from "../../../../AssetsMain";
 
 export default function PaymentForClothes() {
   const [phone, setPhone] = useState("");
+  const [checkRule, setCheckRule] = useState(false);
   const [codes, setCodes] = useState({
     phoneCode: "+998",
   });
@@ -26,6 +28,9 @@ export default function PaymentForClothes() {
   const [paymentData, setPaymentData] = useState(true);
   const [dressInfo] = useContext(dressMainData);
 
+  const handleCheckRule = () => {
+    setCheckRule(!checkRule);
+  };
   let dataStyle = "";
 
   if (dressInfo?.type === 1111) {
@@ -40,11 +45,13 @@ export default function PaymentForClothes() {
   if (dressInfo?.type === 4444) {
     dataStyle = "text-borderWinter";
   }
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
     });
-  });
+  }, []);
+
   return (
     <div className="flex flex-col  m-0 p-0 box-border">
       <div>
@@ -85,10 +92,8 @@ export default function PaymentForClothes() {
       {/* Payment section */}
 
       <div className="max-w-[1280px] w-[100%] h-fit flex justify-between m-auto px-4 md:px-0">
-        <form className="block md:flex w-full mb-8 md:mb-0">
-          
+        <div className="block md:flex w-full mb-8 md:mb-0">
           <div className="md:w-[65%] md:border-t-0 md:border border-searchBgColor  flex flex-col rounded-lg md:rounded-none">
-            
             <div className="border border-searchBgColor md:border-none rounded-xl mb-5 md:mb-0">
               <div className="w-full h-fit flex flex-col md:flex-row gap-x-5 px-4 md:px-8 py-4">
                 <div className="w-full md:w-1/2 flex flex-col mb-6 md:mb-0">
@@ -255,7 +260,7 @@ export default function PaymentForClothes() {
                 </button>
               </div>
             </div>
-            
+
             <div className="md:hidden flex flex-col p-4 border border-searchBgColor rounded-lg">
               <div className="w-full flex flex-col items-center mb-6">
                 <div className="w-full h-full flex md:hidden items-center justify-between mb-8">
@@ -299,7 +304,7 @@ export default function PaymentForClothes() {
                   className="bg-transparent px-4 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 />
                 <span className="mr-4">
-                    <PaymeSystemIcons colors={"#000"} />
+                  <PaymeSystemIcons colors={"#000"} />
                 </span>
               </div>
               <div className="w-full flex justify-between border-b gap-x-4">
@@ -330,8 +335,19 @@ export default function PaymentForClothes() {
                 </button>
               </div>
               <div className="w-full flex items-center mt-5 mb-11">
-                <span className="w-6 h-6 text-sm font-AeonikProRegular rounded-lg mr-2 border border-searchBgColor cursor-pointer"></span>
-                <span className="w-[90%]">Я согласен на обработку персональных данных.</span>
+                <button
+                  onClick={handleCheckRule}
+                  className={`w-6 h-6 p-1 mr-2 flex items-center ${
+                    checkRule
+                      ? "bg-fullBlue border-fullBlue"
+                      : "bg-white border-borderColorCard"
+                  }  rounded-lg ml-3 border `}
+                >
+                  {checkRule ? <CheckedStatusIcons colors={"#fff"} /> : null}
+                </button>{" "}
+                <span className="w-[90%] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                  Я согласен на обработку персональных данных.
+                </span>
               </div>
 
               <div className="w-full flex flex-col items-center">
@@ -343,9 +359,8 @@ export default function PaymentForClothes() {
                 </button>
               </div>
             </div>
-
           </div>
-          
+
           <div className="md:w-[35%] hidden md:flex flex-col px-6 pb-8  border-t-0 border-l-0 border border-searchBgColor rounded-br-lg">
             <div className="w-full flex  items-center mb-[34px] mt-5">
               <div className="rounded-lg overflow-hidden h-[52px] w-full md:mx-0 flex justify-between bg-slate-50 border border-solid ss:mt-5 md:mt-0 mx-auto ">
@@ -416,8 +431,20 @@ export default function PaymentForClothes() {
               </button>
             </div>
             <div className="w-full flex items-center mt-5 mb-11">
-              <p className="w-6 h-6 text-sm font-AeonikProRegular  rounded-lg mr-2 border border-searchBgColor cursor-pointer"></p>
-              Я согласен на обработку персональных данных.
+              <button
+                onClick={handleCheckRule}
+                className={`w-6 h-6 p-1 flex items-center ${
+                  checkRule
+                    ? "bg-fullBlue border-fullBlue"
+                    : "bg-white border-borderColorCard"
+                }  rounded-lg ml-3 border `}
+              >
+                {checkRule ? <CheckedStatusIcons colors={"#fff"} /> : null}
+              </button>{" "}
+              <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                {" "}
+                Я согласен на обработку персональных данных.
+              </span>{" "}
             </div>
 
             <div className="w-full px-8 flex flex-col items-center">
@@ -429,7 +456,7 @@ export default function PaymentForClothes() {
               </button>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

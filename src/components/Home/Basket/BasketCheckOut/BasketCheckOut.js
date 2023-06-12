@@ -95,11 +95,11 @@ export default function BasketCheckOut() {
     navigate(`/product/:${id}`);
   };
 
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: 0,
-  //   });
-  // });
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
 
   return (
     <div className="flex flex-col  m-0 p-0 box-border">
@@ -181,7 +181,7 @@ export default function BasketCheckOut() {
                   {/* img */}
                   <div className=" flex items-center h-full ">
                     <div className="w-[68px] md:w-[132px] h-full rounded-lg bg-btnBgColor border border-searchBgColor">
-                      <img src="#" alt="" />
+                      {/* <img src="#" alt="" /> */}
                     </div>
                   </div>
                   {/* info */}
@@ -238,12 +238,12 @@ export default function BasketCheckOut() {
                     <div className="w-full md:w-[170px] flex flex-wrap md:content-between justify-between md:justify-start    md:h-full">
                       {/* price for mobile */}
                       <div className="block md:hidden md:w-full">
-                          <p className="w-full md:w-fit not-italic mt-2 md:mt-0 text-start font-AeonikProRegular text-[12px] ll:text-[14px] md:text-[16px] leading-3 text-setTexOpacity line-through tracking-[1%]">
-                            {data.old_prize}
-                          </p>
-                          <p className="w-full md:w-fit not-italic font-AeonikProMedium text-[14px] ll:text-[16px] md:text-[20px] text-black tracking-[1%]">
-                            {data.new_prize} сум
-                          </p>
+                        <p className="w-full md:w-fit not-italic mt-2 md:mt-0 text-start font-AeonikProRegular text-[12px] ll:text-[14px] md:text-[16px] leading-3 text-setTexOpacity line-through tracking-[1%]">
+                          {data.old_prize}
+                        </p>
+                        <p className="w-full md:w-fit not-italic font-AeonikProMedium text-[14px] ll:text-[16px] md:text-[20px] text-black tracking-[1%]">
+                          {data.new_prize} сум
+                        </p>
                       </div>
                       <div className="h-10 md:h-12 w-fit p-[10px] ll:px-2 gap-x-[18px] ll:w-[120px] flex items-center justify-around rounded-lg border border-searchBgColor">
                         <button
@@ -278,8 +278,9 @@ export default function BasketCheckOut() {
                       </div>
                     </div>
                     <div className=" h-full py-2 hidden md:block">
-                      <button  className={`w-6 h-6 p-1 flex items-center   rounded-lg ml-3 border border-borderColorCard`}>
-                      </button>
+                      <button
+                        className={`w-6 h-6 p-1 flex items-center   rounded-lg ml-3 border border-borderColorCard`}
+                      ></button>
                     </div>
                   </div>
                 </div>
