@@ -55,7 +55,7 @@ const ProductCarousel = () => {
   const [nav2, setNav2] = useState();
   const slider1 = useRef(null);
   const slider2 = useRef(null);
-  console.log(nav1, "nav1");
+  // console.log(nav1, "nav1");
   //   console.log(nav2);
 
   useEffect(() => {

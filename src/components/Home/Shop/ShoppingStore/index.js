@@ -10,7 +10,7 @@ export default function ShoppingStore() {
     });
   }, []);
   return (
-    <div className="w-full flex flex-col items-center px-3 md:px-0">
+    <div className="w-full flex flex-col items-center px-4 md:px-0">
       <div className="w-full md:border-b md:border-searchBgColor">
         <ShoppingStoreBreadCrumb />
       </div>
