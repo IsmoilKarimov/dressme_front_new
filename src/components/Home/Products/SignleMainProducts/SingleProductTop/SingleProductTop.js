@@ -96,7 +96,7 @@ const SingleProductTop = () => {
         <div className="max-w-[1280px] h-full w-[100%] flex items-center justify-between m-auto">
             <div className=" w-[100%] md:w-fit  	flex items-center  p-1">
               <div className=" h-10 w-[100%] md:w-fit  flex items-center  overflow-x-auto">
-                <span className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+                <div className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
                   <NavLink
                     to="/"
                     className="flex items-center whitespace-nowrap cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
@@ -106,52 +106,52 @@ const SingleProductTop = () => {
                   <span>
                     <ItailIcons colors={"#A1A1A1"} />
                   </span>
-                </span>
-                <span className="not-italic font-AeonikProRegular flex  	 items-center  text-sm leading-4 text-black tracking-[1%]">
+                </div>
+                <div className="not-italic font-AeonikProRegular flex  	 items-center  text-sm leading-4 text-black tracking-[1%]">
                   <NavLink className="flex 	whitespace-nowrap  items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                     Мужская одежда
                   </NavLink>
                   <span>
                     <ItailIcons colors={"#A1A1A1"} />
                   </span>
-                </span>
-                <span className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%]">
+                </div>
+                <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%]">
                   <NavLink className="flex flex-row whitespace-nowrap items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                     Все категории
                   </NavLink>
                   <span>
                     <ItailIcons colors={"#A1A1A1"} />
                   </span>
-                </span>
-                <span className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+                </div>
+                <div className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
                   <NavLink className="flex items-center whitespace-nowrap cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                     Спортивное
                   </NavLink>
                   <span>
                     <ItailIcons colors={"#A1A1A1"} />
                   </span>
-                </span>
-                <span className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+                </div>
+                <div className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
                   <NavLink className="flex items-center whitespace-nowrap  cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 tracking-[1%]">
                     Кроссовки
                   </NavLink>
                   <span>
                     <ItailIcons colors={"#A1A1A1"} />
                   </span>
-                </span>
-                <span className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+                </div>
+                <div className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
                   <NavLink className="flex items-center whitespace-nowrap cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                   Nike
                   </NavLink>
                   <span>
                     <ItailIcons colors={"#A1A1A1"} />
                   </span>
-                </span>
-                <span className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+                </div>
+                <div className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
                   <NavLink className="flex items-center whitespace-nowrap  cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
                   Nike RUN Sneakers (Sport Wears)
                   </NavLink>
-                </span>
+                </div>
               </div>
             </div>
 

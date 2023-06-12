@@ -28,7 +28,7 @@ export default function CategoryTopDetail() {
   return (
     // ------------------------------HIdden------------------------------
     <div className="flex flex-col min-h-[44px]  justify-center items-center m-0 md:pb-2 pb-3 pt-2 box-border  border-b border-searchBgColor">
-      <div className="max-w-[1280px] w-[100%] hidden md:block md:flex items-center justify-between items-center m-auto py-3  ">
+      <div className="max-w-[1280px] w-[100%] hidden md:flex items-center justify-between m-auto py-3  ">
         <div>
           <button className="w-fit h-[44px] px-3 rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center  cursor-pointer select-none group  ">
             <span>
