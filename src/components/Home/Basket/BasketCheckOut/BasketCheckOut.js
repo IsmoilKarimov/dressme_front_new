@@ -107,12 +107,12 @@ export default function BasketCheckOut() {
         <BasketCheckOutTop />
       </div>
       <div className="w-full h-[84px] md:border-b border-searchBgColor">
-        <div className="max-w-[1280px] w-[100%] h-full flex items-center border-x border-searchBgColor justify-between items-center m-auto   ">
+        <div className="max-w-[1280px] w-[100%] h-full flex items-center border-x border-searchBgColor justify-between m-auto">
           <div className="w-full md:w-[68%] h-full px-4 md:px-8 border-r border-searchBgColor flex  items-center justify-between">
             <div className="w-fit  flex  items-center">
-              <p className="flex not-italic font-AeonikProMedium text-[18px] md:text-[20px] leading-7 text-black tracking-[1%]">
+              <p className="flex not-italic font-AeonikProMedium text-[20px] leading-7 text-black tracking-[1%]">
                 Корзина{" "}
-                <span className="md:w-6 md:h-6 w-5 h-5 ml-2 pt-1 mt-[2px] rounded-full flex items-center justify-center bg-red-500 not-italic font-AeonikProMedium text-[12px] md:text-base leading-4 text-center text-white">
+                <span className="w-5 h-5 md:w-6 md:h-6 ml-2 pt-[2px] mt-[2px] rounded-full flex items-center justify-center bg-red-500 not-italic font-AeonikProMedium text-[12px] md:text-base leading-4 text-center text-white">
                   {bucket_products.length}
                 </span>
               </p>
@@ -139,7 +139,7 @@ export default function BasketCheckOut() {
                 </p>
                 <button
                   onClick={() => CheckAllHandle()}
-                  className={`w-6 h-6 md:w-[32px] md:h-[32px] p-1 flex items-center ${
+                  className={`w-6 h-6 p-1 flex items-center ${
                     state?.checkAll
                       ? "bg-fullBlue border-fullBlue"
                       : "bg-white border-borderColorCard"
@@ -159,7 +159,7 @@ export default function BasketCheckOut() {
               </div>
             </div>
           </div>
-          <div className="w-[32%] h-full px-8 hidden md:block md:flex  items-center justify-between">
+          <div className="w-[32%] h-full px-8 hidden  md:flex  items-center justify-between">
             <p className="not-italic mt-1 font-AeonikProMedium text-[20px] leading-7 text-black tracking-[1%]">
               Итого
             </p>
@@ -170,7 +170,7 @@ export default function BasketCheckOut() {
         </div>
       </div>
       <div className="max-w-[1280px] w-[100%] h-fit block md:flex justify-between m-auto mb-[80px] md:mb-[120px] px-4 md:px-0 overflow-hidden">
-        <div className="w-full md:w-[68%] md:pl-5 md:py-5 p-[18px] h-full md:border-t-0 border border-searchBgColor rounded-lg md:rounded-b-lg  flex flex-col  border border-red-500">
+        <div className="w-full md:w-[68%] md:pl-5 md:py-5 p-[18px] h-full md:border-t-0 border border-searchBgColor rounded-lg md:rounded-b-lg  flex flex-col">
           {bucket_products.map((data) => {
             return (
               <div
@@ -178,13 +178,14 @@ export default function BasketCheckOut() {
                 className="w-full  md:pr-8 flex flex-col justify-center "
               >
                 <div className="w-full h-[92px] md:h-[180px] flex items-center gap-x-3 md:gap-x-5  ">
+                  {/* img */}
                   <div className=" flex items-center h-full ">
                     <div className="w-[68px] md:w-[132px] h-full rounded-lg bg-btnBgColor border border-searchBgColor">
                       <img src="#" alt="" />
                     </div>
                   </div>
-                  {/*  */}
-                  <div className="block flex items-center md:flex-nowrap	 flex-wrap content-between h-full  ">
+                  {/* info */}
+                  <div className="flex items-center md:flex-nowrap	 flex-wrap content-between h-full  ">
                     <div className="w-full md:py-2 md:h-full flex justify-between md:justify-normal	 md:flex-wrap content-between ">
                       <div className=" md:w-full ">
                         <p className="not-italic  md:whitespace-nowrap font-AeonikProMedium text-[12px] ll:text-base  ll:leading-4 text-black tracking-[1%]">
@@ -211,7 +212,7 @@ export default function BasketCheckOut() {
                             <MarketIcons colors={"#000"} />
                           </span>{" "}
                           <span className="not-italic mt-1 ml-1 font-AeonikProRegular text-base leading-4 text-black  tracking-[1%]">
-                            <span className="not-italic ml-1 font-AeonikProMedium text-base leading-4 text-black tracking-[1%]">
+                            <span className="not-italic ml-1 mr-2 font-AeonikProMedium text-base leading-4 text-black tracking-[1%]">
                               Магазин:
                             </span>{" "}
                             {data.store_dealer}
@@ -234,8 +235,17 @@ export default function BasketCheckOut() {
                         </div>
                       </div>
                     </div>
-                    <div className="w-full md:w-[170px]  md:py-2  flex flex-wrap md:content-between justify-between md:justify-start    md:h-full">
-                      <div className="h-10 md:h-12 w-fit p-[10px] ll:px-0 gap-x-[18px] ll:w-[120px] flex items-center justify-around rounded-lg border border-searchBgColor">
+                    <div className="w-full md:w-[170px] flex flex-wrap md:content-between justify-between md:justify-start    md:h-full">
+                      {/* price for mobile */}
+                      <div className="block md:hidden md:w-full">
+                          <p className="w-full md:w-fit not-italic mt-2 md:mt-0 text-start font-AeonikProRegular text-[12px] ll:text-[14px] md:text-[16px] leading-3 text-setTexOpacity line-through tracking-[1%]">
+                            {data.old_prize}
+                          </p>
+                          <p className="w-full md:w-fit not-italic font-AeonikProMedium text-[14px] ll:text-[16px] md:text-[20px] text-black tracking-[1%]">
+                            {data.new_prize} сум
+                          </p>
+                      </div>
+                      <div className="h-10 md:h-12 w-fit p-[10px] ll:px-2 gap-x-[18px] ll:w-[120px] flex items-center justify-around rounded-lg border border-searchBgColor">
                         <button
                           onClick={handleDecrement}
                           className="w-1/3 not-italic font-AeonikProMedium mt-1 text-lg cursor-pointer leading-4 text-center text-black"
@@ -257,21 +267,19 @@ export default function BasketCheckOut() {
                           +
                         </button>
                       </div>
-                      <div className="md:w-full">
-                        <p className="w-full md:w-fit not-italic mt-2 md:mt-0 text-start font-AeonikProRegular text-[12px] ll:text-[14px] md:text-[16px] leading-3 text-setTexOpacity line-through	 tracking-[1%]">
+                      {/* price for desktop */}
+                      <div className="hidden md:block md:w-full">
+                        <p className="w-full md:w-fit not-italic mt-2 md:mt-0 text-start font-AeonikProRegular text-[12px] ll:text-[14px] md:text-[16px] leading-3 text-setTexOpacity line-through tracking-[1%]">
                           {data.old_prize}
                         </p>
-                        <p className="w-full md:w-fit not-italic font-AeonikProMedium text-[14px] ll:text-[16px] md:text-[20px] leading-4 text-black tracking-[1%]">
+                        <p className="w-full md:w-fit not-italic font-AeonikProMedium text-[14px] ll:text-[16px] md:text-[20px] text-black tracking-[1%]">
                           {data.new_prize} сум
                         </p>
                       </div>
                     </div>
                     <div className=" h-full py-2 hidden md:block">
-                      <div>
-                        <p
-                          className={`w-[32px] h-[32px] p-1 flex items-center   rounded-lg ml-3 border border-borderColorCard`}
-                        ></p>
-                      </div>{" "}
+                      <button  className={`w-6 h-6 p-1 flex items-center   rounded-lg ml-3 border border-borderColorCard`}>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -293,7 +301,7 @@ export default function BasketCheckOut() {
             </p>
           </div>
           <div className="w-full border-b border-searchBgColor py-5 px-5 md:px-8 ">
-            <div className="w-full flex justify-between items-center gap-y-2 md:gap-y-[22px] ">
+            <div className="w-full flex justify-between items-center gap-y-2 md:gap-y-[22px] mb-2 md:mb-4">
               <span className="not-italic font-AeonikProMedium text-[14] md:text-base leading-4 text-black tracking-[1%]">
                 Товары ({bucket_products.length})
               </span>
@@ -301,7 +309,7 @@ export default function BasketCheckOut() {
                 516 000 сум
               </span>
             </div>
-            <div className="w-full flex justify-between items-center  ">
+            <div className="w-full flex justify-between items-center mb-2 md:mb-6">
               <span className="not-italic font-AeonikProMedium text-[14] md:text-base leading-4 text-black tracking-[1%]">
                 Доставка
               </span>
@@ -309,7 +317,7 @@ export default function BasketCheckOut() {
                 9 000 сум
               </span>
             </div>
-            <div className="w-full flex justify-between items-center mt-1">
+            <div className="w-full flex justify-between items-center">
               <span className="not-italic font-medium text-[14] md:text-base leading-4 text-AeonikProMedium text-BasketMoneyColor tracking-[1%]">
                 Вы экономите:{" "}
               </span>
@@ -336,7 +344,7 @@ export default function BasketCheckOut() {
 
       <div className="max-w-[1280px] w-[100%] flex justify-start items-center m-auto px-4 md:px-0">
         <div className="w-[100%] h-fit">
-          <div className="w-full md:flex items-center mb-10 hidden md:block">
+          <div className="w-full md:flex items-center mb-10 hidden">
             <div className="font-AeonikProMedium text-2xl">
               Подобрали для вас
             </div>

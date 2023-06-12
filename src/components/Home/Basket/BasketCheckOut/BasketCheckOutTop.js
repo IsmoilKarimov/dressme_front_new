@@ -92,10 +92,10 @@ const BasketCheckOutTop = () => {
     </div>
   );
   return (
-    <div className="flex flex-col min-h-[44px]  justify-center items-center m-0 py-3 box-border border-b border-searchBgColor">
-      <div className="max-w-[1280px] w-[100%] flex items-center justify-between items-center m-auto   px-4 md:px-0">
+    <div className="flex flex-col min-h-[44px]  justify-center items-center m-0 mt-3 md:py-3 md:box-border md:border-b md:border-searchBgColor">
+      <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto px-4 md:px-0">
         <div className="flex items-center ">
-          <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+          <div className="not-italic font-AeonikProRegular md:font-AeonikProMedium flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
             <NavLink
               to="/"
               className="flex items-center cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
@@ -106,7 +106,7 @@ const BasketCheckOutTop = () => {
               <ItailIcons colors={"#000"} />
             </span>
           </div>
-          <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+          <div className="not-italic font-AeonikProRegular md:font-AeonikProMedium flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
             <NavLink className="flex items-center cursor-pointer mt-[6px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
               Корзинка{" "}
             </NavLink>
@@ -115,8 +115,8 @@ const BasketCheckOutTop = () => {
             </span>
           </div>
 
-          <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-            <NavLink className="flex items-center whitespace-nowrap cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
+          <div className="not-italic font-AeonikProRegular md:font-AeonikProMedium flex items-center  text-sm leading-4 text-black tracking-[1%]">
+            <NavLink className="flex items-center whitespace-nowrap cursor-pointer mt-[6px] not-italic text-sm leading-4 text-setTexOpacity tracking-[1%]">
               Оформление заказа
             </NavLink>
           </div>
