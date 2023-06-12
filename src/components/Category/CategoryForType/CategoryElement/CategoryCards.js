@@ -64,7 +64,7 @@ export default function CategoryCards() {
           })}
         </ClothesFilterGroup>{" "}
       </div>
-      <div className="flex justify-between flex-wrap gap-y-2 gap-x-2 mt-8">
+      <div className="flex justify-between flex-wrap gap-y-2 gap-x-[6px] mt-8">
         {dressInfo.ProductList.map((data) => {
           return (
             <div
