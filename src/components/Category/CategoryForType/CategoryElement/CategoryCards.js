@@ -65,52 +65,49 @@ export default function CategoryCards() {
         </ClothesFilterGroup>{" "}
       </div>
       <div className="flex justify-between flex-wrap gap-y-2 gap-x-2 mt-8">
-        {dressInfo?.ProductList.map((data) => {
+        {dressInfo.ProductList.map((data) => {
           return (
             <div
               key={data.id}
-              // onClick={() => handleGetCardId(data?.id)}
-              className={` ss:w-[48%] md:w-[24%] lg:w-[240px]   xs:h-[456px] lg:h-[440px] border border-solid borderColorCard overflow-hidden rounded-lg`}
+              // onClick={() => goDetail(data?.title)}
+              className={`ss:w-[49%] md:w-[24%] lg:w-[240px]  xs:h-[456px] lg:h-[428px] border border-solid borderColorCard overflow-hidden rounded-lg`}
             >
-              <div className="relative w-full cursor-pointer ss:h-[206px] ls:h-[238px] xs:h-[309px] bg-btnBgColor lg:h-[320px] flex  items-center justify-center overflow-hidden border-b border-solid flex-nowrap">
-                {data?.ProducImg ? (
+              <div className="relative w-full cursor-pointer ss:h-[200px] ls:h-[220px] ll:h-[238px] xs:h-[309px] bg-btnBgColor lg:h-[320px] flex content-between items-center overflow-hidden border-b border-solid flex-nowrap">
+                {data.ProducImg ? (
                   <img
-                    className=" m-auto w-full h-full md:w-auto md:h-auto hover:scale-105 transition duration-700 ease-in-out "
-                    src={data?.ProducImg}
+                    className="w-full h-full m-auto hover:scale-105 transition duration-700 ease-in-out"
+                    src={data.ProducImg}
                     alt="ProducImg"
                   />
                 ) : (
-                  <span>
-                    <NoImg />
-                  </span>
+                  <NoImg />
                 )}
-
                 <div className="w-full flex absolute top-px p-[5px]  ss:justify-end xs:justify-between">
                   <ul className="nav-lists flex-col gap-y-1 justify-center h-full ss:hidden xs:flex">
-                    <p className="group w-8 hover:w-[70px] bg-bgCard hover:bg-white  duration-300 rounded-lg overflow-hidden border border-borderColorCard flex items-center">
-                      <span className="w-8 h-8 flex items-center justify-center  ">
-                        <TicketDiscountIcons />
-                      </span>
-                      <span className=" w-0 flex items-center -mr-[1px] group-hover:w-10 duration-300  text-red-700 not-italic  font-AeonikProRegular text-[11px]">
-                        -30%
-                      </span>
-                    </p>
                     {/* <p className="group w-8 hover:w-[70px] bg-bgCard hover:bg-white  duration-300 rounded-lg overflow-hidden border border-borderColorCard flex items-center">
-                      <span className="w-8 h-8 flex items-center justify-center">
-                        <img src={video} alt="" />
-                      </span>
-                      <span className=" w-0 flex items-center -mr-[1px] group-hover:w-10 duration-300 not-italic  font-AeonikProRegular text-[11px]">
-                        Video
-                      </span>
-                    </p>
-                    <p className="group w-8 hover:w-[85px] bg-bgCard hover:bg-white  duration-300 rounded-lg overflow-hidden border border-borderColorCard flex items-center">
-                      <span className="w-8 h-8 flex items-center justify-center  ">
-                        <img src={delivery} alt="" />
-                      </span>
-                      <span className=" w-0 flex items-center  group-hover:w-[40px] duration-300 not-italic  font-AeonikProRegular text-[11px]">
-                        Delivery
-                      </span>
-                    </p> */}
+                          <span className="w-8 h-8 flex items-center justify-center  ">
+                            <img src={ticketDiscount} alt="" />
+                          </span>
+                          <span className=" w-0 flex items-center group-hover:w-10 duration-300  text-red-700 not-italic  font-AeonikProRegular text-[11px]">
+                            -30%
+                          </span>
+                        </p>
+                        <p className="group w-8 hover:w-[70px] bg-bgCard hover:bg-white  duration-300 rounded-lg overflow-hidden border border-borderColorCard flex items-center">
+                          <span className="w-8 h-8 flex items-center justify-center">
+                            <img src={video} alt="" />
+                          </span>
+                          <span className=" w-0 flex items-center group-hover:w-10 duration-300 not-italic  font-AeonikProRegular text-[11px]">
+                            {" "}Video
+                          </span>
+                        </p>
+                        <p className="group w-8 hover:w-[85px] bg-bgCard hover:bg-white  duration-300 rounded-lg overflow-hidden border border-borderColorCard flex items-center">
+                          <span className="w-8 h-8 flex items-center justify-center  ">
+                            <img src={delivery} alt="" />
+                          </span>
+                          <span className=" w-0 flex items-center group-hover:w-[40px] duration-300 not-italic  font-AeonikProRegular text-[11px]">
+                            Delivery
+                          </span>
+                        </p> */}
                   </ul>
 
                   <div className="flex flex-col gap-y-1">
@@ -118,8 +115,8 @@ export default function CategoryCards() {
                       <img src={HeartImg} alt="" />
                     </p>
                     {/* <p className="w-8 h-8 ss:hidden rounded-lg bg-bgCard xs:flex items-center justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
-                      <img src={bucket} alt="" />
-                    </p> */}
+                          <img src={bucket} alt="" />
+                        </p> */}
                   </div>
                 </div>
 
@@ -133,20 +130,18 @@ export default function CategoryCards() {
                         htmlFor="Color1"
                       >
                         {itemValue?.action ? (
-                          <span className="w-[14px]">
-                            <InputCheckedTrueIcons colors={"#fff"} />
-                          </span>
+                          <InputCheckedTrueIcons colors={"#fff"} />
                         ) : null}
                       </div>
                     );
                   })}
                 </div>
               </div>
-              <div className="w-full rounded-b-1xl bg-white  flex flex-wrap   ss:h-[124px] xs:h-[147px] lg:h-[120px] ">
+              <div className="w-full rounded-b-xl bg-white  flex flex-wrap h-[100px] md:h-[106px]">
                 <div className="w-full  xs:px-3 ss:px-3 xs:mt-3 ss:mt-2">
-                  <div className="relative w-full  whitespace-nowrap overflow-hidden py-1 not-italic font-AeonikProRegular text-[10px] ls:text-xs lg:text-[14px] leading-4 text-black mb-2 md:mb-0  cursor-pointer">
-                    <div className="absolute categoryLinearText left-0 w-full h-full z-[20] top-0"></div>
-                    <span>{data?.title || "NoData"}</span>
+                  <div className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[15px] leading-4 text-black mb-2 md:mb-0  cursor-pointer">
+                    <div className="absolute categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
+                    {data?.title || "NoData"}
                   </div>
                   <div className="w-full flex justify-between items-center xs:mt-3">
                     <div className="flex items-center justify-between">
@@ -154,7 +149,6 @@ export default function CategoryCards() {
                         {" "}
                         <StarIcons />
                       </span>
-                      {/* <span><img src={} alt=""/></span> */}
                       <span className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex items-center">
                         <span className="font-AeonikProMedium text-[10px] ls:text-xs not-italic mx-1 text-black md:mr-[6px] md:text-[13px]">
                           5.0{" "}
@@ -176,7 +170,7 @@ export default function CategoryCards() {
                 <div className="w-full flex items-center justify-between  pl-3 pr-[5px]">
                   <div className="flex items-center ">
                     {data.sale ? (
-                      <div className="flex ss:flex-col-reverse md:flex-row	text-start items-start ">
+                      <div className="flex flex-col-reverse ll:flex-row	text-start items-start ">
                         <div className="text-start m-0 p-0  not-italic font-AeonikProMedium text-[16px]  md:text-base leading-1 text-red-700 xs:text-base xs:leading-4 mr-1">
                           {data?.sale}
                         </div>
