@@ -42,6 +42,7 @@ import {
   VolumeIcons,
 } from "../../AssetsMain/icons";
 import { UzbekFlag, locationIcons, markerIcons } from "../../AssetsMain";
+import { YandexLocationMarketOpen } from "./YandexLocationMarketOpen/YandexLocationMarketOpen";
 
 function YandexMapsDressMe() {
   const wearGroup = [
@@ -66,272 +67,6 @@ function YandexMapsDressMe() {
     setCoords({ ...coords, coords: coord });
   };
 
-  const [points, setPoints] = useState([
-    {
-      id: 1,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.343505, 69.247869],
-    },
-    {
-      id: 2,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.304935, 69.235164],
-    },
-    {
-      id: 3,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.344238, 69.242964],
-    },
-    {
-      id: 4,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.323764, 69.359813],
-    },
-    {
-      id: 5,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.341694, 69.420043],
-    },
-    {
-      id: 6,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.321907, 69.254526],
-    },
-    {
-      id: 7,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.320452, 69.219132],
-    },
-    {
-      id: 8,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.307447, 69.249306],
-    },
-    {
-      id: 9,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.292876, 69.261085],
-    },
-    {
-      id: 10,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.32621, 69.248896],
-    },
-    {
-      id: 11,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.318716, 69.248341],
-    },
-    {
-      id: 12,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.282263, 69.216182],
-    },
-    {
-      id: 13,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.337827, 69.22457],
-    },
-    {
-      id: 14,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.327722, 69.213853],
-    },
-    {
-      id: 15,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.311626, 69.207701],
-    },
-    {
-      id: 16,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.318925, 69.312793],
-    },
-    {
-      id: 17,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.326482, 69.334138],
-    },
-    {
-      id: 18,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.31642, 69.230976],
-    },
-    {
-      id: 19,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.309585, 69.267861],
-    },
-    {
-      id: 20,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.314924, 69.245148],
-    },
-    {
-      id: 21,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.30114, 69.220787],
-    },
-    {
-      id: 22,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.325755, 69.28294],
-    },
-    {
-      id: 23,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.317964, 69.295311],
-    },
-    {
-      id: 24,
-      accordion: false,
-      address: "Ильинское-Усово (Московская область) Заповедная улица",
-      workTime: "Ежедневно 08:00-22:00",
-      star: "4.55",
-      imgs: [{ id: 1, img: "" }],
-      direction:
-        'From the bus stop "LCD Usovo Park", cross the road. Opposite the Locals restaurant.',
-      cordinate: [41.296016, 69.290532],
-    },
-  ]);
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const handleFullScreen = () => {
@@ -355,8 +90,8 @@ function YandexMapsDressMe() {
   // console.log(dressInfo.yandexOpenMarket, "yandexOpenMarket");
 
   const handleGetId = (getValue) => {
-    setPoints((current) => {
-      return current.map((data) => {
+    setDressInfo((current) => {
+      return current.MarketList.map((data) => {
         if (data?.id == getValue) {
           return { ...data, accordion: !data.accordion };
         } else {
@@ -365,7 +100,14 @@ function YandexMapsDressMe() {
       });
     });
   };
-  // --------------Open Main Menu
+  // --------------Open Main MenusetDressInfo
+  const handlePlaceMark = (value) => {
+    setDressInfo({
+      ...dressInfo,
+      yandexOpenMarketLocation: true,
+      yandexGetMarketId: value,
+    });
+  };
 
   //------------------------------------------------------------------------------------------------
   let IconsColor = "";
@@ -385,6 +127,15 @@ function YandexMapsDressMe() {
   return (
     <div className=" h-fit w-full flex justify-center overflow-hidden  ">
       <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden">
+        <div
+          className={`w-[393px] absolute   ${
+            dressInfo?.yandexOpenMarketLocation
+              ? "bottom-20 z-[100] block h-fit duration-300 ease-linear duration-500 "
+              : "bottom-20 hidden h-0 duration-300 ease-linear duration-500 "
+          }  ease-linear duration-500 w-full`}
+        >
+          <YandexLocationMarketOpen />
+        </div>
         <div
           className={`absolute z-50  ${
             !dressInfo?.yandexOpenMenu
@@ -459,11 +210,12 @@ function YandexMapsDressMe() {
                 groupByCoordinates: false,
               }}
             >
-              {points.map((data, index) => (
+              {dressInfo?.MarketList.map((data, index) => (
                 <Placemark
-                  className={"placemarkCLuster"}
+                  className={"placemarkCLuster cursor-pointer"}
                   // className="bg-green-500 text-red-500 p-2 "
                   key={index}
+                  onClick={() => handlePlaceMark(data?.marketId)}
                   geometry={data?.cordinate}
                   options={{
                     iconLayout: "default#image",
@@ -471,23 +223,23 @@ function YandexMapsDressMe() {
                     iconImageSize: [32, 32],
                   }}
                   modules={["geoObject.addon.balloon"]}
-                  properties={{
-                    balloonContentHeader: `<div class="balloonContentHeader"><a class="title" href = "#">Пункт выдачи</a><br><span class="description11">${data?.address}</span></div>`,
+                  // properties={{
+                  //   balloonContentHeader: `<div class="balloonContentHeader"><a class="title" href = "#">Пункт выдачи</a><br><span class="description11">${data?.address}</span></div>`,
 
-                    // // Зададим содержимое основной части балуна.
-                    balloonContentBody:
-                      `<div class="bodyImgs"><img  className="data" src="https://images.wbstatic.net/PickupOffice/Img154040_Photo1.jpg"/><img  className="data" src="https://images.wbstatic.net/PickupOffice/Img154040_Photo1.jpg"/> </div><br/>` +
-                      // `<div class="bodySana"><span class='text'>Режим работы:<span>${data?.workTime}</span></span></div><br/>` +
-                      // `<div class="bodySana"><span class='text'>Примерочные: <span>${data?.imgs.length} шт</span></span></div><br/>` +
+                  //   // // Зададим содержимое основной части балуна.
+                  //   balloonContentBody:
+                  //     `<div class="bodyImgs"><img  className="data" src="https://images.wbstatic.net/PickupOffice/Img154040_Photo1.jpg"/><img  className="data" src="https://images.wbstatic.net/PickupOffice/Img154040_Photo1.jpg"/> </div><br/>` +
+                  //     // `<div class="bodySana"><span class='text'>Режим работы:<span>${data?.workTime}</span></span></div><br/>` +
+                  //     // `<div class="bodySana"><span class='text'>Примерочные: <span>${data?.imgs.length} шт</span></span></div><br/>` +
 
-                      `<div class="bodySana">
-                          <span class='text'>Режим работы:<span>${data?.workTime}</span></span><br/>
-                          <span class='text'>Примерочные: <span>${data?.imgs.length} шт</span></span>
-                      </div><br/>` +
-                      `<div class="BtnUzGroup"><div class='BtnUz'>Выбрать</div></div>`,
+                  //     `<div class="bodySana">
+                  //         <span class='text'>Режим работы:<span>${data?.workTime}</span></span><br/>
+                  //         <span class='text'>Примерочные: <span>${data?.imgs.length} шт</span></span>
+                  //     </div><br/>` +
+                  //     `<div class="BtnUzGroup"><div class='BtnUz'>Выбрать</div></div>`,
 
-                    balloonContentFooter: `<div class="footerText"><span>Directions:</span> ${data?.direction}</div>`,
-                  }}
+                  //   balloonContentFooter: `<div class="footerText"><span>Directions:</span> ${data?.direction}</div>`,
+                  // }}
                 />
               ))}
             </Clusterer>
@@ -572,7 +324,7 @@ function YandexMapsDressMe() {
                 {/* Yandex Menu List */}
                 <div className="w-full h-[85vh] mt-3 py-1 flex flex-col gap-y-2   ">
                   <div className="w-full h-full overflow-y-auto  YandexListScroll ">
-                    {points?.map((data) => {
+                    {dressInfo?.MarketList?.map((data) => {
                       return (
                         <div
                           key={data?.id}
