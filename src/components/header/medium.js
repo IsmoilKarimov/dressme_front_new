@@ -70,7 +70,7 @@ const MediumHeader = () => {
     priceToggleMobile: false,
     brandToggleMobile: false,
     selectColorToggleMobile: false,
-    getActive: "",
+    genderActive: true,
   });
 
   useEffect(() => {
@@ -857,23 +857,37 @@ const MediumHeader = () => {
 
             {/* Gender selection for Mobile */}
             {locationWindow == "/" && (
-              <div className="flex flex-wrap items-center justify-between mt-3 rounded-lg  mb-4 w-full  ">
+              <div className="flex flex-wrap items-center justify-between mt-3 rounded-lg  mb-4 w-full ">
                 {personItems
                   ?.filter((value) => value.id === dressInfo?.type)
                   .map((data) => {
                     return (
                       <div
                         key={data?.id}
-                        className="w-full flex items-center justify-between "
+                        className="max-w-[440px] w-[100%] bg-btnBgColor flex items-center justify-between border border-searchBgColor rounded-lg overflow-hidden"
                       >
                         <button
-                          className={` ${genderStyle} border rounded-lg bg-btnBgColor  border-searchBgColor font-AeonikProMedium w-[48%] h-[52px] px-4 flex items-center  focus:rounded-lg`}
+                          onClick={() =>
+                            setState({ ...state, genderActive: true })
+                          }
+                          className={` font-AeonikProMedium ${
+                            state?.genderActive
+                              ? "bg-white border border-searchBgColor"
+                              : "bg-transparent"
+                          } w-[49%]  rounded-lg h-[52px]  justify-center flex items-center  rounded-lg`}
                         >
                           <img src={data?.woman} alt="female" />
                           <span className="ml-3">Женщинам</span>
                         </button>
                         <button
-                          className={` font-AeonikProMedium ${genderStyle} border rounded-lg bg-btnBgColor  border-searchBgColor w-[48%] h-[52px] px-4 justify-center flex items-center  focus:rounded-lg`}
+                          onClick={() =>
+                            setState({ ...state, genderActive: false })
+                          }
+                          className={` font-AeonikProMedium ${
+                            !state?.genderActive
+                              ? "bg-white border border-searchBgColor"
+                              : "bg-transparent"
+                          } w-[49%]  rounded-lg h-[52px]  justify-center flex items-center  rounded-lg`}
                         >
                           <img src={data?.man} alt="male" />
                           <span className="ml-3"> Мужчинам</span>
@@ -890,7 +904,7 @@ const MediumHeader = () => {
                 >
                   <div className="flex items-center ml-auto">
                     <ClothesIcons />
-                    <span className="ml-[11.67px]">Clothing options</span>
+                    <span className="ml-[11.67px]">Параметры одежды </span>
                   </div>
 
                   <span
@@ -908,7 +922,7 @@ const MediumHeader = () => {
             <div
               className={`${
                 state?.toggle ? "h-[280px]" : "h-0"
-              } duration-500  overflow-hidden md:hidden`}
+              } duration-500  overflow-hidden md:hidden `}
             >
               <ul className="ss:w-full  bg-white">
                 <li

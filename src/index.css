@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -27,11 +28,18 @@
   src: url("/src/fonts/AeonikPro-Regular.otf") format("truetype");
 }
 
-/* @layer base {
-  html {
-    font-family: 'Rubik', sans-serif;
-  }
-} */
+.AeonikProMedium {
+  font-weight: 500;
+  font-family: "Aeonik Pro";
+  /* src: local("Aeonik Pro") url("/src/fonts/AeonikPro-Medium.otf")
+    format("truetype"); */
+}
+.AeonikProRegular {
+  font-weight: 400;
+  font-family: "Aeonik Pro";
+  /* src: local("Aeonik Pro") url("/src/fonts/AeonikPro-Regular.otf")
+    format("truetype"); */
+}
 
 * {
   margin: 0;

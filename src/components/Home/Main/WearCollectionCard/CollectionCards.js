@@ -11,7 +11,7 @@ import {
   StarIcons,
 } from "../../../../AssetsMain/icons";
 import { AddBasket, HeartImg } from "../../../../AssetsMain";
-
+import "../../../../index.css";
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
