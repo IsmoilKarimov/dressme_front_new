@@ -407,22 +407,25 @@ const ProductDetails = () => {
 
       {/* Mobile Price */}
       <div
-        className={`fixed z-[29] flex flex-col gap-y-1 ${
-          show ? "bottom-[64px] " : "bottom-0 "
-        } duration-500 left-0 right-0 max-w-[440px] px-4 py-1 w-[100%] h-fit  border bg-white rounded-lg`}
+        className={`fixed md:hidden z-[29] flex flex-col gap-y-1 shadow-navMenuShadov ${
+          show ? "bottom-[62px] duration-500" : "bottom-0 duration-500 "
+        }  left-0 right-0 px-4  py-2 w-[100%] h-fit bg-white rounded-lg`}
       >
-        <div className="h-fit w-full  flex items-center justify-between">
-          <button className="max-w-[230px] w-full bg-fullBlue text-white rounded-lg h-[36px] flex items-center justify-center ">
-            <span>
-              <SaveMarketIcons />
+        <div className="h-[36px] w-full flex justify-between items-center ">
+          <div className="flex ">
+            <DollorIcons />
+            <span className="text-base font-AeonikProRegular ml-[6px]">
+              Цена:
             </span>
-            <span> Добавить в корзину</span>
-          </button>
-          <button
-            className={`max-w-[120px] w-full h-[36px]  flex items-center justify-center border rounded-lg ${genderStyle}`}
-          >
-            <span> Купить</span>
-          </button>
+          </div>
+          <div className="w-[84px] h-9  cursor-pointer ml-8 flex items-center justify-center border border-searchBgColor rounded-lg">
+            <span>
+              <DiscountShapeIcons />
+            </span>
+            <span className="ml-[6px] not-italic mt-1 font-AeonikProMedium text-sm  leading-5 text-red-700">
+              -30%
+            </span>
+          </div>
         </div>
         <div className="h-[36px] w-full flex justify-between items-center ">
           <div className="flex items-center">
@@ -442,21 +445,22 @@ const ProductDetails = () => {
             </span>
           </div>
         </div>
-        <div className="h-[36px] w-full flex justify-between items-center ">
-          <div className="flex ">
-            <DollorIcons />
-            <span className="text-base font-AeonikProRegular ml-[6px]">
-              Цена:
-            </span>
-          </div>
-          <div className="w-[84px] h-9  cursor-pointer ml-8 flex items-center justify-center border border-searchBgColor rounded-lg">
+
+        <div className="h-fit w-full  flex items-center justify-between gap-x-2">
+          <button className="max-w-[63%] w-full bg-fullBlue text-white rounded-lg h-[36px] flex items-center justify-center ">
             <span>
-              <DiscountShapeIcons />
+              <SaveMarketIcons />
             </span>
-            <span className="ml-[6px] not-italic mt-1 font-AeonikProMedium text-sm  leading-5 text-red-700">
-              -30%
+            <span className="not-italic font-AeonikProMedium text-[14px] ll:text-base leading-4 text-white">
+              {" "}
+              Добавить в корзину
             </span>
-          </div>
+          </button>
+          <button
+            className={`max-w-[33%] w-full h-[36px]  flex items-center justify-center border rounded-lg ${genderStyle}`}
+          >
+            <span> Купить</span>
+          </button>
         </div>
       </div>
 

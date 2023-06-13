@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Slider from "react-slick";
-import { BasketIcons, SaveBasketIcons } from "../../../../../../AssetsMain/icons";
+import {
+  BasketIcons,
+  SaveBasketIcons,
+  VideoStoreIcons,
+} from "../../../../../../AssetsMain/icons";
 
 const ProductCarousel = () => {
   const [imgGroup, setImgGroup] = useState([
@@ -95,8 +99,51 @@ const ProductCarousel = () => {
     prevArrow: <PrevArrow />,
     infinite: true,
     dots: false,
-
     speed: 500,
+  };
+  let settings1 = {
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 560,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+        },
+      },
+
+      {
+        breakpoint: 390,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -118,7 +165,11 @@ const ProductCarousel = () => {
                   key={data?.id}
                   className="!w-[90px] cursor-pointer !h-[120px] mt-[-2.5px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center"
                 >
-                  <img className="w-full h-full rounded-lg" src={data?.img} alt="" />
+                  <img
+                    className="w-full h-full rounded-lg"
+                    src={data?.img}
+                    alt=""
+                  />
                 </div>
               );
             })}
@@ -139,12 +190,22 @@ const ProductCarousel = () => {
                     className="relative w-full h-full overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center"
                   >
                     <img className="w-full h-fit" src={data?.img} alt="" />
-                    <div className="flex md:hidden w-full absolute items-center justify-center opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4">
-                      <span className="bg-white rounded-lg p-2 leading-5 opacity-100">{data.id}/{imgGroup.length}</span>
+                    <div className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
+                      <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider	">
+                        <span> {data.id}</span>/<span>{imgGroup.length}</span>
+                      </span>
+                      <span className="w-fit flex items-center p-2 gap-x-2 rounded-lg bg-bgCard border border-searchBgColor">
+                        <span className="flex items-center ">
+                          <VideoStoreIcons />
+                        </span>
+                        <span className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-black">
+                          Видео
+                        </span>
+                      </span>
                     </div>
                   </div>
                 </div>
-              );              
+              );
             })}
           </Slider>
         </div>
@@ -152,10 +213,11 @@ const ProductCarousel = () => {
           <Slider
             asNavFor={nav1}
             ref={slider2}
-            slidesToShow={5}
+            // slidesToShow={5}
             swipeToSlide={true}
             focusOnSelect={true}
             vertical={false}
+            {...settings1}
             className="flex flex-row flex-wrap pt-0 rounded-lg"
           >
             {imgGroup?.map((data) => {
@@ -164,7 +226,11 @@ const ProductCarousel = () => {
                   key={data?.id}
                   className="!w-[72px] cursor-pointer !h-[96px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center"
                 >
-                  <img className="w-full h-full rounded-lg" src={data?.img} alt="" />                  
+                  <img
+                    className="w-full h-full rounded-lg"
+                    src={data?.img}
+                    alt=""
+                  />
                 </div>
               );
             })}
