@@ -133,13 +133,18 @@ const ProductCarousel = () => {
           >
             {imgGroup?.map((data) => {
               return (
-                <div
-                  key={data?.id}
-                  className="w-full h-full overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center"
-                >
-                  <img className="w-full h-fit" src={data?.img} alt="" />
+                <div>
+                  <div
+                    key={data?.id}
+                    className="relative w-full h-full overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center"
+                  >
+                    <img className="w-full h-fit" src={data?.img} alt="" />
+                    <div className="flex md:hidden w-full absolute items-center justify-center opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4">
+                      <span className="bg-white rounded-lg p-2 leading-5 opacity-100">{data.id}/{imgGroup.length}</span>
+                    </div>
+                  </div>
                 </div>
-              );
+              );              
             })}
           </Slider>
         </div>
@@ -159,7 +164,7 @@ const ProductCarousel = () => {
                   key={data?.id}
                   className="!w-[72px] cursor-pointer !h-[96px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center"
                 >
-                  <img className="w-full h-full rounded-lg" src={data?.img} alt="" />
+                  <img className="w-full h-full rounded-lg" src={data?.img} alt="" />                  
                 </div>
               );
             })}
