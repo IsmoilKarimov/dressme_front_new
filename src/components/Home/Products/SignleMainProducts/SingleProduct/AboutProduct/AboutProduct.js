@@ -61,7 +61,7 @@ export default function AboutProduct() {
                     </div>
                 ) : (
                     <div className='mt-6'>
-                        Character
+                        Информация о Характеристики 
                     </div>
                 )}
             </div>
