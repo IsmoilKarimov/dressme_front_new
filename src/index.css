@@ -29,16 +29,21 @@
 }
 
 .AeonikProMedium {
-  font-weight: 500;
   font-family: "Aeonik Pro";
-  /* src: local("Aeonik Pro") url("/src/fonts/AeonikPro-Medium.otf")
-    format("truetype"); */
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: center;
+  color: #007dca;
 }
 .AeonikProRegular {
-  font-weight: 400;
   font-family: "Aeonik Pro";
-  /* src: local("Aeonik Pro") url("/src/fonts/AeonikPro-Regular.otf")
-    format("truetype"); */
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  color: #000000;
 }
 
 * {
