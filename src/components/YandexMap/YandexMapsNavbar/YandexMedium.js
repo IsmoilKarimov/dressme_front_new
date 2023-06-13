@@ -119,9 +119,11 @@ const YandexMedium = () => {
       {/* Starting of Full Screen page section */}
       <div className="w-full flex justify-center items-center py-3 overscroll-none overflow-y-hidden">
         <div className=" w-full flex items-center ss:w-full md:w-fit justify-between ">
+          
+          {/* Menu section */}
           <div
             onClick={handleMainMenu}
-            className="w-12 h-12 bg-white ss:block md:hidden  rounded-lg ss:flex items-center justify-center "
+            className="w-12 h-12 bg-white md:hidden  rounded-xl ss:flex items-center justify-center "
           >
             {dressInfo?.openMainMenu ? (
               <span>
@@ -137,7 +139,7 @@ const YandexMedium = () => {
           {/* Logo section */}
           <NavLink
             to="/"
-            className="flex justify-center items-center rounded-lg h-[48px] ss:w-[calc(100%-96px)] ss:p-2 ll:p-1  md:p-0 md:w-[155px] ss:ml-2 md:ml-[0px]  ss:bg-btnBgColor md:bg-transparent"
+            className="flex justify-center items-center rounded-xl h-[48px] ss:w-[calc(100%-96px)] ss:p-2 ll:p-1  md:p-0 md:w-[155px] ss:ml-2 md:ml-[0px]  ss:bg-btnBgColor md:bg-transparent"
           >
             {BrandTypeArray.filter((data) => data.id == dressInfo.type).map(
               (data) => {
@@ -155,7 +157,7 @@ const YandexMedium = () => {
 
           {/* Voice section */}
           <div
-            className={` bg-white w-11 h-11 ml-[25px] rounded-lg cursor-pointer hidden items-center justify-center md:flex`}
+            className={` bg-white w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
           >
             <span>
               <VolumeIcons colors={MapsIconsColor} />
@@ -163,15 +165,15 @@ const YandexMedium = () => {
           </div>
 
           {/* Weather seection */}
-          <div className="w-12 h-12 md:w-[120px] md:h-11 bg-white   rounded-lg  md:rounded-lg ml-2">
-            {SeasonTypeArray.filter((data) => data.id == dressInfo.type).map(
+          <div className="w-12 h-12 md:w-[120px] md:h-11 bg-white   rounded-xl  md:rounded-xl ml-2">
+            {SeasonTypeArray.filter((data) => data.id === dressInfo.type).map(
               (data) => {
                 return (
                   <Popover
                     key={data?.id}
                     open={openwear}
                     onOpenChange={handleOpenChangeWear}
-                    className="w-full h-full flex items-center justify-center rounded-lg cursor-pointer  "
+                    className="w-full h-full flex items-center justify-center rounded-xl cursor-pointer  "
                     trigger="click"
                     options={["Hide"]}
                     placement="bottom"
@@ -183,7 +185,7 @@ const YandexMedium = () => {
                         alt="weather"
                         className="mr-0 md:mr-[5px] "
                       />
-                      <div className="ss:hidden  font-AeonikProMedium mt-1 hidden md:block md:flex items-center text-[15px] ">
+                      <div className="ss:hidden  font-AeonikProMedium mt-1 hidden md:flex items-center text-[15px] ">
                         {data?.type}
                       </div>
                     </div>

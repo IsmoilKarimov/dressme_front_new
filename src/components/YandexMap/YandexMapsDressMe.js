@@ -888,7 +888,7 @@ function YandexMapsDressMe() {
             <div
               className={`absolute ${
                 !dressInfo?.yandexFullScreen ? "top-[80px]" : "top-[8px]"
-              }  md:top-auto md:bottom-[24px] left-0 right-0 mx-auto  overflow-hidden z-50 bg-yandexNavbar backdrop-blur-sm rounded-lg h-[48px] w-[94%] md:w-fit shadow-lg`}
+              }  md:top-auto md:bottom-[24px] left-0 right-0 mx-auto  overflow-hidden z-50 bg-yandexNavbar backdrop-blur-sm rounded-xl h-[48px] w-[94%] md:w-fit shadow-lg`}
             >
               <div className="w-full h-full flex justify-between ">
                 <div className="w-[100%] h-full flex gap-x-2 items-center px-3">
@@ -975,7 +975,7 @@ function YandexMapsDressMe() {
                   {wearGroup?.map((data) => {
                     return (
                       <div key={data.id} className={`item  `}>
-                        <p className=" cursor-pointer rounded-lg bg-white not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
+                        <p className=" cursor-pointer rounded-xl bg-white not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
                           {data?.name || "0"}
                         </p>
                       </div>

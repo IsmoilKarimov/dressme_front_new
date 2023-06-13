@@ -246,7 +246,6 @@ export default function MainPageSliders() {
   };
 
   return (
-    // border-t md:border-t-0 border-searchBgColor pt-4 md:pt-0
     <div className="box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
       <div className="w-full ss:hidden xs:block">
         <Slider
@@ -259,7 +258,7 @@ export default function MainPageSliders() {
                 <NavLink
                   to={"/categoriesType"}
                   key={data?.id}
-                  className="!w-[99%]  h-[260px] rounded-lg  "
+                  className="!w-[99%] h-[260px] rounded-lg  "
                 >
                   <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px]  rounded-lg">
                     {changeColor
@@ -289,7 +288,7 @@ export default function MainPageSliders() {
           })}
         </Slider>
       </div>
-      {/* carosuel hidden bloack */}
+      {/* carosuel hidden block */}
       <div className="w-full h-fit xs:hidden grid grid-cols-3 gap-2 overflow-hidden  my-0 py-0 md:my-5 md:py-7 ">
         {carosuelData?.map((data) => {
           return data.Category.map((data) => {
@@ -299,7 +298,7 @@ export default function MainPageSliders() {
                 key={data?.id}
                 className="w-[100%] "
               >
-                <div className="w-[100%] h-[140px] flex items-center justify-center	p-1 bg-btnBgColor border border-searchBgColor	rounded-lg ">
+                <div className="w-[100%] h-[140px] flex items-center justify-center	p-1 bg-btnBgColor border border-searchBgColor	rounded-xl">
                   <NoImg />
                 </div>
                 <div className="w-full py-1 flex items-center">
@@ -317,7 +316,7 @@ export default function MainPageSliders() {
       </div>
       <div className="w-full flex justify-center items-center  mt-10 ">
         <button
-          className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[52px] px-10 rounded-lg border ${genderStyle}`}
+          className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[52px] px-10 rounded-xl border ${genderStyle}`}
         >
           <span className="not-italic mt-1 font-AeonikProMedium text-base leading-4 text-center">
             Посмотреть все категории
@@ -327,7 +326,7 @@ export default function MainPageSliders() {
           </span>
         </button>
       </div>
-      <div className="w-full 	mt-[60px] ss:hidden xs:block ">
+      <div className="w-full mt-[60px] ss:hidden xs:block ">
         <Slider
           {...settings1}
           className="w-[100%] flex xs:justify-between  px-[1px]"

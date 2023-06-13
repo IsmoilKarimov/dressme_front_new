@@ -280,7 +280,7 @@ const MediumHeader = () => {
               {/* Menu section */}
               <div
                 onClick={toggleHamburger}
-                className={`flex items-center justify-center bg-btnBgColor border border-searchBgColor w-12 h-12 -lg-lg cursor-pointer md:hidden rounded-lg`}
+                className={`flex items-center justify-center bg-btnBgColor border border-searchBgColor w-12 h-12 -lg-lg cursor-pointer md:hidden rounded-xl`}
               >
                 {state?.hamburgerMenu ? (
                   <span>
@@ -296,7 +296,7 @@ const MediumHeader = () => {
               {/* Logo section */}
               <NavLink
                 to="/"
-                className="flex justify-center items-center rounded-lg h-[48px] ss:w-[calc(100%-96px)] ss:p-2 ll:p-1 md:p-0 md:w-[155px] ss:ml-2 md:ml-[0px]  ss:bg-btnBgColor md:bg-transparent"
+                className="flex justify-center items-center rounded-xl h-[48px] ss:w-[calc(100%-96px)] ss:p-2 ll:p-1 md:p-0 md:w-[155px] ss:ml-2 md:ml-[0px]  ss:bg-btnBgColor md:bg-transparent"
               >
                 {BrandTypeArray.filter((data) => data.id == dressInfo.type).map(
                   (data) => {
@@ -314,7 +314,7 @@ const MediumHeader = () => {
 
               {/* Voice section */}
               <div
-                className={` bg-btnBgColor w-11 h-11 ml-[25px] rounded-lg cursor-pointer hidden items-center justify-center md:flex`}
+                className={` bg-btnBgColor w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
               >
                 <span className="w-[22px]">
                   <VolumeIcons colors={IconsColor} />
@@ -322,7 +322,7 @@ const MediumHeader = () => {
               </div>
 
               {/* Weather seection */}
-              <div className="w-12 h-12 md:w-[120px] md:h-11 bg-btnBgColor border border-searchBgColor rounded-lg  md:rounded-lg ml-2">
+              <div className="w-12 h-12 md:w-[120px] md:h-11 bg-btnBgColor border border-searchBgColor rounded-xl  md:rounded-lg ml-2">
                 {SeasonTypeArray.filter(
                   (data) => data.id == dressInfo.type
                 ).map((data) => {
@@ -353,10 +353,10 @@ const MediumHeader = () => {
               </div>
 
               {/* Searching section */}
-              <div className="search flex items-center justify-center rounded-lg font-AeonikProMedium h-[44px] border border-red-600 md:border-transparent md:w-[622px] ml-2 ss:hidden md:flex">
+              <div className="flex items-center justify-center rounded-xl font-AeonikProMedium h-[44px] border border-red-600 md:border-transparent md:w-[622px] ml-2 ss:hidden md:flex">
                 {/* Catalog section */}
                 <button
-                  className={`items-center ${dataStyle}  pl-5 pr-7 h-[44px] rounded-l-lg cursor-pointer hidden md:flex`}
+                  className={`items-center ${dataStyle}  pl-5 pr-7 h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
                 >
                   <span>
                     <CotegoryIcons colors={IconsColor} />
@@ -375,7 +375,7 @@ const MediumHeader = () => {
                   placeholder="Поиск продуктов или брендов"
                   className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor "
                 />
-                <button className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-lg  hidden md:flex -ml-[2px]">
+                <button className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]">
                   <SearchIcons />
                 </button>
               </div>
@@ -386,7 +386,7 @@ const MediumHeader = () => {
               {/* Map section */}
               <NavLink
                 to="/delivery-points"
-                className="items-center justify-center bg-btnBgColor rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex"
+                className="items-center justify-center bg-btnBgColor rounded-xl md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex"
               >
                 <span className="pr-[6px]">
                   <MapIcons colors={"#000"} />
@@ -401,7 +401,7 @@ const MediumHeader = () => {
               {localStorage.getItem("dressMeLogin") ? (
                 <NavLink
                   to="/my-order"
-                  className=" bg-btnBgColor rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex"
+                  className=" bg-btnBgColor rounded-xl items-center justify-center w-11 h-11 mr-2 hidden md:flex"
                 >
                   {({ isActive }) =>
                     isActive ? (
@@ -414,7 +414,7 @@ const MediumHeader = () => {
               ) : (
                 <NavLink
                   to="/sign_in"
-                  className=" bg-btnBgColor rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex"
+                  className=" bg-btnBgColor rounded-xl items-center justify-center w-11 h-11 mr-2 hidden md:flex"
                 >
                   <PersonIcons colors={"#000"} />
                 </NavLink>
@@ -424,7 +424,7 @@ const MediumHeader = () => {
               <NavLink
                 to="/favourites"
                 className={
-                  "bg-btnBgColor rounded-lg  items-center justify-center w-11 h-11 mr-2 hidden md:flex"
+                  "bg-btnBgColor rounded-xl  items-center justify-center w-11 h-11 mr-2 hidden md:flex"
                 }
               >
                 {({ isActive }) =>
@@ -453,26 +453,22 @@ const MediumHeader = () => {
               {/* Bucket section */}
               <NavLink
                 to="/basket-check-out"
-                className=" bg-btnBgColor rounded-lg flex items-center justify-center w-11 h-11 relative md:flex ss:hidden"
+                className=" bg-btnBgColor rounded-xl flex items-center justify-center w-11 h-11 relative md:flex ss:hidden"
               >
                 <span>
                   <BasketIcons colors={"#000"} />
                 </span>
-                <span className="count bg-RedColor w-4 h-4 text-white text-[10px] rounded-lg flex items-center justify-center absolute top-0 right-0 font-AeonikProMedium">
+                <span className="count bg-RedColor w-4 h-4 text-white text-[10px] rounded-xl flex items-center justify-center absolute top-0 right-0 font-AeonikProMedium">
                   {" "}
                   4{" "}
                 </span>
               </NavLink>
             </div>
           </div>
-
           {/* Ending of Full Screen page sesction Map*/}
 
           {/* Open Meain Menu at the  Mobile version */}
-          {/* <div className="max-w-[440px] w-[100%] h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg"> */}
-
-          <div
-            className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${
+          <div className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${
               state?.hamburgerMenu
                 ? "hamburger flex flex-col ease-linear duration-500 overscroll-none z-30"
                 : "left-[-800px] z-[-80] ease-linear duration-500"
@@ -480,7 +476,7 @@ const MediumHeader = () => {
           >
             <div className={`w-full h-full `}>
               {/* Searching section */}
-              <div className="search flex items-center bg-btnBgColor justify-between rounded-lg font-AeonikProMedium h-12 mt-3 mb-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
+              <div className="search flex items-center bg-btnBgColor justify-between rounded-xl font-AeonikProMedium h-12 mt-3 mb-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
                 <span className=" flex ss:pl-[11.65px] md:hidden">
                   <SearchIcons />
                 </span>
@@ -497,7 +493,7 @@ const MediumHeader = () => {
               <div className="flex items-center justify-between h-fit mb-3">
                 <button
                   onClick={() => setState({ ...state, hamburgerMenu: false })}
-                  className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
+                  className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium border border-searchBgColor bg-btnBgColor ss:w-[48%]"
                 >
                   <span>
                     <VolumeIcons colors={IconsColor} />
@@ -507,7 +503,7 @@ const MediumHeader = () => {
                 <NavLink
                   onClick={() => setState({ ...state, hamburgerMenu: false })}
                   to="/delivery-points"
-                  className="right  h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium border border-searchBgColor bg-btnBgColor ss:w-[48%]"
+                  className="right  h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium border border-searchBgColor bg-btnBgColor ss:w-[48%]"
                 >
                   <span>
                     <MapIcons colors={"#000"} />
@@ -521,7 +517,7 @@ const MediumHeader = () => {
                 <li>
                   <button
                     onClick={() => setState({ ...state, hamburgerMenu: false })}
-                    className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 w-full"
+                    className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
                   >
                     <div className="flex items-center">
                       <span className=" py-3 pr-3">
@@ -541,7 +537,7 @@ const MediumHeader = () => {
                         setState({ ...state, hamburgerMenu: false })
                       }
                       to="/my-order"
-                      className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 w-full"
+                      className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
                     >
                       <div className="flex items-center">
                         <span className=" py-3 pr-3">
@@ -559,7 +555,7 @@ const MediumHeader = () => {
                         setState({ ...state, hamburgerMenu: false })
                       }
                       to="/sign_in"
-                      className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 w-full"
+                      className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
                     >
                       <div className="flex items-center">
                         <span className=" py-3 pr-3">
@@ -577,7 +573,7 @@ const MediumHeader = () => {
                   <NavLink
                     onClick={() => setState({ ...state, hamburgerMenu: false })}
                     to="/stores"
-                    className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 w-full"
+                    className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
                   >
                     <div className="flex items-center">
                       <span className=" py-3 pr-3">
@@ -596,7 +592,7 @@ const MediumHeader = () => {
               <div className="flex items-center justify-between h-fit mb-3">
                 <button
                   onClick={() => setState({ ...state, hamburgerMenu: false })}
-                  className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium -lg-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
+                  className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium -lg-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
                 >
                   <span>
                     <CommentIcons colors={"#000"} />
@@ -606,7 +602,7 @@ const MediumHeader = () => {
                 <Link
                   onClick={() => setState({ ...state, hamburgerMenu: false })}
                   to="#"
-                  className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
+                  className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
                 >
                   <span>
                     <PhoneIcons />
@@ -620,7 +616,7 @@ const MediumHeader = () => {
 
               {/* Location and Language */}
               <div className="flex items-center justify-between h-fit mb-3">
-                <button className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
+                <button className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
                   <span>
                     <LocationIcons />
                   </span>
@@ -631,7 +627,7 @@ const MediumHeader = () => {
                 </button>
                 <Link
                   to="#"
-                  className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
+                  className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
                 >
                   <img src={UzbekFlag} alt="." />
                   <span className="ml-[10px] mr-5">English</span>
@@ -643,8 +639,7 @@ const MediumHeader = () => {
             </div>
           </div>
 
-          <div
-            className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${
+          <div className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${
               state?.clothesTypeMobile ? "w-[92%]" : "w-0"
             }  `}
           >
@@ -689,6 +684,7 @@ const MediumHeader = () => {
               </div>
             )}
           </div>
+
           <div
             className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
               state?.priceToggleMobile ? "w-[92%]" : "w-0"
@@ -735,8 +731,8 @@ const MediumHeader = () => {
               </div>
             )}
           </div>
-          <div
-            className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
+
+          <div className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
               state?.brandToggleMobile ? "w-[92%]" : "w-0"
             }  `}
           >
@@ -780,8 +776,8 @@ const MediumHeader = () => {
               </div>
             )}
           </div>
-          <div
-            className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
+
+          <div className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
               state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
             }`}
           >
@@ -832,7 +828,7 @@ const MediumHeader = () => {
           <div className={`md:hidden`}>
             <div className="flex items-center justify-between w-full ">
               {/* Searching section */}
-              <div className="search flex items-center rounded-lg font-AeonikProMedium h-12  border ss:w-[100%]">
+              <div className="search flex items-center rounded-xl font-AeonikProMedium h-12  border ss:w-[100%]">
                 <span className="pl-[11.65px]">
                   <SearchIcons />
                 </span>
@@ -846,7 +842,7 @@ const MediumHeader = () => {
               {/* Map section */}
               <Link
                 to="/delivery-points"
-                className="flex items-center w-full justify-center bg-btnBgColor border border-searchBgColor rounded-lg ss:px-4 h-12 ml-2  ss:w-[94px] "
+                className="flex items-center w-full justify-center bg-btnBgColor border border-searchBgColor rounded-xl ss:px-4 h-12 ml-2  ss:w-[94px] "
               >
                 <span className="pr-[6px]">
                   <MapIcons colors={"#000"} />
@@ -856,15 +852,15 @@ const MediumHeader = () => {
             </div>
 
             {/* Gender selection for Mobile */}
-            {locationWindow == "/" && (
-              <div className="flex flex-wrap items-center justify-between rounded-lg  my-4 w-full ">
+            {locationWindow === "/" && (
+              <div className="flex flex-wrap items-center justify-between rounded-xl  my-4 w-full ">
                 {personItems
                   ?.filter((value) => value.id === dressInfo?.type)
                   .map((data) => {
                     return (
                       <div
                         key={data?.id}
-                        className="max-w-[440px] w-[100%] bg-btnBgColor flex items-center justify-between border border-searchBgColor rounded-lg overflow-hidden"
+                        className="max-w-[440px] w-[100%] bg-btnBgColor flex items-center justify-between border border-searchBgColor rounded-xl overflow-hidden"
                       >
                         <button
                           onClick={() =>
@@ -874,7 +870,7 @@ const MediumHeader = () => {
                             state?.genderActive
                               ? "bg-white border border-searchBgColor"
                               : "bg-transparent"
-                          } w-[49%]  rounded-lg h-[52px]  justify-center flex items-center  rounded-lg`}
+                          } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
                         >
                           <img src={data?.woman} alt="female" />
                           <span className="ml-3">Женщинам</span>
@@ -887,7 +883,7 @@ const MediumHeader = () => {
                             !state?.genderActive
                               ? "bg-white border border-searchBgColor"
                               : "bg-transparent"
-                          } w-[49%]  rounded-lg h-[52px]  justify-center flex items-center  rounded-lg`}
+                          } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
                         >
                           <img src={data?.man} alt="male" />
                           <span className="ml-3"> Мужчинам</span>
@@ -900,7 +896,7 @@ const MediumHeader = () => {
                   onClick={() => {
                     setState({ ...state, toggle: !state.toggle });
                   }}
-                  className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] rounded-lg border border-searchBgColor px-5 ss:w-full  ss:mt-4 "
+                  className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] rounded-xl border border-searchBgColor px-5 ss:w-full  ss:mt-4 "
                 >
                   <div className="flex items-center ml-auto">
                     <ClothesIcons />
@@ -933,7 +929,7 @@ const MediumHeader = () => {
                     });
                   }}
                 >
-                  <button className="ss:w-full flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 md:hidden">
+                  <button className="ss:w-full flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 md:hidden">
                     <div className="flex items-center">
                       <span className="w-[52px]  border-r border-searchBgColor py-3 pr-5">
                         <ClothesIcons />
@@ -953,7 +949,7 @@ const MediumHeader = () => {
                     })
                   }
                 >
-                  <button className="flex items-center w-full bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 md:hidden">
+                  <button className="flex items-center w-full bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 md:hidden">
                     <div className="flex items-center">
                       <span className="w-[52px]  border-r border-searchBgColor py-3 pr-5">
                         <DollorIcons />
@@ -967,7 +963,7 @@ const MediumHeader = () => {
                 </li>
 
                 <li>
-                  <button className="w-full flex items-center justify-between bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 md:hidden">
+                  <button className="w-full flex items-center justify-between bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 md:hidden">
                     <span className="w-[52px] border-r border-searchBgColor py-3 pr-5">
                       <BrushColorIcons />
                     </span>
@@ -1011,7 +1007,7 @@ const MediumHeader = () => {
                     })
                   }
                 >
-                  <button className="w-full flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 md:hidden">
+                  <button className="w-full flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 md:hidden">
                     <div className="flex items-center">
                       <span className="w-[52px]  border-r border-searchBgColor py-3 pr-5">
                         <TopBrandsIcon />
