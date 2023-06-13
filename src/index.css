@@ -263,3 +263,7 @@ table tr th:nth-child(1) {
   color: #000;
   padding: 8px 8px;
 }
+
+.widthInherit {
+  width: inherit;
+}
