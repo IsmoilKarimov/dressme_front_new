@@ -829,7 +829,7 @@ const MediumHeader = () => {
           </div>
 
           {/*Starting of Blocked  Hamburger Menu section */}
-          <div className={`md:hidden   `}>
+          <div className={`md:hidden`}>
             <div className="flex items-center justify-between w-full ">
               {/* Searching section */}
               <div className="search flex items-center rounded-lg font-AeonikProMedium h-12  border ss:w-[100%]">
@@ -857,7 +857,7 @@ const MediumHeader = () => {
 
             {/* Gender selection for Mobile */}
             {locationWindow == "/" && (
-              <div className="flex flex-wrap items-center justify-between mt-3 rounded-lg  mb-4 w-full ">
+              <div className="flex flex-wrap items-center justify-between rounded-lg  my-4 w-full ">
                 {personItems
                   ?.filter((value) => value.id === dressInfo?.type)
                   .map((data) => {
