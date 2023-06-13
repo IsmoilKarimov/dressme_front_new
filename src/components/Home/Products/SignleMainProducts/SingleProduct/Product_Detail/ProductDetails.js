@@ -323,10 +323,10 @@ const ProductDetails = () => {
         </div>
         <div className="w-full flex items-center justify-between mb-6 md:mb-0">
           <div className="flex items-center">
-            <span className="block md:hidden not-italic mt-1 font-AeonikProMedium text-[32px] leading-9 text-black trcking-[1%]">
+            <span className="block md:hidden not-italic mt-1 font-AeonikProMedium text-[24px] leading-9 text-black trcking-[1%]">
               452 000
             </span>
-            <span className="block md:hidden not-italic ml-2 mt-[10px] font-AeonikProRegular line-through text-[18px] leading-7 text-setTexOpacity">
+            <span className="block md:hidden not-italic ml-2 mt-[10px] font-AeonikProRegular line-through text-[16px] leading-7 text-setTexOpacity">
               652 000
             </span>
           </div>
