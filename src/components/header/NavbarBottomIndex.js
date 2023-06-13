@@ -57,7 +57,7 @@ const NavbarBottomIndex = () => {
   return (
     <div className="flex flex-col justify-center items-center m-0 p-0 box-border ">
       <div className="max-w-[1280px] w-[100%] flex justify-center  items-center m-auto">
-        <div className="ss:w-full flex flex-col justify-center mt-[6px]">
+        <div className="ss:w-full flex flex-col justify-center md:mt-[6px]">
           <div className=" w-full  flex flex-col justify-center ss:px-4 md:px-0">
             {/* {locationWindow !== "/forget_password" ? ( */}
             {locationWindow === "/sign_in" || locationWindow === "/sign_up" ? (

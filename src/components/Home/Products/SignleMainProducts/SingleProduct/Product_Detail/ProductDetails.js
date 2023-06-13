@@ -89,7 +89,7 @@ const ProductDetails = () => {
   const [productDescription, setProductDescription] = useState(true);
 
   return (
-    <div className="w-full h-full mt-8 md:mt-0">
+    <div className="w-full h-full mt-4 md:mt-0">
       <div className="w-full">
         <div className="h-fit flex justify-between mb-4">
           <div className="flex items-center justify-start ">
