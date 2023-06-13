@@ -14,6 +14,7 @@ import {
 } from "../../../../../AssetsMain/icons";
 import { AddBasket, HeartImg } from "../../../../../AssetsMain";
 import ProductComment from "./ProductComment/ProductComment";
+import AboutProduct from "./AboutProduct/AboutProduct";
 
 const SingleProduct = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -102,6 +103,9 @@ const SingleProduct = () => {
           </div>
           <div className="w-full md:w-1/2 h-full">
             <ProductDetails />
+          </div>
+          <div className="block md:hidden w-full">
+            <AboutProduct />
           </div>
         </div>
         {/* Products Comment */}
