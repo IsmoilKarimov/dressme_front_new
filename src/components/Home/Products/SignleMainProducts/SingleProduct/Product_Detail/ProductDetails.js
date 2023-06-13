@@ -86,8 +86,6 @@ const ProductDetails = () => {
   //   });
   // };
 
-  const [productDescription, setProductDescription] = useState(true);
-
   return (
     <div className="w-full h-full mt-4 md:mt-0">
       <div className="w-full">
@@ -300,7 +298,7 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      <div className="w-full pb-8 pt-6 md:mt-5 border-b boder mb-12 md:mb-0">
+      <div className="w-full md:pb-8 pt-6 md:mt-5 md:border-b boder mb-12 md:mb-0">
         <div className="w-full flex items-center justify-between md:justify-start mb-[14px] md:mb-0">
           <div className="flex md:hidden">
             <DollorIcons />
@@ -372,36 +370,6 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-
-      {/* <div className="w-full block md:hidden">
-            <span className="w-full font-AeonikProMedium text-base mb-6">О продукте:</span>
-            <div className="rounded-lg overflow-hidden  h-[42px] md:h-[52px] ss:w-full md:w-[308px] md:mx-0 flex justify-between bg-slate-50 border border-solid ss:mt-5 md:mt-0 mx-auto ">
-          <button
-            onClick={() => setProductDescription(true)}
-            className={`ss:w-1/2 md:w-[152px] md:h-[50px]  h-[42px] text-base text-black text-center font-AeonikProRegular not-italic ${
-                productDescription
-                  ? ` bg-white border  border-searchBgColor rounded-lg ${dataStyle}`
-                  : ""
-              }
-            `}
-          >
-            Описания товара 
-          </button>
-          <span className="h-full text-searchBgColor flex items-center">|</span>
-          <button
-            onClick={() => setProductDescription(false)}
-            className={`ss:w-1/2 md:w-[152px] md:h-[50px]  h-[42px] text-base text-black text-center font-AeonikProRegular not-italic ${
-                productDescription
-                  ? ` bg-white border  border-searchBgColor rounded-lg  ${dataStyle}`
-                  : ""
-              }
-            `}
-          >
-            Характеристики 
-          </button>
-        </div>
-
-        </div> */}
 
       {/* Text Items */}
       <div className="mt-12 md:mt-20 hiddden md:block">

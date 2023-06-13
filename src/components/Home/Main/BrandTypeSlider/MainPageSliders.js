@@ -246,6 +246,7 @@ export default function MainPageSliders() {
   };
 
   return (
+    // border-t md:border-t-0 border-searchBgColor pt-4 md:pt-0
     <div className="box-border flex flex-col justify-center	mb-6 md:my-6">
       <div className="w-full ss:hidden xs:block">
         <Slider
