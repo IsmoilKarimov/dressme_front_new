@@ -372,7 +372,7 @@ const ProductDetails = () => {
       </div>
 
       {/* Text Items */}
-      <div className="mt-12 md:mt-20 hiddden md:block">
+      <div className="mt-12 md:mt-20 hidden md:block">
         <span className="not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]">
           Кратко о товаре
         </span>
