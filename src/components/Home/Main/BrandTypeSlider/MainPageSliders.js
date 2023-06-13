@@ -327,7 +327,7 @@ export default function MainPageSliders() {
           </span>
         </button>
       </div>
-      <div className="w-full 	mt-[60px] ss:hidden xs:block">
+      <div className="w-full 	mt-[60px] ss:hidden xs:block ">
         <Slider
           {...settings1}
           className="w-[100%] flex xs:justify-between  px-[1px]"
