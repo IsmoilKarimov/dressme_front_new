@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { BsCircleFill } from "react-icons/bs";
@@ -14,6 +14,7 @@ import {
   ProductArticleIcons,
   ProductSizeIcons,
   ProductSwitchIcons,
+  SaveMarketIcons,
   StarIcons,
 } from "../../../../../../AssetsMain/icons";
 import {
@@ -85,6 +86,39 @@ const ProductDetails = () => {
   //     });
   //   });
   // };
+
+  const [show, setShow] = useState(true);
+  const [scrollPost, setscrollPost] = useState(0);
+
+  // ----------------NavMenu----------------
+  const [ShowNavMenu, setShowNavMenu] = useState(true);
+  const [ScrollPostNavMenu, setScrollPostNavMenu] = useState(0);
+
+  // ----------------NavBar----------------
+  const handleScroll = () => {
+    setscrollPost(document.body.getBoundingClientRect().top);
+    if (parseInt(Math.abs(scrollPost)) > 300) {
+      setShow(document.body.getBoundingClientRect().top > scrollPost);
+    }
+  };
+
+  // ----------------NavMenu----------------
+  const handleScrollNavMenu = () => {
+    setScrollPostNavMenu(document.body.getBoundingClientRect().top);
+    setShowNavMenu(
+      document.body.getBoundingClientRect().top < ScrollPostNavMenu
+    );
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScrollNavMenu);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScrollNavMenu);
+    };
+  }, [show, scrollPost, ShowNavMenu, ScrollPostNavMenu]);
 
   return (
     <div className="w-full h-full mt-4 md:mt-0">
@@ -298,7 +332,7 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      <div className="w-full md:pb-8 pt-6 md:mt-5 md:border-b boder mb-12 md:mb-0">
+      <div className="w-full md:block hidden md:pb-8 pt-6 md:mt-5 md:border-b boder mb-12 md:mb-0 border border-red-500">
         <div className="w-full flex items-center justify-between md:justify-start mb-[14px] md:mb-0">
           <div className="flex md:hidden">
             <DollorIcons />
@@ -366,6 +400,61 @@ const ProductDetails = () => {
             </span>
             <span className="not-italic mt-1 ml-2 font-AeonikProMedium text-[14px] leading-6 text-right tracking-[1%]">
               28
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Price */}
+      <div
+        className={`fixed z-[29] flex flex-col gap-y-1 ${
+          show ? "bottom-[64px] " : "bottom-0 "
+        } duration-500 left-0 right-0 max-w-[440px] px-4 py-1 w-[100%] h-fit  border bg-white rounded-lg`}
+      >
+        <div className="h-fit w-full  flex items-center justify-between">
+          <button className="max-w-[230px] w-full bg-fullBlue text-white rounded-lg h-[36px] flex items-center justify-center ">
+            <span>
+              <SaveMarketIcons />
+            </span>
+            <span> Добавить в корзину</span>
+          </button>
+          <button
+            className={`max-w-[120px] w-full h-[36px]  flex items-center justify-center border rounded-lg ${genderStyle}`}
+          >
+            <span> Купить</span>
+          </button>
+        </div>
+        <div className="h-[36px] w-full flex justify-between items-center ">
+          <div className="flex items-center">
+            <span className="not-italic mt-1 font-AeonikProMedium text-[18px] leading-9 text-black trcking-[1%]">
+              452 000
+            </span>
+            <span className="not-italic ml-1 mt-[6px] font-AeonikProRegular line-through text-[14px] leading-7 text-setTexOpacity">
+              652 000
+            </span>
+          </div>
+          <div className={`w-fit  ${dataStyle} flex  `}>
+            <span className="font-AeonikProRegular text-[14px] leading-4">
+              В наличии:
+            </span>
+            <span className="ml-2 font-AeonikProMedium text-[14px] leading-4">
+              284
+            </span>
+          </div>
+        </div>
+        <div className="h-[36px] w-full flex justify-between items-center ">
+          <div className="flex ">
+            <DollorIcons />
+            <span className="text-base font-AeonikProRegular ml-[6px]">
+              Цена:
+            </span>
+          </div>
+          <div className="w-[84px] h-9  cursor-pointer ml-8 flex items-center justify-center border border-searchBgColor rounded-lg">
+            <span>
+              <DiscountShapeIcons />
+            </span>
+            <span className="ml-[6px] not-italic mt-1 font-AeonikProMedium text-sm  leading-5 text-red-700">
+              -30%
             </span>
           </div>
         </div>
