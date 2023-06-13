@@ -66,7 +66,7 @@ export default function TypeSection() {
   return (
     <div className="flex flex-col">
       <div className="w-[100%] h-fit flex flex-col justify-center py-8">
-        <div className="w-full h-[60px]  block xs:hidden flex items-center justify-center text-center  rounded-lg cursor-pointer  bg-bgColor border border-solid border-searchBgColor">
+        <div className="w-full h-[60px] hidden items-center justify-center text-center  rounded-lg cursor-pointer  bg-bgColor border border-solid border-searchBgColor">
           <span className="mr-3 not-italic font-AeonikProMedium text-base leading-4 text-center">
             Одежды, которые вам подходят
           </span>
@@ -81,7 +81,7 @@ export default function TypeSection() {
             return (
               <div
                 key={data?.id}
-                className="w-[414px]  lg:h-[426px] ll:h-[400px] md:h-[390px] ss:h-[350px] bg-white border border-searchBgColor	rounded-lg ss:p-3  xl:p-[20px] flex flex-wrap ss:content-between sm:content-between  "
+                className="w-[414px]  lg:h-[426px] ll:h-[400px] md:h-[390px] ss:h-[350px] bg-white border border-searchBgColor	rounded-xl ss:p-3  xl:p-[20px] flex flex-wrap ss:content-between sm:content-between  "
               >
                 <div className="w-full flex items-center justify-between ss:h-fit sm:h-1/10  ">
                   <p className="not-italic font-AeonikProMedium md:text-lg ss:text-base  lg:text-xl  leading-7 text-black">
@@ -101,9 +101,9 @@ export default function TypeSection() {
                     return (
                       <div
                         key={data?.id}
-                        className="w-[177px] h-[168px] p-[10px] bg-btnBgColor border	border-searchBgColor rounded-lg   flex flex-wrap content-between"
+                        className="w-[177px] h-[168px] p-[10px] bg-btnBgColor border	border-searchBgColor rounded-xl flex flex-wrap content-between"
                       >
-                        <div className="w-full h-3/4 rounded-lg  border border-searchBgColor flex items-center justify-center">
+                        <div className="w-full h-3/4 rounded-xl  border border-searchBgColor flex items-center justify-center">
                           {data?.img ? (
                             <img src={data?.img} alt="data" />
                           ) : (
