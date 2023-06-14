@@ -153,13 +153,22 @@ function YandexMapsDressMe() {
   return (
     <div className=" h-fit w-full flex justify-center overflow-hidden  ">
       <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden ">
-        <div
+        {/* <div
           style={{ top: `${topLocated}`, left: `${leftLocated}` }}
           className={`w-[393px] absolute ${
             locationUpdate
               ? `z-[100] block h-fit duration-300 ease-linear duration-500 `
               : "bottom-20 hidden h-0 duration-300 ease-linear duration-500 "
           }  ease-linear duration-500`}
+        >
+          <YandexLocationMarketOpen />
+        </div> */}
+        <div
+          className={`absolute ${
+            locationUpdate
+              ? "bottom-0 z-[100] duration-500"
+              : "z-[0] bottom-[-1000px] duration-500"
+          } max-w-[440px] w-[100%] border border-red-500  bg-green-500`}
         >
           <YandexLocationMarketOpen />
         </div>
@@ -253,23 +262,21 @@ function YandexMapsDressMe() {
                     iconImageSize: [32, 32],
                   }}
                   modules={["geoObject.addon.balloon"]}
-                  // properties={{
-                  //   balloonContentHeader: `<div class="balloonContentHeader"><a class="title" href = "#">Пункт выдачи</a><br><span class="description11">${data?.address}</span></div>`,
-
-                  //   // // Зададим содержимое основной части балуна.
-                  //   balloonContentBody:
-                  //     `<div class="bodyImgs"><img  className="data" src="https://images.wbstatic.net/PickupOffice/Img154040_Photo1.jpg"/><img  className="data" src="https://images.wbstatic.net/PickupOffice/Img154040_Photo1.jpg"/> </div><br/>` +
-                  //     // `<div class="bodySana"><span class='text'>Режим работы:<span>${data?.workTime}</span></span></div><br/>` +
-                  //     // `<div class="bodySana"><span class='text'>Примерочные: <span>${data?.imgs.length} шт</span></span></div><br/>` +
-
-                  //     `<div class="bodySana">
-                  //         <span class='text'>Режим работы:<span>${data?.workTime}</span></span><br/>
-                  //         <span class='text'>Примерочные: <span>${data?.imgs.length} шт</span></span>
-                  //     </div><br/>` +
-                  //     `<div class="BtnUzGroup"><div class='BtnUz'>Выбрать</div></div>`,
-
-                  //   balloonContentFooter: `<div class="footerText"><span>Directions:</span> ${data?.direction}</div>`,
-                  // }}
+                  properties={
+                    {
+                      // balloonContentHeader: `<div class="balloonContentHeader"><a class="title" href = "#">Пункт выдачи</a><br><span class="description11">${data?.address}</span></div>`,
+                      // // Зададим содержимое основной части балуна.
+                      // balloonContentBody: <YandexLocationMarketOpen />,
+                      // balloonContentBody:
+                      //   `<div class="bodyImgs"><img  className="data" src="https://images.wbstatic.net/PickupOffice/Img154040_Photo1.jpg"/><img  className="data" src="https://images.wbstatic.net/PickupOffice/Img154040_Photo1.jpg"/> </div><br/>` +
+                      //   `<div class="bodySana">
+                      //       <span class='text'>Режим работы:<span>${data?.workTime}</span></span><br/>
+                      //       <span class='text'>Примерочные: <span>${data?.imgs.length} шт</span></span>
+                      //   </div><br/>` +
+                      //   `<div class="BtnUzGroup"><div class='BtnUz'>Выбрать</div></div>`,
+                      // balloonContentFooter: `<div class="footerText"><span>Directions:</span> ${data?.direction}</div>`,
+                    }
+                  }
                 />
               ))}
             </Clusterer>

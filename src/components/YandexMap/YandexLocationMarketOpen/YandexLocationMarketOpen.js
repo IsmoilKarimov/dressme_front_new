@@ -52,16 +52,16 @@ function YandexLocationMarketOpen() {
   };
   console.log("memo");
   return (
-    <div className="w-[390px] h-fit flex flex-col gap-y-4 border border-searchBgColor bg-white rounded-[12px] px-4 py-5">
+    <div className="w-full  h-fit flex flex-col gap-y-4 border border-searchBgColor bg-white rounded-t-[12px]	 px-4 py-5">
       {/* title */}
 
       <div className="relative w-full flex items-center justify-between">
-        <div className="absolute top-[-40px]  w-full px-2">
+        {/* <div className="absolute top-[-40px]  w-full px-2">
           <span>
             {" "}
             <ThreeCicleIcon />
           </span>{" "}
-        </div>
+        </div> */}
         <div className="w-fit flex items-center">
           {" "}
           <span className="not-italic font-AeonikProMedium text-xl leading-5 text-fullBlue">
