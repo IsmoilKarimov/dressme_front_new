@@ -467,7 +467,7 @@ const MediumHeader = () => {
           </div>
           {/* Ending of Full Screen page sesction Map*/}
 
-          {/* Open Meain Menu at the  Mobile version */}
+          {/* Open Main Menu at the  Mobile version */}
           <div className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${
               state?.hamburgerMenu
                 ? "hamburger flex flex-col ease-linear duration-500 overscroll-none z-30"
@@ -834,13 +834,13 @@ const MediumHeader = () => {
                 </span>
                 <input
                   type="text"
-                  placeholder="Search..."
+                  placeholder="Искать товары или бренды"
                   className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
                 />
               </div>
 
               {/* Map section */}
-              <Link
+              {/* <Link
                 to="/delivery-points"
                 className="flex items-center w-full justify-center bg-btnBgColor border border-searchBgColor rounded-xl ss:px-4 h-12 ml-2  ss:w-[94px] "
               >
@@ -848,7 +848,7 @@ const MediumHeader = () => {
                   <MapIcons colors={"#000"} />
                 </span>
                 <div className="font-AeonikProMedium">Map</div>
-              </Link>
+              </Link> */}
             </div>
 
             {/* Gender selection for Mobile */}

@@ -27,8 +27,8 @@ export default function AboutProduct() {
     const [productDescription, setProductDescription] = useState(true);
 
     return (
-        <div>
-            <div className="w-full block md:hidden">
+        <div className='w-full block md:hidden'>
+            <div className="w-full">
                 <span className="w-full font-AeonikProMedium text-base mb-6">О продукте:</span>
                 <div className="rounded-lg overflow-hidden  h-[42px] md:h-[52px] ss:w-full md:w-[308px] md:mx-0 flex justify-between bg-slate-50 border border-solid ss:mt-5 md:mt-0 mx-auto ">
                     <button
@@ -56,12 +56,12 @@ export default function AboutProduct() {
                     </button>
                 </div>
                 {productDescription ? (
-                    <div className='mt-6'>
-                        Информация о товаре 
+                    <div className='mt-6 w-full h-[440px] text-center bg-searchBgColor p-6 mb-12 rounded'>
+                        <span className='font-AeonikProRegular text-base'>Информация о товаре </span>
                     </div>
                 ) : (
-                    <div className='mt-6'>
-                        Информация о Характеристики 
+                    <div className='mt-6 w-full h-[440px] text-center bg-searchBgColor p-6 mb-12 rounded'>
+                        <span className='font-AeonikProRegular text-base'>Информация о Характеристики</span>
                     </div>
                 )}
             </div>
