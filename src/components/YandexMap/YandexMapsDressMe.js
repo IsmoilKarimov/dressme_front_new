@@ -68,6 +68,10 @@ function YandexMapsDressMe() {
     setCoords({ ...coords, coords: coord });
     setLocationUpdate(false);
   };
+  const HandleData = () => {
+    setLocationUpdate(false);
+    console.log("clicced");
+  };
 
   const handleFullScreen = () => {
     setDressInfo({
@@ -111,12 +115,16 @@ function YandexMapsDressMe() {
     });
   };
   const [cordinateLocation, setCordinateLocation] = useState({
-    placeDev: [{ top: -9999, left: -9999 }],
+    placeDev: { top: 0, left: 0 },
   });
+  const [topLocated, setTopLocated] = useState(0);
+  const [leftLocated, setLeftLocated] = useState(0);
   const positonsItem = (e) => {
-    setCordinateLocation({
-      placeDev: { top: e.clientX, left: e.clientY },
-    });
+    setTopLocated(e.clientY + 37 + "px");
+    setLeftLocated(e.clientX - 43 + "px");
+    // setCordinateLocation({
+    //   placeDev: { top: e.clientX, left: e.clientY },
+    // });
     // setCordinateLocation({ e.clientX, e.clientY });
   };
 
@@ -140,15 +148,16 @@ function YandexMapsDressMe() {
     IconsColor = "#007DCA";
   }
   console.log("locationUpdate", locationUpdate);
-  console.log("cordinateLocationTop", cordinateLocation.placeDev.top);
-  console.log("cordinateLocationLeft", cordinateLocation.placeDev.left);
+  console.log("topLocated", topLocated);
+  console.log("leftLocated", leftLocated);
   return (
     <div className=" h-fit w-full flex justify-center overflow-hidden  ">
       <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden ">
         <div
-          className={`w-[393px] absolute   ${
+          style={{ top: `${topLocated}`, left: `${leftLocated}` }}
+          className={`w-[393px] absolute ${
             locationUpdate
-              ? `top-[${cordinateLocation.placeDev.left}px] left-[${cordinateLocation.placeDev.left}px]  z-[100] block h-fit duration-300 ease-linear duration-500 `
+              ? `z-[100] block h-fit duration-300 ease-linear duration-500 `
               : "bottom-20 hidden h-0 duration-300 ease-linear duration-500 "
           }  ease-linear duration-500`}
         >
@@ -180,6 +189,7 @@ function YandexMapsDressMe() {
               // controls: ["smallMapDefaultSet"],
             }}
             onClick={onMapClick}
+            onMouseDown={HandleData}
             width="100%"
             height="100%"
             modules={[
