@@ -5,6 +5,7 @@ import {
   MenuCloseIcons,
   SircleNext,
   StarIcons,
+  ThreeCicleIcon,
 } from "../../../AssetsMain/icons";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import Slider from "react-slick";
@@ -51,19 +52,21 @@ function YandexLocationMarketOpen() {
   };
   console.log("memo");
   return (
-    <div className="w-[390px] h-fit flex flex-col gap-y-6 border border-searchBgColor bg-white rounded-[12px] px-4 py-5">
+    <div className="w-[390px] h-fit flex flex-col gap-y-4 border border-searchBgColor bg-white rounded-[12px] px-4 py-5">
       {/* title */}
 
-      <div className="w-full flex items-center justify-between">
+      <div className="relative w-full flex items-center justify-between">
+        <div className="absolute top-[-40px]  w-full px-2">
+          <span>
+            {" "}
+            <ThreeCicleIcon />
+          </span>{" "}
+        </div>
         <div className="w-fit flex items-center">
           {" "}
           <span className="not-italic font-AeonikProMedium text-xl leading-5 text-fullBlue">
             FLO (Алмазар)
           </span>
-          {/* <span>
-          <b>ID:</b>{" "}
-          {dressInfo?.yandexGetMarketId && dressInfo.yandexGetMarketId}
-        </span> */}
           <p className="flex items-center gap-x-[6px]">
             <span>
               <StarIcons />
@@ -86,7 +89,7 @@ function YandexLocationMarketOpen() {
         </button>
       </div>
       {/* Carosuel */}
-      <div className="w-full h-[232px] ">
+      <div className="w-full h-[220px] ">
         <Slider
           {...settings}
           className="w-full h-full rounded-lg overflow-hidden"
@@ -129,7 +132,7 @@ function YandexLocationMarketOpen() {
         </span>
       </div>
       {/* Detail */}
-      <div className="w-full  flex flex-col gap-y-4">
+      <div className="w-full  flex flex-col gap-y-3">
         <div className="flex items-center ">
           <span>
             <ClockIcons colors={"#000"} />
