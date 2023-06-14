@@ -254,16 +254,9 @@ const ProductDetails = () => {
               Весна
             </span>
           </div>
-          <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
-          <div className="flex items-center">
-            <img src={autummSeason} alt="" />
-            <span className="not-italic mt-1 ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
-              Осень
-            </span>
-          </div>
         </div>
       </div>
-      <div className="w-full border-y border-searchBgColor pt-7 pb-12">
+      <div className="w-full border-t md:border-y md:border-searchBgColor pt-7 pb-12">
         <div className="w-full flex items-center mb-6 text-base font-AeonikProMedium">
           <span>
             <ProductSwitchIcons />
@@ -332,7 +325,7 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      <div className="w-full md:block hidden md:pb-8 pt-6 md:mt-5 md:border-b boder mb-12 md:mb-0 border border-red-500">
+      <div className="w-full md:block hidden md:pb-8 pt-6 md:border-b border-searchBgColor mb-12 md:mb-0">
         <div className="w-full flex items-center justify-between md:justify-start mb-[14px] md:mb-0">
           <div className="flex md:hidden">
             <DollorIcons />
@@ -373,7 +366,6 @@ const ProductDetails = () => {
             </span>
           </div>
         </div>
-
         <div className="w-full flex justify-between items-center gap-x-3 md:gap-x-0 md:mt-8">
           <div className="w-[65%] md:w-[260px]">
             <button className="w-full h-12 md:w-[260px] md:h-[52px] mt-1 rounded-lg not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex items-center justify-center bg-fullBlue">
@@ -406,8 +398,7 @@ const ProductDetails = () => {
       </div>
 
       {/* Mobile Price */}
-      <div
-        className={`fixed md:hidden z-[29] flex flex-col gap-y-1 shadow-navMenuShadov ${
+      <div className={`fixed md:hidden z-[29] flex flex-col gap-y-1 shadow-navMenuShadov ${
           show ? "bottom-[62px] duration-500" : "bottom-0 duration-500 "
         }  left-0 right-0 px-4  py-2 w-[100%] h-fit bg-white rounded-lg`}
       >
@@ -446,7 +437,7 @@ const ProductDetails = () => {
           </div>
         </div>
 
-        <div className="h-fit w-full  flex items-center justify-between gap-x-2">
+        <div className="h-fit w-full  flex items-center justify-between mb-2 gap-x-2">
           <button className="max-w-[63%] w-full bg-fullBlue text-white rounded-lg h-[36px] flex items-center justify-center ">
             <span>
               <SaveMarketIcons />
@@ -465,7 +456,7 @@ const ProductDetails = () => {
       </div>
 
       {/* Text Items */}
-      <div className="mt-12 md:mt-20 hidden md:block">
+      <div className="mt-12 md:mt-16 hidden md:block">
         <span className="not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]">
           Кратко о товаре
         </span>

@@ -110,10 +110,10 @@ const SingleProduct = () => {
         </div>
         {/* Products Comment */}
         <div className="md:mt-20 w-full">
-          {/* <ProductComment /> */}
+          <ProductComment />
         </div>
         <div className="w-full h-fit  ">
-          <div className="w-full mt-20 md:mt-[120px]">
+          <div className="w-full mt-[34px] md:mt-[120px]">
             <div>
               <span className="not-italic font-AeonikProMedium text-[16px] leading-7 text-black">
                 Похожие продукты

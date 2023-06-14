@@ -10,6 +10,7 @@ import {
   CotegoryIcons,
   HeartLinkIcons,
   HomeIcons,
+  MapIcons,
   PersonIcons,
 } from "../../AssetsMain/icons";
 import { ActivePersonImg, HeartImg } from "../../AssetsMain";
@@ -143,39 +144,24 @@ const NavMenu = () => {
         </li>
         <li className="w-[72px] h-[56px] flex  justify-center ">
           <NavLink
-            to={"/favourites"}
+            to={"/delivery-points"}
             className="w-full h-full flex items-center justify-center text-center  "
           >
             {({ isActive }) =>
               isActive ? (
                 <span className="flex flex-col items-center justify-center mt-1">
-                  {/* <svg
-                    width="20"
-                    height="18"
-                    viewBox="0 0 15 14"
-                    fill="#D50000"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M8.41337 12.8733C8.18671 12.9533 7.81337 12.9533 7.58671 12.8733C5.65337 12.2133 1.33337 9.45998 1.33337 4.79332C1.33337 2.73332 2.99337 1.06665 5.04004 1.06665C6.25337 1.06665 7.32671 1.65332 8.00004 2.55998C8.67337 1.65332 9.75337 1.06665 10.96 1.06665C13.0067 1.06665 14.6667 2.73332 14.6667 4.79332C14.6667 9.45998 10.3467 12.2133 8.41337 12.8733Z"
-                      stroke="#D50000"
-                      stroke-width="1.2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg> */}
-                  <ActiveHeartIcons colors={"#D50000"} />
+                  <MapIcons colors={IconsColor} />
                   <span className="mt-2">
-                    <span>Избранное</span>
+                    <span>Карта</span>
                   </span>{" "}
                 </span>
               ) : (
                 <span className=" flex flex-col items-center justify-center mt-1 ">
                   <span className="">
-                    <img src={HeartImg} className={"w-5 h-5"} alt="heart" />
+                    <MapIcons colors={"#000"} />
                   </span>
                   <span className="mt-2">
-                    <span>Избранное</span>
+                    <span>Карта</span>
                   </span>
                 </span>
               )
