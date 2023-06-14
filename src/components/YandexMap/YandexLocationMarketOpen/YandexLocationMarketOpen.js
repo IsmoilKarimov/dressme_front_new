@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import PropTypes from "prop-types";
+import React, { useContext, memo, useMemo } from "react";
 import {
   ClockIcons,
   LocationIcons,
+  MenuCloseIcons,
   SircleNext,
   StarIcons,
 } from "../../../AssetsMain/icons";
@@ -10,7 +10,7 @@ import { dressMainData } from "../../../ContextHook/ContextMenu";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
-const YandexLocationMarketOpen = ({ getIdMarket }) => {
+function YandexLocationMarketOpen() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const NextArrow = (props) => {
     const { onClick } = props;
@@ -49,25 +49,41 @@ const YandexLocationMarketOpen = ({ getIdMarket }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  console.log("memo");
   return (
     <div className="w-[390px] h-fit flex flex-col gap-y-6 border border-searchBgColor bg-white rounded-[12px] px-4 py-5">
       {/* title */}
+
       <div className="w-full flex items-center justify-between">
-        <span className="not-italic font-AeonikProMedium text-xl leading-5 text-fullBlue">
-          FLO (Алмазар)
-        </span>
-        <span>
+        <div className="w-fit flex items-center">
+          {" "}
+          <span className="not-italic font-AeonikProMedium text-xl leading-5 text-fullBlue">
+            FLO (Алмазар)
+          </span>
+          {/* <span>
           <b>ID:</b>{" "}
           {dressInfo?.yandexGetMarketId && dressInfo.yandexGetMarketId}
-        </span>
-        <p className="flex items-center gap-x-[6px]">
-          <span>
-            <StarIcons />
-          </span>
-          <span className="not-italic font-AeonikProMedium text-base leading-4 text-black">
-            4.6
-          </span>
-        </p>
+        </span> */}
+          <p className="flex items-center gap-x-[6px]">
+            <span>
+              <StarIcons />
+            </span>
+            <span className="not-italic font-AeonikProMedium text-base leading-4 text-black">
+              4.6
+            </span>
+          </p>
+        </div>
+        <button
+          onClick={() =>
+            setDressInfo({
+              ...dressInfo,
+              yandexOpenMarketLocation: true,
+            })
+          }
+          className="w-10 h-10 rounded-lg border border-searchBgColor flex items-center justify-center active:scale-95  active:opacity-70"
+        >
+          <MenuCloseIcons />
+        </button>
       </div>
       {/* Carosuel */}
       <div className="w-full h-[232px] ">
@@ -145,6 +161,6 @@ const YandexLocationMarketOpen = ({ getIdMarket }) => {
       </div>
     </div>
   );
-};
+}
 
-export { YandexLocationMarketOpen };
+export default memo(YandexLocationMarketOpen);
