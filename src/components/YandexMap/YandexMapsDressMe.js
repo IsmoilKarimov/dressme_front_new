@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 
 import {
   YMaps,
@@ -9,7 +9,6 @@ import {
   Clusterer,
 } from "react-yandex-maps";
 
-import { useState } from "react";
 import "./yandex.css";
 import YandexMapsIndex from "./YandexMapsNavbar/YandexMapsIndex";
 import { dressMainData } from "../../ContextHook/ContextMenu";
@@ -42,9 +41,11 @@ import {
   VolumeIcons,
 } from "../../AssetsMain/icons";
 import { UzbekFlag, locationIcons, markerIcons } from "../../AssetsMain";
-import { YandexLocationMarketOpen } from "./YandexLocationMarketOpen/YandexLocationMarketOpen";
-
+import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationMarketOpen";
 function YandexMapsDressMe() {
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [locationUpdate, setLocationUpdate] = useState(false);
+
   const wearGroup = [
     { id: 1, name: "Футболки" },
     { id: 2, name: "Рубашки" },
@@ -65,9 +66,8 @@ function YandexMapsDressMe() {
   const onMapClick = (e) => {
     const coord = e.get("coords");
     setCoords({ ...coords, coords: coord });
+    setLocationUpdate(false);
   };
-
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const handleFullScreen = () => {
     setDressInfo({
@@ -102,12 +102,27 @@ function YandexMapsDressMe() {
   };
   // --------------Open Main MenusetDressInfo
   const handlePlaceMark = (value) => {
+    setLocationUpdate(true);
+    // sessionStorage.setItem("Location", true);
     setDressInfo({
       ...dressInfo,
       yandexOpenMarketLocation: true,
       yandexGetMarketId: value,
     });
   };
+  const [cordinateLocation, setCordinateLocation] = useState({
+    placeDev: [{ top: -9999, left: -9999 }],
+  });
+  const positonsItem = (e) => {
+    setCordinateLocation({
+      placeDev: { top: e.clientX, left: e.clientY },
+    });
+    // setCordinateLocation({ e.clientX, e.clientY });
+  };
+
+  useEffect(() => {
+    window.addEventListener("click", positonsItem);
+  }, []);
 
   //------------------------------------------------------------------------------------------------
   let IconsColor = "";
@@ -124,15 +139,18 @@ function YandexMapsDressMe() {
   if (dressInfo?.type === 4444) {
     IconsColor = "#007DCA";
   }
+  console.log("locationUpdate", locationUpdate);
+  console.log("cordinateLocationTop", cordinateLocation.placeDev.top);
+  console.log("cordinateLocationLeft", cordinateLocation.placeDev.left);
   return (
     <div className=" h-fit w-full flex justify-center overflow-hidden  ">
-      <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden">
+      <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden ">
         <div
           className={`w-[393px] absolute   ${
-            dressInfo?.yandexOpenMarketLocation
-              ? "bottom-20 z-[100] block h-fit duration-300 ease-linear duration-500 "
+            locationUpdate
+              ? `top-[${cordinateLocation.placeDev.left}px] left-[${cordinateLocation.placeDev.left}px]  z-[100] block h-fit duration-300 ease-linear duration-500 `
               : "bottom-20 hidden h-0 duration-300 ease-linear duration-500 "
-          }  ease-linear duration-500 w-full`}
+          }  ease-linear duration-500`}
         >
           <YandexLocationMarketOpen />
         </div>
@@ -215,7 +233,9 @@ function YandexMapsDressMe() {
                   className={"placemarkCLuster cursor-pointer"}
                   // className="bg-green-500 text-red-500 p-2 "
                   key={index}
-                  onClick={() => handlePlaceMark(data?.marketId)}
+                  onClick={() => {
+                    handlePlaceMark(data?.marketId);
+                  }}
                   geometry={data?.cordinate}
                   options={{
                     iconLayout: "default#image",
