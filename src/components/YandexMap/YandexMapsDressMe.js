@@ -70,10 +70,12 @@ function YandexMapsDressMe() {
   const onMapClick = (e) => {
     // const coord = e.get("coords");
     // setCoords({ ...coords, coords: coord });
-    setDressInfo({
-      ...dressInfo,
-      yandexOpenMarketLocation: false,
-    });
+    if (dressInfo?.yandexOpenMarketLocation) {
+      setDressInfo({
+        ...dressInfo,
+        yandexOpenMarketLocation: false,
+      });
+    }
     console.log("Onclick");
   };
   const HandleData = (e) => {
@@ -81,10 +83,12 @@ function YandexMapsDressMe() {
     // setCoords({ ...coords, coords: coord });
     console.log("MouseDOwn");
 
-    setDressInfo({
-      ...dressInfo,
-      yandexOpenMarketLocation: false,
-    });
+    if (dressInfo?.yandexOpenMarketLocation) {
+      setDressInfo({
+        ...dressInfo,
+        yandexOpenMarketLocation: false,
+      });
+    }
   };
 
   const handleFullScreen = () => {

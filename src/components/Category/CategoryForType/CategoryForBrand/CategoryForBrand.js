@@ -239,7 +239,7 @@ const CategoryForBrand = () => {
                     key={data?.id}
                     // onClick={() => HandleBrandFilter(data?.id)}
                     onClick={() => CheckStatus(data?.id)}
-                    className="flex items-center cursor-pointer select-none mb-4 border border-red-500"
+                    className="flex items-center cursor-pointer select-none mb-4 "
                   >
                     <button
                       className={`w-6 h-6 p-1 mr-2 flex items-center ${
