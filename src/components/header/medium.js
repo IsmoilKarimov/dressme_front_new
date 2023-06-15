@@ -321,7 +321,7 @@ const MediumHeader = () => {
                 </span>
               </div>
 
-              {/* Weather seection */}
+              {/* Weather section */}
               <div className="w-12 h-12 md:w-[120px] md:h-11 bg-btnBgColor border border-searchBgColor rounded-xl  md:rounded-lg ml-2">
                 {SeasonTypeArray.filter(
                   (data) => data.id == dressInfo.type
@@ -343,7 +343,7 @@ const MediumHeader = () => {
                           alt="weather"
                           className="mr-0 md:mr-[5px] "
                         />
-                        <div className="ss:hidden  font-AeonikProMedium mt-1 hidden md:block md:flex items-center text-[15px] ">
+                        <div className="ss:hidden font-AeonikProMedium hidden md:flex items-center text-[15px] ">
                           {data?.type}
                         </div>
                       </div>
