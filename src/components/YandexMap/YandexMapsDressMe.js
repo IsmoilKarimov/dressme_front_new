@@ -50,7 +50,6 @@ import { UzbekFlag, locationIcons, markerIcons } from "../../AssetsMain";
 import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationMarketOpen";
 function YandexMapsDressMe() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [locationUpdate, setLocationUpdate] = useState(false);
   const wearGroup = [
     { id: 1, name: "Футболки" },
     { id: 2, name: "Рубашки" },
@@ -71,14 +70,16 @@ function YandexMapsDressMe() {
   const onMapClick = (e) => {
     const coord = e.get("coords");
     setCoords({ ...coords, coords: coord });
-    setLocationUpdate(false);
     setDressInfo({
       ...dressInfo,
       yandexOpenMarketLocation: false,
     });
+    console.log("Onclick");
   };
-  const HandleData = () => {
-    setLocationUpdate(false);
+  const HandleData = (e) => {
+    const coord = e.get("coords");
+    setCoords({ ...coords, coords: coord });
+    console.log("MouseDOwn");
 
     setDressInfo({
       ...dressInfo,
@@ -119,7 +120,6 @@ function YandexMapsDressMe() {
   };
   // --------------Open Main MenusetDressInfo
   const handlePlaceMark = (value) => {
-    setLocationUpdate(true);
     // sessionStorage.setItem("Location", true);
     setDressInfo({
       ...dressInfo,
@@ -143,10 +143,7 @@ function YandexMapsDressMe() {
   if (dressInfo?.type === 4444) {
     IconsColor = "#007DCA";
   }
-  console.log("locationUpdate", locationUpdate);
-  // const obj2 = useCallback((data) => {
-  //   return {};
-  // }, []);
+
   return (
     <div className=" h-fit w-full flex justify-center overflow-hidden ">
       <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden">
