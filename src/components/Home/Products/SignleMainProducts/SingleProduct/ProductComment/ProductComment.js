@@ -23,7 +23,7 @@ export default function ProductComment() {
       replyText: "Спасибо вам за оценку!",
     },
     {
-      id: 2,
+      id: 3,
       Name: "Shohjahon",
       sendDate: "19 февраля 2023 г.",
       SendText:

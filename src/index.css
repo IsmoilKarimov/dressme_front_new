@@ -29,26 +29,23 @@
 }
 
 .AeonikProMedium {
-  font-family: "Aeonik Pro";
+  /* font-family: "Aeonik Pro";
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 18px;
   letter-spacing: 0.01em;
-
-  color: #000000;
+  color: #000000; */
 }
 .AeonikProRegular {
-  font-family: "Aeonik Pro";
+  /* font-family: "Aeonik Pro";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
   /* identical to box height */
-
-  letter-spacing: 0.01em;
-
-  color: #000000;
+  /* letter-spacing: 0.01em;
+  color: #000000;  */
 }
 
 * {
