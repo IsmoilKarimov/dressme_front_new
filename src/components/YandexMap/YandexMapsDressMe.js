@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 import {
   YMaps,
@@ -45,7 +51,6 @@ import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationM
 function YandexMapsDressMe() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [locationUpdate, setLocationUpdate] = useState(false);
-
   const wearGroup = [
     { id: 1, name: "Футболки" },
     { id: 2, name: "Рубашки" },
@@ -67,9 +72,18 @@ function YandexMapsDressMe() {
     const coord = e.get("coords");
     setCoords({ ...coords, coords: coord });
     setLocationUpdate(false);
+    setDressInfo({
+      ...dressInfo,
+      yandexOpenMarketLocation: false,
+    });
   };
   const HandleData = () => {
     setLocationUpdate(false);
+
+    setDressInfo({
+      ...dressInfo,
+      yandexOpenMarketLocation: false,
+    });
   };
 
   const handleFullScreen = () => {
@@ -110,6 +124,7 @@ function YandexMapsDressMe() {
     setDressInfo({
       ...dressInfo,
       yandexGetMarketId: value,
+      yandexOpenMarketLocation: true,
     });
   };
 
@@ -129,58 +144,49 @@ function YandexMapsDressMe() {
     IconsColor = "#007DCA";
   }
   console.log("locationUpdate", locationUpdate);
-
+  // const obj2 = useCallback((data) => {
+  //   return {};
+  // }, []);
   return (
     <div className=" h-fit w-full flex justify-center overflow-hidden ">
       <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden">
+        {/* Laptop device for */}
+
         <div
-          className={`w-full md:w-[769px] absolute  top-auto  md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] ${
-            locationUpdate
+          className={`w-full hidden md:block md:w-[769px] absolute md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] ${
+            dressInfo?.yandexOpenMarketLocation
               ? `z-[100]  block h-fit duration-300 ease-linear  bottom-[0] md:bottom-[-75px]`
-              : "bottom-20 hidden h-0 duration-300 ease-linear "
+              : "hidden z-[-10] duration-300 ease-linear "
           }  ease-linear duration-500`}
         >
           <YandexLocationMarketOpen />
         </div>
-        {/* <div
-          className={`w-[393px] absolute ${
-            locationUpdate
-              ? "z-[100] block h-fit duration-300 ease-linear duration-500"
-              : "bottom-20 hidden h-0 duration-300 ease-linear duration-500"
+        {/* Mobile device for */}
+        <div
+          className={`h-fit md:hidden   fixed  bg-white shadow-lg  duration-200 z-[99] ${
+            dressInfo?.yandexOpenMarketLocation
+              ? "w-full md:w-[769px] bottom-0"
+              : "w-0 bottom-[-10000px] z-0"
           }  `}
         >
-          {locationUpdate && (
+          {dressInfo?.yandexOpenMarketLocation && (
             <div className="fixed inset-0 z-[100] ">
               <div
-                className="fixed inset-0 w-full h-full bg-black opacity-40"
-                onClick={() => setLocationUpdate(false)}
+                className="fixed inset-0 w-full h-full bg-black opacity-40 z-[101]"
+                onClick={() =>
+                  setDressInfo({
+                    ...dressInfo,
+                    yandexOpenMarketLocation: false,
+                  })
+                }
               ></div>
-              <div className="flex items-center min-h-screen px-4 py-8">
+              <div className="w-full absolute bottom-0  z-[102] flex items-end">
                 <YandexLocationMarketOpen />
               </div>
             </div>
           )}
-        </div> */}
+        </div>
 
-        {/* <div
-          className={`absolute ${
-            locationUpdate
-              ? "bottom-0 z-[100] duration-500"
-              : "z-[0] bottom-[-1000px] duration-500"
-          } max-w-[440px] w-[100%] border border-red-500 bg-green-500`}
-        >
-          {!locationUpdate && (
-            <div className="fixed inset-0 z-[101] border border-red-500 bg-green-500">
-              <div
-                className="fixed inset-0 w-full h-full bg-black opacity-40 "
-                // onClick={() => setState({ ...state, priceToggleMobile: false })}
-              ></div>
-              <div className="min-h-screen flex items-center">
-                <YandexLocationMarketOpen />
-              </div>
-            </div>
-          )}
-        </div> */}
         <div
           className={`absolute z-50  ${
             !dressInfo?.yandexOpenMenu
