@@ -221,6 +221,7 @@ function YandexMapsDressMe() {
             //   center: [41.311753, 69.241822],
             //   zoom: 14,
             //   // controls: ["smallMapDefaultSet"],
+
             // }}
             defaultState={mapState}
             // instanceRef={map}
