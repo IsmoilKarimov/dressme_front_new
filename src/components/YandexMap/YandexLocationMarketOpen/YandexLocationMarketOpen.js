@@ -50,7 +50,6 @@ function YandexLocationMarketOpen() {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  console.log("memo");
   return (
     <div className="w-full  h-fit flex flex-col gap-y-4 border border-searchBgColor bg-white rounded-t-[12px] md:rounded-[12px]	 px-4 py-5">
       {/* title */}
@@ -81,7 +80,7 @@ function YandexLocationMarketOpen() {
           onClick={() =>
             setDressInfo({
               ...dressInfo,
-              yandexOpenMarketLocation: true,
+              yandexOpenMarketLocation: false,
             })
           }
           className="w-10 h-10 rounded-lg border border-searchBgColor flex items-center justify-center active:scale-95  active:opacity-70"
