@@ -70,7 +70,6 @@ function YandexMapsDressMe() {
   };
   const HandleData = () => {
     setLocationUpdate(false);
-    console.log("clicced");
   };
 
   const handleFullScreen = () => {
@@ -110,27 +109,9 @@ function YandexMapsDressMe() {
     // sessionStorage.setItem("Location", true);
     setDressInfo({
       ...dressInfo,
-      yandexOpenMarketLocation: true,
       yandexGetMarketId: value,
     });
   };
-  const [cordinateLocation, setCordinateLocation] = useState({
-    placeDev: { top: 0, left: 0 },
-  });
-  const [topLocated, setTopLocated] = useState(0);
-  const [leftLocated, setLeftLocated] = useState(0);
-  const positonsItem = (e) => {
-    setTopLocated(e.clientY + 37 + "px");
-    setLeftLocated(e.clientX - 43 + "px");
-    // setCordinateLocation({
-    //   placeDev: { top: e.clientX, left: e.clientY },
-    // });
-    // setCordinateLocation({ e.clientX, e.clientY });
-  };
-
-  useEffect(() => {
-    window.addEventListener("click", positonsItem);
-  }, []);
 
   //------------------------------------------------------------------------------------------------
   let IconsColor = "";
@@ -148,30 +129,58 @@ function YandexMapsDressMe() {
     IconsColor = "#007DCA";
   }
   console.log("locationUpdate", locationUpdate);
-  console.log("topLocated", topLocated);
-  console.log("leftLocated", leftLocated);
+
   return (
-    <div className=" h-fit w-full flex justify-center overflow-hidden  ">
-      <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden ">
-        {/* <div
-          style={{ top: `${topLocated}`, left: `${leftLocated}` }}
-          className={`w-[393px] absolute ${
+    <div className=" h-fit w-full flex justify-center overflow-hidden ">
+      <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden">
+        <div
+          className={`w-full md:w-[769px] absolute  top-auto  md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] ${
             locationUpdate
-              ? `z-[100] block h-fit duration-300 ease-linear duration-500 `
-              : "bottom-20 hidden h-0 duration-300 ease-linear duration-500 "
+              ? `z-[100]  block h-fit duration-300 ease-linear  bottom-[0] md:bottom-[-75px]`
+              : "bottom-20 hidden h-0 duration-300 ease-linear "
           }  ease-linear duration-500`}
         >
           <YandexLocationMarketOpen />
+        </div>
+        {/* <div
+          className={`w-[393px] absolute ${
+            locationUpdate
+              ? "z-[100] block h-fit duration-300 ease-linear duration-500"
+              : "bottom-20 hidden h-0 duration-300 ease-linear duration-500"
+          }  `}
+        >
+          {locationUpdate && (
+            <div className="fixed inset-0 z-[100] ">
+              <div
+                className="fixed inset-0 w-full h-full bg-black opacity-40"
+                onClick={() => setLocationUpdate(false)}
+              ></div>
+              <div className="flex items-center min-h-screen px-4 py-8">
+                <YandexLocationMarketOpen />
+              </div>
+            </div>
+          )}
         </div> */}
-        <div
+
+        {/* <div
           className={`absolute ${
             locationUpdate
               ? "bottom-0 z-[100] duration-500"
               : "z-[0] bottom-[-1000px] duration-500"
-          } max-w-[440px] w-[100%] border border-red-500  bg-green-500`}
+          } max-w-[440px] w-[100%] border border-red-500 bg-green-500`}
         >
-          <YandexLocationMarketOpen />
-        </div>
+          {!locationUpdate && (
+            <div className="fixed inset-0 z-[101] border border-red-500 bg-green-500">
+              <div
+                className="fixed inset-0 w-full h-full bg-black opacity-40 "
+                // onClick={() => setState({ ...state, priceToggleMobile: false })}
+              ></div>
+              <div className="min-h-screen flex items-center">
+                <YandexLocationMarketOpen />
+              </div>
+            </div>
+          )}
+        </div> */}
         <div
           className={`absolute z-50  ${
             !dressInfo?.yandexOpenMenu
@@ -252,9 +261,7 @@ function YandexMapsDressMe() {
                   className={"placemarkCLuster cursor-pointer"}
                   // className="bg-green-500 text-red-500 p-2 "
                   key={index}
-                  onClick={() => {
-                    handlePlaceMark(data?.marketId);
-                  }}
+                  onClick={() => handlePlaceMark(data?.marketId)}
                   geometry={data?.cordinate}
                   options={{
                     iconLayout: "default#image",

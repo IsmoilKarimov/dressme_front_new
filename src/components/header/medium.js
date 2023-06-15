@@ -468,7 +468,8 @@ const MediumHeader = () => {
           {/* Ending of Full Screen page sesction Map*/}
 
           {/* Open Main Menu at the  Mobile version */}
-          <div className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${
+          <div
+            className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${
               state?.hamburgerMenu
                 ? "hamburger flex flex-col ease-linear duration-500 overscroll-none z-30"
                 : "left-[-800px] z-[-80] ease-linear duration-500"
@@ -639,7 +640,8 @@ const MediumHeader = () => {
             </div>
           </div>
 
-          <div className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${
+          <div
+            className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${
               state?.clothesTypeMobile ? "w-[92%]" : "w-0"
             }  `}
           >
@@ -732,7 +734,8 @@ const MediumHeader = () => {
             )}
           </div>
 
-          <div className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
+          <div
+            className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
               state?.brandToggleMobile ? "w-[92%]" : "w-0"
             }  `}
           >
@@ -777,7 +780,8 @@ const MediumHeader = () => {
             )}
           </div>
 
-          <div className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
+          <div
+            className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
               state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
             }`}
           >
