@@ -68,8 +68,8 @@ function YandexMapsDressMe() {
 
   const [coords, setCoords] = useState("");
   const onMapClick = (e) => {
-    const coord = e.get("coords");
-    setCoords({ ...coords, coords: coord });
+    // const coord = e.get("coords");
+    // setCoords({ ...coords, coords: coord });
     setDressInfo({
       ...dressInfo,
       yandexOpenMarketLocation: false,
@@ -77,8 +77,8 @@ function YandexMapsDressMe() {
     console.log("Onclick");
   };
   const HandleData = (e) => {
-    const coord = e.get("coords");
-    setCoords({ ...coords, coords: coord });
+    // const coord = e.get("coords");
+    // setCoords({ ...coords, coords: coord });
     console.log("MouseDOwn");
 
     setDressInfo({
@@ -95,10 +95,14 @@ function YandexMapsDressMe() {
   };
 
   const handleOpenMenu = () => {
+    console.log("handleOpenMenu");
+
     setDressInfo({ ...dressInfo, yandexOpenMenu: !dressInfo?.yandexOpenMenu });
   };
 
   const handleOpenMarket = () => {
+    console.log("handleOpenMarket");
+
     setDressInfo({
       ...dressInfo,
       yandexOpenMarket: !dressInfo?.yandexOpenMarket,
@@ -108,6 +112,8 @@ function YandexMapsDressMe() {
   // console.log(dressInfo.yandexOpenMarket, "yandexOpenMarket");
 
   const handleGetId = (getValue) => {
+    console.log("handleGetId");
+
     setDressInfo((current) => {
       return current.MarketList.map((data) => {
         if (data?.id == getValue) {
@@ -121,6 +127,7 @@ function YandexMapsDressMe() {
   // --------------Open Main MenusetDressInfo
   const handlePlaceMark = (value) => {
     // sessionStorage.setItem("Location", true);
+    console.log("Placemark");
     setDressInfo({
       ...dressInfo,
       yandexGetMarketId: value,
@@ -128,6 +135,12 @@ function YandexMapsDressMe() {
     });
   };
 
+  //------------------------------------------------------------------------------------------------
+  const [ymaps, setYmaps] = useState(null);
+  const mapState = {
+    center: [41.311753, 69.241822],
+    zoom: 14,
+  };
   //------------------------------------------------------------------------------------------------
   let IconsColor = "";
 
@@ -153,7 +166,7 @@ function YandexMapsDressMe() {
           className={`w-full hidden md:block md:w-[769px] absolute md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] ${
             dressInfo?.yandexOpenMarketLocation
               ? `z-[100]  block h-fit duration-300 ease-linear  bottom-[0] md:bottom-[-75px]`
-              : "hidden z-[-10] duration-300 ease-linear "
+              : "hidden top-[-1000px] z-[-10] duration-300 ease-linear "
           }  ease-linear duration-500`}
         >
           <YandexLocationMarketOpen />
@@ -204,11 +217,15 @@ function YandexMapsDressMe() {
         </div>
         <YMaps query={{ apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21" }}>
           <Map
-            state={{
-              center: coords.coords ? coords.coords : [41.311753, 69.241822],
-              zoom: 14,
-              // controls: ["smallMapDefaultSet"],
-            }}
+            // state={{
+            //   center: [41.311753, 69.241822],
+            //   zoom: 14,
+            //   // controls: ["smallMapDefaultSet"],
+
+            // }}
+            defaultState={mapState}
+            // instanceRef={map}
+            onLoad={(ymaps) => setYmaps(ymaps)}
             onClick={onMapClick}
             onMouseDown={HandleData}
             width="100%"
