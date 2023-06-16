@@ -240,6 +240,21 @@ function YandexMapsDressMe() {
               // "control.smallMapDefaultSet",
             ]}
           >
+            {/* Yandex Shopping Card */}
+            {!dressInfo?.yandexOpenMarket && (
+              <div
+                onClick={handleOpenMarket}
+                className={`absolute right-2 md:hidden cursor-pointer ${
+                  !dressInfo?.yandexFullScreen
+                    ? "bottom-[180px]"
+                    : "bottom-[115px]"
+                }   w-[40px]  z-[52]  h-[40px] rounded-lg bg-white flex items-center justify-center`}
+              >
+                <div className="w-full h-full flex items-center justify-center">
+                  <MarketIcons colors={"#000"} />
+                </div>
+              </div>
+            )}
             <div
               onClick={handleFullScreen}
               className={`absolute right-2 ${
@@ -733,21 +748,6 @@ function YandexMapsDressMe() {
                 {/* <div className="w-[20%] h-full flex items-center border border-red-400"></div> */}
               </div>
             </div>
-            {/* Yandex Shopping Card */}
-            {!dressInfo?.yandexOpenMarket && (
-              <div
-                onClick={handleOpenMarket}
-                className={`fixed right-2 md:hidden cursor-pointer ${
-                  !dressInfo?.yandexFullScreen
-                    ? "bottom-[180px]"
-                    : "bottom-[115px]"
-                }   w-[40px]  z-[52]  h-[40px] rounded-lg bg-white flex items-center justify-center`}
-              >
-                <div className="w-full h-full flex items-center justify-center">
-                  <MarketIcons colors={"#000"} />
-                </div>
-              </div>
-            )}
             <div
               className={`absolute block md:hidden  ml-[-1000px] duration-1000 overflow-hidden z-[52] rounded-lg shadow-lg left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%]  md:bottom-[120px]
               ${
