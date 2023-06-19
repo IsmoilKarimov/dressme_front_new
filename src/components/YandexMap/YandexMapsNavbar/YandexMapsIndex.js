@@ -4,14 +4,13 @@ import YandexTop from "./YandexTop";
 import YandexMedium from "./YandexMedium";
 import YandexFilter from "./YandexFilter";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
-import BottomHeader from "../../header/bottom";
-import NavMenu from "../../header/nav-menu";
+
 export default function YandexMapsIndex() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   return (
-    <div className="w-full flex flex-col justify-center items-center m-0 p-0 box-border">
-      <div className="max-w-[1320px] w-[100%] ss:block md:flex  md:py-0 justify-center items-center m-auto ">
+    <div className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ">
+      <div className="max-w-[1320px] w-[100%] ss:block md:flex  md:py-0 justify-center items-center m-auto">
         {/* {!dressInfo?.yandexOpenMenu ? ( */}
         <div>
           <div

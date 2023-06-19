@@ -804,13 +804,13 @@ function YandexMapsDressMe() {
                 </ScrollFilter>
               </div>
             )}
-            {!dressInfo?.yandexFullScreen && (
+            {/* {!dressInfo?.yandexFullScreen && (
               <div
                 className={`fixed bottom-0 w-full bg-white z-[54] block md:hidden`}
               >
                 <NavMenu />
               </div>
-            )}
+            )} */}
             {/* ---------- */}
           </Map>
         </YMaps>
