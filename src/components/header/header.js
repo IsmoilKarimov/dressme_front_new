@@ -49,37 +49,46 @@ const Header = () => {
 
   return (
     <div>
-      {locationWindow !== "/delivery-points" ? (
-        <header className="md:border border-searchBgColor">
-          <div className={`ss:block md:hidden`}>
-            <TopHeader />
-            <MediumHeader />
-          </div>
-          <div
-            className={`fixed top-0 w-full bg-white  ${
-              show
-                ? "visible duration-500 z-30"
-                : "visible duration-500 z-30 translate-y-[-100%]"
-            } hidden md:block`}
-          >
-            <TopHeader />
-            <MediumHeader />
-          </div>
-          <div className="md:mt-[99px] ss:mt-0">
-            <NavbarBottomIndex />
+      <header className="md:border border-searchBgColor ">
+        {locationWindow !== "/delivery-points" ? (
+          <>
+            <div className={`ss:block md:hidden`}>
+              <TopHeader />
+              <MediumHeader />
+            </div>
             <div
-              className={`fixed bottom-0 w-full bg-white  ${
+              className={`fixed top-0 w-full bg-white  ${
                 show
                   ? "visible duration-500 z-30"
-                  : "visible duration-500 z-30 translate-y-[100%]"
-              } block md:hidden`}
+                  : "visible duration-500 z-30 translate-y-[-100%]"
+              } hidden md:block`}
             >
-              <NavMenu />
+              <TopHeader />
+              <MediumHeader />
             </div>
+          </>
+        ) : null}
+
+        <div
+          className={`${
+            locationWindow !== "/delivery-points"
+              ? "md:mt-[99px]"
+              : "md:mt-[-10px]"
+          }  ss:mt-0`}
+        >
+          <NavbarBottomIndex />
+          <div
+            className={`fixed bottom-0 w-full bg-white  ${
+              show
+                ? "visible duration-500 z-30"
+                : "visible duration-500 z-30 translate-y-[100%]"
+            } block md:hidden`}
+          >
+            <NavMenu />
           </div>
-          {/* <Breadcrumbs /> */}
-        </header>
-      ) : null}
+        </div>
+        {/* <Breadcrumbs /> */}
+      </header>
       <Outlet />
     </div>
   );
