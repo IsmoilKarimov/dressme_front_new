@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 import { BsCheckLg } from "react-icons/bs";
 import ReactSlider from "react-slider";
+
 import {
+  StarIcons,
   ArrowTopIcons,
-  CheckedStatusIcons,
   InputCheckedTrueIcons,
   SearchIcons,
-  StarIcons,
 } from "../../../../AssetsMain/icons";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 
@@ -14,6 +14,13 @@ const CategoryForBrand = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const [product, setProduct] = useState({
+    Catolog: [
+      { id: 1, action: false, name: "Головной убор" },
+      { id: 2, action: false, name: "Верхняя одежда" },
+      { id: 3, action: false, name: "Нижняя одежда" },
+      { id: 4, action: false, name: "Обувь" },
+      { id: 5, action: false, name: "Аксессуары" },
+    ],
     brandWear: [
       { id: 1, action: true, name: "Adidas", count: 125 },
       { id: 2, action: false, name: "Reebok", count: 125 },
@@ -85,19 +92,6 @@ const CategoryForBrand = () => {
       { id: 3, check: false, value: 2, text: "" },
     ],
   });
-
-  const CheckStatus = (value) => {
-    // setProduct((current) => {
-    //   return current?.brandWear.map((e) => {
-    //     if (e?.id == value) {
-    //       return { ...e, action: !e.action };
-    //     } else {
-    //       return e;
-    //     }
-    //   });
-    // });
-  };
-
   const Min = "100";
   const Max = "12 000";
   const [values, setValues] = useState([Min, Max]);
@@ -111,6 +105,7 @@ const CategoryForBrand = () => {
     ShoesShow: false,
     customerRreviews: false,
     availability: false,
+    catolog: false,
     //--------------
     checkBrand: false,
     checkedPrize: true,
@@ -158,7 +153,7 @@ const CategoryForBrand = () => {
   return (
     <div
       className={`w-full h-hull ${
-        dressInfo?.openCategoryFilter
+        dressInfo?.openShopIdFilter
           ? " border-0 "
           : " border border-searchBgColor"
       } py-5 rounded-lg overflow-hidden `}
@@ -177,6 +172,54 @@ const CategoryForBrand = () => {
           <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg text-red-600">
             Скидки
           </button>
+        </div>
+        {/* Availability */}
+        <div className="w-full h-fit mt-[50px] ">
+          <div
+            className="w-full flex justify-between items-center "
+            onClick={(event) => {
+              event.target.classList.toggle("open");
+            }}
+          >
+            <div
+              onClick={() => setState({ ...state, catolog: !state.catolog })}
+              className="flex items-center cursor-pointer select-none"
+            >
+              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+                Каталоги
+              </span>
+              <span
+                className={`${
+                  state?.catolog ? "rotate-[180deg]" : ""
+                } duration-300 mt-[-2px]`}
+              >
+                <ArrowTopIcons colors={"#000"} />
+              </span>
+            </div>
+          </div>
+
+          {/* Field */}
+          <div
+            className={`w-full overflow-hidden ${
+              state?.catolog
+                ? "duration-300 h-0"
+                : "duration-300 h-[300px] mt-5 "
+            } duration-300 flex flex-col gap-y-4`}
+          >
+            {product?.Catolog.map((data) => {
+              return (
+                <div
+                  key={data?.id}
+                  className="w-full h-[44px] rounded-lg justify-center bg-bgCategory  focus:bg-fullBlue hover:bg-fullBlue focus:text-white flex items-center  cursor-pointer select-none  text-black"
+                  onClick={HandleCheckStatus(data?.id)}
+                >
+                  <span className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
+                    {data?.name}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
         </div>
         {/* Brands filter */}
         <div className="w-full h-fit mt-[40px]  ">
@@ -237,22 +280,19 @@ const CategoryForBrand = () => {
                 return (
                   <div
                     key={data?.id}
-                    // onClick={() => HandleBrandFilter(data?.id)}
-                    onClick={() => CheckStatus(data?.id)}
+                    onClick={() => HandleBrandFilter(data?.id)}
                     className="flex items-center cursor-pointer select-none mb-4 "
                   >
-                    <button
-                      className={`w-6 h-6 p-1 mr-2 flex items-center ${
-                        data?.action
-                          ? "bg-fullBlue border-fullBlue"
-                          : "bg-white border-borderColorCard"
-                      }  rounded-lg ml-3 border `}
+                    <div
+                      className={`w-[22px] h-[22px] p-1 flex items-center ${
+                        data?.action ? "bg-fullBlue " : "bg-white"
+                      }  mr-[10px] rounded border border-borderColorCard`}
                     >
-                      {data?.action ? (
-                        <CheckedStatusIcons colors={"#fff"} />
-                      ) : null}
-                    </button>{" "}
-                    <div className="flex items-center not-italic  font-AeonikProRegular text-sm leading-4 text-black">
+                      <span className="text-white">
+                        <BsCheckLg size={12} />
+                      </span>
+                    </div>
+                    <div className="flex items-center not-italic   font-AeonikProRegular text-sm leading-4 text-black">
                       {data?.name}
                       <span className=" not-italic ml-2 font-AeonikProRegular text-sm leading-4 text-setTexOpacity">
                         ({data?.count})

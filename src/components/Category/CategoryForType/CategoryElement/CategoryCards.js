@@ -12,6 +12,8 @@ import {
 } from "../../../../AssetsMain/icons";
 import { AddBasket, HeartImg } from "../../../../AssetsMain";
 import ClothesFilterGroup from "../ClothesFilterGroup/ClothesFIlterGroup";
+import Slider from "react-slick";
+import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 export default function CategoryCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -46,8 +48,99 @@ export default function CategoryCards() {
     // });
   };
 
+  const [prevSliderBtn, setPrevSliderBtn] = useState(false);
+  const data = (onClick) => {
+    onClick();
+    setPrevSliderBtn(true);
+  };
+  const NextArrow = (props) => {
+    const { onClick } = props;
+    return (
+      <div
+        className={`absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-50	right-[4px]  rounded-full bg-white    duration-200 border  border-borderColor2
+        		`}
+        onClick={() => data(onClick)}
+      >
+        <button className="next">
+          <GrFormNext size={20} />
+        </button>
+      </div>
+    );
+  };
+
+  const PrevArrow = (props) => {
+    const { onClick } = props;
+    return (
+      <div
+        className={` ${
+          prevSliderBtn ? "block" : "hidden"
+        } absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-10	left-[2px]  rounded-full bg-white   duration-200 border  border-borderColor2
+        `}
+        onClick={onClick}
+      >
+        <button className="prev">
+          <GrFormPrevious size={20} />
+        </button>
+      </div>
+    );
+  };
+
+  let settings1 = {
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    infinite: true,
+    arrows: true,
+    speed: 500,
+    dots: false,
+    slidesToShow: 9,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    // beforeChange: (current, next) => setCurrentSlide(next),
+
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 770,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 560,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+
+      {
+        breakpoint: 390,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
-    <div className="flex flex-col box-border mt-2">
+    <div className="flex flex-col box-border mt-2 md:mt-[34px]">
       <div className=" w-full md:hidden">
         <ClothesFilterGroup _class="items gap-x-2 ">
           {wearGroup?.map((data) => {
@@ -64,13 +157,41 @@ export default function CategoryCards() {
           })}
         </ClothesFilterGroup>{" "}
       </div>
-      <div className="flex justify-between flex-wrap gap-y-2 gap-x-[6px] mt-8">
+      <div className="w-full h-full ">
+        <div>
+          <span className="not-italic font-AeonikProMedium text-sm  leading-4 text-black tracking-[1%]">
+            По типу
+          </span>
+        </div>
+        <div className="w-full mt-3 h-[52px] flex flex-col items-center ">
+          <Slider
+            {...settings1}
+            // ref={sliderRef}
+            className="w-[100%] h-full items-center flex xs:justify-between"
+          >
+            {wearGroup?.map((data) => {
+              return (
+                <div key={data.id} className="!w-[100px ] h-full ">
+                  <div
+                    className={` w-full h-[52px] px-5 m-auto  bg-bgCategory rounded-lg flex justify-center items-center cursor-pointer  border border-searchBgColor`}
+                  >
+                    <p className="not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
+                      {data?.name || "0"}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </Slider>
+        </div>
+      </div>
+      <div className="flex flex-wrap gap-y-2 gap-x-2 mt-8 md:mt-12">
         {dressInfo.ProductList.map((data) => {
           return (
             <div
               key={data.id}
               // onClick={() => goDetail(data?.title)}
-              className={`ss:w-[49%] md:w-[24%] lg:w-[240px]  xs:h-[456px] lg:h-[428px] border border-solid borderColorCard overflow-hidden rounded-lg`}
+              className={`ss:w-[48.8%] md:w-[24%] lg:w-[240px]  xs:h-[456px] lg:h-[428px] border border-solid borderColorCard overflow-hidden rounded-lg`}
             >
               <div className="relative w-full cursor-pointer ss:h-[200px] ls:h-[220px] ll:h-[238px] xs:h-[309px] bg-btnBgColor lg:h-[320px] flex content-between items-center overflow-hidden border-b border-solid flex-nowrap">
                 {data.ProducImg ? (
