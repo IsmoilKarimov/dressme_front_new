@@ -246,110 +246,114 @@ export default function MainPageSliders() {
   };
 
   return (
-    <div className="box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
-      <div className="w-full ss:hidden xs:block">
-        <Slider
-          {...settings}
-          className="w-[100%] flex xs:justify-between flex-wrap  "
-        >
-          {carosuelData?.map((data) => {
-            return data.Category.map((data) => {
-              return (
-                <NavLink
-                  to={"/categoriesType"}
-                  key={data?.id}
-                  className="!w-[99%] h-[260px] rounded-lg  "
-                >
-                  <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px]  rounded-lg">
-                    {changeColor
-                      .filter((e) => e.id === dressInfo?.ClothesBorder)
-                      .map((value) => {
-                        return (
-                          <div
-                            key={value?.id}
-                            className={`w-full h-full border border-solid	${value?.colors} rounded-lg`}
-                          >
-                            <SircleNext />
-                          </div>
-                        );
-                      })}
-                  </div>
-                  <div className="h-12.5 flex items-center justify-start">
-                    <p className="not-italic font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
-                      {data?.type || "type"}
-                      <span className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
-                        ({data?.count || "0"})
-                      </span>
-                    </p>
-                  </div>
-                </NavLink>
-              );
-            });
-          })}
-        </Slider>
-      </div>
-      {/* carosuel hidden block */}
-      <div className="w-full h-fit xs:hidden grid grid-cols-3 gap-2 overflow-hidden  my-0 py-0 md:my-5 md:py-7 ">
-        {carosuelData?.map((data) => {
-          return data.Category.map((data) => {
-            return (
-              <NavLink
-                to="/categoriesType"
-                key={data?.id}
-                className="w-[100%] "
-              >
-                <div className="w-[100%] h-[140px] flex items-center justify-center	p-1 bg-btnBgColor border border-searchBgColor	rounded-xl">
-                  <NoImg />
-                </div>
-                <div className="w-full py-1 flex items-center">
-                  <p className="not-italic font-AeonikProMedium text-sm leading-6 text-black">
-                    {data?.type || "type"}
-                    <span className="not-italic font-AeonikProRegular text-xs leading-4 text-gray-500 ml-1">
-                      ({data?.count || "0"})
-                    </span>
-                  </p>
-                </div>
-              </NavLink>
-            );
-          });
-        })}
-      </div>
-      <div className="w-full flex justify-center items-center  mt-10 ">
-        <button
-          className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[52px] px-10 rounded-xl border ${genderStyle}`}
-        >
-          <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center">
-            Посмотреть все категории
-          </span>
-          <span className="ml-2 ">
-            <SircleNext colors={dataStyle} />
-          </span>
-        </button>
-      </div>
-      <div className="w-full mt-[60px] ss:hidden xs:block ">
-        <Slider
-          {...settings1}
-          className="w-[100%] flex xs:justify-between  px-[1px]"
-        >
-          {carosuelData?.map((data) => {
-            return data.campany.map((data) => {
-              return (
-                <div
-                  key={data?.id}
-                  className="!w-[98.88%] h-[100px]  rounded-lg bg-btnBgColor flex items-center justify-center select-none border border-solid border-searchBgColor"
-                >
-                  <div className=" h-full flex items-center justify-center px-[35px]">
-                    <img
-                      className="h-[70px] w-[80%] "
-                      src={data?.imgFull}
-                      alt=""
-                    />
-                  </div>
-                </div>
-              );
-            });
-          })}
-        </Slider>
+    <div className="flex flex-col justify-center items-center m-0 p-0 box-border">
+      <div className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
+        <div className="w-full box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
+          <div className="w-full ss:hidden xs:block">
+            <Slider
+              {...settings}
+              className="w-[100%] flex xs:justify-between flex-wrap  "
+            >
+              {carosuelData?.map((data) => {
+                return data.Category.map((data) => {
+                  return (
+                    <NavLink
+                      to={"/categoriesType"}
+                      key={data?.id}
+                      className="!w-[99%] h-[260px] rounded-lg  "
+                    >
+                      <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px]  rounded-lg">
+                        {changeColor
+                          .filter((e) => e.id === dressInfo?.ClothesBorder)
+                          .map((value) => {
+                            return (
+                              <div
+                                key={value?.id}
+                                className={`w-full h-full border border-solid	${value?.colors} rounded-lg`}
+                              >
+                                <SircleNext />
+                              </div>
+                            );
+                          })}
+                      </div>
+                      <div className="h-12.5 flex items-center justify-start">
+                        <p className="not-italic font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
+                          {data?.type || "type"}
+                          <span className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
+                            ({data?.count || "0"})
+                          </span>
+                        </p>
+                      </div>
+                    </NavLink>
+                  );
+                });
+              })}
+            </Slider>
+          </div>
+          {/* carosuel hidden block */}
+          <div className="w-full h-fit xs:hidden grid grid-cols-3 gap-2 overflow-hidden  my-0 py-0 md:my-5 md:py-7 ">
+            {carosuelData?.map((data) => {
+              return data.Category.map((data) => {
+                return (
+                  <NavLink
+                    to="/categoriesType"
+                    key={data?.id}
+                    className="w-[100%] "
+                  >
+                    <div className="w-[100%] h-[140px] flex items-center justify-center	p-1 bg-btnBgColor border border-searchBgColor	rounded-xl">
+                      <NoImg />
+                    </div>
+                    <div className="w-full py-1 flex items-center">
+                      <p className="not-italic font-AeonikProMedium text-sm leading-6 text-black">
+                        {data?.type || "type"}
+                        <span className="not-italic font-AeonikProRegular text-xs leading-4 text-gray-500 ml-1">
+                          ({data?.count || "0"})
+                        </span>
+                      </p>
+                    </div>
+                  </NavLink>
+                );
+              });
+            })}
+          </div>
+          <div className="w-full flex justify-center items-center  mt-10 ">
+            <button
+              className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[52px] px-4 ll:px-10 rounded-xl border ${genderStyle}`}
+            >
+              <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center">
+                Посмотреть все категории
+              </span>
+              <span className="ml-2 ">
+                <SircleNext colors={dataStyle} />
+              </span>
+            </button>
+          </div>
+          <div className="w-full mt-[60px] ss:hidden xs:block ">
+            <Slider
+              {...settings1}
+              className="w-[100%] flex xs:justify-between  px-[1px]"
+            >
+              {carosuelData?.map((data) => {
+                return data.campany.map((data) => {
+                  return (
+                    <div
+                      key={data?.id}
+                      className="!w-[98.88%] h-[100px]  rounded-lg bg-btnBgColor flex items-center justify-center select-none border border-solid border-searchBgColor"
+                    >
+                      <div className=" h-full flex items-center justify-center px-[35px]">
+                        <img
+                          className="h-[70px] w-[80%] "
+                          src={data?.imgFull}
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  );
+                });
+              })}
+            </Slider>
+          </div>
+        </div>
       </div>
     </div>
   );
