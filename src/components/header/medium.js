@@ -66,32 +66,16 @@ const MediumHeader = () => {
   const [state, setState] = useState({
     hamburgerMenu: false,
     toggle: false,
-    clothesTypeMobile: false,
-    priceToggleMobile: false,
-    brandToggleMobile: false,
-    selectColorToggleMobile: false,
     genderActive: true,
   });
 
   useEffect(() => {
-    if (
-      state?.hamburgerMenu ||
-      state?.clothesTypeMobile ||
-      state?.priceToggleMobile ||
-      state?.brandToggleMobile ||
-      state?.selectColorToggleMobile
-    ) {
+    if (state?.hamburgerMenu) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [
-    state?.hamburgerMenu,
-    state?.clothesTypeMobile,
-    state?.priceToggleMobile,
-    state?.brandToggleMobile,
-    state?.selectColorToggleMobile,
-  ]);
+  }, [state?.hamburgerMenu]);
 
   let IconsColor = "";
   let dataStyle = "";
@@ -162,69 +146,6 @@ const MediumHeader = () => {
   const toggleHamburger = () => {
     setState({ ...state, hamburgerMenu: !state.hamburgerMenu });
   };
-
-  // Mobile Wear Brand Type
-  const [selectWearMobile, setSelectWearMobile] = useState("Clothing type");
-  const handleWearMobile = (value) => {
-    setSelectWearMobile(value);
-  };
-  const wearMobileList = [
-    { id: 1, type: "All Clothing types" },
-    { id: 2, type: "Headwear" },
-    { id: 3, type: "Outwear" },
-    { id: 4, type: "Underwear" },
-    { id: 5, type: "Legwear" },
-    { id: 6, type: "Accessory" },
-  ];
-  // Mobile Price Brand Type
-  const [selectPriceMobile, setSelectPriceMobile] = useState("Under 100$");
-
-  const handlePriceMobile = (value) => {
-    setSelectPriceMobile(value);
-  };
-
-  const PriceMobileList = [
-    { id: 1, type: "At all prices" },
-    { id: 2, type: "More than 500 $" },
-    { id: 3, type: "Under 500$" },
-    { id: 4, type: "Under 200$" },
-    { id: 5, type: "Under 100$" },
-    { id: 6, type: "Under 50$" },
-  ];
-
-  // Mobile Change color Type
-  const changeColor = [
-    { id: 1, name: "purple", value: 1, action: false, colors: "bg-purple-700" },
-    { id: 2, name: "green", value: 2, action: false, colors: "bg-green-600" },
-    { id: 3, name: "red", value: 3, action: false, colors: "bg-red-700" },
-    { id: 4, name: "yellow", value: 4, action: false, colors: "bg-yellow-500" },
-    { id: 5, name: "black", value: 5, action: false, colors: "bg-black" },
-    { id: 6, name: "white", value: 6, action: false, colors: "bg-white" },
-    { id: 7, name: "blue", value: 7, action: false, colors: "bg-blue-500" },
-    { id: 8, name: "orange", value: 8, action: false, colors: "bg-orange-600" },
-    { id: 9, name: "purple", value: 9, action: false, colors: "bg-purple-400" },
-    { id: 10, name: "blue", value: 10, action: false, colors: "bg-blue-900" },
-    {
-      id: 11,
-      name: "yellow",
-      value: 11,
-      action: false,
-      colors: "bg-yellow-900",
-    },
-    { id: 12, name: "gray", value: 12, action: false, colors: "bg-gray-600" },
-  ];
-
-  // Mobile top Branding Data Lists
-  const campany = [
-    { id: 1, imgFull: adidas },
-    { id: 2, imgFull: chanel },
-    { id: 3, imgFull: hm },
-    { id: 4, imgFull: lacoste },
-    { id: 5, imgFull: nike },
-    { id: 6, imgFull: puma },
-    { id: 7, imgFull: tommy },
-    { id: 8, imgFull: zara },
-  ];
 
   // ----------------Wear state management----------------------------
   const [openwear, setOpenwear] = useState(false);
@@ -514,7 +435,7 @@ const MediumHeader = () => {
                   <span className="ml-[10px]">Карта</span>
                 </NavLink>
               </div>
-
+              {/* Параметры одежды  */}
               {/* Categories */}
               <ul className="flex flex-col">
                 <li>
@@ -642,194 +563,6 @@ const MediumHeader = () => {
             </div>
           </div>
 
-          <div
-            className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${
-              state?.clothesTypeMobile ? "w-[92%]" : "w-0"
-            }  `}
-          >
-            {state?.clothesTypeMobile && (
-              <div className="fixed inset-0 z-10 ">
-                <div
-                  className="fixed inset-0 w-full h-full bg-black opacity-40"
-                  onClick={() =>
-                    setState({ ...state, clothesTypeMobile: false })
-                  }
-                ></div>
-                <div className="flex items-center min-h-screen px-4 py-8">
-                  <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
-                    <div className="flex items-center justify-end ">
-                      <button
-                        type=""
-                        onClick={() =>
-                          setState({ ...state, clothesTypeMobile: false })
-                        }
-                      >
-                        <GrClose size={25} />
-                      </button>
-                    </div>
-                    <div className="py-4">
-                      {wearMobileList?.map((data) => {
-                        return (
-                          <div
-                            key={data?.id}
-                            onClick={() => {
-                              handleWearMobile(data?.type);
-                              setState({ ...state, clothesTypeMobile: false });
-                            }}
-                            className={`${hoverText} text-base font-AeonikProMedium hover:bg-bgColor w-full h-12 border border-solid border-searchBgColor flex items-center justify-center`}
-                          >
-                            {data?.type}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-
-          <div
-            className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
-              state?.priceToggleMobile ? "w-[92%]" : "w-0"
-            }  `}
-          >
-            {state?.priceToggleMobile && (
-              <div className="fixed inset-0 z-10 ">
-                <div
-                  className="fixed inset-0 w-full h-full bg-black opacity-40"
-                  onClick={() =>
-                    setState({ ...state, priceToggleMobile: false })
-                  }
-                ></div>
-                <div className="flex items-center min-h-screen px-4 py-8">
-                  <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
-                    <div className="flex items-center justify-end ">
-                      <button
-                        type=""
-                        onClick={() =>
-                          setState({ ...state, priceToggleMobile: false })
-                        }
-                      >
-                        <GrClose size={25} />
-                      </button>
-                    </div>
-                    <div className="py-4">
-                      {PriceMobileList?.map((data) => {
-                        return (
-                          <div
-                            key={data?.type}
-                            onClick={() => {
-                              handlePriceMobile(data?.type);
-                              setState({ ...state, priceToggleMobile: false });
-                            }}
-                            className={` ${hoverText}  text-base font-AeonikProMedium hover:bg-bgColor w-full h-12 border border-solid border-searchBgColor flex items-center justify-center`}
-                          >
-                            {data?.type}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-
-          <div
-            className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
-              state?.brandToggleMobile ? "w-[92%]" : "w-0"
-            }  `}
-          >
-            {state?.brandToggleMobile && (
-              <div className="fixed inset-0 z-10 ">
-                <div
-                  className="fixed inset-0 w-full h-full bg-black opacity-40"
-                  onClick={() =>
-                    setState({ ...state, brandToggleMobile: false })
-                  }
-                ></div>
-                <div className="flex items-center min-h-screen px-4 py-8">
-                  <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
-                    <div className="flex items-center justify-end ">
-                      <button
-                        onClick={() =>
-                          setState({ ...state, brandToggleMobile: false })
-                        }
-                      >
-                        <GrClose size={25} />
-                      </button>
-                    </div>
-                    <div className="py-4 flex flex-wrap justify-between gap-y-5">
-                      {campany?.map((data) => {
-                        return (
-                          <div
-                            key={data?.imgFull}
-                            className="w-[80px] h-[80px] rounded-lg bg-bgColor  border border-solid border-borderColorCard"
-                          >
-                            <img
-                              className="h-full w-full"
-                              src={data?.imgFull}
-                              alt="img"
-                            />
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-
-          <div
-            className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
-              state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
-            }`}
-          >
-            {state?.selectColorToggleMobile && (
-              <div className="fixed inset-0 z-10 ">
-                <div
-                  className="fixed inset-0 w-full h-full bg-black opacity-40"
-                  onClick={() =>
-                    setState({ ...state, selectColorToggleMobile: false })
-                  }
-                ></div>
-                <div className="flex items-center min-h-screen px-4 py-8">
-                  <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
-                    <div className="flex items-center justify-end ">
-                      <button
-                        type=""
-                        onClick={() =>
-                          setState({ ...state, selectColorToggleMobile: false })
-                        }
-                      >
-                        <GrClose size={25} />
-                      </button>
-                    </div>
-                    <div className="py-4 flex flex-wrap  gap-5">
-                      {changeColor?.map((data) => {
-                        return (
-                          <span
-                            key={data?.id}
-                            className="w-60px flex items-center cursour-pointer hover:shadow-md p-1 rounded-lg mr-2"
-                          >
-                            <div
-                              className={`rounded-full mr-2 w-6 h-6 ${data?.colors} cursor-pointer `}
-                            ></div>
-                            <span className="not-italic font-AeonikProMedium text-base leading-4 text-black">
-                              {data?.name}
-                            </span>
-                          </span>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-
           {/*Starting of Blocked  Hamburger Menu section */}
           <div className={`md:hidden`}>
             <div className="flex items-center justify-between w-full ">
@@ -897,136 +630,8 @@ const MediumHeader = () => {
                       </div>
                     );
                   })}
-
-                <button
-                  onClick={() => {
-                    setState({ ...state, toggle: !state.toggle });
-                  }}
-                  className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] rounded-xl border border-searchBgColor px-5 ss:w-full  ss:mt-4 "
-                >
-                  <div className="flex items-center ml-auto">
-                    <ClothesIcons />
-                    <span className="ml-[11.67px]">Параметры одежды </span>
-                  </div>
-
-                  <span
-                    className={`arrowRotate ml-auto ${
-                      state?.toggle ? "rotate-180" : ""
-                    } duration-500`}
-                  >
-                    <ArrowTopIcons colors={"#000"} />
-                  </span>
-                </button>
               </div>
             )}
-
-            {/* Params for Mobile */}
-            <div
-              className={`${
-                state?.toggle ? "h-[280px]" : "h-0"
-              } duration-500  overflow-hidden md:hidden `}
-            >
-              <ul className="ss:w-full  bg-white">
-                <li
-                  onClick={() => {
-                    setState({
-                      ...state,
-                      clothesTypeMobile: !state.clothesTypeMobile,
-                    });
-                  }}
-                >
-                  <button className="ss:w-full flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 md:hidden">
-                    <div className="flex items-center">
-                      <span className="w-[52px]  border-r border-searchBgColor py-3 pr-5">
-                        <ClothesIcons />
-                      </span>
-                      <span className="ml-[11.67px]">{selectWearMobile}</span>
-                    </div>
-                    <span className="arrowRotate ml-auto rotate-[90deg]">
-                      <ArrowTopIcons colors={"#000"} />
-                    </span>
-                  </button>
-                </li>
-                <li
-                  onClick={() =>
-                    setState({
-                      ...state,
-                      priceToggleMobile: !state.priceToggleMobile,
-                    })
-                  }
-                >
-                  <button className="flex items-center w-full bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 md:hidden">
-                    <div className="flex items-center">
-                      <span className="w-[52px]  border-r border-searchBgColor py-3 pr-5">
-                        <DollorIcons />
-                      </span>
-                      <span className="ml-[11.67px]">{selectPriceMobile}</span>
-                    </div>
-                    <span className="arrowRotate  rotate-[90deg] ml-auto">
-                      <ArrowTopIcons colors={"#000"} />
-                    </span>
-                  </button>
-                </li>
-
-                <li>
-                  <button className="w-full flex items-center justify-between bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 md:hidden">
-                    <span className="w-[52px] border-r border-searchBgColor py-3 pr-5">
-                      <BrushColorIcons />
-                    </span>
-                    <div
-                      onClick={() =>
-                        setState({
-                          ...state,
-                          selectColorToggleMobile: !state.selectColorToggleMobile,
-                        })
-                      }
-                      className="flex w-[80%] h-full items-center overflow-x-scroll "
-                    >
-                      {changeColor?.map((data) => {
-                        return (
-                          <span
-                            key={data?.id}
-                            className="w-60px flex items-center mr-2"
-                          >
-                            <div
-                              className={`rounded-full mr-2 w-6 h-6 ${data?.colors} cursor-pointer `}
-                            ></div>
-                            <span className="not-italic font-AeonikProMedium text-base leading-4 text-black">
-                              {data?.name}
-                            </span>
-                          </span>
-                        );
-                      })}
-                    </div>
-                    <span className="w-[40px]  flex justify-end">
-                      <span className="arrowRotate  rotate-[90deg] ml-auto">
-                        <ArrowTopIcons colors={"#000"} />
-                      </span>
-                    </span>
-                  </button>
-                </li>
-                <li
-                  onClick={() =>
-                    setState({
-                      ...state,
-                      brandToggleMobile: !state.brandToggleMobile,
-                    })
-                  }
-                >
-                  <button className="w-full flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 md:hidden">
-                    <div className="flex items-center">
-                      <span className="w-[52px]  border-r border-searchBgColor py-3 pr-5">
-                        <TopBrandsIcon />
-                      </span>
-                      <span className="ml-[11.67px]">Top Brands</span>
-                    </div>
-                    <span className="arrowRotate  rotate-[90deg] ml-auto">
-                      <ArrowTopIcons colors={"#000"} />
-                    </span>
-                  </button>
-                </li>
-              </ul>
-            </div>
           </div>
           {/* Ending of Blocked  Hamburger Menu section  */}
         </div>
