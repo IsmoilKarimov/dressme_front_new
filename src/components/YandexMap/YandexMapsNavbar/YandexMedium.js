@@ -92,7 +92,7 @@ const YandexMedium = () => {
   };
 
   const contentWear = (
-    <div className="ss:w-fit md:w-[120px] h-fit m-0 p-0 ">
+    <div className="ss:w-fit md:w-[120px] h-fit m-0 p-0  ">
       {SeasonTypeArray.map((value) => {
         return (
           <p
@@ -115,9 +115,9 @@ const YandexMedium = () => {
   );
 
   return (
-    <div className=" flex justify-between items-center m-auto">
+    <div className=" flex justify-between items-center m-auto ">
       {/* Starting of Full Screen page section */}
-      <div className="w-full flex justify-center items-center py-3 overscroll-none overflow-y-hidden">
+      <div className="w-full flex justify-center items-center py-3 overscroll-none overflow-y-hidden ">
         <div className=" w-full flex items-center ss:w-full md:w-fit justify-between ">
           {/* Menu section */}
           <div

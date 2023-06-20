@@ -140,22 +140,23 @@ function YandexMapsDressMe() {
   }
 
   return (
-    <div className=" h-fit w-full flex justify-center overflow-hidden ">
-      <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden">
+    <div className=" h-fit w-full flex justify-center overflow-hidden overflow-y-hidden">
+      <div className="w-[100%] h-[100vh]	 border-b border-searchBgColor overflow-hidden border border-red-500">
         {/* Laptop device for */}
 
         <div
-          className={`w-full hidden md:block md:w-[769px] absolute md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] ${
+          className={`w-full z-[-10] hidden md:block md:w-[769px] absolute md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
+          ${
             dressInfo?.yandexOpenMarketLocation
-              ? `z-[100]  block h-fit duration-300 ease-linear  bottom-[0] md:bottom-[-75px]`
-              : "hidden top-[-1000px] z-[-10] duration-300 ease-linear "
-          }  ease-linear duration-500`}
+              ? `z-[100] block h-fit  bottom-[-170px]   md:bottom-[-75px]`
+              : "hidden bottom-[-170px]  z-[-10]"
+          } ease-linear duration-300`}
         >
           <YandexLocationMarketOpen />
         </div>
         {/* Mobile device for */}
         <div
-          className={`h-fit md:hidden   fixed  bg-white shadow-lg  duration-200 z-[99] ${
+          className={`h-fit md:hidden   fixed  bg-white shadow-lg ease-linear duration-500 z-[99] ${
             dressInfo?.yandexOpenMarketLocation
               ? "w-full md:w-[769px] bottom-0"
               : "w-0 bottom-[-10000px] z-0"

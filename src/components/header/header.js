@@ -49,10 +49,16 @@ const Header = () => {
   useEffect(() => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
-  console.log("dressInfo?.yandexFullScreen", dressInfo?.yandexFullScreen);
   return (
     <div>
-      <header className="md:border border-searchBgColor ">
+      <header
+        className={`${
+          locationWindow !== "/delivery-points"
+            ? "md:border border-searchBgColo"
+            : "md:border-0 border-searchBgColo"
+        } `}
+      >
+        {/* <header className="md:border-0 border-searchBgColor "> */}
         {locationWindow !== "/delivery-points" ? (
           <>
             <div className={`ss:block md:hidden`}>
@@ -76,13 +82,19 @@ const Header = () => {
           className={`${
             locationWindow !== "/delivery-points"
               ? "md:mt-[99px]"
-              : "md:mt-[-10px]"
-          }  ss:mt-0`}
+              : "mt-[0] h-0 overflow-hidden"
+          } `}
         >
-          <NavbarBottomIndex />
+          <div
+            className={`bg-red-500 ${
+              locationWindow !== "/delivery-points" ? "block" : "hidden mt-[0]"
+            } `}
+          >
+            <NavbarBottomIndex />
+          </div>
           {!dressInfo?.yandexFullScreen && (
             <div
-              className={`fixed bottom-0 w-full bg-white  ${
+              className={`fixed bottom-0 w-full bg-white ${
                 show
                   ? "visible duration-500 z-[56]"
                   : "visible duration-500 z-[56] translate-y-[100%]"

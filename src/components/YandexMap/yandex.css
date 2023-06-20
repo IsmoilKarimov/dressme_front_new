@@ -1,274 +1,252 @@
 .balloonContentHeader {
-
-    padding-top: 20px;
+  padding-top: 20px;
 }
 
 .title {
-    font-family: 'Aeonik Pro';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 23px;
-    padding-top: 20px;
-    color: #000000;
-
+  font-family: "Aeonik Pro";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  padding-top: 20px;
+  color: #000000;
 }
 
 .description11 {
-    width: 200px;
-    font-family: 'Aeonik Pro';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 18px;
-    padding: 10px 0px;
-    color: #A1A1A1;
+  width: 200px;
+  font-family: "Aeonik Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 18px;
+  padding: 10px 0px;
+  color: #a1a1a1;
 }
 
 .text {
-    font-family: 'Aeonik Pro';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 18px;
-    color: #A1A1A1;
-    margin-top: 10px;
-
+  font-family: "Aeonik Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 18px;
+  color: #a1a1a1;
+  margin-top: 10px;
 }
 
 .text span {
-    font-family: 'Aeonik Pro';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 18px;
-    color: #000000;
-    margin-left: 10px;
+  font-family: "Aeonik Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 18px;
+  color: #000000;
+  margin-left: 10px;
 }
 
 .bodyImgs {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    padding: 10px 0px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding: 10px 0px;
 }
 
 .bodyImgs img {
-    width: 100px;
-    border-radius: 8px;
-    height: 100px;
-    cursor: pointer;
+  width: 100px;
+  border-radius: 8px;
+  height: 100px;
+  cursor: pointer;
 }
 
-
 .footerText {
-    font-family: 'Aeonik Pro';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 18px;
-    color: #000000;
-    padding: 10px 0px;
+  font-family: "Aeonik Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 18px;
+  color: #000000;
+  padding: 10px 0px;
 }
 
 .footerText span {
-    font-family: 'Aeonik Pro';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 18px;
-    color: #A1A1A1;
-    letter-spacing: 0.5px;
+  font-family: "Aeonik Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 18px;
+  color: #a1a1a1;
+  letter-spacing: 0.5px;
 }
 
 .BtnUzGroup {
-    padding: 15px 0;
-
+  padding: 15px 0;
 }
 
 .BtnUz {
-    width: 100px !important;
-    height: 44px;
-    border-radius: 8px;
-    background-color: #0077B6;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Aeonik Pro';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 23px;
-    cursor: pointer;
-    user-select: none;
-
+  width: 100px !important;
+  height: 44px;
+  border-radius: 8px;
+  background-color: #0077b6;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Aeonik Pro";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  cursor: pointer;
+  user-select: none;
 }
 
-
-
+body {
+  overflow-y: hidden;
+}
 .YandexListScroll::-webkit-scrollbar {
-    width: 5px;
+  width: 5px;
 }
-
 
 .YandexListScroll::-webkit-scrollbar-thumb {
-    background-color: #E8E8F0;
-    height: 50px;
-    border-radius: 8px
+  background-color: #e8e8f0;
+  height: 50px;
+  border-radius: 8px;
 }
 
 .placemarkCLuster {
-
-    background-color: red;
-    color: green;
+  background-color: red;
+  color: green;
 }
-
-
-
 
 /* -------search------- */
 
-
 .ymaps-2-1-79-searchbox__normal-layout .ymaps-2-1-79-searchbox-input {
-    height: 44px;
-    display: flex;
-    align-items: center;
-    outline: none;
-    border: none;
-    font-family: 'Aeonik Pro';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16px;
-    /* identical to box height */
-    letter-spacing: 0.01em;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  outline: none;
+  border: none;
+  font-family: "Aeonik Pro";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height */
+  letter-spacing: 0.01em;
 
-    color: #A1A1A1;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(5px);
-    /* Note: backdrop-filter has minimal browser support */
-    border-right: 3px solid #c2c2c2;
-    border-radius: 8px 0px 0px 8px;
+  color: #a1a1a1;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-right: 3px solid #c2c2c2;
+  border-radius: 8px 0px 0px 8px;
 }
 
 .ymaps-2-1-79-searchbox-input.ymaps-2-1-79-_focused {
-
-    inset: none;
-    box-shadow: inset 0 0 0 0px #ffdb4d
+  inset: none;
+  box-shadow: inset 0 0 0 0px #ffdb4d;
 }
 
 .ymaps-2-1-79-searchbox__normal-layout .ymaps-2-1-79-searchbox-button {
-    height: 44px;
-    display: flex;
-    align-items: center;
-    outline: none;
-    border: none;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(5px);
-    /* Note: backdrop-filter has minimal browser support */
-    font-family: 'Aeonik Pro';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16px;
-    /* identical to box height */
-    border-radius: 0px 8px 8px 0px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  outline: none;
+  border: none;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
+  /* Note: backdrop-filter has minimal browser support */
+  font-family: "Aeonik Pro";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height */
+  border-radius: 0px 8px 8px 0px;
 
-    letter-spacing: 0.01em;
-
+  letter-spacing: 0.01em;
 }
 
 .ymaps-2-1-79-searchbox__normal-layout .ymaps-2-1-79-searchbox-button:hover {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(5px);
 }
-
-
-
-
 
 /* ----Zoom Controll---- */
 .ymaps-2-1-79-zoom__scale {
-    display: none !important;
+  display: none !important;
 }
 
 .ymaps-2-1-79-zoom {
-    height: 86px !important;
-    width: 40px !important;
-    padding: 0px !important;
-    background-color: #fff;
-    border-radius: 8px;
-    display: flex !important;
-    justify-content: center !important;
-    margin-bottom: 8px;
-    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .15), 0 2px 5px -3px rgba(0, 0, 0, .15) !important;
+  height: 86px !important;
+  width: 40px !important;
+  padding: 0px !important;
+  background-color: #fff;
+  border-radius: 8px;
+  display: flex !important;
+  justify-content: center !important;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15),
+    0 2px 5px -3px rgba(0, 0, 0, 0.15) !important;
 }
 
 .ymaps-2-1-79-zoom__plus,
 .ymaps-2-1-79-zoom__minus {
-    box-shadow: none !important;
-    top: 3px !important;
+  box-shadow: none !important;
+  top: 3px !important;
 }
 
 .ymaps-2-1-79-zoom__minus {
-    top: 47px !important;
+  top: 47px !important;
 }
 
 /* PLUS and MINUS  buttons for MAP */
 .ymaps-2-1-79-float-button {
-    width: 40px !important;
-    height: 40px !important;
-    top: 45px;
-    /* bottom: 0; */
-    /* margin: auto 0; */
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    border-radius: 8px !important;
+  width: 40px !important;
+  height: 40px !important;
+  top: 45px;
+  /* bottom: 0; */
+  /* margin: auto 0; */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 8px !important;
 }
 
-
 .ymaps-2-1-79-float-button-icon {
-    width: 70% !important;
+  width: 70% !important;
 }
 
 .ymaps-2-1-79-controls__control {
-    inset: auto 10px 450px auto !important;
+  inset: auto 10px 450px auto !important;
 }
-
-
 
 /* ---------------- */
 .ymaps-2-1-79-ground-pane {
-    filter: grayscale(1) brightness(90%);
+  filter: grayscale(1) brightness(90%);
 
-    -ms-filter: grayscale(1) brightness(90%);
-    -moz-filter: grayscale(1) brightness(90%);
-    -o-filter: grayscale(1) brightness(90%);
-    -webkit-filter: grayscale(1) brightness(90%);
-}   
-
-
+  -ms-filter: grayscale(1) brightness(90%);
+  -moz-filter: grayscale(1) brightness(90%);
+  -o-filter: grayscale(1) brightness(90%);
+  -webkit-filter: grayscale(1) brightness(90%);
+}
 
 @media screen and (max-height: 930px) {
-    .ymaps-2-1-79-controls__control {
-        inset: auto 10px 380px auto !important;
-    }
+  .ymaps-2-1-79-controls__control {
+    inset: auto 10px 380px auto !important;
+  }
 }
 
 @media (max-height: 750px) {
-    .ymaps-2-1-79-controls__control {
-        inset: auto 10px 310px auto !important;
-    }
+  .ymaps-2-1-79-controls__control {
+    inset: auto 10px 310px auto !important;
+  }
 }
 
 @media (max-height: 600px) {
-    .ymaps-2-1-79-controls__control {
-        inset: auto 10px 200px auto !important;
-    }
+  .ymaps-2-1-79-controls__control {
+    inset: auto 10px 200px auto !important;
+  }
 }
-
 
 /* @media (max-height: 390px) {
     .ymaps-2-1-79-controls__control {
@@ -287,45 +265,37 @@
 } */
 
 /* ----------------FILTER ------------------ */
-.Container{
-    /* border: 1px solid blue; */
+.Container {
+  /* border: 1px solid blue; */
 }
 
-.items{
-    width: 100%;
-    height: 40px;
-    /* border: 1px solid red; */
-    display: flex;
-    flex-direction: row;
-    cursor: pointer;
-    overflow-x: scroll;
-    row-gap: 12px;
-
+.items {
+  width: 100%;
+  height: 40px;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  overflow-x: scroll;
+  row-gap: 12px;
 }
 .items::-webkit-scrollbar {
-    width: 50px;
-    height: 0px;
+  width: 50px;
+  height: 0px;
 }
-
 
 .items::-webkit-scrollbar-thumb {
-    background-color: #E8E8F0;
-        width: 50px;
+  background-color: #e8e8f0;
+  width: 50px;
 
-    border-radius: 8px
+  border-radius: 8px;
 }
 
-.item{
-    width: fit-content;
-    border-radius: 8px ;
-    background-color: white;
-    padding: 12px 16px;
-    cursor: pointer;
-    /* border: 1px solid green; */
-
+.item {
+  width: fit-content;
+  border-radius: 8px;
+  background-color: white;
+  padding: 12px 16px;
+  cursor: pointer;
+  /* border: 1px solid green; */
 }
-
-
-
-
-
