@@ -71,3 +71,5 @@ export { default as locationIcons } from "./maps/locationMaps.svg";
 export { default as AddBasket } from "./backTop/AddBasket.svg";
 export { default as HeartImg } from "./backTop/heart.svg";
 export { default as ActivePersonImg } from "./backTop/ActivePersonImg.svg";
+export { default as MuslimImg } from "./muslim-img.jpg";
+

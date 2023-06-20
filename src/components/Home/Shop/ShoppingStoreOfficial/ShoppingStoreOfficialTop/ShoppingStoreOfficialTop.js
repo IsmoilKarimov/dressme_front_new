@@ -219,7 +219,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
               </div>
             </div>
           </div>
-          <div className="md:border-b hidden md:block md:border-searchBgColor md:flex flex-gap-6 justify-between w-full pb-10 mt-[60px]">
+          <div className="md:border-b hidden md:border-searchBgColor md:flex flex-gap-6 justify-between w-full pb-10 mt-[60px]">
             <div className="w-[22%] h-full  ">
               <div>
                 <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
