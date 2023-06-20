@@ -204,7 +204,7 @@ export default function ProductComment() {
                 <StarIcons />
                 <StarIcons />
                 <StarIcons />
-                <span className="ml-[10px] font-AeonikProMedium mt-1 text-[17px]">
+                <span className="ml-[10px] font-AeonikProMedium text-[17px]">
                   4.7
                 </span>
               </div>

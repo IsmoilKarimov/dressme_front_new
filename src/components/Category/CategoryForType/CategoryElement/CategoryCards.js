@@ -208,7 +208,7 @@ export default function CategoryCards() {
           <span className="rotate-[-90deg]">
             <ArrowTopIcons colors={"#007DCA"} />
           </span>{" "}
-          <span className="not-italic ml-1 mt-1  font-AeonikProRegular text-lg leading-4 text-fullBlue">
+          <span className="not-italic ml-1   font-AeonikProRegular text-lg leading-4 text-fullBlue">
             Previous
           </span>
         </div>
@@ -244,7 +244,7 @@ export default function CategoryCards() {
           </ul>
         </div>
         <div className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
-          <span className="not-italic mt-1 font-AeonikProRegular mr-1 text-lg leading-4 text-fullBlue">
+          <span className="not-italic  font-AeonikProRegular mr-1 text-lg leading-4 text-fullBlue">
             Next
           </span>
           <span className="rotate-[90deg]">

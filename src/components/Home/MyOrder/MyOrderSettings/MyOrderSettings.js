@@ -202,7 +202,7 @@ export default function MyOrderSettings() {
                 <button
                   className={`w-[86px] h-full  flex items-center justify-center `}
                 >
-                  <span className="not-italic font-AeonikProRegular mt-1  text-base leading-4 tracking-[1%] text-closeColorBtn">
+                  <span className="not-italic font-AeonikProRegular  text-base leading-4 tracking-[1%] text-closeColorBtn">
                     1996
                   </span>{" "}
                   <span className="ml-2 rotate-[90deg]">
@@ -222,14 +222,14 @@ export default function MyOrderSettings() {
               <span>
                 <LogOutIcons colors={"#D50000"} />
               </span>
-              <span className="not-italic hidden md:block ml-2 mt-1 font-AeonikProMedium text-base leading-4 tracking-[1%] text-RedColor text-center">
+              <span className="not-italic hidden md:block ml-2  font-AeonikProMedium text-base leading-4 tracking-[1%] text-RedColor text-center">
                 Выйти из системы
               </span>
             </button>
           </div>
           <div className="w-[80%] xs:w-[60%] md:w-auto ">
             <button className="w-[100%] md:w-[244px] h-[52px] rounded-lg bg-fullBlue text-white active:scale-95  active:opacity-70 rounded-lg flex items-center justify-center">
-              <span className="not-italic mt-1 font-AeonikProMedium text-base leading-4 text-center tracking-[1%]">
+              <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center tracking-[1%]">
                 Сохранить данные
               </span>
               <span className="ml-2">

@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import TopHeader from "./top";
 import MediumHeader from "./medium";
 import NavMenu from "./nav-menu";
 import "./header.css";
 import { Outlet, useLocation } from "react-router-dom";
 import NavbarBottomIndex from "./NavbarBottomIndex";
+import { dressMainData } from "../../ContextHook/ContextMenu";
 
 const Header = () => {
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
+
   // ----------------NavBar----------------
   const [show, setShow] = useState(true);
   const [scrollPost, setscrollPost] = useState(0);
@@ -46,7 +49,7 @@ const Header = () => {
   useEffect(() => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
-
+  console.log("dressInfo?.yandexFullScreen", dressInfo?.yandexFullScreen);
   return (
     <div>
       <header className="md:border border-searchBgColor ">
@@ -77,15 +80,17 @@ const Header = () => {
           }  ss:mt-0`}
         >
           <NavbarBottomIndex />
-          <div
-            className={`fixed bottom-0 w-full bg-white  ${
-              show
-                ? "visible duration-500 z-30"
-                : "visible duration-500 z-30 translate-y-[100%]"
-            } block md:hidden`}
-          >
-            <NavMenu />
-          </div>
+          {!dressInfo?.yandexFullScreen && (
+            <div
+              className={`fixed bottom-0 w-full bg-white  ${
+                show
+                  ? "visible duration-500 z-[56]"
+                  : "visible duration-500 z-[56] translate-y-[100%]"
+              } block md:hidden`}
+            >
+              <NavMenu />
+            </div>
+          )}
         </div>
         {/* <Breadcrumbs /> */}
       </header>

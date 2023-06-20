@@ -225,6 +225,7 @@ const BottomHeader = () => {
     setDressInfo({ ...dressInfo, ClothesBorder: id });
   };
 
+  // mt-1
   return (
     <div className="flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
       <div className="max-w-[1280px] w-[100%] flex justify-center   items-center m-auto   ">
@@ -240,7 +241,7 @@ const BottomHeader = () => {
           <span>
             <ClothesIcons />
           </span>
-          <span className="not-italic font-AeonikProMedium text-center mt-1 text-sm leading-4 text-black">
+          <span className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black">
             {selectWear}
           </span>
           <span>
@@ -266,7 +267,7 @@ const BottomHeader = () => {
             <DollorIcons />
           </p>
           <p className=" w-[142px] h-full flex justify-between items-center px-3">
-            <span className="not-italic font-AeonikProMedium text-center text-sm mt-1 leading-4 text-black ">
+            <span className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black ">
               {selectPrice}
             </span>
             <span className="">
@@ -378,13 +379,13 @@ const BottomHeader = () => {
                   className={`mr-1 ${genderStyle}  w-[136px] h-[44px] px-[16px] justify-between mr-2 flex items-center bg-btnBgColor border border-searchBgColor rounded-lg`}
                 >
                   <img className="mr-3" src={data?.woman} alt="female" />
-                  <span className="mt-1 font-AeonikProMedium">Женщинам</span>
+                  <span className="font-AeonikProMedium">Женщинам</span>
                 </button>
                 <button
                   className={`  ${genderStyle} w-[136px] h-[44px]  px-[16px] justify-between flex items-center bg-btnBgColor border border-searchBgColor mr-2 rounded-lg`}
                 >
                   <img className="mr-3" src={data?.man} alt="male" />{" "}
-                  <span className="mt-1 font-AeonikProMedium">Мужчинам</span>
+                  <span className="font-AeonikProMedium">Мужчинам</span>
                 </button>
               </div>
             );

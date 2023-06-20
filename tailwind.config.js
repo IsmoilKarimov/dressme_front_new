@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -66,8 +67,15 @@ module.exports = {
         TextTitle: "#212121",
       },
       fontFamily: {
-        AeonikProRegular: ["OTFAeonikProRegular", "sans-serif"], // 400
-        AeonikProMedium: ["OTFAeonikProMedium", "sans-serif"], // 500
+        // 400
+        // AeonikProRegular: ["AeonikProRegular", ...defaultTheme.fontFamily.sans], // 400
+        // 500
+        // AeonikProMedium: ["AeonikProMedium", ...defaultTheme.fontFamily.sans], // 500
+
+        // 400
+        AeonikProMedium: ["InterMedium", ...defaultTheme.fontFamily.sans], // 400
+        // 500
+        AeonikProRegular: ["InterRegular", ...defaultTheme.fontFamily.sans], // 500
       },
 
       boxShadow: {

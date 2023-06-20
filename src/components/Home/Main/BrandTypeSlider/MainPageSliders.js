@@ -318,7 +318,7 @@ export default function MainPageSliders() {
         <button
           className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[52px] px-10 rounded-xl border ${genderStyle}`}
         >
-          <span className="not-italic mt-1 font-AeonikProMedium text-base leading-4 text-center">
+          <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center">
             Посмотреть все категории
           </span>
           <span className="ml-2 ">

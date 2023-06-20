@@ -142,7 +142,7 @@ const ShoppingTop = () => {
                   >
                     <span className="">{data.icon}</span>
                     {data.name ? (
-                      <span className="mt-1 ml-2">{data.name}</span>
+                      <span className=" ml-2">{data.name}</span>
                     ) : (
                       ""
                     )}

@@ -213,7 +213,7 @@ const ShopOfficialBrand = () => {
                   className="w-full h-[44px] rounded-lg justify-center bg-bgCategory  focus:bg-fullBlue hover:bg-fullBlue focus:text-white flex items-center  cursor-pointer select-none  text-black"
                   onClick={HandleCheckStatus(data?.id)}
                 >
-                  <span className="not-italic font-AeonikProMedium tracking-[1%] mt-1  text-sm leading-4">
+                  <span className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
                     {data?.name}
                   </span>
                 </div>
@@ -292,7 +292,7 @@ const ShopOfficialBrand = () => {
                         <BsCheckLg size={12} />
                       </span>
                     </div>
-                    <div className="flex items-center not-italic mt-1  font-AeonikProRegular text-sm leading-4 text-black">
+                    <div className="flex items-center not-italic   font-AeonikProRegular text-sm leading-4 text-black">
                       {data?.name}
                       <span className=" not-italic ml-2 font-AeonikProRegular text-sm leading-4 text-setTexOpacity">
                         ({data?.count})

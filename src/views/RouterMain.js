@@ -4,7 +4,7 @@ import "../index.css";
 
 // -------Navbar VS Footer
 import Header from "../components/header/header";
-import YandexMapDressMe from "../components/YandexMap";
+// import YandexMapDressMe from "../components/YandexMap";
 import SignIn from "../components/Authentication/SignIn/SignIn";
 import SignUp from "../components/Authentication/SignUp/SignUp";
 import CategoryMainType from "../components/Category/CategoryForType";
@@ -19,12 +19,14 @@ import ShoppingStoreOfficial from "../components/Home/Shop/ShoppingStoreOfficial
 import { MyOrderBreadCamp } from "../components/Home/MyOrder/MyOrderBreadCamp/MyOrderBreadCamp";
 import MyOrderList from "../components/Home/MyOrder/MyOrderList/MyOrderList";
 import MyOrderSettings from "../components/Home/MyOrder/MyOrderSettings/MyOrderSettings";
+import LoadingFor from "../components/Loading/LoadingFor";
 
 // -------------------------------------
 const HomePage = React.lazy(() => import("../Page/Home/Home"));
 const SingleMainProduct = React.lazy(() =>
   import("../components/Home/Products/SignleMainProducts")
 );
+const YandexMapDressMe = React.lazy(() => import("../components/YandexMap"));
 const ForgetConfirmPassword = React.lazy(() =>
   import("../components/Authentication/SignInDetail/ForgetConfirmPassword")
 );
@@ -78,7 +80,20 @@ const RouterMain = () => {
           }
         />
 
-        <Route path="/delivery-points" element={<YandexMapDressMe />} />
+        <Route
+          path="/delivery-points"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <LoadingFor />
+                </div>
+              }
+            >
+              <YandexMapDressMe />
+            </Suspense>
+          }
+        />
         <Route
           path="/categoriesType"
           element={

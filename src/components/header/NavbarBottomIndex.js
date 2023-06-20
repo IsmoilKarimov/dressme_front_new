@@ -73,7 +73,7 @@ const NavbarBottomIndex = () => {
                   <span>
                     <PersonIcons colors={IconsColor} />
                   </span>
-                  <span className="mt-1 font-AeonikProMedium ml-1 not-italic text-sm leading-4 tracking-[0,16px]">
+                  <span className=" font-AeonikProMedium ml-1 not-italic text-sm leading-4 tracking-[0,16px]">
                     Войти в систему
                   </span>
                 </NavLink>
@@ -88,7 +88,7 @@ const NavbarBottomIndex = () => {
                   <span>
                     <PersonPlusIcons colors={IconsColor} />
                   </span>
-                  <span className="mt-1 font-AeonikProMedium not-italic ml-1  text-sm leading-4 tracking-[0,16px]">
+                  <span className=" font-AeonikProMedium not-italic ml-1  text-sm leading-4 tracking-[0,16px]">
                     Создать аккаунт
                   </span>
                 </NavLink>
@@ -109,7 +109,7 @@ const NavbarBottomIndex = () => {
                     <span className="rotate-[180deg]">
                       <SircleNext colors={IconsColor} />
                     </span>
-                    <span className="mt-1  font-AeonikProMedium ml-2 not-italic text-sm leading-4 tracking-[0,16px]">
+                    <span className=" font-AeonikProMedium ml-2 not-italic text-sm leading-4 tracking-[0,16px]">
                       Назад
                     </span>
                   </NavLink>
@@ -122,7 +122,7 @@ const NavbarBottomIndex = () => {
                     <span>
                       <EyesOpenIcons colors={IconsColor} />
                     </span>
-                    <span className="mt-1 font-AeonikProMedium not-italic ml-2  text-sm leading-4 tracking-[0,16px]">
+                    <span className="font-AeonikProMedium not-italic ml-2  text-sm leading-4 tracking-[0,16px]">
                       Забыли пароль?
                     </span>
                   </div>
@@ -148,7 +148,7 @@ const NavbarBottomIndex = () => {
                       {" "}
                       <AiOutlineEye size={22} />
                     </span>
-                    <span className="mt-1 font-AeonikProMedium not-italic ml-1  text-sm leading-4 tracking-[0,16px]">
+                    <span className="font-AeonikProMedium not-italic ml-1  text-sm leading-4 tracking-[0,16px]">
                       Забыли пароль?
                     </span>
                   </div>{" "}

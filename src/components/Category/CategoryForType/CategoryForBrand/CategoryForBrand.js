@@ -252,7 +252,7 @@ const CategoryForBrand = () => {
                         <CheckedStatusIcons colors={"#fff"} />
                       ) : null}
                     </button>{" "}
-                    <div className="flex items-center not-italic mt-1  font-AeonikProRegular text-sm leading-4 text-black">
+                    <div className="flex items-center not-italic  font-AeonikProRegular text-sm leading-4 text-black">
                       {data?.name}
                       <span className=" not-italic ml-2 font-AeonikProRegular text-sm leading-4 text-setTexOpacity">
                         ({data?.count})

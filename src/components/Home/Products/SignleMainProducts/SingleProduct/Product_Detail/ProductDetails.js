@@ -148,10 +148,10 @@ const ProductDetails = () => {
             <div>
               <ProductArticleIcons />
             </div>
-            <div className="ml-[2px] mr-[6px] not-italic font-AeonikProRegular mt-1 text-[13px] leading-4 text-right text-black tracking-[1%]">
+            <div className="ml-[2px] mr-[6px] not-italic font-AeonikProRegular  text-[13px] leading-4 text-right text-black tracking-[1%]">
               Article:
             </div>
-            <div className="not-italic font-AeonikProRegular mt-1 text-[13px] leading-4 text-right text-setTexOpacity tracking-[1%]">
+            <div className="not-italic font-AeonikProRegular  text-[13px] leading-4 text-right text-setTexOpacity tracking-[1%]">
               AA009842
             </div>
           </div>
@@ -167,7 +167,7 @@ const ProductDetails = () => {
             <div>
               <BasketIcons colors={"#000"} />
             </div>
-            <div className="not-italic flex items-center mt-1  font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
+            <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
               Магазин:
             </div>
           </div>
@@ -184,7 +184,7 @@ const ProductDetails = () => {
               <span>
                 <DeliveryIcons />
               </span>
-              <span className="ml-2 not-italic font-AeonikProMedium mt-1 text-base md:text-[14px] leading-4 text-black tracking-[1%]">
+              <span className="ml-2 not-italic font-AeonikProMedium  text-base md:text-[14px] leading-4 text-black tracking-[1%]">
                 Доставка:
               </span>
             </div>
@@ -192,7 +192,7 @@ const ProductDetails = () => {
               <span>
                 <CircleSuccessIcons colors={"#008F0E"} />
               </span>
-              <span className="hidden md:block ml-2 not-italic font-AeonikProMedium mt-1 text-sm leading-4 text-green-800 tracking-[1%]">
+              <span className="hidden md:block ml-2 not-italic font-AeonikProMedium  text-sm leading-4 text-green-800 tracking-[1%]">
                 Доступно
               </span>
             </div>
@@ -201,56 +201,56 @@ const ProductDetails = () => {
             <div>
               <ProductArticleIcons />
             </div>
-            <div className="ml-[2px] mr-[6px] not-italic font-AeonikProRegular mt-1 leading-4 text-right text-black tracking-[1%]">
+            <div className="ml-[2px] mr-[6px] not-italic font-AeonikProRegular  leading-4 text-right text-black tracking-[1%]">
               Article:
             </div>
-            <div className="not-italic font-AeonikProRegular mt-1 leading-4 text-right text-setTexOpacity tracking-[1%]">
+            <div className="not-italic font-AeonikProRegular  leading-4 text-right text-setTexOpacity tracking-[1%]">
               AA009842
             </div>
           </div>
 
           <div className="w-fit hidden md:flex items-center h-fit ">
-            <div className="not-italic mr-3 mt-1 font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%]">
+            <div className="not-italic mr-3  font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%]">
               Сезон:
             </div>
             <div className="flex items-center">
               <img src={winterSeason} alt="" />
 
-              <span className="not-italic mt-1 ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+              <span className="not-italic  ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
                 Зима
               </span>
             </div>
             <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
             <div className="flex items-center">
               <img src={summerSeason} alt="" />
-              <span className="not-italic mt-1 ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+              <span className="not-italic  ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
                 Весна
               </span>
             </div>
             <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
             <div className="flex items-center">
               <img src={autummSeason} alt="" />
-              <span className="not-italic mt-1 ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+              <span className="not-italic  ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
                 Осень
               </span>
             </div>
           </div>
         </div>
         <div className="w-fit flex md:hidden items-center h-fit text-base md:text-sm mb-10 md:mb-0">
-          <div className="not-italic mr-3 mt-1 font-AeonikProMedium leading-4 text-black tracking-[1%]">
+          <div className="not-italic mr-3  font-AeonikProMedium leading-4 text-black tracking-[1%]">
             Сезон:
           </div>
           <div className="flex items-center">
             <img src={winterSeason} alt="" />
 
-            <span className="not-italic mt-1 ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
+            <span className="not-italic  ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
               Зима
             </span>
           </div>
           <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
           <div className="flex items-center">
             <img src={summerSeason} alt="" />
-            <span className="not-italic mt-1 ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
+            <span className="not-italic  ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
               Весна
             </span>
           </div>
@@ -261,12 +261,10 @@ const ProductDetails = () => {
           <span>
             <ProductSwitchIcons />
           </span>
-          <span className="not-italic ml-2 mr-3 mt-1 font-AeonikProRegular md:font-AeonikProMedium leading-4 text-black">
+          <span className="not-italic ml-2 mr-3  font-AeonikProRegular md:font-AeonikProMedium leading-4 text-black">
             Цвет:
           </span>
-          <span className="not-italic mt-1 leading-4 text-black">
-            Синий океан
-          </span>
+          <span className="not-italic  leading-4 text-black">Синий океан</span>
         </div>
         <div className="w-full flex items-center gap-x-3 py-1 mb-7">
           {selectColor.map((data) => {
@@ -294,10 +292,10 @@ const ProductDetails = () => {
           <span>
             <ProductSizeIcons />
           </span>
-          <span className="not-italic ml-2 mr-3 mt-1 font-AeonikProRegular md:font-AeonikProMedium leading-4 text-black">
+          <span className="not-italic ml-2 mr-3  font-AeonikProRegular md:font-AeonikProMedium leading-4 text-black">
             Размер:
           </span>
-          <span className="not-italic mt-1 font-AeonikProMedium text-[16px] md:text-sm leading-4 text-black">
+          <span className="not-italic  font-AeonikProMedium text-[16px] md:text-sm leading-4 text-black">
             3XL{" "}
           </span>
         </div>
@@ -307,7 +305,7 @@ const ProductDetails = () => {
               return (
                 <div className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg  border border-searchBgColor focus:border-fullBlue px-4 flex items-center justify-center">
                   <span
-                    className={`mt-1 not-italic font-AeonikProMedium text-[14px] leading-4 text-center text-black tracking-[1%]`}
+                    className={` not-italic font-AeonikProMedium text-[14px] leading-4 text-center text-black tracking-[1%]`}
                   >
                     {data?.size}
                   </span>
@@ -333,24 +331,24 @@ const ProductDetails = () => {
               Цена:
             </span>
           </div>
-          <span className="hidden md:block not-italic mt-1 font-AeonikProMedium text-[20px] leading-9 text-black trcking-[1%]">
+          <span className="hidden md:block not-italic  font-AeonikProMedium text-[20px] leading-9 text-black trcking-[1%]">
             452 000 сум
           </span>
-          <span className="hidden md:block not-italic ml-4 mt-1 font-AeonikProRegular line-through text-[14px] leading-7 text-setTexOpacity">
+          <span className="hidden md:block not-italic ml-4  font-AeonikProRegular line-through text-[14px] leading-7 text-setTexOpacity">
             652 000 сум
           </span>
           <div className="w-[84px] h-9 md:w-[108px] md:h-11 cursor-pointer ml-8 flex items-center justify-center border border-searchBgColor rounded-lg">
             <span>
               <DiscountShapeIcons />
             </span>
-            <span className="ml-[6px] not-italic mt-1 font-AeonikProMedium text-sm md:text-[16px] leading-5 text-red-700">
+            <span className="ml-[6px] not-italic  font-AeonikProMedium text-sm md:text-[16px] leading-5 text-red-700">
               -30%
             </span>
           </div>
         </div>
         <div className="w-full flex items-center justify-between mb-6 md:mb-0">
           <div className="flex items-center">
-            <span className="block md:hidden not-italic mt-1 font-AeonikProMedium text-[24px] leading-9 text-black trcking-[1%]">
+            <span className="block md:hidden not-italic  font-AeonikProMedium text-[24px] leading-9 text-black trcking-[1%]">
               452 000
             </span>
             <span className="block md:hidden not-italic ml-2 mt-[10px] font-AeonikProRegular line-through text-[16px] leading-7 text-setTexOpacity">
@@ -368,13 +366,13 @@ const ProductDetails = () => {
         </div>
         <div className="w-full flex justify-between items-center gap-x-3 md:gap-x-0 md:mt-8">
           <div className="w-[65%] md:w-[260px]">
-            <button className="w-full h-12 md:w-[260px] md:h-[52px] mt-1 rounded-lg not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex items-center justify-center bg-fullBlue">
+            <button className="w-full h-12 md:w-[260px] md:h-[52px]  rounded-lg not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex items-center justify-center bg-fullBlue">
               Добавить в корзину
             </button>
           </div>
           <div className="w-[35%] md:w-[142px]">
             <button
-              className={`w-full h-12 md:w-[142px] md:h-[52px] mt-1 rounded-lg not-italic border font-AeonikProMedium text-base leading-4 text-center flex items-center justify-center ${genderStyle} `}
+              className={`w-full h-12 md:w-[142px] md:h-[52px]  rounded-lg not-italic border font-AeonikProMedium text-base leading-4 text-center flex items-center justify-center ${genderStyle} `}
             >
               Купить <span className="hidden md:block">сейчас</span>
             </button>
@@ -387,10 +385,10 @@ const ProductDetails = () => {
           <div
             className={`w-fit ml-8 ${dataStyle} items-center hidden md:flex`}
           >
-            <span className="not-italic mt-1 font-AeonikProRegular text-[14px] leading-5 text-right tracking-[1%]">
+            <span className="not-italic  font-AeonikProRegular text-[14px] leading-5 text-right tracking-[1%]">
               В наличии:
             </span>
-            <span className="not-italic mt-1 ml-2 font-AeonikProMedium text-[14px] leading-6 text-right tracking-[1%]">
+            <span className="not-italic  ml-2 font-AeonikProMedium text-[14px] leading-6 text-right tracking-[1%]">
               28
             </span>
           </div>
@@ -398,7 +396,8 @@ const ProductDetails = () => {
       </div>
 
       {/* Mobile Price */}
-      <div className={`fixed md:hidden z-[29] flex flex-col gap-y-1 shadow-navMenuShadov ${
+      <div
+        className={`fixed md:hidden z-[29] flex flex-col gap-y-1 shadow-navMenuShadov ${
           show ? "bottom-[62px] duration-500" : "bottom-0 duration-500 "
         }  left-0 right-0 px-4  py-2 w-[100%] h-fit bg-white rounded-lg`}
       >
@@ -413,14 +412,14 @@ const ProductDetails = () => {
             <span>
               <DiscountShapeIcons />
             </span>
-            <span className="ml-[6px] not-italic mt-1 font-AeonikProMedium text-sm  leading-5 text-red-700">
+            <span className="ml-[6px] not-italic  font-AeonikProMedium text-sm  leading-5 text-red-700">
               -30%
             </span>
           </div>
         </div>
         <div className="h-[36px] w-full flex justify-between items-center ">
           <div className="flex items-center">
-            <span className="not-italic mt-1 font-AeonikProMedium text-[18px] leading-9 text-black trcking-[1%]">
+            <span className="not-italic  font-AeonikProMedium text-[18px] leading-9 text-black trcking-[1%]">
               452 000
             </span>
             <span className="not-italic ml-1 mt-[6px] font-AeonikProRegular line-through text-[14px] leading-7 text-setTexOpacity">
@@ -504,7 +503,7 @@ const ProductDetails = () => {
       <div className="mt-[60px] hidden md:block">
         <div className="">
           <div>
-            <span className="not-italic mt-1 font-AeonikProRegular text-[14px] leading-5 text-right tracking-[1%]">
+            <span className="not-italic  font-AeonikProRegular text-[14px] leading-5 text-right tracking-[1%]">
               таблица соответствия мужских размеров
             </span>
           </div>

@@ -2,50 +2,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* @import '../src//fonts//font.css'; */
-
-@font-face {
-  font-family: "AeonikProMedium";
-  src: url("/src/fonts/AeonikPro-Medium.woff") format("woff");
-}
-
-@font-face {
-  font-family: "AeonikProRegular";
-  src: url("/src/fonts/AeonikPro-Regular.woff") format("woff");
-}
-
-/* otf */
-@font-face {
-  font-family: "OTFAeonikProMedium";
-  /* font-family: "Aeoniok Pro"; */
-  src: url("/src/fonts/AeonikPro-Medium.otf") format("opentype");
-}
-
-@font-face {
-  font-family: "OTFAeonikProRegular";
-  /* font-family: "Aeoniok Pro"; */
-  src: url("/src/fonts/AeonikPro-Regular.otf") format("opentype");
-}
-
-.AeonikProMedium {
-  /* font-family: "Aeonik Pro";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 18px;
-  letter-spacing: 0.01em;
-  color: #000000; */
-}
-.AeonikProRegular {
-  /* font-family: "Aeonik Pro";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
-  /* identical to box height */
-  /* letter-spacing: 0.01em;
-  color: #000000;  */
-}
 
 * {
   margin: 0;
@@ -53,8 +9,30 @@
   box-sizing: border-box;
 }
 
+html,
 body {
+  padding: 0;
+  margin: 0;
   overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+@font-face {
+  font-family: "AeonikProMedium";
+  src: url(./fonts/AeonikPro-Medium.ttf);
+}
+@font-face {
+  font-family: "AeonikProRegular";
+  src: url(./fonts/AeonikPro-Regular.ttf);
+}
+@font-face {
+  font-family: "InterMedium";
+  src: url(./fonts/Inter-Medium.ttf);
+}
+@font-face {
+  font-family: "InterRegular";
+  src: url(./fonts/Inter-Regular.ttf);
 }
 
 .slick-slider {
