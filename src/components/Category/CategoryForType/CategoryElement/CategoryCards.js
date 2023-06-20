@@ -158,7 +158,7 @@ export default function CategoryCards() {
         </ClothesFilterGroup>{" "}
       </div>
       <div className="w-full h-full ">
-        <div>
+        <div className="hidden md:block">
           <span className="not-italic font-AeonikProMedium text-sm  leading-4 text-black tracking-[1%]">
             По типу
           </span>
