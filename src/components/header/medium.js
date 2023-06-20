@@ -270,6 +270,8 @@ const MediumHeader = () => {
     // console.log(locationWindow, "locationWindow");
   }, [location.pathname]);
   // md:mt-[99px] ss:mt-0
+  // mt-1
+
   return (
     <div className="flex flex-col justify-center items-center m-0 p-0 box-border ">
       <div className="max-w-[1280px] w-[100%] block md:flex px-3 md:px-0 md:py-0 justify-center  items-center m-auto ">
@@ -362,7 +364,7 @@ const MediumHeader = () => {
                     <CotegoryIcons colors={IconsColor} />
                   </span>
                   <span
-                    className={` px-[9.5px] not-italic font-AeonikProMedium text-sm leading-4 mt-1`}
+                    className={` px-[9.5px] not-italic font-AeonikProMedium text-sm leading-4 `}
                   >
                     Каталог
                   </span>

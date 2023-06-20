@@ -124,7 +124,7 @@ export default function BasketCheckOut() {
                     <DeleteIcons colors={"#A1A1A1"} />
                   </span>
 
-                  <span className="not-italic  ml-2 mt-1 font-AeonikProMedium text-[14px] text-textOpacity leading-4 tracking-[1%]">
+                  <span className="not-italic  ml-2 font-AeonikProMedium text-[14px] text-textOpacity leading-4 tracking-[1%]">
                     {" "}
                     Удалить
                   </span>
@@ -132,7 +132,7 @@ export default function BasketCheckOut() {
               </div>
               <div className=" flex items-center">
                 <p className="flex">
-                  <span className="not-italic mt-1 font-AeonikProMedium text-[14px] leading-4 text-right text-black">
+                  <span className="not-italic font-AeonikProMedium text-[14px] leading-4 text-right text-black">
                     {" "}
                     Выбрать все
                   </span>
@@ -160,10 +160,10 @@ export default function BasketCheckOut() {
             </div>
           </div>
           <div className="w-[32%] h-full px-8 hidden  md:flex  items-center justify-between">
-            <p className="not-italic mt-1 font-AeonikProMedium text-[20px] leading-7 text-black tracking-[1%]">
+            <p className="not-italic font-AeonikProMedium text-[20px] leading-7 text-black tracking-[1%]">
               Итого
             </p>
-            <p className="not-italic mt-1 font-AeonikProMedium text-[20px] leading-7 text-black tracking-[1%]">
+            <p className="not-italic font-AeonikProMedium text-[20px] leading-7 text-black tracking-[1%]">
               527 000 сум
             </p>
           </div>
@@ -211,7 +211,7 @@ export default function BasketCheckOut() {
                           <span>
                             <MarketIcons colors={"#000"} />
                           </span>{" "}
-                          <span className="not-italic mt-1 ml-1 font-AeonikProRegular text-base leading-4 text-black  tracking-[1%]">
+                          <span className="not-italic ml-1 font-AeonikProRegular text-base leading-4 text-black  tracking-[1%]">
                             <span className="not-italic ml-1 mr-2 font-AeonikProMedium text-base leading-4 text-black tracking-[1%]">
                               Магазин:
                             </span>{" "}
@@ -223,12 +223,12 @@ export default function BasketCheckOut() {
                             <p
                               className={`w-8 h-8 border border-searchBgColor rounded-lg bg-setTexOpacity ${data.color}`}
                             ></p>
-                            <p className="not-italic pl-[10px] pr-[15px] mt-1 font-AeonikProMedium text-base leading-4 text-black tracking-[1%]">
+                            <p className="not-italic pl-[10px] pr-[15px] font-AeonikProMedium text-base leading-4 text-black tracking-[1%]">
                               {data.color_text}
                             </p>
                           </div>
                           <div className=" h-[36px]  cursor-pointer ml-3 px-4 flex items-center rounded-lg border border-searchBgColor">
-                            <p className="not-italic  mt-1 font-AeonikProMedium text-base leading-4 text-black tracking-[1%]">
+                            <p className="not-italic  font-AeonikProMedium text-base leading-4 text-black tracking-[1%]">
                               {data.size}
                             </p>
                           </div>
@@ -248,11 +248,11 @@ export default function BasketCheckOut() {
                       <div className="h-10 md:h-12 w-fit p-[10px] ll:px-2 gap-x-[18px] ll:w-[120px] flex items-center justify-around rounded-lg border border-searchBgColor">
                         <button
                           onClick={handleDecrement}
-                          className="w-1/3 not-italic font-AeonikProMedium mt-1 text-lg cursor-pointer leading-4 text-center text-black"
+                          className="w-1/3 not-italic font-AeonikProMedium text-lg cursor-pointer leading-4 text-center text-black"
                         >
                           -
                         </button>
-                        <button className="w-1/3 not-italic font-AeonikProMedium mt-1 text-lg  leading-4 text-center text-black">
+                        <button className="w-1/3 not-italic font-AeonikProMedium text-lg  leading-4 text-center text-black">
                           {state?.clothesCount}
                         </button>
                         <button
@@ -262,7 +262,7 @@ export default function BasketCheckOut() {
                               clothesCount: state.clothesCount + 1,
                             })
                           }
-                          className="w-1/3 not-italic font-AeonikProMedium mt-1 text-lg cursor-pointer leading-4 text-center text-black"
+                          className="w-1/3 not-italic font-AeonikProMedium text-lg cursor-pointer leading-4 text-center text-black"
                         >
                           +
                         </button>
@@ -294,10 +294,10 @@ export default function BasketCheckOut() {
 
         <div className="w-full md:w-[32%] h-full md:border-t-0 md:border-l-0 mt-4 md:mt-0  border border-searchBgColor rounded-lg md:rounded-br-lg	 flex flex-wrap content-between">
           <div className="w-full px-5 md:px-8 md:hidden py-4 border-b border-searchBgColor flex  items-center justify-between">
-            <p className="not-italic mt-1 font-AeonikProMedium text-[18px] md:text-[20px] leading-7 text-black tracking-[1%]">
+            <p className="not-italic font-AeonikProMedium text-[18px] md:text-[20px] leading-7 text-black tracking-[1%]">
               Итого
             </p>
-            <p className="not-italic mt-1 font-AeonikProMedium text-[18px] md:text-[20px] leading-7 text-black tracking-[1%]">
+            <p className="not-italic font-AeonikProMedium text-[18px] md:text-[20px] leading-7 text-black tracking-[1%]">
               527 000 сум
             </p>
           </div>

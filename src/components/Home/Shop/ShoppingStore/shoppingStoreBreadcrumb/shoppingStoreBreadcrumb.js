@@ -139,7 +139,7 @@ const ShoppingStoreBreadCrumb = () => {
                   );
                 })}
             </span>
-            <span className="not-italic font-AeonikProMedium text-center mt-1 text-sm leading-4 text-black">
+            <span className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black">
               Абдулазиз{" "}
             </span>
             <span>

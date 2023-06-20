@@ -79,10 +79,10 @@ export default function PaymentForClothes() {
             </div>
           </div>
           <div className="w-[34.9%] h-full hidden md:flex items-center justify-between px-8">
-            <p className="not-italic mt-1 font-AeonikProMedium text-xl leading-7 text-black tracking-[1%]">
+            <p className="not-italic font-AeonikProMedium text-xl leading-7 text-black tracking-[1%]">
               Оплата
             </p>
-            <p className="not-italic mt-1 font-AeonikProMedium text-xl leading-7 text-black tracking-[1%]">
+            <p className="not-italic font-AeonikProMedium text-xl leading-7 text-black tracking-[1%]">
               527 000 сум{" "}
             </p>
           </div>
@@ -264,10 +264,10 @@ export default function PaymentForClothes() {
             <div className="md:hidden flex flex-col p-4 border border-searchBgColor rounded-lg">
               <div className="w-full flex flex-col items-center mb-6">
                 <div className="w-full h-full flex md:hidden items-center justify-between mb-8">
-                  <p className="not-italic mt-1 font-AeonikProMedium text-xl leading-7 text-black tracking-[1%]">
+                  <p className="not-italic  font-AeonikProMedium text-xl leading-7 text-black tracking-[1%]">
                     Оплата
                   </p>
-                  <p className="not-italic mt-1 font-AeonikProMedium text-xl leading-7 text-black tracking-[1%]">
+                  <p className="not-italic  font-AeonikProMedium text-xl leading-7 text-black tracking-[1%]">
                     527 000 сум{" "}
                   </p>
                 </div>

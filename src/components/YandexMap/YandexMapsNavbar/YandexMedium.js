@@ -119,7 +119,6 @@ const YandexMedium = () => {
       {/* Starting of Full Screen page section */}
       <div className="w-full flex justify-center items-center py-3 overscroll-none overflow-y-hidden">
         <div className=" w-full flex items-center ss:w-full md:w-fit justify-between ">
-          
           {/* Menu section */}
           <div
             onClick={handleMainMenu}
@@ -185,7 +184,7 @@ const YandexMedium = () => {
                         alt="weather"
                         className="mr-0 md:mr-[5px] "
                       />
-                      <div className="ss:hidden  font-AeonikProMedium mt-1 hidden md:flex items-center text-[15px] ">
+                      <div className="ss:hidden  font-AeonikProMedium  hidden md:flex items-center text-[15px] ">
                         {data?.type}
                       </div>
                     </div>

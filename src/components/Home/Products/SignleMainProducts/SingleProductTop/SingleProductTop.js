@@ -93,107 +93,107 @@ const SingleProductTop = () => {
   // const Newid = id?.replace(":", " ");
   return (
     <div className="flex flex-col md:min-h-[44px] justify-center items-center m-0 py-3 box-border border-b border-searchBgColor">
-        <div className="max-w-[1280px] h-full w-[100%] flex items-center justify-between m-auto">
-            <div className=" w-[100%] md:w-fit  	flex items-center  p-1">
-              <div className=" h-10 w-[100%] md:w-fit  flex items-center  overflow-x-auto">
-                <div className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-                  <NavLink
-                    to="/"
-                    className="flex items-center whitespace-nowrap cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
-                  >
-                    Главная
-                  </NavLink>
-                  <span>
-                    <ItailIcons colors={"#A1A1A1"} />
-                  </span>
-                </div>
-                <div className="not-italic font-AeonikProRegular flex  	 items-center  text-sm leading-4 text-black tracking-[1%]">
-                  <NavLink className="flex 	whitespace-nowrap  items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-                    Мужская одежда
-                  </NavLink>
-                  <span>
-                    <ItailIcons colors={"#A1A1A1"} />
-                  </span>
-                </div>
-                <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%]">
-                  <NavLink className="flex flex-row whitespace-nowrap items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-                    Все категории
-                  </NavLink>
-                  <span>
-                    <ItailIcons colors={"#A1A1A1"} />
-                  </span>
-                </div>
-                <div className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
-                  <NavLink className="flex items-center whitespace-nowrap cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-                    Спортивное
-                  </NavLink>
-                  <span>
-                    <ItailIcons colors={"#A1A1A1"} />
-                  </span>
-                </div>
-                <div className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
-                  <NavLink className="flex items-center whitespace-nowrap  cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 tracking-[1%]">
-                    Кроссовки
-                  </NavLink>
-                  <span>
-                    <ItailIcons colors={"#A1A1A1"} />
-                  </span>
-                </div>
-                <div className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
-                  <NavLink className="flex items-center whitespace-nowrap cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-                  Nike
-                  </NavLink>
-                  <span>
-                    <ItailIcons colors={"#A1A1A1"} />
-                  </span>
-                </div>
-                <div className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
-                  <NavLink className="flex items-center whitespace-nowrap  cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
-                  Nike RUN Sneakers (Sport Wears)
-                  </NavLink>
-                </div>
-              </div>
+      <div className="max-w-[1280px] h-full w-[100%] flex items-center justify-between m-auto">
+        <div className=" w-[100%] md:w-fit  	flex items-center  p-1">
+          <div className=" h-10 w-[100%] md:w-fit  flex items-center  overflow-x-auto">
+            <div className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+              <NavLink
+                to="/"
+                className="flex items-center whitespace-nowrap cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
+              >
+                Главная
+              </NavLink>
+              <span>
+                <ItailIcons colors={"#A1A1A1"} />
+              </span>
             </div>
-
-            <div className="hidden md:flex">
-                <Popover
-                open={state?.openwear}
-                onOpenChange={handleOpenChangeWear}
-                className="w-[168px] px-[17px] h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
-                trigger="click"
-                options={["Hide"]}
-                placement="bottom"
-                content={contentWear}
-                >
-                <span>
-                    {personItems
-                    ?.filter((value) => value.id === dressInfo?.type)
-                    .map((data) => {
-                        return (
-                        <img
-                            key={data.id}
-                            className="mr-3"
-                            src={data?.man}
-                            alt="female"
-                        />
-                        );
-                    })}
-                </span>
-                <span className="not-italic font-AeonikProMedium text-center mt-1 text-sm leading-4 text-black">
-                    Абдулазиз{" "}
-                </span>
-                <span>
-                    <BiChevronDown
-                    size={22}
-                    style={{ color: "#000" }}
-                    className={`${
-                        state?.openwear ? "rotate-[-180deg]" : ""
-                    } duration-200`}
-                    />{" "}
-                </span>
-                </Popover>
+            <div className="not-italic font-AeonikProRegular flex  	 items-center  text-sm leading-4 text-black tracking-[1%]">
+              <NavLink className="flex 	whitespace-nowrap  items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                Мужская одежда
+              </NavLink>
+              <span>
+                <ItailIcons colors={"#A1A1A1"} />
+              </span>
             </div>
+            <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%]">
+              <NavLink className="flex flex-row whitespace-nowrap items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                Все категории
+              </NavLink>
+              <span>
+                <ItailIcons colors={"#A1A1A1"} />
+              </span>
+            </div>
+            <div className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+              <NavLink className="flex items-center whitespace-nowrap cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                Спортивное
+              </NavLink>
+              <span>
+                <ItailIcons colors={"#A1A1A1"} />
+              </span>
+            </div>
+            <div className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+              <NavLink className="flex items-center whitespace-nowrap  cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 tracking-[1%]">
+                Кроссовки
+              </NavLink>
+              <span>
+                <ItailIcons colors={"#A1A1A1"} />
+              </span>
+            </div>
+            <div className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+              <NavLink className="flex items-center whitespace-nowrap cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                Nike
+              </NavLink>
+              <span>
+                <ItailIcons colors={"#A1A1A1"} />
+              </span>
+            </div>
+            <div className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+              <NavLink className="flex items-center whitespace-nowrap  cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
+                Nike RUN Sneakers (Sport Wears)
+              </NavLink>
+            </div>
+          </div>
         </div>
+
+        <div className="hidden md:flex">
+          <Popover
+            open={state?.openwear}
+            onOpenChange={handleOpenChangeWear}
+            className="w-[168px] px-[17px] h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
+            trigger="click"
+            options={["Hide"]}
+            placement="bottom"
+            content={contentWear}
+          >
+            <span>
+              {personItems
+                ?.filter((value) => value.id === dressInfo?.type)
+                .map((data) => {
+                  return (
+                    <img
+                      key={data.id}
+                      className="mr-3"
+                      src={data?.man}
+                      alt="female"
+                    />
+                  );
+                })}
+            </span>
+            <span className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black">
+              Абдулазиз{" "}
+            </span>
+            <span>
+              <BiChevronDown
+                size={22}
+                style={{ color: "#000" }}
+                className={`${
+                  state?.openwear ? "rotate-[-180deg]" : ""
+                } duration-200`}
+              />{" "}
+            </span>
+          </Popover>
+        </div>
+      </div>
     </div>
   );
 };

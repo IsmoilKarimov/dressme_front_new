@@ -64,7 +64,7 @@ export default function SignUp() {
       {state?.validateConfirm ? (
         <div className=" py-8 w-full  min-h-[calc(100vh-180px)] mb-10 flex justify-center ss:px-4 md:px-0">
           <div className="max-w-[440px] w-[100%] h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
-            <div className=" w-full mt-1 mb-7 not-italic font-AeonikProMedium text-xl  leading-5 ss:text-start md:text-center  tracking-[0,16px] text-black">
+            <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-xl  leading-5 ss:text-start md:text-center  tracking-[0,16px] text-black">
               Добро пожаловать в{" "}
               <span className={`${genderStyle}`}>Dressme</span>!
             </div>

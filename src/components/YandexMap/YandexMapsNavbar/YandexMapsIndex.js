@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import YandexTop from "./YandexTop";
 import YandexMedium from "./YandexMedium";

@@ -304,7 +304,7 @@ const Footer = () => {
             <span className="mr-1">
               <img src={data?.icons} alt="" />
             </span>
-            <span className="not-italic mt-1 ml-2 font-AeonikProMedium text-sm leading-4 tracking-[1%]">
+            <span className="not-italic ml-2 font-AeonikProMedium text-sm leading-4 tracking-[1%]">
               {data?.type}
             </span>
           </div>
@@ -354,6 +354,7 @@ const Footer = () => {
       })}
     </div>
   );
+  // mt-1
 
   return (
     <div className="flex flex-col h-fit justify-center items-center m-0 p-0 ss:px-4 md:px-0 box-border border-t border-searchBgColor pt-[120px] md:mt-[40px] mb-[40px] md:mb-[60px] bg-btnBgColor md:bg-white md:border-t-0">
@@ -395,7 +396,7 @@ const Footer = () => {
                   Юридический адрес :
                 </div>
                 <div className="flex items-center mb-[46px]">
-                  <div className="border border-searchBgColor flex items-center justify-center rounded-lg mr-3 w-12 h-12 ss:bg-white md:bg-transparent">
+                  <div className="border border-searchBgColor flex items-center justify-center rounded-lg mr-3 p-[14px] ss:bg-white md:bg-transparent">
                     <LocationIcons />
                   </div>
                   <div className="font-AeonikProRegular text-sm underline underline-offset-4">
@@ -410,11 +411,11 @@ const Footer = () => {
                 className="hidden items-center bg-bgColor px-4 py-[15px] border border-searchBgColor rounded-lg ml-auto md:flex"
               >
                 <UploadIcons />
-                <span className="text-base font-AeonikProMedium leading-4 mt-1 ml-[12.5px] mr-[32.37px]">
+                <span className="text-base font-AeonikProMedium leading-4 ml-[12.5px] mr-[32.37px]">
                   Форма для обратной связи
                 </span>
                 <span className="rotate-90 ">
-                  <ArrowTopIcons />
+                  <ArrowTopIcons colors={"#000"} />
                 </span>
               </Link>
               <Link to="#" className="flex items-center ml-auto md:hidden">

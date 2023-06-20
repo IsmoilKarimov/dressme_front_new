@@ -208,7 +208,7 @@ export default function ShopOfficialCard() {
           <span className="rotate-[-90deg]">
             <ArrowTopIcons colors={"#007DCA"} />
           </span>{" "}
-          <span className="hidden md:block not-italic ml-1 mt-1  font-AeonikProRegular text-lg leading-4 text-fullBlue">
+          <span className="hidden md:block not-italic ml-1   font-AeonikProRegular text-lg leading-4 text-fullBlue">
             Previous
           </span>
         </div>
@@ -244,7 +244,7 @@ export default function ShopOfficialCard() {
           </ul>
         </div>
         <div className="flex items-center justify-center cursor-pointer bg-searchBgColor w-10 ll:w-[44px]  md:w-fit md:px-4 h-10 ll:h-[44px] rounded-lg">
-          <span className="hidden md:block not-italic mt-1 font-AeonikProRegular mr-1 text-lg leading-4 text-fullBlue">
+          <span className="hidden md:block not-italic  font-AeonikProRegular mr-1 text-lg leading-4 text-fullBlue">
             Next
           </span>
           <span className="rotate-[90deg]">

@@ -50,7 +50,7 @@ export default function MyOrderList() {
                 className="w-full h-fit md:h-[338px] border border-searchBgColor rounded-lg flex overflow-hidden flex-col content-between border border-black"
               >
                 <div className="w-full border-b border-searchBgColor h-[64px] flex items-center px-4 md:px-10">
-                  <span className="not-italic mt-1 font-AeonikProMedium text-xl leading-6 text-black tracking-[1%]">
+                  <span className="not-italic  font-AeonikProMedium text-xl leading-6 text-black tracking-[1%]">
                     ID заказа {data?.orderId}
                   </span>
                 </div>
@@ -121,11 +121,11 @@ export default function MyOrderList() {
                 </div>
                 <div className="w-full flex items-center justify-between border-t border-searchBgColor  px-10  h-[50px]">
                   <div className="flex items-center">
-                    <span className="not-italic mt-1 font-AeonikProMedium text-[14px] md:text-base leading-4 text-black tracking-[1%]">
+                    <span className="not-italic  font-AeonikProMedium text-[14px] md:text-base leading-4 text-black tracking-[1%]">
                       1 товар
                     </span>
                     <div className="w-[1px] h-5 border border-setTexOpacity mx-4"></div>
-                    <span className="not-italic mt-1 font-AeonikProMedium tracking-[1%] text-[14px] md:text-base leading-4 text-setTexOpacity">
+                    <span className="not-italic  font-AeonikProMedium tracking-[1%] text-[14px] md:text-base leading-4 text-setTexOpacity">
                       2 штук
                     </span>
                   </div>

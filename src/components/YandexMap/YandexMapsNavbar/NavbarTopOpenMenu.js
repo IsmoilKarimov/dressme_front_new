@@ -226,7 +226,7 @@ export default function NavbarTopOpenMenu() {
                       alt="weather"
                       className="mr-0 md:mr-[5px] "
                     />
-                    <div className="ss:hidden  font-AeonikProMedium mt-1 hidden md:block md:flex items-center text-[15px] ">
+                    <div className="ss:hidden  font-AeonikProMedium  hidden md:block md:flex items-center text-[15px] ">
                       {data?.type}
                     </div>
                   </div>

@@ -71,7 +71,7 @@ function YandexLocationMarketOpen() {
             <span>
               <StarIcons />
             </span>
-            <span className="not-italic font-AeonikProMedium mt-1 text-base leading-4 text-black">
+            <span className="not-italic font-AeonikProMedium  text-base leading-4 text-black">
               4.6
             </span>
           </p>
@@ -170,7 +170,7 @@ function YandexLocationMarketOpen() {
             <button
               className={` w-full h-[52px] bg-fullBlue active:scale-95  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
             >
-              <span className="not-italic font-AeonikProRegular tracking-[2%] mt-1 text-base leading-5 text-center capitalize text-white">
+              <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center capitalize text-white">
                 ПОДРОБНЕЕ
               </span>
               <span>
