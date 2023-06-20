@@ -66,7 +66,7 @@ function YandexLocationMarketOpen() {
           <span className="not-italic font-AeonikProMedium text-xl leading-5 text-fullBlue">
             FLO (Алмазар)
           </span>
-          <span>{dressInfo?.yandexGetMarketId}</span>
+          {/* <span>{dressInfo?.yandexGetMarketId}</span> */}
           <p className="flex items-center gap-x-[6px]">
             <span>
               <StarIcons />
