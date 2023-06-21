@@ -39,7 +39,6 @@ const NavMenu = () => {
       className={`bg-white shadow-navMenuShadov  px-4 w-full rounded-t-xl md:hidden z-[55] h-full overscroll-none overflow-y-hidden`}
     >
       <ul className="flex items-center justify-between text-[10px] font-AeonikProMedium py-1 ">
-        {/* {menus.map((menu, index) => ( */}
         <li className="w-[72px] h-[56px]">
           <NavLink
             to={"/"}
@@ -197,7 +196,6 @@ const NavMenu = () => {
             }
           </NavLink>
         </li>
-        {/* ))} */}
       </ul>
     </div>
   );
