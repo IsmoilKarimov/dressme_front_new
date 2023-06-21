@@ -138,47 +138,61 @@ function YandexMapsDressMe() {
   if (dressInfo?.type === 4444) {
     IconsColor = "#007DCA";
   }
-
+  // console.log(
+  //   "dressInfo?.yandexOpenMarketLocation",
+  //   dressInfo?.yandexOpenMarketLocation
+  // );
   return (
     <div className=" h-fit w-full flex justify-center overflow-hidden overflow-y-hidden">
-      <div className="w-[100%] h-[100vh]	 border-b border-searchBgColor overflow-hidden border border-red-500">
+      <div className="w-[100%] h-[100vh]	 border-b border-searchBgColor overflow-hidden ">
         {/* Laptop device for */}
 
         <div
           className={`w-full z-[-10] hidden md:block md:w-[769px] absolute md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
           ${
             dressInfo?.yandexOpenMarketLocation
-              ? `z-[100] block h-fit  bottom-[-170px]   md:bottom-[-75px]`
+              ? `z-[102]  h-fit  bottom-[-170px]   md:bottom-[-75px]`
               : "hidden bottom-[-170px]  z-[-10]"
           } ease-linear duration-300`}
         >
           <YandexLocationMarketOpen />
         </div>
         {/* Mobile device for */}
+
         <div
-          className={`h-fit md:hidden   fixed  bg-white shadow-lg ease-linear duration-500 z-[99] ${
+          className={`absolute w-full bottom-[0px]  ${
             dressInfo?.yandexOpenMarketLocation
-              ? "w-full md:w-[769px] bottom-0"
-              : "w-0 bottom-[-10000px] z-0"
-          }  `}
+              ? "z-[102] h-fit mb-0"
+              : " mb-[-1000px] z-[-10] "
+          } md:hidden    ease-linear duration-500 `}
         >
-          {dressInfo?.yandexOpenMarketLocation && (
-            <div className="fixed inset-0 z-[100] ">
-              <div
-                className="fixed inset-0 w-full h-full bg-black opacity-40 z-[101]"
-                onClick={() =>
-                  setDressInfo({
-                    ...dressInfo,
-                    yandexOpenMarketLocation: false,
-                  })
-                }
-              ></div>
-              <div className="w-full absolute bottom-0  z-[102] flex items-end">
-                <YandexLocationMarketOpen />
-              </div>
-            </div>
-          )}
+          <YandexLocationMarketOpen />
         </div>
+
+        {/* <div
+          className={`h-fit md:hidden  absolute  bg-white shadow-lg ease-linear duration-500  bg-red-500  ${
+            dressInfo?.yandexOpenMarketLocation
+              ? "w-full block md:w-[769px] bottom-0 z-[104]"
+              : "w-0 hidden bottom-[-10000px] z-[-10]"
+          }  `}
+        > */}
+        {/* {dressInfo?.yandexOpenMarketLocation && ( */}
+        {/* <div className="fixed inset-0 z-[100] "> */}
+        {/* <div
+              className="fixed inset-0 w-full h-full bg-black opacity-40 z-[101]"
+              onClick={() =>
+                setDressInfo({
+                  ...dressInfo,
+                  yandexOpenMarketLocation: false,
+                })
+              }
+            ></div> */}
+        {/* <div className="w-full absolute bottom-0  z-[102] flex items-end"> */}
+        {/* <YandexLocationMarketOpen /> */}
+        {/* </div> */}
+        {/* </div> */}
+        {/* )} */}
+        {/* </div> */}
 
         <div
           className={`absolute z-50  ${
@@ -335,7 +349,7 @@ function YandexMapsDressMe() {
                   dressInfo?.yandexOpenMenu || dressInfo?.yandexOpenMarket
                     ? " ml-[0px]"
                     : "  ml-[-1000px]"
-                } absolute cursor-pointer left-0 h-[100vh] z-[52] rounded-lg overflow-hidden ${
+                } absolute cursor-pointer left-0 h-[100vh] z-[102] rounded-lg overflow-hidden ${
                   dressInfo?.yandexFullScreen
                     ? "top-[0px]"
                     : "ss:top-[70px] md:top-0"
@@ -343,7 +357,7 @@ function YandexMapsDressMe() {
                   !dressInfo?.yandexOpenMarket
                     ? "w-[25%] bg-yandexNavbar backdrop-blur-sm	"
                     : "bg-white w-[100%]  "
-                }  p-2 ease-linear duration-[600ms]    border border-searchBgColor`}
+                }  p-2 ease-linear duration-[600ms]    border border-black`}
               >
                 {!dressInfo?.yandexOpenMarket ? (
                   <div
@@ -364,7 +378,7 @@ function YandexMapsDressMe() {
                   </div>
                 ) : null}
                 {/* yandex Menu Top */}
-                <div className="w-full h-12 flex items-center justify-between px-3 rounded-lg bg-white mt-3 border border-searchBgColor">
+                <div className="w-full h-12 flex items-center justify-between px-3 rounded-lg bg-white mt-3 border border-green-500">
                   <div className="w-fit pr-3">
                     <span className="w-6 h-6">
                       <MarketIcons colors={"#000"} />
@@ -385,7 +399,7 @@ function YandexMapsDressMe() {
                   </div>
                 </div>
                 {/* Yandex Menu List */}
-                <div className="w-full h-[85vh] mt-3 py-1 flex flex-col gap-y-2   ">
+                <div className="w-full h-[85vh] mt-3 py-1 flex flex-col gap-y-2  border border-red-500 ">
                   <div className="w-full h-full overflow-y-auto  YandexListScroll ">
                     {dressInfo?.MarketList?.map((data) => {
                       return (
@@ -729,11 +743,11 @@ function YandexMapsDressMe() {
               </div>
             </div>
             <div
-              className={`absolute block md:hidden  ml-[-1000px] duration-1000 overflow-hidden z-[52] rounded-lg shadow-lg left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%]  md:bottom-[120px]
+              className={`absolute block md:hidden  ml-[-1000px] duration-1000 overflow-hidden z-[103] rounded-lg shadow-lg left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%]  md:bottom-[120px]
               ${
                 dressInfo?.yandexFullScreen
                   ? "bottom-[10px] md:bottom-auto"
-                  : "bottom-[70px] md:bottom-auto"
+                  : "bottom-[10px] md:bottom-auto"
               }
               ${
                 dressInfo?.yandexOpenMarket &&
