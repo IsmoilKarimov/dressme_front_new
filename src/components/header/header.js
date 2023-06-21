@@ -86,7 +86,7 @@ const Header = () => {
           } `}
         >
           <div
-            className={`bg-red-500 ${
+            className={`${
               locationWindow !== "/delivery-points" ? "block" : "hidden mt-[0]"
             } `}
           >

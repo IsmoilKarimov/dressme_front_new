@@ -12,7 +12,7 @@ export default function CategoryForType() {
       <div className="flex flex-gap-6 relative justify-between mb-10">
         <div
           className={`w-full h-fit md:hidden absolute top-0 ${
-            dressInfo?.openCategoryFilter ? " ml-[1px] " : "  ml-[-1000px]"
+            dressInfo?.openCategoryFilter ? " ml-[1px] " : " ml-[-1000px]"
           }  border bg-white z-[21] duration-500`}
         >
           <CategoryForBrand />
