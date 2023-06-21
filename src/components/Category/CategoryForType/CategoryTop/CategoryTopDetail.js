@@ -188,9 +188,9 @@ const CategoryTopDetail = ({ name }) => {
                   <img src={MuslimImg} alt="" />
                 </div>
                 <div className="flex items-center ml-[100px] md:ml-[210px]">
-                  <div className="text-2xl font-AeonikProMedium">
+                  <div className="text-xl font-AeonikProMedium">
                     Муслим
-                    <span className="text-lg text-setTexOpacity font-AeonikProRegular ml-2">(291)</span>
+                    <span className="text-base text-setTexOpacity font-AeonikProRegular ml-2">(291)</span>
                   </div>
                 </div>
               </div>
@@ -225,7 +225,7 @@ const CategoryTopDetail = ({ name }) => {
                     </Popover>
                   </div>
                 </div>
-                <div className="md:hidden">
+                {/* <div className="md:hidden">
                   <button className="h-12 flex items-center justify-center rounded-lg border border-searchBgColor px-4">
                     <span>
                       <ProductShopIcons colors={"#000"} />
@@ -234,7 +234,7 @@ const CategoryTopDetail = ({ name }) => {
                       Товары
                     </span>
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
