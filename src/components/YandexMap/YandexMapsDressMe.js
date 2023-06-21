@@ -140,7 +140,7 @@ function YandexMapsDressMe() {
   }
   // console.log(
   //   "dressInfo?.yandexOpenMarketLocation",
-  //   dressInfo?.yandexOpenMarketLocation
+  //   dressInfo?.yandexOpenMarketLocation openMainMenu
   // );
   return (
     <div className=" h-fit w-full flex justify-center overflow-hidden overflow-y-hidden">
@@ -357,7 +357,7 @@ function YandexMapsDressMe() {
                   !dressInfo?.yandexOpenMarket
                     ? "w-[25%] bg-yandexNavbar backdrop-blur-sm	"
                     : "bg-white w-[100%]  "
-                }  p-2 ease-linear duration-[600ms]    border border-black`}
+                }  p-2 ease-linear duration-[600ms]   `}
               >
                 {!dressInfo?.yandexOpenMarket ? (
                   <div
@@ -378,7 +378,7 @@ function YandexMapsDressMe() {
                   </div>
                 ) : null}
                 {/* yandex Menu Top */}
-                <div className="w-full h-12 flex items-center justify-between px-3 rounded-lg bg-white mt-3 border border-green-500">
+                <div className="w-full h-12 flex items-center justify-between px-3 rounded-lg bg-white mt-3 border border-searchBgColor">
                   <div className="w-fit pr-3">
                     <span className="w-6 h-6">
                       <MarketIcons colors={"#000"} />
@@ -399,7 +399,7 @@ function YandexMapsDressMe() {
                   </div>
                 </div>
                 {/* Yandex Menu List */}
-                <div className="w-full h-[85vh] mt-3 py-1 flex flex-col gap-y-2  border border-red-500 ">
+                <div className="w-full h-[85vh] mt-3 py-1 flex flex-col gap-y-2 ">
                   <div className="w-full h-full overflow-y-auto  YandexListScroll ">
                     {dressInfo?.MarketList?.map((data) => {
                       return (
@@ -560,7 +560,7 @@ function YandexMapsDressMe() {
               className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${
                 dressInfo?.openMainMenu
                   ? "left-[-500px] md:left-[-5000px] z-[-80] ease-linear duration-500"
-                  : "hamburger flex flex-col ease-linear duration-500 overscroll-none z-[53]"
+                  : "hamburger flex flex-col ease-linear duration-500 overscroll-none z-[105]"
               }`}
             >
               <div className={`w-full h-full `}>
@@ -788,7 +788,7 @@ function YandexMapsDressMe() {
                 <ScrollFilter _class="items gap-x-2 pl-3">
                   {wearGroup?.map((data) => {
                     return (
-                      <div key={data.id} className={`item  `}>
+                      <div key={data.id} className={`item`}>
                         <p className=" cursor-pointer rounded-xl bg-white not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
                           {data?.name || "0"}
                         </p>

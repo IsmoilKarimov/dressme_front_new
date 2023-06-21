@@ -71,12 +71,12 @@
 .pulse span:nth-child(3) {
     animation-delay: 3s;
 } */
-.categoryScroll::-webkit-scrollbar {
+.categoryBreadCamp::-webkit-scrollbar {
   width: 30px;
 }
 
-.categoryScroll::-webkit-scrollbar-thumb {
+.categoryBreadCamp::-webkit-scrollbar-thumb {
   background-color: #1e1e20;
-  height: 5px;
-  border-radius: 8px;
+  height: 2px;
+  border-radius: 2px;
 }

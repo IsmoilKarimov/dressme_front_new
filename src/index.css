@@ -267,3 +267,33 @@ table tr th:nth-child(1) {
 .widthInherit {
   width: inherit;
 }
+
+.items {
+  width: 100%;
+  height: 40px;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  overflow-x: scroll;
+  row-gap: 12px;
+}
+.items::-webkit-scrollbar {
+  width: 50px;
+  height: 0px;
+}
+
+.items::-webkit-scrollbar-thumb {
+  background-color: #e8e8f0;
+  width: 50px;
+  border-radius: 8px;
+}
+
+.item {
+  width: fit-content;
+  border-radius: 8px;
+  background-color: #fcfcfc;
+  padding: 12px 16px;
+  cursor: pointer;
+  /* border: 1px solid green; */
+}
