@@ -61,20 +61,20 @@ function YandexLocationMarketOpen() {
             <ThreeCicleIcon />
           </span>{" "}
         </div> */}
-        <div className="w-fit flex items-center gap-x-5">
+        <div className="w-fit flex items-center gap-x-3">
           {" "}
-          <span className="not-italic font-AeonikProMedium text-xl leading-5 text-fullBlue">
+          <span className="not-italic font-AeonikProMedium text-xl leading-5 text-fullBlue ">
             FLO (Алмазар)
           </span>
           {/* <span>{dressInfo?.yandexGetMarketId}</span> */}
-          <p className="flex items-center gap-x-[6px]">
+          <div className="w-fit flex items-center gap-x-[2px] ">
             <span>
               <StarIcons />
             </span>
             <span className="not-italic font-AeonikProMedium  text-base leading-4 text-black">
               4.6
             </span>
-          </p>
+          </div>
         </div>
         <button
           onClick={() =>
