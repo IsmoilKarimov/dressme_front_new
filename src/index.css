@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;691;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -28,12 +28,20 @@ body {
 }
 @font-face {
   font-family: "InterMedium";
-  src: url(./fonts/Inter-Medium.ttf);
+  src: url(./fonts/Montserrat/static/Montserrat-Medium.ttf);
 }
 @font-face {
   font-family: "InterRegular";
-  src: url(./fonts/Inter-Regular.ttf);
+  src: url(./fonts/Montserrat/static/Montserrat-Regular.ttf);
 }
+/* @font-face {
+  font-family: "InterMedium";
+  src: url(./fonts/Poppin/Poppins-Medium.ttf);
+}
+@font-face {
+  font-family: "InterRegular";
+  src: url(./fonts/Poppin/Poppins-Regular.ttf);
+} */
 
 .slick-slider {
   overflow: hidden;
