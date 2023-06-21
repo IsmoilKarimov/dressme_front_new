@@ -275,7 +275,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
               <span>
                 <FilterIcons colors={"#000"} />
               </span>
-              <span className="ml-2 not-italic font-AeonikProMedium mt-1  text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+              <span className="ml-2 not-italic font-AeonikProMedium  text-sm leading-4 text-black tracking-[1%] cursor-pointer">
                 Фильтры
               </span>
             </button>
@@ -283,7 +283,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
               <span>
                 <SortIcons colors={"#000"} />
               </span>
-              <span className="ml-2 not-italic font-AeonikProMedium mt-1  text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+              <span className="ml-2 not-italic font-AeonikProMedium  text-sm leading-4 text-black tracking-[1%] cursor-pointer">
                 Популярные
               </span>
             </button>
