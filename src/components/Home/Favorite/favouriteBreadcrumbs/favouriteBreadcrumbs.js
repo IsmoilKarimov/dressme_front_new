@@ -146,7 +146,7 @@ const FavoutireBreadCrumbs = () => {
               <button className="w-full h-[44px] px-4 rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between  cursor-pointer select-none group mt-[10px] ">
                 <div className="flex items-center font-AeonikProMedium text-sm text-black">
                   <SortIcons />
-                  <span className="ml-3 mt-1">Последние добавленные</span>
+                  <span className="ml-3">Последние добавленные</span>
                 </div>
                 <span className="rotate-[180deg]">
                   <ArrowTopIcons colors={"#000"} />
