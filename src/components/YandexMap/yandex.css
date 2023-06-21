@@ -229,7 +229,6 @@ body {
   -o-filter: grayscale(1) brightness(90%);
   -webkit-filter: grayscale(1) brightness(90%);
 }
-
 @media screen and (max-height: 930px) {
   .ymaps-2-1-79-controls__control {
     inset: auto 10px 380px auto !important;
@@ -244,7 +243,10 @@ body {
 
 @media (max-height: 600px) {
   .ymaps-2-1-79-controls__control {
-    inset: auto 10px 200px auto !important;
+    inset: auto 10px 230px auto !important;
+  }
+  .ymaps-2-1-79-_hidden-text {
+    display: none !important;
   }
 }
 

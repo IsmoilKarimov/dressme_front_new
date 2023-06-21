@@ -90,12 +90,12 @@ const SingleProductTop = () => {
     </div>
   );
   const { id } = useParams();
-  // const Newid = id?.replace(":", " ");
+  // const Newid = id?.replace(":", " "); scrollBreadcrumb webkit-center
   return (
     <div className="flex flex-col md:min-h-[44px] justify-center items-center m-0 py-3 box-border border-b border-searchBgColor">
       <div className="max-w-[1280px] h-full w-[100%] flex items-center justify-between m-auto">
-        <div className=" w-[100%] md:w-fit  	flex items-center  p-1">
-          <div className=" h-10 w-[100%] md:w-fit  flex items-center  overflow-x-auto">
+        <div className="w-[100%] md:w-fit flex items-center p-1">
+          <div className="h-10 w-[100%] md:w-fit flex items-center overflow-x-auto">
             <div className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
               <NavLink
                 to="/"
@@ -159,7 +159,7 @@ const SingleProductTop = () => {
           <Popover
             open={state?.openwear}
             onOpenChange={handleOpenChangeWear}
-            className="w-[168px] px-[17px] h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
+            className="w-[168px] px-[17px] h-[44px] rounded-lg bg-btnBgColor border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
             trigger="click"
             options={["Hide"]}
             placement="bottom"

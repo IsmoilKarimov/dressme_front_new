@@ -72,7 +72,7 @@
     animation-delay: 3s;
 } */
 .categoryBreadCamp::-webkit-scrollbar {
-  width: 30px;
+  width: 20px;
 }
 
 .categoryBreadCamp::-webkit-scrollbar-thumb {

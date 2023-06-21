@@ -94,36 +94,34 @@ const ShoppingStoreOfficialBreadCrumb = ({ name }) => {
   return (
     <div className="flex flex-col min-h-[44px]  justify-center items-center md:my-3">
       <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
-        <div className="flex items-center px-4 md:px-0">
-          <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-            <NavLink
-              to="/"
-              className="flex items-center cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
-            >
-              Главная
-            </NavLink>
-            <span>
-              <ItailIcons colors={"#000"} />
-            </span>
-          </div>
-          <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-            <NavLink
-              to="/stores"
-              className="flex items-center cursor-pointer mt-[6px] pr-[10px] not-italic font-AeonikProMedium text-[15px] leading-4 tracking-[1%]"
-            >
-              Магазины
-            </NavLink>
-            <span>
-              <ItailIcons colors={"#000"} />
-            </span>
-          </div>
-          <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4  tracking-[1%] mr-[10px]">
-            <NavLink
-              to="#"
-              className="flex items-center  whitespace-nowrap  cursor-pointer mt-[6px] not-italic font-AeonikProMedium text-[15px] leading-4 tracking-[1%] text-setTexOpacity"
-            >
-              {name}
-            </NavLink>
+        <div className="w-[100%] md:w-fit flex items-center py-1 px-4 md:px-0 ">
+          <div className="h-10 w-[100%] md:w-fit flex items-center overflow-x-auto  ">
+            <div className="not-italic font-AeonikProRegular  flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+              <NavLink
+                to="/"
+                className="flex items-center whitespace-nowrap cursor-pointer  pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
+              >
+                Главная
+              </NavLink>
+              <span>
+                <ItailIcons colors={"#A1A1A1"} />
+              </span>
+            </div>
+            <div className="not-italic font-AeonikProRegular  flex  	 items-center  text-sm leading-4 text-black tracking-[1%]">
+              <NavLink className="flex 	whitespace-nowrap  items-center cursor-pointer  px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                Магазины{" "}
+              </NavLink>
+              <span>
+                <ItailIcons colors={"#A1A1A1"} />
+              </span>
+            </div>
+            <div className="not-italic font-AeonikProRegular  flex items-center   text-sm leading-4 text-black tracking-[1%]">
+              <span className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+                <NavLink className="flex items-center whitespace-nowrap  cursor-pointer px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
+                  {name}{" "}
+                </NavLink>
+              </span>
+            </div>
           </div>
         </div>
         <div className="hidden md:block">

@@ -88,51 +88,42 @@ const CategoryNavbar = () => {
   return (
     <div className="flex flex-col min-h-[44px]  justify-center items-center m-0 p-0 box-border ">
       <div className="max-w-[1280px] w-[100%] overflow-hidden	 flex items-center justify-between m-auto ">
-        <div className=" w-[100%] md:w-fit  	flex items-center  md:p-1">
-          <div className=" h-10 w-[100%] md:w-fit  flex items-center categoryBreadCamp overflow-x-auto ">
-            <span className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+        <div className="w-[100%] md:w-fit flex items-center p-1">
+          <div className="h-10 w-[100%] md:w-fit flex items-center overflow-x-auto  ">
+            <div className="not-italic font-AeonikProRegular  flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
               <NavLink
                 to="/"
-                className="flex items-center whitespace-nowrap cursor-pointer pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
+                className="flex items-center whitespace-nowrap cursor-pointer  pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
               >
                 Главная
               </NavLink>
               <span>
-                <ItailIcons colors={"#000"} />
+                <ItailIcons colors={"#A1A1A1"} />
               </span>
-            </span>
-            <span className="not-italic font-AeonikProRegular flex  	 items-center  text-sm leading-4 text-black tracking-[1%]">
-              <NavLink className="flex 	whitespace-nowrap  items-center cursor-pointer px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+            </div>
+            <div className="not-italic font-AeonikProRegular  flex  	 items-center  text-sm leading-4 text-black tracking-[1%]">
+              <NavLink className="flex 	whitespace-nowrap  items-center cursor-pointer  px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                 Мужская одежда
-              </NavLink>
-              <span>
-                <ItailIcons colors={"#000"} />
-              </span>
-            </span>
-            <span className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%]">
-              <NavLink
-                className="flex flex-row whitespace-nowrap items-center cursor-pointer px-[10px] not-italic 
-              font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
-              >
-                Все категории
-              </NavLink>
-              <span>
-                <ItailIcons colors={"#000"} />
-              </span>
-            </span>
-            {/* <span className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
-              <NavLink className="flex items-center whitespace-nowrap cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-                Спортивное
               </NavLink>
               <span>
                 <ItailIcons colors={"#A1A1A1"} />
               </span>
-            </span> */}
-            <span className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
-              <NavLink className="flex items-center whitespace-nowrap  cursor-pointer px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
-                Муслим
+            </div>
+            <div className="not-italic font-AeonikProRegular  flex items-center  text-sm leading-4 text-black tracking-[1%]">
+              <NavLink className="flex flex-row whitespace-nowrap items-center cursor-pointer  px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                Все категории
               </NavLink>
-            </span>
+              <span>
+                <ItailIcons colors={"#A1A1A1"} />
+              </span>
+            </div>
+            <div className="not-italic font-AeonikProRegular  flex items-center   text-sm leading-4 text-black tracking-[1%]">
+              <span className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+                <NavLink className="flex items-center whitespace-nowrap  cursor-pointer px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
+                  Муслим
+                </NavLink>
+              </span>
+            </div>
           </div>
         </div>
         <div className="md:flex items-center hidden ">
