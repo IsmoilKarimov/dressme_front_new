@@ -141,7 +141,7 @@ export default function CategoryCards() {
 
   return (
     <div className="flex flex-col box-border mt-2 md:mt-[34px]">
-      {/* <div className="w-full hidden">
+      <div className="hidden">
         <ClothesFilterGroup _class="items gap-x-2 ">
           {wearGroup?.map((data) => {
             return (
@@ -156,14 +156,14 @@ export default function CategoryCards() {
             );
           })}
         </ClothesFilterGroup>{" "}
-      </div> */}
+      </div>
       <div className="w-full h-full ">
         <div className="hidden md:block">
           <span className="not-italic font-AeonikProMedium text-sm  leading-4 text-black tracking-[1%]">
             По типу
           </span>
         </div>
-        <div className="w-full mt-3 h-[52px] flex flex-col items-center ">
+        <div className="w-full mt-3 h-[52px] flex flex-col items-center">
           <Slider
             {...settings1}
             // ref={sliderRef}

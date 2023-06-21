@@ -191,7 +191,7 @@ const CategoryForBrand = () => {
               <span
                 className={`${
                   state?.catolog ? "rotate-[180deg]" : ""
-                } duration-300 mt-[-2px]`}
+                } duration-300 mt-1 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>
@@ -242,7 +242,7 @@ const CategoryForBrand = () => {
               <span
                 className={`${
                   state?.brandShow ? "rotate-[180deg]" : ""
-                } duration-300 mt-[-2px]`}
+                } duration-300 mt-1 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>
@@ -325,7 +325,7 @@ const CategoryForBrand = () => {
               <span
                 className={`${
                   state?.budgetShow ? "rotate-[180deg]" : ""
-                } duration-300 mt-[-2px]`}
+                } duration-300 mt-1 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>
@@ -397,7 +397,7 @@ const CategoryForBrand = () => {
               <span
                 className={`${
                   state?.ColorsShow ? "rotate-[180deg]" : ""
-                } duration-300 mt-[-2px]`}
+                } duration-300 mt-1 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>
@@ -453,7 +453,7 @@ const CategoryForBrand = () => {
               <span
                 className={`${
                   state?.availability ? "rotate-[180deg]" : ""
-                } duration-300 mt-[-2px]`}
+                } duration-300 mt-1 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>
@@ -521,7 +521,7 @@ const CategoryForBrand = () => {
               <span
                 className={`${
                   state?.customerRreviews ? "rotate-[180deg]" : ""
-                } duration-300 mt-[-2px]`}
+                } duration-300 mt-1 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>
@@ -583,7 +583,7 @@ const CategoryForBrand = () => {
               <span
                 className={`${
                   state?.ClothingShow ? "rotate-[180deg]" : ""
-                } duration-300 mt-[-2px]`}
+                } duration-300 mt-1 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>
@@ -632,7 +632,7 @@ const CategoryForBrand = () => {
               <span
                 className={`${
                   state?.TrouserShow ? "rotate-[180deg]" : ""
-                } duration-300 mt-[-2px]`}
+                } duration-300 mt-1 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>
@@ -681,7 +681,7 @@ const CategoryForBrand = () => {
               <span
                 className={`${
                   state?.ShoesShow ? "rotate-[180deg]" : ""
-                } duration-300 mt-[-2px]`}
+                } duration-300 mt-1 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>

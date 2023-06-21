@@ -93,7 +93,7 @@ const CategoryNavbar = () => {
             <span className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
               <NavLink
                 to="/"
-                className="flex items-center whitespace-nowrap cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
+                className="flex items-center whitespace-nowrap cursor-pointer pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
               >
                 Главная
               </NavLink>
@@ -102,7 +102,7 @@ const CategoryNavbar = () => {
               </span>
             </span>
             <span className="not-italic font-AeonikProRegular flex  	 items-center  text-sm leading-4 text-black tracking-[1%]">
-              <NavLink className="flex 	whitespace-nowrap  items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+              <NavLink className="flex 	whitespace-nowrap  items-center cursor-pointer px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                 Мужская одежда
               </NavLink>
               <span>
@@ -110,7 +110,7 @@ const CategoryNavbar = () => {
               </span>
             </span>
             <span className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%]">
-              <NavLink className="flex flex-row whitespace-nowrap items-center cursor-pointer mt-[6px] px-[10px] not-italic 
+              <NavLink className="flex flex-row whitespace-nowrap items-center cursor-pointer px-[10px] not-italic 
               font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                 Все категории
               </NavLink>
@@ -127,7 +127,7 @@ const CategoryNavbar = () => {
               </span>
             </span> */}
             <span className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
-              <NavLink className="flex items-center whitespace-nowrap  cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
+              <NavLink className="flex items-center whitespace-nowrap  cursor-pointer px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
               Муслим
               </NavLink>
             </span>
