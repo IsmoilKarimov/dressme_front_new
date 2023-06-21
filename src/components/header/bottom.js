@@ -376,13 +376,13 @@ const BottomHeader = () => {
             return (
               <div key={data?.id} className="w-fit flex items-center ">
                 <button
-                  className={`mr-1 ${genderStyle}  w-[136px] h-[44px] px-[16px] justify-between mr-2 flex items-center bg-btnBgColor border border-searchBgColor rounded-lg`}
+                  className={`mr-1 ${genderStyle} h-[44px] px-[16px] justify-between mr-2 flex items-center bg-btnBgColor border border-searchBgColor rounded-lg`}
                 >
                   <img className="mr-3" src={data?.woman} alt="female" />
                   <span className="font-AeonikProMedium">Женщинам</span>
                 </button>
                 <button
-                  className={`  ${genderStyle} w-[136px] h-[44px]  px-[16px] justify-between flex items-center bg-btnBgColor border border-searchBgColor mr-2 rounded-lg`}
+                  className={`  ${genderStyle} h-[44px]  px-[16px] justify-between flex items-center bg-btnBgColor border border-searchBgColor mr-2 rounded-lg`}
                 >
                   <img className="mr-3" src={data?.man} alt="male" />{" "}
                   <span className="font-AeonikProMedium">Мужчинам</span>

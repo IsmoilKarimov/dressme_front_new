@@ -191,7 +191,7 @@ const ShopOfficialBrand = () => {
               <span
                 className={`${
                   state?.catolog ? "rotate-[180deg]" : ""
-                } duration-300 mt-[-2px]`}
+                } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>
@@ -210,7 +210,7 @@ const ShopOfficialBrand = () => {
               return (
                 <div
                   key={data?.id}
-                  className="w-full h-[44px] rounded-lg justify-center bg-bgCategory  focus:bg-fullBlue hover:bg-fullBlue focus:text-white flex items-center  cursor-pointer select-none  text-black"
+                  className="w-full h-[44px] rounded-lg justify-center bg-bgCategory hover:text-white focus:bg-fullBlue hover:bg-fullBlue focus:text-white flex items-center  cursor-pointer select-none  text-black"
                   onClick={HandleCheckStatus(data?.id)}
                 >
                   <span className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
@@ -242,7 +242,7 @@ const ShopOfficialBrand = () => {
               <span
                 className={`${
                   state?.brandShow ? "rotate-[180deg]" : ""
-                } duration-300 mt-[-2px]`}
+                } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>
@@ -325,7 +325,7 @@ const ShopOfficialBrand = () => {
               <span
                 className={`${
                   state?.budgetShow ? "rotate-[180deg]" : ""
-                } duration-300 mt-[-2px]`}
+                } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>
@@ -348,12 +348,12 @@ const ShopOfficialBrand = () => {
                 </button>
               ))}
             </div>
-            <div className="w-full h-12 bg-bgCategory  mt-4 pb-1 px-[2px]">
+            <div className="w-full h-12 bg-bgCategory  mt-4 px-[2px]">
               <div className=" w-full flex justify-center items-center gap-x-1">
                 <div className=" h-fit  not-italic font-AeonikProMedium text-base leading-4 text-center text-fullBlue tracking-[1%]">
                   {values[0]}
                 </div>{" "}
-                <div className=" h-fit pb-2">-</div>
+                <div className=" h-fit">-</div>
                 <div className=" h-fit not-italic font-AeonikProMedium text-base leading-4 text-center text-fullBlue tracking-[1%]">
                   {values[1]}
                 </div>
@@ -397,7 +397,7 @@ const ShopOfficialBrand = () => {
               <span
                 className={`${
                   state?.ColorsShow ? "rotate-[180deg]" : ""
-                } duration-300 mt-[-2px]`}
+                } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>
@@ -453,7 +453,7 @@ const ShopOfficialBrand = () => {
               <span
                 className={`${
                   state?.availability ? "rotate-[180deg]" : ""
-                } duration-300 mt-[-2px]`}
+                } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>
@@ -521,7 +521,7 @@ const ShopOfficialBrand = () => {
               <span
                 className={`${
                   state?.customerRreviews ? "rotate-[180deg]" : ""
-                } duration-300 mt-[-2px]`}
+                } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>
@@ -583,7 +583,7 @@ const ShopOfficialBrand = () => {
               <span
                 className={`${
                   state?.ClothingShow ? "rotate-[180deg]" : ""
-                } duration-300 mt-[-2px]`}
+                } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>
@@ -632,7 +632,7 @@ const ShopOfficialBrand = () => {
               <span
                 className={`${
                   state?.TrouserShow ? "rotate-[180deg]" : ""
-                } duration-300 mt-[-2px]`}
+                } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>
@@ -681,7 +681,7 @@ const ShopOfficialBrand = () => {
               <span
                 className={`${
                   state?.ShoesShow ? "rotate-[180deg]" : ""
-                } duration-300 mt-[-2px]`}
+                } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>

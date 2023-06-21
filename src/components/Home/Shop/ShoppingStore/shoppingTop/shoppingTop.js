@@ -98,7 +98,7 @@ const ShoppingTop = () => {
                   <button
                     key={data.id}
                     onClick={() => handleTypeCheck(data.id)}
-                    className={`flex items-center justify-center h-10 text-[15px] text-black text-center px-7 font-AeonikProRegular ${
+                    className={`flex items-center justify-center h-10 text-[15px] text-black text-center px-5 font-AeonikProRegular ${
                       data.action
                         ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg ${dataStyle}`
                         : ""
@@ -106,7 +106,7 @@ const ShoppingTop = () => {
                   >
                     <span className="mr-2">{data.icon}</span>
 
-                    <span className="mt-1">{data.name}</span>
+                    <span >{data.name}</span>
                   </button>
                   <span
                     className={`${
@@ -170,7 +170,7 @@ const ShoppingTop = () => {
           </div>
           <div>
             <button className="w-[260px] h-[44px] px-4 rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between  cursor-pointer select-none group  ">
-              <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]  mt-1">
+              <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                 Последние добавленные{" "}
               </span>
               <span>

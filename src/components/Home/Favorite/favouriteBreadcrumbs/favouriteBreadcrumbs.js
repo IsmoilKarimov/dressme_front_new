@@ -100,7 +100,7 @@ const FavoutireBreadCrumbs = () => {
             <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
               <NavLink
                 to="/"
-                className="flex items-center cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProRegular md:font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
+                className="flex items-center cursor-pointer pr-[10px] not-italic font-AeonikProRegular md:font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
               >
                 Главная
               </NavLink>
@@ -111,7 +111,7 @@ const FavoutireBreadCrumbs = () => {
             <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
               <NavLink
                 to="/"
-                className="flex items-center cursor-pointer pt-[4px]  not-italic font-AeonikProRegular md:font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]"
+                className="flex items-center cursor-pointer not-italic font-AeonikProRegular md:font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]"
               >
                 Избранное
               </NavLink>
@@ -130,7 +130,7 @@ const FavoutireBreadCrumbs = () => {
               </div>
               <div className="hidden md:flex">
                 <button className="w-[260px] h-[44px] px-4 rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between  cursor-pointer select-none group  ">
-                  <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]  mt-1">
+                  <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                     Последние добавленные{" "}
                   </span>
                   <span className="rotate-[180deg]">
