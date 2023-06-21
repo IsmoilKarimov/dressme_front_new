@@ -24,7 +24,7 @@ const CategoryTopDetail = ({ name }) => {
   const handleFilter = () => {
     setDressInfo({
       ...dressInfo,
-      openShopIdFilter: !dressInfo.openShopIdFilter,
+      openCategoryFilter: !dressInfo.openCategoryFilter,
     });
   };
 
@@ -141,7 +141,7 @@ const CategoryTopDetail = ({ name }) => {
   const handleOpenCategories = (newOpen) => {
     setState({ ...state, opensports: newOpen });
   };
-  
+
   const [selectSports, setSelectCategories] = useState("Categories");
 
   const handleCategories = (value) => {
@@ -190,16 +190,18 @@ const CategoryTopDetail = ({ name }) => {
                 <div className="flex items-center ml-[100px] md:ml-[210px]">
                   <div className="text-xl font-AeonikProMedium">
                     Муслим
-                    <span className="text-base text-setTexOpacity font-AeonikProRegular ml-2">(291)</span>
+                    <span className="text-base text-setTexOpacity font-AeonikProRegular ml-2">
+                      (291)
+                    </span>
                   </div>
                 </div>
               </div>
-              
+
               {/*  */}
               <div className="w-full md:w-fit flex items-center justify-between md:mr-5  mt-6 md:mt-0">
                 <div className="flex items-center">
                   <NavLink className="flex items-center text-[15px] font-AeonikProMedium mr-[22px]">
-                  По категории
+                    По категории
                   </NavLink>
                   <div className="md:flex items-center hidden ">
                     <Popover
@@ -210,9 +212,10 @@ const CategoryTopDetail = ({ name }) => {
                       options={["Hide"]}
                       placement="bottom"
                       content={contentCategories}
-                      
                     >
-                      <span className="text-[15px] font-AeonikProMedium">Спортивный</span>
+                      <span className="text-[15px] font-AeonikProMedium">
+                        Спортивный
+                      </span>
                       <span>
                         <BiChevronDown
                           size={22}
@@ -238,7 +241,7 @@ const CategoryTopDetail = ({ name }) => {
               </div>
             </div>
           </div>
-         
+
           {/* <div className="md:border-b hidden md:border-searchBgColor md:flex flex-gap-6 justify-between w-full pb-10 mt-[60px]">
             <div className="w-[22%] h-full  ">
               <div>
@@ -290,26 +293,25 @@ const CategoryTopDetail = ({ name }) => {
           <div className="w-full md:hidden flex items-center justify-between mt-6 mb-3  px-4">
             <button
               onClick={handleFilter}
-              className="h-[44px] w-[48%] rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+              className="h-[44px] w-[48%] active:scale-95  active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
             >
               <span>
                 <FilterIcons colors={"#000"} />
               </span>
-              <span className="ml-2 not-italic font-AeonikProMedium mt-1  text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+              <span className="ml-2 not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
                 Фильтры
               </span>
             </button>
-            <button className="h-[44px] w-[48%] rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center">
+            <button className="h-[44px] w-[48%] active:scale-95  active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center">
               <span>
                 <SortIcons colors={"#000"} />
               </span>
-              <span className="ml-2 not-italic font-AeonikProMedium mt-1  text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+              <span className="ml-2 not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
                 Популярные
               </span>
             </button>
           </div>
         </div>
-        
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { BsCheckLg } from "react-icons/bs";
 import ReactSlider from "react-slider";
 
@@ -11,6 +11,25 @@ import {
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 
 const ShopOfficialBrand = () => {
+  const [screenSize, setScreenSize] = useState(getCurrentDimension());
+
+  function getCurrentDimension() {
+    return {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
+  }
+  useEffect(() => {
+    const updateDimension = () => {
+      setScreenSize(getCurrentDimension());
+    };
+    window.addEventListener("resize", updateDimension);
+
+    return () => {
+      window.removeEventListener("resize", updateDimension);
+    };
+  }, [screenSize]);
+
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const [product, setProduct] = useState({
@@ -97,15 +116,15 @@ const ShopOfficialBrand = () => {
   const [values, setValues] = useState([Min, Max]);
 
   const [state, setState] = useState({
-    brandShow: false,
-    budgetShow: false,
-    ColorsShow: false,
-    ClothingShow: false,
-    TrouserShow: false,
-    ShoesShow: false,
-    customerRreviews: false,
-    availability: false,
-    catolog: false,
+    brandShow: screenSize.width <= 768 ? true : false,
+    budgetShow: screenSize.width <= 768 ? true : false,
+    ColorsShow: screenSize.width <= 768 ? true : false,
+    ClothingShow: screenSize.width <= 768 ? true : false,
+    TrouserShow: screenSize.width <= 768 ? true : false,
+    ShoesShow: screenSize.width <= 768 ? true : false,
+    customerRreviews: screenSize.width <= 768 ? true : false,
+    availability: screenSize.width <= 768 ? true : false,
+    catolog: screenSize.width <= 768 ? true : false,
     //--------------
     checkBrand: false,
     checkedPrize: true,

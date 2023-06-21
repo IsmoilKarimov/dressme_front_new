@@ -47,22 +47,25 @@ export default function ShopOfficialCard() {
     { id: 13, name: "Ремень" },
   ];
   return (
-    <div className="flex flex-col box-border  ">
-      <div className=" w-full md:hidden mb-8">
-        <ShopIdFilterGroup _class="items gap-x-2 ">
+    <div className="flex flex-col box-border">
+      <div
+        className={` md:hidden bg-white  w-full bg-yandexNavbar flex items-center mb-6`}
+      >
+        {/* <YandexFilter /> */}
+        <ShopIdFilterGroup _class="items gap-x-2">
           {wearGroup?.map((data) => {
             return (
               <div
                 key={data.id}
-                className={`flex items-center justify-center px-4 py-3 border border-searchBgColor rounded-[20px]   bg-btnBgColor`}
+                className={`item flex items-center justify-center border bg-btnBgColor border-searchBgColor `}
               >
-                <p className=" cursor-pointer  not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
+                <span className=" cursor-pointer rounded-xl bg-btnBgColor not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
                   {data?.name || "0"}
-                </p>
+                </span>
               </div>
             );
           })}
-        </ShopIdFilterGroup>{" "}
+        </ShopIdFilterGroup>
       </div>
       <div className="flex justify-between flex-wrap gap-y-2">
         {dressInfo.ProductList.map((data) => {
