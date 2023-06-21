@@ -13,8 +13,7 @@ const ShoppingStoreCategory = () => {
           <div className="hidden md:block md:w-[22%] h-full ">
             <ShopOfficialBrand />
           </div>
-          <div
-            className={`w-full h-fit md:hidden absolute top-0 ${
+          <div className={`w-full h-fit md:hidden absolute top-0 ${
               dressInfo?.openShopIdFilter ? " ml-[1px] " : "  ml-[-1000px]"
             }  border bg-white z-[21] duration-500`}
           >
