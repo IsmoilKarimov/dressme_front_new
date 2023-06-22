@@ -357,8 +357,8 @@ const Footer = () => {
   // mt-1
 
   return (
-    <div className="flex flex-col h-fit justify-center items-center m-0 p-0 ss:px-4 md:px-0 box-border border-t border-searchBgColor pt-[120px] md:mt-[40px] mb-[40px] md:mb-[60px] bg-btnBgColor md:bg-white md:border-t-0">
-      <div className="mt-[200px]">
+    <div className="flex flex-col h-fit justify-center items-center m-0 p-0 ss:px-4 md:px-0 box-border border-t border-searchBgColor  md:mt-[40px] mb-[40px] md:mb-[60px] bg-btnBgColor md:bg-white md:border-t-0">
+      <div className="">
         <ScrollToTop
           smooth
           top="600"
