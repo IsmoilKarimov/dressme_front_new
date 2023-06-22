@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import {
   YMaps,
@@ -40,6 +40,24 @@ import { UzbekFlag, locationIcons, markerIcons } from "../../AssetsMain";
 import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationMarketOpen";
 
 function YandexMapsDressMe() {
+  const [screenSize, setScreenSize] = useState(getCurrentDimension());
+
+  function getCurrentDimension() {
+    return {
+      width: window.innerWidth,
+    };
+  }
+  useEffect(() => {
+    const updateDimension = () => {
+      setScreenSize(getCurrentDimension());
+    };
+    window.addEventListener("resize", updateDimension);
+
+    return () => {
+      window.removeEventListener("resize", updateDimension);
+    };
+  }, [screenSize]);
+
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const wearGroup = [
     { id: 1, name: "Футболки" },
@@ -146,28 +164,30 @@ function YandexMapsDressMe() {
     <div className=" h-fit w-full flex justify-center overflow-hidden overflow-y-hidden">
       <div className="w-[100%] h-[100vh]	 border-b border-searchBgColor overflow-hidden ">
         {/* Laptop device for */}
-
-        <div
-          className={`w-full z-[-10] hidden md:block md:w-[769px] absolute md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
+        {screenSize.width <= 768 ? (
+          <div
+            className={`absolute w-full bottom-[0px]  ${
+              dressInfo?.yandexOpenMarketLocation
+                ? "z-[102] h-fit bottom-0"
+                : "hidden bottom-[-170px] z-[-10] "
+            } md:hidden    ease-linear duration-500 `}
+          >
+            <YandexLocationMarketOpen />
+          </div>
+        ) : (
+          <div
+            className={`w-full bottom-[0px]  overflow-hidden hidden md:block md:w-[769px] absolute md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
           ${
             dressInfo?.yandexOpenMarketLocation
-              ? `z-[102]  h-fit  bottom-[-170px]   md:bottom-[-75px]`
+              ? `z-[102] h-fit bottom-[-170px] md:bottom-[-75px]`
               : "hidden bottom-[-170px]  z-[-10]"
           } ease-linear duration-300`}
-        >
-          <YandexLocationMarketOpen />
-        </div>
-        {/* Mobile device for */}
-
-        <div
-          className={`absolute w-full bottom-[0px]  ${
-            dressInfo?.yandexOpenMarketLocation
-              ? "z-[102] h-fit mb-0"
-              : " mb-[-1000px] z-[-10] "
-          } md:hidden    ease-linear duration-500 `}
-        >
-          <YandexLocationMarketOpen />
-        </div>
+          >
+            {dressInfo?.yandexOpenMarketLocation && (
+              <YandexLocationMarketOpen />
+            )}
+          </div>
+        )}
 
         {/* <div
           className={`h-fit md:hidden  absolute  bg-white shadow-lg ease-linear duration-500  bg-red-500  ${
@@ -219,7 +239,6 @@ function YandexMapsDressMe() {
             //   center: [41.311753, 69.241822],
             //   zoom: 14,
             //   // controls: ["smallMapDefaultSet"],
-
             // }}
             defaultState={mapState}
             // instanceRef={map}

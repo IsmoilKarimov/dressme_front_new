@@ -76,53 +76,9 @@ const ProductDetails = () => {
     });
   };
 
-  // const handleGetId = (getValue) => {
-  //   setPoints((current) => {
-  //     return current.map((data) => {
-  //       if (data?.id == getValue) {
-  //         return { ...data, accordion: !data.accordion };
-  //       } else {
-  //         return { ...data, accordion: false };
-  //       }
-  //     });
-  //   });
-  // };
-
-  const [show, setShow] = useState(true);
-  const [scrollPost, setscrollPost] = useState(0);
-
-  // ----------------NavMenu----------------
-  const [ShowNavMenu, setShowNavMenu] = useState(true);
-  const [ScrollPostNavMenu, setScrollPostNavMenu] = useState(0);
-
-  // ----------------NavBar----------------
-  const handleScroll = () => {
-    setscrollPost(document.body.getBoundingClientRect().top);
-    if (parseInt(Math.abs(scrollPost)) > 300) {
-      setShow(document.body.getBoundingClientRect().top > scrollPost);
-    }
-  };
-
-  // ----------------NavMenu----------------
-  const handleScrollNavMenu = () => {
-    setScrollPostNavMenu(document.body.getBoundingClientRect().top);
-    setShowNavMenu(
-      document.body.getBoundingClientRect().top < ScrollPostNavMenu
-    );
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("scroll", handleScrollNavMenu);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("scroll", handleScrollNavMenu);
-    };
-  }, [show, scrollPost, ShowNavMenu, ScrollPostNavMenu]);
-
+  // 700px
   return (
-    <div className="w-full h-full mt-4 md:mt-0">
+    <div className="w-full h-full mt-4 md:mt-0 border border-green-500">
       <div className="w-full">
         <div className="h-fit flex justify-between mb-4">
           <div className="flex items-center justify-start ">
@@ -257,7 +213,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-      <div className="w-full border-t md:border-y md:border-searchBgColor pt-7 pb-12">
+      <div className="w-full border-t md:border-y md:border-searchBgColor pt-7 pb-12 border border-red-500">
         <div className="w-full flex items-center mb-6 text-base font-AeonikProMedium">
           <span>
             <ProductSwitchIcons />
@@ -323,11 +279,16 @@ const ProductDetails = () => {
           </div>
         </div>
 
-
         {/* Mobile Price */}
-        <div className={`fixed md:hidden z-[29] flex flex-col gap-y-1 shadow-navMenuShadov ${
-            show ? " bottom-[62px] duration-500 translate-y-[100%]" : "translate-y-[0%] bottom-0 duration-500 "
-          }  left-0 right-0 px-4  py-2 w-[100%] h-fit bg-white rounded-lg`}
+        {/* ${
+            screenSize.height > 780
+              ? "fixed bottom-0 left-0 z-[90] bg-green-400 duration-200"
+              : ""
+          } */}
+        <div
+          className={`
+          
+           border border-black w-full h-fit py-1 mt-6`}
         >
           <div className="h-[36px] w-full flex justify-between items-center ">
             <div className="flex ">
@@ -381,7 +342,6 @@ const ProductDetails = () => {
             </button>
           </div>
         </div>
-        
       </div>
 
       <div className="w-full md:block hidden md:pb-8 pt-6 md:border-b border-searchBgColor mb-12 md:mb-0">
@@ -559,7 +519,7 @@ const ProductDetails = () => {
           </li>
         </ul>
       </div>
-      
+
       {/* Table */}
       <div className="mt-[60px] hidden md:block">
         <div className="">
