@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { NavLink } from "react-router-dom";
@@ -15,25 +15,6 @@ import { AddBasket, HeartImg } from "../../../../AssetsMain";
 export default function FavouriteProducts() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
-  let dataStyle = "";
-  let shadowStyle = "";
-  if (dressInfo?.type === 1111) {
-    dataStyle = "text-borderSpring ";
-    shadowStyle = "hover:shadow-green-300/100 ";
-  }
-  if (dressInfo?.type === 2222) {
-    dataStyle = "text-borderSummer";
-    shadowStyle = "hover:shadow-amber-200/100  ";
-  }
-  if (dressInfo?.type === 3333) {
-    dataStyle = "text-borderAutumm";
-    shadowStyle = "hover:shadow-orange-200/100   ";
-  }
-  if (dressInfo?.type === 4444) {
-    dataStyle = "text-borderWinter";
-    shadowStyle = "hover:shadow-sky-200/100  ";
-  }
-
   const onColorChecked = (itemId, colorId) => {
     // setFavouriteProductsList((current) => {
     //   return current?.map((data) => {
@@ -48,8 +29,6 @@ export default function FavouriteProducts() {
     //   });
     // });
   };
-
-  const [clothesSetWear, setClothesSetWear] = useState(true);
 
   return (
     <div className="flex flex-col min-h-[44px]  justify-center items-center mt-8">
@@ -197,7 +176,6 @@ export default function FavouriteProducts() {
             Показать ещё 30 наборов
           </div>
         </div>
-
       </div>
     </div>
   );

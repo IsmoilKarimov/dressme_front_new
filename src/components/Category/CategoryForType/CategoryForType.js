@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../category.css";
 import CategoryCards from "./CategoryElement/CategoryCards";
 import { CategoryForBrand } from "./CategoryForBrand/CategoryForBrand";
@@ -6,10 +6,7 @@ import { dressMainData } from "../../../ContextHook/ContextMenu";
 
 export default function CategoryForType() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  console.log(
-    "   dressInfo?.openCategoryFilter ",
-    dressInfo?.openCategoryFilter
-  );
+
   return (
     <div className="w-full h-full  ">
       <div className="flex flex-gap-6 relative justify-between mb-10">

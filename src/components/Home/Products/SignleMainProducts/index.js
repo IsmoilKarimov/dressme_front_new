@@ -7,6 +7,7 @@ export default function SingleMainProducts() {
       top: 0,
     });
   }, []);
+
   return (
     <div className="w-full px-4">
       <SingleProduct />

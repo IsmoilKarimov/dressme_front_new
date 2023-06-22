@@ -184,11 +184,8 @@ const ProductCarousel = () => {
           >
             {imgGroup?.map((data) => {
               return (
-                <div>
-                  <div
-                    key={data?.id}
-                    className="relative w-full h-full overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center"
-                  >
+                <div key={data?.id}>
+                  <div className="relative w-full h-full overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
                     <img className="w-full h-fit" src={data?.img} alt="" />
                     <div className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                       <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider	">
