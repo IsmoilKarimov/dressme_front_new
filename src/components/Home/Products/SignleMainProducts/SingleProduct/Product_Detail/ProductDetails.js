@@ -288,7 +288,7 @@ const ProductDetails = () => {
               ? "fixed bottom-0 left-0 z-[90] bg-green-400 duration-200"
               : ""
           } */}
-        <div className={`w-full h-fit py-1 mt-6`}>
+        <div className={`w-full h-fit py-1 mt-6 md:hidden`}>
           <div className="h-[36px] w-full flex justify-between items-center ">
             <div className="flex ">
               <DollorIcons />
