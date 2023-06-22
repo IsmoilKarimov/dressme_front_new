@@ -76,10 +76,12 @@ const ProductDetails = () => {
     });
   };
 
-  // 700px
+  // 700px black         border border-black w-full h-fit py-1 mt-6
   return (
-    <div className="w-full h-full mt-4 md:mt-0 border border-green-500">
+    <div className="w-full relative h-full mt-4 md:mt-0 ">
+      {/*  */}
       <div className="w-full">
+        {/* --------- */}
         <div className="h-fit flex justify-between mb-4">
           <div className="flex items-center justify-start ">
             <div className="w-fit flex items-center gap-x-[1px]">
@@ -213,7 +215,8 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-      <div className="w-full border-t md:border-y md:border-searchBgColor pt-7 pb-12 border border-red-500">
+      {/*  */}
+      <div className="w-full border-t md:border-y md:border-searchBgColor pt-7 pb-12 ">
         <div className="w-full flex items-center mb-6 text-base font-AeonikProMedium">
           <span>
             <ProductSwitchIcons />
@@ -285,11 +288,7 @@ const ProductDetails = () => {
               ? "fixed bottom-0 left-0 z-[90] bg-green-400 duration-200"
               : ""
           } */}
-        <div
-          className={`
-          
-           border border-black w-full h-fit py-1 mt-6`}
-        >
+        <div className={`w-full h-fit py-1 mt-6`}>
           <div className="h-[36px] w-full flex justify-between items-center ">
             <div className="flex ">
               <DollorIcons />
@@ -344,7 +343,7 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      <div className="w-full md:block hidden md:pb-8 pt-6 md:border-b border-searchBgColor mb-12 md:mb-0">
+      <div className=" w-full md:block hidden md:pb-8 pt-6 md:border-b border-searchBgColor mb-12 md:mb-0">
         <div className="w-full flex items-center justify-between md:justify-start mb-[14px] md:mb-0">
           <div className="flex md:hidden">
             <DollorIcons />

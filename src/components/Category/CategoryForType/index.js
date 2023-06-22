@@ -3,24 +3,6 @@ import CategoryForType from "./CategoryForType";
 import CategoryTopDetail from "./CategoryTop/CategoryTopDetail";
 
 export default function CategoryMainType() {
-  const [windowDetection, setWindowDetection] = useState({
-    winWidth: window.innerWidth,
-    winHeight: window.innerHeight,
-  });
-  const detectSize = () => {
-    setWindowDetection({
-      winWidth: window.innerWidth,
-      winHeight: window.innerHeight,
-    });
-  };
-  useEffect(() => {
-    window.addEventListener("resize", detectSize);
-
-    return () => {
-      window.removeEventListener("resize", detectSize);
-    };
-  }, [windowDetection]);
-  console.log("Index", windowDetection.winHeight);
   return (
     <div className="w-full flex flex-col justify-center items-center m-0 p-0 box-border">
       <div className="w-full ">
