@@ -16,7 +16,6 @@ const CategoryForBrand = () => {
   function getCurrentDimension() {
     return {
       width: window.innerWidth,
-      height: window.innerHeight,
     };
   }
   useEffect(() => {
@@ -167,7 +166,6 @@ const CategoryForBrand = () => {
     //   });
     // });
   };
-  // console.log((width: window.innerWidth), (height: window.innerHeight));
 
   return (
     <div
