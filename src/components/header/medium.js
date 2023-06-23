@@ -564,10 +564,10 @@ const MediumHeader = () => {
           </div>
 
           {/*Starting of Blocked  Hamburger Menu section */}
-          <div className={`md:hidden`}>
-            <div className="flex items-center justify-between w-full ">
+          <div className={`md:hidden `}>
+            <div className="relative flex items-center justify-between w-full ">
               {/* Searching section */}
-              <div className="search flex items-center rounded-xl font-AeonikProMedium h-12  border ss:w-[100%]">
+              <div className="search sticky top-1 z-[50] flex items-center rounded-xl font-AeonikProMedium h-12  border ss:w-[100%]  border border-red-500">
                 <span className="pl-[11.65px]">
                   <SearchIcons />
                 </span>
@@ -577,17 +577,6 @@ const MediumHeader = () => {
                   className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
                 />
               </div>
-
-              {/* Map section */}
-              {/* <Link
-                to="/delivery-points"
-                className="flex items-center w-full justify-center bg-btnBgColor border border-searchBgColor rounded-xl ss:px-4 h-12 ml-2  ss:w-[94px] "
-              >
-                <span className="pr-[6px]">
-                  <MapIcons colors={"#000"} />
-                </span>
-                <div className="font-AeonikProMedium">Map</div>
-              </Link> */}
             </div>
 
             {/* Gender selection for Mobile */}

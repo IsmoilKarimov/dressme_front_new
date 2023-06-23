@@ -21,9 +21,10 @@ import {
   zara,
 } from "../../../../AssetsMain";
 import { GrClose } from "react-icons/gr";
-
+import ReactSlider from "react-slider";
 const ClothingParametr = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+
   let IconsColor = "";
   let dataStyle = "";
   let genderStyle = "";
@@ -327,21 +328,21 @@ const ClothingParametr = () => {
                       <GrClose size={25} />
                     </button>
                   </div>
-                  <div className="py-4">
-                    {PriceMobileList?.map((data) => {
-                      return (
-                        <div
-                          key={data?.type}
-                          onClick={() => {
-                            handlePriceMobile(data?.type);
-                            setState({ ...state, priceToggleMobile: false });
-                          }}
-                          className={` ${hoverText}  text-base font-AeonikProMedium hover:bg-bgColor w-full h-12 border border-solid border-searchBgColor flex items-center justify-center`}
-                        >
-                          {data?.type}
-                        </div>
-                      );
-                    })}
+                  <div className="py-4 border border-red-500">
+                    <div className="relative z-50 py-10">
+                      {" "}
+                      <ReactSlider
+                        className="horizontal-slider"
+                        thumbClassName="example-thumb1"
+                        trackClassName="example-track1"
+                        defaultValue={[10, 90]}
+                        ariaLabel={["Lower thumb", "Upper thumb"]}
+                        // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
+                        // renderThumb={() => <div>1</div>}
+                        pearling
+                        minDistance={10}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
