@@ -201,7 +201,7 @@ const ClothingParametr = () => {
           <span>Коллекция одежд, которые вам подходят</span>
         </div>
       </div>
-      <div className="w-full md:hidden flex items-center justify-between md:border-0 border-b border-searchBgColor pb-3 ">
+      <div className="w-full md:hidden flex items-center justify-between md:border-0 border-b border-searchBgColor pb-3 gap-x-2">
         <button
           onClick={() => {
             setState({
@@ -209,7 +209,7 @@ const ClothingParametr = () => {
               clothesTypeMobile: !state.clothesTypeMobile,
             });
           }}
-          className="active:scale-95  active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-6 ls:px-8 h-[52px] w-fit"
+          className="w-[25%] active:scale-80 active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[52px]"
         >
           <span>
             {" "}
@@ -223,7 +223,7 @@ const ClothingParametr = () => {
               priceToggleMobile: !state.priceToggleMobile,
             })
           }
-          className="active:scale-95  active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-6 ls:px-8 h-[52px] w-fit"
+          className="w-[25%] active:scale-95  active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[52px] "
         >
           <span>
             {" "}
@@ -237,7 +237,7 @@ const ClothingParametr = () => {
               selectColorToggleMobile: !state.selectColorToggleMobile,
             })
           }
-          className="active:scale-95  active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-6 ls:px-8 h-[52px] w-fit"
+          className="w-[25%] active:scale-95  active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[52px]"
         >
           <span>
             {" "}
@@ -251,7 +251,7 @@ const ClothingParametr = () => {
               brandToggleMobile: !state.brandToggleMobile,
             })
           }
-          className="active:scale-95  active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-6 ls:px-8 h-[52px] w-fit"
+          className="w-[25%] active:scale-95  active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[52px]"
         >
           <span>
             {" "}
@@ -259,9 +259,8 @@ const ClothingParametr = () => {
           </span>
         </button>
       </div>
-      <div>
-        <div
-          className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${
+      <div className="w-full">
+        <div className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
             state?.clothesTypeMobile ? "w-[92%]" : "w-0"
           }  `}
         >
@@ -304,9 +303,7 @@ const ClothingParametr = () => {
             </div>
           )}
         </div>
-
-        <div
-          className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
+        <div className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
             state?.priceToggleMobile ? "w-[92%]" : "w-0"
           }  `}
         >
@@ -358,10 +355,9 @@ const ClothingParametr = () => {
           )}
         </div>
 
-        <div
-          className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
+        <div className={`w-full h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
             state?.brandToggleMobile ? "w-[92%]" : "w-0"
-          }  `}
+          }`}
         >
           {state?.brandToggleMobile && (
             <div className="fixed inset-0 z-10 ">
@@ -380,15 +376,15 @@ const ClothingParametr = () => {
                       <GrClose size={25} />
                     </button>
                   </div>
-                  <div className="py-4 flex flex-wrap justify-between gap-y-5">
+                  <div className="w-full flex-row flex justify-between flex-wrap py-4 gap-y-5">
                     {campany?.map((data) => {
                       return (
                         <div
                           key={data?.imgFull}
-                          className="w-[80px] h-[80px] rounded-lg bg-bgColor  border border-solid border-borderColorCard"
+                          className="w-[23%] h-20 rounded-lg bg-bgColor  border border-solid border-borderColorCard"
                         >
                           <img
-                            className="h-full w-full"
+                            className="h-full w-full p-2"
                             src={data?.imgFull}
                             alt="img"
                           />
@@ -402,8 +398,7 @@ const ClothingParametr = () => {
           )}
         </div>
 
-        <div
-          className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
+        <div className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
             state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
           }`}
         >

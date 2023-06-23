@@ -425,7 +425,7 @@ const MediumHeader = () => {
           </div>
           {/* Ending of Full Screen page sesction Map*/}
 
-          {/* Open Main Menu at the  Mobile version */}
+          {/* Open Main Menu at the Mobile version */}
           <div
             className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${
               state?.hamburgerMenu
@@ -599,11 +599,11 @@ const MediumHeader = () => {
           </div>
 
           {/*Starting of Blocked  Hamburger Menu section */}
-          <div className={`md:hidden relative max-w-[440px] w-[100%]`}>
+          <div className={`md:hidden relative w-full mx-auto `}>
             {scrollPost > -132 ? (
               <div className={`sticky top-0 py-1 bg-white  w-full z-[100]`}>
                 {/* Searching section */}
-                <div className=" flex items-center rounded-xl font-AeonikProMedium h-12  border ss:w-[100%]  border border-searchBgColor bg-white ">
+                <div className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%]  border border-searchBgColor bg-white ">
                   <span className="pl-[11.65px]">
                     <SearchIcons />
                   </span>
@@ -616,10 +616,10 @@ const MediumHeader = () => {
               </div>
             ) : (
               <div
-                className={`fixed  top-0 py-1 bg-white ss:max-w-[320px] ls:max-w-[360px] ll:max-w-[390px] xs:max-w-[480px] sm:max-w-[640px] w-[100%] z-[100]`}
+                className={`fixed left-0 right-0 w-full top-0 px-3 py-1 bg-white z-[100]`}
               >
                 {/* Searching section */}
-                <div className=" flex items-center rounded-xl font-AeonikProMedium h-12  border ss:w-[100%]  border border-searchBgColor bg-white ">
+                <div className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%] border border-searchBgColor bg-white ">
                   <span className="pl-[11.65px]">
                     <SearchIcons />
                   </span>
