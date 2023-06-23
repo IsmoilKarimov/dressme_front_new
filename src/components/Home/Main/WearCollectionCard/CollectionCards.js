@@ -65,7 +65,7 @@ export default function CollectionCards() {
       </div>
       <div className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
         <div className="w-full flex flex-col box-border ">
-          <div className="flex flex-wrap justify-between md:justify-start md:mx-0 mt-[25px] md:mt-[50px] gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
+          <div className="flex flex-wrap justify-between md:justify-start md:mx-0 mt-[25px] md:mt-[50px]  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
             {dressInfo.ProductList.map((data) => {
               return (
                 <div
@@ -73,7 +73,7 @@ export default function CollectionCards() {
                   onClick={() => goDetail(data?.title)}
                   className={`ss:w-[49%] md:w-[24%] lg:w-[240px]  xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
                 >
-                  <div className="relative w-full cursor-pointer ss:h-[200px] ls:h-[220px] ll:h-[238px] xs:h-[309px] bg-btnBgColor lg:h-[320px] flex content-between items-center overflow-hidden border-b border-solid flex-nowrap">
+                  <div className="relative w-full cursor-pointer ss:h-[200px] ls:h-[220px] ll:h-[238px] xs:h-[309px] lg:h-[320px] bg-btnBgColor  flex content-between items-center overflow-hidden border-b border-solid flex-nowrap">
                     {data.ProducImg ? (
                       <img
                         className="w-full h-full m-auto hover:scale-105 transition duration-700 ease-in-out"
