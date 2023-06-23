@@ -15,6 +15,7 @@ import {
 import { AddBasket, HeartImg } from "../../../../../AssetsMain";
 import ProductComment from "./ProductComment/ProductComment";
 import AboutProduct from "./AboutProduct/AboutProduct";
+import CarosuelGRoups from "./Product_Carousel/CarosuelGRoups";
 
 const SingleProduct = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -83,6 +84,7 @@ const SingleProduct = () => {
     //     });
     //   });
   };
+  // ${show ? "visible z-[29] top-[110px]" : "visible z-[29] top-[16px]"}
 
   return (
     <div className="flex flex-col  m-0 p-0 box-border">
@@ -90,18 +92,12 @@ const SingleProduct = () => {
         <SingleProductTop />
       </div>
       <div className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto border-box mb-20 md:mb-[60px]">
-        <div className="relative w-[100%] h-fit mt-6 flex justify-between flex-col md:flex-row">
-          <div
-            className={`w-full h-fit md:w-1/2 md:h-full md:sticky md:duration-500
-            ${
-              show
-                ? "visible z-[29] top-[110px]"
-                : "visible z-[29] top-[16px]"
-            }`}
-          >
+        <div className=" relative w-[100%] h-fit mt-6 flex justify-between flex-col  md:flex-row border border-blue-500">
+          <div className={`w-1/2 h-fit sticky duration-500 top-0 z-50  `}>
+            {/* <CarosuelGRoups /> */}
             <ProductCarousel />
           </div>
-          <div className="w-full md:w-1/2 h-full">
+          <div className="w-full md:w-1/2 h-full ">
             <ProductDetails />
           </div>
           <div className="block md:hidden w-full">

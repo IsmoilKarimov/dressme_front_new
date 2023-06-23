@@ -129,7 +129,7 @@ const ShopOfficialBrand = () => {
     checkedPrize: true,
   });
 
-  const [value, SetValue] = useState({ min: 20, max: 150 });
+  // const [value, SetValue] = useState({ min: 20, max: 150 });
 
   const HandleBrandFilter = (e) => {
     console.log(e, "e");

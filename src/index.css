@@ -297,3 +297,93 @@ table tr th:nth-child(1) {
   cursor: pointer;
   /* border: 1px solid green; */
 }
+
+/* --------------------React Slider */
+
+/* --------------------React Slider */
+
+.horizontal-slider {
+  width: 95%;
+  margin: auto;
+  z-index: 33;
+  border-radius: 5px;
+  /* padding: 2px; */
+}
+.example-thumb1 {
+  background: rgba(0, 125, 202, 1)
+    url("./AssetsMain//Category//ReactSliderMenu.svg");
+  width: 24px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+  border-radius: 16px;
+  border: 1px solid #007dca;
+  margin-top: -8px;
+}
+.example-thumb1.active {
+  border: 1px solid #007dca;
+}
+
+.example-track1 {
+  position: relative;
+  margin-top: -18px;
+  background: #fff;
+  border: 1px solid #d2d2d2;
+}
+
+.example-track1.example-track1-1 {
+  margin-top: -18px;
+  background: #007dca;
+}
+
+.example-track1.example-track1-2 {
+  margin-top: -18px;
+  background: #fff;
+  border: 1px solid #d2d2d2;
+}
+
+.horizontal-slider .example-track1 {
+  top: 16px;
+  height: 6px;
+  border-radius: 5px;
+  padding: 2px;
+}
+/* .example-thumb {
+  background-image: url("./AssetsMain//Category/Star.svg");
+  width: 16px;
+  height: 16px;
+  cursor: grab;
+  background: #fff;
+  border: 1px solid #000;
+  margin-top: 10px;
+}
+
+.example-thumb.active {
+  background-color: white;
+}
+
+.example-track {
+  position: relative;
+  background: #f8f8f8;
+  margin-top: -5px;
+}
+
+.example-track.example-track-1 {
+  background: #007dca;
+  margin-top: -5px;
+}
+
+.example-track.example-track-2 {
+  background: #f8f8f8;
+  margin-top: -5px;
+}
+
+.horizontal-slider .example-track {
+  top: 20px;
+  height: 5px;
+} */

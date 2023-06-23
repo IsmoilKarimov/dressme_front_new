@@ -88,14 +88,14 @@ const ProductDetails = () => {
               <StarIcons />
             </div>
             <div className="flex items-center w-fit ml-2 text-base md:text-[13px]">
-              <div className="not-italic font-AeonikProMedium mt-2 leading-4 text-black tracking-[1%]">
+              <div className="not-italic font-AeonikProMedium mt-1 leading-4 text-black tracking-[1%]">
                 4.7
               </div>
-              <div className=" pl-1 not-italic font-AeonikProRegular mt-2 leading-4 text-setTexOpacity tracking-[1%]">
+              <div className=" pl-1 not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
                 (265 votes)
               </div>
               <div className="text-searchBgColor mx-[10px]">|</div>
-              <div className=" not-italic font-AeonikProRegular mt-2 leading-4 text-setTexOpacity tracking-[1%]">
+              <div className=" not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
                 (678 orders)
               </div>
             </div>
