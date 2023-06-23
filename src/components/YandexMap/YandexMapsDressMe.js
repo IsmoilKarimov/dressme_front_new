@@ -164,17 +164,7 @@ function YandexMapsDressMe() {
     <div className=" h-fit w-full flex justify-center overflow-hidden overflow-y-hidden">
       <div className="w-[100%] h-[100vh]	 border-b border-searchBgColor overflow-hidden ">
         {/* Laptop device for */}
-        {screenSize.width <= 768 ? (
-          <div
-            className={`absolute w-full bottom-[0px]  ${
-              dressInfo?.yandexOpenMarketLocation
-                ? "z-[102] h-fit bottom-0"
-                : "hidden bottom-[-170px] z-[-10] "
-            } md:hidden    ease-linear duration-500 `}
-          >
-            <YandexLocationMarketOpen />
-          </div>
-        ) : (
+        {screenSize.width > 768 && (
           <div
             className={`w-full bottom-[0px]  overflow-hidden hidden md:block md:w-[769px] absolute md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
           ${
@@ -186,6 +176,17 @@ function YandexMapsDressMe() {
             {dressInfo?.yandexOpenMarketLocation && (
               <YandexLocationMarketOpen />
             )}
+          </div>
+        )}
+        {screenSize.width <= 768 && (
+          <div
+            className={`absolute w-full  ${
+              dressInfo?.yandexOpenMarketLocation
+                ? "z-[102] h-fit bottom-0 bottom-[0px] "
+                : "bottom-[-1000px] z-[-10] "
+            } md:hidden ease-linear duration-300 `}
+          >
+            <YandexLocationMarketOpen />
           </div>
         )}
 
