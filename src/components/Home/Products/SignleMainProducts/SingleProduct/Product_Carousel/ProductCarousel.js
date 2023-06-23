@@ -8,6 +8,24 @@ import {
 } from "../../../../../../AssetsMain/icons";
 
 const ProductCarousel = () => {
+  const [screenSize, setScreenSize] = useState(getCurrentDimension());
+
+  function getCurrentDimension() {
+    return {
+      width: window.innerWidth,
+    };
+  }
+  useEffect(() => {
+    const updateDimension = () => {
+      setScreenSize(getCurrentDimension());
+    };
+    window.addEventListener("resize", updateDimension);
+
+    return () => {
+      window.removeEventListener("resize", updateDimension);
+    };
+  }, [screenSize]);
+
   const [imgGroup, setImgGroup] = useState([
     {
       id: 1,
@@ -71,7 +89,7 @@ const ProductCarousel = () => {
     const { onClick } = props;
     return (
       <div
-        className={`absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 flex items-center justify-center top-[50%] z-10	right-[20px] rounded-full bg-bgColor duration-200 border  border-searchBgColor	`}
+        className={`absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 flex items-center justify-center top-[50%] z-10  right-[20px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
         onClick={onClick}
       >
         <button className="next">
@@ -85,7 +103,7 @@ const ProductCarousel = () => {
     const { onClick } = props;
     return (
       <div
-        className={`absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 flex items-center justify-center top-[50%] z-10	left-[20px] rounded-full bg-bgColor duration-200 border  border-searchBgColor	`}
+        className={`absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 flex items-center justify-center top-[50%] z-10  left-[20px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
         onClick={onClick}
       >
         <button className="prev">
@@ -148,92 +166,128 @@ const ProductCarousel = () => {
 
   return (
     <div className="w-full md:w-fit h-full">
-      <div className="w-full flex flex-col md:flex-row md:w-fit h-[600px] md:gap-x-[10px]">
-        <div className="hidden md:flex w-[90px] flex-col">
-          <Slider
-            asNavFor={nav1}
-            ref={slider2}
-            slidesToShow={6}
-            swipeToSlide={true}
-            focusOnSelect={true}
-            vertical={true}
-            className="flex flex-col flex-wrap w-full h-full pt-0 rounded-lg"
-          >
-            {imgGroup?.map((data) => {
-              return (
-                <div
-                  key={data?.id}
-                  className="!w-[90px] cursor-pointer !h-[120px] mt-[-2.5px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center"
-                >
-                  <img
-                    className="w-full h-full rounded-lg"
-                    src={data?.img}
-                    alt=""
-                  />
-                </div>
-              );
-            })}
-          </Slider>
-        </div>
-        <div className="widthInherit mx-auto h-[482px] md:w-[480px] md:h-[600px]">
-          <Slider
-            className="w-full h-full rounded-lg"
-            asNavFor={nav2}
-            ref={slider1}
-            {...settings}
-          >
-            {imgGroup?.map((data) => {
-              return (
-                <div key={data?.id}>
-                  <div className="relative w-full h-full overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
-                    <img className="w-full h-fit" src={data?.img} alt="" />
-                    <div className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
-                      <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider	">
-                        <span> {data.id}</span>/<span>{imgGroup.length}</span>
-                      </span>
-                      <span className="w-fit flex items-center p-2 gap-x-2 rounded-lg bg-bgCard border border-searchBgColor">
-                        <span className="flex items-center ">
-                          <VideoStoreIcons />
+      {screenSize.width >= 768 ? (
+        <div className="w-full flex flex-col md:flex-row md:w-fit h-[600px] md:gap-x-[10px] ">
+          <div className=" flex w-[90px] flex-col">
+            <Slider
+              asNavFor={nav1}
+              ref={slider2}
+              slidesToShow={6}
+              swipeToSlide={true}
+              focusOnSelect={true}
+              vertical={true}
+              className="flex flex-col flex-wrap w-full h-full pt-0 rounded-lg"
+            >
+              {imgGroup?.map((data) => {
+                return (
+                  <div
+                    key={data?.id}
+                    className="!w-[90px] cursor-pointer !h-[120px] mt-[-2.5px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center"
+                  >
+                    <img
+                      className="w-full h-full rounded-lg"
+                      src={data?.img}
+                      alt=""
+                    />
+                  </div>
+                );
+              })}
+            </Slider>
+          </div>
+          <div className="widthInherit mx-auto h-[482px] md:w-[480px] md:h-[600px]">
+            <Slider
+              className="w-full h-full rounded-lg"
+              asNavFor={nav2}
+              ref={slider1}
+              {...settings}
+            >
+              {imgGroup?.map((data) => {
+                return (
+                  <div key={data?.id}>
+                    <div className="relative w-full h-full overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
+                      <img className="w-full h-fit" src={data?.img} alt="" />
+                      <div className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
+                        <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
+                          <span> {data.id}</span>/<span>{imgGroup.length}</span>
                         </span>
-                        <span className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-black">
-                          Видео
+                        <span className="w-fit flex items-center p-2 gap-x-2 rounded-lg bg-bgCard border border-searchBgColor">
+                          <span className="flex items-center ">
+                            <VideoStoreIcons />
+                          </span>
+                          <span className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-black">
+                            Видео
+                          </span>
                         </span>
-                      </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </Slider>
+                );
+              })}
+            </Slider>
+          </div>
         </div>
-        <div className="flex flex-row md:hidden w-full mt-4 md:mt-0">
-          <Slider
-            asNavFor={nav1}
-            ref={slider2}
-            // slidesToShow={5}
-            swipeToSlide={true}
-            focusOnSelect={true}
-            vertical={false}
-            {...settings1}
-            className="flex flex-row flex-wrap pt-0 rounded-lg"
-          >
-            {imgGroup?.map((data) => {
-              return (
-                <div
-                  key={data?.id}
-                  className="!w-[72px] cursor-pointer !h-[96px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center"
-                >
-                  <img
-                    className="w-full h-full rounded-lg"
-                    src={data?.img}
-                    alt=""
-                  />
-                </div>
-              );
-            })}
-          </Slider>
+      ) : (
+        <div className="w-full flex flex-col md:flex-row md:w-fit h-[600px] md:gap-x-[10px] ">
+          <div className="widthInherit mx-auto h-[482px] md:w-[480px] md:h-[600px]">
+            <Slider
+              className="w-full h-full rounded-lg"
+              asNavFor={nav2}
+              ref={slider1}
+              {...settings}
+            >
+              {imgGroup?.map((data) => {
+                return (
+                  <div key={data?.id}>
+                    <div className="relative w-full h-full overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
+                      <img className="w-full h-fit" src={data?.img} alt="" />
+                      <div className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
+                        <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
+                          <span> {data.id}</span>/<span>{imgGroup.length}</span>
+                        </span>
+                        <span className="w-fit flex items-center p-2 gap-x-2 rounded-lg bg-bgCard border border-searchBgColor">
+                          <span className="flex items-center ">
+                            <VideoStoreIcons />
+                          </span>
+                          <span className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-black">
+                            Видео
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </Slider>
+          </div>
+          <div className="flex flex-row md:hidden w-full mt-4 md:mt-0">
+            <Slider
+              asNavFor={nav1}
+              ref={slider2}
+              // slidesToShow={5}
+              swipeToSlide={true}
+              focusOnSelect={true}
+              vertical={false}
+              {...settings1}
+              className="flex flex-row flex-wrap pt-0 rounded-lg"
+            >
+              {imgGroup?.map((data) => {
+                return (
+                  <div
+                    key={data?.id}
+                    className="!w-[72px] cursor-pointer !h-[96px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center"
+                  >
+                    <img
+                      className="w-full h-full rounded-lg"
+                      src={data?.img}
+                      alt=""
+                    />
+                  </div>
+                );
+              })}
+            </Slider>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

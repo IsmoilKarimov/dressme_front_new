@@ -286,7 +286,7 @@ const CategoryTopDetail = ({ name }) => {
                       </div>
                     );
                   })}
-                </Slider>
+                </Slider> 
               </div>
             </div>
           </div> */}
