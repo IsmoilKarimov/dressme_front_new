@@ -328,8 +328,16 @@ const ClothingParametr = () => {
                       <GrClose size={25} />
                     </button>
                   </div>
-                  <div className="py-4 border border-red-500">
-                    <div className="relative z-50 py-10">
+                  <div className="  flex flex-col  mt-4">
+                    <div className="flex justify-between items-center mb-7">
+                      <span className="flex items-center justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black ">
+                        60.000 sum
+                      </span>
+                      <span className="flex items-center justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black ">
+                        1 860 000 sum
+                      </span>
+                    </div>
+                    <div className="relative z-50 ">
                       {" "}
                       <ReactSlider
                         className="horizontal-slider"

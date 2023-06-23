@@ -77,6 +77,42 @@ const MediumHeader = () => {
     }
   }, [state?.hamburgerMenu]);
 
+  // -----------------------------------------------------
+  const [show, setShow] = useState(true);
+  const [scrollPost, setscrollPost] = useState(0);
+
+  // ----------------NavMenu----------------
+  const [ShowNavMenu, setShowNavMenu] = useState(true);
+  const [ScrollPostNavMenu, setScrollPostNavMenu] = useState(0);
+
+  // ----------------NavBar----------------
+  const handleScroll = () => {
+    setscrollPost(document.body.getBoundingClientRect().top);
+    if (parseInt(Math.abs(scrollPost)) > 300) {
+      setShow(document.body.getBoundingClientRect().top > scrollPost);
+    }
+  };
+
+  // ----------------NavMenu----------------
+  const handleScrollNavMenu = () => {
+    setScrollPostNavMenu(document.body.getBoundingClientRect().top);
+    setShowNavMenu(
+      document.body.getBoundingClientRect().top < ScrollPostNavMenu
+    );
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScrollNavMenu);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScrollNavMenu);
+    };
+  }, [show, scrollPost, ShowNavMenu, ScrollPostNavMenu]);
+  console.log(scrollPost, "scrollPost");
+  // -----------------------------------------------------
+
   let IconsColor = "";
   let dataStyle = "";
   let genderStyle = "";
@@ -564,20 +600,38 @@ const MediumHeader = () => {
           </div>
 
           {/*Starting of Blocked  Hamburger Menu section */}
-          <div className={`md:hidden `}>
-            <div className="relative flex items-center justify-between w-full ">
-              {/* Searching section */}
-              <div className="search sticky top-1 z-[50] flex items-center rounded-xl font-AeonikProMedium h-12  border ss:w-[100%]  border border-red-500">
-                <span className="pl-[11.65px]">
-                  <SearchIcons />
-                </span>
-                <input
-                  type="text"
-                  placeholder="Искать товары или бренды"
-                  className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
-                />
+          <div className={`md:hidden relative max-w-[440px] w-[100%]`}>
+            {scrollPost > -132 ? (
+              <div className={`sticky top-0 py-1 bg-white  w-full z-[100]`}>
+                {/* Searching section */}
+                <div className=" flex items-center rounded-xl font-AeonikProMedium h-12  border ss:w-[100%]  border border-searchBgColor bg-white ">
+                  <span className="pl-[11.65px]">
+                    <SearchIcons />
+                  </span>
+                  <input
+                    type="text"
+                    placeholder="Искать товары или бренды"
+                    className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
+                  />
+                </div>
               </div>
-            </div>
+            ) : (
+              <div
+                className={`fixed  top-0 py-1 bg-white ss:max-w-[320px] ls:max-w-[360px] ll:max-w-[390px] xs:max-w-[480px] sm:max-w-[640px] w-[100%] z-[100]`}
+              >
+                {/* Searching section */}
+                <div className=" flex items-center rounded-xl font-AeonikProMedium h-12  border ss:w-[100%]  border border-searchBgColor bg-white ">
+                  <span className="pl-[11.65px]">
+                    <SearchIcons />
+                  </span>
+                  <input
+                    type="text"
+                    placeholder="Искать товары или бренды"
+                    className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
+                  />
+                </div>
+              </div>
+            )}
 
             {/* Gender selection for Mobile */}
             {locationWindow === "/" && (
