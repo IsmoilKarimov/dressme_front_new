@@ -394,7 +394,7 @@ const ProductDetails = () => {
             <button
               className={`w-full h-12 md:w-[142px] md:h-[52px]  rounded-lg not-italic border font-AeonikProMedium text-base leading-4 text-center flex items-center justify-center ${genderStyle} `}
             >
-              Купить <span className="hidden md:block">сейчас</span>
+              Купить <span className="hidden md:block ml-1"> сейчас</span>
             </button>
           </div>
           <div className="w-fit md:ml-3 hidden md:block">

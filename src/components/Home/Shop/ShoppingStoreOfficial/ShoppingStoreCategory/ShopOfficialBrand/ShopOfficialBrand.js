@@ -7,6 +7,7 @@ import {
   ArrowTopIcons,
   InputCheckedTrueIcons,
   SearchIcons,
+  MenuCloseIcons,
 } from "../../../../../../AssetsMain/icons";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 
@@ -177,6 +178,21 @@ const ShopOfficialBrand = () => {
       } py-5 rounded-lg overflow-hidden `}
     >
       <div className="w-full px-3 ">
+        {dressInfo?.openShopIdFilter && (
+          <div className="flex items-center justify-end mb-4">
+            <button
+              onClick={() =>
+                setDressInfo({
+                  ...dressInfo,
+                  openShopIdFilter: false,
+                })
+              }
+              className="w-10 h-10 rounded-lg border border-searchBgColor flex items-center justify-center active:scale-95  active:opacity-70"
+            >
+              <MenuCloseIcons />
+            </button>
+          </div>
+        )}
         <div className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px]">
           <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg">
             Женщинам

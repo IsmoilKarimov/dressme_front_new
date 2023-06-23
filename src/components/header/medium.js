@@ -110,7 +110,6 @@ const MediumHeader = () => {
       window.removeEventListener("scroll", handleScrollNavMenu);
     };
   }, [show, scrollPost, ShowNavMenu, ScrollPostNavMenu]);
-  console.log(scrollPost, "scrollPost");
   // -----------------------------------------------------
 
   let IconsColor = "";
