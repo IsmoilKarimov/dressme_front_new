@@ -600,9 +600,7 @@ const MediumHeader = () => {
 
           {/*Starting of Blocked  Hamburger Menu section */}
           <div className={`md:hidden relative w-full mx-auto `}>
-            {locationWindow === "/" ? (
-              scrollPost > -132
-            ) : scrollPost > -80 ? (
+            {scrollPost > -132 ? (
               <div className={`sticky top-0 py-1 bg-white  w-full z-10`}>
                 {/* Searching section */}
                 <div className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%]  border border-searchBgColor bg-white ">
