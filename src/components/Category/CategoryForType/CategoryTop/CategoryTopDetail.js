@@ -3,6 +3,7 @@ import { NavLink, useParams } from "react-router-dom";
 import { MuslimImg, nike } from "../../../../AssetsMain";
 import {
   ArrowTopIcons,
+  ClothesIcons,
   FilterIcons,
   LocationIcons,
   ManGenIcons,
@@ -15,7 +16,7 @@ import {
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useContext, useRef, useState } from "react";
-import { dressMainData } from "../../../../ContextHook/ContextMenu";
+import { DressMenu, dressMainData } from "../../../../ContextHook/ContextMenu";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 
@@ -136,19 +137,18 @@ const CategoryTopDetail = ({ name }) => {
 
   const [state, setState] = useState({
     opensports: false,
+    openTypesofClothes: false,
   });
 
+   // categories
   const handleOpenCategories = (newOpen) => {
     setState({ ...state, opensports: newOpen });
   };
-
   const [selectSports, setSelectCategories] = useState("Categories");
-
   const handleCategories = (value) => {
     setSelectCategories(value);
     setState({ ...state, opensports: false });
   };
-
   const categories = [
     { id: 1, type: "Все категории" },
     { id: 2, type: "Студент" },
@@ -170,6 +170,48 @@ const CategoryTopDetail = ({ name }) => {
             className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {data?.type}
+          </p>
+        );
+      })}
+    </div>
+  );
+
+  // Types of Clothes
+  const handleOpenTypesofClothes = (openTypesofClothes) => {
+    setState({...state, openTypesofClothes: openTypesofClothes})
+  };
+  const [selectTypesofClothes, setSelectTypesofClothes] = useState("Categories");
+  const handleTypesofClothes = (value) => {
+    setSelectTypesofClothes(value);
+    setState({ ...state, openTypesofClothes: false });
+  };
+  const typesofClothes = [
+    { id: 1, name: "Футболки" },
+    { id: 2, name: "Рубашки" },
+    { id: 3, name: "Шорты" },
+    { id: 4, name: "Джинсы" },
+    { id: 5, name: "Свитер" },
+    { id: 6, name: "Куртки" },
+    { id: 7, name: "Толстовки" },
+    { id: 8, name: "Обуви" },
+    { id: 9, name: "Куртки" },
+    { id: 10, name: "Сапоги" },
+    { id: 11, name: "Платья" },
+    { id: 12, name: "Юбки" },
+    { id: 13, name: "Ремень" },
+  ];
+  const contentTypesofClothes = (
+    <div className="w-[150px] h-[200px] overflow-auto m-0 p-0">
+      {typesofClothes.map((data) => {
+        return (
+          <p
+            key={data?.id}
+            onClick={() => {
+              handleTypesofClothes(data?.type);
+            }}
+            className={`w-full py-3 flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+          >
+            {data?.name}
           </p>
         );
       })}
@@ -228,68 +270,10 @@ const CategoryTopDetail = ({ name }) => {
                     </Popover>
                   </div>
                 </div>
-                {/* <div className="md:hidden">
-                  <button className="h-12 flex items-center justify-center rounded-lg border border-searchBgColor px-4">
-                    <span>
-                      <ProductShopIcons colors={"#000"} />
-                    </span>{" "}
-                    <span className="not-italic ml-2 font-AeonikProMedium text-sm leading-4 text-right text-black tracking-[1%]">
-                      Товары
-                    </span>
-                  </button>
-                </div> */}
               </div>
             </div>
           </div>
 
-          {/* <div className="md:border-b hidden md:border-searchBgColor md:flex flex-gap-6 justify-between w-full pb-10 mt-[60px]">
-            <div className="w-[22%] h-full  ">
-              <div>
-                <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-                  По категории
-                </span>
-              </div>
-              <div className="w-full">
-                <button className="w-full cursor-pointer border border-searchBgColor h-[52px] mt-3 rounded-lg bg-bgCategory flex items-center justify-between px-4">
-                  <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-                    Спортивный
-                  </span>
-                  <span className="rotate-[180deg]">
-                    {" "}
-                    <ArrowTopIcons colors={"#000"} />
-                  </span>
-                </button>
-              </div>
-            </div>
-            <div className="w-[77%] h-full ">
-              <div>
-                <span className="not-italic font-AeonikProMedium text-sm  leading-4 text-black tracking-[1%]">
-                  По категории
-                </span>
-              </div>
-              <div className="w-full mt-3 h-[52px] flex flex-col items-center ">
-                <Slider
-                  {...settings1}
-                  // ref={sliderRef}
-                  className="w-[100%] h-full items-center flex xs:justify-between    "
-                >
-                  {wearGroup?.map((data) => {
-                    return (
-                      <div key={data.id} className="!w-[100px]  h-full ">
-                        <div
-                          className={` w-full h-[52px] px-5 m-auto  bg-bgCategory rounded-lg flex justify-center items-center cursor-pointer  border border-searchBgColor  `}
-                        >
-                          <p className="not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
-                            {data?.name || "0"}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </Slider> 
-              </div>
-            </div>
-          </div> */}
           <div className="w-full md:hidden flex items-center justify-between mt-6 mb-3  px-4">
             <button
               onClick={handleFilter}
@@ -302,14 +286,24 @@ const CategoryTopDetail = ({ name }) => {
                 Фильтры
               </span>
             </button>
-            <button className="h-[44px] w-[48%] active:scale-95  active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-              <span>
-                <SortIcons colors={"#000"} />
-              </span>
-              <span className="ml-2 not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
-                Популярные
-              </span>
-            </button>
+              
+            <Popover
+              className="h-[44px] w-[48%] active:scale-95  active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+              open={state?.openTypesofClothes}
+              onOpenChange={handleOpenTypesofClothes}
+              trigger="click"
+              options={["Hide"]}
+              placement="bottom"
+              content={contentTypesofClothes}
+            >
+                <span>
+                  <ClothesIcons />
+                </span>
+                <span className="ml-2 not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+                  Тип одеждый 
+                </span>
+            </Popover>
+      
           </div>
         </div>
       </div>

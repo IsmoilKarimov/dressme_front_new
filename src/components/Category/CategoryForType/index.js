@@ -5,7 +5,7 @@ import CategoryTopDetail from "./CategoryTop/CategoryTopDetail";
 export default function CategoryMainType() {
   return (
     <div className="w-full flex flex-col justify-center items-center m-0 p-0 box-border">
-      <div className="w-full ">
+      <div className="w-full">
         <CategoryTopDetail />
       </div>
 

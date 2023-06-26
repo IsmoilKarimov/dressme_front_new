@@ -170,7 +170,7 @@ const CategoryForBrand = () => {
 
   return (
     <div
-      className={`w-full h-hull ${
+      className={`w-full h-full ${
         dressInfo?.openShopIdFilter
           ? " border-0 "
           : " border border-searchBgColor"
