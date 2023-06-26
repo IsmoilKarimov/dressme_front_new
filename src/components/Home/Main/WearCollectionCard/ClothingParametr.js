@@ -334,7 +334,7 @@ const ClothingParametr = () => {
                         1 860 000 sum
                       </span>
                     </div>
-                    <div className="relative z-50 ">
+                    <div className="relative z-50 mb-[6px]">
                       {" "}
                       <ReactSlider
                         className="horizontal-slider"
@@ -355,7 +355,7 @@ const ClothingParametr = () => {
           )}
         </div>
 
-        <div className={`w-full h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
+        <div className={`w-full h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${
             state?.brandToggleMobile ? "w-[92%]" : "w-0"
           }`}
         >
@@ -404,8 +404,7 @@ const ClothingParametr = () => {
         >
           {state?.selectColorToggleMobile && (
             <div className="fixed inset-0 z-10 ">
-              <div
-                className="fixed inset-0 w-full h-full bg-black opacity-40"
+              <div className="fixed inset-0 w-full h-full bg-black opacity-40"
                 onClick={() =>
                   setState({ ...state, selectColorToggleMobile: false })
                 }
@@ -422,15 +421,14 @@ const ClothingParametr = () => {
                       <GrClose size={25} />
                     </button>
                   </div>
-                  <div className="py-4 flex flex-wrap  gap-5">
+                  <div className="py-4 gap-x-0 gap-y-4 flex flex-wrap items-center justify-between">
                     {changeColor?.map((data) => {
                       return (
                         <span
                           key={data?.id}
-                          className="w-60px flex items-center cursour-pointer hover:shadow-md p-1 rounded-lg mr-2"
+                          className="w-fit flex items-center cursour-pointer hover:shadow-md p-2 rounded-lg"
                         >
-                          <div
-                            className={`rounded-full mr-2 w-6 h-6 ${data?.colors} cursor-pointer `}
+                          <div className={`rounded-full mr-2 w-6 h-6 ${data?.colors} cursor-pointer `}
                           ></div>
                           <span className="not-italic font-AeonikProMedium text-base leading-4 text-black">
                             {data?.name}

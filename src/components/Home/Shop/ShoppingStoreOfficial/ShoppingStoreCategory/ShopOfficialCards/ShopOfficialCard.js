@@ -122,9 +122,6 @@ export default function ShopOfficialCard() {
                     <p className="w-8 h-8  rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
                       <img src={HeartImg} alt="" />
                     </p>
-                    {/* <p className="w-8 h-8 ss:hidden rounded-lg bg-bgCard xs:flex items-center justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
-                    <img src={bucket} alt="" />
-                  </p> */}
                   </div>
                 </div>
 
