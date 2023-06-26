@@ -184,7 +184,7 @@ function YandexMapsDressMe() {
               dressInfo?.yandexOpenMarketLocation
                 ? "z-[102] h-fit bg-white  bottom-0 mb-0"
                 : "bottom-[-200px] mb-[-200px] z-[-10]"
-            }  ease-linear duration-500 `}
+            }  ease-linear duration-300 `}
           >
             {dressInfo?.yandexOpenMarketLocation && (
               <YandexLocationMarketOpen />
