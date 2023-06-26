@@ -3,6 +3,7 @@ import { NavLink, useParams } from "react-router-dom";
 import { nike } from "../../../../../AssetsMain";
 import {
   ArrowTopIcons,
+  ClothesIcons,
   FilterIcons,
   LocationIcons,
   ManGenIcons,
@@ -16,6 +17,7 @@ import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useContext, useRef, useState } from "react";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
+import { Popover } from "antd";
 
 const ShoppingStoreOfficialTop = ({ name }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -49,8 +51,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
   const NextArrow = (props) => {
     const { onClick } = props;
     return (
-      <div
-        className={`absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-50	right-[4px]  rounded-full bg-white    duration-200 border  border-borderColor2
+      <div className={`absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-50	right-[4px]  rounded-full bg-white    duration-200 border  border-borderColor2
         		`}
         onClick={() => data(onClick)}
       >
@@ -132,6 +133,53 @@ const ShoppingStoreOfficialTop = ({ name }) => {
     ],
   };
 
+  const [state, setState] = useState({
+    opensports: false,
+    openTypesofClothes: false,
+  });
+
+  // Types of Clothes
+  const handleOpenTypesofClothes = (openTypesofClothes) => {
+    setState({...state, openTypesofClothes: openTypesofClothes})
+  };
+  const [selectTypesofClothes, setSelectTypesofClothes] = useState("Categories");
+  const handleTypesofClothes = (value) => {
+    setSelectTypesofClothes(value);
+    setState({ ...state, openTypesofClothes: false });
+  };
+  const typesofClothes = [
+    { id: 1, name: "Футболки" },
+    { id: 2, name: "Рубашки" },
+    { id: 3, name: "Шорты" },
+    { id: 4, name: "Джинсы" },
+    { id: 5, name: "Свитер" },
+    { id: 6, name: "Куртки" },
+    { id: 7, name: "Толстовки" },
+    { id: 8, name: "Обуви" },
+    { id: 9, name: "Куртки" },
+    { id: 10, name: "Сапоги" },
+    { id: 11, name: "Платья" },
+    { id: 12, name: "Юбки" },
+    { id: 13, name: "Ремень" },
+  ];
+  const contentTypesofClothes = (
+    <div className="w-[150px] h-[200px] overflow-auto m-0 p-0">
+      {typesofClothes.map((data) => {
+        return (
+          <p
+            key={data?.id}
+            onClick={() => {
+              handleTypesofClothes(data?.type);
+            }}
+            className={`w-full py-3 flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+          >
+            {data?.name}
+          </p>
+        );
+      })}
+    </div>
+  );
+
   return (
     <div className="flex flex-col justify-center border-b border-searchBgColor items-center md:my-5">
       <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
@@ -145,7 +193,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
               />
             </div>
             <div className="relative w-full  md:h-[90px]  mt-2 md:mt-0  h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
-              {/*  */}
+              {/* 1 */}
               <div className="w-full md:w-fit flex h-[80px] md:h-fit items-center">
                 <div className="absolute  w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
                   <img src={nike} alt="" />
@@ -174,7 +222,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                   </div>
                 </div>
               </div>
-              {/*  */}
+              {/* 2 */}
               <div className="w-full md:w-fit flex items-center  mt-6 md:mt-0">
                 <NavLink
                   to="/delivery-points"
@@ -193,7 +241,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                   </p>
                 </NavLink>
               </div>
-              {/*  */}
+              {/* 3 */}
               <div className="w-full md:w-fit flex items-center justify-between md:mr-5  mt-6 md:mt-0">
                 <div className="flex items-center">
                   <button className="flex items-center justify-center border border-searchBgColor w-12 h-12 rounded-lg mr-3">
@@ -206,7 +254,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                     <WomanGenIcons />
                   </button>
                 </div>
-                <div className="md:hidden">
+                {/* <div className="md:hidden">
                   <button className="h-12 flex items-center justify-center rounded-lg border border-searchBgColor px-4">
                     <span>
                       <ProductShopIcons colors={"#000"} />
@@ -215,7 +263,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                       Товары
                     </span>
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -279,14 +327,22 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                 Фильтры
               </span>
             </button>
-            <button className="h-[44px] w-[48%] rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-              <span>
-                <SortIcons colors={"#000"} />
-              </span>
-              <span className="ml-2 not-italic font-AeonikProMedium  text-sm leading-4 text-black tracking-[1%] cursor-pointer">
-                Популярные
-              </span>
-            </button>
+
+            <Popover className="h-[44px] w-[48%] active:scale-95  active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+              open={state?.openTypesofClothes}
+              onOpenChange={handleOpenTypesofClothes}
+              trigger="click"
+              options={["Hide"]}
+              placement="bottom"
+              content={contentTypesofClothes}
+            >
+                <span>
+                  <ClothesIcons />
+                </span>
+                <span className="ml-2 not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+                  Тип одеждый 
+                </span>
+            </Popover>
           </div>
         </div>
       </div>

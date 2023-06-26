@@ -34,43 +34,44 @@ export default function ShopOfficialCard() {
     //   });
     // });
   };
-  const wearGroup = [
-    { id: 1, name: "Футболки" },
+  // const wearGroup = [
+  //   { id: 1, name: "Футболки" },
 
-    { id: 2, name: "Рубашки" },
-    { id: 3, name: "Шорты" },
-    { id: 4, name: "Джинсы" },
-    { id: 5, name: "Свитер" },
-    { id: 6, name: "Куртки" },
-    { id: 7, name: "Толстовки" },
-    { id: 8, name: "Обуви" },
-    { id: 9, name: "Куртки" },
-    { id: 10, name: "Сапоги" },
-    { id: 11, name: "Платья" },
-    { id: 12, name: "Юбки" },
-    { id: 13, name: "Ремень" },
-  ];
+  //   { id: 2, name: "Рубашки" },
+  //   { id: 3, name: "Шорты" },
+  //   { id: 4, name: "Джинсы" },
+  //   { id: 5, name: "Свитер" },
+  //   { id: 6, name: "Куртки" },
+  //   { id: 7, name: "Толстовки" },
+  //   { id: 8, name: "Обуви" },
+  //   { id: 9, name: "Куртки" },
+  //   { id: 10, name: "Сапоги" },
+  //   { id: 11, name: "Платья" },
+  //   { id: 12, name: "Юбки" },
+  //   { id: 13, name: "Ремень" },
+  // ];
+  // <div className={` md:hidden bg-white  w-full bg-yandexNavbar flex items-center mb-6`}
+  //     >
+  //       {/* <YandexFilter /> */}
+  //       <ShopIdFilterGroup _class="items gap-x-2">
+  //         {wearGroup?.map((data) => {
+  //           return (
+  //             <div
+  //               key={data.id}
+  //               className={`item flex items-center justify-center border bg-btnBgColor border-searchBgColor `}
+  //             >
+  //               <span className=" cursor-pointer rounded-xl bg-btnBgColor not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
+  //                 {data?.name || "0"}
+  //               </span>
+  //             </div>
+  //           );
+  //         })}
+  //       </ShopIdFilterGroup>
+  // </div>
+
+  
   return (
     <div className="flex flex-col box-border">
-      <div
-        className={` md:hidden bg-white  w-full bg-yandexNavbar flex items-center mb-6`}
-      >
-        {/* <YandexFilter /> */}
-        <ShopIdFilterGroup _class="items gap-x-2">
-          {wearGroup?.map((data) => {
-            return (
-              <div
-                key={data.id}
-                className={`item flex items-center justify-center border bg-btnBgColor border-searchBgColor `}
-              >
-                <span className=" cursor-pointer rounded-xl bg-btnBgColor not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
-                  {data?.name || "0"}
-                </span>
-              </div>
-            );
-          })}
-        </ShopIdFilterGroup>
-      </div>
       <div className="flex justify-between flex-wrap gap-y-2">
         {dressInfo.ProductList.map((data) => {
           return (
@@ -228,7 +229,7 @@ export default function ShopOfficialCard() {
           Показать ещё 30 наборов
         </div>
       </div>{" "}
-      <div className="w-full h-fit hidden  md:block md:flex items-center justify-center mt-10 md:mt-[75px] gap-x-3 ll:gap-x-6">
+      <div className="w-full h-fit hidden md:flex items-center justify-center mt-10 md:mt-[75px] gap-x-3 ll:gap-x-6">
         <div className="flex items-center justify-center cursor-pointer bg-searchBgColor w-10 ll:w-[44px] md:w-fit  md:px-4 h-10 ll:h-[44px] rounded-lg">
           <span className="rotate-[-90deg]">
             <ArrowTopIcons colors={"#007DCA"} />
