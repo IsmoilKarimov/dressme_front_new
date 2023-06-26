@@ -8,8 +8,9 @@ export default function CategoryForType() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   return (
-    <div className="w-full h-full  ">
-      <div className="flex  justify-between mb-10">
+    <div className="w-full h-full">
+      <div className="flex justify-between mb-10">
+        
         {/* for mobile versions */}
         <div
           className={`w-full h-fit md:hidden absolute  top-0 ${
