@@ -19,7 +19,6 @@ export default function CategoryCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const wearGroup = [
     { id: 1, name: "Футболки" },
-
     { id: 2, name: "Рубашки" },
     { id: 3, name: "Шорты" },
     { id: 4, name: "Джинсы" },
@@ -157,8 +156,8 @@ export default function CategoryCards() {
           })}
         </ClothesFilterGroup>{" "}
       </div>
-      <div className="w-full h-full ">
-        <div className="hidden md:block">
+      <div className="w-full h-full hidden md:block">
+        <div>
           <span className="not-italic font-AeonikProMedium text-sm  leading-4 text-black tracking-[1%]">
             По типу
           </span>
@@ -185,7 +184,7 @@ export default function CategoryCards() {
           </Slider>
         </div>
       </div>
-      <div className="flex flex-wrap gap-y-2 gap-x-2 mt-8 md:mt-12">
+      <div className="flex flex-wrap gap-y-2 gap-x-2 mt-1 md:mt-12">
         {dressInfo.ProductList.map((data) => {
           return (
             <div
@@ -323,8 +322,8 @@ export default function CategoryCards() {
         <div className="w-[760px] h-[60px] cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-black flex items-center justify-center rounded-lg border border-searchBgColor bg-btnBgColor">
           Показать ещё 30 наборов
         </div>
-      </div>{" "}
-      <div className="w-full hidden h-fit md:block md:flex items-center justify-center mt-[75px] gap-x-6">
+      </div>
+      <div className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6">
         <div className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
           <span className="rotate-[-90deg]">
             <ArrowTopIcons colors={"#007DCA"} />
