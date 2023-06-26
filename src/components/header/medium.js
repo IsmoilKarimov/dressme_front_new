@@ -14,6 +14,7 @@ import {
   CotegoryIcons,
   DashboardStatisticIcons,
   DollorIcons,
+  HeartIcons,
   HeartLinkIcons,
   HouseStatisticIcons,
   ListCollectionIcons,
@@ -449,7 +450,7 @@ const MediumHeader = () => {
                 />
               </div>
               {/* Music and Map selection for Mobile */}
-              <div className="flex items-center justify-between h-fit mb-3">
+              {/* <div className="flex items-center justify-between h-fit mb-3">
                 <button
                   onClick={() => setState({ ...state, hamburgerMenu: false })}
                   className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium border border-searchBgColor bg-btnBgColor ss:w-[48%]"
@@ -469,14 +470,31 @@ const MediumHeader = () => {
                   </span>
                   <span className="ml-[10px]">Карта</span>
                 </NavLink>
-              </div>
+              </div> */}
               {/* Параметры одежды  */}
               {/* Categories */}
               <ul className="flex flex-col">
                 <li>
+                  <NavLink
+                    onClick={() => setState({ ...state, hamburgerMenu: false })}
+                    to={"/favourites"}
+                    className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
+                  >
+                    <div className="flex items-center">
+                      <span className="py-3 pr-3">
+                        <HeartIcons colors={"#000"} />
+                      </span>
+                      <span className="ml-[11.67px]">Избранное</span>
+                    </div>
+                    <span className="arrowRotate ml-auto rotate-[90deg]">
+                      <ArrowTopIcons colors={"#000"} />
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
                   <button
                     onClick={() => setState({ ...state, hamburgerMenu: false })}
-                    className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
+                    className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
                   >
                     <div className="flex items-center">
                       <span className=" py-3 pr-3">
@@ -496,7 +514,7 @@ const MediumHeader = () => {
                         setState({ ...state, hamburgerMenu: false })
                       }
                       to="/my-order"
-                      className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
+                      className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
                     >
                       <div className="flex items-center">
                         <span className=" py-3 pr-3">
@@ -514,7 +532,7 @@ const MediumHeader = () => {
                         setState({ ...state, hamburgerMenu: false })
                       }
                       to="/sign_in"
-                      className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
+                      className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
                     >
                       <div className="flex items-center">
                         <span className=" py-3 pr-3">
@@ -532,7 +550,7 @@ const MediumHeader = () => {
                   <NavLink
                     onClick={() => setState({ ...state, hamburgerMenu: false })}
                     to="/stores"
-                    className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
+                    className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
                   >
                     <div className="flex items-center">
                       <span className=" py-3 pr-3">
