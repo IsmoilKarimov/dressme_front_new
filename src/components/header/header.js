@@ -51,22 +51,15 @@ const Header = () => {
   }, [location.pathname]);
   return (
     <div>
-      <header
-        className={`${
-          locationWindow !== "/delivery-points"
-            ? "md:border border-searchBgColo"
-            : "md:border-0 border-searchBgColo"
-        } `}
-      >
+      <header>
         {/* <header className="md:border-0 border-searchBgColor "> */}
         {locationWindow !== "/delivery-points" ? (
-          <>
+          <div className="w-full ">
             <div className={`ss:block md:hidden`}>
-              <TopHeader />
               <MediumHeader />
             </div>
             <div
-              className={`fixed top-0 w-full bg-white  ${
+              className={`fixed top-0 w-full bg-white   ${
                 show
                   ? "visible duration-500 z-30"
                   : "visible duration-500 z-30 translate-y-[-100%]"
@@ -75,8 +68,18 @@ const Header = () => {
               <TopHeader />
               <MediumHeader />
             </div>
-          </>
-        ) : null}
+          </div>
+        ) : (
+          <div
+            className={`fixed top-0 z-[150] w-full block md:hidden bg-transparent`}
+          >
+            {!dressInfo?.yandexFullScreen && (
+              <div className="overflow-hidden">
+                <MediumHeader />
+              </div>
+            )}
+          </div>
+        )}
 
         <div
           className={`${

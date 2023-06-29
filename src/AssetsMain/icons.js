@@ -57,6 +57,34 @@ const SircleNext = ({ colors }) => {
     </svg>
   );
 };
+const ArrowPrevousNext = ({ colors }) => {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9.57 5.92999L3.5 12L9.57 18.07"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M20.4999 12H3.66992"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};
 const NoImg = () => {
   return (
     <svg
@@ -959,6 +987,39 @@ const MapIcons = ({ colors }) => {
       <path
         d="M9.60832 10.1833L1.66663 12.5"
         stroke={colors}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+const MapNavMenuIcons = ({ colors }) => {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill={colors}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M7.49996 18.3333H12.5C16.6666 18.3333 18.3333 16.6667 18.3333 12.5V7.5C18.3333 3.33333 16.6666 1.66667 12.5 1.66667H7.49996C3.33329 1.66667 1.66663 3.33333 1.66663 7.5V12.5C1.66663 16.6667 3.33329 18.3333 7.49996 18.3333Z"
+        stroke={colors}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7.5 1.66667L11.625 18.3333"
+        stroke="white"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9.60832 10.1833L1.66663 12.5"
+        stroke="white"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -2569,6 +2630,7 @@ export {
   // ActiveHeartIcons,
   SeasonSquare,
   SircleNext,
+  ArrowPrevousNext,
   NoImg,
   HeartIcons,
   HeartLinkIcons,
@@ -2591,6 +2653,7 @@ export {
   CotegoryMenuIcons, //CategoryMenu
   MapSitesIcons,
   MapIcons,
+  MapNavMenuIcons,
   MarketIcons,
   PrivateCheckIcons,
   CommentIcons,

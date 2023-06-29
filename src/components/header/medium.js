@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { GrClose } from "react-icons/gr";
 import { Popover } from "antd";
 import {
   ActivePersonIcons,
+  ArrowPrevousNext,
   ArrowTopIcons,
   BasketIcons,
   BrushColorIcons,
@@ -220,6 +221,7 @@ const MediumHeader = () => {
   // Location pathname
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [locationWindow, setLocationWindow] = useState("");
   useEffect(() => {
@@ -227,30 +229,41 @@ const MediumHeader = () => {
     // console.log(locationWindow, "locationWindow");
   }, [location.pathname]);
   // md:mt-[99px] ss:mt-0
-  // mt-1
+  // mt-1 bg white red
 
   return (
     <div className="flex flex-col justify-center items-center m-0 p-0 box-border ">
-      <div className="max-w-[1280px] w-[100%] block md:flex px-3 md:px-0 md:py-0 justify-center  items-center m-auto ">
+      <div className="max-w-[1280px] w-[100%] block md:flex px-3 md:px-0 md:py-0 justify-center  bg-yandexNavbar backdrop-blur-sm items-center m-auto ">
         <div className="relative">
           {/* Starting of Full Screen page section */}
-          <div className="w-full flex justify-center items-center py-3 overscroll-none overflow-y-hidden">
+          <div className="w-full flex justify-center items-center py-3 overscroll-none overflow-y-hidden ">
             <div className=" w-full flex items-center ss:w-full md:w-fit justify-between ">
               {/* Menu section */}
-              <div
-                onClick={toggleHamburger}
-                className={`flex items-center justify-center bg-btnBgColor border border-searchBgColor w-12 h-12 -lg-lg cursor-pointer md:hidden rounded-xl`}
-              >
-                {state?.hamburgerMenu ? (
+              {locationWindow !== "/delivery-points" ? (
+                <div
+                  onClick={toggleHamburger}
+                  className={`flex items-center justify-center bg-btnBgColor border border-searchBgColor w-12 h-12 -lg-lg cursor-pointer md:hidden rounded-xl`}
+                >
+                  {state?.hamburgerMenu ? (
+                    <span>
+                      <MenuCloseIcons />
+                    </span>
+                  ) : (
+                    <span>
+                      <MenuOpenIcons />
+                    </span>
+                  )}
+                </div>
+              ) : (
+                <div
+                  onClick={() => navigate(-1)}
+                  className={`flex items-center justify-center bg-btnBgColor border border-searchBgColor w-12 h-12 -lg-lg cursor-pointer md:hidden rounded-xl`}
+                >
                   <span>
-                    <MenuCloseIcons />
+                    <ArrowPrevousNext />
                   </span>
-                ) : (
-                  <span>
-                    <MenuOpenIcons />
-                  </span>
-                )}
-              </div>
+                </div>
+              )}
 
               {/* Logo section */}
               <NavLink
@@ -312,7 +325,7 @@ const MediumHeader = () => {
               </div>
 
               {/* Searching section */}
-              <div className="flex items-center justify-center rounded-xl font-AeonikProMedium h-[44px] border border-red-600 md:border-transparent md:w-[622px] ml-2 ss:hidden md:flex">
+              <div className="flex items-center justify-center rounded-xl font-AeonikProMedium h-[44px]  md:border-transparent md:w-[622px] ml-2 ss:hidden md:flex">
                 {/* Catalog section */}
                 <button
                   className={`items-center ${dataStyle}  pl-5 pr-7 h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
@@ -430,7 +443,7 @@ const MediumHeader = () => {
           <div
             className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${
               state?.hamburgerMenu
-                ? "hamburger flex flex-col ease-linear duration-500 overscroll-none z-30"
+                ? " flex flex-col h-fit ease-linear duration-500 overscroll-none z-[150]"
                 : "left-[-800px] z-[-80] ease-linear duration-500"
             }`}
           >
@@ -449,29 +462,7 @@ const MediumHeader = () => {
                   "
                 />
               </div>
-              {/* Music and Map selection for Mobile */}
-              {/* <div className="flex items-center justify-between h-fit mb-3">
-                <button
-                  onClick={() => setState({ ...state, hamburgerMenu: false })}
-                  className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium border border-searchBgColor bg-btnBgColor ss:w-[48%]"
-                >
-                  <span>
-                    <VolumeIcons colors={IconsColor} />
-                  </span>
-                  <span className=" ml-[10px]">Музика</span>
-                </button>
-                <NavLink
-                  onClick={() => setState({ ...state, hamburgerMenu: false })}
-                  to="/delivery-points"
-                  className="right  h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium border border-searchBgColor bg-btnBgColor ss:w-[48%]"
-                >
-                  <span>
-                    <MapIcons colors={"#000"} />
-                  </span>
-                  <span className="ml-[10px]">Карта</span>
-                </NavLink>
-              </div> */}
-              {/* Параметры одежды  */}
+
               {/* Categories */}
               <ul className="flex flex-col">
                 <li>
@@ -617,82 +608,84 @@ const MediumHeader = () => {
           </div>
 
           {/*Starting of Blocked  Hamburger Menu section */}
-          <div className={`md:hidden relative w-full mx-auto `}>
-            {scrollPost > -132 ? (
-              <div className={`sticky top-0 py-1 bg-white  w-full z-10`}>
-                {/* Searching section */}
-                <div className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%]  border border-searchBgColor bg-white ">
-                  <span className="pl-[11.65px]">
-                    <SearchIcons />
-                  </span>
-                  <input
-                    type="text"
-                    placeholder="Искать товары или бренды"
-                    className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
-                  />
+          {locationWindow !== "/delivery-points" && (
+            <div className={`md:hidden relative w-full mx-auto `}>
+              {scrollPost > -132 ? (
+                <div className={`sticky top-0 py-1 bg-white  w-full z-10`}>
+                  {/* Searching section */}
+                  <div className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%]  border border-searchBgColor bg-white ">
+                    <span className="pl-[11.65px]">
+                      <SearchIcons />
+                    </span>
+                    <input
+                      type="text"
+                      placeholder="Искать товары или бренды"
+                      className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
+                    />
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div
-                className={`fixed left-0 right-0 w-full top-0 px-3 py-1 bg-white z-[100]`}
-              >
-                {/* Searching section */}
-                <div className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%] border border-searchBgColor bg-white ">
-                  <span className="pl-[11.65px]">
-                    <SearchIcons />
-                  </span>
-                  <input
-                    type="text"
-                    placeholder="Искать товары или бренды"
-                    className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
-                  />
+              ) : (
+                <div
+                  className={`fixed left-0 right-0 w-full top-0 px-3 py-1 bg-white z-[100]`}
+                >
+                  {/* Searching section */}
+                  <div className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%] border border-searchBgColor bg-white ">
+                    <span className="pl-[11.65px]">
+                      <SearchIcons />
+                    </span>
+                    <input
+                      type="text"
+                      placeholder="Искать товары или бренды"
+                      className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* Gender selection for Mobile */}
-            {locationWindow === "/" && (
-              <div className="flex flex-wrap items-center justify-between rounded-xl  my-4 w-full ">
-                {personItems
-                  ?.filter((value) => value.id === dressInfo?.type)
-                  .map((data) => {
-                    return (
-                      <div
-                        key={data?.id}
-                        className="max-w-[440px] w-[100%] bg-btnBgColor flex items-center justify-between border border-searchBgColor rounded-xl overflow-hidden"
-                      >
-                        <button
-                          onClick={() =>
-                            setState({ ...state, genderActive: true })
-                          }
-                          className={` font-AeonikProMedium ${
-                            state?.genderActive
-                              ? "bg-white border border-searchBgColor"
-                              : "bg-transparent"
-                          } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
+              {/* Gender selection for Mobile */}
+              {locationWindow === "/" && (
+                <div className="flex flex-wrap items-center justify-between rounded-xl  my-4 w-full ">
+                  {personItems
+                    ?.filter((value) => value.id === dressInfo?.type)
+                    .map((data) => {
+                      return (
+                        <div
+                          key={data?.id}
+                          className="max-w-[440px] w-[100%] bg-btnBgColor flex items-center justify-between border border-searchBgColor rounded-xl overflow-hidden"
                         >
-                          <img src={data?.woman} alt="female" />
-                          <span className="ml-3">Женщинам</span>
-                        </button>
-                        <button
-                          onClick={() =>
-                            setState({ ...state, genderActive: false })
-                          }
-                          className={` font-AeonikProMedium ${
-                            !state?.genderActive
-                              ? "bg-white border border-searchBgColor"
-                              : "bg-transparent"
-                          } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
-                        >
-                          <img src={data?.man} alt="male" />
-                          <span className="ml-3"> Мужчинам</span>
-                        </button>
-                      </div>
-                    );
-                  })}
-              </div>
-            )}
-          </div>
+                          <button
+                            onClick={() =>
+                              setState({ ...state, genderActive: true })
+                            }
+                            className={` font-AeonikProMedium ${
+                              state?.genderActive
+                                ? "bg-white border border-searchBgColor"
+                                : "bg-transparent"
+                            } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
+                          >
+                            <img src={data?.woman} alt="female" />
+                            <span className="ml-3">Женщинам</span>
+                          </button>
+                          <button
+                            onClick={() =>
+                              setState({ ...state, genderActive: false })
+                            }
+                            className={` font-AeonikProMedium ${
+                              !state?.genderActive
+                                ? "bg-white border border-searchBgColor"
+                                : "bg-transparent"
+                            } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
+                          >
+                            <img src={data?.man} alt="male" />
+                            <span className="ml-3"> Мужчинам</span>
+                          </button>
+                        </div>
+                      );
+                    })}
+                </div>
+              )}
+            </div>
+          )}
           {/* Ending of Blocked  Hamburger Menu section  */}
         </div>
       </div>

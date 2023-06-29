@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { Modal, Popover } from "antd";
 import { useQuery } from "@tanstack/react-query";
@@ -142,10 +142,20 @@ const TopHeader = () => {
     </div>
   );
   // mt-1
-
+  const location = useLocation();
+  const [locationWindow, setLocationWindow] = useState("");
+  useEffect(() => {
+    setLocationWindow(location.pathname);
+  }, [location.pathname]);
   return (
-    <div className="flex flex-col justify-center items-center top bg-bgColor ss:hidden md:block m-0 p-0 box-border">
-      <div className="max-w-[1280px] w-[100%] h-[32px] py-[2px] flex justify-between items-center m-auto  ">
+    <div
+      className={`flex flex-col justify-center items-center   hidden md:block m-0 p-0 box-border ${
+        locationWindow === "/delivery-points"
+          ? "bg-transparent h-[40px] "
+          : "bg-bgColor h-[32px] "
+      }`}
+    >
+      <div className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">
         <div className="left h-full flex items-center  ">
           <Link to="/" className="flex w-fit items-center">
             {/* Location svg img */}
@@ -170,27 +180,8 @@ const TopHeader = () => {
               </Popover>
             </div>
           </Link>
-          <Modal
-            closable={false}
-            className="!w-fit !h-fit "
-            open={state?.isModalOpen}
-            footer={null}
-          >
-            <div
-              onClick={handleOk}
-              className="flex justify-end p-2 cursor-pointer"
-            >
-              <span>
-                <MenuCloseIcons />
-              </span>
-            </div>
-            <div className="w-fit h-fit  ">
-              {" "}
-              <WeatherInfo />
-            </div>
-          </Modal>
 
-          <div className="w-fit h-full rounded bg-white font-AeonikProMedium select-none cursor-pointer">
+          <div className="w-fit h-fit py-[4px] rounded bg-white font-AeonikProMedium select-none cursor-pointer">
             {LanguageList.filter((data) => data.id === selectLang).map(
               (data) => {
                 return (
@@ -217,7 +208,7 @@ const TopHeader = () => {
           </div>
         </div>
         <div className="right h-full flex items-center ">
-          <Link to="#" className="flex items-center h-full ">
+          <Link to="#" className="flex items-center h-fit py-[4px] ">
             <span className="mr-2">
               <CommentIcons colors={"#707070"} />
             </span>
@@ -225,7 +216,7 @@ const TopHeader = () => {
               Помощь
             </span>
           </Link>
-          <Link to="#" className="flex items-center h-full  ml-6 ">
+          <Link to="#" className="flex items-center h-fit py-[4px]  ml-6 ">
             <span className="mr-2">
               <HouseStatisticIcons colors={"#707070"} />
             </span>
@@ -235,7 +226,10 @@ const TopHeader = () => {
           </Link>
           <div className="line h-5 border text-textColor ml-6"></div>
           {localStorage.getItem("dressMeLogin") && (
-            <NavLink to="/my-order" className="flex items-center h-full  ml-6 ">
+            <NavLink
+              to="/my-order"
+              className="flex items-center h-fit py-[4px]  ml-6 "
+            >
               <span className="mr-2">
                 <MyPurchaseIcons colors={"#707070"} />
               </span>
@@ -246,7 +240,7 @@ const TopHeader = () => {
           )}
           <NavLink
             to="/stores"
-            className="flex items-center bg-white rounded cursor-pointer h-full  ml-6 px-3"
+            className="flex items-center bg-white rounded cursor-pointer h-fit py-[4px]  ml-6 px-3"
           >
             <span className="mr-2">
               <MarketIcons colors={"#000"} />

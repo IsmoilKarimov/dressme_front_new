@@ -113,8 +113,6 @@ function YandexMapsDressMe() {
     });
   };
 
-  // console.log(dressInfo.yandexOpenMarket, "yandexOpenMarket");
-
   const handleGetId = (getValue) => {
     setDressInfo((current) => {
       return current.MarketList.map((data) => {
@@ -156,10 +154,7 @@ function YandexMapsDressMe() {
   if (dressInfo?.type === 4444) {
     IconsColor = "#007DCA";
   }
-  // console.log(
-  //   "dressInfo?.yandexOpenMarketLocation",
-  //   dressInfo?.yandexOpenMarketLocation openMainMenu
-  // );
+  // left-1/2
   return (
     <div className=" h-fit w-full flex justify-center overflow-hidden overflow-y-hidden">
       <div className="w-[100%] h-[100vh]	 border-b border-searchBgColor overflow-hidden ">
@@ -192,33 +187,10 @@ function YandexMapsDressMe() {
           </div>
         )}
 
-        {/* <div
-          className={`h-fit md:hidden  absolute  bg-white shadow-lg ease-linear duration-500  bg-red-500  ${
-            dressInfo?.yandexOpenMarketLocation
-              ? "w-full block md:w-[769px] bottom-0 z-[104]"
-              : "w-0 hidden bottom-[-10000px] z-[-10]"
-          }  `}
-        > */}
-        {/* {dressInfo?.yandexOpenMarketLocation && ( */}
-        {/* <div className="fixed inset-0 z-[100] "> */}
-        {/* <div
-              className="fixed inset-0 w-full h-full bg-black opacity-40 z-[101]"
-              onClick={() =>
-                setDressInfo({
-                  ...dressInfo,
-                  yandexOpenMarketLocation: false,
-                })
-              }
-            ></div> */}
-        {/* <div className="w-full absolute bottom-0  z-[102] flex items-end"> */}
-        {/* <YandexLocationMarketOpen /> */}
-        {/* </div> */}
-        {/* </div> */}
-        {/* )} */}
-        {/* </div> */}
+        {/* Navbaryandex */}
 
         <div
-          className={`absolute z-50  ${
+          className={`absolute z-50 hidden md:block ${
             !dressInfo?.yandexOpenMenu
               ? "top-0 ease-linear duration-500 "
               : "top-[-250px] ease-linear duration-500 "
@@ -737,7 +709,7 @@ function YandexMapsDressMe() {
             </div>
             {/* Yandex Search */}
             <div
-              className={`absolute ${
+              className={`absolute  ${
                 !dressInfo?.yandexFullScreen ? "top-[80px]" : "top-[8px]"
               }  md:top-auto md:bottom-[24px] left-0 right-0 mx-auto  overflow-hidden z-50 bg-yandexNavbar backdrop-blur-sm rounded-xl h-[48px] w-[94%] md:w-fit shadow-lg`}
             >

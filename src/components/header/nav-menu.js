@@ -11,6 +11,7 @@ import {
   HeartLinkIcons,
   HomeIcons,
   MapIcons,
+  MapNavMenuIcons,
   PersonIcons,
 } from "../../AssetsMain/icons";
 import { ActivePersonImg, HeartImg } from "../../AssetsMain";
@@ -149,7 +150,7 @@ const NavMenu = () => {
             {({ isActive }) =>
               isActive ? (
                 <span className="flex flex-col items-center justify-center mt-1">
-                  <MapIcons colors={IconsColor} />
+                  <MapNavMenuIcons colors={IconsColor} />
                   <span className="mt-2">
                     <span>Карта</span>
                   </span>{" "}
