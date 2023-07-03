@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import YandexMapsDressMe from "./YandexMapsDressMe";
 
 export default function YandexMapDressMe() {

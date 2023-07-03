@@ -13,6 +13,7 @@ import {
   MyPurchaseIcons,
 } from "../../../AssetsMain/icons";
 import { EnglishFlag, RussianFlag, UzbekFlag } from "../../../AssetsMain";
+
 const YandexTop = () => {
   const [dressInfo] = useContext(dressMainData);
 
@@ -145,7 +146,7 @@ const YandexTop = () => {
   );
 
   return (
-    <div className="  flex justify-between items-center m-auto ">
+    <div className="flex justify-between items-center m-auto ">
       <div className="left h-full flex items-center  ">
         <div className="flex w-fit items-center">
           <span className="mr-2">
@@ -170,7 +171,7 @@ const YandexTop = () => {
             </Popover>
           </div>
         </div>
-        <div className="flex items-center mx-[40px]  ">
+        {/* <div className="flex items-center mx-[40px]  ">
           {state?.weatherSet?.current?.condition?.icon ? (
             <div
               onClick={showModal}
@@ -193,7 +194,7 @@ const YandexTop = () => {
           ) : (
             <span className="w-[70px] h-[28px] bg-borderColorCard rounded"></span>
           )}
-        </div>
+        </div> */}
         <Modal
           closable={false}
           className="!w-fit !h-fit "
