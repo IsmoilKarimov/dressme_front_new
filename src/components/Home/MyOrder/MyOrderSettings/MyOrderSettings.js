@@ -50,7 +50,7 @@ export default function MyOrderSettings() {
   };
   return (
     <div className="pt-3 md:pt-8 w-full flex justify-center ss:px-4 md:px-0">
-      <div className="md:max-w-[820px] max-w-[440px] w-[100%] h-fit p-4 md:px-0  border border-searchBgColor rounded-lg mb-20 md:mb-0">
+      <div className="md:max-w-[820px] max-w-[440px] w-[100%] h-fit p-4 md:px-0  border border-searchBgColor rounded-lg mb-[100px] md:mb-0">
         <div className="md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
           <div className="">
             <span className="not-italic font-AeonikProMedium text-xl leading-6 text-black tracking-[1%]">

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,21 +16,14 @@ body {
 }
 
 @font-face {
-  font-family: "AeonikProMedium";
-  src: url(./fonts/AeonikPro-Medium.ttf);
+  font-family: "RobotoMedium";
+  src: url(./fonts/Roboto/Roboto-Medium.ttf);
 }
 @font-face {
-  font-family: "AeonikProRegular";
-  src: url(./fonts/AeonikPro-Regular.ttf);
+  font-family: "RobotoRegular";
+  src: url(./fonts//Roboto/Roboto-Regular.ttf);
 }
-@font-face {
-  font-family: "InterMedium";
-  src: url(./fonts/Montserrat/static/Montserrat-Medium.ttf);
-}
-@font-face {
-  font-family: "InterRegular";
-  src: url(./fonts/Montserrat/static/Montserrat-Regular.ttf);
-}
+
 /* @font-face {
   font-family: "InterMedium";
   src: url(./fonts/Poppin/Poppins-Medium.ttf);
