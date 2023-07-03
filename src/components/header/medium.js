@@ -374,7 +374,7 @@ const MediumHeader = () => {
               {/* User section */}
               {localStorage.getItem("dressMeLogin") ? (
                 <NavLink
-                  to="/my-order"
+                  to="/profile/settings"
                   className=" bg-btnBgColor rounded-xl items-center justify-center w-11 h-11 mr-2 hidden md:flex"
                 >
                   {({ isActive }) =>
