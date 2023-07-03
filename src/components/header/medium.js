@@ -428,103 +428,116 @@ const MediumHeader = () => {
           {/* Ending of Full Screen page sesction Map*/}
 
           {/* Opening of Main Menu at the Mobile version */}
-          <div className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 z-[109] h-[100vh] px-3 ${
+          <div
+            className={`max-w-[440px] w-[100%] fixed bg-red-500 top-[70px] left-0 z-[100] h-screen	pb-[140px] px-3 ${
               state?.hamburgerMenu
-                ? " flex flex-col ease-linear duration-500 overscroll-none"
+                ? " flex flex-col ease-linear bg-green-500 duration-500 overscroll-none z-[110]"
                 : "left-[-800px] z-[-80] ease-linear duration-500"
             }`}
           >
-            <div className={`w-full h-full flex flex-col`}>
+            <div
+              className={`w-full h-full flex flex-wrap  content-between bg-green-500`}
+            >
               {/* Searching section */}
-              <div className="search flex items-center bg-btnBgColor justify-between rounded-xl font-AeonikProMedium h-12 mt-3 mb-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
-                <span className=" flex ss:pl-[11.65px] md:hidden">
-                  <SearchIcons />
-                </span>
+              <div className={`w-full h-fit flex flex-col `}>
+                <div className="search flex items-center bg-btnBgColor justify-between rounded-xl font-AeonikProMedium h-12 mt-3 mb-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
+                  <span className=" flex ss:pl-[11.65px] md:hidden">
+                    <SearchIcons />
+                  </span>
 
-                <input
-                  type="text"
-                  placeholder="Искать товары или бренды"
-                  className="bg-transparent w-full px-3 h-12 text-[14px] bg-btnBgColor border border-transparent md:border-searchBgColor md:mx-0 md:-ml-[3px] md:px-3 md:h-12
+                  <input
+                    type="text"
+                    placeholder="Искать товары или бренды"
+                    className="bg-transparent w-full px-3 h-12 text-[14px] bg-btnBgColor border border-transparent md:border-searchBgColor md:mx-0 md:-ml-[3px] md:px-3 md:h-12
                   placeholder-italic placeholder-AeonikProMedium placeholder-sm leading-4 placeholder-setTexOpacity placeholder-[1px]
                   "
-                />
+                  />
+                </div>
+
+                {/* Categories */}
+                <ul className="flex flex-col w-full">
+                  <li>
+                    <button
+                      onClick={() =>
+                        setState({ ...state, hamburgerMenu: false })
+                      }
+                      className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
+                    >
+                      <div className="flex items-center">
+                        <span className=" py-3 pr-3">
+                          <HouseStatisticIcons colors={"#000"} />
+                        </span>
+                        <span className="ml-[11.67px]">Бизнес</span>
+                      </div>
+                      <span className="arrowRotate ml-auto rotate-[90deg]">
+                        <ArrowTopIcons colors={"#000"} />
+                      </span>
+                    </button>
+                  </li>
+                  <li>
+                    <NavLink
+                      onClick={() =>
+                        setState({ ...state, hamburgerMenu: false })
+                      }
+                      to="/stores"
+                      className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
+                    >
+                      <div className="flex items-center">
+                        <span className=" py-3 pr-3">
+                          <MarketIcons colors={"#000"} />
+                        </span>
+                        <span className="ml-[11.67px]">Магазины</span>
+                      </div>
+                      <span className="arrowRotate ml-auto rotate-[90deg]">
+                        <ArrowTopIcons colors={"#000"} />
+                      </span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      onClick={() =>
+                        setState({ ...state, hamburgerMenu: false })
+                      }
+                      to="#"
+                      className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
+                    >
+                      <div className="flex items-center">
+                        <span className=" py-3 pr-3">
+                          <CommentIcons colors={"#000"} />
+                        </span>
+                        <span className="ml-[11.67px]">Помощь</span>
+                      </div>
+                      <span className="arrowRotate ml-auto rotate-[90deg]">
+                        <ArrowTopIcons colors={"#000"} />
+                      </span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      onClick={() =>
+                        setState({ ...state, hamburgerMenu: false })
+                      }
+                      to="#"
+                      className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
+                    >
+                      <div className="flex items-center">
+                        <span className=" py-3 pr-3">
+                          <PhoneIcons />
+                        </span>
+                        <span className="ml-[11.67px]">Контакты</span>
+                      </div>
+                      <span className="arrowRotate ml-auto rotate-[90deg]">
+                        <ArrowTopIcons colors={"#000"} />
+                      </span>
+                    </NavLink>
+                  </li>
+                </ul>
               </div>
 
-              {/* Categories */}
-              <ul className="flex flex-col">
-                <li>
-                  <button
-                    onClick={() => setState({ ...state, hamburgerMenu: false })}
-                    className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
-                  >
-                    <div className="flex items-center">
-                      <span className=" py-3 pr-3">
-                        <HouseStatisticIcons colors={"#000"} />
-                      </span>
-                      <span className="ml-[11.67px]">Бизнес</span>
-                    </div>
-                    <span className="arrowRotate ml-auto rotate-[90deg]">
-                      <ArrowTopIcons colors={"#000"} />
-                    </span>
-                  </button>
-                </li>
-                <li>
-                  <NavLink
-                    onClick={() => setState({ ...state, hamburgerMenu: false })}
-                    to="/stores"
-                    className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
-                  >
-                    <div className="flex items-center">
-                      <span className=" py-3 pr-3">
-                        <MarketIcons colors={"#000"} />
-                      </span>
-                      <span className="ml-[11.67px]">Магазины</span>
-                    </div>
-                    <span className="arrowRotate ml-auto rotate-[90deg]">
-                      <ArrowTopIcons colors={"#000"} />
-                    </span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    onClick={() => setState({ ...state, hamburgerMenu: false })}
-                    to="#"
-                    className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
-                  >
-                    <div className="flex items-center">
-                      <span className=" py-3 pr-3">
-                      <CommentIcons colors={"#000"} />
-                      </span>
-                      <span className="ml-[11.67px]">Помощь</span>
-                    </div>
-                    <span className="arrowRotate ml-auto rotate-[90deg]">
-                      <ArrowTopIcons colors={"#000"} />
-                    </span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    onClick={() => setState({ ...state, hamburgerMenu: false })}
-                    to="#"
-                    className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
-                  >
-                    <div className="flex items-center">
-                      <span className=" py-3 pr-3">
-                        <PhoneIcons />
-                      </span>
-                      <span className="ml-[11.67px]">Контакты</span>
-                    </div>
-                    <span className="arrowRotate ml-auto rotate-[90deg]">
-                      <ArrowTopIcons colors={"#000"} />
-                    </span>
-                  </NavLink>
-                </li>     
-              </ul>
-              
-              <div className="flex flex-col">
+              <div className="w-full flex flex-col ">
                 {/* Line */}
                 <div className="line border-b w-full  border-searchBgColor mb-3 ls:w-full"></div>
-                
+
                 {/* Location and Language */}
                 <div className="flex items-center justify-between h-fit mb-3">
                   <button className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
