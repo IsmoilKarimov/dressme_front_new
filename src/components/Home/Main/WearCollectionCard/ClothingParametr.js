@@ -330,7 +330,7 @@ const ClothingParametr = () => {
                   <div className="  flex flex-col  mt-4">
                     <div className="flex justify-between items-center mb-7">
                       <div className="flex flex-col">
-                        <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-setTexOpacity ">
+                        <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-setTexOpacity mb-2">
                           от
                         </span>
                         <span className="flex items-center  mt-[2px] justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
@@ -338,7 +338,7 @@ const ClothingParametr = () => {
                         </span>
                       </div>
                       <div className="flex flex-col">
-                        <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-setTexOpacity ">
+                        <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-setTexOpacity mb-2">
                           до
                         </span>
                         <span className="flex items-center mt-[2px] justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">

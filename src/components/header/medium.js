@@ -327,7 +327,7 @@ const MediumHeader = () => {
               </div>
 
               {/* Searching section */}
-              <div className="flex items-center justify-center rounded-xl font-AeonikProMedium h-[44px]  md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
+              <div className="items-center justify-center rounded-xl font-AeonikProMedium h-[44px]  md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
                 {/* Catalog section */}
                 <button
                   className={`items-center ${dataStyle} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
@@ -427,15 +427,14 @@ const MediumHeader = () => {
           </div>
           {/* Ending of Full Screen page sesction Map*/}
 
-          {/* Open Main Menu at the Mobile version */}
-          <div
-            className={`max-w-[440px] w-[100%] fixed bg-red-500 top-[70px] left-0 z-[109] h-[100vh] px-3 border border-red-500 ${
+          {/* Opening of Main Menu at the Mobile version */}
+          <div className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 z-[109] h-[100vh] px-3 ${
               state?.hamburgerMenu
-                ? " flex flex-col ease-linear duration-500 overscroll-none z-[109]"
+                ? " flex flex-col ease-linear duration-500 overscroll-none"
                 : "left-[-800px] z-[-80] ease-linear duration-500"
             }`}
           >
-            <div className={`w-full h-full `}>
+            <div className={`w-full h-full flex flex-col`}>
               {/* Searching section */}
               <div className="search flex items-center bg-btnBgColor justify-between rounded-xl font-AeonikProMedium h-12 mt-3 mb-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
                 <span className=" flex ss:pl-[11.65px] md:hidden">
@@ -454,23 +453,6 @@ const MediumHeader = () => {
               {/* Categories */}
               <ul className="flex flex-col">
                 <li>
-                  <NavLink
-                    onClick={() => setState({ ...state, hamburgerMenu: false })}
-                    to={"/favourites"}
-                    className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
-                  >
-                    <div className="flex items-center">
-                      <span className="py-3 pr-3">
-                        <HeartIcons colors={"#000"} />
-                      </span>
-                      <span className="ml-[11.67px]">Избранное</span>
-                    </div>
-                    <span className="arrowRotate ml-auto rotate-[90deg]">
-                      <ArrowTopIcons colors={"#000"} />
-                    </span>
-                  </NavLink>
-                </li>
-                <li>
                   <button
                     onClick={() => setState({ ...state, hamburgerMenu: false })}
                     className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
@@ -485,45 +467,6 @@ const MediumHeader = () => {
                       <ArrowTopIcons colors={"#000"} />
                     </span>
                   </button>
-                </li>
-                <li>
-                  {localStorage.getItem("dressMeLogin") ? (
-                    <NavLink
-                      onClick={() =>
-                        setState({ ...state, hamburgerMenu: false })
-                      }
-                      to="/my-order"
-                      className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
-                    >
-                      <div className="flex items-center">
-                        <span className=" py-3 pr-3">
-                          <ListCollectionIcons />
-                        </span>
-                        <span className="ml-[11.67px]">Мои заказы</span>
-                      </div>
-                      <span className="arrowRotate ml-auto rotate-[90deg]">
-                        <ArrowTopIcons colors={"#000"} />
-                      </span>
-                    </NavLink>
-                  ) : (
-                    <NavLink
-                      onClick={() =>
-                        setState({ ...state, hamburgerMenu: false })
-                      }
-                      to="/sign_in"
-                      className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
-                    >
-                      <div className="flex items-center">
-                        <span className=" py-3 pr-3">
-                          <ListCollectionIcons />
-                        </span>
-                        <span className="ml-[11.67px]">Мои заказы</span>
-                      </div>
-                      <span className="arrowRotate ml-auto rotate-[90deg]">
-                        <ArrowTopIcons colors={"#000"} />
-                      </span>
-                    </NavLink>
-                  )}
                 </li>
                 <li>
                   <NavLink
@@ -542,136 +485,72 @@ const MediumHeader = () => {
                     </span>
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink
+                    onClick={() => setState({ ...state, hamburgerMenu: false })}
+                    to="#"
+                    className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
+                  >
+                    <div className="flex items-center">
+                      <span className=" py-3 pr-3">
+                      <CommentIcons colors={"#000"} />
+                      </span>
+                      <span className="ml-[11.67px]">Помощь</span>
+                    </div>
+                    <span className="arrowRotate ml-auto rotate-[90deg]">
+                      <ArrowTopIcons colors={"#000"} />
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    onClick={() => setState({ ...state, hamburgerMenu: false })}
+                    to="#"
+                    className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
+                  >
+                    <div className="flex items-center">
+                      <span className=" py-3 pr-3">
+                        <PhoneIcons />
+                      </span>
+                      <span className="ml-[11.67px]">Контакты</span>
+                    </div>
+                    <span className="arrowRotate ml-auto rotate-[90deg]">
+                      <ArrowTopIcons colors={"#000"} />
+                    </span>
+                  </NavLink>
+                </li>     
               </ul>
-              {/*Help and Contact selection for Mobile */}
-              <div className="flex items-center justify-between h-fit mb-3">
-                <button
-                  onClick={() => setState({ ...state, hamburgerMenu: false })}
-                  className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium -lg-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
-                >
-                  <span>
-                    <CommentIcons colors={"#000"} />
-                  </span>
-                  <span className="ml-[10px]">Help</span>
-                </button>
-                <Link
-                  onClick={() => setState({ ...state, hamburgerMenu: false })}
-                  to="#"
-                  className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
-                >
-                  <span>
-                    <PhoneIcons />
-                  </span>
-                  <span className="ml-[10px]">Contact</span>
-                </Link>
-              </div>
-              {/* Line */}
-              <div className="line border-b w-[300px] border-searchBgColor mb-3 ls:w-full"></div>
-              {/* Location and Language */}
-              <div className="flex items-center justify-between h-fit mb-3">
-                <button className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
-                  <span>
-                    <LocationIcons />
-                  </span>
-                  <span className="ml-[10px] mr-5">Tashkent</span>
-                  <span className="">
-                    <ArrowTopIcons colors={"#000"} />
-                  </span>{" "}
-                </button>
-                <Link
-                  to="#"
-                  className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
-                >
-                  <img src={UzbekFlag} alt="." />
-                  <span className="ml-[10px] mr-5">English</span>
-                  <span className="">
-                    <ArrowTopIcons colors={"#000"} />
-                  </span>
-                </Link>
+              
+              <div className="flex flex-col">
+                {/* Line */}
+                <div className="line border-b w-full  border-searchBgColor mb-3 ls:w-full"></div>
+                
+                {/* Location and Language */}
+                <div className="flex items-center justify-between h-fit mb-3">
+                  <button className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
+                    <span>
+                      <LocationIcons />
+                    </span>
+                    <span className="ml-[10px] mr-5">Tashkent</span>
+                    <span className="">
+                      <ArrowTopIcons colors={"#000"} />
+                    </span>{" "}
+                  </button>
+                  <Link
+                    to="#"
+                    className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
+                  >
+                    <img src={UzbekFlag} alt="." />
+                    <span className="ml-[10px] mr-5">English</span>
+                    <span className="">
+                      <ArrowTopIcons colors={"#000"} />
+                    </span>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-
-          {/*Starting of Blocked  Hamburger Menu section */}
-          {locationWindow !== "/delivery-points" && (
-            <div className={`md:hidden relative w-full mx-auto `}>
-              {scrollPost > -132 ? (
-                <div className={`sticky top-0 py-1 bg-white  w-full z-10`}>
-                  {/* Searching section */}
-                  <div className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%]  border border-searchBgColor bg-white ">
-                    <span className="pl-[11.65px]">
-                      <SearchIcons />
-                    </span>
-                    <input
-                      type="text"
-                      placeholder="Искать товары или бренды"
-                      className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
-                    />
-                  </div>
-                </div>
-              ) : (
-                <div
-                  className={`fixed left-0 right-0 w-full top-0 px-3 py-1 bg-white z-[100]`}
-                >
-                  {/* Searching section */}
-                  <div className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%] border border-searchBgColor bg-white ">
-                    <span className="pl-[11.65px]">
-                      <SearchIcons />
-                    </span>
-                    <input
-                      type="text"
-                      placeholder="Искать товары или бренды"
-                      className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
-                    />
-                  </div>
-                </div>
-              )}
-
-              {/* Gender selection for Mobile */}
-              {locationWindow === "/" && (
-                <div className="flex flex-wrap items-center justify-between rounded-xl  my-4 w-full ">
-                  {personItems
-                    ?.filter((value) => value.id === dressInfo?.type)
-                    .map((data) => {
-                      return (
-                        <div
-                          key={data?.id}
-                          className="max-w-[440px] w-[100%] bg-btnBgColor flex items-center justify-between border border-searchBgColor rounded-xl overflow-hidden"
-                        >
-                          <button
-                            onClick={() =>
-                              setState({ ...state, genderActive: true })
-                            }
-                            className={` font-AeonikProMedium ${
-                              state?.genderActive
-                                ? "bg-white border border-searchBgColor"
-                                : "bg-transparent"
-                            } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
-                          >
-                            <img src={data?.woman} alt="female" />
-                            <span className="ml-3">Женщинам</span>
-                          </button>
-                          <button
-                            onClick={() =>
-                              setState({ ...state, genderActive: false })
-                            }
-                            className={` font-AeonikProMedium ${
-                              !state?.genderActive
-                                ? "bg-white border border-searchBgColor"
-                                : "bg-transparent"
-                            } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
-                          >
-                            <img src={data?.man} alt="male" />
-                            <span className="ml-3"> Мужчинам</span>
-                          </button>
-                        </div>
-                      );
-                    })}
-                </div>
-              )}
-            </div>
-          )}
-          {/* Ending of Blocked  Hamburger Menu section  */}
+          {/* Ending of Blocked Hamburger Menu section at the Mobile version  */}
         </div>
       </div>
     </div>
