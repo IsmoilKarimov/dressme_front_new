@@ -73,9 +73,9 @@ module.exports = {
         // AeonikProMedium: ["AeonikProMedium", ...defaultTheme.fontFamily.sans], // 500
 
         // 400
-        AeonikProMedium: ["InterMedium", ...defaultTheme.fontFamily.sans], // 400
+        AeonikProMedium: ["RobotoMedium", ...defaultTheme.fontFamily.sans], // 400
         // 500
-        AeonikProRegular: ["InterRegular", ...defaultTheme.fontFamily.sans], // 500
+        AeonikProRegular: ["RobotoRegular", ...defaultTheme.fontFamily.sans], // 500
       },
 
       boxShadow: {

@@ -40,12 +40,7 @@ const ForgetPassword = React.lazy(() =>
   import("../components/Authentication/SignInDetail/ForgetPassword")
 );
 const Footer = React.lazy(() => import("../components/footer/footer"));
-const BasketCheckOut = React.lazy(() =>
-  import("../components/Home/Basket/BasketCheckOut/BasketCheckOut")
-);
-const PaymentForClothes = React.lazy(() =>
-  import("../components/Home/Basket/Payment/PaymentForClothes")
-);
+
 const MyOrderSettings = React.lazy(() =>
   import("../components/Home/MyOrder/MyOrderSettings/MyOrderSettings")
 );
@@ -78,13 +73,6 @@ const RouterMain = () => {
   return (
     <>
       <Header />
-      {/* <TransitionGroup>
-        <CSSTransition
-          key={location.pathname}
-          timeout={300}
-          classNames={"fade"}
-          exit={false}
-        > */}
       <Routes>
         <Route
           path="/"
@@ -129,34 +117,7 @@ const RouterMain = () => {
             </Suspense>
           }
         />
-        <Route
-          path="/basket-check-out"
-          element={
-            <Suspense
-              fallback={
-                <div>
-                  <SkeletonHomeIndex />
-                </div>
-              }
-            >
-              <BasketCheckOut />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/payment"
-          element={
-            <Suspense
-              fallback={
-                <div>
-                  <SkeletonHomeIndex />
-                </div>
-              }
-            >
-              <PaymentForClothes />
-            </Suspense>
-          }
-        />
+
         <Route
           path="/product/:id"
           element={
@@ -200,51 +161,53 @@ const RouterMain = () => {
           }
         />
 
-        {/* <Route path="/sign_in" element={<SignIn />} /> */}
-        {/* <Route path="/sign_up" element={<SignUp />} /> */}
-        {/* <Route path="/my-order" element={<MyOrderBreadCamp />} /> */}
-
-        {localStorage.getItem("dressMeLogin") && (
-          <Route path="/my-order" element={<MyOrderBreadCamp />}>
-            <Route index element={<MyOrderSettings />} />
-            {/* <Route
-              index
-              path="/my-order/settings"
-              element={<MyOrderSettings />}
-            /> */}
-            <Route
-              index
-              path="/my-order/settings"
-              element={
-                <Suspense
-                  fallback={
-                    <div>
-                      <SkeletonHomeIndex />
-                    </div>
-                  }
-                >
-                  <MyOrderSettings />
-                </Suspense>
-              }
-            />
-            <Route
-              index
-              path="/my-order/list"
-              element={
-                <Suspense
-                  fallback={
-                    <div>
-                      <SkeletonHomeIndex />
-                    </div>
-                  }
-                >
-                  <MyOrderList />
-                </Suspense>
-              }
-            />
-            {/* <Route path="/my-order/list" element={<MyOrderList />} /> */}
-          </Route>
-        )}
+        <Route path="/my-order" element={<MyOrderBreadCamp />}>
+          <Route
+            index
+            element={
+              <Suspense
+                fallback={
+                  <div>
+                    <SkeletonHomeIndex />
+                  </div>
+                }
+              >
+                <MyOrderSettings />
+              </Suspense>
+            }
+          />
+          <Route
+            index
+            path="/my-order/settings"
+            element={
+              <Suspense
+                fallback={
+                  <div>
+                    <SkeletonHomeIndex />
+                  </div>
+                }
+              >
+                <MyOrderSettings />
+              </Suspense>
+            }
+          />
+          <Route
+            index
+            path="/my-order/list"
+            element={
+              <Suspense
+                fallback={
+                  <div>
+                    <SkeletonHomeIndex />
+                  </div>
+                }
+              >
+                <MyOrderList />
+              </Suspense>
+            }
+          />
+          {/* <Route path="/my-order/list" element={<MyOrderList />} /> */}
+        </Route>
         <Route
           path="/favourites"
           element={
@@ -287,11 +250,6 @@ const RouterMain = () => {
             </Suspense>
           }
         />
-
-        {/* <Route path="/favourites" element={<Favourites />} /> */}
-        {/* <Route path="/stores" element={<ShoppingStore />} /> */}
-        {/* <Route path="/shopping_store/:id" element={<ShoppingStoreOfficial />} /> */}
-
         <Route
           path="/forget_password"
           element={
@@ -336,8 +294,6 @@ const RouterMain = () => {
           }
         />
       </Routes>
-      {/* </CSSTransition>
-      </TransitionGroup> */}
 
       {locationWindow !== "/add_user_private_data" &&
       locationWindow !== "/add_user_body_data" &&

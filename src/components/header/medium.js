@@ -256,7 +256,9 @@ const MediumHeader = () => {
                 </div>
               ) : (
                 <div
-                  onClick={() => navigate(-1)}
+                  onClick={() => {
+                    navigate(-1);
+                  }}
                   className={`flex items-center justify-center bg-btnBgColor border border-searchBgColor w-12 h-12 -lg-lg cursor-pointer md:hidden rounded-xl`}
                 >
                   <span>
@@ -268,7 +270,7 @@ const MediumHeader = () => {
               {/* Logo section */}
               <NavLink
                 to="/"
-                className="flex justify-center items-center rounded-xl h-[48px] ss:w-[calc(100%-96px)] ss:p-2 ll:p-1 md:p-0 md:w-[155px] ss:ml-2 md:ml-[0px]  ss:bg-btnBgColor md:bg-transparent"
+                className="flex justify-center items-center select-none rounded-xl h-[48px] ss:w-[calc(100%-96px)] ss:p-2 ll:p-1 md:p-0 md:w-[155px] ss:ml-2 md:ml-[0px]  ss:bg-btnBgColor md:bg-transparent"
               >
                 {BrandTypeArray.filter((data) => data.id == dressInfo.type).map(
                   (data) => {
@@ -325,16 +327,16 @@ const MediumHeader = () => {
               </div>
 
               {/* Searching section */}
-              <div className="flex items-center justify-center rounded-xl font-AeonikProMedium h-[44px]  md:border-transparent md:w-[622px] ml-2 ss:hidden md:flex">
+              <div className="flex items-center justify-center rounded-xl font-AeonikProMedium h-[44px]  md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
                 {/* Catalog section */}
                 <button
-                  className={`items-center ${dataStyle}  pl-5 pr-7 h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
+                  className={`items-center ${dataStyle} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
                 >
                   <span>
                     <CotegoryIcons colors={IconsColor} />
                   </span>
                   <span
-                    className={` px-[9.5px] not-italic font-AeonikProMedium text-sm leading-4 `}
+                    className={` not-italic font-AeonikProMedium text-sm leading-4 `}
                   >
                     Каталог
                   </span>
@@ -345,7 +347,7 @@ const MediumHeader = () => {
                 <input
                   type="text"
                   placeholder="Поиск продуктов или брендов"
-                  className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor "
+                  className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
                 />
                 <button className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]">
                   <SearchIcons />
@@ -421,29 +423,15 @@ const MediumHeader = () => {
                   )
                 }
               </NavLink>
-
-              {/* Bucket section */}
-              <NavLink
-                to="/basket-check-out"
-                className=" bg-btnBgColor rounded-xl flex items-center justify-center w-11 h-11 relative md:flex ss:hidden"
-              >
-                <span>
-                  <BasketIcons colors={"#000"} />
-                </span>
-                <span className="count bg-RedColor w-4 h-4 text-white text-[10px] rounded-xl flex items-center justify-center absolute top-0 right-0 font-AeonikProMedium">
-                  {" "}
-                  4{" "}
-                </span>
-              </NavLink>
             </div>
           </div>
           {/* Ending of Full Screen page sesction Map*/}
 
           {/* Open Main Menu at the Mobile version */}
           <div
-            className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${
+            className={`max-w-[440px] w-[100%] fixed bg-red-500 top-[70px] left-0 z-[109] h-[100vh] px-3 border border-red-500 ${
               state?.hamburgerMenu
-                ? " flex flex-col h-fit ease-linear duration-500 overscroll-none z-[150]"
+                ? " flex flex-col ease-linear duration-500 overscroll-none z-[109]"
                 : "left-[-800px] z-[-80] ease-linear duration-500"
             }`}
           >
@@ -555,7 +543,6 @@ const MediumHeader = () => {
                   </NavLink>
                 </li>
               </ul>
-
               {/*Help and Contact selection for Mobile */}
               <div className="flex items-center justify-between h-fit mb-3">
                 <button
@@ -578,10 +565,8 @@ const MediumHeader = () => {
                   <span className="ml-[10px]">Contact</span>
                 </Link>
               </div>
-
               {/* Line */}
               <div className="line border-b w-[300px] border-searchBgColor mb-3 ls:w-full"></div>
-
               {/* Location and Language */}
               <div className="flex items-center justify-between h-fit mb-3">
                 <button className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">

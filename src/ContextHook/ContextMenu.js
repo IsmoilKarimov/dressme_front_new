@@ -37,6 +37,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258 000",
         price: "372 000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -61,6 +62,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -86,6 +88,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -112,6 +115,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -137,6 +141,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -162,6 +167,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -187,6 +193,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -212,6 +219,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -237,6 +245,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "15.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -262,6 +271,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -287,6 +297,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "",
         price: "75.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -312,6 +323,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -337,6 +349,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -362,6 +375,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "",
         price: "140.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -387,6 +401,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -411,6 +426,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258 000",
         price: "372 000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -435,6 +451,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -460,6 +477,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -486,6 +504,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -511,6 +530,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -536,6 +556,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -561,6 +582,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -586,6 +608,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -611,6 +634,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "15.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -636,6 +660,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -661,6 +686,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "",
         price: "75.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -686,6 +712,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -711,6 +738,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "258.000",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -736,6 +764,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "",
         price: "140.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
@@ -761,6 +790,7 @@ export const DressMenu = ({ children }) => {
         shirtSize: "M | 3XL",
         sale: "",
         price: "372.000",
+        saveFavourite: false,
         changeColor: [
           { id: 1, value: 1, action: false, colors: "bg-purple-700" },
           { id: 2, value: 2, action: false, colors: "bg-green-600" },
