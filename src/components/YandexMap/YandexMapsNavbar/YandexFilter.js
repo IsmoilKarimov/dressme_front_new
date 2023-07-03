@@ -22,7 +22,7 @@ export default function YandexFilter() {
 
   return (
     <div className=" max-w-[1280px] w-[100%] py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex justify-between items-center m-auto md:border-t">
-      <div className="w-full ss:hidden  md:block md:flex  items-center justify-between ">
+      <div className="w-full ss:hidden md:flex  items-center justify-between ">
         {wearGroup?.map((data) => {
           return (
             <span
