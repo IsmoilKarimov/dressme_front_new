@@ -260,7 +260,8 @@ const ClothingParametr = () => {
         </button>
       </div>
       <div className="w-full">
-        <div className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
+        <div
+          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
             state?.clothesTypeMobile ? "w-[92%]" : "w-0"
           }  `}
         >
@@ -303,7 +304,8 @@ const ClothingParametr = () => {
             </div>
           )}
         </div>
-        <div className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
+        <div
+          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
             state?.priceToggleMobile ? "w-[92%]" : "w-0"
           }  `}
         >
@@ -327,12 +329,22 @@ const ClothingParametr = () => {
                   </div>
                   <div className="  flex flex-col  mt-4">
                     <div className="flex justify-between items-center mb-7">
-                      <span className="flex items-center justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black ">
-                        60.000 sum
-                      </span>
-                      <span className="flex items-center justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black ">
-                        1 860 000 sum
-                      </span>
+                      <div className="flex flex-col">
+                        <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-setTexOpacity ">
+                          от
+                        </span>
+                        <span className="flex items-center  mt-[2px] justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                          60.000 sum
+                        </span>
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-setTexOpacity ">
+                          до
+                        </span>
+                        <span className="flex items-center mt-[2px] justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                          1 860 000 sum
+                        </span>
+                      </div>
                     </div>
                     <div className="relative z-50 mb-[6px]">
                       {" "}
@@ -355,7 +367,8 @@ const ClothingParametr = () => {
           )}
         </div>
 
-        <div className={`w-full h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${
+        <div
+          className={`w-full h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${
             state?.brandToggleMobile ? "w-[92%]" : "w-0"
           }`}
         >
@@ -398,13 +411,15 @@ const ClothingParametr = () => {
           )}
         </div>
 
-        <div className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
+        <div
+          className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
             state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
           }`}
         >
           {state?.selectColorToggleMobile && (
             <div className="fixed inset-0 z-10 ">
-              <div className="fixed inset-0 w-full h-full bg-black opacity-40"
+              <div
+                className="fixed inset-0 w-full h-full bg-black opacity-40"
                 onClick={() =>
                   setState({ ...state, selectColorToggleMobile: false })
                 }
@@ -428,7 +443,12 @@ const ClothingParametr = () => {
                           key={data?.id}
                           className="w-fit flex items-center cursour-pointer hover:shadow-md p-2 rounded-lg"
                         >
-                          <div className={`rounded-full mr-2 w-6 h-6 ${data?.colors} cursor-pointer `}
+                          <div
+                            className={`rounded-full mr-2 w-6 h-6 ${
+                              data?.colors
+                            } cursor-pointer ${
+                              data?.id == 6 ? "border border-setTexOpacity" : ""
+                            } `}
                           ></div>
                           <span className="not-italic font-AeonikProMedium text-base leading-4 text-black">
                             {data?.name}

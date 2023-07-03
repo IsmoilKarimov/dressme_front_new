@@ -11,7 +11,7 @@ import InputMask from "react-input-mask";
 import { UzbekFlag } from "../../../../AssetsMain";
 import { useLocation, useNavigate } from "react-router-dom";
 
-export default function MyOrderSettings() {
+const MyOrderSettings = () => {
   const [phone, setPhone] = useState("");
   const [state, setState] = useState({
     firstName: "",
@@ -241,4 +241,5 @@ export default function MyOrderSettings() {
       </div>
     </div>
   );
-}
+};
+export { MyOrderSettings };

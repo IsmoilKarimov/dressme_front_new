@@ -23,7 +23,6 @@ import SignUpSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 // import MyOrderList from "../components/Home/MyOrder/MyOrderList/MyOrderList";
 // import MyOrderSettings from "../components/Home/MyOrder/MyOrderSettings/MyOrderSettings";
 
-import { MyOrderBreadCamp } from "../components/Home/MyOrder/MyOrderBreadCamp/MyOrderBreadCamp";
 // -------------------------------------
 const HomePage = React.lazy(() => import("../Page/Home/Home"));
 const SingleMainProduct = React.lazy(() =>
@@ -40,13 +39,8 @@ const ForgetPassword = React.lazy(() =>
   import("../components/Authentication/SignInDetail/ForgetPassword")
 );
 const Footer = React.lazy(() => import("../components/footer/footer"));
+const OrderSettings = React.lazy(() => import("../components/Home/MyOrder"));
 
-const MyOrderSettings = React.lazy(() =>
-  import("../components/Home/MyOrder/MyOrderSettings/MyOrderSettings")
-);
-const MyOrderList = React.lazy(() =>
-  import("../components/Home/MyOrder/MyOrderList/MyOrderList")
-);
 const ShoppingStoreOfficial = React.lazy(() =>
   import("../components/Home/Shop/ShoppingStoreOfficial")
 );
@@ -161,53 +155,22 @@ const RouterMain = () => {
           }
         />
 
-        <Route path="/my-order" element={<MyOrderBreadCamp />}>
-          <Route
-            index
-            element={
-              <Suspense
-                fallback={
-                  <div>
-                    <SkeletonHomeIndex />
-                  </div>
-                }
-              >
-                <MyOrderSettings />
-              </Suspense>
-            }
-          />
-          <Route
-            index
-            path="/my-order/settings"
-            element={
-              <Suspense
-                fallback={
-                  <div>
-                    <SkeletonHomeIndex />
-                  </div>
-                }
-              >
-                <MyOrderSettings />
-              </Suspense>
-            }
-          />
-          <Route
-            index
-            path="/my-order/list"
-            element={
-              <Suspense
-                fallback={
-                  <div>
-                    <SkeletonHomeIndex />
-                  </div>
-                }
-              >
-                <MyOrderList />
-              </Suspense>
-            }
-          />
-          {/* <Route path="/my-order/list" element={<MyOrderList />} /> */}
-        </Route>
+        <Route
+          index
+          path="/profile/settings"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SkeletonHomeIndex />
+                </div>
+              }
+            >
+              <OrderSettings />
+            </Suspense>
+          }
+        />
+
         <Route
           path="/favourites"
           element={
