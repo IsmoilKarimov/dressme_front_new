@@ -12,8 +12,7 @@ export default function CategoryForType() {
       <div className="flex justify-between mb-10">
         
         {/* for mobile versions */}
-        <div
-          className={`w-full h-fit md:hidden absolute  top-0 ${
+        <div className={`w-full h-fit md:hidden absolute top-0 ${
             dressInfo?.openCategoryFilter ? " ml-[1px] " : " ml-[-1000px]"
           }   bg-white z-[105] duration-500`}
         >

@@ -170,7 +170,7 @@ const CategoryForBrand = () => {
 
   return (
     <div
-      className={`w-full h-full ${
+      className={`w-full h-fit ${
         dressInfo?.openShopIdFilter
           ? " border-0 "
           : " border border-searchBgColor"
@@ -255,7 +255,7 @@ const CategoryForBrand = () => {
           </div>
         </div>
         {/* Brands filter */}
-        <div className="w-full h-fit mt-[40px]  ">
+        <div className="w-full h-fit mt-[50px]  ">
           {/* Controls */}
           <div
             className="openBrands w-full flex justify-between items-center"
@@ -339,7 +339,7 @@ const CategoryForBrand = () => {
         </div>
 
         {/* Prizes */}
-        <div className=" mt-5">
+        <div className=" mt-[50px]">
           <div
             className="w-full flex justify-between items-center "
             onClick={(event) => {
