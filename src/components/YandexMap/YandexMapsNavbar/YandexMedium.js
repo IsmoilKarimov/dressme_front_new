@@ -104,7 +104,7 @@ const YandexMedium = () => {
             <span className="md:mr-3">
               <img src={value?.icons} alt="" />
             </span>
-            <span className={"ss:hidden md:inline-block font-AeonikProMedium text-base text-black not-italic ${hoverText}"}
+            <span className={`ss:hidden md:inline-block font-AeonikProMedium text-base text-black not-italic ${hoverText}`}
             >
               {value?.type}
             </span>
@@ -117,8 +117,8 @@ const YandexMedium = () => {
   return (
       <div className=" flex justify-between items-center m-auto ">
         {/* Starting of Full Screen page section */}
-        <div className="w-full flex justify-center items-center py-3 overscroll-none overflow-y-hidden ">
-          <div className=" w-full flex items-center ss:w-full md:w-fit justify-between ">
+        <div className="w-full flex justify-center items-center py-3 overscroll-none overflow-y-hidden">
+          <div className=" w-full flex items-center ss:w-full md:w-fit justify-between">
             {/* Menu section */}
             <div
               onClick={handleMainMenu}
@@ -155,7 +155,7 @@ const YandexMedium = () => {
             </NavLink>
   
             {/* Voice section */}
-            <div className={"bg-white w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex"}
+            <div className={`bg-white w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
             >
               <span>
                 <VolumeIcons colors={MapsIconsColor} />
@@ -196,7 +196,7 @@ const YandexMedium = () => {
             {/* Searching section */}
             <div className="flex items-center justify-center rounded-xl font-AeonikProMedium h-[44px]  md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
               {/* Catalog section */}
-              <button className={"items-center ${dataStyle} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex"}
+              <button className={`items-center ${dataStyle} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
               >
                 <span>
                   <CotegoryIcons colors={MapsIconsColor} />
@@ -204,7 +204,7 @@ const YandexMedium = () => {
                 <span
                   className={"not-italic font-AeonikProMedium text-sm leading-4"}
                 >
-                  Каталог
+                  Категория
                 </span>
               </button>
               <span className="flex md:hidden">
@@ -221,7 +221,7 @@ const YandexMedium = () => {
             </div>
   
             {/* Line border */}
-            <div className="line h-5 border-x-[1px]   text-textColor ss:hidden md:block mx-3"></div>
+            <div className="line h-5 border-x-[1px] text-textColor ss:hidden md:block mx-3"></div>
   
             {/* Map section */}
             <NavLink
@@ -241,7 +241,7 @@ const YandexMedium = () => {
             </NavLink>
   
             {/* Line border */}
-            <div className="line h-5 border-x-[1px]   text-textColor ss:hidden md:block mx-3"></div>
+            <div className="line h-5 border-x-[1px] text-textColor ss:hidden md:block mx-3"></div>
   
             {/* User section */}
             {localStorage.getItem("dressMeLogin") ? (
