@@ -7,12 +7,19 @@ import { dressMainData } from "../../../ContextHook/ContextMenu";
 export default function CategoryForType() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
+  useEffect(() => {
+    if (dressInfo?.openCategoryFilter) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [dressInfo?.openCategoryFilter]);
   return (
     <div className="w-full h-full">
       <div className="flex justify-between mb-10">
-        
         {/* for mobile versions */}
-        <div className={`w-full h-fit md:hidden absolute top-0 ${
+        <div
+          className={`w-full h-[100vh] overflow-hidden overflow-y-auto cateGoryScroll md:hidden absolute top-0 bottom-0 left-0 right-0 ${
             dressInfo?.openCategoryFilter ? " ml-[1px] " : " ml-[-1000px]"
           }   bg-white z-[105] duration-500`}
         >

@@ -174,7 +174,7 @@ const CategoryForBrand = () => {
         dressInfo?.openShopIdFilter
           ? " border-0 "
           : " border border-searchBgColor"
-      } py-5 rounded-lg overflow-hidden `}
+      } py-5 rounded-lg overflow-hidden`}
     >
       <div className="w-full px-3 ">
         {dressInfo?.openCategoryFilter && (

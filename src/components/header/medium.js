@@ -429,7 +429,7 @@ const MediumHeader = () => {
 
           {/* Opening of Main Menu at the Mobile version */}
           <div
-            className={`max-w-[440px] w-[100%] fixed bg-red-500 top-[70px] left-0 z-[100] h-screen	pb-[140px] px-3 ${
+            className={`max-w-[440px] w-[100%] fixed bg-red-500 top-[70px] left-0 right-0 bottom-0 h-screen	pb-[140px] px-3 ${
               state?.hamburgerMenu
                 ? " flex flex-col ease-linear bg-green-500 duration-500 overscroll-none z-[110]"
                 : "left-[-800px] z-[-80] ease-linear duration-500"
