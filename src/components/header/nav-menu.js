@@ -80,7 +80,7 @@ const NavMenu = () => {
                     <ActiveCotegoryIcons colors={IconsColor} />
                   </span>
                   <span className="mt-2">
-                    <span>Каталог</span>
+                    <span>Категория</span>
                   </span>{" "}
                 </span>
               ) : (
@@ -89,7 +89,7 @@ const NavMenu = () => {
                     <CotegoryIcons colors={"#000"} />
                   </span>
                   <span className="mt-2">
-                    <span>Каталог</span>
+                    <span>Категория</span>
                   </span>
                 </span>
               )
