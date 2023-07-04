@@ -278,16 +278,6 @@ table tr th:nth-child(1) {
   width: 10px;
   border-radius: 8px;
 }
-.cateGoryScroll::-webkit-scrollbar {
-  width: 50px;
-  height: 0px;
-}
-
-.cateGoryScroll::-webkit-scrollbar-thumb {
-  background-color: #e8e8f0;
-  width: 50px;
-  border-radius: 8px;
-}
 
 .item {
   width: fit-content;

@@ -225,19 +225,7 @@ const TopHeader = () => {
             </span>
           </Link>
           <div className="line h-5 border text-textColor ml-6"></div>
-          {localStorage.getItem("dressMeLogin") && (
-            <NavLink
-              to="/my-order"
-              className="flex items-center h-fit py-[4px]  ml-6 "
-            >
-              <span className="mr-2">
-                <MyPurchaseIcons colors={"#707070"} />
-              </span>
-              <span className="text-textColor  text-[13px]   font-AeonikProMedium  ">
-                Мои заказы
-              </span>
-            </NavLink>
-          )}
+
           <NavLink
             to="/stores"
             className="flex items-center bg-white rounded cursor-pointer h-fit py-[4px]  ml-6 px-3"
