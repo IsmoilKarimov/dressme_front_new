@@ -5,12 +5,12 @@ import CategoryTopDetail from "./CategoryTop/CategoryTopDetail";
 export default function CategoryMainType() {
   return (
     <div className="w-full flex flex-col justify-center items-center m-0 p-0 box-border">
-      <div className="w-full">
+      <div className="w-full -z-10">
         <CategoryTopDetail />
       </div>
 
       <div className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto">
-        <div className="w-[100%] h-fit">
+        <div className="w-[100%] h-fit -z-10">
           <CategoryForType />
         </div>
       </div>
