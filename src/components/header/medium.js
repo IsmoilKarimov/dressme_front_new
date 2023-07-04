@@ -436,8 +436,7 @@ const MediumHeader = () => {
                 : "left-[-800px] z-[-80] ease-linear duration-500"
             }`}
           >
-            <div
-              className={`w-full h-full flex flex-wrap content-between`}
+            <div  className={`w-full h-full flex flex-wrap content-between`}
             >
               {/* Searching section */}
               <div className={`w-full h-fit flex flex-col `}>
