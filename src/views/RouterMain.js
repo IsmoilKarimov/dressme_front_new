@@ -62,7 +62,6 @@ const RouterMain = () => {
   const [locationWindow, setLocationWindow] = useState("");
   useEffect(() => {
     setLocationWindow(location.pathname);
-    console.log(locationWindow, "locationWindow");
   }, [location.pathname]);
   return (
     <>
