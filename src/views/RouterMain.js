@@ -266,6 +266,7 @@ const RouterMain = () => {
       locationWindow !== "/forget_password" &&
       locationWindow !== "/sign_up" &&
       locationWindow !== "/sign_in" &&
+      locationWindow !== "//profile/settings" &&
       locationWindow !== "/my-order/settings" &&
       locationWindow !== "/my-order/list" &&
       locationWindow !== "/my-order" &&
