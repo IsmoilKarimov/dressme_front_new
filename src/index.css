@@ -287,8 +287,16 @@ table tr th:nth-child(1) {
   cursor: pointer;
   /* border: 1px solid green; */
 }
+.categoryScroll::-webkit-scrollbar {
+  width: 2px;
+}
 
-/* --------------------React Slider */
+.categoryScroll::-webkit-scrollbar-thumb {
+  background-color: #1e1e20;
+  height: 30px;
+  border-radius: 8px;
+}
+/* --------------------React Slider openedBrands */
 
 /* --------------------React Slider search  */
 

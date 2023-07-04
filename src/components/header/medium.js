@@ -426,61 +426,6 @@ const MediumHeader = () => {
             </div>
           </div>
           {/*Starting of Blocked  Hamburger Menu section */}
-          <div className={`md:hidden `}>
-            <div className="flex items-center justify-between w-full ">
-              {/* Searching section */}
-              <div className="search flex items-center rounded-lg font-AeonikProMedium h-10  border ss:w-[100%]">
-                <SearchIcons />
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
-                />
-              </div>
-            </div>
-          </div>
-
-          {locationWindow === "/" && (
-            <div className="flex flex-wrap items-center justify-between rounded-xl  my-4 w-full ">
-              {personItems
-                ?.filter((value) => value.id === dressInfo?.type)
-                .map((data) => {
-                  return (
-                    <div
-                      key={data?.id}
-                      className="max-w-[440px] w-[100%] bg-btnBgColor flex items-center justify-between border border-searchBgColor rounded-xl overflow-hidden"
-                    >
-                      <button
-                        onClick={() =>
-                          setState({ ...state, genderActive: true })
-                        }
-                        className={` font-AeonikProMedium ${
-                          state?.genderActive
-                            ? "bg-white border border-searchBgColor"
-                            : "bg-transparent"
-                        } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
-                      >
-                        <img src={data?.woman} alt="female" />
-                        <span className="ml-3">Женщинам</span>
-                      </button>
-                      <button
-                        onClick={() =>
-                          setState({ ...state, genderActive: false })
-                        }
-                        className={` font-AeonikProMedium ${
-                          !state?.genderActive
-                            ? "bg-white border border-searchBgColor"
-                            : "bg-transparent"
-                        } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
-                      >
-                        <img src={data?.man} alt="male" />
-                        <span className="ml-3"> Мужчинам</span>
-                      </button>
-                    </div>
-                  );
-                })}
-            </div>
-          )}
 
           {/* Ending of Full Screen page sesction Map*/}
 
