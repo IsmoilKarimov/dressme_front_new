@@ -100,10 +100,8 @@ const MyOrderBreadCamp = () => {
           <div className="flex items-center md:gap-x-6 gap-x-4">
             <NavLink
               to="/profile/settings"
-              className={({ isActive }) =>
-                isActive
-                  ? `not-italic font-AeonikProMedium text-base md:text-lg leading-5 text-black ml-[100px]`
-                  : `not-italic font-AeonikProMedium text-base md:text-lg leading-5`
+              className={
+                "not-italic font-AeonikProMedium text-base md:text-lg leading-5 text-black md:ml-[100px]"
               }
             >
               Настройки

@@ -20,7 +20,7 @@ const ShoppingStoreCategory = () => {
             <ShopOfficialBrand />
           </div>
           <div
-            className={`w-full h-[100vh] overflow-hidden overflow-y-auto  md:hidden absolute top-0 bottom-0 left-0 right-0 ${
+            className={`w-full h-[100vh] overflow-hidden overflow-y-auto  md:hidden fixed top-0 bottom-0 left-0 right-0 ${
               dressInfo?.openShopIdFilter ? " ml-[1px] " : " ml-[-1000px]"
             }   bg-white z-[105] duration-500`}
           >
