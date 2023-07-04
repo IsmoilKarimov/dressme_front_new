@@ -15,14 +15,14 @@ const ShoppingStoreOfficial = () => {
   }, []);
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center -z-10">
       <div className="w-full border-b border-searchBgColor">
         <ShoppingStoreOfficialBreadCrumb name={NewId} />
       </div>
-      <div className="w-full border-searchBgColor">
+      <div className="w-full border-searchBgColor -z-10">
         <ShoppingStoreOfficialTop name={NewId} />
       </div>
-      <div className="w-full">
+      <div className="w-full -z-10">
         <ShoppingStoreCategory />
       </div>
     </div>
