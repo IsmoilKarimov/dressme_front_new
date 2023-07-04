@@ -43,10 +43,12 @@ export default function FavouriteProducts() {
                 return (
                   <div
                     key={data.id}
-                    onClick={() => goDetail(data?.title)}
                     className={`ss:w-[49%] md:w-[24%] lg:w-[240px]  xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
                   >
-                    <div className="relative  w-full cursor-pointer ss:h-[200px] ls:h-[220px] ll:h-[238px] xs:h-[309px] lg:h-[320px] bg-btnBgColor  flex content-between items-center overflow-hidden border-b border-solid flex-nowrap">
+                    <div
+                      onClick={() => goDetail(data?.title)}
+                      className="relative w-full cursor-pointer ss:h-[200px] ls:h-[220px] ll:h-[238px] xs:h-[309px] lg:h-[320px] bg-btnBgColor  flex content-between items-center overflow-hidden border-b border-solid flex-nowrap"
+                    >
                       {data.ProducImg ? (
                         <img
                           className="w-full h-full m-auto hover:scale-105 transition duration-700 ease-in-out"
@@ -84,14 +86,11 @@ export default function FavouriteProducts() {
                         </p> */}
                         </ul>
 
-                        <div className="flex flex-col gap-y-1">
-                          <p className="w-8 h-8  rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
-                            <img src={HeartImg} alt="" />
-                          </p>
-                          {/* <p className="w-8 h-8 ss:hidden rounded-lg bg-bgCard xs:flex items-center justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
-                          <img src={bucket} alt="" />
-                        </p> */}
-                        </div>
+                        {/* <div className="flex flex-col gap-y-1">
+                        <p className="w-8 h-8  rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
+                          <img src={HeartImg} alt="" />
+                        </p>
+                      </div> */}
                       </div>
 
                       {/* <div className="absolute w-full flex justify-between items-center px-1 bottom-0 border-solid xs:h-[38px] lg:h-8 ss:h-[30px] xs:px-2 md:px-4 bg-white hover:backdrop-brightness-125 hover:bg-white/60 transition ease-out duration-500">
@@ -132,7 +131,10 @@ export default function FavouriteProducts() {
                           );
                         })}
                       </div>
-                      <div className="w-full  xs:px-3 ss:px-3 xs:mt-3 ss:mt-2">
+                      <div
+                        onClick={() => goDetail(data?.title)}
+                        className="w-full  xs:px-3 ss:px-3 xs:mt-3 ss:mt-2"
+                      >
                         <div className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[15px] leading-4 text-black mb-2 md:mb-0  cursor-pointer">
                           <div className="absolute categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
                           {data?.title || "NoData"}
@@ -181,9 +183,9 @@ export default function FavouriteProducts() {
                             </p>
                           )}
                         </div>
-                        <div className="flex items-center">
-                          <button className="w-[32px] h-[32px] md:w-[36px] md:h-[36px] ll:mb-1 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-                            <img src={AddBasket} alt="addbag" className="w-8" />
+                        <div className="flex items-center select-none	">
+                          <button className="w-[32px] h-[32px] active:scale-95  active:opacity-70 ll:mb-1 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
+                            <img src={HeartImg} alt="" />
                           </button>
                         </div>
                       </div>
