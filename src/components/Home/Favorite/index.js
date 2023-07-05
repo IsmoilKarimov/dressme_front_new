@@ -18,7 +18,7 @@ export default function Favourites() {
       {/* <div className="w-full border-b border-searchBgColor">
             <FavouriteTop />
           </div> */}
-      <div className="w-full -z-10">
+      <div className="w-full ">
         <FavouriteProducts />
       </div>
     </div>

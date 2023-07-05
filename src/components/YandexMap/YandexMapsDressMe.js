@@ -161,7 +161,7 @@ function YandexMapsDressMe() {
         {/* Laptop device for */}
         {screenSize.width > 768 && (
           <div
-            className={`w-full bottom-[0px]  overflow-hidden  md:w-[769px] absolute md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
+            className={`w-full bottom-[0px]  overflow-hidden  md:w-[769px] fixed md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
           ${
             dressInfo?.yandexOpenMarketLocation
               ? `z-[102] h-fit bottom-[-170px] md:bottom-[-75px]`
@@ -175,7 +175,7 @@ function YandexMapsDressMe() {
         )}
         {screenSize.width <= 768 && (
           <div
-            className={`absolute w-full bg-red-500 z-[102] left-0 right-0 overflow-hidden  ${
+            className={`fixed w-full bg-red-500 z-[102] left-0 right-0 overflow-hidden  ${
               dressInfo?.yandexOpenMarketLocation
                 ? "h-[500px] bottom-0 ease-linear duration-300 "
                 : "bottom-[-1400px] ease-linear duration-300 "

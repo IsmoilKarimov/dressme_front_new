@@ -91,7 +91,6 @@ const MediumHeader = () => {
     };
   }, [scrollPost]);
   // -----------------------------------------------------
-  console.log(scrollPost);
   let IconsColor = "";
   let dataStyle = "";
   let genderStyle = "";
@@ -540,20 +539,20 @@ const MediumHeader = () => {
           {/*Starting of Blocked  Hamburger Menu section */}
           {locationWindow !== "/delivery-points" && (
             <div className={`md:hidden relative w-full mx-auto `}>
-              {scrollPost > -130 ? (
-                <div className={`sticky top-0 py-1 bg-white  w-full z-10`}>
-                  {/* Searching section */}
-                  <div className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%]  border border-searchBgColor bg-white ">
-                    <span className="pl-[11.65px]">
-                      <SearchIcons />
-                    </span>
-                    <input
-                      type="text"
-                      placeholder="Искать товары или бренды"
-                      className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
-                    />
-                  </div>
+              <div className={`sticky top-0 py-1 bg-white  w-full z-10`}>
+                {/* Searching section */}
+                <div className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%]  border border-searchBgColor bg-white ">
+                  <span className="pl-[11.65px]">
+                    <SearchIcons />
+                  </span>
+                  <input
+                    type="text"
+                    placeholder="Искать товары или бренды"
+                    className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
+                  />
                 </div>
+              </div>
+              {/* {scrollPost > -130 ? (
               ) : (
                 <div
                   className={`fixed top-0 left-0 right-0 py-1 bg-white w-full z-10`}
@@ -569,7 +568,7 @@ const MediumHeader = () => {
                     />
                   </div>
                 </div>
-              )}
+              )} */}
 
               {/* Gender selection for Mobile */}
               {locationWindow === "/" && (
