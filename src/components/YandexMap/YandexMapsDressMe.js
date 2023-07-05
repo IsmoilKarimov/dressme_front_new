@@ -160,7 +160,8 @@ function YandexMapsDressMe() {
       <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden">
         {/* Laptop device for */}
         {screenSize.width > 768 && (
-          <div className={`w-full bottom-[0px]  overflow-hidden  md:w-[769px] absolute md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
+          <div
+            className={`w-full bottom-[0px]  overflow-hidden  md:w-[769px] absolute md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
           ${
             dressInfo?.yandexOpenMarketLocation
               ? `z-[102] h-fit bottom-[-170px] md:bottom-[-75px]`
@@ -173,20 +174,22 @@ function YandexMapsDressMe() {
           </div>
         )}
         {screenSize.width <= 768 && (
-          <div className={`absolute w-full overflow-hidden  ${
+          <div
+            className={`absolute w-full bg-red-500 z-[102] left-0 right-0 overflow-hidden  ${
               dressInfo?.yandexOpenMarketLocation
-                ? "z-[102] h-fit bg-white  bottom-0 mb-0"
-                : "bottom-[-200px] mb-[-200px] z-[-10]"
+                ? "h-[500px] bottom-0 ease-linear duration-300 "
+                : "bottom-[-1400px] ease-linear duration-300 "
             }  ease-linear duration-300 `}
           >
-            {dressInfo?.yandexOpenMarketLocation && (
+            {/* {dressInfo?.yandexOpenMarketLocation && (
               <YandexLocationMarketOpen />
-            )}{" "}
+            )}{" "} */}
           </div>
         )}
 
         {/* Navbaryandex */}
-        <div className={`absolute z-50 hidden md:block ${
+        <div
+          className={`absolute z-50 hidden md:block ${
             !dressInfo?.yandexOpenMenu
               ? "top-0 ease-linear duration-500 "
               : "top-[-250px] ease-linear duration-500 "
@@ -194,7 +197,8 @@ function YandexMapsDressMe() {
         >
           <YandexMapsIndex />
         </div>
-        <div className={`absolute z-50 right-2 ${
+        <div
+          className={`absolute z-50 right-2 ${
             dressInfo?.yandexOpenMenu
               ? "top-2  right-2 ease-linear duration-500 "
               : "top-[-250px]  right-2 ease-linear duration-500 "
@@ -539,7 +543,8 @@ function YandexMapsDressMe() {
               </div>
             </div>
             {/* Yandex Main menu */}
-            <div className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${
+            <div
+              className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${
                 dressInfo?.openMainMenu
                   ? "left-[-500px] md:left-[-5000px] z-[-80] ease-linear duration-500"
                   : "hamburger flex flex-col ease-linear duration-500 overscroll-none z-[105]"
@@ -696,11 +701,20 @@ function YandexMapsDressMe() {
               </div>
             </div>
             {/* Yandex Search */}
-            <div className={`absolute  ${
+            <div
+              className={`absolute  ${
                 !dressInfo?.yandexFullScreen ? "top-[80px]" : "top-[8px]"
               }  md:top-auto md:bottom-[24px] left-0 right-0 mx-auto  overflow-hidden z-50 bg-yandexNavbar backdrop-blur-sm rounded-xl h-[48px] w-[94%] md:w-fit shadow-lg`}
             >
-              <div className="w-full h-full flex justify-between ">
+              <div
+                onClick={() => {
+                  setDressInfo({
+                    ...dressInfo,
+                    yandexOpenMarketLocation: !dressInfo.yandexOpenMarketLocation,
+                  });
+                }}
+                className="w-full h-full flex justify-between "
+              >
                 <div className="w-[100%] h-full flex gap-x-2 items-center px-3">
                   <div>
                     <span>
@@ -723,7 +737,8 @@ function YandexMapsDressMe() {
                 {/* <div className="w-[20%] h-full flex items-center border border-red-400"></div> */}
               </div>
             </div>
-            <div className={`absolute block md:hidden ml-[-1000px] duration-1000 overflow-hidden z-[103] rounded-lg shadow-lg left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%]  md:bottom-[120px]
+            <div
+              className={`absolute block md:hidden ml-[-1000px] duration-1000 overflow-hidden z-[103] rounded-lg shadow-lg left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%]  md:bottom-[120px]
               ${
                 dressInfo?.yandexFullScreen
                   ? "bottom-[10px] md:bottom-auto"
