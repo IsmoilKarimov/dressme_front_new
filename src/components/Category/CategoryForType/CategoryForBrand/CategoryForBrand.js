@@ -570,7 +570,10 @@ const CategoryForBrand = () => {
             {/* Field */}
             {product?.ArrayRating.map((data) => {
               return (
-                <div className="flex items-center cursor-pointer select-none  overflow-auto">
+                <div
+                  key={data?.id}
+                  className="flex items-center cursor-pointer select-none  overflow-auto"
+                >
                   <div
                     className={`w-[22px] h-[22px] p-1 flex items-center  mr-[10px] rounded border border-borderColorCard`}
                   >

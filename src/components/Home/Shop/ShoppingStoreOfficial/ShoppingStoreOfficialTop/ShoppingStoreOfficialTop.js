@@ -51,7 +51,8 @@ const ShoppingStoreOfficialTop = ({ name }) => {
   const NextArrow = (props) => {
     const { onClick } = props;
     return (
-      <div className={`absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-50	right-[4px]  rounded-full bg-white    duration-200 border  border-borderColor2
+      <div
+        className={`absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-50	right-[4px]  rounded-full bg-white    duration-200 border  border-borderColor2
         		`}
         onClick={() => data(onClick)}
       >
@@ -140,9 +141,11 @@ const ShoppingStoreOfficialTop = ({ name }) => {
 
   // Types of Clothes
   const handleOpenTypesofClothes = (openTypesofClothes) => {
-    setState({...state, openTypesofClothes: openTypesofClothes})
+    setState({ ...state, openTypesofClothes: openTypesofClothes });
   };
-  const [selectTypesofClothes, setSelectTypesofClothes] = useState("Categories");
+  const [selectTypesofClothes, setSelectTypesofClothes] = useState(
+    "Categories"
+  );
   const handleTypesofClothes = (value) => {
     setSelectTypesofClothes(value);
     setState({ ...state, openTypesofClothes: false });
@@ -318,7 +321,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
           <div className="w-full md:hidden flex items-center justify-between mt-6 mb-3  px-4">
             <button
               onClick={handleFilter}
-              className="h-[44px] w-[48%] rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+              className="h-[44px] w-[48%] rounded-lg select-none border border-searchBgColor bg-btnBgColor flex items-center justify-center"
             >
               <span>
                 <FilterIcons colors={"#000"} />
@@ -328,7 +331,8 @@ const ShoppingStoreOfficialTop = ({ name }) => {
               </span>
             </button>
 
-            <Popover className="h-[44px] w-[48%] active:scale-95  active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+            <Popover
+              className="h-[44px] w-[48%] active:scale-95 select-none active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
               open={state?.openTypesofClothes}
               onOpenChange={handleOpenTypesofClothes}
               trigger="click"
@@ -336,12 +340,12 @@ const ShoppingStoreOfficialTop = ({ name }) => {
               placement="bottom"
               content={contentTypesofClothes}
             >
-                <span>
-                  <ClothesIcons />
-                </span>
-                <span className="ml-2 not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
-                  Тип одеждый 
-                </span>
+              <span>
+                <ClothesIcons />
+              </span>
+              <span className="ml-2 not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+                Тип одеждый
+              </span>
             </Popover>
           </div>
         </div>

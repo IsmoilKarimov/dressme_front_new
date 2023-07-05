@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import RouterList from "./views/RouterList";
-import LoadingOpacity from "./Page/Loading/LoadingOpacity";
+
 import RouterMain from "./views/RouterMain";
 import { useLocation } from "react-router-dom";
 import { dressMainData } from "./ContextHook/ContextMenu";
@@ -18,7 +17,6 @@ export default function App() {
   }, [location.pathname]);
   return (
     <>
-      {/* <RouterList /> */}
       <RouterMain />
     </>
   );

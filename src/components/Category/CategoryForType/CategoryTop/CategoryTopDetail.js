@@ -23,6 +23,7 @@ import { BiChevronDown } from "react-icons/bi";
 const CategoryTopDetail = ({ name }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const handleFilter = () => {
+    console.log("runFilter");
     setDressInfo({
       ...dressInfo,
       openCategoryFilter: !dressInfo.openCategoryFilter,
@@ -81,72 +82,16 @@ const CategoryTopDetail = ({ name }) => {
     );
   };
 
-  let settings1 = {
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    infinite: true,
-    arrows: true,
-    speed: 500,
-    dots: false,
-    slidesToShow: 9,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    // beforeChange: (current, next) => setCurrentSlide(next),
-
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 6,
-          slidesToScroll: 1,
-          infinite: true,
-        },
-      },
-      {
-        breakpoint: 770,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 560,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-
-      {
-        breakpoint: 390,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
   const [state, setState] = useState({
     opensports: false,
     openTypesofClothes: false,
   });
 
-   // categories
+  // categories
   const handleOpenCategories = (newOpen) => {
     setState({ ...state, opensports: newOpen });
   };
-  const [selectSports, setSelectCategories] = useState("Categories");
   const handleCategories = (value) => {
-    setSelectCategories(value);
     setState({ ...state, opensports: false });
   };
   const categories = [
@@ -178,9 +123,11 @@ const CategoryTopDetail = ({ name }) => {
 
   // Types of Clothes
   const handleOpenTypesofClothes = (openTypesofClothes) => {
-    setState({...state, openTypesofClothes: openTypesofClothes})
+    setState({ ...state, openTypesofClothes: openTypesofClothes });
   };
-  const [selectTypesofClothes, setSelectTypesofClothes] = useState("Categories");
+  const [selectTypesofClothes, setSelectTypesofClothes] = useState(
+    "Categories"
+  );
   const handleTypesofClothes = (value) => {
     setSelectTypesofClothes(value);
     setState({ ...state, openTypesofClothes: false });
@@ -276,19 +223,19 @@ const CategoryTopDetail = ({ name }) => {
 
           <div className="w-full md:hidden flex items-center justify-between mt-6 mb-3  px-4">
             <button
-              onClick={handleFilter}
-              className="h-[44px] w-[48%] active:scale-95  active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+              onClick={() => handleFilter()}
+              className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
             >
               <span>
                 <FilterIcons colors={"#000"} />
               </span>
-              <span className="ml-2 not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+              <span className="ml-2 not-italic  font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
                 Фильтры
               </span>
             </button>
-              
+
             <Popover
-              className="h-[44px] w-[48%] active:scale-95  active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+              className="h-[44px] w-[48%] active:scale-95  select-none  active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
               open={state?.openTypesofClothes}
               onOpenChange={handleOpenTypesofClothes}
               trigger="click"
@@ -296,14 +243,13 @@ const CategoryTopDetail = ({ name }) => {
               placement="bottom"
               content={contentTypesofClothes}
             >
-                <span>
-                  <ClothesIcons />
-                </span>
-                <span className="ml-2 not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
-                  Тип одеждый 
-                </span>
+              <span>
+                <ClothesIcons />
+              </span>
+              <span className="ml-2  not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+                Тип одеждый
+              </span>
             </Popover>
-      
           </div>
         </div>
       </div>

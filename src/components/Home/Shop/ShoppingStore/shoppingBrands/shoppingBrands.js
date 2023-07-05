@@ -62,9 +62,11 @@ const ShoppingBrands = () => {
         <div className="w-full">
           {allShops.map((data) => (
             <div
-              onClick={() => gotoOfficial(data?.name)}
+              onClick={() => {
+                gotoOfficial(data?.name);
+              }}
               key={data.id}
-              className="relative w-full cursor-pointer h-fit md:h-[100px] flex items-center justify-between md:border md:border-searchBgColor rounded-lg mb-[30px]"
+              className="relative  w-full cursor-pointer h-fit md:h-[100px] flex items-center justify-between md:border md:border-searchBgColor rounded-lg mb-[30px]"
             >
               <div className="absolute w-[50px] h-[50px] ll:w-[60px] ll:h-[60px] md:w-[120px] md:h-[120px] md:left-[55px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
                 <img src={nike} alt="" className="w-[70%] md:w-fit" />
