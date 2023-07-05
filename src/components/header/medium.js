@@ -80,40 +80,18 @@ const MediumHeader = () => {
   }, [state?.hamburgerMenu]);
 
   // -----------------------------------------------------
-  const [show, setShow] = useState(true);
   const [scrollPost, setscrollPost] = useState(0);
-
-  // ----------------NavMenu----------------
-  const [ShowNavMenu, setShowNavMenu] = useState(true);
-  const [ScrollPostNavMenu, setScrollPostNavMenu] = useState(0);
-
-  // ----------------NavBar----------------
   const handleScroll = () => {
     setscrollPost(document.body.getBoundingClientRect().top);
-    if (parseInt(Math.abs(scrollPost)) > 300) {
-      setShow(document.body.getBoundingClientRect().top > scrollPost);
-    }
   };
-
-  // ----------------NavMenu----------------
-  const handleScrollNavMenu = () => {
-    setScrollPostNavMenu(document.body.getBoundingClientRect().top);
-    setShowNavMenu(
-      document.body.getBoundingClientRect().top < ScrollPostNavMenu
-    );
-  };
-
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-    window.addEventListener("scroll", handleScrollNavMenu);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("scroll", handleScrollNavMenu);
     };
-  }, [show, scrollPost, ShowNavMenu, ScrollPostNavMenu]);
+  }, [scrollPost]);
   // -----------------------------------------------------
-
+  console.log(scrollPost);
   let IconsColor = "";
   let dataStyle = "";
   let genderStyle = "";
@@ -311,7 +289,7 @@ const MediumHeader = () => {
                       placement="bottom"
                       content={contentWear}
                     >
-                      <div className="w-full h-full  sm:flex items-center  select-none cursor-pointer  ">
+                      <div className="w-full h-full sm:flex items-center select-none cursor-pointer  ">
                         <img
                           src={data?.icons}
                           alt="weather"
@@ -327,7 +305,7 @@ const MediumHeader = () => {
               </div>
 
               {/* Searching section */}
-              <div className="items-center justify-center rounded-xl font-AeonikProMedium h-[44px]  md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
+              <div className="items-center justify-center rounded-xl font-AeonikProMedium h-[44px] md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
                 {/* Catalog section */}
                 <button
                   className={`items-center ${dataStyle} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
@@ -338,7 +316,7 @@ const MediumHeader = () => {
                   <span
                     className={` not-italic font-AeonikProMedium text-sm leading-4 `}
                   >
-                    Категория
+                    Категории
                   </span>
                 </button>
                 <span className="flex md:hidden">
@@ -355,7 +333,7 @@ const MediumHeader = () => {
               </div>
 
               {/* Line border */}
-              <div className="line h-5 border-x-[1px]   text-textColor ss:hidden md:block mx-3"></div>
+              <div className="line h-5 border-x-[1px] text-textColor ss:hidden md:block mx-3"></div>
 
               {/* Map section */}
               <NavLink
@@ -365,11 +343,11 @@ const MediumHeader = () => {
                 <span className="pr-[6px]">
                   <MapIcons colors={"#000"} />
                 </span>
-                <span className="font-AeonikProMedium text-sm  ">Карта</span>
+                <span className="font-AeonikProMedium text-sm">Карта</span>
               </NavLink>
 
               {/* Line border */}
-              <div className="line h-5 border-x-[1px]   text-textColor ss:hidden md:block mx-3"></div>
+              <div className="line h-5 border-x-[1px] text-textColor ss:hidden md:block mx-3"></div>
 
               {/* User section */}
               {localStorage.getItem("dressMeLogin") ? (
@@ -426,18 +404,14 @@ const MediumHeader = () => {
             </div>
           </div>
           {/*Starting of Blocked  Hamburger Menu section */}
-
-          {/* Ending of Full Screen page sesction Map*/}
-
-          {/* Opening of Main Menu at the Mobile version */}
-          <div className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen	pb-[140px] px-3 ${
+          <div
+            className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen	pb-[140px] px-3 ${
               state?.hamburgerMenu
                 ? " flex flex-col ease-linear duration-500 overscroll-none"
                 : "left-[-800px] z-[-80] ease-linear duration-500"
             }`}
           >
-            <div  className={`w-full h-full flex flex-wrap content-between`}
-            >
+            <div className={`w-full h-full flex flex-wrap content-between`}>
               {/* Searching section */}
               <div className={`w-full h-fit flex flex-col `}>
                 <div className="search flex items-center bg-btnBgColor justify-between rounded-xl font-AeonikProMedium h-12 mt-3 mb-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
@@ -563,7 +537,85 @@ const MediumHeader = () => {
               </div>
             </div>
           </div>
-          {/* Ending of Blocked Hamburger Menu section at the Mobile version  */}
+          {/*Starting of Blocked  Hamburger Menu section */}
+          {locationWindow !== "/delivery-points" && (
+            <div className={`md:hidden relative w-full mx-auto `}>
+              {scrollPost > -130 ? (
+                <div className={`sticky top-0 py-1 bg-white  w-full z-10`}>
+                  {/* Searching section */}
+                  <div className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%]  border border-searchBgColor bg-white ">
+                    <span className="pl-[11.65px]">
+                      <SearchIcons />
+                    </span>
+                    <input
+                      type="text"
+                      placeholder="Искать товары или бренды"
+                      className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div
+                  className={`fixed top-0 left-0 right-0 py-1 bg-white w-full z-10`}
+                >
+                  <div className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%] border border-searchBgColor bg-white ">
+                    <span className="pl-[11.65px]">
+                      <SearchIcons />
+                    </span>
+                    <input
+                      type="text"
+                      placeholder="Искать товары или бренды"
+                      className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Gender selection for Mobile */}
+              {locationWindow === "/" && (
+                <div className="flex flex-wrap items-center justify-between rounded-xl  my-4 w-full ">
+                  {personItems
+                    ?.filter((value) => value.id === dressInfo?.type)
+                    .map((data) => {
+                      return (
+                        <div
+                          key={data?.id}
+                          className="max-w-[440px] w-[100%] bg-btnBgColor flex items-center justify-between border border-searchBgColor rounded-xl overflow-hidden"
+                        >
+                          <button
+                            onClick={() =>
+                              setState({ ...state, genderActive: true })
+                            }
+                            className={` font-AeonikProMedium ${
+                              state?.genderActive
+                                ? "bg-white border border-searchBgColor"
+                                : "bg-transparent"
+                            } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
+                          >
+                            <img src={data?.woman} alt="female" />
+                            <span className="ml-3">Женщинам</span>
+                          </button>
+                          <button
+                            onClick={() =>
+                              setState({ ...state, genderActive: false })
+                            }
+                            className={` font-AeonikProMedium ${
+                              !state?.genderActive
+                                ? "bg-white border border-searchBgColor"
+                                : "bg-transparent"
+                            } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
+                          >
+                            <img src={data?.man} alt="male" />
+                            <span className="ml-3"> Мужчинам</span>
+                          </button>
+                        </div>
+                      );
+                    })}
+                </div>
+              )}
+            </div>
+          )}
+          {/* Ending of Blocked  Hamburger Menu section  */}{" "}
         </div>
       </div>
     </div>
