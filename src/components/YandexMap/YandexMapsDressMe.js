@@ -164,26 +164,22 @@ function YandexMapsDressMe() {
             className={`w-full bottom-[0px]  overflow-hidden  md:w-[769px] fixed md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
           ${
             dressInfo?.yandexOpenMarketLocation
-              ? `z-[102] h-fit bottom-[-170px] md:bottom-[-75px]`
-              : "hidden bottom-[-170px]  z-[-10]"
-          } ease-linear duration-300`}
+              ? `z-[102] h-[350px]  bottom-[-75px]`
+              : " h-0 bottom-[0]  z-[-10]"
+          } ease-linear duration-500`}
           >
-            {dressInfo?.yandexOpenMarketLocation && (
-              <YandexLocationMarketOpen />
-            )}
+            <YandexLocationMarketOpen />
           </div>
         )}
         {screenSize.width <= 768 && (
           <div
-            className={`fixed w-full bg-red-500 z-[102] left-0 right-0 overflow-hidden  ${
+            className={`fixed w-full bg-white z-[102] left-0 right-0 overflow-hidden  ${
               dressInfo?.yandexOpenMarketLocation
-                ? "h-[500px] bottom-0 ease-linear duration-300 "
-                : "bottom-[-1400px] ease-linear duration-300 "
-            }  ease-linear duration-300 `}
+                ? "h-[562px] bottom-0 ease-linear duration-500 "
+                : "h-0 bottom-0 ease-linear duration-500 "
+            }  ease-linear duration-500 `}
           >
-            {/* {dressInfo?.yandexOpenMarketLocation && (
-              <YandexLocationMarketOpen />
-            )}{" "} */}
+            <YandexLocationMarketOpen />
           </div>
         )}
 
