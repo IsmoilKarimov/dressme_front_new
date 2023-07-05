@@ -53,20 +53,12 @@ function YandexLocationMarketOpen() {
   return (
     <div className="w-full  h-fit flex flex-col gap-y-4 border border-searchBgColor bg-white rounded-t-[12px] md:rounded-[12px]	 px-4 py-5">
       {/* title */}
-
       <div className="relative w-full flex items-center justify-between">
-        {/* <div className="absolute top-[-40px]  w-full px-2">
-          <span>
-            {" "}
-            <ThreeCicleIcon />
-          </span>{" "}
-        </div> */}
         <div className="w-fit flex items-center gap-x-3">
           {" "}
           <span className="not-italic font-AeonikProMedium text-xl leading-5 text-fullBlue ">
             FLO (Алмазар)
           </span>
-          {/* <span>{dressInfo?.yandexGetMarketId}</span> */}
           <div className="w-fit flex items-center gap-x-[2px] ">
             <span>
               <StarIcons />
