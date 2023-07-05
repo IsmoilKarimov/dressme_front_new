@@ -91,7 +91,7 @@ const SingleProduct = () => {
         <SingleProductTop />
       </div>
       <div className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto border-box mb-20 md:mb-[60px]">
-        <div className=" relative w-[100%] h-fit mt-6 flex justify-between flex-col md:flex-row -z-10">
+        <div className=" relative w-[100%] h-fit mt-6 flex justify-between flex-col md:flex-row">
           <div
             className={`md:w-1/2 h-fit md:sticky duration-500  ${
               show ? "visible z-[29] top-[110px]" : "visible z-[29] top-[16px]"
@@ -112,8 +112,8 @@ const SingleProduct = () => {
         </div>
         <div className="w-full h-fit  ">
           <div className="w-full mt-[34px] md:mt-[120px]">
-            <div>
-              <span className="not-italic font-AeonikProMedium text-[16px] leading-7 text-black">
+            <div className="md:mb-10">
+              <span className="not-italic font-AeonikProMedium text-2xl leading-7 text-black">
                 Похожие продукты
               </span>
             </div>
@@ -274,7 +274,7 @@ const SingleProduct = () => {
           </div>
           <div className="hidden md:block w-full md:mt-[120px]">
             <div>
-              <span className="not-italic font-AeonikProMedium text-[16px] leading-7 text-black">
+              <span className="not-italic font-AeonikProMedium text-2xl leading-7 text-black">
                 Недавно просмотренные продукты{" "}
               </span>
             </div>
