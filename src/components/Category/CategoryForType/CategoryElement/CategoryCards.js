@@ -189,7 +189,7 @@ export default function CategoryCards() {
         </div>
       </div>
       {/* <div className="flex flex-wrap justify-between md:justify-start md:mx-0 mt-[25px] md:mt-[50px]  gap-y-2 lg:gap-x-5 lg:gap-y-5 "> */}
-      <div className="flex flex-wrap justify-between md:justify-start  gap-y-2 lg:gap-x-5 lg:gap-y-5 mt-1 md:mt-12">
+      <div className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 mt-1 md:mt-12">
         {dressInfo.ProductList.map((data) => {
           return (
             <div
