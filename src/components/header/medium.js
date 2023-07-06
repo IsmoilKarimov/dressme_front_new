@@ -215,11 +215,12 @@ const MediumHeader = () => {
           {/* Starting of Full Screen page section */}
           <div className="w-full flex justify-center items-center py-3 overscroll-none overflow-y-hidden ">
             <div className=" w-full flex items-center ss:w-full md:w-fit justify-between ">
+              
               {/* Menu section */}
               {locationWindow !== "/delivery-points" ? (
                 <div
                   onClick={toggleHamburger}
-                  className={`flex items-center justify-center bg-btnBgColor border border-searchBgColor w-12 h-12 -lg-lg cursor-pointer md:hidden rounded-xl`}
+                  className={`flex items-center justify-center bg-btnBgColor border border-searchBgColor w-12 h-12 cursor-pointer md:hidden rounded-xl`}
                 >
                   {state?.hamburgerMenu ? (
                     <span>
@@ -264,8 +265,7 @@ const MediumHeader = () => {
               </NavLink>
 
               {/* Voice section */}
-              <div
-                className={` bg-btnBgColor w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
+              <div className={` bg-btnBgColor w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
               >
                 <span className="w-[22px]">
                   <VolumeIcons colors={IconsColor} />
@@ -402,9 +402,9 @@ const MediumHeader = () => {
               </NavLink>
             </div>
           </div>
+
           {/*Starting of Blocked  Hamburger Menu section */}
-          <div
-            className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen	pb-[140px] px-3 ${
+          <div className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen	pb-[140px] px-3 ${
               state?.hamburgerMenu
                 ? " flex flex-col ease-linear duration-500 overscroll-none"
                 : "left-[-800px] z-[-80] ease-linear duration-500"
@@ -536,6 +536,7 @@ const MediumHeader = () => {
               </div>
             </div>
           </div>
+          
           {/*Starting of Blocked  Hamburger Menu section */}
           {locationWindow !== "/delivery-points" && (
             <div className={`md:hidden relative w-full mx-auto `}>
@@ -552,23 +553,6 @@ const MediumHeader = () => {
                   />
                 </div>
               </div>
-              {/* {scrollPost > -130 ? (
-              ) : (
-                <div
-                  className={`fixed top-0 left-0 right-0 py-1 bg-white w-full z-10`}
-                >
-                  <div className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%] border border-searchBgColor bg-white ">
-                    <span className="pl-[11.65px]">
-                      <SearchIcons />
-                    </span>
-                    <input
-                      type="text"
-                      placeholder="Искать товары или бренды"
-                      className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
-                    />
-                  </div>
-                </div>
-              )} */}
 
               {/* Gender selection for Mobile */}
               {locationWindow === "/" && (

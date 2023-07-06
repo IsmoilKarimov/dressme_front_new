@@ -17,7 +17,7 @@ export default function ShoppingStore() {
       <div className="w-full md:border-b md:border-searchBgColor">
         <ShoppingTop />
       </div>
-      <div className="w-full ">
+      <div className="w-full">
         <ShoppingBrands />
       </div>
     </div>
