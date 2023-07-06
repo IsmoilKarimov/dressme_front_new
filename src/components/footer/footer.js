@@ -85,7 +85,7 @@ const clothingTypes = [
 ];
 
 const Footer = () => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
 
   const PersonTypeArray = [
     {
@@ -145,19 +145,19 @@ const Footer = () => {
   ];
   let dataStyle = "";
   let footerTextWeatherColor = "";
-  if (dressInfo?.type == 1111) {
+  if (dressInfo?.type === 1111) {
     dataStyle = " hover:text-borderSpring ";
     footerTextWeatherColor = "text-green-600 border-green-600 ";
   }
-  if (dressInfo?.type == 2222) {
+  if (dressInfo?.type === 2222) {
     dataStyle = " hover:text-borderSummer";
     footerTextWeatherColor = "text-amber-500 border-amber-600";
   }
-  if (dressInfo?.type == 3333) {
+  if (dressInfo?.type === 3333) {
     dataStyle = " hover:text-borderAutumm ";
     footerTextWeatherColor = "text-orange-600 border-orange-600";
   }
-  if (dressInfo?.type == 4444) {
+  if (dressInfo?.type === 4444) {
     dataStyle = " hover:text-borderWinter ";
     footerTextWeatherColor = "text-sky-600 border-sky-600";
   }
@@ -1030,7 +1030,7 @@ const Footer = () => {
                   </Link>
                 </div>
               </div>
-              <div className="flex items-center text-sm ss:hidden md:block md:flex gap-x-3">
+              <div className="flex items-center text-sm ss:hidden md:flex gap-x-3">
                 <Popover
                   open={openPriceFooter}
                   onOpenChange={handleOpenChangePriceFooter}
