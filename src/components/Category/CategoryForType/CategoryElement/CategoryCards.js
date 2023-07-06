@@ -1,14 +1,11 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState } from "react";
 
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import {
   ArrowTopIcons,
-  HeartIcons,
   InputCheckedTrueIcons,
   NoImg,
-  SaveBasketIcons,
   StarIcons,
-  TicketDiscountIcons,
 } from "../../../../AssetsMain/icons";
 import { AddBasket, HeartImg } from "../../../../AssetsMain";
 import ClothesFilterGroup from "../ClothesFilterGroup/ClothesFIlterGroup";
@@ -17,7 +14,7 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 
 export default function CategoryCards() {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
   const wearGroup = [
     { id: 1, name: "Футболки" },
     { id: 2, name: "Рубашки" },

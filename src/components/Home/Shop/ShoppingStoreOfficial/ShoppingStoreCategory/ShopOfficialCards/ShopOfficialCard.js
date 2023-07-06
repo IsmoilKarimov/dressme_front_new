@@ -1,73 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import {
   ArrowTopIcons,
-  HeartIcons,
   InputCheckedTrueIcons,
   NoImg,
-  SaveBasketIcons,
   StarIcons,
-  TicketDiscountIcons,
 } from "../../../../../../AssetsMain/icons";
-import { AddBasket, HeartImg } from "../../../../../../AssetsMain";
-import { ShopIdFilterGroup } from "../../ShopIdFilterGroup/ShopIdFilterGroup";
+import {  HeartImg } from "../../../../../../AssetsMain";
 import { useNavigate } from "react-router-dom";
 
 export default function ShopOfficialCard() {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/product/:${id}`);
   };
-  const onColorChecked = (itemId, colorId) => {
-    // setProductList((current) => {
-    //   return current?.map((data) => {
-    //     if (data?.id == itemId) {
-    //       let newDataColor = data.changeColor.map((e) => {
-    //         if (e.id == colorId) {
-    //           return { ...e, action: !e.action };
-    //         } else return e;
-    //       });
-    //       return { ...data, changeColor: [...newDataColor] };
-    //     } else return data;
-    //   });
-    // });
-  };
-  // const wearGroup = [
-  //   { id: 1, name: "Футболки" },
-
-  //   { id: 2, name: "Рубашки" },
-  //   { id: 3, name: "Шорты" },
-  //   { id: 4, name: "Джинсы" },
-  //   { id: 5, name: "Свитер" },
-  //   { id: 6, name: "Куртки" },
-  //   { id: 7, name: "Толстовки" },
-  //   { id: 8, name: "Обуви" },
-  //   { id: 9, name: "Куртки" },
-  //   { id: 10, name: "Сапоги" },
-  //   { id: 11, name: "Платья" },
-  //   { id: 12, name: "Юбки" },
-  //   { id: 13, name: "Ремень" },
-  // ];
-  // <div className={` md:hidden bg-white  w-full bg-yandexNavbar flex items-center mb-6`}
-  //     >
-  //       {/* <YandexFilter /> */}
-  //       <ShopIdFilterGroup _class="items gap-x-2">
-  //         {wearGroup?.map((data) => {
-  //           return (
-  //             <div
-  //               key={data.id}
-  //               className={`item flex items-center justify-center border bg-btnBgColor border-searchBgColor `}
-  //             >
-  //               <span className=" cursor-pointer rounded-xl bg-btnBgColor not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
-  //                 {data?.name || "0"}
-  //               </span>
-  //             </div>
-  //           );
-  //         })}
-  //       </ShopIdFilterGroup>
-  // </div>
+  const onColorChecked = () => {};
 
   return (
     <div className="flex flex-col box-border">

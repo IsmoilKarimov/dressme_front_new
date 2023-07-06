@@ -6,10 +6,8 @@ import { SingleProductTop } from "../SingleProductTop/SingleProductTop";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 
 import {
-  HeartIcons,
   InputCheckedTrueIcons,
   NoImg,
-  SaveBasketIcons,
   StarIcons,
 } from "../../../../../AssetsMain/icons";
 import { AddBasket, HeartImg } from "../../../../../AssetsMain";
@@ -17,10 +15,8 @@ import ProductComment from "./ProductComment/ProductComment";
 import AboutProduct from "./AboutProduct/AboutProduct";
 
 const SingleProduct = () => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
 
-  const { id } = useParams();
-  const Newid = id?.replace(":", " ");
   let LikeProduct = [];
   let LastSeenProduct = [];
   dressInfo.ProductList.forEach((data) => {
@@ -69,21 +65,12 @@ const SingleProduct = () => {
       window.removeEventListener("scroll", handleScrollNavMenu);
     };
   }, [show, scrollPost, ShowNavMenu, ScrollPostNavMenu]);
-  const onColorChecked = (itemId, colorId) => {
-    //   setProductList((current) => {
-    //     return current?.map((data) => {
-    //       if (data?.id == itemId) {
-    //         let newDataColor = data.changeColor.map((e) => {
-    //           if (e.id == colorId) {
-    //             return { ...e, action: !e.action };
-    //           } else return e;
-    //         });
-    //         return { ...data, changeColor: [...newDataColor] };
-    //       } else return data;
-    //     });
-    //   });
-  };
-  // ${show ? "visible z-[29] top-[110px]" : "visible z-[29] top-[16px]"}
+  const onColorChecked = () => {};
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
 
   return (
     <div className="flex flex-col  m-0 p-0 box-border">
@@ -135,62 +122,6 @@ const SingleProduct = () => {
                       ) : (
                         <NoImg />
                       )}
-                      <div className="w-full flex absolute top-px p-[5px]  ss:justify-end xs:justify-between">
-                        <ul className="nav-lists flex-col gap-y-1 justify-center h-full ss:hidden xs:flex">
-                          {/* <p className="group w-8 hover:w-[70px] bg-bgCard hover:bg-white  duration-300 rounded-lg overflow-hidden border border-borderColorCard flex items-center">
-                          <span className="w-8 h-8 flex items-center justify-center  ">
-                            <img src={ticketDiscount} alt="" />
-                          </span>
-                          <span className=" w-0 flex items-center group-hover:w-10 duration-300  text-red-700 not-italic  font-AeonikProRegular text-[11px]">
-                            -30%
-                          </span>
-                        </p>
-                        <p className="group w-8 hover:w-[70px] bg-bgCard hover:bg-white  duration-300 rounded-lg overflow-hidden border border-borderColorCard flex items-center">
-                          <span className="w-8 h-8 flex items-center justify-center">
-                            <img src={video} alt="" />
-                          </span>
-                          <span className=" w-0 flex items-center group-hover:w-10 duration-300 not-italic  font-AeonikProRegular text-[11px]">
-                            {" "}Video
-                          </span>
-                        </p>
-                        <p className="group w-8 hover:w-[85px] bg-bgCard hover:bg-white  duration-300 rounded-lg overflow-hidden border border-borderColorCard flex items-center">
-                          <span className="w-8 h-8 flex items-center justify-center  ">
-                            <img src={delivery} alt="" />
-                          </span>
-                          <span className=" w-0 flex items-center group-hover:w-[40px] duration-300 not-italic  font-AeonikProRegular text-[11px]">
-                            Delivery
-                          </span>
-                        </p> */}
-                        </ul>
-
-                        <div className="flex flex-col gap-y-1">
-                          <p className="w-8 h-8  rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
-                            <img src={HeartImg} alt="" />
-                          </p>
-                          {/* <p className="w-8 h-8 ss:hidden rounded-lg bg-bgCard xs:flex items-center justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
-                          <img src={bucket} alt="" />
-                        </p> */}
-                        </div>
-                      </div>
-
-                      {/* <div className="absolute w-full flex justify-between items-center px-1 bottom-0 border-solid xs:h-[38px] lg:h-8 ss:h-[30px] xs:px-2 md:px-4 bg-white hover:backdrop-brightness-125 hover:bg-white/60 transition ease-out duration-500">
-                      {data?.changeColor.map((itemValue) => {
-                        return (
-                          <div
-                            key={itemValue?.id}
-                            onClick={() =>
-                              onColorChecked(data?.id, itemValue?.id)
-                            }
-                            className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 ls:w-[22px] ls:h-[22px] w-5 h-5 lg:w-6 lg:h-6 ${itemValue?.colors} cursor-pointer  border border-solid border-borderColorCard mr-[3px]`}
-                            htmlFor="Color1"
-                          >
-                            {itemValue?.action ? (
-                              <InputCheckedTrueIcons colors={"#fff"} />
-                            ) : null}
-                          </div>
-                        );
-                      })}
-                    </div> */}
                     </div>
                     <div className="w-full rounded-b-xl bg-white  flex flex-wrap h-[130px] md:h-[136px] ">
                       <div className=" w-full flex justify-between items-center px-1  border-solid xs:h-[38px] lg:h-8 ss:h-[30px] xs:px-2 md:px-4 bg-white">
@@ -260,9 +191,12 @@ const SingleProduct = () => {
                             </p>
                           )}
                         </div>
-                        <div className="flex items-center">
-                          <button className="w-[32px] h-[32px] md:w-[36px] md:h-[36px] ll:mb-1 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-                            <img src={AddBasket} alt="addbag" className="w-8" />
+                        <div className="flex items-center select-none	">
+                          <button
+                            onClick={() => saveHandleFavourite(data?.id)}
+                            className="w-[32px] h-[32px] active:scale-95  active:opacity-70 ll:mb-1 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                          >
+                            <img src={HeartImg} alt="" />
                           </button>
                         </div>
                       </div>

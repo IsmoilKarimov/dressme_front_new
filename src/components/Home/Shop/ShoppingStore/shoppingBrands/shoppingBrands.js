@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { NavLink, useNavigate } from "react-router-dom";
-import { UzbekFlag, nike } from "../../../../../AssetsMain";
+import { nike } from "../../../../../AssetsMain";
 import {
   ArrowTopIcons,
   LocationIcons,
@@ -13,7 +13,7 @@ import {
 } from "../../../../../AssetsMain/icons";
 
 const ShoppingBrands = () => {
-  const [allShops, setAllShops] = useState([
+  const [allShops] = useState([
     {
       id: 1,
       name: "Nike Store Official Dealer",
@@ -99,7 +99,7 @@ const ShoppingBrands = () => {
                       </div>
                     </div>
                   </div>
-                </div>               
+                </div>
               </div>
               <div className="hidden md:flex items-center md:ml-auto">
                 <NavLink

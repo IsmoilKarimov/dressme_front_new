@@ -59,10 +59,8 @@ const FavoutireBreadCrumbs = () => {
   const handleOpenChangeWear = (newOpen) => {
     setState({ ...state, openwear: newOpen });
   };
-  const [selectWear, setselectWear] = useState("Clothing type");
 
-  const handleWearValue = (value) => {
-    setselectWear(value);
+  const handleWearValue = () => {
     setState({ ...state, openwear: false });
   };
 
