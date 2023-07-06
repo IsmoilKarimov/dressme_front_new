@@ -1,7 +1,3 @@
-import React, { useState } from "react";
-import { formArrowRightCircle, formPhone } from "../../../assets/imgs";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
 
 export default function SignInSkeleton() {
   

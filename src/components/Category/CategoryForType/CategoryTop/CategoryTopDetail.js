@@ -1,26 +1,16 @@
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-import { MuslimImg, nike } from "../../../../AssetsMain";
+import { MuslimImg } from "../../../../AssetsMain";
 import {
-  ArrowTopIcons,
   ClothesIcons,
-  FilterIcons,
-  LocationIcons,
-  ManGenIcons,
-  ProductShopIcons,
-  SortIcons,
-  StarIcons,
-  VideoStoreIcons,
-  WomanGenIcons,
+  FilterIcons
 } from "../../../../AssetsMain/icons";
-import Slider from "react-slick";
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { useContext, useRef, useState } from "react";
-import { DressMenu, dressMainData } from "../../../../ContextHook/ContextMenu";
+import { useContext, useState } from "react";
+import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 
-const CategoryTopDetail = ({ name }) => {
+const CategoryTopDetail = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const handleFilter = () => {
     console.log("runFilter");
@@ -30,64 +20,12 @@ const CategoryTopDetail = ({ name }) => {
     });
   };
 
-  const [prevSliderBtn, setPrevSliderBtn] = useState(false);
-  const wearGroup = [
-    { id: 1, name: "Футболки" },
-    { id: 2, name: "Рубашки" },
-    { id: 3, name: "Шорты" },
-    { id: 4, name: "Джинсы" },
-    { id: 5, name: "Свитер" },
-    { id: 6, name: "Куртки" },
-    { id: 7, name: "Толстовки" },
-    { id: 8, name: "Обуви" },
-    { id: 9, name: "Куртки" },
-    { id: 10, name: "Сапоги" },
-    { id: 11, name: "Платья" },
-    { id: 12, name: "Юбки" },
-    { id: 13, name: "Ремень" },
-  ];
-  const data = (onClick) => {
-    onClick();
-    setPrevSliderBtn(true);
-  };
-  const NextArrow = (props) => {
-    const { onClick } = props;
-    return (
-      <div
-        className={`absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-50	right-[4px]  rounded-full bg-white    duration-200 border  border-borderColor2
-        		`}
-        onClick={() => data(onClick)}
-      >
-        <button className="next">
-          <GrFormNext size={20} />
-        </button>
-      </div>
-    );
-  };
-
-  const PrevArrow = (props) => {
-    const { onClick } = props;
-    return (
-      <div
-        className={` ${
-          prevSliderBtn ? "block" : "hidden"
-        } absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-10	left-[2px]  rounded-full bg-white   duration-200 border  border-borderColor2
-        `}
-        onClick={onClick}
-      >
-        <button className="prev">
-          <GrFormPrevious size={20} />
-        </button>
-      </div>
-    );
-  };
-
   const [state, setState] = useState({
     opensports: false,
     openTypesofClothes: false,
   });
 
-  // categories
+  // CATEGORIES
   const handleOpenCategories = (newOpen) => {
     setState({ ...state, opensports: newOpen });
   };
@@ -125,11 +63,8 @@ const CategoryTopDetail = ({ name }) => {
   const handleOpenTypesofClothes = (openTypesofClothes) => {
     setState({ ...state, openTypesofClothes: openTypesofClothes });
   };
-  const [selectTypesofClothes, setSelectTypesofClothes] = useState(
-    "Categories"
-  );
-  const handleTypesofClothes = (value) => {
-    setSelectTypesofClothes(value);
+ 
+  const handleTypesofClothes = () => {
     setState({ ...state, openTypesofClothes: false });
   };
   const typesofClothes = [
