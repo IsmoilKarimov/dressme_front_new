@@ -66,44 +66,42 @@ const ShoppingBrands = () => {
                 gotoOfficial(data?.name);
               }}
               key={data.id}
-              className="relative  w-full cursor-pointer h-fit md:h-[100px] flex items-center justify-between md:border md:border-searchBgColor rounded-lg mb-[30px]"
+              className="w-full cursor-pointer h-fit md:h-[100px] flex items-center justify-start md:border md:border-searchBgColor rounded-lg mb-[30px]"
             >
-              <div className="absolute w-[50px] h-[50px] ll:w-[60px] ll:h-[60px] md:w-[120px] md:h-[120px] md:left-[55px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
+              <div className="w-[50px] h-[50px] ll:w-[60px] ll:h-[60px] md:w-[120px] md:h-[120px] md:left-[55px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
                 <img src={nike} alt="" className="w-[70%] md:w-fit" />
               </div>
-              <div className="flex flex-col ml-[60px] ll:ml-[86px] md:ml-[210px]">
+              <div className="flex flex-col ml-4 md:ml-10">
                 <div className="text-base ll:text-lg  md:text-xl font-AeonikProMedium mb-[9px] md:mb-3">
                   {data.name}
                 </div>
-                <div className="">
-                  <div className="flex items-center md:justify-between">
-                    <div className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex flex-wrap items-center text-sm">
-                      <div className="flex items-center">
-                        <div className="flex items-center -mt-1 mr-[6px] md:mr-2">
-                          <StarIcons />
-                          {/* <StarIcons />
-                      <StarIcons />
-                      <StarIcons />
-                      <StarIcons /> */}
-                        </div>
-                        <span className="font-AeonikProMedium text-black mr-1">
-                          5.0
-                        </span>
+                <div className="flex items-center md:justify-between">
+                  <div className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex flex-wrap items-center text-sm">
+                    <div className="flex items-center">
+                      <div className="flex items-center -mt-1 mr-[6px] md:mr-2">
+                        <StarIcons />
+                        {/* <StarIcons />
+                    <StarIcons />
+                    <StarIcons />
+                    <StarIcons /> */}
                       </div>
-                      <div className="flex whitespace-nowrap">
-                        <div className="text-setTexOpacity font-AeonikProRegular whitespace-nowrap">
-                          ({data.votes} votes)
-                          <span className="ml-[10px]">|</span>
-                        </div>
-                        <div className="font-AeonikProRegular ml-[10px] text-setTexOpacity whitespace-nowrap">
-                          {data.orders} orders
-                        </div>
+                      <span className="font-AeonikProMedium text-black mr-1">
+                        5.0
+                      </span>
+                    </div>
+                    <div className="flex whitespace-nowrap">
+                      <div className="text-setTexOpacity font-AeonikProRegular whitespace-nowrap">
+                        ({data.votes} votes)
+                        <span className="ml-[10px]">|</span>
+                      </div>
+                      <div className="font-AeonikProRegular ml-[10px] text-setTexOpacity whitespace-nowrap">
+                        {data.orders} orders
                       </div>
                     </div>
                   </div>
-                </div>
+                </div>               
               </div>
-              <div className="hidden md:flex items-center">
+              <div className="hidden md:flex items-center md:ml-auto">
                 <NavLink
                   to="/delivery-points"
                   className="flex items-center justify-center w-12 h-12 rounded-lg border border-searchBgColor cursor-pointer"
@@ -121,7 +119,7 @@ const ShoppingBrands = () => {
                   </p>
                 </NavLink>
               </div>
-              <div className="hidden md:flex items-center mr-5">
+              <div className="hidden md:flex items-center ml-28 mr-5">
                 <button className="flex items-center justify-center border border-searchBgColor w-12 h-12 rounded-lg mr-3">
                   <VideoStoreIcons />
                 </button>
@@ -132,7 +130,7 @@ const ShoppingBrands = () => {
                   <WomanGenIcons />
                 </button>
               </div>
-              <button className="w-12 h-12 flex md:hidden items-center justify-center rounded-xl border border-searchBgColor">
+              <button className="w-12 h-12 flex md:hidden items-center justify-center rounded-xl border border-searchBgColor ml-auto md:ml-0">
                 <MenuMore />
               </button>
             </div>
@@ -144,7 +142,7 @@ const ShoppingBrands = () => {
             <span className="rotate-[-90deg]">
               <ArrowTopIcons colors={"#007DCA"} />
             </span>{" "}
-            <span className="hidden md:block not-italic ml-1   font-AeonikProRegular text-lg leading-4 text-fullBlue">
+            <span className="hidden md:block not-italic ml-1 font-AeonikProRegular text-lg leading-4 text-fullBlue">
               Previous
             </span>
           </div>
