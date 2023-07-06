@@ -166,7 +166,7 @@ function YandexMapsDressMe() {
             dressInfo?.yandexOpenMarketLocation
               ? `z-[102] h-[350px]  bottom-[-75px]`
               : " h-0 bottom-[0]  z-[-10]"
-          } ease-linear duration-500`}
+          } ease-linear duration-300`}
           >
             <YandexLocationMarketOpen />
           </div>
@@ -175,9 +175,9 @@ function YandexMapsDressMe() {
           <div
             className={`fixed w-full bg-white z-[102] left-0 right-0 overflow-hidden  ${
               dressInfo?.yandexOpenMarketLocation
-                ? "h-[562px] bottom-0 ease-linear duration-500 "
-                : "h-0 bottom-0 ease-linear duration-500 "
-            }  ease-linear duration-500 `}
+                ? "h-[562px] bottom-0 ease-linear duration-300 "
+                : "h-0 bottom-0 ease-linear duration-300 "
+            }  ease-linear duration-300 `}
           >
             <YandexLocationMarketOpen />
           </div>
