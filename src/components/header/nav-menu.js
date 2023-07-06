@@ -1,24 +1,20 @@
-import React, { useContext, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink } from "react-router-dom";
 import {
-  ActiveBasketIcons,
   ActiveCotegoryIcons,
-  ActiveHeartIcons,
   ActiveHomeIcons,
   ActivePersonIcons,
-  BasketIcons,
   CotegoryIcons,
-  HeartLinkIcons,
   HomeIcons,
   MapIcons,
   MapNavMenuIcons,
   PersonIcons,
 } from "../../AssetsMain/icons";
-import { ActivePersonImg, HeartImg } from "../../AssetsMain";
+import { HeartImg } from "../../AssetsMain";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 
 const NavMenu = () => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
 
   let IconsColor = "";
 
@@ -80,7 +76,7 @@ const NavMenu = () => {
                     <ActiveCotegoryIcons colors={IconsColor} />
                   </span>
                   <span className="mt-2">
-                    <span>Категория</span>
+                    <span>Категории</span>
                   </span>{" "}
                 </span>
               ) : (
@@ -89,7 +85,7 @@ const NavMenu = () => {
                     <CotegoryIcons colors={"#000"} />
                   </span>
                   <span className="mt-2">
-                    <span>Категория</span>
+                    <span>Категории</span>
                   </span>
                 </span>
               )

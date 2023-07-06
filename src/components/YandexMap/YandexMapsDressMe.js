@@ -134,7 +134,6 @@ function YandexMapsDressMe() {
   };
 
   //------------------------------------------------------------------------------------------------
-  const [ymaps, setYmaps] = useState(null);
   const mapState = {
     center: [41.311753, 69.241822],
     zoom: 14,
@@ -206,16 +205,11 @@ function YandexMapsDressMe() {
         <YMaps query={{ apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21" }}>
           <Map
             defaultState={mapState}
-            onLoad={(ymaps) => setYmaps(ymaps)}
             onClick={onMapClick}
             onMouseDown={HandleData}
             width="100%"
             height="100%"
-            modules={[
-              // "control.ZoomControl",
-              "control.FullscreenControl",
-              // "control.smallMapDefaultSet",
-            ]}
+            modules={["control.FullscreenControl"]}
           >
             {/* Yandex Shopping Card */}
             {!dressInfo?.yandexOpenMarket && (
@@ -265,7 +259,6 @@ function YandexMapsDressMe() {
             />{" "}
             {/* ---------- */}
             <Clusterer
-              // className="bg-green-500 text-red-500"
               className={"placemarkCLuster"}
               options={{
                 preset: "islands##004773ClusterIcons",
@@ -275,7 +268,6 @@ function YandexMapsDressMe() {
               {dressInfo?.MarketList.map((data, index) => (
                 <Placemark
                   className={"placemarkCLuster cursor-pointer"}
-                  // className="bg-green-500 text-red-500 p-2 "
                   key={index}
                   onClick={() => handlePlaceMark(data?.marketId)}
                   geometry={data?.cordinate}
@@ -563,17 +555,13 @@ function YandexMapsDressMe() {
                 </div>
                 {/* Music and Map selection for Mobile */}
                 <div className="flex items-center justify-between h-fit mb-3">
-                  <button
-                    // onClick={() => setState({ ...state, hamburgerMenu: false })}
-                    className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
-                  >
+                  <button className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
                     <span>
                       <VolumeIcons colors={IconsColor} />
                     </span>
                     <span className=" ml-[10px]">Музика</span>
                   </button>
                   <NavLink
-                    // onClick={() => setState({ ...state, hamburgerMenu: false })}
                     to="/delivery-points"
                     className="right  h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium border border-searchBgColor bg-btnBgColor ss:w-[48%]"
                   >
@@ -730,7 +718,6 @@ function YandexMapsDressMe() {
                     <SearchIcons />
                   </button>
                 </div>
-                {/* <div className="w-[20%] h-full flex items-center border border-red-400"></div> */}
               </div>
             </div>
             <div
@@ -752,9 +739,6 @@ function YandexMapsDressMe() {
                   onClick={handleOpenMarket}
                   className={`w-full h-12 flex justify-center gap-x-3 items-center rounded-lg`}
                 >
-                  {/* {!dressInfo?.yandexOpenMarket ? (
-                      <img src={shop} alt="" />
-                  ) : ( */}
                   <div className="flex items-center justify-center">
                     <span>
                       <MenuCloseIcons />

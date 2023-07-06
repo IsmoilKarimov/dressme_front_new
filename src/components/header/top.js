@@ -1,59 +1,29 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { dressMainData } from "../../ContextHook/ContextMenu";
-import { Modal, Popover } from "antd";
-import { useQuery } from "@tanstack/react-query";
-import WeatherInfo from "../Weather/WeatherInfo";
+import { Popover } from "antd";
+
 import {
   CommentIcons,
   HouseStatisticIcons,
   LocationIcons,
   MarketIcons,
-  MenuCloseIcons,
-  MyPurchaseIcons,
 } from "../../AssetsMain/icons";
 import { EnglishFlag, RussianFlag, UzbekFlag } from "../../AssetsMain";
 const TopHeader = () => {
   const [dressInfo] = useContext(dressMainData);
 
-  const [state, setState] = useState({
-    isModalOpen: false,
-    weatherSet: "",
-  });
-
-  const handleOk = () => {
-    setState({ ...state, isModalOpen: false });
-  };
-
-  useQuery(
-    ["Weather"],
-    () => {
-      return fetch(
-        `https://api.weatherapi.com/v1/forecast.json?key=aec6a76815144405ac3125132232903&q=Toshkent&days=7`
-      ).then((res) => res.json());
-    },
-    {
-      onSuccess: (res) => {
-        setState({ ...state, weatherSet: res });
-        // console.log(res);
-      },
-      onError: (err) => {
-        console.log(err, "errpr");
-      },
-    }
-  );
-
   let dataStyle = "";
-  if (dressInfo?.type == 1111) {
+  if (dressInfo?.type === 1111) {
     dataStyle = " hover:text-borderSpring ";
   }
-  if (dressInfo?.type == 2222) {
+  if (dressInfo?.type === 2222) {
     dataStyle = " hover:text-borderSummer";
   }
-  if (dressInfo?.type == 3333) {
+  if (dressInfo?.type === 3333) {
     dataStyle = " hover:text-borderAutumm ";
   }
-  if (dressInfo?.type == 4444) {
+  if (dressInfo?.type === 4444) {
     dataStyle = " hover:text-borderWinter ";
   }
 
@@ -141,7 +111,6 @@ const TopHeader = () => {
       })}
     </div>
   );
-  // mt-1
   const location = useLocation();
   const [locationWindow, setLocationWindow] = useState("");
   useEffect(() => {
@@ -158,7 +127,6 @@ const TopHeader = () => {
       <div className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">
         <div className="left h-full flex items-center  ">
           <Link to="/" className="flex w-fit items-center">
-            {/* Location svg img */}
             <span>
               <LocationIcons />
             </span>

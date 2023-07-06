@@ -1,73 +1,21 @@
-import React, { useContext, useState } from "react";
-
+import React, { useContext } from "react";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import {
   ArrowTopIcons,
-  HeartIcons,
   InputCheckedTrueIcons,
   NoImg,
-  SaveBasketIcons,
   StarIcons,
-  TicketDiscountIcons,
 } from "../../../../../../AssetsMain/icons";
-import { AddBasket, HeartImg } from "../../../../../../AssetsMain";
-import { ShopIdFilterGroup } from "../../ShopIdFilterGroup/ShopIdFilterGroup";
+import { HeartImg } from "../../../../../../AssetsMain";
 import { useNavigate } from "react-router-dom";
 
 export default function ShopOfficialCard() {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/product/:${id}`);
   };
-  const onColorChecked = (itemId, colorId) => {
-    // setProductList((current) => {
-    //   return current?.map((data) => {
-    //     if (data?.id == itemId) {
-    //       let newDataColor = data.changeColor.map((e) => {
-    //         if (e.id == colorId) {
-    //           return { ...e, action: !e.action };
-    //         } else return e;
-    //       });
-    //       return { ...data, changeColor: [...newDataColor] };
-    //     } else return data;
-    //   });
-    // });
-  };
-  // const wearGroup = [
-  //   { id: 1, name: "Футболки" },
-
-  //   { id: 2, name: "Рубашки" },
-  //   { id: 3, name: "Шорты" },
-  //   { id: 4, name: "Джинсы" },
-  //   { id: 5, name: "Свитер" },
-  //   { id: 6, name: "Куртки" },
-  //   { id: 7, name: "Толстовки" },
-  //   { id: 8, name: "Обуви" },
-  //   { id: 9, name: "Куртки" },
-  //   { id: 10, name: "Сапоги" },
-  //   { id: 11, name: "Платья" },
-  //   { id: 12, name: "Юбки" },
-  //   { id: 13, name: "Ремень" },
-  // ];
-  // <div className={` md:hidden bg-white  w-full bg-yandexNavbar flex items-center mb-6`}
-  //     >
-  //       {/* <YandexFilter /> */}
-  //       <ShopIdFilterGroup _class="items gap-x-2">
-  //         {wearGroup?.map((data) => {
-  //           return (
-  //             <div
-  //               key={data.id}
-  //               className={`item flex items-center justify-center border bg-btnBgColor border-searchBgColor `}
-  //             >
-  //               <span className=" cursor-pointer rounded-xl bg-btnBgColor not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
-  //                 {data?.name || "0"}
-  //               </span>
-  //             </div>
-  //           );
-  //         })}
-  //       </ShopIdFilterGroup>
-  // </div>
+  const onColorChecked = () => {};
 
   return (
     <div className="flex flex-col box-border">
@@ -91,59 +39,6 @@ export default function ShopOfficialCard() {
                 ) : (
                   <NoImg />
                 )}
-                <div className="w-full flex absolute top-px p-[5px]  ss:justify-end xs:justify-between">
-                  <ul className="nav-lists flex-col gap-y-1 justify-center h-full ss:hidden xs:flex">
-                    {/* <p className="group w-8 hover:w-[70px] bg-bgCard hover:bg-white  duration-300 rounded-lg overflow-hidden border border-borderColorCard flex items-center">
-                    <span className="w-8 h-8 flex items-center justify-center  ">
-                      <img src={ticketDiscount} alt="" />
-                    </span>
-                    <span className=" w-0 flex items-center group-hover:w-10 duration-300  text-red-700 not-italic  font-AeonikProRegular text-[11px]">
-                      -30%
-                    </span>
-                  </p>
-                  <p className="group w-8 hover:w-[70px] bg-bgCard hover:bg-white  duration-300 rounded-lg overflow-hidden border border-borderColorCard flex items-center">
-                    <span className="w-8 h-8 flex items-center justify-center">
-                      <img src={video} alt="" />
-                    </span>
-                    <span className=" w-0 flex items-center group-hover:w-10 duration-300 not-italic  font-AeonikProRegular text-[11px]">
-                      {" "}Video
-                    </span>
-                  </p>
-                  <p className="group w-8 hover:w-[85px] bg-bgCard hover:bg-white  duration-300 rounded-lg overflow-hidden border border-borderColorCard flex items-center">
-                    <span className="w-8 h-8 flex items-center justify-center  ">
-                      <img src={delivery} alt="" />
-                    </span>
-                    <span className=" w-0 flex items-center group-hover:w-[40px] duration-300 not-italic  font-AeonikProRegular text-[11px]">
-                      Delivery
-                    </span>
-                  </p> */}
-                  </ul>
-
-                  {/* <div className="flex flex-col gap-y-1">
-                  <p className="w-8 h-8  rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
-                    <img src={HeartImg} alt="" />
-                  </p>
-                </div> */}
-                </div>
-
-                {/* <div className="absolute w-full flex justify-between items-center px-1 bottom-0 border-solid xs:h-[38px] lg:h-8 ss:h-[30px] xs:px-2 md:px-4 bg-white hover:backdrop-brightness-125 hover:bg-white/60 transition ease-out duration-500">
-                {data?.changeColor.map((itemValue) => {
-                  return (
-                    <div
-                      key={itemValue?.id}
-                      onClick={() =>
-                        onColorChecked(data?.id, itemValue?.id)
-                      }
-                      className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 ls:w-[22px] ls:h-[22px] w-5 h-5 lg:w-6 lg:h-6 ${itemValue?.colors} cursor-pointer  border border-solid border-borderColorCard mr-[3px]`}
-                      htmlFor="Color1"
-                    >
-                      {itemValue?.action ? (
-                        <InputCheckedTrueIcons colors={"#fff"} />
-                      ) : null}
-                    </div>
-                  );
-                })}
-              </div> */}
               </div>
               <div className="w-full rounded-b-xl bg-white  flex flex-wrap h-[130px] md:h-[136px] ">
                 <div className=" w-full flex justify-between items-center px-1  border-solid xs:h-[38px] lg:h-8 ss:h-[30px] xs:px-2 md:px-4 bg-white">

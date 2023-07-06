@@ -1,5 +1,4 @@
-import { NavLink, useParams } from "react-router-dom";
-
+import { NavLink } from "react-router-dom";
 import { nike } from "../../../../../AssetsMain";
 import {
   ArrowTopIcons,
@@ -7,15 +6,13 @@ import {
   FilterIcons,
   LocationIcons,
   ManGenIcons,
-  ProductShopIcons,
-  SortIcons,
   StarIcons,
   VideoStoreIcons,
   WomanGenIcons,
 } from "../../../../../AssetsMain/icons";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { Popover } from "antd";
 
@@ -90,8 +87,6 @@ const ShoppingStoreOfficialTop = ({ name }) => {
     slidesToShow: 9,
     slidesToScroll: 1,
     initialSlide: 0,
-    // beforeChange: (current, next) => setCurrentSlide(next),
-
     responsive: [
       {
         breakpoint: 1024,
@@ -135,7 +130,6 @@ const ShoppingStoreOfficialTop = ({ name }) => {
   };
 
   const [state, setState] = useState({
-    opensports: false,
     openTypesofClothes: false,
   });
 
@@ -143,11 +137,8 @@ const ShoppingStoreOfficialTop = ({ name }) => {
   const handleOpenTypesofClothes = (openTypesofClothes) => {
     setState({ ...state, openTypesofClothes: openTypesofClothes });
   };
-  const [selectTypesofClothes, setSelectTypesofClothes] = useState(
-    "Categories"
-  );
-  const handleTypesofClothes = (value) => {
-    setSelectTypesofClothes(value);
+
+  const handleTypesofClothes = () => {
     setState({ ...state, openTypesofClothes: false });
   };
   const typesofClothes = [
@@ -257,16 +248,6 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                     <WomanGenIcons />
                   </button>
                 </div>
-                {/* <div className="md:hidden">
-                  <button className="h-12 flex items-center justify-center rounded-lg border border-searchBgColor px-4">
-                    <span>
-                      <ProductShopIcons colors={"#000"} />
-                    </span>{" "}
-                    <span className="not-italic ml-2 font-AeonikProMedium text-sm leading-4 text-right text-black tracking-[1%]">
-                      Товары
-                    </span>
-                  </button>
-                </div> */}
               </div>
             </div>
           </div>
@@ -298,7 +279,6 @@ const ShoppingStoreOfficialTop = ({ name }) => {
               <div className="w-full mt-3 h-[52px] flex flex-col items-center ">
                 <Slider
                   {...settings1}
-                  // ref={sliderRef}
                   className="w-[100%] h-full items-center flex xs:justify-between    "
                 >
                   {wearGroup?.map((data) => {

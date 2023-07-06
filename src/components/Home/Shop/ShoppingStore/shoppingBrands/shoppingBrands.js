@@ -80,10 +80,6 @@ const ShoppingBrands = () => {
                     <div className="flex items-center">
                       <div className="flex items-center -mt-1 mr-[6px] md:mr-2">
                         <StarIcons />
-                        {/* <StarIcons />
-                    <StarIcons />
-                    <StarIcons />
-                    <StarIcons /> */}
                       </div>
                       <span className="font-AeonikProMedium text-black mr-1">
                         5.0
@@ -99,7 +95,7 @@ const ShoppingBrands = () => {
                       </div>
                     </div>
                   </div>
-                </div>               
+                </div>
               </div>
               <div className="hidden md:flex items-center md:ml-auto">
                 <NavLink

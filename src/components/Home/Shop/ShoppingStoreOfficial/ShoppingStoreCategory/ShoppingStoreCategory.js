@@ -4,7 +4,7 @@ import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { ShopOfficialBrand } from "./ShopOfficialBrand/ShopOfficialBrand";
 
 const ShoppingStoreCategory = () => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
   useEffect(() => {
     if (dressInfo?.openShopIdFilter) {
       document.body.style.overflow = "hidden";

@@ -3,7 +3,7 @@ import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { NavLink } from "react-router-dom";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
-import { HomeIcons, ItailIcons } from "../../../AssetsMain/icons";
+import { ItailIcons } from "../../../AssetsMain/icons";
 import {
   AutummMale,
   SpringMale,
@@ -12,32 +12,30 @@ import {
 } from "../../../AssetsMain";
 import "../header.css";
 const CategoryNavbar = () => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
 
   const [state, setState] = useState({
     openwear: false,
-    openPrice: false,
-    textToColor: false,
   });
 
   let dataStyle = "";
   let genderStyle = "";
-  if (dressInfo?.type == 1111) {
+  if (dressInfo?.type === 1111) {
     dataStyle = " hover:text-borderSpring ";
     genderStyle =
       "focus:text-borderSpring focus:bg-bgSpring focus:border-borderSpring";
   }
-  if (dressInfo?.type == 2222) {
+  if (dressInfo?.type === 2222) {
     dataStyle = " hover:text-borderSummer";
     genderStyle =
       "focus:text-borderSummer focus:bg-bgSummer focus:border-borderSummer";
   }
-  if (dressInfo?.type == 3333) {
+  if (dressInfo?.type === 3333) {
     dataStyle = " hover:text-borderAutumm ";
     genderStyle =
       "focus:text-borderAutumm focus:bg-bgAutumm focus:border-borderAutumm";
   }
-  if (dressInfo?.type == 4444) {
+  if (dressInfo?.type === 4444) {
     dataStyle = " hover:text-borderWinter ";
     genderStyle =
       "focus:text-borderWinter focus:bg-bgWinter focus:border-borderWinter";
@@ -53,10 +51,8 @@ const CategoryNavbar = () => {
   const handleOpenChangeWear = (newOpen) => {
     setState({ ...state, openwear: newOpen });
   };
-  const [selectWear, setselectWear] = useState("Clothing type");
 
   const handleWearValue = (value) => {
-    setselectWear(value);
     setState({ ...state, openwear: false });
   };
 
