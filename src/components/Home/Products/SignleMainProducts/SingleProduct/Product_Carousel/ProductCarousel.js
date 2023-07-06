@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Slider from "react-slick";
 import {
-  BasketIcons,
-  SaveBasketIcons,
   VideoStoreIcons,
 } from "../../../../../../AssetsMain/icons";
 
@@ -26,7 +24,7 @@ const ProductCarousel = () => {
     };
   }, [screenSize]);
 
-  const [imgGroup, setImgGroup] = useState([
+  const [imgGroup] = useState([
     {
       id: 1,
       action: true,
@@ -77,8 +75,6 @@ const ProductCarousel = () => {
   const [nav2, setNav2] = useState();
   const slider1 = useRef(null);
   const slider2 = useRef(null);
-  // console.log(nav1, "nav1");
-  //   console.log(nav2);
 
   useEffect(() => {
     setNav1(slider1.current);

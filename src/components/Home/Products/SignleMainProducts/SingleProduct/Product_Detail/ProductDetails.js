@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { BsCircleFill } from "react-icons/bs";
@@ -9,7 +9,6 @@ import {
   DeliveryIcons,
   DiscountShapeIcons,
   DollorIcons,
-  HeartIcons,
   InputCheckedTrueIcons,
   ProductArticleIcons,
   ProductSizeIcons,
@@ -23,26 +22,25 @@ import {
   winterSeason,
   HeartImg,
 } from "../../../../../../AssetsMain";
-import ScrollToTop from "react-scroll-to-top";
 
 const ProductDetails = () => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
 
   let dataStyle = "";
   let genderStyle = "";
-  if (dressInfo?.type == 1111) {
+  if (dressInfo?.type === 1111) {
     dataStyle = " text-borderSpring ";
     genderStyle = "text-borderSpring bg-bgSpring border-borderSpring";
   }
-  if (dressInfo?.type == 2222) {
+  if (dressInfo?.type === 2222) {
     dataStyle = " text-borderSummer";
     genderStyle = "text-borderSummer bg-bgSummer border-borderSummer";
   }
-  if (dressInfo?.type == 3333) {
+  if (dressInfo?.type === 3333) {
     dataStyle = " text-borderAutumm ";
     genderStyle = "text-borderAutumm bg-bgAutumm border-borderAutumm";
   }
-  if (dressInfo?.type == 4444) {
+  if (dressInfo?.type === 4444) {
     dataStyle = " text-borderWinter ";
     genderStyle = "text-borderWinter bg-bgWinter border-borderWinter";
   }
@@ -55,7 +53,7 @@ const ProductDetails = () => {
     { id: 6, color: "bg-PC6", out: "outline-PC6", action: false },
   ]);
 
-  const [selectSize, setSelectSize] = useState([
+  const [selectSize] = useState([
     { id: 1, size: "S" },
     { id: 2, size: "M" },
     { id: 3, size: "L" },
@@ -69,14 +67,13 @@ const ProductDetails = () => {
     setGetCheckColor(value);
     setSelectColor((data) => {
       return data.map((e) => {
-        if (e.id == value) {
+        if (e.id === value) {
           return { ...e, action: !e.action };
         } else return { ...e, action: false };
       });
     });
   };
 
-  // 700px black         border border-black w-full h-fit py-1 mt-6
   return (
     <div className="w-full relative h-full mt-4 md:mt-0 ">
       {/*  */}
@@ -238,7 +235,7 @@ const ProductDetails = () => {
                   data.action ? "outline outline-offset-2 outline-2" : ""
                 } ${data.out} `}
               >
-                {data.action && getCheckColor == 3 ? (
+                {data.action && getCheckColor === 3 ? (
                   <InputCheckedTrueIcons colors={"#000"} />
                 ) : null}
                 {data.action && getCheckColor !== 3 ? (
@@ -283,11 +280,6 @@ const ProductDetails = () => {
         </div>
 
         {/* Mobile Price */}
-        {/* ${
-            screenSize.height > 780
-              ? "fixed bottom-0 left-0 z-[90] bg-green-400 duration-200"
-              : ""
-          } */}
         <div className={`w-full h-fit py-1 mt-6 md:hidden`}>
           <div className="h-[36px] w-full flex justify-between items-center ">
             <div className="flex ">
@@ -415,63 +407,6 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      {/* Mobile Price */}
-      {/* <div className={`fixed md:hidden z-[29] flex flex-col gap-y-1 shadow-navMenuShadov ${
-          show ? "duration-500 translate-y-[0%]" : "translate-y-[0%] duration-500 "
-        }  left-0 right-0 px-4  py-2 w-[100%] h-fit bg-white rounded-lg`}
-      >
-        <div className="h-[36px] w-full flex justify-between items-center ">
-          <div className="flex ">
-            <DollorIcons />
-            <span className="text-base font-AeonikProRegular ml-[6px]">
-              Цена:
-            </span>
-          </div>
-          <div className="w-[84px] h-9  cursor-pointer ml-8 flex items-center justify-center border border-searchBgColor rounded-lg">
-            <span>
-              <DiscountShapeIcons />
-            </span>
-            <span className="ml-[6px] not-italic  font-AeonikProMedium text-sm  leading-5 text-red-700">
-              -30%
-            </span>
-          </div>
-        </div>
-        <div className="h-[36px] w-full flex justify-between items-center ">
-          <div className="flex items-center">
-            <span className="not-italic  font-AeonikProMedium text-[18px] leading-9 text-black trcking-[1%]">
-              452 000
-            </span>
-            <span className="not-italic ml-1 mt-[6px] font-AeonikProRegular line-through text-[14px] leading-7 text-setTexOpacity">
-              652 000
-            </span>
-          </div>
-          <div className={`w-fit  ${dataStyle} flex  `}>
-            <span className="font-AeonikProRegular text-[14px] leading-4">
-              В наличии:
-            </span>
-            <span className="ml-2 font-AeonikProMedium text-[14px] leading-4">
-              284
-            </span>
-          </div>
-        </div>
-
-        <div className="h-fit w-full  flex items-center justify-between mb-2 gap-x-2">
-          <button className="max-w-[63%] w-full bg-fullBlue text-white rounded-lg h-[36px] flex items-center justify-center ">
-            <span>
-              <SaveMarketIcons />
-            </span>
-            <span className="not-italic font-AeonikProMedium text-[14px] ll:text-base leading-4 text-white">
-              {" "}
-              Добавить в корзину
-            </span>
-          </button>
-          <button
-            className={`max-w-[33%] w-full h-[36px]  flex items-center justify-center border rounded-lg ${genderStyle}`}
-          >
-            <span> Купить</span>
-          </button>
-        </div>
-      </div> */}
 
       {/* Text Items */}
       <div className="mt-12 md:mt-16 hidden md:block">
