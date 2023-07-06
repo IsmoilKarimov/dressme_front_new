@@ -1,30 +1,15 @@
-import React, { useEffect, Suspense, lazy, useState } from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import React, { useEffect, Suspense, useState } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "../index.css";
-
-// -------Navbar VS Footer
 import Header from "../components/header/header";
-// import YandexMapDressMe from "../components/YandexMap";
-// import SignIn from "../components/Authentication/SignIn/SignIn";
-// import SignUp from "../components/Authentication/SignUp/SignUp";
-// import CategoryMainType from "../components/Category/CategoryForType";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-
 // -------------------------------------
 import LoadingFor from "../components/Loading/LoadingFor";
-// Skletons group
 import SkeletonHomeIndex from "../components/Home/Main/Skeleton/SkeletonHomeIndex";
 import SignInSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import SignUpSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 
-// import ShoppingStore from "../components/Home/Shop/ShoppingStore";
-// import Favourites from "../components/Home/Favorite";
-// import ShoppingStoreOfficial from "../components/Home/Shop/ShoppingStoreOfficial";
-// import MyOrderList from "../components/Home/MyOrder/MyOrderList/MyOrderList";
-// import MyOrderSettings from "../components/Home/MyOrder/MyOrderSettings/MyOrderSettings";
-
 // -------------------------------------
-const HomePage = React.lazy(() => import("../Page/Home/Home"));
+const HomeIndex = React.lazy(() => import("../components/Home/Main"));
 const SingleMainProduct = React.lazy(() =>
   import("../components/Home/Products/SignleMainProducts")
 );
@@ -77,7 +62,7 @@ const RouterMain = () => {
                 </div>
               }
             >
-              <HomePage />
+              <HomeIndex />
             </Suspense>
           }
         />
@@ -270,17 +255,7 @@ const RouterMain = () => {
         <Suspense fallback={<>Loading...</>}>
           <Footer />
         </Suspense>
-      ) : // <Footer />
-      null}
-      {/* {locationWindow !== "/add_user_private_data" 
-      locationWindow !== "/add_user_body_data" 
-      locationWindow !== "/confirm_password" 
-      locationWindow !== "/forget_password" 
-      locationWindow !== "/sign_up" 
-      locationWindow !== "/sign_in" 
-      locationWindow !== "/delivery-points" ? (
-        <Footer />
-      ) : null} */}
+      ) : null}
     </>
   );
 };

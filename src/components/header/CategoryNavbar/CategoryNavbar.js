@@ -19,26 +19,17 @@ const CategoryNavbar = () => {
   });
 
   let dataStyle = "";
-  let genderStyle = "";
   if (dressInfo?.type === 1111) {
     dataStyle = " hover:text-borderSpring ";
-    genderStyle =
-      "focus:text-borderSpring focus:bg-bgSpring focus:border-borderSpring";
   }
   if (dressInfo?.type === 2222) {
     dataStyle = " hover:text-borderSummer";
-    genderStyle =
-      "focus:text-borderSummer focus:bg-bgSummer focus:border-borderSummer";
   }
   if (dressInfo?.type === 3333) {
     dataStyle = " hover:text-borderAutumm ";
-    genderStyle =
-      "focus:text-borderAutumm focus:bg-bgAutumm focus:border-borderAutumm";
   }
   if (dressInfo?.type === 4444) {
     dataStyle = " hover:text-borderWinter ";
-    genderStyle =
-      "focus:text-borderWinter focus:bg-bgWinter focus:border-borderWinter";
   }
 
   const personItems = [
