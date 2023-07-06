@@ -20,13 +20,66 @@ import { DressMenu, dressMainData } from "../../../../ContextHook/ContextMenu";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 
-const CategoryTopDetail = () => {
+const CategoryTopDetail = ({ name }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const handleFilter = () => {
+    console.log("runFilter");
     setDressInfo({
       ...dressInfo,
       openCategoryFilter: !dressInfo.openCategoryFilter,
     });
+  };
+
+  const [prevSliderBtn, setPrevSliderBtn] = useState(false);
+  const wearGroup = [
+    { id: 1, name: "Футболки" },
+    { id: 2, name: "Рубашки" },
+    { id: 3, name: "Шорты" },
+    { id: 4, name: "Джинсы" },
+    { id: 5, name: "Свитер" },
+    { id: 6, name: "Куртки" },
+    { id: 7, name: "Толстовки" },
+    { id: 8, name: "Обуви" },
+    { id: 9, name: "Куртки" },
+    { id: 10, name: "Сапоги" },
+    { id: 11, name: "Платья" },
+    { id: 12, name: "Юбки" },
+    { id: 13, name: "Ремень" },
+  ];
+  const data = (onClick) => {
+    onClick();
+    setPrevSliderBtn(true);
+  };
+  const NextArrow = (props) => {
+    const { onClick } = props;
+    return (
+      <div
+        className={`absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-50	right-[4px]  rounded-full bg-white    duration-200 border  border-borderColor2
+        		`}
+        onClick={() => data(onClick)}
+      >
+        <button className="next">
+          <GrFormNext size={20} />
+        </button>
+      </div>
+    );
+  };
+
+  const PrevArrow = (props) => {
+    const { onClick } = props;
+    return (
+      <div
+        className={` ${
+          prevSliderBtn ? "block" : "hidden"
+        } absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-10	left-[2px]  rounded-full bg-white   duration-200 border  border-borderColor2
+        `}
+        onClick={onClick}
+      >
+        <button className="prev">
+          <GrFormPrevious size={20} />
+        </button>
+      </div>
+    );
   };
 
   const [state, setState] = useState({
@@ -38,7 +91,7 @@ const CategoryTopDetail = () => {
   const handleOpenCategories = (newOpen) => {
     setState({ ...state, opensports: newOpen });
   };
-  const handleCategories = () => {
+  const handleCategories = (value) => {
     setState({ ...state, opensports: false });
   };
   const categories = [
@@ -72,8 +125,11 @@ const CategoryTopDetail = () => {
   const handleOpenTypesofClothes = (openTypesofClothes) => {
     setState({ ...state, openTypesofClothes: openTypesofClothes });
   };
-
+  const [selectTypesofClothes, setSelectTypesofClothes] = useState(
+    "Categories"
+  );
   const handleTypesofClothes = (value) => {
+    setSelectTypesofClothes(value);
     setState({ ...state, openTypesofClothes: false });
   };
   const typesofClothes = [

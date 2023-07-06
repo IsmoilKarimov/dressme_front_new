@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { AiOutlineEye } from "react-icons/ai";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 import { NavLink, useLocation } from "react-router-dom";
 import { useEffect } from "react";

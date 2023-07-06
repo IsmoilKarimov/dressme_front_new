@@ -1,21 +1,27 @@
-import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import {
+  ActiveBasketIcons,
   ActiveCotegoryIcons,
+  ActiveHeartIcons,
   ActiveHomeIcons,
   ActivePersonIcons,
+  BasketIcons,
   CotegoryIcons,
+  HeartLinkIcons,
   HomeIcons,
   MapIcons,
   MapNavMenuIcons,
   PersonIcons,
 } from "../../AssetsMain/icons";
-import { HeartImg } from "../../AssetsMain";
+import { ActivePersonImg, HeartImg } from "../../AssetsMain";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 
 const NavMenu = () => {
-  const [dressInfo] = useContext(dressMainData);
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
+
   let IconsColor = "";
+
   if (dressInfo?.type === 1111) {
     IconsColor = "#008F0E";
   }

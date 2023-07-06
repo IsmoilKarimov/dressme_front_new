@@ -129,7 +129,10 @@ const CategoryForBrand = () => {
     checkedPrize: true,
   });
 
+  const [value, SetValue] = useState({ min: 20, max: 150 });
+
   const HandleBrandFilter = (e) => {
+    console.log(e, "e");
     // setProduct((current) => {
     //   return current?.brandWear?.map((value) => {
     //     if (value?.id == e) {

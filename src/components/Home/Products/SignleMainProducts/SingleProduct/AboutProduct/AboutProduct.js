@@ -1,75 +1,70 @@
-import React, { useContext, useState } from "react";
-import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
+import React, { useContext, useState } from 'react'
+import { dressMainData } from '../../../../../../ContextHook/ContextMenu';
 
 export default function AboutProduct() {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
 
-  let dataStyle = "";
-  let genderStyle = "";
-  if (dressInfo?.type == 1111) {
-    dataStyle = " text-borderSpring ";
-    genderStyle = "text-borderSpring bg-bgSpring border-borderSpring";
-  }
-  if (dressInfo?.type == 2222) {
-    dataStyle = " text-borderSummer";
-    genderStyle = "text-borderSummer bg-bgSummer border-borderSummer";
-  }
-  if (dressInfo?.type == 3333) {
-    dataStyle = " text-borderAutumm ";
-    genderStyle = "text-borderAutumm bg-bgAutumm border-borderAutumm";
-  }
-  if (dressInfo?.type == 4444) {
-    dataStyle = " text-borderWinter ";
-    genderStyle = "text-borderWinter bg-bgWinter border-borderWinter";
-  }
+    const [dressInfo, setDressInfo] = useContext(dressMainData);
 
-  const [productDescription, setProductDescription] = useState(true);
+    let dataStyle = "";
+    let genderStyle = "";
+    if (dressInfo?.type == 1111) {
+        dataStyle = " text-borderSpring ";
+        genderStyle = "text-borderSpring bg-bgSpring border-borderSpring";
+    }
+    if (dressInfo?.type == 2222) {
+        dataStyle = " text-borderSummer";
+        genderStyle = "text-borderSummer bg-bgSummer border-borderSummer";
+    }
+    if (dressInfo?.type == 3333) {
+        dataStyle = " text-borderAutumm ";
+        genderStyle = "text-borderAutumm bg-bgAutumm border-borderAutumm";
+    }
+    if (dressInfo?.type == 4444) {
+        dataStyle = " text-borderWinter ";
+        genderStyle = "text-borderWinter bg-bgWinter border-borderWinter";
+    }
 
-  return (
-    <div className="w-full block md:hidden">
-      <div className="w-full">
-        <span className="w-full font-AeonikProMedium text-base mb-6">
-          О продукте:
-        </span>
-        <div className="rounded-lg overflow-hidden  h-[42px] md:h-[52px] ss:w-full md:w-[308px] md:mx-0 flex justify-between bg-slate-50 border border-solid ss:mt-5 md:mt-0 mx-auto ">
-          <button
-            onClick={() => setProductDescription(true)}
-            className={`ss:w-1/2 md:w-[152px] md:h-[50px]  h-[42px] text-base text-black text-center font-AeonikProRegular not-italic ${
-              productDescription
-                ? ` bg-white border  border-searchBgColor rounded-lg ${dataStyle}`
-                : ""
-            }
+    const [productDescription, setProductDescription] = useState(true);
+
+    return (
+        <div className='w-full block md:hidden'>
+            <div className="w-full">
+                <span className="w-full font-AeonikProMedium text-base mb-6">О продукте:</span>
+                <div className="rounded-lg overflow-hidden  h-[42px] md:h-[52px] ss:w-full md:w-[308px] md:mx-0 flex justify-between bg-slate-50 border border-solid ss:mt-5 md:mt-0 mx-auto ">
+                    <button
+                        onClick={() => setProductDescription(true)}
+                        className={`ss:w-1/2 md:w-[152px] md:h-[50px]  h-[42px] text-base text-black text-center font-AeonikProRegular not-italic ${
+                            productDescription
+                            ? ` bg-white border  border-searchBgColor rounded-lg ${dataStyle}`
+                            : ""
+                        }
                         `}
-          >
-            Описания товара
-          </button>
-          <span className="h-full text-searchBgColor flex items-center">|</span>
-          <button
-            onClick={() => setProductDescription(false)}
-            className={`ss:w-1/2 md:w-[152px] md:h-[50px]  h-[42px] text-base text-black text-center font-AeonikProRegular not-italic ${
-              !productDescription
-                ? ` bg-white border  border-searchBgColor rounded-lg ${dataStyle}`
-                : ""
-            }
+                    >
+                    Описания товара 
+                    </button>
+                    <span className="h-full text-searchBgColor flex items-center">|</span>
+                    <button
+                        onClick={() => setProductDescription(false)}
+                        className={`ss:w-1/2 md:w-[152px] md:h-[50px]  h-[42px] text-base text-black text-center font-AeonikProRegular not-italic ${
+                            !productDescription
+                            ? ` bg-white border  border-searchBgColor rounded-lg ${dataStyle}`
+                            : ""
+                        }
                         `}
-          >
-            Характеристики
-          </button>
+                    >
+                        Характеристики 
+                    </button>
+                </div>
+                {productDescription ? (
+                    <div className='mt-6 w-full h-[440px] text-center bg-searchBgColor p-6 mb-12 rounded'>
+                        <span className='font-AeonikProRegular text-base'>Информация о товаре </span>
+                    </div>
+                ) : (
+                    <div className='mt-6 w-full h-[440px] text-center bg-searchBgColor p-6 mb-12 rounded'>
+                        <span className='font-AeonikProRegular text-base'>Информация о Характеристики</span>
+                    </div>
+                )}
+            </div>
         </div>
-        {productDescription ? (
-          <div className="mt-6 w-full h-[440px] text-center bg-searchBgColor p-6 mb-12 rounded">
-            <span className="font-AeonikProRegular text-base">
-              Информация о товаре{" "}
-            </span>
-          </div>
-        ) : (
-          <div className="mt-6 w-full h-[440px] text-center bg-searchBgColor p-6 mb-12 rounded">
-            <span className="font-AeonikProRegular text-base">
-              Информация о Характеристики
-            </span>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+    )
 }

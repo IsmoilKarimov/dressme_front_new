@@ -1,4 +1,5 @@
 import { NavLink, useParams } from "react-router-dom";
+
 import { nike } from "../../../../../AssetsMain";
 import {
   ArrowTopIcons,
@@ -142,8 +143,11 @@ const ShoppingStoreOfficialTop = ({ name }) => {
   const handleOpenTypesofClothes = (openTypesofClothes) => {
     setState({ ...state, openTypesofClothes: openTypesofClothes });
   };
-
-  const handleTypesofClothes = () => {
+  const [selectTypesofClothes, setSelectTypesofClothes] = useState(
+    "Categories"
+  );
+  const handleTypesofClothes = (value) => {
+    setSelectTypesofClothes(value);
     setState({ ...state, openTypesofClothes: false });
   };
   const typesofClothes = [

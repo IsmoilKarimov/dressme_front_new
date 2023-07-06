@@ -8,12 +8,16 @@ import {
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import {
   adidas,
+  autummSeason,
   chanel,
   hm,
   lacoste,
   nike,
   puma,
+  springSeason,
+  summerSeason,
   tommy,
+  winterSeason,
   zara,
 } from "../../../../AssetsMain";
 import { GrClose } from "react-icons/gr";
@@ -21,18 +25,50 @@ import ReactSlider from "react-slider";
 const ClothingParametr = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
+  let IconsColor = "";
+  let dataStyle = "";
+  let genderStyle = "";
   let hoverText = "";
+  let authenActiveStyle = "";
   if (dressInfo?.type === 1111) {
+    IconsColor = "#008F0E";
+
+    dataStyle = "bg-bgSpring bg-opacity-10	  text-borderSpring ";
     hoverText = " hover:text-borderSpring ";
+    authenActiveStyle =
+      "bg-red-500 rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex  ";
+    genderStyle =
+      "focus:text-borderSpring focus:bg-bgSpring focus:border focus:border-borderSpring focus:text-borderSpring";
   }
   if (dressInfo?.type === 2222) {
+    IconsColor = "#EAA700";
+
+    dataStyle = "bg-bgSummer  bg-opacity-10  text-borderSummer";
     hoverText = " hover:text-borderSummer ";
+    authenActiveStyle =
+      "bg-red-500 rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex  ";
+    genderStyle =
+      "focus:text-borderSummer focus:bg-bgSummer focus:border focus:border-borderSummer focus:text-borderSummer";
   }
   if (dressInfo?.type === 3333) {
+    IconsColor = "#E17A02";
+
+    dataStyle = "bg-bgAutumm bg-opacity-10  text-borderAutumm";
     hoverText = " hover:text-borderAutumm ";
+    authenActiveStyle =
+      "bg-red-500 rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex  ";
+    genderStyle =
+      "focus:text-borderAutumm focus:bg-bgAutumm focus:border focus:border-borderAutumm focus:text-borderAutumm";
   }
   if (dressInfo?.type === 4444) {
+    IconsColor = "#007DCA";
+
+    dataStyle = "bg-bgWinter bg-opacity-10  text-borderWinter";
     hoverText = " hover:text-borderWinter ";
+    authenActiveStyle =
+      "bg-red-500 rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex  ";
+    genderStyle =
+      "focus:text-borderWinter focus:bg-bgWinter focus:border focus:border-borderWinter focus:text-borderWinter";
   }
   const [state, setState] = useState({
     clothesTypeMobile: false,
@@ -58,7 +94,11 @@ const ClothingParametr = () => {
     state?.brandToggleMobile,
     state?.selectColorToggleMobile,
   ]);
-
+  // Mobile Wear Brand Type
+  const [selectWearMobile, setSelectWearMobile] = useState("Clothing type");
+  const handleWearMobile = (value) => {
+    setSelectWearMobile(value);
+  };
   const wearMobileList = [
     { id: 1, type: "All Clothing types" },
     { id: 2, type: "Headwear" },
@@ -66,6 +106,21 @@ const ClothingParametr = () => {
     { id: 4, type: "Underwear" },
     { id: 5, type: "Legwear" },
     { id: 6, type: "Accessory" },
+  ];
+  // Mobile Price Brand Type
+  const [selectPriceMobile, setSelectPriceMobile] = useState("Under 100$");
+
+  const handlePriceMobile = (value) => {
+    setSelectPriceMobile(value);
+  };
+
+  const PriceMobileList = [
+    { id: 1, type: "At all prices" },
+    { id: 2, type: "More than 500 $" },
+    { id: 3, type: "Under 500$" },
+    { id: 4, type: "Under 200$" },
+    { id: 5, type: "Under 100$" },
+    { id: 6, type: "Under 50$" },
   ];
 
   // Mobile Change color Type
@@ -101,6 +156,43 @@ const ClothingParametr = () => {
     { id: 8, imgFull: zara },
   ];
   // ----------------Wear state management----------------------------
+  const [openwear, setOpenwear] = useState(false);
+  const handleOpenChangeWear = (newOpen) => {
+    setOpenwear(newOpen);
+  };
+
+  const handleSeason = (id) => {
+    setDressInfo({ ...dressInfo, type: id });
+    setOpenwear(false);
+  };
+  const SeasonTypeArray = [
+    { id: 1111, type: "Spring", icons: springSeason },
+    { id: 2222, type: "Summer", icons: summerSeason },
+    { id: 3333, type: "Autumm", icons: autummSeason },
+    { id: 4444, type: "Winter", icons: winterSeason },
+  ];
+  const contentWear = (
+    <div className="ss:w-fit md:w-[120px] h-fit m-0 p-0 ">
+      {SeasonTypeArray.map((value) => {
+        return (
+          <p
+            key={value?.id}
+            className="w-full h-[42px] flex items-center justify-center md:pl-3 md:justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
+            onClick={() => handleSeason(value.id)}
+          >
+            <span className="md:mr-3">
+              <img src={value?.icons} alt="" />
+            </span>
+            <span
+              className={`ss:hidden md:inline-block font-AeonikProMedium text-base text-black not-italic ${hoverText}`}
+            >
+              {value?.type}
+            </span>
+          </p>
+        );
+      })}
+    </div>
+  );
 
   return (
     <div className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto  px-4 md:px-0">
@@ -197,6 +289,7 @@ const ClothingParametr = () => {
                         <div
                           key={data?.id}
                           onClick={() => {
+                            handleWearMobile(data?.type);
                             setState({ ...state, clothesTypeMobile: false });
                           }}
                           className={`${hoverText} text-base font-AeonikProMedium hover:bg-bgColor w-full h-12 border border-solid border-searchBgColor flex items-center justify-center`}

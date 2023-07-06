@@ -3,7 +3,11 @@ import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { NavLink, useParams } from "react-router-dom";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
-import { ItailIcons } from "../../../../../AssetsMain/icons";
+import {
+  BasketIcons,
+  HomeIcons,
+  ItailIcons,
+} from "../../../../../AssetsMain/icons";
 import {
   AutummMale,
   SpringMale,
@@ -12,7 +16,7 @@ import {
 } from "../../../../../AssetsMain";
 
 const SingleProductTop = () => {
-  const [dressInfo] = useContext(dressMainData);
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const [state, setState] = useState({
     openwear: false,
@@ -53,8 +57,10 @@ const SingleProductTop = () => {
   const handleOpenChangeWear = (newOpen) => {
     setState({ ...state, openwear: newOpen });
   };
+  const [selectWear, setselectWear] = useState("Clothing type");
 
-  const handleWearValue = () => {
+  const handleWearValue = (value) => {
+    setselectWear(value);
     setState({ ...state, openwear: false });
   };
 
@@ -83,6 +89,8 @@ const SingleProductTop = () => {
       })}
     </div>
   );
+  const { id } = useParams();
+  // const Newid = id?.replace(":", " "); scrollBreadcrumb webkit-center
   return (
     <div className="flex flex-col md:min-h-[44px] justify-center items-center m-0 py-3 box-border border-b border-searchBgColor">
       <div className="max-w-[1280px] h-full w-[100%] flex items-center justify-between m-auto">
