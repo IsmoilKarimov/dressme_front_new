@@ -17,7 +17,6 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { NavLink } from "react-router-dom";
 import { NoImg, SircleNext } from "../../../../AssetsMain/icons";
-// import required modules``
 export default function MainPageSliders() {
   const [dressInfo] = useContext(dressMainData);
   let dataStyle = "";

@@ -1,34 +1,18 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
-  BasketIcons,
-  HeartIcons,
   InputCheckedTrueIcons,
   NoImg,
-  SaveBasketIcons,
   StarIcons,
 } from "../../../../AssetsMain/icons";
 import { AddBasket, HeartImg } from "../../../../AssetsMain";
 
 export default function FavouriteProducts() {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
 
-  const onColorChecked = (itemId, colorId) => {
-    // setFavouriteProductsList((current) => {
-    //   return current?.map((data) => {
-    //     if (data?.id == itemId) {
-    //       let newDataColor = data.changeColor.map((e) => {
-    //         if (e.id == colorId) {
-    //           return { ...e, action: !e.action };
-    //         } else return e;
-    //       });
-    //       return { ...data, changeColor: [...newDataColor] };
-    //     } else return data;
-    //   });
-    // });
-  };
+  const onColorChecked = () => {};
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/product/:${id}`);

@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 import { useContext, useState } from "react";
@@ -12,8 +11,6 @@ import {
 } from "../../../../AssetsMain";
 import {
   ArrowTopIcons,
-  HeartIcons,
-  HomeIcons,
   ItailIcons,
   SortIcons,
 } from "../../../../AssetsMain/icons";

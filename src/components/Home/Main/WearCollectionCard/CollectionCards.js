@@ -1,20 +1,12 @@
-import React, { useContext, useState } from "react";
-
+import React, { useContext } from "react";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
-
 import { useNavigate } from "react-router-dom";
 import {
-  BrushColorIcons,
-  ClothesIcons,
-  DollorIcons,
-  HeartIcons,
   InputCheckedTrueIcons,
   NoImg,
-  SaveBasketIcons,
   StarIcons,
-  TopBrandsIcon,
 } from "../../../../AssetsMain/icons";
-import { AddBasket, HeartImg } from "../../../../AssetsMain";
+import { HeartImg } from "../../../../AssetsMain";
 import "../../../../index.css";
 import { ClothingParametr } from "./ClothingParametr";
 export default function CollectionCards() {
@@ -43,31 +35,8 @@ export default function CollectionCards() {
     navigate(`/product/:${id}`);
   };
 
-  const onColorChecked = (itemId, colorId) => {
-    //   setProductList((current) => {
-    //     return current?.map((data) => {
-    //       if (data?.id == itemId) {
-    //         let newDataColor = data.changeColor.map((e) => {
-    //           if (e.id == colorId) {
-    //             return { ...e, action: !e.action };
-    //           } else return e;
-    //         });
-    //         return { ...data, changeColor: [...newDataColor] };
-    //       } else return data;
-    //     });
-    //   });
-  };
-  const saveHandleFavourite = (itemId) => {
-    // setDressInfo((current) => {
-    //   return current.ProductList.map((data) => {
-    //     if (data?.id == itemId) {
-    //       return { ...data, saveFavourite: !data.saveFavourite };
-    //     } else {
-    //       return { data };
-    //     }
-    //   });
-    // });
-  };
+  const onColorChecked = () => {};
+  const saveHandleFavourite = () => {};
 
   return (
     <div className="flex flex-col justify-center items-center m-0 p-0 box-border">
