@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import "../category.css";
 import CategoryCards from "./CategoryElement/CategoryCards";
 import { CategoryForBrand } from "./CategoryForBrand/CategoryForBrand";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 
 export default function CategoryForType() {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
 
   useEffect(() => {
     if (dressInfo?.openCategoryFilter) {

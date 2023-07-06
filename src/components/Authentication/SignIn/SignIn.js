@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { NavLink, useNavigate } from "react-router-dom";
-import { EmailIcons, PhoneIcons, SircleNext } from "../../../AssetsMain/icons";
+import { EmailIcons, SircleNext } from "../../../AssetsMain/icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useMutation } from "@tanstack/react-query";
@@ -11,7 +11,7 @@ export default function SignIn() {
     password: "",
     email: "",
   });
-  //
+  
   const navigate = useNavigate();
   const [error, setError] = useState(false);
   const url = "https://reqres.in/api/register";
@@ -118,7 +118,6 @@ export default function SignIn() {
             <input
               className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black focus:bg-white placeholder-bg-white"
               type="email"
-              // name="phone"
               value={state.email}
               onChange={({ target: { value } }) => {
                 setError();
@@ -206,7 +205,7 @@ export default function SignIn() {
         </div>
         <NavLink
           to={"/sign_up"}
-          className="mt-3 border md:hidden block cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-OpacitySignIn select-none rounded-lg active:scale-95	active:opacity-70 "
+          className="mt-3 border md:hidden cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-OpacitySignIn select-none rounded-lg active:scale-95	active:opacity-70 "
         >
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-black tracking-[0,16px]">
             Создайте Аккаунт

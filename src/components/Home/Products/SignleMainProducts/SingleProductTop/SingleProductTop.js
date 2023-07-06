@@ -153,7 +153,7 @@ const SingleProductTop = () => {
           >
             <span>
               {personItems
-                ?.filter((value) => value.id === dressInfo?.type)
+                ?.filter((value) => value.id == dressInfo?.type)
                 .map((data) => {
                   return (
                     <img

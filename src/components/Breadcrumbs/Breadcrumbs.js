@@ -24,7 +24,6 @@ export default function Breadcrumbs () {
             <div className="max-w-[1280px] w-[100%] min-h-[44px] mt-[26px]">
                 <div className="breadcrumbs">{crumbs}</div>
             </div>
-            
         </div>
     )
 }

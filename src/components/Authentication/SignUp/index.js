@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import SignUp from "./SignUp";
 
 export default function SignUpIndex() {

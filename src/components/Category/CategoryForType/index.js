@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import CategoryForType from "./CategoryForType";
 import CategoryTopDetail from "./CategoryTop/CategoryTopDetail";
 

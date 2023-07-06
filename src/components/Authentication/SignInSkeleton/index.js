@@ -1,4 +1,3 @@
-import React from "react";
 import SignInSkeleton from "./SigInSkeleton";
 
 export default function SignInSkeletonIndex() {

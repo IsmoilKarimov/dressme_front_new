@@ -8,11 +8,6 @@
   border-radius: 8px;
 }
 
-/* .openedBrands {
-    height: 0;
-    overflow: hidden;
-} */
-
 .openBrands.open .openedBrands {
   height: auto;
 }
@@ -41,7 +36,7 @@
   display: none;
 }
 
-/* --------------------React Slider */
+/* ------- React Slider ---------- */
 
 .horizontal-slider {
   width: 95%;
@@ -86,7 +81,7 @@
   height: 5px;
 }
 
-/* --------------------React Slider */
+/* --------React Slider----------- */
 
 .horizontal-slider {
   width: 100%;
@@ -139,10 +134,3 @@
   border-radius: 5px;
   padding: 2px;
 }
-/* 
-.horizontal-slider .example-thumb {
-  top: 1px;
-  width: 23px;
-  height: 23px;
-  line-height: 23px;
-} */

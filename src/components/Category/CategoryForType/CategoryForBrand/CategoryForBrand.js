@@ -31,7 +31,7 @@ const CategoryForBrand = () => {
   }, [screenSize]);
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [product, setProduct] = useState({
+  const [product] = useState({
     Catolog: [
       { id: 1, action: false, name: "Головной убор" },
       { id: 2, action: false, name: "Верхняя одежда" },
@@ -112,7 +112,7 @@ const CategoryForBrand = () => {
   });
   const Min = "100";
   const Max = "12 000";
-  const [values, setValues] = useState([Min, Max]);
+  const [values] = useState([Min, Max]);
 
   const [state, setState] = useState({
     brandShow: screenSize.width <= 768 ? true : false,
@@ -129,43 +129,16 @@ const CategoryForBrand = () => {
     checkedPrize: true,
   });
 
-  const [value, SetValue] = useState({ min: 20, max: 150 });
-
-  const HandleBrandFilter = (e) => {
-    console.log(e, "e");
-    // setProduct((current) => {
-    //   return current?.brandWear?.map((value) => {
-    //     if (value?.id == e) {
-    //       return { ...value, action: !value.action };
-    //     } else return value;
-    //   });
-    // });
+  const HandleBrandFilter = () => {
+    
   };
 
-  const HandleCheckStatus = (e) => {
-    // console.log(e, "id");
-    // setProduct((current) => {
-    //   return current.brandWear.map((data) => {
-    //     if (data?.id == e) {
-    //       return { ...data, action: !data.action };
-    //     } else return data;
-    //   });
-    // });
+  const HandleCheckStatus = () => {
+
   };
 
-  const HandleColorCheck = (itemId) => {
-    // setProduct((current) => {
-    //   return current?.map((data) => {
-    //     if (data?.id == itemId) {
-    //       let newDataColor = data.changeColor.map((e) => {
-    //         if (e.id == colorId) {
-    //           return { ...e, action: !e.action };
-    //         } else return e;
-    //       });
-    //       return { ...data, changeColor: [...newDataColor] };
-    //     } else return data;
-    //   });
-    // });
+  const HandleColorCheck = () => {
+  
   };
 
   return (
@@ -202,7 +175,7 @@ const CategoryForBrand = () => {
           <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg">
             Детям
           </button>
-          <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg text-red-600">
+          <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center  bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg text-red-600">
             Скидки
           </button>
         </div>
@@ -399,8 +372,6 @@ const CategoryForBrand = () => {
                   trackClassName="example-track"
                   defaultValue={[0, 100]}
                   ariaLabel={["Lower thumb", "Upper thumb"]}
-                  // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
-                  // renderThumb={() => <div>1</div>}
                   pearling
                   minDistance={10}
                 />
