@@ -3,25 +3,20 @@ import { dressMainData } from '../../../../../../ContextHook/ContextMenu';
 
 export default function AboutProduct() {
 
-    const [dressInfo, setDressInfo] = useContext(dressMainData);
+    const [dressInfo] = useContext(dressMainData);
 
     let dataStyle = "";
-    let genderStyle = "";
-    if (dressInfo?.type == 1111) {
+    if (dressInfo?.type === 1111) {
         dataStyle = " text-borderSpring ";
-        genderStyle = "text-borderSpring bg-bgSpring border-borderSpring";
     }
-    if (dressInfo?.type == 2222) {
+    if (dressInfo?.type === 2222) {
         dataStyle = " text-borderSummer";
-        genderStyle = "text-borderSummer bg-bgSummer border-borderSummer";
     }
-    if (dressInfo?.type == 3333) {
+    if (dressInfo?.type === 3333) {
         dataStyle = " text-borderAutumm ";
-        genderStyle = "text-borderAutumm bg-bgAutumm border-borderAutumm";
     }
-    if (dressInfo?.type == 4444) {
+    if (dressInfo?.type === 4444) {
         dataStyle = " text-borderWinter ";
-        genderStyle = "text-borderWinter bg-bgWinter border-borderWinter";
     }
 
     const [productDescription, setProductDescription] = useState(true);

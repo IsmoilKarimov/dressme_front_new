@@ -213,7 +213,7 @@ const MyOrderSettings = () => {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-[48%] md:w-full mx-auto flex items-center justify-between  md:px-[40px] md:py-[30px] mt-6 md:mt-0  ">
+        <div className="w-full md:w-[48%] mx-auto flex items-center justify-between  md:px-[40px] md:py-[30px] mt-6 md:mt-0">
           <div>
             <button
               onClick={LogOut}
@@ -228,7 +228,7 @@ const MyOrderSettings = () => {
             </button>
           </div>
           <div className="w-[80%] xs:w-[60%] md:w-auto ">
-            <button className="w-[100%] md:w-[244px] h-[52px] rounded-lg bg-fullBlue text-white active:scale-95  active:opacity-70 rounded-lg flex items-center justify-center">
+            <button className="w-[100%] md:w-[244px] h-[52px] bg-fullBlue text-white active:scale-95  active:opacity-70 rounded-lg flex items-center justify-center">
               <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center tracking-[1%]">
                 Сохранить данные
               </span>

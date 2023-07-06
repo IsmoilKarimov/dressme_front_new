@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { SingleProduct } from "./SingleProduct/SingleProduct";
 
 export default function SingleMainProducts() {

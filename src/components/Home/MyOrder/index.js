@@ -14,9 +14,6 @@ export default function OrderSettings() {
       <div className="w-full border-b border-searchBgColor">
         <MyOrderBreadCamp />
       </div>
-      {/* <div className="w-full border-b border-searchBgColor">
-            <FavouriteTop />
-          </div> */}
       <div className="w-full">
         <MyOrderSettings />
       </div>

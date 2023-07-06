@@ -61,19 +61,19 @@ export default function ProductComment() {
   ];
   let dataStyle = "";
   let genderStyle = "";
-  if (dressInfo?.type == 1111) {
+  if (dressInfo?.type === 1111) {
     dataStyle = " #008F0E ";
     genderStyle = "text-borderSpring bg-btnBgColor border-searchBgColor";
   }
-  if (dressInfo?.type == 2222) {
+  if (dressInfo?.type === 2222) {
     dataStyle = " #EAA700";
     genderStyle = "text-borderSummer bg-btnBgColor border-searchBgColor";
   }
-  if (dressInfo?.type == 3333) {
+  if (dressInfo?.type === 3333) {
     dataStyle = " #E17A02 ";
     genderStyle = "text-borderAutumm bg-btnBgColor border-searchBgColor";
   }
-  if (dressInfo?.type == 4444) {
+  if (dressInfo?.type === 4444) {
     dataStyle = " #007DCA ";
     genderStyle = "text-borderWinter bg-btnBgColor border-searchBgColor";
   }

@@ -1,11 +1,9 @@
 import React, { useContext, useState } from "react";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 import {
-  BasketIcons,
-  HomeIcons,
   ItailIcons,
 } from "../../../../../AssetsMain/icons";
 import {
@@ -16,7 +14,7 @@ import {
 } from "../../../../../AssetsMain";
 
 const SingleProductTop = () => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
 
   const [state, setState] = useState({
     openwear: false,
@@ -25,26 +23,17 @@ const SingleProductTop = () => {
   });
 
   let dataStyle = "";
-  let genderStyle = "";
-  if (dressInfo?.type == 1111) {
+  if (dressInfo?.type === 1111) {
     dataStyle = " hover:text-borderSpring ";
-    genderStyle =
-      "focus:text-borderSpring focus:bg-bgSpring focus:border-borderSpring";
   }
-  if (dressInfo?.type == 2222) {
+  if (dressInfo?.type === 2222) {
     dataStyle = " hover:text-borderSummer";
-    genderStyle =
-      "focus:text-borderSummer focus:bg-bgSummer focus:border-borderSummer";
   }
-  if (dressInfo?.type == 3333) {
+  if (dressInfo?.type === 3333) {
     dataStyle = " hover:text-borderAutumm ";
-    genderStyle =
-      "focus:text-borderAutumm focus:bg-bgAutumm focus:border-borderAutumm";
   }
-  if (dressInfo?.type == 4444) {
+  if (dressInfo?.type === 4444) {
     dataStyle = " hover:text-borderWinter ";
-    genderStyle =
-      "focus:text-borderWinter focus:bg-bgWinter focus:border-borderWinter";
   }
 
   const personItems = [
@@ -57,10 +46,8 @@ const SingleProductTop = () => {
   const handleOpenChangeWear = (newOpen) => {
     setState({ ...state, openwear: newOpen });
   };
-  const [selectWear, setselectWear] = useState("Clothing type");
 
-  const handleWearValue = (value) => {
-    setselectWear(value);
+  const handleWearValue = () => {
     setState({ ...state, openwear: false });
   };
 
@@ -89,8 +76,7 @@ const SingleProductTop = () => {
       })}
     </div>
   );
-  const { id } = useParams();
-  // const Newid = id?.replace(":", " "); scrollBreadcrumb webkit-center
+ 
   return (
     <div className="flex flex-col md:min-h-[44px] justify-center items-center m-0 py-3 box-border border-b border-searchBgColor">
       <div className="max-w-[1280px] h-full w-[100%] flex items-center justify-between m-auto">
