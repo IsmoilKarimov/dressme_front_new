@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { AiOutlineEye } from "react-icons/ai";
 
 import { NavLink, useLocation } from "react-router-dom";
 import { useEffect } from "react";
@@ -59,7 +59,6 @@ const NavbarBottomIndex = () => {
       <div className="max-w-[1280px] w-[100%] flex justify-center  items-center m-auto">
         <div className="ss:w-full flex flex-col justify-center md:mt-[6px]">
           <div className=" w-full  flex flex-col justify-center ss:px-4 md:px-0">
-            {/* {locationWindow !== "/forget_password" ? ( */}
             {locationWindow === "/sign_in" || locationWindow === "/sign_up" ? (
               <div className="w-full md:w-[350px] md:mx-auto my-3  flex gap-x-2 items-center justify-between ss:border md:border-0 ss:bg-btnBgColor md:bg-transparent border-searchBgColor rounded-lg">
                 <NavLink
@@ -165,10 +164,6 @@ const NavbarBottomIndex = () => {
                 <CategoryNavbar />
               </div>
             ) : null}
-
-            {/* {locationWindow === "/delivery-points" ? (
-                    <div className="border border-red-500"></div>
-                  ) : null} */}
           </div>
         </div>
       </div>

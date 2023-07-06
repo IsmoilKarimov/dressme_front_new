@@ -1,4 +1,4 @@
-import React, { useContext, useState, useMemo } from "react";
+import React, { useContext, useState } from "react";
 import {
   AutummFemale,
   AutummMale,
@@ -33,22 +33,22 @@ const BottomHeader = () => {
 
   let dataStyle = "";
   let genderStyle = "";
-  if (dressInfo?.type == 1111) {
+  if (dressInfo?.type === 1111) {
     dataStyle = " hover:text-borderSpring ";
     genderStyle =
       "focus:text-borderSpring focus:bg-bgSpring focus:border-borderSpring";
   }
-  if (dressInfo?.type == 2222) {
+  if (dressInfo?.type === 2222) {
     dataStyle = " hover:text-borderSummer";
     genderStyle =
       "focus:text-borderSummer focus:bg-bgSummer focus:border-borderSummer";
   }
-  if (dressInfo?.type == 3333) {
+  if (dressInfo?.type === 3333) {
     dataStyle = " hover:text-borderAutumm ";
     genderStyle =
       "focus:text-borderAutumm focus:bg-bgAutumm focus:border-borderAutumm";
   }
-  if (dressInfo?.type == 4444) {
+  if (dressInfo?.type === 4444) {
     dataStyle = " hover:text-borderWinter ";
     genderStyle =
       "focus:text-borderWinter focus:bg-bgWinter focus:border-borderWinter";
@@ -290,7 +290,6 @@ const BottomHeader = () => {
             className="w-[48px] cursor-pointer border-r border-searchBgColor h-full flex items-center justify-center"
           >
             <div className=" w-fit h-fit flex items-center justify-center relative  select-none ">
-              {/* <div className={`w-[8px] h-[20px] flex items-end justify-center  py-[2px] border border-black  rounded-[3px] z-[25] bg-white rounded-b-[5px]`}> */}
               <div className={style.mainOne}>
                 <svg
                   width="4"
@@ -308,9 +307,7 @@ const BottomHeader = () => {
                   />
                 </svg>
               </div>
-              {/* <div className={`w-[8px] h-[20px] border left-[-3px] top-[2px] z-[24] bg-white relative border-black rounded-[3px] duration-200  rounded-b-[5px] ${!textToColor ? "rotate-[45deg] " : "left-[-8px] top-[0px] rotate-[0deg]"}`}> */}
               <div className={style.mainTwo}></div>
-              {/* <div className={`w-[8px] h-[20px] border relative left-[-10px] top-[6px] z-[23] bg-white border-black rounded-[3px] duration-200  rounded-b-[5px] ${!textToColor ? "rotate-[90deg]" : "left-[-16px] top-[0px] rotate-[0deg]"}`}> */}
               <div
                 className={
                   state?.textToColor ? style.MainHtree : style.mainThreerotate
@@ -331,20 +328,19 @@ const BottomHeader = () => {
                       key={data?.id}
                       htmlFor={data?.id}
                       onClick={() => colorIdPushContext(data?.id)}
-                      // onClick={() => handleGetChecked(data?.id)}
                       className={`rounded-full w-6 h-6 ${
                         data?.colors
                       } cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
                         !state?.textToColor && "border"
                       }  border-borderColorCard	`}
                     >
-                      {data?.id == getRadio && data?.id == 2 ? (
+                      {data?.id === getRadio && data?.id === 2 ? (
                         <span>
                           <InputCheckedTrueIcons colors={"#000"} />
                         </span>
                       ) : null}
 
-                      {data?.id == getRadio && data?.id !== 2 ? (
+                      {data?.id === getRadio && data?.id !== 2 ? (
                         <InputCheckedTrueIcons colors={"#fff"} />
                       ) : null}
                     </label>

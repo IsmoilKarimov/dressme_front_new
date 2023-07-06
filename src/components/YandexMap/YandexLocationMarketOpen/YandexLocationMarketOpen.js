@@ -1,11 +1,10 @@
-import React, { useContext, memo, useMemo } from "react";
+import React, { useContext, memo } from "react";
 import {
   ClockIcons,
   LocationIcons,
   MenuCloseIcons,
   SircleNext,
   StarIcons,
-  ThreeCicleIcon,
 } from "../../../AssetsMain/icons";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import Slider from "react-slick";
@@ -96,6 +95,7 @@ function YandexLocationMarketOpen() {
                 src={
                   "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract03.jpg"
                 }
+                alt="img"
               />
             </div>
             <div className=" flex items-center justify-center">
@@ -106,6 +106,7 @@ function YandexLocationMarketOpen() {
                 src={
                   "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract04.jpg"
                 }
+                alt="img"
               />
             </div>
             <div className=" flex items-center justify-center">
@@ -116,6 +117,7 @@ function YandexLocationMarketOpen() {
                 src={
                   "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract01.jpg"
                 }
+                alt="img"
               />
             </div>
             <div className=" flex items-center justify-center">
@@ -126,6 +128,7 @@ function YandexLocationMarketOpen() {
                 src={
                   "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract02.jpg"
                 }
+                alt="img"
               />
             </div>
           </Slider>

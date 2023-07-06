@@ -12,22 +12,17 @@ const ShoppingTop = () => {
   const [dressInfo] = useContext(dressMainData);
 
   let dataStyle = "";
-  let shadowStyle = "";
   if (dressInfo?.type === 1111) {
     dataStyle = "text-borderSpring ";
-    shadowStyle = "hover:shadow-green-300/100 ";
   }
   if (dressInfo?.type === 2222) {
     dataStyle = "text-borderSummer";
-    shadowStyle = "hover:shadow-amber-200/100  ";
   }
   if (dressInfo?.type === 3333) {
     dataStyle = "text-borderAutumm";
-    shadowStyle = "hover:shadow-orange-200/100   ";
   }
   if (dressInfo?.type === 4444) {
     dataStyle = "text-borderWinter";
-    shadowStyle = "hover:shadow-sky-200/100  ";
   }
 
   const [typesCategory, setTypeCategory] = useState([
@@ -106,7 +101,7 @@ const ShoppingTop = () => {
                   >
                     <span className="mr-2">{data.icon}</span>
 
-                    <span >{data.name}</span>
+                    <span>{data.name}</span>
                   </button>
                   <span
                     className={`${

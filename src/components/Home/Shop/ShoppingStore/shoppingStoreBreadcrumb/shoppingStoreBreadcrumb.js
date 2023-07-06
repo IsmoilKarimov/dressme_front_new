@@ -4,11 +4,7 @@ import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 import { useContext, useState } from "react";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
-import {
-  BasketIcons,
-  HomeIcons,
-  ItailIcons,
-} from "../../../../../AssetsMain/icons";
+import { ItailIcons } from "../../../../../AssetsMain/icons";
 import {
   AutummMale,
   SpringMale,
@@ -17,12 +13,10 @@ import {
 } from "../../../../../AssetsMain";
 
 const ShoppingStoreBreadCrumb = () => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
 
   const [state, setState] = useState({
     openwear: false,
-    openPrice: false,
-    textToColor: false,
   });
 
   let dataStyle = "";
@@ -58,10 +52,8 @@ const ShoppingStoreBreadCrumb = () => {
   const handleOpenChangeWear = (newOpen) => {
     setState({ ...state, openwear: newOpen });
   };
-  const [selectWear, setselectWear] = useState("Clothing type");
 
   const handleWearValue = (value) => {
-    setselectWear(value);
     setState({ ...state, openwear: false });
   };
 

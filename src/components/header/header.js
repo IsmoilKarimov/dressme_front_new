@@ -8,7 +8,7 @@ import NavbarBottomIndex from "./NavbarBottomIndex";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 
 const Header = () => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
 
   // ----------------NavBar----------------
   const [show, setShow] = useState(true);
@@ -52,7 +52,6 @@ const Header = () => {
   return (
     <div>
       <header>
-        {/* <header className="md:border-0 border-searchBgColor "> */}
         {locationWindow !== "/delivery-points" ? (
           <div className="w-full ">
             <div className={`ss:block md:hidden`}>
@@ -70,7 +69,8 @@ const Header = () => {
             </div>
           </div>
         ) : (
-          <div className={`fixed top-0 z-[150] w-full block md:hidden bg-transparent`}
+          <div
+            className={`fixed top-0 z-[150] w-full block md:hidden bg-transparent`}
           >
             {!dressInfo?.yandexFullScreen && (
               <div className="overflow-hidden">
@@ -80,7 +80,8 @@ const Header = () => {
           </div>
         )}
 
-        <div className={`${
+        <div
+          className={`${
             locationWindow !== "/delivery-points"
               ? "md:mt-[99px]"
               : "mt-[0] h-0 overflow-hidden"

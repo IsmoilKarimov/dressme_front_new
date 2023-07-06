@@ -127,47 +127,13 @@ const ShopOfficialBrand = () => {
     catolog: screenSize.width <= 768 ? true : false,
     //--------------
     checkBrand: false,
-    checkedPrize: true,
   });
 
-  // const [value, SetValue] = useState({ min: 20, max: 150 });
+  const HandleBrandFilter = (e) => {};
 
-  const HandleBrandFilter = (e) => {
-    console.log(e, "e");
-    // setProduct((current) => {
-    //   return current?.brandWear?.map((value) => {
-    //     if (value?.id == e) {
-    //       return { ...value, action: !value.action };
-    //     } else return value;
-    //   });
-    // });
-  };
+  const HandleCheckStatus = (e) => {};
 
-  const HandleCheckStatus = (e) => {
-    // console.log(e, "id");
-    // setProduct((current) => {
-    //   return current.brandWear.map((data) => {
-    //     if (data?.id == e) {
-    //       return { ...data, action: !data.action };
-    //     } else return data;
-    //   });
-    // });
-  };
-
-  const HandleColorCheck = (itemId) => {
-    // setProduct((current) => {
-    //   return current?.map((data) => {
-    //     if (data?.id == itemId) {
-    //       let newDataColor = data.changeColor.map((e) => {
-    //         if (e.id == colorId) {
-    //           return { ...e, action: !e.action };
-    //         } else return e;
-    //       });
-    //       return { ...data, changeColor: [...newDataColor] };
-    //     } else return data;
-    //   });
-    // });
-  };
+  const HandleColorCheck = (itemId) => {};
 
   return (
     <div
@@ -400,8 +366,6 @@ const ShopOfficialBrand = () => {
                   trackClassName="example-track"
                   defaultValue={[0, 100]}
                   ariaLabel={["Lower thumb", "Upper thumb"]}
-                  // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
-                  // renderThumb={() => <div>1</div>}
                   pearling
                   minDistance={10}
                 />

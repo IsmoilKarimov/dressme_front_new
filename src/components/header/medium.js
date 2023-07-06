@@ -2,23 +2,14 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import { dressMainData } from "../../ContextHook/ContextMenu";
-import { GrClose } from "react-icons/gr";
 import { Popover } from "antd";
 import {
   ActivePersonIcons,
   ArrowPrevousNext,
   ArrowTopIcons,
-  BasketIcons,
-  BrushColorIcons,
-  ClothesIcons,
   CommentIcons,
   CotegoryIcons,
-  DashboardStatisticIcons,
-  DollorIcons,
-  HeartIcons,
-  HeartLinkIcons,
   HouseStatisticIcons,
-  ListCollectionIcons,
   LocationIcons,
   MapIcons,
   MarketIcons,
@@ -27,7 +18,6 @@ import {
   PersonIcons,
   PhoneIcons,
   SearchIcons,
-  TopBrandsIcon,
   VolumeIcons,
 } from "../../AssetsMain/icons";
 import {
@@ -43,23 +33,12 @@ import {
   SummerFemale,
   AutummFemale,
   WinterFemale,
-  // ------
-  adidas,
-  chanel,
-  hm,
-  lacoste,
-  nike,
-  puma,
-  tommy,
-  zara,
-  //
   springSeason,
   summerSeason,
   winterSeason,
   autummSeason,
   UzbekFlag,
   HeartImg,
-  ActivePersonImg,
 } from "../../AssetsMain";
 
 const MediumHeader = () => {
@@ -93,48 +72,30 @@ const MediumHeader = () => {
   // -----------------------------------------------------
   let IconsColor = "";
   let dataStyle = "";
-  let genderStyle = "";
   let hoverText = "";
-  let authenActiveStyle = "";
   if (dressInfo?.type === 1111) {
     IconsColor = "#008F0E";
 
     dataStyle = "bg-bgSpring bg-opacity-10	  text-borderSpring ";
     hoverText = " hover:text-borderSpring ";
-    authenActiveStyle =
-      "bg-red-500 rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex  ";
-    genderStyle =
-      "focus:text-borderSpring focus:bg-bgSpring focus:border focus:border-borderSpring focus:text-borderSpring";
   }
   if (dressInfo?.type === 2222) {
     IconsColor = "#EAA700";
 
     dataStyle = "bg-bgSummer  bg-opacity-10  text-borderSummer";
     hoverText = " hover:text-borderSummer ";
-    authenActiveStyle =
-      "bg-red-500 rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex  ";
-    genderStyle =
-      "focus:text-borderSummer focus:bg-bgSummer focus:border focus:border-borderSummer focus:text-borderSummer";
   }
   if (dressInfo?.type === 3333) {
     IconsColor = "#E17A02";
 
     dataStyle = "bg-bgAutumm bg-opacity-10  text-borderAutumm";
     hoverText = " hover:text-borderAutumm ";
-    authenActiveStyle =
-      "bg-red-500 rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex  ";
-    genderStyle =
-      "focus:text-borderAutumm focus:bg-bgAutumm focus:border focus:border-borderAutumm focus:text-borderAutumm";
   }
   if (dressInfo?.type === 4444) {
     IconsColor = "#007DCA";
 
     dataStyle = "bg-bgWinter bg-opacity-10  text-borderWinter";
     hoverText = " hover:text-borderWinter ";
-    authenActiveStyle =
-      "bg-red-500 rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex  ";
-    genderStyle =
-      "focus:text-borderWinter focus:bg-bgWinter focus:border focus:border-borderWinter focus:text-borderWinter";
   }
 
   const SeasonTypeArray = [
@@ -203,10 +164,7 @@ const MediumHeader = () => {
   const [locationWindow, setLocationWindow] = useState("");
   useEffect(() => {
     setLocationWindow(location.pathname);
-    // console.log(locationWindow, "locationWindow");
   }, [location.pathname]);
-  // md:mt-[99px] ss:mt-0
-  // mt-1 bg white red
 
   return (
     <div className="flex flex-col justify-center items-center m-0 p-0 box-border ">
@@ -215,7 +173,6 @@ const MediumHeader = () => {
           {/* Starting of Full Screen page section */}
           <div className="w-full flex justify-center items-center py-3 overscroll-none overflow-y-hidden ">
             <div className=" w-full flex items-center ss:w-full md:w-fit justify-between ">
-              
               {/* Menu section */}
               {locationWindow !== "/delivery-points" ? (
                 <div
@@ -250,22 +207,23 @@ const MediumHeader = () => {
                 to="/"
                 className="flex justify-center items-center select-none rounded-xl h-[48px] ss:w-[calc(100%-96px)] ss:p-2 ll:p-1 md:p-0 md:w-[155px] ss:ml-2 md:ml-[0px]  ss:bg-btnBgColor md:bg-transparent"
               >
-                {BrandTypeArray.filter((data) => data.id == dressInfo.type).map(
-                  (data) => {
-                    return (
-                      <img
-                        key={data?.id}
-                        className="h-full"
-                        src={data?.icons}
-                        alt="logo"
-                      />
-                    );
-                  }
-                )}
+                {BrandTypeArray.filter(
+                  (data) => data.id === dressInfo.type
+                ).map((data) => {
+                  return (
+                    <img
+                      key={data?.id}
+                      className="h-full"
+                      src={data?.icons}
+                      alt="logo"
+                    />
+                  );
+                })}
               </NavLink>
 
               {/* Voice section */}
-              <div className={` bg-btnBgColor w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
+              <div
+                className={` bg-btnBgColor w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
               >
                 <span className="w-[22px]">
                   <VolumeIcons colors={IconsColor} />
@@ -275,7 +233,7 @@ const MediumHeader = () => {
               {/* Weather section */}
               <div className="w-12 h-12 md:w-[120px] md:h-11 bg-btnBgColor border border-searchBgColor rounded-xl  md:rounded-lg ml-2">
                 {SeasonTypeArray.filter(
-                  (data) => data.id == dressInfo.type
+                  (data) => data.id === dressInfo.type
                 ).map((data) => {
                   return (
                     <Popover
@@ -402,9 +360,9 @@ const MediumHeader = () => {
               </NavLink>
             </div>
           </div>
-
           {/*Starting of Blocked  Hamburger Menu section */}
-          <div className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen	pb-[140px] px-3 ${
+          <div
+            className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen	pb-[140px] px-3 ${
               state?.hamburgerMenu
                 ? " flex flex-col ease-linear duration-500 overscroll-none"
                 : "left-[-800px] z-[-80] ease-linear duration-500"
@@ -536,7 +494,6 @@ const MediumHeader = () => {
               </div>
             </div>
           </div>
-          
           {/*Starting of Blocked  Hamburger Menu section */}
           {locationWindow !== "/delivery-points" && (
             <div className={`md:hidden relative w-full mx-auto `}>
