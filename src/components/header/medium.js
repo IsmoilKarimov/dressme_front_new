@@ -194,7 +194,7 @@ const MediumHeader = () => {
                   onClick={() => {
                     navigate(-1);
                   }}
-                  className={`flex items-center justify-center bg-btnBgColor border border-searchBgColor w-12 h-12 -lg-lg cursor-pointer md:hidden rounded-xl`}
+                  className={`flex items-center justify-center bg-btnBgColor border border-searchBgColor w-12 h-12 cursor-pointer md:hidden rounded-xl`}
                 >
                   <span>
                     <ArrowPrevousNext />
@@ -365,7 +365,7 @@ const MediumHeader = () => {
             className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen	pb-[140px] px-3 ${
               state?.hamburgerMenu
                 ? " flex flex-col ease-linear duration-500 overscroll-none"
-                : "left-[-800px] z-[-80] ease-linear duration-500"
+                : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
             }`}
           >
             <div className={`w-full h-full flex flex-wrap content-between`}>
