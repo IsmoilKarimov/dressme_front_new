@@ -33,7 +33,7 @@ const NavMenu = () => {
 
   return (
     <div
-      className={`bg-white shadow-navMenuShadov  px-4 w-full rounded-t-xl md:hidden z-[55] h-full overscroll-none overflow-y-hidden`}
+      className={`bg-white shadow-navMenuShadov  px-4 w-full rounded-t-xl md:hidden z-[101] h-full overscroll-none overflow-y-hidden`}
     >
       <ul className="flex items-center justify-between text-[10px] font-AeonikProMedium py-1 ">
         <li className="w-[72px] h-[56px]">

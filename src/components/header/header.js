@@ -51,10 +51,10 @@ const Header = () => {
   }, [location.pathname]);
   return (
     <div>
-      <header>
+      <header className=" ">
         {locationWindow !== "/delivery-points" ? (
           <div className="w-full ">
-            <div className={`ss:block md:hidden`}>
+            <div className={`ss:block md:hidden relative z-[100]`}>
               <MediumHeader />
             </div>
             <div
@@ -98,8 +98,8 @@ const Header = () => {
             <div
               className={`fixed bottom-0 w-full bg-white ${
                 show
-                  ? "visible duration-500 z-[56]"
-                  : "visible duration-500 z-[56] translate-y-[100%]"
+                  ? "visible duration-500 z-[101]"
+                  : "visible duration-500 z-[101] translate-y-[100%]"
               } block md:hidden`}
             >
               <NavMenu />

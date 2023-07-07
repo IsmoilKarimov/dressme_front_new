@@ -14,9 +14,5 @@ export default function App() {
       openCategoryFilter: false,
     });
   }, [location.pathname]);
-  return (
-    <>
-      <RouterMain />
-    </>
-  );
+  return <RouterMain />;
 }
