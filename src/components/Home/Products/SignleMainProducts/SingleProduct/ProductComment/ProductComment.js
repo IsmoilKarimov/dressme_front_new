@@ -7,7 +7,7 @@ import {
   StarIcons,
 } from "../../../../../../AssetsMain/icons";
 import { ArrowTopIcons } from "../../../../../../AssetsMain/icons";
-import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
+import { dressMainData } from "../../../../../../Hook/ContextMenu";
 
 export default function ProductComment() {
   const [dressInfo] = useContext(dressMainData);

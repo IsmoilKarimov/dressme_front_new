@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import ShopOfficialCard from "./ShopOfficialCards/ShopOfficialCard";
-import { dressMainData } from "../../../../../ContextHook/ContextMenu";
+import { dressMainData } from "../../../../../Hook/ContextMenu";
 import { ShopOfficialBrand } from "./ShopOfficialBrand/ShopOfficialBrand";
 
 const ShoppingStoreCategory = () => {

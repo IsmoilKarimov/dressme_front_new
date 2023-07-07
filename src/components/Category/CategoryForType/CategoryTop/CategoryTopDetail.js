@@ -1,12 +1,9 @@
 import { NavLink } from "react-router-dom";
 
 import { MuslimImg } from "../../../../AssetsMain";
-import {
-  ClothesIcons,
-  FilterIcons
-} from "../../../../AssetsMain/icons";
+import { ClothesIcons, FilterIcons } from "../../../../AssetsMain/icons";
 import { useContext, useState } from "react";
-import { dressMainData } from "../../../../ContextHook/ContextMenu";
+import { dressMainData } from "../../../../Hook/ContextMenu";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 
@@ -63,7 +60,7 @@ const CategoryTopDetail = () => {
   const handleOpenTypesofClothes = (openTypesofClothes) => {
     setState({ ...state, openTypesofClothes: openTypesofClothes });
   };
- 
+
   const handleTypesofClothes = () => {
     setState({ ...state, openTypesofClothes: false });
   };

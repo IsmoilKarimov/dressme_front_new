@@ -9,7 +9,7 @@ import {
   WinterFemale,
   WinterMale,
 } from "../../AssetsMain";
-import { dressMainData } from "../../ContextHook/ContextMenu";
+import { dressMainData } from "../../Hook/ContextMenu";
 import { BiChevronDown } from "react-icons/bi";
 import { Popover } from "antd";
 

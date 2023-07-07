@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ProductCarousel } from "./Product_Carousel/ProductCarousel";
 import { ProductDetails } from "./Product_Detail/ProductDetails";
 import { SingleProductTop } from "../SingleProductTop/SingleProductTop";
-import { dressMainData } from "../../../../../ContextHook/ContextMenu";
+import { dressMainData } from "../../../../../Hook/ContextMenu";
 
 import {
   InputCheckedTrueIcons,
@@ -65,8 +65,6 @@ const SingleProduct = () => {
       window.removeEventListener("scroll", handleScrollNavMenu);
     };
   }, [show, scrollPost, ShowNavMenu, ScrollPostNavMenu]);
- 
- 
 
   return (
     <div className="flex flex-col  m-0 p-0 box-border">
@@ -119,13 +117,11 @@ const SingleProduct = () => {
                         <NoImg />
                       )}
                       <div className="w-full flex absolute top-px p-[5px]  ss:justify-end xs:justify-between">
-
                         <div className="flex flex-col gap-y-1">
                           <p className="w-8 h-8  rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
                             <img src={HeartImg} alt="" />
                           </p>
                         </div>
-
                       </div>
                     </div>
                     <div className="w-full rounded-b-xl bg-white  flex flex-wrap h-[130px] md:h-[136px] ">
@@ -228,8 +224,7 @@ const SingleProduct = () => {
                       ) : (
                         <NoImg />
                       )}
-                      <div className="w-full flex absolute top-px p-[5px]  ss:justify-end xs:justify-between">                     
-
+                      <div className="w-full flex absolute top-px p-[5px]  ss:justify-end xs:justify-between">
                         <div className="flex flex-col gap-y-1">
                           <p className="w-8 h-8  rounded-lg flex items-center bg-bgCard justify-center border border-solid border-borderColorCard hover:bg-white transition ease-out duration-500">
                             <img src={HeartImg} alt="" />

@@ -11,7 +11,7 @@ import {
   PersonIcons,
 } from "../../AssetsMain/icons";
 import { HeartImg } from "../../AssetsMain";
-import { dressMainData } from "../../ContextHook/ContextMenu";
+import { dressMainData } from "../../Hook/ContextMenu";
 
 const NavMenu = () => {
   const [dressInfo] = useContext(dressMainData);

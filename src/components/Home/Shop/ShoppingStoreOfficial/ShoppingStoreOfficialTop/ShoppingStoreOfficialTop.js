@@ -13,7 +13,7 @@ import {
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useContext, useState } from "react";
-import { dressMainData } from "../../../../../ContextHook/ContextMenu";
+import { dressMainData } from "../../../../../Hook/ContextMenu";
 import { Popover } from "antd";
 
 const ShoppingStoreOfficialTop = ({ name }) => {

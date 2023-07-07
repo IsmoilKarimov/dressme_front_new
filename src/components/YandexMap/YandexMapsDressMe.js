@@ -11,7 +11,7 @@ import {
 
 import "./yandex.css";
 import YandexMapsIndex from "./YandexMapsNavbar/YandexMapsIndex";
-import { dressMainData } from "../../ContextHook/ContextMenu";
+import { dressMainData } from "../../Hook/ContextMenu";
 import { GrFormDown } from "react-icons/gr";
 import NavbarTopOpenMenu from "./YandexMapsNavbar/NavbarTopOpenMenu";
 import { Link, NavLink } from "react-router-dom";
