@@ -1,5 +1,6 @@
 import React from "react";
 import Geniric from "../Pages/Geniric";
+
 export const navbar = [
   {
     id: 1,
