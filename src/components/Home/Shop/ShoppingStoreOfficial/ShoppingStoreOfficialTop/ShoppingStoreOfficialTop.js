@@ -1,3 +1,4 @@
+
 import { NavLink } from "react-router-dom";
 import { nike } from "../../../../../AssetsMain";
 import {
@@ -49,8 +50,8 @@ const ShoppingStoreOfficialTop = ({ name }) => {
     const { onClick } = props;
     return (
       <div
-        className={`absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-50	right-[4px]  rounded-full bg-white    duration-200 border  border-borderColor2
-        		`}
+        className={`absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-50  right-[4px]  rounded-full bg-white    duration-200 border  border-borderColor2
+            `}
         onClick={() => data(onClick)}
       >
         <button className="next">
@@ -66,7 +67,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
       <div
         className={` ${
           prevSliderBtn ? "block" : "hidden"
-        } absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-10	left-[2px]  rounded-full bg-white   duration-200 border  border-borderColor2
+        } absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-10  left-[2px]  rounded-full bg-white   duration-200 border  border-borderColor2
         `}
         onClick={onClick}
       >
@@ -138,7 +139,8 @@ const ShoppingStoreOfficialTop = ({ name }) => {
     setState({ ...state, openTypesofClothes: openTypesofClothes });
   };
 
-  const handleTypesofClothes = () => {
+
+const handleTypesofClothes = () => {
     setState({ ...state, openTypesofClothes: false });
   };
   const typesofClothes = [
@@ -186,13 +188,13 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                 alt=""
               />
             </div>
-            <div className="relative w-full  md:h-[90px]  mt-2 md:mt-0  h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
+            <div className="w-full md:h-[90px]  mt-2 md:mt-0  h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               {/* 1 */}
-              <div className="w-full md:w-fit flex h-[80px] md:h-fit items-center">
-                <div className="absolute  w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
+              <div className="w-full md:w-fit flex h-[80px] md:h-fit items-center md:ml-[60px]">
+                <div className="w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
                   <img src={nike} alt="" />
                 </div>
-                <div className="flex flex-col ml-[100px] md:ml-[210px]">
+                <div className="flex flex-col ml-8">
                   <div className="text-xl font-AeonikProMedium mb-3">
                     {name}
                   </div>
@@ -201,7 +203,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                       <div className="flex items-center  mr-[6px]">
                         <StarIcons />
                       </div>
-                      <div className="not-italic font-AeonikProRegular text-[10px]   ls:text-xs leading-4 text-right text-gray-500 md:ml-1 flex items-center text-sm">
+                      <div className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 md:ml-1 flex items-center text-sm">
                         <div className="font-AeonikProMedium text-black mr-1">
                           5.0
                         </div>
@@ -228,7 +230,9 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                 </NavLink>
                 <NavLink
                   to="/delivery-points"
-                  className="flex flex-col ml-3 md:w-[55%] w-[70%]"
+
+
+className="flex flex-col ml-3 md:w-[55%] w-[70%]"
                 >
                   <p className="text-sm font-AeonikProRegular">
                     60 Amir Temur Avenue, Mirzo Ulugbek district Tashkent 100017
@@ -311,7 +315,8 @@ const ShoppingStoreOfficialTop = ({ name }) => {
               </span>
             </button>
 
-            <Popover
+
+<Popover
               className="h-[44px] w-[48%] active:scale-95 select-none active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
               open={state?.openTypesofClothes}
               onOpenChange={handleOpenTypesofClothes}
