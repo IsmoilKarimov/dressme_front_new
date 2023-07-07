@@ -1,15 +1,7 @@
 
 import { NavLink } from "react-router-dom";
 import { nike } from "../../../../../AssetsMain";
-import {
-  ArrowTopIcons,
-  ClothesIcons,
-  FilterIcons,
-  LocationIcons,
-  ManGenIcons,
-  StarIcons,
-  VideoStoreIcons,
-  WomanGenIcons,
+import { ArrowTopIcons, ClothesIcons, FilterIcons, LocationIcons, ManGenIcons, StarIcons, VideoStoreIcons, WomanGenIcons,
 } from "../../../../../AssetsMain/icons";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
@@ -49,8 +41,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
   const NextArrow = (props) => {
     const { onClick } = props;
     return (
-      <div
-        className={`absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-50  right-[4px]  rounded-full bg-white    duration-200 border  border-borderColor2
+      <div className={`absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-50  right-[4px]  rounded-full bg-white    duration-200 border  border-borderColor2
             `}
         onClick={() => data(onClick)}
       >
@@ -64,8 +55,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
   const PrevArrow = (props) => {
     const { onClick } = props;
     return (
-      <div
-        className={` ${
+      <div className={` ${
           prevSliderBtn ? "block" : "hidden"
         } absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-10  left-[2px]  rounded-full bg-white   duration-200 border  border-borderColor2
         `}
@@ -230,9 +220,7 @@ const handleTypesofClothes = () => {
                 </NavLink>
                 <NavLink
                   to="/delivery-points"
-
-
-className="flex flex-col ml-3 md:w-[55%] w-[70%]"
+                  className="flex flex-col ml-3 md:w-[55%] w-[70%]"
                 >
                   <p className="text-sm font-AeonikProRegular">
                     60 Amir Temur Avenue, Mirzo Ulugbek district Tashkent 100017
@@ -316,7 +304,7 @@ className="flex flex-col ml-3 md:w-[55%] w-[70%]"
             </button>
 
 
-<Popover
+            <Popover
               className="h-[44px] w-[48%] active:scale-95 select-none active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
               open={state?.openTypesofClothes}
               onOpenChange={handleOpenTypesofClothes}
