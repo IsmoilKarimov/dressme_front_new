@@ -5,7 +5,7 @@ import NavMenu from "./nav-menu";
 import "./header.css";
 import { Outlet, useLocation } from "react-router-dom";
 import NavbarBottomIndex from "./NavbarBottomIndex";
-import { dressMainData } from "../../Hook/ContextMenu";
+import { dressMainData } from "../../ContextHook/ContextMenu";
 
 const Header = () => {
   const [dressInfo] = useContext(dressMainData);

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { dressMainData } from "../../../../Hook/ContextMenu";
+import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { NoImg, SeasonSquare } from "../../../../AssetsMain/icons";
 
 export default function TypeSection() {

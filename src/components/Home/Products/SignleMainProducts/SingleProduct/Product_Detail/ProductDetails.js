@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 
-import { dressMainData } from "../../../../../../Hook/ContextMenu";
+import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { BsCircleFill } from "react-icons/bs";
 import {
   BasketIcons,
@@ -406,6 +406,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
+
 
       {/* Text Items */}
       <div className="mt-12 md:mt-16 hidden md:block">

@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import YandexTop from "./YandexTop";
 import YandexMedium from "./YandexMedium";
 import YandexFilter from "./YandexFilter";
-import { dressMainData } from "../../../Hook/ContextMenu";
+import { dressMainData } from "../../../ContextHook/ContextMenu";
 
 export default function YandexMapsIndex() {
   const [dressInfo] = useContext(dressMainData);

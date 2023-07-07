@@ -6,7 +6,7 @@ import {
   SircleNext,
   StarIcons,
 } from "../../../AssetsMain/icons";
-import { dressMainData } from "../../../Hook/ContextMenu";
+import { dressMainData } from "../../../ContextHook/ContextMenu";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 

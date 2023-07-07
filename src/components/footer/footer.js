@@ -26,7 +26,7 @@ import { FiInstagram } from "react-icons/fi";
 import { AiOutlineYoutube } from "react-icons/ai";
 import { TbBrandTelegram } from "react-icons/tb";
 import { RiFacebookCircleLine, RiMessengerLine } from "react-icons/ri";
-import { dressMainData } from "../../Hook/ContextMenu";
+import { dressMainData } from "../../ContextHook/ContextMenu";
 import { BiChevronDown } from "react-icons/bi";
 import { Popover } from "antd";
 import ScrollToTop from "react-scroll-to-top";

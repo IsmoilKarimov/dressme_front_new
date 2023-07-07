@@ -9,7 +9,7 @@ import {
   SearchIcons,
   MenuCloseIcons,
 } from "../../../../AssetsMain/icons";
-import { dressMainData } from "../../../../Hook/ContextMenu";
+import { dressMainData } from "../../../../ContextHook/ContextMenu";
 
 const CategoryForBrand = () => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
@@ -129,11 +129,17 @@ const CategoryForBrand = () => {
     checkedPrize: true,
   });
 
-  const HandleBrandFilter = () => {};
+  const HandleBrandFilter = () => {
+    
+  };
 
-  const HandleCheckStatus = () => {};
+  const HandleCheckStatus = () => {
 
-  const HandleColorCheck = () => {};
+  };
+
+  const HandleColorCheck = () => {
+  
+  };
 
   return (
     <div

@@ -5,7 +5,7 @@ import {
   DollorIcons,
   TopBrandsIcon,
 } from "../../../../AssetsMain/icons";
-import { dressMainData } from "../../../../Hook/ContextMenu";
+import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import {
   adidas,
   autummSeason,

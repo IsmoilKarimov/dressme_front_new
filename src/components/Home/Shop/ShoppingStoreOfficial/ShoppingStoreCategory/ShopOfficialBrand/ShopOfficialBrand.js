@@ -9,7 +9,7 @@ import {
   SearchIcons,
   MenuCloseIcons,
 } from "../../../../../../AssetsMain/icons";
-import { dressMainData } from "../../../../../../Hook/ContextMenu";
+import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 
 const ShopOfficialBrand = () => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());

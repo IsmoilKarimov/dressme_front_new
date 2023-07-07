@@ -4,7 +4,7 @@ import { AiOutlineEye } from "react-icons/ai";
 import { NavLink, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import BottomHeader from "./bottom";
-import { dressMainData } from "../../Hook/ContextMenu";
+import { dressMainData } from "../../ContextHook/ContextMenu";
 import CategoryNavbar from "./CategoryNavbar/CategoryNavbar";
 import {
   EyesOpenIcons,

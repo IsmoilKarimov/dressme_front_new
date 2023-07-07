@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 
-import { dressMainData } from "../../../../Hook/ContextMenu";
+import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import {
   ArrowTopIcons,
   InputCheckedTrueIcons,
@@ -30,7 +30,8 @@ export default function CategoryCards() {
     { id: 12, name: "Юбки" },
     { id: 13, name: "Ремень" },
   ];
-  const onColorChecked = () => {};
+  const onColorChecked = () => {
+  };
 
   const [prevSliderBtn, setPrevSliderBtn] = useState(false);
   const data = (onClick) => {
@@ -190,6 +191,7 @@ export default function CategoryCards() {
                 ) : (
                   <NoImg />
                 )}
+              
               </div>
               <div className="w-full rounded-b-xl bg-white  flex flex-wrap h-[130px] md:h-[136px] ">
                 <div className=" w-full flex justify-between items-center px-1  border-solid xs:h-[38px] lg:h-8 ss:h-[30px] xs:px-2 md:px-4 bg-white">
