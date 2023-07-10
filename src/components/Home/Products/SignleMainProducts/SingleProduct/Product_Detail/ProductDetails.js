@@ -319,7 +319,7 @@ const ProductDetails = () => {
           </div>
 
           <div className="h-fit w-full  flex items-center justify-between mb-2 gap-x-2">
-            <address className="max-w-[63%] w-full">
+            <address className="max-w-[60%] w-full">
               <a
                 className=" w-full bg-fullBlue text-white rounded-lg h-[44px] flex gap-x-1 ll:gap-x-2 items-center justify-center"
                 href="tel:+998 (97) 720-30-40"
@@ -331,7 +331,7 @@ const ProductDetails = () => {
                 </span>
               </a>
             </address>
-            <address className="max-w-[33%] w-full ">
+            <address className="max-w-[40%] w-full ">
               <a
                 className={` w-full h-[44px]  flex gap-x-1 ll:gap-x-2 items-center justify-center  rounded-lg  text-fullBlue border border-fullBlue`}
                 href="https://t.me/itpark_uz"
