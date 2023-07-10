@@ -321,21 +321,25 @@ const ProductDetails = () => {
           <div className="h-fit w-full  flex items-center justify-between mb-2 gap-x-2">
             <address className="max-w-[63%] w-full">
               <a
-                className=" w-full bg-fullBlue text-white rounded-lg h-[44px] flex  gap-x-2 items-center justify-center"
+                className=" w-full bg-fullBlue text-white rounded-lg h-[44px] flex gap-x-1 ll:gap-x-2 items-center justify-center"
                 href="tel:+998 (97) 720-30-40"
               >
-                <PhoneIcons colors={"#fff"} /> +998 (97) 720-30-40
+                <PhoneIcons colors={"#fff"} />
+                <span className="ls:text-base text-[12px]">
+                  {" "}
+                  +998 (97) 720-30-40
+                </span>
               </a>
             </address>
-            <address className="max-w-[33%] w-full ml-4">
+            <address className="max-w-[33%] w-full ">
               <a
-                className={` w-full h-[44px]  flex gap-x-2 items-center justify-center  rounded-lg  text-fullBlue border border-fullBlue`}
+                className={` w-full h-[44px]  flex gap-x-1 ll:gap-x-2 items-center justify-center  rounded-lg  text-fullBlue border border-fullBlue`}
                 href="https://t.me/itpark_uz"
               >
                 <span className="w-5 h-5 bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
-                  <FaTelegramPlane size={12} />
+                  <FaTelegramPlane size={10} />
                 </span>{" "}
-                <span>@itpark_uz</span>{" "}
+                <span className="ls:text-base text-[12px]">@itpark_uz</span>{" "}
               </a>
             </address>
           </div>
