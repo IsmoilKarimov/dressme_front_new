@@ -3,16 +3,15 @@ import CategoryTopDetail from "./CategoryTop/CategoryTopDetail";
 
 export default function CategoryMainType() {
   return (
-    <div className="w-full flex flex-col justify-center items-center m-0 p-0 box-border">
-      <div className="w-full ">
+    <main className="w-full flex flex-col justify-center items-center m-0 p-0 box-border">
+      <section className="w-full ">
         <CategoryTopDetail />
-      </div>
-
-      <div className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto">
-        <div className="w-[100%] h-fit ">
+      </section>
+      <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto">
+        <article className="w-[100%] h-fit ">
           <CategoryForType />
-        </div>
-      </div>
-    </div>
+        </article>
+      </section>
+    </main>
   );
 }

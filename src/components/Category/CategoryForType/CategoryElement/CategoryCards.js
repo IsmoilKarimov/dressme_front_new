@@ -208,15 +208,15 @@ export default function CategoryCards() {
                     );
                   })}
                 </article>
-                <div
+                <article
                   onClick={() => goDetail(data?.title)}
                   className="w-full  xs:px-3 ss:px-3 xs:mt-3 ss:mt-2"
                 >
-                  <div className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[15px] leading-4 text-black mb-2 md:mb-0  cursor-pointer">
+                  <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[15px] leading-4 text-black mb-2 md:mb-0  cursor-pointer">
                     <div className="absolute categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
                     {data?.title || "NoData"}
-                  </div>
-                  <div className="w-full flex justify-between items-center xs:mt-3">
+                  </figure>
+                  <figure className="w-full flex justify-between items-center xs:mt-3">
                     <section className="flex items-center justify-between">
                       <article>
                         <StarIcons />
@@ -237,19 +237,19 @@ export default function CategoryCards() {
                         <p>{data?.shirtSize || 0}</p>
                       </b>
                     </section>
-                  </div>
-                </div>
-                <div className="w-full flex items-center justify-between  pl-3 pr-[5px]">
-                  <div className="flex items-center ">
+                  </figure>
+                </article>
+                <article className="w-full flex items-center justify-between  pl-3 pr-[5px]">
+                  <article className="flex items-center ">
                     {data.sale ? (
-                      <div className="flex flex-col-reverse ll:flex-row	text-start items-start ">
-                        <div className="text-start m-0 p-0  not-italic font-AeonikProMedium text-[16px]  md:text-base leading-1 text-red-700 xs:text-base xs:leading-4 mr-1">
+                      <figure className="flex flex-col-reverse ll:flex-row	text-start items-start ">
+                        <p className="text-start m-0 p-0  not-italic font-AeonikProMedium text-[16px]  md:text-base leading-1 text-red-700 xs:text-base xs:leading-4 mr-1">
                           {data?.sale}
-                        </div>
-                        <div className="text-start m-0 p-0 text-[11px] mt-[8px]  line-through not-italic font-AeonikProRegular leading-3  text-borderColorCard ss:leading-1 md:text-[11px]">
+                        </p>
+                        <p className="text-start m-0 p-0 text-[11px] mt-[8px]  line-through not-italic font-AeonikProRegular leading-3  text-borderColorCard ss:leading-1 md:text-[11px]">
                           {data?.price}
-                        </div>
-                      </div>
+                        </p>
+                      </figure>
                     ) : (
                       <p
                         className="not-italic font-AeonikProMedium text-base leading-4"
@@ -258,33 +258,33 @@ export default function CategoryCards() {
                         {data?.price}{" "}
                       </p>
                     )}
-                  </div>
-                  <div className="flex items-center select-none	">
+                  </article>
+                  <figure className="flex items-center select-none	">
                     <button className="w-[32px] h-[32px] active:scale-95  active:opacity-70 ll:mb-1 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
                       <img src={HeartImg} alt="" />
                     </button>
-                  </div>
-                </div>
+                  </figure>
+                </article>
               </div>
             </article>
           );
         })}
       </section>
       <section className="w-full h-fit md:hidden flex items-center justify-center mt-14">
-        <div className="w-[760px] h-[60px] cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-black flex items-center justify-center rounded-lg border border-searchBgColor bg-btnBgColor">
+        <p className="w-[760px] h-[60px] cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-black flex items-center justify-center rounded-lg border border-searchBgColor bg-btnBgColor">
           Показать ещё 30 наборов
-        </div>
+        </p>
       </section>
       <section className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6">
-        <div className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
-          <span className="rotate-[-90deg]">
+        <article className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
+          <p className="rotate-[-90deg]">
             <ArrowTopIcons colors={"#007DCA"} />
-          </span>{" "}
-          <span className="not-italic ml-1   font-AeonikProRegular text-lg leading-4 text-fullBlue">
+          </p>{" "}
+          <p className="not-italic ml-1   font-AeonikProRegular text-lg leading-4 text-fullBlue">
             Previous
-          </span>
-        </div>
-        <div className="flex items-center">
+          </p>
+        </article>
+        <article className="flex items-center">
           <ul className="flex items-center gap-x-3">
             <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg bg-fullBlue text-white flex items-center justify-center cursor-pointer ">
               1
@@ -314,15 +314,15 @@ export default function CategoryCards() {
               . . .
             </li>
           </ul>
-        </div>
-        <div className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
-          <span className="not-italic  font-AeonikProRegular mr-1 text-lg leading-4 text-fullBlue">
+        </article>
+        <figure className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
+          <p className="not-italic  font-AeonikProRegular mr-1 text-lg leading-4 text-fullBlue">
             Next
-          </span>
-          <span className="rotate-[90deg]">
+          </p>
+          <p className="rotate-[90deg]">
             <ArrowTopIcons colors={"#007DCA"} />
-          </span>
-        </div>
+          </p>
+        </figure>
       </section>
     </main>
   );

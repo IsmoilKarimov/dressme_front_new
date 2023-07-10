@@ -319,27 +319,24 @@ const ProductDetails = () => {
           </div>
 
           <div className="h-fit w-full  flex items-center justify-between mb-2 gap-x-2">
-            <address className="max-w-[60%] w-full">
+            <address className="max-w-[70%] w-full ">
               <a
-                className=" w-full bg-fullBlue text-white rounded-lg h-[44px] flex gap-x-1 ll:gap-x-2 items-center justify-center"
+                className=" w-full bg-fullBlue active:scale-95  active:opacity-70 text-white rounded-lg h-[44px] flex gap-x-1 ll:gap-x-2 items-center justify-center"
                 href="tel:+998 (97) 720-30-40"
               >
                 <PhoneIcons colors={"#fff"} />
-                <span className="ls:text-base text-[12px]">
-                  {" "}
-                  +998 (97) 720-30-40
-                </span>
+                <span className="text-base "> +998 (97) 720-30-40</span>
               </a>
             </address>
-            <address className="max-w-[40%] w-full ">
+            <address className=" max-w-fit md:max-w-[35%] w-full ">
               <a
-                className={` w-full h-[44px]  flex gap-x-1 ll:gap-x-2 items-center justify-center  rounded-lg  text-fullBlue border border-fullBlue`}
+                className={` w-full h-[44px] active:scale-95  active:opacity-70 px-5 flex gap-x-1 ll:gap-x-2 items-center justify-center  rounded-lg  text-fullBlue border border-fullBlue`}
                 href="https://t.me/itpark_uz"
               >
-                <span className="w-5 h-5 bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
-                  <FaTelegramPlane size={10} />
+                <span className="w-7 h-7  bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
+                  <FaTelegramPlane size={16} />
                 </span>{" "}
-                <span className="ls:text-base text-[12px]">@itpark_uz</span>{" "}
+                <span className="text-base  hidden md:block">@itpark_uz</span>{" "}
               </a>
             </address>
           </div>
