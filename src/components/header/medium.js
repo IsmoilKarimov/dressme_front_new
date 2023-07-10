@@ -333,7 +333,7 @@ const MediumHeader = () => {
               <NavLink
                 to="/favourites"
                 className={
-                  "bg-btnBgColor rounded-xl  items-center justify-center w-11 h-11 mr-2 hidden md:flex"
+                  "bg-btnBgColor rounded-xl  items-center justify-center w-11 h-11 mr-2 md:mr-0 hidden md:flex"
                 }
               >
                 {({ isActive }) =>
@@ -465,7 +465,7 @@ const MediumHeader = () => {
                 </ul>
               </div>
 
-              <div className="w-full flex flex-col ">
+              <div className="w-full flex flex-col">
                 {/* Line */}
                 <div className="line border-b w-full  border-searchBgColor mb-3 ls:w-full"></div>
 

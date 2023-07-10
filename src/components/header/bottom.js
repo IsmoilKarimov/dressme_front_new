@@ -228,7 +228,7 @@ const BottomHeader = () => {
   // mt-1
   return (
     <div className="flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
-      <div className="max-w-[1280px] w-[100%] flex justify-center   items-center m-auto   ">
+      <div className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto">
         <Popover
           open={state?.openwear}
           onOpenChange={handleOpenChangeWear}
@@ -372,13 +372,13 @@ const BottomHeader = () => {
             return (
               <div key={data?.id} className="w-fit flex items-center ">
                 <button
-                  className={`mr-1 ${genderStyle} h-[44px] px-[16px] justify-between mr-2 flex items-center bg-btnBgColor border border-searchBgColor rounded-lg`}
+                  className={`mr-1 ${genderStyle} h-[44px] px-6 justify-between mr-2 flex items-center bg-btnBgColor border border-searchBgColor rounded-lg`}
                 >
                   <img className="mr-3" src={data?.woman} alt="female" />
                   <span className="font-AeonikProMedium">Женщинам</span>
                 </button>
                 <button
-                  className={`  ${genderStyle} h-[44px]  px-[16px] justify-between flex items-center bg-btnBgColor border border-searchBgColor mr-2 rounded-lg`}
+                  className={`  ${genderStyle} h-[44px]  px-6 justify-between flex items-center bg-btnBgColor border border-searchBgColor rounded-lg`}
                 >
                   <img className="mr-3" src={data?.man} alt="male" />{" "}
                   <span className="font-AeonikProMedium">Мужчинам</span>
@@ -386,14 +386,6 @@ const BottomHeader = () => {
               </div>
             );
           })}
-        <Link
-          to="/sign_in"
-          className="bg-btnBgColor font-AeonikProMedium w-[44px] h-[44px] flex items-center justify-center border border-searchBgColor rounded-lg "
-        >
-          <span>
-            <PlusIcons />
-          </span>
-        </Link>
       </div>
     </div>
   );
