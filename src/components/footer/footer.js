@@ -357,8 +357,9 @@ const Footer = () => {
   // mt-1
 
   return (
-    <div className="flex flex-col h-fit justify-center items-center m-0 p-0 ss:px-4 md:px-0 box-border border-t border-searchBgColor  md:mt-[40px] mb-[40px] md:mb-[60px] bg-btnBgColor md:bg-white md:border-t-0">
-      <div className="">
+    <footer className="flex flex-col h-fit justify-center items-center m-0 p-0 ss:px-4 md:px-0 box-border border-t border-searchBgColor  md:mt-[40px] mb-[40px] md:mb-[60px] bg-btnBgColor md:bg-white md:border-t-0">
+      
+      <section>
         <ScrollToTop
           smooth
           top="600"
@@ -375,19 +376,20 @@ const Footer = () => {
           }}
           className="bg-bgColor rounded-full mt-[-100px] flex items-center opacity-70 justify-center ss:bottom-[75px] ss:right-[15px] md:bottom-10 md:right-10"
         />
-      </div>
-      <div className="max-w-[1280px] w-[100%]  flex justify-center items-center m-auto">
-        <div className="w-[100%] h-fit ss:p-0 md:p-[30px]  md:border md:border-searchBgColor border-solid rounded-lg">
+      </section>
+      
+      <section className="max-w-[1280px] w-[100%]  flex justify-center items-center m-auto">
+        <d className="w-[100%] h-fit ss:p-0 md:p-[30px]  md:border md:border-searchBgColor border-solid rounded-lg">
           <div>
             {/* Footer LOGO and Fedback form */}
-            <div className="flex items-center md:px-0 mt-3 md:mt-0">
+            <article className="flex items-center md:px-0 mt-3 md:mt-0">
               <div className="flex flex-col">
                 <Link to="/" className="md:mb-[14px]">
                   <img src={BrandBlack} alt="logo" className="w-full" />
                 </Link>
-                <div className="text-textColor mb-[18px] text-sm hidden md:flex">
+                <h4 className="text-textColor mb-[18px] text-sm hidden md:flex">
                   Торговая площадка одежды
-                </div>
+                </h4>
               </div>
 
               {/* Address */}
@@ -424,10 +426,10 @@ const Footer = () => {
                   Дашборд
                 </span>
               </Link>
-            </div>
+            </article>
 
             {/* Address */}
-            <div className="flex flex-col ss:w-full md:w-[306px] md:px-0 mt-[17px] md:hidden">
+            <article className="flex flex-col ss:w-full md:w-[306px] md:px-0 mt-[17px] md:hidden">
               <div className="text-textColor mb-[18px] text-sm">
                 Юридический адрес :
               </div>
@@ -440,10 +442,10 @@ const Footer = () => {
                   100017
                 </div>
               </div>
-            </div>
+            </article>
 
             {/* Categories, menu, social networks */}
-            <div className="flex-wrap flex-row justify-between ss:hidden md:flex ">
+            <article className="flex-wrap flex-row justify-between ss:hidden md:flex ">
               {/* Categories */}
               <div className="md:w-1/5">
                 <div className="font-AeonikProMedium w-fit text-base cursor-pointer ss:mb-4 md:mb-[30px]">
@@ -662,10 +664,10 @@ const Footer = () => {
                   </ul>
                 </div>
               </div>
-            </div>
+            </article>
 
             {/* Categories, menu, social networks for MOBILE*/}
-            <div className="flex flex-row items-center md:hidden px-0 md:px-0  md:mb-0 ">
+            <article className="flex flex-row items-center md:hidden px-0 md:px-0  md:mb-0 ">
               {/* Menu */}
               <div className="basis-1/2 ">
                 <div className="font-AeonikProMedium w-fit cursor-pointer ss:mb-4 md:mb-[30px]">
@@ -760,7 +762,7 @@ const Footer = () => {
                   );
                 })}
               </div>
-            </div>
+            </article>
 
             {/* Feedback for mobile */}
             <Link
@@ -779,7 +781,7 @@ const Footer = () => {
             </Link>
 
             {/* Menu for Mobile */}
-            <div className="flex w-full md:hidden md:px-0   md:mb-0">
+            <article className="flex w-full md:hidden md:px-0   md:mb-0">
               <ul className="flex flex-row text-sm">
                 <div className="basis-1/2">
                   <li className="mb-4">
@@ -836,10 +838,10 @@ const Footer = () => {
                   </li>
                 </div>
               </ul>
-            </div>
+            </article>
 
             {/* Location and Language for mobile */}
-            <div className="flex flex-row justify-between w-full  items-center ss:my-[35px] md:my-0  text-sm md:hidden">
+            <article className="flex flex-row justify-between w-full  items-center ss:my-[35px] md:my-0  text-sm md:hidden">
               <Popover
                 open={openRegionMobile}
                 onOpenChange={handleOpenChangeRegionMobile}
@@ -895,10 +897,10 @@ const Footer = () => {
                   </Popover>
                 );
               })}
-            </div>
+            </article>
 
             {/* Social networks */}
-            <div className="block  md:hidden">
+            <article className="block  md:hidden">
               <div className="w-full font-AeonikProMedium cursor-pointer text-base mb-5">
                 Социальная сеть
               </div>
@@ -950,12 +952,13 @@ const Footer = () => {
                   </div>
                 </ul>
               </div>
-            </div>
+            </article>
           </div>
 
           <div className="w-full border-b md:hidden ss:block border-gray-200"></div>
 
-          <div className=" ss:mt-[40px] md:mt-[62px]">
+          <section className=" ss:mt-[40px] md:mt-[62px]">
+            
             {/* Catalog and Clothes types */}
             <div className="mb-[60px]">
               {/* Catalog Types */}
@@ -1108,10 +1111,12 @@ const Footer = () => {
                 })}
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+          </section>
+        </d iv>
+      </section>
+    
+    </footer>
   );
 };
 export default Footer;

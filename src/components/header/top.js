@@ -117,8 +117,7 @@ const TopHeader = () => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
   return (
-    <div
-      className={`flex flex-col justify-center items-center   hidden md:block m-0 p-0 box-border ${
+    <div className={`flex-col justify-center items-center hidden md:block m-0 p-0 box-border ${
         locationWindow === "/delivery-points"
           ? "bg-transparent h-[40px] "
           : "bg-bgColor h-[32px] "

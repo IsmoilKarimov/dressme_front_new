@@ -50,15 +50,14 @@ const Header = () => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
   return (
-    <div>
-      <header className=" ">
+    <header>
+      <article>
         {locationWindow !== "/delivery-points" ? (
-          <div className="w-full ">
-            <div className={`ss:block md:hidden relative z-[100]`}>
+          <section className="w-full ">
+            <article className={`ss:block md:hidden relative z-[100]`}>
               <MediumHeader />
-            </div>
-            <div
-              className={`fixed top-0 w-full bg-white   ${
+            </article>
+            <article className={`fixed top-0 w-full bg-white   ${
                 show
                   ? "visible duration-500 z-30"
                   : "visible duration-500 z-30 translate-y-[-100%]"
@@ -66,50 +65,44 @@ const Header = () => {
             >
               <TopHeader />
               <MediumHeader />
-            </div>
-          </div>
+            </article>
+          </section>
         ) : (
-          <div
-            className={`fixed top-0 z-[150] w-full block md:hidden bg-transparent`}
-          >
+          <section className={`fixed top-0 z-[150] w-full block md:hidden bg-transparent`}>
             {!dressInfo?.yandexFullScreen && (
-              <div className="overflow-hidden">
+              <article className="overflow-hidden">
                 <MediumHeader />
-              </div>
+              </article>
             )}
-          </div>
+          </section>
         )}
 
-        <div
-          className={`${
+        <section className={`${
             locationWindow !== "/delivery-points"
               ? "md:mt-[99px]"
               : "mt-[0] h-0 overflow-hidden"
           } `}
         >
-          <div
-            className={`${
+          <article className={`${
               locationWindow !== "/delivery-points" ? "block" : "hidden mt-[0]"
             } `}
           >
             <NavbarBottomIndex />
-          </div>
+          </article>
           {!dressInfo?.yandexFullScreen && (
-            <div
-              className={`fixed bottom-0 w-full bg-white ${
+            <article className={`fixed bottom-0 w-full bg-white ${
                 show
                   ? "visible duration-500 z-[101]"
                   : "visible duration-500 z-[101] translate-y-[100%]"
               } block md:hidden`}
             >
               <NavMenu />
-            </div>
+            </article>
           )}
-        </div>
-        {/* <Breadcrumbs /> */}
-      </header>
+        </section>
+      </article>
       <Outlet />
-    </div>
+    </header>
   );
 };
 export default Header;
