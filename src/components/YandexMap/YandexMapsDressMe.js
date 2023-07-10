@@ -651,7 +651,7 @@ function YandexMapsDressMe() {
                     className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
                   >
                     <span>
-                      <PhoneIcons />
+                      <PhoneIcons colors={"#000"} />
                     </span>
                     <span className="ml-[10px]">Contact</span>
                   </Link>

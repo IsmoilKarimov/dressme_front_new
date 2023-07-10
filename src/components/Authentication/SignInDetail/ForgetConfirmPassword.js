@@ -36,7 +36,7 @@ export default function ForgetConfirmPassword() {
               required
             />
             <span>
-              <PhoneIcons />
+              <PhoneIcons colors={"#000"} />
             </span>{" "}
           </div>
         </div>

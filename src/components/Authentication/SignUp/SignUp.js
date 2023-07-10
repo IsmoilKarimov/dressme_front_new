@@ -227,7 +227,7 @@ export default function SignUp() {
                   required
                 />
                 <span>
-                  <PhoneIcons />
+                  <PhoneIcons colors={"#000"} />
                 </span>{" "}
               </div>
             </div>
