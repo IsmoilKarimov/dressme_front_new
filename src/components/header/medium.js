@@ -453,7 +453,7 @@ const MediumHeader = () => {
                     >
                       <div className="flex items-center">
                         <span className=" py-3 pr-3">
-                          <PhoneIcons />
+                          <PhoneIcons colors={"#000"} />
                         </span>
                         <span className="ml-[11.67px]">Контакты</span>
                       </div>

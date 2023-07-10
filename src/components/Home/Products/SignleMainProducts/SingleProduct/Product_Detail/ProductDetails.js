@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { FaTelegramPlane } from "react-icons/fa";
 
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { BsCircleFill } from "react-icons/bs";
@@ -10,6 +11,7 @@ import {
   DiscountShapeIcons,
   DollorIcons,
   InputCheckedTrueIcons,
+  PhoneIcons,
   ProductArticleIcons,
   ProductSizeIcons,
   ProductSwitchIcons,
@@ -317,38 +319,45 @@ const ProductDetails = () => {
           </div>
 
           <div className="h-fit w-full  flex items-center justify-between mb-2 gap-x-2">
-            <button className="max-w-[63%] w-full bg-fullBlue text-white rounded-lg h-[36px] flex items-center justify-center ">
-              <span>
-                <SaveMarketIcons />
-              </span>
-              <span className="not-italic font-AeonikProMedium text-[14px] ll:text-base leading-4 text-white">
-                {" "}
-                Добавить в корзину
-              </span>
-            </button>
-            <button
-              className={`max-w-[33%] w-full h-[36px]  flex items-center justify-center border rounded-lg ${genderStyle}`}
-            >
-              <span> Купить</span>
-            </button>
+            <address className="max-w-[63%] w-full">
+              <a
+                className=" w-full bg-fullBlue text-white rounded-lg h-[44px] flex  gap-x-2 items-center justify-center"
+                href="tel:+998 (97) 720-30-40"
+              >
+                <PhoneIcons colors={"#fff"} /> +998 (97) 720-30-40
+              </a>
+            </address>
+            <address className="max-w-[33%] w-full ml-4">
+              <a
+                className={` w-full h-[44px]  flex gap-x-2 items-center justify-center  rounded-lg  text-fullBlue border border-fullBlue`}
+                href="https://t.me/itpark_uz"
+              >
+                <span className="w-5 h-5 bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
+                  <FaTelegramPlane size={12} />
+                </span>{" "}
+                <span>@itpark_uz</span>{" "}
+              </a>
+            </address>
           </div>
         </div>
       </div>
 
       <div className=" w-full md:block hidden md:pb-8 pt-6 md:border-b border-searchBgColor mb-12 md:mb-0">
-        <div className="w-full flex items-center justify-between md:justify-start mb-[14px] md:mb-0">
-          <div className="flex md:hidden">
-            <DollorIcons />
-            <span className="text-base font-AeonikProRegular ml-[6px]">
-              Цена:
+        <div className="w-full flex items-center justify-between mb-[14px] md:mb-0">
+          <div className="w-fit flex items-center">
+            <div className="flex md:hidden">
+              <DollorIcons />
+              <span className="text-base font-AeonikProRegular ml-[6px]">
+                Цена:
+              </span>
+            </div>
+            <span className="hidden md:block not-italic  font-AeonikProMedium text-[20px] leading-9 text-black trcking-[0.32px]">
+              452 000 сум
+            </span>
+            <span className="hidden md:block not-italic ml-4  font-AeonikProRegular line-through text-[14px] leading-7 text-setTexOpacity">
+              652 000 сум
             </span>
           </div>
-          <span className="hidden md:block not-italic  font-AeonikProMedium text-[20px] leading-9 text-black trcking-[1%]">
-            452 000 сум
-          </span>
-          <span className="hidden md:block not-italic ml-4  font-AeonikProRegular line-through text-[14px] leading-7 text-setTexOpacity">
-            652 000 сум
-          </span>
           <div className="w-[84px] h-9 md:w-[108px] md:h-11 cursor-pointer ml-8 flex items-center justify-center border border-searchBgColor rounded-lg">
             <span>
               <DiscountShapeIcons />
@@ -357,56 +366,47 @@ const ProductDetails = () => {
               -30%
             </span>
           </div>
-        </div>
-        <div className="w-full flex items-center justify-between mb-6 md:mb-0">
-          <div className="flex items-center">
-            <span className="block md:hidden not-italic  font-AeonikProMedium text-[24px] leading-9 text-black trcking-[1%]">
-              452 000
-            </span>
-            <span className="block md:hidden not-italic ml-2 mt-[10px] font-AeonikProRegular line-through text-[16px] leading-7 text-setTexOpacity">
-              652 000
-            </span>
-          </div>
-          <div className={`w-fit mt-2 ${dataStyle} flex md:hidden `}>
-            <span className="font-AeonikProRegular text-[14px] leading-4">
+          <div
+            className={`w-fit ml-8 ${dataStyle} items-center hidden md:flex`}
+          >
+            <span className="not-italic  font-AeonikProRegular text-[14px] leading-5 text-right tracking-[0.32px]">
               В наличии:
             </span>
-            <span className="ml-2 font-AeonikProMedium text-[16px] leading-4">
-              284
+            <span className="not-italic  ml-2 font-AeonikProMedium text-[16px] leading-6 text-right tracking-[0.32px]">
+              28
             </span>
           </div>
         </div>
-        <div className="w-full flex justify-between items-center gap-x-3 md:gap-x-0 md:mt-8">
-          <div className="w-[65%] md:w-[260px]">
-            <button className="w-full h-12 md:w-[260px] md:h-[52px]  rounded-lg not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex items-center justify-center bg-fullBlue">
-              Добавить в корзину
-            </button>
-          </div>
-          <div className="w-[35%] md:w-[142px]">
-            <button
-              className={`w-full h-12 md:w-[142px] md:h-[52px]  rounded-lg not-italic border font-AeonikProMedium text-base leading-4 text-center flex items-center justify-center ${genderStyle} `}
-            >
-              Купить <span className="hidden md:block ml-1"> сейчас</span>
-            </button>
+
+        <div className="w-full flex  items-center justify-between gap-x-3 md:gap-x-0 md:mt-8">
+          <div className="md:w-fit w-full flex items-center">
+            <address className="w-[65%] md:w-fit">
+              <a
+                className="w-full h-12  md:h-[52px] px-5  rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex gap-x-3 items-center justify-center bg-fullBlue"
+                href="tel:+998 (97) 720-30-40"
+              >
+                <PhoneIcons colors={"#fff"} /> +998 (97) 720-30-40
+              </a>
+            </address>
+            <address className="w-[35%] md:w-fit  ml-4">
+              <a
+                className={`w-full h-12  md:h-[52px] px-5 rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center flex gap-x-3 items-center justify-center text-fullBlue border border-fullBlue`}
+                href="https://t.me/itpark_uz"
+              >
+                <span className="w-7 h-7 bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
+                  <FaTelegramPlane size={16} />
+                </span>{" "}
+                <span>@itpark_uz</span>{" "}
+              </a>
+            </address>
           </div>
           <div className="w-fit md:ml-3 hidden md:block">
             <button className="w-[52px] h-[52px] hidden md:flex items-center justify-center rounded-lg border border-searchBgColor">
               <img src={HeartImg} alt="" className="w-5 h-5" />
             </button>
           </div>
-          <div
-            className={`w-fit ml-8 ${dataStyle} items-center hidden md:flex`}
-          >
-            <span className="not-italic  font-AeonikProRegular text-[14px] leading-5 text-right tracking-[1%]">
-              В наличии:
-            </span>
-            <span className="not-italic  ml-2 font-AeonikProMedium text-[14px] leading-6 text-right tracking-[1%]">
-              28
-            </span>
-          </div>
         </div>
       </div>
-
 
       {/* Text Items */}
       <div className="mt-12 md:mt-16 hidden md:block">
