@@ -30,8 +30,7 @@ export default function CategoryCards() {
     { id: 12, name: "Юбки" },
     { id: 13, name: "Ремень" },
   ];
-  const onColorChecked = () => {
-  };
+  const onColorChecked = () => {};
 
   const [prevSliderBtn, setPrevSliderBtn] = useState(false);
   const data = (onClick) => {
@@ -127,58 +126,58 @@ export default function CategoryCards() {
     navigate(`/product/:${id}`);
   };
   return (
-    <div className="flex flex-col box-border mt-2 md:mt-[34px]">
-      <div className="hidden">
+    <main className="flex flex-col box-border mt-2 md:mt-[34px]">
+      <section className="hidden">
         <ClothesFilterGroup _class="items gap-x-2 ">
           {wearGroup?.map((data) => {
             return (
-              <div
+              <article
                 key={data.id}
                 className={`flex items-center justify-center px-4 py-3 border border-searchBgColor rounded-[20px]   bg-btnBgColor`}
               >
                 <p className=" cursor-pointer  not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
                   {data?.name || "0"}
                 </p>
-              </div>
+              </article>
             );
           })}
         </ClothesFilterGroup>{" "}
-      </div>
-      <div className="w-full h-full hidden md:block">
-        <div>
-          <span className="not-italic font-AeonikProMedium text-sm  leading-4 text-black tracking-[1%]">
+      </section>
+      <section className="w-full h-full hidden md:block">
+        <article>
+          <p className="not-italic font-AeonikProMedium text-sm  leading-4 text-black tracking-[1%]">
             По типу
-          </span>
-        </div>
-        <div className="w-full mt-3 h-[52px] flex flex-col items-center">
+          </p>
+        </article>
+        <section className="w-full mt-3 h-[52px] flex flex-col items-center">
           <Slider
             {...settings1}
             className="w-[100%] h-full items-center flex xs:justify-between"
           >
             {wearGroup?.map((data) => {
               return (
-                <div key={data.id} className="!w-[100px ] h-full ">
-                  <div
+                <article key={data.id} className="!w-[100px ] h-full ">
+                  <article
                     className={` w-full h-[52px] px-5 m-auto  bg-bgCategory rounded-lg flex justify-center items-center cursor-pointer  border border-searchBgColor`}
                   >
                     <p className="not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
                       {data?.name || "0"}
                     </p>
-                  </div>
-                </div>
+                  </article>
+                </article>
               );
             })}
           </Slider>
-        </div>
-      </div>
-      <div className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 mt-1 md:mt-12">
+        </section>
+      </section>
+      <section className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 mt-1 md:mt-12">
         {dressInfo.ProductList.map((data) => {
           return (
-            <div
+            <article
               key={data.id}
               className={`ss:w-[49%] md:w-[24%] lg:w-[240px]  xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
             >
-              <div
+              <figure
                 onClick={() => goDetail(data?.title)}
                 className="relative w-full cursor-pointer ss:h-[200px] ls:h-[220px] ll:h-[238px] xs:h-[309px] lg:h-[320px] bg-btnBgColor  flex content-between items-center overflow-hidden border-b border-solid flex-nowrap"
               >
@@ -191,13 +190,12 @@ export default function CategoryCards() {
                 ) : (
                   <NoImg />
                 )}
-              
-              </div>
+              </figure>
               <div className="w-full rounded-b-xl bg-white  flex flex-wrap h-[130px] md:h-[136px] ">
-                <div className=" w-full flex justify-between items-center px-1  border-solid xs:h-[38px] lg:h-8 ss:h-[30px] xs:px-2 md:px-4 bg-white">
+                <article className=" w-full flex justify-between items-center px-1  border-solid xs:h-[38px] lg:h-8 ss:h-[30px] xs:px-2 md:px-4 bg-white">
                   {data?.changeColor.map((itemValue) => {
                     return (
-                      <div
+                      <article
                         key={itemValue?.id}
                         onClick={() => onColorChecked(data?.id, itemValue?.id)}
                         className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 ls:w-[22px] ls:h-[22px] w-5 h-5 lg:w-6 lg:h-6 ${itemValue?.colors} cursor-pointer  border border-solid border-borderColorCard mr-[3px]`}
@@ -206,10 +204,10 @@ export default function CategoryCards() {
                         {itemValue?.action ? (
                           <InputCheckedTrueIcons colors={"#fff"} />
                         ) : null}
-                      </div>
+                      </article>
                     );
                   })}
-                </div>
+                </article>
                 <div
                   onClick={() => goDetail(data?.title)}
                   className="w-full  xs:px-3 ss:px-3 xs:mt-3 ss:mt-2"
@@ -219,26 +217,26 @@ export default function CategoryCards() {
                     {data?.title || "NoData"}
                   </div>
                   <div className="w-full flex justify-between items-center xs:mt-3">
-                    <div className="flex items-center justify-between">
-                      <span>
+                    <section className="flex items-center justify-between">
+                      <article>
                         <StarIcons />
-                      </span>
-                      <span className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex items-center">
-                        <span className="font-AeonikProMedium text-[10px] ls:text-xs not-italic mx-1 text-black md:mr-[6px] md:text-[13px]">
+                      </article>
+                      <article className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex items-center">
+                        <p className="font-AeonikProMedium text-[10px] ls:text-xs not-italic mx-1 text-black md:mr-[6px] md:text-[13px]">
                           5.0
-                        </span>
+                        </p>
                         ({data?.starCount || 0}
-                        <span className="ss:hidden lg:block md:ml-1 md:text-[11px]">
+                        <p className="ss:hidden lg:block md:ml-1 md:text-[11px]">
                           голосов
-                        </span>
+                        </p>
                         )
-                      </span>
-                    </div>
-                    <div className="not-italic xs:font-AeonikProMedium ss:font-AeonikProRegular leading-4 text-black  ss:text-[11px] sm:text-xs  md:text-[13px] ">
+                      </article>
+                    </section>
+                    <section className="not-italic xs:font-AeonikProMedium ss:font-AeonikProRegular leading-4 text-black  ss:text-[11px] sm:text-xs  md:text-[13px] ">
                       <b>
-                        <span>{data?.shirtSize || 0}</span>
+                        <p>{data?.shirtSize || 0}</p>
                       </b>
-                    </div>
+                    </section>
                   </div>
                 </div>
                 <div className="w-full flex items-center justify-between  pl-3 pr-[5px]">
@@ -268,16 +266,16 @@ export default function CategoryCards() {
                   </div>
                 </div>
               </div>
-            </div>
+            </article>
           );
         })}
-      </div>
-      <div className="w-full h-fit md:hidden flex items-center justify-center mt-14">
+      </section>
+      <section className="w-full h-fit md:hidden flex items-center justify-center mt-14">
         <div className="w-[760px] h-[60px] cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-black flex items-center justify-center rounded-lg border border-searchBgColor bg-btnBgColor">
           Показать ещё 30 наборов
         </div>
-      </div>
-      <div className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6">
+      </section>
+      <section className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6">
         <div className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
           <span className="rotate-[-90deg]">
             <ArrowTopIcons colors={"#007DCA"} />
@@ -325,7 +323,7 @@ export default function CategoryCards() {
             <ArrowTopIcons colors={"#007DCA"} />
           </span>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
