@@ -10,14 +10,14 @@ export default function Favourites() {
   }, []);
 
   return (
-    <div className="w-full flex flex-col items-center ">
-      <div className="w-full border-b border-searchBgColor">
+    <main className="w-full flex flex-col items-center ">
+      <section className="w-full border-b border-searchBgColor">
         <FavoutireBreadCrumbs />
-      </div>
+      </section>
 
-      <div className="w-full ">
+      <section className="w-full ">
         <FavouriteProducts />
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }

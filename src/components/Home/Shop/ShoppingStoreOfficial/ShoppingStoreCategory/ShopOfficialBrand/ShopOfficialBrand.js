@@ -32,7 +32,7 @@ const ShopOfficialBrand = () => {
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
-  const [product, setProduct] = useState({
+  const [product] = useState({
     Catolog: [
       { id: 1, action: false, name: "Головной убор" },
       { id: 2, action: false, name: "Верхняя одежда" },
@@ -113,7 +113,7 @@ const ShopOfficialBrand = () => {
   });
   const Min = "100";
   const Max = "12 000";
-  const [values, setValues] = useState([Min, Max]);
+  const [values] = useState([Min, Max]);
 
   const [state, setState] = useState({
     brandShow: screenSize.width <= 768 ? true : false,
@@ -136,16 +136,16 @@ const ShopOfficialBrand = () => {
   const HandleColorCheck = (itemId) => {};
 
   return (
-    <div
+    <main
       className={`w-full h-hull ${
         dressInfo?.openShopIdFilter
           ? " border-0 "
           : " border border-searchBgColor"
       } py-5 rounded-lg overflow-hidden `}
     >
-      <div className="w-full px-3 ">
+      <section className="w-full px-3 ">
         {dressInfo?.openShopIdFilter && (
-          <div className="flex items-center justify-end mb-4">
+          <action className="flex items-center justify-end mb-4">
             <button
               onClick={() =>
                 setDressInfo({
@@ -157,9 +157,9 @@ const ShopOfficialBrand = () => {
             >
               <MenuCloseIcons />
             </button>
-          </div>
+          </action>
         )}
-        <div className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px]">
+        <action className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px]">
           <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg">
             Женщинам
           </button>
@@ -169,25 +169,23 @@ const ShopOfficialBrand = () => {
           <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg">
             Детям
           </button>
-          <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg text-red-600">
+          <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg text-red-600">
             Скидки
           </button>
-        </div>
+        </action>
         {/* Availability */}
-        <div className="w-full h-fit mt-[50px] ">
-          <div
-            className="w-full flex justify-between items-center "
+        <action className="w-full h-fit mt-[50px] ">
+          <div className="w-full flex justify-between items-center "
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div
+            <div className="flex items-center cursor-pointer select-none"
               onClick={() => setState({ ...state, catolog: !state.catolog })}
-              className="flex items-center cursor-pointer select-none"
             >
-              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Каталоги
-              </span>
+              </p>
               <span
                 className={`${
                   state?.catolog ? "rotate-[180deg]" : ""
@@ -199,8 +197,7 @@ const ShopOfficialBrand = () => {
           </div>
 
           {/* Field */}
-          <div
-            className={`w-full overflow-hidden ${
+          <div className={`w-full overflow-hidden ${
               state?.catolog
                 ? "duration-300 h-0"
                 : "duration-300 h-[300px] mt-5 "
@@ -213,53 +210,49 @@ const ShopOfficialBrand = () => {
                   className="w-full h-[44px] rounded-lg justify-center bg-bgCategory hover:text-white focus:bg-fullBlue hover:bg-fullBlue focus:text-white flex items-center  cursor-pointer select-none  text-black"
                   onClick={HandleCheckStatus(data?.id)}
                 >
-                  <span className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
+                  <p className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
                     {data?.name}
-                  </span>
+                  </p>
                 </div>
               );
             })}
           </div>
-        </div>
+        </action>
         {/* Brands filter */}
-        <div className="w-full h-fit mt-[40px]  ">
+        <action className="w-full h-fit mt-[40px]  ">
           {/* Controls */}
-          <div
-            className="openBrands w-full flex justify-between items-center"
+          <section className="openBrands w-full flex justify-between items-center"
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div
+            <div className="flex items-center cursor-pointer select-none"
               onClick={() =>
                 setState({ ...state, brandShow: !state.brandShow })
               }
-              className="flex items-center cursor-pointer select-none"
             >
-              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Бренды
-              </span>
-              <span
-                className={`${
+              </p>
+              <span className={`${
                   state?.brandShow ? "rotate-[180deg]" : ""
                 } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>
             </div>
-            <span className="not-italic font-AeonikProMedium text-sm leading-4 text-fullBlue cursor-pointer">
+            <p className="not-italic font-AeonikProMedium text-sm leading-4 text-fullBlue cursor-pointer">
               Очистить все
-            </span>
-          </div>
-          <div
-            className={` openedBrands border-0  overflow-hidden  ${
+            </p>
+          </section>
+          <section className={` openedBrands border-0  overflow-hidden  ${
               state?.brandShow
                 ? "duration-300 h-0"
                 : "duration-300 h-[375px] mt-5"
             } duration-300`}
           >
             {/* Search */}
-            <div className="h-[44px] w-full flex items-center justify-between px-4 border border-searchBgColor rounded-lg ">
+            <action className="h-[44px] w-full flex items-center justify-between px-4 border border-searchBgColor rounded-lg ">
               <input
                 className="w-[85%] h-full text-sm font-AeonikProRegular"
                 type="text"
@@ -270,10 +263,10 @@ const ShopOfficialBrand = () => {
               <span>
                 <SearchIcons />
               </span>
-            </div>
+            </action>
 
             {/* Field */}
-            <div
+            <action
               className={`h-[300px] w-full mt-7 overflow-auto  categoryScroll `}
             >
               {product?.brandWear.map((data) => {
@@ -301,27 +294,25 @@ const ShopOfficialBrand = () => {
                   </div>
                 );
               })}
-            </div>
-          </div>
-        </div>
+            </action>
+          </section>
+        </action>
 
         {/* Prizes */}
-        <div className=" mt-5">
-          <div
-            className="w-full flex justify-between items-center "
+        <action className=" mt-5">
+          <section className="w-full flex justify-between items-center "
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div
+            <div className="flex items-center cursor-pointer select-none"
               onClick={() =>
                 setState({ ...state, budgetShow: !state.budgetShow })
               }
-              className="flex items-center cursor-pointer select-none"
             >
-              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Budget
-              </span>
+              </p>
               <span
                 className={`${
                   state?.budgetShow ? "rotate-[180deg]" : ""
@@ -330,15 +321,15 @@ const ShopOfficialBrand = () => {
                 <ArrowTopIcons colors={"#000"} />
               </span>
             </div>
-          </div>
-          <div
+          </section>
+          <section
             className={`  border-1 border-green-600  overflow-hidden  ${
               state?.budgetShow
                 ? "duration-300 h-0"
                 : "duration-300 h-[170px] mt-5"
             } duration-300`}
           >
-            <div className="w-full flex flex-wrap gap-x-1 gap-y-2">
+            <action className="w-full flex flex-wrap gap-x-1 gap-y-2">
               {product.prizes.map((item) => (
                 <button
                   key={item.id}
@@ -347,8 +338,8 @@ const ShopOfficialBrand = () => {
                   {item.prize}
                 </button>
               ))}
-            </div>
-            <div className="w-full h-12 bg-bgCategory  mt-4 px-[2px]">
+            </action>
+            <action className="w-full h-12 bg-bgCategory  mt-4 px-[2px]">
               <div className=" w-full flex justify-center items-center gap-x-1">
                 <div className=" h-fit  not-italic font-AeonikProMedium text-base leading-4 text-center text-fullBlue tracking-[1%]">
                   {values[0]}
@@ -370,28 +361,26 @@ const ShopOfficialBrand = () => {
                   minDistance={10}
                 />
               </div>
-            </div>
-          </div>
-        </div>
+            </action>
+          </section>
+        </action>
 
         {/* Colors */}
-        <div className="w-full h-fit mt-[50px] ">
+        <action className="w-full h-fit mt-[50px] ">
           {/* Controls */}
-          <div
-            className="openBrands w-full flex justify-between items-center"
+          <section className="openBrands w-full flex justify-between items-center"
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div
+            <div className="flex items-center cursor-pointer select-none"
               onClick={() =>
                 setState({ ...state, ColorsShow: !state.ColorsShow })
               }
-              className="flex items-center cursor-pointer select-none"
             >
-              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Цвет
-              </span>
+              </p>
               <span
                 className={`${
                   state?.ColorsShow ? "rotate-[180deg]" : ""
@@ -400,13 +389,12 @@ const ShopOfficialBrand = () => {
                 <ArrowTopIcons colors={"#000"} />
               </span>
             </div>
-            <span className="not-italic font-AeonikProMedium text-sm leading-4 text-fullBlue cursor-pointer">
+            <p className="not-italic font-AeonikProMedium text-sm leading-4 text-fullBlue cursor-pointer">
               Очистить все
-            </span>
-          </div>
+            </p>
+          </section>
           {/* Colors */}
-          <div
-            className={`w-full px-[2px] flex justify-between flex-wrap items-center   bg-white hover:backdrop-brightness-125 hover:bg-white/60 transition ease-out duration-300 gap-x-[10px] gap-y-[10px] border-0  overflow-hidden  ${
+          <section className={`w-full px-[2px] flex justify-between flex-wrap items-center   bg-white hover:backdrop-brightness-125 hover:bg-white/60 transition ease-out duration-300 gap-x-[10px] gap-y-[10px] border-0  overflow-hidden  ${
               state?.ColorsShow
                 ? "duration-300 h-0"
                 : "duration-300 h-[80px] mt-5"
@@ -428,26 +416,24 @@ const ShopOfficialBrand = () => {
                 </div>
               );
             })}
-          </div>
-        </div>
+          </section>
+        </action>
 
         {/* Availability */}
-        <div className="w-full h-fit mt-[50px] ">
-          <div
-            className="w-full flex justify-between items-center "
+        <action className="w-full h-fit mt-[50px] ">
+          <section className="w-full flex justify-between items-center "
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div
+            <div className="flex items-center cursor-pointer select-none"
               onClick={() =>
                 setState({ ...state, availability: !state.availability })
               }
-              className="flex items-center cursor-pointer select-none"
             >
-              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Доступность
-              </span>
+              </p>
               <span
                 className={`${
                   state?.availability ? "rotate-[180deg]" : ""
@@ -456,11 +442,10 @@ const ShopOfficialBrand = () => {
                 <ArrowTopIcons colors={"#000"} />
               </span>
             </div>
-          </div>
+          </section>
 
           {/* Field */}
-          <div
-            className={`w-full overflow-hidden ${
+          <section className={`w-full overflow-hidden ${
               state?.availability
                 ? "duration-300 h-0"
                 : "duration-300 h-[70px] mt-5"
@@ -473,8 +458,7 @@ const ShopOfficialBrand = () => {
                   className="flex items-center  cursor-pointer select-none "
                   onClick={HandleCheckStatus(data?.id)}
                 >
-                  <div
-                    className={`w-[22px] h-[22px] p-1 flex items-center ${
+                  <action className={`w-[22px] h-[22px] p-1 flex items-center ${
                       state?.checkBrand ? "bg-fullBlue " : "bg-white"
                     }  mr-[10px] rounded border border-borderColorCard`}
                   >
@@ -483,22 +467,22 @@ const ShopOfficialBrand = () => {
                         <BsCheckLg size={12} />
                       </span>
                     )}
-                  </div>
-                  <div className="flex items-center not-italic mr-2 font-AeonikProRegular text-sm leading-4 text-black">
+                  </action>
+                  <action className="flex items-center not-italic mr-2 font-AeonikProRegular text-sm leading-4 text-black">
                     {data?.title}
-                  </div>
-                  <div className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-setTexOpacity">
+                  </action>
+                  <action className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-setTexOpacity">
                     ({data?.count})
-                  </div>
+                  </action>
                 </div>
               );
             })}
-          </div>
-        </div>
+          </section>
+        </action>
 
         {/* Customer reviews */}
-        <div className="w-full h-fit mt-[50px] ">
-          <div
+        <action className="w-full h-fit mt-[50px] ">
+          <section
             className="w-full flex justify-between items-center"
             onClick={(event) => {
               event.target.classList.toggle("open");
@@ -513,19 +497,18 @@ const ShopOfficialBrand = () => {
               }
               className="flex items-center cursor-pointer select-none"
             >
-              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Отзывы клиентов
-              </span>
-              <span
-                className={`${
+              </p>
+              <span className={`${
                   state?.customerRreviews ? "rotate-[180deg]" : ""
                 } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
               </span>
             </div>
-          </div>
-          <div
+          </section>
+          <section
             className={`flex flex-col   gap-y-3 overflow-hidden ${
               state?.customerRreviews
                 ? "duration-300 h-0"
@@ -536,7 +519,7 @@ const ShopOfficialBrand = () => {
             {product?.ArrayRating.map((data) => {
               return (
                 <div className="flex items-center cursor-pointer select-none  overflow-auto">
-                  <div
+                  <action
                     className={`w-[22px] h-[22px] p-1 flex items-center  mr-[10px] rounded border border-borderColorCard`}
                   >
                     {state?.checkBrand && (
@@ -544,26 +527,26 @@ const ShopOfficialBrand = () => {
                         <BsCheckLg size={12} />
                       </span>
                     )}
-                  </div>
-                  <div className="flex items-center not-italic mr-2 font-AeonikProRegular  text-lg leading-4 text-black">
+                  </action>
+                  <action className="flex items-center not-italic mr-2 font-AeonikProRegular  text-lg leading-4 text-black">
                     <StarIcons />
                     <StarIcons />
                     <StarIcons />
                     <StarIcons />
                     <StarIcons />
-                  </div>
-                  <div className="flex items-endnot-italic font-AeonikProMedium text-base leading-4 text-black mt-[4px]">
+                  </action>
+                  <action className="flex items-endnot-italic font-AeonikProMedium text-base leading-4 text-black mt-[4px]">
                     {data?.text || null}
-                  </div>
+                  </action>
                 </div>
               );
             })}
-          </div>
-        </div>
+          </section>
+        </action>
 
         {/* Размер одежды */}
-        <div className="w-full h-fit mt-[50px] ">
-          <div
+        <action className="w-full h-fit mt-[50px] ">
+          <section
             className="w-full flex justify-between items-center "
             onClick={(event) => {
               event.target.classList.toggle("open");
@@ -575,9 +558,9 @@ const ShopOfficialBrand = () => {
               }
               className="flex items-center cursor-pointer select-none"
             >
-              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Размер одежды
-              </span>
+              </p>
               <span
                 className={`${
                   state?.ClothingShow ? "rotate-[180deg]" : ""
@@ -589,8 +572,8 @@ const ShopOfficialBrand = () => {
             <span className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
               3XL
             </span>
-          </div>
-          <div
+          </section>
+          <section
             className={` overflow-hidden ${
               state?.ClothingShow
                 ? "duration-300 h-0"
@@ -607,12 +590,12 @@ const ShopOfficialBrand = () => {
                 </button>
               ))}
             </div>
-          </div>
-        </div>
+          </section>
+        </action>
 
         {/* Размер брюк */}
-        <div className="w-full h-fit  mt-[50px] ">
-          <div
+        <action className="w-full h-fit  mt-[50px] ">
+          <section
             className="w-full flex justify-between items-center "
             onClick={(event) => {
               event.target.classList.toggle("open");
@@ -624,9 +607,9 @@ const ShopOfficialBrand = () => {
               }
               className="flex items-center cursor-pointer select-none"
             >
-              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Размер брюк
-              </span>
+              </p>
               <span
                 className={`${
                   state?.TrouserShow ? "rotate-[180deg]" : ""
@@ -638,8 +621,8 @@ const ShopOfficialBrand = () => {
             <span className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
               2XL
             </span>
-          </div>
-          <div
+          </section>
+          <section
             className={` overflow-hidden ${
               state?.TrouserShow
                 ? "duration-300 h-0"
@@ -656,12 +639,12 @@ const ShopOfficialBrand = () => {
                 </button>
               ))}
             </div>
-          </div>
-        </div>
+          </section>
+        </action>
 
         {/* Размер обуви */}
-        <div className="w-full h-fit mt-[50px] ">
-          <div
+        <action className="w-full h-fit mt-[50px] ">
+          <section
             className="w-full flex justify-between items-center "
             onClick={(event) => {
               event.target.classList.toggle("open");
@@ -673,9 +656,9 @@ const ShopOfficialBrand = () => {
               }
               className="flex items-center cursor-pointer select-none"
             >
-              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Размер обуви
-              </span>
+              </p>
               <span
                 className={`${
                   state?.ShoesShow ? "rotate-[180deg]" : ""
@@ -687,8 +670,8 @@ const ShopOfficialBrand = () => {
             <span className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
               44
             </span>
-          </div>
-          <div
+          </section>
+          <section
             className={` overflow-hidden ${
               state?.ShoesShow
                 ? "duration-300 h-0"
@@ -705,15 +688,15 @@ const ShopOfficialBrand = () => {
                 </button>
               ))}
             </div>
-          </div>
-        </div>
-      </div>
-      <div className=" mt-8 border-t border-searchBgColor py-5 px-3">
+          </section>
+        </action>
+      </section>
+      <section className=" mt-8 border-t border-searchBgColor py-5 px-3">
         <button className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70">
           Сбросить фильтр
         </button>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 export { ShopOfficialBrand };

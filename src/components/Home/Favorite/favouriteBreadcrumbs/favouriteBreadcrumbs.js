@@ -90,11 +90,11 @@ const FavoutireBreadCrumbs = () => {
   );
 
   return (
-    <div className="flex flex-col min-h-[44px]  justify-center items-center my-3 ">
+    <main className="flex flex-col min-h-[44px]  justify-center items-center my-3 ">
       <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto px-4 md:px-0">
         <div className="w-full flex justify-between flex-col md:flex-row ">
-          <div className="flex items-center mb-5 md:mb-0">
-            <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+          <section className="flex items-center mb-5 md:mb-0">
+            <article className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
               <NavLink
                 to="/"
                 className="flex items-center cursor-pointer pr-[10px] not-italic font-AeonikProRegular md:font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
@@ -104,55 +104,55 @@ const FavoutireBreadCrumbs = () => {
               <span>
                 <ItailIcons colors={"#000"} />
               </span>
-            </div>
-            <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+            </article>
+            <article className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
               <NavLink
                 to="/"
                 className="flex items-center cursor-pointer not-italic font-AeonikProRegular md:font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]"
               >
                 Избранное
               </NavLink>
-            </div>
-            <div className="block md:hidden ml-auto">
+            </article>
+            <article className="block md:hidden ml-auto">
               <span className="text-sm font-AeonikProMedium">82 товара</span>
-            </div>
-          </div>
+            </article>
+          </section>
 
-          <div className="flex items-center">
-            <div className="w-[fit] flex items-center">
-              <div className="hidden items-center w-fit mr-4 md:flex">
-                <span className="not-italic font-normal text-sm leading-4 text-setTexOpacity tractking-[1%]">
+          <section className="flex items-center">
+            <article className="w-[fit] flex items-center">
+              <article className="hidden items-center w-fit mr-4 md:flex">
+                <p className="not-italic font-normal text-sm leading-4 text-setTexOpacity tractking-[1%]">
                   Сортировка:
-                </span>
-              </div>
-              <div className="hidden md:flex">
+                </p>
+              </article>
+              <article className="hidden md:flex">
                 <button className="w-[260px] h-[44px] px-4 rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between  cursor-pointer select-none group  ">
-                  <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                  <p className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                     Последние добавленные{" "}
-                  </span>
+                  </p>
                   <span className="rotate-[180deg]">
                     <ArrowTopIcons colors={"#000"} />
                   </span>
                 </button>
-              </div>
-            </div>
-            <div className="w-full block md:hidden">
-              <span className="font-normal text-sm leading-4tractking-[1%]">
+              </article>
+            </article>
+            <article className="w-full block md:hidden">
+              <p className="font-normal text-sm leading-4tractking-[1%]">
                 Сортировка:
-              </span>
+              </p>
               <button className="w-full h-[44px] px-4 rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between  cursor-pointer select-none group mt-[10px] ">
-                <div className="flex items-center font-AeonikProMedium text-sm text-black">
+                <span className="flex items-center font-AeonikProMedium text-sm text-black">
                   <SortIcons />
-                  <span className="ml-3">Последние добавленные</span>
-                </div>
+                  <p className="ml-3">Последние добавленные</p>
+                </span>
                 <span className="rotate-[180deg]">
                   <ArrowTopIcons colors={"#000"} />
                 </span>
               </button>
-            </div>
+            </article>
 
-            <div className="border border-searchBgColor w-[1px] h-[20px] mx-3 hidden md:block"></div>
-            <div className="hidden md:flex">
+            <article className="border border-searchBgColor w-[1px] h-[20px] mx-3 hidden md:block"></article>
+            <article className="hidden md:flex">
               <Popover
                 open={state?.openwear}
                 onOpenChange={handleOpenChangeWear}
@@ -162,7 +162,7 @@ const FavoutireBreadCrumbs = () => {
                 placement="bottom"
                 content={contentWear}
               >
-                <span>
+                <figure>
                   {personItems
                     ?.filter((value) => value.id === dressInfo?.type)
                     .map((data) => {
@@ -175,10 +175,10 @@ const FavoutireBreadCrumbs = () => {
                         />
                       );
                     })}
-                </span>
-                <span className="not-italic font-AeonikProMedium text-center  text-sm leading-4 text-black">
+                </figure>
+                <p className="not-italic font-AeonikProMedium text-center  text-sm leading-4 text-black">
                   Абдулазиз{" "}
-                </span>
+                </p>
                 <span>
                   <BiChevronDown
                     size={22}
@@ -189,11 +189,11 @@ const FavoutireBreadCrumbs = () => {
                   />{" "}
                 </span>
               </Popover>
-            </div>
-          </div>
+            </article>
+          </section>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

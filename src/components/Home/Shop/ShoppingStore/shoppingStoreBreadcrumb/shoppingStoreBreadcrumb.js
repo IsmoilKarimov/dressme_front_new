@@ -20,26 +20,17 @@ const ShoppingStoreBreadCrumb = () => {
   });
 
   let dataStyle = "";
-  let genderStyle = "";
-  if (dressInfo?.type == 1111) {
+  if (dressInfo?.type === 1111) {
     dataStyle = "hover:text-borderSpring ";
-    genderStyle =
-      "focus:text-borderSpring focus:bg-bgSpring focus:border-borderSpring";
   }
-  if (dressInfo?.type == 2222) {
+  if (dressInfo?.type === 2222) {
     dataStyle = "hover:text-borderSummer";
-    genderStyle =
-      "focus:text-borderSummer focus:bg-bgSummer focus:border-borderSummer";
   }
-  if (dressInfo?.type == 3333) {
+  if (dressInfo?.type === 3333) {
     dataStyle = "hover:text-borderAutumm ";
-    genderStyle =
-      "focus:text-borderAutumm focus:bg-bgAutumm focus:border-borderAutumm";
   }
-  if (dressInfo?.type == 4444) {
+  if (dressInfo?.type === 4444) {
     dataStyle = "hover:text-borderWinter ";
-    genderStyle =
-      "focus:text-borderWinter focus:bg-bgWinter focus:border-borderWinter";
   }
 
   const personItems = [
@@ -66,7 +57,7 @@ const ShoppingStoreBreadCrumb = () => {
     { id: 6, type: "Accessory" },
   ];
   const contentWear = (
-    <div className="w-[170px] h-fit m-0 p-0">
+    <section className="w-[170px] h-fit m-0 p-0">
       {wearList.map((data) => {
         return (
           <p
@@ -80,14 +71,14 @@ const ShoppingStoreBreadCrumb = () => {
           </p>
         );
       })}
-    </div>
+    </section>
   );
 
   return (
-    <div className="flex flex-col min-h-[44px]  justify-center items-center my-3">
-      <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
-        <div className="flex items-center">
-          <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+    <main className="flex flex-col min-h-[44px]  justify-center items-center my-3">
+      <section className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
+        <article className="flex items-center">
+          <article className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
             <NavLink
               to="/"
               className="flex items-center cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
@@ -97,17 +88,17 @@ const ShoppingStoreBreadCrumb = () => {
             <span>
               <ItailIcons colors={"#000"} />
             </span>
-          </div>
-          <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+          </article>
+          <article className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
             <NavLink
               to="/"
               className="flex items-center cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]"
             >
               Магазины
             </NavLink>
-          </div>
-        </div>
-        <div className="hidden md:block">
+          </article>
+        </article>
+        <article className="hidden md:block">
           <Popover
             open={state?.openwear}
             onOpenChange={handleOpenChangeWear}
@@ -117,7 +108,7 @@ const ShoppingStoreBreadCrumb = () => {
             placement="bottom"
             content={contentWear}
           >
-            <span>
+            <figure>
               {personItems
                 ?.filter((value) => value.id === dressInfo?.type)
                 .map((data) => {
@@ -130,10 +121,10 @@ const ShoppingStoreBreadCrumb = () => {
                     />
                   );
                 })}
-            </span>
-            <span className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black">
+            </figure>
+            <p className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black">
               Абдулазиз{" "}
-            </span>
+            </p>
             <span>
               <BiChevronDown
                 size={22}
@@ -144,9 +135,9 @@ const ShoppingStoreBreadCrumb = () => {
               />{" "}
             </span>
           </Popover>
-        </div>
-      </div>
-    </div>
+        </article>
+      </section>
+    </main>
   );
 };
 

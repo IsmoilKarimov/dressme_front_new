@@ -182,7 +182,7 @@ const Footer = () => {
     { id: 6, type: "Under 50$" },
   ];
   const contentPrice = (
-    <div className="w-[150px] h-fit m-0 p-0">
+    <section className="w-[150px] h-fit m-0 p-0">
       {priceListFooter.map((data) => {
         return (
           <p
@@ -196,7 +196,7 @@ const Footer = () => {
           </p>
         );
       })}
-    </div>
+    </section>
   );
 
   // ----------------------Region State Management----------------------
@@ -219,7 +219,7 @@ const Footer = () => {
     { id: 6, type: "Navoiy" },
   ];
   const contentRegion = (
-    <div className="w-[150px] h-fit m-0 p-0">
+    <section className="w-[150px] h-fit m-0 p-0">
       {RegionListFooter.map((data) => {
         return (
           <p
@@ -233,7 +233,7 @@ const Footer = () => {
           </p>
         );
       })}
-    </div>
+    </section>
   );
 
   // ----------------------Region State Management Mobile----------------------
@@ -256,7 +256,7 @@ const Footer = () => {
     { id: 6, type: "Navoiy" },
   ];
   const contentMobile = (
-    <div className="w-[150px] h-fit m-0 p-0">
+    <section className="w-[150px] h-fit m-0 p-0">
       {RegionListMobile.map((data) => {
         return (
           <p
@@ -270,7 +270,7 @@ const Footer = () => {
           </p>
         );
       })}
-    </div>
+    </section>
   );
 
   // ----------------------Language State Management----------------------
@@ -357,157 +357,339 @@ const Footer = () => {
   // mt-1
 
   return (
-    <div className="flex flex-col h-fit justify-center items-center m-0 p-0 ss:px-4 md:px-0 box-border border-t border-searchBgColor  md:mt-[40px] mb-[40px] md:mb-[60px] bg-btnBgColor md:bg-white md:border-t-0">
-      <div className="">
-        <ScrollToTop
-          smooth
-          top="600"
-          color="#000"
-          component={<MySVG />}
-          style={{
-            borderRadius: "50%",
-            bottom: 70,
-            right: 25,
-            width: "48px",
-            height: "48px",
-            border: "1px solid #c1c1c1",
-            backgroundColor: "#fafafa",
-          }}
-          className="bg-bgColor rounded-full mt-[-100px] flex items-center opacity-70 justify-center ss:bottom-[75px] ss:right-[15px] md:bottom-10 md:right-10"
-        />
-      </div>
-      <div className="max-w-[1280px] w-[100%]  flex justify-center items-center m-auto">
-        <div className="w-[100%] h-fit ss:p-0 md:p-[30px]  md:border md:border-searchBgColor border-solid rounded-lg">
-          <div>
-            {/* Footer LOGO and Fedback form */}
-            <div className="flex items-center md:px-0 mt-3 md:mt-0">
-              <div className="flex flex-col">
-                <Link to="/" className="md:mb-[14px]">
-                  <img src={BrandBlack} alt="logo" className="w-full" />
-                </Link>
-                <div className="text-textColor mb-[18px] text-sm hidden md:flex">
-                  Торговая площадка одежды
+    <nav>
+      <section className="flex flex-col h-fit justify-center items-center m-0 p-0 ss:px-4 md:px-0 box-border border-t border-searchBgColor  md:mt-[40px] mb-[40px] md:mb-[60px] bg-btnBgColor md:bg-white md:border-t-0">
+        <article className="">
+          <ScrollToTop
+            smooth
+            top="600"
+            color="#000"
+            component={<MySVG />}
+            style={{
+              borderRadius: "50%",
+              bottom: 70,
+              right: 25,
+              width: "48px",
+              height: "48px",
+              border: "1px solid #c1c1c1",
+              backgroundColor: "#fafafa",
+            }}
+            className="bg-bgColor rounded-full mt-[-100px] flex items-center opacity-70 justify-center ss:bottom-[75px] ss:right-[15px] md:bottom-10 md:right-10"
+          />
+        </article>
+        <article className="max-w-[1280px] w-[100%]  flex justify-center items-center m-auto">
+          <div className="w-[100%] h-fit ss:p-0 md:p-[30px]  md:border md:border-searchBgColor border-solid rounded-lg">
+            <section>
+              {/* Footer LOGO and Fedback form */}
+              <article className="flex items-center md:px-0 mt-3 md:mt-0">
+                <figure className="flex flex-col">
+                  <Link to="/" className="md:mb-[14px]">
+                    <img src={BrandBlack} alt="logo" className="w-full" />
+                  </Link>
+                  <figcaption className="text-textColor mb-[18px] text-sm hidden md:flex">
+                    Торговая площадка одежды
+                  </figcaption>
+                </figure>
+
+                {/* Address */}
+                <div className="hidden flex-col ss:w-full md:w-[306px] ss:px-4 md:px-0 mt-[17px] ml-[92px] md:flex">
+                  <p className="text-textColor mb-3 text-sm">
+                    Юридический адрес :
+                  </p>
+                  <div className="flex items-center mb-[46px]">
+                    <span className="border border-searchBgColor flex items-center justify-center rounded-lg mr-3 p-[14px] ss:bg-white md:bg-transparent">
+                      <LocationIcons />
+                    </span>
+                    <p className="font-AeonikProRegular text-sm underline underline-offset-4">
+                      Мирзо-Улугбекский район, проспект Амира Темура, 60 -
+                      Ташкент, 100017
+                    </p>
+                  </div>
                 </div>
-              </div>
+
+                <Link
+                  to="#"
+                  className="hidden items-center bg-bgColor px-4 py-[15px] border border-searchBgColor rounded-lg ml-auto md:flex"
+                >
+                  <UploadIcons />
+                  <p className="text-base font-AeonikProMedium leading-4 ml-[12.5px] mr-[32.37px]">
+                    Форма для обратной связи
+                  </p>
+                  <span className="rotate-90 ">
+                    <ArrowTopIcons colors={"#000"} />
+                  </span>
+                </Link>
+                <Link to="#" className="flex items-center ml-auto md:hidden">
+                  <HouseStatisticIcons colors={"#000"} />
+                  <span className="ml-2 font-AeonikProMedium text-sm">
+                    Дашборд
+                  </span>
+                </Link>
+              </article>
 
               {/* Address */}
-              <div className="hidden flex-col ss:w-full md:w-[306px] ss:px-4 md:px-0 mt-[17px] ml-[92px] md:flex">
-                <div className="text-textColor mb-3 text-sm">
+              <article className="flex flex-col ss:w-full md:w-[306px] md:px-0 mt-[17px] md:hidden">
+                <p className="text-textColor mb-[18px] text-sm">
                   Юридический адрес :
-                </div>
+                </p>
                 <div className="flex items-center mb-[46px]">
-                  <div className="border border-searchBgColor flex items-center justify-center rounded-lg mr-3 p-[14px] ss:bg-white md:bg-transparent">
+                  <span className="border border-searchBgColor flex items-center justify-center rounded-lg mr-3 w-24 h-12 ss:bg-white md:bg-transparent">
                     <LocationIcons />
-                  </div>
-                  <div className="font-AeonikProRegular text-sm underline underline-offset-4">
-                    Мирзо-Улугбекский район, проспект Амира Темура, 60 -
-                    Ташкент, 100017
-                  </div>
+                  </span>
+                  <p className="font-AeonikProRegular text-sm underline underline-offset-4">
+                    Мирзо-Улугбекский район, проспект Амира Темура, 60 - Ташкент,
+                    100017
+                  </p>
                 </div>
-              </div>
+              </article>
 
-              <Link
-                to="#"
-                className="hidden items-center bg-bgColor px-4 py-[15px] border border-searchBgColor rounded-lg ml-auto md:flex"
-              >
-                <UploadIcons />
-                <span className="text-base font-AeonikProMedium leading-4 ml-[12.5px] mr-[32.37px]">
-                  Форма для обратной связи
-                </span>
-                <span className="rotate-90 ">
-                  <ArrowTopIcons colors={"#000"} />
-                </span>
-              </Link>
-              <Link to="#" className="flex items-center ml-auto md:hidden">
-                <HouseStatisticIcons colors={"#000"} />
-                <span className="ml-2 font-AeonikProMedium text-sm">
-                  Дашборд
-                </span>
-              </Link>
-            </div>
+              {/* Categories, menu, social networks */}
+              <article className="flex-wrap flex-row justify-between ss:hidden md:flex ">
+                {/* Categories */}
+                <section className="md:w-1/5">
+                  <p className="font-AeonikProMedium w-fit text-base cursor-pointer ss:mb-4 md:mb-[30px]">
+                    Категории
+                  </p>
+                  {PersonTypeArray?.filter(
+                    (data) => data.id == dressInfo.type
+                  ).map((data) => {
+                    return (
+                      <ul
+                        key={data?.id}
+                        className="text-sm font-AeonikProRegular"
+                      >
+                        <li className="ss:mb-1 md:mb-4">
+                          <figure>
+                            <Link to="#" className="flex items-center">
+                              <img src={data?.man} alt="" className="ml-[2px]" />
+                              <figcaption className="ml-[14px]">Мужчины</figcaption>
+                            </Link>
+                          </figure>
+                        </li>
+                        <li className="ss:mb-1 md:mb-4">
+                          <figure>
+                            <Link to="#" className="flex items-center">
+                              <img src={data?.woman} alt="" className="ml-[2px]" />
+                              <figcaption className="ml-[14px]">Женщины</figcaption>
+                            </Link>
+                          </figure>
+                        </li>
+                        <li className="ss:mb-1 md:mb-4">
+                          <figure>
+                            <Link to="#" className="flex items-center">
+                              <img src={data?.boy} alt="" />
+                              <figcaption className="ml-3">Мальчикы</figcaption>
+                            </Link>
+                          </figure>
+                        </li>
+                        <li className="ss:mb-1 md:mb-4">
+                          <figure>
+                            <Link to="#" className="flex items-center">
+                              <img src={data?.girl} alt="" />
+                              <figcaption className="ml-3">Девочкы</figcaption>
+                            </Link>
+                          </figure>
+                        </li>
+                        <li className="ss:mb-1 md:mb-4">
+                          <figure>
+                            <Link to="#" className="flex items-center">
+                              <img src={data?.childs} alt="" />
+                              <figcaption className="ml-3">Младенцы</figcaption>
+                            </Link>
+                          </figure>
+                        </li>
+                      </ul>
+                    );
+                  })}
+                </section>
 
-            {/* Address */}
-            <div className="flex flex-col ss:w-full md:w-[306px] md:px-0 mt-[17px] md:hidden">
-              <div className="text-textColor mb-[18px] text-sm">
-                Юридический адрес :
-              </div>
-              <div className="flex items-center mb-[46px]">
-                <div className="border border-searchBgColor flex items-center justify-center rounded-lg mr-3 w-24 h-12 ss:bg-white md:bg-transparent">
-                  <LocationIcons />
-                </div>
-                <div className="font-AeonikProRegular text-sm underline underline-offset-4">
-                  Мирзо-Улугбекский район, проспект Амира Темура, 60 - Ташкент,
-                  100017
-                </div>
-              </div>
-            </div>
+                {/* Menu */}
+                <section className="md:w-3/5 ">
+                  <h4 className="font-AeonikProMedium w-fit cursor-pointer text-base ss:mb-2 md:mb-[30px]">
+                    Меню
+                  </h4>
+                  <ul className="flex flex-row text-sm">
+                    <article className="basis-1/3">
+                      <li className="ss:mb-1 md:mb-4">
+                        <Link to="#" className="flex items-center">
+                          <WarningSircleIcons />
+                          <span className="font-AeonikProRegular ml-2">
+                            О нас
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="ss:mb-1 md:mb-4">
+                        <Link to="#" className="flex items-center">
+                          <PersonPlusIcons colors={"#000"} />
+                          <span className="font-AeonikProRegular ml-2">
+                            Вакансия
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="ss:mb-1 md:mb-4">
+                        <Link to="#" className="flex items-center">
+                          <ListCollectionIcons />
+                          <span className="font-AeonikProRegular ml-2">
+                            Наш блог
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="ss:mb-1 md:mb-4">
+                        <Link to="#" className="flex items-center">
+                          <CotegoryIcons colors={"#000"} />
+                          <span className="font-AeonikProRegular ml-2">
+                            Каталог
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="ss:mb-1 md:mb-4">
+                        <Link to="#" className="flex items-center">
+                          <MapSitesIcons />
+                          <span className="font-AeonikProRegular ml-2">
+                            Карта сайта
+                          </span>
+                        </Link>
+                      </li>
+                    </article>
+                    <article className="basis-1/3">
+                      <li className="ss:mb-1 md:mb-4">
+                        <Link to="#" className="flex items-center">
+                          <MarketIcons colors={"#000"} />
+                          <span className="font-AeonikProRegular ml-2">
+                            Магазины
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="ss:mb-1 md:mb-4">
+                        <Link to="#" className="flex items-center">
+                          <HouseStatisticIcons colors={"#000"} />
+                          <span className="font-AeonikProRegular ml-2">
+                            Бизнес
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="ss:mb-1 md:mb-4">
+                        <Link to="#" className="flex items-center">
+                          <MapIcons colors={"#000"} />
+                          <span className="font-AeonikProRegular ml-2">
+                            Карта
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="ss:mb-1 md:mb-4">
+                        <Link to="#" className="flex items-center">
+                          <ListCollectionIcons />
+                          <span className="font-AeonikProRegular ml-2">
+                            Мои заказы
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="ss:mb-1 md:mb-4">
+                        <Link to="#" className="flex items-center">
+                          <PrivateCheckIcons />
+                          <span className="font-AeonikProRegular ml-2">
+                            Политика конфиденциальности
+                          </span>
+                        </Link>
+                      </li>
+                    </article>
+                    <article className="basis-1/3">
+                      <li className="ss:mb-1 md:mb-4">
+                        <Link to="#" className="flex items-center">
+                          <HouseStatisticIcons colors={"#000"} />
+                          <span className="font-AeonikProRegular ml-2">
+                            Дашборд
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="ss:mb-1 md:mb-4">
+                        <Link to="#" className="flex items-center">
+                          <CommentIcons colors={"#000"} />
+                          <span className="font-AeonikProRegular ml-2">
+                            Помощь
+                          </span>
+                        </Link>
+                      </li>
+                      <li className="ss:mb-1 md:mb-4">
+                        <Link to="#" className="flex items-center">
+                          <PhoneIcons colors={"#000"} />
+                          <span className="font-AeonikProRegular ml-2">
+                            Контакты
+                          </span>
+                        </Link>
+                      </li>
+                    </article>
+                  </ul>
+                </section>
 
-            {/* Categories, menu, social networks */}
-            <div className="flex-wrap flex-row justify-between ss:hidden md:flex ">
-              {/* Categories */}
-              <div className="md:w-1/5">
-                <div className="font-AeonikProMedium w-fit text-base cursor-pointer ss:mb-4 md:mb-[30px]">
-                  Категории
-                </div>
-                {PersonTypeArray?.filter(
-                  (data) => data.id == dressInfo.type
-                ).map((data) => {
-                  return (
-                    <ul
-                      key={data?.id}
-                      className="text-sm font-AeonikProRegular"
-                    >
-                      <li className="ss:mb-1 md:mb-4">
+                {/* Social networks */}
+                <section className="md:basis-1/5">
+                  <p className="font-AeonikProMedium w-fit cursor-pointer text-base ss:mb-2 md:mb-[30px]">
+                    Социальная сеть
+                  </p>
+
+                  <article className="flex flex-col items-center w-full ss:flex lg:block">
+                    <ul className="ss:w-6/12 lg:w-full text-sm">
+                      <li className="ss:mb-2 md:mb-4">
                         <Link to="#" className="flex items-center">
-                          <img src={data?.man} alt="" className="ml-[2px]" />
-                          <span className="ml-[14px]">Мужчины</span>
+                          <FiInstagram className="text-[20px]" />
+                          <span className="font-AeonikProRegular ml-2">
+                            Instagram
+                          </span>
                         </Link>
                       </li>
-                      <li className="ss:mb-1 md:mb-4">
+                      <li className="ss:mb-2 md:mb-4">
                         <Link to="#" className="flex items-center">
-                          <img src={data?.woman} alt="" className="ml-[2px]" />
-                          <span className="ml-[14px]">Женщины</span>
+                          <RiFacebookCircleLine className="text-[20px]" />
+                          <span className="font-AeonikProRegular ml-2">
+                            Facebook
+                          </span>
                         </Link>
                       </li>
-                      <li className="ss:mb-1 md:mb-4">
+                      <li className="ss:mb-2 md:mb-4">
                         <Link to="#" className="flex items-center">
-                          <img src={data?.boy} alt="" />
-                          <span className="ml-3">Мальчикы</span>
+                          <RiMessengerLine className="text-[20px]" />
+                          <span className="font-AeonikProRegular ml-2">
+                            Message
+                          </span>
                         </Link>
                       </li>
-                      <li className="ss:mb-1 md:mb-4">
+                      <li className="ss:mb-2 md:mb-4">
                         <Link to="#" className="flex items-center">
-                          <img src={data?.girl} alt="" />
-                          <span className="ml-3">Девочкы</span>
+                          <TbBrandTelegram className="text-[20px]" />
+                          <span className="font-AeonikProRegular ml-2">
+                            Telegram
+                          </span>
                         </Link>
                       </li>
-                      <li className="ss:mb-1 md:mb-4">
+                      <li className="ss:mb-2 md:mb-4">
                         <Link to="#" className="flex items-center">
-                          <img src={data?.childs} alt="" />
-                          <span className="ml-3">Младенцы</span>
+                          <AiOutlineYoutube className="text-[20px]" />
+                          <span className="font-AeonikProRegular ml-2  ss:text-sm md:text-base">
+                            You Tube
+                          </span>
                         </Link>
                       </li>
                     </ul>
-                  );
-                })}
-              </div>
+                  </article>
+                </section>
+              </article>
 
-              {/* Menu */}
-              <div className="md:w-3/5 ">
-                <div className="font-AeonikProMedium w-fit cursor-pointer text-base ss:mb-2 md:mb-[30px]">
-                  Меню
-                </div>
-                <ul className="flex flex-row text-sm">
-                  <div className="basis-1/3">
-                    <li className="ss:mb-1 md:mb-4">
+              {/* Categories, menu, social networks for MOBILE*/}
+              <article className="flex flex-row items-center md:hidden px-0 md:px-0  md:mb-0 ">
+                {/* Menu */}
+                <section className="basis-1/2 ">
+                  <p className="font-AeonikProMedium w-fit cursor-pointer ss:mb-4 md:mb-[30px]">
+                    Меню
+                  </p>
+                  <ul className="text-sm">
+                    <li className="mb-4">
                       <Link to="#" className="flex items-center">
                         <WarningSircleIcons />
-                        <span className="font-AeonikProRegular ml-2">
-                          О нас
-                        </span>
+                        <span className="font-AeonikProRegular ml-2">О нас</span>
                       </Link>
                     </li>
-                    <li className="ss:mb-1 md:mb-4">
+                    <li className="mb-4">
                       <Link to="#" className="flex items-center">
                         <PersonPlusIcons colors={"#000"} />
                         <span className="font-AeonikProRegular ml-2">
@@ -515,7 +697,7 @@ const Footer = () => {
                         </span>
                       </Link>
                     </li>
-                    <li className="ss:mb-1 md:mb-4">
+                    <li className="mb-4">
                       <Link to="#" className="flex items-center">
                         <ListCollectionIcons />
                         <span className="font-AeonikProRegular ml-2">
@@ -523,7 +705,7 @@ const Footer = () => {
                         </span>
                       </Link>
                     </li>
-                    <li className="ss:mb-1 md:mb-4">
+                    <li className="mb-4">
                       <Link to="#" className="flex items-center">
                         <CotegoryIcons colors={"#000"} />
                         <span className="font-AeonikProRegular ml-2">
@@ -531,7 +713,7 @@ const Footer = () => {
                         </span>
                       </Link>
                     </li>
-                    <li className="ss:mb-1 md:mb-4">
+                    <li className="mb-4">
                       <Link to="#" className="flex items-center">
                         <MapSitesIcons />
                         <span className="font-AeonikProRegular ml-2">
@@ -539,566 +721,184 @@ const Footer = () => {
                         </span>
                       </Link>
                     </li>
+                  </ul>
+                </section>
+
+                {/* Categories */}
+                <section className="basis-1/2 pl-6">
+                  <div className="font-AeonikProMedium w-fit cursor-pointer ss:mb-4 md:mb-[30px]">
+                    Категории
                   </div>
-                  <div className="basis-1/3">
-                    <li className="ss:mb-1 md:mb-4">
+                  {PersonTypeArray?.filter(
+                    (data) => data.id == dressInfo?.type
+                  ).map((data) => {
+                    return (
+                      <ul
+                        key={data?.id}
+                        className="text-sm font-AeonikProRegular"
+                      >
+                        <li className="mb-[14px] md:mb-4">
+                          <Link to="#" className="flex items-center">
+                            <img src={data?.man} alt="" className="ml-[2px]" />
+                            <span className="ml-[14px]">Мужчины</span>
+                          </Link>
+                        </li>
+                        <li className="mb-[14px] md:mb-4">
+                          <Link to="#" className="flex items-center">
+                            <img src={data?.woman} alt="" className="ml-[2px]" />
+                            <span className="ml-[14px]">Женщины</span>
+                          </Link>
+                        </li>
+                        <li className="mb-[14px] md:mb-4">
+                          <Link to="#" className="flex items-center">
+                            <img src={data?.boy} alt="" />
+                            <span className="ml-3">Мальчикы</span>
+                          </Link>
+                        </li>
+                        <li className="mb-[14px] md:mb-4">
+                          <Link to="#" className="flex items-center">
+                            <img src={data?.girl} alt="" />
+                            <span className="ml-3">Девочкы</span>
+                          </Link>
+                        </li>
+                        <li className="mb-[14px] md:mb-4">
+                          <Link to="#" className="flex items-center">
+                            <img src={data?.childs} alt="" />
+                            <span className="ml-3">Младенцы</span>
+                          </Link>
+                        </li>
+                      </ul>
+                    );
+                  })}
+                </section>
+              </article>
+
+              {/* Feedback for mobile */}
+              <Link
+                to="#"
+                className="flex justify-center items-center bg-bgColor pl-3 py-[15px] border border-searchBgColor rounded-lg ss:my-[35px] md:my-0 ls:pl-6 md:pl-16 md:mb-0 md:hidden"
+              >
+                <span>
+                  <UploadIcons />
+                </span>
+                <p className="text-base font-AeonikProMedium leading-4 ml-[12.5px] mr-2 ls:mr-6 md:mr-[32.37px]">
+                  Форма для обратной связи
+                </p>
+                <span className="mr-2 ls:mr-3 md:mr-5 rotate-[90deg]">
+                  <ArrowTopIcons colors={"#000"} />
+                </span>
+              </Link>
+
+              {/* Menu for Mobile */}
+              <article className="flex w-full md:hidden md:px-0   md:mb-0">
+                <ul className="flex flex-row text-sm">
+                  <article className="basis-1/2">
+                    <li className="mb-4">
                       <Link to="#" className="flex items-center">
                         <MarketIcons colors={"#000"} />
-                        <span className="font-AeonikProRegular ml-2">
+                        <p className="font-AeonikProRegular ml-2">
                           Магазины
-                        </span>
+                        </p>
                       </Link>
                     </li>
-                    <li className="ss:mb-1 md:mb-4">
+                    <li className="mb-4">
                       <Link to="#" className="flex items-center">
                         <HouseStatisticIcons colors={"#000"} />
-                        <span className="font-AeonikProRegular ml-2">
-                          Бизнес
-                        </span>
+                        <p className="font-AeonikProRegular ml-2">Бизнес</p>
                       </Link>
                     </li>
-                    <li className="ss:mb-1 md:mb-4">
+                    <li className="mb-4">
                       <Link to="#" className="flex items-center">
                         <MapIcons colors={"#000"} />
-                        <span className="font-AeonikProRegular ml-2">
-                          Карта
-                        </span>
+                        <p className="font-AeonikProRegular ml-2">Карта</p>
                       </Link>
                     </li>
-                    <li className="ss:mb-1 md:mb-4">
+                    <li className="mb-4">
                       <Link to="#" className="flex items-center">
                         <ListCollectionIcons />
-                        <span className="font-AeonikProRegular ml-2">
+                        <p className="font-AeonikProRegular ml-2">
                           Мои заказы
-                        </span>
+                        </p>
                       </Link>
                     </li>
-                    <li className="ss:mb-1 md:mb-4">
+                    <li className="mb-4">
                       <Link to="#" className="flex items-center">
                         <PrivateCheckIcons />
-                        <span className="font-AeonikProRegular ml-2">
+                        <p className="font-AeonikProRegular ml-2">
                           Политика конфиденциальности
-                        </span>
+                        </p>
                       </Link>
                     </li>
-                  </div>
-                  <div className="basis-1/3">
-                    <li className="ss:mb-1 md:mb-4">
-                      <Link to="#" className="flex items-center">
-                        <HouseStatisticIcons colors={"#000"} />
-                        <span className="font-AeonikProRegular ml-2">
-                          Дашборд
-                        </span>
-                      </Link>
-                    </li>
-                    <li className="ss:mb-1 md:mb-4">
+                  </article>
+                  <article className="basis-1/2 pl-6">
+                    <li className="mb-4">
                       <Link to="#" className="flex items-center">
                         <CommentIcons colors={"#000"} />
-                        <span className="font-AeonikProRegular ml-2">
-                          Помощь
-                        </span>
+                        <p className="font-AeonikProRegular ml-2">Помощь</p>
                       </Link>
                     </li>
-                    <li className="ss:mb-1 md:mb-4">
+                    <li className="mb-4">
                       <Link to="#" className="flex items-center">
                         <PhoneIcons colors={"#000"} />
-                        <span className="font-AeonikProRegular ml-2">
+                        <p className="font-AeonikProRegular ml-2">
                           Контакты
-                        </span>
+                        </p>
                       </Link>
                     </li>
-                  </div>
+                  </article>
                 </ul>
-              </div>
+              </article>
 
-              {/* Social networks */}
-              <div className="md:basis-1/5">
-                <div className="font-AeonikProMedium w-fit cursor-pointer text-base ss:mb-2 md:mb-[30px]">
-                  Социальная сеть
-                </div>
-
-                <div className="flex flex-col items-center w-full ss:flex lg:block">
-                  <ul className="ss:w-6/12 lg:w-full text-sm">
-                    <li className="ss:mb-2 md:mb-4">
-                      <Link to="#" className="flex items-center">
-                        <FiInstagram className="text-[20px]" />
-                        <span className="font-AeonikProRegular ml-2">
-                          Instagram
-                        </span>
-                      </Link>
-                    </li>
-                    <li className="ss:mb-2 md:mb-4">
-                      <Link to="#" className="flex items-center">
-                        <RiFacebookCircleLine className="text-[20px]" />
-                        <span className="font-AeonikProRegular ml-2">
-                          Facebook
-                        </span>
-                      </Link>
-                    </li>
-                    <li className="ss:mb-2 md:mb-4">
-                      <Link to="#" className="flex items-center">
-                        <RiMessengerLine className="text-[20px]" />
-                        <span className="font-AeonikProRegular ml-2">
-                          Message
-                        </span>
-                      </Link>
-                    </li>
-                    <li className="ss:mb-2 md:mb-4">
-                      <Link to="#" className="flex items-center">
-                        <TbBrandTelegram className="text-[20px]" />
-                        <span className="font-AeonikProRegular ml-2">
-                          Telegram
-                        </span>
-                      </Link>
-                    </li>
-                    <li className="ss:mb-2 md:mb-4">
-                      <Link to="#" className="flex items-center">
-                        <AiOutlineYoutube className="text-[20px]" />
-                        <span className="font-AeonikProRegular ml-2  ss:text-sm md:text-base">
-                          You Tube
-                        </span>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Categories, menu, social networks for MOBILE*/}
-            <div className="flex flex-row items-center md:hidden px-0 md:px-0  md:mb-0 ">
-              {/* Menu */}
-              <div className="basis-1/2 ">
-                <div className="font-AeonikProMedium w-fit cursor-pointer ss:mb-4 md:mb-[30px]">
-                  Меню
-                </div>
-                <ul className="text-sm">
-                  <li className="mb-4">
-                    <Link to="#" className="flex items-center">
-                      <WarningSircleIcons />
-                      <span className="font-AeonikProRegular ml-2">О нас</span>
-                    </Link>
-                  </li>
-                  <li className="mb-4">
-                    <Link to="#" className="flex items-center">
-                      <PersonPlusIcons colors={"#000"} />
-                      <span className="font-AeonikProRegular ml-2">
-                        Вакансия
-                      </span>
-                    </Link>
-                  </li>
-                  <li className="mb-4">
-                    <Link to="#" className="flex items-center">
-                      <ListCollectionIcons />
-                      <span className="font-AeonikProRegular ml-2">
-                        Наш блог
-                      </span>
-                    </Link>
-                  </li>
-                  <li className="mb-4">
-                    <Link to="#" className="flex items-center">
-                      <CotegoryIcons colors={"#000"} />
-                      <span className="font-AeonikProRegular ml-2">
-                        Каталог
-                      </span>
-                    </Link>
-                  </li>
-                  <li className="mb-4">
-                    <Link to="#" className="flex items-center">
-                      <MapSitesIcons />
-                      <span className="font-AeonikProRegular ml-2">
-                        Карта сайта
-                      </span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Categories */}
-              <div className="basis-1/2 pl-6">
-                <div className="font-AeonikProMedium w-fit cursor-pointer ss:mb-4 md:mb-[30px]">
-                  Категории
-                </div>
-                {PersonTypeArray?.filter(
-                  (data) => data.id == dressInfo?.type
-                ).map((data) => {
-                  return (
-                    <ul
-                      key={data?.id}
-                      className="text-sm font-AeonikProRegular"
-                    >
-                      <li className="mb-[14px] md:mb-4">
-                        <Link to="#" className="flex items-center">
-                          <img src={data?.man} alt="" className="ml-[2px]" />
-                          <span className="ml-[14px]">Мужчины</span>
-                        </Link>
-                      </li>
-                      <li className="mb-[14px] md:mb-4">
-                        <Link to="#" className="flex items-center">
-                          <img src={data?.woman} alt="" className="ml-[2px]" />
-                          <span className="ml-[14px]">Женщины</span>
-                        </Link>
-                      </li>
-                      <li className="mb-[14px] md:mb-4">
-                        <Link to="#" className="flex items-center">
-                          <img src={data?.boy} alt="" />
-                          <span className="ml-3">Мальчикы</span>
-                        </Link>
-                      </li>
-                      <li className="mb-[14px] md:mb-4">
-                        <Link to="#" className="flex items-center">
-                          <img src={data?.girl} alt="" />
-                          <span className="ml-3">Девочкы</span>
-                        </Link>
-                      </li>
-                      <li className="mb-[14px] md:mb-4">
-                        <Link to="#" className="flex items-center">
-                          <img src={data?.childs} alt="" />
-                          <span className="ml-3">Младенцы</span>
-                        </Link>
-                      </li>
-                    </ul>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Feedback for mobile */}
-            <Link
-              to="#"
-              className="flex justify-center items-center bg-bgColor pl-3 py-[15px] border border-searchBgColor rounded-lg ss:my-[35px] md:my-0 ls:pl-6 md:pl-16 md:mb-0 md:hidden"
-            >
-              <span>
-                <UploadIcons />
-              </span>
-              <span className="text-base font-AeonikProMedium leading-4 ml-[12.5px] mr-2 ls:mr-6 md:mr-[32.37px]">
-                Форма для обратной связи
-              </span>
-              <span className="mr-2 ls:mr-3 md:mr-5 rotate-[90deg]">
-                <ArrowTopIcons colors={"#000"} />
-              </span>
-            </Link>
-
-            {/* Menu for Mobile */}
-            <div className="flex w-full md:hidden md:px-0   md:mb-0">
-              <ul className="flex flex-row text-sm">
-                <div className="basis-1/2">
-                  <li className="mb-4">
-                    <Link to="#" className="flex items-center">
-                      <MarketIcons colors={"#000"} />
-                      <span className="font-AeonikProRegular ml-2">
-                        Магазины
-                      </span>
-                    </Link>
-                  </li>
-                  <li className="mb-4">
-                    <Link to="#" className="flex items-center">
-                      <HouseStatisticIcons colors={"#000"} />
-                      <span className="font-AeonikProRegular ml-2">Бизнес</span>
-                    </Link>
-                  </li>
-                  <li className="mb-4">
-                    <Link to="#" className="flex items-center">
-                      <MapIcons colors={"#000"} />
-                      <span className="font-AeonikProRegular ml-2">Карта</span>
-                    </Link>
-                  </li>
-                  <li className="mb-4">
-                    <Link to="#" className="flex items-center">
-                      <ListCollectionIcons />
-                      <span className="font-AeonikProRegular ml-2">
-                        Мои заказы
-                      </span>
-                    </Link>
-                  </li>
-                  <li className="mb-4">
-                    <Link to="#" className="flex items-center">
-                      <PrivateCheckIcons />
-                      <span className="font-AeonikProRegular ml-2">
-                        Политика конфиденциальности
-                      </span>
-                    </Link>
-                  </li>
-                </div>
-                <div className="basis-1/2 pl-6">
-                  <li className="mb-4">
-                    <Link to="#" className="flex items-center">
-                      <CommentIcons colors={"#000"} />
-                      <span className="font-AeonikProRegular ml-2">Помощь</span>
-                    </Link>
-                  </li>
-                  <li className="mb-4">
-                    <Link to="#" className="flex items-center">
-                      <PhoneIcons colors={"#000"} />
-                      <span className="font-AeonikProRegular ml-2">
-                        Контакты
-                      </span>
-                    </Link>
-                  </li>
-                </div>
-              </ul>
-            </div>
-
-            {/* Location and Language for mobile */}
-            <div className="flex flex-row justify-between w-full  items-center ss:my-[35px] md:my-0  text-sm md:hidden">
-              <Popover
-                open={openRegionMobile}
-                onOpenChange={handleOpenChangeRegionMobile}
-                className="basis-[48%] h-[44px] flex items-center px-[14px] select-none  justify-between  bg-bgColor rounded-lg group "
-                trigger="click"
-                options={["Hide"]}
-                placement="bottom"
-                content={contentMobile}
-              >
-                <LocationIcons />
-                <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black">
-                  {selectRegionMobile}
-                </span>
-                <BiChevronDown
-                  size={25}
-                  style={{ color: "#c2c2c2" }}
-                  className={`${
-                    openRegionMobile
-                      ? "rotate-[-180deg] transition ease-linear duration-200"
-                      : "transition ease-linear duration-200"
-                  }`}
-                />
-              </Popover>
-              {LanguageMobile.filter(
-                (data) => data.id == selectLanguageMobile
-              ).map((data) => {
-                return (
-                  <Popover
-                    key={data?.id}
-                    open={openLanguageMobile}
-                    onOpenChange={handleOpenChangeLanguageMobile}
-                    className="basis-[48%] h-[44px] flex items-center select-none px-[14px]  justify-between  bg-bgColor  border border-searchBgColor rounded-lg group "
-                    trigger="click"
-                    options={["Hide"]}
-                    placement="bottom"
-                    content={contentLanguageMobile}
-                  >
-                    <span className="mr-1">
-                      <img src={data?.icons} alt="" />
-                    </span>
-                    <span className="text-sm font-AeonikProMedium not-italic">
-                      {data?.type}
-                    </span>
-                    <BiChevronDown
-                      size={25}
-                      style={{ color: "#c2c2c2" }}
-                      className={`${
-                        openLanguageMobile
-                          ? "rotate-[-180deg] transition ease-linear duration-200"
-                          : "transition ease-linear duration-200"
-                      }`}
-                    />
-                  </Popover>
-                );
-              })}
-            </div>
-
-            {/* Social networks */}
-            <div className="block  md:hidden">
-              <div className="w-full font-AeonikProMedium cursor-pointer text-base mb-5">
-                Социальная сеть
-              </div>
-              <div className="w-full">
-                <ul className="w-full flex items-center text-sm">
-                  <div className="basis-1/2">
-                    <li className="mb-4">
-                      <Link to="#" className="flex items-center">
-                        <FiInstagram className="text-[20px]" />
-                        <span className="font-AeonikProRegular ml-2">
-                          Instagram
-                        </span>
-                      </Link>
-                    </li>
-                    <li className="mb-4">
-                      <Link to="#" className="flex items-center">
-                        <RiFacebookCircleLine className="text-[20px]" />
-                        <span className="font-AeonikProRegular ml-2">
-                          Facebook
-                        </span>
-                      </Link>
-                    </li>
-                    <li className="mb-4">
-                      <Link to="#" className="flex items-center">
-                        <RiMessengerLine className="text-[20px]" />
-                        <span className="font-AeonikProRegular ml-2">
-                          Message
-                        </span>
-                      </Link>
-                    </li>
-                  </div>
-                  <div className="basis-1/2 mb-9 pl-4">
-                    <li className="mb-4">
-                      <Link to="#" className="flex items-center">
-                        <TbBrandTelegram className="text-[20px]" />
-                        <span className="font-AeonikProRegular ml-2">
-                          Telegram
-                        </span>
-                      </Link>
-                    </li>
-                    <li className="mb-4">
-                      <Link to="#" className="flex items-center">
-                        <AiOutlineYoutube className="text-[20px]" />
-                        <span className="font-AeonikProRegular ml-2  ss:text-sm md:text-base">
-                          You Tube
-                        </span>
-                      </Link>
-                    </li>
-                  </div>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div className="w-full border-b md:hidden ss:block border-gray-200"></div>
-
-          <div className=" ss:mt-[40px] md:mt-[62px]">
-            {/* Catalog and Clothes types */}
-            <div className="mb-[60px]">
-              {/* Catalog Types */}
-              <div className="w-full block mb-7 md:block">
-                <div className="text-base font-AeonikProMedium mb-5 flex">
-                  Каталоги одежды
-                </div>
-                <ul className="flex flex-row items-center flex-wrap">
-                  {catalogTypes.map((catalog, index) => (
-                    <li
-                      key={index}
-                      className="mr-[6px] mb-3 text-sm font-AeonikProMedium"
-                    >
-                      <button className="bg-searchBgColor rounded-lg px-4 py-[10px]">
-                        {catalog.name}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Clothing Types */}
-              <div className="w-full block md:hidden">
-                <div className="text-base font-AeonikProMedium mb-5 flex">
-                  Типы одежды
-                </div>
-                <ul className="flex flex-row items-center flex-wrap">
-                  {clothingTypes.map((catalog, index) => (
-                    <li
-                      key={index}
-                      className="mr-[6px] mb-3 text-sm font-AeonikProMedium"
-                    >
-                      <button className="bg-searchBgColor rounded-lg px-4 py-[10px]">
-                        {catalog.name}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* footer bottom section */}
-            <div className="w-full flex items-center justify-between">
-              <div className="w-full block justify-between">
-                <div className="w-full flex items-center justify-between text-sm font-AeonikProMedium lg:w-fit">
-                  <div className="flex justify-between items-center ">
-                    <span className="mr-2 mt-[-4px]">
-                      <FooterOriginalIcons />
-                    </span>
-                    <span className="text-sm">2022 — Dress.me</span>
-                  </div>
-                  <div className="md:ml-4 md:mr-4">
-                    <span>Все права защищены.</span>
-                  </div>
-                  <div className="font-AeonikProMedium text-center mt-3 hidden lg:m-0 md:block">
-                    <span className="ml-auto">Разработано командой</span>
-                    <Link
-                      to="#"
-                      className={`${footerTextWeatherColor} border-b ml-1`}
-                    >
-                      Dressme
-                    </Link>
-                  </div>
-                </div>
-                <div className="font-AeonikProMedium text-center mt-3 text-sm block md:hidden">
-                  <span>Designed by</span>
-                  <Link
-                    to="#"
-                    className={`${footerTextWeatherColor} border-b ml-2`}
-                  >
-                    Prince.UI
-                  </Link>
-                </div>
-              </div>
-              <div className="flex items-center text-sm ss:hidden md:flex gap-x-3">
+              {/* Location and Language for mobile */}
+              <article className="flex flex-row justify-between w-full  items-center ss:my-[35px] md:my-0  text-sm md:hidden">
                 <Popover
-                  open={openPriceFooter}
-                  onOpenChange={handleOpenChangePriceFooter}
-                  className="w-[175px]  h-12 px-4 rounded-lg bg-bgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group "
+                  open={openRegionMobile}
+                  onOpenChange={handleOpenChangeRegionMobile}
+                  className="basis-[48%] h-[44px] flex items-center px-[14px] select-none  justify-between  bg-bgColor rounded-lg group "
                   trigger="click"
                   options={["Hide"]}
                   placement="bottom"
-                  content={contentPrice}
-                >
-                  <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black">
-                    {selectPriceFooter}
-                  </span>
-
-                  <ArrowTopIcons
-                    colors={"#000"}
-                    className={`${
-                      openPriceFooter
-                        ? "rotate-[-180deg] transition ease-linear duration-200"
-                        : "transition ease-linear duration-200"
-                    }`}
-                  />
-                </Popover>
-                <Popover
-                  open={openRegionFooter}
-                  onOpenChange={handleOpenChangeRegionFooter}
-                  className="w-[175px]  h-12 px-4  rounded-lg bg-bgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group "
-                  trigger="click"
-                  options={["Hide"]}
-                  placement="bottom"
-                  content={contentRegion}
+                  content={contentMobile}
                 >
                   <LocationIcons />
                   <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black">
-                    {selectRegionFooter}
+                    {selectRegionMobile}
                   </span>
-                  <ArrowTopIcons
-                    colors={"#000"}
+                  <BiChevronDown
+                    size={25}
+                    style={{ color: "#c2c2c2" }}
                     className={`${
-                      openRegionFooter
+                      openRegionMobile
                         ? "rotate-[-180deg] transition ease-linear duration-200"
                         : "transition ease-linear duration-200"
                     }`}
                   />
                 </Popover>
-                {LanguageList.filter(
-                  (data) => data.id === selectLanguageFooter
+                {LanguageMobile.filter(
+                  (data) => data.id == selectLanguageMobile
                 ).map((data) => {
                   return (
                     <Popover
                       key={data?.id}
-                      open={openLanguageFooter}
-                      onOpenChange={handleOpenChangeLanguageFooter}
-                      className="w-[175px]  h-12 px-4 rounded-lg bg-bgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group "
+                      open={openLanguageMobile}
+                      onOpenChange={handleOpenChangeLanguageMobile}
+                      className="basis-[48%] h-[44px] flex items-center select-none px-[14px]  justify-between  bg-bgColor  border border-searchBgColor rounded-lg group "
                       trigger="click"
                       options={["Hide"]}
                       placement="bottom"
-                      content={contentLanguage}
+                      content={contentLanguageMobile}
                     >
-                      <span className="mr-1">
+                      <figure className="mr-1">
                         <img src={data?.icons} alt="" />
-                      </span>
-                      <span className="text-sm  font-AeonikProMedium not-italic">
+                      </figure>
+                      <span className="text-sm font-AeonikProMedium not-italic">
                         {data?.type}
                       </span>
-                      <ArrowTopIcons
-                        colors={"#000"}
+                      <BiChevronDown
+                        size={25}
+                        style={{ color: "#c2c2c2" }}
                         className={`${
-                          openLanguageFooter
+                          openLanguageMobile
                             ? "rotate-[-180deg] transition ease-linear duration-200"
                             : "transition ease-linear duration-200"
                         }`}
@@ -1106,12 +906,224 @@ const Footer = () => {
                     </Popover>
                   );
                 })}
-              </div>
-            </div>
+              </article>
+
+              {/* Social networks */}
+              <article className="block  md:hidden">
+                <p className="w-full font-AeonikProMedium cursor-pointer text-base mb-5">
+                  Социальная сеть
+                </p>
+                <div className="w-full">
+                  <ul className="w-full flex items-center text-sm">
+                    <artile className="basis-1/2">
+                      <li className="mb-4">
+                        <Link to="#" className="flex items-center">
+                          <FiInstagram className="text-[20px]" />
+                          <p className="font-AeonikProRegular ml-2">
+                            Instagram
+                          </p>
+                        </Link>
+                      </li>
+                      <li className="mb-4">
+                        <Link to="#" className="flex items-center">
+                          <RiFacebookCircleLine className="text-[20px]" />
+                          <p className="font-AeonikProRegular ml-2">
+                            Facebook
+                          </p>
+                        </Link>
+                      </li>
+                      <li className="mb-4">
+                        <Link to="#" className="flex items-center">
+                          <RiMessengerLine className="text-[20px]" />
+                          <spapn className="font-AeonikProRegular ml-2">
+                            Message
+                          </spapn>
+                        </Link>
+                      </li>
+                    </artile>
+                    <artile className="basis-1/2 mb-9 pl-4">
+                      <li className="mb-4">
+                        <Link to="#" className="flex items-center">
+                          <TbBrandTelegram className="text-[20px]" />
+                          <p className="font-AeonikProRegular ml-2">
+                            Telegram
+                          </p>
+                        </Link>
+                      </li>
+                      <li className="mb-4">
+                        <Link to="#" className="flex items-center">
+                          <AiOutlineYoutube className="text-[20px]" />
+                          <p className="font-AeonikProRegular ml-2  ss:text-sm md:text-base">
+                            You Tube
+                          </p>
+                        </Link>
+                      </li>
+                    </artile>
+                  </ul>
+                </div>
+              </article>
+            </section>
+
+            <section className="w-full border-b md:hidden ss:block border-gray-200"></section>
+
+            <section className=" ss:mt-[40px] md:mt-[62px]">
+              {/* Catalog and Clothes types */}
+              <section className="mb-[60px]">
+                {/* Catalog Types */}
+                <article className="w-full block mb-7 md:block">
+                  <p className="text-base font-AeonikProMedium mb-5 flex">
+                    Каталоги одежды
+                  </p>
+                  <ul className="flex flex-row items-center flex-wrap">
+                    {catalogTypes.map((catalog, index) => (
+                      <li
+                        key={index}
+                        className="mr-[6px] mb-3 text-sm font-AeonikProMedium"
+                      >
+                        <button className="bg-searchBgColor rounded-lg px-4 py-[10px]">
+                          {catalog.name}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+
+                {/* Clothing Types */}
+                <article className="w-full block md:hidden">
+                  <p className="text-base font-AeonikProMedium mb-5 flex">
+                    Типы одежды
+                  </p>
+                  <ul className="flex flex-row items-center flex-wrap">
+                    {clothingTypes.map((catalog, index) => (
+                      <li
+                        key={index}
+                        className="mr-[6px] mb-3 text-sm font-AeonikProMedium"
+                      >
+                        <button className="bg-searchBgColor rounded-lg px-4 py-[10px]">
+                          {catalog.name}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              </section>
+
+              {/* footer bottom section */}
+              <section className="w-full flex items-center justify-between">
+                <article className="w-full block justify-between">
+                  <section className="w-full flex items-center justify-between text-sm font-AeonikProMedium lg:w-fit">
+                    <article className="flex justify-between items-center ">
+                      <span className="mr-2 mt-[-4px]">
+                        <FooterOriginalIcons />
+                      </span>
+                      <span className="text-sm">2022 — Dress.me</span>
+                    </article>
+                    <article className="md:ml-4 md:mr-4">
+                      <p>Все права защищены.</p>
+                    </article>
+                    <article className="font-AeonikProMedium text-center mt-3 hidden lg:m-0 md:block">
+                      <p className="ml-auto">Разработано командой</p>
+                      <Link
+                        to="#"
+                        className={`${footerTextWeatherColor} border-b ml-1`}
+                      >
+                        Dressme
+                      </Link>
+                    </article>
+                  </section>
+                  <section className="font-AeonikProMedium text-center mt-3 text-sm block md:hidden">
+                    <p>Designed by</p>
+                    <Link
+                      to="#"
+                      className={`${footerTextWeatherColor} border-b ml-2`}
+                    >
+                      Prince.UI
+                    </Link>
+                  </section>
+                </article>
+                <article className="flex items-center text-sm ss:hidden md:flex gap-x-3">
+                  <Popover
+                    open={openPriceFooter}
+                    onOpenChange={handleOpenChangePriceFooter}
+                    className="w-[175px]  h-12 px-4 rounded-lg bg-bgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group "
+                    trigger="click"
+                    options={["Hide"]}
+                    placement="bottom"
+                    content={contentPrice}
+                  >
+                    <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black">
+                      {selectPriceFooter}
+                    </span>
+
+                    <ArrowTopIcons
+                      colors={"#000"}
+                      className={`${
+                        openPriceFooter
+                          ? "rotate-[-180deg] transition ease-linear duration-200"
+                          : "transition ease-linear duration-200"
+                      }`}
+                    />
+                  </Popover>
+                  <Popover
+                    open={openRegionFooter}
+                    onOpenChange={handleOpenChangeRegionFooter}
+                    className="w-[175px]  h-12 px-4  rounded-lg bg-bgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group "
+                    trigger="click"
+                    options={["Hide"]}
+                    placement="bottom"
+                    content={contentRegion}
+                  >
+                    <LocationIcons />
+                    <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black">
+                      {selectRegionFooter}
+                    </span>
+                    <ArrowTopIcons
+                      colors={"#000"}
+                      className={`${
+                        openRegionFooter
+                          ? "rotate-[-180deg] transition ease-linear duration-200"
+                          : "transition ease-linear duration-200"
+                      }`}
+                    />
+                  </Popover>
+                  {LanguageList.filter(
+                    (data) => data.id === selectLanguageFooter
+                  ).map((data) => {
+                    return (
+                      <Popover
+                        key={data?.id}
+                        open={openLanguageFooter}
+                        onOpenChange={handleOpenChangeLanguageFooter}
+                        className="w-[175px]  h-12 px-4 rounded-lg bg-bgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group "
+                        trigger="click"
+                        options={["Hide"]}
+                        placement="bottom"
+                        content={contentLanguage}
+                      >
+                        <figure className="mr-1">
+                          <img src={data?.icons} alt="" />
+                        </figure>
+                        <span className="text-sm  font-AeonikProMedium not-italic">
+                          {data?.type}
+                        </span>
+                        <ArrowTopIcons
+                          colors={"#000"}
+                          className={`${
+                            openLanguageFooter
+                              ? "rotate-[-180deg] transition ease-linear duration-200"
+                              : "transition ease-linear duration-200"
+                          }`}
+                        />
+                      </Popover>
+                    );
+                  })}
+                </article>
+              </section>
+            </section>
           </div>
-        </div>
-      </div>
-    </div>
+        </article>
+      </section>
+    </nav>
   );
 };
 export default Footer;

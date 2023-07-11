@@ -235,13 +235,13 @@ const BottomHeader = () => {
           placement="bottom"
           content={contentWear}
         >
-          <figure>
+          <span>
             <ClothesIcons />
-          </figure>
+          </span>
           <p className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black">
             {selectWear}
           </p>
-          <figure>
+          <span>
             <BiChevronDown
               size={20}
               style={{ color: "#c2c2c2" }}
@@ -249,7 +249,7 @@ const BottomHeader = () => {
                 state?.openwear ? "rotate-[-180deg]" : ""
               } duration-200`}
             />
-          </figure>
+          </span>
         </Popover>
         <Popover
           open={state?.openPrice}
@@ -260,14 +260,14 @@ const BottomHeader = () => {
           placement="bottom"
           content={contentPrice}
         >
-          <figure className="w-[48px] h-full flex items-center justify-center border-r border-searchBgColor">
+          <span className="w-[48px] h-full flex items-center justify-center border-r border-searchBgColor">
             <DollorIcons />
-          </figure>
-          <figure className=" w-[142px] h-full flex justify-between items-center px-3">
+          </span>
+          <div className=" w-[142px] h-full flex justify-between items-center px-3">
             <p className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black ">
               {selectPrice}
             </p>
-            <figcaption className="">
+            <span>
               <BiChevronDown
                 size={20}
                 style={{ color: "#c2c2c2" }}
@@ -275,19 +275,19 @@ const BottomHeader = () => {
                   state?.openPrice ? "rotate-[-180deg]" : ""
                 } duration-200`}
               />
-            </figcaption>
-          </figure>
+            </span>
+          </div>
         </Popover>
 
-        <article className="flex items-center w-[536px] justify-start bg-btnBgColor overflow-hidden rounded-lg border-searchBgColor border h-[44px] ml-2">
-          <section
+        <div className="flex items-center w-[536px] justify-start bg-btnBgColor overflow-hidden rounded-lg border-searchBgColor border h-[44px] ml-2">
+          <article
             onClick={() =>
               setState({ ...state, textToColor: !state.textToColor })
             }
             className="w-[48px] cursor-pointer border-r border-searchBgColor h-full flex items-center justify-center"
           >
             <div className=" w-fit h-fit flex items-center justify-center relative  select-none ">
-              <figure className={style.mainOne}>
+              <span className={style.mainOne}>
                 <svg
                   width="4"
                   height="4"
@@ -303,22 +303,22 @@ const BottomHeader = () => {
                     strokeLinejoin="round"
                   />
                 </svg>
-              </figure>
-              <article className={style.mainTwo}></article>
-              <article className={
+              </span>
+              <span className={style.mainTwo}></span>
+              <span className={
                   state?.textToColor ? style.MainHtree : style.mainThreerotate
                 }
-              ></article>
+              ></span>
             </div>
-          </section>
-          <section className="w-[480px] h-full overflow-hidden flex items-center justify-between">
-            <section className={`${
+          </article>
+          <article className="w-[480px] h-full overflow-hidden flex items-center justify-between">
+            <div className={`${
                 state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
               } px-3 w-full duration-500  h-full flex items-center justify-between  `}
             >
               {changeColor?.map((data) => {
                 return (
-                  <article key={data?.id}>
+                  <div key={data?.id}>
                     <label
                       key={data?.id}
                       htmlFor={data?.id}
@@ -347,10 +347,10 @@ const BottomHeader = () => {
                       onChange={(e) => setGetRadio(e.target.value)}
                       className={"hidden  w-full h-full"}
                     />
-                  </article>
+                  </div>
                 );
               })}
-            </section>
+            </div>
             <p
               className={`${
                 state?.textToColor ? " mr-0" : " mr-[-500px]"
@@ -358,9 +358,9 @@ const BottomHeader = () => {
             >
               Не давай своей гардеробной шкафной жизни стать скучной.
             </p>
-          </section>
-        </article>
-        <article className="line h-6 border-r-[1px] text-textColor mx-3"></article>
+          </article>
+        </div>
+        <div className="line h-6 border-r-[1px] text-textColor mx-3"></div>
         {personItems
           ?.filter((value) => value.id === dressInfo?.type)
           .map((data) => {

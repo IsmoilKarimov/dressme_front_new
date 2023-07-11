@@ -167,49 +167,49 @@ const handleTypesofClothes = () => {
   );
 
   return (
-    <div className="flex flex-col justify-center border-b border-searchBgColor items-center md:my-5">
-      <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
+    <main className="flex flex-col justify-center border-b border-searchBgColor items-center md:my-5">
+      <section className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
         <div className="w-[100%] h-fit">
-          <div className="w-full flex flex-col">
-            <div className="w-full h-fit md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
+          <action className="w-full flex flex-col">
+            <figure className="w-full h-fit md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
               <img
                 className=" object-cover"
                 src="https://storage2.alifshop.uz/files?k1=07bc1bca-7404-4f08-a5dd-1c49126c5afd&k2=dde491d3e034894170e0366666da4f078f92216e7c708decaa7f72d45f4de79bca3355df5beec19676aaaf30f0911495c3fb56cce0045c6ae88d98f03af159be"
                 alt=""
               />
-            </div>
+            </figure>
             <div className="w-full md:h-[90px]  mt-2 md:mt-0  h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               {/* 1 */}
-              <div className="w-full md:w-fit flex h-[80px] md:h-fit items-center md:ml-[60px]">
-                <div className="w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
+              <action className="w-full md:w-fit flex h-[80px] md:h-fit items-center md:ml-[60px]">
+                <figure className="w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
                   <img src={nike} alt="" />
-                </div>
+                </figure>
                 <div className="flex flex-col ml-8">
-                  <div className="text-xl font-AeonikProMedium mb-3">
+                  <p className="text-xl font-AeonikProMedium mb-3">
                     {name}
-                  </div>
+                  </p>
                   <div className="">
                     <div className="flex items-center ">
                       <div className="flex items-center  mr-[6px]">
                         <StarIcons />
                       </div>
                       <div className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 md:ml-1 flex items-center text-sm">
-                        <div className="font-AeonikProMedium text-black mr-1">
+                        <p className="font-AeonikProMedium text-black mr-1">
                           5.0
-                        </div>
-                        <div className="text-setTexOpacity font-AeonikProRegular">
+                        </p>
+                        <p className="text-setTexOpacity font-AeonikProRegular">
                           (859 votes) <span className="ml-[10px]">|</span>{" "}
-                        </div>
-                        <div className="font-AeonikProRegular ml-[10px] text-setTexOpacity">
+                        </p>
+                        <p className="font-AeonikProRegular ml-[10px] text-setTexOpacity">
                           4937 orders
-                        </div>
+                        </p>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </action>
               {/* 2 */}
-              <div className="w-full md:w-fit flex items-center  mt-6 md:mt-0">
+              <action className="w-full md:w-fit flex items-center  mt-6 md:mt-0">
                 <NavLink
                   to="/delivery-points"
                   className="flex items-center justify-center w-12 h-12 rounded-lg border border-searchBgColor cursor-pointer"
@@ -226,9 +226,9 @@ const handleTypesofClothes = () => {
                     60 Amir Temur Avenue, Mirzo Ulugbek district Tashkent 100017
                   </p>
                 </NavLink>
-              </div>
+              </action>
               {/* 3 */}
-              <div className="w-full md:w-fit flex items-center justify-between md:mr-5  mt-6 md:mt-0">
+              <action className="w-full md:w-fit flex items-center justify-between md:mr-5  mt-6 md:mt-0">
                 <div className="flex items-center">
                   <button className="flex items-center justify-center border border-searchBgColor w-12 h-12 rounded-lg mr-3">
                     <VideoStoreIcons />
@@ -240,11 +240,11 @@ const handleTypesofClothes = () => {
                     <WomanGenIcons />
                   </button>
                 </div>
-              </div>
+              </action>
             </div>
-          </div>
-          <div className="md:border-b hidden md:border-searchBgColor md:flex flex-gap-6 justify-between w-full pb-10 mt-[60px]">
-            <div className="w-[22%] h-full  ">
+          </action>
+          <action className="md:border-b hidden md:border-searchBgColor md:flex flex-gap-6 justify-between w-full pb-10 mt-[60px]">
+            <section className="w-[22%] h-full  ">
               <div>
                 <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                   По категории
@@ -261,8 +261,8 @@ const handleTypesofClothes = () => {
                   </span>
                 </button>
               </div>
-            </div>
-            <div className="w-[77%] h-full ">
+            </section>
+            <section className="w-[77%] h-full ">
               <div>
                 <span className="not-italic font-AeonikProMedium text-sm  leading-4 text-black tracking-[1%]">
                   По категории
@@ -288,9 +288,9 @@ const handleTypesofClothes = () => {
                   })}
                 </Slider>
               </div>
-            </div>
-          </div>
-          <div className="w-full md:hidden flex items-center justify-between mt-6 mb-3  px-4">
+            </section>
+          </action>
+          <action className="w-full md:hidden flex items-center justify-between mt-6 mb-3  px-4">
             <button
               onClick={handleFilter}
               className="h-[44px] w-[48%] rounded-lg select-none border border-searchBgColor bg-btnBgColor flex items-center justify-center"
@@ -298,9 +298,9 @@ const handleTypesofClothes = () => {
               <span>
                 <FilterIcons colors={"#000"} />
               </span>
-              <span className="ml-2 not-italic font-AeonikProMedium  text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+              <p className="ml-2 not-italic font-AeonikProMedium  text-sm leading-4 text-black tracking-[1%] cursor-pointer">
                 Фильтры
-              </span>
+              </p>
             </button>
 
 
@@ -316,14 +316,14 @@ const handleTypesofClothes = () => {
               <span>
                 <ClothesIcons />
               </span>
-              <span className="ml-2 not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+              <p className="ml-2 not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
                 Тип одеждый
-              </span>
+              </p>
             </Popover>
-          </div>
+          </action>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 export default ShoppingStoreOfficialTop;

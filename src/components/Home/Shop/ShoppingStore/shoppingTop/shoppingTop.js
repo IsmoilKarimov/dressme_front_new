@@ -80,10 +80,10 @@ const ShoppingTop = () => {
   };
 
   return (
-    <div className="hidden md:flex flex-col min-h-[44px]  justify-center items-center my-5">
-      <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
-        <div className="flex items-center">
-          <div className="w-[98%] flex items-center border rounded-lg bg-slate-50 mr-6">
+    <main className="hidden md:flex flex-col min-h-[44px]  justify-center items-center my-5">
+      <section className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
+        <article className="flex items-center">
+          <section className="w-[98%] flex items-center border rounded-lg bg-slate-50 mr-6">
             {typesCategory.map((data) => {
               return (
                 <div
@@ -100,8 +100,7 @@ const ShoppingTop = () => {
                     } `}
                   >
                     <span className="mr-2">{data.icon}</span>
-
-                    <span>{data.name}</span>
+                    <p>{data.name}</p>
                   </button>
                   <span
                     className={`${
@@ -115,9 +114,9 @@ const ShoppingTop = () => {
                 </div>
               );
             })}
-          </div>
+          </section>
 
-          <div className="w-[40%] flex items-center border rounded-lg bg-slate-50">
+          <section className="w-[40%] flex items-center border rounded-lg bg-slate-50">
             {genderCategory.map((data) => {
               return (
                 <div
@@ -137,7 +136,7 @@ const ShoppingTop = () => {
                   >
                     <span className="">{data.icon}</span>
                     {data.name ? (
-                      <span className=" ml-2">{data.name}</span>
+                      <p className=" ml-2">{data.name}</p>
                     ) : (
                       ""
                     )}
@@ -154,30 +153,30 @@ const ShoppingTop = () => {
                 </div>
               );
             })}
-          </div>
-        </div>
+          </section>
+        </article>
 
-        <div className="w-[fit] flex items-center ">
-          <div className="flex items-center w-fit mr-4">
-            <span className="not-italic font-normal text-sm leading-4 text-setTexOpacity tractking-[1%]">
+        <article className="w-[fit] flex items-center ">
+          <article className="flex items-center w-fit mr-4">
+            <p className="not-italic font-normal text-sm leading-4 text-setTexOpacity tractking-[1%]">
               Сортировка:
-            </span>
-          </div>
-          <div>
+            </p>
+          </article>
+          <article>
             <button className="w-[260px] h-[44px] px-4 rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between  cursor-pointer select-none group  ">
-              <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+              <p className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                 Последние добавленные{" "}
-              </span>
+              </p>
               <span>
                 <span className={`rotate-[0deg]`}>
                   <ArrowTopIcons colors={"#000"} />
                 </span>
               </span>
             </button>
-          </div>
-        </div>
-      </div>
-    </div>
+          </article>
+        </article>
+      </section>
+    </main>
   );
 };
 export default ShoppingTop;

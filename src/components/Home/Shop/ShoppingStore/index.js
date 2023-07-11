@@ -10,16 +10,16 @@ export default function ShoppingStore() {
     });
   }, []);
   return (
-    <div className="w-full flex flex-col items-center px-4 md:px-0">
-      <div className="w-full md:border-b md:border-searchBgColor">
+    <main className="w-full flex flex-col items-center px-4 md:px-0">
+      <section className="w-full md:border-b md:border-searchBgColor">
         <ShoppingStoreBreadCrumb />
-      </div>
-      <div className="w-full md:border-b md:border-searchBgColor">
+      </section>
+      <section className="w-full md:border-b md:border-searchBgColor">
         <ShoppingTop />
-      </div>
-      <div className="w-full">
+      </section>
+      <section className="w-full">
         <ShoppingBrands />
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
