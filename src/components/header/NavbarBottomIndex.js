@@ -55,12 +55,12 @@ const NavbarBottomIndex = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col justify-center items-center m-0 p-0 box-border ">
-      <div className="max-w-[1280px] w-[100%] flex justify-center  items-center m-auto">
-        <div className="ss:w-full flex flex-col justify-center md:mt-[6px]">
-          <div className=" w-full  flex flex-col justify-center ss:px-4 md:px-0">
+    <nav className="flex flex-col justify-center items-center m-0 p-0 box-border ">
+      <section className="max-w-[1280px] w-[100%] flex justify-center  items-center m-auto">
+        <article className="ss:w-full flex flex-col justify-center md:mt-[6px]">
+          <section className=" w-full  flex flex-col justify-center ss:px-4 md:px-0">
             {locationWindow === "/sign_in" || locationWindow === "/sign_up" ? (
-              <div className="w-full md:w-[350px] md:mx-auto my-3  flex gap-x-2 items-center justify-between ss:border md:border-0 ss:bg-btnBgColor md:bg-transparent border-searchBgColor rounded-lg">
+              <article className="w-full md:w-[350px] md:mx-auto my-3  flex gap-x-2 items-center justify-between ss:border md:border-0 ss:bg-btnBgColor md:bg-transparent border-searchBgColor rounded-lg">
                 <NavLink
                   to={"/sign_in"}
                   className={({ isActive }) =>
@@ -69,12 +69,12 @@ const NavbarBottomIndex = () => {
                       : "w-1/2 md:h-[48px] ss:h-[52px] px-2   justify-center flex  items-center  md:bg-btnBgColor md:border   rounded-lg"
                   }
                 >
-                  <span>
+                  <figure>
                     <PersonIcons colors={IconsColor} />
-                  </span>
-                  <span className=" font-AeonikProMedium ml-1 not-italic text-sm leading-4 tracking-[0,16px]">
+                  </figure>
+                  <p className=" font-AeonikProMedium ml-1 not-italic text-sm leading-4 tracking-[0,16px]">
                     Войти в систему
-                  </span>
+                  </p>
                 </NavLink>
                 <NavLink
                   to={"/sign_up"}
@@ -84,19 +84,19 @@ const NavbarBottomIndex = () => {
                       : "w-1/2 md:h-[48px] ss:h-[52px] px-2   justify-center flex  items-center  md:bg-btnBgColor md:border   rounded-lg"
                   }
                 >
-                  <span>
+                  <figure>
                     <PersonPlusIcons colors={IconsColor} />
-                  </span>
-                  <span className=" font-AeonikProMedium not-italic ml-1  text-sm leading-4 tracking-[0,16px]">
+                  </figure>
+                  <p className=" font-AeonikProMedium not-italic ml-1  text-sm leading-4 tracking-[0,16px]">
                     Создать аккаунт
-                  </span>
+                  </p>
                 </NavLink>
-              </div>
+              </article>
             ) : null}
             {locationWindow === "/forget_password" ||
             locationWindow === "/enter_password_validate" ||
             locationWindow === "/set_new_password" ? (
-              <>
+              <article>
                 {/* Mobile-Device */}
                 <div className="w-full md:hidden md:mx-auto  my-3 ss:block md:w-fit ss:flex gap-x-2 items-center justify-between ss:border md:border-0 ss:bg-btnBgColor md:bg-transparent border-searchBgColor rounded-lg">
                   <NavLink
@@ -112,9 +112,7 @@ const NavbarBottomIndex = () => {
                       Назад
                     </span>
                   </NavLink>
-                  <div
-                    //  to={"/forget_password"}
-                    className={
+                  <div className={
                       "w-[65%] md:h-[48px] ss:h-[52px] px-4   justify-center flex  items-center bg-white  border border-searchBgColor  rounded-lg"
                     }
                   >
@@ -152,22 +150,22 @@ const NavbarBottomIndex = () => {
                     </span>
                   </div>{" "}
                 </div>
-              </>
+              </article>
             ) : null}
             {locationWindow === "/" ? (
-              <div className=" md:my-3">
+              <article className=" md:my-3">
                 <BottomHeader />
-              </div>
+              </article>
             ) : null}
             {locationWindow === "/categoriesType" ? (
-              <div className=" my-3">
+              <article className=" my-3">
                 <CategoryNavbar />
-              </div>
+              </article>
             ) : null}
-          </div>
-        </div>
-      </div>
-    </div>
+          </section>
+        </article>
+      </section>
+    </nav>
   );
 };
 

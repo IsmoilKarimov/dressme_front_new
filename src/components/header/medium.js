@@ -128,8 +128,8 @@ const MediumHeader = () => {
   }, [location.pathname]);
 
   return (
-    <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
-      <article className="max-w-[1280px] w-[100%] block md:flex px-3 md:px-0 md:py-0 justify-center  bg-yandexNavbar backdrop-blur-sm items-center m-auto ">
+    <nav className="flex flex-col justify-center items-center m-0 p-0 box-border">
+      <section className="max-w-[1280px] w-[100%] block md:flex px-3 md:px-0 md:py-0 justify-center  bg-yandexNavbar backdrop-blur-sm items-center m-auto ">
         <article className="relative">
           {/* Starting of Full Screen page section */}
           <section className="w-full flex justify-center items-center py-3 overscroll-none overflow-y-hidden ">
@@ -258,14 +258,14 @@ const MediumHeader = () => {
                 to="/delivery-points"
                 className="items-center justify-center bg-btnBgColor rounded-xl md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex"
               >
-                <span className="pr-[6px]">
+                <figure className="pr-[6px]">
                   <MapIcons colors={"#000"} />
-                </span>
-                <span className="font-AeonikProMedium text-sm">Карта</span>
+                </figure>
+                <p className="font-AeonikProMedium text-sm">Карта</p>
               </NavLink>
 
               {/* Line border */}
-              <div className="line h-5 border-x-[1px] text-textColor ss:hidden md:block mx-3"></div>
+              <p className="line h-5 border-x-[1px] text-textColor ss:hidden md:block mx-3"></p>
 
               {/* User section */}
               {localStorage.getItem("dressMeLogin") ? (
@@ -275,9 +275,9 @@ const MediumHeader = () => {
                 >
                   {({ isActive }) =>
                     isActive ? (
-                      <ActivePersonIcons colors={IconsColor} />
+                      <figure><ActivePersonIcons colors={IconsColor} /></figure>
                     ) : (
-                      <PersonIcons colors={"#000"} />
+                      <figure><PersonIcons colors={"#000"} /></figure>
                     )
                   }
                 </NavLink>
@@ -286,7 +286,7 @@ const MediumHeader = () => {
                   to="/sign_in"
                   className=" bg-btnBgColor rounded-xl items-center justify-center w-11 h-11 mr-2 hidden md:flex"
                 >
-                  <PersonIcons colors={"#000"} />
+                  <figure><PersonIcons colors={"#000"} /></figure>
                 </NavLink>
               )}
 
@@ -299,31 +299,34 @@ const MediumHeader = () => {
               >
                 {({ isActive }) =>
                   isActive ? (
-                    <svg
-                      width="20"
-                      height="18"
-                      viewBox="0 0 15 14"
-                      fill="#D50000"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M8.41337 12.8733C8.18671 12.9533 7.81337 12.9533 7.58671 12.8733C5.65337 12.2133 1.33337 9.45998 1.33337 4.79332C1.33337 2.73332 2.99337 1.06665 5.04004 1.06665C6.25337 1.06665 7.32671 1.65332 8.00004 2.55998C8.67337 1.65332 9.75337 1.06665 10.96 1.06665C13.0067 1.06665 14.6667 2.73332 14.6667 4.79332C14.6667 9.45998 10.3467 12.2133 8.41337 12.8733Z"
-                        stroke="#D50000"
-                        strokeWidth="1.2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                    <figure>
+                      <svg
+                        width="20"
+                        height="18"
+                        viewBox="0 0 15 14"
+                        fill="#D50000"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8.41337 12.8733C8.18671 12.9533 7.81337 12.9533 7.58671 12.8733C5.65337 12.2133 1.33337 9.45998 1.33337 4.79332C1.33337 2.73332 2.99337 1.06665 5.04004 1.06665C6.25337 1.06665 7.32671 1.65332 8.00004 2.55998C8.67337 1.65332 9.75337 1.06665 10.96 1.06665C13.0067 1.06665 14.6667 2.73332 14.6667 4.79332C14.6667 9.45998 10.3467 12.2133 8.41337 12.8733Z"
+                          stroke="#D50000"
+                          strokeWidth="1.2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </figure>
                   ) : (
-                    <img src={HeartImg} className={"w-5 h-5"} alt="heart" />
+                    <figure><img src={HeartImg} className={"w-5 h-5"} alt="heart" /></figure>
                   )
                 }
               </NavLink>
             </article>
           </section>
+          
           {/*Starting of Blocked  Hamburger Menu section */}
           <section
-            className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen	pb-[140px] px-3 ${
+            className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen pb-[140px] px-3 ${
               state?.hamburgerMenu
                 ? " flex flex-col ease-linear duration-500 overscroll-none"
                 : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
@@ -331,7 +334,7 @@ const MediumHeader = () => {
           >
             <div className={`w-full h-full flex flex-wrap content-between`}>
               {/* Searching section */}
-              <div className={`w-full h-fit flex flex-col `}>
+              <article className={`w-full h-fit flex flex-col `}>
                 <div className="search flex items-center bg-btnBgColor justify-between rounded-xl font-AeonikProMedium h-12 mt-3 mb-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
                   <span className=" flex ss:pl-[11.65px] md:hidden">
                     <SearchIcons />
@@ -424,9 +427,9 @@ const MediumHeader = () => {
                     </NavLink>
                   </li>
                 </ul>
-              </div>
+              </article>
 
-              <div className="w-full flex flex-col">
+              <article className="w-full flex flex-col">
                 {/* Line */}
                 <div className="line border-b w-full  border-searchBgColor mb-3 ls:w-full"></div>
 
@@ -452,7 +455,7 @@ const MediumHeader = () => {
                     </span>
                   </Link>
                 </div>
-              </div>
+              </article>
             </div>
           </section>
           {/*Starting of Blocked  Hamburger Menu section */}
@@ -518,8 +521,8 @@ const MediumHeader = () => {
           )}
           {/* Ending of Blocked  Hamburger Menu section  */}{" "}
         </article>
-      </article>
-    </main>
+      </section>
+    </nav>
   );
 };
 export default MediumHeader;
