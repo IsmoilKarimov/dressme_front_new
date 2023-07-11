@@ -3,43 +3,8 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { Popover } from "antd";
-import {
-  ActivePersonIcons,
-  ArrowPrevousNext,
-  ArrowTopIcons,
-  CommentIcons,
-  CotegoryIcons,
-  HouseStatisticIcons,
-  LocationIcons,
-  MapIcons,
-  MarketIcons,
-  MenuCloseIcons,
-  MenuOpenIcons,
-  PersonIcons,
-  PhoneIcons,
-  SearchIcons,
-  VolumeIcons,
-} from "../../AssetsMain/icons";
-import {
-  BrandAutumm,
-  BrandSpring,
-  BrandSummer,
-  BrandWinter,
-  SpringMale,
-  SummerMale,
-  AutummMale,
-  WinterMale,
-  SpringFemale,
-  SummerFemale,
-  AutummFemale,
-  WinterFemale,
-  springSeason,
-  summerSeason,
-  winterSeason,
-  autummSeason,
-  UzbekFlag,
-  HeartImg,
-} from "../../AssetsMain";
+import { ActivePersonIcons, ArrowPrevousNext, ArrowTopIcons, CommentIcons, CotegoryIcons, HouseStatisticIcons, LocationIcons, MapIcons, MarketIcons, MenuCloseIcons, MenuOpenIcons, PersonIcons, PhoneIcons, SearchIcons, VolumeIcons } from "../../AssetsMain/icons";
+import { BrandAutumm, BrandSpring, BrandSummer, BrandWinter, SpringMale, SummerMale, AutummMale, WinterMale, SpringFemale, SummerFemale, AutummFemale, WinterFemale, springSeason, summerSeason, winterSeason, autummSeason, UzbekFlag, HeartImg} from "../../AssetsMain";
 
 const MediumHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -69,31 +34,28 @@ const MediumHeader = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [scrollPost]);
-  // -----------------------------------------------------
+  
+  // --------------------- \\
   let IconsColor = "";
   let dataStyle = "";
   let hoverText = "";
   if (dressInfo?.type === 1111) {
     IconsColor = "#008F0E";
-
     dataStyle = "bg-bgSpring bg-opacity-10	  text-borderSpring ";
     hoverText = " hover:text-borderSpring ";
   }
   if (dressInfo?.type === 2222) {
     IconsColor = "#EAA700";
-
     dataStyle = "bg-bgSummer  bg-opacity-10  text-borderSummer";
     hoverText = " hover:text-borderSummer ";
   }
   if (dressInfo?.type === 3333) {
     IconsColor = "#E17A02";
-
     dataStyle = "bg-bgAutumm bg-opacity-10  text-borderAutumm";
     hoverText = " hover:text-borderAutumm ";
   }
   if (dressInfo?.type === 4444) {
     IconsColor = "#007DCA";
-
     dataStyle = "bg-bgWinter bg-opacity-10  text-borderWinter";
     hoverText = " hover:text-borderWinter ";
   }
@@ -134,30 +96,29 @@ const MediumHeader = () => {
   };
 
   const contentWear = (
-    <div className="ss:w-fit md:w-[120px] h-fit m-0 p-0 ">
+    <section className="ss:w-fit md:w-[120px] h-fit m-0 p-0 ">
       {SeasonTypeArray.map((value) => {
         return (
-          <p
+          <article
             key={value?.id}
             className="w-full h-[42px] flex items-center justify-center md:pl-3 md:justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
             onClick={() => handleSeason(value.id)}
           >
-            <span className="md:mr-3">
+            <figure className="md:mr-3">
               <img src={value?.icons} alt="" />
-            </span>
-            <span
+            </figure>
+            <article
               className={`ss:hidden md:inline-block font-AeonikProMedium text-base text-black not-italic ${hoverText}`}
             >
               {value?.type}
-            </span>
-          </p>
+            </article>
+          </article>
         );
       })}
-    </div>
+    </section>
   );
 
   // Location pathname
-
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -167,39 +128,39 @@ const MediumHeader = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col justify-center items-center m-0 p-0 box-border ">
-      <div className="max-w-[1280px] w-[100%] block md:flex px-3 md:px-0 md:py-0 justify-center  bg-yandexNavbar backdrop-blur-sm items-center m-auto ">
-        <div className="relative">
+    <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
+      <article className="max-w-[1280px] w-[100%] block md:flex px-3 md:px-0 md:py-0 justify-center  bg-yandexNavbar backdrop-blur-sm items-center m-auto ">
+        <article className="relative">
           {/* Starting of Full Screen page section */}
-          <div className="w-full flex justify-center items-center py-3 overscroll-none overflow-y-hidden ">
-            <div className=" w-full flex items-center ss:w-full md:w-fit justify-between ">
+          <section className="w-full flex justify-center items-center py-3 overscroll-none overflow-y-hidden ">
+            <article className=" w-full flex items-center ss:w-full md:w-fit justify-between ">
               {/* Menu section */}
               {locationWindow !== "/delivery-points" ? (
-                <div
+                <article
                   onClick={toggleHamburger}
                   className={`flex items-center justify-center bg-btnBgColor border border-searchBgColor w-12 h-12 cursor-pointer md:hidden rounded-xl`}
                 >
                   {state?.hamburgerMenu ? (
-                    <span>
+                    <figure>
                       <MenuCloseIcons />
-                    </span>
+                    </figure>
                   ) : (
-                    <span>
+                    <figure>
                       <MenuOpenIcons />
-                    </span>
+                    </figure>
                   )}
-                </div>
+                </article>
               ) : (
-                <div
+                <atricle
                   onClick={() => {
                     navigate(-1);
                   }}
                   className={`flex items-center justify-center bg-btnBgColor border border-searchBgColor w-12 h-12 cursor-pointer md:hidden rounded-xl`}
                 >
-                  <span>
+                  <figure>
                     <ArrowPrevousNext />
-                  </span>
-                </div>
+                  </figure>
+                </atricle>
               )}
 
               {/* Logo section */}
@@ -222,16 +183,16 @@ const MediumHeader = () => {
               </NavLink>
 
               {/* Voice section */}
-              <div
+              <article
                 className={` bg-btnBgColor w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
               >
-                <span className="w-[22px]">
+                <figure className="w-[22px]">
                   <VolumeIcons colors={IconsColor} />
-                </span>
-              </div>
+                </figure>
+              </article>
 
               {/* Weather section */}
-              <div className="w-12 h-12 md:w-[120px] md:h-11 bg-btnBgColor border border-searchBgColor rounded-xl  md:rounded-lg ml-2">
+              <article className="w-12 h-12 md:w-[120px] md:h-11 bg-btnBgColor border border-searchBgColor rounded-xl  md:rounded-lg ml-2">
                 {SeasonTypeArray.filter(
                   (data) => data.id === dressInfo.type
                 ).map((data) => {
@@ -246,51 +207,51 @@ const MediumHeader = () => {
                       placement="bottom"
                       content={contentWear}
                     >
-                      <div className="w-full h-full sm:flex items-center select-none cursor-pointer  ">
+                      <figure className="w-full h-full sm:flex items-center select-none cursor-pointer  ">
                         <img
                           src={data?.icons}
                           alt="weather"
                           className="mr-0 md:mr-[5px] "
                         />
-                        <div className="ss:hidden font-AeonikProMedium hidden md:flex items-center text-[15px] ">
+                        <figcaption className="ss:hidden font-AeonikProMedium hidden md:flex items-center text-[15px] ">
                           {data?.type}
-                        </div>
-                      </div>
+                        </figcaption>
+                      </figure>
                     </Popover>
                   );
                 })}
-              </div>
+              </article>
 
               {/* Searching section */}
-              <div className="items-center justify-center rounded-xl font-AeonikProMedium h-[44px] md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
+              <article className="items-center justify-center rounded-xl font-AeonikProMedium h-[44px] md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
                 {/* Catalog section */}
                 <button
                   className={`items-center ${dataStyle} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
                 >
-                  <span>
+                  <figure>
                     <CotegoryIcons colors={IconsColor} />
-                  </span>
-                  <span
+                  </figure>
+                  <article
                     className={` not-italic font-AeonikProMedium text-sm leading-4 `}
                   >
                     Категории
-                  </span>
+                  </article>
                 </button>
-                <span className="flex md:hidden">
+                <figure className="flex md:hidden">
                   <SearchIcons />
-                </span>
+                </figure>
                 <input
                   type="text"
                   placeholder="Поиск продуктов или брендов"
                   className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
                 />
                 <button className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]">
-                  <SearchIcons />
+                  <figure><SearchIcons /></figure>
                 </button>
-              </div>
+              </article>
 
               {/* Line border */}
-              <div className="line h-5 border-x-[1px] text-textColor ss:hidden md:block mx-3"></div>
+              <article className="line h-5 border-x-[1px] text-textColor ss:hidden md:block mx-3"></article>
 
               {/* Map section */}
               <NavLink
@@ -358,10 +319,10 @@ const MediumHeader = () => {
                   )
                 }
               </NavLink>
-            </div>
-          </div>
+            </article>
+          </section>
           {/*Starting of Blocked  Hamburger Menu section */}
-          <div
+          <section
             className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen	pb-[140px] px-3 ${
               state?.hamburgerMenu
                 ? " flex flex-col ease-linear duration-500 overscroll-none"
@@ -493,10 +454,10 @@ const MediumHeader = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </section>
           {/*Starting of Blocked  Hamburger Menu section */}
           {locationWindow !== "/delivery-points" && (
-            <div className={`md:hidden relative w-full mx-auto `}>
+            <section className={`md:hidden relative w-full mx-auto `}>
               <div className={`sticky top-0 py-1 bg-white  w-full z-10`}>
                 {/* Searching section */}
                 <div className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%]  border border-searchBgColor bg-white ">
@@ -553,12 +514,12 @@ const MediumHeader = () => {
                     })}
                 </div>
               )}
-            </div>
+            </section>
           )}
           {/* Ending of Blocked  Hamburger Menu section  */}{" "}
-        </div>
-      </div>
-    </div>
+        </article>
+      </article>
+    </main>
   );
 };
 export default MediumHeader;

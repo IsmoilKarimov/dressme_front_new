@@ -51,7 +51,7 @@ const Header = () => {
   }, [location.pathname]);
   return (
     <header>
-      <article>
+      <section>
         {locationWindow !== "/delivery-points" ? (
           <section className="w-full ">
             <article className={`ss:block md:hidden relative z-[100]`}>
@@ -100,7 +100,7 @@ const Header = () => {
             </article>
           )}
         </section>
-      </article>
+      </section>
       <Outlet />
     </header>
   );
