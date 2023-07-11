@@ -77,124 +77,124 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="w-full relative h-full mt-4 md:mt-0 ">
+    <main className="w-full relative h-full mt-4 md:mt-0 ">
       {/*  */}
-      <div className="w-full">
+      <section className="w-full">
         {/* --------- */}
-        <div className="h-fit flex justify-between mb-4">
-          <div className="flex items-center justify-start ">
-            <div className="w-fit flex items-center gap-x-[1px]">
+        <section className="h-fit flex justify-between mb-4">
+          <article className="flex items-center justify-start ">
+            <p className="w-fit flex items-center gap-x-[1px]">
               <StarIcons />
-            </div>
-            <div className="flex items-center w-fit ml-2 text-base md:text-[13px]">
-              <div className="not-italic font-AeonikProMedium mt-1 leading-4 text-black tracking-[1%]">
+            </p>
+            <article className="flex items-center w-fit ml-2 text-base md:text-[13px]">
+              <p className="not-italic font-AeonikProMedium mt-1 leading-4 text-black tracking-[1%]">
                 4.7
-              </div>
-              <div className=" pl-1 not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
+              </p>
+              <p className=" pl-1 not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
                 (265 votes)
-              </div>
+              </p>
               <div className="text-searchBgColor mx-[10px]">|</div>
-              <div className=" not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
+              <p className=" not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
                 (678 orders)
-              </div>
-            </div>
-          </div>
+              </p>
+            </article>
+          </article>
           <button className="w-11 h-11 flex md:hidden items-center justify-center rounded-lg border border-searchBgColor">
             <img src={HeartImg} alt="" className="w-5 h-5" />
           </button>
-          <div className="hidden items-center md:flex">
-            <div>
+          <article className="hidden items-center md:flex">
+            <p>
               <ProductArticleIcons />
-            </div>
-            <div className="ml-[2px] mr-[6px] not-italic font-AeonikProRegular  text-[13px] leading-4 text-right text-black tracking-[1%]">
+            </p>
+            <p className="ml-[2px] mr-[6px] not-italic font-AeonikProRegular  text-[13px] leading-4 text-right text-black tracking-[1%]">
               Article:
-            </div>
-            <div className="not-italic font-AeonikProRegular  text-[13px] leading-4 text-right text-setTexOpacity tracking-[1%]">
+            </p>
+            <p className="not-italic font-AeonikProRegular  text-[13px] leading-4 text-right text-setTexOpacity tracking-[1%]">
               AA009842
-            </div>
-          </div>
-        </div>
-        <div className="w-full  mb-8">
-          <span className="not-italic font-AeonikProMedium text-xl md:text-[22px] leading-7 text-TextTitle tracking-[1%]">
+            </p>
+          </article>
+        </section>
+        <section className="w-full  mb-8">
+          <p className="not-italic font-AeonikProMedium text-xl md:text-[22px] leading-7 text-TextTitle tracking-[1%]">
             Спортивная мужская кроссовка Nike RUN
-          </span>
-        </div>
+          </p>
+        </section>
         {/* Desktop */}
-        <div className="h-fit hidden md:flex mb-4">
-          <div className="w-fit flex items-center">
-            <div>
+        <section className="h-fit hidden md:flex mb-4">
+          <article className="w-fit flex items-center">
+            <p>
               <BasketIcons colors={"#000"} />
-            </div>
-            <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
+            </p>
+            <p className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
               Магазин:
-            </div>
-          </div>
-          <div className="w-fit ml-10">
-            <span className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+            </p>
+          </article>
+          <article className="w-fit ml-10">
+            <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
               Nike Store Official Dealer
-            </span>
-          </div>
-        </div>
+            </p>
+          </article>
+        </section>
         {/* Mobile Dostavka*/}
-        <div className="h-fit flex justify-between mb-4 md:mb-7">
-          <div className="flex items-center">
-            <div className="flex items-center">
-              <span>
+        <section className="h-fit flex justify-between mb-4 md:mb-7">
+          <article className="flex items-center">
+            <article className="flex items-center">
+              <p>
                 <DeliveryIcons />
-              </span>
-              <span className="ml-2 not-italic font-AeonikProMedium  text-base md:text-[14px] leading-4 text-black tracking-[1%]">
+              </p>
+              <p className="ml-2 not-italic font-AeonikProMedium  text-base md:text-[14px] leading-4 text-black tracking-[1%]">
                 Доставка:
-              </span>
-            </div>
-            <div className="flex items-center ml-2 md:ml-[32px]">
-              <span>
+              </p>
+            </article>
+            <article className="flex items-center ml-2 md:ml-[32px]">
+              <p>
                 <CircleSuccessIcons colors={"#008F0E"} />
-              </span>
-              <span className="hidden md:block ml-2 not-italic font-AeonikProMedium  text-sm leading-4 text-green-800 tracking-[1%]">
+              </p>
+              <p className="hidden md:block ml-2 not-italic font-AeonikProMedium  text-sm leading-4 text-green-800 tracking-[1%]">
                 Доступно
-              </span>
-            </div>
-          </div>
-          <div className="flex md:hidden items-center text-base md:text-[13px]">
-            <div>
+              </p>
+            </article>
+          </article>
+          <article className="flex md:hidden items-center text-base md:text-[13px]">
+            <p>
               <ProductArticleIcons />
-            </div>
-            <div className="ml-[2px] mr-[6px] not-italic font-AeonikProRegular  leading-4 text-right text-black tracking-[1%]">
+            </p>
+            <p className="ml-[2px] mr-[6px] not-italic font-AeonikProRegular  leading-4 text-right text-black tracking-[1%]">
               Article:
-            </div>
-            <div className="not-italic font-AeonikProRegular  leading-4 text-right text-setTexOpacity tracking-[1%]">
+            </p>
+            <p className="not-italic font-AeonikProRegular  leading-4 text-right text-setTexOpacity tracking-[1%]">
               AA009842
-            </div>
-          </div>
+            </p>
+          </article>
 
-          <div className="w-fit hidden md:flex items-center h-fit ">
-            <div className="not-italic mr-3  font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%]">
+          <article className="w-fit hidden md:flex items-center h-fit ">
+            <p className="not-italic mr-3  font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%]">
               Сезон:
-            </div>
-            <div className="flex items-center">
+            </p>
+            <figure className="flex items-center">
               <img src={winterSeason} alt="" />
 
-              <span className="not-italic  ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+              <figcaption className="not-italic  ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
                 Зима
-              </span>
-            </div>
+              </figcaption>
+            </figure>
             <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
-            <div className="flex items-center">
+            <figure className="flex items-center">
               <img src={summerSeason} alt="" />
-              <span className="not-italic  ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+              <figcaption className="not-italic  ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
                 Весна
-              </span>
-            </div>
+              </figcaption>
+            </figure>
             <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
-            <div className="flex items-center">
+            <figure className="flex items-center">
               <img src={autummSeason} alt="" />
-              <span className="not-italic  ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+              <figcaption className="not-italic  ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
                 Осень
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="w-fit flex md:hidden items-center h-fit text-base md:text-sm mb-10 md:mb-0">
+              </figcaption>
+            </figure>
+          </article>
+        </section>
+        <section className="w-fit flex md:hidden items-center h-fit text-base md:text-sm mb-10 md:mb-0">
           <div className="not-italic mr-3  font-AeonikProMedium leading-4 text-black tracking-[1%]">
             Сезон:
           </div>
@@ -212,10 +212,10 @@ const ProductDetails = () => {
               Весна
             </span>
           </div>
-        </div>
-      </div>
+        </section>
+      </section>
       {/*  */}
-      <div className="w-full border-t md:border-y md:border-searchBgColor pt-7 pb-12 ">
+      <section className="w-full border-t md:border-y md:border-searchBgColor pt-7 pb-12 ">
         <div className="w-full flex items-center mb-6 text-base font-AeonikProMedium">
           <span>
             <ProductSwitchIcons />
@@ -341,9 +341,9 @@ const ProductDetails = () => {
             </address>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className=" w-full md:block hidden md:pb-8 pt-6 md:border-b border-searchBgColor mb-12 md:mb-0">
+      <section className=" w-full md:block hidden md:pb-8 pt-6 md:border-b border-searchBgColor mb-12 md:mb-0">
         <div className="w-full flex items-center justify-between mb-[14px] md:mb-0">
           <div className="w-fit flex items-center">
             <div className="flex md:hidden">
@@ -407,10 +407,10 @@ const ProductDetails = () => {
             </button>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Text Items */}
-      <div className="mt-12 md:mt-16 hidden md:block">
+      <section className="mt-12 md:mt-16 hidden md:block">
         <span className="not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]">
           Кратко о товаре
         </span>
@@ -453,10 +453,10 @@ const ProductDetails = () => {
             <BsCircleFill size={5} className="mx-2" /> Отличная фиксация стопы
           </li>
         </ul>
-      </div>
+      </section>
 
       {/* Table */}
-      <div className="mt-[60px] hidden md:block">
+      <section className="mt-[60px] hidden md:block">
         <div className="">
           <div>
             <span className="not-italic  font-AeonikProRegular text-[14px] leading-5 text-right tracking-[1%]">
@@ -522,9 +522,9 @@ const ProductDetails = () => {
             </tr>
           </table>
         </div>
-      </div>
+      </section>
 
-      <div className="mt-[60px] flex-col gap-y-5 hidden md:flex">
+      <section className="mt-[60px] flex-col gap-y-5 hidden md:flex">
         <span className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
           {" "}
           Бренд GRN занимает №4 место в Юго-Восточной Азии, относится к ТОПовому
@@ -553,8 +553,8 @@ const ProductDetails = () => {
           Отличительные черты продукции GRN – высокое качество, комфортные
           лекала и стиль.
         </span>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 
