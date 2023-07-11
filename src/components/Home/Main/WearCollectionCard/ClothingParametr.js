@@ -106,13 +106,13 @@ const ClothingParametr = () => {
     { id: 8, imgFull: zara },
   ];
   return (
-    <div className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto  px-4 md:px-0">
-      <div className="w-full ss:block sm:flex justify-start items-center mb-[24px] md:mb-0 md:px-0">
+    <main className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto  px-4 md:px-0">
+      <section className="w-full ss:block sm:flex justify-start items-center mb-[24px] md:mb-0 md:px-0">
         <div className="not-italic font-AeonikProMedium lg:w-fit lg:text-2xl xl:text-3xl flex items-center leading-8 text-black">
-          <span>Коллекция одежд, которые вам подходят</span>
+          <p>Коллекция одежд, которые вам подходят</p>
         </div>
-      </div>
-      <div className="w-full md:hidden flex items-center justify-between md:border-0 border-b border-searchBgColor pb-3 gap-x-2">
+      </section>
+      <section className="w-full md:hidden flex items-center justify-between md:border-0 border-b border-searchBgColor pb-3 gap-x-2">
         <button
           onClick={() => {
             setState({
@@ -122,10 +122,10 @@ const ClothingParametr = () => {
           }}
           className="w-[25%] active:scale-80 active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[52px]"
         >
-          <span>
+          <p>
             {" "}
             <ClothesIcons />
-          </span>
+          </p>
         </button>
         <button
           onClick={() =>
@@ -169,9 +169,9 @@ const ClothingParametr = () => {
             <TopBrandsIcon />
           </span>
         </button>
-      </div>
-      <div className="w-full">
-        <div
+      </section>
+      <section className="w-full">
+        <section
           className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
             state?.clothesTypeMobile ? "w-[92%]" : "w-0"
           }  `}
@@ -213,8 +213,8 @@ const ClothingParametr = () => {
               </div>
             </div>
           )}
-        </div>
-        <div
+        </section>
+        <section
           className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
             state?.priceToggleMobile ? "w-[92%]" : "w-0"
           }  `}
@@ -275,9 +275,9 @@ const ClothingParametr = () => {
               </div>
             </div>
           )}
-        </div>
+        </section>
 
-        <div
+        <section
           className={`w-full h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${
             state?.brandToggleMobile ? "w-[92%]" : "w-0"
           }`}
@@ -319,9 +319,9 @@ const ClothingParametr = () => {
               </div>
             </div>
           )}
-        </div>
+        </section>
 
-        <div
+        <section
           className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
             state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
           }`}
@@ -371,9 +371,9 @@ const ClothingParametr = () => {
               </div>
             </div>
           )}
-        </div>
-      </div>
-    </div>
+        </section>
+      </section>
+    </main>
   );
 };
 export { ClothingParametr };

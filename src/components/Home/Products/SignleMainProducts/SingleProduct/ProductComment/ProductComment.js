@@ -78,83 +78,83 @@ export default function ProductComment() {
     genderStyle = "text-borderWinter bg-btnBgColor border-searchBgColor";
   }
   return (
-    <div className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box md:mb-[60px]">
-      <div className="relative w-[100%] h-fit md:mt-6 flex justify-between ">
+    <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box md:mb-[60px]">
+      <section className="relative w-[100%] h-fit md:mt-6 flex justify-between ">
         {/* Desktop version of comment*/}
-        <div className="w-full hidden md:block">
-          <div className="border-b border-borderColor2 pb-10">
-            <span className="not-italic font-AeonikProMedium text-2xl leading-7 text-black track%]">
+        <article className="w-full hidden md:block">
+          <section className="border-b border-borderColor2 pb-10">
+            <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black track%]">
               Отзывы о товаре
-            </span>
-          </div>
-          <div
+            </p>
+          </section>
+          <section
             className={`flex ${
               openBox ? "h-fit" : "h-[590px]"
             }  justify-between flex-wrap   w-full h-fit overflow-hidden`}
           >
             {comment.map((data) => {
               return (
-                <div className="w-[45%] h-fit border-b border-borderColor2 pr-5 pb-10 mt-10 ">
-                  <span className="not-italic font-AeonikProMedium text-xl leading-6 text-black">
+                <article className="w-[45%] h-fit border-b border-borderColor2 pr-5 pb-10 mt-10 ">
+                  <p className="not-italic font-AeonikProMedium text-xl leading-6 text-black">
                     {data?.Name}
-                  </span>
-                  <div className="flex items-center mt-3">
-                    <span className="flex items-center">
+                  </p>
+                  <article className="flex items-center mt-3">
+                    <p className="flex items-center">
                       <StarIcons />
                       <StarIcons />
                       <StarIcons />
                       <StarIcons />
                       <StarIcons />
-                    </span>
-                    <span className="not-italic ml-3 font-AeonikProRegular text-base leading-4 text-setTexOpacity">
+                    </p>
+                    <button className="not-italic ml-3 font-AeonikProRegular text-base leading-4 text-setTexOpacity">
                       {data?.sendDate}
-                    </span>
-                  </div>
-                  <div className="mt-4">
-                    <span className="not-italic font-AeonikProRegular text-base leading-4 text-black">
+                    </button>
+                  </article>
+                  <article className="mt-4">
+                    <p className="not-italic font-AeonikProRegular text-base leading-4 text-black">
                       {data?.SendText}
-                    </span>
-                  </div>
-                  <div className="mt-6 ml-8">
-                    <div>
-                      <span className="not-italic font-AeonikProMedium text-lg leading-5 text-black">
+                    </p>
+                  </article>
+                  <article className="mt-6 ml-8">
+                    <article>
+                      <p className="not-italic font-AeonikProMedium text-lg leading-5 text-black">
                         Nike Store Official Dealer
-                      </span>
-                      <span className="not-italic ml-3 font-AeonikProRegular text-base leading-4 text-setTexOpacity">
+                      </p>
+                      <p className="not-italic ml-3 font-AeonikProRegular text-base leading-4 text-setTexOpacity">
                         {data?.replyDate}
-                      </span>
-                    </div>
-                    <div className="mt-4">
-                      <span className="not-italic font-AeonikProRegular text-base leading-4 text-black">
+                      </p>
+                    </article>
+                    <article className="mt-4">
+                      <p className="not-italic font-AeonikProRegular text-base leading-4 text-black">
                         {data?.replyText}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                      </p>
+                    </article>
+                  </article>
+                </article>
               );
             })}
-          </div>
-          <div className="w-full py-6 flex justify-center items-center">
+          </section>
+          <section className="w-full py-6 flex justify-center items-center">
             <button
               onClick={() => setOpenBox(!openBox)}
               className="flex cursor-pointer active:scale-95  active:opacity-70 items-center gap-x-3 "
             >
-              <span
+              <p
                 className={`${genderStyle} not-italic font-AeonikProMedium text-2xl leading-7 text-black track%]`}
               >
                 {" "}
                 все комментарии
-              </span>{" "}
-              <span
+              </p>{" "}
+              <p
                 className={`${openBox ? "rotate-[0deg]" : "rotate-[180deg]"} `}
               >
                 <ArrowTopIcons colors={dataStyle} />
-              </span>
+              </p>
             </button>
-          </div>
+          </section>
 
           {/* Add comment */}
-          <div className=" mt-[60px] h-fit border border-searchBgColor rounded-lg p-[18px]">
+          <section className=" mt-[60px] h-fit border border-searchBgColor rounded-lg p-[18px]">
             <form action="">
               <textarea
                 placeholder="Izoh qoldiring..."
@@ -165,7 +165,7 @@ export default function ProductComment() {
                 bundanda zoʻr boʻlardi. Sifatiga gap yoo. raxmat tez yetkazib
                 berishdi. Razmeri ham tochni.
               </textarea>
-              <div className="flex items-center justify-between">
+              <section className="flex items-center justify-between">
                 <div className="flex items-center ">
                   <div className="w-[46px] h-[62px] bg-searchBgColor border border-sky-500 rounded-lg mr-2"></div>
                   <div className="w-[46px] h-[62px] bg-searchBgColor border border-sky-500 rounded-lg mr-2"></div>
@@ -184,17 +184,17 @@ export default function ProductComment() {
                     <FreeStarIcon />
                     <FreeStarIcon />
                   </div>
-                  <span className="cursor-pointer ml-12">
+                  <button className="cursor-pointer ml-12">
                     <SendMessageIcon />
-                  </span>
+                  </button>
                 </div>
-              </div>
+              </section>
             </form>
-          </div>
-        </div>
+          </section>
+        </article>
 
         {/* Mobile version of comment */}
-        <div className="w-full block md:hidden">
+        <article className="w-full block md:hidden">
           <span className="text-base font-AeonikProMedium">Отзывы</span>
           <div className="w-full border border-searchBgColor rounded-lg mb-[34px]">
             <div className="flex items-center justify-between p-4">
@@ -259,8 +259,8 @@ export default function ProductComment() {
               </div>
             </form>
           </div>
-        </div>
-      </div>
-    </div>
+        </article>
+      </section>
+    </main>
   );
 }

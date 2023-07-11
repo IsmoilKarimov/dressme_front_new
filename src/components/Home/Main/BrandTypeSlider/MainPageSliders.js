@@ -245,9 +245,9 @@ export default function MainPageSliders() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center m-0 p-0 box-border">
-      <div className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
-        <div className="w-full box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
+    <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
+      <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
+        <section className="w-full box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
           <div className="w-full ss:hidden xs:block">
             <Slider
               {...settings}
@@ -266,23 +266,23 @@ export default function MainPageSliders() {
                           .filter((e) => e.id === dressInfo?.ClothesBorder)
                           .map((value) => {
                             return (
-                              <div
+                              <button
                                 key={value?.id}
                                 className={`w-full h-full border border-solid	${value?.colors} rounded-lg`}
                               >
                                 <SircleNext />
-                              </div>
+                              </button>
                             );
                           })}
                       </div>
-                      <div className="h-12.5 flex items-center justify-start">
+                      <article className="h-12.5 flex items-center justify-start">
                         <p className="not-italic font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
                           {data?.type || "type"}
-                          <span className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
+                          <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
                             ({data?.count || "0"})
-                          </span>
+                          </p>
                         </p>
-                      </div>
+                      </article>
                     </NavLink>
                   );
                 });
@@ -299,17 +299,17 @@ export default function MainPageSliders() {
                     key={data?.id}
                     className="w-[100%] "
                   >
-                    <div className="w-[100%] h-[140px] flex items-center justify-center	p-1 bg-btnBgColor border border-searchBgColor	rounded-xl">
+                    <figure className="w-[100%] h-[140px] flex items-center justify-center	p-1 bg-btnBgColor border border-searchBgColor	rounded-xl">
                       <NoImg />
-                    </div>
-                    <div className="w-full py-1 flex items-center">
+                    </figure>
+                    <article className="w-full py-1 flex items-center">
                       <p className="not-italic font-AeonikProMedium text-sm leading-6 text-black">
                         {data?.type || "type"}
-                        <span className="not-italic font-AeonikProRegular text-xs leading-4 text-gray-500 ml-1">
+                        <p className="not-italic font-AeonikProRegular text-xs leading-4 text-gray-500 ml-1">
                           ({data?.count || "0"})
-                        </span>
+                        </p>
                       </p>
-                    </div>
+                    </article>
                   </NavLink>
                 );
               });
@@ -319,12 +319,12 @@ export default function MainPageSliders() {
             <button
               className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[52px] px-4 ll:px-10 rounded-xl border ${genderStyle}`}
             >
-              <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center">
+              <p className="not-italic  font-AeonikProMedium text-base leading-4 text-center">
                 Посмотреть все категории
-              </span>
-              <span className="ml-2 ">
+              </p>
+              <p className="ml-2 ">
                 <SircleNext colors={dataStyle} />
-              </span>
+              </p>
             </button>
           </div>
           <div className="w-full mt-[60px] ss:hidden xs:block ">
@@ -339,21 +339,21 @@ export default function MainPageSliders() {
                       key={data?.id}
                       className="!w-[98.88%] h-[100px]  rounded-lg bg-btnBgColor flex items-center justify-center select-none border border-solid border-searchBgColor"
                     >
-                      <div className=" h-full flex items-center justify-center px-[35px]">
+                      <figure className=" h-full flex items-center justify-center px-[35px]">
                         <img
                           className="h-[70px] w-[80%] "
                           src={data?.imgFull}
                           alt=""
                         />
-                      </div>
+                      </figure>
                     </div>
                   );
                 });
               })}
             </Slider>
           </div>
-        </div>
-      </div>
-    </div>
+        </section>
+      </section>
+    </main>
   );
 }

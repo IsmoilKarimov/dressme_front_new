@@ -9,8 +9,8 @@ export default function SingleMainProducts() {
   }, []);
 
   return (
-    <div className="w-full px-4">
+    <main className="w-full px-4">
       <SingleProduct />
-    </div>
+    </main>
   );
 }

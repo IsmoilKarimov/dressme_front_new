@@ -191,7 +191,7 @@ export default function CategoryCards() {
                   <NoImg />
                 )}
               </figure>
-              <div className="w-full rounded-b-xl bg-white  flex flex-wrap h-[130px] md:h-[136px] ">
+              <section className="w-full rounded-b-xl bg-white  flex flex-wrap h-[130px] md:h-[136px] ">
                 <article className=" w-full flex justify-between items-center px-1  border-solid xs:h-[38px] lg:h-8 ss:h-[30px] xs:px-2 md:px-4 bg-white">
                   {data?.changeColor.map((itemValue) => {
                     return (
@@ -265,7 +265,7 @@ export default function CategoryCards() {
                     </button>
                   </figure>
                 </article>
-              </div>
+              </section>
             </article>
           );
         })}

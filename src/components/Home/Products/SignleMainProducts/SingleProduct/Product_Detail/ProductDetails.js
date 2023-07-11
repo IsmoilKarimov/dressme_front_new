@@ -258,74 +258,72 @@ const ProductDetails = () => {
             3XL{" "}
           </p>
         </article>
-        <div className="w-full flex items-center">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-3">
+        <article className="w-full flex items-center">
+          <section className="flex flex-wrap items-center gap-x-3 gap-y-3">
             {selectSize.map((data) => {
               return (
-                <div className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg  border border-searchBgColor focus:border-fullBlue px-4 flex items-center justify-center">
-                  <span
+                <article className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg  border border-searchBgColor focus:border-fullBlue px-4 flex items-center justify-center">
+                  <p
                     className={` not-italic font-AeonikProMedium text-[14px] leading-4 text-center text-black tracking-[1%]`}
                   >
                     {data?.size}
-                  </span>
-                </div>
+                  </p>
+                </article>
               );
             })}
-            <div className="w-[80px] h-11 flex md:hidden items-center justify-center rounded-lg border border-searchBgColor">
+            <p className="w-[80px] h-11 flex md:hidden items-center justify-center rounded-lg border border-searchBgColor">
               <CircleWarningIcons colors={"#000"} />
-            </div>
-          </div>
+            </p>
+          </section>
           <div className="hidden md:block w-[1px] border-r border-searchBgColor h-8 mx-4"></div>
-          <div className="w-11 h-11 hidden md:flex items-center justify-center rounded-lg border border-searchBgColor">
+          <p className="w-11 h-11 hidden md:flex items-center justify-center rounded-lg border border-searchBgColor">
             <CircleWarningIcons colors={"#000"} />
-          </div>
-        </div>
+          </p>
+        </article>
 
         {/* Mobile Price */}
-        <div className={`w-full h-fit py-1 mt-6 md:hidden`}>
-          <div className="h-[36px] w-full flex justify-between items-center ">
+        <section className={`w-full h-fit py-1 mt-6 md:hidden`}>
+          <article className="h-[36px] w-full flex justify-between items-center ">
             <div className="flex ">
               <DollorIcons />
-              <span className="text-base font-AeonikProRegular ml-[6px]">
-                Цена:
-              </span>
+              <p className="text-base font-AeonikProRegular ml-[6px]">Цена:</p>
             </div>
             <div className="w-[84px] h-9  cursor-pointer ml-8 flex items-center justify-center border border-searchBgColor rounded-lg">
-              <span>
+              <p>
                 <DiscountShapeIcons />
-              </span>
-              <span className="ml-[6px] not-italic  font-AeonikProMedium text-sm  leading-5 text-red-700">
+              </p>
+              <p className="ml-[6px] not-italic  font-AeonikProMedium text-sm  leading-5 text-red-700">
                 -30%
-              </span>
+              </p>
             </div>
-          </div>
-          <div className="h-[36px] w-full flex justify-between items-center ">
-            <div className="flex items-center">
-              <span className="not-italic  font-AeonikProMedium text-[18px] leading-9 text-black trcking-[1%]">
+          </article>
+          <article className="h-[36px] w-full flex justify-between items-center ">
+            <article className="flex items-center">
+              <p className="not-italic  font-AeonikProMedium text-[18px] leading-9 text-black trcking-[1%]">
                 452 000
-              </span>
-              <span className="not-italic ml-1 mt-[6px] font-AeonikProRegular line-through text-[14px] leading-7 text-setTexOpacity">
+              </p>
+              <p className="not-italic ml-1 mt-[6px] font-AeonikProRegular line-through text-[14px] leading-7 text-setTexOpacity">
                 652 000
-              </span>
-            </div>
-            <div className={`w-fit  ${dataStyle} flex  `}>
-              <span className="font-AeonikProRegular text-[14px] leading-4">
+              </p>
+            </article>
+            <article className={`w-fit  ${dataStyle} flex  `}>
+              <p className="font-AeonikProRegular text-[14px] leading-4">
                 В наличии:
-              </span>
-              <span className="ml-2 font-AeonikProMedium text-[14px] leading-4">
+              </p>
+              <p className="ml-2 font-AeonikProMedium text-[14px] leading-4">
                 284
-              </span>
-            </div>
-          </div>
+              </p>
+            </article>
+          </article>
 
-          <div className="h-fit w-full  flex items-center justify-between mb-2 gap-x-2">
+          <article className="h-fit w-full  flex items-center justify-between mb-2 gap-x-2">
             <address className="max-w-[70%] w-full ">
               <a
                 className=" w-full bg-fullBlue active:scale-95  active:opacity-70 text-white rounded-lg h-[44px] flex gap-x-1 ll:gap-x-2 items-center justify-center"
                 href="tel:+998 (97) 720-30-40"
               >
                 <PhoneIcons colors={"#fff"} />
-                <span className="text-base "> +998 (97) 720-30-40</span>
+                <p className="text-base "> +998 (97) 720-30-40</p>
               </a>
             </address>
             <address className=" max-w-fit md:max-w-[35%] w-full ">
@@ -333,54 +331,52 @@ const ProductDetails = () => {
                 className={` w-full h-[44px] active:scale-95  active:opacity-70 px-5 flex gap-x-1 ll:gap-x-2 items-center justify-center  rounded-lg  text-fullBlue border border-fullBlue`}
                 href="https://t.me/itpark_uz"
               >
-                <span className="w-7 h-7  bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
+                <p className="w-7 h-7  bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
                   <FaTelegramPlane size={16} />
-                </span>{" "}
-                <span className="text-base  hidden md:block">@itpark_uz</span>{" "}
+                </p>{" "}
+                <p className="text-base  hidden md:block">@itpark_uz</p>{" "}
               </a>
             </address>
-          </div>
-        </div>
+          </article>
+        </section>
       </section>
 
       <section className=" w-full md:block hidden md:pb-8 pt-6 md:border-b border-searchBgColor mb-12 md:mb-0">
-        <div className="w-full flex items-center justify-between mb-[14px] md:mb-0">
-          <div className="w-fit flex items-center">
-            <div className="flex md:hidden">
+        <article className="w-full flex items-center justify-between mb-[14px] md:mb-0">
+          <section className="w-fit flex items-center">
+            <article className="flex md:hidden">
               <DollorIcons />
-              <span className="text-base font-AeonikProRegular ml-[6px]">
-                Цена:
-              </span>
-            </div>
-            <span className="hidden md:block not-italic  font-AeonikProMedium text-[20px] leading-9 text-black trcking-[0.32px]">
+              <p className="text-base font-AeonikProRegular ml-[6px]">Цена:</p>
+            </article>
+            <p className="hidden md:block not-italic  font-AeonikProMedium text-[20px] leading-9 text-black trcking-[0.32px]">
               452 000 сум
-            </span>
-            <span className="hidden md:block not-italic ml-4  font-AeonikProRegular line-through text-[14px] leading-7 text-setTexOpacity">
+            </p>
+            <p className="hidden md:block not-italic ml-4  font-AeonikProRegular line-through text-[14px] leading-7 text-setTexOpacity">
               652 000 сум
-            </span>
-          </div>
-          <div className="w-[84px] h-9 md:w-[108px] md:h-11 cursor-pointer ml-8 flex items-center justify-center border border-searchBgColor rounded-lg">
-            <span>
+            </p>
+          </section>
+          <section className="w-[84px] h-9 md:w-[108px] md:h-11 cursor-pointer ml-8 flex items-center justify-center border border-searchBgColor rounded-lg">
+            <p>
               <DiscountShapeIcons />
-            </span>
-            <span className="ml-[6px] not-italic  font-AeonikProMedium text-sm md:text-[16px] leading-5 text-red-700">
+            </p>
+            <p className="ml-[6px] not-italic  font-AeonikProMedium text-sm md:text-[16px] leading-5 text-red-700">
               -30%
-            </span>
-          </div>
-          <div
+            </p>
+          </section>
+          <section
             className={`w-fit ml-8 ${dataStyle} items-center hidden md:flex`}
           >
-            <span className="not-italic  font-AeonikProRegular text-[14px] leading-5 text-right tracking-[0.32px]">
+            <p className="not-italic  font-AeonikProRegular text-[14px] leading-5 text-right tracking-[0.32px]">
               В наличии:
-            </span>
-            <span className="not-italic  ml-2 font-AeonikProMedium text-[16px] leading-6 text-right tracking-[0.32px]">
+            </p>
+            <p className="not-italic  ml-2 font-AeonikProMedium text-[16px] leading-6 text-right tracking-[0.32px]">
               28
-            </span>
-          </div>
-        </div>
+            </p>
+          </section>
+        </article>
 
-        <div className="w-full flex  items-center justify-between gap-x-3 md:gap-x-0 md:mt-8">
-          <div className="md:w-fit w-full flex items-center">
+        <article className="w-full flex  items-center justify-between gap-x-3 md:gap-x-0 md:mt-8">
+          <article className="md:w-fit w-full flex items-center">
             <address className="w-[65%] md:w-fit">
               <a
                 className="w-full h-12  md:h-[52px] px-5  rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex gap-x-3 items-center justify-center bg-fullBlue"
@@ -400,20 +396,20 @@ const ProductDetails = () => {
                 <span>@itpark_uz</span>{" "}
               </a>
             </address>
-          </div>
-          <div className="w-fit md:ml-3 hidden md:block">
+          </article>
+          <article className="w-fit md:ml-3 hidden md:block">
             <button className="w-[52px] h-[52px] hidden md:flex items-center justify-center rounded-lg border border-searchBgColor">
               <img src={HeartImg} alt="" className="w-5 h-5" />
             </button>
-          </div>
-        </div>
+          </article>
+        </article>
       </section>
 
       {/* Text Items */}
       <section className="mt-12 md:mt-16 hidden md:block">
-        <span className="not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]">
+        <p className="not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]">
           Кратко о товаре
-        </span>
+        </p>
         <ul className="pl-2">
           <li
             className={
@@ -457,12 +453,12 @@ const ProductDetails = () => {
 
       {/* Table */}
       <section className="mt-[60px] hidden md:block">
-        <div className="">
-          <div>
-            <span className="not-italic  font-AeonikProRegular text-[14px] leading-5 text-right tracking-[1%]">
+        <article className="">
+          <article>
+            <p className="not-italic  font-AeonikProRegular text-[14px] leading-5 text-right tracking-[1%]">
               таблица соответствия мужских размеров
-            </span>
-          </div>
+            </p>
+          </article>
           <table className="w-full border border-searchBgColor  border-collapse	mt-5">
             <tr className="">
               <td>обхват груди см</td>
@@ -521,38 +517,38 @@ const ProductDetails = () => {
               <th colSpan={2}>XXL</th>
             </tr>
           </table>
-        </div>
+        </article>
       </section>
 
       <section className="mt-[60px] flex-col gap-y-5 hidden md:flex">
-        <span className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
+        <article className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
           {" "}
           Бренд GRN занимает №4 место в Юго-Восточной Азии, относится к ТОПовому
           сегменту качества. Бренд GRN один из самых старейших брендов обуви и
           одежды в Азии - был основан в 1978 году.
-        </span>
-        <span className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
+        </article>
+        <article className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
           {" "}
           Бренд GRN имеет более 12000 магазинов собственной розницы в таких
           странах как: Китай, Япония, Вьетнам, Малайзия, Марокко, Югославия,
           Словения, Польша.
-        </span>
-        <span className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
+        </article>
+        <article className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
           {" "}
           Бренд GRN ориентирован на выпуск высококачественной одежды и обуви для
           спорта и для носки на каждый день.
-        </span>
-        <span className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
+        </article>
+        <article className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
           {" "}
           Суммарные объемы выпускаемой обуви – 20.000.000 пар в год, что делает
           бренд GRN одним из самых крупных брендов не только в Азии, но и в
           мире.
-        </span>
-        <span className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
+        </article>
+        <article className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
           {" "}
           Отличительные черты продукции GRN – высокое качество, комфортные
           лекала и стиль.
-        </span>
+        </article>
       </section>
     </main>
   );
