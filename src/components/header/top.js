@@ -108,20 +108,19 @@ const TopHeader = () => {
 
   return (
     <nav>  
-      <section className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${
+      <div className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${
           locationWindow === "/delivery-points"
             ? "bg-transparent h-[40px] "
             : "bg-bgColor h-[32px] "
         }`}
       >
-        <article className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">
-          
+        <section className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">       
           <article className="left h-full flex items-center">
             <section>
               <Link to="/" className="flex w-fit items-center">
-                <figure>
+                <span>
                   <LocationIcons />
-                </figure>
+                </span>
 
                 <p className="text-textColor text-[13px] ml-2 mr-[6px] font-AeonikProMedium">
                   Город:
@@ -155,9 +154,9 @@ const TopHeader = () => {
                       placement="bottom"
                       content={contentLang}
                     >
-                      <figure className="mr-[6px] ">
+                      <span className="mr-[6px] ">
                         <img src={data?.icons} alt="" />
-                      </figure>
+                      </span>
                       <p className="not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black ">
                         {data?.type}
                       </p>
@@ -170,17 +169,17 @@ const TopHeader = () => {
           
           <article className="right h-full flex items-center">
             <Link to="#" className="flex items-center h-fit py-[4px] ">
-              <figure className="mr-2">
+              <span className="mr-2">
                 <CommentIcons colors={"#707070"} />
-              </figure>
-              <article className="text-textColor text-[13px]   font-AeonikProMedium  ">
+              </span>
+              <p className="text-textColor text-[13px]   font-AeonikProMedium  ">
                 Помощь
-              </article>
+              </p>
             </Link>
             <Link to="#" className="flex items-center h-fit py-[4px]  ml-6 ">
-              <figure className="mr-2">
+              <span className="mr-2">
                 <HouseStatisticIcons colors={"#707070"} />
-              </figure>
+              </span>
               <artice className="text-textColor text-[13px]   font-AeonikProMedium  ">
                 Бизнес
               </artice>
@@ -191,16 +190,16 @@ const TopHeader = () => {
               to="/stores"
               className="flex items-center bg-white rounded cursor-pointer h-fit py-[4px]  ml-6 px-3"
             >
-              <figure className="mr-2">
+              <span className="mr-2">
                 <MarketIcons colors={"#000"} />
-              </figure>
+              </span>
               <article className="font-AeonikProMedium  text-[13px]    ">
                 Магазины
               </article>
             </NavLink>
           </article>
-        </article>
-      </section>
+        </section>
+      </div>
     </nav>
   );
 };

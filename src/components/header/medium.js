@@ -129,11 +129,11 @@ const MediumHeader = () => {
 
   return (
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border">
-      <section className="max-w-[1280px] w-[100%] block md:flex px-3 md:px-0 md:py-0 justify-center  bg-yandexNavbar backdrop-blur-sm items-center m-auto ">
-        <article className="relative">
+      <div className="max-w-[1280px] w-[100%] block md:flex px-3 md:px-0 md:py-0 justify-center  bg-yandexNavbar backdrop-blur-sm items-center m-auto ">
+        <div className="relative">
           {/* Starting of Full Screen page section */}
           <section className="w-full flex justify-center items-center py-3 overscroll-none overflow-y-hidden ">
-            <article className=" w-full flex items-center ss:w-full md:w-fit justify-between ">
+            <div className=" w-full flex items-center ss:w-full md:w-fit justify-between ">
               {/* Menu section */}
               {locationWindow !== "/delivery-points" ? (
                 <article
@@ -151,16 +151,16 @@ const MediumHeader = () => {
                   )}
                 </article>
               ) : (
-                <atricle
+                <article
                   onClick={() => {
                     navigate(-1);
                   }}
                   className={`flex items-center justify-center bg-btnBgColor border border-searchBgColor w-12 h-12 cursor-pointer md:hidden rounded-xl`}
                 >
-                  <figure>
+                  <span>
                     <ArrowPrevousNext />
-                  </figure>
-                </atricle>
+                  </span>
+                </article>
               )}
 
               {/* Logo section */}
@@ -183,13 +183,13 @@ const MediumHeader = () => {
               </NavLink>
 
               {/* Voice section */}
-              <article
+              <div
                 className={` bg-btnBgColor w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
               >
-                <figure className="w-[22px]">
+                <span className="w-[22px]">
                   <VolumeIcons colors={IconsColor} />
-                </figure>
-              </article>
+                </span>
+              </div>
 
               {/* Weather section */}
               <article className="w-12 h-12 md:w-[120px] md:h-11 bg-btnBgColor border border-searchBgColor rounded-xl  md:rounded-lg ml-2">
@@ -228,25 +228,25 @@ const MediumHeader = () => {
                 <button
                   className={`items-center ${dataStyle} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
                 >
-                  <figure>
+                  <span>
                     <CotegoryIcons colors={IconsColor} />
-                  </figure>
-                  <article
+                  </span>
+                  <span
                     className={` not-italic font-AeonikProMedium text-sm leading-4 `}
                   >
                     Категории
-                  </article>
+                  </span>
                 </button>
-                <figure className="flex md:hidden">
+                <span className="flex md:hidden">
                   <SearchIcons />
-                </figure>
+                </span>
                 <input
                   type="text"
                   placeholder="Поиск продуктов или брендов"
                   className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
                 />
                 <button className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]">
-                  <figure><SearchIcons /></figure>
+                  <span><SearchIcons /></span>
                 </button>
               </article>
 
@@ -258,9 +258,9 @@ const MediumHeader = () => {
                 to="/delivery-points"
                 className="items-center justify-center bg-btnBgColor rounded-xl md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex"
               >
-                <figure className="pr-[6px]">
+                <span className="pr-[6px]">
                   <MapIcons colors={"#000"} />
-                </figure>
+                </span>
                 <p className="font-AeonikProMedium text-sm">Карта</p>
               </NavLink>
 
@@ -275,9 +275,9 @@ const MediumHeader = () => {
                 >
                   {({ isActive }) =>
                     isActive ? (
-                      <figure><ActivePersonIcons colors={IconsColor} /></figure>
+                      <span><ActivePersonIcons colors={IconsColor} /></span>
                     ) : (
-                      <figure><PersonIcons colors={"#000"} /></figure>
+                      <span><PersonIcons colors={"#000"} /></span>
                     )
                   }
                 </NavLink>
@@ -286,7 +286,7 @@ const MediumHeader = () => {
                   to="/sign_in"
                   className=" bg-btnBgColor rounded-xl items-center justify-center w-11 h-11 mr-2 hidden md:flex"
                 >
-                  <figure><PersonIcons colors={"#000"} /></figure>
+                  <span><PersonIcons colors={"#000"} /></span>
                 </NavLink>
               )}
 
@@ -299,7 +299,7 @@ const MediumHeader = () => {
               >
                 {({ isActive }) =>
                   isActive ? (
-                    <figure>
+                    <span>
                       <svg
                         width="20"
                         height="18"
@@ -315,13 +315,13 @@ const MediumHeader = () => {
                           strokeLinejoin="round"
                         />
                       </svg>
-                    </figure>
+                    </span>
                   ) : (
                     <figure><img src={HeartImg} className={"w-5 h-5"} alt="heart" /></figure>
                   )
                 }
               </NavLink>
-            </article>
+            </div>
           </section>
           
           {/*Starting of Blocked  Hamburger Menu section */}
@@ -463,7 +463,7 @@ const MediumHeader = () => {
             <section className={`md:hidden relative w-full mx-auto `}>
               <div className={`sticky top-0 py-1 bg-white  w-full z-10`}>
                 {/* Searching section */}
-                <div className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%]  border border-searchBgColor bg-white ">
+                <article className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%]  border border-searchBgColor bg-white ">
                   <span className="pl-[11.65px]">
                     <SearchIcons />
                   </span>
@@ -472,12 +472,12 @@ const MediumHeader = () => {
                     placeholder="Искать товары или бренды"
                     className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
                   />
-                </div>
+                </article>
               </div>
 
               {/* Gender selection for Mobile */}
               {locationWindow === "/" && (
-                <div className="flex flex-wrap items-center justify-between rounded-xl  my-4 w-full ">
+                <article className="flex flex-wrap items-center justify-between rounded-xl  my-4 w-full ">
                   {personItems
                     ?.filter((value) => value.id === dressInfo?.type)
                     .map((data) => {
@@ -515,13 +515,13 @@ const MediumHeader = () => {
                         </div>
                       );
                     })}
-                </div>
+                </article>
               )}
             </section>
           )}
-          {/* Ending of Blocked  Hamburger Menu section  */}{" "}
-        </article>
-      </section>
+          {/* Ending of Blocked  Hamburger Menu section  */}
+        </div>
+      </div>
     </nav>
   );
 };

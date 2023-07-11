@@ -53,7 +53,7 @@ const Header = () => {
     <header>
       <section>
         {locationWindow !== "/delivery-points" ? (
-          <section className="w-full ">
+          <div className="w-full ">
             <article className={`ss:block md:hidden relative z-[100]`}>
               <MediumHeader />
             </article>
@@ -66,18 +66,18 @@ const Header = () => {
               <TopHeader />
               <MediumHeader />
             </article>
-          </section>
+          </div>
         ) : (
-          <section className={`fixed top-0 z-[150] w-full block md:hidden bg-transparent`}>
+          <div className={`fixed top-0 z-[150] w-full block md:hidden bg-transparent`}>
             {!dressInfo?.yandexFullScreen && (
               <article className="overflow-hidden">
                 <MediumHeader />
               </article>
             )}
-          </section>
+          </div>
         )}
 
-        <section className={`${
+        <div className={`${
             locationWindow !== "/delivery-points"
               ? "md:mt-[99px]"
               : "mt-[0] h-0 overflow-hidden"
@@ -99,7 +99,7 @@ const Header = () => {
               <NavMenu />
             </article>
           )}
-        </section>
+        </div>
       </section>
       <Outlet />
     </header>
