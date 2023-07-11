@@ -129,29 +129,23 @@ const CategoryForBrand = () => {
     checkedPrize: true,
   });
 
-  const HandleBrandFilter = () => {
-    
-  };
+  const HandleBrandFilter = () => {};
 
-  const HandleCheckStatus = () => {
+  const HandleCheckStatus = () => {};
 
-  };
-
-  const HandleColorCheck = () => {
-  
-  };
+  const HandleColorCheck = () => {};
 
   return (
-    <div
+    <main
       className={`w-full h-fit ${
         dressInfo?.openShopIdFilter
           ? " border-0 "
           : " border border-searchBgColor"
       } py-5 rounded-lg overflow-hidden`}
     >
-      <div className="w-full px-3 ">
+      <section className="w-full px-3 ">
         {dressInfo?.openCategoryFilter && (
-          <div className="flex items-center justify-end mb-4">
+          <article className="flex items-center justify-end mb-4">
             <button
               onClick={() =>
                 setDressInfo({
@@ -163,9 +157,9 @@ const CategoryForBrand = () => {
             >
               <MenuCloseIcons />
             </button>
-          </div>
+          </article>
         )}
-        <div className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px]">
+        <article className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px]">
           <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg">
             Женщинам
           </button>
@@ -178,34 +172,34 @@ const CategoryForBrand = () => {
           <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center  bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg text-red-600">
             Скидки
           </button>
-        </div>
+        </article>
         {/* Availability */}
-        <div className="w-full h-fit mt-[50px] ">
-          <div
+        <section className="w-full h-fit mt-[50px] ">
+          <article
             className="w-full flex justify-between items-center "
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div
+            <figure
               onClick={() => setState({ ...state, catolog: !state.catolog })}
               className="flex items-center cursor-pointer select-none"
             >
-              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Каталоги
-              </span>
-              <span
+              </p>
+              <p
                 className={`${
                   state?.catolog ? "rotate-[180deg]" : ""
                 } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
-              </span>
-            </div>
-          </div>
+              </p>
+            </figure>
+          </article>
 
           {/* Field */}
-          <div
+          <article
             className={`w-full overflow-hidden ${
               state?.catolog
                 ? "duration-300 h-0"
@@ -214,50 +208,50 @@ const CategoryForBrand = () => {
           >
             {product?.Catolog.map((data) => {
               return (
-                <div
+                <figure
                   key={data?.id}
                   className="w-full h-[44px] rounded-lg justify-center bg-bgCategory hover:text-white  focus:bg-fullBlue hover:bg-fullBlue focus:text-white flex items-center  cursor-pointer select-none  text-black"
                   onClick={HandleCheckStatus(data?.id)}
                 >
-                  <span className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
+                  <p className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
                     {data?.name}
-                  </span>
-                </div>
+                  </p>
+                </figure>
               );
             })}
-          </div>
-        </div>
+          </article>
+        </section>
         {/* Brands filter */}
-        <div className="w-full h-fit mt-[50px]  ">
+        <section className="w-full h-fit mt-[50px]  ">
           {/* Controls */}
-          <div
+          <article
             className="openBrands w-full flex justify-between items-center"
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div
+            <figure
               onClick={() =>
                 setState({ ...state, brandShow: !state.brandShow })
               }
               className="flex items-center cursor-pointer select-none"
             >
-              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Бренды
-              </span>
-              <span
+              </p>
+              <p
                 className={`${
                   state?.brandShow ? "rotate-[180deg]" : ""
                 } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
-              </span>
-            </div>
+              </p>
+            </figure>
             <span className="not-italic font-AeonikProMedium text-sm leading-4 text-fullBlue cursor-pointer">
               Очистить все
             </span>
-          </div>
-          <div
+          </article>
+          <article
             className={` openedBrands border-0  overflow-hidden  ${
               state?.brandShow
                 ? "duration-300 h-0"
@@ -265,7 +259,7 @@ const CategoryForBrand = () => {
             } duration-300`}
           >
             {/* Search */}
-            <div className="h-[44px] w-full flex items-center justify-between px-4 border border-searchBgColor rounded-lg ">
+            <form className="h-[44px] w-full flex items-center justify-between px-4 border border-searchBgColor rounded-lg ">
               <input
                 className="w-[85%] h-full text-sm font-AeonikProRegular"
                 type="text"
@@ -273,78 +267,78 @@ const CategoryForBrand = () => {
                 placeholder="Поиск бренда"
                 autoComplete="off"
               />
-              <span>
+              <p>
                 <SearchIcons />
-              </span>
-            </div>
+              </p>
+            </form>
 
             {/* Field */}
-            <div
+            <article
               className={`h-[300px] w-full mt-7 overflow-auto  categoryScroll `}
             >
               {product?.brandWear.map((data) => {
                 return (
-                  <div
+                  <figure
                     key={data?.id}
                     onClick={() => HandleBrandFilter(data?.id)}
                     className="flex items-center cursor-pointer select-none mb-4 "
                   >
-                    <div
+                    <article
                       className={`w-[22px] h-[22px] p-1 flex items-center ${
                         data?.action ? "bg-fullBlue " : "bg-white"
                       }  mr-[10px] rounded border border-borderColorCard`}
                     >
-                      <span className="text-white">
+                      <p className="text-white">
                         <BsCheckLg size={12} />
-                      </span>
-                    </div>
-                    <div className="flex items-center not-italic   font-AeonikProRegular text-sm leading-4 text-black">
+                      </p>
+                    </article>
+                    <article className="flex items-center not-italic   font-AeonikProRegular text-sm leading-4 text-black">
                       {data?.name}
-                      <span className=" not-italic ml-2 font-AeonikProRegular text-sm leading-4 text-setTexOpacity">
+                      <p className=" not-italic ml-2 font-AeonikProRegular text-sm leading-4 text-setTexOpacity">
                         ({data?.count})
-                      </span>
-                    </div>
-                  </div>
+                      </p>
+                    </article>
+                  </figure>
                 );
               })}
-            </div>
-          </div>
-        </div>
+            </article>
+          </article>
+        </section>
 
         {/* Prizes */}
-        <div className=" mt-[50px]">
-          <div
+        <section className=" mt-[50px]">
+          <article
             className="w-full flex justify-between items-center "
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div
+            <figure
               onClick={() =>
                 setState({ ...state, budgetShow: !state.budgetShow })
               }
               className="flex items-center cursor-pointer select-none"
             >
-              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Budget
-              </span>
-              <span
+              </p>
+              <p
                 className={`${
                   state?.budgetShow ? "rotate-[180deg]" : ""
                 } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
-              </span>
-            </div>
-          </div>
-          <div
+              </p>
+            </figure>
+          </article>
+          <article
             className={`  border-1 border-green-600  overflow-hidden  ${
               state?.budgetShow
                 ? "duration-300 h-0"
                 : "duration-300 h-[170px] mt-5"
             } duration-300`}
           >
-            <div className="w-full flex flex-wrap gap-x-1 gap-y-2">
+            <figure className="w-full flex flex-wrap gap-x-1 gap-y-2">
               {product.prizes.map((item) => (
                 <button
                   key={item.id}
@@ -353,8 +347,8 @@ const CategoryForBrand = () => {
                   {item.prize}
                 </button>
               ))}
-            </div>
-            <div className="w-full h-12 bg-bgCategory  mt-4 pb-1 px-[2px]">
+            </figure>
+            <figure className="w-full h-12 bg-bgCategory  mt-4 pb-1 px-[2px]">
               <div className=" w-full flex justify-center items-center gap-x-1">
                 <div className=" h-fit  not-italic font-AeonikProMedium text-base leading-4 text-center text-fullBlue tracking-[1%]">
                   {values[0]}
@@ -376,42 +370,42 @@ const CategoryForBrand = () => {
                   minDistance={10}
                 />
               </div>
-            </div>
-          </div>
-        </div>
+            </figure>
+          </article>
+        </section>
 
         {/* Colors */}
-        <div className="w-full h-fit mt-[50px] ">
+        <section className="w-full h-fit mt-[50px] ">
           {/* Controls */}
-          <div
+          <article
             className="openBrands w-full flex justify-between items-center"
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div
+            <figure
               onClick={() =>
                 setState({ ...state, ColorsShow: !state.ColorsShow })
               }
               className="flex items-center cursor-pointer select-none"
             >
-              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Цвет
-              </span>
-              <span
+              </p>
+              <p
                 className={`${
                   state?.ColorsShow ? "rotate-[180deg]" : ""
                 } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
-              </span>
-            </div>
+              </p>
+            </figure>
             <span className="not-italic font-AeonikProMedium text-sm leading-4 text-fullBlue cursor-pointer">
               Очистить все
             </span>
-          </div>
+          </article>
           {/* Colors */}
-          <div
+          <article
             className={`w-full px-[2px] flex justify-between flex-wrap items-center   bg-white hover:backdrop-brightness-125 hover:bg-white/60 transition ease-out duration-300 gap-x-[10px] gap-y-[10px] border-0  overflow-hidden  ${
               state?.ColorsShow
                 ? "duration-300 h-0"
@@ -420,52 +414,52 @@ const CategoryForBrand = () => {
           >
             {product?.changeColor.map((item) => {
               return (
-                <div
+                <figure
                   key={item?.id}
                   onClick={() => HandleColorCheck(item?.id)}
                   className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 w-8 h-8 ${item?.colors} cursor-pointer  border border-solid border-borderColorCard`}
                   htmlFor="Color1"
                 >
                   {item?.action ? (
-                    <span className="w-[14px]">
+                    <p className="w-[14px]">
                       <InputCheckedTrueIcons colors={"#fff"} />
-                    </span>
+                    </p>
                   ) : null}
-                </div>
+                </figure>
               );
             })}
-          </div>
-        </div>
+          </article>
+        </section>
 
         {/* Availability */}
-        <div className="w-full h-fit mt-[50px] ">
-          <div
+        <section className="w-full h-fit mt-[50px] ">
+          <article
             className="w-full flex justify-between items-center "
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div
+            <figure
               onClick={() =>
                 setState({ ...state, availability: !state.availability })
               }
               className="flex items-center cursor-pointer select-none"
             >
-              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Доступность
-              </span>
-              <span
+              </p>
+              <p
                 className={`${
                   state?.availability ? "rotate-[180deg]" : ""
                 } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
-              </span>
-            </div>
-          </div>
+              </p>
+            </figure>
+          </article>
 
           {/* Field */}
-          <div
+          <article
             className={`w-full overflow-hidden ${
               state?.availability
                 ? "duration-300 h-0"
@@ -474,12 +468,12 @@ const CategoryForBrand = () => {
           >
             {product?.availability.map((data) => {
               return (
-                <div
+                <article
                   key={data?.id}
                   className="flex items-center  cursor-pointer select-none "
                   onClick={HandleCheckStatus(data?.id)}
                 >
-                  <div
+                  <figure
                     className={`w-[22px] h-[22px] p-1 flex items-center ${
                       state?.checkBrand ? "bg-fullBlue " : "bg-white"
                     }  mr-[10px] rounded border border-borderColorCard`}
@@ -489,28 +483,28 @@ const CategoryForBrand = () => {
                         <BsCheckLg size={12} />
                       </span>
                     )}
-                  </div>
-                  <div className="flex items-center not-italic mr-2 font-AeonikProRegular text-sm leading-4 text-black">
+                  </figure>
+                  <p className="flex items-center not-italic mr-2 font-AeonikProRegular text-sm leading-4 text-black">
                     {data?.title}
-                  </div>
-                  <div className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-setTexOpacity">
+                  </p>
+                  <p className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-setTexOpacity">
                     ({data?.count})
-                  </div>
-                </div>
+                  </p>
+                </article>
               );
             })}
-          </div>
-        </div>
+          </article>
+        </section>
 
         {/* Customer reviews */}
-        <div className="w-full h-fit mt-[50px] ">
-          <div
+        <section className="w-full h-fit mt-[50px] ">
+          <article
             className="w-full flex justify-between items-center"
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div
+            <figure
               onClick={() =>
                 setState({
                   ...state,
@@ -519,19 +513,19 @@ const CategoryForBrand = () => {
               }
               className="flex items-center cursor-pointer select-none"
             >
-              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Отзывы клиентов
-              </span>
-              <span
+              </p>
+              <p
                 className={`${
                   state?.customerRreviews ? "rotate-[180deg]" : ""
                 } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
-              </span>
-            </div>
-          </div>
-          <div
+              </p>
+            </figure>
+          </article>
+          <article
             className={`flex flex-col   gap-y-3 overflow-hidden ${
               state?.customerRreviews
                 ? "duration-300 h-0"
@@ -567,46 +561,46 @@ const CategoryForBrand = () => {
                 </div>
               );
             })}
-          </div>
-        </div>
+          </article>
+        </section>
 
         {/* Размер одежды */}
-        <div className="w-full h-fit mt-[50px] ">
-          <div
+        <section className="w-full h-fit mt-[50px] ">
+          <article
             className="w-full flex justify-between items-center "
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div
+            <figure
               onClick={() =>
                 setState({ ...state, ClothingShow: !state.ClothingShow })
               }
               className="flex items-center cursor-pointer select-none"
             >
-              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              <figcaption className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Размер одежды
-              </span>
-              <span
+              </figcaption>
+              <p
                 className={`${
                   state?.ClothingShow ? "rotate-[180deg]" : ""
                 } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
-              </span>
-            </div>
-            <span className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
+              </p>
+            </figure>
+            <p className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
               3XL
-            </span>
-          </div>
-          <div
+            </p>
+          </article>
+          <article
             className={` overflow-hidden ${
               state?.ClothingShow
                 ? "duration-300 h-0"
                 : "duration-300 h-[90px] mt-5"
             } duration-300`}
           >
-            <div className="w-full flex flex-wrap justify-between  gap-y-2">
+            <figure className="w-full flex flex-wrap justify-between  gap-y-2">
               {product.clothingSize.map((item) => (
                 <button
                   key={item.id}
@@ -615,47 +609,47 @@ const CategoryForBrand = () => {
                   {item.size}
                 </button>
               ))}
-            </div>
-          </div>
-        </div>
+            </figure>
+          </article>
+        </section>
 
         {/* Размер брюк */}
-        <div className="w-full h-fit  mt-[50px] ">
-          <div
+        <section className="w-full h-fit  mt-[50px] ">
+          <article
             className="w-full flex justify-between items-center "
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div
+            <figure
               onClick={() =>
                 setState({ ...state, TrouserShow: !state.TrouserShow })
               }
               className="flex items-center cursor-pointer select-none"
             >
-              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Размер брюк
-              </span>
-              <span
+              </p>
+              <p
                 className={`${
                   state?.TrouserShow ? "rotate-[180deg]" : ""
                 } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
-              </span>
-            </div>
-            <span className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
+              </p>
+            </figure>
+            <p className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
               2XL
-            </span>
-          </div>
-          <div
+            </p>
+          </article>
+          <article
             className={` overflow-hidden ${
               state?.TrouserShow
                 ? "duration-300 h-0"
                 : "duration-300 h-[90px] mt-5"
             } duration-300`}
           >
-            <div className="w-full flex flex-wrap justify-between gap-y-2">
+            <figure className="w-full flex flex-wrap justify-between gap-y-2">
               {product.pantsSize.map((item) => (
                 <button
                   key={item.id}
@@ -664,47 +658,47 @@ const CategoryForBrand = () => {
                   {item.size}
                 </button>
               ))}
-            </div>
-          </div>
-        </div>
+            </figure>
+          </article>
+        </section>
 
         {/* Размер обуви */}
-        <div className="w-full h-fit mt-[50px] ">
-          <div
+        <section className="w-full h-fit mt-[50px] ">
+          <article
             className="w-full flex justify-between items-center "
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div
+            <figure
               onClick={() =>
                 setState({ ...state, ShoesShow: !state.ShoesShow })
               }
               className="flex items-center cursor-pointer select-none"
             >
-              <span className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Размер обуви
-              </span>
-              <span
+              </p>
+              <p
                 className={`${
                   state?.ShoesShow ? "rotate-[180deg]" : ""
                 } duration-300 ml-1`}
               >
                 <ArrowTopIcons colors={"#000"} />
-              </span>
-            </div>
-            <span className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
+              </p>
+            </figure>
+            <p className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
               44
-            </span>
-          </div>
-          <div
+            </p>
+          </article>
+          <article
             className={` overflow-hidden ${
               state?.ShoesShow
                 ? "duration-300 h-0"
                 : "duration-300 h-[90px] mt-5"
             } duration-300`}
           >
-            <div className="w-full flex flex-wrap justify-between gap-y-2">
+            <figure className="w-full flex flex-wrap justify-between gap-y-2">
               {product.shoeSize.map((item) => (
                 <button
                   key={item.id}
@@ -713,16 +707,16 @@ const CategoryForBrand = () => {
                   {item.size}
                 </button>
               ))}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className=" mt-8 border-t border-searchBgColor py-5 px-3">
+            </figure>
+          </article>
+        </section>
+      </section>
+      <section className=" mt-8 border-t border-searchBgColor py-5 px-3">
         <button className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70">
           Сбросить фильтр
         </button>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 export { CategoryForBrand };

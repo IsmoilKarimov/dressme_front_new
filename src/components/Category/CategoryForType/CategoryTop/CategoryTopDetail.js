@@ -1,10 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 import { MuslimImg } from "../../../../AssetsMain";
-import {
-  ClothesIcons,
-  FilterIcons
-} from "../../../../AssetsMain/icons";
+import { ClothesIcons, FilterIcons } from "../../../../AssetsMain/icons";
 import { useContext, useState } from "react";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { Popover } from "antd";
@@ -13,7 +10,6 @@ import { BiChevronDown } from "react-icons/bi";
 const CategoryTopDetail = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const handleFilter = () => {
-    console.log("runFilter");
     setDressInfo({
       ...dressInfo,
       openCategoryFilter: !dressInfo.openCategoryFilter,
@@ -42,7 +38,7 @@ const CategoryTopDetail = () => {
     { id: 7, type: "Классическая" },
   ];
   const contentCategories = (
-    <div className="w-[230px] h-fit m-0 p-0">
+    <section className="w-[230px] h-fit m-0 p-0">
       {categories.map((data) => {
         return (
           <p
@@ -56,14 +52,14 @@ const CategoryTopDetail = () => {
           </p>
         );
       })}
-    </div>
+    </section>
   );
 
   // Types of Clothes
   const handleOpenTypesofClothes = (openTypesofClothes) => {
     setState({ ...state, openTypesofClothes: openTypesofClothes });
   };
- 
+
   const handleTypesofClothes = () => {
     setState({ ...state, openTypesofClothes: false });
   };
@@ -83,7 +79,7 @@ const CategoryTopDetail = () => {
     { id: 13, name: "Ремень" },
   ];
   const contentTypesofClothes = (
-    <div className="w-[150px] h-[200px] overflow-auto m-0 p-0">
+    <section className="w-[150px] h-[200px] overflow-auto m-0 p-0">
       {typesofClothes.map((data) => {
         return (
           <p
@@ -97,15 +93,15 @@ const CategoryTopDetail = () => {
           </p>
         );
       })}
-    </div>
+    </section>
   );
 
   return (
-    <div className="flex flex-col justify-center border-b border-searchBgColor items-center md:py-[60px]">
-      <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
-        <div className="w-[100%] h-fit">
-          <div className="w-full flex flex-col">
-            <div className="relative w-full  md:h-[90px]  mt-2 md:mt-0  h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
+    <main className="flex flex-col justify-center border-b border-searchBgColor items-center md:py-[60px]">
+      <section className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
+        <secion className="w-[100%] h-fit">
+          <article className="w-full flex flex-col">
+            <figure className="relative w-full  md:h-[90px]  mt-2 md:mt-0  h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               {/*  */}
               <div className="w-full md:w-fit flex h-[80px] md:h-fit items-center">
                 <div className="absolute  w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
@@ -153,20 +149,20 @@ const CategoryTopDetail = () => {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </figure>
+          </article>
 
-          <div className="w-full md:hidden flex items-center justify-between mt-6 mb-3  px-4">
+          <article className="w-full md:hidden flex items-center justify-between mt-6 mb-3  px-4">
             <button
               onClick={() => handleFilter()}
               className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
             >
-              <span>
+              <p>
                 <FilterIcons colors={"#000"} />
-              </span>
-              <span className="ml-2 not-italic  font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+              </p>
+              <p className="ml-2 not-italic  font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
                 Фильтры
-              </span>
+              </p>
             </button>
 
             <Popover
@@ -178,17 +174,17 @@ const CategoryTopDetail = () => {
               placement="bottom"
               content={contentTypesofClothes}
             >
-              <span>
+              <p>
                 <ClothesIcons />
-              </span>
-              <span className="ml-2  not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+              </p>
+              <p className="ml-2  not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
                 Тип одеждый
-              </span>
+              </p>
             </Popover>
-          </div>
-        </div>
-      </div>
-    </div>
+          </article>
+        </secion>
+      </section>
+    </main>
   );
 };
 export default CategoryTopDetail;
