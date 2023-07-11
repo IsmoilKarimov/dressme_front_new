@@ -32,34 +32,29 @@ const NavMenu = () => {
   }
 
   return (
-    <div
-      className={`bg-white shadow-navMenuShadov  px-4 w-full rounded-t-xl md:hidden z-[101] h-full overscroll-none overflow-y-hidden`}
+    <nav className={`bg-white shadow-navMenuShadov  px-4 w-full rounded-t-xl md:hidden z-[101] h-full overscroll-none overflow-y-hidden`}
     >
       <ul className="flex items-center justify-between text-[10px] font-AeonikProMedium py-1 ">
         <li className="w-[72px] h-[56px]">
           <NavLink
             to={"/"}
-            className="w-full h-full flex items-center justify-center text-center  "
+            className="w-full h-full flex items-center justify-center text-center"
           >
             {({ isActive }) =>
               isActive ? (
-                <span className="flex flex-col items-center justify-center mt-1 ">
-                  <span className=" flex items-center">
-                    <ActiveHomeIcons colors={IconsColor} />
-                  </span>
-                  <span className="mt-[7px]">
-                    <span>Главная</span>
-                  </span>{" "}
-                </span>
+                <figure className="flex flex-col items-center justify-center">
+                  <ActiveHomeIcons colors={IconsColor} />
+                  <figcaption className="pt-[8px]">
+                    <p>Главная</p>
+                  </figcaption>{" "}
+                </figure>
               ) : (
-                <span className=" flex flex-col items-center justify-center mt-1 ">
-                  <span className="">
-                    <HomeIcons colors={"#000"} />
-                  </span>
-                  <span className="mt-[7px]">
-                    <span>Главная</span>
-                  </span>
-                </span>
+                <figure className=" flex flex-col items-center justify-center mt-1">
+                  <HomeIcons colors={"#000"} />
+                  <figcaption className="pt-[8px]">
+                    <p>Главная</p>
+                  </figcaption>
+                </figure>
               )
             }
           </NavLink>
@@ -67,32 +62,27 @@ const NavMenu = () => {
         <li className="w-[72px] h-[56px] ">
           <NavLink
             to={"/katolog"}
-            className="w-full h-full flex items-center justify-center text-center  "
+            className="w-full h-full flex items-center justify-center text-center"
           >
             {({ isActive }) =>
               isActive ? (
-                <span className="flex flex-col items-center justify-center mt-1  ">
-                  <span className=" flex items-center ">
-                    <ActiveCotegoryIcons colors={IconsColor} />
-                  </span>
-                  <span className="mt-2">
-                    <span>Категории</span>
-                  </span>{" "}
-                </span>
+                <figure className="flex flex-col items-center justify-center mt-1">
+                  <ActiveCotegoryIcons colors={IconsColor} />
+                  <figcaption className="mt-2">
+                    <p>Категории</p>
+                  </figcaption>
+                </figure>
               ) : (
-                <span className=" flex flex-col items-center justify-center mt-1 ">
-                  <span className="">
-                    <CotegoryIcons colors={"#000"} />
-                  </span>
-                  <span className="mt-2">
-                    <span>Категории</span>
-                  </span>
-                </span>
+                <figure className=" flex flex-col items-center justify-center mt-1">
+                  <CotegoryIcons colors={"#000"} />
+                  <figcaption className="mt-2">
+                    <p>Категории</p>
+                  </figcaption>
+                </figure>
               )
             }
           </NavLink>
         </li>
-
         <li className="w-[72px] h-[56px] flex  justify-center ">
           <NavLink
             to={"/delivery-points"}
@@ -100,26 +90,23 @@ const NavMenu = () => {
           >
             {({ isActive }) =>
               isActive ? (
-                <span className="flex flex-col items-center justify-center mt-1">
+                <figure className="flex flex-col items-center justify-center mt-1">
                   <MapNavMenuIcons colors={IconsColor} />
-                  <span className="mt-2">
-                    <span>Карта</span>
-                  </span>{" "}
-                </span>
+                  <figcaption className="mt-2">
+                    <p>Карта</p>
+                  </figcaption>
+                </figure>
               ) : (
-                <span className=" flex flex-col items-center justify-center mt-1 ">
-                  <span className="">
+                <figure className=" flex flex-col items-center justify-center mt-1 ">
                     <MapIcons colors={"#000"} />
-                  </span>
-                  <span className="mt-2">
-                    <span>Карта</span>
-                  </span>
-                </span>
+                  <figcaption className="mt-2">
+                    <p>Карта</p>
+                  </figcaption>
+                </figure>
               )
             }
           </NavLink>
         </li>
-
         <li className="w-[72px] h-[56px] flex  justify-center ">
           <NavLink
             to={"/favourites"}
@@ -127,7 +114,7 @@ const NavMenu = () => {
           >
             {({ isActive }) =>
               isActive ? (
-                <span className="flex flex-col items-center justify-center mt-1">
+                <figure className="flex flex-col items-center justify-center mt-1">
                   <svg
                     width="20"
                     height="18"
@@ -143,24 +130,21 @@ const NavMenu = () => {
                       strokeLinejoin="round"
                     />
                   </svg>{" "}
-                  <span className="mt-2">
-                    <span>Избранное</span>
-                  </span>{" "}
-                </span>
+                  <figcaption className="mt-2">
+                    <p>Избранное</p>
+                  </figcaption>{" "}
+                </figure>
               ) : (
-                <span className=" flex flex-col items-center justify-center mt-1 ">
-                  <span className="">
+                <figure className=" flex flex-col items-center justify-center mt-1 ">
                     <img src={HeartImg} className={"w-5 h-5"} alt="heart" />
-                  </span>
-                  <span className="mt-2">
-                    <span>Избранное</span>
-                  </span>
-                </span>
+                  <figcaption className="mt-2">
+                    <p>Избранное</p>
+                  </figcaption>
+                </figure>
               )
             }
           </NavLink>
         </li>
-
         <li className="w-[72px] h-[56px] ">
           <NavLink
             to={
@@ -172,30 +156,25 @@ const NavMenu = () => {
           >
             {({ isActive }) =>
               isActive ? (
-                <span className="flex flex-col items-center justify-center mt-1 ">
-                  <span className=" flex items-center ">
-                    {" "}
-                    <ActivePersonIcons colors={IconsColor} />
-                  </span>
-                  <span className="mt-1">
-                    <span>Профиль</span>
-                  </span>{" "}
-                </span>
+                <figure className="flex flex-col items-center justify-center mt-1 ">
+                  <ActivePersonIcons colors={IconsColor} />
+                  <figcaption className="mt-1">
+                    <p>Профиль</p>
+                  </figcaption>{" "}
+                </figure>
               ) : (
-                <span className=" flex flex-col items-center justify-center mt-1">
-                  <span className="">
-                    <PersonIcons colors={"#000"} />
-                  </span>
-                  <span className="mt-1">
-                    <span>Профиль</span>
-                  </span>
-                </span>
+                <figure className=" flex flex-col items-center justify-center mt-1">
+                  <PersonIcons colors={"#000"} />
+                  <figcaption className="mt-1">
+                    <p>Профиль</p>
+                  </figcaption>
+                </figure>
               )
             }
           </NavLink>
         </li>
       </ul>
-    </div>
+    </nav>
   );
 };
 export default NavMenu;

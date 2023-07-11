@@ -14,12 +14,10 @@ import { BiChevronDown } from "react-icons/bi";
 import { Popover } from "antd";
 
 import style from "./bottom.module.css";
-import { Link } from "react-router-dom";
 import {
   ClothesIcons,
   DollorIcons,
   InputCheckedTrueIcons,
-  PlusIcons,
 } from "../../AssetsMain/icons";
 
 const BottomHeader = () => {
@@ -225,10 +223,9 @@ const BottomHeader = () => {
     setDressInfo({ ...dressInfo, ClothesBorder: id });
   };
 
-  // mt-1
   return (
-    <div className="flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
-      <div className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto">
+    <nav className="flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
+      <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto">
         <Popover
           open={state?.openwear}
           onOpenChange={handleOpenChangeWear}
@@ -238,21 +235,21 @@ const BottomHeader = () => {
           placement="bottom"
           content={contentWear}
         >
-          <span>
+          <figure>
             <ClothesIcons />
-          </span>
-          <span className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black">
+          </figure>
+          <p className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black">
             {selectWear}
-          </span>
-          <span>
+          </p>
+          <figure>
             <BiChevronDown
               size={20}
               style={{ color: "#c2c2c2" }}
               className={`${
                 state?.openwear ? "rotate-[-180deg]" : ""
               } duration-200`}
-            />{" "}
-          </span>
+            />
+          </figure>
         </Popover>
         <Popover
           open={state?.openPrice}
@@ -263,34 +260,34 @@ const BottomHeader = () => {
           placement="bottom"
           content={contentPrice}
         >
-          <p className="w-[48px] h-full flex items-center justify-center border-r border-searchBgColor">
+          <figure className="w-[48px] h-full flex items-center justify-center border-r border-searchBgColor">
             <DollorIcons />
-          </p>
-          <p className=" w-[142px] h-full flex justify-between items-center px-3">
-            <span className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black ">
+          </figure>
+          <figure className=" w-[142px] h-full flex justify-between items-center px-3">
+            <p className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black ">
               {selectPrice}
-            </span>
-            <span className="">
+            </p>
+            <figcaption className="">
               <BiChevronDown
                 size={20}
                 style={{ color: "#c2c2c2" }}
                 className={`${
                   state?.openPrice ? "rotate-[-180deg]" : ""
                 } duration-200`}
-              />{" "}
-            </span>
-          </p>
+              />
+            </figcaption>
+          </figure>
         </Popover>
 
-        <div className="flex items-center w-[536px] justify-start bg-btnBgColor overflow-hidden rounded-lg border-searchBgColor border h-[44px] ml-2">
-          <div
+        <article className="flex items-center w-[536px] justify-start bg-btnBgColor overflow-hidden rounded-lg border-searchBgColor border h-[44px] ml-2">
+          <section
             onClick={() =>
               setState({ ...state, textToColor: !state.textToColor })
             }
             className="w-[48px] cursor-pointer border-r border-searchBgColor h-full flex items-center justify-center"
           >
             <div className=" w-fit h-fit flex items-center justify-center relative  select-none ">
-              <div className={style.mainOne}>
+              <figure className={style.mainOne}>
                 <svg
                   width="4"
                   height="4"
@@ -306,24 +303,22 @@ const BottomHeader = () => {
                     strokeLinejoin="round"
                   />
                 </svg>
-              </div>
-              <div className={style.mainTwo}></div>
-              <div
-                className={
+              </figure>
+              <article className={style.mainTwo}></article>
+              <article className={
                   state?.textToColor ? style.MainHtree : style.mainThreerotate
                 }
-              ></div>
+              ></article>
             </div>
-          </div>
-          <div className="w-[480px] h-full overflow-hidden flex items-center justify-between">
-            <div
-              className={`${
+          </section>
+          <section className="w-[480px] h-full overflow-hidden flex items-center justify-between">
+            <section className={`${
                 state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
               } px-3 w-full duration-500  h-full flex items-center justify-between  `}
             >
               {changeColor?.map((data) => {
                 return (
-                  <div key={data?.id}>
+                  <article key={data?.id}>
                     <label
                       key={data?.id}
                       htmlFor={data?.id}
@@ -352,42 +347,42 @@ const BottomHeader = () => {
                       onChange={(e) => setGetRadio(e.target.value)}
                       className={"hidden  w-full h-full"}
                     />
-                  </div>
+                  </article>
                 );
               })}
-            </div>
-            <div
+            </section>
+            <p
               className={`${
                 state?.textToColor ? " mr-0" : " mr-[-500px]"
               } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
             >
               Не давай своей гардеробной шкафной жизни стать скучной.
-            </div>
-          </div>
-        </div>
-        <div className="line h-6 border-r-[1px] text-textColor mx-3"></div>
+            </p>
+          </section>
+        </article>
+        <article className="line h-6 border-r-[1px] text-textColor mx-3"></article>
         {personItems
           ?.filter((value) => value.id === dressInfo?.type)
           .map((data) => {
             return (
-              <div key={data?.id} className="w-fit flex items-center ">
+              <figure key={data?.id} className="w-fit flex items-center">
                 <button
                   className={`mr-1 ${genderStyle} h-[44px] px-6 justify-between mr-2 flex items-center bg-btnBgColor border border-searchBgColor rounded-lg`}
                 >
                   <img className="mr-3" src={data?.woman} alt="female" />
-                  <span className="font-AeonikProMedium">Женщинам</span>
+                  <figcaption className="font-AeonikProMedium">Женщинам</figcaption>
                 </button>
                 <button
                   className={`  ${genderStyle} h-[44px]  px-6 justify-between flex items-center bg-btnBgColor border border-searchBgColor rounded-lg`}
                 >
                   <img className="mr-3" src={data?.man} alt="male" />{" "}
-                  <span className="font-AeonikProMedium">Мужчинам</span>
+                  <figcaption className="font-AeonikProMedium">Мужчинам</figcaption>
                 </button>
-              </div>
+              </figure>
             );
           })}
-      </div>
-    </div>
+      </section>
+    </nav>
   );
 };
 
