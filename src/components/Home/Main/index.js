@@ -9,10 +9,10 @@ export default function HomeIndex() {
     });
   }, []);
   return (
-    <div className="w-[100%] h-fit">
+    <main className="w-[100%] h-fit">
       <MainPageSliders />
       <CollectionCards />
       <TypeSection />
-    </div>
+    </main>
   );
 }
