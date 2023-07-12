@@ -357,7 +357,7 @@ const Footer = () => {
   // mt-1
 
   return (
-    <nav>
+    <footer>
       <section className="flex flex-col h-fit justify-center items-center m-0 p-0 ss:px-4 md:px-0 box-border border-t border-searchBgColor  md:mt-[40px] mb-[40px] md:mb-[60px] bg-btnBgColor md:bg-white md:border-t-0">
         <article className="">
           <ScrollToTop
@@ -964,7 +964,7 @@ const Footer = () => {
               </article>
             </section>
 
-            <section className="w-full border-b md:hidden ss:block border-gray-200"></section>
+            <div className="w-full border-b md:hidden ss:block border-gray-200"></div>
 
             <section className=" ss:mt-[40px] md:mt-[62px]">
               {/* Catalog and Clothes types */}
@@ -1123,7 +1123,7 @@ const Footer = () => {
           </div>
         </article>
       </section>
-    </nav>
+    </footer>
   );
 };
 export default Footer;
