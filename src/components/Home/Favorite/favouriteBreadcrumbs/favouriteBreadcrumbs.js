@@ -15,36 +15,11 @@ import {
   SortIcons,
 } from "../../../../AssetsMain/icons";
 const FavoutireBreadCrumbs = () => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
 
   const [state, setState] = useState({
     openwear: false,
-    openPrice: false,
-    textToColor: false,
   });
-
-  let dataStyle = "";
-  let genderStyle = "";
-  if (dressInfo?.type == 1111) {
-    dataStyle = "hover:text-borderSpring ";
-    genderStyle =
-      "focus:text-borderSpring focus:bg-bgSpring focus:border-borderSpring";
-  }
-  if (dressInfo?.type == 2222) {
-    dataStyle = "hover:text-borderSummer";
-    genderStyle =
-      "focus:text-borderSummer focus:bg-bgSummer focus:border-borderSummer";
-  }
-  if (dressInfo?.type == 3333) {
-    dataStyle = "hover:text-borderAutumm ";
-    genderStyle =
-      "focus:text-borderAutumm focus:bg-bgAutumm focus:border-borderAutumm";
-  }
-  if (dressInfo?.type == 4444) {
-    dataStyle = "hover:text-borderWinter ";
-    genderStyle =
-      "focus:text-borderWinter focus:bg-bgWinter focus:border-borderWinter";
-  }
 
   const personItems = [
     { id: 1111, man: SpringMale },
@@ -56,10 +31,8 @@ const FavoutireBreadCrumbs = () => {
   const handleOpenChangeWear = (newOpen) => {
     setState({ ...state, openwear: newOpen });
   };
-  const [selectWear, setselectWear] = useState("Clothing type");
 
-  const handleWearValue = (value) => {
-    setselectWear(value);
+  const handleWearValue = () => {
     setState({ ...state, openwear: false });
   };
 
@@ -80,7 +53,7 @@ const FavoutireBreadCrumbs = () => {
             onClick={() => {
               handleWearValue(data?.type);
             }}
-            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dataStyle}`}
+            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.TextHoverSeason}`}
           >
             {data?.type}
           </p>

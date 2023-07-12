@@ -311,7 +311,7 @@ function YandexMapsDressMe() {
                           <MenuOpenIcons />
                         </span>
                       </span>
-                      <span className=" flex flex-nowrap items-center mr-[-100px] group-hover:mr-[10px] w-[92px] ease-linear duration-300 pt-1 justify-center text-center  cursor-pointer bg-white not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
+                      <span className=" flex flex-nowrap items-center mr-[-100px] group-hover:mr-[10px] w-[92px] ease-linear duration-300 pt-[2px] justify-center text-center  cursor-pointer bg-white not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
                         Магазины
                       </span>
                     </div>
@@ -557,7 +557,7 @@ function YandexMapsDressMe() {
                 <div className="flex items-center justify-between h-fit mb-3">
                   <button className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
                     <span>
-                      <VolumeIcons colors={IconsColor} />
+                      <VolumeIcons colors={dressInfo?.ColorSeason} />
                     </span>
                     <span className=" ml-[10px]">Музика</span>
                   </button>

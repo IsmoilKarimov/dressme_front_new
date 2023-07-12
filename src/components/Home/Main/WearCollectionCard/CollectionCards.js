@@ -12,24 +12,6 @@ import { ClothingParametr } from "./ClothingParametr";
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
-  let dataStyle = "";
-  let shadowStyle = "";
-  if (dressInfo?.type === 1111) {
-    dataStyle = "text-borderSpring ";
-    shadowStyle = "hover:shadow-green-300/100 ";
-  }
-  if (dressInfo?.type === 2222) {
-    dataStyle = "text-borderSummer";
-    shadowStyle = "hover:shadow-amber-200/100  ";
-  }
-  if (dressInfo?.type === 3333) {
-    dataStyle = "text-borderAutumm";
-    shadowStyle = "hover:shadow-orange-200/100   ";
-  }
-  if (dressInfo?.type === 4444) {
-    dataStyle = "text-borderWinter";
-    shadowStyle = "hover:shadow-sky-200/100  ";
-  }
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/product/:${id}`);

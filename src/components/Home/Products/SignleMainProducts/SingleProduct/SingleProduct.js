@@ -10,7 +10,7 @@ import {
   NoImg,
   StarIcons,
 } from "../../../../../AssetsMain/icons";
-import { AddBasket, HeartImg } from "../../../../../AssetsMain";
+import { HeartImg } from "../../../../../AssetsMain";
 import ProductComment from "./ProductComment/ProductComment";
 import AboutProduct from "./AboutProduct/AboutProduct";
 

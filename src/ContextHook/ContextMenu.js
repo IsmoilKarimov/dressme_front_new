@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { NoImg } from "../AssetsMain/icons";
 export const dressMainData = createContext();
 export const DressMenu = ({ children }) => {
@@ -20,6 +20,15 @@ export const DressMenu = ({ children }) => {
     openCategoryFilter: false,
     // Shop/:Id
     openShopIdFilter: false,
+
+    // colorFull
+    BtnSeason: "",
+    BtnOpacitySeason: "",
+    BtnFocusSeason: "",
+    ColorSeason: "",
+    TextHoverSeason: "",
+    TextColorSeason: "",
+    LinkActiveSeason: "",
 
     ProductList: [
       {
@@ -1093,6 +1102,72 @@ export const DressMenu = ({ children }) => {
       },
     ],
   });
+  const BtnSeasonArray = [
+    {
+      id: 1111,
+      btn: "text-borderSpring bg-btnBgColor border-searchBgColor",
+      btnOpacity: "text-borderSpring bg-opacity-10 bg-bgSpring",
+      btnFocus:
+        "focus:text-borderSpring focus:bg-btnBgColor focus:border-searchBgColor",
+      textHover: "hover:text-borderSpring",
+      textColor: "text-borderSpring",
+      color: "#008F0E",
+      linkActive:
+        "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderSpring text-borderSpring",
+    },
+    {
+      id: 2222,
+      btn: "text-borderSummer bg-btnBgColor border-searchBgColor",
+      btnOpacity: "text-borderSummer bg-opacity-10 bg-bgSummer",
+      btnFocus:
+        "focus:text-borderSummer focus:bg-btnBgColor focus:border-searchBgColor",
+      textHover: "hover:text-borderSummer",
+      textColor: "text-borderSummer",
+      color: "#EAA700",
+      linkActive:
+        "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderSummer text-borderSummer",
+    },
+    {
+      id: 3333,
+      btn: "text-borderAutumm bg-btnBgColor border-searchBgColor",
+      btnOpacity: "text-borderAutumm bg-opacity-10 bg-bgAutumm",
+      btnFocus:
+        "focus:text-borderAutumm focus:bg-btnBgColor focus:border-searchBgColor",
+      textHover: "hover:text-borderAutumm",
+      textColor: "text-borderAutumm",
+      color: "#E17A02",
+      linkActive:
+        "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderAutumm text-borderAutumm",
+    },
+    {
+      id: 4444,
+      btn: "text-borderWinter bg-btnBgColor border-searchBgColor",
+      btnOpacity: "text-borderWinter bg-opacity-10 bg-bgWinter",
+      btnFocus:
+        "focus:text-borderWinter focus:bg-btnBgColor focus:border-searchBgColor",
+      textHover: "hover:text-borderWinter",
+      textColor: "text-borderWinter",
+      color: "#007DCA",
+      linkActive:
+        "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderWinter text-borderWinter",
+    },
+  ];
+
+  useEffect(() => {
+    BtnSeasonArray.filter((e) => e.id == dressInfo?.type).map((event) => {
+      setDressInfo({
+        ...dressInfo,
+        BtnSeason: event?.btn,
+        BtnOpacitySeason: event?.btnOpacity,
+        BtnFocusSeason: event?.btnFocus,
+        ColorSeason: event?.color,
+        TextHoverSeason: event?.textHover,
+        TextColorSeason: event?.textColor,
+        LinkActiveSeason: event?.linkActive,
+      });
+    });
+  }, [dressInfo.type]);
+
   return (
     <dressMainData.Provider value={[dressInfo, setDressInfo]}>
       {children}

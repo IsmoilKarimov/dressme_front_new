@@ -2,7 +2,7 @@ import React, { useContext, memo } from "react";
 import {
   ClockIcons,
   LocationIcons,
-  MenuCloseIcons,
+  MenuCloseIcons, 
   SircleNext,
   StarIcons,
 } from "../../../AssetsMain/icons";

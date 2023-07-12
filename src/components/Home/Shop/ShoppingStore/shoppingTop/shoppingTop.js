@@ -95,7 +95,7 @@ const ShoppingTop = () => {
                     onClick={() => handleTypeCheck(data.id)}
                     className={`flex items-center justify-center h-10 text-[15px] text-black text-center px-5 font-AeonikProRegular ${
                       data.action
-                        ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg ${dataStyle}`
+                        ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg ${dressInfo?.TextColorSeason}`
                         : ""
                     } `}
                   >
@@ -130,16 +130,12 @@ const ShoppingTop = () => {
                       !data.name ? "px-5" : "px-7"
                     } font-AeonikProRegular ${
                       data.action
-                        ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg ${dataStyle}`
+                        ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg ${dressInfo?.TextColorSeason}`
                         : ""
                     } `}
                   >
                     <span className="">{data.icon}</span>
-                    {data.name ? (
-                      <p className=" ml-2">{data.name}</p>
-                    ) : (
-                      ""
-                    )}
+                    {data.name ? <p className=" ml-2">{data.name}</p> : ""}
                   </button>
                   <span
                     className={`${

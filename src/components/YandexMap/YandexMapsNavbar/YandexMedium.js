@@ -30,40 +30,6 @@ const YandexMedium = () => {
     setDressInfo({ ...dressInfo, openMainMenu: !dressInfo.openMainMenu });
   };
 
-  let dataStyle = "";
-  let hoverText = "";
-  let IconsColor = "";
-  let MapsIconsColor = "";
-
-  if (dressInfo?.type === 1111) {
-    dataStyle = "bg-bgSpring bg-opacity-10    text-borderSpring ";
-    hoverText = " hover:text-borderSpring ";
-    MapsIconsColor = "#008F0E";
-    IconsColor =
-      "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderSpring text-borderSpring";
-  }
-  if (dressInfo?.type === 2222) {
-    dataStyle = "bg-bgSummer  bg-opacity-10  text-borderSummer";
-    MapsIconsColor = "#EAA700";
-    IconsColor =
-      "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderSummer text-borderSummer";
-    hoverText = " hover:text-borderSummer ";
-  }
-  if (dressInfo?.type === 3333) {
-    dataStyle = "bg-bgAutumm bg-opacity-10  text-borderAutumm";
-    MapsIconsColor = "#E17A02";
-    IconsColor =
-      "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderAutumm text-borderAutumm";
-    hoverText = " hover:text-borderAutumm ";
-  }
-  if (dressInfo?.type === 4444) {
-    dataStyle = "bg-bgWinter bg-opacity-10  text-borderWinter";
-    MapsIconsColor = "#007DCA";
-    IconsColor =
-      "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderWinter text-borderWinter";
-    hoverText = " hover:text-borderWinter ";
-  }
-
   const SeasonTypeArray = [
     { id: 1111, type: "Spring", icons: springSeason },
     { id: 2222, type: "Summer", icons: summerSeason },
@@ -101,7 +67,7 @@ const YandexMedium = () => {
               <img src={value?.icons} alt="" />
             </span>
             <span
-              className={`ss:hidden md:inline-block font-AeonikProMedium text-base text-black not-italic ${hoverText}`}
+              className={`ss:hidden md:inline-block font-AeonikProMedium text-base text-black not-italic ${dressInfo.TextHoverSeason}`}
             >
               {value?.type}
             </span>
@@ -156,7 +122,7 @@ const YandexMedium = () => {
             className={`bg-white w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
           >
             <span>
-              <VolumeIcons colors={MapsIconsColor} />
+              <VolumeIcons colors={dressInfo?.ColorSeason} />
             </span>
           </div>
 
@@ -195,10 +161,10 @@ const YandexMedium = () => {
           <div className="flex items-center justify-center rounded-xl font-AeonikProMedium h-[44px]  md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
             {/* Catalog section */}
             <button
-              className={`items-center ${dataStyle} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
+              className={`items-center ${dressInfo?.BtnOpacitySeason} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
             >
               <span>
-                <CotegoryIcons colors={MapsIconsColor} />
+                <CotegoryIcons colors={dressInfo?.ColorSeason} />
               </span>
               <span
                 className={"not-italic font-AeonikProMedium text-sm leading-4"}
@@ -212,7 +178,7 @@ const YandexMedium = () => {
             <input
               type="text"
               placeholder="Поиск продуктов или брендов"
-              className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
+              className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColorSeason placeholder:font-AeonikProRegular"
             />
             <button className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]">
               <SearchIcons />
@@ -227,12 +193,12 @@ const YandexMedium = () => {
             to="/delivery-points"
             className={({ isActive }) =>
               isActive
-                ? IconsColor
+                ? dressInfo?.LinkActiveSeason
                 : "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex"
             }
           >
             <span className="pr-[6px]">
-              <MapIcons colors={MapsIconsColor} />
+              <MapIcons colors={dressInfo?.ColorSeason} />
             </span>
 
             <span className="font-AeonikProMedium text-sm  ">Карта</span>

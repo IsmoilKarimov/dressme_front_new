@@ -4,20 +4,6 @@ import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 export default function AboutProduct() {
   const [dressInfo] = useContext(dressMainData);
 
-  let dataStyle = "";
-  if (dressInfo?.type === 1111) {
-    dataStyle = " text-borderSpring ";
-  }
-  if (dressInfo?.type === 2222) {
-    dataStyle = " text-borderSummer";
-  }
-  if (dressInfo?.type === 3333) {
-    dataStyle = " text-borderAutumm ";
-  }
-  if (dressInfo?.type === 4444) {
-    dataStyle = " text-borderWinter ";
-  }
-
   const [productDescription, setProductDescription] = useState(true);
 
   return (
@@ -31,7 +17,7 @@ export default function AboutProduct() {
             onClick={() => setProductDescription(true)}
             className={`ss:w-1/2 md:w-[152px] md:h-[50px]  h-[42px] text-base text-black text-center font-AeonikProRegular not-italic ${
               productDescription
-                ? ` bg-white border  border-searchBgColor rounded-lg ${dataStyle}`
+                ? ` bg-white border  border-searchBgColor rounded-lg ${dressInfo?.TextColorSeason}`
                 : ""
             }
                         `}
@@ -43,7 +29,7 @@ export default function AboutProduct() {
             onClick={() => setProductDescription(false)}
             className={`ss:w-1/2 md:w-[152px] md:h-[50px]  h-[42px] text-base text-black text-center font-AeonikProRegular not-italic ${
               !productDescription
-                ? ` bg-white border  border-searchBgColor rounded-lg ${dataStyle}`
+                ? ` bg-white border  border-searchBgColor rounded-lg ${dressInfo?.TextColorSeason}`
                 : ""
             }
                         `}

@@ -47,20 +47,6 @@ export default function NavbarTopOpenMenu() {
     { id: 4444, type: "Winter", icons: BrandWinter },
   ];
 
-  let IconsColor = "";
-
-  if (dressInfo?.type === 1111) {
-    IconsColor = "#008F0E";
-  }
-  if (dressInfo?.type === 2222) {
-    IconsColor = "#EAA700";
-  }
-  if (dressInfo?.type === 3333) {
-    IconsColor = "#E17A02";
-  }
-  if (dressInfo?.type === 4444) {
-    IconsColor = "#007DCA";
-  }
   // ----------------Wear state management----------------------------
   const [openwear, setOpenwear] = useState(false);
   const handleOpenChangeWear = (newOpen) => {
@@ -203,7 +189,7 @@ export default function NavbarTopOpenMenu() {
           className={` bg-white w-[44px] h-[44px] ml-[25px] rounded-lg cursor-pointer hidden items-center justify-center md:flex`}
         >
           <span>
-            <VolumeIcons colors={IconsColor} />
+            <VolumeIcons colors={dressInfo?.ColorSeason} />
           </span>
         </div>
         <div className="w-12 h-[44px  ] md:w-[120px] md:h-11 bg-white border border-searchBgColor rounded-lg  md:rounded-lg ml-2">

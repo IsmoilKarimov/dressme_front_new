@@ -8,16 +8,12 @@ import {
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import {
   adidas,
-  autummSeason,
   chanel,
   hm,
   lacoste,
   nike,
   puma,
-  springSeason,
-  summerSeason,
   tommy,
-  winterSeason,
   zara,
 } from "../../../../AssetsMain";
 import { GrClose } from "react-icons/gr";
@@ -25,19 +21,6 @@ import ReactSlider from "react-slider";
 const ClothingParametr = () => {
   const [dressInfo] = useContext(dressMainData);
 
-  let hoverText = "";
-  if (dressInfo?.type === 1111) {
-    hoverText = " hover:text-borderSpring ";
-  }
-  if (dressInfo?.type === 2222) {
-    hoverText = " hover:text-borderSummer ";
-  }
-  if (dressInfo?.type === 3333) {
-    hoverText = " hover:text-borderAutumm ";
-  }
-  if (dressInfo?.type === 4444) {
-    hoverText = " hover:text-borderWinter ";
-  }
   const [state, setState] = useState({
     clothesTypeMobile: false,
     priceToggleMobile: false,
@@ -202,7 +185,7 @@ const ClothingParametr = () => {
                           onClick={() => {
                             setState({ ...state, clothesTypeMobile: false });
                           }}
-                          className={`${hoverText} text-base font-AeonikProMedium hover:bg-bgColor w-full h-12 border border-solid border-searchBgColor flex items-center justify-center`}
+                          className={`${dressInfo?.TextHoverSeason} text-base font-AeonikProMedium hover:bg-bgColor w-full h-12 border border-solid border-searchBgColor flex items-center justify-center`}
                         >
                           {data?.type}
                         </div>
