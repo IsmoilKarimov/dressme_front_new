@@ -20,18 +20,6 @@ const YandexTop = () => {
     openRegion: false,
   });
 
-  let dataStyle = "";
-  if (dressInfo?.type === 1111) {
-    dataStyle = " hover:text-borderSpring ";
-  }
-  if (dressInfo?.type === 2222) {
-  }
-  if (dressInfo?.type === 3333) {
-    dataStyle = " hover:text-borderAutumm ";
-  }
-  if (dressInfo?.type === 4444) {
-    dataStyle = " hover:text-borderWinter ";
-  }
   // -----Language Change-------------------
   const [selectLang, setselectLang] = useState(1);
 
@@ -56,7 +44,7 @@ const YandexTop = () => {
         return (
           <div
             key={data?.id}
-            className={`p-2 text-sm cursor-pointer hover:bg-bgColor flex items-center justify-start  ${dataStyle}`}
+            className={`p-2 text-sm cursor-pointer hover:bg-bgColor flex items-center justify-start  ${dressInfo?.TextHoverSeason}`}
             onClick={() => {
               handleLangValue(data?.id);
             }}
@@ -65,7 +53,7 @@ const YandexTop = () => {
               <img className="w-full h-full" src={data?.icons} alt="" />
             </p>
             <p
-              className={`not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black  ${dataStyle}`}
+              className={`not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black  ${dressInfo?.TextHoverSeason}`}
             >
               {data?.type}
             </p>
@@ -102,7 +90,7 @@ const YandexTop = () => {
         return (
           <div
             key={data?.id}
-            className={`p-2 not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black  hover:bg-bgColor cursor-pointer ${dataStyle}`}
+            className={`p-2 not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black  hover:bg-bgColor cursor-pointer ${dressInfo?.TextHoverSeason}`}
             onClick={() => {
               handleCityValue(data?.type);
             }}

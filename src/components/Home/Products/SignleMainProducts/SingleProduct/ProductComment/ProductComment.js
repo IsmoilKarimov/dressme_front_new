@@ -59,24 +59,6 @@ export default function ProductComment() {
       replyText: "Спасибо за оценку, скоро появятся в продаже",
     },
   ];
-  let dataStyle = "";
-  let genderStyle = "";
-  if (dressInfo?.type === 1111) {
-    dataStyle = " #008F0E ";
-    genderStyle = "text-borderSpring bg-btnBgColor border-searchBgColor";
-  }
-  if (dressInfo?.type === 2222) {
-    dataStyle = " #EAA700";
-    genderStyle = "text-borderSummer bg-btnBgColor border-searchBgColor";
-  }
-  if (dressInfo?.type === 3333) {
-    dataStyle = " #E17A02 ";
-    genderStyle = "text-borderAutumm bg-btnBgColor border-searchBgColor";
-  }
-  if (dressInfo?.type === 4444) {
-    dataStyle = " #007DCA ";
-    genderStyle = "text-borderWinter bg-btnBgColor border-searchBgColor";
-  }
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box md:mb-[60px]">
       <section className="relative w-[100%] h-fit md:mt-6 flex justify-between ">
@@ -140,7 +122,7 @@ export default function ProductComment() {
               className="flex cursor-pointer active:scale-95  active:opacity-70 items-center gap-x-3 "
             >
               <p
-                className={`${genderStyle} not-italic font-AeonikProMedium text-2xl leading-7 text-black track%]`}
+                className={`${dressInfo?.BtnSeason} not-italic font-AeonikProMedium text-2xl leading-7 text-black track%]`}
               >
                 {" "}
                 все комментарии
@@ -148,7 +130,7 @@ export default function ProductComment() {
               <p
                 className={`${openBox ? "rotate-[0deg]" : "rotate-[180deg]"} `}
               >
-                <ArrowTopIcons colors={dataStyle} />
+                <ArrowTopIcons colors={dressInfo?.ColorSeason} />
               </p>
             </button>
           </section>

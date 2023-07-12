@@ -213,8 +213,8 @@ const MyOrderSettings = () => {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-[48%] mx-auto flex items-center justify-between  md:px-[40px] md:py-[30px] mt-6 md:mt-0">
-          <div>
+        <div className="w-full  mx-auto flex items-center justify-between  md:px-[40px] md:py-[30px] mt-6 md:mt-0">
+          <div className="">
             <button
               onClick={LogOut}
               className="flex items-center active:scale-95  active:opacity-70 "

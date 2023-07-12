@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import {
   adidas,
@@ -19,24 +19,6 @@ import { NavLink } from "react-router-dom";
 import { NoImg, SircleNext } from "../../../../AssetsMain/icons";
 export default function MainPageSliders() {
   const [dressInfo] = useContext(dressMainData);
-  let dataStyle = "";
-  let genderStyle = "";
-  if (dressInfo?.type == 1111) {
-    dataStyle = " #008F0E ";
-    genderStyle = "text-borderSpring bg-btnBgColor border-searchBgColor";
-  }
-  if (dressInfo?.type == 2222) {
-    dataStyle = " #EAA700";
-    genderStyle = "text-borderSummer bg-btnBgColor border-searchBgColor";
-  }
-  if (dressInfo?.type == 3333) {
-    dataStyle = " #E17A02 ";
-    genderStyle = "text-borderAutumm bg-btnBgColor border-searchBgColor";
-  }
-  if (dressInfo?.type == 4444) {
-    dataStyle = " #007DCA ";
-    genderStyle = "text-borderWinter bg-btnBgColor border-searchBgColor";
-  }
 
   const changeColor = [
     { id: 1, data: 1, action: false, colors: "border-black" },
@@ -317,13 +299,13 @@ export default function MainPageSliders() {
           </div>
           <div className="w-full flex justify-center items-center  mt-10 ">
             <button
-              className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[52px] px-4 ll:px-10 rounded-xl border ${genderStyle}`}
+              className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[52px] px-4 ll:px-10 rounded-xl border ${dressInfo?.BtnSeason}`}
             >
               <p className="not-italic  font-AeonikProMedium text-base leading-4 text-center">
                 Посмотреть все категории
               </p>
               <p className="ml-2 ">
-                <SircleNext colors={dataStyle} />
+                <SircleNext colors={dressInfo?.ColorSeason} />
               </p>
             </button>
           </div>

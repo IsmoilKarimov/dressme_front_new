@@ -15,7 +15,6 @@ import {
   ProductArticleIcons,
   ProductSizeIcons,
   ProductSwitchIcons,
-  SaveMarketIcons,
   StarIcons,
 } from "../../../../../../AssetsMain/icons";
 import {
@@ -28,24 +27,6 @@ import {
 const ProductDetails = () => {
   const [dressInfo] = useContext(dressMainData);
 
-  let dataStyle = "";
-  let genderStyle = "";
-  if (dressInfo?.type === 1111) {
-    dataStyle = " text-borderSpring ";
-    genderStyle = "text-borderSpring bg-bgSpring border-borderSpring";
-  }
-  if (dressInfo?.type === 2222) {
-    dataStyle = " text-borderSummer";
-    genderStyle = "text-borderSummer bg-bgSummer border-borderSummer";
-  }
-  if (dressInfo?.type === 3333) {
-    dataStyle = " text-borderAutumm ";
-    genderStyle = "text-borderAutumm bg-bgAutumm border-borderAutumm";
-  }
-  if (dressInfo?.type === 4444) {
-    dataStyle = " text-borderWinter ";
-    genderStyle = "text-borderWinter bg-bgWinter border-borderWinter";
-  }
   const [selectColor, setSelectColor] = useState([
     { id: 1, color: "bg-PC1", out: "outline-PC1", action: true },
     { id: 2, color: "bg-PC2", out: "outline-PC2", action: false },
@@ -306,7 +287,7 @@ const ProductDetails = () => {
                 652 000
               </p>
             </article>
-            <article className={`w-fit  ${dataStyle} flex  `}>
+            <article className={`w-fit  ${dressInfo?.TextColorSeason} flex  `}>
               <p className="font-AeonikProRegular text-[14px] leading-4">
                 В наличии:
               </p>
@@ -364,7 +345,7 @@ const ProductDetails = () => {
             </p>
           </section>
           <section
-            className={`w-fit ml-8 ${dataStyle} items-center hidden md:flex`}
+            className={`w-fit ml-8 ${dressInfo?.TextColorSeason} items-center hidden md:flex`}
           >
             <p className="not-italic  font-AeonikProRegular text-[14px] leading-5 text-right tracking-[0.32px]">
               В наличии:
