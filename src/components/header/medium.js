@@ -39,6 +39,14 @@ import {
   autummSeason,
   UzbekFlag,
   HeartImg,
+  catolog1,
+  catolog2,
+  catolog3,
+  catolog4,
+  catolog5,
+  catolog6,
+  catolog7,
+  bryuk,
 } from "../../AssetsMain";
 
 const MediumHeader = () => {
@@ -83,16 +91,15 @@ const MediumHeader = () => {
     { id: 4444, type: "Winter", icons: BrandWinter },
   ];
   const categoryModalArray = [
-    { id: 1, img: '' , type: 'Мужчинам' },
-    { id: 2, img: '' , type: 'Женщинам' },
-    { id: 3, img: '' , type: 'Детям' },
-    { id: 4, img: '' , type: 'Головные уборы' },
-    { id: 5, img: '' , type: 'Верхняя одежда' },
-    { id: 6, img: '' , type: 'Нижняя одежда' },
-    { id: 7, img: '' , type: 'Обувь' },
-    { id: 8, img: '' , type: 'Аксессуары' },
+    { id: 1111, img: catolog4 , type: 'Мужчинам' },
+    { id: 2222, img: catolog5 , type: 'Женщинам' },
+    { id: 3333, img: catolog6 , type: 'Детям' },
+    { id: 4444, img: catolog7 , type: 'Головные уборы' },
+    { id: 5555, img: catolog3, type: 'Верхняя одежда' },
+    { id: 6666, img: bryuk, type: 'Нижняя одежда' },
+    { id: 7777, img: catolog1, type: 'Обувь' },
+    { id: 8888, img: catolog2 , type: 'Аксессуары' },
   ]
-
   const personItems = [
     { id: 1111, man: SpringMale, woman: SpringFemale },
     { id: 2222, man: SummerMale, woman: SummerFemale },
@@ -155,14 +162,19 @@ const MediumHeader = () => {
   }
 
   const openCategoryModalModal = (
-    <section className="ss:w-fit left-[270px] md:w-[650px] h-fit m-0 p-0 ">
-        { categoryModalArray.map(data => (
-          <div key={data.id} className="w-full flex items-center justify-between">
-              <div className="">
-
-              </div>
-          </div>
-        ))}
+    <section className="ss:w-fit left-[270px] md:w-[650px] h-fit m-0 p-4 ">
+       <action className="w-full flex items-center flex-wrap">
+        { categoryModalArray.map(data => {
+          return(
+            <Link to='/' key={data?.id} className="w-1/4 flex items-center justify-center">
+              <figure>
+                  <img src={data.img} alt="" />
+                  <figcaption className="text-center">{data?.type}</figcaption>
+              </figure>
+            </Link>
+          )
+        })}
+        </action>
     </section>
   )
 
