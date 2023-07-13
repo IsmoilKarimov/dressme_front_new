@@ -103,10 +103,13 @@ const CatalogTopFilter = () => {
           <article className="w-full flex flex-col">
             <figure className="relative w-full  md:h-[90px]  mt-2 md:mt-0  h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               <div className="w-full md:w-fit flex items-center justify-between md:mr-5  mt-6 md:mt-0">
-                <div className="flex items-center">
-                  <NavLink className="flex items-center text-[15px] font-AeonikProMedium mr-[22px]">
-                    По категории
-                  </NavLink>
+                <div className="w-full md:w-fit flex items-center justify-between ">
+                  <p className="flex items-center text-black text-xl not-italic font-AeonikProMedium tracking-[0.2px">
+                    Мужские кроссовки{" "}
+                  </p>
+                  <p className=" md:hidden text-setTexOpacity text-right text-sm not-italic font-AeonikProRegular tracking-[0.14px]">
+                    82 товара
+                  </p>
                   <div className="md:flex items-center hidden ">
                     <Popover
                       open={state?.opensports}
