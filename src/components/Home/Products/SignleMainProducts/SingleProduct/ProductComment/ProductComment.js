@@ -98,7 +98,7 @@ export default function ProductComment() {
                     </p>
                   </article>
                   <article className="mt-6 ml-8">
-                    <article>
+                    <article className="flex">
                       <p className="not-italic font-AeonikProMedium text-lg leading-5 text-black">
                         Nike Store Official Dealer
                       </p>
@@ -122,10 +122,10 @@ export default function ProductComment() {
               className="flex cursor-pointer active:scale-95  active:opacity-70 items-center gap-x-3 "
             >
               <p
-                className={`${dressInfo?.BtnSeason} not-italic font-AeonikProMedium text-2xl leading-7 text-black track%]`}
+                className={`${dressInfo?.BtnSeason} not-italic font-AeonikProRegular text-2xl leading-7 text-black track%]`}
               >
                 {" "}
-                все комментарии
+                Bсе комментарии{" "}
               </p>{" "}
               <p
                 className={`${openBox ? "rotate-[0deg]" : "rotate-[180deg]"} `}

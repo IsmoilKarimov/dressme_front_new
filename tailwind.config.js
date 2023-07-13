@@ -50,6 +50,7 @@ module.exports = {
         textOpacity: "#D9D9D9",
         RedColor: "#D50000",
         catalogText: "#2C2C2C",
+        catalogList: "#9B9B9B",
 
         // Hear red color
 

@@ -7,11 +7,15 @@ import LoadingFor from "../components/Loading/LoadingFor";
 import SkeletonHomeIndex from "../components/Home/Main/Skeleton/SkeletonHomeIndex";
 import SignInSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import SignUpSkeletonIndex from "../components/Authentication/SignUpSkeleton";
+// import CatalogMain from "../components/Home/Catalog/CatalogFilter";
 
 // -------------------------------------
 const HomeIndex = React.lazy(() => import("../components/Home/Main"));
 const SingleMainProduct = React.lazy(() =>
   import("../components/Home/Products/SignleMainProducts")
+);
+const CatalogMain = React.lazy(() =>
+  import("../components/Home/Catalog/CatalogFilter")
 );
 // import CatalogPage from "../components/Home/Catalog";
 const YandexMapDressMe = React.lazy(() => import("../components/YandexMap"));
@@ -108,6 +112,20 @@ const RouterMain = () => {
               }
             >
               <CatalogPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/catalog/:id"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SkeletonHomeIndex />
+                </div>
+              }
+            >
+              <CatalogMain />
             </Suspense>
           }
         />
