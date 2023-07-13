@@ -156,20 +156,22 @@ const MediumHeader = () => {
 
 
   // Categoty Modal
-  const [openCategoryModal, setOpenCategoryModal] = useState(false)
+  const [categoryModal, setCategoryModal] = useState(false)
   const handleCategoryModal = (data) => {
-    setOpenCategoryModal(data);
+    setCategoryModal(data);
   }
 
-  const openCategoryModalModal = (
+  const openCategoryModal = (
     <section className="ss:w-fit left-[270px] md:w-[650px] h-fit m-0 p-4 ">
-       <action className="w-full flex items-center flex-wrap">
+       <action className="w-full flex items-center flex-wrap gap-y-6">
         { categoryModalArray.map(data => {
           return(
             <Link to='/' key={data?.id} className="w-1/4 flex items-center justify-center">
               <figure>
-                  <img src={data.img} alt="" />
-                  <figcaption className="text-center">{data?.type}</figcaption>
+                  <span className="w-[120px] h-[120px] rounded-xl">
+                    <img src={data.img} alt="" />
+                  </span>
+                  <figcaption className="text-center mt-2 ">{data?.type}</figcaption>
               </figure>
             </Link>
           )
@@ -277,12 +279,12 @@ const MediumHeader = () => {
               <article className="items-center justify-center rounded-xl font-AeonikProMedium h-[44px] md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
                 {/* Catalog section */}
                 <Popover
-                 open={openCategoryModal}
+                 open={categoryModal}
                  onOpenChange={handleCategoryModal}
                  trigger="click"
                  options={["Hide"]}
                  placement="bottom"
-                 content={openCategoryModalModal}
+                 content={openCategoryModal}
                 className={`items-center left-20 ${dressInfo?.BtnOpacitySeason} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
                 >
                   <span>
