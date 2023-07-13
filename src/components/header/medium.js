@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-
+import "./bottom.module.css"
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { Popover } from "antd";
 import {
@@ -82,6 +82,16 @@ const MediumHeader = () => {
     { id: 3333, type: "Autumm", icons: BrandAutumm },
     { id: 4444, type: "Winter", icons: BrandWinter },
   ];
+  const categoryModalArray = [
+    { id: 1, img: '' , type: 'Мужчинам' },
+    { id: 2, img: '' , type: 'Женщинам' },
+    { id: 3, img: '' , type: 'Детям' },
+    { id: 4, img: '' , type: 'Головные уборы' },
+    { id: 5, img: '' , type: 'Верхняя одежда' },
+    { id: 6, img: '' , type: 'Нижняя одежда' },
+    { id: 7, img: '' , type: 'Обувь' },
+    { id: 8, img: '' , type: 'Аксессуары' },
+  ]
 
   const personItems = [
     { id: 1111, man: SpringMale, woman: SpringFemale },
@@ -136,6 +146,25 @@ const MediumHeader = () => {
   useEffect(() => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
+
+
+  // Categoty Modal
+  const [openCategoryModal, setOpenCategoryModal] = useState(false)
+  const handleCategoryModal = (data) => {
+    setOpenCategoryModal(data);
+  }
+
+  const openCategoryModalModal = (
+    <section className="ss:w-fit left-[270px] md:w-[650px] h-fit m-0 p-0 ">
+        { categoryModalArray.map(data => (
+          <div key={data.id} className="w-full flex items-center justify-between">
+              <div className="">
+
+              </div>
+          </div>
+        ))}
+    </section>
+  )
 
   return (
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border">
@@ -235,8 +264,14 @@ const MediumHeader = () => {
               {/* Searching section */}
               <article className="items-center justify-center rounded-xl font-AeonikProMedium h-[44px] md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
                 {/* Catalog section */}
-                <button
-                  className={`items-center ${dressInfo?.BtnOpacitySeason} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
+                <Popover
+                 open={openCategoryModal}
+                 onOpenChange={handleCategoryModal}
+                 trigger="click"
+                 options={["Hide"]}
+                 placement="bottom"
+                 content={openCategoryModalModal}
+                className={`items-center left-20 ${dressInfo?.BtnOpacitySeason} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
                 >
                   <span>
                     <CotegoryIcons colors={dressInfo?.ColorSeason} />
@@ -244,9 +279,9 @@ const MediumHeader = () => {
                   <span
                     className={` not-italic font-AeonikProMedium text-sm leading-4 `}
                   >
-                    Категории
+                    Категория
                   </span>
-                </button>
+                </Popover>
                 <span className="flex md:hidden">
                   <SearchIcons />
                 </span>
