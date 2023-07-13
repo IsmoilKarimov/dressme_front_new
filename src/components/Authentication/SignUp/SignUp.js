@@ -36,19 +36,7 @@ export default function SignUp() {
   const sendMessagePhoneNumber = data3 + data2;
 
   const [dressInfo] = useContext(dressMainData);
-  let genderStyle = "";
-  if (dressInfo?.type === 1111) {
-    genderStyle = "text-borderSpring ";
-  }
-  if (dressInfo?.type === 2222) {
-    genderStyle = "text-borderSummer ";
-  }
-  if (dressInfo?.type === 3333) {
-    genderStyle = "text-borderAutumm ";
-  }
-  if (dressInfo?.type === 4444) {
-    genderStyle = "text-borderWinter ";
-  }
+
   const [timerDecrase, setTimerDecrase] = useState(60);
   useEffect(() => {
     const interval = setInterval(() => {
@@ -66,7 +54,7 @@ export default function SignUp() {
           <div className="max-w-[440px] w-[100%] h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
             <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-xl  leading-5 ss:text-start md:text-center  tracking-[0,16px] text-black">
               Добро пожаловать в{" "}
-              <span className={`${genderStyle}`}>Dressme</span>!
+              <span className={`${dressInfo?.TextColorSeason}`}>Dressme</span>!
             </div>
 
             <div className="mt-2 w-full h-fit">

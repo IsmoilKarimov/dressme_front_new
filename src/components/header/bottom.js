@@ -29,29 +29,6 @@ const BottomHeader = () => {
     textToColor: false,
   });
 
-  let dataStyle = "";
-  let genderStyle = "";
-  if (dressInfo?.type === 1111) {
-    dataStyle = " hover:text-borderSpring ";
-    genderStyle =
-      "focus:text-borderSpring focus:bg-bgSpring focus:border-borderSpring";
-  }
-  if (dressInfo?.type === 2222) {
-    dataStyle = " hover:text-borderSummer";
-    genderStyle =
-      "focus:text-borderSummer focus:bg-bgSummer focus:border-borderSummer";
-  }
-  if (dressInfo?.type === 3333) {
-    dataStyle = " hover:text-borderAutumm ";
-    genderStyle =
-      "focus:text-borderAutumm focus:bg-bgAutumm focus:border-borderAutumm";
-  }
-  if (dressInfo?.type === 4444) {
-    dataStyle = " hover:text-borderWinter ";
-    genderStyle =
-      "focus:text-borderWinter focus:bg-bgWinter focus:border-borderWinter";
-  }
-
   const personItems = [
     { id: 1111, man: SpringMale, woman: SpringFemale },
     { id: 2222, man: SummerMale, woman: SummerFemale },
@@ -88,7 +65,7 @@ const BottomHeader = () => {
             onClick={() => {
               handleWearValue(data?.type);
             }}
-            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dataStyle}`}
+            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.TextHoverSeason}`}
           >
             {data?.type}
           </p>
@@ -124,7 +101,7 @@ const BottomHeader = () => {
             onClick={() => {
               handlePriceValue(data?.type);
             }}
-            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dataStyle}`}
+            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.TextHoverSeason}`}
           >
             {data?.type}
           </p>
@@ -305,14 +282,16 @@ const BottomHeader = () => {
                 </svg>
               </span>
               <span className={style.mainTwo}></span>
-              <span className={
+              <span
+                className={
                   state?.textToColor ? style.MainHtree : style.mainThreerotate
                 }
               ></span>
             </div>
           </article>
           <article className="w-[480px] h-full overflow-hidden flex items-center justify-between">
-            <div className={`${
+            <div
+              className={`${
                 state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
               } px-3 w-full duration-500  h-full flex items-center justify-between  `}
             >
@@ -367,16 +346,20 @@ const BottomHeader = () => {
             return (
               <figure key={data?.id} className="w-fit flex items-center">
                 <button
-                  className={`mr-1 ${genderStyle} h-[44px] px-6 justify-between mr-2 flex items-center bg-btnBgColor border border-searchBgColor rounded-lg`}
+                  className={`mr-1 ${dressInfo?.BtnFocusSeason} h-[44px] px-6 justify-between mr-2 flex items-center bg-btnBgColor border border-searchBgColor rounded-lg`}
                 >
                   <img className="mr-3" src={data?.woman} alt="female" />
-                  <figcaption className="font-AeonikProMedium">Женщинам</figcaption>
+                  <figcaption className="font-AeonikProMedium">
+                    Женщинам
+                  </figcaption>
                 </button>
                 <button
-                  className={`  ${genderStyle} h-[44px]  px-6 justify-between flex items-center bg-btnBgColor border border-searchBgColor rounded-lg`}
+                  className={`  ${dressInfo?.BtnFocusSeason} h-[44px]  px-6 justify-between flex items-center bg-btnBgColor border border-searchBgColor rounded-lg`}
                 >
                   <img className="mr-3" src={data?.man} alt="male" />{" "}
-                  <figcaption className="font-AeonikProMedium">Мужчинам</figcaption>
+                  <figcaption className="font-AeonikProMedium">
+                    Мужчинам
+                  </figcaption>
                 </button>
               </figure>
             );

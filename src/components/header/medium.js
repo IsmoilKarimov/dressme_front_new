@@ -3,8 +3,43 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { Popover } from "antd";
-import { ActivePersonIcons, ArrowPrevousNext, ArrowTopIcons, CommentIcons, CotegoryIcons, HouseStatisticIcons, LocationIcons, MapIcons, MarketIcons, MenuCloseIcons, MenuOpenIcons, PersonIcons, PhoneIcons, SearchIcons, VolumeIcons } from "../../AssetsMain/icons";
-import { BrandAutumm, BrandSpring, BrandSummer, BrandWinter, SpringMale, SummerMale, AutummMale, WinterMale, SpringFemale, SummerFemale, AutummFemale, WinterFemale, springSeason, summerSeason, winterSeason, autummSeason, UzbekFlag, HeartImg} from "../../AssetsMain";
+import {
+  ActivePersonIcons,
+  ArrowPrevousNext,
+  ArrowTopIcons,
+  CommentIcons,
+  CotegoryIcons,
+  HouseStatisticIcons,
+  LocationIcons,
+  MapIcons,
+  MarketIcons,
+  MenuCloseIcons,
+  MenuOpenIcons,
+  PersonIcons,
+  PhoneIcons,
+  SearchIcons,
+  VolumeIcons,
+} from "../../AssetsMain/icons";
+import {
+  BrandAutumm,
+  BrandSpring,
+  BrandSummer,
+  BrandWinter,
+  SpringMale,
+  SummerMale,
+  AutummMale,
+  WinterMale,
+  SpringFemale,
+  SummerFemale,
+  AutummFemale,
+  WinterFemale,
+  springSeason,
+  summerSeason,
+  winterSeason,
+  autummSeason,
+  UzbekFlag,
+  HeartImg,
+} from "../../AssetsMain";
 
 const MediumHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -34,31 +69,6 @@ const MediumHeader = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [scrollPost]);
-  
-  // --------------------- \\
-  let IconsColor = "";
-  let dataStyle = "";
-  let hoverText = "";
-  if (dressInfo?.type === 1111) {
-    IconsColor = "#008F0E";
-    dataStyle = "bg-bgSpring bg-opacity-10	  text-borderSpring ";
-    hoverText = " hover:text-borderSpring ";
-  }
-  if (dressInfo?.type === 2222) {
-    IconsColor = "#EAA700";
-    dataStyle = "bg-bgSummer  bg-opacity-10  text-borderSummer";
-    hoverText = " hover:text-borderSummer ";
-  }
-  if (dressInfo?.type === 3333) {
-    IconsColor = "#E17A02";
-    dataStyle = "bg-bgAutumm bg-opacity-10  text-borderAutumm";
-    hoverText = " hover:text-borderAutumm ";
-  }
-  if (dressInfo?.type === 4444) {
-    IconsColor = "#007DCA";
-    dataStyle = "bg-bgWinter bg-opacity-10  text-borderWinter";
-    hoverText = " hover:text-borderWinter ";
-  }
 
   const SeasonTypeArray = [
     { id: 1111, type: "Spring", icons: springSeason },
@@ -108,7 +118,7 @@ const MediumHeader = () => {
               <img src={value?.icons} alt="" />
             </figure>
             <article
-              className={`ss:hidden md:inline-block font-AeonikProMedium text-base text-black not-italic ${hoverText}`}
+              className={`ss:hidden md:inline-block font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
             >
               {value?.type}
             </article>
@@ -187,7 +197,7 @@ const MediumHeader = () => {
                 className={` bg-btnBgColor w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
               >
                 <span className="w-[22px]">
-                  <VolumeIcons colors={IconsColor} />
+                  <VolumeIcons colors={dressInfo?.ColorSeason} />
                 </span>
               </div>
 
@@ -226,10 +236,10 @@ const MediumHeader = () => {
               <article className="items-center justify-center rounded-xl font-AeonikProMedium h-[44px] md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
                 {/* Catalog section */}
                 <button
-                  className={`items-center ${dataStyle} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
+                  className={`items-center ${dressInfo?.BtnOpacitySeason} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
                 >
                   <span>
-                    <CotegoryIcons colors={IconsColor} />
+                    <CotegoryIcons colors={dressInfo?.ColorSeason} />
                   </span>
                   <span
                     className={` not-italic font-AeonikProMedium text-sm leading-4 `}
@@ -246,7 +256,9 @@ const MediumHeader = () => {
                   className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
                 />
                 <button className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]">
-                  <span><SearchIcons /></span>
+                  <span>
+                    <SearchIcons />
+                  </span>
                 </button>
               </article>
 
@@ -275,9 +287,13 @@ const MediumHeader = () => {
                 >
                   {({ isActive }) =>
                     isActive ? (
-                      <span><ActivePersonIcons colors={IconsColor} /></span>
+                      <span>
+                        <ActivePersonIcons colors={dressInfo?.ColorSeason} />
+                      </span>
                     ) : (
-                      <span><PersonIcons colors={"#000"} /></span>
+                      <span>
+                        <PersonIcons colors={"#000"} />
+                      </span>
                     )
                   }
                 </NavLink>
@@ -286,7 +302,9 @@ const MediumHeader = () => {
                   to="/sign_in"
                   className=" bg-btnBgColor rounded-xl items-center justify-center w-11 h-11 mr-2 hidden md:flex"
                 >
-                  <span><PersonIcons colors={"#000"} /></span>
+                  <span>
+                    <PersonIcons colors={"#000"} />
+                  </span>
                 </NavLink>
               )}
 
@@ -317,13 +335,15 @@ const MediumHeader = () => {
                       </svg>
                     </span>
                   ) : (
-                    <figure><img src={HeartImg} className={"w-5 h-5"} alt="heart" /></figure>
+                    <figure>
+                      <img src={HeartImg} className={"w-5 h-5"} alt="heart" />
+                    </figure>
                   )
                 }
               </NavLink>
             </div>
           </section>
-          
+
           {/*Starting of Blocked  Hamburger Menu section */}
           <section
             className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen pb-[140px] px-3 ${

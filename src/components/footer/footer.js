@@ -190,7 +190,7 @@ const Footer = () => {
             onClick={() => {
               handlePriceValueFooter(data?.type);
             }}
-            className={`w-full h-[42px] flex items-center justify-center  not-italic cursor-pointer tracking-[1%] font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dataStyle}`}
+            className={`w-full h-[42px] flex items-center justify-center  not-italic cursor-pointer tracking-[1%] font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.ColorSeason}`}
           >
             {data?.type}
           </p>
@@ -227,7 +227,7 @@ const Footer = () => {
             onClick={() => {
               handleRegionValueFooter(data?.type);
             }}
-            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer tracking-[1%] font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dataStyle}`}
+            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer tracking-[1%] font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.ColorSeason}`}
           >
             {data?.type}
           </p>
@@ -264,7 +264,7 @@ const Footer = () => {
             onClick={() => {
               handleRegionValueMobile(data?.type);
             }}
-            className={`w-full h-[42px] flex items-center justify-center  not-italic cursor-pointer tracking-[1%] font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dataStyle}`}
+            className={`w-full h-[42px] flex items-center justify-center  not-italic cursor-pointer tracking-[1%] font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.ColorSeason}`}
           >
             {data?.type}
           </p>
@@ -296,7 +296,7 @@ const Footer = () => {
         return (
           <div
             key={data?.id}
-            className={`p-2 text-sm hover:bg-bgColor cursor-pointer flex items-center justify-start  ${dataStyle}`}
+            className={`p-2 text-sm hover:bg-bgColor cursor-pointer flex items-center justify-start  ${dressInfo?.ColorSeason}`}
             onClick={() => {
               handleLanguageValueFooter(data?.id);
             }}
@@ -336,7 +336,7 @@ const Footer = () => {
         return (
           <div
             key={data?.id}
-            className={`p-2 text-sm hover:bg-bgColor cursor-pointer flex items-center justify-start ${dataStyle}`}
+            className={`p-2 text-sm hover:bg-bgColor cursor-pointer flex items-center justify-start ${dressInfo?.ColorSeason}`}
             onClick={() => {
               handleLanguageValueMobile(data?.id);
             }}
@@ -345,7 +345,7 @@ const Footer = () => {
               <img src={data?.icons} alt="" />
             </span>
             <span
-              className={`not-italic font-AeonikProRegular text-sm leading-4 text-black ${dataStyle}`}
+              className={`not-italic font-AeonikProRegular text-sm leading-4 text-black ${dressInfo?.ColorSeason}`}
             >
               {data?.type}
             </span>
@@ -437,8 +437,8 @@ const Footer = () => {
                     <LocationIcons />
                   </span>
                   <p className="font-AeonikProRegular text-sm underline underline-offset-4">
-                    Мирзо-Улугбекский район, проспект Амира Темура, 60 - Ташкент,
-                    100017
+                    Мирзо-Улугбекский район, проспект Амира Темура, 60 -
+                    Ташкент, 100017
                   </p>
                 </div>
               </article>
@@ -461,16 +461,28 @@ const Footer = () => {
                         <li className="ss:mb-1 md:mb-4">
                           <figure>
                             <Link to="#" className="flex items-center">
-                              <img src={data?.man} alt="" className="ml-[2px]" />
-                              <figcaption className="ml-[14px]">Мужчины</figcaption>
+                              <img
+                                src={data?.man}
+                                alt=""
+                                className="ml-[2px]"
+                              />
+                              <figcaption className="ml-[14px]">
+                                Мужчины
+                              </figcaption>
                             </Link>
                           </figure>
                         </li>
                         <li className="ss:mb-1 md:mb-4">
                           <figure>
                             <Link to="#" className="flex items-center">
-                              <img src={data?.woman} alt="" className="ml-[2px]" />
-                              <figcaption className="ml-[14px]">Женщины</figcaption>
+                              <img
+                                src={data?.woman}
+                                alt=""
+                                className="ml-[2px]"
+                              />
+                              <figcaption className="ml-[14px]">
+                                Женщины
+                              </figcaption>
                             </Link>
                           </figure>
                         </li>
@@ -686,7 +698,9 @@ const Footer = () => {
                     <li className="mb-4">
                       <Link to="#" className="flex items-center">
                         <WarningSircleIcons />
-                        <span className="font-AeonikProRegular ml-2">О нас</span>
+                        <span className="font-AeonikProRegular ml-2">
+                          О нас
+                        </span>
                       </Link>
                     </li>
                     <li className="mb-4">
@@ -745,7 +759,11 @@ const Footer = () => {
                         </li>
                         <li className="mb-[14px] md:mb-4">
                           <Link to="#" className="flex items-center">
-                            <img src={data?.woman} alt="" className="ml-[2px]" />
+                            <img
+                              src={data?.woman}
+                              alt=""
+                              className="ml-[2px]"
+                            />
                             <span className="ml-[14px]">Женщины</span>
                           </Link>
                         </li>
@@ -796,9 +814,7 @@ const Footer = () => {
                     <li className="mb-4">
                       <Link to="#" className="flex items-center">
                         <MarketIcons colors={"#000"} />
-                        <p className="font-AeonikProRegular ml-2">
-                          Магазины
-                        </p>
+                        <p className="font-AeonikProRegular ml-2">Магазины</p>
                       </Link>
                     </li>
                     <li className="mb-4">
@@ -816,9 +832,7 @@ const Footer = () => {
                     <li className="mb-4">
                       <Link to="#" className="flex items-center">
                         <ListCollectionIcons />
-                        <p className="font-AeonikProRegular ml-2">
-                          Мои заказы
-                        </p>
+                        <p className="font-AeonikProRegular ml-2">Мои заказы</p>
                       </Link>
                     </li>
                     <li className="mb-4">
@@ -840,9 +854,7 @@ const Footer = () => {
                     <li className="mb-4">
                       <Link to="#" className="flex items-center">
                         <PhoneIcons colors={"#000"} />
-                        <p className="font-AeonikProRegular ml-2">
-                          Контакты
-                        </p>
+                        <p className="font-AeonikProRegular ml-2">Контакты</p>
                       </Link>
                     </li>
                   </article>
@@ -915,7 +927,7 @@ const Footer = () => {
                 </p>
                 <div className="w-full">
                   <ul className="w-full flex items-center text-sm">
-                    <artile className="basis-1/2">
+                    <article className="basis-1/2">
                       <li className="mb-4">
                         <Link to="#" className="flex items-center">
                           <FiInstagram className="text-[20px]" />
@@ -927,27 +939,21 @@ const Footer = () => {
                       <li className="mb-4">
                         <Link to="#" className="flex items-center">
                           <RiFacebookCircleLine className="text-[20px]" />
-                          <p className="font-AeonikProRegular ml-2">
-                            Facebook
-                          </p>
+                          <p className="font-AeonikProRegular ml-2">Facebook</p>
                         </Link>
                       </li>
                       <li className="mb-4">
                         <Link to="#" className="flex items-center">
                           <RiMessengerLine className="text-[20px]" />
-                          <spapn className="font-AeonikProRegular ml-2">
-                            Message
-                          </spapn>
+                          <p className="font-AeonikProRegular ml-2">Message</p>
                         </Link>
                       </li>
-                    </artile>
-                    <artile className="basis-1/2 mb-9 pl-4">
+                    </article>
+                    <article className="basis-1/2 mb-9 pl-4">
                       <li className="mb-4">
                         <Link to="#" className="flex items-center">
                           <TbBrandTelegram className="text-[20px]" />
-                          <p className="font-AeonikProRegular ml-2">
-                            Telegram
-                          </p>
+                          <p className="font-AeonikProRegular ml-2">Telegram</p>
                         </Link>
                       </li>
                       <li className="mb-4">
@@ -958,7 +964,7 @@ const Footer = () => {
                           </p>
                         </Link>
                       </li>
-                    </artile>
+                    </article>
                   </ul>
                 </div>
               </article>
@@ -1025,7 +1031,7 @@ const Footer = () => {
                       <p className="ml-auto">Разработано командой</p>
                       <Link
                         to="#"
-                        className={`${footerTextWeatherColor} border-b ml-1`}
+                        className={`${dressInfo?.TextColorSeason} border-b ml-1`}
                       >
                         Dressme
                       </Link>
@@ -1035,7 +1041,7 @@ const Footer = () => {
                     <p>Designed by</p>
                     <Link
                       to="#"
-                      className={`${footerTextWeatherColor} border-b ml-2`}
+                      className={`${dressInfo?.TextColorSeason} border-b ml-2`}
                     >
                       Prince.UI
                     </Link>
