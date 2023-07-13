@@ -18,6 +18,8 @@ export const DressMenu = ({ children }) => {
 
     // Category
     openCategoryFilter: false,
+    // Catalog
+    openCatalogFilter: false,
     // Shop/:Id
     openShopIdFilter: false,
 

@@ -258,7 +258,7 @@ export default function MainPageSliders() {
                           })}
                       </div>
                       <article className="h-12.5 flex items-center justify-start">
-                        <p className="not-italic font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
+                        <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
                           {data?.type || "type"}
                           <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
                             ({data?.count || "0"})
@@ -285,9 +285,9 @@ export default function MainPageSliders() {
                       <NoImg />
                     </figure>
                     <article className="w-full py-1 flex items-center">
-                      <p className="not-italic font-AeonikProMedium text-sm leading-6 text-black">
+                      <p className="not-italic flex items-center font-AeonikProMedium text-sm leading-6 text-black">
                         {data?.type || "type"}
-                        <p className="not-italic font-AeonikProRegular text-xs leading-4 text-gray-500 ml-1">
+                        <p className="not-italic lex items-center  font-AeonikProRegular text-xs leading-4 text-gray-500 ml-1">
                           ({data?.count || "0"})
                         </p>
                       </p>
