@@ -73,3 +73,12 @@ export { default as HeartImg } from "./backTop/heart.svg";
 export { default as ActivePersonImg } from "./backTop/ActivePersonImg.svg";
 export { default as MuslimImg } from "./muslim-img.jpg";
 
+// -------------------cataolog-------
+export { default as bryuk } from "./cataolog/bryuk.svg";
+export { default as catolog1 } from "./cataolog/catolog1.svg";
+export { default as catolog2 } from "./cataolog/catolog2.svg";
+export { default as catolog3 } from "./cataolog/catolog3.svg";
+export { default as catolog4 } from "./cataolog/catolog4.svg";
+export { default as catolog5 } from "./cataolog/catolog5.svg";
+export { default as catolog6 } from "./cataolog/catolog6.svg";
+export { default as catolog7 } from "./cataolog/catolog7.svg";

@@ -62,7 +62,7 @@ const NavMenu = () => {
         </li>
         <li className="w-[72px] h-[56px] ">
           <NavLink
-            to={"/katolog"}
+            to={"/catalog"}
             className="w-full h-full flex items-center justify-center text-center"
           >
             {({ isActive }) =>

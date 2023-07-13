@@ -13,6 +13,7 @@ const HomeIndex = React.lazy(() => import("../components/Home/Main"));
 const SingleMainProduct = React.lazy(() =>
   import("../components/Home/Products/SignleMainProducts")
 );
+// import CatalogPage from "../components/Home/Catalog";
 const YandexMapDressMe = React.lazy(() => import("../components/YandexMap"));
 const ForgetConfirmPassword = React.lazy(() =>
   import("../components/Authentication/SignInDetail/ForgetConfirmPassword")
@@ -25,6 +26,7 @@ const ForgetPassword = React.lazy(() =>
 );
 const Footer = React.lazy(() => import("../components/footer/footer"));
 const OrderSettings = React.lazy(() => import("../components/Home/MyOrder"));
+const CatalogPage = React.lazy(() => import("../components/Home/Catalog"));
 
 const ShoppingStoreOfficial = React.lazy(() =>
   import("../components/Home/Shop/ShoppingStoreOfficial")
@@ -92,6 +94,20 @@ const RouterMain = () => {
               }
             >
               <CategoryMainType />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/catalog"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SkeletonHomeIndex />
+                </div>
+              }
+            >
+              <CatalogPage />
             </Suspense>
           }
         />
