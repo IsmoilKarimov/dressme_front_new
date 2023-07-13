@@ -49,6 +49,7 @@ module.exports = {
         bgCategory: "#F8F8F8",
         textOpacity: "#D9D9D9",
         RedColor: "#D50000",
+        catalogText: "#2C2C2C",
 
         // Hear red color
 
