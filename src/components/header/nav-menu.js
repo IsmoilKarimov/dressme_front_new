@@ -32,7 +32,8 @@ const NavMenu = () => {
   }
 
   return (
-    <nav className={`bg-white shadow-navMenuShadov  px-4 w-full rounded-t-xl md:hidden z-[101] h-full overscroll-none overflow-y-hidden`}
+    <nav
+      className={`bg-white shadow-navMenuShadov  px-4 w-full rounded-t-xl md:hidden z-[101] h-full overscroll-none overflow-y-hidden`}
     >
       <ul className="flex items-center justify-between text-[10px] font-AeonikProMedium py-1 ">
         <li className="w-[72px] h-[56px]">
@@ -43,7 +44,7 @@ const NavMenu = () => {
             {({ isActive }) =>
               isActive ? (
                 <figure className="flex flex-col items-center justify-center">
-                  <ActiveHomeIcons colors={IconsColor} />
+                  <ActiveHomeIcons colors={dressInfo?.ColorSeason} />
                   <figcaption className="pt-[8px]">
                     <p>Главная</p>
                   </figcaption>{" "}
@@ -67,7 +68,7 @@ const NavMenu = () => {
             {({ isActive }) =>
               isActive ? (
                 <figure className="flex flex-col items-center justify-center mt-1">
-                  <ActiveCotegoryIcons colors={IconsColor} />
+                  <ActiveCotegoryIcons colors={dressInfo?.ColorSeason} />
                   <figcaption className="mt-2">
                     <p>Категории</p>
                   </figcaption>
@@ -91,14 +92,14 @@ const NavMenu = () => {
             {({ isActive }) =>
               isActive ? (
                 <figure className="flex flex-col items-center justify-center mt-1">
-                  <MapNavMenuIcons colors={IconsColor} />
+                  <MapNavMenuIcons colors={dressInfo?.ColorSeason} />
                   <figcaption className="mt-2">
                     <p>Карта</p>
                   </figcaption>
                 </figure>
               ) : (
                 <figure className=" flex flex-col items-center justify-center mt-1 ">
-                    <MapIcons colors={"#000"} />
+                  <MapIcons colors={"#000"} />
                   <figcaption className="mt-2">
                     <p>Карта</p>
                   </figcaption>
@@ -136,7 +137,7 @@ const NavMenu = () => {
                 </figure>
               ) : (
                 <figure className=" flex flex-col items-center justify-center mt-1 ">
-                    <img src={HeartImg} className={"w-5 h-5"} alt="heart" />
+                  <img src={HeartImg} className={"w-5 h-5"} alt="heart" />
                   <figcaption className="mt-2">
                     <p>Избранное</p>
                   </figcaption>
@@ -157,7 +158,7 @@ const NavMenu = () => {
             {({ isActive }) =>
               isActive ? (
                 <figure className="flex flex-col items-center justify-center mt-1 ">
-                  <ActivePersonIcons colors={IconsColor} />
+                  <ActivePersonIcons colors={dressInfo?.ColorSeason} />
                   <figcaption className="mt-1">
                     <p>Профиль</p>
                   </figcaption>{" "}

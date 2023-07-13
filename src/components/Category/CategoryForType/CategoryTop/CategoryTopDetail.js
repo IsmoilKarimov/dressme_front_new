@@ -99,7 +99,7 @@ const CategoryTopDetail = () => {
   return (
     <main className="flex flex-col justify-center border-b border-searchBgColor items-center md:py-[60px]">
       <section className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
-        <secion className="w-[100%] h-fit">
+        <section className="w-[100%] h-fit">
           <article className="w-full flex flex-col">
             <figure className="relative w-full  md:h-[90px]  mt-2 md:mt-0  h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               {/*  */}
@@ -182,7 +182,7 @@ const CategoryTopDetail = () => {
               </p>
             </Popover>
           </article>
-        </secion>
+        </section>
       </section>
     </main>
   );

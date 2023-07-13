@@ -18,20 +18,6 @@ const CategoryNavbar = () => {
     openwear: false,
   });
 
-  let dataStyle = "";
-  if (dressInfo?.type === 1111) {
-    dataStyle = " hover:text-borderSpring ";
-  }
-  if (dressInfo?.type === 2222) {
-    dataStyle = " hover:text-borderSummer";
-  }
-  if (dressInfo?.type === 3333) {
-    dataStyle = " hover:text-borderAutumm ";
-  }
-  if (dressInfo?.type === 4444) {
-    dataStyle = " hover:text-borderWinter ";
-  }
-
   const personItems = [
     { id: 1111, man: SpringMale },
     { id: 2222, man: SummerMale },
@@ -43,7 +29,7 @@ const CategoryNavbar = () => {
     setState({ ...state, openwear: newOpen });
   };
 
-  const handleWearValue = (value) => {
+  const handleWearValue = () => {
     setState({ ...state, openwear: false });
   };
 
@@ -64,7 +50,7 @@ const CategoryNavbar = () => {
             onClick={() => {
               handleWearValue(data?.type);
             }}
-            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dataStyle}`}
+            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.TextHoverSeason}`}
           >
             {data?.type}
           </p>

@@ -14,38 +14,6 @@ import {
 } from "../../AssetsMain/icons";
 const NavbarBottomIndex = () => {
   const [dressInfo] = useContext(dressMainData);
-  let authenActiveStyle = "";
-  let authenActiveForget = "";
-  let IconsColor = "";
-
-  if (dressInfo?.type === 1111) {
-    IconsColor = "#008F0E";
-    authenActiveForget =
-      "text-borderSpring  bg-bgSpring border border-borderSpring ";
-    authenActiveStyle =
-      "md:text-borderSpring bg-white bg-bgSpring md:border-borderSpring w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border   rounded-lg";
-  }
-  if (dressInfo?.type === 2222) {
-    IconsColor = "#EAA700";
-    authenActiveForget =
-      "text-borderSummer  bg-bgSummer border border-borderSummer ";
-    authenActiveStyle =
-      "md:text-borderSummer bg-white bg-bgSummer md:border-borderSummer w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border   rounded-lg";
-  }
-  if (dressInfo?.type === 3333) {
-    IconsColor = "#E17A02";
-    authenActiveForget =
-      "text-borderAutumm  bg-bgAutumm borderborder-borderAutumm ";
-    authenActiveStyle =
-      "md:text-borderAutumm bg-white bg-bgAutumm md:border-borderAutumm w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border   rounded-lg";
-  }
-  if (dressInfo?.type === 4444) {
-    IconsColor = "#007DCA";
-    authenActiveForget =
-      "text-borderWinter  bg-bgWinter border border-borderWinter ";
-    authenActiveStyle =
-      "md:text-borderWinter bg-white bg-bgWinter md:border-borderWinter w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border   rounded-lg";
-  }
 
   const location = useLocation();
 
@@ -65,12 +33,12 @@ const NavbarBottomIndex = () => {
                   to={"/sign_in"}
                   className={({ isActive }) =>
                     isActive
-                      ? authenActiveStyle
+                      ? dressInfo?.AuthenActiveSeason
                       : "w-1/2 md:h-[48px] ss:h-[52px] px-2   justify-center flex  items-center  md:bg-btnBgColor md:border   rounded-lg"
                   }
                 >
                   <span>
-                    <PersonIcons colors={IconsColor} />
+                    <PersonIcons colors={dressInfo?.ColorSeason} />
                   </span>
                   <p className=" font-AeonikProMedium ml-1 not-italic text-sm leading-4 tracking-[0,16px]">
                     Войти в систему
@@ -80,12 +48,12 @@ const NavbarBottomIndex = () => {
                   to={"/sign_up"}
                   className={({ isActive }) =>
                     isActive
-                      ? authenActiveStyle
+                      ? dressInfo?.AuthenActiveSeason
                       : "w-1/2 md:h-[48px] ss:h-[52px] px-2   justify-center flex  items-center  md:bg-btnBgColor md:border   rounded-lg"
                   }
                 >
                   <span>
-                    <PersonPlusIcons colors={IconsColor} />
+                    <PersonPlusIcons colors={dressInfo?.ColorSeason} />
                   </span>
                   <p className=" font-AeonikProMedium not-italic ml-1  text-sm leading-4 tracking-[0,16px]">
                     Создать аккаунт
@@ -106,18 +74,19 @@ const NavbarBottomIndex = () => {
                     }
                   >
                     <span className="rotate-[180deg]">
-                      <SircleNext colors={IconsColor} />
+                      <SircleNext colors={dressInfo?.ColorSeason} />
                     </span>
                     <span className=" font-AeonikProMedium ml-2 not-italic text-sm leading-4 tracking-[0,16px]">
                       Назад
                     </span>
                   </NavLink>
-                  <div className={
+                  <div
+                    className={
                       "w-[65%] md:h-[48px] ss:h-[52px] px-4   justify-center flex  items-center bg-white  border border-searchBgColor  rounded-lg"
                     }
                   >
                     <span>
-                      <EyesOpenIcons colors={IconsColor} />
+                      <EyesOpenIcons colors={dressInfo?.ColorSeason} />
                     </span>
                     <span className="font-AeonikProMedium not-italic ml-2  text-sm leading-4 tracking-[0,16px]">
                       Забыли пароль?
@@ -130,15 +99,16 @@ const NavbarBottomIndex = () => {
                 <div className="w-full h-fit md:mx-auto my-3 ss:hidden justify-center md:flex items-center">
                   <NavLink
                     to="/sign_in "
-                    className={`text-${IconsColor} md:h-[48px] ss:h-[52px] w-[56px] rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center mr-3 `}
+                    className={`text-${dressInfo?.ColorSeason} md:h-[48px] ss:h-[52px] w-[56px] rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center mr-3 `}
                   >
-                    <span className={`flex items-center justify-center  rotate-[180deg] `}
+                    <span
+                      className={`flex items-center justify-center  rotate-[180deg] `}
                     >
-                      <SircleNext colors={IconsColor} />
+                      <SircleNext colors={dressInfo?.ColorSeason} />
                     </span>
                   </NavLink>
                   <div
-                    className={`${authenActiveForget} w-fit md:h-[48px] ss:h-[52px] px-4   justify-center flex items-center   mr-2 rounded-lg`}
+                    className={`${dressInfo?.BtnActiveSeason} w-fit md:h-[48px] ss:h-[52px] px-4   justify-center flex items-center   mr-2 rounded-lg`}
                   >
                     <span>
                       {" "}

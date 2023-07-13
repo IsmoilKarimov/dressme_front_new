@@ -29,6 +29,8 @@ export const DressMenu = ({ children }) => {
     TextHoverSeason: "",
     TextColorSeason: "",
     LinkActiveSeason: "",
+    BtnActiveSeason: "",
+    AuthenActiveSeason: "",
 
     ProductList: [
       {
@@ -1112,6 +1114,10 @@ export const DressMenu = ({ children }) => {
       textHover: "hover:text-borderSpring",
       textColor: "text-borderSpring",
       color: "#008F0E",
+      BtnActiveSeason:
+        "text-borderSpring  bg-bgSpring border border-borderSpring",
+      AuthenActiveSeason:
+        "md:text-borderSpring bg-white bg-bgSpring md:border-borderSpring w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border   rounded-lg",
       linkActive:
         "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderSpring text-borderSpring",
     },
@@ -1124,6 +1130,10 @@ export const DressMenu = ({ children }) => {
       textHover: "hover:text-borderSummer",
       textColor: "text-borderSummer",
       color: "#EAA700",
+      BtnActiveSeason:
+        "text-borderSummer  bg-bgSummer border border-borderSummer",
+      AuthenActiveSeason:
+        "md:text-borderSummer bg-white bg-bgSummer md:border-borderSummer w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border   rounded-lg",
       linkActive:
         "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderSummer text-borderSummer",
     },
@@ -1136,6 +1146,10 @@ export const DressMenu = ({ children }) => {
       textHover: "hover:text-borderAutumm",
       textColor: "text-borderAutumm",
       color: "#E17A02",
+      BtnActiveSeason:
+        "text-borderAutumm  bg-bgAutumm borderborder-borderAutumm ",
+      AuthenActiveSeason:
+        "md:text-borderAutumm bg-white bg-bgAutumm md:border-borderAutumm w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border rounded-lg",
       linkActive:
         "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderAutumm text-borderAutumm",
     },
@@ -1148,6 +1162,10 @@ export const DressMenu = ({ children }) => {
       textHover: "hover:text-borderWinter",
       textColor: "text-borderWinter",
       color: "#007DCA",
+      btnActiveSeason:
+        "text-borderWinter  bg-bgWinter border border-borderWinter",
+      authenActiveSeason:
+        "md:text-borderWinter bg-white bg-bgWinter md:border-borderWinter w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border rounded-lg",
       linkActive:
         "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderWinter text-borderWinter",
     },
@@ -1164,6 +1182,8 @@ export const DressMenu = ({ children }) => {
         TextHoverSeason: event?.textHover,
         TextColorSeason: event?.textColor,
         LinkActiveSeason: event?.linkActive,
+        BtnActiveSeason: event?.btnActiveSeason,
+        AuthenActiveSeason: event?.authenActiveSeason,
       });
     });
   }, [dressInfo.type]);

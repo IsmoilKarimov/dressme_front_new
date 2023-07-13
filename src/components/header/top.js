@@ -3,17 +3,16 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { Popover } from "antd";
 
-import { CommentIcons, HouseStatisticIcons, LocationIcons, MarketIcons } from "../../AssetsMain/icons";
+import {
+  CommentIcons,
+  HouseStatisticIcons,
+  LocationIcons,
+  MarketIcons,
+} from "../../AssetsMain/icons";
 import { EnglishFlag, RussianFlag, UzbekFlag } from "../../AssetsMain";
 
 const TopHeader = () => {
   const [dressInfo] = useContext(dressMainData);
-
-  let dataStyle = "";
-  if (dressInfo?.type === 1111) { dataStyle = " hover:text-borderSpring ";}
-  if (dressInfo?.type === 2222) { dataStyle = " hover:text-borderSummer";}
-  if (dressInfo?.type === 3333) { dataStyle = " hover:text-borderAutumm ";}
-  if (dressInfo?.type === 4444) { dataStyle = " hover:text-borderWinter ";}
 
   // -----Language Change-------------------
   const [selectLang, setselectLang] = useState(1);
@@ -41,7 +40,7 @@ const TopHeader = () => {
         return (
           <article
             key={data?.id}
-            className={`p-2 text-sm cursor-pointer hover:bg-bgColor flex items-center justify-start  ${dataStyle}`}
+            className={`p-2 text-sm cursor-pointer hover:bg-bgColor flex items-center justify-start  ${dressInfo?.ColorSeason}`}
             onClick={() => {
               handleLangValue(data?.id);
             }}
@@ -50,7 +49,7 @@ const TopHeader = () => {
               <img className="w-full h-full" src={data?.icons} alt="" />
             </figure>
             <article
-              className={`not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black  ${dataStyle}`}
+              className={`not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black  ${dressInfo?.ColorSeason}`}
             >
               {data?.type}
             </article>
@@ -88,7 +87,7 @@ const TopHeader = () => {
         return (
           <article
             key={data?.id}
-            className={`p-2 not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black  hover:bg-bgColor cursor-pointer ${dataStyle}`}
+            className={`p-2 not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black  hover:bg-bgColor cursor-pointer ${dressInfo?.ColorSeason}`}
             onClick={() => {
               handleCityValue(data?.type);
             }}
@@ -99,7 +98,7 @@ const TopHeader = () => {
       })}
     </section>
   );
-  
+
   const location = useLocation();
   const [locationWindow, setLocationWindow] = useState("");
   useEffect(() => {
@@ -107,14 +106,15 @@ const TopHeader = () => {
   }, [location.pathname]);
 
   return (
-    <nav>  
-      <div className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${
+    <nav>
+      <div
+        className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${
           locationWindow === "/delivery-points"
             ? "bg-transparent h-[40px] "
             : "bg-bgColor h-[32px] "
         }`}
       >
-        <section className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">       
+        <section className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">
           <article className="left h-full flex items-center">
             <section>
               <Link to="/" className="flex w-fit items-center">
@@ -135,7 +135,9 @@ const TopHeader = () => {
                     placement="bottom"
                     content={contentCity}
                   >
-                    <span className="border-b border-slate-900">{selectCity}</span>
+                    <span className="border-b border-slate-900">
+                      {selectCity}
+                    </span>
                   </Popover>
                 </p>
               </Link>
@@ -166,7 +168,7 @@ const TopHeader = () => {
               )}
             </section>
           </article>
-          
+
           <article className="right h-full flex items-center">
             <Link to="#" className="flex items-center h-fit py-[4px] ">
               <span className="mr-2">
@@ -177,12 +179,12 @@ const TopHeader = () => {
               </p>
             </Link>
             <Link to="#" className="flex items-center h-fit py-[4px]  ml-6 ">
-              <span className="mr-2">
+              <p className="mr-2">
                 <HouseStatisticIcons colors={"#707070"} />
-              </span>
-              <artice className="text-textColor text-[13px]   font-AeonikProMedium  ">
+              </p>
+              <p className="text-textColor text-[13px]   font-AeonikProMedium  ">
                 Бизнес
-              </artice>
+              </p>
             </Link>
             <article className="line h-5 border text-textColor ml-6"></article>
 
@@ -190,12 +192,10 @@ const TopHeader = () => {
               to="/stores"
               className="flex items-center bg-white rounded cursor-pointer h-fit py-[4px]  ml-6 px-3"
             >
-              <span className="mr-2">
+              <p className="mr-2">
                 <MarketIcons colors={"#000"} />
-              </span>
-              <article className="font-AeonikProMedium  text-[13px]    ">
-                Магазины
-              </article>
+              </p>
+              <p className="font-AeonikProMedium  text-[13px]    ">Магазины</p>
             </NavLink>
           </article>
         </section>
