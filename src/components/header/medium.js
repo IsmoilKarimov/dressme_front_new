@@ -47,6 +47,8 @@ import {
   img6,
   img7,
   img8,
+  img1,
+  img2,
 } from "../../AssetsMain";
 
 const MediumHeader = () => {
@@ -91,8 +93,8 @@ const MediumHeader = () => {
     { id: 4444, type: "Winter", icons: BrandWinter },
   ];
   const categoryModalArray = [
-    { id: 1111, img: catolog4 , type: 'Мужчинам' },
-    { id: 2222, img: catolog5 , type: 'Женщинам' },
+    { id: 1111, img: img1 , type: 'Мужчинам' },
+    { id: 2222, img: img2 , type: 'Женщинам' },
     { id: 3333, img: img3 , type: 'Детям' },
     { id: 4444, img: img4 , type: 'Головные уборы' },
     { id: 5555, img: img5, type: 'Верхняя одежда' },
@@ -163,15 +165,15 @@ const MediumHeader = () => {
 
   const openCategoryModal = (
     <section className="ss:w-fit md:w-[650px] h-fit m-0 p-4 ">
-       <action className="w-full flex items-center flex-wrap gap-y-6">
+       <action className=" w-full flex items-center flex-wrap gap-y-6">
         { categoryModalArray.map(data => {
           return(
             <Link to='/' key={data?.id} className="w-1/4 flex items-center justify-center">
-              <figure>
-                  <div className="w-[120px] h-[120px] flex items-center justify-center rounded-xl">
+              <figure className="group">
+                  <div className="group-hover:border-black transition duration-300 w-[120px] h-[120px] border border-categoryModalBorderColor bg-cateegoryModalBgColor flex items-center justify-center rounded-xl">
                     <img src={data.img} alt="" />
                   </div>
-                  <figcaption className="text-center mt-2 text-setTexOpacity">{data?.type}</figcaption>
+                  <figcaption className="group-hover:text-black transition duration-300 text-center mt-2 text-setTexOpacity">{data?.type}</figcaption>
               </figure>
             </Link>
           )
