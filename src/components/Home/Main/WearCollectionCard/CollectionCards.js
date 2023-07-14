@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { useNavigate } from "react-router-dom";
 import {
@@ -9,8 +9,10 @@ import {
 import { HeartImg } from "../../../../AssetsMain";
 import "../../../../index.css";
 import { ClothingParametr } from "./ClothingParametr";
+import { CalourCard } from "../../../../AssetsMain";
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [colourCard, setColourCard] = useState(false);
 
   const navigate = useNavigate();
   const goDetail = (id) => {
@@ -18,6 +20,16 @@ export default function CollectionCards() {
   };
 
   const onColorChecked = () => {};
+  const handleEnterMouse = (eId) => {
+    // setDressInfo((current) => {
+    //   return current?.ProductList.map((e) => {
+    //     if (e === eId) {
+    //       return { ...e, colourCard: true };
+    //     } else return { e };
+    //   });
+    // });
+    // setDressInfo({ ...dressInfo, colourCard: true });
+  };
 
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
@@ -31,7 +43,7 @@ export default function CollectionCards() {
               return (
                 <article
                   key={data.id}
-                  className={`ss:w-[49%] md:w-[24%] lg:w-[240px]  xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
+                  className={` ss:w-[49%] md:w-[24%] lg:w-[240px]  xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
                 >
                   <figure
                     onClick={() => goDetail(data?.title)}
@@ -47,8 +59,26 @@ export default function CollectionCards() {
                       <NoImg />
                     )}
                   </figure>
-                  <section className="w-full rounded-b-xl bg-white  flex flex-wrap h-[130px] md:h-[136px] ">
-                    <article className=" w-full flex justify-between items-center px-1  border-solid xs:h-[38px] lg:h-8 ss:h-[30px] xs:px-2 md:px-4 bg-white">
+                  <section className="relative w-full rounded-b-xl bg-white  flex flex-wrap h-[130px] md:h-[136px] ">
+                    <button
+                      onMouseEnter={() => setColourCard(true)}
+                      className="w-12 h-7 border border-searchBgColor rounded-lg flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 "
+                    >
+                      <figure className="w-6 h-6 flex items-center justify-center">
+                        <img src={CalourCard} alt="" className="h-full" />
+                      </figure>
+                      <span className="text-catalogText text-sm not-italic font-AeonikProMedium">
+                        6
+                      </span>
+                    </button>
+                    <article
+                      onMouseLeave={() => setColourCard(false)}
+                      className={` ${
+                        colourCard
+                          ? "w-full px-1 xs:px-2 md:px-4 mt-1"
+                          : "w-0 mt-1"
+                      } duration-300 absolute overflow-hidden   top-0 z-50 flex justify-between items-center    xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
+                    >
                       {data?.changeColor.map((itemValue) => {
                         return (
                           <article
