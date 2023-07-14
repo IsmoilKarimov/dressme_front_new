@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import "./bottom.module.css"
+import "./header.css"
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { Popover } from "antd";
 import {
@@ -39,14 +39,14 @@ import {
   autummSeason,
   UzbekFlag,
   HeartImg,
-  catolog1,
-  catolog2,
-  catolog3,
   catolog4,
   catolog5,
-  catolog6,
-  catolog7,
-  bryuk,
+  img3,
+  img4,
+  img5,
+  img6,
+  img7,
+  img8,
 } from "../../AssetsMain";
 
 const MediumHeader = () => {
@@ -93,12 +93,12 @@ const MediumHeader = () => {
   const categoryModalArray = [
     { id: 1111, img: catolog4 , type: 'Мужчинам' },
     { id: 2222, img: catolog5 , type: 'Женщинам' },
-    { id: 3333, img: catolog6 , type: 'Детям' },
-    { id: 4444, img: catolog7 , type: 'Головные уборы' },
-    { id: 5555, img: catolog3, type: 'Верхняя одежда' },
-    { id: 6666, img: bryuk, type: 'Нижняя одежда' },
-    { id: 7777, img: catolog1, type: 'Обувь' },
-    { id: 8888, img: catolog2 , type: 'Аксессуары' },
+    { id: 3333, img: img3 , type: 'Детям' },
+    { id: 4444, img: img4 , type: 'Головные уборы' },
+    { id: 5555, img: img5, type: 'Верхняя одежда' },
+    { id: 6666, img: img6, type: 'Нижняя одежда' },
+    { id: 7777, img: img7, type: 'Обувь' },
+    { id: 8888, img: img8 , type: 'Аксессуары' },
   ]
   const personItems = [
     { id: 1111, man: SpringMale, woman: SpringFemale },
@@ -162,16 +162,16 @@ const MediumHeader = () => {
   }
 
   const openCategoryModal = (
-    <section className="ss:w-fit left-[270px] md:w-[650px] h-fit m-0 p-4 ">
+    <section className="ss:w-fit md:w-[650px] h-fit m-0 p-4 ">
        <action className="w-full flex items-center flex-wrap gap-y-6">
         { categoryModalArray.map(data => {
           return(
             <Link to='/' key={data?.id} className="w-1/4 flex items-center justify-center">
               <figure>
-                  <span className="w-[120px] h-[120px] rounded-xl">
+                  <div className="w-[120px] h-[120px] flex items-center justify-center rounded-xl">
                     <img src={data.img} alt="" />
-                  </span>
-                  <figcaption className="text-center mt-2 ">{data?.type}</figcaption>
+                  </div>
+                  <figcaption className="text-center mt-2 text-setTexOpacity">{data?.type}</figcaption>
               </figure>
             </Link>
           )
@@ -236,8 +236,7 @@ const MediumHeader = () => {
               </NavLink>
 
               {/* Voice section */}
-              <div
-                className={` bg-btnBgColor w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
+              <div className={` bg-btnBgColor w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
               >
                 <span className="w-[22px]">
                   <VolumeIcons colors={dressInfo?.ColorSeason} />
@@ -285,7 +284,7 @@ const MediumHeader = () => {
                  options={["Hide"]}
                  placement="bottom"
                  content={openCategoryModal}
-                className={`items-center left-20 ${dressInfo?.BtnOpacitySeason} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
+                 className={`items-center left-20 ${dressInfo?.BtnOpacitySeason} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
                 >
                   <span>
                     <CotegoryIcons colors={dressInfo?.ColorSeason} />
