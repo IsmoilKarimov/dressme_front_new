@@ -55,9 +55,9 @@ const Catalog = () => {
         <article className="w-full h-fit my-8 flex flex-wrap  ll:gap-x-2 gap-y-4 justify-between">
           {wearArray?.map((data) => {
             return (
-              <figure className="w-[150px] ll:w-[175px] h-fit flex flex-wrap gap-y-2 ">
-                <div className="w-full h-[155px] ll:h-[180px] flex items-center overflow-hidden justify-center border border-skeltonColor rounded-[12px]">
-                  <img src={data?.img} alt="" className="object-cover	" />
+              <figure className="w-[140px] ls:w-[150px] ll:w-[175px] h-fit flex flex-wrap gap-y-2 ">
+                <div className="w-full h-[145px] ls:h-[155px] ll:h-[180px] flex items-center overflow-hidden justify-center border border-skeltonColor rounded-[12px]">
+                  <img src={data?.img} alt="" className=" h-full	" />
                 </div>
                 <button
                   onClick={() => setOpenCatalog(true)}
