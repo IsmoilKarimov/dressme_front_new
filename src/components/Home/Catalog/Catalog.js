@@ -8,6 +8,14 @@ import {
   catolog5,
   catolog6,
   catolog7,
+  img1,
+  img2,
+  img3,
+  img4,
+  img5,
+  img6,
+  img7,
+  img8,
 } from "../../../AssetsMain";
 import { MenuCloseIcons } from "../../../AssetsMain/icons";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
@@ -18,14 +26,14 @@ const Catalog = () => {
 
   const [openCatalog, setOpenCatalog] = useState(false);
   const wearArray = [
-    { id: 1, name: "Мужчинам", img: catolog4 },
-    { id: 2, name: "Женщины", img: catolog5 },
-    { id: 3, name: "Детям", img: catolog6 },
-    { id: 4, name: "Головные уборы", img: catolog7 },
-    { id: 5, name: "Верхняя одежда", img: catolog3 },
-    { id: 6, name: "Нижняя одежда", img: bryuk },
-    { id: 7, name: "Обувь", img: catolog1 },
-    { id: 8, name: "Аксессуары", img: catolog2 },
+    { id: 1, name: "Мужчинам", img: img1 },
+    { id: 2, name: "Женщины", img: img2 },
+    { id: 3, name: "Детям", img: img3 },
+    { id: 4, name: "Головные уборы", img: img4 },
+    { id: 5, name: "Верхняя одежда", img: img5 },
+    { id: 6, name: "Нижняя одежда", img: img6 },
+    { id: 7, name: "Обувь", img: img7 },
+    { id: 8, name: "Аксессуары", img: img8 },
   ];
   const listItem = [
     { id: 1, name: "Футболки и майки" },
@@ -56,7 +64,7 @@ const Catalog = () => {
           {wearArray?.map((data) => {
             return (
               <figure className="w-[140px] ls:w-[150px] ll:w-[175px] h-fit flex flex-wrap gap-y-2 ">
-                <div className="w-full h-[145px] ls:h-[155px] ll:h-[180px] flex items-center overflow-hidden justify-center border border-skeltonColor rounded-[12px]">
+                <div className="w-full h-[145px] ls:h-[155px] ll:h-[180px] flex items-center overflow-hidden justify-center border border-skeltonColor bg-cateegoryModalBgColor rounded-[12px]">
                   <img src={data?.img} alt="" className=" h-full	" />
                 </div>
                 <button
