@@ -280,6 +280,7 @@ const RouterMain = () => {
       locationWindow !== "/add_user_body_data" &&
       locationWindow !== "/confirm_password" &&
       locationWindow !== "/set_new_password" &&
+      locationWindow !== "/catalog" &&
       locationWindow !== "/enter_password_validate" &&
       locationWindow !== "/forget_password" &&
       locationWindow !== "/sign_up" &&
