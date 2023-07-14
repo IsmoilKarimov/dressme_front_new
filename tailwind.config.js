@@ -59,6 +59,10 @@ module.exports = {
         // Loading...
         LoadinBg: "rgba(252,252,252,0.8)",
 
+        // CategoryModalColors
+        categoryModalBgColor: "#fdfdfd",
+        categoryModalBorderColor: "#e5e5e5",
+
         // Products Colors
         PC1: "#7000FF",
         PC2: "#000",

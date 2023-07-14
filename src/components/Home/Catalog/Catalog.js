@@ -1,13 +1,5 @@
 import React, { useContext, useState } from "react";
 import {
-  bryuk,
-  catolog1,
-  catolog2,
-  catolog3,
-  catolog4,
-  catolog5,
-  catolog6,
-  catolog7,
   img1,
   img2,
   img3,
@@ -64,7 +56,7 @@ const Catalog = () => {
           {wearArray?.map((data) => {
             return (
               <figure className="w-[140px] ls:w-[150px] ll:w-[175px] h-fit flex flex-wrap gap-y-2 ">
-                <div className="w-full h-[145px] ls:h-[155px] ll:h-[180px] flex items-center overflow-hidden justify-center border border-skeltonColor bg-cateegoryModalBgColor rounded-[12px]">
+                <div className="w-full h-[145px] ls:h-[155px] ll:h-[180px] flex items-center overflow-hidden justify-center border border-skeltonColor bg-categoryModalBgColor rounded-[12px]">
                   <img src={data?.img} alt="" className=" h-full	" />
                 </div>
                 <button

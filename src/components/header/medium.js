@@ -170,7 +170,7 @@ const MediumHeader = () => {
           return(
             <Link to='/' key={data?.id} className="w-1/4 flex items-center justify-center">
               <figure className="group">
-                  <div className="group-hover:border-black transition duration-300 w-[120px] h-[120px] border border-categoryModalBorderColor bg-cateegoryModalBgColor flex items-center justify-center rounded-xl">
+                  <div className="group-hover:border-black transition duration-300 w-[120px] h-[120px] border border-categoryModalBorderColor bg-categoryModalBgColor flex items-center justify-center rounded-xl">
                     <img src={data.img} alt="" />
                   </div>
                   <figcaption className="group-hover:text-black transition duration-300 text-center mt-2 text-setTexOpacity">{data?.type}</figcaption>
