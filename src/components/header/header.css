@@ -68,11 +68,3 @@
   height: 2px;
   border-radius: 2px;
 }
-
-.ant-popover .ant-popover-arrow {
-  display: none !important;
-}
-
-.ant-popover .ant-popover-content {
-  left: 270px !important;
-}
