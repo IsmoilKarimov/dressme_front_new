@@ -10,9 +10,10 @@ import { HeartImg } from "../../../../AssetsMain";
 import "../../../../index.css";
 import { ClothingParametr } from "./ClothingParametr";
 import { CalourCard } from "../../../../AssetsMain";
+import { WearType } from "./WearType";
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [colourCard, setColourCard] = useState(false);
+  const [openWearType, setOpenWearType] = useState(false);
 
   const navigate = useNavigate();
   const goDetail = (id) => {
@@ -21,20 +22,44 @@ export default function CollectionCards() {
 
   const onColorChecked = () => {};
   const handleEnterMouse = (eId) => {
-    // setDressInfo((current) => {
-    //   return current?.ProductList.map((e) => {
-    //     if (e === eId) {
-    //       return { ...e, colourCard: true };
-    //     } else return { e };
-    //   });
-    // });
-    // setDressInfo({ ...dressInfo, colourCard: true });
+    const elementsIndex = dressInfo.ProductList.findIndex(
+      (element) => element.id == eId
+    );
+    let newArray = [...dressInfo.ProductList];
+    newArray[elementsIndex] = {
+      ...newArray[elementsIndex],
+      colourCard: true,
+      // colourCard: !newArray[elementsIndex].colourCard,
+    };
+    setDressInfo((current) => {
+      return { ...current, ProductList: newArray };
+    });
+  };
+  const handleLeaveMouse = (eId) => {
+    const elementsIndex = dressInfo.ProductList.findIndex(
+      (element) => element.id == eId
+    );
+    let newArray = [...dressInfo.ProductList];
+    newArray[elementsIndex] = {
+      ...newArray[elementsIndex],
+      colourCard: false,
+    };
+    setDressInfo((current) => {
+      return { ...current, ProductList: newArray };
+    });
   };
 
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <section className="w-full mt-[50px]">
         <ClothingParametr />
+      </section>
+      <section
+        className={`fixed  z-[110] left-0 right-0 md:hidden duration-500 overflow-hidden ${
+          openWearType ? "bottom-0" : "bottom-[-800px] z-0"
+        }`}
+      >
+        <WearType />
       </section>
       <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
         <div className="w-full flex flex-col box-border ">
@@ -61,7 +86,19 @@ export default function CollectionCards() {
                   </figure>
                   <section className="relative w-full rounded-b-xl bg-white  flex flex-wrap h-[130px] md:h-[136px] ">
                     <button
-                      onMouseEnter={() => setColourCard(true)}
+                      onMouseEnter={() => handleEnterMouse(data?.id)}
+                      // onMouseEnter={() => setColourCard(true)}
+                      className="w-12 h-7 border border-searchBgColor rounded-lg hidden md:block md:flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 "
+                    >
+                      <figure className="w-6 h-6 flex items-center justify-center">
+                        <img src={CalourCard} alt="" className="h-full" />
+                      </figure>
+                      <span className="text-catalogText text-sm not-italic font-AeonikProMedium">
+                        6
+                      </span>
+                    </button>
+                    <button
+                      onClick={() => setOpenWearType(!openWearType)}
                       className="w-12 h-7 border border-searchBgColor rounded-lg flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 "
                     >
                       <figure className="w-6 h-6 flex items-center justify-center">
@@ -72,12 +109,12 @@ export default function CollectionCards() {
                       </span>
                     </button>
                     <article
-                      onMouseLeave={() => setColourCard(false)}
+                      onMouseLeave={() => handleLeaveMouse(data?.id)}
                       className={` ${
-                        colourCard
+                        data?.colourCard
                           ? "w-full px-1 xs:px-2 md:px-4 mt-1"
                           : "w-0 mt-1"
-                      } duration-300 absolute overflow-hidden   top-0 z-50 flex justify-between items-center    xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
+                      } duration-300 absolute overflow-hidden hidden md:block  top-0 z-50 md:flex justify-between items-center    xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
                     >
                       {data?.changeColor.map((itemValue) => {
                         return (
@@ -113,17 +150,12 @@ export default function CollectionCards() {
                             <p className="font-AeonikProMedium text-[10px] ls:text-xs not-italic mx-1 text-black md:mr-[6px] md:text-[13px]">
                               5.0
                             </p>
-                            ({data?.starCount || 0}
-                            <p className="ss:hidden lg:block md:ml-1 md:text-[11px]">
+                            (
+                            <p className="ss:hidden lg:block md:mr-1 md:text-[11px]">
                               голосов
                             </p>
-                            )
+                            {data?.starCount || 0})
                           </article>
-                        </section>
-                        <section className="not-italic xs:font-AeonikProMedium ss:font-AeonikProRegular leading-4 text-black  ss:text-[11px] sm:text-xs  md:text-[13px] ">
-                          <b>
-                            <p>{data?.shirtSize || 0}</p>
-                          </b>
                         </section>
                       </figure>
                     </article>
