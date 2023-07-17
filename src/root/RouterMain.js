@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense, useState } from "react";
+import React, { useEffect, Suspense, useState, Fragment } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import "../index.css";
 import Header from "../components/header/header";
@@ -55,7 +55,7 @@ const RouterMain = () => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
   return (
-    <>
+    <Fragment>
       <Header />
       <Routes>
         <Route
@@ -291,7 +291,7 @@ const RouterMain = () => {
           <Footer />
         </Suspense>
       ) : null}
-    </>
+    </Fragment>
   );
 };
 export default RouterMain;
