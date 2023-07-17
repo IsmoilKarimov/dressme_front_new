@@ -52,7 +52,7 @@ const Catalog = () => {
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
-        <article className="w-full h-fit my-8 flex flex-wrap  ll:gap-x-2 gap-y-4 justify-between">
+        <article className="w-full h-fit mt-4 mb-[72px] flex flex-wrap ll:gap-x-2 gap-y-4 justify-between">
           {wearArray?.map((data) => {
             return (
               <figure className="w-[140px] ls:w-[150px] ll:w-[175px] h-fit flex flex-wrap gap-y-2 ">

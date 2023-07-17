@@ -66,7 +66,7 @@ const NavbarBottomIndex = () => {
             locationWindow === "/set_new_password" ? (
               <div>
                 {/* Mobile-Device */}
-                <div className="w-full md:hidden md:mx-auto  my-3 ss:block md:w-fit ss:flex gap-x-2 items-center justify-between ss:border md:border-0 ss:bg-btnBgColor md:bg-transparent border-searchBgColor rounded-lg">
+                <div className="w-full md:hidden md:mx-auto  my-3 md:w-fit ss:flex gap-x-2 items-center justify-between ss:border md:border-0 ss:bg-btnBgColor md:bg-transparent border-searchBgColor rounded-lg">
                   <NavLink
                     to={"/sign_in"}
                     className={
