@@ -102,10 +102,6 @@ function YandexMapsDressMe() {
     });
   };
 
-  const handleOpenMenu = () => {
-    setDressInfo({ ...dressInfo, yandexOpenMenu: !dressInfo?.yandexOpenMenu });
-  };
-
   const handleOpenMarket = () => {
     setDressInfo({
       ...dressInfo,
@@ -113,17 +109,6 @@ function YandexMapsDressMe() {
     });
   };
 
-  const handleGetId = (getValue) => {
-    setDressInfo((current) => {
-      return current.MarketList.map((data) => {
-        if (data?.id == getValue) {
-          return { ...data, accordion: !data.accordion };
-        } else {
-          return { ...data, accordion: false };
-        }
-      });
-    });
-  };
   // --------------Open Main MenusetDressInfo
   const handlePlaceMark = (value) => {
     setDressInfo({

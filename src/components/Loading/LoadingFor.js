@@ -6,7 +6,7 @@ export default function LoadingFor() {
     <div className={styles.loader}>
       <PuffLoader
         className={styles.loader1}
-        color={"#2C0091"}
+        color={"#007DCA"}
         size={100}
         loading={true}
       />
