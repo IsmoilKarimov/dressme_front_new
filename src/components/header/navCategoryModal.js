@@ -44,21 +44,3 @@ const NavCategoryModal = ({isVisible, onClose}) => {
 }
 
 export default NavCategoryModal
-
-{/* <div className="ss:w-fit md:w-[650px] h-fit m-0 p-4 fixed inset-0 flex justify-center items-center top-0">
-        <div className=" w-full flex items-center flex-wrap gap-y-6">
-        {/* { categoryModalArray.map(data => {
-          return(
-            <Link to='/' key={data?.id} className="w-1/4 flex items-center justify-center">
-              <figure className="group">
-                  <div className="group-hover:border-black transition duration-300 w-[120px] h-[120px] border border-categoryModalBorderColor bg-categoryModalBgColor flex items-center justify-center rounded-xl">
-                    <img src={data.img} alt="" />
-                  </div>
-                  <figcaption className="group-hover:text-black transition duration-300 text-center mt-2 text-setTexOpacity">{data?.type}</figcaption>
-              </figure>
-            </Link>
-          )
-        })} */}
-     //   Modal
-   //     </div>
- //   </div>
