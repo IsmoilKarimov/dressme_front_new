@@ -54,7 +54,13 @@ export default function CollectionCards() {
       <section className="w-full mt-[50px]">
         <ClothingParametr />
       </section>
-
+      <section
+        className={`fixed  z-[110] left-0 right-0 md:hidden duration-500 overflow-hidden ${
+          openWearType ? "bottom-0" : "bottom-[-800px] z-0"
+        }`}
+      >
+        <WearType />
+      </section>
       <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
         <div className="w-full flex flex-col box-border ">
           <article className="flex flex-wrap justify-between md:justify-start md:mx-0 mt-[25px] md:mt-[50px]  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
@@ -78,16 +84,6 @@ export default function CollectionCards() {
                       <NoImg />
                     )}
                   </figure>
-                  <section
-                    className={`fixed  z-[110] left-0 right-0 md:hidden duration-500 overflow-hidden ${
-                      openWearType ? "bottom-0" : "bottom-[-800px] z-0"
-                    }`}
-                  >
-                    <WearType
-                      title={data?.title}
-                      onClick={() => setOpenWearType(false)}
-                    />
-                  </section>
                   <section className="relative w-full rounded-b-xl bg-white  flex flex-wrap h-[130px] md:h-[136px] ">
                     <button
                       onMouseEnter={() => handleEnterMouse(data?.id)}
@@ -103,7 +99,7 @@ export default function CollectionCards() {
                     </button>
                     <button
                       onClick={() => setOpenWearType(!openWearType)}
-                      className="w-12 h-7 border border-searchBgColor md:hidden rounded-lg flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 "
+                      className="w-12 h-7 md:hidden border border-searchBgColor rounded-lg flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 "
                     >
                       <figure className="w-6 h-6 flex items-center justify-center">
                         <img src={CalourCard} alt="" className="h-full" />
