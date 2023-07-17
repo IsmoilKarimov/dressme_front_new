@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, Fragment } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./header.css"
 import { dressMainData } from "../../ContextHook/ContextMenu";
@@ -50,6 +50,7 @@ import {
   img1,
   img2,
 } from "../../AssetsMain";
+import NavCategoryModal from "./navCategoryModal";
 
 const MediumHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -156,33 +157,9 @@ const MediumHeader = () => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
 
+  const [showModal, setShowModal] = useState(false)
 
-  // Categoty Modal
-  const [categoryModal, setCategoryModal] = useState(false)
-  const handleCategoryModal = (data) => {
-    setCategoryModal(data);
-  }
-
-  const openCategoryModal = (
-    <section className="ss:w-fit md:w-[650px] h-fit m-0 p-4 ">
-       <action className=" w-full flex items-center flex-wrap gap-y-6">
-        { categoryModalArray.map(data => {
-          return(
-            <Link to='/' key={data?.id} className="w-1/4 flex items-center justify-center">
-              <figure className="group">
-                  <div className="group-hover:border-black transition duration-300 w-[120px] h-[120px] border border-categoryModalBorderColor bg-categoryModalBgColor flex items-center justify-center rounded-xl">
-                    <img src={data.img} alt="" />
-                  </div>
-                  <figcaption className="group-hover:text-black transition duration-300 text-center mt-2 text-setTexOpacity">{data?.type}</figcaption>
-              </figure>
-            </Link>
-          )
-        })}
-        </action>
-    </section>
-  )
-
-  return (
+  return ( 
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <div className="max-w-[1280px] w-[100%] block md:flex px-3 md:px-0 md:py-0 justify-center  bg-yandexNavbar backdrop-blur-sm items-center m-auto ">
         <div className="relative">
@@ -277,41 +254,41 @@ const MediumHeader = () => {
               </article>
 
               {/* Searching section */}
-              <article className="items-center justify-center rounded-xl font-AeonikProMedium h-[44px] md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
-                {/* Catalog section */}
-                <Popover
-                 open={categoryModal}
-                 onOpenChange={handleCategoryModal}
-                 trigger="click"
-                 options={["Hide"]}
-                 placement="bottom"
-                 content={openCategoryModal}
-                 className={`items-center left-20 ${dressInfo?.BtnOpacitySeason} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
-                >
-                  <span>
-                    <CotegoryIcons colors={dressInfo?.ColorSeason} />
-                  </span>
-                  <span
-                    className={` not-italic font-AeonikProMedium text-sm leading-4 `}
+              
+                <article className="items-center justify-center rounded-xl font-AeonikProMedium h-[44px] md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
+                  {/* Catalog section */}
+                  <button
+                    className={`items-center left-20 ${dressInfo?.BtnOpacitySeason} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
+                    onClick={() => setShowModal(true)}
                   >
-                    Категория
-                  </span>
-                </Popover>
-                <span className="flex md:hidden">
-                  <SearchIcons />
-                </span>
-                <input
-                  type="text"
-                  placeholder="Поиск продуктов или брендов"
-                  className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
-                />
-                <button className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]">
-                  <span>
+                    <span>
+                      <CotegoryIcons colors={dressInfo?.ColorSeason} />
+                    </span>
+                    
+                      <span
+                        className={` not-italic font-AeonikProMedium text-sm leading-4 `}
+                      >
+                        Категория
+                      </span>
+                  </button>
+                  <article>
+                    <NavCategoryModal isVisible = {showModal} onClose = {()=> setShowModal(false) }/>
+                  </article>
+                  <span className="flex md:hidden">
                     <SearchIcons />
                   </span>
-                </button>
-              </article>
-
+                  <input
+                    type="text"
+                    placeholder="Поиск продуктов или брендов"
+                    className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
+                  />
+                  <button className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]">
+                    <span>
+                      <SearchIcons />
+                    </span>
+                  </button>
+                </article>
+              
               {/* Line border */}
               <article className="line h-5 border-x-[1px] text-textColor ss:hidden md:block mx-3"></article>
 
