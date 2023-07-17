@@ -99,7 +99,7 @@ export default function CollectionCards() {
                     </button>
                     <button
                       onClick={() => setOpenWearType(!openWearType)}
-                      className="w-12 h-7 border border-searchBgColor rounded-lg flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 "
+                      className="w-12 h-7 md:hidden border border-searchBgColor rounded-lg flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 "
                     >
                       <figure className="w-6 h-6 flex items-center justify-center">
                         <img src={CalourCard} alt="" className="h-full" />
