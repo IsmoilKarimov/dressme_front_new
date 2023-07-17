@@ -36,8 +36,8 @@ const NavCategoryModal = ({isVisible, onClose}) => {
                         </Link>
                     )
                     })}
-                    </action>
-                </section>
+                </action>
+            </section>
         </div>
       </div>
   )
