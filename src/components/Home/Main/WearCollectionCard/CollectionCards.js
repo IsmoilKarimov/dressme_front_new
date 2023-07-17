@@ -10,11 +10,13 @@ import { HeartImg } from "../../../../AssetsMain";
 import "../../../../index.css";
 import { ClothingParametr } from "./ClothingParametr";
 import { CalourCard } from "../../../../AssetsMain";
-import { WearType } from "./WearType";
+import WearType from "./WearType";
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
-
+  // -------------------------------------
+  const toggle = React.useCallback(() => setOpenWearType(false));
+  // -------------------------------------
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/product/:${id}`);
@@ -59,7 +61,7 @@ export default function CollectionCards() {
           openWearType ? "bottom-0" : "bottom-[-800px] z-0"
         }`}
       >
-        <WearType />
+        <WearType onClick={toggle} />
       </section>
       <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
         <div className="w-full flex flex-col box-border ">
@@ -84,6 +86,13 @@ export default function CollectionCards() {
                       <NoImg />
                     )}
                   </figure>
+                  <section
+                    className={`fixed  z-[110] left-0 right-0 md:hidden duration-500 overflow-hidden ${
+                      openWearType ? "bottom-0" : "bottom-[-800px] z-0"
+                    }`}
+                  >
+                    <WearType onClick={toggle} title={data?.title} />
+                  </section>
                   <section className="relative w-full rounded-b-xl bg-white  flex flex-wrap h-[130px] md:h-[136px] ">
                     <button
                       onMouseEnter={() => handleEnterMouse(data?.id)}
@@ -98,7 +107,7 @@ export default function CollectionCards() {
                       </span>
                     </button>
                     <button
-                      onClick={() => setOpenWearType(!openWearType)}
+                      onClick={() => setOpenWearType(true)}
                       className="w-12 h-7 md:hidden border border-searchBgColor rounded-lg flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 "
                     >
                       <figure className="w-6 h-6 flex items-center justify-center">
