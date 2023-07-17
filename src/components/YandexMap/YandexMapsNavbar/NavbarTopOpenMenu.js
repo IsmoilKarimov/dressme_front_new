@@ -223,7 +223,7 @@ export default function NavbarTopOpenMenu() {
         </div>
       </div>
       <span className="w-[2px] h-[30px] bg-searchBgColor mr-4"></span>
-      <div className="w-[69%]   h-full   px-1 ">
+      <div className="w-[69%] h-full px-1">
         <Slider
           {...settings1}
           className="w-[100%] h-full items-center px-4 flex xs:justify-between   "

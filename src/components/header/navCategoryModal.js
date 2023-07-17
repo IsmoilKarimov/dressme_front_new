@@ -22,8 +22,8 @@ const NavCategoryModal = ({isVisible, onClose}) => {
       <div className='fixed top-[270px] left-[114px] inset-0 backdrop-blur-sm flex justify-center items-center'>
         <div className='w-[675px] flex flex-col shadow-modalCategoryShadow bg-white rounded-lg p-2'>
             <button className='text-xl place-self-end pr-2' onClick = {()=>{onClose()}} >x</button>
-            <section className="ss:w-fit md:w-[650px] h-fit m-0 p-4 ">
-                <action className=" w-full flex items-center flex-wrap gap-y-6">
+            <div className="ss:w-fit md:w-[650px] h-fit m-0 p-4 ">
+                <div className=" w-full flex items-center flex-wrap gap-y-6">
                     { categoryModalArray.map(data => {
                     return(
                         <Link to='/' key={data?.id} className="w-1/4 flex items-center justify-center">
@@ -36,8 +36,8 @@ const NavCategoryModal = ({isVisible, onClose}) => {
                         </Link>
                     )
                     })}
-                </action>
-            </section>
+                </div>
+            </div>
         </div>
       </div>
   )
