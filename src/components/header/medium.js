@@ -259,20 +259,17 @@ const MediumHeader = () => {
                   {/* Catalog section */}
                   <button
                     className={`items-center left-20 ${dressInfo?.BtnOpacitySeason} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
-                    onClick={() => setShowModal(true)}
+                    onClick={() => setShowModal(!showModal)}
                   >
                     <span>
                       <CotegoryIcons colors={dressInfo?.ColorSeason} />
                     </span>
-                    
-                      <span
-                        className={` not-italic font-AeonikProMedium text-sm leading-4 `}
-                      >
-                        Категория
-                      </span>
+                    <span className={`not-italic font-AeonikProMedium text-sm leading-4 `}>
+                      Категория
+                    </span>
                   </button>
                   <article>
-                    <NavCategoryModal isVisible = {showModal} onClose = {()=> setShowModal(false) }/>
+                    <NavCategoryModal isVisible = {showModal} onClose = {()=> setShowModal(false)}/>
                   </article>
                   <span className="flex md:hidden">
                     <SearchIcons />
