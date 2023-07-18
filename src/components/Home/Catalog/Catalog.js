@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   img1,
   img2,
@@ -44,6 +44,11 @@ const Catalog = () => {
     { id: 14, name: "Религиозная одежда для мужчин" },
   ];
   // /catalog/:id
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
 
   const navigate = useNavigate();
   const goCatalogId = (id) => {
@@ -56,7 +61,10 @@ const Catalog = () => {
           {wearArray?.map((data) => {
             return (
               <figure className="w-[140px] ls:w-[150px] ll:w-[175px] h-fit flex flex-wrap gap-y-2 ">
-                <div className="w-full h-[145px] ls:h-[155px] ll:h-[180px] flex items-center overflow-hidden justify-center border border-skeltonColor bg-categoryModalBgColor rounded-[12px]">
+                <div
+                  onClick={() => setOpenCatalog(true)}
+                  className="w-full h-[145px] ls:h-[155px] ll:h-[180px] flex items-center overflow-hidden justify-center border border-skeltonColor bg-categoryModalBgColor rounded-[12px]"
+                >
                   <img src={data?.img} alt="" className=" h-full	" />
                 </div>
                 <button

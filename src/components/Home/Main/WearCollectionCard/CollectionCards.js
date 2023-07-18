@@ -63,8 +63,14 @@ export default function CollectionCards() {
       <section className="w-full mt-[50px]">
         <ClothingParametr />
       </section>
+      <div
+        onClick={() => setOpenWearType(false)}
+        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+          openWearType ? "" : "hidden"
+        }`}
+      ></div>
       <section
-        className={`fixed  z-[110] left-0 right-0 md:hidden duration-500 overflow-hidden ${
+        className={`fixed  z-[113] left-0 right-0 md:hidden duration-500 overflow-hidden ${
           openWearType ? "bottom-0" : "bottom-[-800px] z-0"
         }`}
       >
@@ -94,25 +100,25 @@ export default function CollectionCards() {
                     )}
                   </figure>
                   {/* {openWearType && ( */}
-                  <section
+                  {/* <section
                     className={`fixed inset-0  h-fit ${
                       openWearType ? "z-[110] " : ""
                     }`}
-                  >
-                    <div
+                  > */}
+                  {/* <div
                       className={`fixed z-[110] w-full h-[100vh] duration-300  ${
                         openWearType ? "inset-0" : "bottom-[-800px] hidden z-0"
                       }`}
                       onClick={() => setOpenWearType(false)}
-                    ></div>
-                    <div
+                    ></div> */}
+                  {/* <div
                       className={`fixed  z-[111] h-fit left-0 right-0  bg-white md:hidden duration-500 overflow-hidden ${
                         openWearType ? "bottom-0" : "bottom-[-800px] z-0"
                       }`}
                     >
                       <WearType onClick={toggle} title={data?.title} />
-                    </div>
-                  </section>
+                    </div> */}
+                  {/* </section> */}
                   {/* )} */}
                   <section className="relative w-full rounded-b-xl bg-white  flex flex-wrap h-[130px] md:h-[136px] ">
                     <button
