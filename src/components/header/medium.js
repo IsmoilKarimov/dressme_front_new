@@ -55,9 +55,6 @@ import NavCategoryModal from "./navCategoryModal";
 const MediumHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [showModal, setShowModal] = useState(false);
-  // ---------------------
-  const CategoryToggle = React.useCallback(() => setShowModal(false));
-  // ---------------------
 
   const [state, setState] = useState({
     hamburgerMenu: false,
@@ -97,7 +94,16 @@ const MediumHeader = () => {
     { id: 3333, type: "Autumm", icons: BrandAutumm },
     { id: 4444, type: "Winter", icons: BrandWinter },
   ];
-
+  const categoryModalArray = [
+    { id: 1111, img: img1, type: "Мужчинам" },
+    { id: 2222, img: img2, type: "Женщинам" },
+    { id: 3333, img: img3, type: "Детям" },
+    { id: 4444, img: img4, type: "Головные уборы" },
+    { id: 5555, img: img5, type: "Верхняя одежда" },
+    { id: 6666, img: img6, type: "Нижняя одежда" },
+    { id: 7777, img: img7, type: "Обувь" },
+    { id: 8888, img: img8, type: "Аксессуары" },
+  ];
   const personItems = [
     { id: 1111, man: SpringMale, woman: SpringFemale },
     { id: 2222, man: SummerMale, woman: SummerFemale },
@@ -161,7 +167,10 @@ const MediumHeader = () => {
         ></div>
       )}
       <article className="fixed top-[300px] z-[113] left-[53.8%]   right-1/2 translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit">
-        <NavCategoryModal isVisible={showModal} onClose={CategoryToggle} />
+        <NavCategoryModal
+          isVisible={showModal}
+          onClose={() => setShowModal(false)}
+        />
       </article>
       <div className="max-w-[1280px] w-[100%] block md:flex px-3 md:px-0 md:py-0 justify-center  bg-yandexNavbar backdrop-blur-sm items-center m-auto ">
         <div className="relative">

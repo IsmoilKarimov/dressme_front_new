@@ -9,7 +9,6 @@ import {
   img7,
   img8,
 } from "../../AssetsMain";
-import { Link, useNavigate } from "react-router-dom";
 import { GrClose } from "react-icons/gr";
 import { MenuCloseIcons } from "../../AssetsMain/icons";
 
@@ -17,25 +16,27 @@ const NavCategoryModal = ({ isVisible, onClose }) => {
   if (!isVisible) return null;
 
   const categoryModalArray = [
-    { id: 1, img: img1, type: "Мужчинам" },
-    { id: 2, img: img2, type: "Женщинам" },
-    { id: 3, img: img3, type: "Детям" },
-    { id: 4, img: img4, type: "Головные уборы" },
-    { id: 5, img: img5, type: "Верхняя одежда" },
-    { id: 6, img: img6, type: "Нижняя одежда" },
-    { id: 7, img: img7, type: "Обувь" },
-    { id: 8, img: img8, type: "Аксессуары" },
+    { id: 1111, img: img1, type: "Мужчинам" },
+    { id: 2222, img: img2, type: "Женщинам" },
+    { id: 3333, img: img3, type: "Детям" },
+    { id: 4444, img: img4, type: "Головные уборы" },
+    { id: 5555, img: img5, type: "Верхняя одежда" },
+    { id: 6666, img: img6, type: "Нижняя одежда" },
+    { id: 7777, img: img7, type: "Обувь" },
+    { id: 8888, img: img8, type: "Аксессуары" },
   ];
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const goCatalogId = (id) => {
-    navigate(`/catalog/:${id}`);
+    // navigate(`/catalog/:${id}`);
   };
   return (
     <div className="flex justify-center items-center">
       <div className="w-[675px] flex flex-col shadow-modalCategoryShadow bg-white rounded-lg p-2">
         <button
           className="text-xl place-self-end pr-1 pt-1 mb-2"
-          onClick={onClose}
+          onClick={() => {
+            onClose();
+          }}
         >
           <MenuCloseIcons />
         </button>
@@ -48,13 +49,13 @@ const NavCategoryModal = ({ isVisible, onClose }) => {
           <div className=" w-full flex items-center flex-wrap gap-y-6">
             {categoryModalArray.map((data) => {
               return (
-                <section
+                <article
                   key={data?.id}
                   className="w-1/4 flex items-center justify-center"
                 >
                   <figure
                     onClick={() => goCatalogId(data?.id)}
-                    className="group"
+                    className="group cursor-pointer"
                   >
                     <div className="group-hover:border-black transition duration-300 w-[120px] h-[120px] border border-categoryModalBorderColor bg-categoryModalBgColor flex items-center justify-center rounded-xl">
                       <img src={data.img} alt="" />
@@ -63,7 +64,7 @@ const NavCategoryModal = ({ isVisible, onClose }) => {
                       {data?.type}
                     </figcaption>
                   </figure>
-                </section>
+                </article>
               );
             })}
           </div>
