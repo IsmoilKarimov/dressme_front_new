@@ -1,6 +1,7 @@
 import React from 'react'
 import { img1, img2, img3, img4, img5, img6, img7, img8 } from '../../AssetsMain'
 import { Link } from 'react-router-dom'
+import { GrClose } from 'react-icons/gr';
 
 const NavCategoryModal = ({isVisible, onClose}) => {
     
@@ -19,10 +20,12 @@ const NavCategoryModal = ({isVisible, onClose}) => {
 
 
   return (
-      <div className='fixed top-[270px] left-[114px] inset-0 backdrop-blur-sm flex justify-center items-center'>
+      <div className='fixed top-[260px] left-[114px] inset-0 backdrop-blur-sm flex justify-center items-center'>
         <div className='w-[675px] flex flex-col shadow-modalCategoryShadow bg-white rounded-lg p-2'>
-            <button className='text-xl place-self-end pr-2' onClick = {()=>{onClose()}} >x</button>
-            <div className="ss:w-fit md:w-[650px] h-fit m-0 p-4 ">
+            <button className='text-xl place-self-end pr-1 pt-1 mb-2' onClick = {()=>{onClose()}} >
+                <GrClose size={20} />
+            </button>
+            <div className="ss:w-fit md:w-[650px] h-fit m-0 p-2 pb-4 pt-0">
                 <div className=" w-full flex items-center flex-wrap gap-y-6">
                     { categoryModalArray.map(data => {
                     return(
