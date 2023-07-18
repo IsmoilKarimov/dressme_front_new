@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect, Fragment } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import "./header.css"
+import "./header.css";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { Popover } from "antd";
 import {
@@ -54,6 +54,7 @@ import NavCategoryModal from "./navCategoryModal";
 
 const MediumHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [showModal, setShowModal] = useState(false);
 
   const [state, setState] = useState({
     hamburgerMenu: false,
@@ -62,12 +63,12 @@ const MediumHeader = () => {
   });
 
   useEffect(() => {
-    if (state?.hamburgerMenu) {
+    if (state?.hamburgerMenu || showModal) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [state?.hamburgerMenu]);
+  }, [state?.hamburgerMenu, showModal]);
 
   // -----------------------------------------------------
   const [scrollPost, setscrollPost] = useState(0);
@@ -94,15 +95,15 @@ const MediumHeader = () => {
     { id: 4444, type: "Winter", icons: BrandWinter },
   ];
   const categoryModalArray = [
-    { id: 1111, img: img1 , type: 'Мужчинам' },
-    { id: 2222, img: img2 , type: 'Женщинам' },
-    { id: 3333, img: img3 , type: 'Детям' },
-    { id: 4444, img: img4 , type: 'Головные уборы' },
-    { id: 5555, img: img5, type: 'Верхняя одежда' },
-    { id: 6666, img: img6, type: 'Нижняя одежда' },
-    { id: 7777, img: img7, type: 'Обувь' },
-    { id: 8888, img: img8 , type: 'Аксессуары' },
-  ]
+    { id: 1111, img: img1, type: "Мужчинам" },
+    { id: 2222, img: img2, type: "Женщинам" },
+    { id: 3333, img: img3, type: "Детям" },
+    { id: 4444, img: img4, type: "Головные уборы" },
+    { id: 5555, img: img5, type: "Верхняя одежда" },
+    { id: 6666, img: img6, type: "Нижняя одежда" },
+    { id: 7777, img: img7, type: "Обувь" },
+    { id: 8888, img: img8, type: "Аксессуары" },
+  ];
   const personItems = [
     { id: 1111, man: SpringMale, woman: SpringFemale },
     { id: 2222, man: SummerMale, woman: SummerFemale },
@@ -157,10 +158,20 @@ const MediumHeader = () => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
 
-  const [showModal, setShowModal] = useState(false)
-
-  return ( 
+  return (
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border">
+      {showModal && (
+        <div
+          onClick={() => setShowModal(false)}
+          className="fixed inset-0 z-[112] w-full h-[100vh] "
+        ></div>
+      )}
+      <article className="fixed top-[300px] z-[113] left-[53.8%]   right-1/2 translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit">
+        <NavCategoryModal
+          isVisible={showModal}
+          onClose={() => setShowModal(false)}
+        />
+      </article>
       <div className="max-w-[1280px] w-[100%] block md:flex px-3 md:px-0 md:py-0 justify-center  bg-yandexNavbar backdrop-blur-sm items-center m-auto ">
         <div className="relative">
           {/* Starting of Full Screen page section */}
@@ -215,7 +226,8 @@ const MediumHeader = () => {
               </NavLink>
 
               {/* Voice section */}
-              <div className={` bg-btnBgColor w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
+              <div
+                className={` bg-btnBgColor w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
               >
                 <span className="w-[22px]">
                   <VolumeIcons colors={dressInfo?.ColorSeason} />
@@ -254,38 +266,38 @@ const MediumHeader = () => {
               </article>
 
               {/* Searching section */}
-              
-                <article className="items-center justify-center rounded-xl font-AeonikProMedium h-[44px] md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
-                  {/* Catalog section */}
-                  <button
-                    className={`items-center left-20 ${dressInfo?.BtnOpacitySeason} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
-                    onClick={() => setShowModal(!showModal)}
+
+              <article className="items-center justify-center rounded-xl font-AeonikProMedium h-[44px] md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
+                {/* Catalog section */}
+                <button
+                  className={`items-center left-20 ${dressInfo?.BtnOpacitySeason} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
+                  onClick={() => setShowModal(!showModal)}
+                >
+                  <span>
+                    <CotegoryIcons colors={dressInfo?.ColorSeason} />
+                  </span>
+                  <span
+                    className={`not-italic font-AeonikProMedium text-sm leading-4 `}
                   >
-                    <span>
-                      <CotegoryIcons colors={dressInfo?.ColorSeason} />
-                    </span>
-                    <span className={`not-italic font-AeonikProMedium text-sm leading-4 `}>
-                      Категория
-                    </span>
-                  </button>
-                  <article>
-                    <NavCategoryModal isVisible = {showModal} onClose = {()=> setShowModal(false)}/>
-                  </article>
-                  <span className="flex md:hidden">
+                    Категория
+                  </span>
+                </button>
+
+                <span className="flex md:hidden">
+                  <SearchIcons />
+                </span>
+                <input
+                  type="text"
+                  placeholder="Поиск продуктов или брендов"
+                  className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
+                />
+                <button className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]">
+                  <span>
                     <SearchIcons />
                   </span>
-                  <input
-                    type="text"
-                    placeholder="Поиск продуктов или брендов"
-                    className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
-                  />
-                  <button className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]">
-                    <span>
-                      <SearchIcons />
-                    </span>
-                  </button>
-                </article>
-              
+                </button>
+              </article>
+
               {/* Line border */}
               <article className="line h-5 border-x-[1px] text-textColor ss:hidden md:block mx-3"></article>
 
