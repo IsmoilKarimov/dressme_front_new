@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { useNavigate } from "react-router-dom";
 import {
@@ -17,6 +17,13 @@ export default function CollectionCards() {
   // -------------------------------------
   const toggle = React.useCallback(() => setOpenWearType(false));
   // -------------------------------------
+  useEffect(() => {
+    if (openWearType) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [openWearType]);
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/product/:${id}`);
@@ -86,13 +93,27 @@ export default function CollectionCards() {
                       <NoImg />
                     )}
                   </figure>
+                  {/* {openWearType && ( */}
                   <section
-                    className={`fixed  z-[110] left-0 right-0 md:hidden duration-500 overflow-hidden ${
-                      openWearType ? "bottom-0" : "bottom-[-800px] z-0"
+                    className={`fixed inset-0  h-fit ${
+                      openWearType ? "z-[110] " : ""
                     }`}
                   >
-                    <WearType onClick={toggle} title={data?.title} />
+                    <div
+                      className={`fixed z-[110] w-full h-[100vh] duration-300  ${
+                        openWearType ? "inset-0" : "bottom-[-800px] hidden z-0"
+                      }`}
+                      onClick={() => setOpenWearType(false)}
+                    ></div>
+                    <div
+                      className={`fixed  z-[111] h-fit left-0 right-0  bg-white md:hidden duration-500 overflow-hidden ${
+                        openWearType ? "bottom-0" : "bottom-[-800px] z-0"
+                      }`}
+                    >
+                      <WearType onClick={toggle} title={data?.title} />
+                    </div>
                   </section>
+                  {/* )} */}
                   <section className="relative w-full rounded-b-xl bg-white  flex flex-wrap h-[130px] md:h-[136px] ">
                     <button
                       onMouseEnter={() => handleEnterMouse(data?.id)}

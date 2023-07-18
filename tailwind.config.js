@@ -36,7 +36,7 @@ module.exports = {
         borderAutumm: "#E17A02",
         bgAutumm: "rgba(225, 122, 2, 0.1)",
         borderWinter: "#007DCA",
-        bgWinter: "rgba(0, 125, 202, 0.1)",
+        bgWinter: "rgba(0, 125, 202, 0.8)",
         // yandex navbar
         yandexNavbar: " rgba(255, 255, 255, 0.8)",
         yandexWhite: " #FFFFFF",
@@ -53,6 +53,7 @@ module.exports = {
         catalogList: "#9B9B9B",
 
         // Hear red color
+        blackOpacity: "rgba(0,0,0,0.8)",
 
         // Basket Result Money
         BasketMoneyColor: "#008F0E",
@@ -90,7 +91,7 @@ module.exports = {
         cardShadow: "0px 1px 10px 0px rgba(0,0,0,0.59)",
         navbarShadow: "0px -4px 14px -4px rgba(0,0,0,0.75)",
         navMenuShadov: "0px -2px 10px -8px rgba(0,0,0,0.75)",
-        modalCategoryShadow: "0px 1px 10px -4px rgba(0,0,0,0.75)"
+        modalCategoryShadow: "0px 1px 10px -4px rgba(0,0,0,0.75)",
       },
     },
     letterSpacing: {

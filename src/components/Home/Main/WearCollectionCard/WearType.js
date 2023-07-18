@@ -30,7 +30,7 @@ const WearType = ({ onClick, title }) => {
     },
   ];
   return (
-    <div className="max-w-[440px] w-[100%] mx-auto bg-white overflow-hidden h-fit rounded-t-[12px]">
+    <div className="max-w-[440px] w-[100%] mx-auto bg-white shadow-navMenuShadov  overflow-hidden h-fit rounded-t-[12px]">
       <section className="h-[52px] w-full bg-btnBgColor border-b border-searchBgColor flex items-center justify-between px-4">
         <p>Футболка женская однотонная</p>
         <button onClick={onClick}>
