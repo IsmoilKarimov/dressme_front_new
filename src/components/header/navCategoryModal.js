@@ -1,15 +1,5 @@
 import React from "react";
-import {
-  img1,
-  img2,
-  img3,
-  img4,
-  img5,
-  img6,
-  img7,
-  img8,
-} from "../../AssetsMain";
-import { GrClose } from "react-icons/gr";
+import { img1, img2, img3, img4, img5, img6, img7, img8, } from "../../AssetsMain";
 import { MenuCloseIcons } from "../../AssetsMain/icons";
 
 const NavCategoryModal = ({ isVisible, onClose }) => {
@@ -34,9 +24,7 @@ const NavCategoryModal = ({ isVisible, onClose }) => {
       <div className="w-[675px] flex flex-col shadow-modalCategoryShadow bg-white rounded-lg p-2">
         <button
           className="text-xl place-self-end pr-1 pt-1 mb-2"
-          onClick={() => {
-            onClose();
-          }}
+          onClick={() => { onClose() }}
         >
           <MenuCloseIcons />
         </button>
