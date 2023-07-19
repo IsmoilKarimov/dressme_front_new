@@ -15,7 +15,7 @@ import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { NoImg, SircleNext } from "../../../../AssetsMain/icons";
 export default function MainPageSliders() {
   const [dressInfo] = useContext(dressMainData);
@@ -49,18 +49,18 @@ export default function MainPageSliders() {
       ],
 
       campany: [
-        { id: 1, imgFull: adidas },
-        { id: 2, imgFull: chanel },
-        { id: 3, imgFull: adidas },
-        { id: 4, imgFull: lacoste },
-        { id: 5, imgFull: hm },
-        { id: 6, imgFull: lacoste },
-        { id: 7, imgFull: adidas },
-        { id: 8, imgFull: nike },
-        { id: 9, imgFull: puma },
-        { id: 10, imgFull: puma },
-        { id: 11, imgFull: tommy },
-        { id: 12, imgFull: zara },
+        { id: 1, name: "Adidas", imgFull: adidas },
+        { id: 2, name: "Channel", imgFull: chanel },
+        { id: 3, name: "Adidas", imgFull: adidas },
+        { id: 4, name: "Locaste", imgFull: lacoste },
+        { id: 5, name: "HM", imgFull: hm },
+        { id: 6, name: "Locaste", imgFull: lacoste },
+        { id: 7, name: "Adidas", imgFull: adidas },
+        { id: 8, name: "Nike", imgFull: nike },
+        { id: 9, name: "Puma", imgFull: puma },
+        { id: 10, name: "Puma", imgFull: puma },
+        { id: 11, name: "Tommy", imgFull: tommy },
+        { id: 12, name: "Zara", imgFull: zara },
       ],
       service: [
         { id: 1111, type: "Spring" },
@@ -226,6 +226,10 @@ export default function MainPageSliders() {
     ],
   };
 
+  const navigate = useNavigate();
+  const goShoppingStore = (id) => {
+    navigate(`/shopping_store/:${id}`);
+  };
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
@@ -319,7 +323,8 @@ export default function MainPageSliders() {
                   return (
                     <div
                       key={data?.id}
-                      className="!w-[98.88%] h-[100px]  rounded-lg bg-btnBgColor flex items-center justify-center select-none border border-solid border-searchBgColor"
+                      onClick={() => goShoppingStore(data?.name)}
+                      className="!w-[98.88%] h-[100px] cursor-pointer  rounded-lg bg-btnBgColor flex items-center justify-center select-none border border-solid border-searchBgColor"
                     >
                       <figure className=" h-full flex items-center justify-center px-[35px]">
                         <img
