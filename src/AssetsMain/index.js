@@ -75,11 +75,11 @@ export { default as ActivePersonImg } from "./backTop/ActivePersonImg.svg";
 export { default as MuslimImg } from "./muslim-img.jpg";
 
 // -------------------cataolog-------
-export { default as img1 } from "./cataolog/img1.svg";
-export { default as img2 } from "./cataolog/img2.svg";
-export { default as img3 } from "./cataolog/img3.svg";
-export { default as img4 } from "./cataolog/img4.svg";
-export { default as img5 } from "./cataolog/img5.svg";
-export { default as img6 } from "./cataolog/img6.svg";
-export { default as img7 } from "./cataolog/img7.svg";
-export { default as img8 } from "./cataolog/img8.svg";
+export { default as img1 } from "./cataolog/img1.webp";
+export { default as img2 } from "./cataolog/img2.webp";
+export { default as img3 } from "./cataolog/img3.webp";
+export { default as img4 } from "./cataolog/img4.webp";
+export { default as img5 } from "./cataolog/img5.webp";
+export { default as img6 } from "./cataolog/img6.webp";
+export { default as img7 } from "./cataolog/img7.webp";
+export { default as img8 } from "./cataolog/img8.webp";

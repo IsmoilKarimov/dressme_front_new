@@ -266,7 +266,6 @@ const MediumHeader = () => {
               </article>
 
               {/* Searching section */}
-
               <article className="items-center justify-center rounded-xl font-AeonikProMedium h-[44px] md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
                 {/* Catalog section */}
                 <button
