@@ -70,7 +70,7 @@ export default function CollectionCards() {
         }`}
       ></div>
       <section
-        className={`fixed  z-[113] left-0 right-0 md:hidden duration-500 overflow-hidden ${
+        className={`fixed  z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
           openWearType ? "bottom-0" : "bottom-[-800px] z-0"
         }`}
       >
