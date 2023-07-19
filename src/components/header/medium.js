@@ -64,7 +64,7 @@ const MediumHeader = () => {
 
   useEffect(() => {
     if (state?.hamburgerMenu || showModal) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = "auto";
     } else {
       document.body.style.overflow = "auto";
     }
@@ -163,10 +163,10 @@ const MediumHeader = () => {
       {showModal && (
         <div
           onClick={() => setShowModal(false)}
-          className="fixed inset-0 z-[112] w-full h-[100vh] "
+          className="fixed inset-0 z-[112] w-[100%] h-[100vh] scroll-m-0"
         ></div>
       )}
-      <article className="fixed top-[300px] z-[113] left-[53.8%]   right-1/2 translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit">
+      <article className="fixed top-[300px] z-[113] left-[52.9%] right-1/2 translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit">
         <NavCategoryModal
           isVisible={showModal}
           onClose={() => setShowModal(false)}
