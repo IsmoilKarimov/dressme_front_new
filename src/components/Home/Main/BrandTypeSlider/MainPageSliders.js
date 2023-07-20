@@ -306,7 +306,7 @@ export default function MainPageSliders() {
               className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[52px] px-4 ll:px-10 rounded-xl border ${dressInfo?.BtnSeason}`}
             >
               <p className="not-italic  font-AeonikProMedium text-base leading-4 text-center">
-                Посмотреть все категории
+                Посмотреть все разделы{" "}
               </p>
               <p className="ml-2 ">
                 <SircleNext colors={dressInfo?.ColorSeason} />
