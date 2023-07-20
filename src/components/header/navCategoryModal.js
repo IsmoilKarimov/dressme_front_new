@@ -31,7 +31,7 @@ const NavCategoryModal = ({ isVisible, onClose }) => {
     // navigate(`/catalog/:${id}`);
   };
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center z-[120]">
       <div className="w-[675px] flex flex-col shadow-modalCategoryShadow bg-white rounded-lg p-2">
         <button
           className="text-xl place-self-end pr-1 pt-1 mb-2"
