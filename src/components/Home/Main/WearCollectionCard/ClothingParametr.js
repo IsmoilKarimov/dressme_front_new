@@ -3,6 +3,7 @@ import {
   BrushColorIcons,
   ClothesIcons,
   DollorIcons,
+  InputCheckedTrueIcons,
   TopBrandsIcon,
 } from "../../../../AssetsMain/icons";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
@@ -57,26 +58,104 @@ const ClothingParametr = () => {
   // Mobile Price Brand Type
 
   // Mobile Change color Type
-  const changeColor = [
-    { id: 1, name: "purple", value: 1, action: false, colors: "bg-purple-700" },
-    { id: 2, name: "green", value: 2, action: false, colors: "bg-green-600" },
-    { id: 3, name: "red", value: 3, action: false, colors: "bg-red-700" },
-    { id: 4, name: "yellow", value: 4, action: false, colors: "bg-yellow-500" },
-    { id: 5, name: "black", value: 5, action: false, colors: "bg-black" },
-    { id: 6, name: "white", value: 6, action: false, colors: "bg-white" },
-    { id: 7, name: "blue", value: 7, action: false, colors: "bg-blue-500" },
-    { id: 8, name: "orange", value: 8, action: false, colors: "bg-orange-600" },
-    { id: 9, name: "purple", value: 9, action: false, colors: "bg-purple-400" },
-    { id: 10, name: "blue", value: 10, action: false, colors: "bg-blue-900" },
+  const [changeColor, setChangeColor] = useState([
+    {
+      id: 1,
+      name: "purple",
+      value: 1,
+      action: false,
+      IconsColor: "purple",
+      colors: "bg-purple-700",
+    },
+    {
+      id: 2,
+      name: "green",
+      value: 2,
+      action: false,
+      IconsColor: "green",
+      colors: "bg-green-600",
+    },
+    {
+      id: 3,
+      name: "red",
+      value: 3,
+      action: false,
+      IconsColor: "red",
+      colors: "bg-red-700",
+    },
+    {
+      id: 4,
+      name: "yellow",
+      value: 4,
+      action: false,
+      IconsColor: "yellow",
+      colors: "bg-yellow-500",
+    },
+    {
+      id: 5,
+      name: "black",
+      value: 5,
+      action: false,
+      IconsColor: "black",
+      colors: "bg-black",
+    },
+    {
+      id: 6,
+      name: "white",
+      value: 6,
+      action: false,
+      IconsColor: "white",
+      colors: "bg-white",
+    },
+    {
+      id: 7,
+      name: "blue",
+      value: 7,
+      action: false,
+      IconsColor: "blue",
+      colors: "bg-blue-500",
+    },
+    {
+      id: 8,
+      name: "orange",
+      value: 8,
+      action: false,
+      IconsColor: "orange",
+      colors: "bg-orange-600",
+    },
+    {
+      id: 9,
+      name: "purple",
+      value: 9,
+      action: false,
+      IconsColor: "purple",
+      colors: "bg-purple-400",
+    },
+    {
+      id: 10,
+      name: "blue",
+      value: 10,
+      action: false,
+      IconsColor: "blue",
+      colors: "bg-blue-900",
+    },
     {
       id: 11,
       name: "yellow",
       value: 11,
       action: false,
+      IconsColor: "yellow",
       colors: "bg-yellow-900",
     },
-    { id: 12, name: "gray", value: 12, action: false, colors: "bg-gray-600" },
-  ];
+    {
+      id: 12,
+      name: "gray",
+      value: 12,
+      IconsColor: "gray",
+      action: false,
+      colors: "bg-gray-600",
+    },
+  ]);
   // Mobile top Branding Data Lists
   const campany = [
     { id: 1, imgFull: adidas },
@@ -88,6 +167,27 @@ const ClothingParametr = () => {
     { id: 7, imgFull: tommy },
     { id: 8, imgFull: zara },
   ];
+  const [iconsColor, setIconsColor] = useState("black");
+  const HandleIconsColor = (color, id) => {
+    setIconsColor(color);
+    setChangeColor((current) => {
+      return current.map((data) => {
+        if (data?.id == id) {
+          return { ...data, action: true };
+        } else {
+          return { ...data, action: false };
+        }
+      });
+    });
+  };
+  const unCheckedAll = () => {
+    setChangeColor((current) => {
+      return current.map((data) => {
+        return { ...data, action: false };
+      });
+    });
+    setIconsColor("black");
+  };
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto  px-4 md:px-0">
       <section className="w-full ss:block sm:flex justify-start items-center mb-[24px] md:mb-0 md:px-0">
@@ -135,7 +235,7 @@ const ClothingParametr = () => {
         >
           <span>
             {" "}
-            <BrushColorIcons />
+            <BrushColorIcons colors={iconsColor} />
           </span>
         </button>
         <button
@@ -319,7 +419,13 @@ const ClothingParametr = () => {
               ></div>
               <div className="flex items-center min-h-screen px-4 py-8">
                 <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
-                  <div className="flex items-center justify-end ">
+                  <div className="flex items-center justify-between ">
+                    <button
+                      onClick={unCheckedAll}
+                      className="flex items-center active:scale-95  active:opacity-70 justify-center border border-searchBgColor rounded-lg px-4 py-1"
+                    >
+                      unChecked All{" "}
+                    </button>
                     <button
                       type=""
                       onClick={() =>
@@ -329,24 +435,30 @@ const ClothingParametr = () => {
                       <GrClose size={25} />
                     </button>
                   </div>
-                  <div className="py-4 gap-x-0 gap-y-4 flex flex-wrap items-center justify-between">
+                  <div className="py-4 gap-x-2 gap-y-4 flex flex-wrap items-center">
                     {changeColor?.map((data) => {
                       return (
-                        <span
+                        <div
                           key={data?.id}
-                          className="w-fit flex items-center cursour-pointer hover:shadow-md p-2 rounded-lg"
+                          onClick={() =>
+                            HandleIconsColor(data?.IconsColor, data?.id)
+                          }
+                          className={`rounded-full flex items-center justify-center mr-2 w-6 h-6 ${
+                            data?.colors
+                          } cursor-pointer ${
+                            data?.id == 6 ? "border border-setTexOpacity" : ""
+                          } `}
                         >
-                          <div
-                            className={`rounded-full mr-2 w-6 h-6 ${
-                              data?.colors
-                            } cursor-pointer ${
-                              data?.id == 6 ? "border border-setTexOpacity" : ""
-                            } `}
-                          ></div>
-                          <span className="not-italic font-AeonikProMedium text-base leading-4 text-black">
-                            {data?.name}
-                          </span>
-                        </span>
+                          {data?.action && data?.id === 6 ? (
+                            <span>
+                              <InputCheckedTrueIcons colors={"#000"} />
+                            </span>
+                          ) : null}
+
+                          {data?.action && data?.id !== 6 ? (
+                            <InputCheckedTrueIcons colors={"#fff"} />
+                          ) : null}
+                        </div>
                       );
                     })}
                   </div>

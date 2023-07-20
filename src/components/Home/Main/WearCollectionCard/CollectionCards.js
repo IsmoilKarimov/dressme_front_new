@@ -89,6 +89,7 @@ export default function CollectionCards() {
                   className={` ss:w-[49%] md:w-[24%] lg:w-[240px]  xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
                 >
                   <figure
+                    onMouseEnter={() => handleLeaveMouse(data?.id)}
                     onClick={() => goDetail(data?.title)}
                     className="relative w-full cursor-pointer ss:h-[200px] ls:h-[220px] ll:h-[238px] xs:h-[309px] lg:h-[320px] bg-btnBgColor  flex content-between items-center overflow-hidden border-b border-solid flex-nowrap"
                   >
@@ -173,6 +174,7 @@ export default function CollectionCards() {
                       })}
                     </article>
                     <article
+                      onMouseEnter={() => handleLeaveMouse(data?.id)}
                       onClick={() => goDetail(data?.title)}
                       className="w-full  xs:px-3 ss:px-3 xs:mt-3 ss:mt-2"
                     >
@@ -198,7 +200,10 @@ export default function CollectionCards() {
                         </section>
                       </figure>
                     </article>
-                    <article className="w-full flex items-center justify-between  pl-3 pr-[5px]">
+                    <article
+                      onMouseEnter={() => handleLeaveMouse(data?.id)}
+                      className="w-full flex items-center justify-between  pl-3 pr-[5px]"
+                    >
                       <article className="flex items-center ">
                         {data.sale ? (
                           <figure className="flex flex-col-reverse ll:flex-row	text-start items-start ">

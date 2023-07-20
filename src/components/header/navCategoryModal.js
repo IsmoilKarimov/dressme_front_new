@@ -1,9 +1,19 @@
 import React from "react";
-import { img1, img2, img3, img4, img5, img6, img7, img8,} from "../../AssetsMain";
+import {
+  img1,
+  img2,
+  img3,
+  img4,
+  img5,
+  img6,
+  img7,
+  img8,
+} from "../../AssetsMain";
 import { MenuCloseIcons } from "../../AssetsMain/icons";
 import { useNavigate } from "react-router-dom";
 
-const NavCategoryModal = ({ isVisible, onClose }) => {
+const NavCategoryModal = (props) => {
+  const { isVisible, onClose } = props;
   if (!isVisible) return null;
 
   const categoryModalArray = [
@@ -19,9 +29,10 @@ const NavCategoryModal = ({ isVisible, onClose }) => {
 
   // const navigate = useNavigate();
   const goCatalogId = (id) => {
+    // console.log(id, "id");
     // navigate(`/catalog/:${id}`);
   };
-  
+
   return (
     <div className="flex justify-center items-center z-[120]">
       <div className="w-[675px] flex flex-col shadow-modalCategoryShadow bg-white rounded-lg p-2">
