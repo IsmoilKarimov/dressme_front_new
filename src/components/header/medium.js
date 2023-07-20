@@ -63,12 +63,12 @@ const MediumHeader = () => {
   });
 
   useEffect(() => {
-    if (state?.hamburgerMenu || showModal) {
-      document.body.style.overflow = "auto";
+    if (state?.hamburgerMenu) {
+      document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [state?.hamburgerMenu, showModal]);
+  }, [state?.hamburgerMenu]);
 
   // -----------------------------------------------------
   const [scrollPost, setscrollPost] = useState(0);
@@ -82,6 +82,14 @@ const MediumHeader = () => {
     };
   }, [scrollPost]);
 
+  useEffect(() => {
+    if (showModal) {
+      setShowModal(false);
+    }
+  }, [scrollPost]);
+
+  console.log(scrollPost, "scrollPostscrollPost");
+  console.log(showModal, "showModal");
   const SeasonTypeArray = [
     { id: 1111, type: "Spring", icons: springSeason },
     { id: 2222, type: "Summer", icons: summerSeason },

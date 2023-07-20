@@ -34,6 +34,7 @@ export default function CollectionCards() {
     const elementsIndex = dressInfo.ProductList.findIndex(
       (element) => element.id == eId
     );
+    // const elementsIndex = dressInfo.ProductList.map((data) => data?.id == eId);
     let newArray = [...dressInfo.ProductList];
     newArray[elementsIndex] = {
       ...newArray[elementsIndex],
@@ -150,7 +151,7 @@ export default function CollectionCards() {
                         data?.colourCard
                           ? "w-full px-1 xs:px-2 md:px-4 mt-1"
                           : "w-0 mt-1"
-                      } duration-300 absolute overflow-hidden hidden md:block  top-0 z-50 md:flex justify-between items-center    xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
+                      } duration-300 relative overflow-hidden hidden md:block top-0 z-50 md:flex justify-between items-center    xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
                     >
                       {data?.changeColor.map((itemValue) => {
                         return (
