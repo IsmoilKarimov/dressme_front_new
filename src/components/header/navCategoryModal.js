@@ -1,20 +1,31 @@
 import React from "react";
-import { img1, img2, img3, img4, img5, img6, img7, img8, } from "../../AssetsMain";
+import {
+  img1,
+  img2,
+  img3,
+  img4,
+  img5,
+  img6,
+  img7,
+  img8,
+} from "../../AssetsMain";
 import { MenuCloseIcons } from "../../AssetsMain/icons";
+import { useNavigate } from "react-router-dom";
 
 const NavCategoryModal = ({ isVisible, onClose }) => {
   if (!isVisible) return null;
 
   const categoryModalArray = [
-    { id: 1111, img: img1, type: "Мужчинам" },
-    { id: 2222, img: img2, type: "Женщинам" },
-    { id: 3333, img: img3, type: "Детям" },
-    { id: 4444, img: img4, type: "Головные уборы" },
-    { id: 5555, img: img5, type: "Верхняя одежда" },
-    { id: 6666, img: img6, type: "Нижняя одежда" },
-    { id: 7777, img: img7, type: "Обувь" },
-    { id: 8888, img: img8, type: "Аксессуары" },
+    { id: 1, img: img1, type: "Мужчинам" },
+    { id: 2, img: img2, type: "Женщинам" },
+    { id: 3, img: img3, type: "Детям" },
+    { id: 4, img: img4, type: "Головные уборы" },
+    { id: 5, img: img5, type: "Верхняя одежда" },
+    { id: 6, img: img6, type: "Нижняя одежда" },
+    { id: 7, img: img7, type: "Обувь" },
+    { id: 8, img: img8, type: "Аксессуары" },
   ];
+
   // const navigate = useNavigate();
   const goCatalogId = (id) => {
     // navigate(`/catalog/:${id}`);
@@ -24,7 +35,9 @@ const NavCategoryModal = ({ isVisible, onClose }) => {
       <div className="w-[675px] flex flex-col shadow-modalCategoryShadow bg-white rounded-lg p-2">
         <button
           className="text-xl place-self-end pr-1 pt-1 mb-2"
-          onClick={() => { onClose() }}
+          onClick={() => {
+            onClose();
+          }}
         >
           <MenuCloseIcons />
         </button>

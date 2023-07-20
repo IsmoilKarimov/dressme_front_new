@@ -63,12 +63,12 @@ const MediumHeader = () => {
   });
 
   useEffect(() => {
-    if (state?.hamburgerMenu || showModal) {
-      document.body.style.overflow = "auto";
+    if (state?.hamburgerMenu) {
+      document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [state?.hamburgerMenu, showModal]);
+  }, [state?.hamburgerMenu]);
 
   // -----------------------------------------------------
   const [scrollPost, setscrollPost] = useState(0);
@@ -82,6 +82,14 @@ const MediumHeader = () => {
     };
   }, [scrollPost]);
 
+  useEffect(() => {
+    if (showModal) {
+      setShowModal(false);
+    }
+  }, [scrollPost]);
+
+  console.log(scrollPost, "scrollPostscrollPost");
+  console.log(showModal, "showModal");
   const SeasonTypeArray = [
     { id: 1111, type: "Spring", icons: springSeason },
     { id: 2222, type: "Summer", icons: summerSeason },
@@ -166,7 +174,7 @@ const MediumHeader = () => {
           className="fixed inset-0 z-[112] w-[100%] h-[100vh] scroll-m-0"
         ></div>
       )}
-      <article className="fixed top-[300px] z-[113] left-[52.9%] right-1/2 translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit">
+      <article className="fixed top-[300px] z-[113] left-[52.9%] bg-white right-1/2 translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit">
         <NavCategoryModal
           isVisible={showModal}
           onClose={() => setShowModal(false)}
