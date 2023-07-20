@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { NavLink, useNavigate } from "react-router-dom";
-import {  nike } from "../../../../../AssetsMain";
+import { nike } from "../../../../../AssetsMain";
 import {
   ArrowTopIcons,
   LocationIcons,
@@ -59,16 +59,16 @@ const ShoppingBrands = () => {
   return (
     <main className="flex flex-col min-h-[44px]  justify-center items-center my-3">
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto md:mt-[50px] mb-20 md:mb-[90px]">
-        <section className="w-full">
+        <section className="w-full border border-red-500">
           {allShops.map((data) => (
             <div
               onClick={() => {
                 gotoOfficial(data?.name);
               }}
               key={data.id}
-              className="w-full cursor-pointer h-fit md:h-[100px] flex items-center justify-start md:border md:border-searchBgColor rounded-lg mb-[30px]"
+              className="w-full cursor-pointer h-fit md:h-[100px]  border border-red-500 flex items-center justify-start md:border md:border-searchBgColor rounded-lg mb-[30px]"
             >
-              <figure className="w-[50px] h-[50px] ll:w-[60px] ll:h-[60px] md:w-[120px] md:h-[120px] md:left-[55px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
+              <figure className="w-[50px] h-[50px] ll:w-[60px] ll:h-[60px] md:w-[120px] md:h-[120px] md:ml-[55px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
                 <img src={nike} alt="" className="w-[70%] md:w-fit" />
               </figure>
               <div className="flex flex-col ml-4 md:ml-10">
