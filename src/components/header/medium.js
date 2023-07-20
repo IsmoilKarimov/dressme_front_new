@@ -88,8 +88,8 @@ const MediumHeader = () => {
     }
   }, [scrollPost]);
 
-  console.log(scrollPost, "scrollPostscrollPost");
-  console.log(showModal, "showModal");
+  // console.log(scrollPost, "scrollPostscrollPost");
+  // console.log(showModal, "showModal");
   const SeasonTypeArray = [
     { id: 1111, type: "Spring", icons: springSeason },
     { id: 2222, type: "Summer", icons: summerSeason },
