@@ -64,7 +64,7 @@ const ClothingParametr = () => {
       name: "purple",
       value: 1,
       action: false,
-      IconsColor: "purple",
+      IconsColor: "#7E22CE",
       colors: "bg-purple-700",
     },
     {
@@ -72,7 +72,7 @@ const ClothingParametr = () => {
       name: "green",
       value: 2,
       action: false,
-      IconsColor: "green",
+      IconsColor: "#16A34A",
       colors: "bg-green-600",
     },
     {
@@ -80,7 +80,7 @@ const ClothingParametr = () => {
       name: "red",
       value: 3,
       action: false,
-      IconsColor: "red",
+      IconsColor: "#B91C1C",
       colors: "bg-red-700",
     },
     {
@@ -88,7 +88,7 @@ const ClothingParametr = () => {
       name: "yellow",
       value: 4,
       action: false,
-      IconsColor: "yellow",
+      IconsColor: "#EAB308",
       colors: "bg-yellow-500",
     },
     {
@@ -112,7 +112,7 @@ const ClothingParametr = () => {
       name: "blue",
       value: 7,
       action: false,
-      IconsColor: "blue",
+      IconsColor: "#3B82F6",
       colors: "bg-blue-500",
     },
     {
@@ -120,7 +120,7 @@ const ClothingParametr = () => {
       name: "orange",
       value: 8,
       action: false,
-      IconsColor: "orange",
+      IconsColor: "#EA580C",
       colors: "bg-orange-600",
     },
     {
@@ -128,7 +128,7 @@ const ClothingParametr = () => {
       name: "purple",
       value: 9,
       action: false,
-      IconsColor: "purple",
+      IconsColor: "#C084FC",
       colors: "bg-purple-400",
     },
     {
@@ -136,7 +136,7 @@ const ClothingParametr = () => {
       name: "blue",
       value: 10,
       action: false,
-      IconsColor: "blue",
+      IconsColor: "#1E3A8A",
       colors: "bg-blue-900",
     },
     {
@@ -144,14 +144,14 @@ const ClothingParametr = () => {
       name: "yellow",
       value: 11,
       action: false,
-      IconsColor: "yellow",
+      IconsColor: "#713F12",
       colors: "bg-yellow-900",
     },
     {
       id: 12,
       name: "gray",
       value: 12,
-      IconsColor: "gray",
+      IconsColor: "#4B5563",
       action: false,
       colors: "bg-gray-600",
     },
@@ -180,7 +180,14 @@ const ClothingParametr = () => {
       });
     });
   };
+
+  // Checks whether an element is even
+  const even = (element) => element.action == true;
+  let toggleAction = changeColor.some(even);
+
   const unCheckedAll = () => {
+    setState({ ...state, selectColorToggleMobile: false });
+
     setChangeColor((current) => {
       return current.map((data) => {
         return { ...data, action: false };
@@ -419,14 +426,21 @@ const ClothingParametr = () => {
               ></div>
               <div className="flex items-center min-h-screen px-4 py-8">
                 <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
-                  <div className="flex items-center justify-between ">
+                  <div
+                    className={`flex items-center ${
+                      toggleAction ? "justify-between" : "justify-end"
+                    } `}
+                  >
+                    {toggleAction && (
+                      <button
+                        onClick={unCheckedAll}
+                        className="flex items-center active:scale-95  active:opacity-70 justify-center border border-searchBgColor rounded-lg px-4 py-1"
+                      >
+                        Отключить
+                      </button>
+                    )}
                     <button
-                      onClick={unCheckedAll}
-                      className="flex items-center active:scale-95  active:opacity-70 justify-center border border-searchBgColor rounded-lg px-4 py-1"
-                    >
-                      unChecked All{" "}
-                    </button>
-                    <button
+                      className="py-2"
                       type=""
                       onClick={() =>
                         setState({ ...state, selectColorToggleMobile: false })
