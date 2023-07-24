@@ -28,10 +28,10 @@ const NavCategoryModal = (props) => {
   ];
 
   // const navigate = useNavigate();
-  const goCatalogId = (id) => {
-    // console.log(id, "id");
-    // navigate(`/catalog/:${id}`);
-  };
+  // const goCatalogId = (id) => {
+  //   console.log(id, "id");
+  //   navigate(`/catalog/:${id}`);
+  // };
 
   return (
     <div className="flex justify-center items-center z-[120]">
@@ -58,7 +58,7 @@ const NavCategoryModal = (props) => {
                   className="w-1/4 flex items-center justify-center"
                 >
                   <figure
-                    onClick={() => goCatalogId(data?.id)}
+                    // onClick={() => goCatalogId(data?.id)}
                     className="group cursor-pointer"
                   >
                     <div className="group-hover:border-black transition duration-300 w-[120px] h-[120px] border border-categoryModalBorderColor bg-categoryModalBgColor flex items-center justify-center rounded-xl">
