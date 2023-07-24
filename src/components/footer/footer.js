@@ -1027,7 +1027,7 @@ const Footer = () => {
                     <article className="md:ml-4 md:mr-4">
                       <p>Все права защищены.</p>
                     </article>
-                    <article className="font-AeonikProMedium text-center mt-3 hidden lg:m-0 md:block">
+                    <article className="md:flex font-AeonikProMedium text-center mt-3 hidden lg:m-0">
                       <p className="ml-auto">Разработано командой</p>
                       <Link
                         to="#"

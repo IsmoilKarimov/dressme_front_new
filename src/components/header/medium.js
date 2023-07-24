@@ -39,16 +39,6 @@ import {
   autummSeason,
   UzbekFlag,
   HeartImg,
-  catolog4,
-  catolog5,
-  img3,
-  img4,
-  img5,
-  img6,
-  img7,
-  img8,
-  img1,
-  img2,
 } from "../../AssetsMain";
 import NavCategoryModal from "./navCategoryModal";
 
@@ -101,16 +91,6 @@ const MediumHeader = () => {
     { id: 2222, type: "Summer", icons: BrandSummer },
     { id: 3333, type: "Autumm", icons: BrandAutumm },
     { id: 4444, type: "Winter", icons: BrandWinter },
-  ];
-  const categoryModalArray = [
-    { id: 1111, img: img1, type: "Мужчинам" },
-    { id: 2222, img: img2, type: "Женщинам" },
-    { id: 3333, img: img3, type: "Детям" },
-    { id: 4444, img: img4, type: "Головные уборы" },
-    { id: 5555, img: img5, type: "Верхняя одежда" },
-    { id: 6666, img: img6, type: "Нижняя одежда" },
-    { id: 7777, img: img7, type: "Обувь" },
-    { id: 8888, img: img8, type: "Аксессуары" },
   ];
   const personItems = [
     { id: 1111, man: SpringMale, woman: SpringFemale },
