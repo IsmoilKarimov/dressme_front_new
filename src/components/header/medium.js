@@ -44,7 +44,6 @@ import NavCategoryModal from "./navCategoryModal";
 
 const MediumHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [showModal, setShowModal] = useState(false);
 
   const [state, setState] = useState({
     hamburgerMenu: false,
@@ -73,8 +72,8 @@ const MediumHeader = () => {
   }, [scrollPost]);
 
   useEffect(() => {
-    if (showModal) {
-      setShowModal(false);
+    if (dressInfo?.openCatologId) {
+      setDressInfo({ ...dressInfo, openCatologId: false });
     }
   }, [scrollPost]);
 
@@ -148,17 +147,18 @@ const MediumHeader = () => {
 
   return (
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border">
-      {showModal && (
+      {dressInfo?.openCatologId && (
         <div
-          onClick={() => setShowModal(false)}
+          onClick={() => setDressInfo({ ...dressInfo, openCatologId: false })}
           className="fixed inset-0 z-[112] w-[100%] h-[100vh] scroll-m-0"
         ></div>
       )}
-      <article className="fixed top-[300px] z-[113] left-[52.9%] right-1/2 translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit">
-        <NavCategoryModal
-          isVisible={showModal}
-          onClose={() => setShowModal(false)}
-        />
+      <article
+        className={`fixed top-[300px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit ${
+          dressInfo?.openCatologId ? "" : "hidden"
+        }`}
+      >
+        <NavCategoryModal />
       </article>
       <div className="max-w-[1280px] w-[100%] block md:flex px-3 md:px-0 md:py-0 justify-center  bg-yandexNavbar backdrop-blur-sm items-center m-auto ">
         <div className="relative">
@@ -258,7 +258,12 @@ const MediumHeader = () => {
                 {/* Catalog section */}
                 <button
                   className={`items-center left-20 ${dressInfo?.BtnOpacitySeason} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
-                  onClick={() => setShowModal(!showModal)}
+                  onClick={() =>
+                    setDressInfo({
+                      ...dressInfo,
+                      openCatologId: !dressInfo?.openCatologId,
+                    })
+                  }
                 >
                   <span>
                     <CotegoryIcons colors={dressInfo?.ColorSeason} />
