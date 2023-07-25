@@ -261,8 +261,7 @@ const ClothingParametr = () => {
         </button>
       </section>
       <section className="w-full">
-        <section
-          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
+        <section className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
             state?.clothesTypeMobile ? "w-[92%]" : "w-0"
           }  `}
         >
@@ -281,7 +280,7 @@ const ClothingParametr = () => {
                         setState({ ...state, clothesTypeMobile: false })
                       }
                     >
-                      <GrClose size={25} />
+                      <GrClose size={22} />
                     </button>
                   </div>
                   <div className="py-4">
@@ -304,8 +303,7 @@ const ClothingParametr = () => {
             </div>
           )}
         </section>
-        <section
-          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
+        <section className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
             state?.priceToggleMobile ? "w-[92%]" : "w-0"
           }  `}
         >
@@ -324,7 +322,7 @@ const ClothingParametr = () => {
                         setState({ ...state, priceToggleMobile: false })
                       }
                     >
-                      <GrClose size={25} />
+                      <GrClose size={22} />
                     </button>
                   </div>
                   <div className="  flex flex-col  mt-4">
@@ -366,53 +364,7 @@ const ClothingParametr = () => {
             </div>
           )}
         </section>
-
-        <section
-          className={`w-full h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${
-            state?.brandToggleMobile ? "w-[92%]" : "w-0"
-          }`}
-        >
-          {state?.brandToggleMobile && (
-            <div className="fixed inset-0 z-10 ">
-              <div
-                className="fixed inset-0 w-full h-full bg-black opacity-40"
-                onClick={() => setState({ ...state, brandToggleMobile: false })}
-              ></div>
-              <div className="flex items-center min-h-screen px-4 py-8">
-                <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
-                  <div className="flex items-center justify-end ">
-                    <button
-                      onClick={() =>
-                        setState({ ...state, brandToggleMobile: false })
-                      }
-                    >
-                      <GrClose size={25} />
-                    </button>
-                  </div>
-                  <div className="w-full flex-row flex justify-between flex-wrap py-4 gap-y-5">
-                    {campany?.map((data) => {
-                      return (
-                        <div
-                          key={data?.imgFull}
-                          className="w-[23%] h-20 rounded-lg bg-bgColor  border border-solid border-borderColorCard"
-                        >
-                          <img
-                            className="h-full w-full p-2"
-                            src={data?.imgFull}
-                            alt="img"
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </section>
-
-        <section
-          className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
+        <section  className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
             state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
           }`}
         >
@@ -446,10 +398,10 @@ const ClothingParametr = () => {
                         setState({ ...state, selectColorToggleMobile: false })
                       }
                     >
-                      <GrClose size={25} />
+                      <GrClose size={22} />
                     </button>
                   </div>
-                  <div className="py-4 gap-x-2 gap-y-4 flex flex-wrap items-center">
+                  <div className="py-2 gap-x-2 gap-y-4 flex flex-wrap items-center">
                     {changeColor?.map((data) => {
                       return (
                         <div
@@ -472,6 +424,48 @@ const ClothingParametr = () => {
                           {data?.action && data?.id !== 6 ? (
                             <InputCheckedTrueIcons colors={"#fff"} />
                           ) : null}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </section>
+        <section className={`w-full h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${
+            state?.brandToggleMobile ? "w-[92%]" : "w-0"
+          }`}
+        >
+          {state?.brandToggleMobile && (
+            <div className="fixed inset-0 z-10 ">
+              <div
+                className="fixed inset-0 w-full h-full bg-black opacity-40"
+                onClick={() => setState({ ...state, brandToggleMobile: false })}
+              ></div>
+              <div className="flex items-center min-h-screen px-4 py-8">
+                <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
+                  <div className="flex items-center justify-end ">
+                    <button
+                      onClick={() =>
+                        setState({ ...state, brandToggleMobile: false })
+                      }
+                    >
+                      <GrClose size={22} />
+                    </button>
+                  </div>
+                  <div className="w-full flex-row flex justify-between flex-wrap py-4 gap-y-5">
+                    {campany?.map((data) => {
+                      return (
+                        <div
+                          key={data?.imgFull}
+                          className="w-[23%] h-20 rounded-lg bg-bgColor  border border-solid border-borderColorCard"
+                        >
+                          <img
+                            className="h-full w-full p-2"
+                            src={data?.imgFull}
+                            alt="img"
+                          />
                         </div>
                       );
                     })}
