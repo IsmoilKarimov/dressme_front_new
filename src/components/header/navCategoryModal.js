@@ -29,6 +29,7 @@ const NavCategoryModal = () => {
 
   const navigate = useNavigate();
   // const goCatalogId = (id) => {
+
   //   navigate(`/catalog/:${id}`);
   // };
 
@@ -56,6 +57,7 @@ const NavCategoryModal = () => {
                 >
                   <figure
                     onClick={() => navigate(`/catalog/:${data?.id}`)}
+
                     className="group cursor-pointer"
                   >
                     <div className="group-hover:border-black transition duration-300 w-[120px] h-[120px] border border-categoryModalBorderColor bg-categoryModalBgColor flex items-center justify-center rounded-xl">

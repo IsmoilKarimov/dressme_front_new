@@ -86,12 +86,12 @@ export default function CollectionCards() {
               return (
                 <article
                   key={data.id}
-                  className={` ss:w-[49%] md:w-[24%] lg:w-[240px]  xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
+                  className={` ss:w-[49%] md:w-[24%] lg:w-[240px] xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
                 >
                   <figure
                     onMouseEnter={() => handleLeaveMouse(data?.id)}
                     onClick={() => goDetail(data?.title)}
-                    className="relative w-full cursor-pointer ss:h-[200px] ls:h-[220px] ll:h-[238px] xs:h-[309px] lg:h-[320px] bg-btnBgColor  flex content-between items-center overflow-hidden border-b border-solid flex-nowrap"
+                    className="relative w-full cursor-pointer h-auto bg-btnBgColor flex content-between items-center overflow-hidden border-b border-solid flex-nowrap"
                   >
                     {data.ProducImg ? (
                       <img
@@ -103,28 +103,7 @@ export default function CollectionCards() {
                       <NoImg />
                     )}
                   </figure>
-                  {/* {openWearType && ( */}
-                  {/* <section
-                    className={`fixed inset-0  h-fit ${
-                      openWearType ? "z-[110] " : ""
-                    }`}
-                  > */}
-                  {/* <div
-                      className={`fixed z-[110] w-full h-[100vh] duration-300  ${
-                        openWearType ? "inset-0" : "bottom-[-800px] hidden z-0"
-                      }`}
-                      onClick={() => setOpenWearType(false)}
-                    ></div> */}
-                  {/* <div
-                      className={`fixed  z-[111] h-fit left-0 right-0  bg-white md:hidden duration-500 overflow-hidden ${
-                        openWearType ? "bottom-0" : "bottom-[-800px] z-0"
-                      }`}
-                    >
-                      <WearType onClick={toggle} title={data?.title} />
-                    </div> */}
-                  {/* </section> */}
-                  {/* )} */}
-                  <section className="relative  w-full rounded-b-xl bg-white  flex flex-wrap h-[130px] md:h-[136px] ">
+                  <section className="relative  w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[130px] md:h-[136px] ">
                     <button
                       onMouseEnter={() => handleEnterMouse(data?.id)}
                       // onMouseEnter={() => setColourCard(true)}
@@ -139,7 +118,7 @@ export default function CollectionCards() {
                     </button>
                     <button
                       onClick={() => setOpenWearType(true)}
-                      className="w-12 h-7 md:hidden border border-searchBgColor rounded-lg flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 "
+                      className="w-12 h-7 md:hidden border border-searchBgColor rounded-lg flex items-center cursor-pointer select-none my-[6px] mx-2 justify-center gap-x-1 "
                     >
                       <figure className="w-6 h-6 flex items-center justify-center">
                         <img src={CalourCard} alt="" className="h-full" />
@@ -152,9 +131,9 @@ export default function CollectionCards() {
                       onMouseLeave={() => handleLeaveMouse(data?.id)}
                       className={` ${
                         data?.colourCard
-                          ? "w-full px-1 xs:px-2 md:px-4 mt-1"
-                          : "w-0 mt-1"
-                      } duration-300 absolute  overflow-hidden hidden md:block top-0 z-[1] md:flex justify-between items-center    xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
+                          ? "w-full px-1 xs:px-2 md:px-4 my-2"
+                          : "w-0 my-2"
+                      } duration-300 absolute overflow-hidden hidden md:block top-0 z-[1] md:flex justify-between items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
                     >
                       {data?.changeColor.map((itemValue) => {
                         return (
@@ -176,9 +155,9 @@ export default function CollectionCards() {
                     <article
                       onMouseEnter={() => handleLeaveMouse(data?.id)}
                       onClick={() => goDetail(data?.title)}
-                      className="w-full  xs:px-3 ss:px-3 xs:mt-3 ss:mt-2"
+                      className="w-full px-2 xs:px-3 xs:mt-3"
                     >
-                      <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[15px] leading-4 text-black mb-2 md:mb-0  cursor-pointer">
+                      <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[15px] leading-4 text-black mb-1 md:mb-0  cursor-pointer">
                         <div className="absolute categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
                         {data?.title || "NoData"}
                       </figure>
