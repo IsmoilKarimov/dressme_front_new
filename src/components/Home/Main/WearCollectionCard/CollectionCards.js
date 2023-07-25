@@ -15,7 +15,7 @@ export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
   // -------------------------------------
-  const toggle = React.useCallback(() => setOpenWearType(false));
+  const toggle = React.useCallback(() => setOpenWearType(false), []);
   // -------------------------------------
 
   useEffect(() => {

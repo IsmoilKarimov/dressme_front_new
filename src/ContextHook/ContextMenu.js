@@ -22,6 +22,8 @@ export const DressMenu = ({ children }) => {
     openCatalogFilter: false,
     // Shop/:Id
     openShopIdFilter: false,
+    // Catolog/:Id
+    openCatologId: false,
 
     // colorFull
     BtnSeason: "",
