@@ -28,10 +28,10 @@ const NavCategoryModal = () => {
   ];
 
   const navigate = useNavigate();
-  // const goCatalogId = (id) => {
-
-  //   navigate(`/catalog/:${id}`);
-  // };
+  const goCatalogId = (id) => {
+    const uId = id.toLowerCase();
+    navigate(`/catalog/:${uId}`);
+  };
 
   return (
     <div className="flex justify-center items-center z-[120]">
@@ -53,11 +53,13 @@ const NavCategoryModal = () => {
               return (
                 <article
                   key={data?.id}
+                  onClick={() =>
+                    setDressInfo({ ...dressInfo, openCatologId: false })
+                  }
                   className="w-1/4 flex items-center justify-center"
                 >
                   <figure
-                    onClick={() => navigate(`/catalog/:${data?.id}`)}
-
+                    onClick={() => goCatalogId(data?.type)}
                     className="group cursor-pointer"
                   >
                     <div className="group-hover:border-black transition duration-300 w-[120px] h-[120px] border border-categoryModalBorderColor bg-categoryModalBgColor flex items-center justify-center rounded-xl">

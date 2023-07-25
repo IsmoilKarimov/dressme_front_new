@@ -28,7 +28,7 @@ const NavbarBottomIndex = () => {
         <div className="ss:w-full flex flex-col justify-center md:mt-[6px]">
           <div className=" w-full  flex flex-col justify-center ss:px-4 md:px-0">
             {locationWindow === "/sign_in" || locationWindow === "/sign_up" ? (
-              <div className="w-full md:w-[350px] md:mx-auto my-3  flex gap-x-2 items-center justify-between ss:border md:border-0 ss:bg-btnBgColor md:bg-transparent border-searchBgColor rounded-lg">
+              <div className="max-w-[440px] w-[100%] md:mx-auto my-3  flex gap-x-2 items-center justify-between ss:border md:border-0 ss:bg-btnBgColor md:bg-transparent border-searchBgColor rounded-lg">
                 <NavLink
                   to={"/sign_in"}
                   className={({ isActive }) =>

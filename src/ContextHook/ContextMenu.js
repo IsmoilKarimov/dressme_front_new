@@ -1150,7 +1150,7 @@ export const DressMenu = ({ children }) => {
       color: "#008F0E",
       BtnActiveSeason:
         "text-borderSpring  bg-bgSpring border border-borderSpring",
-      AuthenActiveSeason:
+      authenActiveSeason:
         "md:text-borderSpring bg-white bg-bgSpring md:border-borderSpring w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border   rounded-lg",
       linkActive:
         "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderSpring text-borderSpring",
@@ -1166,7 +1166,7 @@ export const DressMenu = ({ children }) => {
       color: "#EAA700",
       BtnActiveSeason:
         "text-borderSummer  bg-bgSummer border border-borderSummer",
-      AuthenActiveSeason:
+      authenActiveSeason:
         "md:text-borderSummer bg-white bg-bgSummer md:border-borderSummer w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border   rounded-lg",
       linkActive:
         "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderSummer text-borderSummer",
@@ -1182,7 +1182,7 @@ export const DressMenu = ({ children }) => {
       color: "#E17A02",
       BtnActiveSeason:
         "text-borderAutumm  bg-bgAutumm borderborder-borderAutumm ",
-      AuthenActiveSeason:
+      authenActiveSeason:
         "md:text-borderAutumm bg-white bg-bgAutumm md:border-borderAutumm w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border rounded-lg",
       linkActive:
         "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderAutumm text-borderAutumm",

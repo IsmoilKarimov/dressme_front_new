@@ -143,7 +143,7 @@ const ShopOfficialBrand = () => {
           : " border border-searchBgColor"
       } py-5 rounded-lg overflow-hidden `}
     >
-      <section className="w-full px-3 ">
+      <section className="w-full px-3 flex flex-col gap-y-[50px] ">
         {dressInfo?.openShopIdFilter && (
           <action className="flex items-center justify-end mb-4">
             <button
@@ -159,7 +159,7 @@ const ShopOfficialBrand = () => {
             </button>
           </action>
         )}
-        <action className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px]">
+        <section className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px]">
           <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg">
             Женщинам
           </button>
@@ -172,15 +172,17 @@ const ShopOfficialBrand = () => {
           <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg text-red-600">
             Скидки
           </button>
-        </action>
+        </section>
         {/* Availability */}
-        <action className="w-full h-fit mt-[50px] ">
-          <div className="w-full flex justify-between items-center "
+        <section className="w-full h-fit ">
+          <div
+            className="w-full flex justify-between items-center "
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div className="flex items-center cursor-pointer select-none"
+            <div
+              className="flex items-center cursor-pointer select-none"
               onClick={() => setState({ ...state, catolog: !state.catolog })}
             >
               <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
@@ -197,7 +199,8 @@ const ShopOfficialBrand = () => {
           </div>
 
           {/* Field */}
-          <div className={`w-full overflow-hidden ${
+          <div
+            className={`w-full overflow-hidden ${
               state?.catolog
                 ? "duration-300 h-0"
                 : "duration-300 h-[300px] mt-5 "
@@ -217,16 +220,18 @@ const ShopOfficialBrand = () => {
               );
             })}
           </div>
-        </action>
+        </section>
         {/* Brands filter */}
-        <action className="w-full h-fit mt-[40px]  ">
+        <section className="w-full h-fit ">
           {/* Controls */}
-          <section className="openBrands w-full flex justify-between items-center"
+          <section
+            className="openBrands w-full flex justify-between items-center"
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div className="flex items-center cursor-pointer select-none"
+            <div
+              className="flex items-center cursor-pointer select-none"
               onClick={() =>
                 setState({ ...state, brandShow: !state.brandShow })
               }
@@ -234,7 +239,8 @@ const ShopOfficialBrand = () => {
               <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Бренды
               </p>
-              <span className={`${
+              <span
+                className={`${
                   state?.brandShow ? "rotate-[180deg]" : ""
                 } duration-300 ml-1`}
               >
@@ -245,14 +251,15 @@ const ShopOfficialBrand = () => {
               Очистить все
             </p>
           </section>
-          <section className={` openedBrands border-0  overflow-hidden  ${
+          <section
+            className={` openedBrands border-0  overflow-hidden  ${
               state?.brandShow
                 ? "duration-300 h-0"
                 : "duration-300 h-[375px] mt-5"
             } duration-300`}
           >
             {/* Search */}
-            <action className="h-[44px] w-full flex items-center justify-between px-4 border border-searchBgColor rounded-lg ">
+            <section className="h-[44px] w-full flex items-center justify-between px-4 border border-searchBgColor rounded-lg ">
               <input
                 className="w-[85%] h-full text-sm font-AeonikProRegular"
                 type="text"
@@ -263,10 +270,10 @@ const ShopOfficialBrand = () => {
               <span>
                 <SearchIcons />
               </span>
-            </action>
+            </section>
 
             {/* Field */}
-            <action
+            <section
               className={`h-[300px] w-full mt-7 overflow-auto  categoryScroll `}
             >
               {product?.brandWear.map((data) => {
@@ -294,18 +301,20 @@ const ShopOfficialBrand = () => {
                   </div>
                 );
               })}
-            </action>
+            </section>
           </section>
-        </action>
+        </section>
 
         {/* Prizes */}
-        <action className=" mt-5">
-          <section className="w-full flex justify-between items-center "
+        <section className="">
+          <section
+            className="w-full flex justify-between items-center "
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div className="flex items-center cursor-pointer select-none"
+            <div
+              className="flex items-center cursor-pointer select-none"
               onClick={() =>
                 setState({ ...state, budgetShow: !state.budgetShow })
               }
@@ -363,17 +372,19 @@ const ShopOfficialBrand = () => {
               </div>
             </action>
           </section>
-        </action>
+        </section>
 
         {/* Colors */}
-        <action className="w-full h-fit mt-[50px] ">
+        <section className="w-full h-fit  ">
           {/* Controls */}
-          <section className="openBrands w-full flex justify-between items-center"
+          <section
+            className="openBrands w-full flex justify-between items-center"
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div className="flex items-center cursor-pointer select-none"
+            <div
+              className="flex items-center cursor-pointer select-none"
               onClick={() =>
                 setState({ ...state, ColorsShow: !state.ColorsShow })
               }
@@ -394,7 +405,8 @@ const ShopOfficialBrand = () => {
             </p>
           </section>
           {/* Colors */}
-          <section className={`w-full px-[2px] flex justify-between flex-wrap items-center   bg-white hover:backdrop-brightness-125 hover:bg-white/60 transition ease-out duration-300 gap-x-[10px] gap-y-[10px] border-0  overflow-hidden  ${
+          <section
+            className={`w-full px-[2px] flex justify-between flex-wrap items-center   bg-white hover:backdrop-brightness-125 hover:bg-white/60 transition ease-out duration-300 gap-x-[10px] gap-y-[10px] border-0  overflow-hidden  ${
               state?.ColorsShow
                 ? "duration-300 h-0"
                 : "duration-300 h-[80px] mt-5"
@@ -417,16 +429,18 @@ const ShopOfficialBrand = () => {
               );
             })}
           </section>
-        </action>
+        </section>
 
         {/* Availability */}
-        <action className="w-full h-fit mt-[50px] ">
-          <section className="w-full flex justify-between items-center "
+        <section className="w-full h-fit  ">
+          <section
+            className="w-full flex justify-between items-center "
             onClick={(event) => {
               event.target.classList.toggle("open");
             }}
           >
-            <div className="flex items-center cursor-pointer select-none"
+            <div
+              className="flex items-center cursor-pointer select-none"
               onClick={() =>
                 setState({ ...state, availability: !state.availability })
               }
@@ -445,7 +459,8 @@ const ShopOfficialBrand = () => {
           </section>
 
           {/* Field */}
-          <section className={`w-full overflow-hidden ${
+          <section
+            className={`w-full overflow-hidden ${
               state?.availability
                 ? "duration-300 h-0"
                 : "duration-300 h-[70px] mt-5"
@@ -458,7 +473,8 @@ const ShopOfficialBrand = () => {
                   className="flex items-center  cursor-pointer select-none "
                   onClick={HandleCheckStatus(data?.id)}
                 >
-                  <action className={`w-[22px] h-[22px] p-1 flex items-center ${
+                  <action
+                    className={`w-[22px] h-[22px] p-1 flex items-center ${
                       state?.checkBrand ? "bg-fullBlue " : "bg-white"
                     }  mr-[10px] rounded border border-borderColorCard`}
                   >
@@ -478,10 +494,10 @@ const ShopOfficialBrand = () => {
               );
             })}
           </section>
-        </action>
+        </section>
 
         {/* Customer reviews */}
-        <action className="w-full h-fit mt-[50px] ">
+        <section className="w-full h-fit  ">
           <section
             className="w-full flex justify-between items-center"
             onClick={(event) => {
@@ -500,7 +516,8 @@ const ShopOfficialBrand = () => {
               <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                 Отзывы клиентов
               </p>
-              <span className={`${
+              <span
+                className={`${
                   state?.customerRreviews ? "rotate-[180deg]" : ""
                 } duration-300 ml-1`}
               >
@@ -542,10 +559,10 @@ const ShopOfficialBrand = () => {
               );
             })}
           </section>
-        </action>
+        </section>
 
         {/* Размер одежды */}
-        <action className="w-full h-fit mt-[50px] ">
+        <section className="w-full h-fit  ">
           <section
             className="w-full flex justify-between items-center "
             onClick={(event) => {
@@ -591,10 +608,10 @@ const ShopOfficialBrand = () => {
               ))}
             </div>
           </section>
-        </action>
+        </section>
 
         {/* Размер брюк */}
-        <action className="w-full h-fit  mt-[50px] ">
+        <section className="w-full h-fit   ">
           <section
             className="w-full flex justify-between items-center "
             onClick={(event) => {
@@ -640,10 +657,10 @@ const ShopOfficialBrand = () => {
               ))}
             </div>
           </section>
-        </action>
+        </section>
 
         {/* Размер обуви */}
-        <action className="w-full h-fit mt-[50px] ">
+        <section className="w-full h-fit  ">
           <section
             className="w-full flex justify-between items-center "
             onClick={(event) => {
@@ -689,7 +706,7 @@ const ShopOfficialBrand = () => {
               ))}
             </div>
           </section>
-        </action>
+        </section>
       </section>
       <section className=" mt-8 border-t border-searchBgColor py-5 px-3">
         <button className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70">
