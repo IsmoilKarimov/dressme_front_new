@@ -154,7 +154,7 @@ const MediumHeader = () => {
         ></div>
       )}
       <article
-        className={`fixed top-[300px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow ${
+        className={`fixed top-[300px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${
           dressInfo?.openCatologId ? "" : "hidden"
         }`}
       >

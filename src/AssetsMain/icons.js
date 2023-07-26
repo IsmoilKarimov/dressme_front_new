@@ -156,25 +156,6 @@ const HeartIcons = ({ colors }) => {
     </svg>
   );
 };
-// const HeartIcons = ({ colors }) => {
-//   return (
-//     <svg
-//       width="20"
-//       height="18"
-//       viewBox="0 0 15 14"
-//       fill="#D50000"
-//       xmlns="http://www.w3.org/2000/svg"
-//     >
-//       <path
-//         d="M8.41337 12.8733C8.18671 12.9533 7.81337 12.9533 7.58671 12.8733C5.65337 12.2133 1.33337 9.45998 1.33337 4.79332C1.33337 2.73332 2.99337 1.06665 5.04004 1.06665C6.25337 1.06665 7.32671 1.65332 8.00004 2.55998C8.67337 1.65332 9.75337 1.06665 10.96 1.06665C13.0067 1.06665 14.6667 2.73332 14.6667 4.79332C14.6667 9.45998 10.3467 12.2133 8.41337 12.8733Z"
-//         stroke="#D50000"
-//         strokeWidth="1.2"
-//         strokeLinecap="round"
-//         strokeLinejoin="round"
-//       />
-//     </svg>
-//   );
-// };
 const HeartLinkIcons = ({ colors }) => {
   return (
     <svg
@@ -411,7 +392,6 @@ const LocationIcons = () => {
     </svg>
   );
 };
-
 const UploadIcons = () => {
   return (
     <svg
@@ -797,7 +777,6 @@ const ActiveCotegoryIcons = ({ colors }) => {
     </svg>
   );
 }
-
 const CotegoryMenuIcons = ({ colors }) => {
   return (
     <svg
@@ -1419,7 +1398,6 @@ const BasketIcons = ({ colors }) => {
     </svg>
   );
 };
-
 const ActiveBasketIcons = ({ colors }) => {
   return (
     <svg
@@ -2189,7 +2167,6 @@ const ManGenIcons = () => {
     </svg>
   );
 };
-
 const VideoStoreIcons = () => {
   return (
     <svg
@@ -2577,7 +2554,55 @@ const ThreeCicleIcon = () => {
     </svg>
   );
 };
+const DashboardUser = ({colors}) => {
+  return(
+    <svg 
+      width="20" 
+      height="20" 
+      viewBox="0 0 20 20" 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path 
+        d="M10.0003 8.33329C11.8413 8.33329 13.3337 6.84091 13.3337 4.99996C13.3337 3.15901 11.8413 1.66663 10.0003 1.66663C8.15938 1.66663 6.66699 3.15901 6.66699 4.99996C6.66699 6.84091 8.15938 8.33329 10.0003 8.33329Z" 
+        fill="#007DCA"
+        stroke={colors}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path 
+        d="M16.6668 14.5833C16.6668 16.6541 16.6668 18.3333 10.0002 18.3333C3.3335 18.3333 3.3335 16.6541 3.3335 14.5833C3.3335 12.5124 6.3185 10.8333 10.0002 10.8333C13.6818 10.8333 16.6668 12.5124 16.6668 14.5833Z" 
+        fill="#007DCA"
+        stroke={colors}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+  </svg>
+  )
+};
+const DashboardList = ({colors}) => {
+  return(
+    <svg 
+      width="20" 
+      height="20" 
+      viewBox="0 0 20 20" 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg"
+    >
+    <path 
+      d="M10.0001 2.5C8.94181 2.5 8.00015 3.16667 7.65015 4.16667H2.50015V5.83333H4.12515L1.66681 11.6667C1.27515 13.3333 2.50015 14.1667 4.58348 14.1667C6.66681 14.1667 7.96681 13.3333 7.50015 11.6667L5.04181 5.83333H7.64181C7.91681 6.54167 8.45848 7.08333 9.16681 7.35833V16.6667H1.66681V18.3333H18.3335V16.6667H10.8335V7.35C11.5418 7.08333 12.0835 6.54167 12.3501 5.83333H14.9585L12.5001 11.6667C12.1085 13.3333 13.3335 14.1667 15.4168 14.1667C17.5001 14.1667 18.8001 13.3333 18.3335 11.6667L15.8751 5.83333H17.5001V4.16667H12.3585C12.0001 3.16667 11.0585 2.5 10.0001 2.5ZM10.0001 4.16667C10.2212 4.16667 10.4331 4.25446 10.5894 4.41074C10.7457 4.56703 10.8335 4.77899 10.8335 5C10.8335 5.22101 10.7457 5.43298 10.5894 5.58926C10.4331 5.74554 10.2212 5.83333 10.0001 5.83333C9.77913 5.83333 9.56717 5.74554 9.41089 5.58926C9.25461 5.43298 9.16681 5.22101 9.16681 5C9.16681 4.77899 9.25461 4.56703 9.41089 4.41074C9.56717 4.25446 9.77913 4.16667 10.0001 4.16667ZM4.58348 8.54167L5.83348 11.6667H3.33348L4.58348 8.54167ZM15.4168 8.54167L16.6668 11.6667H14.1668L15.4168 8.54167Z" 
+      fill="#007dca"
+      stroke={colors}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+  )
 
+};
 
 export {
   ActivePersonIcons,
@@ -2662,6 +2687,8 @@ export {
   SendMessageIcon,
   NoNameIcon,
   ThreeCicleIcon,
+  DashboardList,
+  DashboardUser,
 };
 
 // video

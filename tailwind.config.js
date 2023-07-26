@@ -66,6 +66,7 @@ module.exports = {
 
         // Dashboard buttons background
         dashboardBtnBg : "#f7f7f7",
+        dashboardLightTextColor: "#8C8C8C",
 
         // Products Colors
         PC1: "#7000FF",
