@@ -84,7 +84,7 @@ export { default as img6 } from "./cataolog/img6.webp";
 export { default as img7 } from "./cataolog/img7.webp";
 export { default as img8 } from "./cataolog/img8.webp";
 
-// ---------- Dashboard Icons -------------
-export { default as DashboardUser } from "./DashboardIcons/dashboard-user.svg";
-export { default as DashboardList } from "./DashboardIcons/dashboard-list.svg";
+// ---------- Dashboard Icons ----------
+export { default as dashboardUser } from "./DashboardIcons/dashboard-user.svg";
+export { default as dashboardList } from "./DashboardIcons/dashboard-list.svg";
 

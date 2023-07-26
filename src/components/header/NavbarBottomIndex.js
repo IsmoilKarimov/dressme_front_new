@@ -95,7 +95,6 @@ const NavbarBottomIndex = () => {
                 </div>
 
                 {/* LapTop-Device */}
-
                 <div className="w-full h-fit md:mx-auto my-3 ss:hidden justify-center md:flex items-center">
                   <NavLink
                     to="/sign_in "
