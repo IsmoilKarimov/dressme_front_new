@@ -7,6 +7,7 @@ import LoadingFor from "../components/Loading/LoadingFor";
 import SkeletonHomeIndex from "../components/Home/Main/Skeleton/SkeletonHomeIndex";
 import SignInSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import SignUpSkeletonIndex from "../components/Authentication/SignUpSkeleton";
+// import ConnectDashboard from "../components/RegistrationDashboard";
 // import CatalogMain from "../components/Home/Catalog/CatalogFilter";
 
 // -------------------------------------
@@ -39,9 +40,8 @@ const Favourites = React.lazy(() => import("../components/Home/Favorite"));
 const ShoppingStore = React.lazy(() =>
   import("../components/Home/Shop/ShoppingStore")
 );
-const CategoryMainType = React.lazy(() =>
-  import("../components/Category/CategoryForType")
-);
+const CategoryMainType = React.lazy(() => import("../components/Category/CategoryForType"));
+const ConnectDashboard = React.lazy(() => import("../components/ConnectionOfDashboard"));
 const SignUp = React.lazy(() => import("../components/Authentication/SignUp"));
 const SignIn = React.lazy(() => import("../components/Authentication/SignIn"));
 
@@ -260,6 +260,8 @@ const RouterMain = () => {
             </Suspense>
           }
         />
+        
+        
         <Route
           path="/enter_password_validate"
           element={
@@ -274,6 +276,21 @@ const RouterMain = () => {
             </Suspense>
           }
         />
+
+        <Route path="/registration_dashboard" 
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SignInSkeletonIndex />
+                </div>    
+              }
+              >
+              <ConnectDashboard />
+            </Suspense>
+          }
+        />
+
       </Routes>
 
       {locationWindow !== "/add_user_private_data" &&
@@ -286,6 +303,7 @@ const RouterMain = () => {
       locationWindow !== "/sign_up" &&
       locationWindow !== "/sign_in" &&
       locationWindow !== "/profile/settings" &&
+      locationWindow !== "/registration_dashboard" &&
       locationWindow !== "/delivery-points" ? (
         <Suspense fallback={<>Loading...</>}>
           <Footer />

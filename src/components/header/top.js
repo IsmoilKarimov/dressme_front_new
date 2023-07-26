@@ -170,22 +170,25 @@ const TopHeader = () => {
           </article>
 
           <article className="right h-full flex items-center">
-            <Link to="#" className="flex items-center h-fit py-[4px] ">
+            <NavLink to="#" className="flex items-center h-fit py-[4px] ">
               <span className="mr-2">
                 <CommentIcons colors={"#707070"} />
               </span>
-              <p className="text-textColor text-[13px]   font-AeonikProMedium  ">
+              <p className="text-textColor text-[13px] font-AeonikProMedium">
                 Помощь
               </p>
-            </Link>
-            <Link to="#" className="flex items-center h-fit py-[4px]  ml-6 ">
+            </NavLink>
+            <NavLink 
+              to="/registration_dashboard" 
+              className="flex items-center h-fit py-[4px] ml-6"
+            >
               <p className="mr-2">
                 <HouseStatisticIcons colors={"#707070"} />
               </p>
-              <p className="text-textColor text-[13px]   font-AeonikProMedium  ">
+              <p className="text-textColor text-[13px] font-AeonikProMedium">
                 Бизнес
               </p>
-            </Link>
+            </NavLink>
             <article className="line h-5 border text-textColor ml-6"></article>
 
             <NavLink
@@ -195,7 +198,7 @@ const TopHeader = () => {
               <p className="mr-2">
                 <MarketIcons colors={"#000"} />
               </p>
-              <p className="font-AeonikProMedium  text-[13px]    ">Магазины</p>
+              <p className="font-AeonikProMedium  text-[13px]">Магазины</p>
             </NavLink>
           </article>
         </section>
