@@ -64,6 +64,9 @@ module.exports = {
         categoryModalBgColor: "#fdfdfd",
         categoryModalBorderColor: "#e5e5e5",
 
+        // Dashboard buttons background
+        dashboardBtnBg : "#f7f7f7",
+
         // Products Colors
         PC1: "#7000FF",
         PC2: "#000",
