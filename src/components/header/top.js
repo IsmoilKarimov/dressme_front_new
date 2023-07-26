@@ -13,6 +13,7 @@ import { EnglishFlag, RussianFlag, UzbekFlag } from "../../AssetsMain";
 
 const TopHeader = () => {
   const [dressInfo] = useContext(dressMainData);
+  const [selectBtn, setSelectBtn] = useState(true)
 
   // -----Language Change-------------------
   const [selectLang, setselectLang] = useState(1);
@@ -170,7 +171,9 @@ const TopHeader = () => {
           </article>
 
           <article className="right h-full flex items-center">
-            <NavLink to="#" className="flex items-center h-fit py-[4px] ">
+            <NavLink 
+              to="#" 
+              className={`flex items-center h-fit py-[4px]`}>
               <span className="mr-2">
                 <CommentIcons colors={"#707070"} />
               </span>
@@ -180,20 +183,29 @@ const TopHeader = () => {
             </NavLink>
             <NavLink 
               to="/registration_dashboard" 
-              className="flex items-center h-fit py-[4px] ml-6"
+              onClick={() => setSelectBtn(false)}
+              className={`flex items-center h-fit py-[4px] ml-6
+                ${!selectBtn ? "py-[4px] px-3 bg-white rounded" : "" }
+              `}
             >
               <p className="mr-2">
                 <HouseStatisticIcons colors={"#707070"} />
               </p>
-              <p className="text-textColor text-[13px] font-AeonikProMedium">
+              <p 
+                onClick={() => setSelectBtn(true)}
+                className={`text-[13px] font-AeonikProMedium
+                  ${selectBtn ? "text-black" : "text-textColor"}
+                `}>
                 Бизнес
               </p>
             </NavLink>
-            <article className="line h-5 border text-textColor ml-6"></article>
-
+            <article className="line h-5 border text-textColor mx-6"></article>
             <NavLink
               to="/stores"
-              className="flex items-center bg-white rounded cursor-pointer h-fit py-[4px]  ml-6 px-3"
+              onClick={() => setSelectBtn(true)}
+              className={`flex items-center  cursor-pointer h-fit
+                ${selectBtn ? "py-[4px] px-3 bg-white rounded" : "" }
+              `}
             >
               <p className="mr-2">
                 <MarketIcons colors={"#000"} />
