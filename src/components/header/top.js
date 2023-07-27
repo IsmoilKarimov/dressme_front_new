@@ -194,8 +194,9 @@ const TopHeader = () => {
               <p 
                 onClick={() => setSelectBtn(true)}
                 className={`text-[13px] font-AeonikProMedium
-                  ${selectBtn ? "text-black" : "text-textColor"}
-                `}>
+                  ${!selectBtn ? "text-black" : "text-textColor"}
+                `}
+              >
                 Бизнес
               </p>
             </NavLink>
@@ -210,7 +211,12 @@ const TopHeader = () => {
               <p className="mr-2">
                 <MarketIcons colors={"#000"} />
               </p>
-              <p className="font-AeonikProMedium  text-[13px]">Магазины</p>
+              <p className={`font-AeonikProMedium  text-[13px]
+                  ${selectBtn ? "text-black" : "text-textColor"}
+                `}
+              >
+                Магазины
+              </p>
             </NavLink>
           </article>
         </section>
