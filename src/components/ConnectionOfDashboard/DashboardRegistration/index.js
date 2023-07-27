@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { DashboardList, DashboardUser } from '../../../AssetsMain/icons'
 import { Select } from 'antd';
+import { Box, TextField } from '@material-ui/core';
+
 
 
 const DashboardRegistration = () => {
@@ -15,7 +17,7 @@ const DashboardRegistration = () => {
   };
 
   return (
-    <div className='max-w-[1280px] w-full flex justify-center items-center m-auto'>
+    <div className='max-w-[1280px] w-full flex justify-center items-center m-auto -mt-[64px]'>
         <div className='w-full h-fit'>
           <div className='text-4xl font-medium mb-[50px] text-center'>Регистрация продавца</div>
           <div className='w-[484px] flex justify-between items-center bg-dashboardBtnBg rounded-lg mx-auto mb-[30px]'>
@@ -119,38 +121,106 @@ const DashboardRegistration = () => {
             <div className='w-full border my-[100px]'></div>
            
             <div className='w-full'>
-              <div className='w-full flex items-center justify-between gap-x-[50px] mb-[25px]'>
-                <div className='w-1/2 flex flex-col border-b border-black group'>
-                  <label htmlFor="#" className='group-active:text-blue-500 mb-3 opacity-0 group-active:opacity-100'>Имя</label>
-                  <input type="text" placeholder='Имя'/>
-                </div>
-                <div className='w-1/2 flex flex-col border-b border-black group'>
-                  <label htmlFor="#" className='mb-3'>Фамилия</label>
-                  <input type="text" placeholder='Фамилия' className=''/>
-                </div>
+              <div className='w-full flex items-center gap-x-[50px] mb-[25px]'>
+                <Box
+                  component="form"
+                  sx={{
+                    '& > :not(style)': { m: 1, width: '71ch' },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField 
+                    type='text'
+                    id="standard-basic"
+                    label="Имя" 
+                    fullWidth
+                    variant="standard" />
+                </Box>
+                <Box
+                  component="form"
+                  sx={{
+                    '& > :not(style)': { m: 1, width: '71ch' },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField 
+                    type='text'
+                    id="standard-basic"
+                    fullWidth
+                    label="Фамилия" 
+                    variant="standard" 
+                  />
+                </Box>
               </div>
-              <div className='w-full flex items-center justify-between gap-x-[50px] mb-[25px]'>
-                <div className='w-1/2 flex flex-col border-b border-black group'>
-                  <label htmlFor="#" className='group-active:text-blue-500 mb-3'>Email</label>
-                  <input type="email" placeholder='Email'/>
-                </div>
-                <div className='w-1/2 flex flex-col border-b border-black group'>
-                  <label htmlFor="#" className='mb-3'>Номер телефона</label>
-                  <input type="number" placeholder='Фамилия' className=''/>
-                </div>
+              <div className='w-full flex items-center gap-x-[50px] mb-[25px]'>
+                <Box
+                  component="form"
+                  sx={{
+                    '& > :not(style)': { m: 1, width: '71ch' },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField 
+                    type='email'
+                    id="standard-basic"
+                    label="Email" 
+                    variant="standard" />
+                </Box>
+                <Box
+                  component="form"
+                  sx={{
+                    '& > :not(style)': { m: 1, width: '71ch' },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField 
+                    type='number'
+                    id="standard-basic" 
+                    className='w-full' 
+                    label="Номер телефона" 
+                    variant="standard" 
+                    fullWidth
+                  />
+                </Box>
               </div>
-              <div className='w-full flex items-center justify-between gap-x-[50px]'>
-                <div className='w-1/2 flex flex-col border-b border-black group'>
-                  <label htmlFor="#" className='group-active:text-blue-500 mb-3'>Пароль</label>
-                  <input type="password" placeholder='Пароль'/>
-                </div>
-                <div className='w-1/2 flex flex-col border-b border-black group'>
-                  <label htmlFor="#" className='mb-3'>Повторите пароль</label>
-                  <input type="password" placeholder='Повторите пароль' className=''/>
-                </div>
+              <div className='w-full flex items-center gap-x-[50px]'>
+                <Box
+                  component="form"
+                  sx={{
+                    '& > :not(style)': { m: 1, width: '71ch' },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField 
+                    type='password'
+                    id="standard-basic"
+                    label="Пароль" 
+                    variant="standard" />
+                </Box>
+                <Box
+                  component="form"
+                  sx={{
+                    '& > :not(style)': { m: 1, width: '71ch' },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <TextField 
+                    type='password'
+                    id="standard-basic" 
+                    className='w-full' 
+                    label="Повторите пароль" 
+                    variant="standard" 
+                    fullWidth
+                  />
+                </Box>
               </div>
-            </div>
-          
+            </div>    
           </form>
           <button className='flex items-center mx-auto font-medium bg-fullBlue text-lg text-white px-[100px] py-[15px] my-[90px] rounded-xl'>Зарегистрироваться</button>
         </div>

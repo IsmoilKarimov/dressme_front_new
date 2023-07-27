@@ -84,7 +84,7 @@ const NavMenu = () => {
             }
           </NavLink>
         </li>
-        <li className="w-[72px] h-[56px] flex  justify-center ">
+        <li className="w-[72px] h-[56px] flex justify-center ">
           <NavLink
             to={"/delivery-points"}
             className="w-full h-full flex items-center justify-center text-center  "
@@ -108,7 +108,7 @@ const NavMenu = () => {
             }
           </NavLink>
         </li>
-        <li className="w-[72px] h-[56px] flex  justify-center ">
+        <li className="w-[72px] h-[56px] flex justify-center ">
           <NavLink
             to={"/favourites"}
             className="w-full h-full flex items-center justify-center text-center  "
@@ -146,7 +146,7 @@ const NavMenu = () => {
             }
           </NavLink>
         </li>
-        <li className="w-[72px] h-[56px] ">
+        <li className="w-[72px] h-[56px]">
           <NavLink
             to={
               localStorage.getItem("dressMeLogin")
