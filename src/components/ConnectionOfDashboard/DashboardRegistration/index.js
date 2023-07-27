@@ -17,7 +17,7 @@ const DashboardRegistration = () => {
   };
 
   return (
-    <div className='max-w-[1280px] w-full flex justify-center items-center m-auto -mt-[64px]'>
+    <div className='max-w-[1280px] w-full flex justify-center items-center m-auto'>
         <div className='w-full h-fit'>
           <div className='text-4xl font-medium mb-[50px] text-center'>Регистрация продавца</div>
           <div className='w-[484px] flex justify-between items-center bg-dashboardBtnBg rounded-lg mx-auto mb-[30px]'>
@@ -222,7 +222,7 @@ const DashboardRegistration = () => {
               </div>
             </div>    
           </form>
-          <button className='flex items-center mx-auto font-medium bg-fullBlue text-lg text-white px-[100px] py-[15px] my-[90px] rounded-xl'>Зарегистрироваться</button>
+          <button className='flex items-center mx-auto font-medium bg-fullBlue text-lg text-white px-[100px] py-[15px] mt-[90px] rounded-xl'>Зарегистрироваться</button>
         </div>
       
     </div>
