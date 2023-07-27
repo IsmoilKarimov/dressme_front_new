@@ -3,7 +3,7 @@ import DashboardRegistration from './DashboardRegistration'
 
 const ConnectDashboard = () => {
   return (
-    <div className='w-full flex h-full -mt-[64px]'>
+    <div className='w-full flex h-full'>
         <DashboardRegistration/>
     </div>
   )
