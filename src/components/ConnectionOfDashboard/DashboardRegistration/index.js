@@ -19,11 +19,11 @@ const DashboardRegistration = () => {
   return (
     <div className='max-w-[1280px] w-full flex justify-center items-center m-auto'>
         <div className='w-full h-fit'>
-          <div className='text-4xl font-medium mb-[50px] text-center'>Регистрация продавца</div>
+          <div className='text-3xl font-medium mt-[20px] mb-[30px] text-center'>Регистрация продавца</div>
           <div className='w-[484px] flex justify-between items-center bg-dashboardBtnBg rounded-lg mx-auto mb-[30px]'>
               <button 
                 onClick={() => setNaturalPerson(true)}
-                className={`group w-1/2 flex items-center font-medium  px-[25px] py-3 
+                className={`group w-1/2 flex items-center font-medium text-sm px-[25px] py-3 
                  ${ naturalPerson ? "border border-fullBlue text-fullBlue rounded-lg" : "" }`
                 }
               >
@@ -33,7 +33,7 @@ const DashboardRegistration = () => {
               </button>
               <button 
                 onClick={() => setNaturalPerson(false)}
-                className={`w-1/2 flex items-center font-medium px-[25px] py-3 
+                className={`w-1/2 flex items-center font-medium text-sm px-[25px] py-3 
                   ${ !naturalPerson ? "border border-fullBlue text-fullBlue rounded-lg" : "" }`
                 }
               >
@@ -46,26 +46,28 @@ const DashboardRegistration = () => {
             
             {naturalPerson 
               ? (
-                <div className='md:ml-[396px]'>
-                  <div className='mb-4'>
-                    <div className='flex items-center'>
-                      <input type="radio" id="workOne" name="type_work" value="1" className='w-[18px] h-[18px] cursor-pointer' />
-                      <label for="workOne" className='ml-[10px] font-medium text-lg cursor-pointer'>
-                        Индивидуальный предприниматель
-                      </label>
+                <div className='flex items-center'>
+                  <div className='mx-auto'>
+                    <div className='mb-4'>
+                      <div className='flex items-center'>
+                        <input type="radio" id="workOne" name="type_work" value="1" className='w-[18px] h-[18px] cursor-pointer' />
+                        <label for="workOne" className='ml-[10px] font-medium text-base cursor-pointer'>
+                          Индивидуальный предприниматель
+                        </label>
+                      </div>
+                      <p className='text-sm text-dashboardLightTextColor font-normal ml-7'>поставьте галочку, если вы являетесь индивидуальным предпринимателем </p>  
                     </div>
-                    <p className='text-base text-dashboardLightTextColor font-normal ml-7'>поставьте галочку, если вы являетесь индивидуальным предпринимателем </p>  
-                  </div>
-                  <div className='mb-4'>
-                    <div className='flex items-center'>
-                      <input type="radio" id="workTwo" name="type_work" value="2" className='w-[18px] h-[18px] cursor-pointer'/>
-                      <label for="workTwo" className='ml-[10px] font-medium text-lg cursor-pointer'>
-                        Самозаняты
-                      </label>
+                    <div className='mb-4'>
+                      <div className='flex items-center'>
+                        <input type="radio" id="workTwo" name="type_work" value="2" className='w-[18px] h-[18px] cursor-pointer'/>
+                        <label for="workTwo" className='ml-[10px] font-medium text-base cursor-pointer'>
+                          Самозаняты
+                        </label>
+                      </div>
+                      <p className='text-sm text-dashboardLightTextColor font-normal ml-7'>поставьте галочк, если вы cамозаняты </p>  
                     </div>
-                    <p className='text-base text-dashboardLightTextColor font-normal ml-7'>поставьте галочк, если вы cамозаняты </p>  
-                  </div>
-                </div>            
+                  </div> 
+                </div>           
               ):(
                 <div className='w-[484px] rounded-lg mx-auto'>
                     <Select
@@ -117,9 +119,9 @@ const DashboardRegistration = () => {
                 </div>
               )
             }
-           
-            <div className='w-full border my-[100px]'></div>
-           
+            
+            <div className='w-full border my-[80px]'></div>
+            
             <div className='w-full'>
               <div className='w-full flex items-center gap-x-[50px] mb-[25px]'>
                 <Box
@@ -135,6 +137,7 @@ const DashboardRegistration = () => {
                     id="standard-basic"
                     label="Имя" 
                     fullWidth
+                    fontSize={'12px'}
                     variant="standard" />
                 </Box>
                 <Box
@@ -144,11 +147,13 @@ const DashboardRegistration = () => {
                   }}
                   noValidate
                   autoComplete="off"
+                  size='small'
                 >
                   <TextField 
                     type='text'
                     id="standard-basic"
                     fullWidth
+                    size='small'
                     label="Фамилия" 
                     variant="standard" 
                   />
