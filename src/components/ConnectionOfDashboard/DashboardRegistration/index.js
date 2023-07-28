@@ -227,7 +227,7 @@ const DashboardRegistration = () => {
               </div>
             </div>    
           </form>
-          <button className='flex items-center mx-auto font-medium bg-fullBlue text-lg text-white px-[100px] py-[15px] mt-[90px] rounded-xl'>Зарегистрироваться</button>
+          <button className='flex items-center mx-auto font-medium bg-fullBlue text-base text-white px-[100px] py-[15px] mt-[90px] rounded-xl'>Зарегистрироваться</button>
         </div>
       
     </div>
