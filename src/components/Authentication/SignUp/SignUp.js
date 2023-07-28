@@ -109,13 +109,13 @@ export default function SignUp() {
                 </div>
                 <div className="ss:w-[65%] md:w-[70%] h-12 overflow-hidden">
                   <InputMask
-                    mask="(99)999-99-99"
+                    mask="(99) 999-99-99"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     className={`w-full px-4  h-full not-italic ${
                       phone ? "font-AeonikProMedium" : null
                     } text-base leading-4 text-black`}
-                    placeholder={"(77) 777-77-77"}
+                    placeholder={"(97) 123-45-67"}
                   ></InputMask>
                 </div>
               </div>
