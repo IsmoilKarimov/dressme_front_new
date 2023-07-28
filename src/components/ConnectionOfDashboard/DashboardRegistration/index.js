@@ -189,6 +189,7 @@ const DashboardRegistration = () => {
                     label="Номер телефона" 
                     variant="standard" 
                     fullWidth
+                    placeholder='+998 (97) 740-23-99'
                   />
                 </Box>
               </div>
