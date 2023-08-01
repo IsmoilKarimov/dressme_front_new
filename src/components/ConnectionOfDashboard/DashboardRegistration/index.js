@@ -19,11 +19,11 @@ const DashboardRegistration = () => {
   return (
     <div className='max-w-[1280px] w-full flex justify-center items-center m-auto'>
         <div className='w-full h-fit'>
-          <div className='text-3xl font-medium mt-[20px] mb-[30px] text-center'>Регистрация продавца</div>
+          <div className='ll:text-3xl font-medium mt-[20px] mb-[30px] text-center text-lg'>Регистрация продавца</div>
           <div className='w-[484px] flex justify-between items-center bg-dashboardBtnBg rounded-lg mx-auto mb-[30px]'>
-              <button 
+              <button
                 onClick={() => setNaturalPerson(true)}
-                className={`group w-1/2 flex items-center font-medium text-sm px-[25px] py-3 
+                className={`group w-1/2 flex items-center font-medium text-sm px-[25px] py-3
                  ${ naturalPerson ? "border border-fullBlue text-fullBlue rounded-lg" : "" }`
                 }
               >
@@ -31,9 +31,9 @@ const DashboardRegistration = () => {
                 <DashboardUser className={`${naturalPerson ? "text-fullBlue" : "" }`}/>
                 <span className='ml-2'>ФИЗИЧЕСКОЕ ЛИЦО</span>
               </button>
-              <button 
+              <button
                 onClick={() => setNaturalPerson(false)}
-                className={`w-1/2 flex items-center font-medium text-sm px-[25px] py-3 
+                className={`w-1/2 flex items-center font-medium text-sm px-[25px] py-3
                   ${ !naturalPerson ? "border border-fullBlue text-fullBlue rounded-lg" : "" }`
                 }
               >
@@ -42,9 +42,9 @@ const DashboardRegistration = () => {
                 <span className='ml-2'>ФИЗИЧЕСКОЕ ЛИЦО</span>
               </button>
           </div>
-          <form action='#'>   
-            
-            {naturalPerson 
+          <form action='#'>
+
+            {naturalPerson
               ? (
                 <div className='flex items-center'>
                   <div className='mx-auto'>
@@ -55,7 +55,7 @@ const DashboardRegistration = () => {
                           Индивидуальный предприниматель
                         </label>
                       </div>
-                      <p className='text-sm text-dashboardLightTextColor font-normal ml-7'>поставьте галочку, если вы являетесь индивидуальным предпринимателем </p>  
+                      <p className='text-sm text-dashboardLightTextColor font-normal ml-7'>поставьте галочку, если вы являетесь индивидуальным предпринимателем </p>
                     </div>
                     <div className='mb-4'>
                       <div className='flex items-center'>
@@ -64,10 +64,10 @@ const DashboardRegistration = () => {
                           Самозаняты
                         </label>
                       </div>
-                      <p className='text-sm text-dashboardLightTextColor font-normal ml-7'>поставьте галочк, если вы cамозаняты </p>  
+                      <p className='text-sm text-dashboardLightTextColor font-normal ml-7'>поставьте галочк, если вы cамозаняты </p>
                     </div>
-                  </div> 
-                </div>           
+                  </div>
+                </div>
               ):(
                 <div className='w-[484px] rounded-lg mx-auto'>
                     <Select
@@ -119,9 +119,9 @@ const DashboardRegistration = () => {
                 </div>
               )
             }
-            
+
             <div className='w-full border my-[80px]'></div>
-            
+
             <div className='w-full'>
               <div className='w-full flex items-center gap-x-[50px] mb-[25px]'>
                 <Box
@@ -132,10 +132,10 @@ const DashboardRegistration = () => {
                   noValidate
                   autoComplete="off"
                 >
-                  <TextField 
+                  <TextField
                     type='text'
                     id="standard-basic"
-                    label="Имя" 
+                    label="Имя"
                     fullWidth
                     fontSize={'12px'}
                     variant="standard" />
@@ -149,13 +149,13 @@ const DashboardRegistration = () => {
                   autoComplete="off"
                   size='small'
                 >
-                  <TextField 
+                  <TextField
                     type='text'
                     id="standard-basic"
                     fullWidth
                     size='small'
-                    label="Фамилия" 
-                    variant="standard" 
+                    label="Фамилия"
+                    variant="standard"
                   />
                 </Box>
               </div>
@@ -168,10 +168,10 @@ const DashboardRegistration = () => {
                   noValidate
                   autoComplete="off"
                 >
-                  <TextField 
+                  <TextField
                     type='email'
                     id="standard-basic"
-                    label="Email" 
+                    label="Email"
                     variant="standard" />
                 </Box>
                 <Box
@@ -182,12 +182,12 @@ const DashboardRegistration = () => {
                   noValidate
                   autoComplete="off"
                 >
-                  <TextField 
+                  <TextField
                     type='number'
-                    id="standard-basic" 
-                    className='w-full' 
-                    label="Номер телефона" 
-                    variant="standard" 
+                    id="standard-basic"
+                    className='w-full'
+                    label="Номер телефона"
+                    variant="standard"
                     fullWidth
                     placeholder='+998 (97) 740-23-99'
                   />
@@ -202,10 +202,10 @@ const DashboardRegistration = () => {
                   noValidate
                   autoComplete="off"
                 >
-                  <TextField 
+                  <TextField
                     type='password'
                     id="standard-basic"
-                    label="Пароль" 
+                    label="Пароль"
                     variant="standard" />
                 </Box>
                 <Box
@@ -216,21 +216,21 @@ const DashboardRegistration = () => {
                   noValidate
                   autoComplete="off"
                 >
-                  <TextField 
+                  <TextField
                     type='password'
-                    id="standard-basic" 
-                    className='w-full' 
-                    label="Повторите пароль" 
-                    variant="standard" 
+                    id="standard-basic"
+                    className='w-full'
+                    label="Повторите пароль"
+                    variant="standard"
                     fullWidth
                   />
                 </Box>
               </div>
-            </div>    
+            </div>
           </form>
           <button className='flex items-center mx-auto font-medium bg-fullBlue text-base text-white px-[100px] py-[15px] mt-[90px] rounded-xl'>Зарегистрироваться</button>
         </div>
-      
+
     </div>
   )
 }
