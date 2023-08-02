@@ -1,0 +1,19 @@
+.n-input {
+  border: 1px solid #c5c5c5;
+}
+.inputsRow {
+  gap: 20px;
+}
+.inputText {
+  width: fit-content;
+  /* font-family: Aeonik Pro; */
+  line-height: normal;
+  background-image: url("../../../AssetsMain/icons/asterisc_icon.png");
+  background-position: center right;
+}
+.n-input:focus {
+  outline: 1px solid #007dca;
+}
+.n-input:focus + .inputText {
+  color: #007dca;
+}
