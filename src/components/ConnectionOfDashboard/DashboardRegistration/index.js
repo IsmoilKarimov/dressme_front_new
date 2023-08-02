@@ -343,7 +343,7 @@ const DashboardRegistration = () => {
             </div>
           </div>
         </form>
-        <button className="flex items-center mx-auto font-medium bg-fullBlue text-base text-white px-[100px] py-[12px] md:py-[15px] mt-[50px] md:mt-[90px] rounded-xl mb-[88px] md:mb-8">
+        <button className="w-full md:w-[358px] flex items-center justify-center mx-auto font-medium bg-fullBlue text-base text-white py-[12px] md:py-[15px] mt-[50px] md:mt-[90px] rounded-xl mb-[88px] md:mb-8">
           Зарегистрироваться
         </button>
       </div>
