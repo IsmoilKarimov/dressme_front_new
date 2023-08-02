@@ -18,32 +18,32 @@ const DashboardRegistration = () => {
 
   return (
     <div className='max-w-[1280px] w-full flex justify-center items-center m-auto'>
-        <div className='w-full h-fit'>
-          <div className='ll:text-3xl font-medium mt-[20px] mb-[30px] text-center text-lg'>Регистрация продавца</div>
-          <div className='w-[484px] flex justify-between items-center bg-dashboardBtnBg rounded-lg mx-auto mb-[30px]'>
+        <div className='w-full h-fit px-4 md:px-0'>
+          <div className='text-xl md:text-3xl font-medium mt-[20px] mb-[30px] text-center'>Регистрация продавца</div>
+          <div className='w-full md:w-[484px] flex justify-between items-center bg-dashboardBtnBg rounded-lg mx-auto mb-[30px]'>
               <button
                 onClick={() => setNaturalPerson(true)}
-                className={`group w-1/2 flex items-center font-medium text-sm px-[25px] py-3
+                className={`group w-1/2 flex items-center font-medium text-[10px] ll:text-xs md:text-sm px-3 ll:px-[15px] py-[10px] md:px-[25px] md:py-3
                  ${ naturalPerson ? "border border-fullBlue text-fullBlue rounded-lg" : "" }`
                 }
               >
                 {/* <img src={dashboardUser} alt="" /> */}
                 <DashboardUser className={`${naturalPerson ? "text-fullBlue" : "" }`}/>
-                <span className='ml-2'>ФИЗИЧЕСКОЕ ЛИЦО</span>
+                <span className='ml-[5px] md:ml-2'>ФИЗИЧЕСКОЕ ЛИЦО</span>
               </button>
               <button
                 onClick={() => setNaturalPerson(false)}
-                className={`w-1/2 flex items-center font-medium text-sm px-[25px] py-3
+                className={`w-1/2 flex items-center font-medium text-[10px] ll:text-xs md:text-sm px-3 ll:px-[15px] py-[10px] md:px-[25px] md:py-3
                   ${ !naturalPerson ? "border border-fullBlue text-fullBlue rounded-lg" : "" }`
                 }
               >
                 {/* <img src={dashboardList} alt="" /> */}
                 <DashboardList className={`${naturalPerson ? "text-fullBlue" : "" }`}/>
-                <span className='ml-2'>ФИЗИЧЕСКОЕ ЛИЦО</span>
+                <span className='ml-[5px] md:ml-2'>ФИЗИЧЕСКОЕ ЛИЦО</span>
               </button>
           </div>
           <form action='#'>
-
+            
             {naturalPerson
               ? (
                 <div className='flex items-center'>
@@ -69,7 +69,7 @@ const DashboardRegistration = () => {
                   </div>
                 </div>
               ):(
-                <div className='w-[484px] rounded-lg mx-auto'>
+                <div className='w-full md:w-[484px] rounded-lg mx-auto'>
                     <Select
                       className='w-full text-base'
                       showSearch
@@ -121,112 +121,121 @@ const DashboardRegistration = () => {
             }
 
             <div className='w-full border my-[80px]'></div>
-
-            <div className='w-full'>
-              <div className='w-full flex items-center gap-x-[50px] mb-[25px]'>
-                <Box
-                  component="form"
-                  sx={{
-                    '& > :not(style)': { m: 1, width: '71ch' },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                  <TextField
-                    type='text'
-                    id="standard-basic"
-                    label="Имя"
-                    fullWidth
-                    fontSize={'12px'}
-                    variant="standard" />
-                </Box>
-                <Box
-                  component="form"
-                  sx={{
-                    '& > :not(style)': { m: 1, width: '71ch' },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                  size='small'
-                >
-                  <TextField
-                    type='text'
-                    id="standard-basic"
-                    fullWidth
+            
+            {/* FORM SECTION FOR DESCROP VERSION */}
+            <div className='hidden md:block'>
+              <div className='w-full'>
+                <div className='w-full flex items-center gap-x-[50px] mb-[25px]'>
+                  <Box
+                    component="form"
+                    sx={{
+                      '& > :not(style)': { m: 1, width: '71ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                  >
+                    <TextField
+                      type='text'
+                      id="standard-basic"
+                      label="Имя"
+                      fullWidth
+                      fontSize={'12px'}
+                      variant="standard" />
+                  </Box>
+                  <Box
+                    component="form"
+                    sx={{
+                      '& > :not(style)': { m: 1, width: '71ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
                     size='small'
-                    label="Фамилия"
-                    variant="standard"
-                  />
-                </Box>
-              </div>
-              <div className='w-full flex items-center gap-x-[50px] mb-[25px]'>
-                <Box
-                  component="form"
-                  sx={{
-                    '& > :not(style)': { m: 1, width: '71ch' },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                  <TextField
-                    type='email'
-                    id="standard-basic"
-                    label="Email"
-                    variant="standard" />
-                </Box>
-                <Box
-                  component="form"
-                  sx={{
-                    '& > :not(style)': { m: 1, width: '71ch' },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                  <TextField
-                    type='number'
-                    id="standard-basic"
-                    className='w-full'
-                    label="Номер телефона"
-                    variant="standard"
-                    fullWidth
-                    placeholder='+998 (97) 740-23-99'
-                  />
-                </Box>
-              </div>
-              <div className='w-full flex items-center gap-x-[50px]'>
-                <Box
-                  component="form"
-                  sx={{
-                    '& > :not(style)': { m: 1, width: '71ch' },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                  <TextField
-                    type='password'
-                    id="standard-basic"
-                    label="Пароль"
-                    variant="standard" />
-                </Box>
-                <Box
-                  component="form"
-                  sx={{
-                    '& > :not(style)': { m: 1, width: '71ch' },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                  <TextField
-                    type='password'
-                    id="standard-basic"
-                    className='w-full'
-                    label="Повторите пароль"
-                    variant="standard"
-                    fullWidth
-                  />
-                </Box>
+                  >
+                    <TextField
+                      type='text'
+                      id="standard-basic"
+                      fullWidth
+                      size='small'
+                      label="Фамилия"
+                      variant="standard"
+                    />
+                  </Box>
+                </div>
+                <div className='w-full flex items-center gap-x-[50px] mb-[25px]'>
+                  <Box
+                    component="form"
+                    sx={{
+                      '& > :not(style)': { m: 1, width: '71ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                  >
+                    <TextField
+                      type='email'
+                      id="standard-basic"
+                      label="Email"
+                      variant="standard" />
+                  </Box>
+                  <Box
+                    component="form"
+                    sx={{
+                      '& > :not(style)': { m: 1, width: '71ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                  >
+                    <TextField
+                      type='number'
+                      id="standard-basic"
+                      className='w-full'
+                      label="Номер телефона"
+                      variant="standard"
+                      fullWidth
+                      placeholder='+998 (97) 740-23-99'
+                    />
+                  </Box>
+                </div>
+                <div className='w-full flex items-center gap-x-[50px]'>
+                  <Box
+                    component="form"
+                    sx={{
+                      '& > :not(style)': { m: 1, width: '71ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                  >
+                    <TextField
+                      type='password'
+                      id="standard-basic"
+                      label="Пароль"
+                      variant="standard" />
+                  </Box>
+                  <Box
+                    component="form"
+                    sx={{
+                      '& > :not(style)': { m: 1, width: '71ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                  >
+                    <TextField
+                      type='password'
+                      id="standard-basic"
+                      className='w-full'
+                      label="Повторите пароль"
+                      variant="standard"
+                      fullWidth
+                    />
+                  </Box>
+                </div>
               </div>
             </div>
+            
+            {/* FORM SECTION FOR MOBILE VERSION */}
+            <div className='block md:hidden'>
+                
+            </div>
+
           </form>
           <button className='flex items-center mx-auto font-medium bg-fullBlue text-base text-white px-[100px] py-[15px] mt-[90px] rounded-xl'>Зарегистрироваться</button>
         </div>
