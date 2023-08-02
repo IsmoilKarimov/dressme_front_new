@@ -372,7 +372,7 @@ const MediumHeader = () => {
             </div>
           </section>
 
-          {/*Starting of Blocked  Hamburger Menu section */}
+          {/*Starting of Opened Hamburger Menu section */}
           <section
             className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen pb-[140px] px-3 ${
               state?.hamburgerMenu
@@ -400,10 +400,11 @@ const MediumHeader = () => {
                 {/* Categories */}
                 <ul className="flex flex-col w-full">
                   <li>
-                    <button
+                    <NavLink 
                       onClick={() =>
                         setState({ ...state, hamburgerMenu: false })
                       }
+                      to="/registration_dashboard"
                       className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
                     >
                       <div className="flex items-center">
@@ -415,7 +416,7 @@ const MediumHeader = () => {
                       <span className="arrowRotate ml-auto rotate-[90deg]">
                         <ArrowTopIcons colors={"#000"} />
                       </span>
-                    </button>
+                    </NavLink>
                   </li>
                   <li>
                     <NavLink
