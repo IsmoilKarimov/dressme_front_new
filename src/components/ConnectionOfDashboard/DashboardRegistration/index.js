@@ -89,12 +89,12 @@ const DashboardRegistration = () => {
                     />
                     <label
                       for="workTwo"
-                      className="ml-[10px] font-medium text-base cursor-pointer"
+                      className="ml-[10px] font-medium text-[13px] md:text-base cursor-pointer"
                     >
                       Самозаняты
                     </label>
                   </div>
-                  <p className="text-sm text-dashboardLightTextColor font-normal ml-7">
+                  <p className="text-xs md:text-sm text-dashboardLightTextColor font-normal ml-7">
                     поставьте галочк, если вы cамозаняты{" "}
                   </p>
                 </div>

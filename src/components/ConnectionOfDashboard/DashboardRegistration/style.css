@@ -12,7 +12,7 @@
   background-position: center right;
 }
 .n-input:focus {
-  outline: 1px solid #007dca;
+  border-color: #007dca;
 }
 .n-input:focus + .inputText {
   color: #007dca;
