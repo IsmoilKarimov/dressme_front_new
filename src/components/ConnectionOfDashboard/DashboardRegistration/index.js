@@ -24,7 +24,7 @@ const DashboardRegistration = () => {
         <div className="w-full md:w-[484px] flex justify-between items-center bg-dashboardBtnBg rounded-lg mx-auto mb-[30px]">
           <button
             onClick={() => setNaturalPerson(true)}
-            className={`group w-1/2 flex items-center font-medium text-[10px] ll:text-xs md:text-sm px-3 ll:px-[15px] py-[10px] md:px-[25px] md:py-3
+            className={`group w-1/2 flex items-center justify-center font-medium text-[10px] ll:text-xs md:text-sm px-1 ll:px-2 py-[10px] md:px-[25px] md:py-3
                  ${
                    naturalPerson
                      ? "border border-fullBlue text-fullBlue rounded-lg"
@@ -35,11 +35,11 @@ const DashboardRegistration = () => {
             <DashboardUser
               className={`${naturalPerson ? "text-fullBlue" : ""}`}
             />
-            <span className="ml-[5px] md:ml-2">ФИЗИЧЕСКОЕ ЛИЦО</span>
+            <span className="ml-[4px] md:ml-2">ФИЗИЧЕСКОЕ ЛИЦО</span>
           </button>
           <button
             onClick={() => setNaturalPerson(false)}
-            className={`w-1/2 flex items-center font-medium text-[10px] ll:text-xs md:text-sm px-3 ll:px-[15px] py-[10px] md:px-[25px] md:py-3
+            className={`w-1/2 flex items-center justify-center font-medium text-[10px] ll:text-xs md:text-sm px-1 ll:px-2 py-[10px] md:px-[25px] md:py-3
                   ${
                     !naturalPerson
                       ? "border border-fullBlue text-fullBlue rounded-lg"
@@ -50,7 +50,7 @@ const DashboardRegistration = () => {
             <DashboardList
               className={`${naturalPerson ? "text-fullBlue" : ""}`}
             />
-            <span className="ml-[5px] md:ml-2">ФИЗИЧЕСКОЕ ЛИЦО</span>
+            <span className="ml-[4px] md:ml-2">ЮРИДИЧЕСКОЕ ЛИЦО</span>
           </button>
         </div>
         <form action="#">
