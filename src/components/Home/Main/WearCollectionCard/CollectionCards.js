@@ -73,12 +73,13 @@ export default function CollectionCards() {
         }`}
       ></div>
       <section
-        className={`fixed  z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
           openWearType ? "bottom-0" : "bottom-[-800px] z-0"
         }`}
       >
         <WearType onClick={toggle} />
       </section>
+      
       <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
         <div className="w-full flex flex-col box-border ">
           <article className="flex flex-wrap justify-between md:justify-start md:mx-0 mt-[25px] md:mt-[50px]  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
@@ -107,7 +108,7 @@ export default function CollectionCards() {
                     <button
                       onMouseEnter={() => handleEnterMouse(data?.id)}
                       // onMouseEnter={() => setColourCard(true)}
-                      className="w-12 h-7 border border-searchBgColor rounded-lg hidden md:block md:flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 "
+                      className="w-12 h-7 border border-searchBgColor rounded-lg hidden md:flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 "
                     >
                       <figure className="w-6 h-6 flex items-center justify-center">
                         <img src={CalourCard} alt="" className="h-full" />
@@ -133,7 +134,7 @@ export default function CollectionCards() {
                         data?.colourCard
                           ? "w-full px-1 xs:px-2 md:px-4 my-2"
                           : "w-0 my-2"
-                      } duration-300 absolute overflow-hidden hidden md:block top-0 z-[1] md:flex justify-between items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
+                      } duration-300 absolute overflow-hidden hidden top-0 z-[1] md:flex justify-between items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
                     >
                       {data?.changeColor.map((itemValue) => {
                         return (
