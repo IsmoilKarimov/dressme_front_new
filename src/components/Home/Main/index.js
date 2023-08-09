@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import MainPageSliders from "./BrandTypeSlider/MainPageSliders";
 import TypeSection from "./TypeSection/TypeSection";
 import CollectionCards from "./WearCollectionCard/CollectionCards";

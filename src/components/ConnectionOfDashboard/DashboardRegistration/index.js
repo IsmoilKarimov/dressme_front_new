@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DashboardList, DashboardUser } from "../../../AssetsMain/icons";
+import { DashboardList, DashboardUser, StarIcon, StarIcons, StartIcon } from "../../../AssetsMain/icons";
 import { Select } from "antd";
 import { Box, TextField } from "@material-ui/core";
 
@@ -55,7 +55,7 @@ const DashboardRegistration = () => {
         </div>
         <form action="#">
           {naturalPerson ? (
-            <div className="flex items-center">
+            <div className="w-full flex items-center">
               <div className="mx-auto">
                 <div className="mb-4">
                   <div className="flex items-center">
@@ -150,6 +150,15 @@ const DashboardRegistration = () => {
                   },
                 ]}
               />
+
+              <div className="w-full md:w-[484px] mt-5">
+                <p className="flex items-center text-base font-AeonikProRegular text-[#303030]">
+                  Наименование организации
+                  <span className="ml-[5px]"><StarIcon /></span>
+                </p>
+                <input type="text" placeholder="Name..." className="w-full font-AeonikProRegular text-base border border-[#e5e5e5] mt-[10px] rounded-lg px-[15px] py-3" />
+              </div>
+
             </div>
           )}
 
@@ -158,8 +167,10 @@ const DashboardRegistration = () => {
           {/* FORM SECTION FOR DESCROP VERSION */}
           <div className="hidden md:block">
             <div className="w-full">
+              {/* 1 */}
               <div className="w-full flex items-center gap-x-[50px] mb-[25px]">
                 <Box
+                className="flex items-center"
                   component="form"
                   sx={{
                     "& > :not(style)": { m: 1, width: "71ch" },
@@ -195,6 +206,7 @@ const DashboardRegistration = () => {
                   />
                 </Box>
               </div>
+              {/* 2 */}
               <div className="w-full flex items-center gap-x-[50px] mb-[25px]">
                 <Box
                   component="form"
@@ -214,22 +226,24 @@ const DashboardRegistration = () => {
                 <Box
                   component="form"
                   sx={{
-                    "& > :not(style)": { m: 1, width: "71ch" },
+                    "& > :not(style) ": { m: 1, width: "71ch" },
                   }}
                   noValidate
                   autoComplete="off"
                 >
                   <TextField
+                  className="w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     type="number"
                     id="standard-basic"
-                    className="w-full"
-                    label="Номер телефона"
+                    label={`Номер телефона  `}
                     variant="standard"
                     fullWidth
                     placeholder="+998 (97) 740-23-99"
+                    
                   />
                 </Box>
               </div>
+              {/* 3 */}
               <div className="w-full flex items-center gap-x-[50px]">
                 <Box
                   component="form"

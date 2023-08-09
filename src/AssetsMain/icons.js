@@ -2603,6 +2603,14 @@ const DashboardList = ({colors}) => {
   )
 
 };
+const StarIcon = () => {
+  return(
+    <svg width="10" height="9" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9.312 3.56L6.456 4.616L8.424 6.848L7.032 8.048L5.112 5.528L3.216 8.024L1.848 6.824L3.816 4.592L0.984 3.536L1.704 1.856L4.32 3.104L4.248 0.175999H6.024L5.952 3.128L8.592 1.856L9.312 3.56Z" fill="#FA4F4F"/>
+    </svg>
+
+  )
+}
 
 export {
   ActivePersonIcons,
@@ -2689,6 +2697,7 @@ export {
   ThreeCicleIcon,
   DashboardList,
   DashboardUser,
+  StarIcon,
 };
 
 // video
