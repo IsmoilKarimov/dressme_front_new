@@ -1,7 +1,15 @@
-
 import { NavLink } from "react-router-dom";
 import { nike } from "../../../../../AssetsMain";
-import { ArrowTopIcons, ClothesIcons, FilterIcons, LocationIcons, ManGenIcons, StarIcons, VideoStoreIcons, WomanGenIcons,
+import {
+  ArrowTopIcons,
+  ClothesIcons,
+  FilterIcons,
+  LocationColoursIcons,
+  LocationIcons,
+  ManGenIcons,
+  StarIcons,
+  VideoStoreIcons,
+  WomanGenIcons,
 } from "../../../../../AssetsMain/icons";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
@@ -41,7 +49,8 @@ const ShoppingStoreOfficialTop = ({ name }) => {
   const NextArrow = (props) => {
     const { onClick } = props;
     return (
-      <div className={`absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-50  right-[4px]  rounded-full bg-white    duration-200 border  border-borderColor2
+      <div
+        className={`absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-50  right-[4px]  rounded-full bg-white    duration-200 border  border-borderColor2
             `}
         onClick={() => data(onClick)}
       >
@@ -55,7 +64,8 @@ const ShoppingStoreOfficialTop = ({ name }) => {
   const PrevArrow = (props) => {
     const { onClick } = props;
     return (
-      <div className={` ${
+      <div
+        className={` ${
           prevSliderBtn ? "block" : "hidden"
         } absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-10  left-[2px]  rounded-full bg-white   duration-200 border  border-borderColor2
         `}
@@ -129,8 +139,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
     setState({ ...state, openTypesofClothes: openTypesofClothes });
   };
 
-
-const handleTypesofClothes = () => {
+  const handleTypesofClothes = () => {
     setState({ ...state, openTypesofClothes: false });
   };
   const typesofClothes = [
@@ -167,9 +176,9 @@ const handleTypesofClothes = () => {
   );
 
   return (
-    <main className="flex flex-col justify-center border-b border-searchBgColor items-center md:my-5">
+    <main className="flex flex-col justify-center border-b border-searchBgColor  items-center md:my-5">
       <section className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
-        <div className="w-[100%] h-fit">
+        <div className="w-[100%] h-fit ">
           <action className="w-full flex flex-col">
             <figure className="w-full h-fit md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
               <img
@@ -185,9 +194,7 @@ const handleTypesofClothes = () => {
                   <img src={nike} alt="" />
                 </figure>
                 <div className="flex flex-col ml-8">
-                  <p className="text-xl font-AeonikProMedium mb-3">
-                    {name}
-                  </p>
+                  <p className="text-xl font-AeonikProMedium mb-3">{name}</p>
                   <div className="">
                     <div className="flex items-center ">
                       <div className="flex items-center  mr-[6px]">
@@ -228,9 +235,27 @@ const handleTypesofClothes = () => {
                 </NavLink>
               </action>
               {/* 3 */}
-              <action className="w-full md:w-fit flex items-center justify-between md:mr-5  mt-6 md:mt-0">
+              <action className="w-full md:w-fit flex  items-center justify-between md:mr-5  mt-6 md:mt-0">
+                <div className="md:hidden flex w-fit">
+                  <a className="w-fit h-fit flex items-center justify-center gap-y-1 cursor-pointer">
+                    <NavLink
+                      to="/delivery-points"
+                      className="flex items-center justify-center w-12 h-12 rounded-lg border border-searchBgColor cursor-pointer"
+                    >
+                      <span>
+                        <LocationColoursIcons colors={dressInfo?.ColorSeason} />
+                      </span>
+                    </NavLink>
+                    <p
+                      className={`${dressInfo?.TextColorSeason} ml-3 text-base not-italic font-AeonikProMedium`}
+                    >
+                      {" "}
+                      Все локации
+                    </p>
+                  </a>
+                </div>
                 <div className="flex items-center">
-                  <button className="flex items-center justify-center border border-searchBgColor w-12 h-12 rounded-lg mr-3">
+                  <button className="hidden md:flex items-center justify-center border border-searchBgColor w-12 h-12 rounded-lg mr-3">
                     <VideoStoreIcons />
                   </button>
                   <button className="flex items-center justify-center border border-searchBgColor w-12 h-12 rounded-lg mr-1">
@@ -243,6 +268,57 @@ const handleTypesofClothes = () => {
               </action>
             </div>
           </action>
+          <div className="w-full  hidden md:block md:flex justify-end items-center my-3">
+            <div className="w-fit flex gap-x-7 items-center">
+              <a className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
+                <p>
+                  <LocationColoursIcons colors={dressInfo?.ColorSeason} />
+                </p>
+                <p
+                  className={`text-base not-italic font-AeonikProRegular  ${dressInfo?.TextColorSeason}`}
+                >
+                  {" "}
+                  Мирзо Улугбек
+                </p>
+              </a>
+              <a className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
+                <p>
+                  <LocationColoursIcons colors={dressInfo?.ColorSeason} />
+                </p>
+                <p
+                  className={`text-base not-italic font-AeonikProRegular  ${dressInfo?.TextColorSeason}`}
+                >
+                  {" "}
+                  Юнусабад{" "}
+                </p>
+              </a>
+              <a className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
+                <p>
+                  <LocationColoursIcons colors={dressInfo?.ColorSeason} />
+                </p>
+                <p
+                  className={`text-base not-italic font-AeonikProRegular  ${dressInfo?.TextColorSeason}`}
+                >
+                  {" "}
+                  Алмазар{" "}
+                </p>
+              </a>
+              <a className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
+                <p>
+                  <LocationColoursIcons colors={dressInfo?.ColorSeason} />
+                </p>
+                <p
+                  className={`text-base not-italic font-AeonikProRegular  ${dressInfo?.TextColorSeason}`}
+                >
+                  {" "}
+                  Чиланзар{" "}
+                </p>
+              </a>
+              <button className={`${dressInfo?.TextColorSeason} underline`}>
+                Все локации
+              </button>
+            </div>
+          </div>
           <action className="md:border-b hidden md:border-searchBgColor md:flex flex-gap-6 justify-between w-full pb-10 mt-[60px]">
             <section className="w-[22%] h-full  ">
               <div>
@@ -302,7 +378,6 @@ const handleTypesofClothes = () => {
                 Фильтры
               </p>
             </button>
-
 
             <Popover
               className="h-[44px] w-[48%] active:scale-95 select-none active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
