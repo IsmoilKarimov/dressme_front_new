@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
-import { MuslimImg } from "../../../../../AssetsMain";
-import { ClothesIcons, FilterIcons } from "../../../../../AssetsMain/icons";
+import { MuslimImg } from "../../../../../assets";
+import { ClothesIcons, FilterIcons } from "../../../../../assets/icons";
 import { useContext, useState } from "react";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";

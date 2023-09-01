@@ -19,7 +19,7 @@ import {
   PhoneIcons,
   SearchIcons,
   VolumeIcons,
-} from "../../AssetsMain/icons";
+} from "../../assets/icons";
 import {
   BrandAutumm,
   BrandSpring,
@@ -39,7 +39,7 @@ import {
   autummSeason,
   UzbekFlag,
   HeartImg,
-} from "../../AssetsMain";
+} from "../../assets";
 import NavCategoryModal from "./navCategoryModal";
 
 const MediumHeader = () => {

@@ -9,8 +9,8 @@ import {
   MapIcons,
   MapNavMenuIcons,
   PersonIcons,
-} from "../../AssetsMain/icons";
-import { HeartImg } from "../../AssetsMain";
+} from "../../assets/icons";
+import { HeartImg } from "../../assets";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 
 const NavMenu = () => {

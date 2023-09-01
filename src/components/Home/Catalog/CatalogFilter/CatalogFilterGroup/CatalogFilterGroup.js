@@ -8,7 +8,7 @@ import {
   InputCheckedTrueIcons,
   SearchIcons,
   MenuCloseIcons,
-} from "../../../../../AssetsMain/icons";
+} from "../../../../../assets/icons";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 
 const CatalogFilterGroup = () => {

@@ -22,8 +22,8 @@ import {
   PhoneIcons,
   SearchIcons,
   VolumeIcons,
-} from "../../AssetsMain/icons";
-import { UzbekFlag, locationIcons, markerIcons } from "../../AssetsMain";
+} from "../../assets/icons";
+import { UzbekFlag, locationIcons, markerIcons } from "../../assets";
 import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationMarketOpen";
 
 function YandexMapsDressMe() {

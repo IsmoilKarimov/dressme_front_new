@@ -309,7 +309,7 @@ table tr th:nth-child(1) {
 }
 .example-thumb1 {
   background: rgba(0, 125, 202, 1)
-    url("./AssetsMain//Category//ReactSliderMenu.svg");
+    url("./assets//Category//ReactSliderMenu.svg");
   width: 24px;
   height: 16px;
   background-repeat: no-repeat;

@@ -1,8 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import Slider from "react-slick";
-import "../yandex.css";
-import ScrollFilter from "./ScrollFilter";
+import React from "react";
+
 export default function YandexFilter() {
   const wearGroup = [
     { id: 1, name: "Футболки" },

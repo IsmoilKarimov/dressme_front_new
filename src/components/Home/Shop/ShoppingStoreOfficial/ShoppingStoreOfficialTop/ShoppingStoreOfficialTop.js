@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { nike } from "../../../../../AssetsMain";
+import { nike } from "../../../../../assets";
 import {
   ArrowTopIcons,
   ClothesIcons,
@@ -10,7 +10,7 @@ import {
   StarIcons,
   VideoStoreIcons,
   WomanGenIcons,
-} from "../../../../../AssetsMain/icons";
+} from "../../../../../assets/icons";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useContext, useState } from "react";

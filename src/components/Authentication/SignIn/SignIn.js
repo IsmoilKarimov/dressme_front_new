@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { NavLink, useNavigate } from "react-router-dom";
-import { EmailIcons, SircleNext } from "../../../AssetsMain/icons";
+import { EmailIcons, SircleNext } from "../../../assets/icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useMutation } from "@tanstack/react-query";

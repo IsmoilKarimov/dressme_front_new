@@ -5,7 +5,7 @@ import {
   MenuCloseIcons, 
   SircleNext,
   StarIcons,
-} from "../../../AssetsMain/icons";
+} from "../../../assets/icons";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";

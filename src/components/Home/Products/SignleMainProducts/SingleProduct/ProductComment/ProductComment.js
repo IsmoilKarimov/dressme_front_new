@@ -5,8 +5,8 @@ import {
   NoNameIcon,
   SendMessageIcon,
   StarIcons,
-} from "../../../../../../AssetsMain/icons";
-import { ArrowTopIcons } from "../../../../../../AssetsMain/icons";
+} from "../../../../../../assets/icons";
+import { ArrowTopIcons } from "../../../../../../assets/icons";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 
 export default function ProductComment() {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Slider from "react-slick";
-import { VideoStoreIcons } from "../../../../../../AssetsMain/icons";
+import { VideoStoreIcons } from "../../../../../../assets/icons";
 
 const ProductCarousel = () => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());

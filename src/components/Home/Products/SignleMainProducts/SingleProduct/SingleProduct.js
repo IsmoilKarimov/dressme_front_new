@@ -9,8 +9,8 @@ import {
   InputCheckedTrueIcons,
   NoImg,
   StarIcons,
-} from "../../../../../AssetsMain/icons";
-import { HeartImg } from "../../../../../AssetsMain";
+} from "../../../../../assets/icons";
+import { HeartImg } from "../../../../../assets";
 import ProductComment from "./ProductComment/ProductComment";
 import AboutProduct from "./AboutProduct/AboutProduct";
 

@@ -6,8 +6,8 @@ import {
   InputCheckedTrueIcons,
   NoImg,
   StarIcons,
-} from "../../../../AssetsMain/icons";
-import { AddBasket, HeartImg } from "../../../../AssetsMain";
+} from "../../../../assets/icons";
+import { AddBasket, HeartImg } from "../../../../assets";
 
 export default function FavouriteProducts() {
   const [dressInfo] = useContext(dressMainData);

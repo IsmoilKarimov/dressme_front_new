@@ -1,5 +1,5 @@
 import React from "react";
-import { MenuCloseIcons } from "../../../../AssetsMain/icons";
+import { MenuCloseIcons } from "../../../../assets/icons";
 import { useNavigate } from "react-router-dom";
 
 const WearType = ({ onClick, title }) => {

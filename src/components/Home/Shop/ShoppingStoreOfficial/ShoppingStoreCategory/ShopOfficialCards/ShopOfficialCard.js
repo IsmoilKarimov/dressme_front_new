@@ -5,8 +5,8 @@ import {
   InputCheckedTrueIcons,
   NoImg,
   StarIcons,
-} from "../../../../../../AssetsMain/icons";
-import { HeartImg } from "../../../../../../AssetsMain";
+} from "../../../../../../assets/icons";
+import { HeartImg } from "../../../../../../assets";
 import { useNavigate } from "react-router-dom";
 
 export default function ShopOfficialCard() {

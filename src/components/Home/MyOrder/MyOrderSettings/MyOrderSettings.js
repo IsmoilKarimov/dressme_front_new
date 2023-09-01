@@ -6,9 +6,9 @@ import {
   LogOutIcons,
   PersonIcons,
   SircleNext,
-} from "../../../../AssetsMain/icons";
+} from "../../../../assets/icons";
 import InputMask from "react-input-mask";
-import { UzbekFlag } from "../../../../AssetsMain";
+import { UzbekFlag } from "../../../../assets";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const MyOrderSettings = () => {
