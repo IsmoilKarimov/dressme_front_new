@@ -9,8 +9,8 @@ import {
   PersonIcons,
   PhoneIcons,
   SircleNext,
-} from "../../../AssetsMain/icons";
-import { UzbekFlag } from "../../../AssetsMain";
+} from "../../../assets/icons";
+import { UzbekFlag } from "../../../assets";
 
 export default function SignUp() {
   const [phone, setPhone] = useState("");

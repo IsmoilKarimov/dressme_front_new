@@ -8,8 +8,8 @@ import {
   img6,
   img7,
   img8,
-} from "../../../AssetsMain";
-import { MenuCloseIcons } from "../../../AssetsMain/icons";
+} from "../../../assets";
+import { MenuCloseIcons } from "../../../assets/icons";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { useNavigate } from "react-router-dom";
 

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { PhoneIcons, SircleNext } from "../../../AssetsMain/icons";
+import { PhoneIcons, SircleNext } from "../../../assets/icons";
 
 export default function ForgetPassword() {
   return (

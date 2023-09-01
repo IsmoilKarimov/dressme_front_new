@@ -5,11 +5,11 @@ import {
   InputCheckedTrueIcons,
   NoImg,
   StarIcons,
-} from "../../../../AssetsMain/icons";
-import { HeartImg } from "../../../../AssetsMain";
+} from "../../../../assets/icons";
+import { HeartImg } from "../../../../assets";
 import "../../../../index.css";
 import { ClothingParametr } from "./ClothingParametr";
-import { CalourCard } from "../../../../AssetsMain";
+import { CalourCard } from "../../../../assets";
 import WearType from "./WearType";
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);

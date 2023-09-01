@@ -6,7 +6,7 @@ import {
   CotegoryMenuIcons,
   ManGenIcons,
   WomanGenIcons,
-} from "../../../../../AssetsMain/icons";
+} from "../../../../../assets/icons";
 
 const ShoppingTop = () => {
   const [dressInfo] = useContext(dressMainData);

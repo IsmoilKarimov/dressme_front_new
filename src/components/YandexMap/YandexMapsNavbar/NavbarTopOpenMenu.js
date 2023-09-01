@@ -4,7 +4,7 @@ import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { Popover } from "antd";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { VolumeIcons } from "../../../AssetsMain/icons";
+import { VolumeIcons } from "../../../assets/icons";
 import {
   BrandAutumm,
   BrandSpring,
@@ -14,7 +14,7 @@ import {
   springSeason,
   summerSeason,
   winterSeason,
-} from "../../../AssetsMain";
+} from "../../../assets";
 
 export default function NavbarTopOpenMenu() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);

@@ -9,8 +9,8 @@ import {
   LocationIcons,
   MarketIcons,
   MyPurchaseIcons,
-} from "../../../AssetsMain/icons";
-import { EnglishFlag, RussianFlag, UzbekFlag } from "../../../AssetsMain";
+} from "../../../assets/icons";
+import { EnglishFlag, RussianFlag, UzbekFlag } from "../../../assets";
 
 const YandexTop = () => {
   const [dressInfo] = useContext(dressMainData);

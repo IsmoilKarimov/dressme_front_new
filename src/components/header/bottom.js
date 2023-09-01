@@ -8,7 +8,7 @@ import {
   SummerMale,
   WinterFemale,
   WinterMale,
-} from "../../AssetsMain";
+} from "../../assets";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { BiChevronDown } from "react-icons/bi";
 import { Popover } from "antd";
@@ -18,7 +18,7 @@ import {
   ClothesIcons,
   DollorIcons,
   InputCheckedTrueIcons,
-} from "../../AssetsMain/icons";
+} from "../../assets/icons";
 
 const BottomHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);

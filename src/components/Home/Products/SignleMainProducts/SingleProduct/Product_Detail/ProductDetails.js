@@ -16,13 +16,13 @@ import {
   ProductSizeIcons,
   ProductSwitchIcons,
   StarIcons,
-} from "../../../../../../AssetsMain/icons";
+} from "../../../../../../assets/icons";
 import {
   summerSeason,
   autummSeason,
   winterSeason,
   HeartImg,
-} from "../../../../../../AssetsMain";
+} from "../../../../../../assets";
 
 const ProductDetails = () => {
   const [dressInfo] = useContext(dressMainData);
@@ -62,10 +62,16 @@ const ProductDetails = () => {
       {/*  */}
       <section className="w-full">
         {/* --------- */}
-        <section className="h-fit flex justify-between mb-4">
+        <section className="h-fit flex items-center mb-4">
           <article className="flex items-center justify-start ">
             <p className="w-fit flex items-center gap-x-[1px]">
               <StarIcons />
+              <span className="hidden md:flex">
+                <StarIcons />
+                <StarIcons />
+                <StarIcons />
+                <StarIcons />
+              </span>
             </p>
             <article className="flex items-center w-fit ml-2 text-base md:text-[13px]">
               <p className="not-italic font-AeonikProMedium mt-1 leading-4 text-black tracking-[1%]">
@@ -74,20 +80,20 @@ const ProductDetails = () => {
               <p className=" pl-1 not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
                 (265 votes)
               </p>
-              <div className="text-searchBgColor mx-[10px]">|</div>
+              <div className="text-setTexOpacity mx-[10px]">|</div>
               <p className=" not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
-                (678 orders)
+                678 orders
               </p>
             </article>
           </article>
           <button className="w-11 h-11 flex md:hidden items-center justify-center rounded-lg border border-searchBgColor">
             <img src={HeartImg} alt="" className="w-5 h-5" />
           </button>
-          <article className="hidden items-center md:flex">
+          <article className="hidden items-center md:flex md:ml-[25px]">
             <p>
               <ProductArticleIcons />
             </p>
-            <p className="ml-[2px] mr-[6px] not-italic font-AeonikProRegular  text-[13px] leading-4 text-right text-black tracking-[1%]">
+            <p className="ml-[2px] mr-[6px] not-italic font-AeonikProRegular text-[13px] leading-4 text-right text-black tracking-[1%]">
               Article:
             </p>
             <p className="not-italic font-AeonikProRegular  text-[13px] leading-4 text-right text-setTexOpacity tracking-[1%]">

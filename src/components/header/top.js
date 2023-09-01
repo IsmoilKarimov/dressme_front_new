@@ -8,8 +8,8 @@ import {
   HouseStatisticIcons,
   LocationIcons,
   MarketIcons,
-} from "../../AssetsMain/icons";
-import { EnglishFlag, RussianFlag, UzbekFlag } from "../../AssetsMain";
+} from "../../assets/icons";
+import { EnglishFlag, RussianFlag, UzbekFlag } from "../../assets";
 
 const TopHeader = () => {
   const [dressInfo] = useContext(dressMainData);

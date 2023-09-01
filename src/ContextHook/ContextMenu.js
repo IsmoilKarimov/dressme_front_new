@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { NoImg } from "../AssetsMain/icons";
+import { NoImg } from "../assets/icons";
 export const dressMainData = createContext();
 
 export const DressMenu = ({ children }) => {

@@ -5,7 +5,7 @@ import {
   DollorIcons,
   InputCheckedTrueIcons,
   TopBrandsIcon,
-} from "../../../../AssetsMain/icons";
+} from "../../../../assets/icons";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import {
   adidas,
@@ -16,7 +16,7 @@ import {
   puma,
   tommy,
   zara,
-} from "../../../../AssetsMain";
+} from "../../../../assets";
 import { GrClose } from "react-icons/gr";
 import ReactSlider from "react-slider";
 const ClothingParametr = () => {

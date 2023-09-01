@@ -3,13 +3,13 @@ import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { NavLink } from "react-router-dom";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
-import { ItailIcons } from "../../../../../AssetsMain/icons";
+import { ItailIcons } from "../../../../../assets/icons";
 import {
   AutummMale,
   SpringMale,
   SummerMale,
   WinterMale,
-} from "../../../../../AssetsMain";
+} from "../../../../../assets";
 
 const SingleProductTop = () => {
   const [dressInfo] = useContext(dressMainData);

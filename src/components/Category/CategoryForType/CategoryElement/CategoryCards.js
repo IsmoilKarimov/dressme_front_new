@@ -6,8 +6,8 @@ import {
   InputCheckedTrueIcons,
   NoImg,
   StarIcons,
-} from "../../../../AssetsMain/icons";
-import { HeartImg } from "../../../../AssetsMain";
+} from "../../../../assets/icons";
+import { HeartImg } from "../../../../assets";
 import ClothesFilterGroup from "../ClothesFilterGroup/ClothesFIlterGroup";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";

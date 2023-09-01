@@ -21,7 +21,7 @@ import {
   WinterFemale,
   WinterGirl,
   WinterMale,
-} from "../../AssetsMain";
+} from "../../assets";
 import { FiInstagram } from "react-icons/fi";
 import { AiOutlineYoutube } from "react-icons/ai";
 import { TbBrandTelegram } from "react-icons/tb";
@@ -30,13 +30,13 @@ import { dressMainData } from "../../ContextHook/ContextMenu";
 import { BiChevronDown } from "react-icons/bi";
 import { Popover } from "antd";
 import ScrollToTop from "react-scroll-to-top";
-import { ReactComponent as MySVG } from "../../AssetsMain/backTop/backTop.svg";
+import { ReactComponent as MySVG } from "../../assets/backTop/backTop.svg";
 import {
   BrandBlack,
   EnglishFlag,
   RussianFlag,
   UzbekFlag,
-} from "../../AssetsMain";
+} from "../../assets";
 import {
   ArrowTopIcons,
   CommentIcons,
@@ -53,7 +53,7 @@ import {
   PrivateCheckIcons,
   UploadIcons,
   WarningSircleIcons,
-} from "../../AssetsMain/icons";
+} from "../../assets/icons";
 
 const catalogTypes = [
   { id: 1, name: "Студент" },
