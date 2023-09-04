@@ -128,10 +128,20 @@ const ProductDetails = () => {
   };
 
   const [productDescription, setProductDescription] = useState([
-    {id:1, action:false},
-    {id:2, action:false},
-    {id:3, action:false}
+    {id:1, action:true, name:"Локация"},
+    {id:2, action:false, name:"Описания товара "},
+    {id:3, action:false, name:"Состав"}
   ]);
+
+  const handleTypeCheck = (value) => {
+    setProductDescription((data) => {
+      return data.map((e) => {
+        if (e.id == value) {
+          return { ...e, action: true };
+        } else return { ...e, action: false };
+      });
+    });
+  };
 
   return (
     <main className="w-full relative h-full mt-4 md:mt-0 ">
@@ -360,7 +370,7 @@ const ProductDetails = () => {
             ))}
           </Slider>
         </article>
-        <article className="w-full flex items-center mb-4 text-[16px] md:text-sm">
+        <article className="w-full flex items-center mb-4 text-base">
           <p className="not-italic mr-3 font-AeonikProRegular border-b border-dashed border-borderWinter md:font-AeonikProMedium text-borderWinter">
           Таблица размеров
           </p>
@@ -510,46 +520,30 @@ const ProductDetails = () => {
         </article>
       </section>
 
-      <article className="rounded-lg overflow-hidden  h-[42px] md:h-[52px] ss:w-full md:w-[540px] md:mx-0 flex justify-between bg-slate-50 border border-solid ss:mt-5 md:mt-0 mx-auto ">
-          {/* {productDescription.map(item => (
-
-          )})} */}
-          <button
-            onClick={() => setProductDescription(true)}
-            className={`ss:w-1/2 md:w-[152px] md:h-[50px]  h-[42px] text-base text-black text-center font-AeonikProRegular not-italic ${
-              productDescription.action
-                ? ` bg-white border  border-searchBgColor rounded-lg ${dressInfo?.TextColorSeason}`
-                : ""
-            }
-                        `}
-          >
-            Описания товара
-          </button>
-          <p className="h-full text-searchBgColor flex items-center">|</p>
-          <button
-            onClick={() => setProductDescription(false)}
-            className={`ss:w-1/2 md:w-[152px] md:h-[50px]  h-[42px] text-base text-black text-center font-AeonikProRegular not-italic ${
-              !productDescription
-                ? ` bg-white border  border-searchBgColor rounded-lg ${dressInfo?.TextColorSeason}`
-                : ""
-            }
-          `}
-          >
-            Характеристики
-          </button>
-          <button
-            onClick={() => setProductDescription(false)}
-            className={`ss:w-1/2 md:w-[152px] md:h-[50px]  h-[42px] text-base text-black text-center font-AeonikProRegular not-italic ${
-              !productDescription
-                ? ` bg-white border  border-searchBgColor rounded-lg ${dressInfo?.TextColorSeason}`
-                : ""
-            }
-          `}
-          >
-            Характеристики
-          </button>
+      <article className="rounded-lg overflow-hidden h-[42px] md:h-[52px] ss:w-full md:w-[540px] md:mx-0 flex justify-between bg-slate-50 border border-solid mx-auto ss:mt-5 md:mt-[15px]">
+          {productDescription.map(item => (
+            <>
+              <div 
+                key={item.id}
+                className="w-1/3 flex items-center justify-between rounded-lg"
+              >
+                <button
+                  key={item.id}
+                  onClick={() => handleTypeCheck(item.id)}
+                  className={`w-full flex items-center justify-center h-10 text-[15px] text-black text-center px-5 font-AeonikProRegular ${
+                    item.action
+                      ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg`
+                      : ""
+                  } `}
+                >
+                  <span className="mr-2">{item.icon}</span>
+                  <p>{item.name}</p>
+                </button>
+              </div>
+            </>
+          ))}
         </article>
-
+      
       {/* Text Items */}
       <section className="mt-12 md:mt-16 hidden md:block">
         <p className="not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]">
@@ -594,75 +588,6 @@ const ProductDetails = () => {
             <BsCircleFill size={5} className="mx-2" /> Отличная фиксация стопы
           </li>
         </ul>
-      </section>
-
-      {/* Table */}
-      <section className="mt-[60px] hidden md:block">
-        <article className="">
-          <article>
-            <p className="not-italic  font-AeonikProRegular text-[14px] leading-5 text-right tracking-[1%]">
-              таблица соответствия мужских размеров
-            </p>
-          </article>
-          <table className="w-full border border-searchBgColor  border-collapse	mt-5">
-            <tr className="">
-              <td>обхват груди см</td>
-              <td>86-90</td>
-              <td>86-90</td>
-              <td>86-90</td>
-              <td>86-90</td>
-              <td>86-90</td>
-              <td>86-90</td>
-              <td>86-90</td>
-              <td>86-90</td>
-              <td>86-90</td>
-              <td>86-90</td>
-            </tr>
-            <tr>
-              <td>обхват груди см</td>
-              <td>74-78</td>
-              <td>74-78</td>
-              <td>74-78</td>
-              <td>74-78</td>
-              <td>74-78</td>
-              <td>74-78</td>
-              <td>74-78</td>
-              <td>74-78</td>
-              <td>74-78</td>
-              <td>74-78</td>
-            </tr>
-            <tr>
-              <td>обхват груди см</td>
-              <td>94-97</td>
-              <td>94-97</td>
-              <td>94-97</td>
-              <td>94-97</td>
-              <td>94-97</td>
-              <td>94-97</td>
-              <td>94-97</td>
-              <td>94-97</td>
-              <td>94-97</td>
-              <td>94-97</td>
-            </tr>
-            <tr>
-              <td>обхват груди см</td>
-              <td>36-38</td>
-              <td colSpan={2}>36-38</td>
-              <td colSpan={2}>36-38</td>
-              <td colSpan={2}>36-38</td>
-              <td colSpan={2}>36-38</td>
-              <td>36-38</td>
-            </tr>
-            <tr>
-              <th>Русский размер РУС</th>
-              <th colSpan={2}>S</th>
-              <th colSpan={2}>M</th>
-              <th colSpan={2}>L</th>
-              <th colSpan={2}>XL</th>
-              <th colSpan={2}>XXL</th>
-            </tr>
-          </table>
-        </article>
       </section>
 
       <section className="mt-[60px] flex-col gap-y-5 hidden md:flex">
