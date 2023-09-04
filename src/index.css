@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,6 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  line-height: 1;
 }
 
 html,
@@ -16,22 +16,22 @@ body {
 }
 
 @font-face {
-  font-family: "RobotoMedium";
-  src: url(./fonts/Roboto/Roboto-Medium.ttf);
-}
-@font-face {
-  font-family: "RobotoRegular";
-  src: url(./fonts//Roboto/Roboto-Regular.ttf);
+  font-family: 'AeonikPro-Regular';
+  src: url('/src/fonts/aeonic-pro/AeonikPro-Regular.woff2') format('woff2'),
+      url('/src/fonts/aeonic-pro/AeonikPro-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-/* @font-face {
-  font-family: "InterMedium";
-  src: url(./fonts/Poppin/Poppins-Medium.ttf);
-}
 @font-face {
-  font-family: "InterRegular";
-  src: url(./fonts/Poppin/Poppins-Regular.ttf);
-} */
+  font-family: 'AeonikPro-Medium';
+  src: url('/src/fonts/aeonic-pro/AeonikPro-Medium.woff2') format('woff2'),
+      url('/src/fonts/aeonic-pro/AeonikPro-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 
 .slick-slider {
   overflow: hidden;
