@@ -32,7 +32,7 @@ export default function AboutProduct() {
                 ? ` bg-white border  border-searchBgColor rounded-lg ${dressInfo?.TextColorSeason}`
                 : ""
             }
-                        `}
+          `}
           >
             Характеристики
           </button>
