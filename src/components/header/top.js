@@ -160,7 +160,7 @@ const TopHeader = () => {
                       <span className="mr-[6px] ">
                         <img src={data?.icons} alt="" />
                       </span>
-                      <p className="not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black ">
+                      <p className="not-italic flex items-center font-AeonikProMedium text-sm text-black ">
                         {data?.type}
                       </p>
                     </Popover>
