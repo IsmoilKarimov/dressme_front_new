@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { FaTelegramPlane } from "react-icons/fa";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { BsCircleFill } from "react-icons/bs";
-import { BasketIcons, CircleWarningIcons, DiscountShapeIcons, DollorIcons, LocationColoursIcons, PhoneIcons, ProductArticleIcons, ProductSwitchIcons, StarIcons } from "../../../../../../assets/icons";
+import { BasketIcons, CategoryUsersIcon, ChapterIcon, CircleWarningIcons, DeliveryIcons, DiscountShapeIcons, DollorIcons, LocationColoursIcons, MarketIcons, PaymeSystemIcons, PhoneIcons, ProductArticleIcons, ProductSwitchIcons, QualityIcon, SettingsIcon, StarIcons } from "../../../../../../assets/icons";
 import { summerSeason, autummSeason, winterSeason, HeartImg } from "../../../../../../assets";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
@@ -20,13 +20,13 @@ const ProductDetails = () => {
   ]);
 
   const [selectSize] = useState([
-    { id: 1, size: "S" },
-    { id: 2, size: "M" },
-    { id: 3, size: "L" },
-    { id: 4, size: "XL" },
-    { id: 5, size: "XXL" },
-    { id: 6, size: "3XL" },
-    { id: 7, size: "4XL" },
+    { id: 1, size: "S", sizeNumbers:'36-44' },
+    { id: 2, size: "M", sizeNumbers:'36-44' },
+    { id: 3, size: "L", sizeNumbers:'36-44' },
+    { id: 4, size: "XL", sizeNumbers:'36-44' },
+    { id: 5, size: "XXL", sizeNumbers:'36-44' },
+    { id: 6, size: "3XL", sizeNumbers:'36-44' },
+    { id: 7, size: "4XL", sizeNumbers:'23-28' },
   ]);
 
   const [imgGroup] = useState([
@@ -127,6 +127,12 @@ const ProductDetails = () => {
     speed: 500,
   };
 
+  const [productDescription, setProductDescription] = useState([
+    {id:1, action:false},
+    {id:2, action:false},
+    {id:3, action:false}
+  ]);
+
   return (
     <main className="w-full relative h-full mt-4 md:mt-0 ">
       {/* Product details */}
@@ -181,7 +187,7 @@ const ProductDetails = () => {
           <div className="w-full flex items-center mb-4">
             <div className="w-1/2 flex items-center">
               <article className="w-fit flex items-center">
-                <BasketIcons colors={"#000"} />
+                <MarketIcons colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
                   Магазин:
                 </div>
@@ -193,38 +199,38 @@ const ProductDetails = () => {
               </article>
             </div>
             <div className="w-1/2 flex items-center ">
-            <section className="w-fit flex items-center h-fit text-base md:text-sm mb-10 md:mb-0">
-              <div className="not-italic mr-3  font-AeonikProMedium leading-4 text-black tracking-[1%]">
-                Сезон:
-              </div>
-              <figure className="flex items-center">
-                <img src={winterSeason} alt="" />
+              <section className="w-fit flex items-center h-fit text-base md:text-sm mb-10 md:mb-0">
+                <div className="not-italic mr-3  font-AeonikProMedium leading-4 text-black tracking-[1%]">
+                  Сезон:
+                </div>
+                <figure className="flex items-center">
+                  <img src={winterSeason} alt="" />
 
-                <figcaption className="not-italic  ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
-                  Зима
-                </figcaption>
-              </figure>
-              <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
-              <figure className="flex items-center">
-                <img src={summerSeason} alt="" />
-                <figcaption className="not-italic  ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
-                  Весна
-                </figcaption>
-              </figure>
-              <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
-              <figure className="flex items-center">
-                <img src={autummSeason} alt="" />
-                <figcaption className="not-italic  ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                  Осень
-                </figcaption>
-              </figure>
-            </section>
+                  <figcaption className="not-italic  ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
+                    Зима
+                  </figcaption>
+                </figure>
+                <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
+                <figure className="flex items-center">
+                  <img src={summerSeason} alt="" />
+                  <figcaption className="not-italic  ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
+                    Весна
+                  </figcaption>
+                </figure>
+                <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
+                <figure className="flex items-center">
+                  <img src={autummSeason} alt="" />
+                  <figcaption className="not-italic  ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+                    Осень
+                  </figcaption>
+                </figure>
+              </section>
             </div>
           </div>
           <div className="w-full flex items-center mb-4">
             <div className="w-1/2 flex items-center">
               <article className="w-fit flex items-center">
-                <BasketIcons colors={"#000"} />
+                <DeliveryIcons colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
                 Доставка::
                 </div>
@@ -237,7 +243,7 @@ const ProductDetails = () => {
             </div>
             <div className="w-1/2 flex items-center ">
               <article className="w-fit flex items-center">
-                <BasketIcons colors={"#000"} />
+                <SettingsIcon colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
                 Производитель:
                 </div>
@@ -252,7 +258,7 @@ const ProductDetails = () => {
           <div className="w-full flex items-center mb-4">
             <div className="w-1/2 flex items-center">
               <article className="w-fit flex items-center">
-                <BasketIcons colors={"#000"} />
+                <CategoryUsersIcon colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
                 Возрастная категория::
                 </div>
@@ -265,7 +271,7 @@ const ProductDetails = () => {
             </div>
             <div className="w-1/2 flex items-center ">
               <article className="w-fit flex items-center">
-                <BasketIcons colors={"#000"} />
+                <ChapterIcon colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
                 Раздел:
                 </div>
@@ -280,7 +286,7 @@ const ProductDetails = () => {
           <div className="w-full flex items-center mb-4">
             <div className="w-1/2 flex items-center">
               <article className="w-fit flex items-center">
-                <BasketIcons colors={"#000"} />
+                <QualityIcon colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
                 Качество::
                 </div>
@@ -293,7 +299,7 @@ const ProductDetails = () => {
             </div>
             <div className="w-1/2 flex items-center ">
               <article className="w-fit flex items-center">
-                <BasketIcons colors={"#000"} />
+                <PaymeSystemIcons colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
                 Номер карты::
                 </div>
@@ -306,65 +312,6 @@ const ProductDetails = () => {
             </div>
           </div>
         </section>
-        {/* Mobile Dostavka*/}
-        {/* <section className="h-fit flex justify-between mb-4 md:mb-7">
-          <article className="flex items-center">
-            <div className="flex items-center">
-              <p>
-                <DeliveryIcons />
-              </p>
-              <p className="ml-2 not-italic font-AeonikProMedium  text-base md:text-[14px] leading-4 text-black tracking-[1%]">
-                Доставка:
-              </p>
-            </div>
-            <div className="flex items-center ml-2 md:ml-[32px]">
-              <p>
-                <CircleSuccessIcons colors={"#008F0E"} />
-              </p>
-              <p className="hidden md:block ml-2 not-italic font-AeonikProMedium  text-sm leading-4 text-green-800 tracking-[1%]">
-                Доступно
-              </p>
-            </div>
-          </article>
-          <div className="flex md:hidden items-center text-base md:text-[13px]">
-            <p>
-              <ProductArticleIcons />
-            </p>
-            <p className="ml-[2px] mr-[6px] not-italic font-AeonikProRegular  leading-4 text-right text-black tracking-[1%]">
-              Article:
-            </p>
-            <p className="not-italic font-AeonikProRegular  leading-4 text-right text-setTexOpacity tracking-[1%]">
-              AA009842
-            </p>
-          </div>
-
-          <div className="w-fit hidden md:flex items-center h-fit ">
-            <p className="not-italic mr-3  font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%]">
-              Сезон:
-            </p>
-            <figure className="flex items-center">
-              <img src={winterSeason} alt="" />
-
-              <figcaption className="not-italic  ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                Зима
-              </figcaption>
-            </figure>
-            <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
-            <figure className="flex items-center">
-              <img src={summerSeason} alt="" />
-              <figcaption className="not-italic  ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                Весна
-              </figcaption>
-            </figure>
-            <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
-            <figure className="flex items-center">
-              <img src={autummSeason} alt="" />
-              <figcaption className="not-italic  ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                Осень
-              </figcaption>
-            </figure>
-          </div>
-        </section> */}
         <section className="w-fit flex md:hidden items-center h-fit text-base md:text-sm mb-10 md:mb-0">
           <div className="not-italic mr-3  font-AeonikProMedium leading-4 text-black tracking-[1%]">
             Сезон:
@@ -386,7 +333,7 @@ const ProductDetails = () => {
         </section>
       </section>
       {/*  */}
-      <section className="w-full border-t md:border-y md:border-searchBgColor pt-[25px] pb-12 ">
+      <section className="w-full border-t md:border-y md:border-searchBgColor py-[25px] ">
         <article className="w-full flex items-center justify-between mb-4 text-base font-AeonikProMedium">
           <div className="flex items-center">
             <ProductSwitchIcons colors={"#a1a1a1"} />
@@ -412,29 +359,9 @@ const ProductDetails = () => {
               </div>
             ))}
           </Slider>
-          {/* {selectColor.map((data) => {
-            return (
-              <article
-                key={data?.id}
-                onClick={() => handleColorCheck(data.id)}
-                className={`w-[50px] h-[50px] md:w-[64px] md:h-[72px] flex items-center justify-center rounded-lg ${
-                  data.color
-                } border border-searchBgColor cursor-pointer ${
-                  data.action ? "outline outline-offset-2 outline-2" : ""
-                } ${data.out} `}
-              >
-                {data.action && getCheckColor === 3 ? (
-                  <InputCheckedTrueIcons colors={"#000"} />
-                ) : null}
-                {data.action && getCheckColor !== 3 ? (
-                  <InputCheckedTrueIcons colors={"#fff"} />
-                ) : null}
-              </article>
-            );
-          })} */}
         </article>
         <article className="w-full flex items-center mb-4 text-[16px] md:text-sm">
-          <p className="not-italic mr-3 font-AeonikProRegular border-b border-dashed border-borderWinter md:font-AeonikProMedium leading-4 text-borderWinter">
+          <p className="not-italic mr-3 font-AeonikProRegular border-b border-dashed border-borderWinter md:font-AeonikProMedium text-borderWinter">
           Таблица размеров
           </p>
         </article>
@@ -442,12 +369,13 @@ const ProductDetails = () => {
           <section className="flex flex-wrap items-center gap-x-3 gap-y-3">
             {selectSize.map((data) => {
               return (
-                <article className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg  border border-searchBgColor focus:border-fullBlue px-4 flex items-center justify-center">
+                <article className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg  border border-[#dadada] focus:border-fullBlue px-4 flex flex-col items-center justify-center">
                   <p
-                    className={`not-italic font-AeonikProMedium text-[14px] leading-4 text-center text-black tracking-[1%]`}
+                    className={`not-italic font-AeonikProMedium text-base text-center text-black`}
                   >
                     {data?.size}
                   </p>
+                  <span className="text-[13px] font-AeonikProRegular text-[#757575]">{data.sizeNumbers}</span>
                 </article>
               );
             })}
@@ -455,10 +383,6 @@ const ProductDetails = () => {
               <CircleWarningIcons colors={"#000"} />
             </p>
           </section>
-          <div className="hidden md:block w-[1px] border-r border-searchBgColor h-8 mx-4"></div>
-          <p className="w-11 h-11 hidden md:flex items-center justify-center rounded-lg border border-searchBgColor">
-            <CircleWarningIcons colors={"#000"} />
-          </p>
         </article>
 
         {/* Mobile Price */}
@@ -521,35 +445,36 @@ const ProductDetails = () => {
         </section>
       </section>
 
-      <section className=" w-full md:block hidden md:pb-8 pt-6 md:border-b border-searchBgColor mb-12 md:mb-0">
+      <section className=" w-full hidden md:block md:pb-[50px] pt-[35px] md:border-b border-searchBgColor mb-12 md:mb-0">
         <article className="w-full flex items-center justify-between mb-[14px] md:mb-0">
           <section className="w-fit flex items-center">
             <article className="flex md:hidden">
               <DollorIcons />
               <p className="text-base font-AeonikProRegular ml-[6px]">Цена:</p>
             </article>
-            <p className="hidden md:block not-italic  font-AeonikProMedium text-[20px] leading-9 text-black trcking-[0.32px]">
+            <span className="text-[22px] font-AeonikProMedium mr-2">от</span>
+            <p className="hidden md:block font-AeonikProMedium text-[30px] text-black">
               452 000 сум
             </p>
-            <p className="hidden md:block not-italic ml-4  font-AeonikProRegular line-through text-[14px] leading-7 text-setTexOpacity">
+            <p className="hidden md:block ml-[10px] font-AeonikProRegular line-through text-[24px] text-setTexOpacity">
               652 000 сум
             </p>
           </section>
-          <section className="w-[84px] h-9 md:w-[108px] md:h-11 cursor-pointer ml-8 flex items-center justify-center border border-searchBgColor rounded-lg">
+          <section className="w-[84px] h-9 md:w-[108px] md:h-11 cursor-pointer flex items-center justify-center border border-searchBgColor rounded-lg">
             <p>
               <DiscountShapeIcons />
             </p>
-            <p className="ml-[6px] not-italic  font-AeonikProMedium text-sm md:text-[16px] leading-5 text-red-700">
+            <p className="ml-[6px] font-AeonikProMedium text-sm md:text-[18px] text-red-700">
               -30%
             </p>
           </section>
           <section
-            className={`w-fit ml-8 ${dressInfo?.TextColorSeason} items-center hidden md:flex`}
+            className={`w-fit ${dressInfo?.TextColorSeason} items-center hidden md:flex`}
           >
-            <p className="not-italic  font-AeonikProRegular text-[14px] leading-5 text-right tracking-[0.32px]">
+            <p className="font-AeonikProRegular text-lg text-right">
               В наличии:
             </p>
-            <p className="not-italic  ml-2 font-AeonikProMedium text-[16px] leading-6 text-right tracking-[0.32px]">
+            <p className="ml-2 font-AeonikProMedium text-xl text-right">
               28
             </p>
           </section>
@@ -584,6 +509,46 @@ const ProductDetails = () => {
           </article>
         </article>
       </section>
+
+      <article className="rounded-lg overflow-hidden  h-[42px] md:h-[52px] ss:w-full md:w-[540px] md:mx-0 flex justify-between bg-slate-50 border border-solid ss:mt-5 md:mt-0 mx-auto ">
+          {/* {productDescription.map(item => (
+
+          )})} */}
+          <button
+            onClick={() => setProductDescription(true)}
+            className={`ss:w-1/2 md:w-[152px] md:h-[50px]  h-[42px] text-base text-black text-center font-AeonikProRegular not-italic ${
+              productDescription.action
+                ? ` bg-white border  border-searchBgColor rounded-lg ${dressInfo?.TextColorSeason}`
+                : ""
+            }
+                        `}
+          >
+            Описания товара
+          </button>
+          <p className="h-full text-searchBgColor flex items-center">|</p>
+          <button
+            onClick={() => setProductDescription(false)}
+            className={`ss:w-1/2 md:w-[152px] md:h-[50px]  h-[42px] text-base text-black text-center font-AeonikProRegular not-italic ${
+              !productDescription
+                ? ` bg-white border  border-searchBgColor rounded-lg ${dressInfo?.TextColorSeason}`
+                : ""
+            }
+          `}
+          >
+            Характеристики
+          </button>
+          <button
+            onClick={() => setProductDescription(false)}
+            className={`ss:w-1/2 md:w-[152px] md:h-[50px]  h-[42px] text-base text-black text-center font-AeonikProRegular not-italic ${
+              !productDescription
+                ? ` bg-white border  border-searchBgColor rounded-lg ${dressInfo?.TextColorSeason}`
+                : ""
+            }
+          `}
+          >
+            Характеристики
+          </button>
+        </article>
 
       {/* Text Items */}
       <section className="mt-12 md:mt-16 hidden md:block">
