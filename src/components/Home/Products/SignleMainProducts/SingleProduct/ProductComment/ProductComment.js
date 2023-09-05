@@ -119,17 +119,12 @@ export default function ProductComment() {
           <section className="w-full py-6 flex justify-center items-center">
             <button
               onClick={() => setOpenBox(!openBox)}
-              className={`flex cursor-pointer active:scale-95 rounded-xl px-[30px] py-[10px] border border-searchBgColor active:opacity-70 items-center gap-x-3 `}
+              className={`flex cursor-pointer active:scale-95 rounded-xl px-[30px] py-[10px] border border-searchBgColor bg-bgColor active:opacity-70 items-center gap-x-3 `}
             >
               <p
-                className={`${dressInfo?.BtnSeason} bg-transparent font-AeonikProRegular text-2xl`}
+                className={`${dressInfo?.BtnSeason} bg-transparent font-AeonikProRegular text-base`}
               >
-                Bсе комментарии
-              </p>
-              <p
-                className={`${openBox ? "rotate-[0deg]" : "rotate-[180deg]"} `}
-              >
-                <ArrowTopIcons colors={dressInfo?.ColorSeason} />
+                Показать еще...
               </p>
             </button>
           </section>
