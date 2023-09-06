@@ -108,15 +108,21 @@ const ProductDetails = () => {
   //   });
   // };
 
+  const [next, setNext] = useState()
+
+  // const handleNextArrow = e => {
+  //   setNext(e.slider.)
+  // }
+
   const NextArrow = (props) => {
     const { onClick } = props;
     return (
       <main
-        className={`absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 flex items-center justify-center top-[25%] z-10 right-[2px] rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
+        className={`absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 flex items-center justify-center top-[22.3%] z-10 right-[82px]  duration-200`}
         onClick={onClick}
       >
         <button className="next">
-          <GrFormNext size={20} />
+          <GrFormNext size={32} color="#000" />
         </button>
       </main>
     );
@@ -125,19 +131,17 @@ const ProductDetails = () => {
     const { onClick } = props;
     return (
       <main
-        className={`absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 flex items-center justify-center top-[25%] z-10 left-[2px] rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
+        className={`absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 flex items-center justify-center top-[22.3%] z-10 left-[-35px] duration-200`}
         onClick={onClick}
       >
         <button className="prev">
-          <GrFormPrevious size={20} />
+          <GrFormPrevious size={32} />
         </button>
       </main>
     );
   };
 
   let settings = {
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
     focusOnSelect: true,
     infinite: true,
     swipeToSlide: true,
@@ -422,16 +426,18 @@ const ProductDetails = () => {
           </Modal>
         </article>
         <article className="w-full flex items-center mb-[30px]">
-          <Slider
-            {...settings}
-            className="hidden md:flex md:w-[82%] h-[80px] items-center"
-          >
-            {imgGroup?.map(data => (
-              <div key={data.id} className="!w-16 h-[72px] rounded-lg cursor-pointer">
-                <img src={data.img} alt="imgs" className="w-fit h-full rounded-lg" />
-              </div>
-            ))}
-          </Slider>
+          <PrevArrow />
+            <Slider
+              {...settings}
+              className="hidden md:flex md:w-[82%] h-[80px] items-center"
+            >
+              {imgGroup?.map(data => (
+                <div key={data.id} className="!w-16 h-[72px] rounded-lg cursor-pointer">
+                  <img src={data.img} alt="imgs" className="w-fit h-full rounded-lg" />
+                </div>
+              ))}
+            </Slider>
+          <NextArrow/>
         </article>
         <article className="w-full flex items-center mb-4 text-sm">
           <button 
