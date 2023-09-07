@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaTelegramPlane } from "react-icons/fa";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { BsCircleFill } from "react-icons/bs";
-import { BasketIcons, CategoryUsersIcon, ChapterIcon, CircleWarningIcons, CopyIcon, DeliveryIcons, DiscountShapeIcons, DollorIcons, LocationColoursIcons, MarketIcons, PaymeSystemIcons, PhoneIcons, ProductArticleIcons, ProductSwitchIcons, QualityIcon, SettingsIcon, StarIcons } from "../../../../../../assets/icons";
+import { CategoryUsersIcon, ChapterIcon, CircleWarningIcons, CopyIcon, DeliveryIcons, DiscountShapeIcons, DollorIcons, LocationColoursIcons, MarketIcons, PaymeSystemIcons, PhoneIcons, ProductArticleIcons, ProductSwitchIcons, QualityIcon, SettingsIcon, StarIcons } from "../../../../../../assets/icons";
 import { summerSeason, autummSeason, winterSeason, HeartImg } from "../../../../../../assets";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { Button, Modal, Popover, Space, Table } from "antd";
+import { Modal, Popover,} from "antd";
+import AddCopyCheckedIcon from "./AddCopyCheckedIcon/AddCopyCheckedIcon";
 
 const ProductDetails = () => {
   const [dressInfo] = useContext(dressMainData);
@@ -21,6 +22,8 @@ const ProductDetails = () => {
     { id: 5, size: "XXL", sizeNumbers:'36-44' },
     { id: 6, size: "3XL", sizeNumbers:'36-44' },
     { id: 7, size: "4XL", sizeNumbers:'23-28' },
+    { id: 6, size: "5XL", sizeNumbers:'36-44' },
+    { id: 7, size: "6XL", sizeNumbers:'23-28' },
   ]);
 
   const [imgGroup] = useState([
@@ -161,7 +164,7 @@ const ProductDetails = () => {
   };
 
   const contentSize = (
-    <section className="w-[230px] h-[135px] p-[5px] ">
+    <section className="w-[220px] h-[135px] p-[5px] ">
       {SizeBtnList.map((value) => {
         return (
           <article
@@ -169,7 +172,7 @@ const ProductDetails = () => {
             className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center"
           >
               <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
-                Размер в числах:
+                Размер:
                 <span className="ml-auto">{value.size_in_numbers}</span>
               </div>
               <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
@@ -232,7 +235,9 @@ const ProductDetails = () => {
             <p className="not-italic font-AeonikProRegular  text-[14px] leading-4 text-right text-setTexOpacity tracking-[1%]">
               AA009842
             </p>
-            <span className="cursor-pointer ml-[10px] active:scale-95"><CopyIcon /></span>
+            <span className="cursor-pointer ml-[10px]">
+              <AddCopyCheckedIcon />
+            </span>
           </article>
         </section>
         <section className="w-full mb-8">
@@ -367,7 +372,9 @@ const ProductDetails = () => {
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
                 8600-0000-2345-1234
                 </p>
-                <span className="cursor-pointer ml-[10px] active:scale-95"><CopyIcon /></span>
+                <span className="cursor-pointer ml-[10px]">
+                  <AddCopyCheckedIcon />
+                </span>
               </article>
             </div>
           </div>
@@ -444,7 +451,7 @@ const ProductDetails = () => {
             type="primary" 
             onClick={() => setOpenSizeList(true)}
             className="not-italic mr-3 font-AeonikProRegular border-b border-dashed border-borderWinter md:font-AeonikProMedium text-borderWinter">
-          Таблица размеров
+            Таблица размеров
           </button>
           <Modal
              centered
@@ -504,10 +511,10 @@ const ProductDetails = () => {
                   className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
                 >
                   
-                  <p className={`not-italic font-AeonikProMedium text-base text-center text-black`} >
+                  <p className={`font-AeonikProMedium text-sm uppercase text-center text-black`} >
                     {data?.size}
                   </p>
-                  <span className="text-[13px] font-AeonikProRegular text-[#757575]">{data.sizeNumbers}</span>
+                  <span className="text-[10px] font-AeonikProRegular text-[#757575]">{data.sizeNumbers}</span>
                   
                 </Popover>
               );
@@ -529,7 +536,7 @@ const ProductDetails = () => {
               <p>
                 <DiscountShapeIcons />
               </p>
-              <p className="ml-[6px] not-italic  font-AeonikProMedium text-sm  leading-5 text-red-700">
+              <p className="ml-[6px] not-italic font-AeonikProMedium text-sm  leading-5 text-red-700">
                 -30%
               </p>
             </div>
@@ -593,11 +600,11 @@ const ProductDetails = () => {
               652 000 сум
             </p>
           </section>
-          <section className="w-[84px] h-9 md:w-[108px] md:h-11 cursor-pointer flex items-center justify-center border border-searchBgColor rounded-lg ml-8">
+          <section className="w-[84px] h-9 md:w-[100px] md:h-11 cursor-pointer flex items-center justify-center border border-searchBgColor rounded-lg ml-8 active:scale-95">
             <p>
               <DiscountShapeIcons />
             </p>
-            <p className="ml-[6px] font-AeonikProMedium text-sm md:text-[18px] text-red-700">
+            <p className="ml-[6px] font-AeonikProMedium text-sm md:text-sm text-red-700">
               -30%
             </p>
           </section>
@@ -614,10 +621,10 @@ const ProductDetails = () => {
         </article>
 
         <article className="w-full flex  items-center justify-between gap-x-3 md:gap-x-0 md:mt-6">
-          <article className="md:w-fit w-full flex items-center">
+          <article className="w-full flex items-center">
             <address className="w-[65%] md:w-fit">
               <a
-                className="w-full h-12  md:h-[52px] px-5  rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex gap-x-3 items-center justify-center bg-fullBlue"
+                className="w-[232px] h-12 md:h-[52px] px-5  rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex gap-x-3 items-center justify-center bg-fullBlue"
                 href="tel:+998 (97) 720-30-40"
               >
                 <PhoneIcons colors={"#fff"} /> Самандар
@@ -625,7 +632,7 @@ const ProductDetails = () => {
             </address>
             <address className="w-[35%] md:w-fit  ml-4">
               <a
-                className={`w-full h-12  md:h-[52px] px-5 rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center flex gap-x-3 items-center justify-center text-fullBlue border border-fullBlue`}
+                className={`w-[232px] h-12 md:h-[52px] px-5 rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center flex gap-x-3 items-center justify-center text-fullBlue border border-fullBlue`}
                 href="https://t.me/itpark_uz"
               >
                 <span className="w-7 h-7 bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
@@ -636,7 +643,7 @@ const ProductDetails = () => {
             </address>
           </article>
           <article className="w-fit md:ml-3 hidden md:block">
-            <button className="w-[52px] h-[52px] hidden md:flex items-center justify-center rounded-lg border border-searchBgColor">
+            <button className="w-[52px] h-[52px] hidden md:flex items-center justify-center rounded-xl active:scale-95 border border-searchBgColor">
               <img src={HeartImg} alt="" className="w-5 h-5" />
             </button>
           </article>
