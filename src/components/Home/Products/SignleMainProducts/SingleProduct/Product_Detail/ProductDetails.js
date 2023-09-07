@@ -143,7 +143,6 @@ const ProductDetails = () => {
       </main>
     );
   };
-
   let settings = {
     focusOnSelect: true,
     infinite: true,
@@ -152,17 +151,6 @@ const ProductDetails = () => {
     slidesToScroll: 1,
     speed: 500,
   };
-
-  const handleTypeCheck = (value) => {
-    setProductDescription((data) => {
-      return data.map((e) => {
-        if (e.id == value) {
-          return { ...e, action: true };
-        } else return { ...e, action: false };
-      });
-    });
-  };
-
   const contentSize = (
     <section className="w-[220px] h-[135px] p-[5px] ">
       {SizeBtnList.map((value) => {
@@ -192,11 +180,18 @@ const ProductDetails = () => {
       })}
     </section>
   );
-
+  const handleTypeCheck = (value) => {
+    setProductDescription((data) => {
+      return data.map((e) => {
+        if (e.id == value) {
+          return { ...e, action: true };
+        } else return { ...e, action: false };
+      });
+    });
+  };
   const onChange = (checkedValues) => {
     console.log('checked = ', checkedValues);
   };
-
 
   return (
     <main className="w-full relative h-full mt-4 md:mt-0 ">
@@ -700,8 +695,10 @@ const ProductDetails = () => {
               </div>
             </>
           ))}
-        </article>
-      
+      </article>
+      {productDescription.map(item => {
+        
+      })}
       {/* Text Items */}
       <section className="mt-12 md:mt-16 hidden md:block">
         <p className="not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]">

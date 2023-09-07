@@ -9,10 +9,12 @@ import {
 } from "../../../../../../assets/icons";
 import { ArrowTopIcons } from "../../../../../../assets/icons";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
+import { Modal } from "antd";
 
 export default function ProductComment() {
   const [dressInfo] = useContext(dressMainData);
   const [openBox, setOpenBox] = useState(false);
+  const [openComment, setOpenComment] = useState(false);
   
   const [visible, setVisible] = useState(4)
   const [comment] = useState([
@@ -103,10 +105,27 @@ export default function ProductComment() {
             <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black track%]">
               Отзывы о товаре
             </p>
-            <button type="button" className="flex items-center ml-[20px] text-SignInBgColor text-lg font-AeonikProRegular">
+            <button 
+              onClick={() => setOpenComment(true)}
+              type="button" className="flex items-center ml-[20px] text-SignInBgColor text-lg font-AeonikProRegular">
               Написать отзыв
               <span className="ml-[5px]"><ReviewIcon /></span>  
             </button>
+            <Modal
+              centered
+              open={openComment}
+              onOk={() => setOpenComment(false)}
+              onCancel={() => setOpenComment(false)}
+              footer={null}
+              className="w-full p-6"
+            >
+              <div className="w-full px-[25px] pb-[30px] pt-[60px]">
+                <textarea name="comment" id="comment" placeholder="Написать отзыв" className="w-full h-[200px] p-3 border border-[#f0f0f0] rounded-lg mb-6"></textarea>
+                <div className="w-full flex items-center justify-end">
+                  <button className="px-5 py-3 rounded-lg bg-borderWinter text-white text-base font-AeonikProMedium active:scale-95">Отправить</button>
+                  </div>
+              </div>
+            </Modal>
           </section>
           <section
             className={`flex ${
