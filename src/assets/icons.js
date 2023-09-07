@@ -2691,7 +2691,13 @@ const QualityIcon = () => {
     </svg>
   )
 }
-
+const ReviewIcon = () => {
+  return(
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8.14286 15.1023H15M13.2857 5.67378L14.1429 6.53092M14.5714 3.53092C14.7403 3.69974 14.8743 3.90018 14.9657 4.12079C15.0571 4.3414 15.1041 4.57785 15.1041 4.81663C15.1041 5.05542 15.0571 5.29187 14.9657 5.51248C14.8743 5.73309 14.7403 5.93352 14.5714 6.10235L6.42857 14.2452L3 15.1023L3.85714 11.7218L12.0034 3.53435C12.3245 3.2117 12.7552 3.02157 13.2099 3.00173C13.6647 2.98188 14.1103 3.13375 14.4583 3.42721L14.5714 3.53092Z" stroke="#007DCA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  )
+}
 export {
   ActivePersonIcons,
   ActiveHomeIcons,
@@ -2784,6 +2790,7 @@ export {
   CategoryUsersIcon,
   ChapterIcon,
   QualityIcon,
+  ReviewIcon,
 };
 
 // video

@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   CommentIcons,
   FreeStarIcon,
   NoNameIcon,
+  ReviewIcon,
   SendMessageIcon,
   StarIcons,
 } from "../../../../../../assets/icons";
@@ -12,7 +13,9 @@ import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 export default function ProductComment() {
   const [dressInfo] = useContext(dressMainData);
   const [openBox, setOpenBox] = useState(false);
-  const comment = [
+  
+  const [visible, setVisible] = useState(4)
+  const [comment] = useState([
     {
       id: 1,
       Name: "Umar",
@@ -58,23 +61,59 @@ export default function ProductComment() {
       replyDate: "19 февраля 2023 г.",
       replyText: "Спасибо за оценку, скоро появятся в продаже",
     },
-  ];
+    {
+      id: 6,
+      Name: "Ali",
+      sendDate: "21 февраля 2023 г.",
+      SendText:
+        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
+      replyDate: "19 февраля 2023 г.",
+      replyText: "Спасибо за оценку, скоро появятся в продаже",
+    },
+    {
+      id: 7,
+      Name: "Vali",
+      sendDate: "19 февраля 2023 г.",
+      SendText:
+        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
+      replyDate: "19 февраля 2023 г.",
+      replyText: "Спасибо за оценку, скоро появятся в продаже",
+    },
+    {
+      id: 9,
+      Name: "G'ani",
+      sendDate: "31 февраля 2023 г.",
+      SendText:
+        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
+      replyDate: "31 февраля 2023 г.",
+      replyText: "Спасибо за оценку, скоро появятся в продаже",
+    },
+  ]);
+
+  const showAllComments = () => {
+    setVisible(comment.length);
+  }
+
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box md:mb-[60px]">
       <section className="relative w-[100%] h-fit md:mt-6 flex justify-between ">
         {/* Desktop version of comment*/}
         <article className="w-full hidden md:block">
-          <section className="border-b border-borderColor2 pb-10">
+          <section className="flex items-center border-b border-borderColor2 pb-10">
             <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black track%]">
               Отзывы о товаре
             </p>
+            <button type="button" className="flex items-center ml-[20px] text-SignInBgColor text-lg font-AeonikProRegular">
+              Написать отзыв
+              <span className="ml-[5px]"><ReviewIcon /></span>  
+            </button>
           </section>
           <section
             className={`flex ${
               openBox ? "h-fit" : "h-[590px]"
-            }  justify-between flex-wrap   w-full h-fit overflow-hidden`}
+            } justify-between flex-wrap w-full h-fit overflow-hidden`}
           >
-            {comment.map((data) => {
+            {comment.slice(0,visible).map((data) => {
               return (
                 <article className="w-[45%] h-fit border-b border-borderColor2 pr-5 pb-10 mt-10 ">
                   <p className="not-italic font-AeonikProMedium text-xl leading-6 text-black">
@@ -118,11 +157,11 @@ export default function ProductComment() {
           </section>
           <section className="w-full py-6 flex justify-center items-center">
             <button
-              onClick={() => setOpenBox(!openBox)}
+              onClick={showAllComments}
               className={`flex cursor-pointer active:scale-95 rounded-xl px-[30px] py-[10px] border border-searchBgColor bg-bgColor active:opacity-70 items-center gap-x-3 `}
             >
               <p
-                className={`${dressInfo?.BtnSeason} bg-transparent font-AeonikProRegular text-base`}
+                className={`text-borderWinter bg-transparent font-AeonikProRegular text-base`}
               >
                 Показать еще...
               </p>
