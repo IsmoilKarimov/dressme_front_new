@@ -6,7 +6,7 @@ import { CategoryUsersIcon, ChapterIcon, CircleWarningIcons, CopyIcon, DeliveryI
 import { summerSeason, autummSeason, winterSeason, HeartImg } from "../../../../../../assets";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { Modal, Popover,} from "antd";
+import { Checkbox, Col, Modal, Popover, Row,} from "antd";
 import AddCopyCheckedIcon from "./AddCopyCheckedIcon/AddCopyCheckedIcon";
 
 const ProductDetails = () => {
@@ -192,6 +192,10 @@ const ProductDetails = () => {
       })}
     </section>
   );
+
+  const onChange = (checkedValues) => {
+    console.log('checked = ', checkedValues);
+  };
 
 
   return (
@@ -420,6 +424,7 @@ const ProductDetails = () => {
               В других локациях
           </button>
           <Modal
+            
             centered
             open={openLocationModal}
             onOk={() => setOpenLocationModal(false)}
@@ -427,9 +432,34 @@ const ProductDetails = () => {
             footer={null}
             className="w-full p-6"
           >
-            <ul className="w-full px-[25px] pb-[30px] pt-[60px]">
-              All Locations
-            </ul>
+            <div className="w-full px-[25px] pb-[30px] pt-[20px]">
+              <div className="text-2xl font-AeonikProRegular mb-[30px]">Выберите локацию</div>
+              <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">Tashkent</div>
+              <Checkbox.Group
+                style={{
+                  width: '100%',
+                }}
+                onChange={onChange}
+                >
+                <div className="w-full flex flex-wrap items-center gap-y-2">
+                  <div className="w-1/3">
+                    <Checkbox value="Bektemir">Bektemir</Checkbox>
+                  </div>
+                  <div className="w-1/3" >
+                    <Checkbox value="Mirobod">Mirobod</Checkbox>
+                  </div>
+                  <div className="w-1/3" >
+                    <Checkbox value="Mirzo Ulugbek">Mirzo Ulugbek</Checkbox>
+                  </div>
+                  <div className="w-1/3" >
+                    <Checkbox value="Yunusobod">Yunusobod</Checkbox>
+                  </div>
+                  <div className="w-1/3" >
+                    <Checkbox value="Chilonzor">Chilonzor</Checkbox>
+                  </div>
+                </div>
+              </Checkbox.Group>
+            </div>
           </Modal>
         </article>
         <article className="w-full flex items-center mb-[30px]">
@@ -524,9 +554,8 @@ const ProductDetails = () => {
             </p>
           </section>
         </article>
-
         {/* Mobile Price */}
-        <section className={`w-full h-fit py-1 mt-6 md:hidden`}>
+        <article className={`w-full h-fit py-1 mt-6 md:hidden`}>
           <article className="h-[36px] w-full flex justify-between items-center ">
             <div className="flex ">
               <DollorIcons />
@@ -559,7 +588,6 @@ const ProductDetails = () => {
               </p>
             </article>
           </article>
-
           <article className="h-fit w-full  flex items-center justify-between mb-2 gap-x-2">
             <address className="max-w-[70%] w-full ">
               <a
@@ -582,7 +610,7 @@ const ProductDetails = () => {
               </a>
             </address>
           </article>
-        </section>
+        </article>
       </section>
       
       <section className=" w-full hidden md:block md:pb-[35px] pt-[25px] md:border-b border-searchBgColor mb-12 md:mb-0">
