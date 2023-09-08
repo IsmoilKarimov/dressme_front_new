@@ -1,18 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useCallback, useContext, useRef, useState } from "react";
 import { FaTelegramPlane } from "react-icons/fa";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { BsCircleFill } from "react-icons/bs";
-import { CategoryUsersIcon, ChapterIcon, CircleWarningIcons, CopyIcon, DeliveryIcons, DiscountShapeIcons, DollorIcons, LocationColoursIcons, MarketIcons, PaymeSystemIcons, PhoneIcons, ProductArticleIcons, ProductSwitchIcons, QualityIcon, SettingsIcon, StarIcons } from "../../../../../../assets/icons";
+import { CategoryUsersIcon, ChapterIcon, CircleWarningIcons, DeliveryIcons, DiscountShapeIcons, DollorIcons, LocationColoursIcons, MarketIcons, PaymeSystemIcons, PhoneIcons, ProductArticleIcons, ProductSwitchIcons, QualityIcon, SettingsIcon, StarIcons } from "../../../../../../assets/icons";
 import { summerSeason, autummSeason, winterSeason, HeartImg } from "../../../../../../assets";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { Checkbox, Col, Modal, Popover, Row,} from "antd";
+import { Modal, Popover, Radio} from "antd";
 import AddCopyCheckedIcon from "./AddCopyCheckedIcon/AddCopyCheckedIcon";
+import LocationOfYandex from "./LocationOfYandex/LocationOfYandex";
 
 const ProductDetails = () => {
   const [dressInfo] = useContext(dressMainData);
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
+  const slider = useRef(null);
 
   const [selectSize] = useState([
     { id: 1, size: "S", sizeNumbers:'36-44' },
@@ -74,11 +76,13 @@ const ProductDetails = () => {
     },
   ]);
 
-  const [productDescription, setProductDescription] = useState([
-    {id:1, action:true, name:"Локация"},
-    {id:2, action:false, name:"Описания товара "},
-    {id:3, action:false, name:"Состав"}
-  ]);
+  // const [productDescription, setProductDescription] = useState([
+  //   {id:1, action:true, name:"Локация"},
+  //   {id:2, action:false, name:"Описания товара "},
+  //   {id:3, action:false, name:"Состав"}
+  // ]);
+
+  const [openTab, setOpenTab] = useState(1);
 
   const SizeBtnList = [
     { id: 1, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
@@ -111,38 +115,35 @@ const ProductDetails = () => {
   //   });
   // };
 
-  const [next, setNext] = useState()
 
-  // const handleNextArrow = e => {
-  //   setNext(e.slider.)
-  // }
 
-  const NextArrow = (props) => {
-    const { onClick } = props;
-    return (
-      <main
-        className={`absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 flex items-center justify-center top-[22.3%] z-10 right-[82px]  duration-200`}
-        onClick={onClick}
-      >
-        <button className="next">
-          <GrFormNext size={32} color="#000" />
-        </button>
-      </main>
-    );
-  };
-  const PrevArrow = (props) => {
-    const { onClick } = props;
-    return (
-      <main
-        className={`absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 flex items-center justify-center top-[22.3%] z-10 left-[-35px] duration-200`}
-        onClick={onClick}
-      >
-        <button className="prev">
-          <GrFormPrevious size={32} />
-        </button>
-      </main>
-    );
-  };
+  // const NextArrow = (props) => {
+  //   const { onClick } = props;
+  //   return (
+  //     <main
+  //       className={`absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 flex items-center justify-center top-[21.7%] z-10 right-[82px] duration-200`}
+  //       onClick={onClick}
+  //     >
+  //       <button className="next">
+  //         <GrFormNext size={32} color="#000" />
+  //       </button>
+  //     </main>
+  //   );
+  // };
+  // const PrevArrow = (props) => {
+  //   const { onClick } = props;
+  //   return (
+  //     <main
+  //       className={`absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 flex items-center justify-center top-[21.7%] z-10 left-[-35px] duration-200`}
+  //       onClick={onClick}
+  //     >
+  //       <button className="prev">
+  //         <GrFormPrevious size={32} />
+  //       </button>
+  //     </main>
+  //   );
+  // };
+  
   let settings = {
     focusOnSelect: true,
     infinite: true,
@@ -180,15 +181,15 @@ const ProductDetails = () => {
       })}
     </section>
   );
-  const handleTypeCheck = (value) => {
-    setProductDescription((data) => {
-      return data.map((e) => {
-        if (e.id == value) {
-          return { ...e, action: true };
-        } else return { ...e, action: false };
-      });
-    });
-  };
+  // const handleTypeCheck = (value) => {
+  //   setProductDescription((data) => {
+  //     return data.map((e) => {
+  //       if (e.id == value) {
+  //         return { ...e, action: true };
+  //       } else return { ...e, action: false };
+  //     });
+  //   });
+  // };
   const onChange = (checkedValues) => {
     console.log('checked = ', checkedValues);
   };
@@ -419,7 +420,6 @@ const ProductDetails = () => {
               В других локациях
           </button>
           <Modal
-            
             centered
             open={openLocationModal}
             onOk={() => setOpenLocationModal(false)}
@@ -430,7 +430,7 @@ const ProductDetails = () => {
             <div className="w-full px-[25px] pb-[30px] pt-[20px]">
               <div className="text-2xl font-AeonikProRegular mb-[30px]">Выберите локацию</div>
               <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">Tashkent</div>
-              <Checkbox.Group
+              <Radio.Group
                 style={{
                   width: '100%',
                 }}
@@ -438,39 +438,47 @@ const ProductDetails = () => {
                 >
                 <div className="w-full flex flex-wrap items-center gap-y-2">
                   <div className="w-1/3">
-                    <Checkbox value="Bektemir">Bektemir</Checkbox>
+                    <Radio value={"Bektemir"} name="location">Bektemir</Radio>
                   </div>
                   <div className="w-1/3" >
-                    <Checkbox value="Mirobod">Mirobod</Checkbox>
+                    <Radio value={"Mirobod"} name="location">Mirobod</Radio>
                   </div>
                   <div className="w-1/3" >
-                    <Checkbox value="Mirzo Ulugbek">Mirzo Ulugbek</Checkbox>
+                    <Radio value={"Mirzo Ulugbek"} name="location">Mirzo Ulugbek</Radio>
                   </div>
                   <div className="w-1/3" >
-                    <Checkbox value="Yunusobod">Yunusobod</Checkbox>
+                    <Radio value={"Yunusobod"} name="location">Yunusobod</Radio>
                   </div>
                   <div className="w-1/3" >
-                    <Checkbox value="Chilonzor">Chilonzor</Checkbox>
+                    <Radio value={"Chilonzor"} name="location">Chilonzor</Radio>
                   </div>
                 </div>
-              </Checkbox.Group>
+              </Radio.Group>
+              <button type="button" className="w-full flex justify-end mt-[60px] text-borderWinter text-lg font-AeonikProMedium">Готово</button>
             </div>
           </Modal>
         </article>
+        
         <article className="w-full flex items-center mb-[30px]">
-          <PrevArrow />
+          <button className="button mt-[-5px]" onClick={() => slider?.current?.slickPrev()}>
+            <GrFormPrevious size={30}/>
+          </button>
             <Slider
+              ref={slider}
               {...settings}
-              className="hidden md:flex md:w-[82%] h-[80px] items-center"
+              className="hidden md:flex md:w-[88%] h-[80px] items-center"
             >
               {imgGroup?.map(data => (
-                <div key={data.id} className="!w-16 h-[72px] rounded-lg cursor-pointer">
+                <div key={data.id} className="!w-[64px] h-[72px] rounded-lg cursor-pointer">
                   <img src={data.img} alt="imgs" className="w-fit h-full rounded-lg" />
                 </div>
               ))}
             </Slider>
-          <NextArrow/>
+          <button className="button mt-[-5px]" onClick={() => slider?.current?.slickNext()}>
+            <GrFormNext size={30}/>
+          </button>
         </article>
+
         <article className="w-full flex items-center mb-4 text-sm">
           <button 
             type="primary" 
@@ -674,107 +682,147 @@ const ProductDetails = () => {
       </section>
 
       <article className="rounded-lg overflow-hidden h-[42px] md:h-[52px] ss:w-full md:w-[540px] md:mx-0 flex justify-between bg-slate-50 border border-solid mx-auto ss:mt-5 md:mt-[15px]">
-          {productDescription.map(item => (
-            <>
-              <div 
-                key={item.id}
-                className="w-1/3 flex items-center justify-between rounded-lg"
-              >
-                <button
-                  key={item.id}
-                  onClick={() => handleTypeCheck(item.id)}
-                  className={`w-full flex items-center justify-center h-10 text-[15px] text-black text-center px-5 font-AeonikProRegular ${
-                    item.action
-                      ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg`
-                      : ""
-                  } `}
-                >
-                  <span className="mr-2">{item.icon}</span>
-                  <p>{item.name}</p>
-                </button>
-              </div>
-            </>
-          ))}
+        <div className="w-1/3 flex items-center justify-between rounded-lg" >
+          <button
+            data-toggle="tab"
+            href="#link3"
+            role="tablist" 
+            onClick={e => {
+              e.preventDefault();
+              setOpenTab(1);
+            }}
+            className={`w-full flex items-center justify-center h-10 text-[15px] text-black text-center px-5 font-AeonikProRegular ${
+              openTab === 1
+                ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg`
+                : ""
+            } `}
+          >
+            <p>Локация</p>
+          </button>
+        </div>
+        <div className="w-1/3 flex items-center justify-between rounded-lg" >
+          <button 
+            data-toggle="tab"
+            href="#link3"
+            role="tablist"
+            onClick={e => {
+              e.preventDefault();
+              setOpenTab(2);
+            }}
+            className={`w-full flex items-center justify-center h-10 text-[15px] text-black text-center px-5 font-AeonikProRegular ${
+              openTab === 2
+                ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg`
+                : ""
+            } `}
+          >
+            <p>Описания товара </p>
+          </button>
+        </div>
+        <div className="w-1/3 flex items-center justify-between rounded-lg" >
+          <button 
+            data-toggle="tab"
+            href="#link3"
+            role="tablist"
+            onClick={e => {
+              e.preventDefault();
+              setOpenTab(3);
+            }}
+            className={`w-full flex items-center justify-center h-10 text-[15px] text-black text-center px-5 font-AeonikProRegular ${
+              openTab === 3
+                ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg`
+                : ""
+            } `}
+          >
+            <p>Состав</p>
+          </button>
+        </div>    
       </article>
-      {productDescription.map(item => {
-        
-      })}
-      {/* Text Items */}
-      <section className="mt-12 md:mt-16 hidden md:block">
-        <p className="not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]">
-          Кратко о товаре
-        </p>
-        <ul className="pl-2">
-          <li
-            className={
-              "flex items-center not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]"
-            }
-          >
-            <BsCircleFill size={5} className="mx-2" /> Подошва 100% EVA
-          </li>
-          <li
-            className={
-              "flex items-center not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]"
-            }
-          >
-            <BsCircleFill size={5} className="mx-2" /> Подметка 100% резина
-            высокого трения
-          </li>
-          <li
-            className={
-              "flex items-center not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]"
-            }
-          >
-            <BsCircleFill size={5} className="mx-2" /> Нереально легкие и мягкие
-          </li>
-          <li
-            className={
-              "flex items-center not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]"
-            }
-          >
-            <BsCircleFill size={5} className="mx-2" /> Стрейчевый верх –
-            комфортные как носки
-          </li>
-          <li
-            className={
-              "flex items-center not-italic font-AeonikProRegular text-[14px] leading-7 text-black tracking-[1%]"
-            }
-          >
-            <BsCircleFill size={5} className="mx-2" /> Отличная фиксация стопы
-          </li>
-        </ul>
-      </section>
+      
+      <div className="w-full">
+          <div className={openTab === 1 ? "block" : "hidden"}>
+            <action className="mt-5 hidden md:flex">
+              <LocationOfYandex />
+            </action>
+          </div>
+          <div className={openTab === 2 ? "block" : "hidden"}>
+            <action className="mt-5 flex-col gap-y-5 hidden md:flex">
+              <action className="not-italic font-AeonikProRegular text-base">
+                Кратко о товаре
+              </action>
+              <article className="font-AeonikProRegular text-base">
+                Бренд GRN занимает №4 место в Юго-Восточной Азии, относится к ТОПовому
+                сегменту качества. Бренд GRN один из самых старейших брендов обуви и
+                одежды в Азии - был основан в 1978 году.
+              </article>
+              <article className="font-AeonikProRegular text-base">
+                Бренд GRN имеет более 12000 магазинов собственной розницы в таких
+                странах как: Китай, Япония, Вьетнам, Малайзия, Марокко, Югославия,
+                Словения, Польша.
+              </article>
+              <article className="font-AeonikProRegular text-base">
+                Бренд GRN ориентирован на выпуск высококачественной одежды и обуви для
+                спорта и для носки на каждый день.
+              </article>
+              <article className="font-AeonikProRegular text-base">
+                Суммарные объемы выпускаемой обуви – 20.000.000 пар в год, что делает
+                бренд GRN одним из самых крупных брендов не только в Азии, но и в
+                мире.
+              </article>
+              <article className="font-AeonikProRegular text-base">
+                Отличительные черты продукции GRN – высокое качество, комфортные
+                лекала и стиль.
+              </article>
+            </action>
+          </div>
+          <div className={openTab === 3 ? "block" : "hidden"}>
+            <action className="mt-12 md:mt-5 hidden md:block">
+              <ul>
+                <li
+                  className={
+                    "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
+                  }
+                >
+                  <BsCircleFill size={5} className="mx-2" /> Подошва 100% EVA
+                </li>
+                <li
+                  className={
+                    "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
+                  }
+                >
+                  <BsCircleFill size={5} className="mx-2" /> Подметка 100% резина
+                  высокого трения
+                </li>
+                <li
+                  className={
+                    "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
+                  }
+                >
+                  <BsCircleFill size={5} className="mx-2" /> Нереально легкие и мягкие
+                </li>
+                <li
+                  className={
+                    "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
+                  }
+                >
+                  <BsCircleFill size={5} className="mx-2" /> Стрейчевый верх –
+                  комфортные как носки
+                </li>
+                <li
+                  className={
+                    "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
+                  }
+                >
+                  <BsCircleFill size={5} className="mx-2" /> Отличная фиксация стопы
+                </li>
+              </ul>
+            </action>
+          </div>
+      </div>
+     
+     
+     
 
-      <section className="mt-[60px] flex-col gap-y-5 hidden md:flex">
-        <article className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
-          {" "}
-          Бренд GRN занимает №4 место в Юго-Восточной Азии, относится к ТОПовому
-          сегменту качества. Бренд GRN один из самых старейших брендов обуви и
-          одежды в Азии - был основан в 1978 году.
-        </article>
-        <article className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
-          {" "}
-          Бренд GRN имеет более 12000 магазинов собственной розницы в таких
-          странах как: Китай, Япония, Вьетнам, Малайзия, Марокко, Югославия,
-          Словения, Польша.
-        </article>
-        <article className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
-          {" "}
-          Бренд GRN ориентирован на выпуск высококачественной одежды и обуви для
-          спорта и для носки на каждый день.
-        </article>
-        <article className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
-          {" "}
-          Суммарные объемы выпускаемой обуви – 20.000.000 пар в год, что делает
-          бренд GRN одним из самых крупных брендов не только в Азии, но и в
-          мире.
-        </article>
-        <article className="not-italic font-AeonikProRegular text-lg leading-7 text-black">
-          {" "}
-          Отличительные черты продукции GRN – высокое качество, комфортные
-          лекала и стиль.
-        </article>
-      </section>
+      
     </main>
   );
 };

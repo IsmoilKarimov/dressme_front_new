@@ -83,7 +83,7 @@ const ProductCarousel = () => {
     const { onClick } = props;
     return (
       <main
-        className={`absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 flex items-center justify-center top-[50%] z-10  right-[20px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        className={`hidden absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex items-center justify-center top-[50%] z-10  right-[20px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
         onClick={onClick}
       >
         <button className="next">
@@ -97,7 +97,7 @@ const ProductCarousel = () => {
     const { onClick } = props;
     return (
       <main
-        className={`absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 flex items-center justify-center top-[50%] z-10  left-[20px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        className={`hidden absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex items-center justify-center top-[50%] z-10  left-[20px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
         onClick={onClick}
       >
         <button className="prev">
@@ -188,7 +188,7 @@ const ProductCarousel = () => {
               })}
             </Slider>
           </article>
-          <article className="widthInherit mx-auto h-[482px] md:w-[480px] md:h-[600px]">
+          <article className="group widthInherit mx-auto h-[482px] md:w-[480px] md:h-[600px]">
             <Slider
               className="w-full h-full rounded-lg"
               asNavFor={nav2}
