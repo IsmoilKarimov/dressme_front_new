@@ -66,7 +66,7 @@ export default function LocationOfYandex() {
   return (
     <div className={`w-full`}>
         <p className="text-2xl font-AeonikProRegular mb-5"><span className="font-AeonikProMedium">Адрес:</span> Ташкент, Юнусобод</p>
-        <div className={"mapRoot"}>
+        <div className={"mapRoot -z-[120]"}>
             <YMaps
             query={{
                 apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21",
