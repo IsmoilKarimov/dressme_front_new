@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import {
   CommentIcons,
   FreeStarIcon,
+  GoBackIcon,
   NoNameIcon,
   ReviewIcon,
   SendMessageIcon,
@@ -10,11 +11,12 @@ import {
 import { ArrowTopIcons } from "../../../../../../assets/icons";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { Modal } from "antd";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductComment() {
   const [dressInfo] = useContext(dressMainData);
-  const [openBox, setOpenBox] = useState(false);
   const [openComment, setOpenComment] = useState(false);
+  const navigate = useNavigate();
   
   const [visible, setVisible] = useState(4)
   const [comment] = useState([
@@ -82,7 +84,43 @@ export default function ProductComment() {
       replyText: "Спасибо за оценку, скоро появятся в продаже",
     },
     {
+      id: 8,
+      Name: "G'ani",
+      sendDate: "31 февраля 2023 г.",
+      SendText:
+        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
+      replyDate: "31 февраля 2023 г.",
+      replyText: "Спасибо за оценку, скоро появятся в продаже",
+    },
+    {
       id: 9,
+      Name: "G'ani",
+      sendDate: "31 февраля 2023 г.",
+      SendText:
+        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
+      replyDate: "31 февраля 2023 г.",
+      replyText: "Спасибо за оценку, скоро появятся в продаже",
+    },
+    {
+      id: 10,
+      Name: "G'ani",
+      sendDate: "31 февраля 2023 г.",
+      SendText:
+        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
+      replyDate: "31 февраля 2023 г.",
+      replyText: "Спасибо за оценку, скоро появятся в продаже",
+    },
+    {
+      id: 11,
+      Name: "G'ani",
+      sendDate: "31 февраля 2023 г.",
+      SendText:
+        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
+      replyDate: "31 февраля 2023 г.",
+      replyText: "Спасибо за оценку, скоро появятся в продаже",
+    },
+    {
+      id: 12,
       Name: "G'ani",
       sendDate: "31 февраля 2023 г.",
       SendText:
@@ -92,8 +130,8 @@ export default function ProductComment() {
     },
   ]);
 
-  const showAllComments = () => {
-    setVisible(comment.length);
+  const showNextComments = () => {
+    setVisible((prewValue) => prewValue + 4);
   }
 
   return (
@@ -102,6 +140,16 @@ export default function ProductComment() {
         {/* Desktop version of comment*/}
         <article className="w-full hidden md:block">
           <section className="flex items-center border-b border-borderColor2 pb-10">
+              
+              <button
+                onClick={() => {
+                  navigate(-1);
+                }}
+                className={`${showNextComments ? 'block' : 'hidden' } flex items-center cursor-pointer justify-center border border-borderColor2 rounded-lg mr-5`}
+              >
+                <GoBackIcon />
+              </button>
+             
             <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black track%]">
               Отзывы о товаре
             </p>
@@ -120,18 +168,25 @@ export default function ProductComment() {
               className="w-full p-6"
             >
               <div className="w-full px-[25px] pb-[30px] pt-[60px]">
-                <textarea name="comment" id="comment" placeholder="Написать отзыв" className="w-full h-[200px] p-3 border border-[#f0f0f0] rounded-lg mb-6"></textarea>
+                <div className="relative w-full h-[200px] p-3 border border-[#f0f0f0] rounded-lg mb-6 bg-[#fdfdfd]">
+                  <textarea name="comment" id="comment" placeholder="Написать отзыв"  className="w-full h-[148px] resize-none bg-[#fdfdfd]">
+                  </textarea>
+                  <button type="button" className="absolute right-1 w-fit flex items-center bg-[#F8F8F8] ml-auto p-[5px] rounded-md ">
+                    <StarIcons />
+                    <StarIcons />
+                    <StarIcons />
+                    <StarIcons />
+                    <StarIcons />
+                  </button>
+                </div>
                 <div className="w-full flex items-center justify-end">
                   <button className="px-5 py-3 rounded-lg bg-borderWinter text-white text-base font-AeonikProMedium active:scale-95">Отправить</button>
                   </div>
               </div>
             </Modal>
           </section>
-          <section
-            className={`flex ${
-              openBox ? "h-fit" : "h-[590px]"
-            } justify-between flex-wrap w-full h-fit overflow-hidden`}
-          >
+
+          <section className="flex justify-between flex-wrap w-full h-fit overflow-hidden" >
             {comment.slice(0,visible).map((data) => {
               return (
                 <article className="w-[45%] h-fit border-b border-borderColor2 pr-5 pb-10 mt-10 ">
@@ -176,7 +231,7 @@ export default function ProductComment() {
           </section>
           <section className="w-full py-6 flex justify-center items-center">
             <button
-              onClick={showAllComments}
+              onClick={showNextComments}
               className={`flex cursor-pointer active:scale-95 rounded-xl px-[30px] py-[10px] border border-searchBgColor bg-bgColor active:opacity-70 items-center gap-x-3 `}
             >
               <p
@@ -185,45 +240,6 @@ export default function ProductComment() {
                 Показать еще...
               </p>
             </button>
-          </section>
-
-          {/* Add comment */}
-          <section className=" mt-[60px] h-fit border border-searchBgColor rounded-lg p-[18px]">
-            <form action="">
-              <textarea
-                placeholder="Izoh qoldiring..."
-                className="font-AeonikProRegular w-full h-fit text-base mb-4"
-              >
-                Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim,
-                doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda
-                bundanda zoʻr boʻlardi. Sifatiga gap yoo. raxmat tez yetkazib
-                berishdi. Razmeri ham tochni.
-              </textarea>
-              <section className="flex items-center justify-between">
-                <div className="flex items-center ">
-                  <div className="w-[46px] h-[62px] bg-searchBgColor border border-sky-500 rounded-lg mr-2"></div>
-                  <div className="w-[46px] h-[62px] bg-searchBgColor border border-sky-500 rounded-lg mr-2"></div>
-                  <div className="w-[46px] h-[62px] bg-searchBgColor border border-sky-500 rounded-lg mr-2 flex items-center justify-center text-setTexOpacity">
-                    +2
-                  </div>
-                </div>
-                <div className="flex items-center justify-end mb-10">
-                  <span className="cursor-pointer">
-                    <NoNameIcon />
-                  </span>
-                  <div className="flex items-center p-2 rounded-xl bg-slate-50 ml-3">
-                    <FreeStarIcon />
-                    <FreeStarIcon />
-                    <FreeStarIcon />
-                    <FreeStarIcon />
-                    <FreeStarIcon />
-                  </div>
-                  <button className="cursor-pointer ml-12">
-                    <SendMessageIcon />
-                  </button>
-                </div>
-              </section>
-            </form>
           </section>
         </article>
 
@@ -257,41 +273,6 @@ export default function ProductComment() {
                 <ArrowTopIcons colors={"#000"} />
               </span>
             </button>
-          </div>
-          <div className="w-full border border-searchBgColor rounded-lg p-4">
-            <form action="">
-              <textarea
-                placeholder="Izoh qoldiring..."
-                className="font-AeonikProRegular w-full h-[150px] text-base"
-              >
-                Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim,
-                doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda
-                bundanda zoʻr boʻlardi. Sifatiga gap yoo. raxmat tez yetkazib
-                berishdi. Razmeri ham tochni.
-              </textarea>
-              <div className="flex items-center mb-10">
-                <div className="w-[46px] h-[62px] bg-searchBgColor border border-sky-500 rounded-lg mr-2"></div>
-                <div className="w-[46px] h-[62px] bg-searchBgColor border border-sky-500 rounded-lg mr-2"></div>
-                <div className="w-[46px] h-[62px] bg-searchBgColor border border-sky-500 rounded-lg mr-2 flex items-center justify-center text-setTexOpacity">
-                  +2
-                </div>
-              </div>
-              <div className="flex items-center justify-end">
-                <span className="cursor-pointer">
-                  <NoNameIcon />
-                </span>
-                <div className="flex items-center p-2 rounded-xl bg-slate-50 ml-3">
-                  <FreeStarIcon />
-                  <FreeStarIcon />
-                  <FreeStarIcon />
-                  <FreeStarIcon />
-                  <FreeStarIcon />
-                </div>
-                <span className="cursor-pointer ml-12">
-                  <SendMessageIcon />
-                </span>
-              </div>
-            </form>
           </div>
         </article>
       </section>
