@@ -2698,6 +2698,15 @@ const ReviewIcon = () => {
     </svg>
   )
 }
+const GoBackIcon = () => {
+  return(
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18.6667 9.33332L12 16L18.6667 22.6667" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+
+  )
+}
+
 export {
   ActivePersonIcons,
   ActiveHomeIcons,
@@ -2791,6 +2800,7 @@ export {
   ChapterIcon,
   QualityIcon,
   ReviewIcon,
+  GoBackIcon,
 };
 
 // video
