@@ -76,12 +76,6 @@ const ProductDetails = () => {
     },
   ]);
 
-  // const [productDescription, setProductDescription] = useState([
-  //   {id:1, action:true, name:"Локация"},
-  //   {id:2, action:false, name:"Описания товара "},
-  //   {id:3, action:false, name:"Состав"}
-  // ]);
-
   const [openTab, setOpenTab] = useState(1);
 
   const SizeBtnList = [
@@ -94,56 +88,6 @@ const ProductDetails = () => {
     // { id: 7, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
   ];
 
-  // const [selectColor, setSelectColor] = useState([
-  //   { id: 1, color: "bg-PC1", out: "outline-PC1", action: true },
-  //   { id: 2, color: "bg-PC2", out: "outline-PC2", action: false },
-  //   { id: 3, color: "bg-PC3", out: "outline-PC2", action: false },
-  //   { id: 4, color: "bg-PC4", out: "outline-PC4", action: false },
-  //   { id: 5, color: "bg-PC5", out: "outline-PC5", action: false },
-  //   { id: 6, color: "bg-PC6", out: "outline-PC6", action: false },
-  // ]);
-
-  // const [getCheckColor, setGetCheckColor] = useState("");
-  // const handleColorCheck = (value) => {
-  //   setGetCheckColor(value);
-  //   setSelectColor((data) => {
-  //     return data.map((e) => {
-  //       if (e.id === value) {
-  //         return { ...e, action: !e.action };
-  //       } else return { ...e, action: false };
-  //     });
-  //   });
-  // };
-
-
-
-  // const NextArrow = (props) => {
-  //   const { onClick } = props;
-  //   return (
-  //     <main
-  //       className={`absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 flex items-center justify-center top-[21.7%] z-10 right-[82px] duration-200`}
-  //       onClick={onClick}
-  //     >
-  //       <button className="next">
-  //         <GrFormNext size={32} color="#000" />
-  //       </button>
-  //     </main>
-  //   );
-  // };
-  // const PrevArrow = (props) => {
-  //   const { onClick } = props;
-  //   return (
-  //     <main
-  //       className={`absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 flex items-center justify-center top-[21.7%] z-10 left-[-35px] duration-200`}
-  //       onClick={onClick}
-  //     >
-  //       <button className="prev">
-  //         <GrFormPrevious size={32} />
-  //       </button>
-  //     </main>
-  //   );
-  // };
-  
   let settings = {
     focusOnSelect: true,
     infinite: true,
@@ -152,6 +96,7 @@ const ProductDetails = () => {
     slidesToScroll: 1,
     speed: 500,
   };
+
   const contentSize = (
     <section className="w-[220px] h-[135px] p-[5px] ">
       {SizeBtnList.map((value) => {
@@ -181,15 +126,7 @@ const ProductDetails = () => {
       })}
     </section>
   );
-  // const handleTypeCheck = (value) => {
-  //   setProductDescription((data) => {
-  //     return data.map((e) => {
-  //       if (e.id == value) {
-  //         return { ...e, action: true };
-  //       } else return { ...e, action: false };
-  //     });
-  //   });
-  // };
+  
   const onChange = (checkedValues) => {
     console.log('checked = ', checkedValues);
   };
@@ -199,15 +136,13 @@ const ProductDetails = () => {
       {/* Product details */}
       <section className="w-full">
         <section className="h-fit flex items-center mb-4">
-          <article className="flex items-center justify-start ">
+          <article className="hidden md:flex items-center justify-start ">
             <p className="w-fit flex items-center gap-x-[1px]">
               <StarIcons />
-              <span className="hidden md:flex">
-                <StarIcons />
-                <StarIcons />
-                <StarIcons />
-                <StarIcons />
-              </span>
+              <StarIcons />
+              <StarIcons />
+              <StarIcons />
+              <StarIcons />
             </p>
             <article className="flex items-center w-fit ml-2 text-base md:text-[14px]">
               <p className="not-italic font-AeonikProMedium mt-1 leading-4 text-black tracking-[1%]">
@@ -221,11 +156,10 @@ const ProductDetails = () => {
                 678 orders
               </p>
             </article>
-          </article>
-          <button className="w-11 h-11 flex md:hidden items-center justify-center rounded-lg border border-searchBgColor">
-            <img src={HeartImg} alt="" className="w-5 h-5" />
-          </button>
-          <article className="hidden items-center md:flex md:ml-[25px]">
+          </article>   
+
+          
+          {/* <article className="flex items-center md:ml-[25px]">
             <p>
               <ProductArticleIcons />
             </p>
@@ -238,7 +172,12 @@ const ProductDetails = () => {
             <span className="cursor-pointer ml-[10px]">
               <AddCopyCheckedIcon />
             </span>
-          </article>
+          </article> */}
+
+          {/* <button className="w-11 h-11 flex md:hidden items-center justify-center rounded-lg border border-searchBgColor">
+            <img src={HeartImg} alt="" className="w-5 h-5" />
+          </button> */}
+
         </section>
         <section className="w-full mb-8">
           <p className="not-italic font-AeonikProMedium text-xl md:text-[22px] leading-7 text-TextTitle tracking-[1%]">

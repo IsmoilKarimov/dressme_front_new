@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Slider from "react-slick";
-import { VideoStoreIcons } from "../../../../../../assets/icons";
+import { BrushColorIcons, LocationColoursIcons, VideoStoreIcons } from "../../../../../../assets/icons";
+import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 
 const ProductCarousel = () => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
+  const [dressInfo] = useContext(dressMainData);
 
   function getCurrentDimension() {
     return {
@@ -83,7 +85,7 @@ const ProductCarousel = () => {
     const { onClick } = props;
     return (
       <main
-        className={`hidden absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex items-center justify-center top-[50%] z-10  right-[20px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        className={`md:hidden absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex items-center justify-center top-[50%] z-10  right-[20px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
         onClick={onClick}
       >
         <button className="next">
@@ -92,12 +94,11 @@ const ProductCarousel = () => {
       </main>
     );
   };
-
   const PrevArrow = (props) => {
     const { onClick } = props;
     return (
       <main
-        className={`hidden absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex items-center justify-center top-[50%] z-10  left-[20px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        className={`md:hidden absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex items-center justify-center top-[50%] z-10  left-[20px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
         onClick={onClick}
       >
         <button className="prev">
@@ -253,7 +254,41 @@ const ProductCarousel = () => {
               })}
             </Slider>
           </article>
-          <article className="flex flex-row md:hidden w-full mt-4 md:mt-0">
+              
+          {/* Price For Mobile */}
+          <article className="w-full flex md:hidden items-center justify-between mb-6 mt-4">
+            <section className="w-fit flex items-center">
+              <span className="text-base font-AeonikProMedium mr-[5px]">от</span>
+              <p className="block font-AeonikProMedium text-[24px] text-black mr-[5px]">
+                452 000
+              </p>
+              <p className="font-AeonikProRegular line-through text-[16px] text-setTexOpacity">
+                652 000
+              </p>
+            </section>
+            <section
+              className={`w-fit ${dressInfo?.TextColorSeason} items-center text-sm flex ml-8`}
+            >
+              <p className="font-AeonikProRegular text-right">
+                В наличии:
+              </p>
+              <p className="ml-2 font-AeonikProMedium text-base text-right">
+                28
+              </p>
+            </section>
+          </article>
+
+
+
+
+          <article className="flex flex-col md:hidden w-full md:mt-0">
+            
+            <div className="w-full flex items-center mb-4 text-base">
+              <BrushColorIcons colors={"#000"} />
+              <p className="font-AeonikProRegular mr-2 ml-[6px]">Цвет:</p>
+              <span className="font-AeonikProMedium">Синий</span>
+            </div>
+
             <Slider
               asNavFor={nav1}
               ref={slider2}
