@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Slider from "react-slick";
-import { BrushColorIcons, LocationColoursIcons, VideoStoreIcons } from "../../../../../../assets/icons";
+import { BrushColorIcons, DiscountShapeIcons, LocationColoursIcons, VideoStoreIcons } from "../../../../../../assets/icons";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 
 const ProductCarousel = () => {
@@ -85,7 +85,7 @@ const ProductCarousel = () => {
     const { onClick } = props;
     return (
       <main
-        className={`md:hidden absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex items-center justify-center top-[50%] z-10  right-[20px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        className={`md:hidden absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex flex items-center justify-center top-[50%] z-10 right-[20px] rounded-lg md:rounded-full bg-bgColor duration-200 border  border-borderColorCard md:border-searchBgColor`}
         onClick={onClick}
       >
         <button className="next">
@@ -98,7 +98,7 @@ const ProductCarousel = () => {
     const { onClick } = props;
     return (
       <main
-        className={`md:hidden absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex items-center justify-center top-[50%] z-10  left-[20px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        className={`md:hidden absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex flex items-center justify-center top-[50%] z-10 left-[20px] rounded-lg md:rounded-full bg-bgColor duration-200 border  border-borderColorCard md:border-searchBgColor`}
         onClick={onClick}
       >
         <button className="prev">
@@ -162,7 +162,7 @@ const ProductCarousel = () => {
   return (
     <main className="w-full md:w-fit h-full">
       {screenSize.width >= 768 ? (
-        <section className="w-full flex flex-col md:flex-row md:w-fit h-[600px] md:gap-x-[10px] ">
+        <section className="w-full h-[600px] flex flex-col md:flex-row md:w-fit md:gap-x-[10px]">
           <article className=" flex w-[90px] flex-col">
             <Slider
               asNavFor={nav1}
@@ -222,7 +222,7 @@ const ProductCarousel = () => {
           </article>
         </section>
       ) : (
-        <section className="w-full flex flex-col md:flex-row md:w-fit h-[600px] md:gap-x-[10px] ">
+        <section className="w-full h-fit flex flex-col md:flex-row md:w-fit md:gap-x-[10px] ">
           <article className="widthInherit mx-auto h-[482px] md:w-[480px] md:h-[600px]">
             <Slider
               className="w-full h-full rounded-lg"
@@ -234,6 +234,12 @@ const ProductCarousel = () => {
                 return (
                   <article key={data?.id}>
                     <figure className="relative w-full h-full overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
+                      <section className="absolute w-[84px] h-9 md:w-[100px] top-3 right-3 md:h-11 cursor-pointer flex items-center justify-center bg-bgCard border border-searchBgColor rounded-lg ml-8 active:scale-95">
+                        <DiscountShapeIcons />
+                        <action className="ml-[6px] font-AeonikProMedium text-sm md:text-sm text-red-700">
+                          -30%
+                        </action>
+                      </section>
                       <img className="w-full h-fit" src={data?.img} alt="" />
                       <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                         <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
@@ -278,10 +284,7 @@ const ProductCarousel = () => {
             </section>
           </article>
 
-
-
-
-          <article className="flex flex-col md:hidden w-full md:mt-0">
+          <article className="w-full flex flex-col md:hidden md:mt-0">
             
             <div className="w-full flex items-center mb-4 text-base">
               <BrushColorIcons colors={"#000"} />
@@ -314,6 +317,7 @@ const ProductCarousel = () => {
                 );
               })}
             </Slider>
+
           </article>
         </section>
       )}
