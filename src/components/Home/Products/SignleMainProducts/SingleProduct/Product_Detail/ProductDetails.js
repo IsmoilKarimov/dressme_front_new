@@ -133,7 +133,7 @@ const ProductDetails = () => {
 
   return (
     <main className="w-full relative h-full mt-4 md:mt-0 ">
-      {/* Product details */}
+      {/* 1 */}
       <section className="w-full">
         <section className="h-fit flex items-center mb-4">
           <article className="hidden md:flex items-center justify-start ">
@@ -319,7 +319,7 @@ const ProductDetails = () => {
         </section>
       </section>
       
-      {/*  */}
+      {/* 2 */}
       <section className="w-full border-t md:border-y md:border-searchBgColor py-[25px] ">
         <article className="w-full flex items-center justify-between mb-4 text-sm font-AeonikProMedium">
           <div className="flex items-center">
@@ -538,7 +538,7 @@ const ProductDetails = () => {
         </article>
       </section>
       
-      {/* Descktop Prize Section */}
+      {/* 3 */}
       <section className=" w-full hidden md:block md:pb-[35px] pt-[25px] md:border-b border-searchBgColor mb-12 md:mb-0">
         <article className="w-full flex items-center mb-[14px] md:mb-0">
           <section className="w-fit flex items-center">
@@ -604,6 +604,7 @@ const ProductDetails = () => {
         </article>
       </section>
 
+      {/* 4 */}
       <article className="rounded-lg overflow-hidden h-[42px] md:h-[52px] ss:w-full md:w-[540px] md:mx-0 flex justify-between bg-slate-50 border border-solid mx-auto ss:mt-5 md:mt-[15px]">
         <div className="w-1/3 flex items-center justify-between rounded-lg" >
           <button
@@ -614,7 +615,7 @@ const ProductDetails = () => {
               e.preventDefault();
               setOpenTab(1);
             }}
-            className={`w-full flex items-center justify-center h-10 text-[15px] text-black text-center px-5 font-AeonikProRegular ${
+            className={`w-full flex items-center justify-center h-10 text-base text-black text-center px-5 font-AeonikProRegular ${
               openTab === 1
                 ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg`
                 : ""
@@ -632,7 +633,7 @@ const ProductDetails = () => {
               e.preventDefault();
               setOpenTab(2);
             }}
-            className={`w-full flex items-center justify-center h-10 text-[15px] text-black text-center px-5 font-AeonikProRegular ${
+            className={`w-full flex items-center justify-center h-10 text-base text-black text-center px-5 font-AeonikProRegular ${
               openTab === 2
                 ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg`
                 : ""
@@ -650,7 +651,7 @@ const ProductDetails = () => {
               e.preventDefault();
               setOpenTab(3);
             }}
-            className={`w-full flex items-center justify-center h-10 text-[15px] text-black text-center px-5 font-AeonikProRegular ${
+            className={`w-full flex items-center justify-center h-10 text-base text-black text-center px-5 font-AeonikProRegular ${
               openTab === 3
                 ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg`
                 : ""
@@ -661,6 +662,7 @@ const ProductDetails = () => {
         </div>    
       </article>
       
+      {/* 5 */}
       <div className="w-full">
         <div className={openTab === 1 ? "block" : "hidden"}>
           <action className="mt-5 hidden md:flex">
@@ -741,11 +743,7 @@ const ProductDetails = () => {
           </action>
         </div>
       </div>
-     
-     
-     
 
-      
     </main>
   );
 };

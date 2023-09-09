@@ -58,7 +58,7 @@ export default function LocationOfYandex() {
   }, []);
   return (
     <div className={`w-full`}>
-      <p className="text-2xl font-AeonikProRegular mb-5">
+      <p className="text-base font-AeonikProRegular mb-5">
         <span className="font-AeonikProMedium">Адрес:</span> Ташкент, Юнусобод
       </p>
       <div className="w-full h-[400px]">
