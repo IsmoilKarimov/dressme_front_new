@@ -157,27 +157,6 @@ const ProductDetails = () => {
               </p>
             </article>
           </article>   
-
-          
-          {/* <article className="flex items-center md:ml-[25px]">
-            <p>
-              <ProductArticleIcons />
-            </p>
-            <p className="ml-[2px] mr-[6px] not-italic font-AeonikProRegular text-[14px] leading-4 text-right text-black tracking-[1%]">
-              Article:
-            </p>
-            <p className="not-italic font-AeonikProRegular  text-[14px] leading-4 text-right text-setTexOpacity tracking-[1%]">
-              AA009842
-            </p>
-            <span className="cursor-pointer ml-[10px]">
-              <AddCopyCheckedIcon />
-            </span>
-          </article> */}
-
-          {/* <button className="w-11 h-11 flex md:hidden items-center justify-center rounded-lg border border-searchBgColor">
-            <img src={HeartImg} alt="" className="w-5 h-5" />
-          </button> */}
-
         </section>
         <section className="w-full mb-8">
           <p className="not-italic font-AeonikProMedium text-xl md:text-[22px] leading-7 text-TextTitle tracking-[1%]">
@@ -185,7 +164,7 @@ const ProductDetails = () => {
           </p>
         </section>
         
-        {/* Desktop */}
+        {/* Desktop Product Details*/}
         <section className="h-fit hidden md:flex md:flex-col items-center mb-[9px]">
           <div className="w-full flex items-center mb-4">
             <div className="w-1/2 flex items-center">
@@ -318,6 +297,7 @@ const ProductDetails = () => {
             </div>
           </div>
         </section>
+        {/* Mobile Season Side */}
         <section className="w-fit flex md:hidden items-center h-fit text-base md:text-sm mb-10 md:mb-0">
           <div className="not-italic mr-3  font-AeonikProMedium leading-4 text-black tracking-[1%]">
             Сезон:
@@ -338,6 +318,7 @@ const ProductDetails = () => {
           </figure>
         </section>
       </section>
+      
       {/*  */}
       <section className="w-full border-t md:border-y md:border-searchBgColor py-[25px] ">
         <article className="w-full flex items-center justify-between mb-4 text-sm font-AeonikProMedium">
@@ -398,6 +379,7 @@ const ProductDetails = () => {
           </Modal>
         </article>
         
+        {/* Images Slider */}
         <article className="w-full flex items-center mb-[30px]">
           <button className="button mt-[-5px]" onClick={() => slider?.current?.slickPrev()}>
             <GrFormPrevious size={30}/>
@@ -496,6 +478,7 @@ const ProductDetails = () => {
             </p>
           </section>
         </article>
+        
         {/* Mobile Price */}
         <article className={`w-full h-fit py-1 mt-6 md:hidden`}>
           <article className="h-[36px] w-full flex justify-between items-center ">
@@ -555,6 +538,7 @@ const ProductDetails = () => {
         </article>
       </section>
       
+      {/* Descktop Prize Section */}
       <section className=" w-full hidden md:block md:pb-[35px] pt-[25px] md:border-b border-searchBgColor mb-12 md:mb-0">
         <article className="w-full flex items-center mb-[14px] md:mb-0">
           <section className="w-fit flex items-center">
@@ -678,84 +662,84 @@ const ProductDetails = () => {
       </article>
       
       <div className="w-full">
-          <div className={openTab === 1 ? "block" : "hidden"}>
-            <action className="mt-5 hidden md:flex">
-              <LocationOfYandex />
+        <div className={openTab === 1 ? "block" : "hidden"}>
+          <action className="mt-5 hidden md:flex">
+            <LocationOfYandex />
+          </action>
+        </div>
+        <div className={openTab === 2 ? "block" : "hidden"}>
+          <action className="mt-5 flex-col gap-y-5 hidden md:flex">
+            <action className="not-italic font-AeonikProRegular text-base">
+              Кратко о товаре
             </action>
-          </div>
-          <div className={openTab === 2 ? "block" : "hidden"}>
-            <action className="mt-5 flex-col gap-y-5 hidden md:flex">
-              <action className="not-italic font-AeonikProRegular text-base">
-                Кратко о товаре
-              </action>
-              <article className="font-AeonikProRegular text-base">
-                Бренд GRN занимает №4 место в Юго-Восточной Азии, относится к ТОПовому
-                сегменту качества. Бренд GRN один из самых старейших брендов обуви и
-                одежды в Азии - был основан в 1978 году.
-              </article>
-              <article className="font-AeonikProRegular text-base">
-                Бренд GRN имеет более 12000 магазинов собственной розницы в таких
-                странах как: Китай, Япония, Вьетнам, Малайзия, Марокко, Югославия,
-                Словения, Польша.
-              </article>
-              <article className="font-AeonikProRegular text-base">
-                Бренд GRN ориентирован на выпуск высококачественной одежды и обуви для
-                спорта и для носки на каждый день.
-              </article>
-              <article className="font-AeonikProRegular text-base">
-                Суммарные объемы выпускаемой обуви – 20.000.000 пар в год, что делает
-                бренд GRN одним из самых крупных брендов не только в Азии, но и в
-                мире.
-              </article>
-              <article className="font-AeonikProRegular text-base">
-                Отличительные черты продукции GRN – высокое качество, комфортные
-                лекала и стиль.
-              </article>
-            </action>
-          </div>
-          <div className={openTab === 3 ? "block" : "hidden"}>
-            <action className="mt-12 md:mt-5 hidden md:block">
-              <ul>
-                <li
-                  className={
-                    "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
-                  }
-                >
-                  <BsCircleFill size={5} className="mx-2" /> Подошва 100% EVA
-                </li>
-                <li
-                  className={
-                    "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
-                  }
-                >
-                  <BsCircleFill size={5} className="mx-2" /> Подметка 100% резина
-                  высокого трения
-                </li>
-                <li
-                  className={
-                    "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
-                  }
-                >
-                  <BsCircleFill size={5} className="mx-2" /> Нереально легкие и мягкие
-                </li>
-                <li
-                  className={
-                    "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
-                  }
-                >
-                  <BsCircleFill size={5} className="mx-2" /> Стрейчевый верх –
-                  комфортные как носки
-                </li>
-                <li
-                  className={
-                    "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
-                  }
-                >
-                  <BsCircleFill size={5} className="mx-2" /> Отличная фиксация стопы
-                </li>
-              </ul>
-            </action>
-          </div>
+            <article className="font-AeonikProRegular text-base">
+              Бренд GRN занимает №4 место в Юго-Восточной Азии, относится к ТОПовому
+              сегменту качества. Бренд GRN один из самых старейших брендов обуви и
+              одежды в Азии - был основан в 1978 году.
+            </article>
+            <article className="font-AeonikProRegular text-base">
+              Бренд GRN имеет более 12000 магазинов собственной розницы в таких
+              странах как: Китай, Япония, Вьетнам, Малайзия, Марокко, Югославия,
+              Словения, Польша.
+            </article>
+            <article className="font-AeonikProRegular text-base">
+              Бренд GRN ориентирован на выпуск высококачественной одежды и обуви для
+              спорта и для носки на каждый день.
+            </article>
+            <article className="font-AeonikProRegular text-base">
+              Суммарные объемы выпускаемой обуви – 20.000.000 пар в год, что делает
+              бренд GRN одним из самых крупных брендов не только в Азии, но и в
+              мире.
+            </article>
+            <article className="font-AeonikProRegular text-base">
+              Отличительные черты продукции GRN – высокое качество, комфортные
+              лекала и стиль.
+            </article>
+          </action>
+        </div>
+        <div className={openTab === 3 ? "block" : "hidden"}>
+          <action className="mt-12 md:mt-5 hidden md:block">
+            <ul>
+              <li
+                className={
+                  "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
+                }
+              >
+                <BsCircleFill size={5} className="mx-2" /> Подошва 100% EVA
+              </li>
+              <li
+                className={
+                  "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
+                }
+              >
+                <BsCircleFill size={5} className="mx-2" /> Подметка 100% резина
+                высокого трения
+              </li>
+              <li
+                className={
+                  "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
+                }
+              >
+                <BsCircleFill size={5} className="mx-2" /> Нереально легкие и мягкие
+              </li>
+              <li
+                className={
+                  "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
+                }
+              >
+                <BsCircleFill size={5} className="mx-2" /> Стрейчевый верх –
+                комфортные как носки
+              </li>
+              <li
+                className={
+                  "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
+                }
+              >
+                <BsCircleFill size={5} className="mx-2" /> Отличная фиксация стопы
+              </li>
+            </ul>
+          </action>
+        </div>
       </div>
      
      
