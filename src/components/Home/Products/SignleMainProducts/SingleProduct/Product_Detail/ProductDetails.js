@@ -573,7 +573,6 @@ const ProductDetails = () => {
             </p>
           </section>
         </article>
-
         <article className="w-full flex  items-center justify-between gap-x-3 md:gap-x-0 md:mt-6">
           <article className="w-full flex items-center">
             <address className="w-[65%] md:w-fit">

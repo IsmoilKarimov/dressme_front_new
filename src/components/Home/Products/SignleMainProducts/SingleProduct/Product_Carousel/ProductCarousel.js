@@ -186,8 +186,8 @@ const ProductCarousel = () => {
   return (
     <main className="w-full md:w-fit h-full">
       {screenSize.width >= 768 ? (
-        <section className="w-full h-[600px] flex flex-col md:flex-row md:w-fit md:gap-x-[10px]">
-          <article className=" flex w-[90px] flex-col">
+        <section className="w-full h-[620px] flex flex-col md:flex-row md:w-fit md:gap-x-[10px]">
+          <article className="flex w-[90px] flex-col">
             <Slider
               asNavFor={nav1}
               ref={slider2}
@@ -201,7 +201,7 @@ const ProductCarousel = () => {
                 return (
                   <figure
                     key={data?.id}
-                    className="!w-[90px] cursor-pointer !h-[120px] mt-[-2.5px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center"
+                    className="!w-[90px] cursor-pointer !h-[120px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center"
                   >
                     <img
                       className="w-full h-full rounded-lg"
@@ -213,7 +213,7 @@ const ProductCarousel = () => {
               })}
             </Slider>
           </article>
-          <article className="group widthInherit mx-auto h-[482px] md:w-[480px] md:h-[600px]">
+          <article className="group mx-auto md:w-[480px] md:h-[620px]">
             <Slider
               className="w-full h-full rounded-lg"
               asNavFor={nav2}
@@ -357,7 +357,7 @@ const ProductCarousel = () => {
                   >
                     <div className="flex flex-col items-center justify-center py-1">
                       <div className="text-sm font-AeonikProMedium leading-4">{data.size_in_letters}</div>
-                      <div className="text-xs font-AeonikProRegular text-[#757575] leading-4">{data.size_in_numbers}</div>
+                      <div className="text-xs font-AeonikProRegular text-[#757575]">{data.size_in_numbers}</div>
                     </div>
                   </article>
                 );
