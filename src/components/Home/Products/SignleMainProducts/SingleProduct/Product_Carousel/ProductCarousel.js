@@ -71,6 +71,21 @@ const ProductCarousel = () => {
       img: "https://images.uzum.uz/cgl7vevhj8j9g69br4e0/original.jpg",
     },
   ]);
+
+  const [SizeBtnList] = useState([
+    { id: 1,size_in_letters:"XXS", size_in_numbers: "11-23"},
+    { id: 2,size_in_letters:"XS", size_in_numbers: "11-23"},
+    { id: 3,size_in_letters:"S", size_in_numbers: "25-36"},
+    { id: 4,size_in_letters:"M", size_in_numbers: "25-36"},
+    { id: 5,size_in_letters:"L", size_in_numbers: "36-44"},
+    { id: 6,size_in_letters:"XL", size_in_numbers: "36-44"},
+    { id: 7,size_in_letters:"XXL", size_in_numbers: "36-44"},
+    { id: 8,size_in_letters:"3XL", size_in_numbers: "36-44"},
+    { id: 9,size_in_letters:"4XL", size_in_numbers: "36-44"},
+    { id: 10,size_in_letters:"5XL", size_in_numbers: "36-44"},
+    { id: 11,size_in_letters:"6XL", size_in_numbers: "36-44"},
+  ]);
+
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
   const slider1 = useRef(null);
@@ -85,7 +100,7 @@ const ProductCarousel = () => {
     const { onClick } = props;
     return (
       <main
-        className={`md:hidden absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex flex items-center justify-center top-[50%] z-10 right-[20px] rounded-lg md:rounded-full bg-bgColor duration-200 border  border-borderColorCard md:border-searchBgColor`}
+        className={`md:hidden absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex flex items-center justify-center top-[50%] z-10 right-[20px] rounded-lg md:rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
         onClick={onClick}
       >
         <button className="next">
@@ -98,7 +113,7 @@ const ProductCarousel = () => {
     const { onClick } = props;
     return (
       <main
-        className={`md:hidden absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex flex items-center justify-center top-[50%] z-10 left-[20px] rounded-lg md:rounded-full bg-bgColor duration-200 border  border-borderColorCard md:border-searchBgColor`}
+        className={`md:hidden absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex flex items-center justify-center top-[50%] z-10 left-[20px] rounded-lg md:rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
         onClick={onClick}
       >
         <button className="prev">
@@ -157,6 +172,15 @@ const ProductCarousel = () => {
         },
       },
     ],
+  };
+  let settings2 = {
+    dots: true,
+    infinite: true,
+    swipeToSlide: true,
+    initialSlide: 0,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
   };
 
   return (
@@ -222,8 +246,9 @@ const ProductCarousel = () => {
           </article>
         </section>
       ) : (
-        <section className="w-full h-fit flex flex-col md:flex-row md:w-fit md:gap-x-[10px] ">
-          <article className="widthInherit mx-auto h-[482px] md:w-[480px] md:h-[600px]">
+       <section className="w-full h-fit flex flex-col">
+          {/* 1 */}
+          <article className="w-full widthInherit mx-auto">
             <Slider
               className="w-full h-full rounded-lg"
               asNavFor={nav2}
@@ -260,8 +285,8 @@ const ProductCarousel = () => {
               })}
             </Slider>
           </article>
-              
-          {/* Price For Mobile */}
+
+          {/* 2 */}
           <article className="w-full flex md:hidden items-center justify-between mb-6 mt-4">
             <section className="w-fit flex items-center">
               <span className="text-base font-AeonikProMedium mr-[5px]">от</span>
@@ -284,20 +309,18 @@ const ProductCarousel = () => {
             </section>
           </article>
 
-          <article className="w-full flex flex-col md:hidden md:mt-0">
-            
+          {/* 3 */}
+          <article className="w-full flex flex-col">
             <div className="w-full flex items-center mb-4 text-base">
               <BrushColorIcons colors={"#000"} />
               <p className="font-AeonikProRegular mr-2 ml-[6px]">Цвет:</p>
               <span className="font-AeonikProMedium">Синий</span>
             </div>
-
             <Slider
-              asNavFor={nav1}
+              // asNavFor={nav1}
+              // focusOnSelect={true}
               ref={slider2}
-              // slidesToShow={5}
               swipeToSlide={true}
-              focusOnSelect={true}
               vertical={false}
               {...settings1}
               className="flex flex-row flex-wrap pt-0 rounded-lg"
@@ -317,7 +340,34 @@ const ProductCarousel = () => {
                 );
               })}
             </Slider>
+          </article>
 
+          {/* 4 */}
+          <article className="w-full flex flex-col mt-4">
+            <Slider
+              // asNavFor={nav1}
+              {...settings2}
+              className="w-full flex flex-row flex-wrap rounded-lg"
+            >
+              {SizeBtnList?.map((data) => {
+                return (
+                  <article
+                    key={data?.id}
+                    className="!w-[62px] !h-[39px] cursor-pointer border border-searchBgColor rounded-lg flex items-center justify-center"
+                  >
+                    <div className="flex flex-col items-center justify-center py-1">
+                      <div className="text-sm font-AeonikProMedium leading-4">{data.size_in_letters}</div>
+                      <div className="text-xs font-AeonikProRegular text-[#757575] leading-4">{data.size_in_numbers}</div>
+                    </div>
+                  </article>
+                );
+              })}
+            </Slider>
+          </article>
+
+          {/* 5 */}
+          <article className="w-full">
+            <button className="text-[13px] font-AeonikProMedium text-borderWinter border-b border-dashed border-borderWinter mt-3">Таблица размеров</button>
           </article>
         </section>
       )}
