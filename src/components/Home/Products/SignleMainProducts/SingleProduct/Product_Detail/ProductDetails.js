@@ -15,7 +15,7 @@ const ProductDetails = () => {
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
   const slider = useRef(null);
-
+  const [openTab, setOpenTab] = useState(1);
   const [selectSize] = useState([
     { id: 1, size: "S", sizeNumbers:'36-44' },
     { id: 2, size: "M", sizeNumbers:'36-44' },
@@ -27,7 +27,6 @@ const ProductDetails = () => {
     { id: 6, size: "5XL", sizeNumbers:'36-44' },
     { id: 7, size: "6XL", sizeNumbers:'23-28' },
   ]);
-
   const [imgGroup] = useState([
     {
       id: 1,
@@ -75,9 +74,6 @@ const ProductDetails = () => {
       img: "https://images.uzum.uz/cgl7vevhj8j9g69br4e0/original.jpg",
     },
   ]);
-
-  const [openTab, setOpenTab] = useState(1);
-
   const SizeBtnList = [
     { id: 1, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
     // { id: 2, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
@@ -87,7 +83,6 @@ const ProductDetails = () => {
     // { id: 6, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
     // { id: 7, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
   ];
-
   let settings = {
     focusOnSelect: true,
     infinite: true,
@@ -96,7 +91,6 @@ const ProductDetails = () => {
     slidesToScroll: 1,
     speed: 500,
   };
-
   const contentSize = (
     <section className="w-[220px] h-[135px] p-[5px] ">
       {SizeBtnList.map((value) => {
@@ -126,15 +120,14 @@ const ProductDetails = () => {
       })}
     </section>
   );
-  
   const onChange = (checkedValues) => {
     console.log('checked = ', checkedValues);
   };
 
   return (
-    <main className="w-full relative h-full mt-4 md:mt-0 ">
+    <main className="w-full relative h-full mt-[18px] md:mt-4">
       {/* 1 */}
-      <section className="w-full">
+      <section className="w-full hidden md:block">
         <section className="h-fit flex items-center mb-4">
           <article className="hidden md:flex items-center justify-start ">
             <p className="w-fit flex items-center gap-x-[1px]">
@@ -320,23 +313,29 @@ const ProductDetails = () => {
       </section>
       
       {/* 2 */}
-      <section className="w-full border-t md:border-y md:border-searchBgColor py-[25px] ">
-        <article className="w-full flex items-center justify-between mb-4 text-sm font-AeonikProMedium">
-          <div className="flex items-center">
+      <section className="w-full md:border-t md:border-y md:border-searchBgColor md:py-[25px] ">
+        <article className="w-full flex items-center justify-between bg-[#fdfdfd] md:bg-white border-y md:border-none mb-4 text-sm font-AeonikProMedium">
+          <div className="hidden md:flex items-center">
             <ProductSwitchIcons colors={"#757575"} />
             <div className="not-italic ml-2 mr-3 font-AeonikProRegular md:font-AeonikProMedium leading-4 text-[#757575]">
               Цвет:
             </div>
             <p className="not-italic leading-4 text-[#757575]">Синий океан</p>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center py-3 md:py-0">
             <LocationColoursIcons colors={"#757575"} />
-            <p className="text-[#757575] font-AeonikProMedium ml-2">Ташкент, Юнусобод</p>
+            <p className="text-[#757575] font-AeonikProMedium text-base md:text-sm ml-[3px] md:ml-2">Ташкент, Юнусобод</p>
           </div>
           <button 
             type="primary" 
             onClick={() => setOpenLocationModal(true)}
-            className="text-borderWinter font-AeonikProMedium">
+            className="hidden md:block text-borderWinter font-AeonikProMedium">
+              В других локациях
+          </button>
+          <button 
+            type="primary" 
+            // onClick={() => setOpenLocationModal(true)}
+            className="block md:hidden text-borderWinter font-AeonikProMedium">
               В других локациях
           </button>
           <Modal
@@ -378,9 +377,32 @@ const ProductDetails = () => {
             </div>
           </Modal>
         </article>
+
+        <section className="h-fit flex items-center justify-between mb-4 md:mb-0">
+          <article className="flex md:hidden items-center justify-start ">
+            <p className="w-fit flex items-center gap-x-[1px]">
+              <StarIcons />
+            </p>
+            <article className="flex items-center w-fit ml-2 text-base md:text-[14px]">
+              <p className="not-italic font-AeonikProMedium mt-1 leading-4 text-black tracking-[1%]">
+                4.7
+              </p>
+              <p className=" pl-1 not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
+                (265)
+              </p>
+              <div className="text-setTexOpacity mx-[10px]">|</div>
+              <p className=" not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
+                678 заказов
+              </p>
+            </article>
+          </article>   
+          <button className="w-10 h-10 flex md:hidden items-center justify-center rounded-xl active:scale-95 border border-searchBgColor bg-btnBgColor">
+            <img src={HeartImg} alt="" className="w-5 h-5" />
+          </button>
+        </section>
         
         {/* Images Slider */}
-        <article className="w-full flex items-center mb-[30px]">
+        <article className="w-full hidden md:flex items-center mb-[30px]">
           <button className="button mt-[-5px]" onClick={() => slider?.current?.slickPrev()}>
             <GrFormPrevious size={30}/>
           </button>
@@ -399,8 +421,7 @@ const ProductDetails = () => {
             <GrFormNext size={30}/>
           </button>
         </article>
-
-        <article className="w-full flex items-center mb-4 text-sm">
+        <article className="w-full hidden md:flex items-center mb-4 text-sm">
           <button 
             type="primary" 
             onClick={() => setOpenSizeList(true)}
@@ -454,7 +475,7 @@ const ProductDetails = () => {
             </ul>
           </Modal>
         </article>
-        <article className="w-full flex items-center">
+        <article className="w-full hidden md:flex items-center">
           <section className="flex flex-wrap items-center gap-x-3 gap-y-3">
             {selectSize.map((data) => {
               return (
@@ -481,7 +502,7 @@ const ProductDetails = () => {
         
         {/* Mobile Price */}
         <article className={`w-full h-fit py-1 mt-6 md:hidden`}>
-          <article className="h-[36px] w-full flex justify-between items-center ">
+          {/* <article className="h-[36px] w-full flex justify-between items-center ">
             <div className="flex ">
               <DollorIcons />
               <p className="text-base font-AeonikProRegular ml-[6px]">Цена:</p>
@@ -512,7 +533,7 @@ const ProductDetails = () => {
                 284
               </p>
             </article>
-          </article>
+          </article> */}
           <article className="h-fit w-full  flex items-center justify-between mb-2 gap-x-2">
             <address className="max-w-[70%] w-full ">
               <a
