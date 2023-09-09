@@ -67,7 +67,7 @@ const SingleProduct = () => {
   }, [show, scrollPost, ShowNavMenu, ScrollPostNavMenu]);
 
   return (
-    <main className="flex flex-col  m-0 p-0 box-border">
+    <main className="flex flex-col m-0 p-0 box-border">
       <section>
         <SingleProductTop />
       </section>
