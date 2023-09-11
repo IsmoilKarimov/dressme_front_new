@@ -762,12 +762,12 @@ const ProductDetails = () => {
       {/* 5 */}
       <div className="w-full">
         <div className={openTab === 1 ? "block" : "hidden"}>
-          <action className="mt-5 hidden md:flex">
+          <action className="mt-5 flex">
             <LocationOfYandex />
           </action>
         </div>
         <div className={openTab === 2 ? "block" : "hidden"}>
-          <action className="mt-5 flex-col gap-y-5 hidden md:flex">
+          <action className="mt-5 flex-col gap-y-5 flex">
             <action className="not-italic font-AeonikProRegular text-base">
               Кратко о товаре
             </action>
@@ -797,7 +797,7 @@ const ProductDetails = () => {
           </action>
         </div>
         <div className={openTab === 3 ? "block" : "hidden"}>
-          <action className="mt-12 md:mt-5 hidden md:block">
+          <action className="mt-12 md:mt-5 block">
             <ul>
               <li
                 className={
