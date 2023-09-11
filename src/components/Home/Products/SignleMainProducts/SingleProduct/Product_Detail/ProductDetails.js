@@ -313,8 +313,9 @@ const ProductDetails = () => {
             <p className="not-italic leading-4 text-[#757575]">Синий океан</p>
           </div>
           <div className="flex items-center py-3 md:py-0">
-            <LocationColoursIcons colors={"#757575"} />
-            <p className="text-[#757575] font-AeonikProMedium text-base md:text-sm ml-[3px] md:ml-2">Ташкент, Юнусобод</p>
+            <span className="hidden md:block"><LocationColoursIcons colors={"#757575"} /></span>
+            <span className="block md:hidden"><LocationColoursIcons colors={"#303030"} /></span>
+            <p className="text-[#303030] md:text-[#757575] font-AeonikProRegular md:font-AeonikProMedium text-base md:text-sm ml-[3px] md:ml-2">Ташкент, Юнусобод</p>
           </div>
           <button 
             type="primary" 
