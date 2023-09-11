@@ -111,7 +111,7 @@ export default function LocationOfYandex() {
             "px-5 py-3 bg-borderWinter text-white font-AeonikProMedium text-base mt-[15px] rounded-lg"
           }
         >
-          Открыть на яндекс карте
+          Открыть на карте
         </NavLink>
       </div>
     </div>
