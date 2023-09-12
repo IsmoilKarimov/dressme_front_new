@@ -75,7 +75,7 @@ const SingleProduct = () => {
         <section className="w-[100%] h-fit mt-6 flex justify-between flex-col md:flex-row">
           <section
             className={`md:w-1/2 h-fit md:sticky duration-500  ${
-              show ? "visible z-[29] top-[110px]" : "visible z-[29] top-[16px]"
+              show ? "visible z-20 top-[110px]" : "visible z-20 top-[16px]"
             } `}
           >
             <ProductCarousel />
