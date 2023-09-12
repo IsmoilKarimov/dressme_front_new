@@ -1,12 +1,18 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Slider from "react-slick";
-import { BrushColorIcons, DiscountShapeIcons, LocationColoursIcons, VideoStoreIcons } from "../../../../../../assets/icons";
+import { BrushColorIcons, DiscountShapeIcons, LocationColoursIcons, MenuCloseIcons, VideoStoreIcons } from "../../../../../../assets/icons";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 
 const ProductCarousel = () => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [dressInfo] = useContext(dressMainData);
+
+  const [modalOfCarsouel, setModalOfCarsouel] = useState(false)
+  const handleClickCarosuel = (id) => {
+    console.log("handleClickCarosuel", id);
+    setModalOfCarsouel(true)
+  }
 
   function getCurrentDimension() {
     return {
@@ -122,6 +128,32 @@ const ProductCarousel = () => {
       </main>
     );
   };
+  const NextArrowModal = (props) => {
+    const { onClick } = props;
+    return (
+      <main
+        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10  right-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        onClick={onClick}
+      >
+        <button className="next">
+          <GrFormNext size={20} />
+        </button>
+      </main>
+    );
+  };
+  const PrevArrowModal = (props) => {
+    const { onClick } = props;
+    return (
+      <main
+        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10  left-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        onClick={onClick}
+      >
+        <button className="prev">
+          <GrFormPrevious size={20} />
+        </button>
+      </main>
+    );
+  };
   let settings = {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
@@ -182,6 +214,13 @@ const ProductCarousel = () => {
     slidesToShow: 5,
     slidesToScroll: 1,
   };
+  let settingsModal = {
+    nextArrow: <NextArrowModal />,
+    prevArrow: <PrevArrowModal />,
+    infinite: true,
+    dots: false,
+    speed: 500,
+  };
 
   return (
     <main className="w-full md:w-fit h-full">
@@ -213,6 +252,71 @@ const ProductCarousel = () => {
               })}
             </Slider>
           </article>
+
+          <div className="w-full block">
+            <section
+              onClick={() => setModalOfCarsouel(false)}
+              className={`fixed inset-0 z-[200] duration-200 w-full h-[100vh] bg-black opacity-60 ${modalOfCarsouel ? "" : "hidden"
+                }`}
+            ></section>
+            <section
+              className={`fixed z-[201] rounded-lg bg-white   w-fit h-fit m-auto cursor-pointer flex flex-col items-center justify-center inset-0  ${modalOfCarsouel ? "" : "hidden"
+                }`}
+            >
+              <button
+                onClick={() => setModalOfCarsouel(false)}
+                className="absolute top-0  z-[116] right-[-80px]  flex items-center justify-center w-[50px] h-[50px] rounded-full bg-[#808080]">
+                <MenuCloseIcons colors="#fff" />
+              </button>
+              <div>
+                <Slider
+                  className="w-[670px] h-[50vh] bg-white rounded-lg mt-[-4px] p-0 m-0 "
+                  asNavFor={nav2}
+                  ref={slider1}
+                  {...settingsModal}
+                >
+                  {imgGroup?.map((data) => {
+                    return (
+
+                      <img
+                        key={data?.id}
+                        className="w-[670px] h-[80vh] object-top	object-cover cursor-pointer"
+                        src={data?.img}
+                        alt=""
+                      />
+                    );
+                  })}
+                </Slider>
+              </div>
+
+            </section>
+          </div>
+          
+          {/* <section className="w-full flex flex-col flex-wrap h-[377px] gap-x-[10px]">
+            <div className="w-full h-full flex flex-col">
+              <div className="w-full h-full flex items-center">
+                <Slider
+                  className="w-full h-full rounded-lg "
+                  asNavFor={nav2}
+                  ref={slider1}
+                  {...settings}
+                >
+                  {imgGroup?.map((data) => {
+                    return (
+                      <article key={data?.id} onClick={() => handleClickCarosuel(data?.id)}>
+                        <img
+                          className="w-[350px] h-[377px] object-top	object-cover cursor-pointer"
+                          src={data?.img}
+                          alt=""
+                        />
+                      </article>
+                    );
+                  })}
+                </Slider>
+              </div>
+            </div> 
+          </section> */}
+          
           <article className="group mx-auto md:w-[480px] md:h-[620px]">
             <Slider
               className="w-full h-full rounded-lg"
