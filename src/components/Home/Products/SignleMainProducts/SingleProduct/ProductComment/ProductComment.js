@@ -9,17 +9,21 @@ import {
   StarIcons,
 } from "../../../../../../assets/icons";
 import { ArrowTopIcons } from "../../../../../../assets/icons";
-import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
-import { Modal } from "antd";
+import { Modal, Rate } from "antd";
 import { useNavigate } from "react-router-dom";
 
 export default function ProductComment() {
-  const [dressInfo] = useContext(dressMainData);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
+
   const [openComment, setOpenComment] = useState(false);
   const navigate = useNavigate();
   
-  const [visible, setVisible] = useState(4)
-  const [comment] = useState([
+  const [visibleComments, setVisibleCommnets] = useState(4)
+  const [allComments] = useState([
     {
       id: 1,
       Name: "Umar",
@@ -128,28 +132,75 @@ export default function ProductComment() {
       replyDate: "31 февраля 2023 г.",
       replyText: "Спасибо за оценку, скоро появятся в продаже",
     },
+    {
+      id: 13,
+      Name: "G'ani",
+      sendDate: "31 февраля 2023 г.",
+      SendText:
+        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
+      replyDate: "31 февраля 2023 г.",
+      replyText: "Спасибо за оценку, скоро появятся в продаже",
+    },
   ]);
 
-  const showNextComments = () => {
-    setVisible((prewValue) => prewValue + 4);
-  }
+  const showNextComments = allComments.slice(0, visibleComments).map((allComments, item) => {
+    return (
+      <article key={item} className="w-[45%] h-fit border-b border-borderColor2 pr-5 pb-10 mt-10 ">
+        <p className="not-italic font-AeonikProMedium text-xl leading-6 text-black">
+          {allComments?.Name}
+        </p>
+        <article className="flex items-center mt-3">
+          <p className="flex items-center">
+            <StarIcons />
+            <StarIcons />
+            <StarIcons />
+            <StarIcons />
+            <StarIcons />
+          </p>
+          <button className="not-italic ml-3 font-AeonikProRegular text-base leading-4 text-setTexOpacity">
+            {allComments?.sendDate}
+          </button>
+        </article>
+        <article className="mt-4">
+          <p className="not-italic font-AeonikProRegular text-base leading-4 text-black">
+            {allComments?.SendText}
+          </p>
+        </article>
+        <article className="mt-6 ml-8">
+          <article className="flex">
+            <p className="not-italic font-AeonikProMedium text-lg leading-5 text-black">
+              Nike Store Official Dealer
+            </p>
+            <p className="not-italic ml-3 font-AeonikProRegular text-base leading-4 text-setTexOpacity">
+              {allComments?.replyDate}
+            </p>
+          </article>
+          <article className="mt-4">
+            <p className="not-italic font-AeonikProRegular text-base leading-4 text-black">
+              {allComments?.replyText}
+            </p>
+          </article>
+        </article>
+      </article>
+    )
+  })
 
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box md:mb-[60px]">
-      <section className="relative w-[100%] h-fit md:mt-6 flex justify-between ">
+      <section className="relative w-[100%] h-fit md:mt-6 flex justify-between">
         {/* Desktop version of comment*/}
         <article className="w-full hidden md:block">
           <section className="flex items-center border-b border-borderColor2 pb-10">
-              
-              <button
-                onClick={() => {
-                  navigate(-1);
-                }}
-                className={`${showNextComments ? 'block' : 'hidden' } flex items-center cursor-pointer justify-center border border-borderColor2 rounded-lg mr-5`}
-              >
-                <GoBackIcon />
-              </button>
-             
+              {showNextComments.length > 4 && (
+                <button
+                  onClick={() => {
+                    navigate(-1);
+                  }}
+                  className={`flex items-center cursor-pointer justify-center border border-borderColor2 rounded-lg mr-5`}
+                >
+                  <GoBackIcon />
+                </button>
+              )}              
             <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black track%]">
               Отзывы о товаре
             </p>
@@ -171,12 +222,9 @@ export default function ProductComment() {
                 <div className="relative w-full h-[200px] p-3 border border-[#f0f0f0] rounded-lg mb-6 bg-[#fdfdfd]">
                   <textarea name="comment" id="comment" placeholder="Написать отзыв"  className="w-full h-[148px] resize-none bg-[#fdfdfd]">
                   </textarea>
+                  {/* Star Rating */}
                   <button type="button" className="absolute right-1 w-fit flex items-center bg-[#F8F8F8] ml-auto p-[5px] rounded-md ">
-                    <StarIcons />
-                    <StarIcons />
-                    <StarIcons />
-                    <StarIcons />
-                    <StarIcons />
+                    <Rate allowHalf defaultValue={2.5} />
                   </button>
                 </div>
                 <div className="w-full flex items-center justify-end">
@@ -187,64 +235,38 @@ export default function ProductComment() {
           </section>
 
           <section className="flex justify-between flex-wrap w-full h-fit overflow-hidden" >
-            {comment.slice(0,visible).map((data) => {
-              return (
-                <article className="w-[45%] h-fit border-b border-borderColor2 pr-5 pb-10 mt-10 ">
-                  <p className="not-italic font-AeonikProMedium text-xl leading-6 text-black">
-                    {data?.Name}
-                  </p>
-                  <article className="flex items-center mt-3">
-                    <p className="flex items-center">
-                      <StarIcons />
-                      <StarIcons />
-                      <StarIcons />
-                      <StarIcons />
-                      <StarIcons />
-                    </p>
-                    <button className="not-italic ml-3 font-AeonikProRegular text-base leading-4 text-setTexOpacity">
-                      {data?.sendDate}
-                    </button>
-                  </article>
-                  <article className="mt-4">
-                    <p className="not-italic font-AeonikProRegular text-base leading-4 text-black">
-                      {data?.SendText}
-                    </p>
-                  </article>
-                  <article className="mt-6 ml-8">
-                    <article className="flex">
-                      <p className="not-italic font-AeonikProMedium text-lg leading-5 text-black">
-                        Nike Store Official Dealer
-                      </p>
-                      <p className="not-italic ml-3 font-AeonikProRegular text-base leading-4 text-setTexOpacity">
-                        {data?.replyDate}
-                      </p>
-                    </article>
-                    <article className="mt-4">
-                      <p className="not-italic font-AeonikProRegular text-base leading-4 text-black">
-                        {data?.replyText}
-                      </p>
-                    </article>
-                  </article>
-                </article>
-              );
-            })}
+            {showNextComments}
           </section>
           <section className="w-full py-6 flex justify-center items-center">
-            <button
-              onClick={showNextComments}
-              className={`flex cursor-pointer active:scale-95 rounded-xl px-[30px] py-[10px] border border-searchBgColor bg-bgColor active:opacity-70 items-center gap-x-3 `}
-            >
-              <p
-                className={`text-borderWinter bg-transparent font-AeonikProRegular text-base`}
+            {allComments.length !== showNextComments.length  
+            ? (
+              <button
+                type="button"
+                onClick={() => {setVisibleCommnets((prev) => prev + 4)}}
+                // ${allComments.length === showNextComments.length }
+                className={`flex active:scale-95 active:opacity-70 rounded-xl px-[30px] py-[10px] border border-searchBgColor bg-bgColor items-center gap-x-3 `}
+              >                
+                <p className={`text-borderWinter bg-transparent font-AeonikProRegular text-base`}>
+                  Показать еще...
+                </p>
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={showNextComments}
+                className={`flex opacity-60 cursor-text rounded-xl px-[30px] py-[10px] border border-searchBgColor bg-bgColor items-center gap-x-3 `}
               >
-                Показать еще...
-              </p>
-            </button>
+                  <p className={`text-borderWinter bg-transparent font-AeonikProRegular text-base`}>
+                    Свернуть...
+                  </p>
+              </button>
+                
+            )}
           </section>
         </article>
 
         {/* Mobile version of comment */}
-        <article className="w-full block md:hidden">
+        <article className="w-full block md:hidden mt-5">
           <span className="text-base font-AeonikProMedium">Отзывы</span>
           <div className="w-full border border-searchBgColor rounded-lg mb-[34px]">
             <div className="flex items-center justify-between p-4">
