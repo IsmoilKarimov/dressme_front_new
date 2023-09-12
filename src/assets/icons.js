@@ -1146,32 +1146,6 @@ const MyPurchaseIcons = ({ colors }) => {
     </svg>
   );
 };
-const MenuCloseIcons = () => {
-  return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M18.3596 18.36L5.63965 5.64001"
-        stroke="black"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="bevel"
-      />
-      <path
-        d="M18.3596 5.64001L5.63965 18.36"
-        stroke="black"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="bevel"
-      />
-    </svg>
-  );
-};
 const MenuOpenIcons = () => {
   return (
     <svg
@@ -2649,7 +2623,6 @@ const CopyIcon = () => {
 
   )
 }
-
 const SettingsIcon = () => {
   return(
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2706,6 +2679,32 @@ const GoBackIcon = () => {
 
   )
 }
+const MenuCloseIcons = ({ colors }) => {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M18.3596 18.36L5.63965 5.64001"
+        stroke={colors}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="bevel"
+      />
+      <path
+        d="M18.3596 5.64001L5.63965 18.36"
+        stroke={colors}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="bevel"
+      />
+    </svg>
+  );
+};
 
 export {
   ActivePersonIcons,
