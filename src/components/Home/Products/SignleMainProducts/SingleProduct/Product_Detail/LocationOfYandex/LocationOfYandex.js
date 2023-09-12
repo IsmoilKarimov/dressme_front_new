@@ -61,7 +61,7 @@ export default function LocationOfYandex() {
       <p className="text-base font-AeonikProRegular mb-5">
         <span className="font-AeonikProMedium">Адрес:</span> Ташкент, Юнусобод
       </p>
-      <div className="w-full h-[400px]">
+      <div className="w-full h-[200px] md:h-[400px]">
         <YMaps
           query={{
             apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21",
@@ -76,14 +76,14 @@ export default function LocationOfYandex() {
             onBoundsChange={handleBoundsChange}
             instanceRef={mapRef}
           >
-            <div className="h-fit p-1 md:p-[10px] absolute top-2 z-40 gap-x-5 mx-1 md:mx-2   left-0 right-0 flex items-center justify-between md:px-3 rounded-lg">
+            <div className="h-fit gap-x-5 mx-1 md:mx-2 left-0 right-0 flex items-center justify-between md:px-3 rounded-lg">
               <label
                 htmlFor="ForSearch"
                 className="w-[100%] h-full flex items-center justify-between "
               >
                 <input
                   ref={searchRef}
-                  className="w-full hidden outline-none text-sm font-AeonikProMedium mr-3 h-10  rounded-lg "
+                  className="w-full hidden outline-none text-sm font-AeonikProMedium mr-3 h-10 rounded-lg "
                 />
               </label>
             </div>
@@ -108,7 +108,7 @@ export default function LocationOfYandex() {
         <NavLink
           to="/delivery-points"
           className={
-            "px-5 py-3 bg-borderWinter text-white font-AeonikProMedium text-base mt-[15px] rounded-lg"
+            "w-full md:w-fit text-center px-5 py-[10px] md:py-3 bg-borderWinter text-white font-AeonikProMedium text-xs md:text-base mt-[15px] rounded-lg"
           }
         >
           Открыть на карте

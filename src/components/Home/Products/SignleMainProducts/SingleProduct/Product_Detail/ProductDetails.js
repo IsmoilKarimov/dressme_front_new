@@ -154,9 +154,12 @@ const ProductDetails = () => {
                 <span className="mr-[6px]"><ProductArticleIcons /></span>
                 <span className="text-sm font-AeonikProRegular leading-4 tracking-[1%]">Артикль:</span>
                 <span className="text-sm font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]">AA009842</span>
-                <span className="cursor-pointer ml-[10px]">
+                <button 
+                  type="button"
+                  onClick={navigator.clipboard.writeText("AA009842")}
+                  className="cursor-pointer ml-[10px]">
                   <AddCopyCheckedIcon />
-                </span>
+                </button>
               </div>
             </article>
           </article>   
@@ -293,9 +296,12 @@ const ProductDetails = () => {
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
                 8600-0000-2345-1234
                 </p>
-                <span className="cursor-pointer ml-[10px]">
+                <button 
+                  type="button"
+                  onClick={navigator.clipboard.writeText("8600-0000-2345-1234")}
+                  className="cursor-pointer ml-[10px]">
                   <AddCopyCheckedIcon />
-                </span>
+                </button>
               </article>
             </div>
           </div>

@@ -259,24 +259,10 @@ const ProductCarousel = () => {
                 return (
                   <article key={data?.id}>
                     <figure className="relative w-full h-full overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
-                      <section className="absolute w-[84px] h-9 md:w-[100px] top-3 right-3 md:h-11 cursor-pointer flex items-center justify-center bg-bgCard border border-searchBgColor rounded-lg ml-8 active:scale-95">
-                        <DiscountShapeIcons />
-                        <action className="ml-[6px] font-AeonikProMedium text-sm md:text-sm text-red-700">
-                          -30%
-                        </action>
-                      </section>
                       <img className="w-full h-fit" src={data?.img} alt="" />
                       <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                         <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
                           <p> {data.id}</p>/<p>{imgGroup.length}</p>
-                        </span>
-                        <span className="w-fit flex items-center p-2 gap-x-2 rounded-lg bg-bgCard border border-searchBgColor">
-                          <p className="flex items-center ">
-                            <VideoStoreIcons />
-                          </p>
-                          <p className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-black">
-                            Видео
-                          </p>
                         </span>
                       </figcaption>
                     </figure>
