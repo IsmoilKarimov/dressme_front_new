@@ -83,9 +83,6 @@ const SingleProduct = () => {
           <section className="w-full md:w-1/2 h-full ">
             <ProductDetails />
           </section>
-          <section className="block md:hidden w-full">
-            <AboutProduct />
-          </section>
         </section>
         {/* Products Comment */}
         <section className="md:mt-20 w-full">
@@ -94,7 +91,7 @@ const SingleProduct = () => {
         <section className="w-full h-fit  ">
           <article className="w-full mt-[34px] md:mt-[120px]">
             <div className="md:mb-10">
-              <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black">
+              <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black mb-3 md:mb-0">
                 Похожие продукты
               </p>
             </div>
