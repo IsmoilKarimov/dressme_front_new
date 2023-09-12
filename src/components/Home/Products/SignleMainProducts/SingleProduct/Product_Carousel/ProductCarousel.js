@@ -206,7 +206,7 @@ const ProductCarousel = () => {
     ],
   };
   let settings2 = {
-    dots: true,
+    dots: false,
     infinite: true,
     swipeToSlide: true,
     initialSlide: 0,
@@ -256,23 +256,23 @@ const ProductCarousel = () => {
           <div className="w-full block">
             <section
               onClick={() => setModalOfCarsouel(false)}
-              className={`fixed inset-0 z-[200] duration-200 w-full h-[100vh] bg-black opacity-60 ${modalOfCarsouel ? "" : "hidden"
+              className={`fixed inset-0 z-40 duration-200 w-full h-[100vh] bg-black opacity-60 ${modalOfCarsouel ? "" : "hidden"
                 }`}
             ></section>
             <section
-              className={`fixed z-[201] rounded-lg bg-white   w-fit h-fit m-auto cursor-pointer flex flex-col items-center justify-center inset-0  ${modalOfCarsouel ? "" : "hidden"
+              className={`fixed z-40 rounded-lg bg-white w-fit h-fit m-auto cursor-pointer flex flex-col items-center justify-center inset-0  ${modalOfCarsouel ? "" : "hidden"
                 }`}
             >
               <button
                 onClick={() => setModalOfCarsouel(false)}
-                className="absolute top-0  z-[116] right-[-80px]  flex items-center justify-center w-[50px] h-[50px] rounded-full bg-[#808080]">
+                className="absolute top-0 z-40 right-[-80px]  flex items-center justify-center w-[50px] h-[50px] rounded-full bg-[#808080]">
                 <MenuCloseIcons colors="#fff" />
               </button>
               <div>
                 <Slider
-                  className="w-[670px] h-[50vh] bg-white rounded-lg mt-[-4px] p-0 m-0 "
-                  asNavFor={nav2}
-                  ref={slider1}
+                  className="w-[670px] h-[850px] bg-white rounded-lg mt-[-4px] p-0 m-0 "
+                  // asNavFor={nav2}
+                  // ref={slider1}
                   {...settingsModal}
                 >
                   {imgGroup?.map((data) => {
@@ -280,7 +280,7 @@ const ProductCarousel = () => {
 
                       <img
                         key={data?.id}
-                        className="w-[670px] h-[80vh] object-top	object-cover cursor-pointer"
+                        className="w-[670px] h-fit object-top	object-cover cursor-pointer"
                         src={data?.img}
                         alt=""
                       />
@@ -292,31 +292,6 @@ const ProductCarousel = () => {
             </section>
           </div>
           
-          {/* <section className="w-full flex flex-col flex-wrap h-[377px] gap-x-[10px]">
-            <div className="w-full h-full flex flex-col">
-              <div className="w-full h-full flex items-center">
-                <Slider
-                  className="w-full h-full rounded-lg "
-                  asNavFor={nav2}
-                  ref={slider1}
-                  {...settings}
-                >
-                  {imgGroup?.map((data) => {
-                    return (
-                      <article key={data?.id} onClick={() => handleClickCarosuel(data?.id)}>
-                        <img
-                          className="w-[350px] h-[377px] object-top	object-cover cursor-pointer"
-                          src={data?.img}
-                          alt=""
-                        />
-                      </article>
-                    );
-                  })}
-                </Slider>
-              </div>
-            </div> 
-          </section> */}
-          
           <article className="group mx-auto md:w-[480px] md:h-[620px]">
             <Slider
               className="w-full h-full rounded-lg"
@@ -326,7 +301,10 @@ const ProductCarousel = () => {
             >
               {imgGroup?.map((data) => {
                 return (
-                  <article key={data?.id}>
+                  <article 
+                    key={data?.id}
+                    onClick={() => handleClickCarosuel(data?.id)}  
+                  >
                     <figure className="relative w-full h-full overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
                       <img className="w-full h-fit" src={data?.img} alt="" />
                       <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
