@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import { BrushColorIcons, DiscountShapeIcons, LocationColoursIcons, MenuCloseIcons, VideoStoreIcons } from "../../../../../../assets/icons";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 
-const ProductCarousel = () => {
+const ProductCarousel = ({show}) => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [dressInfo] = useContext(dressMainData);
 
@@ -132,7 +132,7 @@ const ProductCarousel = () => {
     const { onClick } = props;
     return (
       <main
-        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10  right-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10  right-[30px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
         onClick={onClick}
       >
         <button className="next">
@@ -145,7 +145,7 @@ const ProductCarousel = () => {
     const { onClick } = props;
     return (
       <main
-        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10  left-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10 left-[30px] rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
         onClick={onClick}
       >
         <button className="prev">
@@ -224,8 +224,52 @@ const ProductCarousel = () => {
 
   return (
     <main className="w-full md:w-fit h-full">
+      
+      <div className="w-full block">
+        <section
+          onClick={() => setModalOfCarsouel(false)}
+          className={`fixed inset-0 z-[200] duration-200 w-full h-[100vh] bg-black opacity-60  ${modalOfCarsouel ? "" : "hidden"
+            }`}
+        ></section>
+        <section
+          className={`fixed z-[201] rounded-lg bg-white w-fit h-fit m-auto cursor-pointer flex flex-col items-center justify-center inset-0 ${modalOfCarsouel ? "" : "hidden"
+            }`}
+        >
+          <button
+            onClick={() => setModalOfCarsouel(false)}
+            className="absolute top-0 z-40 right-[-80px]  flex items-center justify-center w-[50px] h-[50px] rounded-full bg-[#808080]">
+            <MenuCloseIcons colors="#fff" />
+          </button>
+          <div>
+            <Slider
+              className="w-[670px] h-[850px] bg-white rounded-lg mt-[-4px] p-0 m-0 "
+              // asNavFor={nav2}
+              // ref={slider1}
+              {...settingsModal}
+            >
+              {imgGroup?.map((data) => {
+                return (
+
+                  <img
+                    key={data?.id}
+                    className="w-[670px] h-fit object-top	object-cover cursor-pointer"
+                    src={data?.img}
+                    alt=""
+                  />
+                );
+              })}
+            </Slider>
+          </div>
+
+        </section>
+      </div>
+
       {screenSize.width >= 768 ? (
-        <section className="w-full h-[620px] flex flex-col md:flex-row md:w-fit md:gap-x-[10px]">
+        <section className={` w-full h-[620px] flex flex-col md:flex-row md:gap-x-[10px]
+        md:w-1/2  md:sticky duration-500 ${
+          show ? "visible z-20 top-[110px]" : "visible z-20 top-[16px]"
+        }
+        `}>
           <article className="flex w-[90px] flex-col">
             <Slider
               asNavFor={nav1}
@@ -252,45 +296,6 @@ const ProductCarousel = () => {
               })}
             </Slider>
           </article>
-
-          <div className="w-full block">
-            <section
-              onClick={() => setModalOfCarsouel(false)}
-              className={`fixed inset-0 z-40 duration-200 w-full h-[100vh] bg-black opacity-60 ${modalOfCarsouel ? "" : "hidden"
-                }`}
-            ></section>
-            <section
-              className={`fixed z-40 rounded-lg bg-white w-fit h-fit m-auto cursor-pointer flex flex-col items-center justify-center inset-0  ${modalOfCarsouel ? "" : "hidden"
-                }`}
-            >
-              <button
-                onClick={() => setModalOfCarsouel(false)}
-                className="absolute top-0 z-40 right-[-80px]  flex items-center justify-center w-[50px] h-[50px] rounded-full bg-[#808080]">
-                <MenuCloseIcons colors="#fff" />
-              </button>
-              <div>
-                <Slider
-                  className="w-[670px] h-[850px] bg-white rounded-lg mt-[-4px] p-0 m-0 "
-                  // asNavFor={nav2}
-                  // ref={slider1}
-                  {...settingsModal}
-                >
-                  {imgGroup?.map((data) => {
-                    return (
-
-                      <img
-                        key={data?.id}
-                        className="w-[670px] h-fit object-top	object-cover cursor-pointer"
-                        src={data?.img}
-                        alt=""
-                      />
-                    );
-                  })}
-                </Slider>
-              </div>
-
-            </section>
-          </div>
           
           <article className="group mx-auto md:w-[480px] md:h-[620px]">
             <Slider

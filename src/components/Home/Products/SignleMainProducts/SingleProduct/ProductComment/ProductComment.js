@@ -13,11 +13,12 @@ import { Modal, Rate } from "antd";
 import { useNavigate } from "react-router-dom";
 
 export default function ProductComment() {
-  useEffect(() => {
+  
+  const handleTop = () => {
     window.scrollTo({
       top: 0,
     });
-  }, []);
+  }
 
   const [openComment, setOpenComment] = useState(false);
   const navigate = useNavigate();
@@ -185,6 +186,11 @@ export default function ProductComment() {
     )
   })
 
+  const handleReturn = () => {
+    setVisibleCommnets(4) 
+    handleTop() 
+  }
+
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box md:mb-[60px]">
       <section className="relative w-[100%] h-fit md:mt-6 flex justify-between">
@@ -193,9 +199,7 @@ export default function ProductComment() {
           <section className="flex items-center border-b border-borderColor2 pb-10">
               {showNextComments.length > 4 && (
                 <button
-                  onClick={() => {
-                    navigate(-1);
-                  }}
+                  onClick={handleReturn}
                   className={`flex items-center cursor-pointer justify-center border border-borderColor2 rounded-lg mr-5`}
                 >
                   <GoBackIcon />
@@ -253,8 +257,8 @@ export default function ProductComment() {
             ) : (
               <button
                 type="button"
-                onClick={showNextComments}
-                className={`flex opacity-60 cursor-text rounded-xl px-[30px] py-[10px] border border-searchBgColor bg-bgColor items-center gap-x-3 `}
+                onClick={handleReturn}
+                className={`flex rounded-xl px-[30px] py-[10px] border border-searchBgColor bg-bgColor items-center gap-x-3 `}
               >
                   <p className={`text-borderWinter bg-transparent font-AeonikProRegular text-base`}>
                     Свернуть...
