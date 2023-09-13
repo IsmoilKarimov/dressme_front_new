@@ -59,8 +59,8 @@ const Header = () => {
             </article>
             <article className={`fixed top-0  w-full bg-white hidden md:block
               ${ show
-                ? "visible duration-500 z-20"
-                : "visible duration-500 z-20 translate-y-[-100%]"
+                ? "visible duration-500 z-[25]"
+                : "visible duration-500 z-[25] translate-y-[-100%]"
               }`
             }
           >
