@@ -6,9 +6,10 @@ import "./style.css";
 import InputMask from "react-input-mask";
 import { useMutation } from "@tanstack/react-query";
 import { NavLink, useNavigate } from "react-router-dom";
-const { REACT_APP_BASE_URL: url } = process.env;
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const SignUpSeller = () => {
+  const { REACT_APP_BASE_URL: url } = process.env;
   const navigate = useNavigate()
   const [naturalPerson, setNaturalPerson] = useState(true);
   const [state, setState] = useState({
@@ -113,31 +114,83 @@ const SignUpSeller = () => {
 
       mutate({}, {
         onSuccess: (res) => {
+          console.log(res, "res");
           if (res?.emailToken) {
             localStorage.setItem("emailToken", res?.emailToken);
             navigate("/login-seller")
-
+            setState({ ...state, email: "", password: "", firstName: "", lastName: "", region: "", sub_region: "", cardNumber: "", phone: "" });
+            toast.success("Muaffaqiyatli kirdingiz", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
           } else {
             setState({ ...state, error: "Email yoki parolda xatolik" });
+            toast.error("Email yoki parolda xatolik", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
           }
         },
         onError: (err) => {
-          console.log(err, "err");
-
+          toast.error("Serverda xatolik", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         },
         onSettled: (onSett) => {
-          console.log(onSett, "onSett");
+          // console.log(onSett, "onSett");
         }
 
       })
     } else {
       setState({ ...state, error: "Bush maydon junatish mumkin emas" });
+      toast.warning("Iltimos Malumotlarni kiriting", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   }
 
 
   return (
     <div className="max-w-[1280px] w-full flex justify-center items-center m-auto">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        limit={4}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <div className="w-full h-fit px-4 md:px-0">
         <div className="text-xl md:text-3xl font-medium mt-[20px] mb-[30px] text-center">
           Регистрация продавца
@@ -496,7 +549,7 @@ const SignUpSeller = () => {
 
         </div>
         <div>
-          {state?.error?.length ? <span className="text-RedColor">{state?.error}</span> : null}
+          {state?.error?.length ? <span className="text-RedColor mt-1 text-[12px]">{state?.error}</span> : null}
         </div>
         <div className="flex items-center justify-center flex-col mt-[50px] md:mt-[90px]  mb-[88px] md:mb-8">
           <button type="button" onClick={onSubmit} className="w-full md:w-[360px] h-12 flex items-center justify-center mx-auto font-medium bg-fullBlue text-base text-white rounded-xl  ">
