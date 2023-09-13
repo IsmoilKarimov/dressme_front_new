@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { nike } from "../../../../../AssetsMain";
+import { nike } from "../../../../../assets";
 import {
   ArrowTopIcons,
   ClothesIcons,
@@ -10,7 +10,7 @@ import {
   StarIcons,
   VideoStoreIcons,
   WomanGenIcons,
-} from "../../../../../AssetsMain/icons";
+} from "../../../../../assets/icons";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useContext, useState } from "react";
@@ -243,7 +243,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                       className="flex items-center justify-center w-12 h-12 rounded-lg border border-searchBgColor cursor-pointer"
                     >
                       <span>
-                        <LocationColoursIcons colors={dressInfo?.ColorSeason} />
+                        <LocationColoursIcons colors={"#007DCA"} />
                       </span>
                     </NavLink>
                     <p
@@ -272,10 +272,10 @@ const ShoppingStoreOfficialTop = ({ name }) => {
             <div className="w-fit flex gap-x-7 items-center">
               <a className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons colors={dressInfo?.ColorSeason} />
+                  <LocationColoursIcons colors={"#007DCA"} />
                 </p>
                 <p
-                  className={`text-base not-italic font-AeonikProRegular  ${dressInfo?.TextColorSeason}`}
+                  className={`text-base not-italic font-AeonikProRegular  text-borderWinter`}
                 >
                   {" "}
                   Мирзо Улугбек
@@ -283,10 +283,10 @@ const ShoppingStoreOfficialTop = ({ name }) => {
               </a>
               <a className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons colors={dressInfo?.ColorSeason} />
+                  <LocationColoursIcons colors={"#007DCA"} />
                 </p>
                 <p
-                  className={`text-base not-italic font-AeonikProRegular  ${dressInfo?.TextColorSeason}`}
+                  className={`text-base not-italic font-AeonikProRegular  text-borderWinter`}
                 >
                   {" "}
                   Юнусабад{" "}
@@ -294,10 +294,10 @@ const ShoppingStoreOfficialTop = ({ name }) => {
               </a>
               <a className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons colors={dressInfo?.ColorSeason} />
+                  <LocationColoursIcons colors={"#007DCA"} />
                 </p>
                 <p
-                  className={`text-base not-italic font-AeonikProRegular  ${dressInfo?.TextColorSeason}`}
+                  className={`text-base not-italic font-AeonikProRegular  text-borderWinter`}
                 >
                   {" "}
                   Алмазар{" "}
@@ -305,16 +305,16 @@ const ShoppingStoreOfficialTop = ({ name }) => {
               </a>
               <a className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons colors={dressInfo?.ColorSeason} />
+                  <LocationColoursIcons colors={"#007DCA"} />
                 </p>
                 <p
-                  className={`text-base not-italic font-AeonikProRegular  ${dressInfo?.TextColorSeason}`}
+                  className={`text-base not-italic font-AeonikProRegular  text-borderWinter`}
                 >
                   {" "}
                   Чиланзар{" "}
                 </p>
               </a>
-              <button className={`${dressInfo?.TextColorSeason} underline`}>
+              <button className={`text-borderWinter underline`}>
                 Все локации
               </button>
             </div>

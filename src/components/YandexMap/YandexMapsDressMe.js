@@ -1,26 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
 
-import {
-  YMaps,
-  Map,
-  ZoomControl,
-  GeolocationControl,
-  Placemark,
-  Clusterer,
-} from "react-yandex-maps";
+import { YMaps, Map, ZoomControl, GeolocationControl, Placemark, Clusterer } from "react-yandex-maps";
 
 import "./yandex.css";
 import YandexMapsIndex from "./YandexMapsNavbar/YandexMapsIndex";
 import { dressMainData } from "../../ContextHook/ContextMenu";
-import { GrFormDown } from "react-icons/gr";
 import NavbarTopOpenMenu from "./YandexMapsNavbar/NavbarTopOpenMenu";
 import { Link, NavLink } from "react-router-dom";
 import ScrollFilter from "./YandexMapsNavbar/ScrollFilter";
 import {
   ArrowTopIcons,
-  ClockIcons,
-  ClothesHangIcons,
-  ClothesIcons,
   CommentIcons,
   FullScreenMapsIcons,
   HouseStatisticIcons,
@@ -30,13 +19,11 @@ import {
   MarketIcons,
   MaximazeMapsIcons,
   MenuCloseIcons,
-  MenuOpenIcons,
   PhoneIcons,
   SearchIcons,
-  StarIcons,
   VolumeIcons,
-} from "../../AssetsMain/icons";
-import { UzbekFlag, locationIcons, markerIcons } from "../../AssetsMain";
+} from "../../assets/icons";
+import { UzbekFlag, locationIcons, markerIcons } from "../../assets";
 import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationMarketOpen";
 
 function YandexMapsDressMe() {
@@ -59,6 +46,7 @@ function YandexMapsDressMe() {
   }, [screenSize]);
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  
   const wearGroup = [
     { id: 1, name: "Футболки" },
     { id: 2, name: "Рубашки" },
@@ -75,10 +63,7 @@ function YandexMapsDressMe() {
     { id: 13, name: "Ремень" },
   ];
 
-  // const [coords, setCoords] = useState("");
   const onMapClick = (e) => {
-    // const coord = e.get("coords");
-    // setCoords({ ...coords, coords: coord });
     if (dressInfo?.yandexOpenMarketLocation) {
       setDressInfo({
         ...dressInfo,
@@ -86,6 +71,7 @@ function YandexMapsDressMe() {
       });
     }
   };
+  
   const HandleData = (e) => {
     if (dressInfo?.yandexOpenMarketLocation) {
       setDressInfo({
@@ -138,7 +124,7 @@ function YandexMapsDressMe() {
   if (dressInfo?.type === 4444) {
     IconsColor = "#007DCA";
   }
-  // left-1/2
+
   return (
     <div className=" h-fit w-full flex justify-center overflow-hidden overflow-y-hidden">
       <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden">
@@ -164,7 +150,6 @@ function YandexMapsDressMe() {
             <YandexLocationMarketOpen />
           </div>
         )}
-
         {/* Navbaryandex */}
         <div className={`absolute z-50 hidden md:block ${
             !dressInfo?.yandexOpenMenu
@@ -183,7 +168,7 @@ function YandexMapsDressMe() {
           <NavbarTopOpenMenu />
         </div>
 
-        <YMaps query={{ apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21" }}>
+        <YMaps query={{ apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21" }} >
           <Map
             defaultState={mapState}
             onClick={onMapClick}

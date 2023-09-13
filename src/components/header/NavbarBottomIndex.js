@@ -11,7 +11,7 @@ import {
   PersonIcons,
   PersonPlusIcons,
   SircleNext,
-} from "../../AssetsMain/icons";
+} from "../../assets/icons";
 const NavbarBottomIndex = () => {
   const [dressInfo] = useContext(dressMainData);
 

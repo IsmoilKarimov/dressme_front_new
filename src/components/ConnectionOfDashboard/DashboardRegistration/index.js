@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DashboardList, DashboardUser, StarIcon, StarIcons, StartIcon } from "../../../AssetsMain/icons";
+import { DashboardList, DashboardUser, StarIcon, StarIcons, StartIcon } from "../../../assets/icons";
 import { Select } from "antd";
 import { Box, TextField } from "@material-ui/core";
 

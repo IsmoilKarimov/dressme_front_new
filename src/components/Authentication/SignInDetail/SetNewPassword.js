@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { SircleNext } from "../../../AssetsMain/icons";
+import { SircleNext } from "../../../assets/icons";
 
 export default function SetNewPassword() {
   const [state, setState] = useState({

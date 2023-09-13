@@ -1,10 +1,18 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Slider from "react-slick";
-import { VideoStoreIcons } from "../../../../../../AssetsMain/icons";
+import { BrushColorIcons, DiscountShapeIcons, LocationColoursIcons, MenuCloseIcons, VideoStoreIcons } from "../../../../../../assets/icons";
+import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 
 const ProductCarousel = () => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
+  const [dressInfo] = useContext(dressMainData);
+
+  const [modalOfCarsouel, setModalOfCarsouel] = useState(false)
+  const handleClickCarosuel = (id) => {
+    console.log("handleClickCarosuel", id);
+    setModalOfCarsouel(true)
+  }
 
   function getCurrentDimension() {
     return {
@@ -69,6 +77,21 @@ const ProductCarousel = () => {
       img: "https://images.uzum.uz/cgl7vevhj8j9g69br4e0/original.jpg",
     },
   ]);
+
+  const [SizeBtnList] = useState([
+    { id: 1,size_in_letters:"XXS", size_in_numbers: "11-23"},
+    { id: 2,size_in_letters:"XS", size_in_numbers: "11-23"},
+    { id: 3,size_in_letters:"S", size_in_numbers: "25-36"},
+    { id: 4,size_in_letters:"M", size_in_numbers: "25-36"},
+    { id: 5,size_in_letters:"L", size_in_numbers: "36-44"},
+    { id: 6,size_in_letters:"XL", size_in_numbers: "36-44"},
+    { id: 7,size_in_letters:"XXL", size_in_numbers: "36-44"},
+    { id: 8,size_in_letters:"3XL", size_in_numbers: "36-44"},
+    { id: 9,size_in_letters:"4XL", size_in_numbers: "36-44"},
+    { id: 10,size_in_letters:"5XL", size_in_numbers: "36-44"},
+    { id: 11,size_in_letters:"6XL", size_in_numbers: "36-44"},
+  ]);
+
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
   const slider1 = useRef(null);
@@ -83,7 +106,7 @@ const ProductCarousel = () => {
     const { onClick } = props;
     return (
       <main
-        className={`absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 flex items-center justify-center top-[50%] z-10  right-[20px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        className={`md:hidden absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex flex items-center justify-center top-[50%] z-10 right-[20px] rounded-lg md:rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
         onClick={onClick}
       >
         <button className="next">
@@ -92,12 +115,37 @@ const ProductCarousel = () => {
       </main>
     );
   };
-
   const PrevArrow = (props) => {
     const { onClick } = props;
     return (
       <main
-        className={`absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 flex items-center justify-center top-[50%] z-10  left-[20px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        className={`md:hidden absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex flex items-center justify-center top-[50%] z-10 left-[20px] rounded-lg md:rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
+        onClick={onClick}
+      >
+        <button className="prev">
+          <GrFormPrevious size={20} />
+        </button>
+      </main>
+    );
+  };
+  const NextArrowModal = (props) => {
+    const { onClick } = props;
+    return (
+      <main
+        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10  right-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        onClick={onClick}
+      >
+        <button className="next">
+          <GrFormNext size={20} />
+        </button>
+      </main>
+    );
+  };
+  const PrevArrowModal = (props) => {
+    const { onClick } = props;
+    return (
+      <main
+        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10  left-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
         onClick={onClick}
       >
         <button className="prev">
@@ -157,12 +205,28 @@ const ProductCarousel = () => {
       },
     ],
   };
+  let settings2 = {
+    dots: false,
+    infinite: true,
+    swipeToSlide: true,
+    initialSlide: 0,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+  };
+  let settingsModal = {
+    nextArrow: <NextArrowModal />,
+    prevArrow: <PrevArrowModal />,
+    infinite: true,
+    dots: false,
+    speed: 500,
+  };
 
   return (
     <main className="w-full md:w-fit h-full">
       {screenSize.width >= 768 ? (
-        <section className="w-full flex flex-col md:flex-row md:w-fit h-[600px] md:gap-x-[10px] ">
-          <article className=" flex w-[90px] flex-col">
+        <section className="w-full h-[620px] flex flex-col md:flex-row md:w-fit md:gap-x-[10px]">
+          <article className="flex w-[90px] flex-col">
             <Slider
               asNavFor={nav1}
               ref={slider2}
@@ -176,7 +240,7 @@ const ProductCarousel = () => {
                 return (
                   <figure
                     key={data?.id}
-                    className="!w-[90px] cursor-pointer !h-[120px] mt-[-2.5px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center"
+                    className="!w-[90px] cursor-pointer !h-[120px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center"
                   >
                     <img
                       className="w-full h-full rounded-lg"
@@ -188,7 +252,47 @@ const ProductCarousel = () => {
               })}
             </Slider>
           </article>
-          <article className="widthInherit mx-auto h-[482px] md:w-[480px] md:h-[600px]">
+
+          <div className="w-full block">
+            <section
+              onClick={() => setModalOfCarsouel(false)}
+              className={`fixed inset-0 z-40 duration-200 w-full h-[100vh] bg-black opacity-60 ${modalOfCarsouel ? "" : "hidden"
+                }`}
+            ></section>
+            <section
+              className={`fixed z-40 rounded-lg bg-white w-fit h-fit m-auto cursor-pointer flex flex-col items-center justify-center inset-0  ${modalOfCarsouel ? "" : "hidden"
+                }`}
+            >
+              <button
+                onClick={() => setModalOfCarsouel(false)}
+                className="absolute top-0 z-40 right-[-80px]  flex items-center justify-center w-[50px] h-[50px] rounded-full bg-[#808080]">
+                <MenuCloseIcons colors="#fff" />
+              </button>
+              <div>
+                <Slider
+                  className="w-[670px] h-[850px] bg-white rounded-lg mt-[-4px] p-0 m-0 "
+                  // asNavFor={nav2}
+                  // ref={slider1}
+                  {...settingsModal}
+                >
+                  {imgGroup?.map((data) => {
+                    return (
+
+                      <img
+                        key={data?.id}
+                        className="w-[670px] h-fit object-top	object-cover cursor-pointer"
+                        src={data?.img}
+                        alt=""
+                      />
+                    );
+                  })}
+                </Slider>
+              </div>
+
+            </section>
+          </div>
+          
+          <article className="group mx-auto md:w-[480px] md:h-[620px]">
             <Slider
               className="w-full h-full rounded-lg"
               asNavFor={nav2}
@@ -197,7 +301,10 @@ const ProductCarousel = () => {
             >
               {imgGroup?.map((data) => {
                 return (
-                  <article key={data?.id}>
+                  <article 
+                    key={data?.id}
+                    onClick={() => handleClickCarosuel(data?.id)}  
+                  >
                     <figure className="relative w-full h-full overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
                       <img className="w-full h-fit" src={data?.img} alt="" />
                       <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
@@ -221,8 +328,9 @@ const ProductCarousel = () => {
           </article>
         </section>
       ) : (
-        <section className="w-full flex flex-col md:flex-row md:w-fit h-[600px] md:gap-x-[10px] ">
-          <article className="widthInherit mx-auto h-[482px] md:w-[480px] md:h-[600px]">
+       <section className="w-full h-fit flex flex-col">
+          {/* 1 */}
+          <article className="w-full widthInherit mx-auto">
             <Slider
               className="w-full h-full rounded-lg"
               asNavFor={nav2}
@@ -238,14 +346,6 @@ const ProductCarousel = () => {
                         <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
                           <p> {data.id}</p>/<p>{imgGroup.length}</p>
                         </span>
-                        <span className="w-fit flex items-center p-2 gap-x-2 rounded-lg bg-bgCard border border-searchBgColor">
-                          <p className="flex items-center ">
-                            <VideoStoreIcons />
-                          </p>
-                          <p className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-black">
-                            Видео
-                          </p>
-                        </span>
                       </figcaption>
                     </figure>
                   </article>
@@ -253,13 +353,42 @@ const ProductCarousel = () => {
               })}
             </Slider>
           </article>
-          <article className="flex flex-row md:hidden w-full mt-4 md:mt-0">
+
+          {/* 2 */}
+          <article className="w-full flex md:hidden items-center justify-between mb-6 mt-4">
+            <section className="w-fit flex items-center">
+              <span className="text-base font-AeonikProMedium mr-[5px]">от</span>
+              <p className="block font-AeonikProMedium text-[24px] text-black mr-[5px]">
+                452 000
+              </p>
+              <p className="font-AeonikProRegular line-through text-[16px] text-setTexOpacity">
+                652 000
+              </p>
+            </section>
+            <section
+              className={`w-fit ${dressInfo?.TextColorSeason} items-center text-sm flex ml-8`}
+            >
+              <p className="font-AeonikProRegular text-right">
+                В наличии:
+              </p>
+              <p className="ml-2 font-AeonikProMedium text-base text-right">
+                28
+              </p>
+            </section>
+          </article>
+
+          {/* 3 */}
+          <article className="w-full flex flex-col">
+            <div className="w-full flex items-center mb-4 text-base">
+              <BrushColorIcons colors={"#000"} />
+              <p className="font-AeonikProRegular mr-2 ml-[6px]">Цвет:</p>
+              <span className="font-AeonikProMedium">Синий</span>
+            </div>
             <Slider
-              asNavFor={nav1}
+              // asNavFor={nav1}
+              // focusOnSelect={true}
               ref={slider2}
-              // slidesToShow={5}
               swipeToSlide={true}
-              focusOnSelect={true}
               vertical={false}
               {...settings1}
               className="flex flex-row flex-wrap pt-0 rounded-lg"
@@ -279,6 +408,34 @@ const ProductCarousel = () => {
                 );
               })}
             </Slider>
+          </article>
+
+          {/* 4 */}
+          <article className="w-full flex flex-col mt-4">
+            <Slider
+              // asNavFor={nav1}
+              {...settings2}
+              className="w-full flex flex-row flex-wrap rounded-lg"
+            >
+              {SizeBtnList?.map((data) => {
+                return (
+                  <article
+                    key={data?.id}
+                    className="!w-[62px] !h-[39px] cursor-pointer border border-searchBgColor rounded-lg flex items-center justify-center"
+                  >
+                    <div className="flex flex-col items-center justify-center py-1">
+                      <div className="text-sm font-AeonikProMedium leading-4">{data.size_in_letters}</div>
+                      <div className="text-xs font-AeonikProRegular text-[#757575]">{data.size_in_numbers}</div>
+                    </div>
+                  </article>
+                );
+              })}
+            </Slider>
+          </article>
+
+          {/* 5 */}
+          <article className="w-full">
+            <button className="text-[13px] font-AeonikProMedium text-borderWinter border-b border-dashed border-borderWinter mt-3">Таблица размеров</button>
           </article>
         </section>
       )}

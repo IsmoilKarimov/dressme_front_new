@@ -8,12 +8,12 @@ import {
   SpringMale,
   SummerMale,
   WinterMale,
-} from "../../../../AssetsMain";
+} from "../../../../assets";
 import {
   ArrowTopIcons,
   ItailIcons,
   SortIcons,
-} from "../../../../AssetsMain/icons";
+} from "../../../../assets/icons";
 const FavoutireBreadCrumbs = () => {
   const [dressInfo] = useContext(dressMainData);
 

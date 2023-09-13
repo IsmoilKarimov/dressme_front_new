@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { PhoneIcons, SircleNext } from "../../../AssetsMain/icons";
+import { PhoneIcons, SircleNext } from "../../../assets/icons";
 
 export default function ForgetConfirmPassword() {
   const [timerDecrase, setTimerDecrase] = useState(60);

@@ -9,7 +9,7 @@ import {
   SpringMale,
   SummerMale,
   WinterMale,
-} from "../../../../AssetsMain";
+} from "../../../../assets";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 
 const MyOrderBreadCamp = () => {

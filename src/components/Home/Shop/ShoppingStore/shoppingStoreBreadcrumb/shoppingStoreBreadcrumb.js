@@ -4,13 +4,13 @@ import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 import { useContext, useState } from "react";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
-import { ItailIcons } from "../../../../../AssetsMain/icons";
+import { ItailIcons } from "../../../../../assets/icons";
 import {
   AutummMale,
   SpringMale,
   SummerMale,
   WinterMale,
-} from "../../../../../AssetsMain";
+} from "../../../../../assets";
 
 const ShoppingStoreBreadCrumb = () => {
   const [dressInfo] = useContext(dressMainData);

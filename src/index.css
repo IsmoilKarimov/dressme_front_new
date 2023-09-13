@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,6 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  line-height: 1;
 }
 
 html,
@@ -16,22 +16,22 @@ body {
 }
 
 @font-face {
-  font-family: "RobotoMedium";
-  src: url(./fonts/Roboto/Roboto-Medium.ttf);
-}
-@font-face {
-  font-family: "RobotoRegular";
-  src: url(./fonts//Roboto/Roboto-Regular.ttf);
+  font-family: 'AeonikPro-Regular';
+  src: url('/src/fonts/aeonic-pro/AeonikPro-Regular.woff2') format('woff2'),
+      url('/src/fonts/aeonic-pro/AeonikPro-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-/* @font-face {
-  font-family: "InterMedium";
-  src: url(./fonts/Poppin/Poppins-Medium.ttf);
-}
 @font-face {
-  font-family: "InterRegular";
-  src: url(./fonts/Poppin/Poppins-Regular.ttf);
-} */
+  font-family: 'AeonikPro-Medium';
+  src: url('/src/fonts/aeonic-pro/AeonikPro-Medium.woff2') format('woff2'),
+      url('/src/fonts/aeonic-pro/AeonikPro-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 
 .slick-slider {
   overflow: hidden;
@@ -204,16 +204,6 @@ select {
   transition: opacity 150ms linear;
 }
 
-/* .fade-enter {
-  opacity: 0;
-  z-index: 1;
-}
-
-.fade-enter.fade-enter-active {
-  opacity: 1;
-  transition: opacity 250ms ease-in;
-} */
-
 /* ----------CateGory----------- */
 .categoryLinearText {
   background: linear-gradient(
@@ -224,7 +214,6 @@ select {
 }
 
 /* Table */
-
 table,
 tr,
 td,
@@ -261,7 +250,6 @@ table tr th:nth-child(1) {
 .items {
   width: 100%;
   height: 40px;
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: row;
   cursor: pointer;
@@ -285,7 +273,6 @@ table tr th:nth-child(1) {
   background-color: #fcfcfc;
   padding: 12px 16px;
   cursor: pointer;
-  /* border: 1px solid green; */
 }
 .categoryScroll::-webkit-scrollbar {
   width: 2px;
@@ -305,11 +292,10 @@ table tr th:nth-child(1) {
   margin: auto;
   z-index: 33;
   border-radius: 5px;
-  /* padding: 2px; */
 }
 .example-thumb1 {
   background: rgba(0, 125, 202, 1)
-    url("./AssetsMain//Category//ReactSliderMenu.svg");
+    url("./assets//Category//ReactSliderMenu.svg");
   width: 24px;
   height: 16px;
   background-repeat: no-repeat;
@@ -351,37 +337,15 @@ table tr th:nth-child(1) {
   border-radius: 5px;
   padding: 2px;
 }
-/* .example-thumb {
-  background-image: url("./AssetsMain//Category/Star.svg");
-  width: 16px;
-  height: 16px;
-  cursor: grab;
-  background: #fff;
-  border: 1px solid #000;
-  margin-top: 10px;
+
+/* SHOWPAGE */
+
+.ant-modal-content .ant-modal-close {
+  background-color: white !important;
+  border: none !important;
 }
 
-.example-thumb.active {
-  background-color: white;
+:where(.css-dev-only-do-not-override-1me4733).ant-modal .ant-modal-close {
+  color: #000;
 }
 
-.example-track {
-  position: relative;
-  background: #f8f8f8;
-  margin-top: -5px;
-}
-
-.example-track.example-track-1 {
-  background: #007dca;
-  margin-top: -5px;
-}
-
-.example-track.example-track-2 {
-  background: #f8f8f8;
-  margin-top: -5px;
-}
-
-.horizontal-slider .example-track {
-  top: 20px;
-  height: 5px;
-} */

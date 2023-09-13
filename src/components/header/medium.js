@@ -19,7 +19,7 @@ import {
   PhoneIcons,
   SearchIcons,
   VolumeIcons,
-} from "../../AssetsMain/icons";
+} from "../../assets/icons";
 import {
   BrandAutumm,
   BrandSpring,
@@ -39,7 +39,7 @@ import {
   autummSeason,
   UzbekFlag,
   HeartImg,
-} from "../../AssetsMain";
+} from "../../assets";
 import NavCategoryModal from "./navCategoryModal";
 
 const MediumHeader = () => {
@@ -230,9 +230,9 @@ const MediumHeader = () => {
                   return (
                     <Popover
                       key={data?.id}
+                      className="w-full h-full flex items-center justify-center rounded-lg cursor-pointer  "
                       open={openwear}
                       onOpenChange={handleOpenChangeWear}
-                      className="w-full h-full flex items-center justify-center rounded-lg cursor-pointer  "
                       trigger="click"
                       options={["Hide"]}
                       placement="bottom"

@@ -8,8 +8,8 @@ import {
   SpringMale,
   SummerMale,
   WinterMale,
-} from "../../../../../AssetsMain";
-import { ItailIcons } from "../../../../../AssetsMain/icons";
+} from "../../../../../assets";
+import { ItailIcons } from "../../../../../assets/icons";
 
 const ShoppingStoreOfficialBreadCrumb = ({ name }) => {
   const [dressInfo] = useContext(dressMainData);

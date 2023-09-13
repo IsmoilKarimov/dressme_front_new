@@ -11,7 +11,7 @@ import {
   HeartIcons,
   VolumeIcons,
   SearchIcons,
-} from "../../../AssetsMain/icons";
+} from "../../../assets/icons";
 import {
   BrandSpring,
   BrandSummer,
@@ -22,7 +22,7 @@ import {
   summerSeason,
   winterSeason,
   ActivePersonImg,
-} from "../../../AssetsMain";
+} from "../../../assets";
 
 const YandexMedium = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);

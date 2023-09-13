@@ -9,8 +9,8 @@ import {
   InputCheckedTrueIcons,
   NoImg,
   StarIcons,
-} from "../../../../../AssetsMain/icons";
-import { HeartImg } from "../../../../../AssetsMain";
+} from "../../../../../assets/icons";
+import { HeartImg } from "../../../../../assets";
 import ProductComment from "./ProductComment/ProductComment";
 import AboutProduct from "./AboutProduct/AboutProduct";
 
@@ -67,24 +67,21 @@ const SingleProduct = () => {
   }, [show, scrollPost, ShowNavMenu, ScrollPostNavMenu]);
 
   return (
-    <main className="flex flex-col  m-0 p-0 box-border">
+    <main className="flex flex-col m-0 p-0 box-border">
       <section>
         <SingleProductTop />
       </section>
       <section className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto border-box mb-20 md:mb-[60px]">
-        <section className=" relative w-[100%] h-fit mt-6 flex justify-between flex-col md:flex-row">
+        <section className="w-[100%] h-fit mt-6 flex justify-between flex-col md:flex-row">
           <section
             className={`md:w-1/2 h-fit md:sticky duration-500  ${
-              show ? "visible z-[29] top-[110px]" : "visible z-[29] top-[16px]"
+              show ? "visible z-20 top-[110px]" : "visible z-20 top-[16px]"
             } `}
           >
             <ProductCarousel />
           </section>
           <section className="w-full md:w-1/2 h-full ">
             <ProductDetails />
-          </section>
-          <section className="block md:hidden w-full">
-            <AboutProduct />
           </section>
         </section>
         {/* Products Comment */}
@@ -94,7 +91,7 @@ const SingleProduct = () => {
         <section className="w-full h-fit  ">
           <article className="w-full mt-[34px] md:mt-[120px]">
             <div className="md:mb-10">
-              <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black">
+              <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black mb-3 md:mb-0">
                 Похожие продукты
               </p>
             </div>

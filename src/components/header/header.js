@@ -57,10 +57,10 @@ const Header = () => {
             <article className={`ss:block md:hidden relative z-[100]`}>
               <MediumHeader />
             </article>
-            <article className={`fixed top-0 w-full bg-white hidden md:block
+            <article className={`fixed top-0  w-full bg-white hidden md:block
               ${ show
-                ? "visible duration-500 z-30"
-                : "visible duration-500 z-30 translate-y-[-100%]"
+                ? "visible duration-500 z-20"
+                : "visible duration-500 z-20 translate-y-[-100%]"
               }`
             }
           >

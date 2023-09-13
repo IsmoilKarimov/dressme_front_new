@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { NavLink, useNavigate } from "react-router-dom";
-import { nike } from "../../../../../AssetsMain";
+import { nike } from "../../../../../assets";
 import {
   ArrowTopIcons,
   LocationIcons,
@@ -10,7 +10,7 @@ import {
   StarIcons,
   VideoStoreIcons,
   WomanGenIcons,
-} from "../../../../../AssetsMain/icons";
+} from "../../../../../assets/icons";
 
 const ShoppingBrands = () => {
   const [allShops] = useState([

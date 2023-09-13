@@ -9,14 +9,14 @@ import {
   puma,
   tommy,
   zara,
-} from "../../../../AssetsMain";
+} from "../../../../assets";
 
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { NavLink, useNavigate } from "react-router-dom";
-import { NoImg, SircleNext } from "../../../../AssetsMain/icons";
+import { NoImg, SircleNext } from "../../../../assets/icons";
 export default function MainPageSliders() {
   const [dressInfo] = useContext(dressMainData);
 

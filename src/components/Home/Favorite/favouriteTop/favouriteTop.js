@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowTopIcons } from "../../../../AssetsMain/icons";
+import { ArrowTopIcons } from "../../../../assets/icons";
 
 export default function FavouriteTop() {
   const [value, SetValue] = useState({ min: 20, max: 150 });

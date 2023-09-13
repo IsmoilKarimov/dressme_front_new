@@ -5,13 +5,13 @@ import {
   InputCheckedTrueIcons,
   NoImg,
   StarIcons,
-} from "../../../../../AssetsMain/icons";
+} from "../../../../../assets/icons";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 import CatalogBtnGroup from "../CatalogBtnGroup/CatalogBtnGroup";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
-import { HeartImg } from "../../../../../AssetsMain";
+import { HeartImg } from "../../../../../assets";
 
 export default function CatalogCard() {
   const [dressInfo] = useContext(dressMainData);
