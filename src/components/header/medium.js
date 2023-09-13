@@ -154,9 +154,8 @@ const MediumHeader = () => {
         ></div>
       )}
       <article
-        className={`fixed top-[300px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${
-          dressInfo?.openCatologId ? "" : "hidden"
-        }`}
+        className={`fixed top-[300px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${dressInfo?.openCatologId ? "" : "hidden"
+          }`}
       >
         <NavCategoryModal />
       </article>
@@ -374,11 +373,10 @@ const MediumHeader = () => {
 
           {/*Starting of Opened Hamburger Menu section */}
           <section
-            className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen pb-[140px] px-3 ${
-              state?.hamburgerMenu
+            className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen pb-[140px] px-3 ${state?.hamburgerMenu
                 ? " flex flex-col ease-linear duration-500 overscroll-none"
                 : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
-            }`}
+              }`}
           >
             <div className={`w-full h-full flex flex-wrap content-between`}>
               {/* Searching section */}
@@ -400,11 +398,11 @@ const MediumHeader = () => {
                 {/* Categories */}
                 <ul className="flex flex-col w-full">
                   <li>
-                    <NavLink 
+                    <NavLink
                       onClick={() =>
                         setState({ ...state, hamburgerMenu: false })
                       }
-                      to="/registration_dashboard"
+                      to="/signup-seller"
                       className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
                     >
                       <div className="flex items-center">
@@ -541,11 +539,10 @@ const MediumHeader = () => {
                             onClick={() =>
                               setState({ ...state, genderActive: true })
                             }
-                            className={` font-AeonikProMedium ${
-                              state?.genderActive
+                            className={` font-AeonikProMedium ${state?.genderActive
                                 ? "bg-white border border-searchBgColor"
                                 : "bg-transparent"
-                            } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
+                              } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
                           >
                             <img src={data?.woman} alt="female" />
                             <span className="ml-3">Женщинам</span>
@@ -554,11 +551,10 @@ const MediumHeader = () => {
                             onClick={() =>
                               setState({ ...state, genderActive: false })
                             }
-                            className={` font-AeonikProMedium ${
-                              !state?.genderActive
+                            className={` font-AeonikProMedium ${!state?.genderActive
                                 ? "bg-white border border-searchBgColor"
                                 : "bg-transparent"
-                            } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
+                              } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
                           >
                             <img src={data?.man} alt="male" />
                             <span className="ml-3"> Мужчинам</span>

@@ -7,6 +7,8 @@ import LoadingFor from "../components/Loading/LoadingFor";
 import SkeletonHomeIndex from "../components/Home/Main/Skeleton/SkeletonHomeIndex";
 import SignInSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import SignUpSkeletonIndex from "../components/Authentication/SignUpSkeleton";
+import SignUpSeller from "../components/Authentication/SellerRegsitration/SignUp/SignUpSeller";
+import SignInSeller from "../components/Authentication/SellerRegsitration/SignIn/SignInSeller";
 // import ConnectDashboard from "../components/RegistrationDashboard";
 // import CatalogMain from "../components/Home/Catalog/CatalogFilter";
 
@@ -260,8 +262,8 @@ const RouterMain = () => {
             </Suspense>
           }
         />
-        
-        
+
+
         <Route
           path="/enter_password_validate"
           element={
@@ -277,16 +279,30 @@ const RouterMain = () => {
           }
         />
 
-        <Route path="/registration_dashboard" 
+        <Route path="/signup-seller"
           element={
             <Suspense
               fallback={
                 <div>
                   <SignInSkeletonIndex />
-                </div>    
+                </div>
               }
-              >
-              <ConnectDashboard />
+            >
+              <SignUpSeller />
+            </Suspense>
+          }
+        />
+
+        <Route path="/login-seller"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SignInSkeletonIndex />
+                </div>
+              }
+            >
+              <SignInSeller />
             </Suspense>
           }
         />
@@ -294,17 +310,18 @@ const RouterMain = () => {
       </Routes>
 
       {locationWindow !== "/add_user_private_data" &&
-      locationWindow !== "/add_user_body_data" &&
-      locationWindow !== "/confirm_password" &&
-      locationWindow !== "/set_new_password" &&
-      locationWindow !== "/catalog" &&
-      locationWindow !== "/enter_password_validate" &&
-      locationWindow !== "/forget_password" &&
-      locationWindow !== "/sign_up" &&
-      locationWindow !== "/sign_in" &&
-      locationWindow !== "/profile/settings" &&
-      locationWindow !== "/registration_dashboard" &&
-      locationWindow !== "/delivery-points" ? (
+        locationWindow !== "/add_user_body_data" &&
+        locationWindow !== "/confirm_password" &&
+        locationWindow !== "/set_new_password" &&
+        locationWindow !== "/catalog" &&
+        locationWindow !== "/enter_password_validate" &&
+        locationWindow !== "/forget_password" &&
+        locationWindow !== "/sign_up" &&
+        locationWindow !== "/sign_in" &&
+        locationWindow !== "/profile/settings" &&
+        locationWindow !== "/signup-seller" &&
+        locationWindow !== "/login-seller" &&
+        locationWindow !== "/delivery-points" ? (
         <Suspense fallback={<>Loading...</>}>
           <Footer />
         </Suspense>
