@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { DashboardList, DashboardUser, StarIcon, StarIcons, StartIcon } from "../../../assets/icons";
 import { Select } from "antd";
 import { Box, TextField } from "@material-ui/core";
-
 import "./style.css";
 
 const DashboardRegistration = () => {
@@ -25,11 +24,10 @@ const DashboardRegistration = () => {
           <button
             onClick={() => setNaturalPerson(true)}
             className={`group w-1/2 flex items-center justify-center font-medium text-[10px] ll:text-xs md:text-sm px-1 ll:px-2 py-[10px] md:px-[25px] md:py-3
-                 ${
-                   naturalPerson
-                     ? "border border-fullBlue text-fullBlue rounded-lg"
-                     : ""
-                 }`}
+                 ${naturalPerson
+                ? "border border-fullBlue text-fullBlue rounded-lg"
+                : ""
+              }`}
           >
             {/* <img src={dashboardUser} alt="" /> */}
             <DashboardUser
@@ -40,11 +38,10 @@ const DashboardRegistration = () => {
           <button
             onClick={() => setNaturalPerson(false)}
             className={`w-1/2 flex items-center justify-center font-medium text-[10px] ll:text-xs md:text-sm px-1 ll:px-2 py-[10px] md:px-[25px] md:py-3
-                  ${
-                    !naturalPerson
-                      ? "border border-fullBlue text-fullBlue rounded-lg"
-                      : ""
-                  }`}
+                  ${!naturalPerson
+                ? "border border-fullBlue text-fullBlue rounded-lg"
+                : ""
+              }`}
           >
             {/* <img src={dashboardList} alt="" /> */}
             <DashboardList
@@ -170,7 +167,7 @@ const DashboardRegistration = () => {
               {/* 1 */}
               <div className="w-full flex items-center gap-x-[50px] mb-[25px]">
                 <Box
-                className="flex items-center"
+                  className="flex items-center"
                   component="form"
                   sx={{
                     "& > :not(style)": { m: 1, width: "71ch" },
@@ -232,14 +229,14 @@ const DashboardRegistration = () => {
                   autoComplete="off"
                 >
                   <TextField
-                  className="w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    className="w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     type="number"
                     id="standard-basic"
                     label={`Номер телефона  `}
                     variant="standard"
                     fullWidth
                     placeholder="+998 (97) 740-23-99"
-                    
+
                   />
                 </Box>
               </div>

@@ -109,11 +109,10 @@ const TopHeader = () => {
   return (
     <nav>
       <div
-        className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${
-          locationWindow === "/delivery-points"
+        className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${locationWindow === "/delivery-points"
             ? "bg-transparent h-[40px] "
             : "bg-bgColor h-[32px] "
-        }`}
+          }`}
       >
         <section className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">
           <article className="left h-full flex items-center">
@@ -171,8 +170,8 @@ const TopHeader = () => {
           </article>
 
           <article className="right h-full flex items-center">
-            <NavLink 
-              to="#" 
+            <NavLink
+              to="#"
               className={`flex items-center h-fit py-[4px]`}>
               <span className="mr-2">
                 <CommentIcons colors={"#707070"} />
@@ -181,17 +180,17 @@ const TopHeader = () => {
                 Помощь
               </p>
             </NavLink>
-            <NavLink 
-              to="/registration_dashboard" 
+            <NavLink
+              to="/signup-seller"
               onClick={() => setSelectBtn(false)}
               className={`flex items-center h-fit py-[4px] ml-6
-                ${!selectBtn ? "py-[4px] px-3 bg-white rounded" : "" }
+                ${!selectBtn ? "py-[4px] px-3 bg-white rounded" : ""}
               `}
             >
               <p className="mr-2">
                 <HouseStatisticIcons colors={"#707070"} />
               </p>
-              <p 
+              <p
                 onClick={() => setSelectBtn(true)}
                 className={`text-[13px] font-AeonikProMedium
                   ${!selectBtn ? "text-black" : "text-textColor"}
@@ -205,7 +204,7 @@ const TopHeader = () => {
               to="/stores"
               onClick={() => setSelectBtn(true)}
               className={`flex items-center  cursor-pointer h-fit
-                ${selectBtn ? "py-[4px] px-3 bg-white rounded" : "" }
+                ${selectBtn ? "py-[4px] px-3 bg-white rounded" : ""}
               `}
             >
               <p className="mr-2">
