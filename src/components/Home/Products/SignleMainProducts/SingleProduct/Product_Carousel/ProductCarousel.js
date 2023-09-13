@@ -132,7 +132,7 @@ const ProductCarousel = ({show}) => {
     const { onClick } = props;
     return (
       <main
-        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10  right-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10  right-[30px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
         onClick={onClick}
       >
         <button className="next">
@@ -145,7 +145,7 @@ const ProductCarousel = ({show}) => {
     const { onClick } = props;
     return (
       <main
-        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10 left-[70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
+        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10 left-[30px] rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
         onClick={onClick}
       >
         <button className="prev">
