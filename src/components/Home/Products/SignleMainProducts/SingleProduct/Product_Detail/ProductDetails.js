@@ -1,4 +1,6 @@
 import React, { useCallback, useContext, useRef, useState } from "react";
+import { toast } from "react-toastify";
+import copy from "copy-to-clipboard";
 import { FaTelegramPlane } from "react-icons/fa";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { BsCircleFill } from "react-icons/bs";
@@ -15,6 +17,20 @@ const ProductDetails = () => {
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
   const slider = useRef(null);
+  
+  const textRef = useRef();
+  const copyToClipboard = () => {
+    let copyText = textRef.current.value;
+    let isCopy = copy(copyText);
+    if (isCopy) {
+      // toast.success("Copied to Clipboard");
+    }
+  };
+
+
+
+
+
   const [openTab, setOpenTab] = useState(1);
   const [selectSize] = useState([
     { id: 1, size: "S", sizeNumbers:'36-44' },
@@ -153,13 +169,20 @@ const ProductDetails = () => {
               <div className="flex items-center ml-[25px]">
                 <span className="mr-[6px]"><ProductArticleIcons /></span>
                 <span className="text-sm font-AeonikProRegular leading-4 tracking-[1%]">Артикль:</span>
-                <span className="text-sm font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]">AA009842</span>
+                <input 
+                  className="text-sm bg-transparent w-[68px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]" 
+                  value="AA009842" 
+                  disabled 
+                  type="text" 
+                  ref={textRef} 
+                />
                 <button 
-                  type="button"
-                  onClick={navigator.clipboard.writeText("AA009842")}
-                  className="cursor-pointer ml-[10px]">
+                  // type="button"
+                  onClick={copyToClipboard}
+                  className="cursor-pointer ml-[8px]">
                   <AddCopyCheckedIcon />
                 </button>
+             
               </div>
             </article>
           </article>   
@@ -293,13 +316,21 @@ const ProductDetails = () => {
                 </div>
               </article>
               <article className="w-fit flex items-center ml-2">
-                <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+                <input 
+                    className="text-sm bg-transparent w-[148px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]" 
+                    value="8600-0000-2345-1234" 
+                    disabled 
+                    type="text" 
+                    ref={textRef} 
+                  />
+               
+                {/* <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
                 8600-0000-2345-1234
-                </p>
+                </p> */}
                 <button 
                   type="button"
-                  onClick={navigator.clipboard.writeText("8600-0000-2345-1234")}
-                  className="cursor-pointer ml-[10px]">
+                  // onClick={navigator.clipboard.writeText("8600-0000-2345-1234")}
+                  className="cursor-pointer ml-[8px]">
                   <AddCopyCheckedIcon />
                 </button>
               </article>
