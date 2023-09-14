@@ -1,15 +1,16 @@
-import React, { useState } from "react";
-import { CreditCardNumber, DashboardList, DashboardUser, StarIcon, UserMailIcon } from "../../../../assets/icons";
+import React, { useEffect, useState } from "react";
+import { ArrowPrevousNext, ArrowTopIcons, CreditCardNumber, DashboardList, DashboardUser, MenuCloseIcons, SearchIcons, StarIcon, UserMailIcon } from "../../../../assets/icons";
 import { Select } from "antd";
 import { Box, TextField } from "@material-ui/core";
 import "./style.css";
 import InputMask from "react-input-mask";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const SignUpSeller = () => {
-  const { REACT_APP_BASE_URL: url } = process.env;
+  // const { REACT_APP_BASE_URL: url } = process.env;
+  const url = "https://api.dressme.uz/api/seller"
   const navigate = useNavigate()
   const [naturalPerson, setNaturalPerson] = useState(true);
   const [state, setState] = useState({
@@ -18,13 +19,21 @@ const SignUpSeller = () => {
     email: "",
     phoneCode: "+998",
     cardNumber: "",
-    seller_type_id: 1,
+    seller_type_id: "",
     phone: "",
-    password: "12233223",
+    password: "",
     confirmPassword: "",
     region: "",
     sub_region: "",
+    company_name: "",
     error: "",
+    // ------Seller-type-----
+    getSellerList: "",
+    // ------Regions-----
+    getRegionList: "",
+
+    //-------modal open
+    openModalRegions: false
 
   });
   // ----------Card Number-----------
@@ -44,35 +53,40 @@ const SignUpSeller = () => {
   let data5 = arr3.join("");
   const sendMessagePhoneNumber = data5 + data4;
 
-  const onChange = (value) => {
-    console.log(`selected ${value}`);
-  };
-  const onSearch = (value) => {
-    console.log("search:", value);
-  };
-  const VilData = [
-    { id: 1, name: "Toshkent" },
-    { id: 2, name: "Jizzax" },
-    { id: 3, name: "Sirdaryo" },
-    { id: 4, name: "Andijon" },
-    { id: 5, name: "Namnagan" },
-    { id: 6, name: "Samarqand" },
-    { id: 7, name: "Navoiy" },
-    { id: 8, name: "Buxaro" },
-  ]
-  const TumData = [
-    { id: 1, name: "Toshkent" },
-    { id: 2, name: "Jizzax" },
-    { id: 3, name: "Sirdaryo" },
-    { id: 4, name: "Andijon" },
-    { id: 5, name: "Namnagan" },
-    { id: 6, name: "Samarqand" },
-    { id: 7, name: "Navoiy" },
-    { id: 8, name: "Buxaro" },
-  ]
 
+
+  // ------------GET METHOD seller-types-----------------
+  useQuery(["get seller-type"], () => {
+    return fetch(`${url}/seller-types`).then(res => res.json())
+  },
+    {
+      onSuccess: (res) => {
+        setState({ ...state, getSellerList: res })
+      },
+      onError: (err) => {
+        console.log(err, "err");
+      }
+    }
+  )
+  // ------------GET METHOD Region-----------------
+  useQuery(["get region"], () => {
+    return fetch(`${url}/regions`).then(res => res.json())
+  },
+    {
+      onSuccess: (res) => {
+        setState({ ...state, getRegionList: res })
+      },
+      onError: (err) => {
+        console.log(err, "err");
+      }
+    }
+  )
+
+
+
+  // ------------POST METHOD-----------------
   const { mutate } = useMutation(() => {
-    return fetch(`https://api.dressme.uz/api/seller/register`, {
+    return fetch(`${url}/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -84,7 +98,8 @@ const SignUpSeller = () => {
         card_number: BankCard,
         seller_type_id: state?.seller_type_id,
         region_id: state?.region,
-        sub_region_id: state?.sub_region
+        sub_region_id: state?.sub_region,
+        company_name: state?.company_name
       })
     }).then((res) => res.json())
   })
@@ -99,6 +114,7 @@ const SignUpSeller = () => {
     console.log(state?.sub_region, "sub_Region");
     console.log(state?.seller_type_id, "seller_type_id");
     console.log(sendMessagePhoneNumber, "sendMessagePhoneNumber");
+    console.log(state?.company_name, "company_name");
     if (
       state?.firstName.length &&
       state?.lastName?.length &&
@@ -174,8 +190,13 @@ const SignUpSeller = () => {
       });
     }
   }
-
-
+  console.log(state?.getSellerList, "getSellerList");
+  console.log(state?.getRegionList, "getRegionList");
+  // ---------------Jismony User------
+  function handleChange(e) {
+    const { value } = e.target;
+    setState({ ...state, seller_type_id: value })
+  }
   return (
     <div className="max-w-[1280px] w-full flex justify-center items-center m-auto">
       <ToastContainer
@@ -232,107 +253,70 @@ const SignUpSeller = () => {
           {naturalPerson ? (
             <div className="w-full flex items-center">
               <div className="mx-auto">
-                <div className="mb-4">
-                  <div className="flex items-center">
-                    <input
-                      type="radio"
-                      id="workOne"
-                      name="type_work"
-                      value="1"
-                      className="w-[18px] h-[18px] cursor-pointer"
-                    />
-                    <label
-                      for="workOne"
-                      className="ml-[10px] font-medium text-[13px] md:text-base cursor-pointer"
-                    >
-                      Индивидуальный предприниматель
-                    </label>
-                  </div>
-                  <p className="text-xs md:text-sm text-dashboardLightTextColor font-normal ml-7">
-                    поставьте галочку, если вы являетесь индивидуальным
-                    предпринимателем{" "}
-                  </p>
-                </div>
-                <div className="mb-4">
-                  <div className="flex items-center">
-                    <input
-                      type="radio"
-                      id="workTwo"
-                      name="type_work"
-                      value="2"
-                      className="w-[18px] h-[18px] cursor-pointer"
-                    />
-                    <label
-                      for="workTwo"
-                      className="ml-[10px] font-medium text-[13px] md:text-base cursor-pointer"
-                    >
-                      Самозаняты
-                    </label>
-                  </div>
-                  <p className="text-xs md:text-sm text-dashboardLightTextColor font-normal ml-7">
-                    поставьте галочк, если вы cамозаняты{" "}
-                  </p>
-                </div>
+                {
+                  state?.getSellerList?.individual?.map(data => {
+                    return (
+                      <div key={data?.id} className="mb-4">
+                        <div className="flex items-center">
+                          <input
+                            type="radio"
+                            id={data?.id}
+                            name="type_work"
+                            value={data?.id}
+                            className="w-[18px] h-[18px] cursor-pointer"
+                            onChange={handleChange}
+                            required
+                          />
+                          <label
+                            htmlFor={data?.id}
+                            className="ml-[10px] font-medium text-[13px] md:text-base cursor-pointer"
+                          >
+                            {data?.name_ru}
+                          </label>
+                        </div>
+
+                      </div>
+                    )
+                  })
+                }
               </div>
             </div>
           ) : (
-            <div className="w-full md:w-[484px] rounded-lg mx-auto">
-              <Select
-                className="w-full text-base"
-                showSearch
-                placeholder="Тип предприятия"
-                optionFilterProp="children"
-                size="large"
-                onChange={onChange}
-                onSearch={onSearch}
-                filterOption={(input, option) =>
-                  (option?.label ?? "")
-                    .toLowerCase()
-                    .includes(input.toLowerCase())
-                }
-                options={[
-                  {
-                    value: "Индивидуальный предприниматель",
-                    label: "Индивидуальный предприниматель",
-                  },
-                  {
-                    value: "Самозанятый",
-                    label: "Самозанятый",
-                  },
-                  {
-                    value: "Общество с ограниченной ответственностью (ООО)",
-                    label: "Общество с ограниченной ответственностью (ООО)",
-                  },
-                  {
-                    value: "Частное предприятие (ЧП)",
-                    label: "Частное предприятие (ЧП)",
-                  },
-                  {
-                    value: "Совместное предприятие (СП)",
-                    label: "Совместное предприятие (СП)",
-                  },
-                  {
-                    value: "Семейное предприятие (СП)",
-                    label: "Семейное предприятие (СП)",
-                  },
-                  {
-                    value: "Совместное предприятие ООО (СП ООО)",
-                    label: "Совместное предприятие ООО (СП ООО)",
-                  },
-                  {
-                    value: "Акционерное общество (АО)",
-                    label: "Акционерное общество (АО)",
-                  },
-                ]}
-              />
+            <div className="w-full md:w-[484px] rounded-lg mx-auto border border-red-500">
+              <div className="w-full h-fit ">
+                <div className={`w-full`}>
+                  <select
+                    className="w-full h-[42px] mt-[6px] pl-[15px] rounded-lg cursor-pointer border border-borderColor2"
+                    value={state?.seller_type_id}
+                    onChange={(e) => setState({ ...state, seller_type_id: e.target.value })}
+                    required
+                  >
+                    <option className="text-[#303030] text-base not-italic font-AeonikProRegula leading-4 tracking-[0,16px]" value="">Тип предприятия</option>
+                    {
+                      state?.getSellerList?.company?.map(data => {
+                        return (
+                          <option className="text-[#303030] text-base not-italic hover:bg-btnBgColor font-AeonikProRegula leading-4 tracking-[0,16px]" key={data?.id || null} value={data?.id || null}> {data?.name_ru || "text"} </option>
+                        )
+                      })
+                    }
+                  </select>
+                </div>
+              </div>
 
-              <div className="w-full md:w-[484px] mt-5">
+              {!naturalPerson && <div className="w-full md:w-[484px] mt-5">
                 <p className="flex items-center text-base font-AeonikProRegular text-[#303030]">
                   Наименование организации
                   <span className="ml-[5px]"><StarIcon /></span>
                 </p>
-                <input type="text" placeholder="Name..." className="w-full font-AeonikProRegular text-base border border-[#e5e5e5] mt-[8px] rounded-lg px-[15px] h-[42px] flex items-center" />
-              </div>
+                <input
+                  className="w-full font-AeonikProRegular text-base border border-[#e5e5e5] mt-[6px] rounded-lg px-[15px] h-[42px] flex items-center"
+                  type="text"
+                  value={state?.company_name}
+                  onChange={(e) => setState({ ...state, company_name: e.target.value })}
+                  placeholder="Наименование организации..."
+                // required
+                />
+              </div>}
 
             </div>
           )}
@@ -340,26 +324,112 @@ const SignUpSeller = () => {
           {/* FORM SECTION FOR DESCROP VERSION  asterisc_icon*/}
           <div className="hidden md:block  mt-5">
             <div className="w-full h-fit flex items-center justify-between gap-x-[50px]">
+
+              {/* ------------------------------------------------------------------------------------------------------------- */}
               <div className="w-1/2 h-fit ">
-                <div className={`w-full`}>
+                <div
+                  onClick={() => {
+                    setState({ ...state, openModalRegions: false });
+                  }}
+                  className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${state?.openModalRegions ? "" : "hidden"
+                    }`}
+                ></div>
+                {state?.openModalRegions && <div className="fixed max-w-[440px] h-[650px]  px-6 py-4 bg-white rounded-lg  mx-auto w-full  z-[113] top-[50%] left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
+                  <div className="w-full flex items-center justify-between">
+                    <span className="text-black text-2xl not-italic font-AeonikProRegular">Выберите регион</span>
+                    <span
+                      className="select-none"
+                      onClick={() => {
+                        setState({ ...state, openModalRegions: false });
+                      }}
+                    >
+                      <MenuCloseIcons colors="#000" /></span>
+                  </div>
+                  <label className="w-full mt-6 h-[42px] rounded-lg border border-borderColor overflow-hidden flex items-center">
+                    <input
+                      type="text"
+                      className="w-full h-full pl-3 outline-none"
+                      name="s"
+                      placeholder="Поиск..."
+                    />
+                    <span className="flex items-center pr-3">
+                      <SearchIcons />
+                    </span>
+                  </label>
+                  <div className="w-full overflow-auto  mt-6 h-[80%] VerticelScroll">
+                    {state?.getRegionList?.regions?.map((data) => {
+                      return (
+                        <div key={data?.id} className="w-full  h-fit mt-4">
+                          <div
+                            // onClick={() => openCityList(data?.id)}
+                            className="w-full cursor-pointer flex items-center pr-1 justify-between border-b border-borderColor pb-1"
+                          >
+                            <span className="text-[#303030] text-[18px] not-italic font-AeonikProRegular">
+                              {data?.name_ru}
+                            </span>
+                            <span
+                              className={"rotate-[0deg]"}
+                            >
+                              <ArrowTopIcons colors={"#a1a1a1"} />
+                            </span>
+                          </div>
+
+                          <div
+                            className={"w-full grid grid-cols-3 gap-2 py-1 duration-300 min-h-[70px]"}
+                          >
+                            {data?.sub_regions.map((item) => {
+                              return (
+                                <div key={item?.id} className="flex items-center gap-x-[4px] cursor-pointer">
+                                  <input
+                                    type="radio"
+                                    id={item?.id}
+                                    name="type_work"
+                                    value={item?.id}
+                                    className="!w-[18px] !h-[18px] rounded border border-borderColor flex items-center justify-center" onChange={handleChange}
+                                    required
+                                  />
+                                  <label
+                                    htmlFor={item?.id}
+                                    className="text-[#303030] text-[17px] not-italic font-AeonikProRegular"
+                                  >
+                                    {item?.name_ru}
+                                  </label>
+                                </div>
+                                // <label
+                                //   key={item?.id}
+                                //   className="flex items-center gap-x-[4px] cursor-pointer"
+                                // >
+                                //   {" "}
+                                //   <input type="radio" value={item?.id} className="!w-[18px] !h-[18px] rounded border border-borderColor flex items-center justify-center" />
+                                //   <span className="text-[#303030] text-[17px] not-italic font-AeonikProRegular">
+                                //     {item?.name_ru}
+                                //   </span>
+                                // </label>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>}
+
+                <div className={"w-full"}>
                   <label htmlFor="" >
                     <span className="flex items-center text-[#303030] text-base not-italic font-AeonikProRegula leading-4 tracking-[0,16px] ">
                       Выберите регион
                       <span className="ml-[5px]"><StarIcon /></span>
                     </span>
-                    <select className="w-full h-[42px] mt-[6px] pl-[15px] rounded-lg cursor-pointer border border-borderColor2" value={state?.region} onChange={(e) => setState({ ...state, region: e.target.value })} required>
-                      <option className="text-[#303030] text-base not-italic font-AeonikProRegula leading-4 tracking-[0,16px]" value="">Выберите регион </option>
-                      {
-                        VilData?.map(data => {
-                          return (
-                            <option className="text-[#303030] text-base not-italic hover:bg-btnBgColor font-AeonikProRegula leading-4 tracking-[0,16px]" key={data.id} value={data.id}> {data.name} </option>
-                          )
-                        })
-                      }
+                    <select onClick={() => {
+                      setState({ ...state, openModalRegions: true });
+                    }}
+                      className="w-full h-[42px] mt-[6px] pl-[15px] rounded-lg cursor-pointer border border-borderColor2" value={state?.region} onChange={(e) => setState({ ...state, region: e.target.value })} required>
+
                     </select>
                   </label>
                 </div>
               </div>
+              {/* ------------------------------------------------------------------------------------------------------------- */}
               <div className="w-1/2 h-fit ">
                 <span className="flex items-center text-[#303030] text-base not-italic font-AeonikProRegular  leading-4 tracking-[0,16px] ">
                   Номер банковской карты
@@ -379,34 +449,7 @@ const SignUpSeller = () => {
                 </div>
               </div>
             </div>
-            {
-              state?.region &&
-              <div className="w-full h-fit flex items-center gap-x-[50px] mt-5">
-                <div className="w-[calc(50%-25px)] h-fit ">
-                  <div className={`w-full`}>
-                    <label htmlFor="" >
-                      <span className="flex items-center text-[#303030] text-base not-italic font-AeonikProRegula leading-4 tracking-[0,16px] ">
-                        Выберите район/город
-                        <span className="ml-[5px]"><StarIcon /></span>
 
-                      </span>
-                      <select className="w-full h-[42px] mt-[6px] pl-[15px] rounded-lg cursor-pointer border border-borderColor2" value={state?.sub_region} onChange={(e) => setState({ ...state, sub_region: e.target.value })} required>
-                        <option className="text-[#303030] text-base not-italic font-AeonikProRegula leading-4 tracking-[0,16px]" value="">Выберите район/город </option>
-                        {
-                          TumData?.map(data => {
-                            return (
-                              <option className="text-[#303030] text-base not-italic hover:bg-btnBgColor font-AeonikProRegula leading-4 tracking-[0,16px]" key={data.id} value={data.id}> {data.name} </option>
-                            )
-                          })
-                        }
-
-                      </select>
-                    </label>
-                  </div>
-                </div>
-
-              </div>
-            }
 
             <div className="w-full h-[1px] bg-borderColor2 my-[30px]"></div>
             {/* Form */}
@@ -560,7 +603,7 @@ const SignUpSeller = () => {
           </NavLink>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
