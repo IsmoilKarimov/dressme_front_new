@@ -13,15 +13,8 @@ import { Modal, Rate } from "antd";
 import { useNavigate } from "react-router-dom";
 
 export default function ProductComment() {
-  
-  const handleTop = () => {
-    window.scrollTo({
-      top: 0,
-    });
-  }
 
   const [openComment, setOpenComment] = useState(false);
-  const navigate = useNavigate();
   
   const [visibleComments, setVisibleCommnets] = useState(4)
   const [allComments] = useState([
@@ -187,8 +180,8 @@ export default function ProductComment() {
   })
 
   const handleReturn = () => {
-    setVisibleCommnets(4) 
-    handleTop() 
+  //   setVisibleCommnets(4) 
+  //   handleTop() 
   }
 
   return (
@@ -228,7 +221,7 @@ export default function ProductComment() {
                   </textarea>
                   {/* Star Rating */}
                   <button type="button" className="absolute right-1 w-fit flex items-center bg-[#F8F8F8] ml-auto p-[5px] rounded-md ">
-                    <Rate allowHalf defaultValue={2.5} />
+                    <Rate defaultValue={3} />
                   </button>
                 </div>
                 <div className="w-full flex items-center justify-end">
@@ -238,7 +231,7 @@ export default function ProductComment() {
             </Modal>
           </section>
 
-          <section className="flex justify-between flex-wrap w-full h-fit overflow-hidden" >
+          <section id="comment" className="flex justify-between flex-wrap w-full h-fit overflow-hidden" >
             {showNextComments}
           </section>
           <section className="w-full py-6 flex justify-center items-center">
@@ -247,7 +240,6 @@ export default function ProductComment() {
               <button
                 type="button"
                 onClick={() => {setVisibleCommnets((prev) => prev + 4)}}
-                // ${allComments.length === showNextComments.length }
                 className={`flex active:scale-95 active:opacity-70 rounded-xl px-[30px] py-[10px] border border-searchBgColor bg-bgColor items-center gap-x-3 `}
               >                
                 <p className={`text-borderWinter bg-transparent font-AeonikProRegular text-base`}>
@@ -257,12 +249,12 @@ export default function ProductComment() {
             ) : (
               <button
                 type="button"
-                onClick={handleReturn}
+                onClick={() => {setVisibleCommnets(4)} }
                 className={`flex rounded-xl px-[30px] py-[10px] border border-searchBgColor bg-bgColor items-center gap-x-3 `}
               >
-                  <p className={`text-borderWinter bg-transparent font-AeonikProRegular text-base`}>
+                  <a href="#comment" className={`text-borderWinter bg-transparent font-AeonikProRegular text-base`}>
                     Свернуть...
-                  </p>
+                  </a>
               </button>
                 
             )}
