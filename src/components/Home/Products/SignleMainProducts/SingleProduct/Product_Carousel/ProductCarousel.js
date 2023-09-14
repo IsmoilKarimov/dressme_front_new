@@ -266,7 +266,7 @@ const ProductCarousel = ({show}) => {
 
       {screenSize.width >= 768 ? (
         
-        <section className={`border border-green-800 w-full h-[620px] flex flex-col md:flex-row md:gap-x-[10px] md:sticky duration-500 ${
+        <section className={`w-full h-[664px] flex flex-col md:flex-row md:gap-x-[10px] md:sticky duration-500 ${
           show ? "visible z-20 top-[110px]" : "visible z-20 top-[16px]"
         }
         `}>
