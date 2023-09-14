@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import copy from "copy-to-clipboard";
 import { FaTelegramPlane } from "react-icons/fa";
@@ -17,19 +17,24 @@ const ProductDetails = () => {
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
   const slider = useRef(null);
-  
-  const textRef = useRef();
-  const copyToClipboard = () => {
-    let copyText = textRef.current.value;
-    let isCopy = copy(copyText);
-    if (isCopy) {
-      // toast.success("Copied to Clipboard");
-    }
-  };
 
+  // const textRef = useRef();
+  // const copyToClipboard = () => {
+  //   let copyText = textRef.current.value;
+  //   let isCopy = copy(copyText);
+  //   if (isCopy) {
+  //     toast.success("Copied to Clipboard");
+  //   }
+  // };
 
-
-
+  const [copyText, setCopyText] = useState('AA009842')
+  const [copyCardNumber, setCopyCardNumber] = useState('8600-000-2345-1234')
+  const handleCopyText = () => {
+    navigator.clipboard.writeText(copyText)
+  }
+  const handleCopyCardNumber = () => {
+    navigator.clipboard.writeText(copyCardNumber)
+  }
 
   const [openTab, setOpenTab] = useState(1);
   const [selectSize] = useState([
@@ -170,19 +175,18 @@ const ProductDetails = () => {
                 <span className="mr-[6px]"><ProductArticleIcons /></span>
                 <span className="text-sm font-AeonikProRegular leading-4 tracking-[1%]">Артикль:</span>
                 <input 
-                  className="text-sm bg-transparent w-[68px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]" 
-                  value="AA009842" 
-                  disabled 
                   type="text" 
-                  ref={textRef} 
+                  readOnly 
+                  value={copyText} 
+                  onChange={(e) => setCopyText(e.target.value)} 
+                  className="text-sm bg-transparent w-[68px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]" 
                 />
                 <button 
-                  // type="button"
-                  onClick={copyToClipboard}
+                  type="button"
+                  onClick={handleCopyText}
                   className="cursor-pointer ml-[8px]">
                   <AddCopyCheckedIcon />
                 </button>
-             
               </div>
             </article>
           </article>   
@@ -317,19 +321,15 @@ const ProductDetails = () => {
               </article>
               <article className="w-fit flex items-center ml-2">
                 <input 
-                    className="text-sm bg-transparent w-[148px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]" 
-                    value="8600-0000-2345-1234" 
-                    disabled 
+                    className="text-sm bg-transparent w-[138px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]" 
+                    value={copyCardNumber} 
+                    onChange={(e) => setCopyCardNumber(e.target.value)}
+                    readOnly 
                     type="text" 
-                    ref={textRef} 
                   />
-               
-                {/* <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                8600-0000-2345-1234
-                </p> */}
                 <button 
                   type="button"
-                  // onClick={navigator.clipboard.writeText("8600-0000-2345-1234")}
+                  onClick={handleCopyCardNumber}
                   className="cursor-pointer ml-[8px]">
                   <AddCopyCheckedIcon />
                 </button>

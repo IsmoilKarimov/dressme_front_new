@@ -33,13 +33,13 @@ body {
   font-display: swap;
 }
 
-.slick-slider {
+/* .slick-slider {
   overflow: hidden;
-}
+} */
 
-.slick-slide > div {
+/* .slick-slide > div {
   margin: 0 10px;
-}
+} */
 
 .slick-list {
   margin: 0 -10px;
