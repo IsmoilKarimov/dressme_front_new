@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Slider from "react-slick";
-import { BrushColorIcons, DiscountShapeIcons, LocationColoursIcons, MenuCloseIcons, VideoStoreIcons } from "../../../../../../assets/icons";
+import { BrushColorIcons, MenuCloseIcons, VideoStoreIcons } from "../../../../../../assets/icons";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 
 const ProductCarousel = ({show}) => {
@@ -132,7 +132,7 @@ const ProductCarousel = ({show}) => {
     const { onClick } = props;
     return (
       <main
-        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10  right-[30px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10  right-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
         onClick={onClick}
       >
         <button className="next">
@@ -145,7 +145,7 @@ const ProductCarousel = ({show}) => {
     const { onClick } = props;
     return (
       <main
-        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10 left-[30px] rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
+        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10 left-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
         onClick={onClick}
       >
         <button className="prev">
@@ -225,10 +225,10 @@ const ProductCarousel = ({show}) => {
   return (
     <main className="w-full md:w-fit h-full">
       
-      <div className="w-full block">
+      <div className="w-full">
         <section
           onClick={() => setModalOfCarsouel(false)}
-          className={`fixed inset-0 z-[200] duration-200 w-full h-[100vh] bg-black opacity-60  ${modalOfCarsouel ? "" : "hidden"
+          className={`fixed inset-0 z-[200] duration-200 w-full h-[100vh] bg-black opacity-60 ${modalOfCarsouel ? "" : "hidden"
             }`}
         ></section>
         <section
@@ -242,7 +242,7 @@ const ProductCarousel = ({show}) => {
           </button>
           <div>
             <Slider
-              className="w-[670px] h-[850px] bg-white rounded-lg mt-[-4px] p-0 m-0 "
+              className="w-[670px] h-[850px] bg-white rounded-lg mt-[-4px] p-0 m-0"
               // asNavFor={nav2}
               // ref={slider1}
               {...settingsModal}
@@ -252,7 +252,7 @@ const ProductCarousel = ({show}) => {
 
                   <img
                     key={data?.id}
-                    className="w-[670px] h-fit object-top	object-cover cursor-pointer"
+                    className="w-[670px] h-[850px] object-top rounded-lg object-cover cursor-pointer"
                     src={data?.img}
                     alt=""
                   />
@@ -265,8 +265,8 @@ const ProductCarousel = ({show}) => {
       </div>
 
       {screenSize.width >= 768 ? (
-        <section className={` w-full h-[620px] flex flex-col md:flex-row md:gap-x-[10px]
-        md:w-1/2  md:sticky duration-500 ${
+        
+        <section className={`w-full h-[664px] flex flex-col md:flex-row md:gap-x-[10px] md:sticky duration-500 ${
           show ? "visible z-20 top-[110px]" : "visible z-20 top-[16px]"
         }
         `}>
@@ -332,6 +332,7 @@ const ProductCarousel = ({show}) => {
             </Slider>
           </article>
         </section>
+
       ) : (
        <section className="w-full h-fit flex flex-col">
           {/* 1 */}
@@ -345,7 +346,7 @@ const ProductCarousel = ({show}) => {
               {imgGroup?.map((data) => {
                 return (
                   <article key={data?.id}>
-                    <figure className="relative w-full h-full overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
+                    <figure className="relative w-full h-full border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
                       <img className="w-full h-fit" src={data?.img} alt="" />
                       <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                         <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
