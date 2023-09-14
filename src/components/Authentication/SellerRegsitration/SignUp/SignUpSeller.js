@@ -56,7 +56,7 @@ const SignUpSeller = () => {
 
 
   // ------------GET METHOD seller-types-----------------
-  useQuery(["get seller-type"], () => {
+  const { isFetching } = useQuery(["get seller-type"], () => {
     return fetch(`${url}/seller-types`).then(res => res.json())
   },
     {
@@ -69,7 +69,7 @@ const SignUpSeller = () => {
     }
   )
   // ------------GET METHOD Region-----------------
-  useQuery(["get region"], () => {
+  const { isLoading } = useQuery(["get region"], () => {
     return fetch(`${url}/regions`).then(res => res.json())
   },
     {
@@ -82,8 +82,7 @@ const SignUpSeller = () => {
     }
   )
 
-
-
+  console.log("render");
   // ------------POST METHOD-----------------
   const { mutate } = useMutation(() => {
     return fetch(`${url}/register`, {
@@ -190,13 +189,19 @@ const SignUpSeller = () => {
       });
     }
   }
-  console.log(state?.getSellerList, "getSellerList");
-  console.log(state?.getRegionList, "getRegionList");
+
   // ---------------Jismony User------
-  function handleChange(e) {
-    const { value } = e.target;
-    setState({ ...state, seller_type_id: value })
-  }
+  // function handleChange(e) {
+  //   const { value } = e.target;
+  //   setState({ ...state, seller_type_id: value })
+  // }
+  // const handleRegion = (RegId, e) => {
+  //   const { value } = e.target;
+  //   setState({ ...state, region: value, sub_region: RegId })
+  // }
+  console.log(state?.seller_type_id, "seller_type_id");
+  console.log(state?.region, "region");
+  console.log(state?.sub_region, "sub_region");
   return (
     <div className="max-w-[1280px] w-full flex justify-center items-center m-auto">
       <ToastContainer
@@ -253,6 +258,7 @@ const SignUpSeller = () => {
           {naturalPerson ? (
             <div className="w-full flex items-center">
               <div className="mx-auto">
+                {isFetching && <p>isLoading...</p>}
                 {
                   state?.getSellerList?.individual?.map(data => {
                     return (
@@ -263,8 +269,9 @@ const SignUpSeller = () => {
                             id={data?.id}
                             name="type_work"
                             value={data?.id}
+                            checked={state?.seller_type_id == data?.id}
                             className="w-[18px] h-[18px] cursor-pointer"
-                            onChange={handleChange}
+                            onChange={(e) => setState({ ...state, seller_type_id: e.target.value })}
                             required
                           />
                           <label
@@ -282,7 +289,8 @@ const SignUpSeller = () => {
               </div>
             </div>
           ) : (
-            <div className="w-full md:w-[484px] rounded-lg mx-auto border border-red-500">
+            <div className="w-full md:w-[484px] rounded-lg mx-auto ">
+              {isFetching && <p>isLoading...</p>}
               <div className="w-full h-fit ">
                 <div className={`w-full`}>
                   <select
@@ -291,11 +299,11 @@ const SignUpSeller = () => {
                     onChange={(e) => setState({ ...state, seller_type_id: e.target.value })}
                     required
                   >
-                    <option className="text-[#303030] text-base not-italic font-AeonikProRegula leading-4 tracking-[0,16px]" value="">Тип предприятия</option>
+                    <option className="text-[#303030] text-[14px] sm:text-base  not-italic font-AeonikProRegular leading-4 tracking-[0,16px]" value="">Тип предприятия</option>
                     {
                       state?.getSellerList?.company?.map(data => {
                         return (
-                          <option className="text-[#303030] text-base not-italic hover:bg-btnBgColor font-AeonikProRegula leading-4 tracking-[0,16px]" key={data?.id || null} value={data?.id || null}> {data?.name_ru || "text"} </option>
+                          <option className="text-[#303030] text-[14px] sm:text-base  not-italic hover:bg-btnBgColor font-AeonikProRegular leading-4 tracking-[0,16px]" key={data?.id || null} value={data?.id || null}> {data?.name_ru || "text"} </option>
                         )
                       })
                     }
@@ -304,12 +312,12 @@ const SignUpSeller = () => {
               </div>
 
               {!naturalPerson && <div className="w-full md:w-[484px] mt-5">
-                <p className="flex items-center text-base font-AeonikProRegular text-[#303030]">
+                <p className="flex items-center text-base  font-AeonikProRegular text-[#303030]">
                   Наименование организации
                   <span className="ml-[5px]"><StarIcon /></span>
                 </p>
                 <input
-                  className="w-full font-AeonikProRegular text-base border border-[#e5e5e5] mt-[6px] rounded-lg px-[15px] h-[42px] flex items-center"
+                  className="w-full font-AeonikProRegular text-[14px] sm:text-base  border border-[#e5e5e5] mt-[6px] rounded-lg px-[15px] h-[42px] flex items-center"
                   type="text"
                   value={state?.company_name}
                   onChange={(e) => setState({ ...state, company_name: e.target.value })}
@@ -322,11 +330,11 @@ const SignUpSeller = () => {
           )}
           {/* full form */}
           {/* FORM SECTION FOR DESCROP VERSION  asterisc_icon*/}
-          <div className="hidden md:block  mt-5">
-            <div className="w-full h-fit flex items-center justify-between gap-x-[50px]">
+          <div className="mt-5">
+            <div className="w-full h-fit flex flex-col md:flex-row gap-y-5 md:gap-y-0 items-center  justify-between gap-x-[50px]">
 
               {/* ------------------------------------------------------------------------------------------------------------- */}
-              <div className="w-1/2 h-fit ">
+              <div className="w-full md:w-1/2 h-fit ">
                 <div
                   onClick={() => {
                     setState({ ...state, openModalRegions: false });
@@ -334,8 +342,9 @@ const SignUpSeller = () => {
                   className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${state?.openModalRegions ? "" : "hidden"
                     }`}
                 ></div>
-                {state?.openModalRegions && <div className="fixed max-w-[440px] h-[650px]  px-6 py-4 bg-white rounded-lg  mx-auto w-full  z-[113] top-[50%] left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
+                {state?.openModalRegions && <div className="fixed max-w-[550px] h-[650px]  px-6 py-4 bg-white rounded-lg  mx-auto w-full  z-[113] top-[50%] left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
                   <div className="w-full flex items-center justify-between">
+
                     <span className="text-black text-2xl not-italic font-AeonikProRegular">Выберите регион</span>
                     <span
                       className="select-none"
@@ -356,7 +365,9 @@ const SignUpSeller = () => {
                       <SearchIcons />
                     </span>
                   </label>
-                  <div className="w-full overflow-auto  mt-6 h-[80%] VerticelScroll">
+                  <div className="w-full overflow-auto  mt-6 h-[70%] VerticelScroll">
+                    {isLoading && <p>isLoading...</p>}
+
                     {state?.getRegionList?.regions?.map((data) => {
                       return (
                         <div key={data?.id} className="w-full  h-fit mt-4">
@@ -364,7 +375,7 @@ const SignUpSeller = () => {
                             // onClick={() => openCityList(data?.id)}
                             className="w-full cursor-pointer flex items-center pr-1 justify-between border-b border-borderColor pb-1"
                           >
-                            <span className="text-[#303030] text-[18px] not-italic font-AeonikProRegular">
+                            <span className="text-[#303030] text-[18px] not-italic font-AeonikProMedium">
                               {data?.name_ru}
                             </span>
                             <span
@@ -379,18 +390,23 @@ const SignUpSeller = () => {
                           >
                             {data?.sub_regions.map((item) => {
                               return (
-                                <div key={item?.id} className="flex items-center gap-x-[4px] cursor-pointer">
+                                <div key={item?.id} className="flex items-center px-[2px] gap-x-[4px] cursor-pointer">
                                   <input
                                     type="radio"
-                                    id={item?.id}
+                                    id={item?.name_ru}
                                     name="type_work"
-                                    value={item?.id}
-                                    className="!w-[18px] !h-[18px] rounded border border-borderColor flex items-center justify-center" onChange={handleChange}
+                                    value={item?.region_id}
+                                    checked={state?.sub_region == item?.id}
+                                    className="border border-borderColor  cursor-pointer  flex items-center justify-center"
+                                    onChange={(e) => {
+                                      setState({ ...state, region: e.target.value, sub_region: item?.id })
+                                    }}
                                     required
+
                                   />
                                   <label
-                                    htmlFor={item?.id}
-                                    className="text-[#303030] text-[17px] not-italic font-AeonikProRegular"
+                                    htmlFor={item?.name_ru}
+                                    className="text-[#303030]  cursor-pointer text-[15px] not-italic font-AeonikProRegular"
                                   >
                                     {item?.name_ru}
                                   </label>
@@ -412,25 +428,46 @@ const SignUpSeller = () => {
                       );
                     })}
                   </div>
+                  <div className="flex items-center justify-end mt-6">
+                    <span onClick={() => {
+                      setState({ ...state, openModalRegions: false });
+                    }} className="cursor-pointer text-fullBlue text-xl not-italic font-AeonikProMedium">Готово</span>
+                  </div>
                 </div>}
 
                 <div className={"w-full"}>
                   <label htmlFor="" >
-                    <span className="flex items-center text-[#303030] text-base not-italic font-AeonikProRegula leading-4 tracking-[0,16px] ">
+                    <span className="flex items-center text-[#303030] text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
                       Выберите регион
+
                       <span className="ml-[5px]"><StarIcon /></span>
                     </span>
-                    <select onClick={() => {
-                      setState({ ...state, openModalRegions: true });
-                    }}
-                      className="w-full h-[42px] mt-[6px] pl-[15px] rounded-lg cursor-pointer border border-borderColor2" value={state?.region} onChange={(e) => setState({ ...state, region: e.target.value })} required>
+                    <div
+                      onClick={() => {
+                        setState({ ...state, openModalRegions: true });
+                      }}
+                      className="w-full h-[42px] mt-[6px] px-[15px] flex items-center justify-between rounded-lg cursor-pointer border border-borderColor2">
+                      <span className="text-[#B5B5B5] text-base not-italic font-AeonikProRegular">
+                        {!state?.region && !state?.sub_region && "Выберите регион"}
 
-                    </select>
+                        {state?.getRegionList?.regions?.filter(e => e.id == state?.region).map(item => {
+                          return <span className="flex items-center text-[#B5B5B5] text-[14px] sm:text-base">
+                            {item?.name_ru},
+                            {item?.sub_regions?.filter(i => i.id == state?.sub_region).map(item => {
+                              return <span className="ml-1">{item?.name_ru}</span>
+                            })}
+                          </span>
+                        })
+                        }
+                      </span>
+                      <span className="rotate-[180deg]"><ArrowTopIcons colors={"#a1a1a1"} /></span>
+                    </div>
+
                   </label>
                 </div>
               </div>
               {/* ------------------------------------------------------------------------------------------------------------- */}
-              <div className="w-1/2 h-fit ">
+              <div className="w-full md:w-1/2 h-fit  ">
                 <span className="flex items-center text-[#303030] text-base not-italic font-AeonikProRegular  leading-4 tracking-[0,16px] ">
                   Номер банковской карты
                   <span className="ml-[5px]"><StarIcon /></span>
@@ -441,7 +478,7 @@ const SignUpSeller = () => {
                   <InputMask
                     value={state?.cardNumber}
                     mask='9999-9999-9999-9999'
-                    className="outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                    className="outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium text-[14px] xs:text-base placeholder-text-base placeholder-leading-4 placeholder-text-black"
                     onChange={(e) => setState({ ...state, cardNumber: e.target.value })}
                     placeholder="0000-0000-0000-0000"
                   />
@@ -453,17 +490,17 @@ const SignUpSeller = () => {
 
             <div className="w-full h-[1px] bg-borderColor2 my-[30px]"></div>
             {/* Form */}
-            <div className="w-full flex flex-col gap-y-5">
+            <div className="w-full flex flex-col gap-y-4 xs:gap-y-5">
               {/* Namr, surname */}
-              <div className="w-full  xs:flex-row flex-col flex items-center justify-between gap-x-[50px] gap-y-4 xs:gap-y-0">
+              <div className="w-full  xs:flex-row flex-col flex items-center justify-between gap-x-5 sm:gap-x-[50px] gap-y-4 xs:gap-y-0">
                 <div className="w-full xs:w-1/2 h-fit ">
-                  <span className="flex items-center text-[#303030] text-base not-italic font-AeonikProRegula leading-4 tracking-[0,16px] ">
+                  <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
                     Имя{" "}
                     <span className="ml-[5px]"><StarIcon /></span>
                   </span>
-                  <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
+                  <div className="mt-1 xs:mt-[6px] px-2 xs:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
                     <input
-                      className=" outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                      className=" outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="text"
                       name="fname"
                       autoComplete="off"
@@ -475,13 +512,13 @@ const SignUpSeller = () => {
                   </div>
                 </div>
                 <div className="w-full xs:w-1/2 h-fit ">
-                  <span className="flex items-center text-[#303030] text-base not-italic font-AeonikProRegula leading-4 tracking-[0,16px] ">
+                  <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
                     Фамилия{" "}
                     <span className="ml-[5px]"><StarIcon /></span>
                   </span>
-                  <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
+                  <div className="mt-1 xs:mt-[6px] px-2 xs:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
                     <input
-                      className=" outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                      className=" outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="text"
                       name="lname"
                       autoComplete="off"
@@ -494,21 +531,21 @@ const SignUpSeller = () => {
                 </div>
               </div>
               {/* Номер, Mail */}
-              <div className="w-full  flex  xs:flex-row flex-col items-center justify-between gap-x-[50px] gap-y-4 xs:gap-y-0">
+              <div className="w-full  flex  xs:flex-row flex-col items-center justify-between gap-x-5 sm:gap-x-[50px] gap-y-4 xs:gap-y-0">
                 {/* Mail */}
                 <div className="w-full xs:w-1/2 h-fit ">
                   <div className=" flex items-center justify-between w-full">
-                    <span className="flex items-center text-[#303030] text-base not-italic font-AeonikProRegula leading-4 tracking-[0,16px] ">
+                    <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
                       Электронная почта{" "}
                       <span className="ml-[5px]"><StarIcon /></span>
                     </span>
                   </div>
-                  <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
+                  <div className="mt-1 xs:mt-[6px] px-2 xs:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
                     <input
-                      className=" outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                      className=" outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="email"
                       name="email"
-                      placeholder="Адрес электронной почты"
+                      placeholder="электронной почты"
                       value={state?.email}
                       onChange={(e) => setState({ ...state, email: e.target.value })}
                       required
@@ -520,27 +557,27 @@ const SignUpSeller = () => {
                 </div>
                 {/* Номер телефона */}
                 <div className="w-full xs:w-1/2 h-fit">
-                  <span className="flex items-center text-[#303030] text-base not-italic font-AeonikProRegula leading-4 tracking-[0,16px] ">
+                  <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
                     Номер телефона{" "}
                     <span className="ml-[5px]"><StarIcon /></span>
                   </span>
                   <div className="mt-[6px] flex items-center overflow-hidden border border-searchBgColor rounded-lg">
-                    <div className="ss:w-[35%] md:w-[100px] h-[40px] xs:h-12 flex items-center justify-center   cursor-pointer border-r border-searchBgColor overflow-hidden">
+                    <div className="w-[30%] sm:w-[35%] md:w-[100px] h-[40px] xs:h-[42px] flex items-center justify-center   cursor-pointer border-r border-searchBgColor overflow-hidden">
                       <input
-                        className=" outline-none	 w-[40px] h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                        className=" outline-none	w-[40px] h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
                         type="text"
                         value={state.phoneCode}
                         readOnly
                       />
                     </div>
-                    <div className="ss:w-[65%] md:w-[70%] h-[40px] xs:h-12 overflow-hidden">
+                    <div className="ss:w-[65%] md:w-[70%] h-[40px] xs:h-[42px] overflow-hidden">
                       <InputMask
                         mask="(99) 999-99-99"
                         value={state?.phone}
                         name="phone"
                         onChange={(e) => setState({ ...state, phone: e.target.value })}
-                        className={`w-full px-4 outline-none h-full not-italic ${state?.phone ? "font-AeonikProMedium" : null
-                          } text-base leading-4 text-black`}
+                        className={`w-full px-2 xs:px-4 outline-none h-full not-italic ${state?.phone ? "font-AeonikProMedium" : null
+                          } ll:text-[14px] sm:text-[16px] leading-4 text-black`}
                         placeholder={"(97) 123-45-67"}
                       ></InputMask>
                     </div>
@@ -548,16 +585,16 @@ const SignUpSeller = () => {
                 </div>
               </div>
               {/* Номер, Mail */}
-              <div className="w-full  flex  xs:flex-row flex-col items-center justify-between gap-x-[50px] gap-y-4 xs:gap-y-0">
+              <div className="w-full  flex  xs:flex-row flex-col items-center justify-between gap-x-5 sm:gap-x-[50px] gap-y-4 xs:gap-y-0">
                 {/* Mail */}
                 <div className="w-full xs:w-1/2 h-fit ">
-                  <span className="flex items-center text-[#303030] text-base not-italic font-AeonikProRegula leading-4 tracking-[0,16px] ">
+                  <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
                     Пароль
                     <span className="ml-[5px]"><StarIcon /></span>
                   </span>
-                  <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
+                  <div className="mt-1 xs:mt-[6px] px-2 xs:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
                     <input
-                      className=" outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                      className=" outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="password"
                       name="password"
                       placeholder="password"
@@ -570,13 +607,13 @@ const SignUpSeller = () => {
                 </div>
                 {/* Повторите пароль */}
                 <div className="w-full xs:w-1/2 h-fit">
-                  <span className="flex items-center text-[#303030] text-base not-italic font-AeonikProRegula leading-4 tracking-[0,16px] ">
+                  <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
                     Повторите пароль
                     <span className="ml-[5px]"><StarIcon /></span>
                   </span>
-                  <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
+                  <div className=" mt-1 xs:mt-[6px] px-2 xs:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
                     <input
-                      className=" outline-none w-full h-[42px] placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                      className=" outline-none w-full h-[42px] placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="Повторите пароль"
                       name="Повторите пароль"
                       placeholder="Повторите пароль"
