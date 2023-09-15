@@ -99,7 +99,7 @@ export default function SignInSeller() {
   };
 
   return (
-    <div className=" w-full h-[calc(100vh-110px)] flex items-center justify-center ">
+    <div className=" w-full h-[calc(100vh-110px)] px-4 md:px-0 flex items-center justify-center">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -114,8 +114,8 @@ export default function SignInSeller() {
         theme="colored"
       />
 
-      <div className="max-w-[440px] w-[100%]  h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
-        <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-xl ss:text-start md:text-center leading-5   tracking-[0,16px] text-black">
+      <div className="max-w-[440px] w-[100%]  h-fit  md:px-[40px] md:py-[32px] py-3 px-2 border border-searchBgColor rounded-lg">
+        <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-[18px] ls:text-xl ss:text-start md:text-center leading-5   tracking-[0,16px] text-black">
           Войти в систему продавца
         </div>
 
@@ -123,9 +123,9 @@ export default function SignInSeller() {
           <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
             Электронная почта
           </div>
-          <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
+          <div className="mt-[6px] px-2 md:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
-              className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black focus:bg-white placeholder-bg-white"
+              className="  w-full h-[42px] text-sm  placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black focus:bg-white placeholder-bg-white"
               type="email"
               value={state.email}
               onChange={({ target: { value } }) => {
@@ -144,9 +144,9 @@ export default function SignInSeller() {
           <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
             Пароль
           </div>
-          <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
+          <div className="mt-[6px] px-2 md:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
-              className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+              className="  w-full h-[42px] text-sm placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type={state?.eyesShow ? "password" : "text"}
               placeholder="Enter your password"
               value={state.password}
@@ -199,7 +199,7 @@ export default function SignInSeller() {
         </div>
         <div
           onClick={EnterTheSystem}
-          className="mt-2 border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-SignInBgColor select-none rounded-lg active:scale-95	active:opacity-70 "
+          className="mt-2 border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-[42px] bg-SignInBgColor select-none rounded-lg active:scale-95	active:opacity-70 "
         >
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
             Войти в систему
@@ -214,7 +214,7 @@ export default function SignInSeller() {
         </div>
         <NavLink
           to={"/signup-seller"}
-          className="mt-3  cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-OpacitySignIn select-none rounded-lg active:scale-95	active:opacity-70 "
+          className="mt-3  cursor-pointer flex items-center justify-center border-searchBgColor w-full h-[42px] bg-OpacitySignIn select-none rounded-lg active:scale-95	active:opacity-70 "
         >
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-black tracking-[0,16px]">
             Создайте Аккаунт

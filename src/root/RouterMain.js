@@ -9,6 +9,7 @@ import SignInSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import SignUpSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import SignUpSeller from "../components/Authentication/SellerRegsitration/SignUp/SignUpSeller";
 import SignInSeller from "../components/Authentication/SellerRegsitration/SignIn/SignInSeller";
+
 import MobileAllComments from "../components/Home/Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/MobileComments";
 
 // import ConnectDashboard from "../components/RegistrationDashboard";
@@ -45,7 +46,7 @@ const ShoppingStore = React.lazy(() =>
   import("../components/Home/Shop/ShoppingStore")
 );
 const CategoryMainType = React.lazy(() => import("../components/Category/CategoryForType"));
-const ConnectDashboard = React.lazy(() => import("../components/ConnectionOfDashboard"));
+// const ConnectDashboard = React.lazy(() => import("../components/ConnectionOfDashboard"));
 const SignUp = React.lazy(() => import("../components/Authentication/SignUp"));
 const SignIn = React.lazy(() => import("../components/Authentication/SignIn"));
 
