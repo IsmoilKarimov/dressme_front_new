@@ -18,7 +18,7 @@ body {
 @font-face {
   font-family: 'AeonikPro-Regular';
   src: url('/src/fonts/aeonic-pro/AeonikPro-Regular.woff2') format('woff2'),
-      url('/src/fonts/aeonic-pro/AeonikPro-Regular.woff') format('woff');
+    url('/src/fonts/aeonic-pro/AeonikPro-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -27,7 +27,7 @@ body {
 @font-face {
   font-family: 'AeonikPro-Medium';
   src: url('/src/fonts/aeonic-pro/AeonikPro-Medium.woff2') format('woff2'),
-      url('/src/fonts/aeonic-pro/AeonikPro-Medium.woff') format('woff');
+    url('/src/fonts/aeonic-pro/AeonikPro-Medium.woff') format('woff');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -100,7 +100,7 @@ select {
   transition: all 0.5s ease-out;
 }
 
-.nav-link:hover + .followers {
+.nav-link:hover+.followers {
   left: 31px;
   z-index: 10;
 }
@@ -118,6 +118,7 @@ select {
 .ant-modal-content {
   padding: 0 !important;
 }
+
 .ant-modal-content .ant-modal-close {
   right: 10px !important;
 }
@@ -169,10 +170,12 @@ select {
   -o-animation: fadeInFromNone 0.8s ease-out;
   animation: fadeInFromNone 0.8s ease-out;
 }
+
 @keyframes fadeInFromNone {
   0% {
     opacity: 0;
   }
+
   /* 50% {
     opacity: 0.01;
   } */
@@ -188,6 +191,7 @@ select {
   opacity: 0;
   z-index: 1;
 }
+
 .fade-appear-active,
 .fade-enter.fade-enter-active {
   opacity: 1;
@@ -206,11 +210,9 @@ select {
 
 /* ----------CateGory----------- */
 .categoryLinearText {
-  background: linear-gradient(
-    to right,
-    rgba(167, 207, 223, 0) 50%,
-    rgba(255, 255, 255, 0.99) 100%
-  );
+  background: linear-gradient(to right,
+      rgba(167, 207, 223, 0) 50%,
+      rgba(255, 255, 255, 0.99) 100%);
 }
 
 /* Table */
@@ -224,18 +226,22 @@ th {
   text-align: center;
   font-size: 14px;
 }
+
 table tr td {
   color: #a1a1a1;
   font-size: 12px;
 }
+
 table tr td:nth-child(1) {
   font-weight: bold;
   font-size: 14px;
   color: #000;
 }
+
 table tr th {
   background-color: #fcfcfc;
 }
+
 table tr th:nth-child(1) {
   font-weight: bold;
   font-size: 14px;
@@ -256,6 +262,7 @@ table tr th:nth-child(1) {
   overflow-x: scroll;
   row-gap: 12px;
 }
+
 .items::-webkit-scrollbar {
   width: 50px;
   height: 0px;
@@ -274,6 +281,7 @@ table tr th:nth-child(1) {
   padding: 12px 16px;
   cursor: pointer;
 }
+
 .categoryScroll::-webkit-scrollbar {
   width: 2px;
 }
@@ -283,6 +291,7 @@ table tr th:nth-child(1) {
   height: 30px;
   border-radius: 8px;
 }
+
 /* --------------------React Slider openedBrands */
 
 /* --------------------React Slider search  */
@@ -293,9 +302,9 @@ table tr th:nth-child(1) {
   z-index: 33;
   border-radius: 5px;
 }
+
 .example-thumb1 {
-  background: rgba(0, 125, 202, 1)
-    url("./assets//Category//ReactSliderMenu.svg");
+  background: rgba(0, 125, 202, 1) url("./assets//Category//ReactSliderMenu.svg");
   width: 24px;
   height: 16px;
   background-repeat: no-repeat;
@@ -309,6 +318,7 @@ table tr th:nth-child(1) {
   border: 1px solid #007dca;
   margin-top: -8px;
 }
+
 .example-thumb1.active {
   border: 1px solid #007dca;
 }
@@ -349,3 +359,27 @@ table tr th:nth-child(1) {
   color: #000;
 }
 
+/* ------------------------------------------ */
+.VerticelScroll::-webkit-scrollbar {
+  width: 2px;
+  height: 50px;
+}
+
+.VerticelScroll::-webkit-scrollbar-thumb {
+  background-color: #a1a1a1;
+  width: 2px;
+  border-radius: 8px;
+}
+
+.HorizantalScroll::-webkit-scrollbar {
+  width: 50px;
+  height: 5px;
+}
+
+.HorizantalScroll::-webkit-scrollbar-thumb {
+  background-color: #a1a1a1;
+  width: 50px;
+  border-radius: 8px;
+}
+
+/* ------------------------------------------ */
