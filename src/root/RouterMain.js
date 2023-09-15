@@ -9,6 +9,7 @@ import SignInSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import SignUpSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import SignUpSeller from "../components/Authentication/SellerRegsitration/SignUp/SignUpSeller";
 import SignInSeller from "../components/Authentication/SellerRegsitration/SignIn/SignInSeller";
+import MobileAllComments from "../components/Home/Products/SignleMainProducts/SingleProduct/ProductComment/mobileAllComments/mobilecomment";
 // import ConnectDashboard from "../components/RegistrationDashboard";
 // import CatalogMain from "../components/Home/Catalog/CatalogFilter";
 
@@ -303,6 +304,20 @@ const RouterMain = () => {
               }
             >
               <SignInSeller />
+            </Suspense>
+          }
+        />
+
+        <Route path="/review/comment-store/:id"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SignInSkeletonIndex />
+                </div>
+              }
+            >
+              <MobileAllComments />
             </Suspense>
           }
         />

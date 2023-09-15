@@ -33,17 +33,27 @@ body {
   font-display: swap;
 }
 
-/* .slick-slider {
+.slick-slider {
   overflow: hidden;
-} */
+} 
 
-/* .slick-slide > div {
+.slick-slide > div {
   margin: 0 10px;
-} */
+}
 
 .slick-list {
   margin: 0 -10px;
 }
+
+.showpageSlider .slick-list {
+  margin: 0;
+  border-radius: 8px;
+}
+
+.showpageSlider .slick-slide > div {
+  margin: 0;
+}
+
 
 .MoonLoad {
   width: 100%;

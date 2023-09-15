@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState } from "react";
-import { toast } from "react-toastify";
-import copy from "copy-to-clipboard";
+// import { toast } from "react-toastify";
+// import copy from "copy-to-clipboard";
 import { FaTelegramPlane } from "react-icons/fa";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { BsCircleFill } from "react-icons/bs";
@@ -17,15 +17,6 @@ const ProductDetails = () => {
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
   const slider = useRef(null);
-
-  // const textRef = useRef();
-  // const copyToClipboard = () => {
-  //   let copyText = textRef.current.value;
-  //   let isCopy = copy(copyText);
-  //   if (isCopy) {
-  //     toast.success("Copied to Clipboard");
-  //   }
-  // };
 
   const [copyText, setCopyText] = useState('AA009842')
   const [copyCardNumber, setCopyCardNumber] = useState('8600-000-2345-1234')
