@@ -12,7 +12,6 @@ import {
 } from "../../../../../assets/icons";
 import { HeartImg } from "../../../../../assets";
 import ProductComment from "./ProductComment/ProductComment";
-import AboutProduct from "./AboutProduct/AboutProduct";
 
 const SingleProduct = () => {
   const [dressInfo] = useContext(dressMainData);
@@ -86,7 +85,7 @@ const SingleProduct = () => {
         <section className="md:mt-20 w-full">
           <ProductComment />
         </section>
-        <section className="w-full h-fit  ">
+        <section className="w-full h-fit">
           <article className="w-full mt-[34px] md:mt-[120px]">
             <div className="md:mb-10">
               <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black mb-3 md:mb-0">

@@ -132,7 +132,7 @@ const ProductCarousel = ({show}) => {
     const { onClick } = props;
     return (
       <main
-        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10  right-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10 right-[15px] md:right-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
         onClick={onClick}
       >
         <button className="next">
@@ -145,7 +145,7 @@ const ProductCarousel = ({show}) => {
     const { onClick } = props;
     return (
       <main
-        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10 left-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
+        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center top-[50%] z-10 left-[15px] md:left-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
         onClick={onClick}
       >
         <button className="prev">
@@ -224,7 +224,7 @@ const ProductCarousel = ({show}) => {
 
   return (
     <main className="w-full md:w-fit h-full">
-      
+
       <div className="w-full">
         <section
           onClick={() => setModalOfCarsouel(false)}
@@ -232,27 +232,24 @@ const ProductCarousel = ({show}) => {
             }`}
         ></section>
         <section
-          className={`fixed z-[201] rounded-lg bg-white w-fit h-fit m-auto cursor-pointer flex flex-col items-center justify-center inset-0 ${modalOfCarsouel ? "" : "hidden"
+          className={`fixed z-[201] rounded-lg bg-white w-fit h-fit mx-auto mt-[130px] md:m-auto cursor-pointer flex flex-col items-center justify-center inset-0 ${modalOfCarsouel ? "" : "hidden"
             }`}
         >
           <button
             onClick={() => setModalOfCarsouel(false)}
-            className="absolute top-0 z-40 right-[-80px]  flex items-center justify-center w-[50px] h-[50px] rounded-full bg-[#808080]">
+            className="absolute flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px] top-[-60px] right-0 md:top-0 z-40 md:right-[-80px]  rounded-full bg-[#808080]">
             <MenuCloseIcons colors="#fff" />
           </button>
           <div>
             <Slider
-              className="w-[670px] h-[850px] bg-white rounded-lg mt-[-4px] p-0 m-0"
-              // asNavFor={nav2}
-              // ref={slider1}
+              className="w-[360px] h-[480px] md:!w-[670px] md:h-[850px] showpageSlider !overflow-visible bg-white rounded-lg mt-[-4px]"
               {...settingsModal}
             >
               {imgGroup?.map((data) => {
                 return (
-
                   <img
                     key={data?.id}
-                    className="w-[670px] h-[850px] object-top rounded-lg object-cover cursor-pointer"
+                    className="w-full md:w-[670px] md:h-[850px] object-top rounded-lg object-cover cursor-pointer"
                     src={data?.img}
                     alt=""
                   />
@@ -266,7 +263,7 @@ const ProductCarousel = ({show}) => {
 
       {screenSize.width >= 768 ? (
         
-        <section className={`w-full h-[664px] flex flex-col md:flex-row md:gap-x-[10px] md:sticky duration-500 ${
+        <section className={`w-full h-[620px] flex flex-col md:flex-row md:gap-x-[10px] md:sticky duration-500 ${
           show ? "visible z-20 top-[110px]" : "visible z-20 top-[16px]"
         }
         `}>
@@ -339,13 +336,15 @@ const ProductCarousel = ({show}) => {
           <article className="w-full widthInherit mx-auto">
             <Slider
               className="w-full h-full rounded-lg"
-              asNavFor={nav2}
               ref={slider1}
               {...settings}
             >
               {imgGroup?.map((data) => {
                 return (
-                  <article key={data?.id}>
+                  <article 
+                    key={data?.id}
+                    onClick={() => handleClickCarosuel(data?.id)} 
+                  >
                     <figure className="relative w-full h-full border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
                       <img className="w-full h-fit" src={data?.img} alt="" />
                       <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
