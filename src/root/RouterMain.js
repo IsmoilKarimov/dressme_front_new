@@ -310,7 +310,7 @@ const RouterMain = () => {
             </Suspense>
           }
         />
-        <Route path="/mail-verify-seller"
+        <Route path="/mail-verify-seller/:id"
           element={
             <Suspense
               fallback={

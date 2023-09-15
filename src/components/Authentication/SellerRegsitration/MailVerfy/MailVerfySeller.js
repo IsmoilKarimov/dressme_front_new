@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { EmailIcons, SircleNext, SuccessIconsForMail, SuccessIconsForMailGreen } from "../../../../assets/icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 
 export default function MailVerfySeller() {
@@ -12,93 +12,113 @@ export default function MailVerfySeller() {
     eyesShow: true,
     password: "",
     email: "",
-    rememberCheck: ""
+    rememberCheck: "",
+    // get method 
+    getToken: ""
   });
 
   const handleChange = (e) => {
     const { checked } = e.target;
     setState({ ...state, rememberCheck: checked })
   }
+  const pathname = window.location.pathname;
+
+  let PathnameToken = pathname.replace("/mail-verify-seller/:", "")
+
 
   const navigate = useNavigate();
   const [error, setError] = useState(false);
-  const url = "https://api.dressme.uz/api/seller/login";
+  const url = "https://api.dressme.uz/api/seller";
 
-  const dataMutate = useMutation(() => {
-    return fetch(`${url}`, {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify({ email: state.email, password: state.password, rememberToken: state?.rememberCheck }),
-    }).then((res) => res.json());
-  });
-  const EnterTheSystem = () => {
-    console.log(state?.email, "email");
-    console.log(state?.password, "password");
-    console.log(state?.rememberCheck, "rememberCheck");
-    if (state.email?.length && state.password?.length) {
-      dataMutate.mutate(
-        {},
-        {
-          onSuccess: (res) => {
-            console.log(res);
-            if (res?.access_token) {
-              localStorage.setItem("access_token", res?.access_token);
-
-              // navigate("https://dressme-dashboard-new.vesrcel.app/reviews");
-              setState({ ...state, email: "", password: "" });
-              toast.success("Muaffaqiyatli kirdingiz", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-              });
-
-            } else {
-              setError("Email yoki parolda xatolik");
-              toast.error("Email yoki parolda xatolik", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-              });
-            }
-          },
-          onError: (err) => {
-            toast.error("Serverda xatolik", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
-          },
-        }
-      );
-    } else {
-      setError("Bush maydon junatish mumkin emas");
-      toast.warning("Iltimos Malumotlarni kiriting", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+  // ------------GET METHOD seller-types-----------------
+  const { isFetching } = useQuery(["verify mail"], () => {
+    return fetch(`${url}/email-verify/:${PathnameToken ? PathnameToken : null}`).then(res => res.json())
+  },
+    {
+      onSuccess: (res) => {
+        setState({ ...state, getToken: res })
+      },
+      onError: (err) => {
+        console.log(err, "err");
+      }
     }
-  };
+  )
+  console.log(state?.getToken, "getToken");
+
+  // const dataMutate = useMutation(() => {
+  //   return fetch(`${url}/login`, {
+  //     method: "POST",
+  //     headers: { "Content-type": "application/json" },
+  //     body: JSON.stringify({ email: state.email, password: state.password, rememberToken: state?.rememberCheck }),
+  //   }).then((res) => res.json());
+  // });
+  // const EnterTheSystem = () => {
+  //   console.log(state?.email, "email");
+  //   console.log(state?.password, "password");
+  //   console.log(state?.rememberCheck, "rememberCheck");
+  //   if (state.email?.length && state.password?.length) {
+  //     dataMutate.mutate(
+  //       {},
+  //       {
+  //         onSuccess: (res) => {
+  //           console.log(res);
+  //           if (res?.access_token) {
+  //             localStorage.setItem("access_token", res?.access_token);
+
+  //             setState({ ...state, email: "", password: "" });
+  //             toast.success("Muaffaqiyatli kirdingiz", {
+  //               position: "top-right",
+  //               autoClose: 5000,
+  //               hideProgressBar: false,
+  //               closeOnClick: true,
+  //               pauseOnHover: true,
+  //               draggable: true,
+  //               progress: undefined,
+  //               theme: "light",
+  //             });
+
+  //           } else {
+  //             setError("Email yoki parolda xatolik");
+  //             toast.error("Email yoki parolda xatolik", {
+  //               position: "top-right",
+  //               autoClose: 5000,
+  //               hideProgressBar: false,
+  //               closeOnClick: true,
+  //               pauseOnHover: true,
+  //               draggable: true,
+  //               progress: undefined,
+  //               theme: "light",
+  //             });
+  //           }
+  //         },
+  //         onError: (err) => {
+  //           toast.error("Serverda xatolik", {
+  //             position: "top-right",
+  //             autoClose: 5000,
+  //             hideProgressBar: false,
+  //             closeOnClick: true,
+  //             pauseOnHover: true,
+  //             draggable: true,
+  //             progress: undefined,
+  //             theme: "light",
+  //           });
+  //         },
+  //       }
+  //     );
+  //   } else {
+  //     setError("Bush maydon junatish mumkin emas");
+  //     toast.warning("Iltimos Malumotlarni kiriting", {
+  //       position: "top-right",
+  //       autoClose: 5000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "light",
+  //     });
+  //   }
+  // };
 
   return (
     <div className=" w-full h-[calc(100vh-110px)] px-4 md:px-0 flex flex-col items-center justify-center">
@@ -115,7 +135,6 @@ export default function MailVerfySeller() {
         pauseOnHover
         theme="colored"
       />
-
 
       <div className="max-w-[460px] w-[100%]  h-fit mb-5 px-2">
         <div className="w-full flex items-center justify-center flex-col">
