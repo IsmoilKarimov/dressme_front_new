@@ -310,7 +310,7 @@ const RouterMain = () => {
           }
         />
 
-        <Route path="/product/:id/allcomments"
+        <Route path="allcomments"
           element={
             <Suspense
               fallback={
@@ -338,7 +338,7 @@ const RouterMain = () => {
         locationWindow !== "/profile/settings" &&
         locationWindow !== "/signup-seller" &&
         locationWindow !== "/login-seller" &&
-        locationWindow !== "/product/:id/allcomments" &&
+        locationWindow !== "/allcomments" &&
         locationWindow !== "/delivery-points" ? (
         <Suspense fallback={<>Loading...</>}>
           <Footer />

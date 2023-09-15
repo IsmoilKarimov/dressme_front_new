@@ -138,8 +138,8 @@ export default function ProductComment() {
   ]);
 
   const navigate = useNavigate();
-  const goDetail = (id) => {
-    navigate(`/product/:${id}/allcomments`);
+  const goDetail = () => {
+    navigate(`/allcomments`);
   };
 
   useEffect(() => {
@@ -287,9 +287,10 @@ export default function ProductComment() {
                     265 голосов
                   </div>
                 </div>
-                <button 
+                <button
                   onClick={() => goDetail(allComments)}
-                  className="w-full py-4 flex items-center justify-center border-t border-searchBgColor">
+                  className="w-full py-4 flex items-center justify-center border-t border-searchBgColor"
+                >
                   <span className="ml-12">
                     <CommentIcons colors={"#000"} />
                   </span>
