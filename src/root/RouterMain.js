@@ -9,7 +9,8 @@ import SignInSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import SignUpSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import SignUpSeller from "../components/Authentication/SellerRegsitration/SignUp/SignUpSeller";
 import SignInSeller from "../components/Authentication/SellerRegsitration/SignIn/SignInSeller";
-import MobileAllComments from "../components/Home/Products/SignleMainProducts/SingleProduct/ProductComment/mobileAllComments/mobilecomment";
+import MobileAllComments from "../components/Home/Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/MobileComments";
+
 // import ConnectDashboard from "../components/RegistrationDashboard";
 // import CatalogMain from "../components/Home/Catalog/CatalogFilter";
 
@@ -308,7 +309,7 @@ const RouterMain = () => {
           }
         />
 
-        <Route path="/review/comment-store/:id"
+        <Route path="/product/:id/allcomments"
           element={
             <Suspense
               fallback={
@@ -336,6 +337,7 @@ const RouterMain = () => {
         locationWindow !== "/profile/settings" &&
         locationWindow !== "/signup-seller" &&
         locationWindow !== "/login-seller" &&
+        locationWindow !== "/product/:id/allcomments" &&
         locationWindow !== "/delivery-points" ? (
         <Suspense fallback={<>Loading...</>}>
           <Footer />
