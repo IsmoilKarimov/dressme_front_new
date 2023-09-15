@@ -61,7 +61,7 @@ export default function LocationOfYandex() {
       <p className="text-base font-AeonikProRegular mb-5">
         <span className="font-AeonikProMedium">Адрес:</span> Ташкент, Юнусобод
       </p>
-      <div className="w-full h-[200px] md:h-[400px]">
+      <div className="w-full h-[280px] md:h-[400px]">
         <YMaps
           query={{
             apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21",
@@ -90,7 +90,7 @@ export default function LocationOfYandex() {
             <ZoomControl
               options={{
                 float: "right",
-                position: { bottom: 200, right: 10, size: "small" },
+                position: { bottom: "150px", right: 10, size: "small" },
                 size: "small",
               }}
             />{" "}

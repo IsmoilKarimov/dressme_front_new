@@ -137,6 +137,11 @@ export default function ProductComment() {
     },
   ]);
 
+  const navigate = useNavigate();
+  const goDetail = () => {
+    navigate(`/allcomments`);
+  };
+
   const showNextComments = allComments.slice(0, visibleComments).map((allComments, item) => {
     return (
       <article key={item} className="w-[45%] h-fit border-b border-borderColor2 pr-5 pb-10 mt-10 ">
@@ -179,11 +184,6 @@ export default function ProductComment() {
     )
   })
 
-  const handleReturn = () => {
-  //   setVisibleCommnets(4) 
-  //   handleTop() 
-  }
-
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box md:mb-[60px]">
       <section className="relative w-[100%] h-fit md:mt-6 flex justify-between">
@@ -192,7 +192,7 @@ export default function ProductComment() {
           <section className="flex items-center border-b border-borderColor2 pb-10">
               {showNextComments.length > 4 && (
                 <button
-                  onClick={handleReturn}
+                  onClick={() => {setVisibleCommnets(4)} }
                   className={`flex items-center cursor-pointer justify-center border border-borderColor2 rounded-lg mr-5`}
                 >
                   <GoBackIcon />
@@ -234,6 +234,7 @@ export default function ProductComment() {
           <section id="comment" className="flex justify-between flex-wrap w-full h-fit overflow-hidden" >
             {showNextComments}
           </section>
+
           <section className="w-full py-6 flex justify-center items-center">
             {allComments.length !== showNextComments.length  
             ? (
@@ -272,7 +273,7 @@ export default function ProductComment() {
                 <StarIcons />
                 <StarIcons />
                 <StarIcons />
-                <span className="ml-[10px] font-AeonikProMedium text-[17px]">
+                <span className="ml-[10px] font-AeonikProMedium text-base">
                   4.7
                 </span>
               </div>
@@ -280,7 +281,9 @@ export default function ProductComment() {
                 265 голосов
               </div>
             </div>
-            <button className="w-full py-4 flex items-center justify-center border-t border-searchBgColor">
+            <button 
+              // onClick={goDetail(allComments)}
+              className="w-full py-4 flex items-center justify-center border-t border-searchBgColor">
               <span className="ml-12">
                 <CommentIcons colors={"#000"} />
               </span>
