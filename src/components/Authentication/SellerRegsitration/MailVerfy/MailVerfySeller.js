@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { NavLink, useNavigate } from "react-router-dom";
-import { EmailIcons, SircleNext } from "../../../../assets/icons";
+import { EmailIcons, SircleNext, SuccessIconsForMail, SuccessIconsForMailGreen } from "../../../../assets/icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useMutation } from "@tanstack/react-query";
@@ -101,7 +101,7 @@ export default function MailVerfySeller() {
   };
 
   return (
-    <div className=" w-full h-[calc(100vh-110px)] px-4 md:px-0 flex items-center justify-center">
+    <div className=" w-full h-[calc(100vh-110px)] px-4 md:px-0 flex flex-col items-center justify-center">
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -116,18 +116,32 @@ export default function MailVerfySeller() {
         theme="colored"
       />
 
-      <div className="max-w-[440px] w-[100%]  h-fit  md:px-[40px] md:py-[32px] py-3 px-2 border border-searchBgColor rounded-lg">
-        <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-[18px] ls:text-xl ss:text-start md:text-center leading-5   tracking-[0,16px] text-black">
-          Войти в систему продавца
+
+      <div className="max-w-[460px] w-[100%]  h-fit mb-5 px-2">
+        <div className="w-full flex items-center justify-center flex-col">
+          <button className="w-[38px] md:w-[50px] h-[38px] md:h-[50px] flex p-2 md:p-4 items-center justify-center rounded-full bg-[#C3F1D8]">
+            <SuccessIconsForMailGreen />
+          </button>
+          <p className="mt-3 text-black text-center text-[18px] md:text-[30px] not-italic font-AeonikProRegular">Вы успешно прошли проверку!</p>
+        </div>
+        <div className=" w-full pb-[20px] ll:pb-[50px] pt-[30px] ll:pt-[60px] md:hidden not-italic font-AeonikProMedium text-[20px] text-center leading-5 tracking-[0,16px] text-black">
+          Вход для продавцов
+        </div>
+      </div>
+
+      {/*  */}
+      <div className="max-w-[460px] w-[100%]  h-fit  md:px-[40px] md:py-[32px] py-[25px] px-[15px] border border-searchBgColor rounded-[12px]">
+        <div className=" w-full pb-[50px] pt-4 md:flex hidden not-italic font-AeonikProMedium text-[30px] md:text-center leading-5   tracking-[0,16px] text-black">
+          Вход для продавцов
         </div>
 
-        <div className="mt-2 w-full h-fit">
-          <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
+        <div className=" w-full h-fit">
+          <div className="not-italic font-AeonikProRegular text-[18px] leading-4 text-black  tracking-[0,16px] ">
             Электронная почта
           </div>
           <div className="mt-[6px] px-2 md:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
-              className="  w-full h-[42px] text-sm  placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black focus:bg-white placeholder-bg-white"
+              className="  w-full h-[42px] text-base  placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black focus:bg-white placeholder-bg-white"
               type="email"
               value={state.email}
               onChange={({ target: { value } }) => {
@@ -143,12 +157,12 @@ export default function MailVerfySeller() {
           </div>
         </div>
         <div className="mt-4 w-full h-fit">
-          <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
+          <div className="not-italic font-AeonikProRegular text-[18px] leading-4 text-black  tracking-[0,16px] ">
             Пароль
           </div>
           <div className="mt-[6px] px-2 md:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
-              className="  w-full h-[42px] text-sm placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+              className="  w-full h-[42px] text-base placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type={state?.eyesShow ? "password" : "text"}
               placeholder="Enter your password"
               value={state.password}
@@ -179,29 +193,25 @@ export default function MailVerfySeller() {
           <div className="flex items-center">
             <input
               type="checkbox"
-              className=" text-black bg-white placeholder-bg-white mr-2"
+              className="w-[18px] h-[18px] rounded-lg text-black bg-white placeholder-bg-white mr-2"
               id="vehicle1"
               name="vehicle1"
               onChange={handleChange}
             />
             <label
               htmlFor="vehicle1"
-              className="not-italic select-none cursor-pointer font-AeonikProRegular text-sm leading-4 text-black tracking-[0,16px]"
+              className="not-italic select-none cursor-pointer font-AeonikProRegular text-base leading-4 text-black tracking-[0,16px]"
             >
               {" "}
-              Оставаться в системе
+              Помнить
             </label>
           </div>
-          <NavLink
-            to={"/#"}
-            className="not-italic underline	 font-AeonikProRegular text-sm leading-4 cursor-pointer text-black hover:text-SignInBgColor tracking-[0,16px]"
-          >
-            Забыли пароль?
-          </NavLink>
+
         </div>
-        <div
-          onClick={EnterTheSystem}
-          className="mt-2 border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-[42px] bg-SignInBgColor select-none rounded-lg active:scale-95	active:opacity-70 "
+        <button
+          type="button"
+          // onClick={EnterTheSystem}
+          className="mt-[50px] border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-SignInBgColor select-none rounded-lg active:scale-95	active:opacity-70 "
         >
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
             Войти в систему
@@ -209,19 +219,8 @@ export default function MailVerfySeller() {
           <span>
             <SircleNext colors={"#fff"} />
           </span>
-        </div>
-        <div className=" mt-6 text-center">
-          {" "}
-          Если у вас еще нету аккаунта
-        </div>
-        <NavLink
-          to={"/signup-seller"}
-          className="mt-3  cursor-pointer flex items-center justify-center border-searchBgColor w-full h-[42px] bg-OpacitySignIn select-none rounded-lg active:scale-95	active:opacity-70 "
-        >
-          <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-black tracking-[0,16px]">
-            Создайте Аккаунт
-          </span>
-        </NavLink>
+        </button>
+
       </div>
     </div>
   );

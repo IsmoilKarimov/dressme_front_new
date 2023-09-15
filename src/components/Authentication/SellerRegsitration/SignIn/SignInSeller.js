@@ -25,7 +25,10 @@ export default function SignInSeller() {
   const dataMutate = useMutation(() => {
     return fetch(`${url}`, {
       method: "POST",
-      headers: { "Content-type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
       body: JSON.stringify({ email: state.email, password: state.password, rememberToken: state?.rememberCheck }),
     }).then((res) => res.json());
   });
@@ -120,12 +123,12 @@ export default function SignInSeller() {
         </div>
 
         <div className="mt-2 w-full h-fit">
-          <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
+          <div className="not-italic font-AeonikProRegular text-[18px] leading-4 text-black  tracking-[0,16px] ">
             Электронная почта
           </div>
           <div className="mt-[6px] px-2 md:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
-              className="  w-full h-[42px] text-sm  placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black focus:bg-white placeholder-bg-white"
+              className="  w-full h-[42px] text-base  placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black focus:bg-white placeholder-bg-white"
               type="email"
               value={state.email}
               onChange={({ target: { value } }) => {
@@ -141,12 +144,12 @@ export default function SignInSeller() {
           </div>
         </div>
         <div className="mt-4 w-full h-fit">
-          <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
+          <div className="not-italic font-AeonikProRegular text-[18px] leading-4 text-black  tracking-[0,16px] ">
             Пароль
           </div>
           <div className="mt-[6px] px-2 md:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
-              className="  w-full h-[42px] text-sm placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+              className="  w-full h-[42px] text-base placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type={state?.eyesShow ? "password" : "text"}
               placeholder="Enter your password"
               value={state.password}
@@ -199,7 +202,7 @@ export default function SignInSeller() {
         </div>
         <div
           onClick={EnterTheSystem}
-          className="mt-2 border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-[42px] bg-SignInBgColor select-none rounded-lg active:scale-95	active:opacity-70 "
+          className="mt-2 border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-SignInBgColor select-none rounded-lg active:scale-95	active:opacity-70 "
         >
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
             Войти в систему
@@ -214,7 +217,7 @@ export default function SignInSeller() {
         </div>
         <NavLink
           to={"/signup-seller"}
-          className="mt-3  cursor-pointer flex items-center justify-center border-searchBgColor w-full h-[42px] bg-OpacitySignIn select-none rounded-lg active:scale-95	active:opacity-70 "
+          className="mt-3  cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-OpacitySignIn select-none rounded-lg active:scale-95	active:opacity-70 "
         >
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-black tracking-[0,16px]">
             Создайте Аккаунт

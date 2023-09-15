@@ -84,12 +84,15 @@ const SignUpSeller = () => {
     }
   )
 
-  console.log("render");
+  // console.log("render");
   // ------------POST METHOD-----------------
   const { mutate } = useMutation(() => {
     return fetch(`${url}/register`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
       body: JSON.stringify({
         name: state?.firstName,
         surname: state?.lastName,
@@ -132,6 +135,7 @@ const SignUpSeller = () => {
       mutate({}, {
         onSuccess: (res) => {
           console.log(res, "res");
+
           if (res?.emailToken) {
             localStorage.setItem("emailToken", res?.emailToken);
             // navigate("/login-seller")
@@ -147,7 +151,7 @@ const SignUpSeller = () => {
               phone: "",
               openModalEmailMessage: true
             });
-            toast.success("Muaffaqiyatli kirdingiz", {
+            toast.success(`Muaffaqiyatli kirdingiz`, {
               position: "top-right",
               autoClose: 5000,
               hideProgressBar: false,
@@ -158,8 +162,8 @@ const SignUpSeller = () => {
               theme: "light",
             });
           } else {
-            setState({ ...state, error: "Email yoki parolda xatolik" });
-            toast.error("Email yoki parolda xatolik", {
+            setState({ ...state, error: res?.message });
+            toast.error(`${res?.message}`, {
               position: "top-right",
               autoClose: 5000,
               hideProgressBar: false,
@@ -205,9 +209,9 @@ const SignUpSeller = () => {
   }
 
 
-  console.log(state?.seller_type_id, "seller_type_id");
-  console.log(state?.region, "region");
-  console.log(state?.sub_region, "sub_region");
+  // console.log(state?.seller_type_id, "seller_type_id");
+  // console.log(state?.region, "region");
+  // console.log(state?.sub_region, "sub_region");
   return (
     <div className="max-w-[1280px] w-full flex justify-center items-center m-auto">
       <ToastContainer
@@ -417,16 +421,7 @@ const SignUpSeller = () => {
                                     {item?.name_ru}
                                   </label>
                                 </div>
-                                // <label
-                                //   key={item?.id}
-                                //   className="flex items-center gap-x-[4px] cursor-pointer"
-                                // >
-                                //   {" "}
-                                //   <input type="radio" value={item?.id} className="!w-[18px] !h-[18px] rounded border border-borderColor flex items-center justify-center" />
-                                //   <span className="text-[#303030] text-[17px] not-italic font-AeonikProRegular">
-                                //     {item?.name_ru}
-                                //   </span>
-                                // </label>
+
                               );
                             })}
                           </div>
@@ -635,7 +630,7 @@ const SignUpSeller = () => {
 
         </div>
         <div>
-          {state?.error?.length ? <span className="text-RedColor mt-1 text-[12px]">{state?.error}</span> : null}
+          {state?.error?.length ? <span className="text-RedColor mt-2 md:mt-4 text-[14px] md:text-[16px]">{state?.error}</span> : null}
         </div>
         {/* -----------------------Email Verify Modal------------------- */}
         <div className="w-full md:w-1/2 h-fit ">
