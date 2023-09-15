@@ -671,9 +671,12 @@ const SignUpSeller = () => {
           <button type="button" onClick={onSubmit} className="w-full md:w-[360px] h-12 flex items-center justify-center mx-auto font-medium bg-fullBlue text-base text-white rounded-xl  ">
             Зарегистрироваться
           </button>
-          <NavLink to="/login-seller" className={"mt-[15px] text-fullBlue hover:underline text-base not-italic font-AeonikProRegular"}>
+          <NavLink to="/mail-verify-seller" className={"mt-[15px] text-fullBlue hover:underline text-base not-italic font-AeonikProRegular"}>
             Есть аккаунт?
           </NavLink>
+          {/* <NavLink to="/login-seller" className={"mt-[15px] text-fullBlue hover:underline text-base not-italic font-AeonikProRegular"}>
+            Есть аккаунт?
+          </NavLink> */}
         </div>
       </div>
     </div >
