@@ -11,6 +11,7 @@ import SignUpSeller from "../components/Authentication/SellerRegsitration/SignUp
 import SignInSeller from "../components/Authentication/SellerRegsitration/SignIn/SignInSeller";
 
 import MobileAllComments from "../components/Home/Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/MobileComments";
+import MailVerfySeller from "../components/Authentication/SellerRegsitration/MailVerfy/MailVerfySeller";
 
 // import ConnectDashboard from "../components/RegistrationDashboard";
 // import CatalogMain from "../components/Home/Catalog/CatalogFilter";
@@ -306,6 +307,19 @@ const RouterMain = () => {
               }
             >
               <SignInSeller />
+            </Suspense>
+          }
+        />
+        <Route path="/mail-verify-seller"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SignInSkeletonIndex />
+                </div>
+              }
+            >
+              <MailVerfySeller />
             </Suspense>
           }
         />
