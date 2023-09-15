@@ -93,7 +93,7 @@ const Catalog = () => {
               onClick={() => setOpenCatalog(false)}
             >
               {" "}
-              <MenuCloseIcons />
+              <MenuCloseIcons  colors={"#000"}/>
             </button>
           </div>
           <div className="bg-white mt-5">

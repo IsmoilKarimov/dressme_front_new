@@ -172,7 +172,7 @@ const MediumHeader = () => {
                 >
                   {state?.hamburgerMenu ? (
                     <figure>
-                      <MenuCloseIcons />
+                      <MenuCloseIcons colors={"#000"}/>
                     </figure>
                   ) : (
                     <figure>

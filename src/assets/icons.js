@@ -2712,6 +2712,13 @@ const CreditCardNumber = () => {
     </svg>
   );
 };
+const SuccessIconsForMail = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="37" height="37" viewBox="0 0 37 37" fill="none">
+      <path d="M32.375 1.15625L10.8687 24.8068L4.625 20.0777H1.15625L10.8687 35.8438L35.8438 1.15625H32.375Z" fill="#007DCA" />
+    </svg>
+  );
+};
 const UserMailIcon = ({ }) => {
   return (
     <svg
@@ -2830,7 +2837,8 @@ export {
   ReviewIcon,
   GoBackIcon,
   CreditCardNumber,
-  UserMailIcon
+  UserMailIcon,
+  SuccessIconsForMail
 };
 
 // video

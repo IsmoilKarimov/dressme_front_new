@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ArrowPrevousNext, ArrowTopIcons, CreditCardNumber, DashboardList, DashboardUser, MenuCloseIcons, SearchIcons, StarIcon, UserMailIcon } from "../../../../assets/icons";
+import { ArrowPrevousNext, ArrowTopIcons, CreditCardNumber, DashboardList, DashboardUser, MenuCloseIcons, SearchIcons, StarIcon, SuccessIconsForMail, UserMailIcon } from "../../../../assets/icons";
 import { Select } from "antd";
 import { Box, TextField } from "@material-ui/core";
 import "./style.css";
@@ -33,7 +33,9 @@ const SignUpSeller = () => {
     getRegionList: "",
 
     //-------modal open
-    openModalRegions: false
+    openModalRegions: false,
+    // -----Modal Email verfiy
+    openModalEmailMessage: false
 
   });
   // ----------Card Number-----------
@@ -132,8 +134,19 @@ const SignUpSeller = () => {
           console.log(res, "res");
           if (res?.emailToken) {
             localStorage.setItem("emailToken", res?.emailToken);
-            navigate("/login-seller")
-            setState({ ...state, email: "", password: "", firstName: "", lastName: "", region: "", sub_region: "", cardNumber: "", phone: "" });
+            // navigate("/login-seller")
+            setState({
+              ...state,
+              email: "",
+              password: "",
+              firstName: "",
+              lastName: "",
+              region: "",
+              sub_region: "",
+              cardNumber: "",
+              phone: "",
+              openModalEmailMessage: true
+            });
             toast.success("Muaffaqiyatli kirdingiz", {
               position: "top-right",
               autoClose: 5000,
@@ -159,6 +172,7 @@ const SignUpSeller = () => {
           }
         },
         onError: (err) => {
+          console.log(err, "Error");
           toast.error("Serverda xatolik", {
             position: "top-right",
             autoClose: 5000,
@@ -190,15 +204,7 @@ const SignUpSeller = () => {
     }
   }
 
-  // ---------------Jismony User------
-  // function handleChange(e) {
-  //   const { value } = e.target;
-  //   setState({ ...state, seller_type_id: value })
-  // }
-  // const handleRegion = (RegId, e) => {
-  //   const { value } = e.target;
-  //   setState({ ...state, region: value, sub_region: RegId })
-  // }
+
   console.log(state?.seller_type_id, "seller_type_id");
   console.log(state?.region, "region");
   console.log(state?.sub_region, "sub_region");
@@ -366,7 +372,7 @@ const SignUpSeller = () => {
                     </span>
                   </label>
                   <div className="w-full overflow-auto  mt-6 h-[70%] VerticelScroll">
-                    {isLoading && <p>isLoading...</p>}
+                    {state?.getRegionList && <p>isLoading...</p>}
 
                     {state?.getRegionList?.regions?.map((data) => {
                       return (
@@ -631,6 +637,36 @@ const SignUpSeller = () => {
         <div>
           {state?.error?.length ? <span className="text-RedColor mt-1 text-[12px]">{state?.error}</span> : null}
         </div>
+        {/* -----------------------Email Verify Modal------------------- */}
+        <div className="w-full md:w-1/2 h-fit ">
+          <div
+            onClick={() => {
+              setState({ ...state, openModalEmailMessage: false });
+            }}
+            className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${state?.openModalEmailMessage ? "" : "hidden"
+              }`}
+          ></div>
+          {state?.openModalEmailMessage &&
+            <div className="fixed max-w-[490px] h-[275px]  p-3 bg-white rounded-lg  mx-auto w-full  z-[113] top-[50%] left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
+              <div className="flex items-center justify-end">
+                <span className="cursor-pointer" onClick={() => {
+                  setState({ ...state, openModalEmailMessage: false });
+                }}><MenuCloseIcons colors="#303030" /></span>
+              </div>
+              <div className="w-full flex items-center justify-center flex-col">
+                <button className="flex p-4 items-center justify-center rounded-full mt-4 bg-[#D8EDFF]">
+                  <SuccessIconsForMail />
+                </button>
+                <p className="text-[#1F1F1F] text-3xl not-italic font-AeonikProMedium mt-5">Мы отправили вам ссылку</p>
+                <p className="text-[#8B8B8B] text-xl not-italic font-AeonikProRegular mt-[30px]">Проверьте свой E-mail</p>
+              </div>
+
+
+            </div>}
+
+        </div>
+        {/* -------------------------Email Verify Modal------------------ */}
+
         <div className="flex items-center justify-center flex-col mt-[50px] md:mt-[90px]  mb-[88px] md:mb-8">
           <button type="button" onClick={onSubmit} className="w-full md:w-[360px] h-12 flex items-center justify-center mx-auto font-medium bg-fullBlue text-base text-white rounded-xl  ">
             Зарегистрироваться
