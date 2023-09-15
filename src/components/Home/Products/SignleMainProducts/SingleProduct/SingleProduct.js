@@ -12,7 +12,6 @@ import {
 } from "../../../../../assets/icons";
 import { HeartImg } from "../../../../../assets";
 import ProductComment from "./ProductComment/ProductComment";
-import AboutProduct from "./AboutProduct/AboutProduct";
 
 const SingleProduct = () => {
   const [dressInfo] = useContext(dressMainData);

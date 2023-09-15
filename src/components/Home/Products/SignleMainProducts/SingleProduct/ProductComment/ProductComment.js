@@ -138,13 +138,19 @@ export default function ProductComment() {
   ]);
 
   const navigate = useNavigate();
-  const goDetail = () => {
-    navigate(`/allcomments`);
+  const goDetail = (id) => {
+    navigate(`/product/:${id}/allcomments`);
   };
 
-  const showNextComments = allComments.slice(0, visibleComments).map((allComments, item) => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
+
+  const showNextComments = allComments.slice(0, visibleComments).map((allComments) => {
     return (
-      <article key={item} className="w-[45%] h-fit border-b border-borderColor2 pr-5 pb-10 mt-10 ">
+      <article key={allComments.id} className="w-[45%] h-fit border-b border-borderColor2 pr-5 pb-10 mt-10 ">
         <p className="not-italic font-AeonikProMedium text-xl leading-6 text-black">
           {allComments?.Name}
         </p>
@@ -263,39 +269,41 @@ export default function ProductComment() {
         </article>
 
         {/* Mobile version of comment */}
-        <article className="w-full block md:hidden mt-5">
-          <span className="text-base font-AeonikProMedium">Отзывы</span>
-          <div className="w-full border border-searchBgColor rounded-lg mb-[34px]">
-            <div className="flex items-center justify-between p-4">
-              <div className="flex items-center">
-                <StarIcons />
-                <StarIcons />
-                <StarIcons />
-                <StarIcons />
-                <StarIcons />
-                <span className="ml-[10px] font-AeonikProMedium text-base">
-                  4.7
-                </span>
+            <article className="w-full block md:hidden mt-5">
+              <div className="text-base font-AeonikProMedium">Отзывы</div>
+              <div className="w-full border border-searchBgColor rounded-lg mb-[34px]">
+                <div className="flex items-center justify-between p-4">
+                  <div className="flex items-center">
+                    <StarIcons />
+                    <StarIcons />
+                    <StarIcons />
+                    <StarIcons />
+                    <StarIcons />
+                    <span className="ml-[10px] font-AeonikProMedium text-base">
+                      4.7
+                    </span>
+                  </div>
+                  <div className="text-sm font-AeonikProRegular text-closeColorBtn mt-1">
+                    265 голосов
+                  </div>
+                </div>
+                <button 
+                  onClick={() => goDetail(allComments)}
+                  className="w-full py-4 flex items-center justify-center border-t border-searchBgColor">
+                  <span className="ml-12">
+                    <CommentIcons colors={"#000"} />
+                  </span>
+                  <div className="ml-2 font-AeonikProRegular text-sm">
+                    Просмотреть комментарии
+                  </div>
+                  <span className="rotate-[90deg] ml-12">
+                    <ArrowTopIcons colors={"#000"} />
+                  </span>
+                </button>
               </div>
-              <div className="text-sm font-AeonikProRegular text-closeColorBtn mt-1">
-                265 голосов
-              </div>
-            </div>
-            <button 
-              // onClick={goDetail(allComments)}
-              className="w-full py-4 flex items-center justify-center border-t border-searchBgColor">
-              <span className="ml-12">
-                <CommentIcons colors={"#000"} />
-              </span>
-              <div className="ml-2 font-AeonikProRegular text-sm">
-                Просмотреть комментарии
-              </div>
-              <span className="rotate-[90deg] ml-12">
-                <ArrowTopIcons colors={"#000"} />
-              </span>
-            </button>
-          </div>
-        </article>
+               
+            </article>
+       
       </section>
     </main>
   );
