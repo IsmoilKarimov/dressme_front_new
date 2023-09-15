@@ -11,6 +11,7 @@ import SignUpSeller from "../components/Authentication/SellerRegsitration/SignUp
 import SignInSeller from "../components/Authentication/SellerRegsitration/SignIn/SignInSeller";
 
 import MobileAllComments from "../components/Home/Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/MobileComments";
+import MailVerfySeller from "../components/Authentication/SellerRegsitration/MailVerfy/MailVerfySeller";
 
 // import ConnectDashboard from "../components/RegistrationDashboard";
 // import CatalogMain from "../components/Home/Catalog/CatalogFilter";
@@ -309,8 +310,21 @@ const RouterMain = () => {
             </Suspense>
           }
         />
+        <Route path="/mail-verify-seller"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SignInSkeletonIndex />
+                </div>
+              }
+            >
+              <MailVerfySeller />
+            </Suspense>
+          }
+        />
 
-        <Route path="/product/:id/allcomments"
+        <Route path="allcomments"
           element={
             <Suspense
               fallback={
@@ -338,7 +352,7 @@ const RouterMain = () => {
         locationWindow !== "/profile/settings" &&
         locationWindow !== "/signup-seller" &&
         locationWindow !== "/login-seller" &&
-        locationWindow !== "/product/:id/allcomments" &&
+        locationWindow !== "/allcomments" &&
         locationWindow !== "/delivery-points" ? (
         <Suspense fallback={<>Loading...</>}>
           <Footer />
