@@ -148,7 +148,7 @@ export default function MailVerfySeller() {
         pauseOnHover
         theme="colored"
       />
-      <div>{PathnameToken}</div>
+      {/* <div>{PathnameToken}</div> */}
       <div className="max-w-[460px] w-[100%]  h-fit mb-5 px-2">
         <div className="w-full flex items-center justify-center flex-col">
           {state?.getVerfyMessage?.error && <button className="w-[38px] md:w-[50px] h-[38px] md:h-[50px] flex p-2 md:p-4 items-center justify-center rounded-full bg-[#FF6C37]">
@@ -161,26 +161,26 @@ export default function MailVerfySeller() {
             </button>
           }
 
-          <p className="mt-3 text-black text-center text-[18px] md:text-[30px] not-italic font-AeonikProRegular">{state?.getVerfyMessage?.message}</p>
+          <p className="mt-3 not-italic font-AeonikProMedium text-xl text-center leading-5   tracking-[0,16px] text-black">{state?.getVerfyMessage?.message}</p>
         </div>
-        <div className=" w-full pb-[20px] ll:pb-[50px] pt-[30px] ll:pt-[60px] md:hidden not-italic font-AeonikProMedium text-[20px] text-center leading-5 tracking-[0,16px] text-black">
+        <div className=" w-full pb-[20px] pt-[30px]  md:hidden not-italic font-AeonikProMedium text-xl text-center leading-5   tracking-[0,16px] text-black">
           Вход для продавцов
         </div>
       </div>
 
       {/*  */}
       <div className="max-w-[460px] w-[100%]  h-fit  md:px-[40px] md:py-[32px] py-[25px] px-[15px] border border-searchBgColor rounded-[12px]">
-        <div className=" w-full pb-[50px] pt-4 md:flex hidden not-italic font-AeonikProMedium text-[30px] md:text-center leading-5   tracking-[0,16px] text-black">
+        <div className=" w-full pb-[50px] pt-4 md:flex items-center justify-center hidden not-italic font-AeonikProMedium text-xl text-center leading-5   tracking-[0,16px] text-black">
           Вход для продавцов
         </div>
 
         <div className=" w-full h-fit">
-          <div className="not-italic font-AeonikProRegular text-[18px] leading-4 text-black  tracking-[0,16px] ">
+          <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
             Электронная почта
-          </div>
-          <div className="mt-[6px] px-2 md:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
+          </span>
+          <div className="mt-[4px]  w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
-              className="  w-full h-[42px] text-base  placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black focus:bg-white placeholder-bg-white"
+              className="w-full px-2 xs:px-[16px] outline-none	bg-white w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type="email"
               value={state.email}
               onChange={({ target: { value } }) => {
@@ -196,12 +196,12 @@ export default function MailVerfySeller() {
           </div>
         </div>
         <div className="mt-4 w-full h-fit">
-          <div className="not-italic font-AeonikProRegular text-[18px] leading-4 text-black  tracking-[0,16px] ">
+          <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
             Пароль
-          </div>
-          <div className="mt-[6px] px-2 md:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
+          </span>
+          <div className="mt-[4px]  w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
-              className="  w-full h-[42px] text-base placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+              className="w-full px-2 xs:px-[16px] outline-none	bg-white w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type={state?.eyesShow ? "password" : "text"}
               placeholder="Enter your password"
               value={state.password}
@@ -226,7 +226,7 @@ export default function MailVerfySeller() {
             </span>
           </div>
         </div>
-        {error?.length ? <div className={`text-[12px] mt-1 text-RedColor`}>{error}</div> : null}
+        {/* {error?.length ? <div className={`text-[12px] mt-1 text-RedColor`}>{error}</div> : null} */}
 
         <div className="my-5 flex items-center justify-between w-full">
           <div className="flex items-center">
@@ -239,8 +239,8 @@ export default function MailVerfySeller() {
             />
             <label
               htmlFor="vehicle1"
-              className="not-italic select-none cursor-pointer font-AeonikProRegular text-base leading-4 text-black tracking-[0,16px]"
-            >
+              className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
+
               {" "}
               Помнить
             </label>
