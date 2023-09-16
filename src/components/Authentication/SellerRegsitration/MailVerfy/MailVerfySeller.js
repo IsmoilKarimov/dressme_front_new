@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { NavLink, useNavigate } from "react-router-dom";
-import { EmailIcons, SircleNext, SuccessIconsForMail, SuccessIconsForMailGreen } from "../../../../assets/icons";
+import { EmailIcons, MenuCloseIcons, SircleNext, SuccessIconsForMail, SuccessIconsForMailGreen } from "../../../../assets/icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 
 export default function MailVerfySeller() {
@@ -12,20 +12,54 @@ export default function MailVerfySeller() {
     eyesShow: true,
     password: "",
     email: "",
-    rememberCheck: ""
+    rememberCheck: "",
+    // get method 
+    getToken: "",  //no use
+    getVerfyMessage: ""
   });
 
   const handleChange = (e) => {
     const { checked } = e.target;
     setState({ ...state, rememberCheck: checked })
   }
+  const pathname = window.location.pathname;
+
+  let PathnameToken = pathname.replace("/mail-verify-seller/:", "")
+
 
   const navigate = useNavigate();
   const [error, setError] = useState(false);
-  const url = "https://api.dressme.uz/api/seller/login";
+  const url = "https://api.dressme.uz/api/seller";
+
+  // ------------GET METHOD seller-types-----------------
+  // const { isFetching } = useQuery(["verify mail"], () => {
+  //   return fetch(`${url}/email-verify/${PathnameToken ? PathnameToken : null}`).then(res => res.json())
+  // },
+  //   {
+  //     onSuccess: (res) => {
+  //       setState({ ...state, getToken: res })
+  //     },
+  //     keepPreviousData: true,
+  //     refetchOnWindowFocus: false,
+  //     onError: (err) => {
+  //       console.log(err, "err");
+  //     }
+  //   }
+  // )
+
+  React.useEffect(() => {
+    fetch(`${url}/email-verify/${PathnameToken ? PathnameToken : null}`)
+      .then(results => results.json())
+      .then(data => {
+        setState({ ...state, getVerfyMessage: data })
+        console.log(data, "Return Get method");
+      });
+  }, []);
+
+  console.log(state?.getToken, "getToken");
 
   const dataMutate = useMutation(() => {
-    return fetch(`${url}`, {
+    return fetch(`${url}/login`, {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({ email: state.email, password: state.password, rememberToken: state?.rememberCheck }),
@@ -43,8 +77,7 @@ export default function MailVerfySeller() {
             console.log(res);
             if (res?.access_token) {
               localStorage.setItem("access_token", res?.access_token);
-
-              // navigate("https://dressme-dashboard-new.vesrcel.app/reviews");
+              window.location.replace(' https://dressme-dashboard-new.vercel.app/reviews');
               setState({ ...state, email: "", password: "" });
               toast.success("Muaffaqiyatli kirdingiz", {
                 position: "top-right",
@@ -115,14 +148,20 @@ export default function MailVerfySeller() {
         pauseOnHover
         theme="colored"
       />
-
-
+      <div>{PathnameToken}</div>
       <div className="max-w-[460px] w-[100%]  h-fit mb-5 px-2">
         <div className="w-full flex items-center justify-center flex-col">
-          <button className="w-[38px] md:w-[50px] h-[38px] md:h-[50px] flex p-2 md:p-4 items-center justify-center rounded-full bg-[#C3F1D8]">
-            <SuccessIconsForMailGreen />
+          {state?.getVerfyMessage?.error && <button className="w-[38px] md:w-[50px] h-[38px] md:h-[50px] flex p-2 md:p-4 items-center justify-center rounded-full bg-[#FF6C37]">
+            <MenuCloseIcons colors="#D50000" />
           </button>
-          <p className="mt-3 text-black text-center text-[18px] md:text-[30px] not-italic font-AeonikProRegular">Вы успешно прошли проверку!</p>
+          }
+          {state?.getVerfyMessage?.error ? null :
+            <button className="w-[38px] md:w-[50px] h-[38px] md:h-[50px] flex p-2 md:p-4 items-center justify-center rounded-full bg-[#C3F1D8]">
+              <SuccessIconsForMailGreen />
+            </button>
+          }
+
+          <p className="mt-3 text-black text-center text-[18px] md:text-[30px] not-italic font-AeonikProRegular">{state?.getVerfyMessage?.message}</p>
         </div>
         <div className=" w-full pb-[20px] ll:pb-[50px] pt-[30px] ll:pt-[60px] md:hidden not-italic font-AeonikProMedium text-[20px] text-center leading-5 tracking-[0,16px] text-black">
           Вход для продавцов
@@ -210,7 +249,7 @@ export default function MailVerfySeller() {
         </div>
         <button
           type="button"
-          // onClick={EnterTheSystem}
+          onClick={EnterTheSystem}
           className="mt-[50px] border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-SignInBgColor select-none rounded-lg active:scale-95	active:opacity-70 "
         >
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
