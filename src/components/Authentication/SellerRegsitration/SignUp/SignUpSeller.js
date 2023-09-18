@@ -8,6 +8,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { Popover } from "antd";
+import { BiChevronDown } from "react-icons/bi";
 
 const SignUpSeller = () => {
   // const { REACT_APP_BASE_URL: url } = process.env;
@@ -39,21 +41,18 @@ const SignUpSeller = () => {
     //-------modal open
     openModalRegions: false,
     // -----Modal Email verfiy
-    openModalEmailMessage: false
+    openModalEmailMessage: false,
+    // ------popover---
+    openPrice: false
 
   });
-  // ------------Password COnfirm----------
+
+
+
+  // ------------Password Confirm----------
   const [confirmError, setConfirmError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-  // const minLength = 8;
-  // const handleBlur = () => {
-  //   if (state?.confirmPassword?.length < minLength) {
-  //     setConfirmError(`Input must be at least ${minLength} characters long.`);
-  //   } else {
-  //     setConfirmError('');
-  //   }
-  // };
   useEffect(() => {
     if (state?.password?.length >= 1 && state?.password?.length < 8) {
       setConfirmError(`The password must be at least 8 characters.`)
@@ -68,9 +67,8 @@ const SignUpSeller = () => {
     if (state?.password == state?.confirmPassword || state?.confirmPassword?.length == 0) {
       setPasswordError(``)
     }
-
-
   }, [state?.confirmPassword, state?.password])
+
 
   // ----------Card Number-----------
   const card1 = state?.cardNumber?.split("-")
@@ -128,19 +126,7 @@ const SignUpSeller = () => {
       },
 
 
-      body: naturalPerson ?
-        JSON.stringify({
-          name: state?.firstName,
-          surname: state?.lastName,
-          email: state?.email,
-          password: state?.password,
-          phone: sendMessagePhoneNumber,
-          card_number: BankCard,
-          seller_type_id: state?.seller_type_id,
-          region_id: state?.region,
-          sub_region_id: state?.sub_region,
-        })
-        :
+      body: state?.seller_type_id >= 3 ?
         JSON.stringify({
           name: state?.firstName,
           surname: state?.lastName,
@@ -152,6 +138,16 @@ const SignUpSeller = () => {
           region_id: state?.region,
           sub_region_id: state?.sub_region,
           company_name: state?.company_name,
+        }) : JSON.stringify({
+          name: state?.firstName,
+          surname: state?.lastName,
+          email: state?.email,
+          password: state?.password,
+          phone: sendMessagePhoneNumber,
+          card_number: BankCard,
+          seller_type_id: state?.seller_type_id,
+          region_id: state?.region,
+          sub_region_id: state?.sub_region,
         })
 
 
@@ -263,10 +259,45 @@ const SignUpSeller = () => {
     }
   }
 
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState();
   const accordionCityList = (id) => {
     setActiveIndex(id)
   }
+
+  const handleOpenChangePrice = (newOpen) => {
+    setState({ ...state, openPrice: newOpen });
+  };
+  const [selectPrice, setselectPrice] = useState("Тип предприятия");
+  const handlePriceValue = (value, id) => {
+    setState({ ...state, seller_type_id: id })
+    setselectPrice(value);
+    setState({ ...state, openPrice: false });
+  };
+
+  const contentPrice = (
+    <div className="w-full md:w-[450px]  h-fit m-0 p-0">
+      <p
+        onClick={() => handlePriceValue("Тип предприятия", null)}
+        className="cursor-pointer text-[#8C8C8C] text-base not-italic font-AeonikProRegular">
+        Тип предприятия
+      </p>
+      {
+        state?.getSellerList?.company?.map(data => {
+          return (
+            <p
+              key={data?.id}
+              onClick={() => {
+                handlePriceValue(data?.name_ru, data?.id);
+              }}
+              className="cursor-pointer text-[#303030] text-[14px] sm:text-base  not-italic hover:bg-btnBgColor font-AeonikProRegular leading-4 tracking-[0,16px]"
+            >
+              {data?.name_ru || "text"}
+            </p>
+          )
+        })
+      }
+    </div>
+  );
 
   return (
     <div className="max-w-[1280px] w-full flex justify-center items-center m-auto">
@@ -354,9 +385,34 @@ const SignUpSeller = () => {
               </div>
             </div>
           ) : (
-            <div className="w-full md:w-[484px] rounded-lg mx-auto ">
-              {isFetching && <p>isLoading...</p>}
-              <div className="w-full h-fit ">
+            <div className="w-full md:w-[484px] rounded-lg mx-auto">
+              <div className="w-full h-[42px] ">
+                <Popover
+                  open={state?.openPrice}
+                  onOpenChange={handleOpenChangePrice}
+                  className="w-full  h-full  rounded-lg bg-white  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group"
+                  trigger="click"
+                  options={["Hide"]}
+                  placement="bottom"
+                  content={contentPrice}
+                >
+
+                  <div className=" w-full h-full flex justify-between items-center px-2 md:pl-2 ">
+                    <p className="text-[#303030] text-[14px] sm:text-base  not-italic font-AeonikProRegular leading-4 tracking-[0,16px]">
+                      {selectPrice}
+                    </p>
+                    <span>
+                      <BiChevronDown
+                        size={30}
+                        style={{ color: "#c2c2c2" }}
+                        className={`${state?.openPrice ? "rotate-[-180deg]" : ""
+                          } duration-200`}
+                      />
+                    </span>
+                  </div>
+                </Popover>
+              </div>
+              {/* <div className="w-full h-fit ">
                 <div className={`w-full`}>
                   <select
                     className="w-full h-[42px] mt-[6px] pl-[15px] rounded-lg cursor-pointer border border-borderColor2"
@@ -374,7 +430,7 @@ const SignUpSeller = () => {
                     }
                   </select>
                 </div>
-              </div>
+              </div> */}
 
               {!naturalPerson && <div className="w-full md:w-[484px] mt-5">
                 <p className="flex items-center text-base  font-AeonikProRegular text-[#303030]">
@@ -382,7 +438,7 @@ const SignUpSeller = () => {
                   <span className="ml-[5px]"><StarIcon /></span>
                 </p>
                 <input
-                  className="w-full font-AeonikProRegular text-[14px] sm:text-base  border border-[#e5e5e5] mt-[6px] rounded-lg px-[15px] h-[42px] flex items-center"
+                  className="w-full font-AeonikProRegular text-[14px] sm:text-base  border border-searchBgColor mt-[6px] rounded-lg px-[15px] h-[42px] flex items-center"
                   type="text"
                   value={state?.company_name}
                   onChange={(e) => setState({ ...state, company_name: e.target.value })}
@@ -399,7 +455,7 @@ const SignUpSeller = () => {
             <div className="w-full h-fit flex flex-col md:flex-row gap-y-5 md:gap-y-0 items-center  justify-between gap-x-[50px]">
 
               {/* ------------------------------------------------------------------------------------------------------------- */}
-              <div className="w-full md:w-1/2 h-fit ">
+              <div className="w-full md:w-1/2 h-fit flex justify-center">
                 <div
                   onClick={() => {
                     setState({ ...state, openModalRegions: false });
@@ -407,91 +463,93 @@ const SignUpSeller = () => {
                   className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${state?.openModalRegions ? "" : "hidden"
                     }`}
                 ></div>
-                {state?.openModalRegions && <div className="fixed max-w-[550px] h-[650px]  px-6 py-4 bg-white rounded-lg  mx-auto w-full  z-[113] top-[50%] left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
-                  <div className="w-full flex items-center justify-between">
+                {
+                  <div className={`fixed max-w-[550px] h-[650px]  px-6 py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg  mx-auto w-full duration-500 z-[113] md:top-[50%] md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] overflow-hidden ${state?.openModalRegions ? " bottom-0 md:flex flex-col" : "md:hidden bottom-[-1500px] z-[-10]"}`} >
+                    <div className="w-full flex items-center justify-between">
 
-                    <span className="text-black text-2xl not-italic font-AeonikProRegular">Выберите регион</span>
-                    <span
-                      className="select-none"
-                      onClick={() => {
-                        setState({ ...state, openModalRegions: false });
-                      }}
-                    >
-                      <MenuCloseIcons colors="#000" /></span>
-                  </div>
-                  <label className="w-full mt-6 h-[42px] rounded-lg border border-[#E5E5E5] overflow-hidden flex items-center">
-                    <input
-                      type="text"
-                      className="w-full h-full pl-3 outline-none"
-                      name="s"
-                      placeholder="Поиск..."
-                    />
-                    <span className="flex items-center pr-3">
-                      <SearchIcons />
-                    </span>
-                  </label>
-                  <div className="w-full overflow-auto  mt-6 h-[70%] VerticelScroll">
+                      <span className="text-black text-2xl not-italic font-AeonikProRegular">Выберите регион</span>
+                      <span
+                        className="select-none"
+                        onClick={() => {
+                          setState({ ...state, openModalRegions: false });
+                        }}
+                      >
+                        <MenuCloseIcons colors="#000" /></span>
+                    </div>
+                    <label className="w-full mt-6 h-[42px] rounded-lg border border-[#E5E5E5] overflow-hidden flex items-center">
+                      <input
+                        type="text"
+                        className="w-full h-full pl-3 outline-none"
+                        name="s"
+                        placeholder="Поиск..."
+                      />
+                      <span className="flex items-center pr-3">
+                        <SearchIcons />
+                      </span>
+                    </label>
+                    <div className="w-full overflow-auto  mt-6 h-[70%] VerticelScroll">
 
-                    {state?.getRegionList?.regions?.map((data, index) => {
+                      {state?.getRegionList?.regions?.map((data, index) => {
 
-                      return (
-                        <div key={data?.id} className="w-full  h-fit mt-4">
-                          <div
-                            onClick={() => accordionCityList(data?.id)}
-                            className="w-full cursor-pointer flex items-center pr-1 justify-between border-b border-[#F0F0F0] "
-                          >
-                            <span className="text-[#303030] text-lg not-italic font-AeonikProRegular">
-                              {data?.name_ru}
-                            </span>
-                            <span
-                              className={`${activeIndex == data?.id ? "rotate-[0deg]" : "rotate-[180deg]"} `}
+                        return (
+                          <div key={data?.id} className="w-full  h-fit mt-4">
+                            <div
+                              onClick={() => accordionCityList(data?.id)}
+                              className="w-full cursor-pointer flex items-center pr-1 justify-between border-b border-[#F0F0F0] "
                             >
-                              <ArrowTopIcons colors={"#a1a1a1"} />
-                            </span>
-                          </div>
+                              <span className="text-[#303030] text-lg not-italic font-AeonikProRegular">
+                                {data?.name_ru}
+                              </span>
+                              <span
+                                className={`${activeIndex == data?.id ? "rotate-[0deg]" : "rotate-[180deg]"} `}
+                              >
+                                <ArrowTopIcons colors={"#a1a1a1"} />
+                              </span>
+                            </div>
 
-                          <div
-                            className={`w-full grid grid-cols-3 duration-300 
+                            <div
+                              className={`w-full grid grid-cols-3 duration-[400ms] 
                              ${activeIndex == data?.id ? "openAccardion" : "CloseAccardion"} `}
-                          >
-                            {data?.sub_regions.map((item) => {
-                              return (
-                                <div key={item?.id} className="flex items-center px-[2px] gap-x-[4px] cursor-pointer">
-                                  <input
-                                    type="radio"
-                                    id={item?.name_ru}
-                                    name="type_work"
-                                    value={item?.region_id}
-                                    checked={state?.sub_region == item?.id}
-                                    className="border border-borderColor  cursor-pointer  flex items-center justify-center"
-                                    onChange={(e) => {
-                                      setState({ ...state, region: e.target.value, sub_region: item?.id })
-                                    }}
-                                    required
+                            >
+                              {data?.sub_regions.map((item) => {
+                                return (
+                                  <div key={item?.id} className="flex items-center px-[2px] gap-x-[4px] cursor-pointer">
+                                    <input
+                                      type="radio"
+                                      id={item?.name_ru}
+                                      name="type_work"
+                                      value={item?.region_id}
+                                      checked={state?.sub_region == item?.id}
+                                      className="border border-borderColor  cursor-pointer  flex items-center justify-center"
+                                      onChange={(e) => {
+                                        setState({ ...state, region: e.target.value, sub_region: item?.id })
+                                      }}
+                                      required
 
-                                  />
-                                  <label
-                                    htmlFor={item?.name_ru}
-                                    className="text-[#303030]  cursor-pointer text-[15px] not-italic font-AeonikProRegular"
-                                  >
-                                    {item?.name_ru}
-                                  </label>
-                                </div>
+                                    />
+                                    <label
+                                      htmlFor={item?.name_ru}
+                                      className="text-[#303030]  cursor-pointer text-[15px] not-italic font-AeonikProRegular"
+                                    >
+                                      {item?.name_ru}
+                                    </label>
+                                  </div>
 
-                              );
-                            })}
+                                );
+                              })}
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
+                    </div>
+                    <div className="flex items-center justify-end mt-6">
+                      <span onClick={() => {
+                        setState({ ...state, openModalRegions: false });
+                      }} className="cursor-pointer text-fullBlue text-xl not-italic font-AeonikProMedium">Готово</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-end mt-6">
-                    <span onClick={() => {
-                      setState({ ...state, openModalRegions: false });
-                    }} className="cursor-pointer text-fullBlue text-xl not-italic font-AeonikProMedium">Готово</span>
-                  </div>
-                </div>}
-
+                }
+                {/* Region INput  */}
                 <div className={"w-full"}>
                   <label htmlFor="" >
                     <span className="flex items-center text-[#303030] text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
@@ -503,7 +561,7 @@ const SignUpSeller = () => {
                       onClick={() => {
                         setState({ ...state, openModalRegions: true });
                       }}
-                      className="w-full h-[42px] mt-[6px] px-[15px] flex items-center justify-between rounded-lg cursor-pointer border border-borderColor2">
+                      className="w-full h-[42px] mt-[6px] px-[15px] flex items-center justify-between rounded-lg cursor-pointer border border-searchBgColor">
                       <span className="text-[#B5B5B5] text-base not-italic font-AeonikProRegular">
                         {!state?.region && !state?.sub_region && "Выберите регион"}
 
@@ -545,7 +603,7 @@ const SignUpSeller = () => {
             </div>
 
 
-            <div className="w-full h-[1px] bg-borderColor2 my-[30px]"></div>
+            <div className="w-full h-[1px] bg-searchBgColor my-[30px]"></div>
             {/* Form */}
             <div className="w-full flex flex-col gap-y-4 xs:gap-y-5">
               {/* Namr, surname */}
