@@ -20,7 +20,7 @@ export default function LocationDropUp({onClick}) {
     <main>
         <div className="max-w-[440px] w-[100%] mx-auto bg-white shadow-navMenuShadov  overflow-hidden h-fit rounded-t-[12px]">
             <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between px-4 mb-6">
-                <p className="text-xl font-AeonikProMedium">Таблица размеров</p>
+                <p className="text-xl font-AeonikProMedium">Локации</p>
                 <button 
                     onClick={onClick}
                 >
@@ -37,7 +37,7 @@ export default function LocationDropUp({onClick}) {
                         <div className='w-full h-[290px] overflow-auto VerticelScroll'>
                             {LocationsList.map((data) => {
                                 return (
-                                <div key={data.id} className='w-full  flex items-center justify-start border-b border-borderColor pb-[10px] mb-4 text-base font-AeonikProRegular'>
+                                <div key={data.id} className='w-full  flex items-center justify-start border-b border-searchBgColor text-[#303030] pb-[10px] mb-4 text-base font-AeonikProRegular'>
                                     {data.region}
                                 </div>
                                 );
@@ -48,7 +48,7 @@ export default function LocationDropUp({onClick}) {
                 <action className="w-full flex items-center justify-between gap-x-3 mb-10">
                 <button
                     onClick={onClick}
-                    className="w-[45%] h-[38px] text-base font-AeonikProMedium bg-white text-borderWinter border border-borderWinter rounded-md active:scale-95">Отмена</button>
+                    className="w-[45%] h-[38px] text-base font-AeonikProMedium bg-white text-borderWinter border border-borderWinter rounded-md active:scale-95">Закрыт</button>
                 <button className="w-[55%] h-[38px] text-base font-AeonikProMedium bg-borderWinter text-white border border-borderWinter rounded-md active:scale-95">Готово</button>
                 </action>
             </section>

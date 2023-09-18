@@ -628,10 +628,19 @@ const ProductDetails = () => {
             <div className="w-full flex items-center mb-4">
                 <ProductArticleIcons />
                 <span className="text-base font-AeonikProRegular leading-4 tracking-[1%] ml-[6px]">Артикль:</span>
-                <span className="text-sm font-AeonikProRegular text-[#a1a1a1] leading-4 tracking-[1%]  ml-[6px]">AA009842</span>
-                <span className="cursor-pointer ml-[6px]">
+                <input 
+                  type="text" 
+                  readOnly 
+                  value={copyText} 
+                  onChange={(e) => setCopyText(e.target.value)} 
+                  className="text-sm bg-transparent w-[68px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]" 
+                />
+                <button 
+                  type="button"
+                  onClick={handleCopyText}
+                  className="cursor-pointer ml-[8px]">
                   <AddCopyCheckedIcon />
-                </span>
+                </button>
             </div>
             <div className="w-full flex items-center mb-4">
               <article className="w-fit flex items-center">
