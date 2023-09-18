@@ -1,6 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
-// import { toast } from "react-toastify";
-// import copy from "copy-to-clipboard";
+import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { FaTelegramPlane } from "react-icons/fa";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { BsCircleFill } from "react-icons/bs";
@@ -11,13 +9,20 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { Modal, Popover, Radio} from "antd";
 import AddCopyCheckedIcon from "./AddCopyCheckedIcon/AddCopyCheckedIcon";
 import LocationOfYandex from "./LocationOfYandex/LocationOfYandex";
+import TableSizesDropUp from "./MobileDropUp/TableSizesDropUp/TableSizesDropUp";
+import LocationDropUp from "./MobileDropUp/LocationsDropUp/LocationsDropUp";
 
 const ProductDetails = () => {
   const [dressInfo] = useContext(dressMainData);
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
-  const slider = useRef(null);
+  const [tableSizes, setTableSizes] = useState(false)
+  const [locations, setLocations] = useState(false)
 
+  const toggleTableSizes = useCallback(()=> setTableSizes(false), [])
+  const toggleLocations = useCallback(()=> setLocations(false), [])
+
+  const slider = useRef(null);
   const [copyText, setCopyText] = useState('AA009842')
   const [copyCardNumber, setCopyCardNumber] = useState('8600-000-2345-1234')
   const handleCopyText = () => {
@@ -26,6 +31,15 @@ const ProductDetails = () => {
   const handleCopyCardNumber = () => {
     navigator.clipboard.writeText(copyCardNumber)
   }
+
+  // For DropUp
+  useEffect(() => {
+    if ( tableSizes || locations ) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [ tableSizes, locations ]);
 
   const [openTab, setOpenTab] = useState(1);
   const [selectSize] = useState([
@@ -137,7 +151,35 @@ const ProductDetails = () => {
   };
 
   return (
-    <main className="w-full relative h-full mt-[18px] md:mt-4">
+    <main className="w-full relative h-full mt-3 md:mt-4">
+      
+      <div className="tableSizes">
+        <section
+          onClick={() => setTableSizes(false)}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${tableSizes ? "" : "hidden"
+            }`}
+        ></section>
+        <section
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${tableSizes ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
+        >
+          <TableSizesDropUp onClick={toggleTableSizes} />
+        </section>
+      </div>
+      <div className="locations">
+        <section
+          onClick={() => setLocations(false)}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${locations ? "" : "hidden"
+            }`}
+        ></section>
+        <locations
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${locations ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
+        >
+          <LocationDropUp onClick={toggleLocations} />
+        </locations>
+      </div>
+      
       {/* 1 */}
       <section className="w-full hidden md:block">
         <section className="h-fit flex items-center mb-4">
@@ -332,6 +374,16 @@ const ProductDetails = () => {
       
       {/* 2 */}
       <section className="w-full md:border-t md:border-y md:border-searchBgColor md:py-[25px] ">
+       
+         <article className="w-full block md:hidden">
+          <button 
+            onClick={() => setTableSizes(true)}
+            className="text-[13px] font-AeonikProMedium text-borderWinter border-b border-dashed border-borderWinter mb-5"
+          >
+            Таблица размеров
+          </button>
+        </article>
+
         <article className="w-full flex items-center justify-between bg-[#fdfdfd] md:bg-white border-y md:border-none mb-4 text-sm font-AeonikProMedium">
           <div className="hidden md:flex items-center">
             <ProductSwitchIcons colors={"#757575"} />
@@ -353,7 +405,7 @@ const ProductDetails = () => {
           </button>
           <button 
             type="primary" 
-            // onClick={() => setOpenLocationModal(true)}
+            onClick={() => setLocations(true)}
             className="block md:hidden text-borderWinter font-AeonikProMedium">
               В других локациях
           </button>
