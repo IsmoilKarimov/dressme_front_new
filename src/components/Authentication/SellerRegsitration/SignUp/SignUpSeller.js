@@ -261,7 +261,13 @@ const SignUpSeller = () => {
 
   const [activeIndex, setActiveIndex] = useState();
   const accordionCityList = (id) => {
-    setActiveIndex(id)
+    if (activeIndex == id) {
+      setActiveIndex(0)
+    } else {
+      setActiveIndex(id)
+    }
+    // console.log(id, activeIndex, "Id1, activeIndex1");
+    // console.log(id, activeIndex, "Id2, activeIndex2");
   }
 
   const handleOpenChangePrice = (newOpen) => {
@@ -278,7 +284,7 @@ const SignUpSeller = () => {
     <div className="w-full md:w-[450px]  h-fit m-0 p-0">
       <p
         onClick={() => handlePriceValue("Тип предприятия", null)}
-        className="cursor-pointer text-[#8C8C8C] text-base not-italic font-AeonikProRegular">
+        className="cursor-pointer text-[#8C8C8C] text-[14px] not-italic font-AeonikProRegular">
         Тип предприятия
       </p>
       {
@@ -289,7 +295,7 @@ const SignUpSeller = () => {
               onClick={() => {
                 handlePriceValue(data?.name_ru, data?.id);
               }}
-              className="cursor-pointer text-[#303030] text-[14px] sm:text-base  not-italic hover:bg-btnBgColor font-AeonikProRegular leading-4 tracking-[0,16px]"
+              className="cursor-pointer text-[#000] text-[14px] py-1 sm:text-base  not-italic hover:bg-btnBgColor font-AeonikProRegular leading-4 tracking-[0,16px]"
             >
               {data?.name_ru || "text"}
             </p>
@@ -360,21 +366,25 @@ const SignUpSeller = () => {
                     return (
                       <div key={data?.id} className="mb-4">
                         <div className="flex items-center">
-                          <input
-                            type="radio"
-                            id={data?.id}
-                            name="type_work"
-                            value={data?.id}
-                            checked={state?.seller_type_id == data?.id}
-                            className="w-[18px] h-[18px] cursor-pointer"
-                            onChange={(e) => setState({ ...state, seller_type_id: e.target.value })}
-                            required
-                          />
                           <label
-                            htmlFor={data?.id}
-                            className="ml-[10px] font-medium text-[13px] md:text-base cursor-pointer"
+                            htmlFor={data?.name_ru}
+                            className="flex items-center"
                           >
-                            {data?.name_ru}
+                            <input
+                              type="radio"
+                              id={data?.name_ru}
+                              name="type_work"
+                              value={data?.id}
+                              checked={state?.seller_type_id == data?.id}
+                              className="w-[18px] h-[18px] cursor-pointer"
+                              onChange={(e) => setState({ ...state, seller_type_id: e.target.value })}
+                              required
+                            />
+                            <span className="ml-[10px] font-AeonikProMedium text-[13px] md:text-base cursor-pointer"
+                            >
+
+                              {data?.name_ru}
+                            </span>
                           </label>
                         </div>
 
@@ -401,14 +411,17 @@ const SignUpSeller = () => {
                     <p className="text-[#303030] text-[14px] sm:text-base  not-italic font-AeonikProRegular leading-4 tracking-[0,16px]">
                       {selectPrice}
                     </p>
-                    <span>
-                      <BiChevronDown
+                    <span className={`${state?.openPrice ? "" : "rotate-[-180deg]"
+                      } duration-200`}>
+                      {/* <BiChevronDown
                         size={30}
                         style={{ color: "#c2c2c2" }}
                         className={`${state?.openPrice ? "rotate-[-180deg]" : ""
                           } duration-200`}
-                      />
+                      /> */}
+                      <ArrowTopIcons colors={"#a1a1a1"} />
                     </span>
+
                   </div>
                 </Popover>
               </div>
@@ -469,7 +482,7 @@ const SignUpSeller = () => {
 
                       <span className="text-black text-2xl not-italic font-AeonikProRegular">Выберите регион</span>
                       <span
-                        className="select-none"
+                        className="select-none cursor-pointer"
                         onClick={() => {
                           setState({ ...state, openModalRegions: false });
                         }}
@@ -487,60 +500,65 @@ const SignUpSeller = () => {
                         <SearchIcons />
                       </span>
                     </label>
-                    <div className="w-full overflow-auto  mt-6 h-[70%] VerticelScroll">
 
-                      {state?.getRegionList?.regions?.map((data, index) => {
+                    <div className="w-full overflow-auto   mt-6 h-[70%] VerticelScroll pr-2 ">
 
-                        return (
-                          <div key={data?.id} className="w-full  h-fit mt-4">
-                            <div
-                              onClick={() => accordionCityList(data?.id)}
-                              className="w-full cursor-pointer flex items-center pr-1 justify-between border-b border-[#F0F0F0] "
-                            >
-                              <span className="text-[#303030] text-lg not-italic font-AeonikProRegular">
-                                {data?.name_ru}
-                              </span>
-                              <span
-                                className={`${activeIndex == data?.id ? "rotate-[0deg]" : "rotate-[180deg]"} `}
+
+                      {state?.getRegionList?.regions ?
+                        state?.getRegionList?.regions?.map((data, index) => {
+                          return (
+                            <div key={data?.id} className="w-full  h-fit mt-4 ">
+                              <div
+                                onClick={() => accordionCityList(data?.id)}
+                                className="w-full cursor-pointer flex items-center pr-1 justify-between border-b border-[#F0F0F0] "
                               >
-                                <ArrowTopIcons colors={"#a1a1a1"} />
-                              </span>
-                            </div>
+                                <span className="text-[#303030] text-lg not-italic font-AeonikProRegular">
+                                  {data?.name_ru}
+                                </span>
+                                <span
+                                  className={`${activeIndex == data?.id ? "rotate-[0deg]" : "rotate-[180deg]"} `}
+                                >
+                                  <ArrowTopIcons colors={"#a1a1a1"} />
+                                </span>
+                              </div>
 
-                            <div
-                              className={`w-full grid grid-cols-3 duration-[400ms] 
+                              <div
+                                className={`w-full grid grid-cols-3 duration-[400ms] 
                              ${activeIndex == data?.id ? "openAccardion" : "CloseAccardion"} `}
-                            >
-                              {data?.sub_regions.map((item) => {
-                                return (
-                                  <div key={item?.id} className="flex items-center px-[2px] gap-x-[4px] cursor-pointer">
-                                    <input
-                                      type="radio"
-                                      id={item?.name_ru}
-                                      name="type_work"
-                                      value={item?.region_id}
-                                      checked={state?.sub_region == item?.id}
-                                      className="border border-borderColor  cursor-pointer  flex items-center justify-center"
-                                      onChange={(e) => {
-                                        setState({ ...state, region: e.target.value, sub_region: item?.id })
-                                      }}
-                                      required
+                              >
+                                {data?.sub_regions.map((item) => {
+                                  return (
+                                    <div key={item?.id} className="flex items-center px-[2px] gap-x-[4px] cursor-pointer">
+                                      <label
+                                        htmlFor={item?.name_ru}
+                                        className="flex items-center gap-x-[6px]"
+                                      >
+                                        <input
+                                          type="radio"
+                                          id={item?.name_ru}
+                                          name="type_work"
+                                          value={item?.region_id}
+                                          checked={state?.sub_region == item?.id}
+                                          className="border border-borderColor  cursor-pointer  flex items-center justify-center"
+                                          onChange={(e) => {
+                                            setState({ ...state, region: e.target.value, sub_region: item?.id })
+                                          }}
+                                          required
 
-                                    />
-                                    <label
-                                      htmlFor={item?.name_ru}
-                                      className="text-[#303030]  cursor-pointer text-[15px] not-italic font-AeonikProRegular"
-                                    >
-                                      {item?.name_ru}
-                                    </label>
-                                  </div>
+                                        />
+                                        <span className="text-[#303030]  cursor-pointer text-[15px] not-italic font-AeonikProRegular"
+                                        >{item?.name_ru}</span>
+                                      </label>
+                                    </div>
 
-                                );
-                              })}
+                                  );
+                                })}
+                              </div>
                             </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        }) :
+                        <p className="w-full h-full flex flex-col items-center justify-center">Malumotlar yuklanyapti...</p>}
+
                     </div>
                     <div className="flex items-center justify-end mt-6">
                       <span onClick={() => {
@@ -566,7 +584,7 @@ const SignUpSeller = () => {
                         {!state?.region && !state?.sub_region && "Выберите регион"}
 
                         {state?.getRegionList?.regions?.filter(e => e.id == state?.region).map(item => {
-                          return <span className="flex items-center text-[#B5B5B5] text-[14px] sm:text-base">
+                          return <span className="flex items-center text-[#000] text-[14px] sm:text-base">
                             {item?.name_ru},
                             {item?.sub_regions?.filter(i => i.id == state?.sub_region).map(item => {
                               return <span className="ml-1">{item?.name_ru}</span>
