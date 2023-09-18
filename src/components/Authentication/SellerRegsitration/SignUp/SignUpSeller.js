@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { ArrowPrevousNext, ArrowTopIcons, CreditCardNumber, DashboardList, DashboardUser, MenuCloseIcons, SearchIcons, StarIcon, SuccessIconsForMail, UserMailIcon } from "../../../../assets/icons";
-import { Select } from "antd";
-import { Box, TextField } from "@material-ui/core";
+import { ArrowPrevousNext, ArrowTopIcons, CreditCardNumber, DashboardList, DashboardUser, EyesOpenIcons, MenuCloseIcons, SearchIcons, StarIcon, SuccessIconsForMail, UserMailIcon } from "../../../../assets/icons";
+import { message } from 'antd';
 import "./style.css";
 import InputMask from "react-input-mask";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+
 const SignUpSeller = () => {
   // const { REACT_APP_BASE_URL: url } = process.env;
   const url = "https://api.dressme.uz/api/seller"
@@ -21,12 +22,15 @@ const SignUpSeller = () => {
     cardNumber: "",
     seller_type_id: "",
     phone: "",
+    // password
     password: "",
+    passwordEye: false,
     confirmPassword: "",
+    confirmPasswordEye: false,
+    errorPassword: "",
     region: "",
     sub_region: "",
     company_name: "",
-    error: "",
     // ------Seller-type-----
     getSellerList: "",
     // ------Regions-----
@@ -38,6 +42,36 @@ const SignUpSeller = () => {
     openModalEmailMessage: false
 
   });
+  // ------------Password COnfirm----------
+  const [confirmError, setConfirmError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  // const minLength = 8;
+  // const handleBlur = () => {
+  //   if (state?.confirmPassword?.length < minLength) {
+  //     setConfirmError(`Input must be at least ${minLength} characters long.`);
+  //   } else {
+  //     setConfirmError('');
+  //   }
+  // };
+  useEffect(() => {
+    if (state?.password?.length >= 1 && state?.password?.length < 8) {
+      setConfirmError(`The password must be at least 8 characters.`)
+    }
+    if (state?.password?.length >= 8 || state?.password?.length < 1) {
+      setConfirmError(``)
+    }
+
+    if (state?.confirmPassword?.length >= 1 || state?.password !== state?.confirmPassword) {
+      setPasswordError(`The passwords do not match`)
+    }
+    if (state?.password == state?.confirmPassword || state?.confirmPassword?.length == 0) {
+      setPasswordError(``)
+    }
+
+
+  }, [state?.confirmPassword, state?.password])
+
   // ----------Card Number-----------
   const card1 = state?.cardNumber?.split("-")
   const BankCard = card1.join("")
@@ -83,9 +117,7 @@ const SignUpSeller = () => {
       }
     }
   )
-  // const companyName = seller_type_id >= 3 ? company_name : state?.company_name : null
 
-  // console.log("render");
   // ------------POST METHOD-----------------
   const { mutate } = useMutation(() => {
     return fetch(`${url}/register`, {
@@ -94,21 +126,36 @@ const SignUpSeller = () => {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
-      body: JSON.stringify({
-        name: state?.firstName,
-        surname: state?.lastName,
-        email: state?.email,
-        password: state?.password,
-        phone: sendMessagePhoneNumber,
-        card_number: BankCard,
-        seller_type_id: state?.seller_type_id,
-        region_id: state?.region,
-        sub_region_id: state?.sub_region,
-        company_name: state?.company_name
-        // company_name: state?.seller_type_id >= 3 ? state?.company_name : null
 
 
-      })
+      body: naturalPerson ?
+        JSON.stringify({
+          name: state?.firstName,
+          surname: state?.lastName,
+          email: state?.email,
+          password: state?.password,
+          phone: sendMessagePhoneNumber,
+          card_number: BankCard,
+          seller_type_id: state?.seller_type_id,
+          region_id: state?.region,
+          sub_region_id: state?.sub_region,
+        })
+        :
+        JSON.stringify({
+          name: state?.firstName,
+          surname: state?.lastName,
+          email: state?.email,
+          password: state?.password,
+          phone: sendMessagePhoneNumber,
+          card_number: BankCard,
+          seller_type_id: state?.seller_type_id,
+          region_id: state?.region,
+          sub_region_id: state?.sub_region,
+          company_name: state?.company_name,
+        })
+
+
+
     }).then((res) => res.json())
   })
   const onSubmit = () => {
@@ -134,28 +181,56 @@ const SignUpSeller = () => {
       state?.seller_type_id &&
       sendMessagePhoneNumber
     ) {
-      console.log("malumotlarni junatildi");
+      if (state?.password === state?.confirmPassword) {
 
-      mutate({}, {
-        onSuccess: (res) => {
-          console.log(res, "res");
 
-          if (res?.emailToken) {
-            localStorage.setItem("emailToken", res?.emailToken);
-            // navigate("/login-seller")
-            setState({
-              ...state,
-              email: "",
-              password: "",
-              firstName: "",
-              lastName: "",
-              region: "",
-              sub_region: "",
-              cardNumber: "",
-              phone: "",
-              openModalEmailMessage: true
-            });
-            toast.success(`Muaffaqiyatli kirdingiz`, {
+        console.log("malumotlarni junatildi");
+
+        mutate({}, {
+          onSuccess: (res) => {
+            console.log(res, "res");
+
+            if (res?.emailToken) {
+              localStorage.setItem("emailToken", res?.emailToken);
+              // navigate("/login-seller")
+              setState({
+                ...state,
+                email: "",
+                password: "",
+                firstName: "",
+                lastName: "",
+                region: "",
+                sub_region: "",
+                cardNumber: "",
+                phone: "",
+                openModalEmailMessage: true
+              });
+              toast.success(`Muaffaqiyatli kirdingiz`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+            } else {
+              toast.error(`${res?.message}`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+            }
+          },
+          onError: (err) => {
+            console.log(err, "Error");
+            toast.error("Serverda xatolik", {
               position: "top-right",
               autoClose: 5000,
               hideProgressBar: false,
@@ -165,40 +240,16 @@ const SignUpSeller = () => {
               progress: undefined,
               theme: "light",
             });
-          } else {
-            setState({ ...state, error: res?.message });
-            toast.error(`${res?.message}`, {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
+          },
+          onSettled: (onSett) => {
+            // console.log(onSett, "onSett");
           }
-        },
-        onError: (err) => {
-          console.log(err, "Error");
-          toast.error("Serverda xatolik", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        },
-        onSettled: (onSett) => {
-          // console.log(onSett, "onSett");
-        }
 
-      })
+        })
+      } else {
+        message.error("passwordni tugri kiriting")
+      }
     } else {
-      setState({ ...state, error: "Bush maydon junatish mumkin emas" });
       toast.warning("Заполните все поля", {
         position: "top-right",
         autoClose: 5000,
@@ -216,9 +267,7 @@ const SignUpSeller = () => {
   const accordionCityList = (id) => {
     setActiveIndex(id)
   }
-  // console.log(state?.seller_type_id, "seller_type_id");
-  // console.log(state?.region, "region");
-  // console.log(state?.sub_region, "sub_region");
+
   return (
     <div className="max-w-[1280px] w-full flex justify-center items-center m-auto">
       <ToastContainer
@@ -506,7 +555,7 @@ const SignUpSeller = () => {
                     Имя{" "}
                     <span className="ml-[5px]"><StarIcon /></span>
                   </span>
-                  <div className="mt-1 xs:mt-[6px]  w-full flex items-center border border-searchBgColor rounded-lg ">
+                  <div className="mt-1 xs:mt-[6px]  w-full flex items-center overflow-hidden border border-searchBgColor rounded-lg ">
                     <input
                       className="w-full px-2 xs:px-[16px] outline-none	bg-white w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="text"
@@ -524,7 +573,7 @@ const SignUpSeller = () => {
                     Фамилия{" "}
                     <span className="ml-[5px]"><StarIcon /></span>
                   </span>
-                  <div className="mt-1 xs:mt-[6px]  w-full flex items-center border border-searchBgColor rounded-lg ">
+                  <div className="mt-1 xs:mt-[6px]  w-full flex items-center  overflow-hidden border border-searchBgColor rounded-lg ">
                     <input
                       className="w-full px-2 xs:px-[16px] outline-none	bg-white placeholder-bg-white w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="text"
@@ -548,7 +597,7 @@ const SignUpSeller = () => {
                       <span className="ml-[5px]"><StarIcon /></span>
                     </span>
                   </div>
-                  <div className="mt-1 xs:mt-[6px]  w-full flex items-center border border-searchBgColor rounded-lg ">
+                  <div className="mt-1 xs:mt-[6px] overflow-hidden  w-full flex items-center border border-searchBgColor rounded-lg ">
                     <input
                       className=" pl-2 xs:pl-[16px] outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="email"
@@ -592,44 +641,81 @@ const SignUpSeller = () => {
                   </div>
                 </div>
               </div>
-              {/* Номер, Mail */}
+              {/* Пароль, Пароль */}
               <div className="w-full  flex  xs:flex-row flex-col items-center justify-between gap-x-5 sm:gap-x-[50px] gap-y-4 xs:gap-y-0">
-                {/* Mail */}
-                <div className="w-full xs:w-1/2 h-fit ">
+                {/* Пароль */}
+                <div className="w-full xs:w-1/2 h-[100px] ">
                   <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
                     Пароль
                     <span className="ml-[5px]"><StarIcon /></span>
                   </span>
-                  <div className="mt-1 xs:mt-[6px]  w-full flex items-center border border-searchBgColor rounded-lg ">
+                  <div className="mt-1 xs:mt-[6px]  w-full flex items-center overflow-hidden border border-searchBgColor rounded-lg ">
                     <input
                       className="px-2 xs:px-[16px] outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
-                      type="password"
+                      type={`${state?.passwordEye ? "text" : "password"}`}
                       name="password"
                       placeholder=""
                       value={state?.password}
                       onChange={(e) => setState({ ...state, password: e.target.value })}
                       required
-                    />
 
+                    />
+                    <span className="cursor-pointer pr-2">
+                      {state?.passwordEye ? (
+                        <span
+                          onClick={() => setState({ ...state, passwordEye: false })}
+                        >
+                          < AiOutlineEye size={20} color={"#e2e2e2"} />
+                        </span>
+                      ) : (
+                        <span
+                          onClick={() => setState({ ...state, passwordEye: true })}
+                        >
+                          <AiOutlineEyeInvisible size={20} color={"#e2e2e2"} />
+                        </span>
+
+                      )}
+                    </span>
                   </div>
+                  {confirmError && <p className="error mt-1">{confirmError}</p>}
+
                 </div>
                 {/* Повторите пароль */}
-                <div className="w-full xs:w-1/2 h-fit">
+                <div className="w-full xs:w-1/2 h-[100px] ">
                   <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
                     Повторите пароль
                     <span className="ml-[5px]"><StarIcon /></span>
                   </span>
-                  <div className=" mt-1 xs:mt-[6px]  w-full flex items-center border border-searchBgColor rounded-lg ">
+                  <div className=" mt-1 xs:mt-[6px]  w-full flex items-center overflow-hidden border border-searchBgColor rounded-lg ">
                     <input
                       className="px-2 xs:px-[16px] outline-none w-full h-[42px] placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
-                      type="Повторите пароль"
+                      // type="Повторите пароль"
+                      type={`${state?.confirmPasswordEye ? "text" : "password"}`}
+
                       name="Повторите пароль"
                       placeholder=""
                       value={state?.confirmPassword}
                       onChange={(e) => setState({ ...state, confirmPassword: e.target.value })}
+                      // onBlur={handleBlur}
                       required
                     />
+                    <span className="cursor-pointer pr-2">
+                      {state?.confirmPasswordEye ? (
+                        <span
+                          onClick={() => setState({ ...state, confirmPasswordEye: false })}
+                        >
+                          < AiOutlineEye size={20} color={"#e2e2e2"} />
+                        </span>
+                      ) : (
+                        <span
+                          onClick={() => setState({ ...state, confirmPasswordEye: true })}
+                        >
+                          <AiOutlineEyeInvisible size={20} color={"#e2e2e2"} />
+                        </span>
+                      )}
+                    </span>
                   </div>
+                  {passwordError && <p className="error mt-1">{passwordError}</p>}
                 </div>
               </div>
             </div>
