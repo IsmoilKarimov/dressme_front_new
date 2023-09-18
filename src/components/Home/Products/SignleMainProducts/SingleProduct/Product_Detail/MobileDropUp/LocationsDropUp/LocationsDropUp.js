@@ -27,11 +27,30 @@ export default function LocationDropUp({onClick}) {
                     <MenuCloseIcons colors={"#000"} />
                 </button>
             </section>
-            <section className="w-full h-[376px] px-4 flex flex-col items-center">
-                <action className="w-full h-fit flex items-center justify-center flex-wrap gap-x-7 mb-[40px]">
-                    
+            <section className="w-full h-[380px] px-4 flex flex-col items-center">
+                <action className="w-full h-fit flex items-center justify-center flex-wrap gap-x-7 mb-[28px]">
+                    <form className='w-full flex flex-col items-center'>
+                        {/* <div className='w-full h-[34px] flex items-center justify-between rounded-lg border border-borderColor mb-[26px] text-[11px] px-3'>
+                            <input type="text" name='clothingTypes' placeholder='Искать раздел' className='w-full pr-3 outline-none' />
+                            <SearchIcons />
+                        </div> */}
+                        <div className='w-full h-[290px] overflow-auto VerticelScroll'>
+                            {LocationsList.map((data) => {
+                                return (
+                                <div key={data.id} className='w-full  flex items-center justify-start border-b border-borderColor pb-[10px] mb-4 text-base font-AeonikProRegular'>
+                                    {data.region}
+                                </div>
+                                );
+                            })}
+                        </div>
+                    </form>
                 </action>
-                
+                <action className="w-full flex items-center justify-between gap-x-3 mb-10">
+                <button
+                    onClick={onClick}
+                    className="w-[45%] h-[38px] text-base font-AeonikProMedium bg-white text-borderWinter border border-borderWinter rounded-md active:scale-95">Отмена</button>
+                <button className="w-[55%] h-[38px] text-base font-AeonikProMedium bg-borderWinter text-white border border-borderWinter rounded-md active:scale-95">Готово</button>
+                </action>
             </section>
         </div>
     </main>
