@@ -13,7 +13,7 @@ export default function TableSizesDropUp({onClick}) {
                     <MenuCloseIcons colors={"#000"} />
                 </button>
             </section>
-            <section className="w-full h-[400px] px-4 flex flex-col flex-nowrap">
+            <section className="w-full h-[280px] px-4 flex flex-col flex-nowrap">
                 <action className="w-full flex flex-row flex-nowrap gap-y-[10px] gap-x-[12px] mb-4">
                     <div className='w-[42%] h-full flex flex-col'>
                         <div className='text-base font-AeonikProRegular h-10 flex items-center'>Размер</div>
