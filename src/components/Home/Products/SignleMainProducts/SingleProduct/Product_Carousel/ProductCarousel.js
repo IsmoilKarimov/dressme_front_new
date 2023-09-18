@@ -242,19 +242,25 @@ const ProductCarousel = ({show}) => {
           </button>
           <div>
             <Slider
-              className="w-[360px] h-[480px] md:!w-[670px] md:h-[850px] showpageSlider !overflow-visible bg-white rounded-lg mt-[-4px]"
+              className="relative w-[360px] h-[480px] md:!w-[670px] md:h-[850px] showpageSlider !overflow-visible bg-white rounded-lg mt-[-4px]"
               {...settingsModal}
             >
               {imgGroup?.map((data) => {
                 return (
-                  <img
-                    key={data?.id}
-                    className="w-full md:w-[670px] md:h-[850px] object-top rounded-lg object-cover cursor-pointer"
-                    src={data?.img}
-                    alt=""
-                  />
+                  <article>
+                    <figure className="relative w-[360px] h-[480px] md:!w-[670px] md:h-[850px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
+                      <img className="w-full h-fit" src={data?.img} alt="" />
+                      <figcaption className="flex w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
+                        <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
+                          <p> {data.id}</p>/<p>{imgGroup.length}</p>
+                        </span>
+                      </figcaption>
+                    </figure>
+                  </article>
+                  
                 );
               })}
+              
             </Slider>
           </div>
 
@@ -438,10 +444,7 @@ const ProductCarousel = ({show}) => {
             </Slider>
           </article>
 
-          {/* 5 */}
-          <article className="w-full">
-            <button className="text-[13px] font-AeonikProMedium text-borderWinter border-b border-dashed border-borderWinter mt-3">Таблица размеров</button>
-          </article>
+         
         </section>
       )}
     </main>

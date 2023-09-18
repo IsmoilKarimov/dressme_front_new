@@ -83,6 +83,7 @@ const SignUpSeller = () => {
       }
     }
   )
+  // const companyName = seller_type_id >= 3 ? company_name : state?.company_name : null
 
   // console.log("render");
   // ------------POST METHOD-----------------
@@ -104,6 +105,9 @@ const SignUpSeller = () => {
         region_id: state?.region,
         sub_region_id: state?.sub_region,
         company_name: state?.company_name
+        // company_name: state?.seller_type_id >= 3 ? state?.company_name : null
+
+
       })
     }).then((res) => res.json())
   })
@@ -195,7 +199,7 @@ const SignUpSeller = () => {
       })
     } else {
       setState({ ...state, error: "Bush maydon junatish mumkin emas" });
-      toast.warning("Iltimos Malumotlarni kiriting", {
+      toast.warning("Заполните все поля", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -208,7 +212,10 @@ const SignUpSeller = () => {
     }
   }
 
-
+  const [activeIndex, setActiveIndex] = useState(1);
+  const accordionCityList = (id) => {
+    setActiveIndex(id)
+  }
   // console.log(state?.seller_type_id, "seller_type_id");
   // console.log(state?.region, "region");
   // console.log(state?.sub_region, "sub_region");
@@ -268,7 +275,6 @@ const SignUpSeller = () => {
           {naturalPerson ? (
             <div className="w-full flex items-center">
               <div className="mx-auto">
-                {isFetching && <p>isLoading...</p>}
                 {
                   state?.getSellerList?.individual?.map(data => {
                     return (
@@ -364,7 +370,7 @@ const SignUpSeller = () => {
                     >
                       <MenuCloseIcons colors="#000" /></span>
                   </div>
-                  <label className="w-full mt-6 h-[42px] rounded-lg border border-borderColor overflow-hidden flex items-center">
+                  <label className="w-full mt-6 h-[42px] rounded-lg border border-[#E5E5E5] overflow-hidden flex items-center">
                     <input
                       type="text"
                       className="w-full h-full pl-3 outline-none"
@@ -376,27 +382,28 @@ const SignUpSeller = () => {
                     </span>
                   </label>
                   <div className="w-full overflow-auto  mt-6 h-[70%] VerticelScroll">
-                    {state?.getRegionList && <p>isLoading...</p>}
 
-                    {state?.getRegionList?.regions?.map((data) => {
+                    {state?.getRegionList?.regions?.map((data, index) => {
+
                       return (
                         <div key={data?.id} className="w-full  h-fit mt-4">
                           <div
-                            // onClick={() => openCityList(data?.id)}
-                            className="w-full cursor-pointer flex items-center pr-1 justify-between border-b border-borderColor pb-1"
+                            onClick={() => accordionCityList(data?.id)}
+                            className="w-full cursor-pointer flex items-center pr-1 justify-between border-b border-[#F0F0F0] "
                           >
-                            <span className="text-[#303030] text-[18px] not-italic font-AeonikProMedium">
+                            <span className="text-[#303030] text-lg not-italic font-AeonikProRegular">
                               {data?.name_ru}
                             </span>
                             <span
-                              className={"rotate-[0deg]"}
+                              className={`${activeIndex == data?.id ? "rotate-[0deg]" : "rotate-[180deg]"} `}
                             >
                               <ArrowTopIcons colors={"#a1a1a1"} />
                             </span>
                           </div>
 
                           <div
-                            className={"w-full grid grid-cols-3 gap-2 py-1 duration-300 min-h-[70px]"}
+                            className={`w-full grid grid-cols-3 duration-300 
+                             ${activeIndex == data?.id ? "openAccardion" : "CloseAccardion"} `}
                           >
                             {data?.sub_regions.map((item) => {
                               return (
@@ -499,9 +506,9 @@ const SignUpSeller = () => {
                     Имя{" "}
                     <span className="ml-[5px]"><StarIcon /></span>
                   </span>
-                  <div className="mt-1 xs:mt-[6px] px-2 xs:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
+                  <div className="mt-1 xs:mt-[6px]  w-full flex items-center border border-searchBgColor rounded-lg ">
                     <input
-                      className=" outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                      className="w-full px-2 xs:px-[16px] outline-none	bg-white w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="text"
                       name="fname"
                       autoComplete="off"
@@ -517,9 +524,9 @@ const SignUpSeller = () => {
                     Фамилия{" "}
                     <span className="ml-[5px]"><StarIcon /></span>
                   </span>
-                  <div className="mt-1 xs:mt-[6px] px-2 xs:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
+                  <div className="mt-1 xs:mt-[6px]  w-full flex items-center border border-searchBgColor rounded-lg ">
                     <input
-                      className=" outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                      className="w-full px-2 xs:px-[16px] outline-none	bg-white placeholder-bg-white w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="text"
                       name="lname"
                       autoComplete="off"
@@ -541,17 +548,17 @@ const SignUpSeller = () => {
                       <span className="ml-[5px]"><StarIcon /></span>
                     </span>
                   </div>
-                  <div className="mt-1 xs:mt-[6px] px-2 xs:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
+                  <div className="mt-1 xs:mt-[6px]  w-full flex items-center border border-searchBgColor rounded-lg ">
                     <input
-                      className=" outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                      className=" pl-2 xs:pl-[16px] outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="email"
                       name="email"
-                      placeholder="электронной почты"
+                      placeholder="example@mail.com"
                       value={state?.email}
                       onChange={(e) => setState({ ...state, email: e.target.value })}
                       required
                     />
-                    <span>
+                    <span className="pr-2 xs:pr-[16px]">
                       <UserMailIcon />
                     </span>{" "}
                   </div>
@@ -593,12 +600,12 @@ const SignUpSeller = () => {
                     Пароль
                     <span className="ml-[5px]"><StarIcon /></span>
                   </span>
-                  <div className="mt-1 xs:mt-[6px] px-2 xs:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
+                  <div className="mt-1 xs:mt-[6px]  w-full flex items-center border border-searchBgColor rounded-lg ">
                     <input
-                      className=" outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                      className="px-2 xs:px-[16px] outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="password"
                       name="password"
-                      placeholder="password"
+                      placeholder=""
                       value={state?.password}
                       onChange={(e) => setState({ ...state, password: e.target.value })}
                       required
@@ -612,12 +619,12 @@ const SignUpSeller = () => {
                     Повторите пароль
                     <span className="ml-[5px]"><StarIcon /></span>
                   </span>
-                  <div className=" mt-1 xs:mt-[6px] px-2 xs:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
+                  <div className=" mt-1 xs:mt-[6px]  w-full flex items-center border border-searchBgColor rounded-lg ">
                     <input
-                      className=" outline-none w-full h-[42px] placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                      className="px-2 xs:px-[16px] outline-none w-full h-[42px] placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="Повторите пароль"
                       name="Повторите пароль"
-                      placeholder="Повторите пароль"
+                      placeholder=""
                       value={state?.confirmPassword}
                       onChange={(e) => setState({ ...state, confirmPassword: e.target.value })}
                       required
@@ -629,9 +636,7 @@ const SignUpSeller = () => {
           </div>
 
         </div>
-        <div>
-          {state?.error?.length ? <span className="text-RedColor mt-2 md:mt-4 text-[14px] md:text-[16px]">{state?.error}</span> : null}
-        </div>
+
         {/* -----------------------Email Verify Modal------------------- */}
         <div className="w-full md:w-1/2 h-fit ">
           <div

@@ -180,7 +180,7 @@ export default function SignInSeller() {
           <div className="flex items-center">
             <input
               type="checkbox"
-              className=" text-black bg-white placeholder-bg-white mr-2"
+              className="w-[18px] h-[18px] rounded-lg text-black bg-white placeholder-bg-white mr-2"
               id="vehicle1"
               name="vehicle1"
               onChange={handleChange}
