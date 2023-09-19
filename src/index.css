@@ -35,9 +35,9 @@ body {
 
 .slick-slider {
   overflow: hidden;
-} 
+}
 
-.slick-slide > div {
+.slick-slide>div {
   margin: 0 10px;
 }
 
@@ -50,7 +50,7 @@ body {
   border-radius: 8px;
 }
 
-.showpageSlider .slick-slide > div {
+.showpageSlider .slick-slide>div {
   margin: 0;
 }
 
@@ -393,3 +393,19 @@ table tr th:nth-child(1) {
 }
 
 /* ------------------------------------------ */
+
+/* .productDetailsMaps {
+
+} */
+.productDetailsMaps .ymaps-2-1-79-ground-pane {
+  filter: brightness(100%);
+  -ms-filter: brightness(100%);
+  -webkit-filter: brightness(100%);
+  -moz-filter: brightness(100%);
+  -o-filter: brightness(100%);
+
+}
+
+.productDetailsMaps .ymaps-2-1-79-controls__control {
+  inset: auto 10px 150px auto !important;
+}
