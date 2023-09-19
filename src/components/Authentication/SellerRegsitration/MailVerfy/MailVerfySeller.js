@@ -151,9 +151,10 @@ export default function MailVerfySeller() {
       {/* <div>{PathnameToken}</div> */}
       <div className="max-w-[460px] w-[100%]  h-fit mb-5 px-2">
         <div className="w-full flex items-center justify-center flex-col">
-          {state?.getVerfyMessage?.error && <button className="w-[38px] md:w-[50px] h-[38px] md:h-[50px] flex p-2 md:p-4 items-center justify-center rounded-full bg-[#FF6C37]">
-            <MenuCloseIcons colors="#D50000" />
-          </button>
+          {state?.getVerfyMessage?.error &&
+            <button className="w-[38px] md:w-[50px] h-[38px] md:h-[50px] flex p-2 md:p-4 items-center justify-center rounded-full bg-[#FF6C37]">
+              <MenuCloseIcons colors="#D50000" />
+            </button>
           }
           {state?.getVerfyMessage?.error ? null :
             <button className="w-[38px] md:w-[50px] h-[38px] md:h-[50px] flex p-2 md:p-4 items-center justify-center rounded-full bg-[#C3F1D8]">
@@ -161,7 +162,8 @@ export default function MailVerfySeller() {
             </button>
           }
 
-          <p className="mt-3 not-italic font-AeonikProMedium text-xl text-center leading-5   tracking-[0,16px] text-black">{state?.getVerfyMessage?.message}</p>
+          <p className="mt-3 not-italic font-AeonikProMedium text-[24px] text-center leading-5   tracking-[0,16px] text-black">
+            {state?.getVerfyMessage?.message}</p>
         </div>
         <div className=" w-full pb-[20px] pt-[30px]  md:hidden not-italic font-AeonikProMedium text-xl text-center leading-5   tracking-[0,16px] text-black">
           Вход для продавцов

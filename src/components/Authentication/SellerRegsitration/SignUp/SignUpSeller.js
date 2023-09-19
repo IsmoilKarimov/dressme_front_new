@@ -198,8 +198,8 @@ const SignUpSeller = () => {
           onSuccess: (res) => {
             console.log(res, "res");
 
-            if (res?.emailToken) {
-              localStorage.setItem("emailToken", res?.emailToken);
+            if (res?.message) {
+              // localStorage.setItem("emailToken", res?.emailToken);
               // navigate("/login-seller")
               setState({
                 ...state,
@@ -213,7 +213,7 @@ const SignUpSeller = () => {
                 phone: "",
                 openModalEmailMessage: true
               });
-              toast.success(`Muaffaqiyatli kirdingiz`, {
+              toast.success(`${res?.message}`, {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -356,14 +356,11 @@ const SignUpSeller = () => {
                               onChange={(e) => setState({ ...state, seller_type_id: e.target.value })}
                               required
                             />
-                            <span className="ml-[10px] font-AeonikProMedium text-[13px] md:text-base cursor-pointer"
-                            >
-
+                            <span className="ml-[10px] font-AeonikProMedium text-[13px] md:text-base cursor-pointer">
                               {data?.name_ru}
                             </span>
                           </label>
                         </div>
-
                       </div>
                     )
                   })
@@ -444,7 +441,7 @@ const SignUpSeller = () => {
                       >
                         <MenuCloseIcons colors="#000" /></span>
                     </div>
-                    <label className="w-full mt-6 h-[42px] rounded-lg border border-[#E5E5E5] overflow-hidden flex items-center">
+                    {/* <label className="w-full mt-6 h-[42px] rounded-lg border border-[#E5E5E5] overflow-hidden flex items-center">
                       <input
                         type="search"
                         className="w-full h-full pl-3 outline-none lowercase"
@@ -460,15 +457,15 @@ const SignUpSeller = () => {
                       <span className="flex items-center pr-3">
                         <SearchIcons />
                       </span>
-                    </label>
+                    </label> */}
 
-                    <div className="w-full overflow-auto  overflow-x-hidden mt-6 h-[70%] VerticelScroll pr-2 ">
+                    <div className="w-full overflow-auto flex flex-col gap-y-4  overflow-x-hidden mt-3 h-[80%] VerticelScroll pr-2 ">
 
 
                       {state?.getRegionList?.regions ?
-                        state?.getRegionList?.regions?.filter(data => data.name_ru.toLocaleLowerCase().includes(state?.searchText)).map((data, index) => {
+                        state?.getRegionList?.regions?.map((data, index) => {
                           return (
-                            <div key={data?.id} className="w-full  h-fit mt-4 ">
+                            <div key={data?.id} className="w-full  h-fit  ">
                               <div
                                 onClick={() => accordionCityList(data?.id)}
                                 className="w-full cursor-pointer flex items-center pr-1 justify-between border-b border-[#F0F0F0] "
@@ -484,10 +481,10 @@ const SignUpSeller = () => {
                               </div>
 
                               <div
-                                className={`w-full grid grid-cols-2 ll:grid-cols-3 duration-[400ms] 
+                                className={`w-full grid grid-cols-2 xs:grid-cols-3 duration-[400ms] 
                              ${activeIndex == data?.id ? "openAccardion" : "CloseAccardion"} `}
                               >
-                                {data?.sub_regions.filter(e => e.name_ru.toLocaleLowerCase().includes(state?.searchText)).map((item) => {
+                                {data?.sub_regions?.map((item) => {
                                   return (
                                     <div key={item?.id} className="flex items-center px-[2px] gap-x-[4px] cursor-pointer">
                                       <label
@@ -794,7 +791,7 @@ const SignUpSeller = () => {
           <button type="button" onClick={onSubmit} className="w-full md:w-[360px] h-12 flex items-center justify-center mx-auto font-medium bg-fullBlue text-base text-white rounded-xl  ">
             Зарегистрироваться
           </button>
-          <NavLink to="/mail-verify-seller" className={"mt-[15px] text-fullBlue hover:underline text-base not-italic font-AeonikProRegular"}>
+          <NavLink to="/login-seller" className={"mt-[15px] text-fullBlue hover:underline text-base not-italic font-AeonikProRegular"}>
             Есть аккаунт?
           </NavLink>
           {/* <NavLink to="/login-seller" className={"mt-[15px] text-fullBlue hover:underline text-base not-italic font-AeonikProRegular"}>
