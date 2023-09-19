@@ -43,13 +43,15 @@ const SignUpSeller = () => {
     // -----Modal Email verfiy
     openModalEmailMessage: false,
     // ------popover---
-    openPrice: false
+    openPrice: false,
+    // ------Search query
+    searchText: ""
 
   });
   // 
-  const onChange = (value) => {
-    setState({ ...state, seller_type_id: value })
-  };
+  // const onChange = (value) => {
+  //   setState({ ...state, seller_type_id: value })
+  // };
   const onSearch = (value) => {
     console.log("search:", value);
   };
@@ -105,7 +107,9 @@ const SignUpSeller = () => {
       },
       onError: (err) => {
         console.log(err, "err");
-      }
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
     }
   )
   // ------------GET METHOD Region-----------------
@@ -118,7 +122,9 @@ const SignUpSeller = () => {
       },
       onError: (err) => {
         console.log(err, "err");
-      }
+      },
+      keepPreviousData: true, // bu browserdan tashqariga chiqib yana kirsa, yana yurishni oldini olish uchun
+      refetchOnWindowFocus: false, // bu ham focus bolgan vaqti malumot olib kelish
     }
   )
 
@@ -132,7 +138,7 @@ const SignUpSeller = () => {
       },
 
 
-      body: state?.seller_type_id >= 3 ?
+      body: parseInt(state?.seller_type_id) >= 3 ?
         JSON.stringify({
           name: state?.firstName,
           surname: state?.lastName,
@@ -272,47 +278,9 @@ const SignUpSeller = () => {
     } else {
       setActiveIndex(id)
     }
-    // console.log(id, activeIndex, "Id1, activeIndex1");
-    // console.log(id, activeIndex, "Id2, activeIndex2");
   }
-  const [openClothingSection, setOpenClothingSection] = useState(false); // Clothing Types
 
-  // const handleOpenChangePrice = (newOpen) => {
-  //   setState({ ...state, openPrice: newOpen });
-  // };
-  // const [selectPrice, setselectPrice] = useState("Тип предприятия");
-  // const handlePriceValue = (value, id) => {
-  //   console.log(id, "seller_type_id");
-  //   // setState({ ...state, seller_type_id: id })
-  //   setselectPrice(value);
-  //   setState({ ...state, openPrice: false });
-  // };
-
-  // const contentPrice = (
-  //   <div className="w-full md:w-[450px]  h-fit m-0 p-0">
-  //     <p
-  //       onClick={() => handlePriceValue("Тип предприятия", null)}
-  //       className="cursor-pointer text-[#8C8C8C] text-[14px] not-italic font-AeonikProRegular">
-  //       Тип предприятия
-  //     </p>
-  //     {
-  //       state?.getSellerList?.company?.map(data => {
-  //         return (
-  //           <p
-  //             key={data?.id}
-  //             onClick={() => {
-  //               handlePriceValue(data?.name_ru, data?.id);
-  //             }}
-  //             className="cursor-pointer text-[#000] text-[14px] py-1 sm:text-base  not-italic hover:bg-btnBgColor font-AeonikProRegular leading-4 tracking-[0,16px]"
-  //           >
-  //             {data?.name_ru || "text"}
-  //           </p>
-  //         )
-  //       })
-  //     }
-  //   </div>
-  // );
-  console.log(state?.seller_type_id, "seller_type_id");
+  console.log(parseInt(state?.seller_type_id), "seller_type_id");
   return (
     <div className="max-w-[1280px] w-full flex justify-center items-center m-auto">
       <ToastContainer
@@ -375,15 +343,15 @@ const SignUpSeller = () => {
                       <div key={data?.id} className="mb-4">
                         <div className="flex items-center">
                           <label
-                            htmlFor={data?.name_ru}
+                            htmlFor={data?.id}
                             className="flex items-center"
                           >
                             <input
                               type="radio"
-                              id={data?.name_ru}
+                              id={data?.id}
                               name="type_work"
                               value={data?.id}
-                              checked={state?.seller_type_id == data?.id}
+                              checked={parseInt(state?.seller_type_id) == data?.id}
                               className="w-[18px] h-[18px] cursor-pointer"
                               onChange={(e) => setState({ ...state, seller_type_id: e.target.value })}
                               required
@@ -411,7 +379,7 @@ const SignUpSeller = () => {
                 // style={{ border: "1px solid red" }}
                 placeholder="Тип предприятия"
                 optionFilterProp="children"
-                onChange={onChange}
+                onChange={(e) => setState({ ...state, seller_type_id: e })}
                 onSearch={onSearch}
                 size="large"
                 filterOption={(input, option) =>
@@ -438,7 +406,7 @@ const SignUpSeller = () => {
                   <span className="ml-[5px]"><StarIcon /></span>
                 </p>
                 <input
-                  className="w-full font-AeonikProRegular text-[14px] sm:text-base  border border-searchBgColor mt-[6px] rounded-lg px-[15px] h-[42px] flex items-center"
+                  className="w-full h-[42px] placeholder-text-[#b5b5b5] px-2 md:px-4 border border-searchBgColor rounded-lg outline-none	bg-white placeholder-bg-white  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProRegular ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4"
                   type="text"
                   value={state?.company_name}
                   onChange={(e) => setState({ ...state, company_name: e.target.value })}
@@ -478,10 +446,16 @@ const SignUpSeller = () => {
                     </div>
                     <label className="w-full mt-6 h-[42px] rounded-lg border border-[#E5E5E5] overflow-hidden flex items-center">
                       <input
-                        type="text"
-                        className="w-full h-full pl-3 outline-none"
-                        name="s"
+                        type="search"
+                        className="w-full h-full pl-3 outline-none lowercase"
+                        name="search-form"
+                        id="search-form"
+                        autoComplete="off"
                         placeholder="Поиск..."
+                        value={state?.searchText}
+                        onChange={(e) => setState({
+                          ...state, searchText: e.target.value
+                        })}
                       />
                       <span className="flex items-center pr-3">
                         <SearchIcons />
@@ -492,7 +466,7 @@ const SignUpSeller = () => {
 
 
                       {state?.getRegionList?.regions ?
-                        state?.getRegionList?.regions?.map((data, index) => {
+                        state?.getRegionList?.regions?.filter(data => data.name_ru.toLocaleLowerCase().includes(state?.searchText)).map((data, index) => {
                           return (
                             <div key={data?.id} className="w-full  h-fit mt-4 ">
                               <div
@@ -513,7 +487,7 @@ const SignUpSeller = () => {
                                 className={`w-full grid grid-cols-2 ll:grid-cols-3 duration-[400ms] 
                              ${activeIndex == data?.id ? "openAccardion" : "CloseAccardion"} `}
                               >
-                                {data?.sub_regions.map((item) => {
+                                {data?.sub_regions.filter(e => e.name_ru.toLocaleLowerCase().includes(state?.searchText)).map((item) => {
                                   return (
                                     <div key={item?.id} className="flex items-center px-[2px] gap-x-[4px] cursor-pointer">
                                       <label
@@ -567,7 +541,7 @@ const SignUpSeller = () => {
                         setState({ ...state, openModalRegions: true });
                       }}
                       className="w-full h-[42px] mt-[6px] px-[15px] flex items-center justify-between rounded-lg cursor-pointer border border-searchBgColor">
-                      <span className="text-[#B5B5B5] text-base not-italic font-AeonikProRegular">
+                      <span className=" w-full h-[42px] flex items-center not-italic font-AeonikProRegular text-[#B5B5B5] ll:text-[14px] sm:text-[16px] text-base leading-4 ">
                         {!state?.region && !state?.sub_region && "Выберите регион"}
 
                         {state?.getRegionList?.regions?.filter(e => e.id == state?.region).map(item => {
@@ -598,7 +572,7 @@ const SignUpSeller = () => {
                   <InputMask
                     value={state?.cardNumber}
                     mask='9999-9999-9999-9999'
-                    className="outline-none	 w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium text-[14px] xs:text-base placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                    className="outline-none	 w-full h-[42px]  text-black  not-italic font-AeonikProRegular placeholder-text-[#B5B5B5] ll:text-[14px] sm:text-[16px] text-base leading-4"
                     onChange={(e) => setState({ ...state, cardNumber: e.target.value })}
                     placeholder="0000-0000-0000-0000"
                   />
@@ -707,7 +681,7 @@ const SignUpSeller = () => {
               {/* Пароль, Пароль */}
               <div className="w-full  flex  xs:flex-row flex-col items-center justify-between gap-x-5 sm:gap-x-[50px] gap-y-4 xs:gap-y-0">
                 {/* Пароль */}
-                <div className="w-full xs:w-1/2 h-[85px] ll:h-[100px] border border-red-500">
+                <div className="w-full xs:w-1/2 h-[85px] ll:h-[100px]">
                   <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
                     Пароль
                     <span className="ml-[5px]"><StarIcon /></span>
