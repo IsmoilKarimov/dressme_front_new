@@ -1,9 +1,22 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { FreeStar, GoBackIcon, ReviewIcon, StarIcons } from "../../../../../../../assets/icons";
+import CommentDropUp from "./CommentDropUp";
 
 
 const MobileAllComments = () => {
+
+  const [addComment, setAddComment] = useState(false)
+  const toggleAddComment = useCallback(()=> setAddComment(false), [])
+
+   // For DropUp
+  useEffect(() => {
+      if ( addComment ) {
+      document.body.style.overflow = "hidden";
+      } else {
+      document.body.style.overflow = "auto";
+      }
+  }, [ addComment ]);
 
   const [allComments] = useState([
     {
@@ -147,6 +160,21 @@ const MobileAllComments = () => {
       
     return(
         <main className="w-full flex flex-col items-center px-4">
+
+          <div className="comments">
+            <section
+            onClick={() => setAddComment(false)}
+            className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${addComment ? "" : "hidden"
+                }`}
+            ></section>
+            <section
+            className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${addComment ? "bottom-0" : "bottom-[-800px] z-0"
+                }`}
+            >
+              <CommentDropUp onClick={toggleAddComment} />
+            </section>
+          </div>
+
           <div className="w-full my-6 flex items-center justify-center">
             <button
               onClick={() => {
@@ -163,12 +191,13 @@ const MobileAllComments = () => {
             </div>
           </div>
           <button 
+             onClick={() => setAddComment(true)}
             type="button" 
             className="w-full flex items-center ml-[20px] text-SignInBgColor text-base font-AeonikProRegular mb-[2px]"
           >
-              Написать отзыв
-              <span className="ml-[5px]"><ReviewIcon /></span>  
-            </button>
+            Написать отзыв
+            <span className="ml-[5px]"><ReviewIcon /></span>  
+          </button>
           <div className="w-full flex items-center justify-between rounded-t border border-borderColor2 px-4 py-[14px] mb-[18px]">
             <div className="flex items-center">
               <StarIcons /><StarIcons /><StarIcons /><StarIcons /><StarIcons />
@@ -190,7 +219,7 @@ const MobileAllComments = () => {
                 <div className="w-full flex items-center text-[13px] font-AeonikProRegular mb-5">
                   <span>Оценка покупки</span>
                   <span className="ml-[5px]">4.7</span>
-                  <span className="ml-[2px]"><FreeStar /></span>
+                  <span className="ml-[2px]"><FreeStar width={13} height={13} colors={"#F4A622"} /></span>
                 </div>
                 <p className="text-[13px] font-AeonikProRegular mb-5">{data.SendText}</p>
                 <div className="w-full bg-[#F4F6FB] px-[15px] py-3">
