@@ -8,7 +8,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { Popover } from "antd";
+import { Popover, Select } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 
 const SignUpSeller = () => {
@@ -46,7 +46,13 @@ const SignUpSeller = () => {
     openPrice: false
 
   });
-
+  // 
+  const onChange = (value) => {
+    setState({ ...state, seller_type_id: value })
+  };
+  const onSearch = (value) => {
+    console.log("search:", value);
+  };
 
 
   // ------------Password Confirm----------
@@ -269,42 +275,44 @@ const SignUpSeller = () => {
     // console.log(id, activeIndex, "Id1, activeIndex1");
     // console.log(id, activeIndex, "Id2, activeIndex2");
   }
+  const [openClothingSection, setOpenClothingSection] = useState(false); // Clothing Types
 
-  const handleOpenChangePrice = (newOpen) => {
-    setState({ ...state, openPrice: newOpen });
-  };
-  const [selectPrice, setselectPrice] = useState("Тип предприятия");
-  const handlePriceValue = (value, id) => {
-    setState({ ...state, seller_type_id: id })
-    setselectPrice(value);
-    setState({ ...state, openPrice: false });
-  };
+  // const handleOpenChangePrice = (newOpen) => {
+  //   setState({ ...state, openPrice: newOpen });
+  // };
+  // const [selectPrice, setselectPrice] = useState("Тип предприятия");
+  // const handlePriceValue = (value, id) => {
+  //   console.log(id, "seller_type_id");
+  //   // setState({ ...state, seller_type_id: id })
+  //   setselectPrice(value);
+  //   setState({ ...state, openPrice: false });
+  // };
 
-  const contentPrice = (
-    <div className="w-full md:w-[450px]  h-fit m-0 p-0">
-      <p
-        onClick={() => handlePriceValue("Тип предприятия", null)}
-        className="cursor-pointer text-[#8C8C8C] text-[14px] not-italic font-AeonikProRegular">
-        Тип предприятия
-      </p>
-      {
-        state?.getSellerList?.company?.map(data => {
-          return (
-            <p
-              key={data?.id}
-              onClick={() => {
-                handlePriceValue(data?.name_ru, data?.id);
-              }}
-              className="cursor-pointer text-[#000] text-[14px] py-1 sm:text-base  not-italic hover:bg-btnBgColor font-AeonikProRegular leading-4 tracking-[0,16px]"
-            >
-              {data?.name_ru || "text"}
-            </p>
-          )
-        })
-      }
-    </div>
-  );
-
+  // const contentPrice = (
+  //   <div className="w-full md:w-[450px]  h-fit m-0 p-0">
+  //     <p
+  //       onClick={() => handlePriceValue("Тип предприятия", null)}
+  //       className="cursor-pointer text-[#8C8C8C] text-[14px] not-italic font-AeonikProRegular">
+  //       Тип предприятия
+  //     </p>
+  //     {
+  //       state?.getSellerList?.company?.map(data => {
+  //         return (
+  //           <p
+  //             key={data?.id}
+  //             onClick={() => {
+  //               handlePriceValue(data?.name_ru, data?.id);
+  //             }}
+  //             className="cursor-pointer text-[#000] text-[14px] py-1 sm:text-base  not-italic hover:bg-btnBgColor font-AeonikProRegular leading-4 tracking-[0,16px]"
+  //           >
+  //             {data?.name_ru || "text"}
+  //           </p>
+  //         )
+  //       })
+  //     }
+  //   </div>
+  // );
+  console.log(state?.seller_type_id, "seller_type_id");
   return (
     <div className="max-w-[1280px] w-full flex justify-center items-center m-auto">
       <ToastContainer
@@ -396,54 +404,33 @@ const SignUpSeller = () => {
             </div>
           ) : (
             <div className="w-full md:w-[484px] rounded-lg mx-auto">
-              <div className="w-full h-[42px] ">
-                <Popover
-                  open={state?.openPrice}
-                  onOpenChange={handleOpenChangePrice}
-                  className="w-full  h-full  rounded-lg bg-white  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group"
-                  trigger="click"
-                  options={["Hide"]}
-                  placement="bottom"
-                  content={contentPrice}
-                >
 
-                  <div className=" w-full h-full flex justify-between items-center px-2 md:pl-2 ">
-                    <p className="text-[#303030] text-[14px] sm:text-base  not-italic font-AeonikProRegular leading-4 tracking-[0,16px]">
-                      {selectPrice}
-                    </p>
-                    <span className={`${state?.openPrice ? "" : "rotate-[-180deg]"
-                      } duration-200`}>
-                      {/* <BiChevronDown
-                        size={30}
-                        style={{ color: "#c2c2c2" }}
-                        className={`${state?.openPrice ? "rotate-[-180deg]" : ""
-                          } duration-200`}
-                      /> */}
-                      <ArrowTopIcons colors={"#a1a1a1"} />
-                    </span>
+              <Select
+                className="flex items-center rounded-lg w-full  cursor-pointer"
+                showSearch
+                // style={{ border: "1px solid red" }}
+                placeholder="Тип предприятия"
+                optionFilterProp="children"
+                onChange={onChange}
+                onSearch={onSearch}
+                size="large"
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
+                options={
+                  state?.getSellerList?.company?.map(item => {
+                    return (
+                      {
+                        value: item?.id,
+                        label: item?.name_ru,
+                      }
+                    )
+                  })
+                }
+              />
 
-                  </div>
-                </Popover>
-              </div>
-              {/* <div className="w-full h-fit ">
-                <div className={`w-full`}>
-                  <select
-                    className="w-full h-[42px] mt-[6px] pl-[15px] rounded-lg cursor-pointer border border-borderColor2"
-                    value={state?.seller_type_id}
-                    onChange={(e) => setState({ ...state, seller_type_id: e.target.value })}
-                    required
-                  >
-                    <option className="text-[#303030] text-[14px] sm:text-base  not-italic font-AeonikProRegular leading-4 tracking-[0,16px]" value="">Тип предприятия</option>
-                    {
-                      state?.getSellerList?.company?.map(data => {
-                        return (
-                          <option className="text-[#303030] text-[14px] sm:text-base  not-italic hover:bg-btnBgColor font-AeonikProRegular leading-4 tracking-[0,16px]" key={data?.id || null} value={data?.id || null}> {data?.name_ru || "text"} </option>
-                        )
-                      })
-                    }
-                  </select>
-                </div>
-              </div> */}
 
               {!naturalPerson && <div className="w-full md:w-[484px] mt-5">
                 <p className="flex items-center text-base  font-AeonikProRegular text-[#303030]">
@@ -477,7 +464,7 @@ const SignUpSeller = () => {
                     }`}
                 ></div>
                 {
-                  <div className={`fixed max-w-[550px] h-[650px]  px-6 py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg  mx-auto w-full duration-500 z-[113] md:top-[50%] md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] overflow-hidden ${state?.openModalRegions ? " bottom-0 md:flex flex-col" : "md:hidden bottom-[-1500px] z-[-10]"}`} >
+                  <div className={`fixed max-w-[550px] h-[650px] px-3 md:px-6 py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg  mx-auto w-full duration-500 z-[113] md:top-[50%] md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] overflow-hidden ${state?.openModalRegions ? " bottom-0 md:flex flex-col" : "md:hidden bottom-[-1500px] z-[-10]"}`} >
                     <div className="w-full flex items-center justify-between">
 
                       <span className="text-black text-2xl not-italic font-AeonikProRegular">Выберите регион</span>
@@ -501,7 +488,7 @@ const SignUpSeller = () => {
                       </span>
                     </label>
 
-                    <div className="w-full overflow-auto   mt-6 h-[70%] VerticelScroll pr-2 ">
+                    <div className="w-full overflow-auto  overflow-x-hidden mt-6 h-[70%] VerticelScroll pr-2 ">
 
 
                       {state?.getRegionList?.regions ?
@@ -523,7 +510,7 @@ const SignUpSeller = () => {
                               </div>
 
                               <div
-                                className={`w-full grid grid-cols-3 duration-[400ms] 
+                                className={`w-full grid grid-cols-2 ll:grid-cols-3 duration-[400ms] 
                              ${activeIndex == data?.id ? "openAccardion" : "CloseAccardion"} `}
                               >
                                 {data?.sub_regions.map((item) => {
@@ -720,7 +707,7 @@ const SignUpSeller = () => {
               {/* Пароль, Пароль */}
               <div className="w-full  flex  xs:flex-row flex-col items-center justify-between gap-x-5 sm:gap-x-[50px] gap-y-4 xs:gap-y-0">
                 {/* Пароль */}
-                <div className="w-full xs:w-1/2 h-[100px] ">
+                <div className="w-full xs:w-1/2 h-[85px] ll:h-[100px] border border-red-500">
                   <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
                     Пароль
                     <span className="ml-[5px]"><StarIcon /></span>
@@ -753,11 +740,11 @@ const SignUpSeller = () => {
                       )}
                     </span>
                   </div>
-                  {confirmError && <p className="error mt-1">{confirmError}</p>}
+                  {confirmError && <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base mt-[2px] md:mt-1">{confirmError}</p>}
 
                 </div>
                 {/* Повторите пароль */}
-                <div className="w-full xs:w-1/2 h-[100px] ">
+                <div className="w-full xs:w-1/2 h-[85px] ll:h-[100px] ">
                   <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
                     Повторите пароль
                     <span className="ml-[5px]"><StarIcon /></span>
@@ -791,7 +778,7 @@ const SignUpSeller = () => {
                       )}
                     </span>
                   </div>
-                  {passwordError && <p className="error mt-1">{passwordError}</p>}
+                  {passwordError && <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base mt-[2px] md:mt-1">{passwordError}</p>}
                 </div>
               </div>
             </div>
@@ -829,7 +816,7 @@ const SignUpSeller = () => {
         </div>
         {/* -------------------------Email Verify Modal------------------ */}
 
-        <div className="flex items-center justify-center flex-col mt-[50px] md:mt-[90px]  mb-[88px] md:mb-8">
+        <div className="flex items-center justify-center flex-col mt-[30px] xs:mt-[50px] md:mt-[90px]  mb-[88px] md:mb-8">
           <button type="button" onClick={onSubmit} className="w-full md:w-[360px] h-12 flex items-center justify-center mx-auto font-medium bg-fullBlue text-base text-white rounded-xl  ">
             Зарегистрироваться
           </button>
