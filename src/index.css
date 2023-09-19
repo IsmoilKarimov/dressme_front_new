@@ -397,6 +397,7 @@ table tr th:nth-child(1) {
 /* .productDetailsMaps {
 
 } */
+
 .productDetailsMaps .ymaps-2-1-79-ground-pane {
   filter: brightness(100%);
   -ms-filter: brightness(100%);
@@ -408,4 +409,36 @@ table tr th:nth-child(1) {
 
 .productDetailsMaps .ymaps-2-1-79-controls__control {
   inset: auto 10px 150px auto !important;
+}
+
+.productDetailsMaps .ymaps-2-1-79-zoom  {
+  height: 94px !important;
+  width: 40px !important;
+  padding: 0px !important;
+  background-color: #fff;
+  border-radius: 8px;
+  display: flex !important;
+  justify-content: center !important;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15), 0 2px 5px -3px rgba(0, 0, 0, 0.15) !important;
+}
+
+.productDetailsMaps .ymaps-2-1-79-_hidden-text{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 45px;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 8px;
+}
+
+.productDetailsMaps .ymaps-2-1-79-float-button-icon_icon_geolocation {
+  margin-left: 6px !important;
+}
+
+.productDetailsMaps .ymaps-2-1-79-zoom__plus,
+.productDetailsMaps .ymaps-2-1-79-zoom__minus {
+  box-shadow: none;
+  margin-top: 4px;
 }
