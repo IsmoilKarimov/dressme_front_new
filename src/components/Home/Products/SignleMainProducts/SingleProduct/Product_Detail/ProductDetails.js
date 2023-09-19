@@ -702,12 +702,19 @@ const ProductDetails = () => {
                 </div>
               </article>
               <article className="w-fit flex items-center ml-[6px]">
-                <p className="not-italic font-AeonikProRegular text-sm leading-4 text-[#666] tracking-[1%]">
-                8600-0000-2345-1234
-                </p>
-                <span className="cursor-pointer ml-[6px]">
+                <input 
+                  className="text-sm bg-transparent w-[138px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]" 
+                  value={copyCardNumber} 
+                  onChange={(e) => setCopyCardNumber(e.target.value)}
+                  readOnly 
+                  type="text" 
+                />
+                <button 
+                  type="button"
+                  onClick={handleCopyCardNumber}
+                  className="cursor-pointer ml-[8px]">
                   <AddCopyCheckedIcon />
-                </span>
+                </button>
               </article>
             </div>
           </div>
