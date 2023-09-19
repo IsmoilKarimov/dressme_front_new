@@ -190,11 +190,11 @@ export default function SignInSeller() {
               className="not-italic select-none cursor-pointer font-AeonikProRegular text-sm leading-4 text-black tracking-[0,16px]"
             >
               {" "}
-              Оставаться в системе
+              Запомнить данные
             </label>
           </div>
           <NavLink
-            to={"/#"}
+            to={"/forgot-password-seller"}
             className="not-italic underline	 font-AeonikProRegular text-sm leading-4 cursor-pointer text-black hover:text-SignInBgColor tracking-[0,16px]"
           >
             Забыли пароль?

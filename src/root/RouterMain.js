@@ -12,6 +12,8 @@ import SignInSeller from "../components/Authentication/SellerRegsitration/SignIn
 
 import MobileAllComments from "../components/Home/Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/MobileComments";
 import MailVerfySeller from "../components/Authentication/SellerRegsitration/MailVerfy/MailVerfySeller";
+import ForgotPasswordSeller from "../components/Authentication/SellerRegsitration/forgotPassword/ForgotPasswordSeller";
+import ResetPasswordSeller from "../components/Authentication/SellerRegsitration/ResetPasswordSeller/ResetPasswordSeller";
 
 // import ConnectDashboard from "../components/RegistrationDashboard";
 // import CatalogMain from "../components/Home/Catalog/CatalogFilter";
@@ -310,6 +312,32 @@ const RouterMain = () => {
             </Suspense>
           }
         />
+        <Route path="/forgot-password-seller"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SignInSkeletonIndex />
+                </div>
+              }
+            >
+              <ForgotPasswordSeller />
+            </Suspense>
+          }
+        />
+        <Route path="/reset-password-seller"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SignInSkeletonIndex />
+                </div>
+              }
+            >
+              <ResetPasswordSeller />
+            </Suspense>
+          }
+        />
         <Route path="/mail-verify-seller/:id"
           element={
             <Suspense
@@ -352,7 +380,9 @@ const RouterMain = () => {
         locationWindow !== "/profile/settings" &&
         locationWindow !== "/signup-seller" &&
         locationWindow !== "/login-seller" &&
-        locationWindow !== "/mail-verify-seller" &&
+        locationWindow !== "/mail-verify-seller/:id" &&
+        locationWindow !== "/forgot-password-seller" &&
+        locationWindow !== "/reset-password-seller" &&
         locationWindow !== "/allcomments" &&
         locationWindow !== "/delivery-points" ? (
         <Suspense fallback={<>Loading...</>}>
