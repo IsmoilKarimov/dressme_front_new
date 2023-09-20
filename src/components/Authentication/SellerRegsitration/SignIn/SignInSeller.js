@@ -10,7 +10,9 @@ export default function SignInSeller() {
     eyesShow: true,
     password: "",
     email: "",
-    rememberCheck: ""
+    rememberCheck: "",
+    errorGroup: ""
+
   });
 
   const handleChange = (e) => {
@@ -19,7 +21,6 @@ export default function SignInSeller() {
   }
 
   const navigate = useNavigate();
-  const [error, setError] = useState(false);
   const url = "https://api.dressme.uz/api/seller/login";
 
   const dataMutate = useMutation(() => {
@@ -37,17 +38,15 @@ export default function SignInSeller() {
     console.log(state?.password, "password");
     console.log(state?.rememberCheck, "rememberCheck");
     if (state.email?.length && state.password?.length) {
+
       dataMutate.mutate(
         {},
         {
           onSuccess: (res) => {
             console.log(res, "SignInSeller");
-            if (res?.access_token) {
-              localStorage.setItem("access_token", res?.access_token);
-
-              // navigate("https://dressme-dashboard-new.vesrcel.app/reviews");
-              setState({ ...state, email: "", password: "" });
-              toast.success("Muaffaqiyatli kirdingiz", {
+            if (res?.message && res?.errors) {
+              setState({ ...state, errorGroup: res?.message })
+              toast.error(`${res?.message}`, {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -58,9 +57,9 @@ export default function SignInSeller() {
                 theme: "light",
               });
 
-            } else {
-              setError("Email yoki parolda xatolik");
-              toast.error(`${res?.message}`, {
+            } else if (res?.message && !res?.errors) {
+              setState({ ...state, email: "", password: "", errorGroup: "" });
+              toast.success(`${res?.message}`, {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -87,8 +86,7 @@ export default function SignInSeller() {
         }
       );
     } else {
-      setError("Bush maydon junatish mumkin emas");
-      toast.warning("Iltimos Malumotlarni kiriting", {
+      toast.error(`Заполните все поля`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -130,16 +128,16 @@ export default function SignInSeller() {
             <input
               className="  w-full h-[42px] text-base  placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black focus:bg-white placeholder-bg-white"
               type="email"
+              name="email"
               value={state.email}
               onChange={({ target: { value } }) => {
-                setError();
                 setState({ ...state, email: value });
               }}
               placeholder="Emailingizni kiriting..."
               required
             />
             <span>
-              <EmailIcons colors={"#A1A1A1"} />
+              <EmailIcons colors={"#e2e2e2"} />
             </span>
           </div>
         </div>
@@ -152,9 +150,9 @@ export default function SignInSeller() {
               className="  w-full h-[42px] text-base placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type={state?.eyesShow ? "password" : "text"}
               placeholder="Enter your password"
+              name="password"
               value={state.password}
               onChange={({ target: { value } }) => {
-                setError();
                 setState({ ...state, password: value });
               }}
               required
@@ -163,18 +161,23 @@ export default function SignInSeller() {
               {state?.eyesShow ? (
                 <AiOutlineEyeInvisible
                   onClick={() => setState({ ...state, eyesShow: false })}
-                  size={20}
+                  size={20} color={"#e2e2e2"}
                 />
               ) : (
                 <AiOutlineEye
                   onClick={() => setState({ ...state, eyesShow: true })}
-                  size={20}
+                  size={20} color={"#e2e2e2"}
                 />
               )}
             </span>
           </div>
         </div>
-        {error?.length ? <div className={`text-[12px] mt-1 text-RedColor`}>{error}</div> : null}
+        {/* {
+          state?.errorGroup &&
+          <p className=" mx-auto text-[#D50000] text-[12px] md:text-[14px]  ">
+            {state?.errorGroup}
+          </p>
+        } */}
 
         <div className="my-5 flex items-center justify-between w-full">
           <div className="flex items-center">
