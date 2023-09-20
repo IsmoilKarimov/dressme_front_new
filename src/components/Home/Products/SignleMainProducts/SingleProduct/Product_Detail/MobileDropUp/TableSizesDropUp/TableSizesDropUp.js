@@ -113,7 +113,7 @@ export default function TableSizesDropUp({onClick}) {
                                 {/* Letter Sizes */}
                                 <div className='w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] flex items-center justify-between'>
                                     {tableSizes.letter_sizes.map(data => (
-                                    <div className='w-full flex items-center justify-center'>
+                                    <div className='w-full flex items-center justify-center ml-[-4px]'>
                                         <div key={data.id} className=' flex-shrink-0'>{data.numbers}</div>
                                     </div>
                                     ))}
@@ -129,7 +129,7 @@ export default function TableSizesDropUp({onClick}) {
                                 {/* Waist Sizes */}
                                 <div className='w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] flex items-center justify-between'>
                                     {tableSizes.waist_sizes.map(data => (
-                                        <div className='w-full flex items-center justify-center'>
+                                        <div className='w-full flex items-center justify-center ml-[-4px]'>
                                             <div key={data.id} className='flex-shrink-0'>{data.numbers}</div>
                                         </div>
                                     ))}
@@ -145,7 +145,7 @@ export default function TableSizesDropUp({onClick}) {
                                 {/* Ages */}
                                 <div className='w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] flex items-center justify-between'>
                                     {tableSizes.age.map(data => (
-                                        <div className='w-full flex items-center justify-center'>
+                                        <div className='w-full flex items-center justify-center ml-[-4px]'>
                                             <div key={data.id} className='flex-shrink-0'>{data.ages}</div>
                                         </div>
                                     ))}
