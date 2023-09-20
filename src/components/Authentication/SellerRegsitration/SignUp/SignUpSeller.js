@@ -375,32 +375,34 @@ const SignUpSeller = () => {
             </div>
           ) : (
             <div className="w-full md:w-[484px] rounded-lg mx-auto">
+              <div className="select relative w-full flex items-center ">
 
-              <Select
-                className="flex items-center rounded-lg w-full  cursor-pointer"
-                showSearch
-                // style={{ border: "1px solid red" }}
-                placeholder="Тип предприятия"
-                optionFilterProp="children"
-                onChange={(e) => setState({ ...state, seller_type_id: e })}
-                onSearch={onSearch}
-                size="large"
-                filterOption={(input, option) =>
-                  (option?.label ?? "")
-                    .toLowerCase()
-                    .includes(input.toLowerCase())
-                }
-                options={
-                  state?.getSellerList?.company?.map(item => {
-                    return (
-                      {
-                        value: item?.id,
-                        label: item?.name_ru,
-                      }
-                    )
-                  })
-                }
-              />
+                <Select
+                  className="select flex items-center rounded-lg w-full focus:border border-searchBgColor cursor-pointer"
+                  placeholder="Тип предприятия"
+                  optionFilterProp="children"
+                  onChange={(e) => setState({ ...state, seller_type_id: e })}
+                  suffixIcon={null}
+                  size="large"
+                  options={
+                    state?.getSellerList?.company?.map(item => {
+                      return (
+                        {
+                          value: item?.id,
+                          label: item?.name_ru,
+                        }
+                      )
+                    })
+                  }
+                >
+                </Select>
+
+                <span className={`data absolute right-[10px] top- h-full flex items-center select-focus:rotate-[90deg] rotate-[180deg] `}>
+
+                  <ArrowTopIcons colors="#a1a1a1" />
+                </span>
+              </div>
+
 
 
               {!naturalPerson && <div className="w-full md:w-[484px] mt-5">
@@ -524,7 +526,7 @@ const SignUpSeller = () => {
                         <p className="w-full h-full flex flex-col items-center justify-center">Malumotlar yuklanyapti...</p>}
 
                     </div>
-                    <div className="w-full flex items-center justify-end  md:mt-2">
+                    <div className="w-full flex items-center justify-end  mt-2">
                       <span onClick={() => {
                         setState({ ...state, openModalRegions: false });
                       }} className="cursor-pointer text-fullBlue text-lg not-italic font-AeonikProMedium">Готово</span>

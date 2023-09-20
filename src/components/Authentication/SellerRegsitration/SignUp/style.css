@@ -47,3 +47,37 @@ input:-webkit-autofill:active {
 .error {
   color: red;
 }
+
+/* .ant-select-selection__rendered:focus {
+  outline: none;
+  border: none;
+}
+
+.ant-select-focused {
+  border: none;
+}
+
+.ant-select-focused:focus {
+  outline: 0;
+
+} */
+.ant-select-focused .ant-select-selector,
+.ant-select-selector:focus,
+.ant-select-selector:active,
+.ant-select-open .ant-select-selector {
+  border-color: #f2f2f2 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.ant-select-open .data {
+  rotate: 90deg;
+}
+
+/* ..ant-select-focused .ant-select-selector,
+.ant-select-selector:focus,
+.ant-select-selector:active,
+.ant-select-open .ant-select-selector {
+  border-color: #d9d9d9 !important;
+  box-shadow: none !important;
+} */
