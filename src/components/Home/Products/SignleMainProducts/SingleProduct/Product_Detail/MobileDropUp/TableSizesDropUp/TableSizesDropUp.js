@@ -5,16 +5,16 @@ export default function TableSizesDropUp({onClick}) {
 
     const tableSizes = {
         sizes: [
-            {id:1, numbers: "1-2"},
-            {id:2, numbers: "2-3"},
-            {id:3, numbers: "3-4"},
-            {id:4, numbers: "4-5"},
-            {id:5, numbers: "5-6"},
-            {id:6, numbers: "6-7"},
-            {id:7, numbers: "7-8"},
-            {id:8, numbers: "8-9"},
-            {id:9, numbers: "9-10"},
-            {id:10, numbers: "10-11"},
+            {id:1, numbers: "45-52"},
+            {id:2, numbers: "45-52"},
+            {id:3, numbers: "53-57"},
+            {id:4, numbers: "58-62"},
+            {id:5, numbers: "53-68"},
+            {id:6, numbers: "69-75"},
+            {id:7, numbers: "76-80"},
+            {id:8, numbers: "81-92"},
+            {id:9, numbers: "93-100"},
+            {id:10, numbers: "101-110"},
         ],
         letter_sizes: [
             {id:1, numbers: "XXS"},
@@ -29,52 +29,52 @@ export default function TableSizesDropUp({onClick}) {
             {id:10, numbers: "5XL"},
         ],
         chest_sizes : [
-            {id:1, numbers: "1-2"},
-            {id:2, numbers: "2-3"},
-            {id:3, numbers: "3-4"},
-            {id:4, numbers: "4-5"},
-            {id:5, numbers: "5-6"},
-            {id:6, numbers: "6-7"},
-            {id:7, numbers: "7-8"},
-            {id:8, numbers: "8-9"},
-            {id:9, numbers: "9-10"},
-            {id:10, numbers: "10-11"},
+            {id:1, numbers: "45-52"},
+            {id:2, numbers: "45-52"},
+            {id:3, numbers: "53-57"},
+            {id:4, numbers: "58-62"},
+            {id:5, numbers: "53-68"},
+            {id:6, numbers: "69-75"},
+            {id:7, numbers: "76-80"},
+            {id:8, numbers: "81-92"},
+            {id:9, numbers: "93-100"},
+            {id:10, numbers: "101-110"},
         ],
         waist_sizes: [
-            {id:1, numbers: "1-2"},
-            {id:2, numbers: "2-3"},
-            {id:3, numbers: "3-4"},
-            {id:4, numbers: "4-5"},
-            {id:5, numbers: "5-6"},
-            {id:6, numbers: "6-7"},
-            {id:7, numbers: "7-8"},
-            {id:8, numbers: "8-9"},
-            {id:9, numbers: "9-10"},
-            {id:10, numbers: "10-11"},
+            {id:1, numbers: "45-52"},
+            {id:2, numbers: "45-52"},
+            {id:3, numbers: "53-57"},
+            {id:4, numbers: "58-62"},
+            {id:5, numbers: "53-68"},
+            {id:6, numbers: "69-75"},
+            {id:7, numbers: "76-80"},
+            {id:8, numbers: "81-92"},
+            {id:9, numbers: "93-100"},
+            {id:10, numbers: "101-110"},
         ],
         hip_sizes: [
-            {id:1, numbers: "1-2"},
-            {id:2, numbers: "2-3"},
-            {id:3, numbers: "3-4"},
-            {id:4, numbers: "4-5"},
-            {id:5, numbers: "5-6"},
-            {id:6, numbers: "6-7"},
-            {id:7, numbers: "7-8"},
-            {id:8, numbers: "8-9"},
-            {id:9, numbers: "9-10"},
-            {id:10, numbers: "10-11"},
+            {id:1, numbers: "45-52"},
+            {id:2, numbers: "45-52"},
+            {id:3, numbers: "53-57"},
+            {id:4, numbers: "58-62"},
+            {id:5, numbers: "53-68"},
+            {id:6, numbers: "69-75"},
+            {id:7, numbers: "76-80"},
+            {id:8, numbers: "81-92"},
+            {id:9, numbers: "93-100"},
+            {id:10, numbers: "101-110"},
         ],
         age: [
-            {id:1, ages: "1-2"},
-            {id:2, ages: "2-3"},
-            {id:3, ages: "3-4"},
-            {id:4, ages: "4-5"},
-            {id:5, ages: "5-6"},
-            {id:6, ages: "6-7"},
-            {id:7, ages: "7-8"},
-            {id:8, ages: "8-9"},
-            {id:9, ages: "9-10"},
-            {id:10, ages: "10-11"},
+            {id:1, ages: "10-15"},
+            {id:2, ages: "15-20"},
+            {id:3, ages: "25-31"},
+            {id:4, ages: "32-37"},
+            {id:5, ages: "38-41"},
+            {id:6, ages: "41-46"},
+            {id:7, ages: "47-50"},
+            {id:8, ages: "51-57"},
+            {id:9, ages: "58-65"},
+            {id:10, ages: "66-90"},
         ]
     }
 
@@ -100,42 +100,54 @@ export default function TableSizesDropUp({onClick}) {
                         <div className='text-base font-AeonikProRegular h-10 flex items-center'>Возраст</div>
                     </div>
                     <div className='w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col'>
-                       <div className='w-[210%]'> 
+                       <div className='w-[250%] flex items-center justify-center'> 
                             <div className='w-full  flex items-center flex-col text-[13px] font-AeonikProRegular '>
                                 {/* Sizes */}
-                                <div className='w-full h-10 px-3 flex items-center justify-between'>
+                                <div className='w-full h-10 flex items-center justify-between'>
                                     {tableSizes.sizes.map(data => (
-                                        <div key={data.id} className='flex flex-shrink-0'>{data.numbers}</div>
+                                        <div className='w-full flex items-center justify-center'>
+                                            <div key={data.id} className='flex items-center justify-center flex-shrink-0'>{data.numbers}</div>
+                                        </div>
                                     ))}
                                 </div>
                                 {/* Letter Sizes */}
-                                <div className='w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] px-3 flex items-center justify-between'>
+                                <div className='w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] flex items-center justify-between'>
                                     {tableSizes.letter_sizes.map(data => (
-                                        <div key={data.id} className='flex-shrink-0'>{data.numbers}</div>
+                                    <div className='w-full flex items-center justify-center'>
+                                        <div key={data.id} className=' flex-shrink-0'>{data.numbers}</div>
+                                    </div>
                                     ))}
                                 </div>
                                 {/* Chest Sizes */}
-                                <div className='w-[99%] h-10 px-3 flex items-center justify-between'>
+                                <div className='w-[99%] h-10 flex items-center justify-between'>
                                     {tableSizes.chest_sizes.map(data => (
-                                        <div key={data.id} className='flex-shrink-0'>{data.numbers}</div>
+                                        <div className='w-full flex items-center justify-center'>
+                                            <div key={data.id} className='flex-shrink-0'>{data.numbers}</div>
+                                        </div>
                                     ))}
                                 </div>
                                 {/* Waist Sizes */}
-                                <div className='w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] px-3 flex items-center justify-between'>
+                                <div className='w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] flex items-center justify-between'>
                                     {tableSizes.waist_sizes.map(data => (
-                                        <div key={data.id} className='flex-shrink-0'>{data.numbers}</div>
+                                        <div className='w-full flex items-center justify-center'>
+                                            <div key={data.id} className='flex-shrink-0'>{data.numbers}</div>
+                                        </div>
                                     ))}
                                 </div>
                                 {/* Hip Sizes */}
-                                <div className='w-[99%] h-10 px-3 flex items-center justify-between'>
+                                <div className='w-[99%] h-10 flex items-center justify-between'>
                                     {tableSizes.hip_sizes.map(data => (
-                                        <div key={data.id} className='flex-shrink-0'>{data.numbers}</div>
+                                        <div className='w-full flex items-center justify-center'>
+                                            <div key={data.id} className='flex-shrink-0'>{data.numbers}</div>
+                                        </div>
                                     ))}
                                 </div>
                                 {/* Ages */}
-                                <div className='w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] px-3 flex items-center justify-between'>
+                                <div className='w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] flex items-center justify-between'>
                                     {tableSizes.age.map(data => (
-                                        <div key={data.id} className='flex-shrink-0'>{data.ages}</div>
+                                        <div className='w-full flex items-center justify-center'>
+                                            <div key={data.id} className='flex-shrink-0'>{data.ages}</div>
+                                        </div>
                                     ))}
                                 </div>
                             </div>
