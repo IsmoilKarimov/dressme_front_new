@@ -61,7 +61,7 @@ export default function MailVerfySeller() {
   const dataMutate = useMutation(() => {
     return fetch(`${url}/login`, {
       method: "POST",
-      headers: { "Content-type": "application/json" },
+      headers: { "Content-type": "application/json", "Accept": "application/json" },
       body: JSON.stringify({ email: state.email, password: state.password, rememberToken: state?.rememberCheck }),
     }).then((res) => res.json());
   });
