@@ -74,7 +74,7 @@ export default function MailVerfySeller() {
         {},
         {
           onSuccess: (res) => {
-            console.log(res);
+            console.log(res, "MailVerfySeller");
             if (res?.access_token) {
               localStorage.setItem("access_token", res?.access_token);
               window.location.replace(' https://dressme-dashboard-new.vercel.app/reviews');
