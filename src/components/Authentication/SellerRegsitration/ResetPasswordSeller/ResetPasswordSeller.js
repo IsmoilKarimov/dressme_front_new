@@ -1,11 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { SircleNext, UserMailIcon } from "../../../../assets/icons";
 import { useEffect, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useMutation } from "@tanstack/react-query";
 import { message } from 'antd';
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function ResetPasswordSeller() {
+    const navigate = useNavigate()
     const url = "https://api.dressme.uz/api/seller"
     const [state, setState] = useState({
         newPassword: "",
@@ -59,19 +61,62 @@ export default function ResetPasswordSeller() {
             if (state?.newPassword?.length && state?.newPasswordConfirm?.length) {
                 mutate({}, {
                     onSuccess: res => {
-                        console.log(res, "response");
+                        toast.success("Вы успешно вошли в", {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                        navigate('/login-seller')
                     },
                     onError: err => {
                         console.log(err, "err");
+                        toast.error(`ошибка ${err}`, {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
                     }
                 })
             } else {
+                toast.error(`Заполните все поля`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
                 message.error("Заполните все поля")
             }
         }
     }
     return (
         <div className=" py-8 w-full min-h-[calc(100vh-180px)] flex items-center justify-center ss:px-4 md:px-0 ">
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                limit={4}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
             <div className="max-w-[440px] w-[100%] h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
                 <div className=" w-full mt-1 mb-7 flex flex-col justify-center">
                     <span className="not-italic font-AeonikProMedium text-xl ss:text-start md:text-center leading-5   tracking-[0,16px] text-black">

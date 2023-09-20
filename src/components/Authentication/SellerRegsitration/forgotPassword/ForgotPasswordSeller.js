@@ -29,7 +29,6 @@ export default function ForgotPasswordSeller() {
             mutate({}, {
                 onSuccess: res => {
                     if (res?.status == 200 || res?.ok) {
-                        navigate('/reset-password-seller')
                         toast.success("успешный вход в систему", {
                             position: "top-right",
                             autoClose: 5000,
@@ -40,6 +39,7 @@ export default function ForgotPasswordSeller() {
                             progress: undefined,
                             theme: "light",
                         });
+                        navigate('/reset-password-seller')
                     } else {
                         toast.error("введите правильный адрес электронной почты", {
                             position: "top-right",
@@ -82,7 +82,7 @@ export default function ForgotPasswordSeller() {
         }
     }
     return (
-        <div className=" py-8 w-full min-h-[calc(100vh-180px)] flex items-center justify-center ss:px-4 md:px-0 border border-red-500">
+        <div className=" py-8 w-full min-h-[calc(100vh-180px)] flex items-center justify-center ss:px-4 md:px-0">
             <ToastContainer
                 position="top-right"
                 autoClose={5000}
