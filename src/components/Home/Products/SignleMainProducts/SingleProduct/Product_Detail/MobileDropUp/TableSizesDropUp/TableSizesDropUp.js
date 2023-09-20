@@ -104,49 +104,49 @@ export default function TableSizesDropUp({onClick}) {
                         <div className='w-full overflow-x-auto flex items-center flex-col text-[13px] font-AeonikProRegular'>
                             {/* Sizes */}
                             <div className='w-full h-10 px-3 flex items-center justify-between'>
-                                <div className='w-full  flex items-center gap-x-[23px] mr-4'>
+                                <div className='w-[99%]  flex items-center gap-x-[23px]'>
                                     {tableSizes.sizes.map(data => (
                                         <div key={data.id} className='flex flex-shrink-0'>{data.numbers}</div>
                                     ))}
                                 </div>
                             </div>
                             {/* Letter Sizes */}
-                            <div className='w-full bg-categoryModalBgColor rounded-l-lg h-10 pl-2 pr-4 ml-[5px] flex items-center justify-between'>
-                                <div className='w-full flex items-center gap-x-[23px] mr-4'>
+                            <div className='w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 mx-[5px] px-3 flex items-center justify-between'>
+                                <div className='w-full flex items-center gap-x-[23px]'>
                                     {tableSizes.letter_sizes.map(data => (
-                                        <div key={data.id} className='flex flex-shrink-0'>{data.numbers}</div>
+                                        <div key={data.id} className='flex-shrink-0'>{data.numbers}</div>
                                     ))}
                                 </div>
                             </div>
                             {/* Chest Sizes */}
-                            <div className='w-full h-10 px-3 flex items-center justify-between'>
-                                <div className='w-full flex items-center gap-x-[23px] mr-4'>
+                            <div className='w-[99%] h-10 px-3 flex items-center justify-between'>
+                                <div className='w-full flex items-center gap-x-[23px]'>
                                     {tableSizes.chest_sizes.map(data => (
-                                        <div key={data.id} className='flex flex-shrink-0'>{data.numbers}</div>
+                                        <div key={data.id} className='flex-shrink-0'>{data.numbers}</div>
                                     ))}
                                 </div>
                             </div>
                             {/* Waist Sizes */}
-                            <div className='w-full bg-categoryModalBgColor rounded-l-lg h-10 pl-2 pr-4 ml-[5px] flex items-center justify-between'>
-                                <div className='w-full flex  items-center gap-x-[23px] mr-4'>
+                            <div className='w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 mx-[5px] px-3 flex items-center justify-between'>
+                                <div className='w-full flex  items-center gap-x-[23px]'>
                                     {tableSizes.waist_sizes.map(data => (
-                                        <div key={data.id} className='flex flex-shrink-0'>{data.numbers}</div>
+                                        <div key={data.id} className='flex-shrink-0'>{data.numbers}</div>
                                     ))}
                                 </div>
                             </div>
                             {/* Hip Sizes */}
-                            <div className='w-full h-10 px-3 flex items-center justify-between'>
-                                <div className='w-full flex items-center gap-x-[23px] mr-4'>
+                            <div className='w-[99%] h-10 px-3 flex items-center justify-between'>
+                                <div className='w-full flex items-center gap-x-[23px]'>
                                     {tableSizes.hip_sizes.map(data => (
-                                        <div key={data.id} className='flex flex-shrink-0'>{data.numbers}</div>
+                                        <div key={data.id} className='flex-shrink-0'>{data.numbers}</div>
                                     ))}
                                 </div>
                             </div>
                             {/* Ages */}
-                            <div className='w-full bg-categoryModalBgColor rounded-l-lg h-10 pl-2 pr-4 ml-[5px] flex items-center justify-between'>
-                                <div className='w-full flex items-center gap-x-[23px] mr-4'>
+                            <div className='w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 mx-[5px] px-3 flex items-center justify-between'>
+                                <div className='w-full flex items-center gap-x-[23px]'>
                                     {tableSizes.age.map(data => (
-                                        <div key={data.id} className='flex flex-shrink-0'>{data.ages}</div>
+                                        <div key={data.id} className='flex-shrink-0'>{data.ages}</div>
                                     ))}
                                 </div>
                             </div>
