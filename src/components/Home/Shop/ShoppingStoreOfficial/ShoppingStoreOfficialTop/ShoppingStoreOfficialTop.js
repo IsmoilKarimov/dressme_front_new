@@ -3,6 +3,7 @@ import { nike } from "../../../../../assets";
 import {
   ArrowTopIcons,
   ClothesIcons,
+  CommentStarIcon,
   FilterIcons,
   LocationColoursIcons,
   LocationIcons,
@@ -187,9 +188,9 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                 alt=""
               />
             </figure>
-            <div className="w-full md:h-[90px]  mt-2 md:mt-0  h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
+            <div className="w-full md:h-[90px] mt-2 md:mt-0 h-fit flex flex-col md:flex-row items-center border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               {/* 1 */}
-              <action className="w-full md:w-fit flex h-[80px] md:h-fit items-center md:ml-[60px]">
+              <action className="w-full md:w-[45%] flex h-[80px] md:h-fit items-center md:ml-[40px]">
                 <figure className="w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
                   <img src={nike} alt="" />
                 </figure>
@@ -199,6 +200,10 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                     <div className="flex items-center ">
                       <div className="flex items-center  mr-[6px]">
                         <StarIcons />
+                        <span className="hidden md:flex"><StarIcons />
+                        <StarIcons />
+                        <StarIcons />
+                        <StarIcons /></span>
                       </div>
                       <div className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 md:ml-1 flex items-center text-sm">
                         <p className="font-AeonikProMedium text-black mr-1">
@@ -216,28 +221,28 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                 </div>
               </action>
               {/* 2 */}
-              <action className="w-full md:w-fit flex items-center  mt-6 md:mt-0">
+              <action className="w-full md:w-[30%] flex items-center  mt-6 md:mt-0">
                 <NavLink
                   to="/delivery-points"
-                  className="flex items-center justify-center w-12 h-12 rounded-lg border border-searchBgColor cursor-pointer"
+                  className="flex items-center justify-center shrink-0 w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer"
                 >
                   <span>
-                    <LocationIcons />
+                    <LocationColoursIcons colors={"#007DCA"} />
                   </span>
                 </NavLink>
                 <NavLink
                   to="/delivery-points"
-                  className="flex flex-col ml-3 md:w-[55%] w-[70%]"
+                  className="flex flex-col ml-3 md:w-full w-[70%]"
                 >
-                  <p className="text-sm font-AeonikProRegular">
+                  <p className="text-sm font-AeonikProRegular text-borderWinter">
                     60 Amir Temur Avenue, Mirzo Ulugbek district Tashkent 100017
                   </p>
                 </NavLink>
               </action>
               {/* 3 */}
-              <action className="w-full md:w-fit flex  items-center justify-between md:mr-5  mt-6 md:mt-0">
+              <action className="w-full md:w-[25%] flex items-center justify-end md:mr-5  mt-6 md:mt-0">
                 <div className="md:hidden flex w-fit">
-                  <a className="w-fit h-fit flex items-center justify-center gap-y-1 cursor-pointer">
+                  <div className="w-fit h-fit flex items-center justify-center gap-y-1 cursor-pointer">
                     <NavLink
                       to="/delivery-points"
                       className="flex items-center justify-center w-12 h-12 rounded-lg border border-searchBgColor cursor-pointer"
@@ -252,69 +257,68 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                       {" "}
                       Все локации
                     </p>
-                  </a>
+                  </div>
                 </div>
                 <div className="flex items-center">
-                  <button className="hidden md:flex items-center justify-center border border-searchBgColor w-12 h-12 rounded-lg mr-3">
-                    <VideoStoreIcons />
-                  </button>
-                  <button className="flex items-center justify-center border border-searchBgColor w-12 h-12 rounded-lg mr-1">
+                  <button className="flex flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1">
                     <ManGenIcons />
                   </button>
-                  <button className="flex items-center justify-center border border-searchBgColor w-12 h-12 rounded-lg">
+                  <button className="flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl">
                     <WomanGenIcons />
                   </button>
+                  <div className="flex items-center justify-end">
+                    <div className="w-[42%] min-w-min text-sm font-AeonikProRegular text-borderWinter ml-auto">Посмотреть отзывы</div>
+                    <button className="hidden md:flex items-center justify-center border border-searchBgColor w-[48px] h-[48px] rounded-xl ml-[10px] flex-shrink-0">
+                      <CommentStarIcon colors={"#007DCA"} />
+                    </button>
+                  </div>
                 </div>
               </action>
             </div>
           </action>
           <div className="w-full  hidden md:flex justify-end items-center my-3">
             <div className="w-fit flex gap-x-7 items-center">
-              <a className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
+              <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons colors={"#007DCA"} />
+                  <LocationColoursIcons colors={"#303030"} />
                 </p>
                 <p
-                  className={`text-base not-italic font-AeonikProRegular  text-borderWinter`}
+                  className={`text-base not-italic font-AeonikProRegular  text-[#303030]`}
                 >
-                  {" "}
                   Мирзо Улугбек
                 </p>
-              </a>
-              <a className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
+              </NavLink>
+              <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons colors={"#007DCA"} />
+                  <LocationColoursIcons colors={"#303030"}/>
                 </p>
                 <p
-                  className={`text-base not-italic font-AeonikProRegular  text-borderWinter`}
+                  className={`text-base not-italic font-AeonikProRegular  text-[#303030]`}
                 >
-                  {" "}
-                  Юнусабад{" "}
+                  Юнусабад
                 </p>
-              </a>
-              <a className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
+              </NavLink>
+              <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons colors={"#007DCA"} />
+                  <LocationColoursIcons colors={"#303030"} />
                 </p>
                 <p
-                  className={`text-base not-italic font-AeonikProRegular  text-borderWinter`}
+                  className={`text-base not-italic font-AeonikProRegular  text-[#303030]`}
                 >
-                  {" "}
-                  Алмазар{" "}
+                  Алмазар
                 </p>
-              </a>
-              <a className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
+              </NavLink>
+              <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons colors={"#007DCA"} />
+                  <LocationColoursIcons colors={"#303030"} />
                 </p>
                 <p
-                  className={`text-base not-italic font-AeonikProRegular  text-borderWinter`}
+                  className={`text-base not-italic font-AeonikProRegular  text-[#303030]`}
                 >
-                  {" "}
-                  Чиланзар{" "}
+                  Чиланза
                 </p>
-              </a>
-              <button className={`text-borderWinter underline`}>
+              </NavLink>
+              <button className={`text-borderWinter text-base font-AeonikProMedium`}>
                 Все локации
               </button>
             </div>

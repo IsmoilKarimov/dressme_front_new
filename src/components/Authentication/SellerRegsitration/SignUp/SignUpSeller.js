@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ArrowPrevousNext, ArrowTopIcons, CreditCardNumber, DashboardList, DashboardUser, EyesOpenIcons, MenuCloseIcons, SearchIcons, StarIcon, SuccessIconsForMail, UserMailIcon } from "../../../../assets/icons";
-import { message } from 'antd';
+import { ArrowTopIcons, CreditCardNumber, DashboardList, DashboardUser, MenuCloseIcons, SearchIcons, StarIcon, SuccessIconsForMail, UserMailIcon } from "../../../../assets/icons";
 import "./style.css";
 import InputMask from "react-input-mask";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -8,7 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { Popover, Select } from "antd";
+import { Select } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 
 const SignUpSeller = () => {
@@ -45,7 +44,9 @@ const SignUpSeller = () => {
     // ------popover---
     openPrice: false,
     // ------Search query
-    searchText: ""
+    searchText: "",
+    // ------error group
+    errorGroup: ""
 
   });
   useEffect(() => {
@@ -55,35 +56,6 @@ const SignUpSeller = () => {
       document.body.style.overflow = "auto";
     }
   }, [state?.openModalRegions]);
-  // 
-  // const onChange = (value) => {
-  //   setState({ ...state, seller_type_id: value })
-  // };
-  const onSearch = (value) => {
-    console.log("search:", value);
-  };
-
-
-  // ------------Password Confirm----------
-  const [confirmError, setConfirmError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-
-  useEffect(() => {
-    if (state?.password?.length >= 1 && state?.password?.length < 8) {
-      setConfirmError(`The password must be at least 8 characters.`)
-    }
-    if (state?.password?.length >= 8 || state?.password?.length < 1) {
-      setConfirmError(``)
-    }
-
-    if (state?.confirmPassword?.length >= 1 || state?.password !== state?.confirmPassword) {
-      setPasswordError(`The passwords do not match`)
-    }
-    if (state?.password == state?.confirmPassword || state?.confirmPassword?.length == 0) {
-      setPasswordError(``)
-    }
-  }, [state?.confirmPassword, state?.password])
-
 
   // ----------Card Number-----------
   const card1 = state?.cardNumber?.split("-")
@@ -174,108 +146,67 @@ const SignUpSeller = () => {
     }).then((res) => res.json())
   })
   const onSubmit = () => {
-    console.log("clicUp");
-    console.log(state?.firstName, "firstName");
-    console.log(state?.lastName, "lastName");
-    console.log(state?.email, "email");
-    console.log(BankCard, "cardNumber");
-    console.log(state?.password, "password");
-    console.log(state?.region, "region");
-    console.log(state?.sub_region, "sub_Region");
-    console.log(state?.seller_type_id, "seller_type_id");
-    console.log(sendMessagePhoneNumber, "sendMessagePhoneNumber");
-    console.log(state?.company_name, "company_name");
-    if (
-      state?.firstName.length &&
-      state?.lastName?.length &&
-      state?.email?.length &&
-      BankCard?.length &&
-      state?.region &&
-      state?.sub_region &&
-      state?.password &&
-      state?.seller_type_id &&
-      sendMessagePhoneNumber
-    ) {
-      if (state?.password === state?.confirmPassword) {
+    mutate({}, {
+      onSuccess: (res) => {
+        console.log(res, "res");
+        if (res?.message && res?.errors) {
+          setState({ ...state, errorGroup: res })
+          toast.error(`${res?.message}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+
+        } else if (res?.message && !res?.errors) {
+          setState({
+            ...state,
+            email: "",
+            password: "",
+            firstName: "",
+            lastName: "",
+            region: "",
+            sub_region: "",
+            seller_type_id: "",
+            cardNumber: "",
+            phone: "",
+            openModalEmailMessage: true,
+            errorGroup: ""
+          });
+          toast.success(`${res?.message}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+
+        }
+      },
+      onError: (err) => {
+        console.log(err, "Error");
+        toast.error("Serverda xatolik", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      },
 
 
-        console.log("malumotlarni junatildi");
+    })
 
-        mutate({}, {
-          onSuccess: (res) => {
-            console.log(res, "res");
-
-            if (res?.message) {
-              // localStorage.setItem("emailToken", res?.emailToken);
-              // navigate("/login-seller")
-              setState({
-                ...state,
-                email: "",
-                password: "",
-                firstName: "",
-                lastName: "",
-                region: "",
-                sub_region: "",
-                cardNumber: "",
-                phone: "",
-                openModalEmailMessage: true
-              });
-              toast.success(`${res?.message}`, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-              });
-            } else {
-              toast.error(`${res?.message}`, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-              });
-            }
-          },
-          onError: (err) => {
-            console.log(err, "Error");
-            toast.error("Serverda xatolik", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
-          },
-          onSettled: (onSett) => {
-            // console.log(onSett, "onSett");
-          }
-
-        })
-      } else {
-        message.error("passwordni tugri kiriting")
-      }
-    } else {
-      toast.warning("Заполните все поля", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    }
   }
 
   const [activeIndex, setActiveIndex] = useState();
@@ -287,6 +218,8 @@ const SignUpSeller = () => {
     }
   }
 
+  console.log(state?.errorGroup?.errors, "errorGroup");
+  console.log(state?.errorGroup?.errors?.card_number, "errorGroup card_number");
   console.log(parseInt(state?.seller_type_id), "seller_type_id");
   return (
     <div className="max-w-[1280px] w-full flex justify-center items-center m-auto">
@@ -341,12 +274,12 @@ const SignUpSeller = () => {
         <div>
           {/* yuridik user va jismony user */}
           {naturalPerson ? (
-            <div className="w-full flex items-center">
-              <div className="mx-auto">
+            <div className="w-full flex flex-col justify-center items-center">
+              <div className="mx-auto flex flex-col gap-y-4">
                 {
                   state?.getSellerList?.individual?.map(data => {
                     return (
-                      <div key={data?.id} className="mb-4">
+                      <div key={data?.id}>
                         <div className="flex items-center">
                           <label
                             htmlFor={data?.id}
@@ -366,12 +299,19 @@ const SignUpSeller = () => {
                               {data?.name_ru}
                             </span>
                           </label>
+
                         </div>
                       </div>
                     )
                   })
                 }
               </div>
+              {
+                state?.errorGroup?.errors?.seller_type_id && !state?.seller_type_id &&
+                <p className=" mx-auto text-[#D50000] text-[12px] ll:text-[14px] md:text-base ">
+                  {state?.errorGroup?.errors?.seller_type_id}
+                </p>
+              }
             </div>
           ) : (
             <div className="w-full md:w-[484px] rounded-lg mx-auto">
@@ -394,18 +334,18 @@ const SignUpSeller = () => {
                       )
                     })
                   }
-                >
-                </Select>
-
+                />
                 <span className={`data absolute right-[10px] top- h-full flex items-center select-focus:rotate-[90deg] rotate-[180deg] `}>
-
                   <ArrowTopIcons colors="#a1a1a1" />
                 </span>
               </div>
-
-
-
-              {!naturalPerson && <div className="w-full md:w-[484px] mt-5">
+              {
+                state?.errorGroup?.errors?.seller_type_id && !state?.seller_type_id &&
+                <p className="text-[#D50000] text-[12px] ll:text-[14px] md:text-base">
+                  {state?.errorGroup?.errors?.seller_type_id}
+                </p>
+              }
+              <div className="w-full md:w-[484px] mt-5">
                 <p className="flex items-center text-base  font-AeonikProRegular text-[#303030]">
                   Наименование организации
                   <span className="ml-[5px]"><StarIcon /></span>
@@ -418,7 +358,13 @@ const SignUpSeller = () => {
                   placeholder="Наименование организации..."
                 // required
                 />
-              </div>}
+              </div>
+              {
+                state?.errorGroup?.errors?.company_name && !state?.company_name &&
+                <p className="text-[#D50000] text-[12px] ll:text-[14px] md:text-base">
+                  {state?.errorGroup?.errors?.company_name}
+                </p>
+              }
 
             </div>
           )}
@@ -561,6 +507,12 @@ const SignUpSeller = () => {
                       </span>
                       <span className="rotate-[180deg]"><ArrowTopIcons colors={"#a1a1a1"} /></span>
                     </div>
+                    {
+                      state?.errorGroup?.errors?.region_id && !state?.region &&
+                      <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+                        {state?.errorGroup?.errors?.region_id}
+                      </p>
+                    }
 
                   </label>
                 </div>
@@ -581,8 +533,13 @@ const SignUpSeller = () => {
                     onChange={(e) => setState({ ...state, cardNumber: e.target.value })}
                     placeholder="0000-0000-0000-0000"
                   />
-
                 </div>
+                {
+                  state?.errorGroup?.errors?.card_number &&
+                  <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+                    {state?.errorGroup?.errors?.card_number}
+                  </p>
+                }
               </div>
             </div>
 
@@ -609,6 +566,12 @@ const SignUpSeller = () => {
                       required
                     />
                   </div>
+                  {
+                    state?.errorGroup?.errors?.name && !state?.firstName &&
+                    < p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+                      {state?.errorGroup?.errors?.name}
+                    </p>
+                  }
                 </div>
                 <div className="w-full xs:w-1/2 h-fit ">
                   <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
@@ -627,6 +590,12 @@ const SignUpSeller = () => {
                       required
                     />
                   </div>
+                  {
+                    state?.errorGroup?.errors?.surname && !state?.lastName &&
+                    <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+                      {state?.errorGroup?.errors?.surname}
+                    </p>
+                  }
                 </div>
               </div>
               {/* Номер, Mail */}
@@ -653,6 +622,13 @@ const SignUpSeller = () => {
                       <UserMailIcon />
                     </span>{" "}
                   </div>
+                  {
+                    state?.errorGroup?.errors?.email &&
+                    <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+                      {state?.errorGroup?.errors?.email}
+                    </p>
+                  }
+
                 </div>
                 {/* Номер телефона */}
                 <div className="w-full xs:w-1/2 h-fit">
@@ -681,6 +657,12 @@ const SignUpSeller = () => {
                       ></InputMask>
                     </div>
                   </div>
+                  {
+                    state?.errorGroup?.errors?.phone &&
+                    <p className="text-[#D50000] text-[12px] ll:text-[14px] md:text-base">
+                      {state?.errorGroup?.errors?.phone}
+                    </p>
+                  }
                 </div>
               </div>
               {/* Пароль, Пароль */}
@@ -719,8 +701,12 @@ const SignUpSeller = () => {
                       )}
                     </span>
                   </div>
-                  {confirmError && <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base mt-[2px] md:mt-1">{confirmError}</p>}
-
+                  {
+                    state?.errorGroup?.errors?.password &&
+                    <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+                      {state?.errorGroup?.errors?.password}
+                    </p>
+                  }
                 </div>
                 {/* Повторите пароль */}
                 <div className="w-full xs:w-1/2 h-[85px] ll:h-[100px] ">
@@ -757,7 +743,7 @@ const SignUpSeller = () => {
                       )}
                     </span>
                   </div>
-                  {passwordError && <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base mt-[2px] md:mt-1">{passwordError}</p>}
+                  {/* {passwordError && <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">{passwordError}</p>} */}
                 </div>
               </div>
             </div>
