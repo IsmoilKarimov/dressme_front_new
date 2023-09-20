@@ -28,6 +28,7 @@ export default function ForgotPasswordSeller() {
         if (state?.email?.length) {
             mutate({}, {
                 onSuccess: res => {
+                    console.log(res, "forgotPassword");
                     if (res?.status == 200 || res?.ok) {
                         toast.success("успешный вход в систему", {
                             position: "top-right",
