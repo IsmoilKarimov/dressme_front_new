@@ -303,15 +303,15 @@ const SignUpSeller = () => {
         pauseOnHover
         theme="colored"
       />
-      <div className="w-full h-fit px-4 md:px-0">
+      <div className="w-full h-fit px-2 md:px-0">
         <div className="text-xl md:text-3xl font-medium mt-[20px] mb-[30px] text-center">
           Регистрация продавца
         </div>
         {/* change user */}
-        <div className="w-full md:w-[484px] flex justify-between items-center bg-dashboardBtnBg rounded-lg mx-auto mb-[30px]">
+        <div className="w-full md:w-[484px] flex justify-between items-center box-border bg-dashboardBtnBg rounded-lg mx-auto mb-[30px] ">
           <button
             onClick={() => setNaturalPerson(true)}
-            className={`group w-1/2 flex items-center justify-center font-medium text-[10px] ll:text-xs md:text-sm px-1 ll:px-2 py-[10px] md:px-[25px] md:py-3
+            className={`group w-1/2 flex items-center  justify-center font-medium text-[10px] ll:text-xs md:text-sm px-1 ll:px-2 py-[10px] md:px-[25px] md:py-3
                  ${naturalPerson
                 ? "border border-fullBlue text-fullBlue rounded-lg"
                 : ""
@@ -325,17 +325,16 @@ const SignUpSeller = () => {
           </button>
           <button
             onClick={() => setNaturalPerson(false)}
-            className={`w-1/2 flex items-center justify-center font-medium text-[10px] ll:text-xs md:text-sm px-1 ll:px-2 py-[10px] md:px-[25px] md:py-3
+            className={`w-1/2 flex items-center justify-center   font-medium text-[10px] ll:text-xs md:text-sm px-1 ll:px-[6px] py-[10px] md:px-[25px] md:py-3
                   ${!naturalPerson
                 ? "border border-fullBlue text-fullBlue rounded-lg"
                 : ""
               }`}
           >
-            {/* <img src={dashboardList} alt="" /> */}
             <DashboardList
               className={`${naturalPerson ? "text-fullBlue" : ""}`}
             />
-            <span className="ml-[4px] md:ml-2">ЮРИДИЧЕСКОЕ ЛИЦО</span>
+            <span className="ml-[4px] md:ml-2 whitespace-nowrap	">ЮРИДИЧЕСКОЕ ЛИЦО</span>
           </button>
         </div>
 
@@ -436,8 +435,8 @@ const SignUpSeller = () => {
                     }`}
                 ></div>
                 {
-                  <div className={` max-w-[550px] h-[600px] fixed flex flex-wrap content-between  px-3 md:px-6 py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg  mx-auto w-full duration-500 z-[113] md:top-[50%] md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] overflow-hidden ${state?.openModalRegions ? " bottom-0 md:flex" : "md:hidden bottom-[-1500px] z-[-10]"}`} >
-                    <div className="w-full flex items-center justify-between ">
+                  <div className={` max-w-[550px] h-fit fixed    px-3 md:px-6  py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg  mx-auto w-full duration-500 z-[113] md:top-[50%] md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] overflow-hidden ${state?.openModalRegions ? " bottom-0 md:flex flex-col" : "md:hidden bottom-[-1500px] z-[-10]"}`} >
+                    <div className="w-full flex items-center justify-between  ">
 
                       <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">Выберите регион</span>
                       <span
@@ -466,7 +465,7 @@ const SignUpSeller = () => {
                       </span>
                     </label> */}
 
-                    <div className="w-full overflow-auto  flex flex-col gap-y-4 pt-3  overflow-x-hidden mt-3 h-[80%] VerticelScroll pr-2 ">
+                    <div className="w-full overflow-auto  flex flex-col gap-y-4 pt-3  overflow-x-hidden mt-3 h-[50vh] md:h-[60vh] VerticelScroll pr-2 ">
 
 
                       {state?.getRegionList?.regions ?
@@ -525,7 +524,7 @@ const SignUpSeller = () => {
                         <p className="w-full h-full flex flex-col items-center justify-center">Malumotlar yuklanyapti...</p>}
 
                     </div>
-                    <div className="w-full flex items-center justify-end mt-4 ">
+                    <div className="w-full flex items-center justify-end  md:mt-2">
                       <span onClick={() => {
                         setState({ ...state, openModalRegions: false });
                       }} className="cursor-pointer text-fullBlue text-lg not-italic font-AeonikProMedium">Готово</span>
