@@ -100,57 +100,58 @@ export default function TableSizesDropUp({onClick}) {
                         <div className='text-base font-AeonikProRegular h-10 flex items-center'>Возраст</div>
                     </div>
                     <div className='w-[58%] pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col'>
-                        
-                        <div className='w-full overflow-x-auto flex items-center flex-col text-[13px] font-AeonikProRegular'>
-                            {/* Sizes */}
-                            <div className='w-full h-10 px-3 flex items-center justify-between'>
-                                <div className='w-[99%]  flex items-center gap-x-[23px]'>
-                                    {tableSizes.sizes.map(data => (
-                                        <div key={data.id} className='flex flex-shrink-0'>{data.numbers}</div>
-                                    ))}
-                                </div>
-                            </div>
-                            {/* Letter Sizes */}
-                            <div className='w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 mx-[5px] px-3 flex items-center justify-between'>
-                                <div className='w-full flex items-center gap-x-[23px]'>
-                                    {tableSizes.letter_sizes.map(data => (
-                                        <div key={data.id} className='flex-shrink-0'>{data.numbers}</div>
-                                    ))}
-                                </div>
-                            </div>
-                            {/* Chest Sizes */}
-                            <div className='w-[99%] h-10 px-3 flex items-center justify-between'>
-                                <div className='w-full flex items-center gap-x-[23px]'>
-                                    {tableSizes.chest_sizes.map(data => (
-                                        <div key={data.id} className='flex-shrink-0'>{data.numbers}</div>
-                                    ))}
-                                </div>
-                            </div>
-                            {/* Waist Sizes */}
-                            <div className='w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 mx-[5px] px-3 flex items-center justify-between'>
-                                <div className='w-full flex  items-center gap-x-[23px]'>
-                                    {tableSizes.waist_sizes.map(data => (
-                                        <div key={data.id} className='flex-shrink-0'>{data.numbers}</div>
-                                    ))}
-                                </div>
-                            </div>
-                            {/* Hip Sizes */}
-                            <div className='w-[99%] h-10 px-3 flex items-center justify-between'>
-                                <div className='w-full flex items-center gap-x-[23px]'>
-                                    {tableSizes.hip_sizes.map(data => (
-                                        <div key={data.id} className='flex-shrink-0'>{data.numbers}</div>
-                                    ))}
-                                </div>
-                            </div>
-                            {/* Ages */}
-                            <div className='w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 mx-[5px] px-3 flex items-center justify-between'>
-                                <div className='w-full flex items-center gap-x-[23px]'>
-                                    {tableSizes.age.map(data => (
-                                        <div key={data.id} className='flex-shrink-0'>{data.ages}</div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
+                       <table> 
+                            <tbody className='w-full overflow-x-auto flex items-center flex-col text-[13px] font-AeonikProRegular'>
+                                {/* Sizes */}
+                                <tr className='w-full h-10 px-3 flex items-center justify-between'>
+                                    {/* <div className='w-[99%]  flex items-center gap-x-[23px]'> */}
+                                        {tableSizes.sizes.map(data => (
+                                            <td key={data.id} className='flex flex-shrink-0'>{data.numbers}</td>
+                                        ))}
+                                    {/* </div> */}
+                                </tr>
+                                {/* Letter Sizes */}
+                                <tr className='w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 mx-[5px] px-3 flex items-center justify-between'>
+                                    {/* <td className='w-full flex items-center gap-x-[23px]'> */}
+                                        {tableSizes.letter_sizes.map(data => (
+                                            <td key={data.id} className='flex-shrink-0'>{data.numbers}</td>
+                                        ))}
+                                    {/* </td> */}
+                                </tr>
+                                {/* Chest Sizes */}
+                                <tr className='w-[99%] h-10 px-3 flex items-center justify-between'>
+                                    {/* <td className='w-full flex items-center gap-x-[23px]'> */}
+                                        {tableSizes.chest_sizes.map(data => (
+                                            <td key={data.id} className='flex-shrink-0'>{data.numbers}</td>
+                                        ))}
+                                    {/* </td> */}
+                                </tr>
+                                {/* Waist Sizes */}
+                                <tr className='w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 mx-[5px] px-3 flex items-center justify-between'>
+                                    {/* <td className='w-full flex  items-center gap-x-[23px]'> */}
+                                        {tableSizes.waist_sizes.map(data => (
+                                            <td key={data.id} className='flex-shrink-0'>{data.numbers}</td>
+                                        ))}
+                                    {/* </td> */}
+                                </tr>
+                                {/* Hip Sizes */}
+                                <tr className='w-[99%] h-10 px-3 flex items-center justify-between'>
+                                    {/* <td className='w-full flex items-center gap-x-[23px]'> */}
+                                        {tableSizes.hip_sizes.map(data => (
+                                            <td key={data.id} className='flex-shrink-0'>{data.numbers}</td>
+                                        ))}
+                                    {/* </td> */}
+                                </tr>
+                                {/* Ages */}
+                                <tr className='w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 mx-[5px] px-3 flex items-center justify-between'>
+                                    {/* <td className='w-full flex items-center gap-x-[23px]'> */}
+                                        {tableSizes.age.map(data => (
+                                            <td key={data.id} className='flex-shrink-0'>{data.ages}</td>
+                                        ))}
+                                    {/* </td> */}
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </action>
             </section>
