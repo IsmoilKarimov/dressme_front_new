@@ -268,7 +268,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
               </action>
             </div>
           </action>
-          <div className="w-full  hidden md:block md:flex justify-end items-center my-3">
+          <div className="w-full  hidden md:flex justify-end items-center my-3">
             <div className="w-fit flex gap-x-7 items-center">
               <a className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
