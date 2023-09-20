@@ -61,6 +61,7 @@ export default function ResetPasswordSeller() {
             if (state?.newPassword?.length && state?.newPasswordConfirm?.length) {
                 mutate({}, {
                     onSuccess: res => {
+                        console.log(res, "resetpassword");
                         toast.success("Вы успешно вошли в", {
                             position: "top-right",
                             autoClose: 5000,

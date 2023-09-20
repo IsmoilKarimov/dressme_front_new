@@ -48,6 +48,13 @@ const SignUpSeller = () => {
     searchText: ""
 
   });
+  useEffect(() => {
+    if (state?.openModalRegions) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [state?.openModalRegions]);
   // 
   // const onChange = (value) => {
   //   setState({ ...state, seller_type_id: value })
@@ -108,8 +115,8 @@ const SignUpSeller = () => {
       onError: (err) => {
         console.log(err, "err");
       },
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
+      // keepPreviousData: true,
+      // refetchOnWindowFocus: false,
     }
   )
   // ------------GET METHOD Region-----------------
@@ -123,8 +130,8 @@ const SignUpSeller = () => {
       onError: (err) => {
         console.log(err, "err");
       },
-      keepPreviousData: true, // bu browserdan tashqariga chiqib yana kirsa, yana yurishni oldini olish uchun
-      refetchOnWindowFocus: false, // bu ham focus bolgan vaqti malumot olib kelish
+      // keepPreviousData: true, // bu browserdan tashqariga chiqib yana kirsa, yana yurishni oldini olish uchun
+      // refetchOnWindowFocus: false, // bu ham focus bolgan vaqti malumot olib kelish
     }
   )
 
@@ -429,10 +436,10 @@ const SignUpSeller = () => {
                     }`}
                 ></div>
                 {
-                  <div className={`fixed max-w-[550px] h-[650px] px-3 md:px-6 py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg  mx-auto w-full duration-500 z-[113] md:top-[50%] md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] overflow-hidden ${state?.openModalRegions ? " bottom-0 md:flex flex-col" : "md:hidden bottom-[-1500px] z-[-10]"}`} >
-                    <div className="w-full flex items-center justify-between">
+                  <div className={` max-w-[550px] h-[600px] fixed flex flex-wrap content-between  px-3 md:px-6 py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg  mx-auto w-full duration-500 z-[113] md:top-[50%] md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] overflow-hidden ${state?.openModalRegions ? " bottom-0 md:flex" : "md:hidden bottom-[-1500px] z-[-10]"}`} >
+                    <div className="w-full flex items-center justify-between ">
 
-                      <span className="text-black text-2xl not-italic font-AeonikProRegular">Выберите регион</span>
+                      <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">Выберите регион</span>
                       <span
                         className="select-none cursor-pointer"
                         onClick={() => {
@@ -459,7 +466,7 @@ const SignUpSeller = () => {
                       </span>
                     </label> */}
 
-                    <div className="w-full overflow-auto flex flex-col gap-y-4  overflow-x-hidden mt-3 h-[80%] VerticelScroll pr-2 ">
+                    <div className="w-full overflow-auto  flex flex-col gap-y-4 pt-3  overflow-x-hidden mt-3 h-[80%] VerticelScroll pr-2 ">
 
 
                       {state?.getRegionList?.regions ?
@@ -518,10 +525,10 @@ const SignUpSeller = () => {
                         <p className="w-full h-full flex flex-col items-center justify-center">Malumotlar yuklanyapti...</p>}
 
                     </div>
-                    <div className="flex items-center justify-end mt-6">
+                    <div className="w-full flex items-center justify-end mt-4 ">
                       <span onClick={() => {
                         setState({ ...state, openModalRegions: false });
-                      }} className="cursor-pointer text-fullBlue text-xl not-italic font-AeonikProMedium">Готово</span>
+                      }} className="cursor-pointer text-fullBlue text-lg not-italic font-AeonikProMedium">Готово</span>
                     </div>
                   </div>
                 }

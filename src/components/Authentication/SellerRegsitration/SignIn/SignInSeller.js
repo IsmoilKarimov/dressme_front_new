@@ -41,7 +41,7 @@ export default function SignInSeller() {
         {},
         {
           onSuccess: (res) => {
-            console.log(res);
+            console.log(res, "SignInSeller");
             if (res?.access_token) {
               localStorage.setItem("access_token", res?.access_token);
 
@@ -60,7 +60,7 @@ export default function SignInSeller() {
 
             } else {
               setError("Email yoki parolda xatolik");
-              toast.error("Email yoki parolda xatolik", {
+              toast.error(`${res?.message}`, {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
