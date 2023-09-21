@@ -1,11 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CommentIcons,
-  FreeStarIcon,
   GoBackIcon,
-  NoNameIcon,
   ReviewIcon,
-  SendMessageIcon,
   StarIcons,
 } from "../../../../../../assets/icons";
 import { ArrowTopIcons } from "../../../../../../assets/icons";
@@ -227,7 +224,7 @@ export default function ProductComment() {
                   </textarea>
                   {/* Star Rating */}
                   <button type="button" className="absolute right-1 w-fit flex items-center bg-[#F8F8F8] ml-auto p-[5px] rounded-md ">
-                    <Rate defaultValue={3} />
+                    <Rate defaultValue={1} />
                   </button>
                 </div>
                 <div className="w-full flex items-center justify-end">

@@ -53,6 +53,13 @@ const ProductDetails = () => {
     { id: 6, size: "5XL", sizeNumbers:'36-44' },
     { id: 7, size: "6XL", sizeNumbers:'23-28' },
   ]);
+  const [locationsList] = useState([
+    { id: 1, size: "S", location:'Bektemir' },
+    { id: 2, size: "M", location:'Mirzo Ulugbek' },
+    { id: 3, size: "L", location:'Yunusobod' },
+    { id: 4, size: "XL", location:'Chilonzor' },
+    { id: 5, size: "XXL", location:'Mirobod' },
+  ]);
   const [imgGroup] = useState([
     {
       id: 1,
@@ -373,8 +380,7 @@ const ProductDetails = () => {
       </section>
       
       {/* 2 */}
-      <section className="w-full md:border-t md:border-y md:border-searchBgColor md:py-[25px] ">
-       
+      <section className="w-full md:border-t md:border-y md:border-searchBgColor md:py-[25px] ">    
          <article className="w-full block md:hidden">
           <button 
             onClick={() => setTableSizes(true)}
@@ -383,7 +389,6 @@ const ProductDetails = () => {
             Таблица размеров
           </button>
         </article>
-
         <article className="w-full flex items-center justify-between bg-[#fdfdfd] md:bg-white border-y md:border-none mb-4 text-sm font-AeonikProMedium">
           <div className="hidden md:flex items-center">
             <ProductSwitchIcons colors={"#757575"} />
@@ -427,21 +432,11 @@ const ProductDetails = () => {
                 onChange={onChange}
                 >
                 <div className="w-full flex flex-wrap items-center gap-y-2">
-                  <div className="w-1/3">
-                    <Radio value={"Bektemir"} name="location">Bektemir</Radio>
-                  </div>
-                  <div className="w-1/3" >
-                    <Radio value={"Mirobod"} name="location">Mirobod</Radio>
-                  </div>
-                  <div className="w-1/3" >
-                    <Radio value={"Mirzo Ulugbek"} name="location">Mirzo Ulugbek</Radio>
-                  </div>
-                  <div className="w-1/3" >
-                    <Radio value={"Yunusobod"} name="location">Yunusobod</Radio>
-                  </div>
-                  <div className="w-1/3" >
-                    <Radio value={"Chilonzor"} name="location">Chilonzor</Radio>
-                  </div>
+                  {locationsList.map(data => (
+                    <div key={data.id} className="w-1/3">
+                      <Radio value={data.location} name="location" className="text-lg font-AeonikProRegular">{data.location}</Radio>
+                    </div>
+                  ))}
                 </div>
               </Radio.Group>
               <button type="button" className="w-full flex justify-end mt-[60px] text-borderWinter text-lg font-AeonikProMedium">Готово</button>
