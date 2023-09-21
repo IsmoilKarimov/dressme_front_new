@@ -42,6 +42,7 @@ const ProductDetails = () => {
   }, [ tableSizes, locations ]);
 
   const [openTab, setOpenTab] = useState(1);
+  
   const [selectSize] = useState([
     { id: 1, size: "S", sizeNumbers:'36-44' },
     { id: 2, size: "M", sizeNumbers:'36-44' },
@@ -153,6 +154,7 @@ const ProductDetails = () => {
       })}
     </section>
   );
+
   const onChange = (checkedValues) => {
     console.log('checked = ', checkedValues);
   };

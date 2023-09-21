@@ -19,6 +19,7 @@ const SignUpSeller = () => {
     firstName: "",
     lastName: "",
     email: "",
+    isEmailMessage: "",
     phoneCode: "+998",
     cardNumber: "",
     seller_type_id: "",
@@ -146,6 +147,10 @@ const SignUpSeller = () => {
     }).then((res) => res.json())
   })
   const onSubmit = () => {
+    setState({
+      ...state,
+      isEmailMessage: "",
+    })
     mutate({}, {
       onSuccess: (res) => {
         console.log(res, "res");
@@ -208,7 +213,6 @@ const SignUpSeller = () => {
     })
 
   }
-
   const [activeIndex, setActiveIndex] = useState();
   const accordionCityList = (id) => {
     if (activeIndex == id) {
@@ -218,6 +222,7 @@ const SignUpSeller = () => {
     }
   }
 
+  console.log(state?.isEmailMessage, "isEmailMessage");
   console.log(state?.errorGroup?.errors, "errorGroup");
   console.log(state?.errorGroup?.errors?.card_number, "errorGroup card_number");
   console.log(parseInt(state?.seller_type_id), "seller_type_id");
@@ -274,8 +279,8 @@ const SignUpSeller = () => {
         <div>
           {/* yuridik user va jismony user */}
           {naturalPerson ? (
-            <div className="w-full border border-red-500 flex flex-col justify-center items-center">
-              <div className="w-full  max-w-[370px] border border-green-500 mx-auto flex flex-col gap-y-4">
+            <div className="w-full  flex flex-col justify-center items-center">
+              <div className="w-full  max-w-[370px]  mx-auto flex flex-col gap-y-4">
                 {
                   state?.getSellerList?.individual?.map(data => {
                     return (
@@ -308,7 +313,7 @@ const SignUpSeller = () => {
               </div>
               {
                 state?.errorGroup?.errors?.seller_type_id && !state?.seller_type_id &&
-                <p className="max-w-[370px] w-full border border-green-500  mx-auto text-[#D50000] text-[12px] ll:text-[14px] md:text-base ">
+                <p className="max-w-[370px] w-full   mx-auto text-[#D50000] text-[12px] ll:text-[14px] md:text-base ">
                   {state?.errorGroup?.errors?.seller_type_id}
                 </p>
               }
@@ -615,7 +620,10 @@ const SignUpSeller = () => {
                       name="email"
                       placeholder="example@mail.com"
                       value={state?.email}
-                      onChange={(e) => setState({ ...state, email: e.target.value })}
+                      onChange={({ target: { value } }) => {
+                        setState({ ...state, email: value, isEmailMessage: value });
+                      }}
+                      // onChange={(e) => setState({ ...state, email: e.target.value })}
                       required
                     />
                     <span className="pr-2 xs:pr-[16px]">
@@ -623,7 +631,7 @@ const SignUpSeller = () => {
                     </span>{" "}
                   </div>
                   {
-                    state?.errorGroup?.errors?.email &&
+                    state?.errorGroup?.errors?.email && !state?.isEmailMessage &&
                     <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
                       {state?.errorGroup?.errors?.email}
                     </p>
