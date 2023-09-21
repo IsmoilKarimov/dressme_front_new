@@ -102,8 +102,8 @@ const SignUpSeller = () => {
       onError: (err) => {
         console.log(err, "err");
       },
-      // keepPreviousData: true, // bu browserdan tashqariga chiqib yana kirsa, yana yurishni oldini olish uchun
-      // refetchOnWindowFocus: false, // bu ham focus bolgan vaqti malumot olib kelish
+      keepPreviousData: true, // bu browserdan tashqariga chiqib yana kirsa, yana yurishni oldini olish uchun
+      refetchOnWindowFocus: false, // bu ham focus bolgan vaqti malumot olib kelish
     }
   )
 
@@ -274,8 +274,8 @@ const SignUpSeller = () => {
         <div>
           {/* yuridik user va jismony user */}
           {naturalPerson ? (
-            <div className="w-full flex flex-col justify-center items-center">
-              <div className="mx-auto flex flex-col gap-y-4">
+            <div className="w-full border border-red-500 flex flex-col justify-center items-center">
+              <div className="w-full  max-w-[370px] border border-green-500 mx-auto flex flex-col gap-y-4">
                 {
                   state?.getSellerList?.individual?.map(data => {
                     return (
@@ -308,7 +308,7 @@ const SignUpSeller = () => {
               </div>
               {
                 state?.errorGroup?.errors?.seller_type_id && !state?.seller_type_id &&
-                <p className=" mx-auto text-[#D50000] text-[12px] ll:text-[14px] md:text-base ">
+                <p className="max-w-[370px] w-full border border-green-500  mx-auto text-[#D50000] text-[12px] ll:text-[14px] md:text-base ">
                   {state?.errorGroup?.errors?.seller_type_id}
                 </p>
               }
