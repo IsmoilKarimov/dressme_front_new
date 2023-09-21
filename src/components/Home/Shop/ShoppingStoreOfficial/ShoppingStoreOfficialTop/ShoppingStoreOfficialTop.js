@@ -6,20 +6,22 @@ import {
   CommentStarIcon,
   FilterIcons,
   LocationColoursIcons,
-  LocationIcons,
   ManGenIcons,
   StarIcons,
-  VideoStoreIcons,
   WomanGenIcons,
 } from "../../../../../assets/icons";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useContext, useState } from "react";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
-import { Popover } from "antd";
+import { Modal, Popover, Radio } from "antd";
+import ProductComment from "../../../Products/SignleMainProducts/SingleProduct/ProductComment/ProductComment";
 
-const ShoppingStoreOfficialTop = ({ name }) => {
+const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [openLocationModal, setOpenLocationModal] = useState(false);
+  
+
   const handleFilter = () => {
     setDressInfo({
       ...dressInfo,
@@ -43,6 +45,45 @@ const ShoppingStoreOfficialTop = ({ name }) => {
     { id: 12, name: "Юбки" },
     { id: 13, name: "Ремень" },
   ];
+  const typesofClothes = [
+    { id: 1, name: "Футболки" },
+    { id: 2, name: "Рубашки" },
+    { id: 3, name: "Шорты" },
+    { id: 4, name: "Джинсы" },
+    { id: 5, name: "Свитер" },
+    { id: 6, name: "Куртки" },
+    { id: 7, name: "Толстовки" },
+    { id: 8, name: "Обуви" },
+    { id: 9, name: "Куртки" },
+    { id: 10, name: "Сапоги" },
+    { id: 11, name: "Платья" },
+    { id: 12, name: "Юбки" },
+    { id: 13, name: "Ремень" },
+  ];
+  const [locationsList] = useState([
+    { id: 1, location:'Bektemir' },
+    { id: 2, location:'Mirzo Ulugbek' },
+    { id: 3, location:'Yunusobod' },
+    { id: 4, location:'Chilonzor' },
+    { id: 5, location:'Mirobod' },
+  ]);
+  const contentTypesofClothes = (
+    <div className="w-[150px] h-[200px] overflow-auto m-0 p-0">
+      {typesofClothes.map((data) => {
+        return (
+          <p
+            key={data?.id}
+            onClick={() => {
+              handleTypesofClothes(data?.type);
+            }}
+            className={`w-full py-3 flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+          >
+            {data?.name}
+          </p>
+        );
+      })}
+    </div>
+  );
   const data = (onClick) => {
     onClick();
     setPrevSliderBtn(true);
@@ -61,7 +102,6 @@ const ShoppingStoreOfficialTop = ({ name }) => {
       </div>
     );
   };
-
   const PrevArrow = (props) => {
     const { onClick } = props;
     return (
@@ -78,7 +118,6 @@ const ShoppingStoreOfficialTop = ({ name }) => {
       </div>
     );
   };
-
   let settings1 = {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
@@ -130,56 +169,26 @@ const ShoppingStoreOfficialTop = ({ name }) => {
       },
     ],
   };
-
   const [state, setState] = useState({
     openTypesofClothes: false,
   });
-
   // Types of Clothes
   const handleOpenTypesofClothes = (openTypesofClothes) => {
     setState({ ...state, openTypesofClothes: openTypesofClothes });
   };
-
   const handleTypesofClothes = () => {
     setState({ ...state, openTypesofClothes: false });
   };
-  const typesofClothes = [
-    { id: 1, name: "Футболки" },
-    { id: 2, name: "Рубашки" },
-    { id: 3, name: "Шорты" },
-    { id: 4, name: "Джинсы" },
-    { id: 5, name: "Свитер" },
-    { id: 6, name: "Куртки" },
-    { id: 7, name: "Толстовки" },
-    { id: 8, name: "Обуви" },
-    { id: 9, name: "Куртки" },
-    { id: 10, name: "Сапоги" },
-    { id: 11, name: "Платья" },
-    { id: 12, name: "Юбки" },
-    { id: 13, name: "Ремень" },
-  ];
-  const contentTypesofClothes = (
-    <div className="w-[150px] h-[200px] overflow-auto m-0 p-0">
-      {typesofClothes.map((data) => {
-        return (
-          <p
-            key={data?.id}
-            onClick={() => {
-              handleTypesofClothes(data?.type);
-            }}
-            className={`w-full py-3 flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
-          >
-            {data?.name}
-          </p>
-        );
-      })}
-    </div>
-  );
+  
+  const onChange = (checkedValues) => {
+    console.log('checked = ', checkedValues);
+  };
 
   return (
     <main className="flex flex-col justify-center border-b border-searchBgColor  items-center md:my-5">
-      <section className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
-        <div className="w-[100%] h-fit ">
+      <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
+        <div className="w-[100%] h-fit flex flex-col">
+          {/* Top section */}
           <action className="w-full flex flex-col">
             <figure className="w-full h-fit md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
               <img
@@ -267,7 +276,12 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                     <WomanGenIcons />
                   </button>
                   <div className="flex items-center justify-end">
-                    <div className="w-[42%] min-w-min text-sm font-AeonikProRegular text-borderWinter ml-auto">Посмотреть отзывы</div>
+                    <button 
+                      onClick={e => {
+                        e.preventDefault();
+                        setOpenTab(!openTab);
+                      }}
+                      className="w-[42%] min-w-min text-sm font-AeonikProRegular text-borderWinter ml-auto">Посмотреть отзывы</button>
                     <button className="hidden md:flex items-center justify-center border border-searchBgColor w-[48px] h-[48px] rounded-xl ml-[10px] flex-shrink-0">
                       <CommentStarIcon colors={"#007DCA"} />
                     </button>
@@ -283,7 +297,7 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                   <LocationColoursIcons colors={"#303030"} />
                 </p>
                 <p
-                  className={`text-base not-italic font-AeonikProRegular  text-[#303030]`}
+                  className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
                 >
                   Мирзо Улугбек
                 </p>
@@ -293,17 +307,19 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                   <LocationColoursIcons colors={"#303030"}/>
                 </p>
                 <p
-                  className={`text-base not-italic font-AeonikProRegular  text-[#303030]`}
+                  className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
                 >
                   Юнусабад
                 </p>
               </NavLink>
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons colors={"#303030"} />
+                  <LocationColoursIcons
+                    colors={"#303030"} 
+                  />
                 </p>
                 <p
-                  className={`text-base not-italic font-AeonikProRegular  text-[#303030]`}
+                  className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
                 >
                   Алмазар
                 </p>
@@ -313,17 +329,60 @@ const ShoppingStoreOfficialTop = ({ name }) => {
                   <LocationColoursIcons colors={"#303030"} />
                 </p>
                 <p
-                  className={`text-base not-italic font-AeonikProRegular  text-[#303030]`}
+                  className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
                 >
-                  Чиланза
+                  Чиланзар
                 </p>
               </NavLink>
-              <button className={`text-borderWinter text-base font-AeonikProMedium`}>
+              <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
+                <p>
+                  <LocationColoursIcons colors={"#303030"} />
+                </p>
+                <p
+                  className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
+                >
+                  Учтепа
+                </p>
+              </NavLink>
+              <button 
+                type="primary" 
+                onClick={() => setOpenLocationModal(true)}
+                className={`text-borderWinter text-base font-AeonikProMedium`}>
                 Все локации
               </button>
+              <Modal
+                centered
+                open={openLocationModal}
+                onOk={() => setOpenLocationModal(false)}
+                onCancel={() => setOpenLocationModal(false)}
+                footer={null}
+                className="w-full p-6"
+              >
+                <div className="w-full px-[25px] pb-[30px] pt-[20px]">
+                  <div className="text-2xl font-AeonikProRegular mb-[30px]">Выберите локацию</div>
+                  <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">Tashkent</div>
+                  <Radio.Group
+                    style={{
+                      width: '100%',
+                    }}
+                    onChange={onChange}
+                    >
+                    <div className="w-full flex flex-wrap items-center gap-y-2">
+                      {locationsList.map(data => (
+                        <div key={data.id} className="w-1/3">
+                          <Radio value={data.location} name="location" className="text-lg font-AeonikProRegular">{data.location}</Radio>
+                        </div>
+                      ))}
+                    </div>
+                  </Radio.Group>
+                  <button type="button" className="w-full flex justify-end mt-[60px] text-borderWinter text-lg font-AeonikProMedium">Готово</button>
+                </div>
+              </Modal>
             </div>
           </div>
-          <action className="md:border-b hidden md:border-searchBgColor md:flex flex-gap-6 justify-between w-full pb-10 mt-[60px]">
+
+          
+          <action className={`${openTab ? "hidden" : "hidden md:flex md:border-searchBgColor flex-gap-6 justify-between w-full pb-10 mt-[60px] md:border-b"}`}>
             <section className="w-[22%] h-full  ">
               <div>
                 <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
@@ -370,7 +429,9 @@ const ShoppingStoreOfficialTop = ({ name }) => {
               </div>
             </section>
           </action>
-          <action className="w-full md:hidden flex items-center justify-between mt-6 mb-3  px-4">
+
+
+          <action className={`w-full md:hidden flex items-center justify-between mt-6 mb-3  px-4`}>
             <button
               onClick={handleFilter}
               className="h-[44px] w-[48%] rounded-lg select-none border border-searchBgColor bg-btnBgColor flex items-center justify-center"
@@ -400,6 +461,10 @@ const ShoppingStoreOfficialTop = ({ name }) => {
               </p>
             </Popover>
           </action>
+        </div>
+        {/* Comment Section For Shopping Page */}
+        <div className={`${openTab ? "flex" : "hidden"} w-full `}>
+          <ProductComment />
         </div>
       </section>
     </main>
