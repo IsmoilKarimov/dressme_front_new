@@ -184,6 +184,7 @@ export default function MailVerfySeller() {
             <input
               className="w-full px-2 xs:px-[16px] outline-none	bg-white w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type="email"
+              name="email"
               value={state.email}
               onChange={({ target: { value } }) => {
                 setError();
@@ -206,6 +207,7 @@ export default function MailVerfySeller() {
               className="w-full px-2 xs:px-[16px] outline-none	bg-white w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type={state?.eyesShow ? "password" : "text"}
               placeholder="Enter your password"
+              name="password"
               value={state.password}
               onChange={({ target: { value } }) => {
                 setError();
