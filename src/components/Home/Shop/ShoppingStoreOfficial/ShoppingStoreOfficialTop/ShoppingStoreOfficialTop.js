@@ -385,7 +385,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
           </div>
 
           
-          <action className={`${openTab ? "hidden" : "hidden md:flex md:border-searchBgColor flex-gap-6 justify-between w-full pb-10 mt-[60px] md:border-b"}`}>
+          <action className={`${openTab || openTab2 ? "hidden" : "hidden md:flex md:border-searchBgColor flex-gap-6 justify-between w-full pb-10 mt-[60px] md:border-b"}`}>
             <section className="w-[22%] h-full  ">
               <div>
                 <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
