@@ -17,7 +17,7 @@ import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { Modal, Popover, Radio } from "antd";
 import ProductComment from "../../../Products/SignleMainProducts/SingleProduct/ProductComment/ProductComment";
 
-const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, activeBtn }) => {
+const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenTab2 }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openLocationModal, setOpenLocationModal] = useState(false);
   
@@ -239,14 +239,17 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, activeBtn }) => {
                     <LocationColoursIcons colors={"#007DCA"} />
                   </span>
                 </NavLink>
-                <NavLink
-                  to="/delivery-points"
+                <button
+                  onClick={e => {
+                    e.preventDefault();
+                    setOpenTab2(!openTab2);
+                  }}
                   className="flex flex-col ml-3 md:w-full w-[70%]"
                 >
                   <p className="text-sm font-AeonikProRegular text-borderWinter">
                     60 Amir Temur Avenue, Mirzo Ulugbek district Tashkent 100017
                   </p>
-                </NavLink>
+                </button>
               </action>
               {/* 3 */}
               <action className="w-full md:w-[25%] flex items-center justify-end md:mr-5  mt-6 md:mt-0">
@@ -277,7 +280,9 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, activeBtn }) => {
                   </button>
                   <div className="flex items-center justify-end">
                     <button 
-                      onClick={e => {activeBtn(!openTab.action);
+                       onClick={e => {
+                        e.preventDefault();
+                        setOpenTab(!openTab);
                       }}
                       className="w-[42%] min-w-min text-sm font-AeonikProRegular text-borderWinter ml-auto">Посмотреть отзывы</button>
                     <button className="hidden md:flex items-center justify-center border border-searchBgColor w-[48px] h-[48px] rounded-xl ml-[10px] flex-shrink-0">
