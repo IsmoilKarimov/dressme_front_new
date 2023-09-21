@@ -149,9 +149,9 @@ export default function MailVerfySeller() {
         theme="colored"
       />
       {/* <div>{PathnameToken}</div> */}
-      <div className="max-w-[460px] w-[100%]  h-fit mb-5 px-2">
+      <div className="max-w-[650px] w-[100%] flex flex-col items-center justify-center  h-fit mb-5 px-2">
         <div className="w-full flex items-center justify-center flex-col">
-          {state?.getVerfyMessage?.error &&
+          {/* {state?.getVerfyMessage?.error &&
             <button className="w-[38px] md:w-[50px] h-[38px] md:h-[50px] flex p-2 md:p-4 items-center justify-center rounded-full bg-[#FF6C37]">
               <MenuCloseIcons colors="#D50000" />
             </button>
@@ -160,9 +160,9 @@ export default function MailVerfySeller() {
             <button className="w-[38px] md:w-[50px] h-[38px] md:h-[50px] flex p-2 md:p-4 items-center justify-center rounded-full bg-[#C3F1D8]">
               <SuccessIconsForMailGreen />
             </button>
-          }
+          } */}
 
-          <p className="mt-3 not-italic font-AeonikProMedium text-[24px] text-center leading-5   tracking-[0,16px] text-black">
+          <p className="mt-3 not-italic font-AeonikProRegular text-[20px] md:text-[25px] text-center leading-[30px]   tracking-[0,16px] text-black">
             {state?.getVerfyMessage?.message}</p>
         </div>
         <div className=" w-full pb-[20px] pt-[30px]  md:hidden not-italic font-AeonikProMedium text-xl text-center leading-5   tracking-[0,16px] text-black">
@@ -172,19 +172,18 @@ export default function MailVerfySeller() {
 
       {/*  */}
       <div className="max-w-[460px] w-[100%]  h-fit  md:px-[40px] md:py-[32px] py-[25px] px-[15px] border border-searchBgColor rounded-[12px]">
-        <div className=" w-full pb-[50px] pt-4 md:flex items-center justify-center hidden not-italic font-AeonikProMedium text-xl text-center leading-5   tracking-[0,16px] text-black">
+        <div className=" w-full pb-[50px] pt-4 md:flex items-center justify-center hidden not-italic font-AeonikProMedium text-[25px] text-center leading-5   tracking-[0,16px] text-black">
           Вход для продавцов
         </div>
 
         <div className=" w-full h-fit">
-          <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
+          <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px]  ">
             Электронная почта
           </span>
           <div className="mt-[4px]  w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
               className="w-full px-2 xs:px-[16px] outline-none	bg-white w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type="email"
-              name="email"
               value={state.email}
               onChange={({ target: { value } }) => {
                 setError();
@@ -199,7 +198,7 @@ export default function MailVerfySeller() {
           </div>
         </div>
         <div className="mt-4 w-full h-fit">
-          <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
+          <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px]  ">
             Пароль
           </span>
           <div className="mt-[4px]  w-full flex items-center border border-searchBgColor rounded-lg ">
@@ -207,7 +206,6 @@ export default function MailVerfySeller() {
               className="w-full px-2 xs:px-[16px] outline-none	bg-white w-full h-[42px]  placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type={state?.eyesShow ? "password" : "text"}
               placeholder="Enter your password"
-              name="password"
               value={state.password}
               onChange={({ target: { value } }) => {
                 setError();

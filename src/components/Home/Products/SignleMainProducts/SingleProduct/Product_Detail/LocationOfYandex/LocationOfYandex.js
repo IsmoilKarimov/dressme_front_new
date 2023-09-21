@@ -1,10 +1,31 @@
 import React, { useRef, useState, useEffect } from "react";
-import { YMaps, Map, ZoomControl, GeolocationControl } from "react-yandex-maps";
+import {
+  YMaps,
+  Map,
+  ZoomControl,
+  GeolocationControl,
+} from "react-yandex-maps";
+// import {
+//   // MapLocationIcon,
+//   MenuCloseIcons,
+//   // SearchIcon,
+//   StarIcon,
+//   marketIcons,
+// } from "../../../../../assets/icons";
+import { BiCheckDouble } from "react-icons/bi";
+import { GrClose } from "react-icons/gr";
+import { clsx } from "clsx";
+import "./LocationOfYandex.css";
 import { NavLink } from "react-router-dom";
 
 const mapOptions = {
   modules: ["geocode", "SuggestView"],
   defaultOptions: { suppressMapOpenBlock: true },
+};
+
+const geolocationOptions = {
+  defaultOptions: { maxWidth: 128 },
+  defaultData: { content: "Determine" },
 };
 
 const initialState = {
@@ -14,10 +35,26 @@ const initialState = {
 };
 
 export default function LocationOfYandex() {
+  const [isSendedLocation, setIsSendedLocation] = useState(true);
   const [state, setState] = useState({ ...initialState });
   const [mapConstructor, setMapConstructor] = useState(null);
   const mapRef = useRef(null);
   const searchRef = useRef(null);
+
+  // submits
+  const handleSubmit = () => {
+    setIsSendedLocation(false);
+    console.log({ title: state.title, center: mapRef.current.getCenter() });
+  };
+
+  // reset state & search
+  const handleReset = () => {
+    setState({ ...initialState });
+    // setState({ ...initialState, title: "" });
+    // searchRef.current.value = "";
+    // mapRef.current.setCenter(initialState.center);
+    mapRef.current.setZoom(initialState.zoom);
+  };
 
   // search popup
   useEffect(() => {
@@ -57,11 +94,8 @@ export default function LocationOfYandex() {
     });
   }, []);
   return (
-    <div className={`w-full`}>
-      <p className="text-base font-AeonikProRegular mb-5">
-        <span className="font-AeonikProMedium">Адрес:</span> Ташкент, Юнусобод
-      </p>
-      <div className="w-full h-[280px] md:h-[400px] productDetailsMaps">
+    <div className={`w-full `}>
+      <div className={"mapRoot"}>
         <YMaps
           query={{
             apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21",
@@ -69,35 +103,48 @@ export default function LocationOfYandex() {
           }}
         >
           <Map
-            className={` w-full h-full rounded-xl overflow-hidden border`}
+            className={` overflow-hidden w-full h-[400px] productDetailsMaps`}
             {...mapOptions}
             state={state}
             onLoad={setMapConstructor}
             onBoundsChange={handleBoundsChange}
             instanceRef={mapRef}
           >
-            <div className="h-fit gap-x-5 mx-1 md:mx-2 left-0 right-0 flex items-center justify-between md:px-3 rounded-lg">
+            <div className="h-fit p-1 md:p-[10px] absolute top-2 z-40 gap-x-5 mx-1 md:mx-2 backdrop-blur-sm bg-yandexNavbar left-0 right-0 hidden items-center justify-between border px-1 md:px-3 rounded-lg">
               <label
                 htmlFor="ForSearch"
-                className="w-[100%] h-full flex items-center justify-between "
+                className="w-[100%] h-full hidden items-center justify-between bg-white  border border-textLightColor px-1 md:px-3 rounded-lg"
               >
-                <input
-                  ref={searchRef}
-                  className="w-full hidden outline-none text-sm font-AeonikProMedium mr-3 h-10 rounded-lg "
-                />
+                {!Boolean(state.title.length) && (
+                  <input
+                    ref={searchRef} 
+                  />
+                )}
+                <div
+                  className={clsx(["titleBox"], {
+                    ["titleBox_show"]: Boolean(state.title.length),
+                  })}
+                >
+                  <p className=" w-[90%] ">{state.title} </p>
+                </div>
               </label>
+              
             </div>
+            
+            <span className={"placemark"}>
+              {/* <MapLocationIcon color="primary" /> */}
+            </span>
             <ZoomControl
               options={{
                 float: "right",
-                position: { bottom: "150px", right: 10, size: "small" },
+                position: { bottom: 200, right: 10, size: "small" },
                 size: "small",
               }}
             />{" "}
             <GeolocationControl
               options={{
                 float: "right",
-                position: { bottom: "120px", right: 10 },
+                position: { bottom: 60, right: 10 },
                 size: "small",
               }}
             />
