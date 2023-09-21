@@ -17,7 +17,7 @@ import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { Modal, Popover, Radio } from "antd";
 import ProductComment from "../../../Products/SignleMainProducts/SingleProduct/ProductComment/ProductComment";
 
-const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab }) => {
+const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, activeBtn }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openLocationModal, setOpenLocationModal] = useState(false);
   
@@ -277,9 +277,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab }) => {
                   </button>
                   <div className="flex items-center justify-end">
                     <button 
-                      onClick={e => {
-                        e.preventDefault();
-                        setOpenTab(!openTab);
+                      onClick={e => {activeBtn(!openTab.action);
                       }}
                       className="w-[42%] min-w-min text-sm font-AeonikProRegular text-borderWinter ml-auto">Посмотреть отзывы</button>
                     <button className="hidden md:flex items-center justify-center border border-searchBgColor w-[48px] h-[48px] rounded-xl ml-[10px] flex-shrink-0">
@@ -430,7 +428,6 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab }) => {
             </section>
           </action>
 
-
           <action className={`w-full md:hidden flex items-center justify-between mt-6 mb-3  px-4`}>
             <button
               onClick={handleFilter}
@@ -462,10 +459,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab }) => {
             </Popover>
           </action>
         </div>
-        {/* Comment Section For Shopping Page */}
-        <div className={`${openTab ? "flex" : "hidden"} w-full `}>
-          <ProductComment />
-        </div>
+        
       </section>
     </main>
   );
