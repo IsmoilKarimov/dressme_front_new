@@ -56,6 +56,7 @@ export default function ResetPasswordSeller() {
             body: JSON.stringify({
                 password: state?.newPassword,
                 password_confirmation: state?.newPasswordConfirm,
+                digital_token: digitalToken
             })
         })
     })
