@@ -123,7 +123,7 @@ export default function SignInSeller() {
         </div>
 
         <div className="mt-2 w-full h-fit">
-          <div className="not-italic font-AeonikProRegular text-[18px] leading-4 text-black  tracking-[0,16px] ">
+          <div className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
             Электронная почта
           </div>
           <div className="mt-[6px] px-2 md:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
@@ -144,7 +144,7 @@ export default function SignInSeller() {
           </div>
         </div>
         <div className="mt-4 w-full h-fit">
-          <div className="not-italic font-AeonikProRegular text-[18px] leading-4 text-black  tracking-[0,16px] ">
+          <div className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
             Пароль
           </div>
           <div className="mt-[6px] px-2 md:px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">

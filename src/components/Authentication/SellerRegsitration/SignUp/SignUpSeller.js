@@ -124,6 +124,7 @@ const SignUpSeller = () => {
           surname: state?.lastName,
           email: state?.email,
           password: state?.password,
+          password_confirmation: state?.confirmPassword,
           phone: sendMessagePhoneNumber,
           card_number: BankCard,
           seller_type_id: state?.seller_type_id,
@@ -135,6 +136,7 @@ const SignUpSeller = () => {
           surname: state?.lastName,
           email: state?.email,
           password: state?.password,
+          password_confirmation: state?.confirmPassword,
           phone: sendMessagePhoneNumber,
           card_number: BankCard,
           seller_type_id: state?.seller_type_id,
@@ -147,10 +149,7 @@ const SignUpSeller = () => {
     }).then((res) => res.json())
   })
   const onSubmit = () => {
-    setState({
-      ...state,
-      isEmailMessage: "",
-    })
+
     mutate({}, {
       onSuccess: (res) => {
         console.log(res, "res");
@@ -751,8 +750,12 @@ const SignUpSeller = () => {
                       )}
                     </span>
                   </div>
-                  {/* {passwordError && <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">{passwordError}</p>} */}
-                </div>
+                  {
+                    state?.errorGroup?.errors?.password &&
+                    <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+                      {state?.errorGroup?.errors?.password}
+                    </p>
+                  }                </div>
               </div>
             </div>
           </div>
