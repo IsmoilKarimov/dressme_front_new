@@ -142,7 +142,7 @@ export default function ForgotPasswordSeller() {
 
                 <div className="mt-1 flex flex-col gap-y-5 w-full h-fit">
                     <div className="w-full h-fit">
-                        <div className=" not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0.16px]">
+                        <div className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
                             Электронная почта
                         </div>
                         <div className="mt-1 xs:mt-[6px]  w-full flex items-center bg-btnBgColor border border-searchBgColor rounded-lg ">
@@ -160,35 +160,7 @@ export default function ForgotPasswordSeller() {
                             </span>{" "}
                         </div>
                     </div>
-                    <div className="w-full h-fit hidden">
-                        <div className=" not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0.16px]">
-                            Пароль
-                        </div>
-                        <div className="mt-1 xs:mt-[6px]  w-full flex items-center bg-btnBgColor border border-searchBgColor rounded-lg ">
-                            <input
-                                className="w-full h-[42px] pl-2 xs:pl-[16px] bg-btnBgColor focus:bg-btnBgColor active:bg-btnBgColor placeholder:bg-btnBgColor placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black "
-                                type={state?.passwordEye ? "text" : "password"}
-                                name="Пароль"
-                                required
-                            />
-                            <span className="cursor-pointer pr-2">
-                                {state?.passwordEye ? (
-                                    <span
-                                        onClick={() => setState({ ...state, passwordEye: false })}
-                                    >
-                                        < AiOutlineEye size={20} color={"#e2e2e2"} />
-                                    </span>
-                                ) : (
-                                    <span
-                                        onClick={() => setState({ ...state, passwordEye: true })}
-                                    >
-                                        <AiOutlineEyeInvisible size={20} color={"#e2e2e2"} />
-                                    </span>
 
-                                )}
-                            </span>
-                        </div>
-                    </div>
                 </div>
 
                 <button

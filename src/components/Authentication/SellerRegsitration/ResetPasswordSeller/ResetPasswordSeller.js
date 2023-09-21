@@ -56,7 +56,7 @@ export default function ResetPasswordSeller() {
             body: JSON.stringify({
                 password: state?.newPassword,
                 password_confirmation: state?.newPasswordConfirm,
-                password_token: digitalToken
+                digital_token: digitalToken
             })
         })
     })
@@ -149,7 +149,7 @@ export default function ResetPasswordSeller() {
                 <div className="mt-1 flex flex-col gap-y-2 w-full h-fit ">
 
                     <div className="w-full h-[85px] ll:h-[100px] ">
-                        <div className=" not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0.16px]">
+                        <div className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
                             Новый пароль
                         </div>
                         <div className="mt-1 xs:mt-[6px] overflow-hidden w-full flex items-center bg-white border border-searchBgColor rounded-lg ">
@@ -183,7 +183,7 @@ export default function ResetPasswordSeller() {
                     </div>
 
                     <div className="w-full h-[85px] ll:h-[100px] ">
-                        <div className=" not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0.16px]">
+                        <div className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] ">
                             Повторите новый пароль
                         </div>
                         <div className="mt-1 xs:mt-[6px] overflow-hidden  w-full flex items-center bg-white border border-searchBgColor rounded-lg ">
