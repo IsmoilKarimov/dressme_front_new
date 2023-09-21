@@ -9,23 +9,20 @@ const ShoppingStoreOfficial = () => {
   const { id } = useParams();
   const NewId = id.replace(":", "");
 
-  const [openTab, setOpenTab] = useState([
-    { id: 1, action: false},
-    { id: 2, action: true},
-    { id: 3, action: false},
-
-  ])
-  const activeBtn = (eId) => {
-    setOpenTab(current => {
-      return current.map(items => {
-        if (items.id == eId) {
-          return { ...items, action: true }
-        } else {
-          return { ...items, action: false }
-        }
-      })
-    })
-  }
+  const [openTab, setOpenTab] = useState(false)
+  const [openTab2, setOpenTab2] = useState(false)
+  
+  // const activeBtn = (eId) => {
+  //   setOpenTab(current => {
+  //     return current.map(items => {
+  //       if (items.id == eId) {
+  //         return { ...items, action: true }
+  //       } else {
+  //         return { ...items, action: false }
+  //       }
+  //     })
+  //   })
+  // }
 
   useEffect(() => {
     window.scrollTo({
@@ -39,26 +36,23 @@ const ShoppingStoreOfficial = () => {
         <ShoppingStoreOfficialBreadCrumb name={NewId} />
       </section>
       <section className="w-full border-searchBgColor ">
-        <ShoppingStoreOfficialTop openTab={openTab} setOpenTab={setOpenTab} activeBtn={activeBtn} name={NewId} />
+        <ShoppingStoreOfficialTop openTab={openTab} setOpenTab={setOpenTab} openTab2={openTab2} setOpenTab2={setOpenTab2} name={NewId} />
       </section>
-      <section >
-        {openTab.map( item => (
-          <div key={item.id}>
+      <section >     
+          <div>
             {/* Products Section */}
-            <article className={`${item.action ? 'block' : 'hidden' } w-full`}>
+            <article className={`${openTab || openTab2 ? "hidden" : "block"} w-full`}>
               <ShoppingStoreCategory />
             </article>
             {/* Comment Section For Shopping Page */}
-            <div className={`${item.action ? "flex" : "hidden"} w-full `}>
+            <action className={`${openTab ? "block" : "hidden"} w-full `}>
               <ProductComment />
-            </div>
+            </action>
             {/* Map Section */}
-            <div className={`${item.action ? "flex" : "hidden"} w-full `}>
+            <action className={`${openTab2? "block" : "hidden"} w-full text-3xl`}>
               Map infos
-            </div>
+            </action>
           </div>
-        ) )}
-        
       </section>      
     </main>
   );
