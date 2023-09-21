@@ -286,13 +286,13 @@ export default function ProductComment() {
               </div>
               <button
                 onClick={() => goDetail(allComments)}
-                className="w-full py-4 flex items-center justify-center border-t border-searchBgColor"
+                className="w-full py-4 px-4 flex items-center justify-center border-t border-searchBgColor"
               >
-                <span className="ml-12">
+                <span className="ml-8">
                   <CommentIcons colors={"#000"} />
                 </span>
                 <div className="ml-2 font-AeonikProRegular text-sm">
-                  Просмотреть комментарии
+                  Просмотреть комментарии и оставить комментарий
                 </div>
                 <span className="rotate-[90deg] ml-12">
                   <ArrowTopIcons colors={"#000"} />

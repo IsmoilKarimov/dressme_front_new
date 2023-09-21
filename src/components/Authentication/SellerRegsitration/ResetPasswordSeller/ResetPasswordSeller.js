@@ -42,37 +42,54 @@ export default function ResetPasswordSeller() {
             setState({ ...state, btnDisable: true })
         }
     }, [state?.newPasswordConfirm, state?.newPassword])
-    const { mutate } = useMutation(() => {
+
+    const pathname = window.location.pathname;
+    let digitalToken = pathname.replace("/reset-password-seller/:", "")
+
+    const resetPasswordMutate = useMutation(() => {
         return fetch(`${url}/reset-password`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json; charset=UTF-8",
                 "Accept": "application/json"
             },
             body: JSON.stringify({
                 password: state?.newPassword,
                 password_confirmation: state?.newPasswordConfirm,
-                digitalToken: 3309
             })
         })
     })
     const onSubmit = () => {
         if (state?.btnDisable) {
             if (state?.newPassword?.length && state?.newPasswordConfirm?.length) {
-                mutate({}, {
+                resetPasswordMutate.mutate({}, {
                     onSuccess: res => {
                         console.log(res, "resetpassword");
-                        toast.success("Вы успешно вошли в", {
-                            position: "top-right",
-                            autoClose: 5000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "light",
-                        });
-                        navigate('/login-seller')
+                        if (res?.status == 200) {
+
+                            toast.success("Вы успешно вошли в", {
+                                position: "top-right",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                            });
+                            navigate('/login-seller')
+                        } else {
+                            toast.success(`${res?.status}`, {
+                                position: "top-right",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                            });
+                        }
                     },
                     onError: err => {
                         console.log(err, "err");

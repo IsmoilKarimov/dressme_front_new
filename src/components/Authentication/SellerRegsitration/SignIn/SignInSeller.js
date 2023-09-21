@@ -57,9 +57,10 @@ export default function SignInSeller() {
                 theme: "light",
               });
 
-            } else if (res?.message && !res?.errors) {
+            } else if (res?.access_token) {
+              localStorage.setItem("access_token", res?.access_token)
               setState({ ...state, email: "", password: "", errorGroup: "" });
-              toast.success(`${res?.message}`, {
+              toast.success(`Успешный  вход в систему`, {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -69,6 +70,7 @@ export default function SignInSeller() {
                 progress: undefined,
                 theme: "light",
               });
+              window.location.replace(' https://dressme-dashboard-new.vercel.app/reviews');
             }
           },
           onError: (err) => {
