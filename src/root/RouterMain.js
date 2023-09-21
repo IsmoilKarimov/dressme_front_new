@@ -325,7 +325,7 @@ const RouterMain = () => {
             </Suspense>
           }
         />
-        <Route path="/reset-password-seller"
+        <Route path="/reset-password-seller/:id"
           element={
             <Suspense
               fallback={
@@ -338,7 +338,7 @@ const RouterMain = () => {
             </Suspense>
           }
         />
-        <Route path="/mail-verify-seller"
+        <Route path="/mail-verify-seller/:id"
           element={
             <Suspense
               fallback={
@@ -380,9 +380,9 @@ const RouterMain = () => {
         locationWindow !== "/profile/settings" &&
         locationWindow !== "/signup-seller" &&
         locationWindow !== "/login-seller" &&
-        locationWindow !== "/mail-verify-seller" &&
+        locationWindow !== "/mail-verify-seller/:id" &&
         locationWindow !== "/forgot-password-seller" &&
-        locationWindow !== "/reset-password-seller" &&
+        locationWindow !== "/reset-password-seller/:id" &&
         locationWindow !== "/allcomments" &&
         locationWindow !== "/delivery-points" ? (
         <Suspense fallback={<>Loading...</>}>
