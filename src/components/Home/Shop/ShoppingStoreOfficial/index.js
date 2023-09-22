@@ -5,6 +5,7 @@ import ShoppingStoreOfficialTop from "./ShoppingStoreOfficialTop/ShoppingStoreOf
 import { useParams } from "react-router-dom";
 import ProductComment from "../../Products/SignleMainProducts/SingleProduct/ProductComment/ProductComment";
 import LocationOfYandex from "../../Products/SignleMainProducts/SingleProduct/Product_Detail/LocationOfYandex/LocationOfYandex";
+import { GoBackIcon } from "../../../../assets/icons";
 
 const ShoppingStoreOfficial = () => {
   const { id } = useParams();
@@ -51,6 +52,12 @@ const ShoppingStoreOfficial = () => {
             </action>
             {/* Map Section */}
             <action className={`${openTab2? "block" : "hidden"} w-full text-3xl`}>
+              {/* <button
+                onClick={() => {setVisibleCommnets(4)} }
+                className={`flex items-center cursor-pointer justify-center border border-borderColor2 rounded-lg mr-5`}
+              >
+                <GoBackIcon  />
+              </button> */}
               <LocationOfYandex />
             </action>
           </div>
