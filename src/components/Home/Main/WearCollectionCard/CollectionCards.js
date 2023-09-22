@@ -27,10 +27,12 @@ export default function CollectionCards() {
   }, [openWearType]);
   const navigate = useNavigate();
   const goDetail = (id) => {
-    navigate(`/product/:${id}`);
+    const IdOne = id.split(" ")
+    const IdTwo = IdOne.join("-")
+    navigate(`/product/:${IdTwo}`);
   };
 
-  const onColorChecked = () => {};
+  const onColorChecked = () => { };
   const handleEnterMouse = (eId) => {
     const elementsIndex = dressInfo.ProductList.findIndex(
       (element) => element.id == eId
@@ -68,18 +70,16 @@ export default function CollectionCards() {
       </section>
       <div
         onClick={() => setOpenWearType(false)}
-        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-          openWearType ? "" : "hidden"
-        }`}
+        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openWearType ? "" : "hidden"
+          }`}
       ></div>
       <section
-        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
-          openWearType ? "bottom-0" : "bottom-[-800px] z-0"
-        }`}
+        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openWearType ? "bottom-0" : "bottom-[-800px] z-0"
+          }`}
       >
         <WearType onClick={toggle} />
       </section>
-      
+
       <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
         <div className="w-full flex flex-col box-border ">
           <article className="flex flex-wrap justify-between md:justify-start md:mx-0 mt-[25px] md:mt-[50px]  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
@@ -130,11 +130,10 @@ export default function CollectionCards() {
                     </button>
                     <article
                       onMouseLeave={() => handleLeaveMouse(data?.id)}
-                      className={` ${
-                        data?.colourCard
-                          ? "w-full px-1 xs:px-2 md:px-4 my-2"
-                          : "w-0 my-2"
-                      } duration-300 absolute overflow-hidden hidden top-0 z-[1] md:flex justify-between items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
+                      className={` ${data?.colourCard
+                        ? "w-full px-1 xs:px-2 md:px-4 my-2"
+                        : "w-0 my-2"
+                        } duration-300 absolute overflow-hidden hidden top-0 z-[1] md:flex justify-between items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
                     >
                       {data?.changeColor.map((itemValue) => {
                         return (
