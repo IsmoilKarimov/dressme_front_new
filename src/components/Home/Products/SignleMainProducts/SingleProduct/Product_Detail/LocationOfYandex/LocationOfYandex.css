@@ -7,6 +7,10 @@
 
 }
 
+.productDetailsMaps .ymaps-2-1-79-gotoymaps__text {
+  content: "Marshurit";
+}
+
 /* .productDetailsMaps .ymaps-2-1-79-zoom  {
   height: 75px !important;
   width: 32px !important;
