@@ -2,7 +2,7 @@ import React, { useContext, memo } from "react";
 import {
   ClockIcons,
   LocationIcons,
-  MenuCloseIcons, 
+  MenuCloseIcons,
   SircleNext,
   StarIcons,
 } from "../../../assets/icons";
@@ -10,8 +10,14 @@ import { dressMainData } from "../../../ContextHook/ContextMenu";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
-function YandexLocationMarketOpen() {
+function YandexLocationMarketOpen({ cordinateMarkets }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+
+  const clickCordinate = () => {
+    window.location.replace(`https://yandex.uz/maps/10335/tashkent/?ll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&mode=search&sll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&text=${cordinateMarkets[0]}%2C${cordinateMarkets[1]}&z=15`);
+
+  }
+
   const NextArrow = (props) => {
     const { onClick } = props;
     return (
@@ -161,9 +167,19 @@ function YandexLocationMarketOpen() {
               </span>
             </div>
           </div>
-          <div className="w-full">
+          <div className="w-full gap-x-2 flex items-center ">
+
             <button
-              className={` w-full h-[52px] bg-fullBlue active:scale-95  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
+              onClick={clickCordinate}
+              className={` w-full h-[48px] bg-fullBlue active:scale-95  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
+            >
+              <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center capitalize text-white">
+                Открыть на карте
+              </span>
+
+            </button>
+            <button
+              className={` w-full h-[48px] bg-fullBlue active:scale-95  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
             >
               <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center capitalize text-white">
                 ПОДРОБНЕЕ
