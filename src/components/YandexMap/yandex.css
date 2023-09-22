@@ -102,19 +102,28 @@
 body {
   overflow-y: hidden;
 }
-.YandexListScroll::-webkit-scrollbar {
+
+.mainYandexMap .YandexListScroll::-webkit-scrollbar {
   width: 5px;
 }
 
-.YandexListScroll::-webkit-scrollbar-thumb {
+.mainYandexMap .YandexListScroll::-webkit-scrollbar-thumb {
   background-color: #e8e8f0;
   height: 50px;
   border-radius: 8px;
 }
 
 /* -------search------- */
+.mainYandexMap .ymaps-2-1-79-ground-pane {
+    filter: brightness(50%);
+    -ms-filter: brightness(50%);
+    -webkit-filter: brightness(50%);
+    -moz-filter: brightness(50%);
+    -o-filter: brightness(50%);
 
-.ymaps-2-1-79-searchbox__normal-layout .ymaps-2-1-79-searchbox-input {
+}
+
+.mainYandexMap .ymaps-2-1-79-searchbox__normal-layout .ymaps-2-1-79-searchbox-input {
   height: 44px;
   display: flex;
   align-items: center;
@@ -136,12 +145,12 @@ body {
   border-radius: 8px 0px 0px 8px;
 }
 
-.ymaps-2-1-79-searchbox-input.ymaps-2-1-79-_focused {
+.mainYandexMap .ymaps-2-1-79-searchbox-input.ymaps-2-1-79-_focused {
   inset: none;
   box-shadow: inset 0 0 0 0px #ffdb4d;
 }
 
-.ymaps-2-1-79-searchbox__normal-layout .ymaps-2-1-79-searchbox-button {
+.mainYandexMap .ymaps-2-1-79-searchbox__normal-layout .ymaps-2-1-79-searchbox-button {
   height: 44px;
   display: flex;
   align-items: center;
@@ -160,17 +169,17 @@ body {
   letter-spacing: 0.01em;
 }
 
-.ymaps-2-1-79-searchbox__normal-layout .ymaps-2-1-79-searchbox-button:hover {
+.mainYandexMap .ymaps-2-1-79-searchbox__normal-layout .ymaps-2-1-79-searchbox-button:hover {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(5px);
 }
 
 /* ----Zoom Controll---- */
-.ymaps-2-1-79-zoom__scale {
+.mainYandexMap .ymaps-2-1-79-zoom__scale {
   display: none !important;
 }
 
-.ymaps-2-1-79-zoom {
+.mainYandexMap .ymaps-2-1-79-zoom {
   height: 86px !important;
   width: 40px !important;
   padding: 0px !important;
@@ -183,18 +192,18 @@ body {
     0 2px 5px -3px rgba(0, 0, 0, 0.15) !important;
 }
 
-.ymaps-2-1-79-zoom__plus,
-.ymaps-2-1-79-zoom__minus {
+.mainYandexMap .ymaps-2-1-79-zoom__plus,
+.mainYandexMap .ymaps-2-1-79-zoom__minus {
   box-shadow: none !important;
   top: 3px !important;
 }
 
-.ymaps-2-1-79-zoom__minus {
+.mainYandexMap .ymaps-2-1-79-zoom__minus {
   top: 47px !important;
 }
 
 /* PLUS and MINUS  buttons for MAP */
-.ymaps-2-1-79-float-button {
+.mainYandexMap .ymaps-2-1-79-float-button {
   width: 40px !important;
   height: 40px !important;
   top: 45px;
@@ -206,16 +215,16 @@ body {
   border-radius: 8px !important;
 }
 
-.ymaps-2-1-79-float-button-icon {
+.mainYandexMap .ymaps-2-1-79-float-button-icon {
   width: 70% !important;
 }
 
-.ymaps-2-1-79-controls__control {
+.mainYandexMap .ymaps-2-1-79-controls__control {
   inset: auto 10px 450px auto !important;
 }
 
 /* ---------------- */
-.ymaps-2-1-79-ground-pane {
+.mainYandexMap .ymaps-2-1-79-ground-pane {
   filter: grayscale(1) brightness(90%);
 
   -ms-filter: grayscale(1) brightness(90%);
@@ -224,22 +233,22 @@ body {
   -webkit-filter: grayscale(1) brightness(90%);
 }
 @media screen and (max-height: 930px) {
-  .ymaps-2-1-79-controls__control {
+  .mainYandexMap .ymaps-2-1-79-controls__control {
     inset: auto 10px 380px auto !important;
   }
 }
 
 @media (max-height: 750px) {
-  .ymaps-2-1-79-controls__control {
+  .mainYandexMap .ymaps-2-1-79-controls__control {
     inset: auto 10px 310px auto !important;
   }
 }
 
 @media (max-height: 600px) {
-  .ymaps-2-1-79-controls__control {
+  .mainYandexMap .ymaps-2-1-79-controls__control {
     inset: auto 10px 230px auto !important;
   }
-  .ymaps-2-1-79-_hidden-text {
+  .mainYandexMap .ymaps-2-1-79-_hidden-text {
     display: none !important;
   }
 }
