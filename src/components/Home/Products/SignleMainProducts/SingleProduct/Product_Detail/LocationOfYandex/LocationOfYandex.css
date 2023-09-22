@@ -1,12 +1,12 @@
 
-/* .productDetailsMaps .ymaps-2-1-79-ground-pane {
+.productDetailsMaps .ymaps-2-1-79-ground-pane {
   filter: brightness(100%);
   -ms-filter: brightness(100%);
   -webkit-filter: brightness(100%);
   -moz-filter: brightness(100%);
   -o-filter: brightness(100%);
 
-} */
+}
 
 /* .productDetailsMaps .ymaps-2-1-79-zoom  {
   height: 75px !important;
@@ -21,7 +21,7 @@
   box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15), 0 2px 5px -3px rgba(0, 0, 0, 0.15) !important;
 } */
 
-.ymaps-2-1-79-controls__control {
+/* .ymaps-2-1-79-controls__control {
   inset: auto 5px 100px auto !important;
 }
 
@@ -29,6 +29,6 @@
   .productDetailsMaps .ymaps-2-1-79-controls__control {
     inset: auto 5px 100px auto !important;
   }
-}
+} */
   
   
