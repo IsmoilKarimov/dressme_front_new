@@ -76,7 +76,7 @@ function YandexLocationMarketOpen() {
           }
           className="w-10 h-10 rounded-lg border border-searchBgColor flex items-center justify-center active:scale-95  active:opacity-70"
         >
-          <MenuCloseIcons />
+          <MenuCloseIcons colors={"#000"} />
         </button>
       </div>
       {/* Second BOlum */}

@@ -5,27 +5,13 @@ import {
   ZoomControl,
   GeolocationControl,
 } from "react-yandex-maps";
-// import {
-//   // MapLocationIcon,
-//   MenuCloseIcons,
-//   // SearchIcon,
-//   StarIcon,
-//   marketIcons,
-// } from "../../../../../assets/icons";
-import { BiCheckDouble } from "react-icons/bi";
-import { GrClose } from "react-icons/gr";
 import { clsx } from "clsx";
-import "./LocationOfYandex.css";
+// import "./LocationOfYandex.css";
 import { NavLink } from "react-router-dom";
 
 const mapOptions = {
   modules: ["geocode", "SuggestView"],
   defaultOptions: { suppressMapOpenBlock: true },
-};
-
-const geolocationOptions = {
-  defaultOptions: { maxWidth: 128 },
-  defaultData: { content: "Determine" },
 };
 
 const initialState = {
@@ -35,26 +21,10 @@ const initialState = {
 };
 
 export default function LocationOfYandex() {
-  const [isSendedLocation, setIsSendedLocation] = useState(true);
   const [state, setState] = useState({ ...initialState });
   const [mapConstructor, setMapConstructor] = useState(null);
   const mapRef = useRef(null);
   const searchRef = useRef(null);
-
-  // submits
-  const handleSubmit = () => {
-    setIsSendedLocation(false);
-    console.log({ title: state.title, center: mapRef.current.getCenter() });
-  };
-
-  // reset state & search
-  const handleReset = () => {
-    setState({ ...initialState });
-    // setState({ ...initialState, title: "" });
-    // searchRef.current.value = "";
-    // mapRef.current.setCenter(initialState.center);
-    mapRef.current.setZoom(initialState.zoom);
-  };
 
   // search popup
   useEffect(() => {
@@ -103,7 +73,7 @@ export default function LocationOfYandex() {
           }}
         >
           <Map
-            className={` overflow-hidden w-full h-[400px] productDetailsMaps`}
+            className={` overflow-hidden w-full h-[350px] md:h-[400px] rounded-lg productDetailsMaps`}
             {...mapOptions}
             state={state}
             onLoad={setMapConstructor}
@@ -130,22 +100,19 @@ export default function LocationOfYandex() {
               </label>
               
             </div>
-            
-            <span className={"placemark"}>
-              {/* <MapLocationIcon color="primary" /> */}
-            </span>
+
             <ZoomControl
               options={{
                 float: "right",
-                position: { bottom: 200, right: 10, size: "small" },
-                size: "small",
+                position: { bottom: 170, right: 10, },
+                // size: "small",
               }}
             />{" "}
             <GeolocationControl
               options={{
                 float: "right",
-                position: { bottom: 60, right: 10 },
-                size: "small",
+                position: { bottom: 120, right: 10 },
+                // size: "small",
               }}
             />
           </Map>
@@ -153,9 +120,9 @@ export default function LocationOfYandex() {
       </div>
       <div className="w-full flex justify-end">
         <NavLink
-          to="/delivery-points"
+          to="#"
           className={
-            "w-full md:w-fit text-center px-5 py-[10px] md:py-3 bg-borderWinter text-white font-AeonikProMedium text-xs md:text-base mt-[15px] rounded-lg"
+            "w-full md:w-fit text-center active:scale-95 px-5 py-[10px] md:py-3 bg-borderWinter text-white font-AeonikProMedium text-xs md:text-base mt-[15px] rounded-lg"
           }
         >
           Открыть на карте

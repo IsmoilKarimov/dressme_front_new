@@ -392,67 +392,6 @@ table tr th:nth-child(1) {
   border-radius: 8px;
 }
 
-/* ------------------------------------------ */
-
-/* .productDetailsMaps {
-
-} */
-
-.productDetailsMaps .ymaps-2-1-79-ground-pane {
-  filter: brightness(100%);
-  -ms-filter: brightness(100%);
-  -webkit-filter: brightness(100%);
-  -moz-filter: brightness(100%);
-  -o-filter: brightness(100%);
-
-}
-
-.productDetailsMaps .ymaps-2-1-79-controls__control {
-  /* inset: auto 5px 150px auto !important; */
-}
-
-.productDetailsMaps .ymaps-2-1-79-zoom  {
-  height: 75px !important;
-  width: 32px !important;
-  padding: 0px !important;
-  border: 1px solid red;
-  background-color: #fff;
-  border-radius: 8px;
-  display: flex !important;
-  justify-content: center !important;
-  margin-bottom: 8px;
-  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15), 0 2px 5px -3px rgba(0, 0, 0, 0.15) !important;
-}
-
-.productDetailsMaps .ymaps-2-1-79-_hidden-text{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid green;
-  top: 45px;
-  width: 32px !important;
-  height: 32px !important;
-  border-radius: 8px;
-}
-
-.productDetailsMaps .ymaps-2-1-79-float-button {
-  position: unset;
-}
-
-.productDetailsMaps .ymaps-2-1-79-float-button-icon_icon_geolocation {
-  margin-left: 6px !important;
-}
-
-.productDetailsMaps .ymaps-2-1-79-zoom__plus,
-.productDetailsMaps .ymaps-2-1-79-zoom__minus {
-  box-shadow: none;
-  margin-top: 4px;
-}
+/* ----------------------------- */
 
 
-
-@media only screen and (max-width: 768px) {
-  .productDetailsMaps .ymaps-2-1-79-controls__control {
-    /* inset: auto 5px 100px auto !important; */
-  }
-}
