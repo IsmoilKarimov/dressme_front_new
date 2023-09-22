@@ -1,62 +1,28 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   YMaps,
   Map,
   ZoomControl,
   GeolocationControl,
+  Placemark,
 } from "react-yandex-maps";
-import { clsx } from "clsx";
 import "./LocationOfYandex.css";
-import { NavLink } from "react-router-dom";
+import { markerIcons } from "../../../../../../../assets";
 
-const mapOptions = {
-  modules: ["geocode", "SuggestView"],
-  defaultOptions: { suppressMapOpenBlock: true },
-};
 
-const initialState = {
-  title: "",
-  center: [41.311151, 69.279737],
-  zoom: 12,
-};
 
 export default function LocationOfYandex() {
-  const [state, setState] = useState({ ...initialState });
-  const [mapConstructor, setMapConstructor] = useState(null);
-  const mapRef = useRef(null);
-  const searchRef = useRef(null);
-
-  // search popup
-  useEffect(() => {
-    if (mapConstructor) {
-      new mapConstructor.SuggestView(searchRef.current).events.add(
-        "select",
-        function (e) {
-          const selectedName = e.get("item").value;
-          mapConstructor.geocode(selectedName).then((result) => {
-            const newCoords = result.geoObjects
-              .get(0)
-              .geometry.getCoordinates();
-            setState((prevState) => ({ ...prevState, center: newCoords }));
-          });
-        }
-      );
-    }
-  }, [mapConstructor]);
-
-  // change title
-  const handleBoundsChange = (e) => {
-    const newCoords = mapRef.current.getCenter();
-    mapConstructor.geocode(newCoords).then((res) => {
-      const nearest = res.geoObjects.get(0);
-      const foundAddress = nearest.properties.get("text");
-      const [centerX, centerY] = nearest.geometry.getCoordinates();
-      const [initialCenterX, initialCenterY] = initialState.center;
-      if (centerX !== initialCenterX && centerY !== initialCenterY) {
-        setState((prevState) => ({ ...prevState, title: foundAddress }));
-      }
-    });
+  //------------------------------------------------------------------------------------------------
+  const mapState = {
+    center: [41.311753, 69.241822],
+    zoom: 14,
   };
+  const cordinateOfMarket = [41.312922, 69.249465]
+  //------------------------------------------------------------------------------------------------
+
+  const handleOpenYandex = () => {
+    window.location.replace(`https://yandex.uz/maps/10335/tashkent/?ll=${cordinateOfMarket[1]}%2C${cordinateOfMarket[0]}&mode=search&sll=${cordinateOfMarket[1]}%2C${cordinateOfMarket[0]}&text=${cordinateOfMarket[0]}%2C${cordinateOfMarket[1]}&z=15`);
+  }
 
   useEffect(() => {
     window.scrollTo({
@@ -74,33 +40,22 @@ export default function LocationOfYandex() {
         >
           <Map
             className={` overflow-hidden w-full h-[350px] md:h-[400px] rounded-lg productDetailsMaps`}
-            {...mapOptions}
-            state={state}
-            onLoad={setMapConstructor}
-            onBoundsChange={handleBoundsChange}
-            instanceRef={mapRef}
-          >
-            <div className="h-fit p-1 md:p-[10px] absolute top-2 z-40 gap-x-5 mx-1 md:mx-2 backdrop-blur-sm bg-yandexNavbar left-0 right-0 hidden items-center justify-between border px-1 md:px-3 rounded-lg">
-              <label
-                htmlFor="ForSearch"
-                className="w-[100%] h-full hidden items-center justify-between bg-white  border border-textLightColor px-1 md:px-3 rounded-lg"
-              >
-                {!Boolean(state.title.length) && (
-                  <input
-                    ref={searchRef} 
-                  />
-                )}
-                <div
-                  className={clsx(["titleBox"], {
-                    ["titleBox_show"]: Boolean(state.title.length),
-                  })}
-                >
-                  <p className=" w-[90%] ">{state.title} </p>
-                </div>
-              </label>
-              
-            </div>
+            defaultState={mapState}
+            modules={["control.FullscreenControl"]}
 
+          >
+            <Placemark
+              className={"placemarkCLuster cursor-pointer"}
+              // key={index}
+              // onClick={() => handlePlaceMark(data?.marketId, data?.cordinate)}
+              geometry={cordinateOfMarket}
+              options={{
+                iconLayout: "default#image",
+                iconImageHref: markerIcons,
+                iconImageSize: [32, 32],
+              }}
+              modules={["geoObject.addon.balloon"]}
+            />
             <ZoomControl
               options={{
                 float: "right",
@@ -119,14 +74,14 @@ export default function LocationOfYandex() {
         </YMaps>
       </div>
       <div className="w-full flex justify-end">
-        <NavLink
-          to="#"
+        <button
+          onClick={handleOpenYandex}
           className={
             "w-full md:w-fit text-center active:scale-95 px-5 py-[10px] md:py-3 bg-borderWinter text-white font-AeonikProMedium text-xs md:text-base mt-[15px] rounded-lg"
           }
         >
           Открыть на карте
-        </NavLink>
+        </button>
       </div>
     </div>
   );
