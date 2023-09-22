@@ -14,7 +14,8 @@ function YandexLocationMarketOpen({ cordinateMarkets }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const clickCordinate = () => {
-    window.location.replace(`https://yandex.uz/maps/10335/tashkent/?ll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&mode=search&sll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&text=${cordinateMarkets[0]}%2C${cordinateMarkets[1]}&z=15`);
+    window.open(`https://yandex.uz/maps/10335/tashkent/?ll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&mode=search&sll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&text=${cordinateMarkets[0]}%2C${cordinateMarkets[1]}&z=15`, "_blank")
+    // window.location.replace(`https://yandex.uz/maps/10335/tashkent/?ll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&mode=search&sll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&text=${cordinateMarkets[0]}%2C${cordinateMarkets[1]}&z=15`);
 
   }
 
@@ -171,9 +172,9 @@ function YandexLocationMarketOpen({ cordinateMarkets }) {
 
             <button
               onClick={clickCordinate}
-              className={` w-full h-[48px] bg-fullBlue active:scale-95  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
+              className={` w-full h-[48px]  bg-white border border-fullBlue active:scale-95  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
             >
-              <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center capitalize text-white">
+              <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center capitalize  text-fullBlue ">
                 Открыть на карте
               </span>
 
@@ -181,8 +182,8 @@ function YandexLocationMarketOpen({ cordinateMarkets }) {
             <button
               className={` w-full h-[48px] bg-fullBlue active:scale-95  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
             >
-              <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center capitalize text-white">
-                ПОДРОБНЕЕ
+              <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center   capitalize text-white">
+                Подробнее
               </span>
               <span>
                 <SircleNext colors={"#fff"} />
