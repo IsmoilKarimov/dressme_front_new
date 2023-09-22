@@ -6,7 +6,7 @@ import {
   GeolocationControl,
 } from "react-yandex-maps";
 import { clsx } from "clsx";
-// import "./LocationOfYandex.css";
+import "./LocationOfYandex.css";
 import { NavLink } from "react-router-dom";
 
 const mapOptions = {
