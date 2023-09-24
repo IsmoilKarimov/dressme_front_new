@@ -68,7 +68,7 @@ export default function LocationOfYandex() {
             <GeolocationControl
               options={{
                 float: "right",
-                position: { bottom: 120, right: 10 },
+                position: { bottom: 80, right: 10 },
                 // size: "small",
               }}
             />
