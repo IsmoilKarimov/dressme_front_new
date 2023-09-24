@@ -4,13 +4,12 @@ import Slider from "react-slick";
 import { BrushColorIcons, MenuCloseIcons, VideoStoreIcons } from "../../../../../../assets/icons";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 
-const ProductCarousel = ({show}) => {
+const ProductCarousel = ({ show }) => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [dressInfo] = useContext(dressMainData);
 
   const [modalOfCarsouel, setModalOfCarsouel] = useState(false)
   const handleClickCarosuel = (id) => {
-    console.log("handleClickCarosuel", id);
     setModalOfCarsouel(true)
   }
 
@@ -79,17 +78,17 @@ const ProductCarousel = ({show}) => {
   ]);
 
   const [SizeBtnList] = useState([
-    { id: 1,size_in_letters:"XXS", size_in_numbers: "11-23"},
-    { id: 2,size_in_letters:"XS", size_in_numbers: "11-23"},
-    { id: 3,size_in_letters:"S", size_in_numbers: "25-36"},
-    { id: 4,size_in_letters:"M", size_in_numbers: "25-36"},
-    { id: 5,size_in_letters:"L", size_in_numbers: "36-44"},
-    { id: 6,size_in_letters:"XL", size_in_numbers: "36-44"},
-    { id: 7,size_in_letters:"XXL", size_in_numbers: "36-44"},
-    { id: 8,size_in_letters:"3XL", size_in_numbers: "36-44"},
-    { id: 9,size_in_letters:"4XL", size_in_numbers: "36-44"},
-    { id: 10,size_in_letters:"5XL", size_in_numbers: "36-44"},
-    { id: 11,size_in_letters:"6XL", size_in_numbers: "36-44"},
+    { id: 1, size_in_letters: "XXS", size_in_numbers: "11-23" },
+    { id: 2, size_in_letters: "XS", size_in_numbers: "11-23" },
+    { id: 3, size_in_letters: "S", size_in_numbers: "25-36" },
+    { id: 4, size_in_letters: "M", size_in_numbers: "25-36" },
+    { id: 5, size_in_letters: "L", size_in_numbers: "36-44" },
+    { id: 6, size_in_letters: "XL", size_in_numbers: "36-44" },
+    { id: 7, size_in_letters: "XXL", size_in_numbers: "36-44" },
+    { id: 8, size_in_letters: "3XL", size_in_numbers: "36-44" },
+    { id: 9, size_in_letters: "4XL", size_in_numbers: "36-44" },
+    { id: 10, size_in_letters: "5XL", size_in_numbers: "36-44" },
+    { id: 11, size_in_letters: "6XL", size_in_numbers: "36-44" },
   ]);
 
   const [nav1, setNav1] = useState();
@@ -257,10 +256,10 @@ const ProductCarousel = ({show}) => {
                       </figcaption>
                     </figure>
                   </article>
-                  
+
                 );
               })}
-              
+
             </Slider>
           </div>
 
@@ -268,10 +267,9 @@ const ProductCarousel = ({show}) => {
       </div>
 
       {screenSize.width >= 768 ? (
-        
-        <section className={`w-full h-[620px] flex flex-col md:flex-row md:gap-x-[10px] md:sticky duration-500 ${
-          show ? "visible z-20 top-[110px]" : "visible z-20 top-[16px]"
-        }
+
+        <section className={`w-full h-[620px] flex flex-col md:flex-row md:gap-x-[10px] md:sticky duration-500 ${show ? "visible z-20 top-[110px]" : "visible z-20 top-[16px]"
+          }
         `}>
           <article className="flex w-[90px] flex-col">
             <Slider
@@ -299,7 +297,7 @@ const ProductCarousel = ({show}) => {
               })}
             </Slider>
           </article>
-          
+
           <article className="group mx-auto md:w-[480px] md:h-[620px]">
             <Slider
               className="w-full h-full rounded-lg"
@@ -309,9 +307,9 @@ const ProductCarousel = ({show}) => {
             >
               {imgGroup?.map((data) => {
                 return (
-                  <article 
+                  <article
                     key={data?.id}
-                    onClick={() => handleClickCarosuel(data?.id)}  
+                    onClick={() => handleClickCarosuel(data?.id)}
                   >
                     <figure className="relative w-full h-full overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
                       <img className="w-full h-fit" src={data?.img} alt="" />
@@ -337,7 +335,7 @@ const ProductCarousel = ({show}) => {
         </section>
 
       ) : (
-       <section className="w-full h-fit flex flex-col">
+        <section className="w-full h-fit flex flex-col">
           {/* 1 */}
           <article className="w-full widthInherit mx-auto">
             <Slider
@@ -347,9 +345,9 @@ const ProductCarousel = ({show}) => {
             >
               {imgGroup?.map((data) => {
                 return (
-                  <article 
+                  <article
                     key={data?.id}
-                    onClick={() => handleClickCarosuel(data?.id)} 
+                    onClick={() => handleClickCarosuel(data?.id)}
                   >
                     <figure className="relative w-full h-full border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
                       <img className="w-full h-fit" src={data?.img} alt="" />
@@ -444,7 +442,7 @@ const ProductCarousel = ({show}) => {
             </Slider>
           </article>
 
-         
+
         </section>
       )}
     </main>
