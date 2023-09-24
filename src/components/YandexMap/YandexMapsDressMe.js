@@ -119,7 +119,7 @@ function YandexMapsDressMe() {
 
   return (
     <div className="h-fit w-full flex justify-center overflow-hidden overflow-y-hidden">
-      <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden">
+      <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden ymapsName">
         {/* Laptop device for */}
         {screenSize.width > 768 && (
           <div className={`w-full bottom-[0px]  overflow-hidden  md:w-[769px] fixed md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
