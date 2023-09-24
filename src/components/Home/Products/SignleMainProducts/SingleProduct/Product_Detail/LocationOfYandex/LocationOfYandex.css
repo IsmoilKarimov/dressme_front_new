@@ -7,8 +7,35 @@
 
 }
 
-.productDetailsMaps .ymaps-2-1-79-gotoymaps__text {
-  content: "Marshurit";
+
+
+.productDetailsMaps .ymaps-2-1-79-controls__control {
+  inset: auto 10px 200px auto !important;
+}
+
+/* .productDetailsMaps .ymaps-2-1-79-float-button {
+  width: 40px !important;
+  height: 40px !important;
+ 
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 8px !important;
+}
+
+.productDetailsMaps .ymaps-2-1-79-float-button-icon {
+  width: 70% !important;
+} */
+
+
+.productDetailsMaps .ymaps-2-1-79-zoom {
+  height: 100px;
+
+}
+
+.productDetailsMaps .ymaps-2-1-79-map-copyrights-promo {
+  display: flex;
+  flex-direction: column;
 }
 
 /* .productDetailsMaps .ymaps-2-1-79-zoom  {
