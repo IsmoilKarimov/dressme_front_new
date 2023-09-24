@@ -6,7 +6,7 @@ import { CalendarIcons, CategoryUsersIcon, ChapterIcon, CircleWarningIcons, Deli
 import { summerSeason, autummSeason, winterSeason, HeartImg } from "../../../../../../assets";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { Modal, Popover, Radio} from "antd";
+import { Modal, Popover, Radio } from "antd";
 import AddCopyCheckedIcon from "./AddCopyCheckedIcon/AddCopyCheckedIcon";
 import LocationOfYandex from "./LocationOfYandex/LocationOfYandex";
 import TableSizesDropUp from "./MobileDropUp/TableSizesDropUp/TableSizesDropUp";
@@ -19,8 +19,8 @@ const ProductDetails = () => {
   const [tableSizes, setTableSizes] = useState(false)
   const [locations, setLocations] = useState(false)
 
-  const toggleTableSizes = useCallback(()=> setTableSizes(false), [])
-  const toggleLocations = useCallback(()=> setLocations(false), [])
+  const toggleTableSizes = useCallback(() => setTableSizes(false), [])
+  const toggleLocations = useCallback(() => setLocations(false), [])
 
   const slider = useRef(null);
   const [copyText, setCopyText] = useState('AA009842')
@@ -34,32 +34,32 @@ const ProductDetails = () => {
 
   // For DropUp
   useEffect(() => {
-    if ( tableSizes || locations ) {
+    if (tableSizes || locations) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [ tableSizes, locations ]);
+  }, [tableSizes, locations]);
 
   const [openTab, setOpenTab] = useState(1);
-  
+
   const [selectSize] = useState([
-    { id: 1, size: "S", sizeNumbers:'36-44' },
-    { id: 2, size: "M", sizeNumbers:'36-44' },
-    { id: 3, size: "L", sizeNumbers:'36-44' },
-    { id: 4, size: "XL", sizeNumbers:'36-44' },
-    { id: 5, size: "XXL", sizeNumbers:'36-44' },
-    { id: 6, size: "3XL", sizeNumbers:'36-44' },
-    { id: 7, size: "4XL", sizeNumbers:'23-28' },
-    { id: 6, size: "5XL", sizeNumbers:'36-44' },
-    { id: 7, size: "6XL", sizeNumbers:'23-28' },
+    { id: 1, size: "S", sizeNumbers: '36-44' },
+    { id: 2, size: "M", sizeNumbers: '36-44' },
+    { id: 3, size: "L", sizeNumbers: '36-44' },
+    { id: 4, size: "XL", sizeNumbers: '36-44' },
+    { id: 5, size: "XXL", sizeNumbers: '36-44' },
+    { id: 6, size: "3XL", sizeNumbers: '36-44' },
+    { id: 7, size: "4XL", sizeNumbers: '23-28' },
+    { id: 8, size: "5XL", sizeNumbers: '36-44' },
+    { id: 9, size: "6XL", sizeNumbers: '23-28' },
   ]);
   const [locationsList] = useState([
-    { id: 1, size: "S", location:'Bektemir' },
-    { id: 2, size: "M", location:'Mirzo Ulugbek' },
-    { id: 3, size: "L", location:'Yunusobod' },
-    { id: 4, size: "XL", location:'Chilonzor' },
-    { id: 5, size: "XXL", location:'Mirobod' },
+    { id: 1, size: "S", location: 'Bektemir' },
+    { id: 2, size: "M", location: 'Mirzo Ulugbek' },
+    { id: 3, size: "L", location: 'Yunusobod' },
+    { id: 4, size: "XL", location: 'Chilonzor' },
+    { id: 5, size: "XXL", location: 'Mirobod' },
   ]);
   const [imgGroup] = useState([
     {
@@ -109,7 +109,7 @@ const ProductDetails = () => {
     },
   ]);
   const SizeBtnList = [
-    { id: 1, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
+    { id: 1, size_in_numbers: "36-44", chest_gitrh: "23-25", waist: "5-12", hip_gitrh: "1-6" },
     // { id: 2, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
     // { id: 3, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
     // { id: 4, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
@@ -133,22 +133,22 @@ const ProductDetails = () => {
             key={value?.id}
             className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center"
           >
-              <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
-                Размер:
-                <span className="ml-auto">{value.size_in_numbers}</span>
-              </div>
-              <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
-                Обхват груди, <span className="text-[#a5a5a5] ml-1">в см</span>:
-                <span className="ml-auto">{value.waist}</span>
-              </div>
-              <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
-                Обхват талии, <span className="text-[#a5a5a5] ml-1">в см</span>:
-                <span className="ml-auto">{value.chest_gitrh}</span>
-              </div>
-              <div className="w-full flex items-center justify-between text-base font-AeonikProRegular">
-                Обхват бедер, <span className="text-[#a5a5a5] ml-1">в см</span>:
-                <span className="ml-auto">{value.hip_gitrh}</span>
-              </div>
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              Размер:
+              <span className="ml-auto">{value.size_in_numbers}</span>
+            </div>
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              Обхват груди, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">{value.waist}</span>
+            </div>
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
+              Обхват талии, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">{value.chest_gitrh}</span>
+            </div>
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular">
+              Обхват бедер, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">{value.hip_gitrh}</span>
+            </div>
           </article>
         );
       })}
@@ -161,7 +161,7 @@ const ProductDetails = () => {
 
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
-      
+
       <div className="tableSizes">
         <section
           onClick={() => setTableSizes(false)}
@@ -188,7 +188,7 @@ const ProductDetails = () => {
           <LocationDropUp onClick={toggleLocations} />
         </locations>
       </div>
-      
+
       {/* 1 */}
       <section className="w-full hidden md:block">
         <section className="h-fit flex items-center mb-4">
@@ -216,14 +216,14 @@ const ProductDetails = () => {
               <div className="flex items-center ml-[25px]">
                 <span className="mr-[6px]"><ProductArticleIcons /></span>
                 <span className="text-sm font-AeonikProRegular leading-4 tracking-[1%]">Артикль:</span>
-                <input 
-                  type="text" 
-                  readOnly 
-                  value={copyText} 
-                  onChange={(e) => setCopyText(e.target.value)} 
-                  className="text-sm bg-transparent w-[68px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]" 
+                <input
+                  type="text"
+                  readOnly
+                  value={copyText}
+                  onChange={(e) => setCopyText(e.target.value)}
+                  className="text-sm bg-transparent w-[68px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]"
                 />
-                <button 
+                <button
                   type="button"
                   onClick={handleCopyText}
                   className="cursor-pointer ml-[8px]">
@@ -231,14 +231,14 @@ const ProductDetails = () => {
                 </button>
               </div>
             </article>
-          </article>   
+          </article>
         </section>
         <section className="w-full mb-8">
           <p className="not-italic font-AeonikProMedium text-xl md:text-[22px] leading-7 text-TextTitle tracking-[1%]">
             Спортивная мужская кроссовка Nike RUN
           </p>
         </section>
-        
+
         {/* Desktop Product Details*/}
         <section className="h-fit hidden md:flex md:flex-col items-center mb-[9px]">
           <div className="w-full flex items-center mb-4">
@@ -289,12 +289,12 @@ const ProductDetails = () => {
               <article className="w-fit flex items-center">
                 <DeliveryIcons colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
-                Доставка:
+                  Доставка:
                 </div>
               </article>
               <article className="w-fit ml-2">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                Собственная доставка
+                  Собственная доставка
                 </p>
               </article>
             </div>
@@ -302,12 +302,12 @@ const ProductDetails = () => {
               <article className="w-fit flex items-center">
                 <SettingsIcon colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
-                Производитель:
+                  Производитель:
                 </div>
               </article>
               <article className="w-fit ml-2">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                Узбекистан
+                  Узбекистан
                 </p>
               </article>
             </div>
@@ -317,12 +317,12 @@ const ProductDetails = () => {
               <article className="w-fit flex items-center">
                 <CategoryUsersIcon colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
-                Возрастная категория:
+                  Возрастная категория:
                 </div>
               </article>
               <article className="w-fit ml-2">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                36-44
+                  36-44
                 </p>
               </article>
             </div>
@@ -330,12 +330,12 @@ const ProductDetails = () => {
               <article className="w-fit flex items-center">
                 <ChapterIcon colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
-                Раздел:
+                  Раздел:
                 </div>
               </article>
               <article className="w-fit ml-2">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                Спортивный (Тренировка)  
+                  Спортивный (Тренировка)
                 </p>
               </article>
             </div>
@@ -345,12 +345,12 @@ const ProductDetails = () => {
               <article className="w-fit flex items-center">
                 <QualityIcon colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
-                Качество:
+                  Качество:
                 </div>
               </article>
               <article className="w-fit ml-2">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                Оригинал
+                  Оригинал
                 </p>
               </article>
             </div>
@@ -358,18 +358,18 @@ const ProductDetails = () => {
               <article className="w-fit flex items-center">
                 <PaymeSystemIcons colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
-                Номер карты:
+                  Номер карты:
                 </div>
               </article>
               <article className="w-fit flex items-center ml-2">
-                <input 
-                    className="text-sm bg-transparent w-[138px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]" 
-                    value={copyCardNumber} 
-                    onChange={(e) => setCopyCardNumber(e.target.value)}
-                    readOnly 
-                    type="text" 
-                  />
-                <button 
+                <input
+                  className="text-sm bg-transparent w-[138px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]"
+                  value={copyCardNumber}
+                  onChange={(e) => setCopyCardNumber(e.target.value)}
+                  readOnly
+                  type="text"
+                />
+                <button
                   type="button"
                   onClick={handleCopyCardNumber}
                   className="cursor-pointer ml-[8px]">
@@ -380,11 +380,11 @@ const ProductDetails = () => {
           </div>
         </section>
       </section>
-      
+
       {/* 2 */}
-      <section className="w-full md:border-t md:border-y md:border-searchBgColor md:py-[25px] ">    
-         <article className="w-full block md:hidden">
-          <button 
+      <section className="w-full md:border-t md:border-y md:border-searchBgColor md:py-[25px] ">
+        <article className="w-full block md:hidden">
+          <button
             onClick={() => setTableSizes(true)}
             className="text-[13px] font-AeonikProMedium text-borderWinter border-b border-dashed border-borderWinter mb-5"
           >
@@ -404,17 +404,17 @@ const ProductDetails = () => {
             <span className="block md:hidden"><LocationColoursIcons colors={"#303030"} /></span>
             <p className="text-[#303030] md:text-[#757575] font-AeonikProRegular md:font-AeonikProMedium text-base md:text-sm ml-[3px] md:ml-2">Ташкент, Юнусобод</p>
           </div>
-          <button 
-            type="primary" 
+          <button
+            type="primary"
             onClick={() => setOpenLocationModal(true)}
             className="hidden md:block text-borderWinter font-AeonikProMedium">
-              В других локациях
+            В других локациях
           </button>
-          <button 
-            type="primary" 
+          <button
+            type="primary"
             onClick={() => setLocations(true)}
             className="block md:hidden text-borderWinter font-AeonikProMedium">
-              В других локациях
+            В других локациях
           </button>
           <Modal
             centered
@@ -432,7 +432,7 @@ const ProductDetails = () => {
                   width: '100%',
                 }}
                 onChange={onChange}
-                >
+              >
                 <div className="w-full flex flex-wrap items-center gap-y-2">
                   {locationsList.map(data => (
                     <div key={data.id} className="w-1/3">
@@ -463,48 +463,48 @@ const ProductDetails = () => {
                 678 заказов
               </p>
             </article>
-          </article>   
+          </article>
           <button className="w-10 h-10 flex md:hidden items-center justify-center rounded-xl active:scale-95 border border-searchBgColor bg-btnBgColor">
             <img src={HeartImg} alt="" className="w-5 h-5" />
           </button>
         </article>
-        
+
         {/* Images Slider */}
         <article className="w-full hidden md:flex items-center mb-[30px]">
           <button className="button mt-[-5px]" onClick={() => slider?.current?.slickPrev()}>
-            <GrFormPrevious size={30}/>
+            <GrFormPrevious size={30} />
           </button>
-            <Slider
-              ref={slider}
-              {...settings}
-              className="hidden md:flex md:w-[88%] h-[80px] items-center"
-            >
-              {imgGroup?.map(data => (
-                <div key={data.id} className="!w-[64px] h-[72px] rounded-lg cursor-pointer">
-                  <img src={data.img} alt="imgs" className="w-fit h-full rounded-lg" />
-                </div>
-              ))}
-            </Slider>
+          <Slider
+            ref={slider}
+            {...settings}
+            className="hidden md:flex md:w-[88%] h-[80px] items-center"
+          >
+            {imgGroup?.map(data => (
+              <div key={data.id} className="!w-[64px] h-[72px] rounded-lg cursor-pointer">
+                <img src={data.img} alt="imgs" className="w-fit h-full rounded-lg" />
+              </div>
+            ))}
+          </Slider>
           <button className="button mt-[-5px]" onClick={() => slider?.current?.slickNext()}>
-            <GrFormNext size={30}/>
+            <GrFormNext size={30} />
           </button>
         </article>
-        
+
         <article className="w-full hidden md:flex items-center mb-4 text-sm">
-          <button 
-            type="primary" 
+          <button
+            type="primary"
             onClick={() => setOpenSizeList(true)}
             className="not-italic mr-3 font-AeonikProRegular border-b border-dashed border-borderWinter md:font-AeonikProMedium text-borderWinter">
             Таблица размеров
           </button>
           <Modal
-             centered
-             open={openSizeList}
-             onOk={() => setOpenSizeList(false)}
-             onCancel={() => setOpenSizeList(false)}
-             width={1000}
-             footer={null}
-             className="w-full p-6"
+            centered
+            open={openSizeList}
+            onOk={() => setOpenSizeList(false)}
+            onCancel={() => setOpenSizeList(false)}
+            width={1000}
+            footer={null}
+            className="w-full p-6"
           >
             <ul className="w-full px-[25px] pb-[30px] pt-[60px]">
               <div className="flex items-center justify-between bg-[#F4F6FB] px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
@@ -544,7 +544,7 @@ const ProductDetails = () => {
             </ul>
           </Modal>
         </article>
-        
+
         <article className="w-full hidden md:flex items-center">
           <section className="flex flex-wrap items-center gap-x-3 gap-y-3">
             {selectSize.map((data) => {
@@ -555,12 +555,12 @@ const ProductDetails = () => {
                   content={contentSize}
                   className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
                 >
-                  
+
                   <p className={`font-AeonikProMedium text-sm uppercase text-center text-black`} >
                     {data?.size}
                   </p>
                   <span className="text-[10px] font-AeonikProRegular text-[#757575]">{data.sizeNumbers}</span>
-                  
+
                 </Popover>
               );
             })}
@@ -623,32 +623,32 @@ const ProductDetails = () => {
               </article>
             </div>
             <div className="w-full flex items-center mb-4">
-                <ProductArticleIcons />
-                <span className="text-base font-AeonikProRegular leading-4 tracking-[1%] ml-[6px]">Артикль:</span>
-                <input 
-                  type="text" 
-                  readOnly 
-                  value={copyText} 
-                  onChange={(e) => setCopyText(e.target.value)} 
-                  className="text-sm bg-transparent w-[68px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]" 
-                />
-                <button 
-                  type="button"
-                  onClick={handleCopyText}
-                  className="cursor-pointer ml-[8px]">
-                  <AddCopyCheckedIcon />
-                </button>
+              <ProductArticleIcons />
+              <span className="text-base font-AeonikProRegular leading-4 tracking-[1%] ml-[6px]">Артикль:</span>
+              <input
+                type="text"
+                readOnly
+                value={copyText}
+                onChange={(e) => setCopyText(e.target.value)}
+                className="text-sm bg-transparent w-[68px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]"
+              />
+              <button
+                type="button"
+                onClick={handleCopyText}
+                className="cursor-pointer ml-[8px]">
+                <AddCopyCheckedIcon />
+              </button>
             </div>
             <div className="w-full flex items-center mb-4">
               <article className="w-fit flex items-center">
                 <CategoryUsersIcon colors={"#000"} />
                 <div className="not-italic flex items-center font-AeonikProRegular text-base leading-4 text-black tracking-[1%] ml-[6px]">
-                Возрастная категория:
+                  Возрастная категория:
                 </div>
               </article>
               <article className="w-fit ml-[6px]">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-[#666] tracking-[1%]">
-                36-44
+                  36-44
                 </p>
               </article>
             </div>
@@ -656,12 +656,12 @@ const ProductDetails = () => {
               <article className="w-fit flex items-center">
                 <QualityIcon colors={"#000"} />
                 <div className="not-italic flex items-center font-AeonikProRegular text-base leading-4 text-black tracking-[1%] ml-[6px]">
-                Качество:
+                  Качество:
                 </div>
               </article>
               <article className="w-fit ml-[6px]">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-[#666] tracking-[1%]">
-                Оригинал
+                  Оригинал
                 </p>
               </article>
             </div>
@@ -669,12 +669,12 @@ const ProductDetails = () => {
               <article className="w-fit flex items-center">
                 <SettingsIcon colors={"#000"} />
                 <div className="not-italic flex items-center font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%] ml-[6px]">
-                Производитель:
+                  Производитель:
                 </div>
               </article>
               <article className="w-fit ml-[6px]">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-[#666] tracking-[1%]">
-                Узбекистан
+                  Узбекистан
                 </p>
               </article>
             </div>
@@ -682,12 +682,12 @@ const ProductDetails = () => {
               <article className="w-fit flex items-center">
                 <ChapterIcon colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-[6px]">
-                Раздел:
+                  Раздел:
                 </div>
               </article>
               <article className="w-fit ml-[6px]">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-[#666] tracking-[1%]">
-                Спортивный (Тренировка)  
+                  Спортивный (Тренировка)
                 </p>
               </article>
             </div>
@@ -695,18 +695,18 @@ const ProductDetails = () => {
               <article className="w-fit flex items-center">
                 <PaymeSystemIcons colors={"#000"} />
                 <div className="not-italic flex items-center font-AeonikProRegular text-base leading-4 text-black tracking-[1%] ml-[6px]">
-                Номер карты:
+                  Номер карты:
                 </div>
               </article>
               <article className="w-fit flex items-center ml-[6px]">
-                <input 
-                  className="text-sm bg-transparent w-[138px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]" 
-                  value={copyCardNumber} 
+                <input
+                  className="text-sm bg-transparent w-[138px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]"
+                  value={copyCardNumber}
                   onChange={(e) => setCopyCardNumber(e.target.value)}
-                  readOnly 
-                  type="text" 
+                  readOnly
+                  type="text"
                 />
-                <button 
+                <button
                   type="button"
                   onClick={handleCopyCardNumber}
                   className="cursor-pointer ml-[8px]">
@@ -716,7 +716,7 @@ const ProductDetails = () => {
             </div>
           </div>
         </article>
-        
+
         {/* Mobile Price */}
         <article className={`w-full h-fit mt-[34px] pb-6 md:pb-0 border-b md:border-none md:hidden`}>
           <article className="h-fit w-full flex items-center justify-between mb-2 gap-x-2">
@@ -743,7 +743,7 @@ const ProductDetails = () => {
           </article>
         </article>
       </section>
-      
+
       {/* 3 This Section For Desctop Version*/}
       <section className=" w-full hidden md:block md:pb-[35px] pt-[25px] md:border-b border-searchBgColor mb-12 md:mb-0">
         <article className="w-full flex items-center mb-[14px] md:mb-0">
@@ -779,7 +779,7 @@ const ProductDetails = () => {
             </p>
           </section>
         </article>
-        
+
         <article className="w-full flex items-center justify-between gap-x-3 md:gap-x-0 md:mt-6">
           <article className="w-full flex items-center">
             <address className="w-[65%] md:w-fit">
@@ -817,42 +817,39 @@ const ProductDetails = () => {
             e.preventDefault();
             setOpenTab(1);
           }}
-          className={`w-[28%] md:w-1/3 md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
-            openTab === 1
+          className={`w-[28%] md:w-1/3 md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${openTab === 1
               ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
               : ""
-          } `}
+            } `}
         >
           <p>Локация</p>
         </button>
-        <button 
+        <button
           onClick={e => {
             e.preventDefault();
             setOpenTab(2);
           }}
-          className={`w-[44%] md:w-1/3 md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
-            openTab === 2
+          className={`w-[44%] md:w-1/3 md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${openTab === 2
               ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
               : ""
-          } `}
+            } `}
         >
           <p>Описания товара </p>
         </button>
-        <button 
+        <button
           onClick={e => {
             e.preventDefault();
             setOpenTab(3);
           }}
-          className={`w-[28%] md:w-1/3 md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
-            openTab === 3
+          className={`w-[28%] md:w-1/3 md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${openTab === 3
               ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-aut rounded-lg"
               : ""
-          } `}
+            } `}
         >
           <p>Состав</p>
         </button>
       </article>
-      
+
       {/* 5 */}
       <div className="w-full">
         <div className={openTab === 1 ? "block" : "hidden"}>

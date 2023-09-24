@@ -1,7 +1,7 @@
 import React from 'react'
 import { MenuCloseIcons } from '../../../../../../../../assets/icons'
 
-export default function TableSizesDropUp({ onClick }) {
+function TableSizesDropUp({ onClick }) {
 
     const tableSizes = {
         sizes: [
@@ -159,3 +159,4 @@ export default function TableSizesDropUp({ onClick }) {
         </main>
     )
 }
+export default React.memo(TableSizesDropUp)
