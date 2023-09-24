@@ -10,20 +10,17 @@ import "./LocationOfYandex.css";
 import { markerIcons } from "../../../../../../../assets";
 
 
-
-export default function LocationOfYandex() {
+function LocationOfYandex() {
   //------------------------------------------------------------------------------------------------
   const mapState = {
     center: [41.312922, 69.249465],
     zoom: 14,
   };
-  const cordinateOfMarket = [41.312922, 69.249465]
   //------------------------------------------------------------------------------------------------
 
   const handleOpenYandex = () => {
-    window.open(`https://yandex.uz/maps/10335/tashkent/?ll=${cordinateOfMarket[1]}%2C${cordinateOfMarket[0]}&mode=search&sll=${cordinateOfMarket[1]}%2C${cordinateOfMarket[0]}&text=${cordinateOfMarket[0]}%2C${cordinateOfMarket[1]}&z=15`, "_blank")
+    window.open(`https://yandex.uz/maps/10335/tashkent/?ll=${mapState?.center[1]}%2C${mapState?.center[0]}&mode=search&sll=${mapState?.center[1]}%2C${mapState?.center[0]}&text=${mapState?.center[0]}%2C${mapState?.center[1]}&z=15`, "_blank")
 
-    // window.location.replace(`https://yandex.uz/maps/10335/tashkent/?ll=${cordinateOfMarket[1]}%2C${cordinateOfMarket[0]}&mode=search&sll=${cordinateOfMarket[1]}%2C${cordinateOfMarket[0]}&text=${cordinateOfMarket[0]}%2C${cordinateOfMarket[1]}&z=15`);
   }
 
   useEffect(() => {
@@ -50,7 +47,7 @@ export default function LocationOfYandex() {
               className={"placemarkCLuster cursor-pointer"}
               // key={index}
               // onClick={() => handlePlaceMark(data?.marketId, data?.cordinate)}
-              geometry={cordinateOfMarket}
+              geometry={mapState?.center}
               options={{
                 iconLayout: "default#image",
                 iconImageHref: markerIcons,
@@ -88,3 +85,4 @@ export default function LocationOfYandex() {
     </div>
   );
 }
+export default React.memo(LocationOfYandex);
