@@ -199,20 +199,16 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
             </figure>
             <div className="w-full md:h-[90px] mt-2 md:mt-0 h-fit flex flex-col md:flex-row items-center border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               {/* 1 */}
-              <action className="w-full md:w-[45%] flex h-[80px] md:h-fit items-center md:ml-[40px]">
+              <action className="w-full md:w-[40%] flex h-[80px] md:h-fit items-center md:ml-[40px]">
                 <figure className="w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
                   <img src={nike} alt="" />
                 </figure>
                 <div className="flex flex-col ml-8">
                   <p className="text-xl font-AeonikProMedium mb-3">{name}</p>
                   <div className="">
-                    <div className="flex items-center ">
-                      <div className="flex items-center  mr-[6px]">
+                    <div className="flex items-center">
+                      <div className="flex items-center mr-[6px]">
                         <StarIcons />
-                        <span className="hidden md:flex"><StarIcons />
-                        <StarIcons />
-                        <StarIcons />
-                        <StarIcons /></span>
                       </div>
                       <div className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 md:ml-1 flex items-center text-sm">
                         <p className="font-AeonikProMedium text-black mr-1">
@@ -230,7 +226,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
                 </div>
               </action>
               {/* 2 */}
-              <action className="w-full md:w-[30%] flex items-center  mt-6 md:mt-0">
+              <action className="w-full md:w-[35%] flex items-center  mt-6 md:mt-0">
                 <NavLink
                   to="/delivery-points"
                   className="flex items-center justify-center shrink-0 w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer"
@@ -244,7 +240,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
                     e.preventDefault();
                     setOpenTab2(!openTab2);
                   }}
-                  className="flex flex-col ml-3 md:w-full w-[70%]"
+                  className="flex flex-col ml-3 w-[70%] md:w-full"
                 >
                   <p className="text-sm font-AeonikProRegular text-borderWinter">
                     60 Amir Temur Avenue, Mirzo Ulugbek district Tashkent 100017
