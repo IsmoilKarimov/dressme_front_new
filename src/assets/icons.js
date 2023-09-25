@@ -395,7 +395,7 @@ const LocationIcons = () => {
 const LocationColoursIcons = ({ colors }) => {
   return (
     <svg
-      className="locationIcon"
+      className="locationIconChangeColor"
       width="20"
       height="20"
       viewBox="0 0 20 20"
@@ -404,11 +404,13 @@ const LocationColoursIcons = ({ colors }) => {
     >
       <path
         d="M10 11.1917C11.4359 11.1917 12.6 10.0276 12.6 8.5917C12.6 7.15576 11.4359 5.9917 10 5.9917C8.56406 5.9917 7.4 7.15576 7.4 8.5917C7.4 10.0276 8.56406 11.1917 10 11.1917Z"
+        className="locationIconChangeColor"
         stroke={colors}
         strokeWidth="1.5"
       />
       <path
         d="M3.01667 7.07484C4.65833 -0.141827 15.35 -0.133494 16.9833 7.08317C17.9417 11.3165 15.3083 14.8998 13 17.1165C11.325 18.7332 8.675 18.7332 6.99167 17.1165C4.69167 14.8998 2.05833 11.3082 3.01667 7.07484Z"
+        className="locationIconChangeColor"
         stroke={colors}
         strokeWidth="1.5"
       />

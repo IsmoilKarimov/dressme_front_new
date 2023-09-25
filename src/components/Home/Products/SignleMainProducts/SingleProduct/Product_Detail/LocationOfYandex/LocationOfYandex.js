@@ -30,6 +30,11 @@ function LocationOfYandex() {
   }, []);
   return (
     <div className={`w-full `}>
+      <div className={`w-full  mb-4 mt-1`}>
+        <span className="text-[#303030] text-xl not-italic leading-5	 font-AeonikProMedium tracking-[1px]">Адрес:</span>
+        <span className="text-[#303030] text-xl not-italic leading-5	 font-AeonikProRegular tracking-[1px]"> Ташкент, Юнусобод</span>
+
+      </div>
       <div className={"mapRoot"}>
         <YMaps
           query={{
