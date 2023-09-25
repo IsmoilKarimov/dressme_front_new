@@ -392,6 +392,9 @@ table tr th:nth-child(1) {
   border-radius: 8px;
 }
 
+.locationIconChangeColor:hover {
+  color: #007dca;
+}
 /* ----------------------------- */
 
 
