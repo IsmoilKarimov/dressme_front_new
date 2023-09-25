@@ -36,17 +36,22 @@ function LocationOfYandex() {
   }, []);
   return (
     <div className={`w-full `}>
-      <div className={`w-full flex items-center mb-4 mt-1`}>
-        <div className="flex items-center gap-x-[2px]">
-          <span className="text-[#303030] not-italic font-AeonikProRegular text-base tracking-[1px]">Адрес:</span>
-          <span className="text-[#303030] not-italic font-AeonikProRegular text-base tracking-[1px]"> {copyText}</span>
+      <div className={`w-full flex items-center mb-5 mt-6`}>
+        <div className="flex flex-col xs:flex-row xs:items-center gap-x-1 md:gap-x-[6px] ">
+          <span className="text-[#000] not-italic font-AeonikProMedium text-[14px] xs:text-base ">Адрес:</span>
+          <div className="flex items-center">
+            <span className="text-[#000] not-italic font-AeonikProRegular text-[14px] xs:text-base ">
+              {copyText}
+            </span>
+            <button
+              type="button"
+              onClick={handleCopyText}
+              className="cursor-pointer ml-[8px]">
+              <AddCopyCheckedIcon />
+            </button>
+          </div>
         </div>
-        <button
-          type="button"
-          onClick={handleCopyText}
-          className="cursor-pointer ml-[8px]">
-          <AddCopyCheckedIcon />
-        </button>
+
       </div>
       <div className={"mapRoot"}>
         <YMaps

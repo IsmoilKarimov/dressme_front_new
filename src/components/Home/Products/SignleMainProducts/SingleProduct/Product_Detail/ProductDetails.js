@@ -818,8 +818,8 @@ const ProductDetails = () => {
             setOpenTab(1);
           }}
           className={`w-[28%] md:w-1/3 md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${openTab === 1
-              ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
-              : ""
+            ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
+            : ""
             } `}
         >
           <p>Локация</p>
@@ -830,8 +830,8 @@ const ProductDetails = () => {
             setOpenTab(2);
           }}
           className={`w-[44%] md:w-1/3 md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${openTab === 2
-              ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
-              : ""
+            ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
+            : ""
             } `}
         >
           <p>Описания товара </p>
@@ -842,8 +842,8 @@ const ProductDetails = () => {
             setOpenTab(3);
           }}
           className={`w-[28%] md:w-1/3 md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${openTab === 3
-              ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-aut rounded-lg"
-              : ""
+            ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-aut rounded-lg"
+            : ""
             } `}
         >
           <p>Состав</p>
@@ -853,7 +853,7 @@ const ProductDetails = () => {
       {/* 5 */}
       <div className="w-full">
         <div className={openTab === 1 ? "block" : "hidden"}>
-          <action className="mt-5 flex">
+          <action className=" flex">
             <LocationOfYandex />
           </action>
         </div>
