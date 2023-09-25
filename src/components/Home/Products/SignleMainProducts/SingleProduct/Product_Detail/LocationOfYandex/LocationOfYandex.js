@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   YMaps,
   Map,
@@ -8,12 +8,13 @@ import {
 } from "react-yandex-maps";
 import "./LocationOfYandex.css";
 import { markerIcons } from "../../../../../../../assets";
+import AddCopyCheckedIcon from "../AddCopyCheckedIcon/AddCopyCheckedIcon";
 
 
 function LocationOfYandex() {
   //------------------------------------------------------------------------------------------------
   const mapState = {
-    center: [41.312922, 69.249465],
+    center: [41.327228, 69.249023],
     zoom: 14,
   };
   //------------------------------------------------------------------------------------------------
@@ -21,6 +22,11 @@ function LocationOfYandex() {
   const handleOpenYandex = () => {
     window.open(`https://yandex.uz/maps/10335/tashkent/?ll=${mapState?.center[1]}%2C${mapState?.center[0]}&mode=search&sll=${mapState?.center[1]}%2C${mapState?.center[0]}&text=${mapState?.center[0]}%2C${mapState?.center[1]}&z=15`, "_blank")
 
+  }
+  const [copyText, setCopyText] = useState('Ташкент, улица Абдуллы Кадыри, 23, ')
+
+  const handleCopyText = () => {
+    navigator.clipboard.writeText(copyText)
   }
 
   useEffect(() => {
@@ -30,10 +36,17 @@ function LocationOfYandex() {
   }, []);
   return (
     <div className={`w-full `}>
-      <div className={`w-full  mb-4 mt-1`}>
-        <span className="text-[#303030] text-xl not-italic leading-5	 font-AeonikProMedium tracking-[1px]">Адрес:</span>
-        <span className="text-[#303030] text-xl not-italic leading-5	 font-AeonikProRegular tracking-[1px]"> Ташкент, Юнусобод</span>
-
+      <div className={`w-full flex items-center mb-4 mt-1`}>
+        <div className="flex items-center gap-x-[2px]">
+          <span className="text-[#303030] not-italic font-AeonikProRegular text-base tracking-[1px]">Адрес:</span>
+          <span className="text-[#303030] not-italic font-AeonikProRegular text-base tracking-[1px]"> {copyText}</span>
+        </div>
+        <button
+          type="button"
+          onClick={handleCopyText}
+          className="cursor-pointer ml-[8px]">
+          <AddCopyCheckedIcon />
+        </button>
       </div>
       <div className={"mapRoot"}>
         <YMaps
