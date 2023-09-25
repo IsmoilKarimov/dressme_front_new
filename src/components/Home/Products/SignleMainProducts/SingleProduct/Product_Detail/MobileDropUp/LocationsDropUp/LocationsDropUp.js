@@ -1,7 +1,7 @@
 import React from 'react'
 import { MenuCloseIcons, SearchIcons } from '../../../../../../../../assets/icons'
 
-export default function LocationDropUp({onClick}) {
+function LocationDropUp({ onClick }) {
 
     const LocationsList = [
         { id: 1, region: "Yunusobod" },
@@ -14,45 +14,46 @@ export default function LocationDropUp({onClick}) {
         { id: 8, region: "Mirzo Ulugbek" },
         { id: 9, region: "Mirzo Ulugbek" },
         { id: 10, region: "Mirzo Ulugbek" },
-        ];
+    ];
 
-  return (
-    <main>
-        <div className="max-w-[440px] w-[100%] mx-auto bg-white shadow-navMenuShadov  overflow-hidden h-fit rounded-t-[12px]">
-            <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between px-4 mb-6">
-                <p className="text-xl font-AeonikProMedium">Локации</p>
-                <button 
-                    onClick={onClick}
-                >
-                    <MenuCloseIcons colors={"#000"} />
-                </button>
-            </section>
-            <section className="w-full h-[380px] px-4 flex flex-col items-center">
-                <action className="w-full h-fit flex items-center justify-center flex-wrap gap-x-7 mb-[28px]">
-                    <form className='w-full flex flex-col items-center'>
-                        {/* <div className='w-full h-[34px] flex items-center justify-between rounded-lg border border-borderColor mb-[26px] text-[11px] px-3'>
+    return (
+        <main>
+            <div className="max-w-[440px] w-[100%] mx-auto bg-white shadow-navMenuShadov  overflow-hidden h-fit rounded-t-[12px]">
+                <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between px-4 mb-6">
+                    <p className="text-xl font-AeonikProMedium">Локации</p>
+                    <button
+                        onClick={onClick}
+                    >
+                        <MenuCloseIcons colors={"#000"} />
+                    </button>
+                </section>
+                <section className="w-full h-[380px] px-4 flex flex-col items-center">
+                    <action className="w-full h-fit flex items-center justify-center flex-wrap gap-x-7 mb-[28px]">
+                        <form className='w-full flex flex-col items-center'>
+                            {/* <div className='w-full h-[34px] flex items-center justify-between rounded-lg border border-borderColor mb-[26px] text-[11px] px-3'>
                             <input type="text" name='clothingTypes' placeholder='Искать раздел' className='w-full pr-3 outline-none' />
                             <SearchIcons />
                         </div> */}
-                        <div className='w-full h-[290px] overflow-auto VerticelScroll'>
-                            {LocationsList.map((data) => {
-                                return (
-                                <div key={data.id} className='w-full  flex items-center justify-start border-b border-searchBgColor text-[#303030] pb-[10px] mb-4 text-base font-AeonikProRegular'>
-                                    {data.region}
-                                </div>
-                                );
-                            })}
-                        </div>
-                    </form>
-                </action>
-                <action className="w-full flex items-center justify-between gap-x-3 mb-10">
-                <button
-                    onClick={onClick}
-                    className="w-[45%] h-[38px] text-base font-AeonikProMedium bg-white text-borderWinter border border-borderWinter rounded-md active:scale-95">Закрыт</button>
-                <button className="w-[55%] h-[38px] text-base font-AeonikProMedium bg-borderWinter text-white border border-borderWinter rounded-md active:scale-95">Готово</button>
-                </action>
-            </section>
-        </div>
-    </main>
-  )
+                            <div className='w-full h-[290px] overflow-auto VerticelScroll'>
+                                {LocationsList.map((data) => {
+                                    return (
+                                        <div key={data.id} className='w-full  flex items-center justify-start border-b border-searchBgColor text-[#303030] pb-[10px] mb-4 text-base font-AeonikProRegular'>
+                                            {data.region}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </form>
+                    </action>
+                    <action className="w-full flex items-center justify-between gap-x-3 mb-10">
+                        <button
+                            onClick={onClick}
+                            className="w-[45%] h-[38px] text-base font-AeonikProMedium bg-white text-borderWinter border border-borderWinter rounded-md active:scale-95">Закрыт</button>
+                        <button className="w-[55%] h-[38px] text-base font-AeonikProMedium bg-borderWinter text-white border border-borderWinter rounded-md active:scale-95">Готово</button>
+                    </action>
+                </section>
+            </div>
+        </main>
+    )
 }
+export default React.memo(LocationDropUp)

@@ -54,6 +54,9 @@
   inset: auto 10px 200px auto !important;
 }
 
+.mapRoot .ymaps-2-1-79-map-copyrights-promo {
+  display: flex;
+}
 
 /* .mapRoot .ymaps-2-1-79-zoom  {
   height: 75px !important;
