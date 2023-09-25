@@ -59,13 +59,13 @@ function LocationOfYandex() {
               options={{
                 float: "right",
                 position: { bottom: 170, right: 10, },
-                // size: "small",
+                size: "small",
               }}
             />{" "}
             <GeolocationControl
               options={{
                 float: "right",
-                position: { bottom: 80, right: 10 },
+                position: { bottom: 120, right: 10 },
                 // size: "small",
               }}
             />
