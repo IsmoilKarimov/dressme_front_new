@@ -13,7 +13,7 @@ const ShoppingStoreOfficial = () => {
 
   const [openTab, setOpenTab] = useState(false)
   const [openTab2, setOpenTab2] = useState(false)
-  
+
   // const activeBtn = (eId) => {
   //   setOpenTab(current => {
   //     return current.map(items => {
@@ -40,30 +40,30 @@ const ShoppingStoreOfficial = () => {
       <section className="w-full border-searchBgColor ">
         <ShoppingStoreOfficialTop openTab={openTab} setOpenTab={setOpenTab} openTab2={openTab2} setOpenTab2={setOpenTab2} name={NewId} />
       </section>
-      <section className="w-full flex items-center justify-center">     
-          <div className="w-full flex items-center justify-center">
-            {/* Products Section */}
-            <article className={`${openTab || openTab2 ? "hidden" : "block"} w-full`}>
-              <ShoppingStoreCategory />
-            </article>
-            {/* Comment Section For Shopping Page */}
-            <action className={`${openTab ? "block" : "hidden"} w-full `}>
-              <ProductComment />
-            </action>
-            {/* Map Section */}
-            <action className={`${openTab2? "block" : "hidden"} w-full text-3xl`}>
-              {/* <button
+      <section className="w-full flex items-center justify-center">
+        <div className="w-full flex items-center justify-center">
+          {/* Products Section */}
+          <article className={`${openTab || openTab2 ? "hidden" : "block"} w-full`}>
+            <ShoppingStoreCategory />
+          </article>
+          {/* Comment Section For Shopping Page */}
+          <action className={`${openTab ? "block" : "hidden"} w-full `}>
+            <ProductComment />
+          </action>
+          {/* Map Section */}
+          <action className={`${openTab2 ? "block" : "hidden"} w-full text-3xl px-4`}>
+            {/* <button
                 onClick={() => {setVisibleCommnets(4)} }
                 className={`flex items-center cursor-pointer justify-center border border-borderColor2 rounded-lg mr-5`}
               >
                 <GoBackIcon  />
               </button> */}
-              <LocationOfYandex />
-            </action>
-          </div>
-      </section>      
+            <LocationOfYandex />
+          </action>
+        </div>
+      </section>
     </main>
   );
-};  
+};
 
 export default ShoppingStoreOfficial;
