@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import "./Store.css"
 import { nike } from "../../../../../assets";
 import {
   ArrowTopIcons,
@@ -248,26 +249,26 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
                 </button>
               </action>
               {/* 3 */}
-              <action className="w-full md:w-[25%] flex items-center justify-end md:mr-5  mt-6 md:mt-0">
+              <action className="w-full md:w-[25%] flex items-center md:justify-end md:mr-5  mt-6 md:mt-0">
                 <div className="md:hidden flex w-fit">
                   <div className="w-fit h-fit flex items-center justify-center gap-y-1 cursor-pointer">
                     <NavLink
                       to="/delivery-points"
-                      className="flex items-center justify-center w-12 h-12 rounded-lg border border-searchBgColor cursor-pointer"
+                      className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer"
                     >
                       <span>
                         <LocationColoursIcons colors={"#007DCA"} />
                       </span>
                     </NavLink>
                     <p
-                      className={`${dressInfo?.TextColorSeason} ml-3 text-base not-italic font-AeonikProMedium`}
+                      className={`text-borderWinter border-b border-dashed border-borderWinter ml-3 text-base not-italic font-AeonikProMedium`}
                     >
                       {" "}
                       Все локации
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center">
+                <div className="flex items-center ml-auto">
                   <button className="flex flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1">
                     <ManGenIcons />
                   </button>
@@ -275,13 +276,18 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
                     <WomanGenIcons />
                   </button>
                   <div className="flex items-center justify-end">
-                    <button 
+                    <div 
                        onClick={e => {
                         e.preventDefault();
                         setOpenTab(!openTab);
                       }}
-                      className="w-[42%] min-w-min text-sm font-AeonikProRegular text-borderWinter ml-auto">Посмотреть отзывы</button>
-                    <button className="hidden md:flex items-center justify-center border border-searchBgColor w-[48px] h-[48px] rounded-xl ml-[10px] flex-shrink-0">
+                      className="w-[42%] min-w-min hidden md:block text-sm font-AeonikProRegular text-borderWinter ml-auto">Посмотреть отзывы</div>
+                    <button
+                      onClick={e => {
+                       e.preventDefault();
+                       setOpenTab(!openTab);
+                     }}
+                      className="flex items-center justify-center border border-searchBgColor w-[48px] h-[48px] rounded-xl ml-[24px] md:ml-[10px] flex-shrink-0">
                       <CommentStarIcon colors={"#007DCA"} />
                     </button>
                   </div>
@@ -293,7 +299,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
             <div className="w-fit flex gap-x-7 items-center">
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons colors={"#303030"} />
+                  <LocationColoursIcons className="locationIconChangeColor" colors={"#303030"} />
                 </p>
                 <p
                   className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
@@ -303,7 +309,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
               </NavLink>
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons colors={"#303030"}/>
+                  <LocationColoursIcons  className="locationIconChangeColor" colors={"#303030"}/>
                 </p>
                 <p
                   className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
@@ -313,7 +319,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
               </NavLink>
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons
+                  <LocationColoursIcons  className="locationIconChangeColor"
                     colors={"#303030"} 
                   />
                 </p>
@@ -325,7 +331,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
               </NavLink>
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons colors={"#303030"} />
+                  <LocationColoursIcons  className="locationIconChangeColor" colors={"#303030"} />
                 </p>
                 <p
                   className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
@@ -335,7 +341,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
               </NavLink>
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons colors={"#303030"} />
+                  <LocationColoursIcons  className="locationIconChangeColor" colors={"#303030"} />
                 </p>
                 <p
                   className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
