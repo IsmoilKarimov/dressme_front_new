@@ -88,7 +88,7 @@ export default function ForgotPasswordSeller() {
         }
     }
     return (
-        <div className=" py-8 w-full min-h-[calc(100vh-180px)] flex items-center justify-center ss:px-4 md:px-0">
+        <div className="w-full min-h-[calc(100vh-180px)] flex flex-col items-center justify-center ss:px-4 md:px-0 ">
             <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -103,7 +103,7 @@ export default function ForgotPasswordSeller() {
                 theme="colored"
             />
             {/* -----------------------Email Verify Modal------------------- */}
-            <div className="w-full md:w-1/2 h-fit ">
+            {state?.openModalEmailMessage && <div className="w-full md:w-1/2 h-fit ">
                 <div
                     onClick={() => {
                         setState({ ...state, openModalEmailMessage: false });
@@ -128,9 +128,8 @@ export default function ForgotPasswordSeller() {
 
 
                     </div>}
-
-            </div>
-            <div className="max-w-[440px] w-[100%] h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
+            </div>}
+            <div className="max-w-[440px]  w-[100%] h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
                 <div className=" w-full mt-1 mb-7 flex flex-col justify-center">
                     <span className="not-italic font-AeonikProMedium text-xl ss:text-start md:text-center leading-5   tracking-[0,16px] text-black">
                         Забыли пароль?

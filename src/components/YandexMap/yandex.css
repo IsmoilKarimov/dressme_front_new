@@ -238,23 +238,23 @@ body {
 }
 
 @media screen and (max-height: 930px) {
-  .ymaps-2-1-79-controls__control {
+  .ymapsName .ymaps-2-1-79-controls__control {
     inset: auto 10px 380px auto !important;
   }
 }
 
 @media (max-height: 750px) {
-  .ymaps-2-1-79-controls__control {
+  .ymapsName .ymaps-2-1-79-controls__control {
     inset: auto 10px 310px auto !important;
   }
 }
 
 @media (max-height: 600px) {
-  .ymaps-2-1-79-controls__control {
+  .ymapsName .ymaps-2-1-79-controls__control {
     inset: auto 10px 230px auto !important;
   }
 
-  .ymaps-2-1-79-_hidden-text {
+  .ymapsName .ymaps-2-1-79-_hidden-text {
     display: none !important;
   }
 }
