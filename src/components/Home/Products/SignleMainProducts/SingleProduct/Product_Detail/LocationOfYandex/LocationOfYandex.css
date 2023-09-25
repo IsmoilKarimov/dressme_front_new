@@ -131,8 +131,9 @@
   -webkit-filter: grayscale(1) brightness(90%);
 }
 
+
 .mapRoot .ymaps-2-1-79-map-copyrights-promo {
-  display: none;
+  display: flex;
 }
 
 @media screen and (max-height: 930px) {
