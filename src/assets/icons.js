@@ -395,6 +395,7 @@ const LocationIcons = () => {
 const LocationColoursIcons = ({ colors }) => {
   return (
     <svg
+      className="locationIcon"
       width="20"
       height="20"
       viewBox="0 0 20 20"

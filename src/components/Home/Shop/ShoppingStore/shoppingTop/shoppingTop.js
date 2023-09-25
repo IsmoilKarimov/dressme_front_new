@@ -151,7 +151,6 @@ const ShoppingTop = () => {
             })}
           </section>
         </article>
-
         <article className="w-[fit] flex items-center ">
           <article className="flex items-center w-fit mr-4">
             <p className="not-italic font-normal text-sm leading-4 text-setTexOpacity tractking-[1%]">
