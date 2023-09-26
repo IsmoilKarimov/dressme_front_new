@@ -9,15 +9,21 @@ import {
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import { useNavigate } from "react-router-dom";
 
 function YandexLocationMarketOpen({ cordinateMarkets }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
-  const clickCordinate = () => {
-    window.open(`https://yandex.uz/maps/10335/tashkent/?ll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&mode=search&sll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&text=${cordinateMarkets[0]}%2C${cordinateMarkets[1]}&z=15`, "_blank")
-    // window.location.replace(`https://yandex.uz/maps/10335/tashkent/?ll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&mode=search&sll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&text=${cordinateMarkets[0]}%2C${cordinateMarkets[1]}&z=15`);
+  // const clickCordinate = () => {
+  //   window.open(`https://yandex.uz/maps/10335/tashkent/?ll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&mode=search&sll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&text=${cordinateMarkets[0]}%2C${cordinateMarkets[1]}&z=15`, "_blank")
+  //   // window.location.replace(`https://yandex.uz/maps/10335/tashkent/?ll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&mode=search&sll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&text=${cordinateMarkets[0]}%2C${cordinateMarkets[1]}&z=15`);
 
-  }
+  // }
+  const navigate = useNavigate();
+  const openShoppingChild = () => {
+    // const gotoOfficial = (id) => {
+    navigate(`/shopping_store/:${123456}`);
+  };
 
   const NextArrow = (props) => {
     const { onClick } = props;
@@ -170,7 +176,7 @@ function YandexLocationMarketOpen({ cordinateMarkets }) {
           </div>
           <div className="w-full gap-x-2 flex items-center ">
 
-            <button
+            {/* <button
               onClick={clickCordinate}
               className={` w-full h-[48px]  bg-white border border-fullBlue active:scale-95  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
             >
@@ -178,8 +184,9 @@ function YandexLocationMarketOpen({ cordinateMarkets }) {
                 Открыть на карте
               </span>
 
-            </button>
+            </button> */}
             <button
+              onClick={openShoppingChild}
               className={` w-full h-[48px] bg-fullBlue active:scale-95  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
             >
               <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center   capitalize text-white">
