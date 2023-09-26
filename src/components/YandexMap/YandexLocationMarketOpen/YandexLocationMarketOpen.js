@@ -15,11 +15,7 @@ import AddCopyCheckedIcon from "../../Home/Products/SignleMainProducts/SinglePro
 function YandexLocationMarketOpen({ cordinateMarkets }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
-  // const clickCordinate = () => {
-  //   window.open(`https://yandex.uz/maps/10335/tashkent/?ll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&mode=search&sll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&text=${cordinateMarkets[0]}%2C${cordinateMarkets[1]}&z=15`, "_blank")
-  //   // window.location.replace(`https://yandex.uz/maps/10335/tashkent/?ll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&mode=search&sll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&text=${cordinateMarkets[0]}%2C${cordinateMarkets[1]}&z=15`);
 
-  // }
   const navigate = useNavigate();
   const openShoppingChild = () => {
     // const gotoOfficial = (id) => {
@@ -58,6 +54,7 @@ function YandexLocationMarketOpen({ cordinateMarkets }) {
       </div>
     );
   };
+
   const settings = {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
