@@ -41,7 +41,7 @@ const ShoppingStoreOfficial = () => {
         <ShoppingStoreOfficialTop openTab={openTab} setOpenTab={setOpenTab} openTab2={openTab2} setOpenTab2={setOpenTab2} name={NewId} />
       </section>
       <section className="w-full flex items-center justify-center">
-        <div className="w-full flex items-center justify-center">
+        <div className="w-full flex flex-col items-center justify-center">
           {/* Products Section */}
           <article className={`${openTab || openTab2 ? "hidden" : "block"} w-full`}>
             <ShoppingStoreCategory />

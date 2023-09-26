@@ -280,7 +280,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, openTab2, setOpen
                         e.preventDefault();
                         setOpenTab(!openTab);
                       }}
-                      className="w-[42%] min-w-min hidden md:block text-sm font-AeonikProRegular text-borderWinter ml-auto">Посмотреть отзывы</div>
+                      className="w-[42%] min-w-min hidden md:block text-sm font-AeonikProRegular text-borderWinter ml-auto cursor-pointer">Посмотреть отзывы</div>
                     <button
                       onClick={e => {
                         e.preventDefault();
@@ -298,7 +298,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, openTab2, setOpen
             <div className="w-fit flex gap-x-7 items-center">
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons className="locationIconChangeColor" colors={"#303030"} />
+                  <LocationColoursIcons colors={"#303030"} />
                 </p>
                 <p
                   className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
@@ -308,7 +308,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, openTab2, setOpen
               </NavLink>
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons className="locationIconChangeColor" colors={"#303030"} />
+                  <LocationColoursIcons colors={"#303030"} />
                 </p>
                 <p
                   className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
@@ -318,9 +318,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, openTab2, setOpen
               </NavLink>
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons className="locationIconChangeColor"
-                    colors={"#303030"}
-                  />
+                  <LocationColoursIcons colors={"#303030"} />
                 </p>
                 <p
                   className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
@@ -330,7 +328,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, openTab2, setOpen
               </NavLink>
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons className="locationIconChangeColor" colors={"#303030"} />
+                  <LocationColoursIcons colors={"#303030"} />
                 </p>
                 <p
                   className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
@@ -340,7 +338,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, openTab2, setOpen
               </NavLink>
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons className="locationIconChangeColor" colors={"#303030"} />
+                  <LocationColoursIcons colors={"#303030"} />
                 </p>
                 <p
                   className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
