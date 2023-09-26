@@ -18,10 +18,10 @@ import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { Modal, Popover, Radio } from "antd";
 import ProductComment from "../../../Products/SignleMainProducts/SingleProduct/ProductComment/ProductComment";
 
-const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenTab2 }) => {
+const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, openTab2, setOpenTab2 }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openLocationModal, setOpenLocationModal] = useState(false);
-  
+
 
   const handleFilter = () => {
     setDressInfo({
@@ -62,11 +62,11 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
     { id: 13, name: "Ремень" },
   ];
   const [locationsList] = useState([
-    { id: 1, location:'Bektemir' },
-    { id: 2, location:'Mirzo Ulugbek' },
-    { id: 3, location:'Yunusobod' },
-    { id: 4, location:'Chilonzor' },
-    { id: 5, location:'Mirobod' },
+    { id: 1, location: 'Bektemir' },
+    { id: 2, location: 'Mirzo Ulugbek' },
+    { id: 3, location: 'Yunusobod' },
+    { id: 4, location: 'Chilonzor' },
+    { id: 5, location: 'Mirobod' },
   ]);
   const contentTypesofClothes = (
     <div className="w-[150px] h-[200px] overflow-auto m-0 p-0">
@@ -107,9 +107,8 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
     const { onClick } = props;
     return (
       <div
-        className={` ${
-          prevSliderBtn ? "block" : "hidden"
-        } absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-10  left-[2px]  rounded-full bg-white   duration-200 border  border-borderColor2
+        className={` ${prevSliderBtn ? "block" : "hidden"
+          } absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-10  left-[2px]  rounded-full bg-white   duration-200 border  border-borderColor2
         `}
         onClick={onClick}
       >
@@ -180,7 +179,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
   const handleTypesofClothes = () => {
     setState({ ...state, openTypesofClothes: false });
   };
-  
+
   const onChange = (checkedValues) => {
     console.log('checked = ', checkedValues);
   };
@@ -261,7 +260,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
                       </span>
                     </NavLink>
                     <p
-                      className={`text-borderWinter border-b border-dashed border-borderWinter ml-3 text-base not-italic font-AeonikProMedium`}
+                      className={`text-borderWinter border-b border-dashed border-borderWinter ml-3 text-base not-italic font-AeonikProRegular`}
                     >
                       {" "}
                       Все локации
@@ -276,17 +275,17 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
                     <WomanGenIcons />
                   </button>
                   <div className="flex items-center justify-end">
-                    <div 
-                       onClick={e => {
+                    <div
+                      onClick={e => {
                         e.preventDefault();
                         setOpenTab(!openTab);
                       }}
                       className="w-[42%] min-w-min hidden md:block text-sm font-AeonikProRegular text-borderWinter ml-auto">Посмотреть отзывы</div>
                     <button
                       onClick={e => {
-                       e.preventDefault();
-                       setOpenTab(!openTab);
-                     }}
+                        e.preventDefault();
+                        setOpenTab(!openTab);
+                      }}
                       className="flex items-center justify-center border border-searchBgColor w-[48px] h-[48px] rounded-xl ml-[24px] md:ml-[10px] flex-shrink-0">
                       <CommentStarIcon colors={"#007DCA"} />
                     </button>
@@ -309,7 +308,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
               </NavLink>
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons  className="locationIconChangeColor" colors={"#303030"}/>
+                  <LocationColoursIcons className="locationIconChangeColor" colors={"#303030"} />
                 </p>
                 <p
                   className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
@@ -319,8 +318,8 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
               </NavLink>
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons  className="locationIconChangeColor"
-                    colors={"#303030"} 
+                  <LocationColoursIcons className="locationIconChangeColor"
+                    colors={"#303030"}
                   />
                 </p>
                 <p
@@ -331,7 +330,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
               </NavLink>
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons  className="locationIconChangeColor" colors={"#303030"} />
+                  <LocationColoursIcons className="locationIconChangeColor" colors={"#303030"} />
                 </p>
                 <p
                   className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
@@ -341,7 +340,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
               </NavLink>
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
                 <p>
-                  <LocationColoursIcons  className="locationIconChangeColor" colors={"#303030"} />
+                  <LocationColoursIcons className="locationIconChangeColor" colors={"#303030"} />
                 </p>
                 <p
                   className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
@@ -349,8 +348,8 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
                   Учтепа
                 </p>
               </NavLink>
-              <button 
-                type="primary" 
+              <button
+                type="primary"
                 onClick={() => setOpenLocationModal(true)}
                 className={`text-borderWinter text-base font-AeonikProMedium`}>
                 Все локации
@@ -371,7 +370,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
                       width: '100%',
                     }}
                     onChange={onChange}
-                    >
+                  >
                     <div className="w-full flex flex-wrap items-center gap-y-2">
                       {locationsList.map(data => (
                         <div key={data.id} className="w-1/3">
@@ -386,7 +385,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
             </div>
           </div>
 
-          
+
           <action className={`${openTab || openTab2 ? "hidden" : "hidden md:flex md:border-searchBgColor flex-gap-6 justify-between w-full pb-10 mt-[60px] md:border-b"}`}>
             <section className="w-[22%] h-full  ">
               <div>
@@ -466,7 +465,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab,openTab2, setOpenT
             </Popover>
           </action>
         </div>
-        
+
       </section>
     </main>
   );

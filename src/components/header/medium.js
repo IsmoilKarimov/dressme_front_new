@@ -166,14 +166,14 @@ const MediumHeader = () => {
             <section className="w-full flex justify-center items-center py-3 overscroll-none overflow-y-hidden ">
               <div className=" w-full flex items-center ss:w-full md:w-fit justify-between ">
                 {/* Menu section */}
-                {locationWindow !== "/delivery-points"  ? (
+                {locationWindow !== "/delivery-points" ? (
                   <article
                     onClick={toggleHamburger}
                     className={`flex items-center justify-center bg-btnBgColor border border-searchBgColor w-12 h-12 cursor-pointer md:hidden rounded-xl`}
                   >
                     {state?.hamburgerMenu ? (
                       <figure>
-                        <MenuCloseIcons colors={"#000"}/>
+                        <MenuCloseIcons colors={"#000"} />
                       </figure>
                     ) : (
                       <figure>
@@ -375,8 +375,8 @@ const MediumHeader = () => {
             {/*Starting of Opened Hamburger Menu section */}
             <section
               className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen pb-[140px] px-3 ${state?.hamburgerMenu
-                  ? " flex flex-col ease-linear duration-500 overscroll-none"
-                  : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
+                ? " flex flex-col ease-linear duration-500 overscroll-none"
+                : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
                 }`}
             >
               <div className={`w-full h-full flex flex-wrap content-between`}>
@@ -509,21 +509,25 @@ const MediumHeader = () => {
             {/*Starting of Blocked  Hamburger Menu section */}
             {locationWindow !== "/delivery-points" && (
               <section className={`md:hidden relative w-full mx-auto `}>
-                {locationWindow !== "/catalog" && (
-                  <div className={`sticky top-0 py-1 bg-white  w-full z-10`}>
-                    {/* Searching section */}
-                    <article className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%]  border border-searchBgColor bg-white ">
-                      <span className="pl-[11.65px]">
-                        <SearchIcons />
-                      </span>
-                      <input
-                        type="text"
-                        placeholder="Искать товары или бренды"
-                        className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
-                      />
-                    </article>
-                  </div>
-                )}
+                {
+                  locationWindow !== "/catalog" ||
+                  locationWindow !== "/shopping_store/:id" ||
+                  locationWindow !== "/product/:id"
+                  && (
+                    <div className={`sticky top-0 py-1 bg-white  w-full z-10`}>
+                      {/* Searching section */}
+                      <article className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%]  border border-searchBgColor bg-white ">
+                        <span className="pl-[11.65px]">
+                          <SearchIcons />
+                        </span>
+                        <input
+                          type="text"
+                          placeholder="Искать товары или бренды"
+                          className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
+                        />
+                      </article>
+                    </div>
+                  )}
 
                 {/* Gender selection for Mobile */}
                 {locationWindow === "/" && (
@@ -541,8 +545,8 @@ const MediumHeader = () => {
                                 setState({ ...state, genderActive: true })
                               }
                               className={` font-AeonikProMedium ${state?.genderActive
-                                  ? "bg-white border border-searchBgColor"
-                                  : "bg-transparent"
+                                ? "bg-white border border-searchBgColor"
+                                : "bg-transparent"
                                 } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
                             >
                               <img src={data?.woman} alt="female" />
@@ -553,8 +557,8 @@ const MediumHeader = () => {
                                 setState({ ...state, genderActive: false })
                               }
                               className={` font-AeonikProMedium ${!state?.genderActive
-                                  ? "bg-white border border-searchBgColor"
-                                  : "bg-transparent"
+                                ? "bg-white border border-searchBgColor"
+                                : "bg-transparent"
                                 } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
                             >
                               <img src={data?.man} alt="male" />
@@ -569,7 +573,7 @@ const MediumHeader = () => {
             )}
             {/* Ending of Blocked  Hamburger Menu section  */}
           </div>
-        ) : ( "" )}
+        ) : ("")}
       </div>
     </nav>
   );

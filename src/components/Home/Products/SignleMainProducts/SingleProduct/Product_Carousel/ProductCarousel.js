@@ -241,13 +241,13 @@ const ProductCarousel = ({ show }) => {
           </button>
           <div>
             <Slider
-              className="relative w-[360px] h-[480px] md:!w-[670px] md:h-[850px] showpageSlider !overflow-visible bg-white rounded-lg mt-[-4px]"
+              className="relative w-[360px]  h-[480px] md:!w-[670px] md:h-[850px] showpageSlider !overflow-visible bg-white rounded-lg mt-[-4px]"
               {...settingsModal}
             >
               {imgGroup?.map((data) => {
                 return (
                   <article>
-                    <figure className="relative w-[360px] h-[480px] md:w-full md:h-[850px]  border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
+                    <figure className="relative  h-[480px] w-full md:h-[850px]  border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
                       <img className="w-full h-full" src={data?.img} alt="" />
                       <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                         <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
