@@ -51,7 +51,7 @@ const ShoppingStoreOfficial = () => {
             <ProductComment />
           </action>
           {/* Map Section */}
-          <action className={`${openTab2 ? "block" : "hidden"} w-full text-3xl px-4`}>
+          <action className={`${openTab2 ? "block" : "hidden"} w-full text-3xl px-4 pb-10`}>
             {/* <button
                 onClick={() => {setVisibleCommnets(4)} }
                 className={`flex items-center cursor-pointer justify-center border border-borderColor2 rounded-lg mr-5`}
