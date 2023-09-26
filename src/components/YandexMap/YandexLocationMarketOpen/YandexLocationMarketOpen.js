@@ -1,4 +1,4 @@
-import React, { useContext, memo } from "react";
+import React, { useContext, memo, useState } from "react";
 import {
   ClockIcons,
   LocationIcons,
@@ -10,6 +10,7 @@ import { dressMainData } from "../../../ContextHook/ContextMenu";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
+import AddCopyCheckedIcon from "../../Home/Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
 
 function YandexLocationMarketOpen({ cordinateMarkets }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -24,6 +25,11 @@ function YandexLocationMarketOpen({ cordinateMarkets }) {
     // const gotoOfficial = (id) => {
     navigate(`/shopping_store/:${123456}`);
   };
+  const [copyText, setCopyText] = useState('г. Ташкент, Чиланзарский район, квартал-7, д 45б (Катартал) ')
+
+  const handleCopyText = () => {
+    navigator.clipboard.writeText(copyText)
+  }
 
   const NextArrow = (props) => {
     const { onClick } = props;
@@ -154,6 +160,7 @@ function YandexLocationMarketOpen({ cordinateMarkets }) {
               Бу магазинда сиз болажонларингиз учун (0-15 ёш) сифатли
               кийимчаларни АРЗОН ВА КУЛАЙ нархларда харид қилишингиз мумкин
             </span>
+
           </div>
           {/* Detail */}
           <div className="w-full  flex flex-col gap-y-3">
@@ -169,8 +176,14 @@ function YandexLocationMarketOpen({ cordinateMarkets }) {
               <span>
                 <LocationIcons />
               </span>
-              <span className="w-[70%] not-italic ml-4 font-AeonikProRegular text-base leading-5 text-setTexOpacity">
-                г. Ташкент, Чиланзарский район, квартал-7, д 45б (Катартал)
+              <span className="w-[70%] flex items-center not-italic ml-4 font-AeonikProRegular text-base leading-5 text-setTexOpacity">
+                <span>{copyText}</span>
+                <button
+                  type="button"
+                  onClick={handleCopyText}
+                  className="cursor-pointer ml-[8px]">
+                  <AddCopyCheckedIcon />
+                </button>
               </span>
             </div>
           </div>
