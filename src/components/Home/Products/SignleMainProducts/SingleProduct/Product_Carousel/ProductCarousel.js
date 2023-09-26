@@ -222,7 +222,7 @@ const ProductCarousel = ({ show }) => {
   };
 
   return (
-    <main className="w-full md:w-fit h-full">
+    <main className="w-full md:w-fit h-full ">
 
       <div className="w-full">
         <section
@@ -231,23 +231,23 @@ const ProductCarousel = ({ show }) => {
             }`}
         ></section>
         <section
-          className={`fixed z-[201] rounded-lg bg-white w-fit h-fit mx-auto mt-[130px] md:m-auto cursor-pointer flex flex-col items-center justify-center inset-0 ${modalOfCarsouel ? "" : "hidden"
+          className={`fixed z-[201] rounded-lg bg-white w-full md:w-fit h-fit mx-auto my-auto md:m-auto cursor-pointer flex flex-col items-center justify-center inset-0 ${modalOfCarsouel ? "" : "hidden"
             }`}
         >
           <button
             onClick={() => setModalOfCarsouel(false)}
-            className="absolute flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px] top-[-60px] right-0 md:top-0 z-40 md:right-[-80px]  rounded-full bg-[#808080]">
+            className="absolute flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px] top-[-60px] right-1 md:top-3 z-40 md:right-[-80px]  md:rounded-full md:bg-[#808080]">
             <MenuCloseIcons colors="#fff" />
           </button>
-          <div>
+          <div className="w-full h-full">
             <Slider
-              className="relative w-[360px]  h-[480px] md:!w-[670px] md:h-[850px] showpageSlider !overflow-visible bg-white rounded-lg mt-[-4px]"
+              className="relative w-full h-fit md:!w-[750px] md:h-[100vh] showpageSlider !overflow-visible bg-white md:rounded-lg"
               {...settingsModal}
             >
               {imgGroup?.map((data) => {
                 return (
                   <article>
-                    <figure className="relative  h-[480px] w-full md:h-[850px]  border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
+                    <figure className="relative overflow-hidden h-fit w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center">
                       <img className="w-full h-full" src={data?.img} alt="" />
                       <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                         <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
