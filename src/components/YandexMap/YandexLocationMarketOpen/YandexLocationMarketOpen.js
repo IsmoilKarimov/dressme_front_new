@@ -1,4 +1,4 @@
-import React, { useContext, memo, useState } from "react";
+import React, { useContext, memo } from "react";
 import {
   ClockIcons,
   LocationIcons,
@@ -9,25 +9,20 @@ import {
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import AddCopyCheckedIcon from "../../Home/Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
 import { useNavigate } from "react-router-dom";
 
-function YandexLocationMarketOpen({ marketId }) {
+function YandexLocationMarketOpen({ cordinateMarkets }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [copyText, setCopyText] = useState('г. Ташкент, Чиланзарский район, квартал-7, д 45б (Катартал)')
 
-
-  const handleCopyText = () => {
-    navigator.clipboard.writeText(copyText)
-  }
   // const clickCordinate = () => {
   //   window.open(`https://yandex.uz/maps/10335/tashkent/?ll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&mode=search&sll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&text=${cordinateMarkets[0]}%2C${cordinateMarkets[1]}&z=15`, "_blank")
   //   // window.location.replace(`https://yandex.uz/maps/10335/tashkent/?ll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&mode=search&sll=${cordinateMarkets[1]}%2C${cordinateMarkets[0]}&text=${cordinateMarkets[0]}%2C${cordinateMarkets[1]}&z=15`);
 
   // }
   const navigate = useNavigate();
-  const openShopPage = () => {
-    navigate(`/shopping_store/:${}`);
+  const openShoppingChild = () => {
+    // const gotoOfficial = (id) => {
+    navigate(`/shopping_store/:${123456}`);
   };
 
   const NextArrow = (props) => {
@@ -174,14 +169,8 @@ function YandexLocationMarketOpen({ marketId }) {
               <span>
                 <LocationIcons />
               </span>
-              <span className="w-[70%] flex items-center not-italic ml-4 font-AeonikProRegular text-base leading-5 text-setTexOpacity">
-                {copyText}
-                <button
-                  type="button"
-                  onClick={handleCopyText}
-                  className="cursor-pointer ml-[8px]">
-                  <AddCopyCheckedIcon />
-                </button>
+              <span className="w-[70%] not-italic ml-4 font-AeonikProRegular text-base leading-5 text-setTexOpacity">
+                г. Ташкент, Чиланзарский район, квартал-7, д 45б (Катартал)
               </span>
             </div>
           </div>
@@ -197,7 +186,7 @@ function YandexLocationMarketOpen({ marketId }) {
 
             </button> */}
             <button
-              onClick={openShopPage}
+              onClick={openShoppingChild}
               className={` w-full h-[48px] bg-fullBlue active:scale-95  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
             >
               <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center   capitalize text-white">
