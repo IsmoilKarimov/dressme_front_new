@@ -16,20 +16,7 @@ import { dressMainData } from "../../ContextHook/ContextMenu";
 const NavMenu = () => {
   const [dressInfo] = useContext(dressMainData);
 
-  let IconsColor = "";
 
-  if (dressInfo?.type === 1111) {
-    IconsColor = "#008F0E";
-  }
-  if (dressInfo?.type === 2222) {
-    IconsColor = "#EAA700";
-  }
-  if (dressInfo?.type === 3333) {
-    IconsColor = "#E17A02";
-  }
-  if (dressInfo?.type === 4444) {
-    IconsColor = "#007DCA";
-  }
 
   return (
     <nav
