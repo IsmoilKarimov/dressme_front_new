@@ -174,7 +174,7 @@ function YandexLocationMarketOpen({ cordinateMarkets }) {
               onClick={clickCordinate}
               className={` w-full h-[48px]  bg-white border border-fullBlue active:scale-95  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
             >
-              <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center capitalize  text-fullBlue ">
+              <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center   text-fullBlue ">
                 Открыть на карте
               </span>
 

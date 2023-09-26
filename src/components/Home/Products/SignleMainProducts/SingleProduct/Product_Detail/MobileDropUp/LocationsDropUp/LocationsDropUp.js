@@ -19,7 +19,7 @@ function LocationDropUp({ onClick }) {
     return (
         <main>
             <div className="max-w-[440px] w-[100%] mx-auto bg-white shadow-navMenuShadov  overflow-hidden h-fit rounded-t-[12px]">
-                <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between px-4 mb-6">
+                <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between px-4 mb-1 ">
                     <p className="text-xl font-AeonikProMedium">Локации</p>
                     <button
                         onClick={onClick}
@@ -30,10 +30,7 @@ function LocationDropUp({ onClick }) {
                 <section className="w-full h-[380px] px-4 flex flex-col items-center">
                     <action className="w-full h-fit flex items-center justify-center flex-wrap gap-x-7 mb-[28px]">
                         <form className='w-full flex flex-col items-center'>
-                            {/* <div className='w-full h-[34px] flex items-center justify-between rounded-lg border border-borderColor mb-[26px] text-[11px] px-3'>
-                            <input type="text" name='clothingTypes' placeholder='Искать раздел' className='w-full pr-3 outline-none' />
-                            <SearchIcons />
-                        </div> */}
+
                             <div className='w-full h-[290px] overflow-auto VerticelScroll'>
                                 {LocationsList.map((data) => {
                                     return (

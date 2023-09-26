@@ -182,7 +182,7 @@ const ProductDetails = () => {
             }`}
         ></section>
         <locations
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${locations ? "bottom-0" : "bottom-[-800px] z-0"
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${locations ? "bottom-0" : "bottom-[-800px] z-0"
             }`}
         >
           <LocationDropUp onClick={toggleLocations} />
