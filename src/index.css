@@ -383,7 +383,7 @@ table tr th:nth-child(1) {
 
 .HorizantalScroll::-webkit-scrollbar {
   width: 50px;
-  height: 5px;
+  height: 2px;
 }
 
 .HorizantalScroll::-webkit-scrollbar-thumb {
@@ -395,6 +395,5 @@ table tr th:nth-child(1) {
 .locationIconChangeColor:hover {
   color: #007dca;
 }
+
 /* ----------------------------- */
-
-
