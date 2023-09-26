@@ -101,7 +101,7 @@ function YandexMapsDressMe() {
 
   // --------------Open Main MenusetDressInfo
   const handlePlaceMark = (value, cordinate) => {
-    setOpenCordinateMap(cordinate)
+    setOpenCordinateMap(value)
     setDressInfo({
       ...dressInfo,
       yandexGetMarketId: value,

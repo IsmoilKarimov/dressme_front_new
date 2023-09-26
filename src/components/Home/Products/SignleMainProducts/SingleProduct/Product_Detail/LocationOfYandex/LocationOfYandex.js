@@ -19,10 +19,10 @@ function LocationOfYandex() {
   };
   //------------------------------------------------------------------------------------------------
 
-  const handleOpenYandex = () => {
-    window.open(`https://yandex.uz/maps/10335/tashkent/?ll=${mapState?.center[1]}%2C${mapState?.center[0]}&mode=search&sll=${mapState?.center[1]}%2C${mapState?.center[0]}&text=${mapState?.center[0]}%2C${mapState?.center[1]}&z=15`, "_blank")
+  // const handleOpenYandex = () => {
+  //   window.open(`https://yandex.uz/maps/10335/tashkent/?ll=${mapState?.center[1]}%2C${mapState?.center[0]}&mode=search&sll=${mapState?.center[1]}%2C${mapState?.center[0]}&text=${mapState?.center[0]}%2C${mapState?.center[1]}&z=15`, "_blank")
 
-  }
+  // }
   const [copyText, setCopyText] = useState('Ташкент, улица Абдуллы Кадыри, 23, ')
 
   const handleCopyText = () => {
@@ -95,7 +95,7 @@ function LocationOfYandex() {
           </Map>
         </YMaps>
       </div>
-      <div className="w-full flex justify-end">
+      {/* <div className="w-full flex justify-end">
         <button
           onClick={handleOpenYandex}
           className={
@@ -104,7 +104,7 @@ function LocationOfYandex() {
         >
           Открыть на карте
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }

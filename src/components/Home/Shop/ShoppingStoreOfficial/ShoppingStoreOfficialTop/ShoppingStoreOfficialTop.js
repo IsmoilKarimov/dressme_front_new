@@ -22,7 +22,6 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, openTab2, setOpen
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openLocationModal, setOpenLocationModal] = useState(false);
 
-
   const handleFilter = () => {
     setDressInfo({
       ...dressInfo,
@@ -225,7 +224,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, openTab2, setOpen
                   </div>
                 </div>
               </action>
-              {/* 2 */}
+              {/* 2 */}shopping_store
               <action className="w-full md:w-[35%] flex items-center  mt-6 md:mt-0">
                 <NavLink
                   to="/delivery-points"
