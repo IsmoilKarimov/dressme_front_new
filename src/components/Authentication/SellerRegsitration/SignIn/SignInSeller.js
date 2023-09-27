@@ -58,7 +58,7 @@ export default function SignInSeller() {
               });
 
             } else if (res?.access_token) {
-              localStorage.setItem("access_token", res?.access_token)
+              localStorage.setItem("DressmeUserToken", res?.access_token)
               setState({ ...state, email: "", password: "", errorGroup: "" });
               toast.success(`Успешный  вход в систему`, {
                 position: "top-right",
