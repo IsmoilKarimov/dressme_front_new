@@ -366,55 +366,6 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
               </Modal>
             </div>
           </div>
-
-          <div className={`${openTabComment || openTabLocation ? "hidden" : "hidden md:flex md:border-searchBgColor flex-gap-6 justify-between w-full pb-10 mt-[60px] md:border-b"}`}>
-            <section className="w-[22%] h-full  ">
-              <div>
-                <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-                  По категории
-                </span>
-              </div>
-              <div className="w-full">
-                <button className="w-full cursor-pointer border border-searchBgColor h-[52px] mt-3 rounded-lg bg-bgCategory flex items-center justify-between px-4">
-                  <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-                    Спортивный
-                  </span>
-                  <span className="rotate-[180deg]">
-                    {" "}
-                    <ArrowTopIcons colors={"#000"} />
-                  </span>
-                </button>
-              </div>
-            </section>
-            <section className="w-[77%] h-full ">
-              <div>
-                <span className="not-italic font-AeonikProMedium text-sm  leading-4 text-black tracking-[1%]">
-                  По категории
-                </span>
-              </div>
-              <div className="w-full mt-3 h-[52px] flex flex-col items-center">
-                <Slider
-                  {...settings1}
-                  className="w-[100%] h-full items-center flex xs:justify-between"
-                >
-                  {wearGroup?.map((data) => {
-                    return (
-                      <div key={data.id} className="!w-[100px] h-full ">
-                        <div
-                          className={`w-full h-[52px] px-5 m-auto bg-bgCategory rounded-lg flex justify-center items-center cursor-pointer  border border-searchBgColor  `}
-                        >
-                          <p className="not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
-                            {data?.name || "0"}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </Slider>
-              </div>
-            </section>
-          </div>
-
           {/* <action className={`w-full md:hidden flex items-center justify-between mt-6 mb-3  px-4`}>
             <button
               onClick={handleFilter}
