@@ -4,3 +4,12 @@
 .locationIconChangeColor:hover {
     color: #007DCA;
 }
+
+
+.slick-slide .slick-cloned {
+    width: 112px !important;
+}
+
+.slick-initialized .slick-slide {
+    display: flex;
+}

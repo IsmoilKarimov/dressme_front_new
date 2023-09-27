@@ -204,19 +204,19 @@ export default function ShowPageComment( {setOpenTabComment} ) {
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box md:mb-[60px]">
 
-        <div className="comments">
-            <section
-                onClick={() => setAddComment(false)}
-                className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${addComment ? "" : "hidden"
-                    }`}
-                ></section>
-            <section
-                className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${addComment ? "bottom-0" : "bottom-[-800px] z-0"
-                    }`}
-                >
-                <CommentDropUp onClick={toggleAddComment} />
-            </section>
-        </div>
+      <div className="comments">
+          <section
+              onClick={() => setAddComment(false)}
+              className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${addComment ? "" : "hidden"
+                  }`}
+              ></section>
+          <section
+              className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${addComment ? "bottom-0" : "bottom-[-800px] z-0"
+                  }`}
+              >
+              <CommentDropUp onClick={toggleAddComment} />
+          </section>
+      </div>
 
       <section className="relative w-[100%] h-fit md:mt-6 flex justify-between">
         <article className="w-full block px-4 mt-4 md:mt-0 md:px-0">

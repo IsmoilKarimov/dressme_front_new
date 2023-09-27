@@ -22,7 +22,6 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openLocationModal, setOpenLocationModal] = useState(false);
 
-
   const handleFilter = () => {
     setDressInfo({
       ...dressInfo,
@@ -189,7 +188,7 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
         <div className="w-[100%] h-fit flex flex-col">
           {/* Top section */}
-          <action className="w-full flex flex-col">
+          <div className="w-full flex flex-col">
             <figure className="w-full h-[240px] md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
               <img
                 className="w-full h-full object-cover"
@@ -199,7 +198,7 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
             </figure>
             <div className="w-full md:h-[90px] mt-2 md:mt-0 h-fit flex flex-col md:flex-row items-center border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               {/* 1 */}
-              <action className="w-full md:w-[40%] flex h-[80px] md:h-fit items-center md:ml-[40px]">
+              <div className="w-full md:w-[40%] flex h-[80px] md:h-fit items-center md:ml-[40px]">
                 <figure className="w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
                   <img src={nike} alt="" />
                 </figure>
@@ -224,9 +223,9 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
                     </div>
                   </div>
                 </div>
-              </action>
+              </div>
               {/* 2 */}
-              <action className="w-full md:w-[35%] flex items-center  mt-6 md:mt-0">
+              <div className="w-full md:w-[35%] flex items-center  mt-6 md:mt-0">
                 <NavLink
                   to="/delivery-points"
                   className="flex items-center justify-center shrink-0 w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer"
@@ -239,6 +238,7 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
                   onClick={e => {
                     e.preventDefault();
                     setOpenTabLocation(!openTabLocation);
+                    setOpenTabComment(false)
                   }}
                   className="flex flex-col ml-3 w-[70%] md:w-full"
                 >
@@ -246,9 +246,9 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
                     60 Amir Temur Avenue, Mirzo Ulugbek district Tashkent 100017
                   </p>
                 </button>
-              </action>
+              </div>
               {/* 3 */}
-              <action className="w-full md:w-[25%] flex items-center md:justify-end md:mr-5  mt-6 md:mt-0">
+              <div className="w-full md:w-[25%] flex items-center md:justify-end md:mr-5  mt-6 md:mt-0">
                 <div className="md:hidden flex w-fit">
                   <div className="w-fit h-fit flex items-center justify-center gap-y-1 cursor-pointer">
                     <NavLink
@@ -279,6 +279,8 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
                       onClick={e => {
                         e.preventDefault();
                         setOpenTabComment(!openTabComment);
+                        setOpenTabLocation(false)
+                        
                       }}
                       className="w-[42%] min-w-min hidden md:block text-sm font-AeonikProRegular text-borderWinter ml-auto cursor-pointer">
                         Посмотреть отзывы
@@ -293,9 +295,9 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
                     </button>
                   </div>
                 </div>
-              </action>
+              </div>
             </div>
-          </action>
+          </div>
           <div className="w-full  hidden md:flex justify-end items-center my-3">
             <div className="w-fit flex gap-x-7 items-center">
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
@@ -366,7 +368,7 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
           </div>
 
 
-          <action className={`${openTabComment || openTabLocation ? "hidden" : "hidden md:flex md:border-searchBgColor flex-gap-6 justify-between w-full pb-10 mt-[60px] md:border-b"}`}>
+          <div className={`${openTabComment || openTabLocation ? "hidden" : "hidden md:flex md:border-searchBgColor flex-gap-6 justify-between w-full pb-10 mt-[60px] md:border-b"}`}>
             <section className="w-[22%] h-full  ">
               <div>
                 <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
@@ -391,16 +393,16 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
                   По категории
                 </span>
               </div>
-              <div className="w-full mt-3 h-[52px] flex flex-col items-center ">
+              <div className="w-full mt-3 h-[52px] flex flex-col items-center">
                 <Slider
                   {...settings1}
-                  className="w-[100%] h-full items-center flex xs:justify-between    "
+                  className="w-[100%] h-full items-center flex xs:justify-between"
                 >
                   {wearGroup?.map((data) => {
                     return (
-                      <div key={data.id} className="!w-[100px]  h-full ">
+                      <div key={data.id} className="!w-[100px] h-full ">
                         <div
-                          className={` w-full h-[52px] px-5 m-auto  bg-bgCategory rounded-lg flex justify-center items-center cursor-pointer  border border-searchBgColor  `}
+                          className={`w-full h-[52px] px-5 m-auto  bg-bgCategory rounded-lg flex justify-center items-center cursor-pointer  border border-searchBgColor  `}
                         >
                           <p className="not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
                             {data?.name || "0"}
@@ -412,7 +414,7 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
                 </Slider>
               </div>
             </section>
-          </action>
+          </div>
 
           {/* <action className={`w-full md:hidden flex items-center justify-between mt-6 mb-3  px-4`}>
             <button
