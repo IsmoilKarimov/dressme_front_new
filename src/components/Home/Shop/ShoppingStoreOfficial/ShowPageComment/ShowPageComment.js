@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
-    ArrowTopIcons,
-    CommentIcons,
-  FreeStarIcon,
   GoBackIcon,
   ReviewIcon,
-  StarIcon,
   StarIcons,
 } from "../../../../../assets/icons";
 import { Modal, Rate } from "antd";
+import CommentDropUp from "../../../Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/CommentDropUp";
 
 export default function ShowPageComment( {setOpenTabComment} ) {
 
+  const [addComment, setAddComment] = useState(false)
+  const toggleAddComment = useCallback(()=> setAddComment(false), [])
   const [openComment, setOpenComment] = useState(false);
   const [allComments] = useState([
     {
@@ -133,6 +132,15 @@ export default function ShowPageComment( {setOpenTabComment} ) {
     },
   ]);
 
+  // For DropUp
+  useEffect(() => {
+    if ( addComment ) {
+    document.body.style.overflow = "hidden";
+    } else {
+    document.body.style.overflow = "auto";
+    }
+  }, [ addComment ]);
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -141,47 +149,50 @@ export default function ShowPageComment( {setOpenTabComment} ) {
 
   const showNextComments = allComments.map((allComments) => {
     return (
-      <article key={allComments.id} className="w-full md:w-[45%] h-fit border md:border-0 md:border-b border-borderColor2 rounded-t-lg p-[15px] pr-5 pb-10 mt-10 ">
-        <div className="flex items-center justify-between">
-            <div className="">
-                <p className="w-fit md:w-full not-italic font-AeonikProMedium text-xl leading-6 text-black">
-                {allComments?.Name}
-                </p>
-                <div className="flex md:hidden items-center font-AeonikProRegular">
-                    Оценка покупки 
-                    <span className="ml-[5px] mr-[2px]">4.7</span> 
-                    <FreeStarIcon />
+      <article key={allComments.id} className="w-full md:w-[45%] h-fit border md:border-0 md:border-b border-borderColor2 rounded-lg p-[15px] pr-5 md:pb-10 mt-4 md:mt-10 ">
+        <article className="flex md:flex-col items-center md:items-start justify-between md:justify-start">
+            <div className="flex md:block items-center justify-between">
+                <div>
+                    <p className="w-fit md:w-full not-italic font-AeonikProMedium text-base md:text-xl leading-6 text-black">
+                    {allComments?.Name}
+                    </p>
+                    <div className="flex md:hidden text-[13px] md:text-base items-center font-AeonikProRegular">
+                        Оценка покупки 
+                        <span className="ml-[5px] mr-[2px]">4.7</span> 
+                        <StarIcons />
+                    </div>
                 </div>
             </div>
-        </div>
-        <article className="hidden md:flex items-center mt-3">
-          <p className="flex items-center">
-            <StarIcons />
-            <StarIcons />
-            <StarIcons />
-            <StarIcons />
-            <StarIcons />
-          </p>
-          <button className="not-italic ml-3 font-AeonikProRegular text-base leading-4 text-setTexOpacity">
-            {allComments?.sendDate}
-          </button>
+            <article className="flex items-center md:mt-3">
+            <p className="hidden md:flex items-center">
+                <StarIcons />
+                <StarIcons />
+                <StarIcons />
+                <StarIcons />
+                <StarIcons />
+            </p>
+            <button className="not-italic ml-3 font-AeonikProRegular text-xs md:text-base leading-4 text-setTexOpacity">
+                {allComments?.sendDate}
+            </button>
+            </article>
         </article>
-        <article className="mt-4">
-          <p className="not-italic font-AeonikProRegular text-base leading-4 text-black">
-            {allComments?.SendText}
-          </p>
+        <article className="mt-6 md:mt-4">
+            <p className="not-italic font-AeonikProRegular text-[13px] md:text-base leading-4 text-[#505050]">
+                {allComments?.SendText}
+            </p>
         </article>
-        <article className="mt-6 ml-8">
-          <article className="flex">
-            <p className="not-italic font-AeonikProMedium text-lg leading-5 text-black">
+        
+        <article className="bg-[#F4F6FB] md:bg-white px-[15px] py-3 md:px-0 md:py-0 rounded-lg mt-6 md:ml-8">
+          <article className="flex items-center justify-between md:justify-start">
+            <p className="not-italic font-AeonikProMedium text-[13px] md:text-lg leading-5 text-[#2C2C2C]">
               Nike Store Official Dealer
             </p>
-            <p className="not-italic ml-3 font-AeonikProRegular text-base leading-4 text-setTexOpacity">
+            <p className="not-italic ml-3 font-AeonikProRegular text-[11px] md:text-base leading-4 text-setTexOpacity">
               {allComments?.replyDate}
             </p>
           </article>
           <article className="mt-4">
-            <p className="not-italic font-AeonikProRegular text-base leading-4 text-black">
+            <p className="not-italic font-AeonikProRegular text-[13px] md:text-base leading-4 text-[#505050]">
               {allComments?.replyText}
             </p>
           </article>
@@ -192,9 +203,23 @@ export default function ShowPageComment( {setOpenTabComment} ) {
 
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box md:mb-[60px]">
+
+        <div className="comments">
+            <section
+                onClick={() => setAddComment(false)}
+                className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${addComment ? "" : "hidden"
+                    }`}
+                ></section>
+            <section
+                className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${addComment ? "bottom-0" : "bottom-[-800px] z-0"
+                    }`}
+                >
+                <CommentDropUp onClick={toggleAddComment} />
+            </section>
+        </div>
+
       <section className="relative w-[100%] h-fit md:mt-6 flex justify-between">
-        {/* Desktop version of comment*/}
-        <article className="w-full block px-4 md:px-0">
+        <article className="w-full block px-4 mt-4 md:mt-0 md:px-0">
           <section className="flex items-center md:border-b border-borderColor2 my-4 md:pb-10">
             <button
                 onClick={() => { setOpenTabComment(false) }}
@@ -238,23 +263,12 @@ export default function ShowPageComment( {setOpenTabComment} ) {
           </section>
           <section>
             <button
-                onClick={() => setOpenComment(true)}
-                type="button" className="flex md:hidden items-center text-SignInBgColor text-base font-AeonikProRegular">
+                onClick={() => setAddComment(true)}
+                type="button" className="w-full flex md:hidden items-center text-SignInBgColor text-base font-AeonikProRegular mb-1">
                     Написать отзыв
                     <span className="ml-[5px]"><ReviewIcon /></span>
             </button>
-          </section>
-
-          <section id="comment" className="flex justify-between flex-wrap w-full h-fit overflow-hidden" >
-            {showNextComments}
-          </section>
-        </article>
-
-        {/* Mobile version of comment */}
-        {/* <article className="w-full block md:hidden mt-5">
-          <div className="text-base font-AeonikProMedium mb-2">Отзывы</div>
-          <div className="w-full border border-searchBgColor rounded-lg mb-[34px]">
-            <div className="flex items-center justify-between p-4">
+            <div className="flex md:hidden items-center justify-between border border-borderColor2 rounded-t-lg p-4">
               <div className="flex items-center">
                 <StarIcons />
                 <StarIcons />
@@ -269,10 +283,12 @@ export default function ShowPageComment( {setOpenTabComment} ) {
                 265 голосов
               </div>
             </div>
-            
-          </div>
-        </article> */}
+          </section>
 
+          <section id="comment" className="flex justify-between flex-wrap w-full h-fit overflow-hidden" >
+            {showNextComments}
+          </section>
+        </article>
       </section>
     </main>
   );
