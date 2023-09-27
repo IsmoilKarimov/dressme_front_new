@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { Popover } from "antd";
 import {
@@ -26,6 +26,7 @@ import {
 
 const YandexMedium = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const navigate = useNavigate()
   const handleMainMenu = () => {
     setDressInfo({ ...dressInfo, openMainMenu: !dressInfo.openMainMenu });
   };
@@ -99,8 +100,10 @@ const YandexMedium = () => {
           </div>
 
           {/* Logo section */}
-          <NavLink
-            to="/"
+          <button
+            type="button"
+            onClick={() => navigate('/')}
+            // to="/"
             className="flex justify-center items-center rounded-xl h-[48px] ss:w-[calc(100%-96px)] ss:p-2 ll:p-1  md:p-0 md:w-[155px] ss:ml-2 md:ml-[0px]  ss:bg-btnBgColor md:bg-transparent"
           >
             {BrandTypeArray.filter((data) => data.id === dressInfo.type).map(
@@ -115,7 +118,7 @@ const YandexMedium = () => {
                 );
               }
             )}
-          </NavLink>
+          </button>
 
           {/* Voice section */}
           <div
