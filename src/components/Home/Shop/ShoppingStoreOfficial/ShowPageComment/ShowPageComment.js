@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import {
-  CommentIcons,
+    ArrowTopIcons,
+    CommentIcons,
+  FreeStarIcon,
   GoBackIcon,
   ReviewIcon,
+  StarIcon,
   StarIcons,
-} from "../../../../../../assets/icons";
-import { ArrowTopIcons } from "../../../../../../assets/icons";
+} from "../../../../../assets/icons";
 import { Modal, Rate } from "antd";
-import { useNavigate } from "react-router-dom";
 
-export default function ProductComment() {
+export default function ShowPageComment( {setOpenTabComment} ) {
 
   const [openComment, setOpenComment] = useState(false);
-
-  const [visibleComments, setVisibleCommnets] = useState(4)
   const [allComments] = useState([
     {
       id: 1,
@@ -134,24 +133,28 @@ export default function ProductComment() {
     },
   ]);
 
-  const navigate = useNavigate();
-  const goDetail = () => {
-    navigate(`/allcomments`);
-  };
-
   useEffect(() => {
     window.scrollTo({
       top: 0,
     });
   }, []);
 
-  const showNextComments = allComments.slice(0, visibleComments).map((allComments) => {
+  const showNextComments = allComments.map((allComments) => {
     return (
-      <article key={allComments.id} className="w-[45%] h-fit border-b border-borderColor2 pr-5 pb-10 mt-10 ">
-        <p className="not-italic font-AeonikProMedium text-xl leading-6 text-black">
-          {allComments?.Name}
-        </p>
-        <article className="flex items-center mt-3">
+      <article key={allComments.id} className="w-full md:w-[45%] h-fit border md:border-0 md:border-b border-borderColor2 rounded-t-lg p-[15px] pr-5 pb-10 mt-10 ">
+        <div className="flex items-center justify-between">
+            <div className="">
+                <p className="w-fit md:w-full not-italic font-AeonikProMedium text-xl leading-6 text-black">
+                {allComments?.Name}
+                </p>
+                <div className="flex md:hidden items-center font-AeonikProRegular">
+                    Оценка покупки 
+                    <span className="ml-[5px] mr-[2px]">4.7</span> 
+                    <FreeStarIcon />
+                </div>
+            </div>
+        </div>
+        <article className="hidden md:flex items-center mt-3">
           <p className="flex items-center">
             <StarIcons />
             <StarIcons />
@@ -191,25 +194,25 @@ export default function ProductComment() {
     <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box md:mb-[60px]">
       <section className="relative w-[100%] h-fit md:mt-6 flex justify-between">
         {/* Desktop version of comment*/}
-        <article className="w-full hidden md:block">
-          <section className="flex items-center border-b border-borderColor2 pb-10">
-            {showNextComments.length > 4 && (
-              <button
-                onClick={() => { setVisibleCommnets(4) }}
-                className={`flex items-center cursor-pointer justify-center border border-borderColor2 rounded-lg mr-5`}
-              >
-                <GoBackIcon />
-              </button>
-            )}
-            <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black track%]">
-              Отзывы о товаре
-            </p>
+        <article className="w-full block px-4 md:px-0">
+          <section className="flex items-center md:border-b border-borderColor2 my-4 md:pb-10">
             <button
-              onClick={() => setOpenComment(true)}
-              type="button" className="flex items-center ml-[20px] text-SignInBgColor text-lg font-AeonikProRegular">
-              Написать отзыв
-              <span className="ml-[5px]"><ReviewIcon /></span>
+                onClick={() => { setOpenTabComment(false) }}
+                className={`flex items-center cursor-pointer justify-start md:justify-center md:border border-borderColor2 rounded-lg mr-20 md:mr-5`}
+            >
+                <GoBackIcon />
             </button>
+            <div className="flex justify-center items-center">
+                <p className="not-italic font-AeonikProMedium text-base md:text-2xl leading-7 text-black track%]">
+                    Отзывы о магазины
+                </p>
+                <button
+                onClick={() => setOpenComment(true)}
+                type="button" className="hidden md:flex items-center ml-[20px] text-SignInBgColor text-lg font-AeonikProRegular">
+                    Написать отзыв
+                    <span className="ml-[5px]"><ReviewIcon /></span>
+                </button>
+            </div>
             <Modal
               centered
               open={openComment}
@@ -233,39 +236,22 @@ export default function ProductComment() {
               </div>
             </Modal>
           </section>
+          <section>
+            <button
+                onClick={() => setOpenComment(true)}
+                type="button" className="flex md:hidden items-center text-SignInBgColor text-base font-AeonikProRegular">
+                    Написать отзыв
+                    <span className="ml-[5px]"><ReviewIcon /></span>
+            </button>
+          </section>
 
           <section id="comment" className="flex justify-between flex-wrap w-full h-fit overflow-hidden" >
             {showNextComments}
           </section>
-
-          <section className="w-full py-6 flex justify-center items-center">
-            {allComments.length !== showNextComments.length
-              ? (
-                <button
-                  type="button"
-                  onClick={() => { setVisibleCommnets((prev) => prev + 4) }}
-                  className={`flex active:scale-95 active:opacity-70 rounded-xl px-[30px] py-[10px] border border-searchBgColor bg-bgColor items-center gap-x-3 `}
-                >
-                  <p className={`text-borderWinter bg-transparent font-AeonikProRegular text-base`}>
-                    Показать еще...
-                  </p>
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => { setVisibleCommnets(4) }}
-                  className={`flex rounded-xl px-[30px] py-[10px] border border-searchBgColor bg-bgColor items-center gap-x-3 `}
-                >
-                  <a href="#comment" className={`text-borderWinter bg-transparent font-AeonikProRegular text-base`}>
-                    Свернуть...
-                  </a>
-                </button>
-              )}
-          </section>
         </article>
 
         {/* Mobile version of comment */}
-        <article className="w-full block md:hidden mt-5">
+        {/* <article className="w-full block md:hidden mt-5">
           <div className="text-base font-AeonikProMedium mb-2">Отзывы</div>
           <div className="w-full border border-searchBgColor rounded-lg mb-[34px]">
             <div className="flex items-center justify-between p-4">
@@ -283,23 +269,9 @@ export default function ProductComment() {
                 265 голосов
               </div>
             </div>
-            <button
-              onClick={() => goDetail(allComments)}
-              className="w-full py-4 px-4 flex items-center justify-center border-t border-searchBgColor"
-            >
-              <span className="ml-8">
-                <CommentIcons colors={"#000"} />
-              </span>
-              <div className="ml-2 font-AeonikProRegular text-sm">
-                Посмотреть комментарии или оставить отзыв
-              </div>
-              <span className="rotate-[90deg] ml-12">
-                <ArrowTopIcons colors={"#000"} />
-              </span>
-            </button>
+            
           </div>
-
-        </article>
+        </article> */}
 
       </section>
     </main>

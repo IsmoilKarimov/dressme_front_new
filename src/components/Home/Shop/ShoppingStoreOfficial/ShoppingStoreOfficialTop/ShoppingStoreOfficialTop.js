@@ -18,7 +18,7 @@ import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { Modal, Popover, Radio } from "antd";
 import ProductComment from "../../../Products/SignleMainProducts/SingleProduct/ProductComment/ProductComment";
 
-const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, openTab2, setOpenTab2 }) => {
+const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, openTabLocation, setOpenTabLocation }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openLocationModal, setOpenLocationModal] = useState(false);
 
@@ -185,7 +185,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, openTab2, setOpen
   };
 
   return (
-    <main className="flex flex-col justify-center border-b border-searchBgColor  items-center md:my-5">
+    <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:my-5">
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
         <div className="w-[100%] h-fit flex flex-col">
           {/* Top section */}
@@ -238,7 +238,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, openTab2, setOpen
                 <button
                   onClick={e => {
                     e.preventDefault();
-                    setOpenTab2(!openTab2);
+                    setOpenTabLocation(!openTabLocation);
                   }}
                   className="flex flex-col ml-3 w-[70%] md:w-full"
                 >
@@ -260,7 +260,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, openTab2, setOpen
                       </span>
                     </NavLink>
                     <p
-                      className={`text-borderWinter border-b border-dashed border-borderWinter ml-3 text-base not-italic font-AeonikProRegular`}
+                      className={`text-borderWinter border-b border-dashed border-borderWinter ml-3 text-sm md:text-base not-italic font-AeonikProRegular`}
                     >
                       {" "}
                       Все локации
@@ -278,13 +278,15 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, openTab2, setOpen
                     <div
                       onClick={e => {
                         e.preventDefault();
-                        setOpenTab(!openTab);
+                        setOpenTabComment(!openTabComment);
                       }}
-                      className="w-[42%] min-w-min hidden md:block text-sm font-AeonikProRegular text-borderWinter ml-auto">Посмотреть отзывы</div>
+                      className="w-[42%] min-w-min hidden md:block text-sm font-AeonikProRegular text-borderWinter ml-auto cursor-pointer">
+                        Посмотреть отзывы
+                    </div>
                     <button
                       onClick={e => {
                         e.preventDefault();
-                        setOpenTab(!openTab);
+                        setOpenTabComment(!openTabComment);
                       }}
                       className="flex items-center justify-center border border-searchBgColor w-[48px] h-[48px] rounded-xl ml-[24px] md:ml-[10px] flex-shrink-0">
                       <CommentStarIcon colors={"#007DCA"} />
@@ -297,54 +299,32 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, openTab2, setOpen
           <div className="w-full  hidden md:flex justify-end items-center my-3">
             <div className="w-fit flex gap-x-7 items-center">
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
-                <p>
-                  <LocationColoursIcons className="locationIconChangeColor" colors={"#303030"} />
-                </p>
-                <p
-                  className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
-                >
+                <p><LocationColoursIcons colors={"#303030"} /></p>
+                <p className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}>
                   Мирзо Улугбек
                 </p>
               </NavLink>
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
-                <p>
-                  <LocationColoursIcons className="locationIconChangeColor" colors={"#303030"} />
-                </p>
-                <p
-                  className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
-                >
+                <p><LocationColoursIcons colors={"#303030"} /></p>
+                <p className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}>
                   Юнусабад
                 </p>
               </NavLink>
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
-                <p>
-                  <LocationColoursIcons className="locationIconChangeColor"
-                    colors={"#303030"}
-                  />
-                </p>
-                <p
-                  className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
-                >
+                <p><LocationColoursIcons colors={"#303030"} /></p>
+                <p className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}>
                   Алмазар
                 </p>
               </NavLink>
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
-                <p>
-                  <LocationColoursIcons className="locationIconChangeColor" colors={"#303030"} />
-                </p>
-                <p
-                  className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
-                >
+                <p><LocationColoursIcons colors={"#303030"} /></p>
+                <p className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}>
                   Чиланзар
                 </p>
               </NavLink>
               <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
-                <p>
-                  <LocationColoursIcons className="locationIconChangeColor" colors={"#303030"} />
-                </p>
-                <p
-                  className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
-                >
+                <p><LocationColoursIcons colors={"#303030"} /></p>
+                <p className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}>
                   Учтепа
                 </p>
               </NavLink>
@@ -386,7 +366,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, openTab2, setOpen
           </div>
 
 
-          <action className={`${openTab || openTab2 ? "hidden" : "hidden md:flex md:border-searchBgColor flex-gap-6 justify-between w-full pb-10 mt-[60px] md:border-b"}`}>
+          <action className={`${openTabComment || openTabLocation ? "hidden" : "hidden md:flex md:border-searchBgColor flex-gap-6 justify-between w-full pb-10 mt-[60px] md:border-b"}`}>
             <section className="w-[22%] h-full  ">
               <div>
                 <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
@@ -434,7 +414,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, openTab2, setOpen
             </section>
           </action>
 
-          <action className={`w-full md:hidden flex items-center justify-between mt-6 mb-3  px-4`}>
+          {/* <action className={`w-full md:hidden flex items-center justify-between mt-6 mb-3  px-4`}>
             <button
               onClick={handleFilter}
               className="h-[44px] w-[48%] rounded-lg select-none border border-searchBgColor bg-btnBgColor flex items-center justify-center"
@@ -463,7 +443,7 @@ const ShoppingStoreOfficialTop = ({ name, openTab, setOpenTab, openTab2, setOpen
                 Тип одеждый
               </p>
             </Popover>
-          </action>
+          </action> */}
         </div>
 
       </section>
