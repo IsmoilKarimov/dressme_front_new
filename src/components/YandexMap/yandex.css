@@ -237,6 +237,27 @@ body {
   display: none;
 }
 
+/* ---------------------------------------- */
+.ymapsName .ymaps-2-1-79-search {
+  border: 1px solid red;
+  position: absolute !important;
+  /* left: 50% !important; */
+  right: 50% !important;
+  bottom: 30px !important;
+
+}
+
+.ymaps-2-1-79-searchbox {
+  border: 1px solid black;
+  position: absolute !important;
+  /* left: 50% !important; */
+  right: 50% !important;
+  bottom: 30px !important;
+}
+
+/* ---------------------------------------- */
+
+
 @media screen and (max-height: 930px) {
   .ymapsName .ymaps-2-1-79-controls__control {
     inset: auto 10px 380px auto !important;

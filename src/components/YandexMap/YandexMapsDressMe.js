@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect, useRef, useCallback } from "react";
 
 import { YMaps, Map, ZoomControl, GeolocationControl, Placemark, Clusterer } from "react-yandex-maps";
 
@@ -6,7 +6,7 @@ import "./yandex.css";
 import YandexMapsIndex from "./YandexMapsNavbar/YandexMapsIndex";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import NavbarTopOpenMenu from "./YandexMapsNavbar/NavbarTopOpenMenu";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import ScrollFilter from "./YandexMapsNavbar/ScrollFilter";
 import {
   ArrowTopIcons,
@@ -27,47 +27,17 @@ import { UzbekFlag, locationIcons, markerIcons } from "../../assets";
 import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationMarketOpen";
 
 
-
-//-------------------------YandexLocationMarketOpen-------------------------------
-function useComponentVisible(initialIsVisible) {
-  const [isComponentVisible, setIsComponentVisible] = useState(
-    initialIsVisible
-  );
-  const ref = useRef(null);
-
-  const handleHideDropdown = (event) => {
-    if (event.key === "Escape") {
-      setIsComponentVisible(false);
-    }
-  };
-
-  const handleClickOutside = event => {
-    if (ref.current && !ref.current.contains(event.target)) {
-      setIsComponentVisible(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("keydown", handleHideDropdown, true);
-    document.addEventListener("click", handleClickOutside, true);
-    return () => {
-      document.removeEventListener("keydown", handleHideDropdown, true);
-      document.removeEventListener("click", handleClickOutside, true);
-    };
-  });
-
-  return { ref, isComponentVisible, setIsComponentVisible };
-}
-// -------------------------------------------------------------------------------------------------
+const mapOptions = {
+  modules: ["geocode", "SuggestView"],
+  defaultOptions: { suppressMapOpenBlock: true },
+};
+const initialState = {
+  title: "",
+  center: [41.311753, 69.241822],
+  zoom: 14,
+};
 
 function YandexMapsDressMe() {
-  //-------------------------YandexLocationMarketOpen-------------------------------
-  const {
-    ref,
-    isComponentVisible,
-    setIsComponentVisible
-  } = useComponentVisible(true);
-  // -------------------------------------------------------------------------------------------------
 
   const [openCordinateMap, setOpenCordinateMap] = useState("");
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
@@ -88,8 +58,59 @@ function YandexMapsDressMe() {
     };
   }, [screenSize]);
 
+  // ------------------SearchSystem-----------------------
 
+  // const [state, setState] = useState({ ...initialState });
+  // const [mapConstructor, setMapConstructor] = useState(null);
+  // const mapRef = useRef(null);
+  // const searchRef = useRef(null);
 
+  // // submits
+
+  // // console.log({ title: state.title, center: mapRef.current.getCenter() });
+
+  // // reset state & search
+  // const handleReset = () => {
+  //   setState({ ...initialState });
+  //   // setState({ ...initialState, title: "" });
+  //   searchRef.current.value = "";
+  //   // mapRef.current.setCenter(initialState.center);
+  //   mapRef.current.setZoom(initialState.zoom);
+  // };
+
+  // // search popup
+  // useEffect(() => {
+  //   if (mapConstructor) {
+  //     new mapConstructor.SuggestView(searchRef.current).events.add(
+  //       "select",
+  //       function (e) {
+  //         const selectedName = e.get("item").value;
+  //         mapConstructor.geocode(selectedName).then((result) => {
+  //           const newCoords = result.geoObjects
+  //             .get(0)
+  //             .geometry.getCoordinates();
+  //           setState((prevState) => ({ ...prevState, center: newCoords }));
+  //         });
+  //       }
+  //     );
+  //   }
+  // }, [mapConstructor]);
+
+  // // change title
+  // const handleBoundsChange = (e) => {
+  //   const newCoords = mapRef.current.getCenter();
+  //   mapConstructor.geocode(newCoords).then((res) => {
+  //     const nearest = res.geoObjects.get(0);
+  //     const foundAddress = nearest.properties.get("text");
+  //     const [centerX, centerY] = nearest.geometry.getCoordinates();
+  //     const [initialCenterX, initialCenterY] = initialState.center;
+  //     if (centerX !== initialCenterX && centerY !== initialCenterY) {
+  //       setState((prevState) => ({ ...prevState, title: foundAddress }));
+  //     }
+  //   });
+  // };
+
+  // ------------------SearchSystem-----------------------
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const wearGroup = [
@@ -109,23 +130,20 @@ function YandexMapsDressMe() {
   ];
 
   const onMapClick = (e) => {
-    if (isComponentVisible) {
-      // setDressInfo({
-      //   ...dressInfo,
-      //   yandexOpenMarketLocation: false,
-      // });
-      setIsComponentVisible(true)
+    if (dressInfo?.yandexOpenMarketLocation) {
+      setDressInfo({
+        ...dressInfo,
+        yandexOpenMarketLocation: false,
+      });
     }
   };
 
   const HandleData = (e) => {
-    if (isComponentVisible) {
-      // setDressInfo({
-      //   ...dressInfo,
-      //   yandexOpenMarketLocation: false,
-      // });
-      setIsComponentVisible(true)
-
+    if (dressInfo?.yandexOpenMarketLocation) {
+      setDressInfo({
+        ...dressInfo,
+        yandexOpenMarketLocation: false,
+      });
     }
   };
 
@@ -149,10 +167,8 @@ function YandexMapsDressMe() {
     setDressInfo({
       ...dressInfo,
       yandexGetMarketId: value,
-      // yandexOpenMarketLocation: true,
+      yandexOpenMarketLocation: true,
     });
-    setIsComponentVisible(false)
-
   };
 
   //------------------------------------------------------------------------------------------------
@@ -168,8 +184,8 @@ function YandexMapsDressMe() {
       <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden ymapsName">
         {/* Laptop device for */}
         {screenSize.width > 768 && (
-          <div ref={ref} className={`w-full bottom-[0px]  overflow-hidden  md:w-[769px] fixed md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
-          ${!isComponentVisible
+          <div className={`w-full bottom-[0px]  overflow-hidden  md:w-[769px] fixed md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
+          ${dressInfo?.yandexOpenMarketLocation
               ? `z-[102] h-[350px]  bottom-[-75px]`
               : " h-0 bottom-[0]  z-[-10]"
             } ease-linear duration-300`}
@@ -178,7 +194,7 @@ function YandexMapsDressMe() {
           </div>
         )}
         {screenSize.width <= 768 && (
-          <div ref={ref} className={`fixed w-full bg-white z-[102] left-0 right-0 overflow-hidden  ${!isComponentVisible
+          <div className={`fixed w-full bg-white z-[102] left-0 right-0 overflow-hidden  ${dressInfo?.yandexOpenMarketLocation
             ? "h-[570px] bottom-0 ease-linear duration-300 "
             : "h-0 bottom-0 ease-linear duration-300 "
             }  ease-linear duration-300 `}
@@ -201,14 +217,59 @@ function YandexMapsDressMe() {
         >
           <NavbarTopOpenMenu />
         </div>
-        <YMaps query={{ apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21" }}>
+        {/* Yandex Search */}
+        <div className={`absolute  ${!dressInfo?.yandexFullScreen ? "top-[80px]" : "top-[8px]"
+          }  md:top-auto md:bottom-[24px] left-0 right-0 mx-auto  overflow-hidden z-50 bg-yandexNavbar backdrop-blur-sm rounded-xl h-[48px] w-[94%] md:w-fit shadow-lg`}
+        >
+          <div
+            onClick={() => {
+              setDressInfo({
+                ...dressInfo,
+                yandexOpenMarketLocation: !dressInfo.yandexOpenMarketLocation,
+              });
+            }}
+            className="w-full h-full flex justify-between "
+          >
+            <div className="w-full h-full flex items-center px-3">
+              <div>
+                <img src={locationIcons} alt="" />
+              </div>
+              <div className="h-full flex items-center w-full mx-3">
+                <input
+                  // ref={searchRef}
+                  // type="text"
+                  name="search"
+                  type="search"
+                  className="h-full outline-none w-full bg-transparent"
+                  placeholder="Поиск мест и адресов"
+                // autoComplete="off"
+                />
+              </div>
+              <button type="button">
+                <SearchIcons />
+              </button>
+
+            </div>
+          </div>
+        </div>
+        {/* <YMaps query={{ apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21" }}> */}
+        <YMaps query={{
+          apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21",
+          lang: "ru",
+        }}>
           <Map
             defaultState={mapState}
+            // state={state}
+            // {...mapOptions}
+            // onLoad={setMapConstructor}
+            // onBoundsChange={handleBoundsChange}
+            // instanceRef={mapRef}
             onClick={onMapClick}
             onMouseDown={HandleData}
             width="100%"
             height="100%"
             modules={["control.FullscreenControl"]}
+
           >
             <div
               onClick={handleFullScreen}
@@ -240,6 +301,7 @@ function YandexMapsDressMe() {
                 size: "small",
               }}
             />{" "}
+
             {/* ---------- */}
             <Clusterer
               className={"placemarkCLuster"}
@@ -418,39 +480,7 @@ function YandexMapsDressMe() {
                 </div>
               </div>
             </div>
-            {/* Yandex Search */}
-            <div className={`absolute  ${!dressInfo?.yandexFullScreen ? "top-[80px]" : "top-[8px]"
-              }  md:top-auto md:bottom-[24px] left-0 right-0 mx-auto  overflow-hidden z-50 bg-yandexNavbar backdrop-blur-sm rounded-xl h-[48px] w-[94%] md:w-fit shadow-lg`}
-            >
-              <div
-                onClick={() => {
-                  // setDressInfo({
-                  //   ...dressInfo,
-                  //   yandexOpenMarketLocation: !dressInfo.yandexOpenMarketLocation,
-                  // });
-                  setIsComponentVisible(!isComponentVisible)
-                }}
-                className="w-full h-full flex justify-between "
-              >
-                <div className="w-full h-full flex items-center px-3">
-                  <div>
-                    <img src={locationIcons} alt="" />
-                  </div>
-                  <div className="h-full flex items-center w-full mx-3">
-                    <input
-                      type="text"
-                      name="search"
-                      className="h-full  w-full bg-transparent"
-                      placeholder="Поиск мест и адресов"
-                      autoComplete="off"
-                    />
-                  </div>
-                  <button type="button">
-                    <SearchIcons />
-                  </button>
-                </div>
-              </div>
-            </div>
+
             <div
               className={`absolute block md:hidden ml-[-1000px] duration-1000 overflow-hidden z-[103] rounded-lg shadow-lg left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%]  md:bottom-[120px]
                 ${dressInfo?.yandexFullScreen
