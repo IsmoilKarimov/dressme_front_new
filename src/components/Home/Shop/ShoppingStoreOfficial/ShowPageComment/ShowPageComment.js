@@ -206,10 +206,10 @@ export default function ShowPageComment( {setOpenTabComment} ) {
 
       <div className="comments">
           <section
-              onClick={() => setAddComment(false)}
-              className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${addComment ? "" : "hidden"
-                  }`}
-              ></section>
+            onClick={() => setAddComment(false)}
+            className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${addComment ? "" : "hidden"
+                }`}
+            ></section>
           <section
               className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${addComment ? "bottom-0" : "bottom-[-800px] z-0"
                   }`}
@@ -222,10 +222,10 @@ export default function ShowPageComment( {setOpenTabComment} ) {
         <article className="w-full block px-4 mt-4 md:mt-0 md:px-0">
           <section className="flex items-center md:border-b border-borderColor2 my-4 md:pb-10">
             <button
-                onClick={() => { setOpenTabComment(false) }}
-                className={`flex items-center cursor-pointer justify-start md:justify-center md:border border-borderColor2 rounded-lg mr-20 md:mr-5`}
+              onClick={() => { setOpenTabComment(false) }}
+              className={`flex items-center cursor-pointer justify-start md:justify-center md:border border-borderColor2 rounded-lg mr-20 md:mr-5`}
             >
-                <GoBackIcon />
+              <GoBackIcon />
             </button>
             <div className="flex justify-center items-center">
                 <p className="not-italic font-AeonikProMedium text-base md:text-2xl leading-7 text-black track%]">
