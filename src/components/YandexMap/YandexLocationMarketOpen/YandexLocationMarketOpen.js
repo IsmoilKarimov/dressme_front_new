@@ -12,7 +12,7 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 import AddCopyCheckedIcon from "../../Home/Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
 
-function YandexLocationMarketOpen({ cordinateMarkets }) {
+function YandexLocationMarketOpen({ cordinateMarkets, }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
 
@@ -178,7 +178,7 @@ function YandexLocationMarketOpen({ cordinateMarkets }) {
                 <button
                   type="button"
                   onClick={handleCopyText}
-                  className="cursor-pointer flex items-end ml-[8px] ">
+                  className="cursor-pointer flex  ml-[8px] ">
                   <AddCopyCheckedIcon />
                 </button>
               </span>
