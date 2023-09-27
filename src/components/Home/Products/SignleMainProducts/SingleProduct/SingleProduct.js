@@ -86,8 +86,8 @@ const SingleProduct = () => {
           <ProductComment />
         </section>
         <section className="w-full h-fit">
-          <article className="w-full mt-[34px] md:mt-[120px]">
-            <div className="md:mb-10">
+          <article className="w-full mt-[34px] md:mt-0">
+            <div className="md:mb-4">
               <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black mb-3 md:mb-0">
                 Похожие продукты
               </p>
@@ -198,7 +198,7 @@ const SingleProduct = () => {
                 Недавно просмотренные продукты{" "}
               </p>
             </div>
-            <article className="flex flex-wrap justify-between mt-10  ">
+            <article className="flex flex-wrap justify-between mt-4 ">
               {LikeProduct.map((data) => {
                 return (
                   <article

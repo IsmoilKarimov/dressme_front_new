@@ -367,7 +367,6 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
             </div>
           </div>
 
-
           <div className={`${openTabComment || openTabLocation ? "hidden" : "hidden md:flex md:border-searchBgColor flex-gap-6 justify-between w-full pb-10 mt-[60px] md:border-b"}`}>
             <section className="w-[22%] h-full  ">
               <div>
@@ -402,7 +401,7 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
                     return (
                       <div key={data.id} className="!w-[100px] h-full ">
                         <div
-                          className={`w-full h-[52px] px-5 m-auto  bg-bgCategory rounded-lg flex justify-center items-center cursor-pointer  border border-searchBgColor  `}
+                          className={`w-full h-[52px] px-5 m-auto bg-bgCategory rounded-lg flex justify-center items-center cursor-pointer  border border-searchBgColor  `}
                         >
                           <p className="not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
                             {data?.name || "0"}
