@@ -190,10 +190,10 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
         <div className="w-[100%] h-fit flex flex-col">
           {/* Top section */}
           <action className="w-full flex flex-col">
-            <figure className="w-full h-fit md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
+            <figure className="w-full h-[240px] md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
               <img
-                className=" object-cover"
-                src="https://storage2.alifshop.uz/files?k1=07bc1bca-7404-4f08-a5dd-1c49126c5afd&k2=dde491d3e034894170e0366666da4f078f92216e7c708decaa7f72d45f4de79bca3355df5beec19676aaaf30f0911495c3fb56cce0045c6ae88d98f03af159be"
+                className="w-full h-full object-cover"
+                src="https://st4.depositphotos.com/1323776/21295/i/450/depositphotos_212951656-stock-photo-scottsdale-usa-bill-bowerman-phil.jpg"
                 alt=""
               />
             </figure>

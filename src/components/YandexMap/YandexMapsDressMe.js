@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 
 import { YMaps, Map, ZoomControl, GeolocationControl, Placemark, Clusterer } from "react-yandex-maps";
 
@@ -26,7 +26,48 @@ import {
 import { UzbekFlag, locationIcons, markerIcons } from "../../assets";
 import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationMarketOpen";
 
+
+
+//-------------------------YandexLocationMarketOpen-------------------------------
+function useComponentVisible(initialIsVisible) {
+  const [isComponentVisible, setIsComponentVisible] = useState(
+    initialIsVisible
+  );
+  const ref = useRef(null);
+
+  const handleHideDropdown = (event) => {
+    if (event.key === "Escape") {
+      setIsComponentVisible(false);
+    }
+  };
+
+  const handleClickOutside = event => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      setIsComponentVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleHideDropdown, true);
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("keydown", handleHideDropdown, true);
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  });
+
+  return { ref, isComponentVisible, setIsComponentVisible };
+}
+// -------------------------------------------------------------------------------------------------
+
 function YandexMapsDressMe() {
+  //-------------------------YandexLocationMarketOpen-------------------------------
+  const {
+    ref,
+    isComponentVisible,
+    setIsComponentVisible
+  } = useComponentVisible(true);
+  // -------------------------------------------------------------------------------------------------
 
   const [openCordinateMap, setOpenCordinateMap] = useState("");
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
@@ -68,20 +109,23 @@ function YandexMapsDressMe() {
   ];
 
   const onMapClick = (e) => {
-    if (dressInfo?.yandexOpenMarketLocation) {
-      setDressInfo({
-        ...dressInfo,
-        yandexOpenMarketLocation: false,
-      });
+    if (isComponentVisible) {
+      // setDressInfo({
+      //   ...dressInfo,
+      //   yandexOpenMarketLocation: false,
+      // });
+      setIsComponentVisible(true)
     }
   };
 
   const HandleData = (e) => {
-    if (dressInfo?.yandexOpenMarketLocation) {
-      setDressInfo({
-        ...dressInfo,
-        yandexOpenMarketLocation: false,
-      });
+    if (isComponentVisible) {
+      // setDressInfo({
+      //   ...dressInfo,
+      //   yandexOpenMarketLocation: false,
+      // });
+      setIsComponentVisible(true)
+
     }
   };
 
@@ -105,8 +149,10 @@ function YandexMapsDressMe() {
     setDressInfo({
       ...dressInfo,
       yandexGetMarketId: value,
-      yandexOpenMarketLocation: true,
+      // yandexOpenMarketLocation: true,
     });
+    setIsComponentVisible(false)
+
   };
 
   //------------------------------------------------------------------------------------------------
@@ -122,8 +168,8 @@ function YandexMapsDressMe() {
       <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden ymapsName">
         {/* Laptop device for */}
         {screenSize.width > 768 && (
-          <div className={`w-full bottom-[0px]  overflow-hidden  md:w-[769px] fixed md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
-          ${dressInfo?.yandexOpenMarketLocation
+          <div ref={ref} className={`w-full bottom-[0px]  overflow-hidden  md:w-[769px] fixed md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
+          ${!isComponentVisible
               ? `z-[102] h-[350px]  bottom-[-75px]`
               : " h-0 bottom-[0]  z-[-10]"
             } ease-linear duration-300`}
@@ -132,8 +178,8 @@ function YandexMapsDressMe() {
           </div>
         )}
         {screenSize.width <= 768 && (
-          <div className={`fixed w-full bg-white z-[102] left-0 right-0 overflow-hidden  ${dressInfo?.yandexOpenMarketLocation
-            ? "h-[562px] bottom-0 ease-linear duration-300 "
+          <div ref={ref} className={`fixed w-full bg-white z-[102] left-0 right-0 overflow-hidden  ${!isComponentVisible
+            ? "h-[570px] bottom-0 ease-linear duration-300 "
             : "h-0 bottom-0 ease-linear duration-300 "
             }  ease-linear duration-300 `}
           >
@@ -378,10 +424,11 @@ function YandexMapsDressMe() {
             >
               <div
                 onClick={() => {
-                  setDressInfo({
-                    ...dressInfo,
-                    yandexOpenMarketLocation: !dressInfo.yandexOpenMarketLocation,
-                  });
+                  // setDressInfo({
+                  //   ...dressInfo,
+                  //   yandexOpenMarketLocation: !dressInfo.yandexOpenMarketLocation,
+                  // });
+                  setIsComponentVisible(!isComponentVisible)
                 }}
                 className="w-full h-full flex justify-between "
               >

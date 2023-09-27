@@ -66,7 +66,7 @@ function YandexLocationMarketOpen({ cordinateMarkets }) {
     slidesToScroll: 1,
   };
   return (
-    <div className="w-full  h-fit flex flex-col gap-y-4 border border-searchBgColor bg-white rounded-t-[12px] md:rounded-[12px]	 px-4 py-5">
+    <div className="w-full  h-fit flex flex-col gap-y-4 border border-searchBgColor overflow-hidden bg-white rounded-t-[12px] md:rounded-[12px]	 px-4 py-5">
       {/* title */}
       <div className="relative w-full flex items-center justify-between">
         <div className="w-fit flex items-center gap-x-3">
@@ -173,12 +173,12 @@ function YandexLocationMarketOpen({ cordinateMarkets }) {
               <span>
                 <LocationIcons />
               </span>
-              <span className="w-[70%] flex items-center not-italic ml-4 font-AeonikProRegular text-base leading-5 text-setTexOpacity">
-                <span>{copyText}</span>
+              <span className="w-[70%] flex  not-italic ml-4 font-AeonikProRegular text-base leading-5 text-setTexOpacity">
+                {copyText}
                 <button
                   type="button"
                   onClick={handleCopyText}
-                  className="cursor-pointer ml-[8px]">
+                  className="cursor-pointer flex items-end ml-[8px] ">
                   <AddCopyCheckedIcon />
                 </button>
               </span>
@@ -197,7 +197,7 @@ function YandexLocationMarketOpen({ cordinateMarkets }) {
             </button> */}
             <button
               onClick={openShoppingChild}
-              className={` w-full h-[48px] bg-fullBlue active:scale-95  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
+              className={` w-full h-[48px] bg-fullBlue active:scale-95 mt-4 mb-2 md:mb-0 md:mt-0  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
             >
               <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center   capitalize text-white">
                 Подробнее
