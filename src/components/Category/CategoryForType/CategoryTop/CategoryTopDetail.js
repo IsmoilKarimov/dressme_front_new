@@ -1,14 +1,32 @@
 import { NavLink } from "react-router-dom";
 
 import { MuslimImg } from "../../../../assets";
-import { ClothesIcons, FilterIcons } from "../../../../assets/icons";
-import { useContext, useState } from "react";
+import { ClothesIcons, FilterIcons, SearchIcons } from "../../../../assets/icons";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
+import FilterDropUp from "../CategoryMobileDropUp/FilterDropUp";
+import ClothingTypesDropUp from "../CategoryMobileDropUp/ClothingTypesDropUp";
 
 const CategoryTopDetail = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [filter, setFilter] = useState(false)
+  const [clothingTypes, setClothingTypes] = useState(false)
+
+  const toggleFilter = useCallback(() => setFilter(false), [])
+  const toggleClothingTypes = useCallback(() => setClothingTypes(false), [])
+
+  // For DropUp
+  useEffect(() => {
+    if (filter || clothingTypes) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [filter, clothingTypes]);
+
+
   const handleFilter = () => {
     setDressInfo({
       ...dressInfo,
@@ -112,8 +130,36 @@ const CategoryTopDetail = () => {
 
   return (
     <main className="flex flex-col justify-center border-t border-searchBgColor items-center md:pt-[60px]">
+      
+      <div className="tableSizes">
+        <section
+          onClick={() => setFilter(false)}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${filter ? "" : "hidden"
+            }`}
+        ></section>
+        <section
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${filter ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
+        >
+          <FilterDropUp onClick={toggleFilter} />
+        </section>
+      </div>
+      <div className="locations">
+        <section
+          onClick={() => setClothingTypes(false)}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${clothingTypes ? "" : "hidden"
+            }`}
+        ></section>
+        <locations
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${clothingTypes ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
+        >
+          <ClothingTypesDropUp onClick={toggleClothingTypes} />
+        </locations>
+      </div>
+      
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
-        <section className="w-[100%] h-fit md:mb-14">
+        <article className="w-[100%] h-fit md:mb-14">
           <article className="w-full flex flex-col border-b md:border-none border-searchBgColor">
             <figure className="relative w-full md:h-[90px] mt-6 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               {/*  */}
@@ -167,36 +213,26 @@ const CategoryTopDetail = () => {
           </article>
           <article className="w-full md:hidden flex items-center justify-between mt-6 mb-3 px-4">
             <button
-              onClick={() => handleFilter()}
-              className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+              onClick={() => setFilter(true)}
+              className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
             >
-              <p>
-                <FilterIcons colors={"#000"} />
-              </p>
+              <FilterIcons colors={"#000"} />
               <p className="ml-2 not-italic  font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
                 Фильтры
               </p>
             </button>
-
-            <Popover
-              className="h-[44px] w-[48%] active:scale-95  select-none  active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
-              open={state?.openTypesofClothes}
-              onOpenChange={handleOpenTypesofClothes}
-              trigger="click"
-              options={["Hide"]}
-              placement="bottom"
-              content={contentTypesofClothes}
+            <button
+              onClick={() => setClothingTypes(true)}
+              className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
             >
-              <p>
-                <ClothesIcons />
+              <ClothesIcons />
+              <p className="ml-2 not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+              Под раздел
               </p>
-              <p className="ml-2  not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
-                Тип одеждый
-              </p>
-            </Popover>
+            </button>
           </article>
-        </section>
-        <section className="w-full border-b border-searchBgColor">
+        </article>
+        <article className="w-full border-b border-searchBgColor">
           <article className="w-full hidden md:block mb-10">      
             <ul className=" flex flex-row items-center flex-wrap gap-x-[14px] gap-y-[14px]">
               {catalogTypes.map((catalog, index) => (
@@ -211,7 +247,19 @@ const CategoryTopDetail = () => {
               ))}
             </ul>
           </article>
-        </section>
+        </article>
+      </section>
+      <section className="w-full px-4 block md:hidden">
+        <article className="w-full search flex items-center bg-white justify-between rounded-xl font-AeonikProMedium h-11 mt-3 mb-3 border border-searchBgColor ss:mt-3">
+          <span className=" flex ss:pl-[11.65px]">
+            <SearchIcons />
+          </span>
+          <input
+            type="text"
+            placeholder="Найти товар"
+            className="font-AeonikProRegular bg-transparent w-full px-3 h-12 text-[14px] leading-4"
+          />
+        </article>
       </section>
     </main>
   );

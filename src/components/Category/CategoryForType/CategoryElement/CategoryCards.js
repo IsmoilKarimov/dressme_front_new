@@ -125,6 +125,8 @@ export default function CategoryCards() {
   const goDetail = (id) => {
     navigate(`/product/:${id}`);
   };
+  
+  
   return (
     <main className="flex flex-col box-border mt-2 md:mt-[34px]">
       <section className="hidden">
@@ -141,7 +143,7 @@ export default function CategoryCards() {
               </article>
             );
           })}
-        </ClothesFilterGroup>{" "}
+        </ClothesFilterGroup>
       </section>
       <section className="w-full h-full hidden md:block">
         <article>

@@ -8,6 +8,7 @@ import {
   FilterIcons,
   LocationColoursIcons,
   ManGenIcons,
+  SearchIcons,
   StarIcons,
   WomanGenIcons,
 } from "../../../../../assets/icons";
@@ -366,20 +367,26 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
               </Modal>
             </div>
           </div>
-          {/* <action className={`w-full md:hidden flex items-center justify-between mt-6 mb-3  px-4`}>
+          <action className={`w-full md:hidden flex items-center justify-between mt-6 mb-3 px-4 gap-x-2`}>
+            <div className="search flex items-center bg-btnBgColor justify-between rounded-xl font-AeonikProMedium h-12 mt-3 mb-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
+              <span className=" flex ss:pl-[11.65px] md:hidden">
+                <SearchIcons />
+              </span>
+              <input
+                type="text"
+                placeholder="Искать товары или бренды"
+                className="bg-transparent w-full px-3 h-12 text-[14px] bg-btnBgColor border border-transparent md:border-searchBgColor md:mx-0 md:-ml-[3px] md:px-3 md:h-12
+              placeholder-italic placeholder-AeonikProMedium placeholder-sm leading-4 placeholder-setTexOpacity placeholder-[1px]
+              "
+              />
+            </div>
             <button
               onClick={handleFilter}
-              className="h-[44px] w-[48%] rounded-lg select-none border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+              className="w-12 h-12 shrink-0 rounded-xl select-none border border-searchBgColor flex items-center justify-center"
             >
-              <span>
-                <FilterIcons colors={"#000"} />
-              </span>
-              <p className="ml-2 not-italic font-AeonikProMedium  text-sm leading-4 text-black tracking-[1%] cursor-pointer">
-                Фильтры
-              </p>
+              <FilterIcons colors={"#000"} />
             </button>
-
-            <Popover
+            {/* <Popover
               className="h-[44px] w-[48%] active:scale-95 select-none active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
               open={state?.openTypesofClothes}
               onOpenChange={handleOpenTypesofClothes}
@@ -394,8 +401,8 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
               <p className="ml-2 not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
                 Тип одеждый
               </p>
-            </Popover>
-          </action> */}
+            </Popover> */}
+          </action>
         </div>
 
       </section>
