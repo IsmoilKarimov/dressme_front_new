@@ -7,13 +7,10 @@ import LoadingFor from "../components/Loading/LoadingFor";
 import SkeletonHomeIndex from "../components/Home/Main/Skeleton/SkeletonHomeIndex";
 import SignInSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import SignUpSkeletonIndex from "../components/Authentication/SignUpSkeleton";
-import SignUpSeller from "../components/Authentication/SellerRegsitration/SignUp/SignUpSeller";
-import SignInSeller from "../components/Authentication/SellerRegsitration/SignIn/SignInSeller";
+
 
 import MobileAllComments from "../components/Home/Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/MobileComments";
-import MailVerfySeller from "../components/Authentication/SellerRegsitration/MailVerfy/MailVerfySeller";
-import ForgotPasswordSeller from "../components/Authentication/SellerRegsitration/forgotPassword/ForgotPasswordSeller";
-import ResetPasswordSeller from "../components/Authentication/SellerRegsitration/ResetPasswordSeller/ResetPasswordSeller";
+
 
 // import ConnectDashboard from "../components/RegistrationDashboard";
 // import CatalogMain from "../components/Home/Catalog/CatalogFilter";
@@ -268,8 +265,6 @@ const RouterMain = () => {
             </Suspense>
           }
         />
-
-
         <Route
           path="/enter_password_validate"
           element={
@@ -285,72 +280,7 @@ const RouterMain = () => {
           }
         />
 
-        <Route path="/signup-seller"
-          element={
-            <Suspense
-              fallback={
-                <div>
-                  <SignInSkeletonIndex />
-                </div>
-              }
-            >
-              <SignUpSeller />
-            </Suspense>
-          }
-        />
 
-        <Route path="/login-seller"
-          element={
-            <Suspense
-              fallback={
-                <div>
-                  <SignInSkeletonIndex />
-                </div>
-              }
-            >
-              <SignInSeller />
-            </Suspense>
-          }
-        />
-        <Route path="/forgot-password-seller"
-          element={
-            <Suspense
-              fallback={
-                <div>
-                  <SignInSkeletonIndex />
-                </div>
-              }
-            >
-              <ForgotPasswordSeller />
-            </Suspense>
-          }
-        />
-        <Route path="/reset-password-seller/:id"
-          element={
-            <Suspense
-              fallback={
-                <div>
-                  <SignInSkeletonIndex />
-                </div>
-              }
-            >
-              <ResetPasswordSeller />
-            </Suspense>
-          }
-        />
-        <Route path="/mail-verify-seller/:id"
-          element={
-            <Suspense
-              fallback={
-                <div>
-                  <SignInSkeletonIndex />
-                </div>
-              }
-            >
-              <MailVerfySeller />
-            </Suspense>
-          }
-        />
 
         <Route path="allcomments"
           element={
@@ -378,11 +308,6 @@ const RouterMain = () => {
         locationWindow !== "/sign_up" &&
         locationWindow !== "/sign_in" &&
         locationWindow !== "/profile/settings" &&
-        locationWindow !== "/signup-seller" &&
-        locationWindow !== "/login-seller" &&
-        locationWindow !== "/mail-verify-seller/:id" &&
-        locationWindow !== "/forgot-password-seller" &&
-        locationWindow !== "/reset-password-seller/:id" &&
         locationWindow !== "/allcomments" &&
         locationWindow !== "/delivery-points" ? (
         <Suspense fallback={<>Loading...</>}>
