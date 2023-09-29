@@ -2767,6 +2767,18 @@ const CommentStarIcon = ({colors}) => {
   )
 }
 
+const UnderSection =() => {
+  return(
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 6.75C10.2426 6.75 11.25 5.74264 11.25 4.5C11.25 3.25736 10.2426 2.25 9 2.25C7.75736 2.25 6.75 3.25736 6.75 4.5C6.75 5.74264 7.75736 6.75 9 6.75Z" stroke="#151515" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M6 12H3C2.17157 12 1.5 12.6716 1.5 13.5V14.25C1.5 15.0784 2.17157 15.75 3 15.75H6C6.82843 15.75 7.5 15.0784 7.5 14.25V13.5C7.5 12.6716 6.82843 12 6 12Z" stroke="#151515" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M15 12H12C11.1716 12 10.5 12.6716 10.5 13.5V14.25C10.5 15.0784 11.1716 15.75 12 15.75H15C15.8284 15.75 16.5 15.0784 16.5 14.25V13.5C16.5 12.6716 15.8284 12 15 12Z" stroke="#151515" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M4.5 12V10.5C4.5 10.1022 4.65804 9.72064 4.93934 9.43934C5.22064 9.15804 5.60218 9 6 9H12C12.3978 9 12.7794 9.15804 13.0607 9.43934C13.342 9.72064 13.5 10.1022 13.5 10.5V12" stroke="#151515" strokeWidth="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9 6.75V9" stroke="#151515" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  )
+}
+
 export {
   ActivePersonIcons,
   ActiveHomeIcons,
@@ -2868,6 +2880,7 @@ export {
   FreeStar,
   AddComment,
   CommentStarIcon,
+  UnderSection,
 };
 
 // video

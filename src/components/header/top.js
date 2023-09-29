@@ -123,7 +123,7 @@ const TopHeader = () => {
                 </span>
 
                 <p className="text-textColor text-[13px] ml-2 mr-[6px] font-AeonikProMedium">
-                  Город:
+                  Регион:
                 </p>
                 <p className="w-[90px] font-AeonikProMedium flex items-center">
                   <Popover
