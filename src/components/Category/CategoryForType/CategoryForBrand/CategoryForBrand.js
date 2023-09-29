@@ -119,6 +119,7 @@ const CategoryForBrand = () => {
     budgetShow: screenSize.width <= 768 ? true : false,
     ColorsShow: screenSize.width <= 768 ? true : false,
     ClothingShow: screenSize.width <= 768 ? true : false,
+    
     TrouserShow: screenSize.width <= 768 ? true : false,
     ShoesShow: screenSize.width <= 768 ? true : false,
     customerRreviews: screenSize.width <= 768 ? true : false,

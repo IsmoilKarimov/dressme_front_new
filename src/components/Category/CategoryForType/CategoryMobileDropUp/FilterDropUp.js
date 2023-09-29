@@ -144,10 +144,9 @@ function FilterDropUp({ onClick }) {
                         <MenuCloseIcons colors={"#000"} />
                     </button>
                 </section>
-                <section className="w-full h-[410px] flex flex-col items-center">
+                <section className="w-full h-[415px] flex flex-col items-center">
                     <action className="w-full h-fit flex items-center justify-center flex-wrap gap-x-7 mb-[24px] px-4">
                         <form className='w-full flex flex-col items-center'>
-
                             <div className='w-full h-[290px] overflow-scroll mt-2'>
                                 <ul>
                                    <li className="w-full text-[#303030] text-base font-AeonikProRegular">
@@ -167,7 +166,7 @@ function FilterDropUp({ onClick }) {
                                                 <p
                                                     className={`${
                                                     state?.gender ? "rotate-[90deg]" : ""
-                                                    } duration-300 mb-3`}
+                                                    } duration-300 mb-3 mr-2`}
                                                 >
                                                     <ArrowTopIcons colors={"#303030"} />
                                                 </p>
@@ -210,12 +209,12 @@ function FilterDropUp({ onClick }) {
                                                 className="w-full flex items-center justify-between cursor-pointer select-none border-b border-searchBgColor"
                                             >
                                                 <p className="not-italic font-AeonikProRegular leading-4 mb-3">
-                                                    Каталоги
+                                                    По категории
                                                 </p>
                                                 <p
                                                     className={`${
                                                     state?.catolog ? "rotate-[90deg]" : ""
-                                                    } duration-300 mb-3`}
+                                                    } duration-300 mb-3 mr-2`}
                                                 >
                                                     <ArrowTopIcons colors={"#303030"} />
                                                 </p>
@@ -256,12 +255,12 @@ function FilterDropUp({ onClick }) {
                                                 className="w-full flex items-center justify-between cursor-pointer select-none border-b border-searchBgColor"
                                             >
                                                 <p className="not-italic font-AeonikProRegular leading-4 mb-3">
-                                                    Бренды
+                                                    По бренду
                                                 </p>
                                                 <p
                                                     className={`${
                                                     state?.brandShow ? "rotate-[90deg]" : ""
-                                                    } duration-300`}
+                                                    } duration-300 mr-2 mb-3`}
                                                 >
                                                     <ArrowTopIcons colors={"#303030"} />
                                                 </p>
@@ -316,12 +315,12 @@ function FilterDropUp({ onClick }) {
                                                 className="w-full flex items-center justify-between cursor-pointer select-none border-b border-searchBgColor"
                                             >
                                                 <p className="not-italic font-AeonikProRegular leading-4 mb-3">
-                                                    Бюджет
+                                                    По бюджету
                                                 </p>
                                                 <p
                                                     className={`${
                                                     state?.budgetShow ? "rotate-[90deg]" : ""
-                                                    } duration-300`}
+                                                    } duration-300 mb-3 mr-2`}
                                                 >
                                                     <ArrowTopIcons colors={"#303030"} />
                                                 </p>
@@ -375,12 +374,12 @@ function FilterDropUp({ onClick }) {
                                                 className="w-full flex items-center justify-between cursor-pointer select-none border-b border-searchBgColor"
                                             >
                                                 <p className="not-italic font-AeonikProRegular leading-4 mb-3">
-                                                    Цвет
+                                                    По цвету
                                                 </p>
                                                 <p
                                                     className={`${
                                                     state?.ColorsShow ? "rotate-[90deg]" : ""
-                                                    } duration-300 mb-3`}
+                                                    } duration-300 mb-3 mr-2`}
                                                 >
                                                     <ArrowTopIcons colors={"#303030"} />
                                                 </p>

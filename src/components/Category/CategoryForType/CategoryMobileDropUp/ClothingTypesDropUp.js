@@ -22,7 +22,7 @@ function ClothingTypesDropUp({ onClick }) {
         <main>
             <div className="max-w-[440px] w-[100%] mx-auto bg-white shadow-navMenuShadov  overflow-hidden h-fit rounded-t-[12px]">
                 <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between px-4 mb-1 ">
-                    <p className="text-xl font-AeonikProMedium">Тип одежды</p>
+                    <p className="text-xl font-AeonikProMedium">Под раздел</p>
                     <button
                         onClick={onClick}
                     >

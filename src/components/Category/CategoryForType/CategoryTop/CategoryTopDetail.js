@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 import { MuslimImg } from "../../../../assets";
-import { ClothesIcons, FilterIcons, SearchIcons } from "../../../../assets/icons";
+import { ClothesIcons, FilterIcons, SearchIcons, UnderSection } from "../../../../assets/icons";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { Popover } from "antd";
@@ -225,7 +225,7 @@ const CategoryTopDetail = () => {
               onClick={() => setClothingTypes(true)}
               className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
             >
-              <ClothesIcons />
+              <UnderSection />
               <p className="ml-2 not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%] cursor-pointer">
               Под раздел
               </p>

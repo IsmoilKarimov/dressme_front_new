@@ -194,10 +194,10 @@ function YandexMapsDressMe() {
           </div>
         )}
         {screenSize.width <= 768 && (
-          <div className={`fixed w-full bg-white z-[102] left-0 right-0 overflow-hidden  ${dressInfo?.yandexOpenMarketLocation
-            ? "h-[570px] bottom-0 ease-linear duration-300 "
+          <div className={`fixed w-full bg-white z-[102] left-0 right-0 overflow-hidden ${dressInfo?.yandexOpenMarketLocation
+            ? "h-[570px] bottom-0 ease-linear duration-300"
             : "h-0 bottom-0 ease-linear duration-300 "
-            }  ease-linear duration-300 `}
+            }  ease-linear duration-300`}
           >
             <YandexLocationMarketOpen cordinateMarkets={openCordinateMap} />
           </div>
