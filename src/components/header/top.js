@@ -110,8 +110,8 @@ const TopHeader = () => {
     <nav>
       <div
         className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${locationWindow === "/delivery-points"
-            ? "bg-transparent h-[40px] "
-            : "bg-bgColor h-[32px] "
+          ? "bg-transparent h-[40px] "
+          : "bg-bgColor h-[32px] "
           }`}
       >
         <section className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">
@@ -123,7 +123,7 @@ const TopHeader = () => {
                 </span>
 
                 <p className="text-textColor text-[13px] ml-2 mr-[6px] font-AeonikProMedium">
-                  Город:
+                  Регион:
                 </p>
                 <p className="w-[90px] font-AeonikProMedium flex items-center">
                   <Popover
@@ -182,9 +182,11 @@ const TopHeader = () => {
             </NavLink>
             <NavLink
               to="/signup-seller"
-              onClick={() => setSelectBtn(false)}
+
+
+              onClick={() => window.open(' https://dressme-dashboard-new.vercel.app', "_blank")}
               className={`flex items-center h-fit py-[4px] ml-6
-                ${!selectBtn ? "py-[4px] px-3 bg-white rounded" : ""}
+                // ${!selectBtn ? "py-[4px] px-3 bg-white rounded" : ""}
               `}
             >
               <p className="mr-2">
@@ -220,7 +222,7 @@ const TopHeader = () => {
           </article>
         </section>
       </div>
-    </nav>
+    </nav >
   );
 };
 export default TopHeader;

@@ -2412,22 +2412,10 @@ const SortIcons = ({ colors }) => {
 };
 const FilterIcons = ({ colors }) => {
   return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M3.04345 2C2.46738 2 2 2.47524 2 3.06027V3.6843C2 4.11765 2.16479 4.53439 2.45957 4.84785L5.69007 8.28288L5.69149 8.28072C6.31514 8.91919 6.66604 9.78228 6.66604 10.6822V13.7301C6.66604 13.9338 6.87913 14.0638 7.056 13.9677L8.8957 12.9653C9.17343 12.8136 9.34675 12.5189 9.34675 12.1989V10.6743C9.34675 9.77939 9.69267 8.91991 10.3106 8.28288L13.5411 4.84785C13.8352 4.53439 14 4.11765 14 3.6843V3.06027C14 2.47524 13.5333 2 12.9573 2H3.04345Z"
-        stroke="black"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2.25 5.25H15.75" stroke="black" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M4.5 9H13.5" stroke="black" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M7.5 12.75H10.5" stroke="black" strokeWidth="1.5" strokeLinecap="round"/>
     </svg>
   );
 };
@@ -2779,6 +2767,18 @@ const CommentStarIcon = ({colors}) => {
   )
 }
 
+const UnderSection =() => {
+  return(
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 6.75C10.2426 6.75 11.25 5.74264 11.25 4.5C11.25 3.25736 10.2426 2.25 9 2.25C7.75736 2.25 6.75 3.25736 6.75 4.5C6.75 5.74264 7.75736 6.75 9 6.75Z" stroke="#151515" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M6 12H3C2.17157 12 1.5 12.6716 1.5 13.5V14.25C1.5 15.0784 2.17157 15.75 3 15.75H6C6.82843 15.75 7.5 15.0784 7.5 14.25V13.5C7.5 12.6716 6.82843 12 6 12Z" stroke="#151515" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M15 12H12C11.1716 12 10.5 12.6716 10.5 13.5V14.25C10.5 15.0784 11.1716 15.75 12 15.75H15C15.8284 15.75 16.5 15.0784 16.5 14.25V13.5C16.5 12.6716 15.8284 12 15 12Z" stroke="#151515" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M4.5 12V10.5C4.5 10.1022 4.65804 9.72064 4.93934 9.43934C5.22064 9.15804 5.60218 9 6 9H12C12.3978 9 12.7794 9.15804 13.0607 9.43934C13.342 9.72064 13.5 10.1022 13.5 10.5V12" stroke="#151515" strokeWidth="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9 6.75V9" stroke="#151515" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  )
+}
+
 export {
   ActivePersonIcons,
   ActiveHomeIcons,
@@ -2880,6 +2880,7 @@ export {
   FreeStar,
   AddComment,
   CommentStarIcon,
+  UnderSection,
 };
 
 // video
