@@ -37,7 +37,8 @@ function ClothingTypesDropUp({ onClick }) {
                                 {ClothingTypes.map((data) => {
                                     return (
                                         <div key={data.id} className='w-full flex items-center justify-start border-b border-searchBgColor text-[#303030] pb-[10px] my-3 text-base font-AeonikProRegular'>
-                                            {data.name}
+                                            <span>{data.name}</span>
+                                            
                                         </div>
                                     );
                                 })}
