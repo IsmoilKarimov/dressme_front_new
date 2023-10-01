@@ -184,9 +184,9 @@ function YandexMapsDressMe() {
       <div className="w-[100%] h-[100vh] border-b border-searchBgColor ymapsName">
         {/* Laptop device for */}
         {screenSize.width > 768 && (
-          <div className={`w-full  bottom-[0px] md:w-[769px] fixed md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
+          <div className={`w-full bottom-[0px] md:w-[769px] fixed md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] border border-red-600
           ${dressInfo?.yandexOpenMarketLocation
-              ? `z-[102] h-[350px] bottom-[-75px]`
+              ? `z-[102] h-[350px] border border-green-700 `
               : " h-0 bottom-[0] z-[-10]"
             } ease-linear duration-300`}
           >
