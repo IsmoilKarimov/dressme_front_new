@@ -49,7 +49,7 @@ function ClothingTypesDropUp({ onClick }) {
                         <button
                             onClick={onClick}
                             className="w-[45%] h-[38px] text-base font-AeonikProMedium bg-white text-borderWinter border border-borderWinter rounded-md active:scale-95">Закрыт</button>
-                        <button className="w-[55%] h-[38px] text-base font-AeonikProMedium bg-borderWinter text-white border border-borderWinter rounded-md active:scale-95">Сохранить</button>
+                        <button className="w-[55%] h-[38px] text-base font-AeonikProMedium bg-borderWinter text-white border border-borderWinter rounded-md active:scale-95">Выбрать</button>
                     </action>
                 </section>
             </div>

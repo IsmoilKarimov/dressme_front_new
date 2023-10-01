@@ -226,7 +226,7 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
                 </div>
               </div>
               {/* 2 */}
-              <div className="w-full md:w-[35%] flex items-center  mt-6 md:mt-0">
+              <div className="w-full md:w-[35%] flex items-center border-t md:border-none border-searchBgColor mt-5 pt-5 md:pt-0 md:mt-0">
                 <NavLink
                   to="/delivery-points"
                   className="flex items-center justify-center shrink-0 w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer"
@@ -249,7 +249,7 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
                 </button>
               </div>
               {/* 3 */}
-              <div className="w-full md:w-[25%] flex items-center md:justify-end pb-5 md:pb-0 border-b border-[#F0F0F0] md:border-none md:mr-5 mt-6 md:mt-0">
+              <div className="w-full md:w-[25%] flex items-center md:justify-end pb-5 md:pb-0 border-b border-[#F0F0F0] md:border-none md:mr-5 mt-5 md:mt-0">
                 <div className="md:hidden flex w-fit">
                   <div className="w-fit h-fit flex items-center justify-center gap-y-1 cursor-pointer">
                     <NavLink
