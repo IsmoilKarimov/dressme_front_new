@@ -180,10 +180,8 @@ const TopHeader = () => {
                 Помощь
               </p>
             </NavLink>
-            <NavLink
-              to="/signup-seller"
-
-
+            <button
+              type="button"
               onClick={() => window.open(' https://dressme-dashboard-new.vercel.app', "_blank")}
               className={`flex items-center h-fit py-[4px] ml-6
                 // ${!selectBtn ? "py-[4px] px-3 bg-white rounded" : ""}
@@ -200,7 +198,7 @@ const TopHeader = () => {
               >
                 Бизнес
               </p>
-            </NavLink>
+            </button>
             <article className="line h-5 border text-textColor mx-6"></article>
             <NavLink
               to="/stores"

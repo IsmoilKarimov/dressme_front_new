@@ -115,7 +115,7 @@ function YandexLocationMarketOpen({ cordinateMarkets, }) {
             }`}
         ></section>
         <section
-          className={`fixed z-[201] rounded-lg bg-white w-full md:w-fit h-fit mx-auto my-auto md:m-auto cursor-pointer flex flex-col items-center justify-center inset-0 ${modalOfCarsouel ? "" : "hidden"
+          className={`fixed z-[201] border border-violet-700 rounded-lg bg-white w-full md:w-fit h-fit mx-auto my-auto md:m-auto cursor-pointer flex flex-col items-center justify-center inset-0 ${modalOfCarsouel ? "" : "hidden"
             }`}
         >
           <button
@@ -149,8 +149,8 @@ function YandexLocationMarketOpen({ cordinateMarkets, }) {
 
         </section>
       </div>
-      
-      <div className="w-full h-fit flex flex-col gap-y-4 border border-searchBgColor overflow-hidden bg-white rounded-t-[12px] md:rounded-[12px] px-4 py-5">
+      {/*  border border-searchBgColor */}
+      <div className={`w-full flex flex-col gap-y-4 overflow-hidden bg-white rounded-t-[12px] md:rounded-[12px] px-4 py-5 border border-blue-600`}>
         
         {/* title */}
         <div className="relative w-full flex items-center justify-between">
@@ -187,7 +187,7 @@ function YandexLocationMarketOpen({ cordinateMarkets, }) {
           <div className="w-full h-[220px] md:w-[48%] md:h-[250px] mx-auto ">
             <Slider
               {...settings}
-              className="w-full h-full rounded-lg overflow-hidden flex flex-col justify-center"
+              className="w-full h-full border border-yellow-400 rounded-lg overflow-hidden flex flex-col justify-center"
             >
               {cardCarousel?.map(data => (
                 <div 

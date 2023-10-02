@@ -221,7 +221,7 @@ const ProductCarousel = ({ show }) => {
   };
 
   return (
-    <main className="w-full md:w-fit h-full">
+    <main className="w-full md:w-fit h-full ">
 
       <div className="w-full">
         <section
@@ -230,7 +230,7 @@ const ProductCarousel = ({ show }) => {
             }`}
         ></section>
         <section
-          className={`fixed z-[201] rounded-lg bg-white w-full md:w-fit h-full mx-auto my-auto md:m-auto cursor-pointer flex flex-col items-center justify-center inset-0 ${modalOfCarsouel ? "" : "hidden"
+          className={`fixed z-[201] rounded-lg bg-white w-full md:w-fit h-fit mx-auto my-auto md:m-auto cursor-pointer flex flex-col items-center justify-center inset-0 ${modalOfCarsouel ? "" : "hidden"
             }`}
         >
           <button
@@ -266,6 +266,7 @@ const ProductCarousel = ({ show }) => {
       </div>
 
       {screenSize.width >= 768 ? (
+
         <section className={`w-full h-[620px] flex flex-col md:flex-row md:gap-x-[10px] md:sticky duration-500 ${show ? "visible z-20 top-[110px]" : "visible z-20 top-[16px]"
           }
         `}>
@@ -295,6 +296,7 @@ const ProductCarousel = ({ show }) => {
               })}
             </Slider>
           </article>
+
           <article className="group mx-auto md:w-[480px] md:h-[620px]">
             <Slider
               className="w-full h-full rounded-lg"
@@ -308,7 +310,7 @@ const ProductCarousel = ({ show }) => {
                     key={data?.id}
                     onClick={() => handleClickCarosuel(data?.id)}
                   >
-                    <figure className="relative w-full h-full cursor-pointer overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
+                    <figure className="relative w-full h-full overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
                       <img className="w-full h-fit" src={data?.img} alt="" />
                       <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                         <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
@@ -330,6 +332,7 @@ const ProductCarousel = ({ show }) => {
             </Slider>
           </article>
         </section>
+
       ) : (
         <section className="w-full h-fit flex flex-col">
           {/* 1 */}

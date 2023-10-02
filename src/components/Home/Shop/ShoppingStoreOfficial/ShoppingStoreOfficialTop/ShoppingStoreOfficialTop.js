@@ -189,7 +189,7 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
         <div className="w-[100%] h-fit flex flex-col">
           {/* Top section */}
-          <div className="w-full flex flex-col">
+          <div className="w-full flex flex-col border-[#F0F0F0]">
             <figure className="w-full h-[240px] md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
               <img
                 className="w-full h-full object-cover"
@@ -226,7 +226,7 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
                 </div>
               </div>
               {/* 2 */}
-              <div className="w-full md:w-[35%] flex items-center  mt-6 md:mt-0">
+              <div className="w-full md:w-[35%] flex items-center border-t md:border-none border-searchBgColor mt-5 pt-5 md:pt-0 md:mt-0">
                 <NavLink
                   to="/delivery-points"
                   className="flex items-center justify-center shrink-0 w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer"
@@ -249,7 +249,7 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
                 </button>
               </div>
               {/* 3 */}
-              <div className="w-full md:w-[25%] flex items-center md:justify-end md:mr-5  mt-6 md:mt-0">
+              <div className="w-full md:w-[25%] flex items-center md:justify-end pb-5 md:pb-0 border-b border-[#F0F0F0] md:border-none md:mr-5 mt-5 md:mt-0">
                 <div className="md:hidden flex w-fit">
                   <div className="w-fit h-fit flex items-center justify-center gap-y-1 cursor-pointer">
                     <NavLink
@@ -367,8 +367,8 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
               </Modal>
             </div>
           </div>
-          <action className={`w-full md:hidden flex items-center justify-between mt-6 mb-3 px-4 gap-x-2`}>
-            <div className="search flex items-center bg-btnBgColor justify-between rounded-xl font-AeonikProMedium h-12 mt-3 mb-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
+          <action className={`w-full md:hidden flex items-center justify-between mt-3 mb-3 px-4 gap-x-2`}>
+            <div className="search flex items-center bg-btnBgColor justify-between rounded-xl font-AeonikProMedium h-12 my-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
               <span className=" flex ss:pl-[11.65px] md:hidden">
                 <SearchIcons />
               </span>
@@ -386,22 +386,6 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
             >
               <FilterIcons colors={"#000"} />
             </button>
-            {/* <Popover
-              className="h-[44px] w-[48%] active:scale-95 select-none active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
-              open={state?.openTypesofClothes}
-              onOpenChange={handleOpenTypesofClothes}
-              trigger="click"
-              options={["Hide"]}
-              placement="bottom"
-              content={contentTypesofClothes}
-            >
-              <span>
-                <ClothesIcons />
-              </span>
-              <p className="ml-2 not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
-                Тип одеждый
-              </p>
-            </Popover> */}
           </action>
         </div>
 
