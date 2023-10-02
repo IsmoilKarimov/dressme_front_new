@@ -62,7 +62,7 @@ const ShoppingStoreBreadCrumb = () => {
 
   return (
     <main className="flex flex-col min-h-[44px]  justify-center items-center my-3">
-      <section className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
+      <section className="max-w-[1280px] w-[100%] flex items-center justify-start m-auto">
         <article className="flex items-center">
           <article className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
             <NavLink
@@ -84,44 +84,7 @@ const ShoppingStoreBreadCrumb = () => {
             </NavLink>
           </article>
         </article>
-        <article className="hidden md:block">
-          <Popover
-            open={state?.openwear}
-            onOpenChange={handleOpenChangeWear}
-            className="w-[168px] px-[17px] h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
-            trigger="click"
-            options={["Hide"]}
-            placement="bottom"
-            content={contentWear}
-          >
-            <figure>
-              {personItems
-                ?.filter((value) => value.id === dressInfo?.type)
-                .map((data) => {
-                  return (
-                    <img
-                      key={data.id}
-                      className="mr-3"
-                      src={data?.man}
-                      alt="female"
-                    />
-                  );
-                })}
-            </figure>
-            <p className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black">
-              Абдулазиз{" "}
-            </p>
-            <span>
-              <BiChevronDown
-                size={22}
-                style={{ color: "#000" }}
-                className={`${
-                  state?.openwear ? "rotate-[-180deg]" : ""
-                } duration-200`}
-              />{" "}
-            </span>
-          </Popover>
-        </article>
+        
       </section>
     </main>
   );
