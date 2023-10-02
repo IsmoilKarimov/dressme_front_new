@@ -5,6 +5,8 @@ import {
   ArrowTopIcons,
   CotegoryMenuIcons,
   ManGenIcons,
+  SearchChangeColorIcon,
+  SearchIcons,
   WomanGenIcons,
 } from "../../../../../assets/icons";
 
@@ -82,46 +84,13 @@ const ShoppingTop = () => {
   return (
     <main className="hidden md:flex flex-col min-h-[44px]  justify-center items-center my-5">
       <section className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
-        <article className="flex items-center">
-          <section className="w-[98%] flex items-center border rounded-lg bg-slate-50 mr-6">
-            {typesCategory.map((data) => {
-              return (
-                <div
-                  key={data.id}
-                  className="flex justify-between h-10 rounded-lg"
-                >
-                  <button
-                    key={data.id}
-                    onClick={() => handleTypeCheck(data.id)}
-                    className={`flex items-center justify-center h-10 text-[15px] text-black text-center px-5 font-AeonikProRegular ${
-                      data.action
-                        ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg ${dressInfo?.TextColorSeason}`
-                        : ""
-                    } `}
-                  >
-                    <span className="mr-2">{data.icon}</span>
-                    <p>{data.name}</p>
-                  </button>
-                  <span
-                    className={`${
-                      data.id === 5
-                        ? "text-searchBgColor hidden"
-                        : "text-searchBgColor flex items-center"
-                    }`}
-                  >
-                    |
-                  </span>
-                </div>
-              );
-            })}
-          </section>
-
-          <section className="w-[40%] flex items-center border rounded-lg bg-slate-50">
+        {/* <article className="flex items-center"> */}
+          <section className="flex items-center border rounded-lg bg-slate-50">
             {genderCategory.map((data) => {
               return (
                 <div
                   key={data.id}
-                  className="flex justify-between h-10 rounded-lg "
+                  className="flex justify-between h-10 rounded-lg"
                 >
                   <button
                     key={data.id}
@@ -135,7 +104,7 @@ const ShoppingTop = () => {
                     } `}
                   >
                     <span className="">{data.icon}</span>
-                    {data.name ? <p className=" ml-2">{data.name}</p> : ""}
+                    {data.name ? <p className="ml-2">{data.name}</p> : ""}
                   </button>
                   <span
                     className={`${
@@ -150,24 +119,11 @@ const ShoppingTop = () => {
               );
             })}
           </section>
-        </article>
-        <article className="w-[fit] flex items-center ">
-          <article className="flex items-center w-fit mr-4">
-            <p className="not-italic font-normal text-sm leading-4 text-setTexOpacity tractking-[1%]">
-              Сортировка:
-            </p>
-          </article>
-          <article>
-            <button className="w-[260px] h-[44px] px-4 rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between  cursor-pointer select-none group  ">
-              <p className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-                Последние добавленные{" "}
-              </p>
-              <span>
-                <span className={`rotate-[0deg]`}>
-                  <ArrowTopIcons colors={"#000"} />
-                </span>
-              </span>
-            </button>
+        {/* </article> */}
+        <article className="w-fit flex items-center ">
+          <article className="w-[400px] h-11 flex items-center justify-between p-3 rounded-xl border border-searchBgColor font-AeonikProRegular text-base">
+            <input type="text" className="w-[90%]" placeholder="Поиск" />
+            <SearchIcons colors={"#a1a1a1"} className="cursor-pointer"/>
           </article>
         </article>
       </section>

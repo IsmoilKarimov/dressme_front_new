@@ -280,9 +280,7 @@ const RouterMain = () => {
           }
         />
 
-
-
-        <Route path="allcomments"
+        <Route path="/allcomments"
           element={
             <Suspense
               fallback={
