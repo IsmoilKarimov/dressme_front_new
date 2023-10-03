@@ -342,8 +342,7 @@ function YandexMapsDressMe() {
                   </span>
 
                   <input
-                    type="text"
-                    placeholder="Искать товары или бренды"
+                    type="text" placeholder="Искать товары или бренды"
                     className="bg-transparent w-full px-3 h-12 text-[14px] bg-btnBgColor border border-transparent md:border-searchBgColor md:mx-0 md:-ml-[3px] md:px-3 md:h-12
                     placeholder-italic placeholder-AeonikProMedium placeholder-sm leading-4 placeholder-setTexOpacity placeholder-[1px]
                     "
