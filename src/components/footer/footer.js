@@ -374,7 +374,7 @@ const Footer = () => {
               border: "1px solid #c1c1c1",
               backgroundColor: "#fafafa",
             }}
-            className="bg-bgColor rounded-full mt-[-100px] z-[11] flex items-center opacity-70 justify-center ss:bottom-[75px] ss:right-[15px] md:bottom-10 md:right-10"
+            className="bg-bgColor rounded-full mt-[-100px] !z-[11] flex items-center opacity-70 justify-center ss:bottom-[75px] ss:right-[15px] md:bottom-10 md:right-10"
           />
         </article>
         <article className="max-w-[1280px] w-[100%]  flex justify-center items-center m-auto">
