@@ -507,31 +507,30 @@ const MediumHeader = () => {
               </div>
             </section>
             {/*Starting of Blocked  Hamburger Menu section */}
-            {locationWindow !== "/delivery-points" && (
-              <section className={`md:hidden relative w-full mx-auto `}>
-                {
-                  locationWindow !== "/catalog" ||
-                  locationWindow !== "/shopping_store/:id" ||
-                  locationWindow !== "/product/:id"
-                  && (
-                    <div className={`sticky top-0 py-1 bg-white  w-full z-10`}>
+            {locationWindow !== "/delivery-points" ||
+              locationWindow === "/"
+            ? (
+              <section className={`flex flex-col md:hidden relative w-full mx-auto`}> 
+                { locationWindow === "/" ? (               
+                    <div className={`sticky top-0 py-1 bg-white w-full z-10`}>
                       {/* Searching section */}
-                      <article className=" flex items-center rounded-xl font-AeonikProMedium h-12 ss:w-[100%]  border border-searchBgColor bg-white ">
-                        <span className="pl-[11.65px]">
-                          <SearchIcons />
-                        </span>
+                      <article className="w-full h-12 flex items-center justify-between rounded-xl font-AeonikProMedium border border-searchBgColor bg-white ">
                         <input
                           type="text"
                           placeholder="Искать товары или бренды"
-                          className="bg-transparent w-full h-full text-[14px] border border-transparent px-2  "
+                          className="bg-transparent w-[90%] h-full text-[14px] border border-transparent px-3"
                         />
+                        <span className="w-[1px] h-full border-r border-searchBgColor"></span>
+                        <span className="w-[15%] rounded-r-xl flex h-full bg-[#fafafa] items-center justify-center">
+                          <SearchIcons />
+                        </span>
                       </article>
                     </div>
-                  )}
+                  ):("")}
 
                 {/* Gender selection for Mobile */}
                 {locationWindow === "/" && (
-                  <article className="flex flex-wrap items-center justify-between rounded-xl  my-4 w-full ">
+                  <article className="flex flex-wrap items-center justify-between rounded-xl my-4 w-full">
                     {personItems
                       ?.filter((value) => value.id === dressInfo?.type)
                       .map((data) => {
@@ -570,7 +569,7 @@ const MediumHeader = () => {
                   </article>
                 )}
               </section>
-            )}
+            ):("")}
             {/* Ending of Blocked  Hamburger Menu section  */}
           </div>
         ) : ("")}

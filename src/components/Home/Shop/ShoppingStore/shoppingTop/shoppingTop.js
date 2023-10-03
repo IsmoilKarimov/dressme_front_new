@@ -121,8 +121,9 @@ const ShoppingTop = () => {
           </section>
         {/* </article> */}
         <article className="w-full flex items-center md:justify-end">
-          <article className="w-[400px] h-11 flex flex-row-reverse md:flex-row items-center justify-between bg-btnBgColor md:bg-white p-3 rounded-xl border border-searchBgColor font-AeonikProRegular text-base">
+          <article className="w-[400px] h-11 flex flex-row-reverse md:flex-row items-center justify-between bg-btnBgColor md:bg-white px-3 rounded-xl border border-searchBgColor font-AeonikProRegular text-base">
             <input type="text" className="w-[90%] text-sm md:text-base bg-btnBgColor md:bg-white" placeholder="Искать магазины" />
+            <span className="h-full w-[1px] bg-searchBgColor"></span>
             <SearchIcons colors={"#a1a1a1"} className="cursor-pointer"/>
           </article>
         </article>
