@@ -12,7 +12,7 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 import AddCopyCheckedIcon from "../../Home/Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
 
-function YandexLocationMarketOpen({ cordinateMarkets, }) {
+function YandexLocationMarketOpen({ cordinateMarkets, onClick }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
 
@@ -26,7 +26,12 @@ function YandexLocationMarketOpen({ cordinateMarkets, }) {
   const handleCopyText = () => {
     navigator.clipboard.writeText(copyText)
   }
-
+  const imgGallery = [
+    { id: 1, img: "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract03.jpg" },
+    { id: 2, img: "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract04.jpg" },
+    { id: 3, img: "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract02.jpg" },
+    { id: 4, img: "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract01.jpg" },
+  ]
   const NextArrow = (props) => {
     const { onClick } = props;
     return (
@@ -65,8 +70,13 @@ function YandexLocationMarketOpen({ cordinateMarkets, }) {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  const handleCarouselModal = (UId) => {
+    // setOpenCarouselModal(true)
+  }
+  // console.log(openCarouselModal, "openCarouselModal");
   return (
     <div className="w-full  h-fit flex flex-col gap-y-4 border border-searchBgColor overflow-hidden bg-white rounded-t-[12px] md:rounded-[12px]	 px-4 py-5">
+
       {/* title */}
       <div className="relative w-full flex items-center justify-between">
         <div className="w-fit flex items-center gap-x-3">
@@ -103,50 +113,26 @@ function YandexLocationMarketOpen({ cordinateMarkets, }) {
             {...settings}
             className="w-full h-full rounded-lg overflow-hidden flex flex-col justify-center"
           >
-            <div className=" flex items-center justify-center">
-              <img
-                className={
-                  "mx-auto w-full  sm:w-auto	 flex items-center object-center object-cover	"
-                }
-                src={
-                  "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract03.jpg"
-                }
-                alt="img"
-              />
-            </div>
-            <div className=" flex items-center justify-center">
-              <img
-                className={
-                  "mx-auto w-full  sm:w-auto	 flex items-center object-center object-cover	"
-                }
-                src={
-                  "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract04.jpg"
-                }
-                alt="img"
-              />
-            </div>
-            <div className=" flex items-center justify-center">
-              <img
-                className={
-                  "mx-auto w-full  sm:w-auto	 flex items-center object-center object-cover	"
-                }
-                src={
-                  "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract01.jpg"
-                }
-                alt="img"
-              />
-            </div>
-            <div className=" flex items-center justify-center">
-              <img
-                className={
-                  "mx-auto w-full  sm:w-auto	 flex items-center object-center object-cover	"
-                }
-                src={
-                  "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract02.jpg"
-                }
-                alt="img"
-              />
-            </div>
+
+            {
+              imgGallery.map(data => {
+                return (
+
+                  <div onClick={onClick} key={data?.id} className="cursor-pointer flex items-center justify-center">
+                    <img
+                      className={
+                        "mx-auto w-full  sm:w-auto	 flex items-center object-center object-cover	"
+                      }
+                      // src={data?.img}
+                      src={data?.img}
+                      alt="img"
+                    />
+                  </div>
+                )
+              })
+            }
+
+
           </Slider>
         </div>
         {/* Details */}

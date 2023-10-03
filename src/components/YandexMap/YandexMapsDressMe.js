@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect, useRef, useCallback } from "react";
 
 import { YMaps, Map, ZoomControl, GeolocationControl, Placemark, Clusterer } from "react-yandex-maps";
+import Slider from "react-slick";
 
 import "./yandex.css";
 import YandexMapsIndex from "./YandexMapsNavbar/YandexMapsIndex";
@@ -25,6 +26,8 @@ import {
 } from "../../assets/icons";
 import { UzbekFlag, locationIcons, markerIcons } from "../../assets";
 import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationMarketOpen";
+import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import CarouselModalMarket from "./YandexMapsNavbar/CarouselModalMarket";
 
 
 const mapOptions = {
@@ -41,6 +44,8 @@ function YandexMapsDressMe() {
 
   const [openCordinateMap, setOpenCordinateMap] = useState("");
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
+  const [openCarouselModal, setOpenCarouselModal] = useState(false);
+  const toggleCarouselModal = React.useCallback(() => setOpenCarouselModal(!openCarouselModal), []);
 
   function getCurrentDimension() {
     return {
@@ -178,9 +183,31 @@ function YandexMapsDressMe() {
   };
   //------------------------------------------------------------------------------------------------
 
-
   return (
     <div className="h-fit w-full flex justify-center overflow-hidden overflow-y-hidden">
+      <div
+        onClick={() => {
+          setOpenCarouselModal(false);
+        }}
+        className={`fixed inset-0 z-[112] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
+         ${openCarouselModal ? "" : "hidden"
+          }`}
+      >
+
+      </div>
+      <div className={`w-fit h-fit flex items-center mx-auto my-[5%] justify-center fixed z-[201]   ${openCarouselModal ? "" : "hidden"
+        }`}>
+        <div className="relative  z-[205] ">
+          <button
+            onClick={() => {
+              setOpenCarouselModal(false);
+            }}
+            className="absolute right-[-80px] z-[206] top-[0px] flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px]   md:rounded-full md:bg-[#808080]">
+            <MenuCloseIcons colors="#fff" />
+          </button>
+          <CarouselModalMarket />
+        </div>
+      </div>
       <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden ymapsName">
         {/* Laptop device for */}
         {screenSize.width > 768 && (
@@ -190,7 +217,7 @@ function YandexMapsDressMe() {
               : " h-0 bottom-[0]  z-[-10]"
             } ease-linear duration-300`}
           >
-            <YandexLocationMarketOpen cordinateMarkets={openCordinateMap} />
+            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} />
           </div>
         )}
         {screenSize.width <= 768 && (
@@ -199,7 +226,7 @@ function YandexMapsDressMe() {
             : "h-0 bottom-0 ease-linear duration-300 "
             }  ease-linear duration-300 `}
           >
-            <YandexLocationMarketOpen cordinateMarkets={openCordinateMap} />
+            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} />
           </div>
         )}
         {/* Navbaryandex */}
@@ -534,7 +561,7 @@ function YandexMapsDressMe() {
           </Map>
         </YMaps>
       </div>
-    </div>
+    </div >
   );
 }
 
