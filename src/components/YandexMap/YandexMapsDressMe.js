@@ -180,24 +180,24 @@ function YandexMapsDressMe() {
 
 
   return (
-    <div className="h-fit w-full flex justify-center">
-      <div className="w-[100%] h-[100vh] border-b border-searchBgColor ymapsName">
+    <div className="h-fit w-full flex justify-center overflow-hidden overflow-y-hidden">
+      <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden ymapsName">
         {/* Laptop device for */}
         {screenSize.width > 768 && (
-          <div className={`w-full bottom-[0px] md:w-[769px] fixed md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] border border-red-600
+          <div className={`w-full bottom-[0px]  overflow-hidden  md:w-[769px] fixed md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
           ${dressInfo?.yandexOpenMarketLocation
-              ? `z-[102] h-[350px] border border-green-700 `
-              : " h-0 bottom-[0] z-[-10]"
+              ? `z-[102] h-[350px]  bottom-[-75px]`
+              : " h-0 bottom-[0]  z-[-10]"
             } ease-linear duration-300`}
           >
             <YandexLocationMarketOpen cordinateMarkets={openCordinateMap} />
           </div>
         )}
         {screenSize.width <= 768 && (
-          <div className={`fixed w-full bg-white z-[102] left-0 right-0 overflow-hidden ${dressInfo?.yandexOpenMarketLocation
-            ? "h-[570px] bottom-0 ease-linear duration-300"
+          <div className={`fixed w-full bg-white z-[102] left-0 right-0 overflow-hidden  ${dressInfo?.yandexOpenMarketLocation
+            ? "h-[570px] bottom-0 ease-linear duration-300 "
             : "h-0 bottom-0 ease-linear duration-300 "
-            }  ease-linear duration-300`}
+            }  ease-linear duration-300 `}
           >
             <YandexLocationMarketOpen cordinateMarkets={openCordinateMap} />
           </div>
@@ -242,7 +242,7 @@ function YandexMapsDressMe() {
                   type="search"
                   className="h-full outline-none w-full bg-transparent"
                   placeholder="Поиск мест и адресов"
-                // autoComplete="off"
+                  autoComplete="off"
                 />
               </div>
               <button type="button">
@@ -481,7 +481,8 @@ function YandexMapsDressMe() {
               </div>
             </div>
 
-            <div className={`absolute block md:hidden ml-[-1000px] duration-1000 overflow-hidden z-[103] rounded-lg shadow-lg left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%]  md:bottom-[120px]
+            <div
+              className={`absolute block md:hidden ml-[-1000px] duration-1000 overflow-hidden z-[103] rounded-lg shadow-lg left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%]  md:bottom-[120px]
                 ${dressInfo?.yandexFullScreen
                   ? "bottom-[10px] md:bottom-auto"
                   : "bottom-[10px] md:bottom-auto"
