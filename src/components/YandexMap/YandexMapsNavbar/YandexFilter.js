@@ -138,12 +138,50 @@ export default function YandexFilter() {
       })}
     </div>
   );
-  const personItems = [
-    { id: 1111, man: SpringMale, woman: SpringFemale, girl: SpringChild },
-    { id: 2222, man: SummerMale, woman: SummerFemale, girl: SummerChild },
-    { id: 3333, man: AutummMale, woman: AutummFemale, girl: AutummChild },
-    { id: 4444, man: WinterMale, woman: WinterFemale, girl: WinterChild },
-  ];
+  const [personItems, setPersonItems] = useState([
+    {
+      id: 1111, man: SpringMale, woman: SpringFemale, girl: SpringChild, childText: [
+        { id: 1, name: "Детям", action: false },
+        { id: 2, name: "Женщинам", action: false },
+        { id: 3, name: "Мужчинам", action: false },
+      ]
+    },
+    {
+      id: 2222, man: SummerMale, woman: SummerFemale, girl: SummerChild, childText: [
+        { id: 1, name: "Детям", action: false },
+        { id: 2, name: "Женщинам", action: false },
+        { id: 3, name: "Мужчинам", action: false },
+      ]
+    },
+    {
+      id: 3333, man: AutummMale, woman: AutummFemale, girl: AutummChild, childText: [
+        { id: 1, name: "Детям", action: false },
+        { id: 2, name: "Женщинам", action: false },
+        { id: 3, name: "Мужчинам", action: false },
+      ]
+    },
+    {
+      id: 4444, man: WinterMale, woman: WinterFemale, girl: WinterChild, childText: [
+        { id: 1, name: "Детям", action: false },
+        { id: 2, name: "Женщинам", action: false },
+        { id: 3, name: "Мужчинам", action: false },
+      ]
+    }]);
+  const handleFilterByUser = (fathId, childId) => {
+    setPersonItems((current) => {
+      return current?.map((data) => {
+        if (data?.id == fathId) {
+          let newDataColor = data.childText.map((e) => {
+            if (e.id == childId) {
+              return { ...e, action: true };
+            } else return { ...e, action: false };
+          });
+          console.log(newDataColor, "newDataColor");
+          return { ...data, childText: [...newDataColor] };
+        } else return data;
+      });
+    });
+  }
   return (
     <div className=" w-fit px-10 py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex flex-col justify-between items-center m-auto md:border-t">
       <div className="flex items-center justify-center gap-x-2  w-fit   ">
@@ -231,20 +269,25 @@ export default function YandexFilter() {
                   key={data?.id}
                   className="w-fit gap-x-2   flex items-center justify-between "
                 >
-                  <div
-                    onClick={() =>
-                      setState({ ...state, genderActive: false })
-                    }
-                    className={`w-[136px] font-AeonikProMedium   border border-searchBgColor rounded-lg bg-btnBgColor h-[44px]  justify-center flex items-center`}
-                  >
-                    <img src={data?.girl} alt="male" />
-                    <span className="ml-2 not-italic whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5"> Детям</span>
-                  </div>
-                  <button
+                  {
+                    data?.childText?.map(item => {
+                      return (
+                        <button
+                          key={item?.id}
+                          onClick={() => handleFilterByUser(data?.id, item?.id)}
+                          className={`${item?.action ? dressInfo?.BtnActiveSeason : "border-searchBgColor bg-btnBgColor text-black"} border cursor-pointer w-[136px] font-AeonikProMedium    rounded-lg  h-[44px]  justify-center flex items-center`}
+                        >
+                          <img src={data?.girl} alt="male" />
+                          <span className="ml-2 not-italic whitespace-nowrap  text-sm font-AeonikProMedium tracking-wide	leading-5">{item?.name}</span>
+                        </button>
+                      )
+                    })
+                  }
+                  {/* <button
                     onClick={() =>
                       setState({ ...state, genderActive: true })
                     }
-                    className={`w-[136px] font-AeonikProMedium   border border-searchBgColor rounded-lg bg-btnBgColor h-[44px]  justify-center flex items-center`}
+                    className={`${state?.genderActive ? `${dressInfo?.BtnActiveSeason} font-AeonikProMedium rounded-lg  h-[44px]  justify-center flex items-center cursor-pointer w-[136px]` : " cursor-pointer w-[136px] font-AeonikProMedium   border border-searchBgColor rounded-lg bg-btnBgColor h-[44px]  justify-center flex items-center"}`}
                   >
                     <img src={data?.woman} alt="female" />
                     <span className="ml-2 not-italic whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5">Женщинам</span>
@@ -253,11 +296,11 @@ export default function YandexFilter() {
                     onClick={() =>
                       setState({ ...state, genderActive: false })
                     }
-                    className={`w-[136px] font-AeonikProMedium   border border-searchBgColor rounded-lg bg-btnBgColor h-[44px]  justify-center flex items-center`}
+                    className={`${state?.genderActive ? `${dressInfo?.BtnActiveSeason} font-AeonikProMedium rounded-lg  h-[44px]  justify-center flex items-center cursor-pointer w-[136px]` : "cursor-pointer w-[136px] font-AeonikProMedium   border border-searchBgColor rounded-lg bg-btnBgColor h-[44px]  justify-center flex items-center"} `}
                   >
                     <img src={data?.man} alt="male" />
                     <span className="ml-2 not-italic whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5"> Мужчинам</span>
-                  </button>
+                  </button> */}
 
                 </div>
               );
@@ -268,10 +311,10 @@ export default function YandexFilter() {
         <div className="w-[190px]  flex items-center">
           {
             selectWear &&
-            <button type="button" className="h-[32px] px-2 flex items-center bg-bgWinter text-borderWinter rounded-lg gap-x-[6px]">
+            <button type="button" className={`h-[32px] px-2 flex items-center ${dressInfo?.BtnOpacitySeason} rounded-lg gap-x-[6px]`}>
               <span className="text-sm not-italic font-AeonikProMedium leading-5">{selectWear}</span>
               <span onClick={() => setSelectWear("")} className="w-4 h-4 px-[2px] rounded-full flex items-center justify-center bg-white">
-                <MenuCloseIcons colors="#007DCA" className="w-full h-full" />
+                <MenuCloseIcons colors={dressInfo?.ColorSeason} className="w-full h-full" />
               </span>
             </button>
           }
@@ -279,10 +322,10 @@ export default function YandexFilter() {
         <div className="w-[190px]   flex items-center">
           {
             selectPrice &&
-            <button type="button" className="h-[32px] px-2 flex items-center bg-bgWinter text-borderWinter rounded-lg gap-x-[6px]">
+            <button type="button" className={`h-[32px] px-2 flex items-center ${dressInfo?.BtnOpacitySeason} rounded-lg gap-x-[6px]`}>
               <span className="text-sm not-italic font-AeonikProMedium leading-5">{selectPrice}</span>
               <span onClick={() => setSelectPrice("")} className="w-4 h-4 px-[2px] rounded-full flex items-center justify-center bg-white">
-                <MenuCloseIcons colors="#007DCA" className="w-full h-full" />
+                <MenuCloseIcons colors={dressInfo?.ColorSeason} className="w-full h-full" />
               </span>
             </button>
           }
@@ -290,10 +333,10 @@ export default function YandexFilter() {
         <div className="w-[190px]  flex items-center">
           {
             selectBrand &&
-            <button type="button" className="h-[32px] px-2 flex items-center bg-bgWinter text-borderWinter rounded-lg gap-x-[6px]">
+            <button type="button" className={`h-[32px] px-2 flex items-center ${dressInfo?.BtnOpacitySeason} rounded-lg gap-x-[6px]`}>
               <span className="text-sm not-italic font-AeonikProMedium leading-5">{selectBrand}</span>
               <span onClick={() => setSelectBrand("")} className="w-4 h-4 px-[2px] rounded-full flex items-center justify-center bg-white">
-                <MenuCloseIcons colors="#007DCA" className="w-full h-full" />
+                <MenuCloseIcons colors={dressInfo?.ColorSeason} className="w-full h-full" />
               </span>
             </button>
           }
