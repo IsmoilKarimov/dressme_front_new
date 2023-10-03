@@ -206,7 +206,7 @@ const BottomHeader = () => {
         <Popover
           open={state?.openwear}
           onOpenChange={handleOpenChangeWear}
-          className="w-[190px] px-[17px] h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
+          className="w-[190px] px-[17px] h-[44px] rounded-xl bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
           trigger="click"
           options={["Hide"]}
           placement="bottom"
@@ -231,7 +231,7 @@ const BottomHeader = () => {
         <Popover
           open={state?.openPrice}
           onOpenChange={handleOpenChangePrice}
-          className="w-[190px]  h-[44px]  rounded-lg bg-btnBgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group ml-2"
+          className="w-[190px]  h-[44px]  rounded-xl bg-btnBgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group ml-2"
           trigger="click"
           options={["Hide"]}
           placement="bottom"
@@ -256,7 +256,7 @@ const BottomHeader = () => {
           </div>
         </Popover>
 
-        <div className="flex items-center w-[536px] justify-start bg-btnBgColor overflow-hidden rounded-lg border-searchBgColor border h-[44px] ml-2">
+        <div className="flex items-center w-[536px] justify-start bg-btnBgColor overflow-hidden rounded-xl border-searchBgColor border h-[44px] ml-2">
           <article
             onClick={() =>
               setState({ ...state, textToColor: !state.textToColor })
@@ -369,7 +369,7 @@ const BottomHeader = () => {
                     state?.genderActive
                       ? "bg-white border border-searchBgColor"
                       : "bg-transparent"
-                  } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
+                  } w-[50%]  rounded-xl h-11  justify-center flex items-center`}
                 >
                   <img src={data?.woman} alt="female" />
                   <span className="ml-3">Женщинам</span>
@@ -382,7 +382,7 @@ const BottomHeader = () => {
                       !state?.genderActive
                         ? "bg-white border border-searchBgColor"
                         : "bg-transparent"
-                    } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
+                    } w-[50%]  rounded-xl h-11 justify-center flex items-center`}
                   >
                     <img src={data?.man} alt="male" />
                     <span className="ml-3"> Мужчинам</span>

@@ -1150,7 +1150,7 @@ export const DressMenu = ({ children }) => {
       textHover: "hover:text-borderSpring",
       textColor: "text-borderSpring",
       color: "#008F0E",
-      BtnActiveSeason:
+      btnActiveSeason:
         "text-borderSpring  bg-bgSpring border border-borderSpring",
       authenActiveSeason:
         "md:text-borderSpring bg-white bg-bgSpring md:border-borderSpring w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border   rounded-lg",
@@ -1166,7 +1166,7 @@ export const DressMenu = ({ children }) => {
       textHover: "hover:text-borderSummer",
       textColor: "text-borderSummer",
       color: "#EAA700",
-      BtnActiveSeason:
+      btnActiveSeason:
         "text-borderSummer  bg-bgSummer border border-borderSummer",
       authenActiveSeason:
         "md:text-borderSummer bg-white bg-bgSummer md:border-borderSummer w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border   rounded-lg",
@@ -1182,7 +1182,7 @@ export const DressMenu = ({ children }) => {
       textHover: "hover:text-borderAutumm",
       textColor: "text-borderAutumm",
       color: "#E17A02",
-      BtnActiveSeason:
+      btnActiveSeason:
         "text-borderAutumm  bg-bgAutumm borderborder-borderAutumm ",
       authenActiveSeason:
         "md:text-borderAutumm bg-white bg-bgAutumm md:border-borderAutumm w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border rounded-lg",
