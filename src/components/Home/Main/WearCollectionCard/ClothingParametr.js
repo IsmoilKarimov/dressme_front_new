@@ -196,13 +196,13 @@ const ClothingParametr = () => {
     setIconsColor("black");
   };
   return (
-    <main className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto  px-4 md:px-0">
+    <main className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto px-4 md:px-0">
       <section className="w-full ss:block sm:flex justify-start items-center mb-[24px] md:mb-0 md:px-0">
         <div className="not-italic font-AeonikProMedium lg:w-fit lg:text-2xl xl:text-3xl flex items-center leading-8 text-black">
           <p>Коллекция одежд, которые вам подходят</p>
         </div>
       </section>
-      <section className="w-full md:hidden flex items-center justify-between md:border-0 border-b border-searchBgColor pb-3 gap-x-2">
+      <section className="w-full md:hidden flex items-center justify-between pb-3 gap-x-2">
         <button
           onClick={() => {
             setState({

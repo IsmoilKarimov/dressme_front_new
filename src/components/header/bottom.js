@@ -344,8 +344,8 @@ const BottomHeader = () => {
           ?.filter((value) => value.id === dressInfo?.type)
           .map((data) => {
             return (
-              <figure key={data?.id} className="w-fit flex items-center">
-                <button
+              <figure key={data?.id} className="w-[320px] flex items-center bg-btnBgColor justify-between border border-searchBgColor rounded-xl overflow-hidden">
+                {/* <button
                   className={`mr-1 ${dressInfo?.BtnFocusSeason} h-[44px] px-6 justify-between mr-2 flex items-center bg-btnBgColor border border-searchBgColor rounded-lg`}
                 >
                   <img className="mr-3" src={data?.woman} alt="female" />
@@ -360,7 +360,33 @@ const BottomHeader = () => {
                   <figcaption className="font-AeonikProMedium">
                     Мужчинам
                   </figcaption>
+                </button> */}
+                <button
+                  onClick={() =>
+                    setState({ ...state, genderActive: true })
+                  }
+                  className={` font-AeonikProMedium ${
+                    state?.genderActive
+                      ? "bg-white border border-searchBgColor"
+                      : "bg-transparent"
+                  } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
+                >
+                  <img src={data?.woman} alt="female" />
+                  <span className="ml-3">Женщинам</span>
                 </button>
+                  <button
+                    onClick={() =>
+                      setState({ ...state, genderActive: false })
+                    }
+                    className={` font-AeonikProMedium ${
+                      !state?.genderActive
+                        ? "bg-white border border-searchBgColor"
+                        : "bg-transparent"
+                    } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
+                  >
+                    <img src={data?.man} alt="male" />
+                    <span className="ml-3"> Мужчинам</span>
+                  </button>
               </figure>
             );
           })}

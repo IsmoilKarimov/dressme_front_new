@@ -154,8 +154,9 @@ const MediumHeader = () => {
         ></div>
       )}
       <article
-        className={`fixed top-[300px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${dressInfo?.openCatologId ? "" : "hidden"
-          }`}
+        className={`fixed top-[300px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${
+          dressInfo?.openCatologId ? "" : "hidden"
+        }`}
       >
         <NavCategoryModal />
       </article>
@@ -371,112 +372,134 @@ const MediumHeader = () => {
                 </NavLink>
               </div>
             </section>
-
             {/*Starting of Opened Hamburger Menu section */}
             <section
-              className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen pb-[140px] px-3 ${state?.hamburgerMenu
-                ? " flex flex-col ease-linear duration-500 overscroll-none"
-                : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
-                }`}
+              className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen pb-[140px] px-3 ${
+                state?.hamburgerMenu
+                  ? " flex flex-col ease-linear duration-500 overscroll-none"
+                  : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
+              }`}
             >
               <div className={`w-full h-full flex flex-wrap content-between`}>
-                {/* Searching section */}
-                <article className={`w-full h-fit flex flex-col `}>
-                  <div className="search flex items-center bg-btnBgColor justify-between rounded-xl font-AeonikProMedium h-12 mt-3 mb-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
-                    <span className=" flex ss:pl-[11.65px] md:hidden">
-                      <SearchIcons />
-                    </span>
-
-                    <input
-                      type="text"
-                      placeholder="Искать товары или бренды"
-                      className="bg-transparent w-full px-3 h-12 text-[14px] bg-btnBgColor border border-transparent md:border-searchBgColor md:mx-0 md:-ml-[3px] md:px-3 md:h-12
-                    placeholder-italic placeholder-AeonikProMedium placeholder-sm leading-4 placeholder-setTexOpacity placeholder-[1px]
-                    "
-                    />
-                  </div>
-
-                  {/* Categories */}
-                  <ul className="flex flex-col w-full">
-                    <li>
-                      <NavLink
-                        onClick={() =>
-                          setState({ ...state, hamburgerMenu: false })
-                        }
-                        to="/signup-seller"
-                        className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
-                      >
-                        <div className="flex items-center">
-                          <span className=" py-3 pr-3">
-                            <HouseStatisticIcons colors={"#000"} />
-                          </span>
-                          <span className="ml-[11.67px]">Бизнес</span>
-                        </div>
-                        <span className="arrowRotate ml-auto rotate-[90deg]">
-                          <ArrowTopIcons colors={"#000"} />
+                <ul className="flex flex-col w-full">
+                  {/* Gender selection for Mobile */}
+                  <li className="flex flex-wrap items-center justify-between rounded-xl my-4 w-full">
+                    {personItems
+                      ?.filter((value) => value.id === dressInfo?.type)
+                      .map((data) => {
+                        return (
+                          <div
+                            key={data?.id}
+                            className="max-w-[440px] w-[100%] bg-btnBgColor flex items-center justify-between border border-searchBgColor rounded-xl overflow-hidden"
+                          >
+                            <button
+                              onClick={() =>
+                                setState({ ...state, genderActive: true })
+                              }
+                              className={` font-AeonikProMedium ${
+                                state?.genderActive
+                                  ? "bg-white border border-searchBgColor"
+                                  : "bg-transparent"
+                              } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
+                            >
+                              <img src={data?.woman} alt="female" />
+                              <span className="ml-3">Женщинам</span>
+                            </button>
+                            <button
+                              onClick={() =>
+                                setState({ ...state, genderActive: false })
+                              }
+                              className={` font-AeonikProMedium ${
+                                !state?.genderActive
+                                  ? "bg-white border border-searchBgColor"
+                                  : "bg-transparent"
+                              } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
+                            >
+                              <img src={data?.man} alt="male" />
+                              <span className="ml-3"> Мужчинам</span>
+                            </button>
+                          </div>
+                        );
+                      })}
+                  </li>
+                   {/* Categories */}
+                  <li>
+                    <NavLink
+                      onClick={() =>
+                        setState({ ...state, hamburgerMenu: false })
+                      }
+                      to="/signup-seller"
+                      className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
+                    >
+                      <div className="flex items-center">
+                        <span className=" py-3 pr-3">
+                          <HouseStatisticIcons colors={"#000"} />
                         </span>
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        onClick={() =>
-                          setState({ ...state, hamburgerMenu: false })
-                        }
-                        to="/stores"
-                        className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
-                      >
-                        <div className="flex items-center">
-                          <span className=" py-3 pr-3">
-                            <MarketIcons colors={"#000"} />
-                          </span>
-                          <span className="ml-[11.67px]">Магазины</span>
-                        </div>
-                        <span className="arrowRotate ml-auto rotate-[90deg]">
-                          <ArrowTopIcons colors={"#000"} />
+                        <span className="ml-[11.67px]">Бизнес</span>
+                      </div>
+                      <span className="arrowRotate ml-auto rotate-[90deg]">
+                        <ArrowTopIcons colors={"#000"} />
+                      </span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      onClick={() =>
+                        setState({ ...state, hamburgerMenu: false })
+                      }
+                      to="/stores"
+                      className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
+                    >
+                      <div className="flex items-center">
+                        <span className=" py-3 pr-3">
+                          <MarketIcons colors={"#000"} />
                         </span>
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        onClick={() =>
-                          setState({ ...state, hamburgerMenu: false })
-                        }
-                        to="#"
-                        className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
-                      >
-                        <div className="flex items-center">
-                          <span className=" py-3 pr-3">
-                            <CommentIcons colors={"#000"} />
-                          </span>
-                          <span className="ml-[11.67px]">Помощь</span>
-                        </div>
-                        <span className="arrowRotate ml-auto rotate-[90deg]">
-                          <ArrowTopIcons colors={"#000"} />
+                        <span className="ml-[11.67px]">Магазины</span>
+                      </div>
+                      <span className="arrowRotate ml-auto rotate-[90deg]">
+                        <ArrowTopIcons colors={"#000"} />
+                      </span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      onClick={() =>
+                        setState({ ...state, hamburgerMenu: false })
+                      }
+                      to="#"
+                      className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
+                    >
+                      <div className="flex items-center">
+                        <span className=" py-3 pr-3">
+                          <CommentIcons colors={"#000"} />
                         </span>
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        onClick={() =>
-                          setState({ ...state, hamburgerMenu: false })
-                        }
-                        to="#"
-                        className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
-                      >
-                        <div className="flex items-center">
-                          <span className=" py-3 pr-3">
-                            <PhoneIcons colors={"#000"} />
-                          </span>
-                          <span className="ml-[11.67px]">Контакты</span>
-                        </div>
-                        <span className="arrowRotate ml-auto rotate-[90deg]">
-                          <ArrowTopIcons colors={"#000"} />
+                        <span className="ml-[11.67px]">Помощь</span>
+                      </div>
+                      <span className="arrowRotate ml-auto rotate-[90deg]">
+                        <ArrowTopIcons colors={"#000"} />
+                      </span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      onClick={() =>
+                        setState({ ...state, hamburgerMenu: false })
+                      }
+                      to="#"
+                      className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
+                    >
+                      <div className="flex items-center">
+                        <span className=" py-3 pr-3">
+                          <PhoneIcons colors={"#000"} />
                         </span>
-                      </NavLink>
-                    </li>
-                  </ul>
-                </article>
-
+                        <span className="ml-[11.67px]">Контакты</span>
+                      </div>
+                      <span className="arrowRotate ml-auto rotate-[90deg]">
+                        <ArrowTopIcons colors={"#000"} />
+                      </span>
+                    </NavLink>
+                  </li>
+                </ul>
                 <article className="w-full flex flex-col">
                   {/* Line */}
                   <div className="line border-b w-full  border-searchBgColor mb-3 ls:w-full"></div>
@@ -506,73 +529,10 @@ const MediumHeader = () => {
                 </article>
               </div>
             </section>
-            {/*Starting of Blocked  Hamburger Menu section */}
-            {locationWindow !== "/delivery-points" ||
-              locationWindow === "/"
-            ? (
-              <section className={`flex flex-col md:hidden relative w-full mx-auto`}> 
-                { locationWindow === "/" ? (               
-                    <div className={`sticky top-0 py-1 bg-white w-full z-10`}>
-                      {/* Searching section */}
-                      <article className="w-full h-12 flex items-center justify-between rounded-xl font-AeonikProMedium border border-searchBgColor bg-white ">
-                        <input
-                          type="text"
-                          placeholder="Искать товары или бренды"
-                          className="bg-transparent w-[90%] h-full text-[14px] border border-transparent px-3"
-                        />
-                        <span className="w-[1px] h-full border-r border-searchBgColor"></span>
-                        <span className="w-[15%] rounded-r-xl flex h-full bg-[#fafafa] items-center justify-center">
-                          <SearchIcons />
-                        </span>
-                      </article>
-                    </div>
-                  ):("")}
-
-                {/* Gender selection for Mobile */}
-                {locationWindow === "/" && (
-                  <article className="flex flex-wrap items-center justify-between rounded-xl my-4 w-full">
-                    {personItems
-                      ?.filter((value) => value.id === dressInfo?.type)
-                      .map((data) => {
-                        return (
-                          <div
-                            key={data?.id}
-                            className="max-w-[440px] w-[100%] bg-btnBgColor flex items-center justify-between border border-searchBgColor rounded-xl overflow-hidden"
-                          >
-                            <button
-                              onClick={() =>
-                                setState({ ...state, genderActive: true })
-                              }
-                              className={` font-AeonikProMedium ${state?.genderActive
-                                ? "bg-white border border-searchBgColor"
-                                : "bg-transparent"
-                                } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
-                            >
-                              <img src={data?.woman} alt="female" />
-                              <span className="ml-3">Женщинам</span>
-                            </button>
-                            <button
-                              onClick={() =>
-                                setState({ ...state, genderActive: false })
-                              }
-                              className={` font-AeonikProMedium ${!state?.genderActive
-                                ? "bg-white border border-searchBgColor"
-                                : "bg-transparent"
-                                } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
-                            >
-                              <img src={data?.man} alt="male" />
-                              <span className="ml-3"> Мужчинам</span>
-                            </button>
-                          </div>
-                        );
-                      })}
-                  </article>
-                )}
-              </section>
-            ):("")}
-            {/* Ending of Blocked  Hamburger Menu section  */}
           </div>
-        ) : ("")}
+        ) : (
+          ""
+        )}
       </div>
     </nav>
   );
