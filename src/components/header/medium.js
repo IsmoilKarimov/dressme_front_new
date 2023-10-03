@@ -224,7 +224,7 @@ const MediumHeader = () => {
                 </div>
 
                 {/* Weather section */}
-                <article className="w-12 h-12 md:w-[120px] md:h-11 bg-btnBgColor border border-searchBgColor rounded-xl  md:rounded-lg ml-2">
+                <article className="w-12 h-12 md:w-[120px] md:h-11 bg-btnBgColor border border-searchBgColor rounded-xl ml-2">
                   {SeasonTypeArray.filter(
                     (data) => data.id === dressInfo.type
                   ).map((data) => {
