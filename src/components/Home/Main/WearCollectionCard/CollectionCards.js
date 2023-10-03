@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {
   InputCheckedTrueIcons,
   NoImg,
+  SearchIcons,
   StarIcons,
 } from "../../../../assets/icons";
 import { HeartImg } from "../../../../assets";
@@ -79,10 +80,24 @@ export default function CollectionCards() {
       >
         <WearType onClick={toggle} />
       </section>
-
-      <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
+      
+      
+      <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex flex-col justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
+        {/* Searching section */}
+        <article className="w-full h-12 flex md:hidden items-center justify-between rounded-xl font-AeonikProRegular border border-searchBgColor bg-white mt-4">
+          <input
+            type="text"
+            placeholder="Искать товары"
+            className="bg-transparent w-[90%] h-full text-[14px] border border-transparent px-3"
+          />
+          <span className="w-[1px] h-full border-r border-searchBgColor"></span>
+          <span className="w-[15%] rounded-r-xl flex h-full bg-[#fafafa] items-center justify-center">
+            <SearchIcons />
+          </span>
+        </article>
+          
         <div className="w-full flex flex-col box-border ">
-          <article className="flex flex-wrap justify-between md:justify-start md:mx-0 mt-[25px] md:mt-[50px]  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
+          <article className="flex flex-wrap justify-between md:justify-start md:mx-0 mt-4 md:mt-[50px]  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
             {dressInfo.ProductList.map((data) => {
               return (
                 <article
