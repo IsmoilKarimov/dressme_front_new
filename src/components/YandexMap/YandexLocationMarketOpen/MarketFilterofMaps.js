@@ -50,11 +50,11 @@ function MarketFilterofMaps({ onClick }) {
                     {
                         clothesList?.map(item => {
                             return (
-                                <div onClick={() => handleClothesList(item?.id)} key={item?.id} className='w-full flex items-center justify-between cursor-pointer pt-4 pb-[10px] border-b border-searchBgColor'>
-                                    <span>{item?.name}</span>
+                                <div onClick={() => handleClothesList(item?.id)} key={item?.id} className='w-full h-[44px] flex items-center justify-between cursor-pointer pt-4 pb-[10px] border-b border-searchBgColor'>
+                                    <span className='text-gray-800 text-base not-italic font-AeonikProRegular'>{item?.name}</span>
                                     {
                                         item?.isCheck &&
-                                        <span><CircleSuccessIcons colors={"#000"} /></span>
+                                        <span className='mr-1'><CircleSuccessIcons colors={"#000"} /></span>
                                     }
                                 </div>
                             )
@@ -237,11 +237,11 @@ function MarketFilterofMaps({ onClick }) {
     }
 
     const [componentGroup, setComponentGroup] = useState([
-        { id: 1, pageName: <NoSelect />, icons: "", isActive: true, text: "Фильтровать" },
-        { id: 2, pageName: <ClothesList />, icons: <ClothesIcons colors={dressInfo?.ColorSeason} />, isActive: false, text: "По категории" },
-        { id: 3, pageName: <PriceRange />, icons: <DollorIcons colors={dressInfo?.ColorSeason} />, isActive: false, text: "По бюджету" },
-        { id: 4, pageName: <GenderSelect />, icons: <ManWomGenBlack colors={dressInfo?.ColorSeason} />, isActive: false, text: "По полу" },
-        { id: 5, pageName: <BrandMarketSelect />, icons: <TopBrandsIcon colors={dressInfo?.ColorSeason} />, isActive: false, text: "По бренду" },
+        { id: 1, pageName: <NoSelect />, noActiveIcons: "", ActiveIcons: "", isActive: true, text: "Фильтровать" },
+        { id: 2, pageName: <ClothesList />, noActiveIcons: <ClothesIcons colors={"#000"} />, ActiveIcons: <ClothesIcons colors={dressInfo?.ColorSeason} />, isActive: false, text: "По категории" },
+        { id: 3, pageName: <PriceRange />, noActiveIcons: <DollorIcons colors={"#000"} />, ActiveIcons: <DollorIcons colors={dressInfo?.ColorSeason} />, isActive: false, text: "По бюджету" },
+        { id: 4, pageName: <GenderSelect />, noActiveIcons: <ManWomGenBlack colors={"#000"} />, ActiveIcons: <ManWomGenBlack colors={dressInfo?.ColorSeason} />, isActive: false, text: "По полу" },
+        { id: 5, pageName: <BrandMarketSelect />, noActiveIcons: <TopBrandsIcon colors={"#000"} />, ActiveIcons: <TopBrandsIcon colors={dressInfo?.ColorSeason} />, isActive: false, text: "По бренду" },
     ])
     const handleComponentId = (UId) => {
         setComponentGroup(current => {
@@ -278,9 +278,10 @@ function MarketFilterofMaps({ onClick }) {
                         return (
                             <>
                                 {
-                                    item?.icons && <button key={item?.id} onClick={() => handleComponentId(item?.id)} className={`${item?.isActive ? dressInfo?.BtnActiveSeason : "border border-['#E0E0E0']"} w-[85px] h-[52px] rounded-lg flex items-center justify-center  `}>
-                                        {item?.icons}
-                                    </button>}
+                                    item?.ActiveIcons && <button key={item?.id} onClick={() => handleComponentId(item?.id)} className={`${item?.isActive ? dressInfo?.BtnActiveSeason : "border border-['#E0E0E0']"} w-[85px] h-[52px] rounded-lg flex items-center justify-center  `}>
+                                        {item?.isActive ? item?.ActiveIcons : item?.noActiveIcons}
+                                    </button>
+                                }
                             </>
                         )
                     })
