@@ -27,7 +27,8 @@ import {
 import { UzbekFlag, locationIcons, markerIcons } from "../../assets";
 import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationMarketOpen";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import CarouselModalMarket from "./YandexMapsNavbar/CarouselModalMarket";
+import CarouselModalMarket from "./YandexLocationMarketOpen/CarouselModalMarket";
+// import CarouselModalMarket from "./YandexMapsNavbar/CarouselModalMarket";
 
 
 const mapOptions = {
@@ -205,6 +206,7 @@ function YandexMapsDressMe() {
             className="absolute right-[-80px] z-[206] top-[0px] flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px]   md:rounded-full md:bg-[#808080]">
             <MenuCloseIcons colors="#fff" />
           </button>
+          {/* <NewDatauz */}
           <CarouselModalMarket />
         </div>
       </div>
@@ -217,7 +219,7 @@ function YandexMapsDressMe() {
               : " h-0 bottom-[0]  z-[-10]"
             } ease-linear duration-300`}
           >
-            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} />
+            {/* <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} /> */}
           </div>
         )}
         {screenSize.width <= 768 && (
@@ -226,7 +228,7 @@ function YandexMapsDressMe() {
             : "h-0 bottom-0 ease-linear duration-300 "
             }  ease-linear duration-300 `}
           >
-            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} />
+            {/* <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} /> */}
           </div>
         )}
         {/* Navbaryandex */}

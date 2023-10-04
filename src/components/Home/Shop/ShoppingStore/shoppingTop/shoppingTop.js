@@ -85,46 +85,43 @@ const ShoppingTop = () => {
     <main className="flex flex-col min-h-[44px]  justify-center items-center mb-5 md:my-4">
       <section className="md:max-w-[1280px] w-[100%] flex flex-col md:flex-row items-center justify-between m-auto">
         {/* <article className="flex items-center"> */}
-          <section className="flex items-center border rounded-lg bg-slate-50 md:mt-0">
-            {genderCategory.map((data) => {
-              return (
-                <div
+        <section className="flex items-center border rounded-lg bg-slate-50 md:mt-0">
+          {genderCategory.map((data) => {
+            return (
+              <div
+                key={data.id}
+                className="flex justify-between h-10 rounded-lg"
+              >
+                <button
                   key={data.id}
-                  className="flex justify-between h-10 rounded-lg"
-                >
-                  <button
-                    key={data.id}
-                    onClick={() => handleGenderCheck(data.id)}
-                    className={`flex items-center justify-center h-10 text-[15px] text-black text-center ${
-                      !data.name ? "px-5" : "px-7"
-                    } font-AeonikProRegular ${
-                      data.action
-                        ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg ${dressInfo?.TextColorSeason}`
-                        : ""
+                  onClick={() => handleGenderCheck(data.id)}
+                  className={`flex items-center justify-center h-10 text-[15px] text-black text-center ${!data.name ? "px-5" : "px-7"
+                    } font-AeonikProRegular ${data.action
+                      ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg ${dressInfo?.TextColorSeason}`
+                      : ""
                     } `}
-                  >
-                    <span className="">{data.icon}</span>
-                    {data.name ? <p className="ml-2">{data.name}</p> : ""}
-                  </button>
-                  <span
-                    className={`${
-                      data.id === 3
-                        ? "text-searchBgColor hidden"
-                        : "text-searchBgColor flex items-center"
+                >
+                  <span className="">{data.icon}</span>
+                  {data.name ? <p className="ml-2">{data.name}</p> : ""}
+                </button>
+                <span
+                  className={`${data.id === 3
+                      ? "text-searchBgColor hidden"
+                      : "text-searchBgColor flex items-center"
                     }`}
-                  >
-                    |
-                  </span>
-                </div>
-              );
-            })}
-          </section>
+                >
+                  |
+                </span>
+              </div>
+            );
+          })}
+        </section>
         {/* </article> */}
         <article className="w-full flex items-center mt-3 md:mt-0 md:justify-end">
           <article className="w-[400px] h-11 flex flex-row-reverse md:flex-row items-center justify-between bg-btnBgColor md:bg-white px-3 rounded-xl border border-searchBgColor font-AeonikProRegular text-base">
             <input type="text" className="w-[90%] text-sm md:text-base bg-btnBgColor md:bg-white" placeholder="Искать магазины" />
             <span className="h-full w-[1px] bg-searchBgColor"></span>
-            <SearchIcons colors={"#a1a1a1"} className="cursor-pointer"/>
+            <SearchIcons colors={"#a1a1a1"} className="cursor-pointer" />
           </article>
         </article>
       </section>
