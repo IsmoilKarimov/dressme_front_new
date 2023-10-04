@@ -14,7 +14,7 @@ function CarouselModalMarket() {
         const { onClick } = props;
         return (
             <main
-                className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] hidden md:flex items-center justify-center top-[50%] z-10 right-[15px] md:right-[15px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+                className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] hidden md:flex items-center justify-center top-[50%] z-[217] right-[0px]  rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
                 onClick={onClick}
             >
                 <button className="next">
@@ -27,7 +27,7 @@ function CarouselModalMarket() {
         const { onClick } = props;
         return (
             <main
-                className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] hidden md:flex items-center justify-center top-[50%] z-10 left-[15px] md:left-[15px] rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
+                className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] hidden md:flex items-center justify-center top-[50%] z-[217] left-[0px] rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
                 onClick={onClick}
             >
                 <button className="prev">
@@ -49,9 +49,9 @@ function CarouselModalMarket() {
                 `}
         >
 
-            <div className="w-full h-full">
+            <div className="w-full h-full ">
                 <Slider
-                    className="relative w-full h-fit md:!w-[750px] md:h-[80vh]   md:rounded-lg"
+                    className="relative w-full h-fit md:!w-[780px] md:h-[80vh]   md:rounded-lg px-[50px]"
                     {...settingsModal}
                 >
                     {imgGallery?.map((data) => {
