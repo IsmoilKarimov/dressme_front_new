@@ -111,7 +111,7 @@ const TopHeader = () => {
         className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openRegionModal ? "" : "hidden" }`}
       ></div>
       <section
-        className={`fixed z-[113]  max-w-[440px] mx-auto w-full md:w-auto bottom-0 md:bottom-auto  duration-300 overflow-hidden ${openRegionModal ? "" : "hidden z-0"
+        className={`fixed z-[113] max-w-[540px] mx-auto w-full  bottom-0 md:bottom-auto  duration-300 overflow-hidden ${openRegionModal ? "" : "hidden z-0"
           }`}
       >
         <TopRegionList onClick={toggle} />

@@ -7,10 +7,13 @@ import {
   ActivePersonIcons,
   ArrowPrevousNext,
   ArrowTopIcons,
+  ChildGenIcon,
   CommentIcons,
   CotegoryIcons,
+  CotegoryMenuIcons,
   HouseStatisticIcons,
   LocationIcons,
+  ManGenIcons,
   MapIcons,
   MarketIcons,
   MenuCloseIcons,
@@ -19,6 +22,7 @@ import {
   PhoneIcons,
   SearchIcons,
   VolumeIcons,
+  WomanGenIcons,
 } from "../../assets/icons";
 import {
   BrandAutumm,
@@ -91,12 +95,44 @@ const MediumHeader = () => {
     { id: 3333, type: "Autumm", icons: BrandAutumm },
     { id: 4444, type: "Winter", icons: BrandWinter },
   ];
-  const personItems = [
-    { id: 1111, man: SpringMale, woman: SpringFemale },
-    { id: 2222, man: SummerMale, woman: SummerFemale },
-    { id: 3333, man: AutummMale, woman: AutummFemale },
-    { id: 4444, man: WinterMale, woman: WinterFemale },
-  ];
+  
+  const [genderCategory, setGenderCategory] = useState([
+    {
+      id: 1,
+      action: true,
+      name: "Все",
+      icon: <CotegoryMenuIcons colors={"#007DCA"} />,
+    },
+    {
+      id: 2,
+      action: false,
+      name: "",
+      icon: <ManGenIcons />,
+    },
+    {
+      id: 3,
+      action: false,
+      name: "",
+      icon: <WomanGenIcons />,
+    },
+    {
+      id: 4,
+      action: false,
+      name: "",
+      icon: <ChildGenIcon />,
+    },
+  ]);
+
+  const handleGenderCheck = (value) => {
+    setGenderCategory((data) => {
+      return data.map((e) => {
+        if (e.id == value) {
+          return { ...e, action: true };
+        } else return { ...e, action: false };
+      });
+    });
+  };
+
   //------------------------------------------------------------------------------------------------
   const toggleHamburger = () => {
     setState({ ...state, hamburgerMenu: !state.hamburgerMenu });
@@ -380,48 +416,43 @@ const MediumHeader = () => {
                   : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
               }`}
             >
-              <div className={`w-full h-full flex flex-wrap content-between`}>
+              <div className={`w-full h-fit flex flex-wrap `}>
+                {/* Gender selection for Mobile */}
+                <section className="w-full flex items-center border border-searchBgColor rounded-xl my-3 bg-btnBgColor md:mt-0">
+                  {genderCategory.map((data) => {
+                    return (
+                      <div
+                        key={data.id}
+                        className="w-full flex justify-center items-center h-12 rounded-xl"
+                      >
+                        <button
+                          key={data.id}
+                          onClick={() => handleGenderCheck(data.id)}
+                          className={`w-full flex items-center justify-center h-12 text-[15px] text-center ${
+                            !data.name ? "px-5" : "px-7"
+                          } font-AeonikProRegular ${
+                            data.action
+                              ? `{ bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-xl `
+                              : ""
+                          } `}
+                        >
+                          <span>{data.icon}</span>
+                          {data.name ? <p className="pl-2 text-borderWinter">{data.name}</p> : ""}
+                        </button>
+                        <span
+                          className={`${
+                            data.id === 4
+                              ? "text-searchBgColor hidden"
+                              : "text-searchBgColor flex items-center"
+                          }`}
+                        >
+                          |
+                        </span>
+                      </div>
+                    );
+                  })}
+                </section>
                 <ul className="flex flex-col w-full">
-                  {/* Gender selection for Mobile */}
-                  <li className="flex flex-wrap items-center justify-between rounded-xl my-4 w-full">
-                    {personItems
-                      ?.filter((value) => value.id === dressInfo?.type)
-                      .map((data) => {
-                        return (
-                          <div
-                            key={data?.id}
-                            className="max-w-[440px] w-[100%] bg-btnBgColor flex items-center justify-between border border-searchBgColor rounded-xl overflow-hidden"
-                          >
-                            <button
-                              onClick={() =>
-                                setState({ ...state, genderActive: true })
-                              }
-                              className={` font-AeonikProMedium ${
-                                state?.genderActive
-                                  ? "bg-white border border-searchBgColor"
-                                  : "bg-transparent"
-                              } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
-                            >
-                              <img src={data?.woman} alt="female" />
-                              <span className="ml-3">Женщинам</span>
-                            </button>
-                            <button
-                              onClick={() =>
-                                setState({ ...state, genderActive: false })
-                              }
-                              className={` font-AeonikProMedium ${
-                                !state?.genderActive
-                                  ? "bg-white border border-searchBgColor"
-                                  : "bg-transparent"
-                              } w-[50%]  rounded-xl h-[52px]  justify-center flex items-center`}
-                            >
-                              <img src={data?.man} alt="male" />
-                              <span className="ml-3"> Мужчинам</span>
-                            </button>
-                          </div>
-                        );
-                      })}
-                  </li>
                    {/* Categories */}
                   <li>
                     <NavLink
@@ -429,7 +460,7 @@ const MediumHeader = () => {
                         setState({ ...state, hamburgerMenu: false })
                       }
                       to="/signup-seller"
-                      className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
+                      className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[48px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
                     >
                       <div className="flex items-center">
                         <span className=" py-3 pr-3">
@@ -502,7 +533,7 @@ const MediumHeader = () => {
                 </ul>
                 <article className="w-full flex flex-col">
                   {/* Line */}
-                  <div className="line border-b w-full  border-searchBgColor mb-3 ls:w-full"></div>
+                  <div className="line border-b w-full border-searchBgColor mb-3 ls:w-full"></div>
 
                   {/* Location and Language */}
                   <div className="flex items-center justify-between h-fit mb-3">
@@ -511,17 +542,17 @@ const MediumHeader = () => {
                         <LocationIcons />
                       </span>
                       <span className="ml-[10px] mr-5">Tashkent</span>
-                      <span className="">
+                      <span className="rotate-180">
                         <ArrowTopIcons colors={"#000"} />
                       </span>{" "}
                     </button>
                     <Link
                       to="#"
-                      className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
+                      className="left h-[48px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
                     >
                       <img src={UzbekFlag} alt="." />
                       <span className="ml-[10px] mr-5">English</span>
-                      <span className="">
+                      <span className="rotate-180">
                         <ArrowTopIcons colors={"#000"} />
                       </span>
                     </Link>
