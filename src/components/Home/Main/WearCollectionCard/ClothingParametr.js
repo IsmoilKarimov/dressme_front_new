@@ -214,7 +214,7 @@ const ClothingParametr = () => {
         >
           <p>
             {" "}
-            <ClothesIcons />
+            <ClothesIcons colors={"#000"} />
           </p>
         </button>
         <button
@@ -228,7 +228,7 @@ const ClothingParametr = () => {
         >
           <span>
             {" "}
-            <DollorIcons />
+            <DollorIcons colors={"#000"} />
           </span>
         </button>
         <button
@@ -256,13 +256,12 @@ const ClothingParametr = () => {
         >
           <span>
             {" "}
-            <TopBrandsIcon />
+            <TopBrandsIcon colors={"#000"} />
           </span>
         </button>
       </section>
       <section className="w-full">
-        <section className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
-            state?.clothesTypeMobile ? "w-[92%]" : "w-0"
+        <section className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${state?.clothesTypeMobile ? "w-[92%]" : "w-0"
           }  `}
         >
           {state?.clothesTypeMobile && (
@@ -303,8 +302,7 @@ const ClothingParametr = () => {
             </div>
           )}
         </section>
-        <section className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
-            state?.priceToggleMobile ? "w-[92%]" : "w-0"
+        <section className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${state?.priceToggleMobile ? "w-[92%]" : "w-0"
           }  `}
         >
           {state?.priceToggleMobile && (
@@ -364,8 +362,7 @@ const ClothingParametr = () => {
             </div>
           )}
         </section>
-        <section  className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
-            state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
+        <section className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
           }`}
         >
           {state?.selectColorToggleMobile && (
@@ -379,9 +376,8 @@ const ClothingParametr = () => {
               <div className="flex items-center min-h-screen px-4 py-8">
                 <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
                   <div
-                    className={`flex items-center ${
-                      toggleAction ? "justify-between" : "justify-end"
-                    } `}
+                    className={`flex items-center ${toggleAction ? "justify-between" : "justify-end"
+                      } `}
                   >
                     {toggleAction && (
                       <button
@@ -409,11 +405,9 @@ const ClothingParametr = () => {
                           onClick={() =>
                             HandleIconsColor(data?.IconsColor, data?.id)
                           }
-                          className={`rounded-full flex items-center justify-center mr-2 w-6 h-6 ${
-                            data?.colors
-                          } cursor-pointer ${
-                            data?.id == 6 ? "border border-setTexOpacity" : ""
-                          } `}
+                          className={`rounded-full flex items-center justify-center mr-2 w-6 h-6 ${data?.colors
+                            } cursor-pointer ${data?.id == 6 ? "border border-setTexOpacity" : ""
+                            } `}
                         >
                           {data?.action && data?.id === 6 ? (
                             <span>
@@ -433,8 +427,7 @@ const ClothingParametr = () => {
             </div>
           )}
         </section>
-        <section className={`w-full h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${
-            state?.brandToggleMobile ? "w-[92%]" : "w-0"
+        <section className={`w-full h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${state?.brandToggleMobile ? "w-[92%]" : "w-0"
           }`}
         >
           {state?.brandToggleMobile && (

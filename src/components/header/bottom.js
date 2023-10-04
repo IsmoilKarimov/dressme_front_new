@@ -238,7 +238,7 @@ const BottomHeader = () => {
           content={contentWear}
         >
           <span>
-            <ClothesIcons />
+            <ClothesIcons colors={"#000"} />
           </span>
           <p className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black">
             {selectWear}
@@ -247,9 +247,8 @@ const BottomHeader = () => {
             <BiChevronDown
               size={20}
               style={{ color: "#c2c2c2" }}
-              className={`${
-                state?.openwear ? "rotate-[-180deg]" : ""
-              } duration-200`}
+              className={`${state?.openwear ? "rotate-[-180deg]" : ""
+                } duration-200`}
             />
           </span>
         </Popover>
@@ -263,7 +262,7 @@ const BottomHeader = () => {
           content={contentPrice}
         >
           <span className="w-[48px] h-full flex items-center justify-center border-r border-searchBgColor">
-            <DollorIcons />
+            <DollorIcons colors={"#000"} />
           </span>
           <div className=" w-[142px] h-full flex justify-between items-center px-3">
             <p className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black ">
@@ -273,9 +272,8 @@ const BottomHeader = () => {
               <BiChevronDown
                 size={20}
                 style={{ color: "#c2c2c2" }}
-                className={`${
-                  state?.openPrice ? "rotate-[-180deg]" : ""
-                } duration-200`}
+                className={`${state?.openPrice ? "rotate-[-180deg]" : ""
+                  } duration-200`}
               />
             </span>
           </div>
@@ -316,9 +314,8 @@ const BottomHeader = () => {
           </article>
           <article className="w-[480px] h-full overflow-hidden flex items-center justify-between">
             <div
-              className={`${
-                state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
-              } px-3 w-full duration-500  h-full flex items-center justify-between  `}
+              className={`${state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
+                } px-3 w-full duration-500  h-full flex items-center justify-between  `}
             >
               {changeColor?.map((data) => {
                 return (
@@ -327,11 +324,9 @@ const BottomHeader = () => {
                       key={data?.id}
                       htmlFor={data?.id}
                       onClick={() => colorIdPushContext(data?.id)}
-                      className={`rounded-full w-6 h-6 ${
-                        data?.colors
-                      } cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
-                        !state?.textToColor && "border"
-                      }  border-borderColorCard	`}
+                      className={`rounded-full w-6 h-6 ${data?.colors
+                        } cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${!state?.textToColor && "border"
+                        }  border-borderColorCard	`}
                     >
                       {data?.id === getRadio && data?.id === 2 ? (
                         <span>
@@ -356,9 +351,8 @@ const BottomHeader = () => {
               })}
             </div>
             <p
-              className={`${
-                state?.textToColor ? " mr-0" : " mr-[-500px]"
-              } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
+              className={`${state?.textToColor ? " mr-0" : " mr-[-500px]"
+                } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
             >
               Не давай своей гардеробной шкафной жизни стать скучной.
             </p>

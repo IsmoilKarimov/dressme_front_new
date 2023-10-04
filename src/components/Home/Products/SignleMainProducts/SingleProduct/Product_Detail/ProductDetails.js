@@ -749,7 +749,7 @@ const ProductDetails = () => {
         <article className="w-full flex items-center mb-[14px] md:mb-0">
           <section className="w-fit flex items-center">
             <article className="flex md:hidden">
-              <DollorIcons />
+              <DollorIcons colors={"#000"} />
               <p className="text-base font-AeonikProRegular ml-[6px]">Цена:</p>
             </article>
             <span className="text-base font-AeonikProMedium mr-3">от</span>
