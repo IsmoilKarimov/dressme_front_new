@@ -1,14 +1,4 @@
 import React, { useContext, useState } from "react";
-import {
-  AutummFemale,
-  AutummMale,
-  SpringFemale,
-  SpringMale,
-  SummerFemale,
-  SummerMale,
-  WinterFemale,
-  WinterMale,
-} from "../../assets";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { BiChevronDown } from "react-icons/bi";
 import { Popover } from "antd";
@@ -23,6 +13,7 @@ import {
   ManGenIcons,
   WomanGenIcons,
 } from "../../assets/icons";
+import GenderButtonsStyle from "../Home/Shop/ShoppingStore/GenderButtonsStyle/GenderButtonsStyle";
 
 const BottomHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -32,13 +23,6 @@ const BottomHeader = () => {
     openPrice: false,
     textToColor: false,
   });
-
-  const personItems = [
-    { id: 1111, man: SpringMale, woman: SpringFemale },
-    { id: 2222, man: SummerMale, woman: SummerFemale },
-    { id: 3333, man: AutummMale, woman: AutummFemale },
-    { id: 4444, man: WinterMale, woman: WinterFemale },
-  ];
 
   // ----------------Wear state management----------------------------
 
@@ -204,42 +188,42 @@ const BottomHeader = () => {
     setDressInfo({ ...dressInfo, ClothesBorder: id });
   };
 
-  const [genderCategory, setGenderCategory] = useState([
-    {
-      id: 1,
-      action: true,
-      name: "Все",
-      icon: <CotegoryMenuIcons colors={"#007DCA"} />,
-    },
-    {
-      id: 2,
-      action: false,
-      name: "",
-      icon: <ManGenIcons />,
-    },
-    {
-      id: 3,
-      action: false,
-      name: "",
-      icon: <WomanGenIcons />,
-    },
-    {
-      id: 4,
-      action: false,
-      name: "",
-      icon: <ChildGenIcon />,
-    },
-  ]);
+  // const [genderCategory, setGenderCategory] = useState([
+  //   {
+  //     id: 1,
+  //     action: true,
+  //     name: "Все",
+  //     icon: <CotegoryMenuIcons />,
+  //   },
+  //   {
+  //     id: 2,
+  //     action: false,
+  //     name: "",
+  //     icon: <ManGenIcons />,
+  //   },
+  //   {
+  //     id: 3,
+  //     action: false,
+  //     name: "",
+  //     icon: <WomanGenIcons />,
+  //   },
+  //   {
+  //     id: 4,
+  //     action: false,
+  //     name: "",
+  //     icon: <ChildGenIcon />,
+  //   },
+  // ]);
 
-  const handleGenderCheck = (value) => {
-    setGenderCategory((data) => {
-      return data.map((e) => {
-        if (e.id == value) {
-          return { ...e, action: true };
-        } else return { ...e, action: false };
-      });
-    });
-  };
+  // const handleGenderCheck = (value) => {
+  //   setGenderCategory((data) => {
+  //     return data.map((e) => {
+  //       if (e.id == value) {
+  //         return { ...e, action: true };
+  //       } else return { ...e, action: false };
+  //     });
+  //   });
+  // };
 
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
@@ -381,38 +365,7 @@ const BottomHeader = () => {
           </article>
         </div>
         <div className="line h-6 border-r-[1px] text-textColor mx-3"></div>
-        <section className="flex items-center border border-searchBgColor rounded-xl bg-slate-50 md:mt-0">
-          {genderCategory.map(data => (
-            <div
-              key={data.id}
-              className="w-fit flex justify-between h-11 rounded-xl"
-            >
-              <button
-                key={data.id}
-                onClick={() => handleGenderCheck(data.id)}
-                className={`flex items-center justify-center h-11 text-[15px] text-center ${
-                  !data.name ? "px-5" : "px-7"
-                } font-AeonikProRegular ${
-                  data.action
-                    ? `{ bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-xl `
-                    : ""
-                } `}
-              >
-                <span>{data.icon}</span>
-                {data.name ? <p className="ml-2 text-borderWinter">{data.name}</p> : ""}
-              </button>
-              <span
-                className={`${
-                  data.id === 4
-                    ? "text-searchBgColor hidden"
-                    : "text-searchBgColor flex items-center"
-                }`}
-              >
-                |
-              </span>
-            </div>
-            ))}
-        </section>
+        <GenderButtonsStyle />
       </section>
     </nav>
   );
