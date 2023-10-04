@@ -12,6 +12,7 @@ import ScrollFilter from "./YandexMapsNavbar/ScrollFilter";
 import {
   ArrowTopIcons,
   CommentIcons,
+  FilterIcons,
   FullScreenMapsIcons,
   HouseStatisticIcons,
   ListCollectionIcons,
@@ -28,6 +29,7 @@ import { UzbekFlag, locationIcons, markerIcons } from "../../assets";
 import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationMarketOpen";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import CarouselModalMarket from "./YandexLocationMarketOpen/CarouselModalMarket";
+import MarketFilterofMaps from "./YandexLocationMarketOpen/MarketFilterofMaps";
 // import CarouselModalMarket from "./YandexMapsNavbar/CarouselModalMarket";
 
 
@@ -47,6 +49,10 @@ function YandexMapsDressMe() {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [openCarouselModal, setOpenCarouselModal] = useState(false);
   const toggleCarouselModal = React.useCallback(() => setOpenCarouselModal(!openCarouselModal), []);
+
+  const [marketsFilterMaps, setMarketsFilterMaps] = useState(false);
+  const toggleMarketsFilterMaps = React.useCallback(() => setMarketsFilterMaps(false), []);
+
 
   function getCurrentDimension() {
     return {
@@ -189,9 +195,10 @@ function YandexMapsDressMe() {
       <div
         onClick={() => {
           setOpenCarouselModal(false);
+          setMarketsFilterMaps(false);
         }}
-        className={`fixed inset-0 z-[112] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
-         ${openCarouselModal ? "" : "hidden"
+        className={`fixed inset-0 z-[215] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
+         ${openCarouselModal || marketsFilterMaps ? "" : "hidden"
           }`}
       >
 
@@ -219,16 +226,26 @@ function YandexMapsDressMe() {
               : " h-0 bottom-[0]  z-[-10]"
             } ease-linear duration-300`}
           >
-            {/* <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} /> */}
+            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} />
           </div>
         )}
         {screenSize.width <= 768 && (
-          <div className={`fixed w-full bg-white z-[102] left-0 right-0 overflow-hidden  ${dressInfo?.yandexOpenMarketLocation
+          <div className={`fixed w-full bg-white z-[116] left-0 right-0 overflow-hidden  ${dressInfo?.yandexOpenMarketLocation
             ? "h-[570px] bottom-0 ease-linear duration-300 "
             : "h-0 bottom-0 ease-linear duration-300 "
             }  ease-linear duration-300 `}
           >
-            {/* <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} /> */}
+            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} />
+          </div>
+        )}
+        {/* // -----------------MarketFilterofMaps--------------------------- */}
+        {screenSize.width <= 768 && (
+          <div className={`fixed max-w-[440px] mx-auto w-full bg-white z-[215] left-0 right-0 overflow-hidden  ${marketsFilterMaps
+            ? "h-[570px] bottom-0 ease-linear duration-300 rounded-t-lg"
+            : "h-0 bottom-0 ease-linear duration-300 "
+            }  ease-linear duration-300 `}
+          >
+            <MarketFilterofMaps onClick={toggleMarketsFilterMaps} />
           </div>
         )}
         {/* Navbaryandex */}
@@ -248,18 +265,12 @@ function YandexMapsDressMe() {
         </div>
         {/* Yandex Search */}
         <div className={`absolute  ${!dressInfo?.yandexFullScreen ? "top-[80px]" : "top-[8px]"
-          }  md:top-auto md:bottom-[24px] left-0 right-0 mx-auto  overflow-hidden z-50 bg-yandexNavbar backdrop-blur-sm rounded-xl h-[48px] w-[94%] md:w-fit shadow-lg`}
+          }  md:top-auto md:bottom-[24px] left-0 right-0 mx-auto  overflow-hidden z-50  rounded-xl h-[48px] w-[94%] md:w-fit `}
         >
           <div
-            onClick={() => {
-              setDressInfo({
-                ...dressInfo,
-                yandexOpenMarketLocation: !dressInfo.yandexOpenMarketLocation,
-              });
-            }}
-            className="w-full h-full flex justify-between "
+            className="w-full h-full flex justify-between gap-x-2"
           >
-            <div className="w-full h-full flex items-center px-3">
+            <div className="w-[100%] h-full flex items-center rounded-lg bg-yandexNavbar backdrop-blur-sm px-3 overflow-hidden shadow-lg ">
               <div>
                 <img src={locationIcons} alt="" />
               </div>
@@ -279,6 +290,9 @@ function YandexMapsDressMe() {
               </button>
 
             </div>
+            <button onClick={() => setMarketsFilterMaps(!marketsFilterMaps)} type="button" className="h-[48px] w-[48px] rounded-lg bg-white flex items-center justify-center shadow-lg">
+              <FilterIcons colors={"#000"} className="w-full h-full" />
+            </button>
           </div>
         </div>
         {/* <YMaps query={{ apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21" }}> */}
