@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import {
   ArrowTopIcons,
+  ChildGenIcon,
   CotegoryMenuIcons,
   ManGenIcons,
   SearchChangeColorIcon,
@@ -69,6 +70,12 @@ const ShoppingTop = () => {
       name: "",
       icon: <WomanGenIcons />,
     },
+    {
+      id: 4,
+      action: false,
+      name: "",
+      icon: <ChildGenIcon />,
+    },
   ]);
 
   const handleGenderCheck = (value) => {
@@ -82,33 +89,33 @@ const ShoppingTop = () => {
   };
 
   return (
-    <main className="flex flex-col min-h-[44px]  justify-center items-center mb-5 md:my-4">
+    <main className="flex flex-col min-h-[44px] justify-center items-center mb-5 md:my-4">
       <section className="md:max-w-[1280px] w-[100%] flex flex-col md:flex-row items-center justify-between m-auto">
-        {/* <article className="flex items-center"> */}
-          <section className="flex items-center border rounded-lg bg-slate-50 md:mt-0">
+
+          <section className="flex items-center border border-searchBgColor rounded-lg bg-slate-50 md:mt-0">
             {genderCategory.map((data) => {
               return (
                 <div
                   key={data.id}
-                  className="flex justify-between h-10 rounded-lg"
+                  className="w-fit flex justify-between h-11 rounded-lg"
                 >
                   <button
                     key={data.id}
                     onClick={() => handleGenderCheck(data.id)}
-                    className={`flex items-center justify-center h-10 text-[15px] text-black text-center ${
+                    className={`flex items-center justify-center h-11 text-[15px] text-center ${
                       !data.name ? "px-5" : "px-7"
                     } font-AeonikProRegular ${
                       data.action
-                        ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg ${dressInfo?.TextColorSeason}`
+                        ? `{ bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-lg `
                         : ""
                     } `}
                   >
-                    <span className="">{data.icon}</span>
-                    {data.name ? <p className="ml-2">{data.name}</p> : ""}
+                    <span>{data.icon}</span>
+                    {data.name ? <p className="ml-2 text-borderWinter">{data.name}</p> : ""}
                   </button>
                   <span
                     className={`${
-                      data.id === 3
+                      data.id === 4
                         ? "text-searchBgColor hidden"
                         : "text-searchBgColor flex items-center"
                     }`}
@@ -119,12 +126,13 @@ const ShoppingTop = () => {
               );
             })}
           </section>
-        {/* </article> */}
         <article className="w-full flex items-center mt-3 md:mt-0 md:justify-end">
-          <article className="w-[400px] h-11 flex flex-row-reverse md:flex-row items-center justify-between bg-btnBgColor md:bg-white px-3 rounded-xl border border-searchBgColor font-AeonikProRegular text-base">
-            <input type="text" className="w-[90%] text-sm md:text-base bg-btnBgColor md:bg-white" placeholder="Искать магазины" />
-            <span className="h-full w-[1px] bg-searchBgColor"></span>
-            <SearchIcons colors={"#a1a1a1"} className="cursor-pointer"/>
+          <article className="w-[400px] h-11 flex flex-row-reverse md:flex-row items-center justify-between bg-btnBgColor md:bg-white rounded-xl border border-searchBgColor font-AeonikProRegular text-base">
+            <input type="text" className="w-[90%] px-3 text-sm md:text-base bg-btnBgColor md:bg-white" placeholder="Искать магазины" />
+            <span className="hidden md:block h-full w-[1px] bg-searchBgColor"></span>
+            <div className=" w-[10%] h-full flex items-center justify-center cursor-pointer">
+              <SearchIcons colors={"#a1a1a1"} className=""/>
+            </div>
           </article>
         </article>
       </section>
