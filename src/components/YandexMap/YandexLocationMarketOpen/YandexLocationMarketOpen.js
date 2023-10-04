@@ -12,6 +12,7 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 import AddCopyCheckedIcon from "../../Home/Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
 
+
 function YandexLocationMarketOpen({ cordinateMarkets, onClick }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
@@ -199,4 +200,4 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick }) {
   );
 }
 
-export default memo(YandexLocationMarketOpen);
+export default React.memo(YandexLocationMarketOpen);

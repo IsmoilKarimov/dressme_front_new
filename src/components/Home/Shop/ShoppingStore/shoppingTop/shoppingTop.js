@@ -91,6 +91,7 @@ const ShoppingTop = () => {
   return (
     <main className="flex flex-col min-h-[44px] justify-center items-center mb-5 md:my-4">
       <section className="md:max-w-[1280px] w-[100%] flex flex-col md:flex-row items-center justify-between m-auto">
+
           <section className="flex items-center border border-searchBgColor rounded-lg bg-slate-50 md:mt-0">
             {genderCategory.map((data) => {
               return (

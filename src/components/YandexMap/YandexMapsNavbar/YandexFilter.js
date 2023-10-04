@@ -4,7 +4,7 @@ import { ByBrandIcon, ClothesIcons, DollorIcons, MenuCloseIcons } from "../../..
 import { BiChevronDown } from "react-icons/bi";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { AutummChild, AutummFemale, AutummGirl, AutummMale, SpringChild, SpringFemale, SpringGirl, SpringMale, SummerChild, SummerFemale, SummerGirl, SummerMale, WinterChild, WinterFemale, WinterGirl, WinterMale } from "../../../assets";
-
+import '../yandex.css'
 export default function YandexFilter() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
@@ -260,7 +260,40 @@ export default function YandexFilter() {
             />
           </span>
         </Popover>
-        <article className="flex flex-wrap items-center ">
+        <div className="YandexFilter w-[200px] flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-lg bg-btnBgColor">
+          {/* <input type="radio" name="themeToggler" id="themeToggler1" className="peer1 " />
+          <label htmlFor="themeToggler1" className="w-[100px] h-full cursor-pointer   border-[#a1a1a1] bg-btnBgColor rounded-lg border peer1-checked:bg-fullBlue">
+          </label>
+          <input type="radio" name="themeToggler" id="themeToggler2" className="peer2 " />
+          <label htmlFor="themeToggler2" className="w-[100px] h-full cursor-pointer   border-[#a1a1a1] bg-btnBgColor rounded-lg border peer2-checked:bg-fullBlue">
+          </label> */}
+          {/* <label htmlFor="option1">
+            <input checked type="radio" name="option" id="option1" className="" />
+            <div className="label-checked:bg-red-600">option 1</div>
+          </label>
+          <label htmlFor="option2">
+            <input checked type="radio" name="option" id="option2" className="" />
+            <div className="label-checked:bg-red-600">option 2</div>
+          </label> */}
+          {/* <input type="radio" name="themeToggler" id="themeToggler2" className="peer " />
+          <label htmlFor="themeToggler2" className="w-10 h-10 bg-gray-400 peer-checked:bg-red-400"></label> */}
+
+
+          {/* <label htmlFor="oneId" className="w-[90px] cursor-pointer h-full border border-[#a1a1a1] ">
+            <input type="radio" id="oneId" name="themeToggler" />eeee
+          </label> */}
+          {/* <label htmlFor="twoId" className="w-[90px] cursor-pointer h-full border border-[#a1a1a1] ">
+            eeee
+          <input type="radio" id="twoId" name="genderFilter" />
+          </label> */}
+          {/* <label>
+            <input checked type="radio" name="option1" id="option1" className="" />
+            <div className="label-checked:bg-red-600">option1</div>
+          </label> */}
+          {/* <input checked type="radio" name="option1" id="option1" className="" />
+          <label htmlFor="option1" className="label-checked:bg-red-600">d</label> */}
+        </div>
+        {/* <article className="flex flex-wrap items-center ">
           {personItems
             ?.filter((value) => value.id === dressInfo?.type)
             .map((data) => {
@@ -283,29 +316,12 @@ export default function YandexFilter() {
                       )
                     })
                   }
-                  {/* <button
-                    onClick={() =>
-                      setState({ ...state, genderActive: true })
-                    }
-                    className={`${state?.genderActive ? `${dressInfo?.BtnActiveSeason} font-AeonikProMedium rounded-lg  h-[44px]  justify-center flex items-center cursor-pointer w-[136px]` : " cursor-pointer w-[136px] font-AeonikProMedium   border border-searchBgColor rounded-lg bg-btnBgColor h-[44px]  justify-center flex items-center"}`}
-                  >
-                    <img src={data?.woman} alt="female" />
-                    <span className="ml-2 not-italic whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5">Женщинам</span>
-                  </button>
-                  <button
-                    onClick={() =>
-                      setState({ ...state, genderActive: false })
-                    }
-                    className={`${state?.genderActive ? `${dressInfo?.BtnActiveSeason} font-AeonikProMedium rounded-lg  h-[44px]  justify-center flex items-center cursor-pointer w-[136px]` : "cursor-pointer w-[136px] font-AeonikProMedium   border border-searchBgColor rounded-lg bg-btnBgColor h-[44px]  justify-center flex items-center"} `}
-                  >
-                    <img src={data?.man} alt="male" />
-                    <span className="ml-2 not-italic whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5"> Мужчинам</span>
-                  </button> */}
+                 
 
                 </div>
               );
             })}
-        </article>
+        </article> */}
       </div >
       <div className="w-full flex items-center gap-x-2 mt-2">
         <div className="w-[190px]  flex items-center">
