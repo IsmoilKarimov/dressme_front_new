@@ -1183,7 +1183,7 @@ export const DressMenu = ({ children }) => {
       textColor: "text-borderAutumm",
       color: "#E17A02",
       btnActiveSeason:
-        "text-borderAutumm  bg-bgAutumm borderborder-borderAutumm ",
+        "text-borderAutumm  bg-bgAutumm border border-borderAutumm ",
       authenActiveSeason:
         "md:text-borderAutumm bg-white bg-bgAutumm md:border-borderAutumm w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border rounded-lg",
       linkActive:
