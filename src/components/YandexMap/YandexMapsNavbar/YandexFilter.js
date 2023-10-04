@@ -201,7 +201,7 @@ export default function YandexFilter() {
           content={contentWear}
         >
           <span>
-            <ClothesIcons />
+            <ClothesIcons colors={"#000"} />
           </span>
           <p className="not-italic whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
             {/* {selectWear} */}
@@ -226,7 +226,7 @@ export default function YandexFilter() {
           content={contentPrice}
         >
           <span>
-            <DollorIcons />
+            <DollorIcons colors={"#000"} />
           </span>
           <p className="not-italic whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
             {/* {selectWear} */}

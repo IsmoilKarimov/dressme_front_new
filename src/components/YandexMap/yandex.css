@@ -354,5 +354,5 @@ body {
 
 .marketfilter .input-range__label--max,
 .marketfilter .input-range__label--min {
-  display: none;
+  display: flex;
 }

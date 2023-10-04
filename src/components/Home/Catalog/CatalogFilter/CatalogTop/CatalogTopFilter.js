@@ -127,9 +127,8 @@ const CatalogTopFilter = () => {
                         <BiChevronDown
                           size={22}
                           style={{ color: "#000" }}
-                          className={`${
-                            state?.opensports ? "rotate-[-180deg]" : ""
-                          } duration-200`}
+                          className={`${state?.opensports ? "rotate-[-180deg]" : ""
+                            } duration-200`}
                         />
                       </span>
                     </Popover>
@@ -162,7 +161,7 @@ const CatalogTopFilter = () => {
               content={contentTypesofClothes}
             >
               <p>
-                <ClothesIcons />
+                <ClothesIcons colors={"#000"} />
               </p>
               <p className="ml-2  not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
                 Тип одеждый
