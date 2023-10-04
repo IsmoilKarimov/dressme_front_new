@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { AutummBoyIcons, CheckedStatusIcons, ClothesIcons, DollorIcons, ManGenIcons, ManWomGenBlack, ManWomanGen, MenuCloseIcons, SpringBoyIcons, SummerBoyIcons, TopBrandsIcon, WinterBoyIcons, WomanGenIcons } from '../../../assets/icons'
+import { AutummBoyIcons, CheckedStatusIcons, CircleSuccessIcons, ClothesIcons, DollorIcons, ManGenIcons, ManWomGenBlack, ManWomanGen, MenuCloseIcons, SpringBoyIcons, SummerBoyIcons, TopBrandsIcon, WinterBoyIcons, WomanGenIcons } from '../../../assets/icons'
 import ReactSlider from "react-slider";
 import '../yandex.css'
 import { dressMainData } from '../../../ContextHook/ContextMenu';
@@ -11,8 +11,8 @@ function MarketFilterofMaps({ onClick }) {
 
         return (
 
-            <div className='w-full h-[350px] overflow-auto VerticelScroll flex flex-col  bg-white'>
-                <span className='text-[#a1a1a1] px-5 text-center text-base not-italic font-normal'>
+            <div className='w-full flex items-center  justify-center h-[350px]  bg-white'>
+                <span className='text-[#a1a1a1] h-fit  px-5 text-center text-base not-italic font-AeonikProRegular'>
 
                     Выберите категорию, чтобы просмотреть товар!
                 </span>
@@ -54,7 +54,7 @@ function MarketFilterofMaps({ onClick }) {
                                     <span>{item?.name}</span>
                                     {
                                         item?.isCheck &&
-                                        <span><CheckedStatusIcons colors={"#000"} /></span>
+                                        <span><CircleSuccessIcons colors={"#000"} /></span>
                                     }
                                 </div>
                             )
@@ -73,8 +73,8 @@ function MarketFilterofMaps({ onClick }) {
         const [values] = useState([Min, Max]);
         return (
             <div>
-                <div className='marketfilter w-full h-[300px] overflow-auto VerticelScroll flex flex-col  bg-white'>
-                    <figure className="w-full h-12 bg-bgCategory  mt-4 pb-1 px-[2px]">
+                <div className='marketfilter w-full h-[300px] border border-red-500 overflow-auto VerticelScroll flex items-center bg-white'>
+                    <figure className="w-full h-[60px] bg-bgCategory  mt-4 pb-1 px-[2px]">
                         <div className=" w-full flex justify-center items-center gap-x-1">
                             <div className=" h-fit  not-italic font-AeonikProMedium text-base leading-4 text-center text-fullBlue tracking-[1%]">
                                 {values[0]}
@@ -238,16 +238,16 @@ function MarketFilterofMaps({ onClick }) {
 
     const [componentGroup, setComponentGroup] = useState([
         { id: 1, pageName: <NoSelect />, icons: "", isActive: true, text: "Фильтровать" },
-        { id: 2, pageName: <ClothesList />, icons: <ClothesIcons colors={"#000"} />, isActive: false, text: "По категории" },
-        { id: 3, pageName: <PriceRange />, icons: <DollorIcons colors={"#000"} />, isActive: false, text: "По бюджету" },
-        { id: 4, pageName: <GenderSelect />, icons: <ManWomGenBlack colors={"#000"} />, isActive: false, text: "По полу" },
-        { id: 5, pageName: <BrandMarketSelect />, icons: <TopBrandsIcon colors={"#000"} />, isActive: false, text: "По бренду" },
+        { id: 2, pageName: <ClothesList />, icons: <ClothesIcons colors={dressInfo?.ColorSeason} />, isActive: false, text: "По категории" },
+        { id: 3, pageName: <PriceRange />, icons: <DollorIcons colors={dressInfo?.ColorSeason} />, isActive: false, text: "По бюджету" },
+        { id: 4, pageName: <GenderSelect />, icons: <ManWomGenBlack colors={dressInfo?.ColorSeason} />, isActive: false, text: "По полу" },
+        { id: 5, pageName: <BrandMarketSelect />, icons: <TopBrandsIcon colors={dressInfo?.ColorSeason} />, isActive: false, text: "По бренду" },
     ])
     const handleComponentId = (UId) => {
         setComponentGroup(current => {
             return current?.map(e => {
                 if (e.id == UId) {
-                    return { ...e, isActive: true }
+                    return { ...e, isActive: true, }
                 } else {
                     return { ...e, isActive: false }
                 }
@@ -268,7 +268,9 @@ function MarketFilterofMaps({ onClick }) {
                         )
                     })
                 }
-                <span onClick={onClick}><MenuCloseIcons colors={"#000"} /></span>
+                <span className='cursor-pointer w-6 h-6' onClick={onClick}>
+                    <MenuCloseIcons colors={"#000"} className="w-full h-full" />
+                </span>
             </div>
             <div className='flex items-center gap-x-2 justify-between border-b border-searchBgColor  py-4'>
                 {
@@ -296,7 +298,7 @@ function MarketFilterofMaps({ onClick }) {
             }
 
 
-        </div>
+        </div >
     )
 }
 export default React.memo(MarketFilterofMaps)
