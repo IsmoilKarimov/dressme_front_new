@@ -4,13 +4,13 @@ import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import {
   ArrowTopIcons,
   ChildGenIcon,
-  CotegoryMenuIcons,
+  GenderTypeIcon,
   ManGenIcons,
+  ManWomanGen,
   SearchChangeColorIcon,
   SearchIcons,
   WomanGenIcons,
 } from "../../../../../assets/icons";
-import GenderBbuttonsStyle from "../GenderButtonsStyle/GenderButtonsStyle";
 import GenderButtonsStyle from "../GenderButtonsStyle/GenderButtonsStyle";
 
 const ShoppingTop = () => {
@@ -35,7 +35,7 @@ const ShoppingTop = () => {
       id: 1,
       action: true,
       name: "Все",
-      icon: <CotegoryMenuIcons colors={"#007DCA"} />,
+      icon: <ManWomanGen colors={"#007DCA"} />,
     },
     { id: 2, action: false, name: "Верхняя", icon: "" },
     { id: 3, action: false, name: "Нижняя", icon: "" },
