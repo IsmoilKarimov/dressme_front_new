@@ -801,42 +801,25 @@ const ActiveCotegoryIcons = ({ colors }) => {
 };
 const CotegoryMenuIcons = ({ colors }) => {
   return (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
+    <svg 
+      width="16" 
+      height="22" 
+      viewBox="0 0 16 22" 
+      fill="none" 
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path
-        d="M16.6667 1.66699H3.33332C2.41285 1.66699 1.66666 2.41318 1.66666 3.33366V16.667C1.66666 17.5875 2.41285 18.3337 3.33332 18.3337H16.6667C17.5871 18.3337 18.3333 17.5875 18.3333 16.667V3.33366C18.3333 2.41318 17.5871 1.66699 16.6667 1.66699Z"
-        stroke={colors}
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M1.66666 5.83398H18.3333"
-        stroke={colors}
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M1.66666 10H18.3333"
-        stroke={colors}
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M1.66666 14.167H18.3333"
-        stroke={colors}
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+      <path d="M5.56582 20.9997C5.56582 21.3587 5.85684 21.6497 6.21582 21.6497C6.57481 21.6497 6.86582 21.3587 6.86582 20.9997L5.56582 20.9997ZM5.56582 15.2271L5.56582 20.9997L6.86582 20.9997L6.86582 15.2271L5.56582 15.2271Z" fill="#DD006A"/>
+      <path d="M8.60693 18.1138L3.82536 18.1138" stroke="#DD006A" strokeWidth="1.3" strokeLinecap="round"/>
+      <path d="M15.6442 2.07136C15.6839 1.71352 15.4278 1.39139 15.0721 1.35186L9.27501 0.707757C8.91928 0.668231 8.59867 0.926276 8.55891 1.28412C8.51915 1.64196 8.7753 1.96409 9.13103 2.00361L14.284 2.57615L13.708 7.75957C13.6683 8.11741 13.9244 8.43953 14.2802 8.47906C14.6359 8.51859 14.9565 8.26054 14.9963 7.9027L15.6442 2.07136ZM10.9241 6.11472L15.4046 2.50855L14.5955 1.49103L10.115 5.0972L10.9241 6.11472Z" fill="#008FCD"/>
+      <path d="M11.7821 9.93538C11.7821 13.034 9.28639 15.5391 6.21605 15.5391C3.1457 15.5391 0.65 13.034 0.65 9.93538C0.65 6.83681 3.1457 4.33164 6.21605 4.33164C9.28639 4.33164 11.7821 6.83681 11.7821 9.93538Z" stroke="url(#paint0_linear_3887_16404)" strokeWidth="1.3"/>
+      <defs>
+      <linearGradient id="paint0_linear_3887_16404" x1="10.5" y1="6" x2="6.21604" y2="16.1891" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#008FCD"/>
+      <stop offset="1" stop-color="#DD006A"/>
+      </linearGradient>
+      </defs>
     </svg>
+
   );
 };
 const MapSitesIcons = () => {
@@ -2163,6 +2146,21 @@ const ManGenIcons = () => {
     </svg>
   );
 };
+const ChildGenIcon = () => {
+  return(
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <rect x="9" y="13.8618" width="2.5" height="5" transform="rotate(30 9 13.8618)" fill="#1E88E5"/>
+      <rect x="13.3188" y="15.1113" width="2.5" height="5" transform="rotate(-30 13.3188 15.1113)" fill="#1E88E5"/>
+      <rect x="4.86133" y="8.98389" width="2.5" height="5" transform="rotate(-60 4.86133 8.98389)" fill="#1E88E5"/>
+      <rect x="17.8989" y="6.81885" width="2.5" height="5" transform="rotate(60 17.8989 6.81885)" fill="#1E88E5"/>
+      <rect x="6.99854" y="18.5" width="2.5" height="4" transform="rotate(-60 6.99854 18.5)" fill="#1E88E5"/>
+      <rect x="16.4639" y="16.2002" width="2.5" height="4" transform="rotate(60 16.4639 16.2002)" fill="#1E88E5"/>
+      <path d="M8.49854 9H15.4985V12.25V13.875L14.5755 14.5769L13.7485 15.5H11.9985H10.2485L9.42161 14.5769L8.49854 13.875V12.25V9Z" fill="#64B5F6"/>
+      <path d="M8.49854 12.5H15.4985V14L13.9985 15.5H9.99854L8.49854 14V12.5Z" fill="#CCE8FF"/>
+      <rect x="9.50146" y="3.5" width="5" height="5" rx="2.5" fill="#90CAF9"/>
+    </svg>
+  )
+}
 const VideoStoreIcons = () => {
   return (
     <svg
@@ -2901,7 +2899,8 @@ export {
   CommentStarIcon,
   UnderSection,
   DeliveryStoreIcon,
-  ByBrandIcon
+  ByBrandIcon,
+  ChildGenIcon,
 };
 
 // video

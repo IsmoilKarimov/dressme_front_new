@@ -68,7 +68,7 @@ export default function TopRegionList({ onClick }) {
     });
   };
   return (
-    <div className="w-full md:w-[455px] p-5 border border-borderColor rounded-t-lg md:rounded-lg h-fit bg-white">
+    <div className="w-full md:w-[540px] p-5 border border-borderColor rounded-t-lg md:rounded-lg h-fit bg-white">
       <div className="flex items-center justify-between">
         <span className="text-black text-2xl not-italic font-AeonikProRegular">
           Выберите регион
