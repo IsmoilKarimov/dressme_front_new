@@ -203,17 +203,16 @@ function YandexMapsDressMe() {
       >
 
       </div>
-      <div className={`w-fit h-fit flex items-center mx-auto my-[5%] justify-center fixed z-[201]   ${openCarouselModal ? "" : "hidden"
+      <div className={`w-fit h-fit flex items-center mx-auto my-[5%] justify-center fixed z-[216]   ${openCarouselModal ? "" : "hidden"
         }`}>
-        <div className="relative  z-[205] ">
-          <button
-            onClick={() => {
-              setOpenCarouselModal(false);
-            }}
-            className="absolute right-[-80px] z-[206] top-[0px] flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px]   md:rounded-full md:bg-[#808080]">
-            <MenuCloseIcons colors="#fff" />
-          </button>
-          {/* <NewDatauz */}
+        <button
+          onClick={() => {
+            setOpenCarouselModal(false);
+          }}
+          className="absolute right-[-80px] z-[218] top-[0px] flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px]   md:rounded-full md:bg-[#808080]">
+          <MenuCloseIcons colors="#fff" />
+        </button>
+        <div className="relative  z-[217] ">
           <CarouselModalMarket />
         </div>
       </div>
@@ -290,7 +289,7 @@ function YandexMapsDressMe() {
               </button>
 
             </div>
-            <button onClick={() => setMarketsFilterMaps(!marketsFilterMaps)} type="button" className="h-[48px] w-[48px] rounded-lg bg-white flex items-center justify-center shadow-lg">
+            <button onClick={() => setMarketsFilterMaps(!marketsFilterMaps)} type="button" className="md:hidden h-[48px] w-[48px] rounded-lg bg-white flex items-center justify-center shadow-lg">
               <FilterIcons colors={"#000"} className="w-full h-full" />
             </button>
           </div>
