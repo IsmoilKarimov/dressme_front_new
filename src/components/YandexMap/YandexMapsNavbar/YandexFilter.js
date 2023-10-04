@@ -139,27 +139,7 @@ export default function YandexFilter() {
     </div>
   );
 
-  const [genderList, setGenderList] = useState([
-    { id: 1, anyGen: <ManWomanGen />, text: "Все", verticalH: true, action: false },
-    { id: 2, anyGen: <ManGenIcons />, text: "", verticalH: true, action: false },
-    { id: 3, anyGen: <WomanGenIcons />, text: "", verticalH: true, action: false },
-    { id: 4, anyGen: <ChildGenIcon />, text: "", verticalH: false, action: false },
 
-  ]
-  )
-  // const handleFilterByUser = (UId) => {
-  //   setGenderList(current => {
-  //     return (
-  //       current.map(item => {
-  //         if (item?.id == UId) {
-  //           return { ...item, action: true }
-  //         } else {
-  //           return { ...item, action: false }
-  //         }
-  //       })
-  //     )
-  //   })
-  // }
   const [personItems, setPersonItems] = useState([
     {
       id: 1111, childText: [
