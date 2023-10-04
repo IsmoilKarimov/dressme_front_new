@@ -10,31 +10,30 @@ import {
   MarketIcons,
 } from "../../assets/icons";
 import { EnglishFlag, RussianFlag, UzbekFlag } from "../../assets";
+import TopRegionList from "./TopRegionList/TopRegionList";
 
 const TopHeader = () => {
   const [dressInfo] = useContext(dressMainData);
   const [selectBtn, setSelectBtn] = useState(true)
+  const [openRegionModal, setOpenRegionModal] = useState(false);
+
+  const toggle = React.useCallback(() => setOpenRegionModal(false), []);
 
   // -----Language Change-------------------
   const [selectLang, setselectLang] = useState(1);
-
   const LanguageList = [
     { id: 1, type: "English", icons: EnglishFlag },
     { id: 2, type: "Русский", icons: RussianFlag },
     { id: 3, type: "O'zbekcha", icons: UzbekFlag },
   ];
-
   const [openLang, setOpenLang] = useState(false);
-
   const handleOpenChangeWear = (newOpen) => {
     setOpenLang(newOpen);
   };
-
   const handleLangValue = (value) => {
     setselectLang(value);
     setOpenLang(false);
   };
-
   const contentLang = (
     <section className="w-fit h-fit m-0 p-0">
       {LanguageList.map((data) => {
@@ -67,12 +66,10 @@ const TopHeader = () => {
   const handleOpenChangeCity = (newOpen) => {
     setOpenRegion(newOpen);
   };
-
   const handleCityValue = (value) => {
     setSelectCity(value);
     setOpenRegion(false);
   };
-
   const CityList = [
     { id: 1, type: "Samarqand" },
     { id: 2, type: "Sirdaryo" },
@@ -81,7 +78,6 @@ const TopHeader = () => {
     { id: 5, type: "Xorazm" },
     { id: 6, type: "Navoiy" },
   ];
-
   const contentCity = (
     <section className="w-[100px] h-fit m-0 p-0">
       {CityList.map((data) => {
@@ -99,7 +95,6 @@ const TopHeader = () => {
       })}
     </section>
   );
-
   const location = useLocation();
   const [locationWindow, setLocationWindow] = useState("");
   useEffect(() => {
@@ -108,6 +103,20 @@ const TopHeader = () => {
 
   return (
     <nav>
+
+      <div
+        onClick={() => {
+          setOpenRegionModal(false);
+        }}
+        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openRegionModal ? "" : "hidden" }`}
+      ></div>
+      <section
+        className={`fixed z-[113]  max-w-[440px] mx-auto w-full md:w-auto bottom-0 md:bottom-auto  duration-300 overflow-hidden ${openRegionModal ? "" : "hidden z-0"
+          }`}
+      >
+        <TopRegionList onClick={toggle} />
+      </section>   
+      
       <div
         className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${locationWindow === "/delivery-points"
           ? "bg-transparent h-[40px] "
@@ -122,24 +131,16 @@ const TopHeader = () => {
                   <LocationIcons />
                 </span>
 
-                <p className="text-textColor text-[13px] ml-2 mr-[6px] font-AeonikProMedium">
+                <div className="text-textColor text-[13px] ml-2 mr-[6px] font-AeonikProMedium">
                   Регион:
-                </p>
-                <p className="w-[90px] font-AeonikProMedium flex items-center">
-                  <Popover
-                    open={openRegion}
-                    onOpenChange={handleOpenChangeCity}
-                    className=" flex text-[13px]  items-center  "
-                    trigger="click"
-                    options={["Hide"]}
-                    placement="bottom"
-                    content={contentCity}
-                  >
-                    <span className="border-b border-slate-900">
-                      {selectCity}
-                    </span>
-                  </Popover>
-                </p>
+                </div>
+                <div 
+                  onClick={() => setOpenRegionModal(true)}
+                  className="w-[90px] font-AeonikProMedium flex items-center text-[13px]">
+                  <span className="border-b border-slate-900">
+                    {selectCity}
+                  </span>
+                </div>
               </Link>
             </section>
             <section className="w-fit h-fit py-[4px] rounded bg-white font-AeonikProMedium select-none cursor-pointer">

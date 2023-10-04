@@ -164,7 +164,7 @@ const MediumHeader = () => {
         {locationWindow !== "/allcomments" ? (
           <div className="relative">
             {/* Starting of Full Screen page section */}
-            <section className="w-full flex justify-center items-center py-3 overscroll-none overflow-y-hidden ">
+            <section className="w-full justify-center items-center py-3 overscroll-none overflow-y-hidden ">
               <div className=" w-full flex items-center ss:w-full md:w-fit justify-between ">
                 {/* Menu section */}
                 {locationWindow !== "/delivery-points" ? (
