@@ -54,9 +54,9 @@ const Header = () => {
       <section>
         {locationWindow !== "/delivery-points" ? (
           <div className="w-full">
-            <article className={`ss:block md:hidden relative z-[100]`}>
+            {/* <article className={`hidden relative z-[100]`}>
               <MediumHeader />
-            </article>
+            </article> */}
             <article className={`fixed top-0  w-full bg-white block
               ${ show
                 ? "visible duration-500 z-[25]"
