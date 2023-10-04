@@ -45,7 +45,6 @@ import {
   HeartImg,
 } from "../../assets";
 import NavCategoryModal from "./navCategoryModal";
-import GenderButtonsStyle from "../Home/Shop/ShoppingStore/GenderButtonsStyle/GenderButtonsStyle";
 
 const MediumHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -97,42 +96,42 @@ const MediumHeader = () => {
     { id: 4444, type: "Winter", icons: BrandWinter },
   ];
   
-  // const [genderType, setGenderType] = useState([
-  //   {
-  //     id: 1,
-  //     action: true,
-  //     name: "Все",
-  //     icon: <CotegoryMenuIcons />,
-  //   },
-  //   {
-  //     id: 2,
-  //     action: false,
-  //     name: "",
-  //     icon: <ManGenIcons />,
-  //   },
-  //   {
-  //     id: 3,
-  //     action: false,
-  //     name: "",
-  //     icon: <WomanGenIcons />,
-  //   },
-  //   {
-  //     id: 4,
-  //     action: false,
-  //     name: "",
-  //     icon: <ChildGenIcon />,
-  //   },
-  // ]);
+  const [genderType, setGenderType] = useState([
+    {
+      id: 1,
+      action: true,
+      name: "Все",
+      icon: <CotegoryMenuIcons />,
+    },
+    {
+      id: 2,
+      action: false,
+      name: "",
+      icon: <ManGenIcons />,
+    },
+    {
+      id: 3,
+      action: false,
+      name: "",
+      icon: <WomanGenIcons />,
+    },
+    {
+      id: 4,
+      action: false,
+      name: "",
+      icon: <ChildGenIcon />,
+    },
+  ]);
 
-  // const handleGenderDataCheck = (value) => {
-  //   setGenderType((data) => {
-  //     return data.map((e) => {
-  //       if (e.id == value) {
-  //         return { ...e, action: true };
-  //       } else return { ...e, action: false };
-  //     });
-  //   });
-  // };
+  const handleGenderDataCheck = (value) => {
+    setGenderType((data) => {
+      return data.map((e) => {
+        if (e.id == value) {
+          return { ...e, action: true };
+        } else return { ...e, action: false };
+      });
+    });
+  };
 
   //------------------------------------------------------------------------------------------------
   const toggleHamburger = () => {
@@ -419,7 +418,40 @@ const MediumHeader = () => {
             >
               <div className={`w-full h-fit flex flex-wrap `}>
                 {/* Gender selection for Mobile */}
-                {/* <GenderButtonsStyle /> */}
+                <section className="w-full flex items-center border border-searchBgColor rounded-xl my-3 bg-btnBgColor md:mt-0">
+                  {genderType.map((data) => {
+                    return (
+                      <div
+                        key={data.id}
+                        className="w-full flex justify-center items-center h-12 rounded-xl"
+                      >
+                        <button
+                          key={data.id}
+                          onClick={() => handleGenderDataCheck(data.id)}
+                          className={`w-full flex items-center justify-center h-12 text-[15px] text-center ${
+                            !data.name ? "px-5" : "px-7"
+                          } font-AeonikProRegular ${
+                            data.action
+                              ? `{ bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-xl `
+                              : ""
+                          } `}
+                        >
+                          <span>{data.icon}</span>
+                          {data.name ? <p className="pl-2 text-borderWinter">{data.name}</p> : ""}
+                        </button>
+                        <span
+                          className={`${
+                            data.id === 4
+                              ? "text-searchBgColor hidden"
+                              : "text-searchBgColor flex items-center"
+                          }`}
+                        >
+                          |
+                        </span>
+                      </div>
+                    );
+                  })}
+                </section>
                 <ul className="flex flex-col w-full">
                    {/* Categories */}
                   <li>
@@ -537,3 +569,4 @@ const MediumHeader = () => {
   );
 };
 export default MediumHeader;
+
