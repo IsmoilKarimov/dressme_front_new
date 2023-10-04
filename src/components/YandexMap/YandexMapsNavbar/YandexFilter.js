@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Popover } from "antd";
-import { ByBrandIcon, ClothesIcons, DollorIcons, MenuCloseIcons } from "../../../assets/icons";
+import { AutummBoyIcons, ByBrandIcon, ChildGenIcon, ClothesIcons, DollorIcons, ManGenIcons, ManWomanGen, MenuCloseIcons, SpringBoyIcons, SummerBoyIcons, WinterBoyIcons, WomanGenIcons } from "../../../assets/icons";
 import { BiChevronDown } from "react-icons/bi";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { AutummChild, AutummFemale, AutummGirl, AutummMale, SpringChild, SpringFemale, SpringGirl, SpringMale, SummerChild, SummerFemale, SummerGirl, SummerMale, WinterChild, WinterFemale, WinterGirl, WinterMale } from "../../../assets";
@@ -138,33 +138,59 @@ export default function YandexFilter() {
       })}
     </div>
   );
+
+  const [genderList, setGenderList] = useState([
+    { id: 1, anyGen: <ManWomanGen />, text: "Все", verticalH: true, action: false },
+    { id: 2, anyGen: <ManGenIcons />, text: "", verticalH: true, action: false },
+    { id: 3, anyGen: <WomanGenIcons />, text: "", verticalH: true, action: false },
+    { id: 4, anyGen: <ChildGenIcon />, text: "", verticalH: false, action: false },
+
+  ]
+  )
+  // const handleFilterByUser = (UId) => {
+  //   setGenderList(current => {
+  //     return (
+  //       current.map(item => {
+  //         if (item?.id == UId) {
+  //           return { ...item, action: true }
+  //         } else {
+  //           return { ...item, action: false }
+  //         }
+  //       })
+  //     )
+  //   })
+  // }
   const [personItems, setPersonItems] = useState([
     {
-      id: 1111, man: SpringMale, woman: SpringFemale, girl: SpringChild, childText: [
-        { id: 1, name: "Детям", action: false },
-        { id: 2, name: "Женщинам", action: false },
-        { id: 3, name: "Мужчинам", action: false },
+      id: 1111, childText: [
+        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 4, anyIcons: <SpringBoyIcons />, name: "", action: false },
       ]
     },
     {
-      id: 2222, man: SummerMale, woman: SummerFemale, girl: SummerChild, childText: [
-        { id: 1, name: "Детям", action: false },
-        { id: 2, name: "Женщинам", action: false },
-        { id: 3, name: "Мужчинам", action: false },
+      id: 2222, childText: [
+        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 4, anyIcons: <SummerBoyIcons />, name: "", action: false },
       ]
     },
     {
-      id: 3333, man: AutummMale, woman: AutummFemale, girl: AutummChild, childText: [
-        { id: 1, name: "Детям", action: false },
-        { id: 2, name: "Женщинам", action: false },
-        { id: 3, name: "Мужчинам", action: false },
+      id: 3333, childText: [
+        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 4, anyIcons: <AutummBoyIcons />, name: "", action: false },
       ]
     },
     {
-      id: 4444, man: WinterMale, woman: WinterFemale, girl: WinterChild, childText: [
-        { id: 1, name: "Детям", action: false },
-        { id: 2, name: "Женщинам", action: false },
-        { id: 3, name: "Мужчинам", action: false },
+      id: 4444, childText: [
+        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 4, anyIcons: <WinterBoyIcons />, name: "", action: false },
       ]
     }]);
   const handleFilterByUser = (fathId, childId) => {
@@ -260,68 +286,46 @@ export default function YandexFilter() {
             />
           </span>
         </Popover>
-        <div className="YandexFilter w-[200px] flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-lg bg-btnBgColor">
-          {/* <input type="radio" name="themeToggler" id="themeToggler1" className="peer1 " />
-          <label htmlFor="themeToggler1" className="w-[100px] h-full cursor-pointer   border-[#a1a1a1] bg-btnBgColor rounded-lg border peer1-checked:bg-fullBlue">
-          </label>
-          <input type="radio" name="themeToggler" id="themeToggler2" className="peer2 " />
-          <label htmlFor="themeToggler2" className="w-[100px] h-full cursor-pointer   border-[#a1a1a1] bg-btnBgColor rounded-lg border peer2-checked:bg-fullBlue">
-          </label> */}
-          {/* <label htmlFor="option1">
-            <input checked type="radio" name="option" id="option1" className="" />
-            <div className="label-checked:bg-red-600">option 1</div>
-          </label>
-          <label htmlFor="option2">
-            <input checked type="radio" name="option" id="option2" className="" />
-            <div className="label-checked:bg-red-600">option 2</div>
-          </label> */}
-          {/* <input type="radio" name="themeToggler" id="themeToggler2" className="peer " />
-          <label htmlFor="themeToggler2" className="w-10 h-10 bg-gray-400 peer-checked:bg-red-400"></label> */}
+        <div className="box-border	 flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-lg bg-btnBgColor">
 
-
-          {/* <label htmlFor="oneId" className="w-[90px] cursor-pointer h-full border border-[#a1a1a1] ">
-            <input type="radio" id="oneId" name="themeToggler" />eeee
-          </label> */}
-          {/* <label htmlFor="twoId" className="w-[90px] cursor-pointer h-full border border-[#a1a1a1] ">
-            eeee
-          <input type="radio" id="twoId" name="genderFilter" />
-          </label> */}
-          {/* <label>
-            <input checked type="radio" name="option1" id="option1" className="" />
-            <div className="label-checked:bg-red-600">option1</div>
-          </label> */}
-          {/* <input checked type="radio" name="option1" id="option1" className="" />
-          <label htmlFor="option1" className="label-checked:bg-red-600">d</label> */}
-        </div>
-        {/* <article className="flex flex-wrap items-center ">
           {personItems
             ?.filter((value) => value.id === dressInfo?.type)
             .map((data) => {
               return (
                 <div
                   key={data?.id}
-                  className="w-fit gap-x-2   flex items-center justify-between "
+                  className="w-fit h-full flex items-center  "
                 >
                   {
                     data?.childText?.map(item => {
                       return (
-                        <button
-                          key={item?.id}
-                          onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${item?.action ? dressInfo?.BtnActiveSeason : "border-searchBgColor bg-btnBgColor text-black"} border cursor-pointer w-[136px] font-AeonikProMedium    rounded-lg  h-[44px]  justify-center flex items-center`}
-                        >
-                          <img src={data?.girl} alt="male" />
-                          <span className="ml-2 not-italic whitespace-nowrap  text-sm font-AeonikProMedium tracking-wide	leading-5">{item?.name}</span>
-                        </button>
+                        <div className="flex items-center h-full">
+                          <button
+                            key={item?.id}
+                            onClick={() => handleFilterByUser(data?.id, item?.id)}
+                            className={`${item?.action ? dressInfo?.BtnActiveSeason : " bg-btnBgColor text-black"} px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  h-[44px]  justify-center flex items-center`}
+                          >
+                            {/* <img src={item?.anyIcons} alt="male" /> */}
+                            <span>{item?.anyIcons}</span>
+                            {
+                              item?.name &&
+                              <span className="ml-2 not-italic whitespace-nowrap  text-sm font-AeonikProMedium tracking-wide	leading-5">{item?.name}</span>
+                            }
+                          </button>
+                          {
+                            item?.id !== 4 &&
+                            <span className="w-[2px] mx-1 h-[30px] border-r border-searchBgColor"></span>
+                          }
+                        </div>
                       )
                     })
                   }
-                 
 
                 </div>
               );
             })}
-        </article> */}
+        </div>
+        {/* </article> */}
       </div >
       <div className="w-full flex items-center gap-x-2 mt-2">
         <div className="w-[190px]  flex items-center">
