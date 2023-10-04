@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ChildGenIcon, CotegoryMenuIcons, ManGenIcons, WomanGenIcons } from '../../../../../assets/icons';
+import { ChildGenIcon,ManGenIcons, ManWomanGen, WomanGenIcons } from '../../../../../assets/icons';
 
 export default function GenderButtonsStyle() {
   
@@ -8,7 +8,7 @@ export default function GenderButtonsStyle() {
           id: 1,
           action: true,
           name: "Все",
-          icon: <CotegoryMenuIcons />,
+          icon: <ManWomanGen />,
         },
         {
           id: 2,
@@ -41,12 +41,12 @@ export default function GenderButtonsStyle() {
     };
   
     return (
-        <section className="flex items-center border border-searchBgColor rounded-lg bg-slate-50 md:mt-0">
+        <section className="flex items-center border border-searchBgColor rounded-xl bg-slate-50 md:mt-0">
             {genderCategory.map((data) => {
             return (
                 <div
                 key={data.id}
-                className="w-fit flex justify-between h-11 rounded-lg"
+                className="w-fit flex justify-between h-11 rounded-xl"
                 >
                 <button
                     key={data.id}
@@ -55,7 +55,7 @@ export default function GenderButtonsStyle() {
                     !data.name ? "px-5" : "px-7"
                     } font-AeonikProRegular ${
                     data.action
-                        ? `{ bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-lg `
+                        ? `{ bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-xl`
                         : ""
                     } `}
                 >
@@ -77,3 +77,4 @@ export default function GenderButtonsStyle() {
         </section>
   )
 }
+
