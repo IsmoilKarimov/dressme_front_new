@@ -14,9 +14,9 @@ const TopHeader = () => {
     regionId: "",
     subRegionId: "",
     //------------------
-    validateConfirm: true,
-    eyesShow: true,
-    requestPerson: true,
+    // validateConfirm: true,
+    // eyesShow: true,
+    // requestPerson: true,
     //--- Regions Get ---
     getRegionList: "",
     //--- Get Profile ---
@@ -26,7 +26,7 @@ const TopHeader = () => {
     // -----region Modal ---
     openModalRegions: false,
     // ----popConfirmDelete
-    popConfirmDelete: false,
+    // popConfirmDelete: false,
   })
 
   const url = "https://api.dressme.uz/api/seller"
@@ -155,8 +155,8 @@ const TopHeader = () => {
       >
         <section className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">
           {/* LEFT SIDE */}
-          <article className="left h-full flex items-center">          
-            <div className={` max-w-[600px] h-fit fixed    px-3 md:px-6  py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg  mx-auto w-full duration-500 z-[113] md:top-[50%] md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] overflow-hidden ${state?.openModalRegions ? " bottom-0 md:flex flex-col" : "md:hidden bottom-[-1500px] z-[-10]"}`} >
+          <article className="left h-full flex items-center overscroll-none overflow-y-hidden overscroll-y-none">          
+            <div className={` max-w-[600px] h-fit fixed    px-3 md:px-6  py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg  mx-auto w-full duration-500 z-[113] md:top-[50%] md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] overflow-hidden ${state?.openModalRegions ? " bottom-0 md:flex flex-col" : "md:hidden bottom-[-1500px] z-[-10] overscroll-none"}`} >
                 <div className="w-full flex items-center justify-between  ">
                   <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">Выберите регион</span>
                   <span
@@ -172,25 +172,29 @@ const TopHeader = () => {
                 <div className="w-full overflow-auto  flex flex-col gap-y-4 pt-3  overflow-x-hidden mt-3 h-[50vh] md:h-[60vh] VerticelScroll pr-2 ">                  
                   {state?.getRegionList?.regions ?
                     state?.getRegionList?.regions?.map((data) => {
+                      // console.log(data.id);
+                      // console.log(data.name_ru);
                       return (
-                        <div key={data?.id} className="w-full h-fit">
+                        <div key={data?.id} className={`${data.id || data.sub_regions.id ? '' : ''} w-full h-fit`}>
                           <div className="flex items-center">
                             <input 
-                              onClick={() => accordionCityList(data?.id)}
-                              type="radio" 
-                              name="region"
-                              className="w-5 h-5 cursor-pointer mr-3" 
-                            />
+                                id={data?.id}
+                                type="radio" 
+                                name="region"
+                                value={data?.id}
+                                className="w-[18px] h-[18px] cursor-pointer mr-3" 
+                                onClick={() => accordionCityList(data?.id)}
+                              />
                             <label
-                              htmlFor="region"
-                              onClick={() => accordionCityList(data?.id)}
-                              className="w-full cursor-pointer flex items-center pr-1 justify-between border-b border-[#F0F0F0] "
+                              htmlFor={data?.id}
+                              className="w-full cursor-pointer flex items-center pr-1 border-b border-[#F0F0F0] "
                             >
-                              <span className="text-[#303030] text-lg not-italic font-AeonikProRegular">
+                              <span
+                               className="text-[#303030] text-lg not-italic font-AeonikProRegular">
                                 {data?.name_ru}
                               </span>
                               <span
-                                className={`${activeIndex === data?.id ? "rotate-[0deg]" : "rotate-[180deg]"} `}
+                                className={`${activeIndex === data?.id ? "rotate-[-0deg] duration-300" : "rotate-[-180deg] duration-300"} ml-auto`}
                               >
                                 <ArrowTopIcons colors={"#a1a1a1"} />
                               </span>
@@ -210,15 +214,13 @@ const TopHeader = () => {
                                     <input
                                       type="radio"
                                       id={item?.name_ru}
-                                      name="type_work"
+                                      name="region"
                                       value={item?.region_id}
                                       checked={state?.subRegionId == item?.id}
-                                      className="border border-borderColor  cursor-pointer  flex items-center justify-center"
+                                      className="w-4 h-4 border border-borderColor  cursor-pointer  flex items-center justify-center"
                                       onChange={(e) => {
                                         setState({ ...state, regionId: e.target.value, subRegionId: item?.id })
                                       }}
-                                      required
-
                                     />
                                     <span className="text-[#303030]  cursor-pointer text-[15px] not-italic font-AeonikProRegular"
                                     >{item?.name_ru}</span>

@@ -1,16 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { BiChevronDown } from "react-icons/bi";
 import { Popover } from "antd";
+import ReactSlider from "react-slider";
 
 import style from "./bottom.module.css";
 import {
+  AddComment,
   ChildGenIcon,
   ClothesIcons,
   CotegoryMenuIcons,
   DollorIcons,
   InputCheckedTrueIcons,
   ManGenIcons,
+  MenuCloseIcons,
+  PlusAddCectorIcons,
   WomanGenIcons,
 } from "../../assets/icons";
 import GenderButtonsStyle from "../Home/Shop/ShoppingStore/GenderButtonsStyle/GenderButtonsStyle";
@@ -22,14 +26,29 @@ const BottomHeader = () => {
     openwear: false,
     openPrice: false,
     textToColor: false,
+    minPrice: 60000,
+    maxPrice: 1800000,
+    selectPrice: "По бюджету",
+    // --------
+    showColour: false
   });
-
+  useEffect(() => {
+    if (
+      state?.showColour
+    ) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [
+    state?.showColour
+  ]);
   // ----------------Wear state management----------------------------
 
   const handleOpenChangeWear = (newOpen) => {
     setState({ ...state, openwear: newOpen });
   };
-  const [selectWear, setselectWear] = useState("Clothing type");
+  const [selectWear, setselectWear] = useState("По категории");
 
   const handleWearValue = (value) => {
     setselectWear(value);
@@ -37,12 +56,11 @@ const BottomHeader = () => {
   };
 
   const wearList = [
-    { id: 1, type: "All Clothing types" },
-    { id: 2, type: "Headwear" },
-    { id: 3, type: "Outwear" },
-    { id: 4, type: "Underwear" },
-    { id: 5, type: "Legwear" },
-    { id: 6, type: "Accessory" },
+    { id: 1, type: "Головные уборы" },
+    { id: 2, type: "Верхняя одежда" },
+    { id: 3, type: "Нижняя одежда" },
+    { id: 4, type: "Аксессуары" },
+    { id: 5, type: "Обувь" },
   ];
   const contentWear = (
     <div className="w-[170px] h-fit m-0 p-0">
@@ -67,34 +85,63 @@ const BottomHeader = () => {
   const handleOpenChangePrice = (newOpen) => {
     setState({ ...state, openPrice: newOpen });
   };
-  const [selectPrice, setselectPrice] = useState("Under 100$");
-  const handlePriceValue = (value) => {
-    setselectPrice(value);
-    setState({ ...state, openPrice: false });
-  };
-  const priceList = [
-    { id: 1, type: "At all prices" },
-    { id: 2, type: "More than 500 $" },
-    { id: 3, type: "Under 500$" },
-    { id: 4, type: "Under 200$" },
-    { id: 5, type: "Under 100$" },
-    { id: 6, type: "Under 50$" },
-  ];
+
   const contentPrice = (
-    <div className="w-[170px] h-fit m-0 p-0">
-      {priceList.map((data) => {
-        return (
-          <p
-            key={data?.id}
-            onClick={() => {
-              handlePriceValue(data?.type);
-            }}
-            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.TextHoverSeason}`}
-          >
-            {data?.type}
-          </p>
-        );
-      })}
+    <div className="w-[350px] h-[170px] m-0 ">
+      <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
+        <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">По ценам</span>
+        <span
+          onClick={() => setState({ ...state, openPrice: false, })}
+          className="w-6 h-6 cursor-pointer">
+          <MenuCloseIcons className="w-[24px] h-[24px]" colors={"#000"} />
+        </span>
+      </div>
+      <div className="  flex flex-col rounded-lg  w-full pb-5 pt-10">
+        <div className="flex justify-between items-center mb-6 w-full px-2">
+          <div className="flex ">
+            <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
+              от
+            </span>
+            <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+              <input className='w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+                value={state?.minPrice}
+                onChange={(e) => setState({ ...state, minPrice: e.target.value })} />  sum
+            </span>
+          </div>
+          <div className="flex ">
+            <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
+              до
+            </span>
+            <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+              <input className='w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+                value={state?.maxPrice}
+                onChange={(e) => setState({ ...state, maxPrice: e.target.value })} />
+              sum
+            </span>
+          </div>
+        </div>
+        <div className="relative z-50 mb-[6px] w-full  marketFilter">
+          {" "}
+          <ReactSlider
+            className="horizontal-slider"
+            thumbClassName="example-thumb1"
+            trackClassName="example-track1"
+            defaultValue={[10, 90]}
+            ariaLabel={["Lower thumb", "Upper thumb"]}
+            // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
+            // renderThumb={() => <div>1</div>}
+            pearling
+            minDistance={10}
+          />
+        </div>
+        <div className="flex items-center justify-end mt-4">
+          <span
+            onClick={() => setState({ ...state, openPrice: false })}
+            className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue">Готово</span>
+        </div>
+
+
+      </div>
     </div>
   );
   const changeColor = [
@@ -227,6 +274,12 @@ const BottomHeader = () => {
 
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
+      <div
+        onClick={() => { setState({ ...state, showColour: false }) }}
+        className={`fixed inset-0 z-[215] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
+         ${state?.showColour ? "" : "hidden"}`}
+      >
+      </div>
       <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto">
         <Popover
           open={state?.openwear}
@@ -266,7 +319,7 @@ const BottomHeader = () => {
           </span>
           <div className=" w-[142px] h-full flex justify-between items-center px-3">
             <p className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black ">
-              {selectPrice}
+              {state?.selectPrice}
             </p>
             <span>
               <BiChevronDown
@@ -315,7 +368,7 @@ const BottomHeader = () => {
           <article className="w-[480px] h-full overflow-hidden flex items-center justify-between">
             <div
               className={`${state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
-                } px-3 w-full duration-500  h-full flex items-center justify-between  `}
+                } px-2 w-full duration-500  h-full flex items-center justify-between  `}
             >
               {changeColor?.map((data) => {
                 return (
@@ -349,6 +402,10 @@ const BottomHeader = () => {
                   </div>
                 );
               })}
+              <button
+                onClick={() => { setState({ ...state, showColour: true }) }}
+                type="button"
+                className="w-5"><PlusAddCectorIcons colors={dressInfo?.ColorSeason} /></button>
             </div>
             <p
               className={`${state?.textToColor ? " mr-0" : " mr-[-500px]"

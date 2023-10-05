@@ -4,6 +4,7 @@ import {
   ClothesIcons,
   DollorIcons,
   InputCheckedTrueIcons,
+  MenuCloseIcons,
   TopBrandsIcon,
 } from "../../../../assets/icons";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
@@ -27,6 +28,8 @@ const ClothingParametr = () => {
     priceToggleMobile: false,
     brandToggleMobile: false,
     selectColorToggleMobile: false,
+    minPrice: 60000,
+    maxPrice: 1800000,
   });
 
   useEffect(() => {
@@ -47,113 +50,211 @@ const ClothingParametr = () => {
     state?.selectColorToggleMobile,
   ]);
 
+
   const wearMobileList = [
-    { id: 1, type: "All Clothing types" },
-    { id: 2, type: "Headwear" },
-    { id: 3, type: "Outwear" },
-    { id: 4, type: "Underwear" },
-    { id: 5, type: "Legwear" },
-    { id: 6, type: "Accessory" },
+    { id: 1, type: "Головные уборы" },
+    { id: 2, type: "Верхняя одежда" },
+    { id: 3, type: "Нижняя одежда" },
+    { id: 4, type: "Аксессуары" },
+    { id: 5, type: "Обувь" },
   ];
   // Mobile Price Brand Type
 
   // Mobile Change color Type
+  // const [changeColor, setChangeColor] = useState([
+  //   {
+  //     id: 1,
+  //     name: "purple",
+  //     value: 1,
+  //     action: false,
+  //     IconsColor: "#7E22CE",
+  //     colors: "bg-purple-700",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "green",
+  //     value: 2,
+  //     action: false,
+  //     IconsColor: "#16A34A",
+  //     colors: "bg-green-600",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "red",
+  //     value: 3,
+  //     action: false,
+  //     IconsColor: "#B91C1C",
+  //     colors: "bg-red-700",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "yellow",
+  //     value: 4,
+  //     action: false,
+  //     IconsColor: "#EAB308",
+  //     colors: "bg-yellow-500",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "black",
+  //     value: 5,
+  //     action: false,
+  //     IconsColor: "black",
+  //     colors: "bg-black",
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "white",
+  //     value: 6,
+  //     action: false,
+  //     IconsColor: "white",
+  //     colors: "bg-white",
+  //   },
+  //   {
+  //     id: 7,
+  //     name: "blue",
+  //     value: 7,
+  //     action: false,
+  //     IconsColor: "#3B82F6",
+  //     colors: "bg-blue-500",
+  //   },
+  //   {
+  //     id: 8,
+  //     name: "orange",
+  //     value: 8,
+  //     action: false,
+  //     IconsColor: "#EA580C",
+  //     colors: "bg-orange-600",
+  //   },
+  //   {
+  //     id: 9,
+  //     name: "purple",
+  //     value: 9,
+  //     action: false,
+  //     IconsColor: "#C084FC",
+  //     colors: "bg-purple-400",
+  //   },
+  //   {
+  //     id: 10,
+  //     name: "blue",
+  //     value: 10,
+  //     action: false,
+  //     IconsColor: "#1E3A8A",
+  //     colors: "bg-blue-900",
+  //   },
+  //   {
+  //     id: 11,
+  //     name: "yellow",
+  //     value: 11,
+  //     action: false,
+  //     IconsColor: "#713F12",
+  //     colors: "bg-yellow-900",
+  //   },
+  //   {
+  //     id: 12,
+  //     name: "gray",
+  //     value: 12,
+  //     IconsColor: "#4B5563",
+  //     action: false,
+  //     colors: "bg-gray-600",
+  //   },
+  // ]);
   const [changeColor, setChangeColor] = useState([
     {
+      colorName: "Black",
       id: 1,
-      name: "purple",
       value: 1,
-      action: false,
-      IconsColor: "#7E22CE",
-      colors: "bg-purple-700",
-    },
-    {
-      id: 2,
-      name: "green",
-      value: 2,
-      action: false,
-      IconsColor: "#16A34A",
-      colors: "bg-green-600",
-    },
-    {
-      id: 3,
-      name: "red",
-      value: 3,
-      action: false,
-      IconsColor: "#B91C1C",
-      colors: "bg-red-700",
-    },
-    {
-      id: 4,
-      name: "yellow",
-      value: 4,
-      action: false,
-      IconsColor: "#EAB308",
-      colors: "bg-yellow-500",
-    },
-    {
-      id: 5,
-      name: "black",
-      value: 5,
-      action: false,
-      IconsColor: "black",
+      action: true,
+      IconsColor: "#4B5563",
       colors: "bg-black",
     },
     {
-      id: 6,
-      name: "white",
-      value: 6,
+      colorName: "Белый",
+      id: 2,
+      value: 2,
       action: false,
-      IconsColor: "white",
+      IconsColor: "#4B5563",
       colors: "bg-white",
     },
     {
-      id: 7,
-      name: "blue",
-      value: 7,
+      id: 3,
+      value: 3,
+      colorName: "Серый",
       action: false,
-      IconsColor: "#3B82F6",
-      colors: "bg-blue-500",
+      IconsColor: "#4B5563",
+      colors: "bg-zinc-500",
+    },
+    {
+      id: 4,
+      value: 4,
+      colorName: "Фиолетовый",
+      action: false,
+      IconsColor: "#4B5563",
+      colors: "bg-purple-500",
+    },
+    {
+      id: 5,
+      value: 5,
+      colorName: "Голубой",
+      action: false,
+      IconsColor: "#4B5563",
+      colors: "bg-sky-600",
+    },
+    {
+      id: 6,
+      value: 6,
+      colorName: "Желтый",
+      action: false,
+      IconsColor: "#4B5563",
+      colors: "bg-amber-400 ",
+    },
+    {
+      id: 7,
+      value: 7,
+      colorName: "Зеленый",
+      action: false,
+      IconsColor: "#4B5563",
+      colors: "bg-green-700 ",
     },
     {
       id: 8,
-      name: "orange",
       value: 8,
+      colorName: "Amber",
       action: false,
-      IconsColor: "#EA580C",
-      colors: "bg-orange-600",
+      IconsColor: "#4B5563",
+      colors: "bg-amber-600 ",
     },
     {
       id: 9,
-      name: "purple",
       value: 9,
+      colorName: "Красный",
       action: false,
-      IconsColor: "#C084FC",
-      colors: "bg-purple-400",
+      IconsColor: "#4B5563",
+      colors: "bg-red-700  ",
     },
     {
       id: 10,
-      name: "blue",
       value: 10,
+      colorName: "Фиолетовый",
       action: false,
-      IconsColor: "#1E3A8A",
-      colors: "bg-blue-900",
+      IconsColor: "#4B5563",
+      colors: "bg-purple-800 ",
     },
     {
       id: 11,
-      name: "yellow",
       value: 11,
+      colorName: "Blue",
       action: false,
-      IconsColor: "#713F12",
-      colors: "bg-yellow-900",
+      IconsColor: "#4B5563",
+      colors: "bg-blue-900 ",
     },
     {
       id: 12,
-      name: "gray",
       value: 12,
-      IconsColor: "#4B5563",
+      colorName: "Brown",
       action: false,
-      colors: "bg-gray-600",
+      IconsColor: "#4B5563",
+      colors: "bg-yellow-900 ",
     },
   ]);
   // Mobile top Branding Data Lists
@@ -270,9 +371,10 @@ const ClothingParametr = () => {
                 className="fixed inset-0 w-full h-full bg-black opacity-40"
                 onClick={() => setState({ ...state, clothesTypeMobile: false })}
               ></div>
-              <div className="flex items-center min-h-screen px-4 py-8">
-                <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
-                  <div className="flex items-center justify-end ">
+              <div className="flex items-center min-h-screen px-4 py-8 ">
+                <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg ">
+                  <div className="flex items-center justify-between border-b border-searchBgColor pb-3 ">
+                    <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">По категории</span>
                     <button
                       type=""
                       onClick={() =>
@@ -282,7 +384,7 @@ const ClothingParametr = () => {
                       <GrClose size={22} />
                     </button>
                   </div>
-                  <div className="py-4">
+                  <div className="pt-5 flex flex-col">
                     {wearMobileList?.map((data) => {
                       return (
                         <div
@@ -290,7 +392,7 @@ const ClothingParametr = () => {
                           onClick={() => {
                             setState({ ...state, clothesTypeMobile: false });
                           }}
-                          className={`${dressInfo?.TextHoverSeason} text-base font-AeonikProMedium hover:bg-bgColor w-full h-12 border border-solid border-searchBgColor flex items-center justify-center`}
+                          className={`${dressInfo?.TextHoverSeason} text-base text-[#303030] font-AeonikProMedium hover:bg-[#F6F6F6] w-full xs:h-12 h-10 cursor-pointer  flex items-center justify-center`}
                         >
                           {data?.type}
                         </div>
@@ -313,48 +415,61 @@ const ClothingParametr = () => {
               ></div>
               <div className="flex items-center min-h-screen px-4 py-8">
                 <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
-                  <div className="flex items-center justify-end ">
-                    <button
-                      type=""
-                      onClick={() =>
-                        setState({ ...state, priceToggleMobile: false })
-                      }
-                    >
-                      <GrClose size={22} />
-                    </button>
-                  </div>
-                  <div className="  flex flex-col  mt-4">
-                    <div className="flex justify-between items-center mb-7">
-                      <div className="flex flex-col">
-                        <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-setTexOpacity mb-2">
-                          от
-                        </span>
-                        <span className="flex items-center  mt-[2px] justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-                          60.000 sum
-                        </span>
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-setTexOpacity mb-2">
-                          до
-                        </span>
-                        <span className="flex items-center mt-[2px] justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-                          1 860 000 sum
-                        </span>
-                      </div>
+
+                  <div className="max-w-[350px] w-full h-[170px] m-0 ">
+                    <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
+                      <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">По ценам</span>
+                      <span
+                        onClick={() => setState({ ...state, priceToggleMobile: false, })}
+                        className="w-6 h-6 cursor-pointer">
+                        <MenuCloseIcons className="w-[24px] h-[24px]" colors={"#000"} />
+                      </span>
                     </div>
-                    <div className="relative z-50 mb-[6px]">
-                      {" "}
-                      <ReactSlider
-                        className="horizontal-slider"
-                        thumbClassName="example-thumb1"
-                        trackClassName="example-track1"
-                        defaultValue={[10, 90]}
-                        ariaLabel={["Lower thumb", "Upper thumb"]}
-                        // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
-                        // renderThumb={() => <div>1</div>}
-                        pearling
-                        minDistance={10}
-                      />
+                    <div className="  flex flex-col rounded-lg  w-full pb-5 pt-10">
+                      <div className="flex justify-between items-center mb-6 w-full px-2">
+                        <div className="flex ">
+                          <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
+                            от
+                          </span>
+                          <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                            <input className='w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+                              value={state?.minPrice}
+                              onChange={(e) => setState({ ...state, minPrice: e.target.value })}
+                            />  sum
+                          </span>
+                        </div>
+                        <div className="flex ">
+                          <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
+                            до
+                          </span>
+                          <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                            <input className='w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+                              value={state?.maxPrice}
+                              onChange={(e) => setState({ ...state, maxPrice: e.target.value })}
+                            />
+                            sum
+                          </span>
+                        </div>
+                      </div>
+                      <div className="relative z-50 mb-[6px] w-full  marketFilter">
+                        {" "}
+                        <ReactSlider
+                          className="horizontal-slider"
+                          thumbClassName="example-thumb1"
+                          trackClassName="example-track1"
+                          defaultValue={[10, 90]}
+                          ariaLabel={["Lower thumb", "Upper thumb"]}
+                          // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
+                          // renderThumb={() => <div>1</div>}
+                          pearling
+                          minDistance={10}
+                        />
+                      </div>
+                      <div className="flex items-center justify-end mt-4">
+                        <span
+                          onClick={() => setState({ ...state, priceToggleMobile: false })}
+                          className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue">Готово</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -376,17 +491,10 @@ const ClothingParametr = () => {
               <div className="flex items-center min-h-screen px-4 py-8">
                 <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
                   <div
-                    className={`flex items-center ${toggleAction ? "justify-between" : "justify-end"
-                      } `}
+                    className={`flex items-center justify-between border-b border-searchBgColor pb-3"
+                       `}
                   >
-                    {toggleAction && (
-                      <button
-                        onClick={unCheckedAll}
-                        className="flex items-center active:scale-95  active:opacity-70 justify-center border border-searchBgColor rounded-lg px-4 py-1"
-                      >
-                        Отключить
-                      </button>
-                    )}
+                    <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">По цвету</span>
                     <button
                       className="py-2"
                       type=""
@@ -397,31 +505,43 @@ const ClothingParametr = () => {
                       <GrClose size={22} />
                     </button>
                   </div>
-                  <div className="py-2 gap-x-2 gap-y-4 flex flex-wrap items-center">
+                  <div className="py-4 gap-x-2 gap-y-4 grid gap-4 grid-cols-4">
                     {changeColor?.map((data) => {
                       return (
-                        <div
-                          key={data?.id}
-                          onClick={() =>
-                            HandleIconsColor(data?.IconsColor, data?.id)
-                          }
-                          className={`rounded-full flex items-center justify-center mr-2 w-6 h-6 ${data?.colors
-                            } cursor-pointer ${data?.id == 6 ? "border border-setTexOpacity" : ""
-                            } `}
-                        >
-                          {data?.action && data?.id === 6 ? (
-                            <span>
-                              <InputCheckedTrueIcons colors={"#000"} />
-                            </span>
-                          ) : null}
+                        <div className="flex flex-col items-center justify-center ">
+                          <div
+                            key={data?.id}
+                            onClick={() =>
+                              HandleIconsColor(data?.IconsColor, data?.id)
+                            }
+                            className={`rounded-full flex items-center justify-center mr-2 w-[35px] h-[35px] ${data?.colors
+                              } cursor-pointer ${data?.id == 2 ? "border border-setTexOpacity" : ""
+                              } `}
+                          >
+                            {data?.action && data?.id === 2 ? (
+                              <span>
+                                <InputCheckedTrueIcons colors={"#000"} />
+                              </span>
+                            ) : null}
 
-                          {data?.action && data?.id !== 6 ? (
-                            <InputCheckedTrueIcons colors={"#fff"} />
-                          ) : null}
+                            {data?.action && data?.id !== 6 ? (
+                              <InputCheckedTrueIcons colors={"#fff"} />
+                            ) : null}
+                          </div>
+                          <span className={`text-black text-center text-xs not-italic font-AeonikProRegular`}>{data?.colorName}</span>
                         </div>
                       );
                     })}
                   </div>
+                  <div className="flex items-center justify-end">
+                    {toggleAction && (
+                      <button
+                        onClick={unCheckedAll}
+                        className="flex items-center text-fullBlue active:scale-95  active:opacity-70 justify-center  px-4 py-1"
+                      >
+                        Отключить
+                      </button>
+                    )}</div>
                 </div>
               </div>
             </div>
@@ -438,8 +558,14 @@ const ClothingParametr = () => {
               ></div>
               <div className="flex items-center min-h-screen px-4 py-8">
                 <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
-                  <div className="flex items-center justify-end ">
+                  <div
+                    className={`flex items-center justify-between border-b border-searchBgColor pb-3"
+                       `}
+                  >
+                    <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">По бредам и магазинам</span>
                     <button
+                      className="py-2"
+                      type=""
                       onClick={() =>
                         setState({ ...state, brandToggleMobile: false })
                       }

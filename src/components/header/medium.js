@@ -95,7 +95,7 @@ const MediumHeader = () => {
     { id: 3333, type: "Autumm", icons: BrandAutumm },
     { id: 4444, type: "Winter", icons: BrandWinter },
   ];
-  
+
   const [genderType, setGenderType] = useState([
     {
       id: 1,
@@ -190,9 +190,8 @@ const MediumHeader = () => {
         ></div>
       )}
       <article
-        className={`fixed top-[300px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${
-          dressInfo?.openCatologId ? "" : "hidden"
-        }`}
+        className={`fixed top-[300px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${dressInfo?.openCatologId ? "" : "hidden"
+          }`}
       >
         <NavCategoryModal />
       </article>
@@ -260,34 +259,51 @@ const MediumHeader = () => {
                 </div>
 
                 {/* Weather section */}
-                <article className="w-12 h-12 md:w-[120px] md:h-11 bg-btnBgColor border border-searchBgColor rounded-xl ml-2">
-                  {SeasonTypeArray.filter(
-                    (data) => data.id === dressInfo.type
-                  ).map((data) => {
-                    return (
-                      <Popover
-                        key={data?.id}
-                        className="w-full h-full flex items-center justify-center rounded-lg cursor-pointer  "
-                        open={openwear}
-                        onOpenChange={handleOpenChangeWear}
-                        trigger="click"
-                        options={["Hide"]}
-                        placement="bottom"
-                        content={contentWear}
-                      >
-                        <figure className="w-full h-full sm:flex items-center select-none cursor-pointer  ">
+                <article className="w-12 h-12 md:w-[120px]  md:h-11 bg-btnBgColor border border-searchBgColor rounded-xl ml-2">
+                  <div className="w-full h-full md:flex hidden items-center justify-between">
+                    {
+                      SeasonTypeArray?.map(item => {
+                        return (
                           <img
-                            src={data?.icons}
+                            key={item?.id}
+                            onClick={() => handleSeason(item.id)}
+                            src={item?.icons}
                             alt="weather"
-                            className="mr-0 md:mr-[5px] "
+                            className=" cursor-pointer "
                           />
-                          <figcaption className="ss:hidden font-AeonikProMedium hidden md:flex items-center text-[15px] ">
-                            {data?.type}
-                          </figcaption>
-                        </figure>
-                      </Popover>
-                    );
-                  })}
+                        )
+                      })
+                    }
+                  </div>
+                  <div className="w-full h-full md:hidden">
+                    {SeasonTypeArray.filter(
+                      (data) => data.id === dressInfo.type
+                    ).map((data) => {
+                      return (
+                        <Popover
+                          key={data?.id}
+                          className="w-full h-full flex items-center justify-center rounded-lg cursor-pointer  "
+                          open={openwear}
+                          onOpenChange={handleOpenChangeWear}
+                          trigger="click"
+                          options={["Hide"]}
+                          placement="bottom"
+                          content={contentWear}
+                        >
+                          <figure className="w-full h-full sm:flex items-center select-none cursor-pointer  ">
+                            <img
+                              src={data?.icons}
+                              alt="weather"
+                              className="mr-0 md:mr-[5px] "
+                            />
+                            <figcaption className="ss:hidden font-AeonikProMedium hidden md:flex items-center text-[15px] ">
+                              {data?.type}
+                            </figcaption>
+                          </figure>
+                        </Popover>
+                      );
+                    })}
+                  </div>
                 </article>
 
                 {/* Searching section */}
@@ -410,11 +426,10 @@ const MediumHeader = () => {
             </section>
             {/*Starting of Opened Hamburger Menu section */}
             <section
-              className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen pb-[140px] px-3 ${
-                state?.hamburgerMenu
-                  ? " flex flex-col ease-linear duration-500 overscroll-none"
-                  : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
-              }`}
+              className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen pb-[140px] px-3 ${state?.hamburgerMenu
+                ? " flex flex-col ease-linear duration-500 overscroll-none"
+                : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
+                }`}
             >
               <div className={`w-full h-fit flex flex-wrap `}>
                 {/* Gender selection for Mobile */}
@@ -428,23 +443,20 @@ const MediumHeader = () => {
                         <button
                           key={data.id}
                           onClick={() => handleGenderDataCheck(data.id)}
-                          className={`w-full flex items-center justify-center h-12 text-[15px] text-center ${
-                            !data.name ? "px-5" : "px-7"
-                          } font-AeonikProRegular ${
-                            data.action
+                          className={`w-full flex items-center justify-center h-12 text-[15px] text-center ${!data.name ? "px-5" : "px-7"
+                            } font-AeonikProRegular ${data.action
                               ? `{ bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-xl `
                               : ""
-                          } `}
+                            } `}
                         >
                           <span>{data.icon}</span>
                           {data.name ? <p className="pl-2 text-borderWinter">{data.name}</p> : ""}
                         </button>
                         <span
-                          className={`${
-                            data.id === 4
-                              ? "text-searchBgColor hidden"
-                              : "text-searchBgColor flex items-center"
-                          }`}
+                          className={`${data.id === 4
+                            ? "text-searchBgColor hidden"
+                            : "text-searchBgColor flex items-center"
+                            }`}
                         >
                           |
                         </span>
@@ -452,8 +464,10 @@ const MediumHeader = () => {
                     );
                   })}
                 </section>
+                {/* Categories */}
                 <ul className="flex flex-col w-full">
-                   {/* Categories */}
+                  {/* Categories */}
+
                   <li>
                     <NavLink
                       onClick={() =>
@@ -537,7 +551,9 @@ const MediumHeader = () => {
 
                   {/* Location and Language */}
                   <div className="flex items-center justify-between h-fit mb-3">
-                    <button className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
+                    <button 
+                      
+                      className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
                       <span>
                         <LocationIcons />
                       </span>
