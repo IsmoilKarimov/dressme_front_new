@@ -201,7 +201,6 @@ function YandexMapsDressMe() {
          ${openCarouselModal || marketsFilterMaps ? "" : "hidden"
           }`}
       >
-
       </div>
       <div className={`w-full   sm:w-fit h-fit flex items-center mx-auto justify-center fixed z-[216]   ${openCarouselModal ? "" : "hidden"
         }`}>

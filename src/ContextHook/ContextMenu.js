@@ -5,7 +5,7 @@ export const dressMainData = createContext();
 export const DressMenu = ({ children }) => {
 
   const [dressInfo, setDressInfo] = useState({
-    type: 1111,
+    type: 4444,
     ClothesBorder: 1,
     PageSetModal: false,
     yandexOpenMenu: false,
