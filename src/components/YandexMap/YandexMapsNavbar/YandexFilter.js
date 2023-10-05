@@ -79,17 +79,17 @@ export default function YandexFilter() {
   const [maxPrice, setMaxPrice] = useState(1800000);
 
   const contentPrice = (
-    <div className="w-[350px] h-[170px] m-0 p-3">
+    <div className="w-[350px] h-[170px] m-0 ">
       <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
         <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">По ценам</span>
         <span
           onClick={() => setState({ ...state, openPrice: false })}
           className="w-6 h-6 cursor-pointer">
-          <MenuCloseIcons className="w-6 h-6" colors={"#000"} />
+          <MenuCloseIcons className="w-[24px] h-[24px]" colors={"#000"} />
         </span>
       </div>
       <div className="  flex flex-col rounded-lg  w-full pb-5 pt-10">
-        <div className="flex justify-between items-center mb-7 w-full px-2">
+        <div className="flex justify-between items-center mb-6 w-full px-2">
           <div className="flex ">
             <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
               от
@@ -125,6 +125,11 @@ export default function YandexFilter() {
             pearling
             minDistance={10}
           />
+        </div>
+        <div className="flex items-center justify-end mt-4">
+          <span
+            onClick={() => setState({ ...state, openPrice: false })}
+            className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue">Готово</span>
         </div>
 
 
