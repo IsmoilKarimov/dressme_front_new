@@ -28,10 +28,9 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick }) {
     navigator.clipboard.writeText(copyText)
   }
   const imgGallery = [
-    { id: 1, img: "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract03.jpg" },
-    { id: 2, img: "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract04.jpg" },
-    { id: 3, img: "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract02.jpg" },
-    { id: 4, img: "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract01.jpg" },
+    { id: 1, img: "https://i.pinimg.com/736x/9d/d4/a3/9dd4a3906b318cdfd854dd46a72046ba.jpg" },
+    { id: 2, img: "https://img.hechtgroup.com/where_is_the_zara_warehouse.jpg" },
+    { id: 3, img: "https://c8.alamy.com/comp/2HEC9XP/people-queue-outside-a-zara-store-on-boxing-day-in-central-london-as-shoppers-gather-on-oxford-street-2HEC9XP.jpg" },
   ]
   const NextArrow = (props) => {
     const { onClick } = props;
@@ -122,7 +121,7 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick }) {
                   <div onClick={onClick} key={data?.id} className="cursor-pointer flex items-center justify-center">
                     <img
                       className={
-                        "mx-auto w-full  sm:w-auto	 flex items-center object-center object-cover	"
+                        "mx-auto w-full  sm:w-auto	 flex items-center object-top object-contain	"
                       }
                       // src={data?.img}
                       src={data?.img}
