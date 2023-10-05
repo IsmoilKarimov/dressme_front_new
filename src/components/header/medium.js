@@ -464,8 +464,10 @@ const MediumHeader = () => {
                     );
                   })}
                 </section>
+                {/* Categories */}
                 <ul className="flex flex-col w-full">
                   {/* Categories */}
+
                   <li>
                     <NavLink
                       onClick={() =>
@@ -549,7 +551,9 @@ const MediumHeader = () => {
 
                   {/* Location and Language */}
                   <div className="flex items-center justify-between h-fit mb-3">
-                    <button className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
+                    <button 
+                      
+                      className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
                       <span>
                         <LocationIcons />
                       </span>
