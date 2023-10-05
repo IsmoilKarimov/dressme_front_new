@@ -209,7 +209,7 @@ function YandexMapsDressMe() {
           onClick={() => {
             setOpenCarouselModal(false);
           }}
-          className="absolute right-0 sm:right-[-60px] z-[218] top-[-50px] sm:top-[0px] flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px]   rounded-full bg-[#808080]">
+          className="absolute right-3 sm:right-[-20px] z-[218] top-[-50px] sm:top-[0px] flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px]   rounded-full bg-[#808080]">
           <MenuCloseIcons colors="#fff" />
         </button>
         <div className="relative  z-[217] !w-full sm:w-fit  top-0 ">
@@ -264,12 +264,12 @@ function YandexMapsDressMe() {
         </div>
         {/* Yandex Search */}
         <div className={`absolute  ${!dressInfo?.yandexFullScreen ? "top-[80px]" : "top-[8px]"
-          }  md:top-auto md:bottom-[24px] left-0 right-0 mx-auto  overflow-hidden z-50  rounded-xl h-[48px] w-[94%] md:w-fit `}
+          }  md:top-auto md:bottom-[24px] left-0 right-0 mx-auto  overflow-hidden z-50   h-[48px] w-[97%] ll:w-[94%] md:w-fit `}
         >
           <div
             className="w-full h-full flex justify-between gap-x-2"
           >
-            <div className="w-[100%] h-full flex items-center rounded-lg bg-yandexNavbar backdrop-blur-sm px-3 overflow-hidden shadow-lg ">
+            <div className="w-[85%] h-full flex items-center rounded-lg bg-yandexNavbar backdrop-blur-sm px-2 ll:px-3 overflow-hidden shadow-lg ">
               <div>
                 <img src={locationIcons} alt="" />
               </div>
@@ -289,7 +289,7 @@ function YandexMapsDressMe() {
               </button>
 
             </div>
-            <button onClick={() => setMarketsFilterMaps(!marketsFilterMaps)} type="button" className="md:hidden h-[48px] w-[48px] rounded-lg bg-white flex items-center justify-center shadow-lg">
+            <button onClick={() => setMarketsFilterMaps(!marketsFilterMaps)} type="button" className="md:hidden h-[48px] w-[48px] rounded-lg rounded-lg bg-yandexNavbar backdrop-blur-sm flex items-center justify-center shadow-lg">
               <FilterIcons colors={"#000"} className="w-full h-full" />
             </button>
           </div>

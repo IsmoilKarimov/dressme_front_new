@@ -75,6 +75,9 @@ export default function YandexFilter() {
   };
   const [selectPrice, setSelectPrice] = useState("");
 
+  const [minPrice, setMinPrice] = useState(60000);
+  const [maxPrice, setMaxPrice] = useState(1800000);
+
   const contentPrice = (
     <div className="w-[350px] h-[170px] m-0 p-3">
       <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
@@ -92,7 +95,9 @@ export default function YandexFilter() {
               от
             </span>
             <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-              60.000 sum
+              <input className='w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+                value={minPrice}
+                onChange={(e) => setMinPrice(e.target.value)} />  sum
             </span>
           </div>
           <div className="flex ">
@@ -100,7 +105,10 @@ export default function YandexFilter() {
               до
             </span>
             <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-              1 860 000 sum
+              <input className='w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+                value={maxPrice}
+                onChange={(e) => setMaxPrice(e.target.value)} />
+              sum
             </span>
           </div>
         </div>
