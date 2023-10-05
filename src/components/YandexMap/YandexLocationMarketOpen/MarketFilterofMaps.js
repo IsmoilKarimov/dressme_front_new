@@ -50,7 +50,7 @@ function MarketFilterofMaps({ onClick }) {
                     {
                         clothesList?.map(item => {
                             return (
-                                <div onClick={() => handleClothesList(item?.id)} key={item?.id} className='w-full h-[44px] flex items-center justify-between cursor-pointer pt-4 pb-[10px] border-b border-searchBgColor'>
+                                <div onClick={() => handleClothesList(item?.id)} key={item?.id} className='w-full h-[44px] flex items-center justify-between cursor-pointer pt-5 pb-[8px] border-b border-searchBgColor'>
                                     <span className='text-gray-800 text-base not-italic font-AeonikProRegular'>{item?.name}</span>
                                     {
                                         item?.isCheck &&
@@ -73,30 +73,41 @@ function MarketFilterofMaps({ onClick }) {
         const [values] = useState([Min, Max]);
         return (
             <div>
-                <div className='marketfilter w-full h-[300px] border border-red-500 overflow-auto VerticelScroll flex items-center bg-white'>
-                    <figure className="w-full h-[60px] bg-bgCategory  mt-4 pb-1 px-[2px]">
-                        <div className=" w-full flex justify-center items-center gap-x-1">
-                            <div className=" h-fit  not-italic font-AeonikProMedium text-base leading-4 text-center text-fullBlue tracking-[1%]">
-                                {values[0]}
-                            </div>{" "}
-                            <div className=" h-fit pb-2">-</div>
-                            <div className=" h-fit not-italic font-AeonikProMedium text-base leading-4 text-center text-fullBlue tracking-[1%]">
-                                {values[1]}
+                <div className='marketfilter w-full h-[300px]  overflow-auto VerticelScroll flex items-center bg-white'>
+                    <div className="  flex flex-col rounded-lg border border-searchBgColor w-full py-5">
+                        <div className="flex justify-between items-center mb-7 w-full px-2">
+                            <div className="flex ">
+                                <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
+                                    от
+                                </span>
+                                <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                                    60.000 sum
+                                </span>
                             </div>
-                        </div>{" "}
-                        <div className="relative z-10">
+                            <div className="flex ">
+                                <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
+                                    до
+                                </span>
+                                <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                                    1 860 000 sum
+                                </span>
+                            </div>
+                        </div>
+                        <div className="relative z-50 mb-[6px] w-full  marketFilter">
                             {" "}
                             <ReactSlider
                                 className="horizontal-slider"
-                                thumbClassName="example-thumb"
-                                trackClassName="example-track"
-                                defaultValue={[0, 100]}
+                                thumbClassName="example-thumb1"
+                                trackClassName="example-track1"
+                                defaultValue={[10, 90]}
                                 ariaLabel={["Lower thumb", "Upper thumb"]}
+                                // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
+                                // renderThumb={() => <div>1</div>}
                                 pearling
                                 minDistance={10}
                             />
                         </div>
-                    </figure>
+                    </div>
                 </div>
                 <button className='w-full mt-5 h-[48px] rounded-lg flex items-center justify-center bg-fullBlue text-white'>
                     Готово
@@ -110,33 +121,33 @@ function MarketFilterofMaps({ onClick }) {
             {
                 id: 1111, childText: [
                     { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
-                    { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
-                    { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
-                    { id: 4, anyIcons: <SpringBoyIcons />, name: "", action: false },
+                    { id: 2, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
+                    { id: 3, anyIcons: <WomanGenIcons />, name: "Женщинам", action: false },
+                    { id: 4, anyIcons: <SpringBoyIcons />, name: "Детям", action: false },
                 ]
             },
             {
                 id: 2222, childText: [
                     { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
-                    { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
-                    { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
-                    { id: 4, anyIcons: <SummerBoyIcons />, name: "", action: false },
+                    { id: 2, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
+                    { id: 3, anyIcons: <WomanGenIcons />, name: "Женщинам", action: false },
+                    { id: 4, anyIcons: <SummerBoyIcons />, name: "Детям", action: false },
                 ]
             },
             {
                 id: 3333, childText: [
                     { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
-                    { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
-                    { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
-                    { id: 4, anyIcons: <AutummBoyIcons />, name: "", action: false },
+                    { id: 2, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
+                    { id: 3, anyIcons: <WomanGenIcons />, name: "Женщинам", action: false },
+                    { id: 4, anyIcons: <AutummBoyIcons />, name: "Детям", action: false },
                 ]
             },
             {
                 id: 4444, childText: [
                     { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
-                    { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
-                    { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
-                    { id: 4, anyIcons: <WinterBoyIcons />, name: "", action: false },
+                    { id: 2, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
+                    { id: 3, anyIcons: <WomanGenIcons />, name: "Женщинам", action: false },
+                    { id: 4, anyIcons: <WinterBoyIcons />, name: "Детям", action: false },
                 ]
             }]);
         const handleFilterByUser = (fathId, childId) => {
@@ -148,7 +159,6 @@ function MarketFilterofMaps({ onClick }) {
                                 return { ...e, action: true };
                             } else return { ...e, action: false };
                         });
-                        console.log(newDataColor, "newDataColor");
                         return { ...data, childText: [...newDataColor] };
                     } else return data;
                 });
@@ -165,7 +175,7 @@ function MarketFilterofMaps({ onClick }) {
                                 return (
                                     <div
                                         key={data?.id}
-                                        className="w-full h-fit flex flex-col items-center  "
+                                        className="w-full h-fit flex flex-col gap-y-2 items-center  "
                                     >
                                         {
                                             data?.childText?.map(item => {
@@ -173,14 +183,11 @@ function MarketFilterofMaps({ onClick }) {
                                                     <button
                                                         key={item?.id}
                                                         onClick={() => handleFilterByUser(data?.id, item?.id)}
-                                                        className={`${item?.action ? dressInfo?.BtnActiveSeason : " bg-white text-black"} border-b border-searchBgColor w-full h-fit  pt-4 pb-[10px] cursor-pointer  font-AeonikProMedium   justify-center flex items-center`}
+                                                        className={`${item?.action ? dressInfo?.BtnActiveSeason : " bg-white text-black border border-searchBgColor"} pl-[40%] rounded-lg w-full h-[64px]   cursor-pointer  font-AeonikProMedium   flex items-center`}
                                                     >
                                                         {/* <img src={item?.anyIcons} alt="male" /> */}
                                                         <span>{item?.anyIcons}</span>
-                                                        {
-                                                            item?.name &&
-                                                            <span className="ml-2 not-italic whitespace-nowrap  text-sm font-AeonikProMedium tracking-wide	leading-5">{item?.name}</span>
-                                                        }
+                                                        <span className="ml-2 not-italic whitespace-nowrap  text-black text-right  text-sm font-AeonikProMedium tracking-wide	leading-5">{item?.name}</span>
                                                     </button>
 
                                                 )
@@ -200,14 +207,18 @@ function MarketFilterofMaps({ onClick }) {
     }
     const BrandMarketSelect = () => {
         const campany = [
-            { id: 1, imgFull: adidas },
-            { id: 2, imgFull: chanel },
-            { id: 3, imgFull: hm },
-            { id: 4, imgFull: lacoste },
-            { id: 5, imgFull: nike },
-            { id: 6, imgFull: puma },
-            { id: 7, imgFull: tommy },
-            { id: 8, imgFull: zara },
+            { id: 1, value: "adidas", imgFull: adidas },
+            { id: 2, value: "adidas", imgFull: chanel },
+            { id: 3, value: "adidas", imgFull: hm },
+            { id: 4, value: "adidas", imgFull: lacoste },
+            { id: 5, value: "adidas", imgFull: nike },
+            { id: 6, value: "adidas", imgFull: puma },
+            { id: 7, value: "adidas", imgFull: tommy },
+            { id: 8, value: "adidas", imgFull: zara },
+            { id: 9, value: "adidas", imgFull: zara },
+            { id: 10, value: "adidas", imgFull: zara },
+            { id: 11, value: "adidas", imgFull: zara },
+            { id: 12, value: "adidas", imgFull: zara },
         ];
         return (
             <div>
@@ -291,7 +302,7 @@ function MarketFilterofMaps({ onClick }) {
                 componentGroup?.map(data => {
                     return (
 
-                        <div>
+                        <div className='mt-4'>
                             {data?.isActive && data?.pageName}
                         </div>
                     )
