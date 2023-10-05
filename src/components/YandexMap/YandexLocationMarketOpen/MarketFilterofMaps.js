@@ -71,6 +71,10 @@ function MarketFilterofMaps({ onClick }) {
         const Min = "100";
         const Max = "12 000";
         const [values] = useState([Min, Max]);
+        const [minPrice, setMinPrice] = useState(60000);
+        const [maxPrice, setMaxPrice] = useState(1800000);
+
+
         return (
             <div>
                 <div className='marketfilter w-full h-[300px]  overflow-auto VerticelScroll flex items-center bg-white'>
@@ -81,7 +85,9 @@ function MarketFilterofMaps({ onClick }) {
                                     от
                                 </span>
                                 <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-                                    60.000 sum
+                                    <input className='w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+                                        value={minPrice}
+                                        onChange={(e) => setMinPrice(e.target.value)} />  sum
                                 </span>
                             </div>
                             <div className="flex ">
@@ -89,7 +95,10 @@ function MarketFilterofMaps({ onClick }) {
                                     до
                                 </span>
                                 <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-                                    1 860 000 sum
+                                    <input className='w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+                                        value={maxPrice}
+                                        onChange={(e) => setMaxPrice(e.target.value)} />
+                                    sum
                                 </span>
                             </div>
                         </div>

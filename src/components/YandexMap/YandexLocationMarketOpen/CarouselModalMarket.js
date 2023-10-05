@@ -55,8 +55,8 @@ function CarouselModalMarket() {
                 >
                     {imgGallery?.map((data) => {
                         return (
-                            <figure className="relative  overflow-hidden !w-full h-[550px] md:h-[700px] sm:rounded-lg border border-searchBgColor bg-white  flex items-center justify-center">
-                                <img className="w-full h-full object-cover sm:object-contain" src={data?.img} alt="" />
+                            <figure className="relative  overflow-hidden !w-full ll:h-[400px] h-[450px] xs:h-[550px] md:h-[700px] sm:rounded-lg border border-searchBgColor bg-white  flex items-center justify-center">
+                                <img className="w-full h-full object-contain" src={data?.img} alt="" />
                                 <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                                     <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
                                         <p> {data.id}</p>/<p>{imgGallery.length}</p>
