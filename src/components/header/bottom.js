@@ -18,6 +18,7 @@ import {
   WomanGenIcons,
 } from "../../assets/icons";
 import GenderButtonsStyle from "../Home/Shop/ShoppingStore/GenderButtonsStyle/GenderButtonsStyle";
+import { GrClose } from "react-icons/gr";
 
 const BottomHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -144,13 +145,15 @@ const BottomHeader = () => {
       </div>
     </div>
   );
-  const changeColor = [
+  const [changeColor, setChangeColor] = useState([
     {
       id: 1,
       data: 1,
       icons: <InputCheckedTrueIcons />,
       action: false,
       colors: "bg-black",
+      colorName: "Black",
+
     },
     {
       id: 2,
@@ -158,6 +161,8 @@ const BottomHeader = () => {
       icons: <InputCheckedTrueIcons />,
       action: false,
       colors: "bg-white",
+      colorName: "Black",
+
     },
     {
       id: 3,
@@ -165,6 +170,8 @@ const BottomHeader = () => {
       icons: <InputCheckedTrueIcons />,
       action: false,
       colors: "bg-zinc-500",
+      colorName: "Black",
+
     },
     {
       id: 4,
@@ -172,6 +179,8 @@ const BottomHeader = () => {
       icons: <InputCheckedTrueIcons />,
       action: false,
       colors: "bg-purple-500",
+      colorName: "Black",
+
     },
     {
       id: 5,
@@ -179,12 +188,15 @@ const BottomHeader = () => {
       icons: <InputCheckedTrueIcons />,
       action: false,
       colors: "bg-sky-600",
+      colorName: "Black",
+
     },
     {
       id: 6,
       data: 6,
       icons: <InputCheckedTrueIcons />,
       action: false,
+      colorName: "Black",
       colors: "bg-amber-400 ",
     },
     {
@@ -192,6 +204,7 @@ const BottomHeader = () => {
       data: 7,
       icons: <InputCheckedTrueIcons />,
       action: false,
+      colorName: "Black",
       colors: "bg-green-700 ",
     },
     {
@@ -199,6 +212,7 @@ const BottomHeader = () => {
       data: 8,
       icons: <InputCheckedTrueIcons />,
       action: false,
+      colorName: "Black",
       colors: "bg-amber-600 ",
     },
     {
@@ -206,6 +220,7 @@ const BottomHeader = () => {
       data: 9,
       icons: <InputCheckedTrueIcons />,
       action: false,
+      colorName: "Black",
       colors: "bg-red-700  ",
     },
     {
@@ -213,6 +228,7 @@ const BottomHeader = () => {
       data: 10,
       icons: <InputCheckedTrueIcons />,
       action: false,
+      colorName: "Black",
       colors: "bg-purple-800 ",
     },
     {
@@ -220,6 +236,7 @@ const BottomHeader = () => {
       data: 11,
       icons: <InputCheckedTrueIcons />,
       action: false,
+      colorName: "Black",
       colors: "bg-blue-900  ",
     },
     {
@@ -227,59 +244,213 @@ const BottomHeader = () => {
       data: 12,
       icons: <InputCheckedTrueIcons />,
       action: false,
+      colorName: "Black",
       colors: "bg-yellow-900 ",
     },
-  ];
+  ])
   const [getRadio, setGetRadio] = useState("");
   const colorIdPushContext = (id) => {
     setDressInfo({ ...dressInfo, ClothesBorder: id });
   };
 
-  // const [genderCategory, setGenderCategory] = useState([
+  // const [changeColor, setChangeColor] = useState([
   //   {
+  //     colorName: "Black",
   //     id: 1,
-  //     action: true,
-  //     name: "Все",
-  //     icon: <CotegoryMenuIcons />,
+  //     value: 1,
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-black",
   //   },
   //   {
+  //     colorName: "Белый",
   //     id: 2,
+  //     value: 2,
   //     action: false,
-  //     name: "",
-  //     icon: <ManGenIcons />,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-white",
   //   },
   //   {
   //     id: 3,
+  //     value: 3,
+  //     colorName: "Серый",
   //     action: false,
-  //     name: "",
-  //     icon: <WomanGenIcons />,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-zinc-500",
   //   },
   //   {
   //     id: 4,
+  //     value: 4,
+  //     colorName: "Фиолетовый",
   //     action: false,
-  //     name: "",
-  //     icon: <ChildGenIcon />,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-purple-500",
   //   },
-  // ]);
+  //   {
+  //     id: 5,
+  //     value: 5,
+  //     colorName: "Голубой",
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-sky-600",
+  //   },
+  //   {
+  //     id: 6,
+  //     value: 6,
+  //     colorName: "Желтый",
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-amber-400 ",
+  //   },
+  //   {
+  //     id: 7,
+  //     value: 7,
+  //     colorName: "Зеленый",
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-green-700 ",
+  //   },
+  //   {
+  //     id: 8,
+  //     value: 8,
+  //     colorName: "Amber",
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-amber-600 ",
+  //   },
+  //   {
+  //     id: 9,
+  //     value: 9,
+  //     colorName: "Красный",
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-red-700  ",
+  //   },
+  //   {
+  //     id: 10,
+  //     value: 10,
+  //     colorName: "Фиолетовый",
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-purple-800 ",
+  //   },
+  //   {
+  //     id: 11,
+  //     value: 11,
+  //     colorName: "Blue",
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-blue-900 ",
+  //   },
+  //   {
+  //     id: 12,
+  //     value: 12,
+  //     colorName: "Brown",
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-yellow-900 ",
+  //   },
+  // ])
+  const [iconsColor, setIconsColor] = useState("black");
+  const HandleIconsColor = (color, id) => {
+    setIconsColor(color);
+    setChangeColor((current) => {
+      return current.map((data) => {
+        if (data?.id == id) {
+          return { ...data, action: true };
+        } else {
+          return { ...data, action: false };
+        }
+      });
+    });
+  };
 
-  // const handleGenderCheck = (value) => {
-  //   setGenderCategory((data) => {
-  //     return data.map((e) => {
-  //       if (e.id == value) {
-  //         return { ...e, action: true };
-  //       } else return { ...e, action: false };
-  //     });
-  //   });
-  // };
+  // Checks whether an element is even
+  const even = (element) => element.action == true;
+  let toggleAction = changeColor.some(even);
 
+  const unCheckedAll = () => {
+    setState({ ...state, showColour: false });
+
+    setChangeColor((current) => {
+      return current.map((data) => {
+        return { ...data, action: false };
+      });
+    });
+    setIconsColor("black");
+  };
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
       <div
         onClick={() => { setState({ ...state, showColour: false }) }}
-        className={`fixed inset-0 z-[215] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
+        className={`fixed inset-0 z-[220] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
          ${state?.showColour ? "" : "hidden"}`}
       >
       </div>
+      {state?.showColour && (
+        <div className="w-fit h-fit flex items-center mt-[20%] justify-center mx-auto ">
+
+          {/* </div> */}
+          <div className="relative z-[223]  top-0 w-[576px] h-fit p-4 mx-auto bg-white rounded-md shadow-lg">
+            <div
+              className={`flex items-center justify-between border-b border-searchBgColor pb-3"
+                       `}
+            >
+              <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">Выберите цвет</span>
+              <button
+                className="py-2"
+                type=""
+                onClick={() =>
+                  setState({ ...state, showColour: false })
+                }
+              >
+                <GrClose size={22} />
+              </button>
+            </div>
+            <div className="py-4 gap-x-2 gap-y-4 grid gap-4 grid-cols-6">
+              {changeColor?.map((data) => {
+                return (
+                  <div className="flex flex-col items-center justify-center ">
+                    <div
+                      key={data?.id}
+                      onClick={() =>
+                        HandleIconsColor(data?.IconsColor, data?.id)
+                      }
+                      className={`rounded-[12px] flex items-center justify-center mr-2 w-[65px] h-[40px] ${data?.colors
+                        } cursor-pointer ${data?.id == 2 ? "border border-setTexOpacity" : ""
+                        } `}
+                    >
+                      {data?.action && data?.id === 2 ? (
+                        <span>
+                          <InputCheckedTrueIcons colors={"#000"} />
+                        </span>
+                      ) : null}
+
+                      {data?.action && data?.id !== 6 ? (
+                        <InputCheckedTrueIcons colors={"#fff"} />
+                      ) : null}
+                    </div>
+                    <span className={`text-black text-center text-xs not-italic font-AeonikProRegular`}>{data?.colorName}</span>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="flex items-center justify-end">
+              {toggleAction && (
+                <button
+                  onClick={unCheckedAll}
+                  className="flex items-center text-fullBlue active:scale-95  active:opacity-70 justify-center  px-4 py-1"
+                >
+                  Отключить
+                </button>
+              )}
+              {/* </div> */}
+            </div>
+          </div>
+        </div>
+      )
+      }
+
       <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto">
         <Popover
           open={state?.openwear}
@@ -415,10 +586,11 @@ const BottomHeader = () => {
             </p>
           </article>
         </div>
+
         <div className="line h-6 border-r-[1px] text-textColor mx-3"></div>
         <GenderButtonsStyle />
       </section>
-    </nav>
+    </nav >
   );
 };
 

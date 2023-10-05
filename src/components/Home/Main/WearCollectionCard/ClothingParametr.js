@@ -164,7 +164,7 @@ const ClothingParametr = () => {
       colorName: "Black",
       id: 1,
       value: 1,
-      action: true,
+      action: false,
       IconsColor: "#4B5563",
       colors: "bg-black",
     },

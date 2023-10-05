@@ -43,6 +43,7 @@ import {
   autummSeason,
   UzbekFlag,
   HeartImg,
+  MobileSeason,
 } from "../../assets";
 import NavCategoryModal from "./navCategoryModal";
 
@@ -84,10 +85,10 @@ const MediumHeader = () => {
   // console.log(scrollPost, "scrollPostscrollPost");
   // console.log(showModal, "showModal");
   const SeasonTypeArray = [
-    { id: 1111, type: "Spring", icons: springSeason },
     { id: 2222, type: "Summer", icons: summerSeason },
     { id: 3333, type: "Autumm", icons: autummSeason },
     { id: 4444, type: "Winter", icons: winterSeason },
+    { id: 1111, type: "Spring", icons: springSeason },
   ];
   const BrandTypeArray = [
     { id: 1111, type: "Spring", icons: BrandSpring },
@@ -155,8 +156,41 @@ const MediumHeader = () => {
         return (
           <article
             key={value?.id}
-            className="w-full h-[42px] flex items-center justify-center md:pl-3 md:justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
+            className="w-full h-[42px] flex items-center md:justify-center md:pl-3 md:justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
             onClick={() => handleSeason(value.id)}
+          >
+            <figure className="mr-2 md:mr-3">
+              <img src={value?.icons} alt="" />
+            </figure>
+            <article
+              className={`flex items-center font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
+            >
+              {value?.type}
+            </article>
+          </article>
+        );
+      })}
+    </section>
+  );
+  // ----------------Wear state management----------------------------
+  const [seasonChangeDeskTop, setSeasonChangeDeskTop] = useState(false);
+  const handleOpenChangeSeasonDesktop = (newOpen) => {
+    setSeasonChangeDeskTop(newOpen);
+  };
+
+  const handleSeasonDesktop = (id) => {
+    setDressInfo({ ...dressInfo, type: id });
+    setSeasonChangeDeskTop(false);
+  };
+
+  const contentSeasonDesktop = (
+    <section className="ss:w-fit md:w-[120px] h-fit m-0 p-0 ">
+      {SeasonTypeArray.map((value) => {
+        return (
+          <article
+            key={value?.id}
+            className="w-full h-[42px] flex items-center justify-center md:pl-3 md:justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
+            onClick={() => handleSeasonDesktop(value.id)}
           >
             <figure className="md:mr-3">
               <img src={value?.icons} alt="" />
@@ -260,49 +294,41 @@ const MediumHeader = () => {
 
                 {/* Weather section */}
                 <article className="w-12 h-12 md:w-[120px]  md:h-11 bg-btnBgColor border border-searchBgColor rounded-xl ml-2">
-                  <div className="w-full h-full md:flex hidden items-center justify-between">
-                    {
-                      SeasonTypeArray?.map(item => {
+
+                  <div className="w-full h-full ">
+                    <Popover
+                      className="w-full h-full flex items-center justify-center rounded-lg cursor-pointer  md:px-2 md:gap-x-[5px] "
+                      open={openwear}
+                      onOpenChange={handleOpenChangeWear}
+                      trigger="click"
+                      options={["Hide"]}
+                      placement="bottom"
+                      content={contentWear}
+                    >
+                      {SeasonTypeArray.map((data) => {
                         return (
-                          <img
-                            key={item?.id}
-                            onClick={() => handleSeason(item.id)}
-                            src={item?.icons}
-                            alt="weather"
-                            className=" cursor-pointer "
-                          />
-                        )
-                      })
-                    }
-                  </div>
-                  <div className="w-full h-full md:hidden">
-                    {SeasonTypeArray.filter(
-                      (data) => data.id === dressInfo.type
-                    ).map((data) => {
-                      return (
-                        <Popover
-                          key={data?.id}
-                          className="w-full h-full flex items-center justify-center rounded-lg cursor-pointer  "
-                          open={openwear}
-                          onOpenChange={handleOpenChangeWear}
-                          trigger="click"
-                          options={["Hide"]}
-                          placement="bottom"
-                          content={contentWear}
-                        >
-                          <figure className="w-full h-full sm:flex items-center select-none cursor-pointer  ">
+                          <figure
+                            key={data?.id}
+                            className="w-full h-full hidden md:flex items-center select-none cursor-pointer  ">
                             <img
                               src={data?.icons}
                               alt="weather"
                               className="mr-0 md:mr-[5px] "
                             />
-                            <figcaption className="ss:hidden font-AeonikProMedium hidden md:flex items-center text-[15px] ">
-                              {data?.type}
-                            </figcaption>
+
                           </figure>
-                        </Popover>
-                      );
-                    })}
+                        );
+                      })}
+                      <figure
+                        className="w-full h-full md:hidden flex items-center justify-center select-none cursor-pointer  ">
+                        <img
+                          src={MobileSeason}
+                          alt="weather"
+                          className=" "
+                        />
+
+                      </figure>
+                    </Popover>
                   </div>
                 </article>
 
@@ -551,8 +577,8 @@ const MediumHeader = () => {
 
                   {/* Location and Language */}
                   <div className="flex items-center justify-between h-fit mb-3">
-                    <button 
-                      
+                    <button
+
                       className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
                       <span>
                         <LocationIcons />
