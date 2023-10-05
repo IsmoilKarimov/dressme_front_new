@@ -551,14 +551,13 @@ function YandexMapsDressMe() {
                 </div>
               </div>
             </div>
-            {!dressInfo?.yandexOpenMarket && (
+            {/* {!dressInfo?.yandexOpenMarket && (
               <div
                 className={`fixed block md:hidden  bg-white  z-[55]  ${!dressInfo?.yandexFullScreen ? "bottom-[63px] " : "bottom-[0]"
                   }   w-full  bg-yandexNavbar flex items-center py-2
 
               `}
               >
-                {/* <YandexFilter /> */}
                 <ScrollFilter _class="items gap-x-2 pl-3">
                   {wearGroup?.map((data) => {
                     return (
@@ -571,7 +570,7 @@ function YandexMapsDressMe() {
                   })}
                 </ScrollFilter>
               </div>
-            )}
+            )} */}
             {/* ---------- */}
           </Map>
         </YMaps>
