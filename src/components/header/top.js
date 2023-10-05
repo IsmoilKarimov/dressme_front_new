@@ -311,12 +311,11 @@ const TopHeader = () => {
                           <input 
                             onClick={() => accordionCityList(data?.id)}
                             type="radio" 
-                            name="" 
-                            id={data.name}
+                            name="region"
                             className="w-5 h-5 cursor-pointer mr-3" 
                           />
                           <label
-                            htmlFor={data.name}
+                            htmlFor="region"
                             onClick={() => accordionCityList(data?.id)}
                             className="w-full cursor-pointer flex items-center pr-1 justify-between border-b border-[#F0F0F0] "
                           >
