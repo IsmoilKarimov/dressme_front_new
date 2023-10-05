@@ -106,7 +106,7 @@ const TopHeader = () => {
           ...state, getProfileList: res,
           regionId: res?.region_id,
           subRegionId: res?.sub_region_id,
-
+          
         })
       },
       onError: (err) => {
@@ -120,15 +120,10 @@ const TopHeader = () => {
 
   // -------City Change -------------
   const [selectCity] = useState("Tashkent");
-
   const location = useLocation();
   const [locationWindow, setLocationWindow] = useState("");
-  useEffect(() => {
-    setLocationWindow(location.pathname);
-  }, [location.pathname]);
-
-
   const [activeIndex, setActiveIndex] = useState();
+  
   const accordionCityList = (id) => {
     if (activeIndex === id) {
       setActiveIndex(0)
@@ -137,14 +132,16 @@ const TopHeader = () => {
     }
   }
 
+  useEffect(() => {
+    setLocationWindow(location.pathname);
+  }, [location.pathname]);
+ 
+
   return (
     <nav>
-
       <div
         onClick={() => {
-          // setOpenEditModal(false);
           setState({ ...state, popConfirmDelete: false, openModalRegions: false })
-          // setState({ ...state, openModalRegions: false })
         }}
         className={`fixed inset-0 z-[112] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
          ${state?.openModalRegions ? "" : "hidden" }`}
@@ -157,6 +154,7 @@ const TopHeader = () => {
           }`}
       >
         <section className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">
+          {/* LEFT SIDE */}
           <article className="left h-full flex items-center">          
             <div className={` max-w-[600px] h-fit fixed    px-3 md:px-6  py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg  mx-auto w-full duration-500 z-[113] md:top-[50%] md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] overflow-hidden ${state?.openModalRegions ? " bottom-0 md:flex flex-col" : "md:hidden bottom-[-1500px] z-[-10]"}`} >
                 <div className="w-full flex items-center justify-between  ">
@@ -167,17 +165,15 @@ const TopHeader = () => {
                       setState({ ...state, openModalRegions: false });
                     }}
                   >
-                    <MenuCloseIcons colors="#000" /></span>
+                    <MenuCloseIcons colors="#000" />
+                  </span>
                 </div>
 
-
-                <div className="w-full overflow-auto  flex flex-col gap-y-4 pt-3  overflow-x-hidden mt-3 h-[50vh] md:h-[60vh] VerticelScroll pr-2 ">
-
-                  
+                <div className="w-full overflow-auto  flex flex-col gap-y-4 pt-3  overflow-x-hidden mt-3 h-[50vh] md:h-[60vh] VerticelScroll pr-2 ">                  
                   {state?.getRegionList?.regions ?
-                    state?.getRegionList?.regions?.map((data, index) => {
+                    state?.getRegionList?.regions?.map((data) => {
                       return (
-                        <div key={data?.id} className="w-full  h-fit  ">
+                        <div key={data?.id} className="w-full h-fit">
                           <div className="flex items-center">
                             <input 
                               onClick={() => accordionCityList(data?.id)}
@@ -194,7 +190,7 @@ const TopHeader = () => {
                                 {data?.name_ru}
                               </span>
                               <span
-                                className={`${activeIndex == data?.id ? "rotate-[0deg]" : "rotate-[180deg]"} `}
+                                className={`${activeIndex === data?.id ? "rotate-[0deg]" : "rotate-[180deg]"} `}
                               >
                                 <ArrowTopIcons colors={"#a1a1a1"} />
                               </span>
@@ -234,8 +230,9 @@ const TopHeader = () => {
                           </div>
                         </div>
                       );
-                    }) :
-                    <p className="w-full h-full flex flex-col items-center justify-center">Ma'lumotlar yuklanayapti...</p>}
+                    }) : (
+                      <p className="w-full h-full flex flex-col items-center justify-center">Ma'lumotlar yuklanayapti...</p>
+                    )}
 
                 </div>
                 <div className="w-full flex items-center justify-end  mt-2">
@@ -247,10 +244,7 @@ const TopHeader = () => {
             
             <section>
               <Link to="/" className="flex w-fit items-center">
-                <span>
-                  <LocationIcons />
-                </span>
-
+                <LocationIcons />
                 <div className="text-textColor text-[13px] ml-2 mr-[6px] font-AeonikProMedium">
                   Регион:
                 </div>
@@ -292,7 +286,10 @@ const TopHeader = () => {
               )}
             </section>
           </article>
-
+          
+          
+          
+          {/* RIGHT SIDE */}
           <article className="right h-full flex items-center">
             <NavLink
               to="#"
