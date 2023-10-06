@@ -43,6 +43,7 @@ import {
   autummSeason,
   UzbekFlag,
   HeartImg,
+  AllSeason
 } from "../../assets";
 import NavCategoryModal from "./navCategoryModal";
 import RegionsListDropUp from "./TopRegionList/RegionsListDropUp/RegionsListDropUp";
@@ -66,12 +67,12 @@ const MediumHeader = () => {
   //   }
   // }, [regionsList]);
   useEffect(() => {
-    if (state?.hamburgerMenu,regionsList) {
+    if (state?.hamburgerMenu, regionsList) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [state?.hamburgerMenu,regionsList]);
+  }, [state?.hamburgerMenu, regionsList]);
 
   // -----------------------------------------------------
   const [scrollPost, setscrollPost] = useState(0);
@@ -281,51 +282,44 @@ const MediumHeader = () => {
 
                 {/* Weather section */}
                 <article className="w-12 h-12 md:w-[120px]  md:h-11 bg-btnBgColor border border-searchBgColor rounded-xl ml-2">
-                  <div className="w-full h-full md:flex hidden items-center justify-between">
-                    {
-                      SeasonTypeArray?.map(item => {
+
+                  <div className="w-full h-full ">
+                    <Popover
+                      className="w-full h-full flex items-center justify-center rounded-lg cursor-pointer  md:px-2 md:gap-x-[5px] "
+                      open={openwear}
+                      onOpenChange={handleOpenChangeWear}
+                      trigger="click"
+                      options={["Hide"]}
+                      placement="bottom"
+                      content={contentWear}
+                    >
+                      {SeasonTypeArray.map((data) => {
                         return (
-                          <img
-                            key={item?.id}
-                            onClick={() => handleSeason(item.id)}
-                            src={item?.icons}
-                            alt="weather"
-                            className=" cursor-pointer "
-                          />
-                        )
-                      })
-                    }
-                  </div>
-                  <div className="w-full h-full md:hidden">
-                    {SeasonTypeArray.filter(
-                      (data) => data.id === dressInfo.type
-                    ).map((data) => {
-                      return (
-                        <Popover
-                          key={data?.id}
-                          className="w-full h-full flex items-center justify-center rounded-lg cursor-pointer  "
-                          open={openwear}
-                          onOpenChange={handleOpenChangeWear}
-                          trigger="click"
-                          options={["Hide"]}
-                          placement="bottom"
-                          content={contentWear}
-                        >
-                          <figure className="w-full h-full sm:flex items-center select-none cursor-pointer  ">
+                          <figure
+                            key={data?.id}
+                            className="w-full h-full hidden md:flex items-center select-none cursor-pointer  ">
                             <img
                               src={data?.icons}
                               alt="weather"
                               className="mr-0 md:mr-[5px] "
                             />
-                            <figcaption className="ss:hidden font-AeonikProMedium hidden md:flex items-center text-[15px] ">
-                              {data?.type}
-                            </figcaption>
+
                           </figure>
-                        </Popover>
-                      );
-                    })}
+                        );
+                      })}
+                      <figure
+                        className="w-full h-full md:hidden flex items-center justify-center select-none cursor-pointer  ">
+                        <img
+                          src={AllSeason}
+                          alt="weather"
+                          className=" "
+                        />
+
+                      </figure>
+                    </Popover>
                   </div>
                 </article>
+
 
                 {/* Searching section */}
                 <article className="items-center justify-center rounded-xl font-AeonikProMedium h-[44px] md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
@@ -572,7 +566,7 @@ const MediumHeader = () => {
 
                   {/* Location and Language */}
                   <div className="flex items-center justify-between h-fit mb-3">
-                    <button 
+                    <button
                       onClick={() => setRegionsList(true)}
                       className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
                       <span>
