@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, Fragment } from "react";
+import React, { useState, useContext, useEffect, Fragment, useCallback } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./header.css";
 import { dressMainData } from "../../ContextHook/ContextMenu";
@@ -45,23 +45,33 @@ import {
   HeartImg,
 } from "../../assets";
 import NavCategoryModal from "./navCategoryModal";
+import RegionsListDropUp from "./TopRegionList/RegionsListDropUp/RegionsListDropUp";
 
 const MediumHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-
   const [state, setState] = useState({
     hamburgerMenu: false,
     toggle: false,
     genderActive: true,
   });
+  const [regionsList, setRegionsList] = useState(false)
+  const toggleFilter = useCallback(() => setRegionsList(false), [])
 
+  // For DropUp
+  // useEffect(() => {
+  //   if (regionsList) {
+  //     document.body.style.overflow = "hidden";
+  //   } else {
+  //     document.body.style.overflow = "auto";
+  //   }
+  // }, [regionsList]);
   useEffect(() => {
-    if (state?.hamburgerMenu) {
+    if (state?.hamburgerMenu,regionsList) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [state?.hamburgerMenu]);
+  }, [state?.hamburgerMenu,regionsList]);
 
   // -----------------------------------------------------
   const [scrollPost, setscrollPost] = useState(0);
@@ -81,8 +91,6 @@ const MediumHeader = () => {
     }
   }, [scrollPost]);
 
-  // console.log(scrollPost, "scrollPostscrollPost");
-  // console.log(showModal, "showModal");
   const SeasonTypeArray = [
     { id: 1111, type: "Spring", icons: springSeason },
     { id: 2222, type: "Summer", icons: summerSeason },
@@ -195,6 +203,19 @@ const MediumHeader = () => {
       >
         <NavCategoryModal />
       </article>
+      <div className="tableSizes">
+        <section
+          onClick={() => setRegionsList(false)}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${regionsList ? "" : "hidden"
+            }`}
+        ></section>
+        <section
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${regionsList ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
+        >
+          <RegionsListDropUp onClick={toggleFilter} />
+        </section>
+      </div>
       <div className="max-w-[1280px] w-[100%] block md:flex px-3 md:px-0 md:py-0 justify-center  bg-yandexNavbar backdrop-blur-sm items-center m-auto ">
         {locationWindow !== "/allcomments" ? (
           <div className="relative">
@@ -552,7 +573,7 @@ const MediumHeader = () => {
                   {/* Location and Language */}
                   <div className="flex items-center justify-between h-fit mb-3">
                     <button 
-                      
+                      onClick={() => setRegionsList(true)}
                       className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
                       <span>
                         <LocationIcons />
