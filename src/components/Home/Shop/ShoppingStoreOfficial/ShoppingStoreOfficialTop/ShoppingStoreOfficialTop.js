@@ -12,55 +12,25 @@ import {
   StarIcons,
   WomanGenIcons,
 } from "../../../../../assets/icons";
-import Slider from "react-slick";
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { useContext, useState } from "react";
-import { dressMainData } from "../../../../../ContextHook/ContextMenu";
-import { Modal, Popover, Radio } from "antd";
-import ProductComment from "../../../Products/SignleMainProducts/SingleProduct/ProductComment/ProductComment";
+import { useCallback, useEffect, useState } from "react";
+import { Modal, Radio } from "antd";
+import FilterDropUp from "../../../../Category/CategoryForType/CategoryMobileDropUp/FilterDropUp";
 
 const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, openTabLocation, setOpenTabLocation }) => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+
   const [openLocationModal, setOpenLocationModal] = useState(false);
+  const [filter, setFilter] = useState(false)
+  const toggleFilter = useCallback(() => setFilter(false), [])
 
-  const handleFilter = () => {
-    setDressInfo({
-      ...dressInfo,
-      openShopIdFilter: !dressInfo.openShopIdFilter,
-    });
-  };
+   // For DropUp
+   useEffect(() => {
+    if (filter) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [filter]);
 
-  const [prevSliderBtn, setPrevSliderBtn] = useState(false);
-  const wearGroup = [
-    { id: 1, name: "Футболки" },
-    { id: 2, name: "Рубашки" },
-    { id: 3, name: "Шорты" },
-    { id: 4, name: "Джинсы" },
-    { id: 5, name: "Свитер" },
-    { id: 6, name: "Куртки" },
-    { id: 7, name: "Толстовки" },
-    { id: 8, name: "Обуви" },
-    { id: 9, name: "Куртки" },
-    { id: 10, name: "Сапоги" },
-    { id: 11, name: "Платья" },
-    { id: 12, name: "Юбки" },
-    { id: 13, name: "Ремень" },
-  ];
-  const typesofClothes = [
-    { id: 1, name: "Футболки" },
-    { id: 2, name: "Рубашки" },
-    { id: 3, name: "Шорты" },
-    { id: 4, name: "Джинсы" },
-    { id: 5, name: "Свитер" },
-    { id: 6, name: "Куртки" },
-    { id: 7, name: "Толстовки" },
-    { id: 8, name: "Обуви" },
-    { id: 9, name: "Куртки" },
-    { id: 10, name: "Сапоги" },
-    { id: 11, name: "Платья" },
-    { id: 12, name: "Юбки" },
-    { id: 13, name: "Ремень" },
-  ];
   const [locationsList] = useState([
     { id: 1, location: 'Bektemir' },
     { id: 2, location: 'Mirzo Ulugbek' },
@@ -68,117 +38,6 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
     { id: 4, location: 'Chilonzor' },
     { id: 5, location: 'Mirobod' },
   ]);
-  const contentTypesofClothes = (
-    <div className="w-[150px] h-[200px] overflow-auto m-0 p-0">
-      {typesofClothes.map((data) => {
-        return (
-          <p
-            key={data?.id}
-            onClick={() => {
-              handleTypesofClothes(data?.type);
-            }}
-            className={`w-full py-3 flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
-          >
-            {data?.name}
-          </p>
-        );
-      })}
-    </div>
-  );
-  const data = (onClick) => {
-    onClick();
-    setPrevSliderBtn(true);
-  };
-  const NextArrow = (props) => {
-    const { onClick } = props;
-    return (
-      <div
-        className={`absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-50  right-[4px]  rounded-full bg-white    duration-200 border  border-borderColor2
-            `}
-        onClick={() => data(onClick)}
-      >
-        <button className="next">
-          <GrFormNext size={20} />
-        </button>
-      </div>
-    );
-  };
-  const PrevArrow = (props) => {
-    const { onClick } = props;
-    return (
-      <div
-        className={` ${prevSliderBtn ? "block" : "hidden"
-          } absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-10  left-[2px]  rounded-full bg-white   duration-200 border  border-borderColor2
-        `}
-        onClick={onClick}
-      >
-        <button className="prev">
-          <GrFormPrevious size={20} />
-        </button>
-      </div>
-    );
-  };
-  let settings1 = {
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    infinite: true,
-    arrows: true,
-    speed: 500,
-    dots: false,
-    slidesToShow: 9,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 6,
-          slidesToScroll: 1,
-          infinite: true,
-        },
-      },
-      {
-        breakpoint: 770,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 560,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-
-      {
-        breakpoint: 390,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-  const [state, setState] = useState({
-    openTypesofClothes: false,
-  });
-  // Types of Clothes
-  const handleOpenTypesofClothes = (openTypesofClothes) => {
-    setState({ ...state, openTypesofClothes: openTypesofClothes });
-  };
-  const handleTypesofClothes = () => {
-    setState({ ...state, openTypesofClothes: false });
-  };
 
   const onChange = (checkedValues) => {
     console.log('checked = ', checkedValues);
@@ -186,6 +45,19 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
 
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:my-5">
+      <div className="filter">
+        <section
+          onClick={() => setFilter(false)}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${filter ? "" : "hidden"
+            }`}
+        ></section>
+        <section
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${filter ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
+        >
+          <FilterDropUp onClick={toggleFilter} />
+        </section>
+      </div>
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
         <div className="w-[100%] h-fit flex flex-col">
           {/* Top section */}
@@ -381,7 +253,7 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
               />
             </div>
             <button
-              onClick={handleFilter}
+              onClick={() => setFilter(true)}
               className="w-12 h-12 shrink-0 rounded-xl select-none border border-searchBgColor flex items-center justify-center"
             >
               <FilterIcons colors={"#000"} />
