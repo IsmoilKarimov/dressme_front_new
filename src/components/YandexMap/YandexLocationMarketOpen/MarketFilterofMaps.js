@@ -158,7 +158,16 @@ function MarketFilterofMaps({ onClick }) {
                     { id: 3, anyIcons: <WomanGenIcons />, name: "Женщинам", action: false },
                     { id: 4, anyIcons: <WinterBoyIcons />, name: "Детям", action: false },
                 ]
-            }]);
+            },
+            {
+                id: 5555, childText: [
+                    { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
+                    { id: 2, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
+                    { id: 3, anyIcons: <WomanGenIcons />, name: "Женщинам", action: false },
+                    { id: 4, anyIcons: <WinterBoyIcons />, name: "Детям", action: false },
+                ]
+            }
+        ]);
         const handleFilterByUser = (fathId, childId) => {
             setPersonItems((current) => {
                 return current?.map((data) => {

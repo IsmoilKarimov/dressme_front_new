@@ -43,7 +43,9 @@ import {
   autummSeason,
   UzbekFlag,
   HeartImg,
-  AllSeason
+  AllSeason,
+  AllSeasonDesktop,
+  allBrandDesktop
 } from "../../assets";
 import NavCategoryModal from "./navCategoryModal";
 import RegionsListDropUp from "./TopRegionList/RegionsListDropUp/RegionsListDropUp";
@@ -93,16 +95,25 @@ const MediumHeader = () => {
   }, [scrollPost]);
 
   const SeasonTypeArray = [
-    { id: 1111, type: "Spring", icons: springSeason },
-    { id: 2222, type: "Summer", icons: summerSeason },
-    { id: 3333, type: "Autumm", icons: autummSeason },
-    { id: 4444, type: "Winter", icons: winterSeason },
+    { id: 5555, type: "", icons: AllSeasonDesktop },
+    { id: 1111, type: "Весна", icons: springSeason },
+    { id: 2222, type: "Лето", icons: summerSeason },
+    { id: 3333, type: "Осень", icons: autummSeason },
+    { id: 4444, type: "Зима", icons: winterSeason },
+  ];
+  const SeasonTypeArrayMobile = [
+    { id: 5555, type: "Все", icons: AllSeason },
+    { id: 1111, type: "Весна", icons: springSeason },
+    { id: 2222, type: "Лето", icons: summerSeason },
+    { id: 3333, type: "Осень", icons: autummSeason },
+    { id: 4444, type: "Зима", icons: winterSeason },
   ];
   const BrandTypeArray = [
-    { id: 1111, type: "Spring", icons: BrandSpring },
-    { id: 2222, type: "Summer", icons: BrandSummer },
-    { id: 3333, type: "Autumm", icons: BrandAutumm },
-    { id: 4444, type: "Winter", icons: BrandWinter },
+    { id: 1111, type: "Весна", icons: BrandSpring },
+    { id: 2222, type: "Лето", icons: BrandSummer },
+    { id: 3333, type: "Осень", icons: BrandAutumm },
+    { id: 4444, type: "Зима", icons: BrandWinter },
+    { id: 5555, type: "Все", icons: allBrandDesktop },
   ];
 
   const [genderType, setGenderType] = useState([
@@ -164,14 +175,32 @@ const MediumHeader = () => {
         return (
           <article
             key={value?.id}
-            className="w-full h-[42px] flex items-center justify-center md:pl-3 md:justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
+            className="w-full h-[42px] md:flex items-center hidden  md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
             onClick={() => handleSeason(value.id)}
           >
-            <figure className="md:mr-3">
+            <figure className="mr-2 md:mr-3">
               <img src={value?.icons} alt="" />
             </figure>
             <article
-              className={`ss:hidden md:inline-block font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
+              className={`flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
+            >
+              {value?.type}
+            </article>
+          </article>
+        );
+      })}
+      {SeasonTypeArrayMobile.map((value) => {
+        return (
+          <article
+            key={value?.id}
+            className="w-full h-[42px] flex items-center md:hidden md:justify-center md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
+            onClick={() => handleSeason(value.id)}
+          >
+            <figure className="mr-2 md:mr-3">
+              <img src={value?.icons} alt="" />
+            </figure>
+            <article
+              className={`flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
             >
               {value?.type}
             </article>
@@ -293,29 +322,39 @@ const MediumHeader = () => {
                       placement="bottom"
                       content={contentWear}
                     >
-                      {SeasonTypeArray.map((data) => {
+                      {SeasonTypeArray.filter(
+                        (e) => e.id === dressInfo.type
+                      ).map((data) => {
                         return (
                           <figure
                             key={data?.id}
-                            className="w-full h-full hidden md:flex items-center select-none cursor-pointer  ">
+                            className="w-full h-full md:flex hidden items-center justify-center select-none cursor-pointer  ">
                             <img
                               src={data?.icons}
                               alt="weather"
-                              className="mr-0 md:mr-[5px] "
+                              className="mr-0 mr-[10px] "
                             />
-
+                            <figcaption className=" font-AeonikProMedium  flex items-center text-[15px] ">
+                              {data?.type}
+                            </figcaption>
                           </figure>
                         );
                       })}
-                      <figure
-                        className="w-full h-full md:hidden flex items-center justify-center select-none cursor-pointer  ">
-                        <img
-                          src={AllSeason}
-                          alt="weather"
-                          className=" "
-                        />
-
-                      </figure>
+                      {SeasonTypeArrayMobile.filter(
+                        (e) => e.id === dressInfo.type
+                      ).map((data) => {
+                        return (
+                          <figure
+                            key={data?.id}
+                            className="w-full h-full md:hidden flex items-center justify-center select-none cursor-pointer  ">
+                            <img
+                              src={data?.icons}
+                              alt="weather"
+                              className="mr-0 "
+                            />
+                          </figure>
+                        );
+                      })}
                     </Popover>
                   </div>
                 </article>

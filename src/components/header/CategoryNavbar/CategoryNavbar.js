@@ -23,6 +23,7 @@ const CategoryNavbar = () => {
     { id: 2222, man: SummerMale },
     { id: 3333, man: AutummMale },
     { id: 4444, man: WinterMale },
+    { id: 5555, man: WinterMale },
   ];
 
   const handleOpenChangeWear = (newOpen) => {
@@ -131,9 +132,8 @@ const CategoryNavbar = () => {
               <BiChevronDown
                 size={22}
                 style={{ color: "#000" }}
-                className={`${
-                  state?.openwear ? "rotate-[-180deg]" : ""
-                } duration-200`}
+                className={`${state?.openwear ? "rotate-[-180deg]" : ""
+                  } duration-200`}
               />{" "}
             </span>
           </Popover>
