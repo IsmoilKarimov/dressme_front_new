@@ -262,7 +262,7 @@ export default function MainPageSliders() {
                     <NavLink
                       to={"/categoriesType"}
                       key={data?.id}
-                      className="!w-[99%] h-[260px] rounded-lg  "
+                      className="!w-[99%] h-[260px] rounded-lg "
                     >
                       <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px]  rounded-lg">
                         {changeColor
@@ -298,7 +298,7 @@ export default function MainPageSliders() {
           <div
             className={`${
               more ? "xs:grid" : "xs:hidden"
-            } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[38px] overflow-hidden  my-0 py-0 md:pt-7`}
+            } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[20px] overflow-hidden  my-0 py-0 md:pt-7`}
           >
             {carosuelData?.map((data) => {
               return data.Category.map((data, i) => {
@@ -309,13 +309,15 @@ export default function MainPageSliders() {
                       key={data?.id}
                       className="w-[100%] "
                     >
-                      <figure className="w-[100%] xs:w-[180px] h-[140px] xs:h-[224px] flex items-center justify-center	p-1 bg-btnBgColor border xs:border-[#008F0E] border-[#F2F2F2]	rounded-xl">
-                        <NoImg />
-                      </figure>
+                      <div className="xs:p-2 xs:bg-[#F8F8F8] xs:rounded-lg">
+                        <figure className="w-[100%] xs:w-[180px] h-[140px] xs:h-[224px] flex items-center justify-center p-1 bg-btnBgColor border xs:border-[1.5px] xs:border-[#008F0E] border-[#F2F2F2]	rounded-xl xs:rounded">
+                          <NoImg />
+                        </figure>
+                      </div>
                       <article className="w-full py-1 flex items-center">
-                        <p className="not-italic flex items-center font-AeonikProMedium text-sm leading-6 text-black">
+                        <p className="not-italic flex items-center font-AeonikProMedium text-sm xs:text-base leading-6 text-black">
                           {data?.type || "type"}
-                          <p className="not-italic lex items-center  font-AeonikProRegular text-xs leading-4 text-gray-500 ml-1">
+                          <p className="not-italic lex items-center  font-AeonikProRegular text-xs xs:text-sm leading-4 text-gray-500 ml-1">
                             ({data?.count || "0"})
                           </p>
                         </p>
@@ -332,13 +334,15 @@ export default function MainPageSliders() {
                         key={data?.id}
                         className="w-[100%] "
                       >
-                        <figure className="w-[100%] xs:w-[180px] h-[140px] xs:h-[224px] flex items-center justify-center	p-1 bg-btnBgColor border xs:border-[#008F0E] border-[#F2F2F2]	rounded-xl">
-                          <NoImg />
-                        </figure>
+                        <div className="xs:p-2 xs:bg-[#F8F8F8] xs:rounded-lg">
+                          <figure className="w-[100%] xs:w-[180px] h-[140px] xs:h-[224px] flex items-center justify-center p-1 bg-btnBgColor border xs:border-[1.5px] xs:border-[#008F0E] border-[#F2F2F2]	rounded-xl xs:rounded">
+                            <NoImg />
+                          </figure>
+                        </div>
                         <article className="w-full py-1 flex items-center">
-                          <p className="not-italic flex items-center font-AeonikProMedium text-sm leading-6 text-black">
+                          <p className="not-italic flex items-center font-AeonikProMedium text-sm xs:text-base leading-6 text-black">
                             {data?.type || "type"}
-                            <p className="not-italic lex items-center  font-AeonikProRegular text-xs leading-4 text-gray-500 ml-1">
+                            <p className="not-italic lex items-center  font-AeonikProRegular text-xs xs:text-sm leading-4 text-gray-500 ml-1">
                               ({data?.count || "0"})
                             </p>
                           </p>
@@ -360,7 +364,7 @@ export default function MainPageSliders() {
               </p>
               <p className="ml-2 ">
                 {more ? (
-                  <ShowMoreBackIcon />
+                  <ShowMoreBackIcon colors={dressInfo?.ColorSeason} />
                 ) : (
                   <SircleNext colors={dressInfo?.ColorSeason} />
                 )}
