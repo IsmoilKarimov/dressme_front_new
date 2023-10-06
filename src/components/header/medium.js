@@ -48,7 +48,6 @@ import {
   allBrandDesktop
 } from "../../assets";
 import NavCategoryModal from "./navCategoryModal";
-import RegionsListDropUp from "./TopRegionList/RegionsListDropUp/RegionsListDropUp";
 
 const MediumHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -96,17 +95,17 @@ const MediumHeader = () => {
 
   const SeasonTypeArray = [
     { id: 5555, type: "", icons: AllSeasonDesktop },
-    { id: 1111, type: "Весна", icons: springSeason },
     { id: 2222, type: "Лето", icons: summerSeason },
     { id: 3333, type: "Осень", icons: autummSeason },
     { id: 4444, type: "Зима", icons: winterSeason },
+    { id: 1111, type: "Весна", icons: springSeason },
   ];
   const SeasonTypeArrayMobile = [
     { id: 5555, type: "Все", icons: AllSeason },
-    { id: 1111, type: "Весна", icons: springSeason },
     { id: 2222, type: "Лето", icons: summerSeason },
     { id: 3333, type: "Осень", icons: autummSeason },
     { id: 4444, type: "Зима", icons: winterSeason },
+    { id: 1111, type: "Весна", icons: springSeason },
   ];
   const BrandTypeArray = [
     { id: 1111, type: "Весна", icons: BrandSpring },
@@ -236,19 +235,6 @@ const MediumHeader = () => {
       >
         <NavCategoryModal />
       </article>
-      <div className="tableSizes">
-        <section
-          onClick={() => setRegionsList(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${regionsList ? "" : "hidden"
-            }`}
-        ></section>
-        <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${regionsList ? "bottom-0" : "bottom-[-800px] z-0"
-            }`}
-        >
-          <RegionsListDropUp onClick={toggleFilter} />
-        </section>
-      </div>
       <div className="max-w-[1280px] w-[100%] block md:flex px-3 md:px-0 md:py-0 justify-center  bg-yandexNavbar backdrop-blur-sm items-center m-auto ">
         {locationWindow !== "/allcomments" ? (
           <div className="relative">
@@ -331,15 +317,19 @@ const MediumHeader = () => {
                         return (
                           <figure
                             key={data?.id}
-                            className="w-full h-full md:flex hidden items-center justify-center select-none cursor-pointer  ">
+
+                            className="w-full h-full md:flex hidden items-center justify-center select-none cursor-pointer ">
                             <img
                               src={data?.icons}
                               alt="weather"
-                              className="mr-0 mr-[10px] "
+                              className=" "
                             />
-                            <figcaption className=" font-AeonikProMedium  flex items-center text-[15px] ">
-                              {data?.type}
-                            </figcaption>
+                            {
+                              data?.type &&
+                              <figcaption className=" ml-[10px] font-AeonikProMedium  flex items-center text-[15px] ">
+                                {data?.type}
+                              </figcaption>
+                            }
                           </figure>
                         );
                       })}
