@@ -11,8 +11,8 @@ import ClothingTypesDropUp from "../CategoryMobileDropUp/ClothingTypesDropUp";
 
 const CategoryTopDetail = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [filter, setFilter] = useState(false)
   const [clothingTypes, setClothingTypes] = useState(false)
+  const [filter, setFilter] = useState(false)
 
   const toggleFilter = useCallback(() => setFilter(false), [])
   const toggleClothingTypes = useCallback(() => setClothingTypes(false), [])
