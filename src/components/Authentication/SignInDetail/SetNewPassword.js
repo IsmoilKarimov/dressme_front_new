@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { SircleNext } from "../../../AssetsMain/icons";
+import { SircleNext } from "../../../assets/icons";
 
 export default function SetNewPassword() {
   const [state, setState] = useState({
@@ -77,7 +77,6 @@ export default function SetNewPassword() {
 
         <NavLink
           to="/"
-          // onClick={HandleGetConfirmPassword}
           className="mt-8  border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-SignInBgColor select-none rounded-lg active:scale-95	active:opacity-70 "
         >
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">

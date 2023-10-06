@@ -4,7 +4,7 @@ import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { Popover } from "antd";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { VolumeIcons } from "../../../AssetsMain/icons";
+import { VolumeIcons } from "../../../assets/icons";
 import {
   BrandAutumm,
   BrandSpring,
@@ -14,7 +14,7 @@ import {
   springSeason,
   summerSeason,
   winterSeason,
-} from "../../../AssetsMain";
+} from "../../../assets";
 
 export default function NavbarTopOpenMenu() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -47,20 +47,6 @@ export default function NavbarTopOpenMenu() {
     { id: 4444, type: "Winter", icons: BrandWinter },
   ];
 
-  let IconsColor = "";
-
-  if (dressInfo?.type === 1111) {
-    IconsColor = "#008F0E";
-  }
-  if (dressInfo?.type === 2222) {
-    IconsColor = "#EAA700";
-  }
-  if (dressInfo?.type === 3333) {
-    IconsColor = "#E17A02";
-  }
-  if (dressInfo?.type === 4444) {
-    IconsColor = "#007DCA";
-  }
   // ----------------Wear state management----------------------------
   const [openwear, setOpenwear] = useState(false);
   const handleOpenChangeWear = (newOpen) => {
@@ -203,7 +189,7 @@ export default function NavbarTopOpenMenu() {
           className={` bg-white w-[44px] h-[44px] ml-[25px] rounded-lg cursor-pointer hidden items-center justify-center md:flex`}
         >
           <span>
-            <VolumeIcons colors={IconsColor} />
+            <VolumeIcons colors={dressInfo?.ColorSeason} />
           </span>
         </div>
         <div className="w-12 h-[44px  ] md:w-[120px] md:h-11 bg-white border border-searchBgColor rounded-lg  md:rounded-lg ml-2">
@@ -237,7 +223,7 @@ export default function NavbarTopOpenMenu() {
         </div>
       </div>
       <span className="w-[2px] h-[30px] bg-searchBgColor mr-4"></span>
-      <div className="w-[69%]   h-full   px-1 ">
+      <div className="w-[69%] h-full px-1">
         <Slider
           {...settings1}
           className="w-[100%] h-full items-center px-4 flex xs:justify-between   "

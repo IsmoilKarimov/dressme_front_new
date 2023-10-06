@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import MainPageSliders from "./BrandTypeSlider/MainPageSliders";
 import TypeSection from "./TypeSection/TypeSection";
 import CollectionCards from "./WearCollectionCard/CollectionCards";
@@ -9,10 +9,10 @@ export default function HomeIndex() {
     });
   }, []);
   return (
-    <div className="w-[100%] h-fit">
+    <main className="w-[100%] h-fit">
       <MainPageSliders />
       <CollectionCards />
       <TypeSection />
-    </div>
+    </main>
   );
 }

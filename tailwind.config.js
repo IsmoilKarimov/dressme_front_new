@@ -49,13 +49,24 @@ module.exports = {
         bgCategory: "#F8F8F8",
         textOpacity: "#D9D9D9",
         RedColor: "#D50000",
+        catalogText: "#2C2C2C",
+        catalogList: "#9B9B9B",
 
         // Hear red color
+        blackOpacity: "rgba(0,0,0,0.8)",
 
         // Basket Result Money
         BasketMoneyColor: "#008F0E",
         // Loading...
         LoadinBg: "rgba(252,252,252,0.8)",
+
+        // CategoryModalColors
+        categoryModalBgColor: "#fdfdfd",
+        categoryModalBorderColor: "#e5e5e5",
+
+        // Dashboard buttons background
+        dashboardBtnBg : "#f7f7f7",
+        dashboardLightTextColor: "#8C8C8C",
 
         // Products Colors
         PC1: "#7000FF",
@@ -67,15 +78,8 @@ module.exports = {
         TextTitle: "#212121",
       },
       fontFamily: {
-        // 400
-        // AeonikProRegular: ["AeonikProRegular", ...defaultTheme.fontFamily.sans], // 400
-        // 500
-        // AeonikProMedium: ["AeonikProMedium", ...defaultTheme.fontFamily.sans], // 500
-
-        // 400
-        AeonikProMedium: ["RobotoMedium", ...defaultTheme.fontFamily.sans], // 400
-        // 500
-        AeonikProRegular: ["RobotoRegular", ...defaultTheme.fontFamily.sans], // 500
+        AeonikProMedium: ["AeonikPro-Medium"], // 500
+        AeonikProRegular: ["AeonikPro-Regular"], // 400
       },
 
       boxShadow: {
@@ -84,6 +88,7 @@ module.exports = {
         cardShadow: "0px 1px 10px 0px rgba(0,0,0,0.59)",
         navbarShadow: "0px -4px 14px -4px rgba(0,0,0,0.75)",
         navMenuShadov: "0px -2px 10px -8px rgba(0,0,0,0.75)",
+        modalCategoryShadow: "0px 1px 8px -4px rgba(0,0,0,0.75)",
       },
     },
     letterSpacing: {

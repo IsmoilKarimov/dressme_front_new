@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { SingleProduct } from "./SingleProduct/SingleProduct";
 
 export default function SingleMainProducts() {
@@ -9,8 +9,8 @@ export default function SingleMainProducts() {
   }, []);
 
   return (
-    <div className="w-full px-4">
+    <main className="w-full px-4">
       <SingleProduct />
-    </div>
+    </main>
   );
 }

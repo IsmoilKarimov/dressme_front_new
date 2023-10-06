@@ -8,11 +8,6 @@
   border-radius: 8px;
 }
 
-/* .openedBrands {
-    height: 0;
-    overflow: hidden;
-} */
-
 .openBrands.open .openedBrands {
   height: auto;
 }
@@ -41,7 +36,7 @@
   display: none;
 }
 
-/* --------------------React Slider */
+/* ------- React Slider ---------- */
 
 .horizontal-slider {
   width: 95%;
@@ -51,7 +46,7 @@
 }
 
 .example-thumb {
-  background-image: url("../../AssetsMain//Category/Star.svg");
+  background-image: url("../../assets/");
   width: 16px;
   height: 16px;
   cursor: grab;
@@ -86,7 +81,7 @@
   height: 5px;
 }
 
-/* --------------------React Slider */
+/* --------React Slider----------- */
 
 .horizontal-slider {
   width: 100%;
@@ -96,7 +91,7 @@
 
 .example-thumb1 {
   background: rgba(0, 125, 202, 1)
-    url("../../AssetsMain//Category//ReactSliderMenu.svg");
+    url("../../assets//Category//ReactSliderMenu.svg");
   width: 24px;
   height: 16px;
   background-repeat: no-repeat;
@@ -139,10 +134,3 @@
   border-radius: 5px;
   padding: 2px;
 }
-/* 
-.horizontal-slider .example-thumb {
-  top: 1px;
-  width: 23px;
-  height: 23px;
-  line-height: 23px;
-} */

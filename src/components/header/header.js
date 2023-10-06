@@ -8,7 +8,7 @@ import NavbarBottomIndex from "./NavbarBottomIndex";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 
 const Header = () => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
 
   // ----------------NavBar----------------
   const [show, setShow] = useState(true);
@@ -50,32 +50,35 @@ const Header = () => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
   return (
-    <div>
-      <header>
-        {/* <header className="md:border-0 border-searchBgColor "> */}
+    <header>
+      <section>
         {locationWindow !== "/delivery-points" ? (
-          <div className="w-full ">
-            <div className={`ss:block md:hidden`}>
-              <MediumHeader />
-            </div>
-            <div
-              className={`fixed top-0 w-full bg-white   ${
-                show
-                  ? "visible duration-500 z-30"
-                  : "visible duration-500 z-30 translate-y-[-100%]"
-              } hidden md:block`}
+          <div className="w-full">
+            <article className={`block md:hidden relative z-[100]
+              ${ show
+                ? "visible duration-500 z-[25]"
+                : "visible duration-500 z-[25] translate-y-[-100%]"
+              }`}
             >
+              <MediumHeader />
+            </article>
+            <article className={`fixed top-0  w-full bg-white block
+              ${ show
+                ? "visible duration-500 z-[25]"
+                : "visible duration-500 z-[25] translate-y-[-100%]"
+              }`
+            }
+          >
               <TopHeader />
               <MediumHeader />
-            </div>
+            </article>
           </div>
         ) : (
-          <div className={`fixed top-0 z-[150] w-full block md:hidden bg-transparent`}
-          >
+          <div className={`fixed top-0 z-[150] w-full block md:hidden bg-transparent`}>
             {!dressInfo?.yandexFullScreen && (
-              <div className="overflow-hidden">
+              <article className="overflow-hidden">
                 <MediumHeader />
-              </div>
+              </article>
             )}
           </div>
         )}
@@ -86,29 +89,26 @@ const Header = () => {
               : "mt-[0] h-0 overflow-hidden"
           } `}
         >
-          <div
-            className={`${
+          <article className={`${
               locationWindow !== "/delivery-points" ? "block" : "hidden mt-[0]"
             } `}
           >
             <NavbarBottomIndex />
-          </div>
+          </article>
           {!dressInfo?.yandexFullScreen && (
-            <div
-              className={`fixed bottom-0 w-full bg-white ${
+            <article className={`fixed bottom-0 w-full bg-white ${
                 show
-                  ? "visible duration-500 z-[56]"
-                  : "visible duration-500 z-[56] translate-y-[100%]"
+                  ? "visible duration-500 z-[101]"
+                  : "visible duration-500 z-[101] translate-y-[100%]"
               } block md:hidden`}
             >
               <NavMenu />
-            </div>
+            </article>
           )}
         </div>
-        {/* <Breadcrumbs /> */}
-      </header>
+      </section>
       <Outlet />
-    </div>
+    </header>
   );
 };
 export default Header;

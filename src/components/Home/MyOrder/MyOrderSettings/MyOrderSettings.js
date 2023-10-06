@@ -6,9 +6,9 @@ import {
   LogOutIcons,
   PersonIcons,
   SircleNext,
-} from "../../../../AssetsMain/icons";
+} from "../../../../assets/icons";
 import InputMask from "react-input-mask";
-import { UzbekFlag } from "../../../../AssetsMain";
+import { UzbekFlag } from "../../../../assets";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const MyOrderSettings = () => {
@@ -40,7 +40,7 @@ const MyOrderSettings = () => {
   const location = useLocation();
   const LogOut = () => {
     localStorage.removeItem("dressMeLogin");
-    if (location?.pathname?.includes("my-order/settings")) {
+    if (location?.pathname?.includes("profile/settings")) {
       navigate("/");
     } else if (location?.pathname?.includes("my-order")) {
       navigate("/");
@@ -213,8 +213,8 @@ const MyOrderSettings = () => {
             </div>
           </div>
         </div>
-        <div className="w-full md:w-[48%] md:w-full mx-auto flex items-center justify-between  md:px-[40px] md:py-[30px] mt-6 md:mt-0  ">
-          <div>
+        <div className="w-full  mx-auto flex items-center justify-between  md:px-[40px] md:py-[30px] mt-6 md:mt-0">
+          <div className="">
             <button
               onClick={LogOut}
               className="flex items-center active:scale-95  active:opacity-70 "
@@ -228,7 +228,7 @@ const MyOrderSettings = () => {
             </button>
           </div>
           <div className="w-[80%] xs:w-[60%] md:w-auto ">
-            <button className="w-[100%] md:w-[244px] h-[52px] rounded-lg bg-fullBlue text-white active:scale-95  active:opacity-70 rounded-lg flex items-center justify-center">
+            <button className="w-[100%] md:w-[244px] h-[52px] bg-fullBlue text-white active:scale-95  active:opacity-70 rounded-lg flex items-center justify-center">
               <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center tracking-[1%]">
                 Сохранить данные
               </span>

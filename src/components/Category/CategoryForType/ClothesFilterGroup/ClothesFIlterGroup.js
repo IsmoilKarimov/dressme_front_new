@@ -78,7 +78,7 @@ export default function ClothesFilterGroup(props) {
   });
 
   return (
-    <div
+    <main
       ref={ref}
       onMouseDown={onMouseDown}
       onMouseMove={onMouseMove}
@@ -88,6 +88,6 @@ export default function ClothesFilterGroup(props) {
       {React.Children.map(props.children, (child) =>
         React.Children.only(child)
       )}
-    </div>
+    </main>
   );
 }

@@ -3,31 +3,31 @@ import { useContext, useState } from "react";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import {
   ArrowTopIcons,
-  CotegoryMenuIcons,
+  ChildGenIcon,
+  GenderTypeIcon,
   ManGenIcons,
+  ManWomanGen,
+  SearchChangeColorIcon,
+  SearchIcons,
   WomanGenIcons,
-} from "../../../../../AssetsMain/icons";
+} from "../../../../../assets/icons";
+import GenderButtonsStyle from "../GenderButtonsStyle/GenderButtonsStyle";
 
 const ShoppingTop = () => {
   const [dressInfo] = useContext(dressMainData);
 
   let dataStyle = "";
-  let shadowStyle = "";
   if (dressInfo?.type === 1111) {
     dataStyle = "text-borderSpring ";
-    shadowStyle = "hover:shadow-green-300/100 ";
   }
   if (dressInfo?.type === 2222) {
     dataStyle = "text-borderSummer";
-    shadowStyle = "hover:shadow-amber-200/100  ";
   }
   if (dressInfo?.type === 3333) {
     dataStyle = "text-borderAutumm";
-    shadowStyle = "hover:shadow-orange-200/100   ";
   }
   if (dressInfo?.type === 4444) {
     dataStyle = "text-borderWinter";
-    shadowStyle = "hover:shadow-sky-200/100  ";
   }
 
   const [typesCategory, setTypeCategory] = useState([
@@ -35,7 +35,7 @@ const ShoppingTop = () => {
       id: 1,
       action: true,
       name: "Все",
-      icon: <CotegoryMenuIcons colors={"#007DCA"} />,
+      icon: <ManWomanGen colors={"#007DCA"} />,
     },
     { id: 2, action: false, name: "Верхняя", icon: "" },
     { id: 3, action: false, name: "Нижняя", icon: "" },
@@ -53,136 +53,22 @@ const ShoppingTop = () => {
     });
   };
 
-  const [genderCategory, setGenderCategory] = useState([
-    {
-      id: 1,
-      action: true,
-      name: "Все",
-      icon: <CotegoryMenuIcons colors={"#007DCA"} />,
-    },
-    {
-      id: 2,
-      action: false,
-      name: "",
-      icon: <ManGenIcons />,
-    },
-    {
-      id: 3,
-      action: false,
-      name: "",
-      icon: <WomanGenIcons />,
-    },
-  ]);
-
-  const handleGenderCheck = (value) => {
-    setGenderCategory((data) => {
-      return data.map((e) => {
-        if (e.id == value) {
-          return { ...e, action: true };
-        } else return { ...e, action: false };
-      });
-    });
-  };
-
   return (
-    <div className="hidden md:flex flex-col min-h-[44px]  justify-center items-center my-5">
-      <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
-        <div className="flex items-center">
-          <div className="w-[98%] flex items-center border rounded-lg bg-slate-50 mr-6">
-            {typesCategory.map((data) => {
-              return (
-                <div
-                  key={data.id}
-                  className="flex justify-between h-10 rounded-lg"
-                >
-                  <button
-                    key={data.id}
-                    onClick={() => handleTypeCheck(data.id)}
-                    className={`flex items-center justify-center h-10 text-[15px] text-black text-center px-5 font-AeonikProRegular ${
-                      data.action
-                        ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg ${dataStyle}`
-                        : ""
-                    } `}
-                  >
-                    <span className="mr-2">{data.icon}</span>
+    <main className="flex flex-col min-h-[44px] justify-center items-center mb-5 md:my-4">
+      <section className="md:max-w-[1280px] w-[100%] flex flex-col md:flex-row items-center justify-between m-auto">
 
-                    <span >{data.name}</span>
-                  </button>
-                  <span
-                    className={`${
-                      data.id === 5
-                        ? "text-searchBgColor hidden"
-                        : "text-searchBgColor flex items-center"
-                    }`}
-                  >
-                    |
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="w-[40%] flex items-center border rounded-lg bg-slate-50">
-            {genderCategory.map((data) => {
-              return (
-                <div
-                  key={data.id}
-                  className="flex justify-between h-10 rounded-lg "
-                >
-                  <button
-                    key={data.id}
-                    onClick={() => handleGenderCheck(data.id)}
-                    className={`flex items-center justify-center h-10 text-[15px] text-black text-center ${
-                      !data.name ? "px-5" : "px-7"
-                    } font-AeonikProRegular ${
-                      data.action
-                        ? `{ bg-white border w-full h-[98%] my-auto mx-auto  border-searchBgColor rounded-lg ${dataStyle}`
-                        : ""
-                    } `}
-                  >
-                    <span className="">{data.icon}</span>
-                    {data.name ? (
-                      <span className=" ml-2">{data.name}</span>
-                    ) : (
-                      ""
-                    )}
-                  </button>
-                  <span
-                    className={`${
-                      data.id === 3
-                        ? "text-searchBgColor hidden"
-                        : "text-searchBgColor flex items-center"
-                    }`}
-                  >
-                    |
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="w-[fit] flex items-center ">
-          <div className="flex items-center w-fit mr-4">
-            <span className="not-italic font-normal text-sm leading-4 text-setTexOpacity tractking-[1%]">
-              Сортировка:
-            </span>
-          </div>
-          <div>
-            <button className="w-[260px] h-[44px] px-4 rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between  cursor-pointer select-none group  ">
-              <span className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-                Последние добавленные{" "}
-              </span>
-              <span>
-                <span className={`rotate-[0deg]`}>
-                  <ArrowTopIcons colors={"#000"} />
-                </span>
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+          <GenderButtonsStyle />
+        <article className="w-full flex items-center mt-3 md:mt-0 md:justify-end">
+          <article className="w-[400px] h-11 flex flex-row-reverse md:flex-row items-center justify-between bg-btnBgColor md:bg-white rounded-xl border border-searchBgColor font-AeonikProRegular text-base">
+            <input type="text" className="w-[90%] px-3 text-sm md:text-base bg-btnBgColor md:bg-white" placeholder="Искать магазины" />
+            <span className="hidden md:block h-full w-[1px] bg-searchBgColor"></span>
+            <div className=" w-[10%] h-full flex items-center justify-center cursor-pointer">
+              <SearchIcons colors={"#a1a1a1"} className=""/>
+            </div>
+          </article>
+        </article>
+      </section>
+    </main>
   );
 };
 export default ShoppingTop;

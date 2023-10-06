@@ -1,26 +1,20 @@
-import React, { useContext, useState, useMemo } from "react";
-import {
-  AutummFemale,
-  AutummMale,
-  SpringFemale,
-  SpringMale,
-  SummerFemale,
-  SummerMale,
-  WinterFemale,
-  WinterMale,
-} from "../../AssetsMain";
+import React, { useContext, useEffect, useState } from "react";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { BiChevronDown } from "react-icons/bi";
 import { Popover } from "antd";
+import ReactSlider from "react-slider";
 
 import style from "./bottom.module.css";
-import { Link } from "react-router-dom";
 import {
   ClothesIcons,
   DollorIcons,
   InputCheckedTrueIcons,
-  PlusIcons,
-} from "../../AssetsMain/icons";
+  MenuCloseIcons,
+  PlusAddCectorIcons,
+} from "../../assets/icons";
+
+import GenderButtonsStyle from "../Home/Shop/ShoppingStore/GenderButtonsStyle/GenderButtonsStyle";
+import { GrClose } from "react-icons/gr";
 
 const BottomHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -29,44 +23,29 @@ const BottomHeader = () => {
     openwear: false,
     openPrice: false,
     textToColor: false,
+    minPrice: 60000,
+    maxPrice: 1800000,
+    selectPrice: "По бюджету",
+    // --------
+    showColour: false
   });
-
-  let dataStyle = "";
-  let genderStyle = "";
-  if (dressInfo?.type == 1111) {
-    dataStyle = " hover:text-borderSpring ";
-    genderStyle =
-      "focus:text-borderSpring focus:bg-bgSpring focus:border-borderSpring";
-  }
-  if (dressInfo?.type == 2222) {
-    dataStyle = " hover:text-borderSummer";
-    genderStyle =
-      "focus:text-borderSummer focus:bg-bgSummer focus:border-borderSummer";
-  }
-  if (dressInfo?.type == 3333) {
-    dataStyle = " hover:text-borderAutumm ";
-    genderStyle =
-      "focus:text-borderAutumm focus:bg-bgAutumm focus:border-borderAutumm";
-  }
-  if (dressInfo?.type == 4444) {
-    dataStyle = " hover:text-borderWinter ";
-    genderStyle =
-      "focus:text-borderWinter focus:bg-bgWinter focus:border-borderWinter";
-  }
-
-  const personItems = [
-    { id: 1111, man: SpringMale, woman: SpringFemale },
-    { id: 2222, man: SummerMale, woman: SummerFemale },
-    { id: 3333, man: AutummMale, woman: AutummFemale },
-    { id: 4444, man: WinterMale, woman: WinterFemale },
-  ];
-
+  useEffect(() => {
+    if (
+      state?.showColour
+    ) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [
+    state?.showColour
+  ]);
   // ----------------Wear state management----------------------------
 
   const handleOpenChangeWear = (newOpen) => {
     setState({ ...state, openwear: newOpen });
   };
-  const [selectWear, setselectWear] = useState("Clothing type");
+  const [selectWear, setselectWear] = useState("По категории");
 
   const handleWearValue = (value) => {
     setselectWear(value);
@@ -74,12 +53,11 @@ const BottomHeader = () => {
   };
 
   const wearList = [
-    { id: 1, type: "All Clothing types" },
-    { id: 2, type: "Headwear" },
-    { id: 3, type: "Outwear" },
-    { id: 4, type: "Underwear" },
-    { id: 5, type: "Legwear" },
-    { id: 6, type: "Accessory" },
+    { id: 1, type: "Головные уборы" },
+    { id: 2, type: "Верхняя одежда" },
+    { id: 3, type: "Нижняя одежда" },
+    { id: 4, type: "Аксессуары" },
+    { id: 5, type: "Обувь" },
   ];
   const contentWear = (
     <div className="w-[170px] h-fit m-0 p-0">
@@ -90,7 +68,7 @@ const BottomHeader = () => {
             onClick={() => {
               handleWearValue(data?.type);
             }}
-            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dataStyle}`}
+            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.TextHoverSeason}`}
           >
             {data?.type}
           </p>
@@ -104,43 +82,74 @@ const BottomHeader = () => {
   const handleOpenChangePrice = (newOpen) => {
     setState({ ...state, openPrice: newOpen });
   };
-  const [selectPrice, setselectPrice] = useState("Under 100$");
-  const handlePriceValue = (value) => {
-    setselectPrice(value);
-    setState({ ...state, openPrice: false });
-  };
-  const priceList = [
-    { id: 1, type: "At all prices" },
-    { id: 2, type: "More than 500 $" },
-    { id: 3, type: "Under 500$" },
-    { id: 4, type: "Under 200$" },
-    { id: 5, type: "Under 100$" },
-    { id: 6, type: "Under 50$" },
-  ];
+
   const contentPrice = (
-    <div className="w-[170px] h-fit m-0 p-0">
-      {priceList.map((data) => {
-        return (
-          <p
-            key={data?.id}
-            onClick={() => {
-              handlePriceValue(data?.type);
-            }}
-            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dataStyle}`}
-          >
-            {data?.type}
-          </p>
-        );
-      })}
+    <div className="w-[350px] h-[170px] m-0 ">
+      <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
+        <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">По ценам</span>
+        <span
+          onClick={() => setState({ ...state, openPrice: false, })}
+          className="w-6 h-6 cursor-pointer">
+          <MenuCloseIcons className="w-[24px] h-[24px]" colors={"#000"} />
+        </span>
+      </div>
+      <div className="  flex flex-col rounded-lg  w-full pb-5 pt-10">
+        <div className="flex justify-between items-center mb-6 w-full px-2">
+          <div className="flex ">
+            <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
+              от
+            </span>
+            <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+              <input className='w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+                value={state?.minPrice}
+                onChange={(e) => setState({ ...state, minPrice: e.target.value })} />  sum
+            </span>
+          </div>
+          <div className="flex ">
+            <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
+              до
+            </span>
+            <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+              <input className='w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+                value={state?.maxPrice}
+                onChange={(e) => setState({ ...state, maxPrice: e.target.value })} />
+              sum
+            </span>
+          </div>
+        </div>
+        <div className="relative z-50 mb-[6px] w-full  marketFilter">
+          {" "}
+          <ReactSlider
+            className="horizontal-slider"
+            thumbClassName="example-thumb1"
+            trackClassName="example-track1"
+            defaultValue={[10, 90]}
+            ariaLabel={["Lower thumb", "Upper thumb"]}
+            // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
+            // renderThumb={() => <div>1</div>}
+            pearling
+            minDistance={10}
+          />
+        </div>
+        <div className="flex items-center justify-end mt-4">
+          <span
+            onClick={() => setState({ ...state, openPrice: false })}
+            className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue">Готово</span>
+        </div>
+
+
+      </div>
     </div>
   );
-  const changeColor = [
+  const [changeColor, setChangeColor] = useState([
     {
       id: 1,
       data: 1,
       icons: <InputCheckedTrueIcons />,
       action: false,
       colors: "bg-black",
+      colorName: "Black",
+
     },
     {
       id: 2,
@@ -148,6 +157,8 @@ const BottomHeader = () => {
       icons: <InputCheckedTrueIcons />,
       action: false,
       colors: "bg-white",
+      colorName: "Black",
+
     },
     {
       id: 3,
@@ -155,6 +166,8 @@ const BottomHeader = () => {
       icons: <InputCheckedTrueIcons />,
       action: false,
       colors: "bg-zinc-500",
+      colorName: "Black",
+
     },
     {
       id: 4,
@@ -162,6 +175,8 @@ const BottomHeader = () => {
       icons: <InputCheckedTrueIcons />,
       action: false,
       colors: "bg-purple-500",
+      colorName: "Black",
+
     },
     {
       id: 5,
@@ -169,12 +184,15 @@ const BottomHeader = () => {
       icons: <InputCheckedTrueIcons />,
       action: false,
       colors: "bg-sky-600",
+      colorName: "Black",
+
     },
     {
       id: 6,
       data: 6,
       icons: <InputCheckedTrueIcons />,
       action: false,
+      colorName: "Black",
       colors: "bg-amber-400 ",
     },
     {
@@ -182,6 +200,7 @@ const BottomHeader = () => {
       data: 7,
       icons: <InputCheckedTrueIcons />,
       action: false,
+      colorName: "Black",
       colors: "bg-green-700 ",
     },
     {
@@ -189,6 +208,7 @@ const BottomHeader = () => {
       data: 8,
       icons: <InputCheckedTrueIcons />,
       action: false,
+      colorName: "Black",
       colors: "bg-amber-600 ",
     },
     {
@@ -196,6 +216,7 @@ const BottomHeader = () => {
       data: 9,
       icons: <InputCheckedTrueIcons />,
       action: false,
+      colorName: "Black",
       colors: "bg-red-700  ",
     },
     {
@@ -203,6 +224,7 @@ const BottomHeader = () => {
       data: 10,
       icons: <InputCheckedTrueIcons />,
       action: false,
+      colorName: "Black",
       colors: "bg-purple-800 ",
     },
     {
@@ -210,6 +232,7 @@ const BottomHeader = () => {
       data: 11,
       icons: <InputCheckedTrueIcons />,
       action: false,
+      colorName: "Black",
       colors: "bg-blue-900  ",
     },
     {
@@ -217,81 +240,274 @@ const BottomHeader = () => {
       data: 12,
       icons: <InputCheckedTrueIcons />,
       action: false,
+      colorName: "Black",
       colors: "bg-yellow-900 ",
     },
-  ];
+  ])
   const [getRadio, setGetRadio] = useState("");
   const colorIdPushContext = (id) => {
     setDressInfo({ ...dressInfo, ClothesBorder: id });
   };
 
-  // mt-1
+  // const [changeColor, setChangeColor] = useState([
+  //   {
+  //     colorName: "Black",
+  //     id: 1,
+  //     value: 1,
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-black",
+  //   },
+  //   {
+  //     colorName: "Белый",
+  //     id: 2,
+  //     value: 2,
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-white",
+  //   },
+  //   {
+  //     id: 3,
+  //     value: 3,
+  //     colorName: "Серый",
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-zinc-500",
+  //   },
+  //   {
+  //     id: 4,
+  //     value: 4,
+  //     colorName: "Фиолетовый",
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-purple-500",
+  //   },
+  //   {
+  //     id: 5,
+  //     value: 5,
+  //     colorName: "Голубой",
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-sky-600",
+  //   },
+  //   {
+  //     id: 6,
+  //     value: 6,
+  //     colorName: "Желтый",
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-amber-400 ",
+  //   },
+  //   {
+  //     id: 7,
+  //     value: 7,
+  //     colorName: "Зеленый",
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-green-700 ",
+  //   },
+  //   {
+  //     id: 8,
+  //     value: 8,
+  //     colorName: "Amber",
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-amber-600 ",
+  //   },
+  //   {
+  //     id: 9,
+  //     value: 9,
+  //     colorName: "Красный",
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-red-700  ",
+  //   },
+  //   {
+  //     id: 10,
+  //     value: 10,
+  //     colorName: "Фиолетовый",
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-purple-800 ",
+  //   },
+  //   {
+  //     id: 11,
+  //     value: 11,
+  //     colorName: "Blue",
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-blue-900 ",
+  //   },
+  //   {
+  //     id: 12,
+  //     value: 12,
+  //     colorName: "Brown",
+  //     action: false,
+  //     IconsColor: "#4B5563",
+  //     colors: "bg-yellow-900 ",
+  //   },
+  // ])
+  const [iconsColor, setIconsColor] = useState("black");
+  const HandleIconsColor = (color, id) => {
+    setIconsColor(color);
+    setChangeColor((current) => {
+      return current.map((data) => {
+        if (data?.id == id) {
+          return { ...data, action: true };
+        } else {
+          return { ...data, action: false };
+        }
+      });
+    });
+  };
+
+  // Checks whether an element is even
+  const even = (element) => element.action == true;
+  let toggleAction = changeColor.some(even);
+
+  const unCheckedAll = () => {
+    setState({ ...state, showColour: false });
+
+    setChangeColor((current) => {
+      return current.map((data) => {
+        return { ...data, action: false };
+      });
+    });
+    setIconsColor("black");
+  };
   return (
-    <div className="flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
-      <div className="max-w-[1280px] w-[100%] flex justify-center   items-center m-auto   ">
+    <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
+      <div
+        onClick={() => { setState({ ...state, showColour: false }) }}
+        className={`fixed inset-0 z-[220] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
+         ${state?.showColour ? "" : "hidden"}`}
+      >
+      </div>
+      {state?.showColour && (
+        <div className="w-fit h-fit flex items-center mt-[20%] justify-center mx-auto ">
+
+          {/* </div> */}
+          <div className="relative z-[223]  top-0 w-[576px] h-fit p-4 mx-auto bg-white rounded-md shadow-lg">
+            <div
+              className={`flex items-center justify-between border-b border-searchBgColor pb-3"
+                       `}
+            >
+              <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">Выберите цвет</span>
+              <button
+                className="py-2"
+                type=""
+                onClick={() =>
+                  setState({ ...state, showColour: false })
+                }
+              >
+                <GrClose size={22} />
+              </button>
+            </div>
+            <div className="py-4 gap-x-2 gap-y-4 grid gap-4 grid-cols-6">
+              {changeColor?.map((data) => {
+                return (
+                  <div className="flex flex-col items-center justify-center ">
+                    <div
+                      key={data?.id}
+                      onClick={() =>
+                        HandleIconsColor(data?.IconsColor, data?.id)
+                      }
+                      className={`rounded-[12px] flex items-center justify-center mr-2 w-[65px] h-[40px] ${data?.colors
+                        } cursor-pointer ${data?.id == 2 ? "border border-setTexOpacity" : ""
+                        } `}
+                    >
+                      {data?.action && data?.id === 2 ? (
+                        <span>
+                          <InputCheckedTrueIcons colors={"#000"} />
+                        </span>
+                      ) : null}
+
+                      {data?.action && data?.id !== 6 ? (
+                        <InputCheckedTrueIcons colors={"#fff"} />
+                      ) : null}
+                    </div>
+                    <span className={`text-black text-center text-xs not-italic font-AeonikProRegular`}>{data?.colorName}</span>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="flex items-center justify-end">
+              {toggleAction && (
+                <button
+                  onClick={unCheckedAll}
+                  className="flex items-center text-fullBlue active:scale-95  active:opacity-70 justify-center  px-4 py-1"
+                >
+                  Отключить
+                </button>
+              )}
+              {/* </div> */}
+            </div>
+          </div>
+        </div>
+      )
+      }
+
+      <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto">
         <Popover
           open={state?.openwear}
           onOpenChange={handleOpenChangeWear}
-          className="w-[190px] px-[17px] h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
+          className="w-[190px] px-[17px] h-[44px] rounded-xl bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
           trigger="click"
           options={["Hide"]}
           placement="bottom"
           content={contentWear}
         >
           <span>
-            <ClothesIcons />
+            <ClothesIcons colors={"#000"} />
           </span>
-          <span className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black">
+          <p className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black">
             {selectWear}
-          </span>
+          </p>
           <span>
             <BiChevronDown
               size={20}
               style={{ color: "#c2c2c2" }}
-              className={`${
-                state?.openwear ? "rotate-[-180deg]" : ""
-              } duration-200`}
-            />{" "}
+              className={`${state?.openwear ? "rotate-[-180deg]" : ""
+                } duration-200`}
+            />
           </span>
         </Popover>
         <Popover
           open={state?.openPrice}
           onOpenChange={handleOpenChangePrice}
-          className="w-[190px]  h-[44px]  rounded-lg bg-btnBgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group ml-2"
+          className="w-[190px]  h-[44px]  rounded-xl bg-btnBgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group ml-2"
           trigger="click"
           options={["Hide"]}
           placement="bottom"
           content={contentPrice}
         >
-          <p className="w-[48px] h-full flex items-center justify-center border-r border-searchBgColor">
-            <DollorIcons />
-          </p>
-          <p className=" w-[142px] h-full flex justify-between items-center px-3">
-            <span className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black ">
-              {selectPrice}
-            </span>
-            <span className="">
+          <span className="w-[48px] h-full flex items-center justify-center border-r border-searchBgColor">
+            <DollorIcons colors={"#000"} />
+          </span>
+          <div className=" w-[142px] h-full flex justify-between items-center px-3">
+            <p className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black ">
+              {state?.selectPrice}
+            </p>
+            <span>
               <BiChevronDown
                 size={20}
                 style={{ color: "#c2c2c2" }}
-                className={`${
-                  state?.openPrice ? "rotate-[-180deg]" : ""
-                } duration-200`}
-              />{" "}
+                className={`${state?.openPrice ? "rotate-[-180deg]" : ""
+                  } duration-200`}
+              />
             </span>
-          </p>
+          </div>
         </Popover>
 
-        <div className="flex items-center w-[536px] justify-start bg-btnBgColor overflow-hidden rounded-lg border-searchBgColor border h-[44px] ml-2">
-          <div
+        <div className="flex items-center w-[536px] justify-start bg-btnBgColor overflow-hidden rounded-xl border-searchBgColor border h-[44px] ml-2">
+          <article
             onClick={() =>
               setState({ ...state, textToColor: !state.textToColor })
             }
             className="w-[48px] cursor-pointer border-r border-searchBgColor h-full flex items-center justify-center"
           >
             <div className=" w-fit h-fit flex items-center justify-center relative  select-none ">
-              {/* <div className={`w-[8px] h-[20px] flex items-end justify-center  py-[2px] border border-black  rounded-[3px] z-[25] bg-white rounded-b-[5px]`}> */}
-              <div className={style.mainOne}>
+              <span className={style.mainOne}>
                 <svg
                   width="4"
                   height="4"
@@ -307,22 +523,19 @@ const BottomHeader = () => {
                     strokeLinejoin="round"
                   />
                 </svg>
-              </div>
-              {/* <div className={`w-[8px] h-[20px] border left-[-3px] top-[2px] z-[24] bg-white relative border-black rounded-[3px] duration-200  rounded-b-[5px] ${!textToColor ? "rotate-[45deg] " : "left-[-8px] top-[0px] rotate-[0deg]"}`}> */}
-              <div className={style.mainTwo}></div>
-              {/* <div className={`w-[8px] h-[20px] border relative left-[-10px] top-[6px] z-[23] bg-white border-black rounded-[3px] duration-200  rounded-b-[5px] ${!textToColor ? "rotate-[90deg]" : "left-[-16px] top-[0px] rotate-[0deg]"}`}> */}
-              <div
+              </span>
+              <span className={style.mainTwo}></span>
+              <span
                 className={
                   state?.textToColor ? style.MainHtree : style.mainThreerotate
                 }
-              ></div>
+              ></span>
             </div>
-          </div>
-          <div className="w-[480px] h-full overflow-hidden flex items-center justify-between">
+          </article>
+          <article className="w-[480px] h-full overflow-hidden flex items-center justify-between">
             <div
-              className={`${
-                state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
-              } px-3 w-full duration-500  h-full flex items-center justify-between  `}
+              className={`${state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
+                } px-2 w-full duration-500  h-full flex items-center justify-between  `}
             >
               {changeColor?.map((data) => {
                 return (
@@ -331,20 +544,17 @@ const BottomHeader = () => {
                       key={data?.id}
                       htmlFor={data?.id}
                       onClick={() => colorIdPushContext(data?.id)}
-                      // onClick={() => handleGetChecked(data?.id)}
-                      className={`rounded-full w-6 h-6 ${
-                        data?.colors
-                      } cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
-                        !state?.textToColor && "border"
-                      }  border-borderColorCard	`}
+                      className={`rounded-full w-6 h-6 ${data?.colors
+                        } cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${!state?.textToColor && "border"
+                        }  border-borderColorCard	`}
                     >
-                      {data?.id == getRadio && data?.id == 2 ? (
+                      {data?.id === getRadio && data?.id === 2 ? (
                         <span>
                           <InputCheckedTrueIcons colors={"#000"} />
                         </span>
                       ) : null}
 
-                      {data?.id == getRadio && data?.id !== 2 ? (
+                      {data?.id === getRadio && data?.id !== 2 ? (
                         <InputCheckedTrueIcons colors={"#fff"} />
                       ) : null}
                     </label>
@@ -359,47 +569,24 @@ const BottomHeader = () => {
                   </div>
                 );
               })}
+              <button
+                onClick={() => { setState({ ...state, showColour: true }) }}
+                type="button"
+                className="w-5"><PlusAddCectorIcons colors={dressInfo?.ColorSeason} /></button>
             </div>
-            <div
-              className={`${
-                state?.textToColor ? " mr-0" : " mr-[-500px]"
-              } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
+            <p
+              className={`${state?.textToColor ? " mr-0" : " mr-[-500px]"
+                } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
             >
               Не давай своей гардеробной шкафной жизни стать скучной.
-            </div>
-          </div>
+            </p>
+          </article>
         </div>
+
         <div className="line h-6 border-r-[1px] text-textColor mx-3"></div>
-        {personItems
-          ?.filter((value) => value.id === dressInfo?.type)
-          .map((data) => {
-            return (
-              <div key={data?.id} className="w-fit flex items-center ">
-                <button
-                  className={`mr-1 ${genderStyle} h-[44px] px-[16px] justify-between mr-2 flex items-center bg-btnBgColor border border-searchBgColor rounded-lg`}
-                >
-                  <img className="mr-3" src={data?.woman} alt="female" />
-                  <span className="font-AeonikProMedium">Женщинам</span>
-                </button>
-                <button
-                  className={`  ${genderStyle} h-[44px]  px-[16px] justify-between flex items-center bg-btnBgColor border border-searchBgColor mr-2 rounded-lg`}
-                >
-                  <img className="mr-3" src={data?.man} alt="male" />{" "}
-                  <span className="font-AeonikProMedium">Мужчинам</span>
-                </button>
-              </div>
-            );
-          })}
-        <Link
-          to="/sign_in"
-          className="bg-btnBgColor font-AeonikProMedium w-[44px] h-[44px] flex items-center justify-center border border-searchBgColor rounded-lg "
-        >
-          <span>
-            <PlusIcons />
-          </span>
-        </Link>
-      </div>
-    </div>
+        <GenderButtonsStyle />
+      </section>
+    </nav >
   );
 };
 

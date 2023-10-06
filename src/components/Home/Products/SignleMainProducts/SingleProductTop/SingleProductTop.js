@@ -1,51 +1,22 @@
 import React, { useContext, useState } from "react";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
-import {
-  BasketIcons,
-  HomeIcons,
-  ItailIcons,
-} from "../../../../../AssetsMain/icons";
+import { ItailIcons } from "../../../../../assets/icons";
 import {
   AutummMale,
   SpringMale,
   SummerMale,
   WinterMale,
-} from "../../../../../AssetsMain";
+} from "../../../../../assets";
 
 const SingleProductTop = () => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
 
   const [state, setState] = useState({
     openwear: false,
-    openPrice: false,
-    textToColor: false,
   });
-
-  let dataStyle = "";
-  let genderStyle = "";
-  if (dressInfo?.type == 1111) {
-    dataStyle = " hover:text-borderSpring ";
-    genderStyle =
-      "focus:text-borderSpring focus:bg-bgSpring focus:border-borderSpring";
-  }
-  if (dressInfo?.type == 2222) {
-    dataStyle = " hover:text-borderSummer";
-    genderStyle =
-      "focus:text-borderSummer focus:bg-bgSummer focus:border-borderSummer";
-  }
-  if (dressInfo?.type == 3333) {
-    dataStyle = " hover:text-borderAutumm ";
-    genderStyle =
-      "focus:text-borderAutumm focus:bg-bgAutumm focus:border-borderAutumm";
-  }
-  if (dressInfo?.type == 4444) {
-    dataStyle = " hover:text-borderWinter ";
-    genderStyle =
-      "focus:text-borderWinter focus:bg-bgWinter focus:border-borderWinter";
-  }
 
   const personItems = [
     { id: 1111, man: SpringMale },
@@ -57,10 +28,8 @@ const SingleProductTop = () => {
   const handleOpenChangeWear = (newOpen) => {
     setState({ ...state, openwear: newOpen });
   };
-  const [selectWear, setselectWear] = useState("Clothing type");
 
-  const handleWearValue = (value) => {
-    setselectWear(value);
+  const handleWearValue = () => {
     setState({ ...state, openwear: false });
   };
 
@@ -81,7 +50,7 @@ const SingleProductTop = () => {
             onClick={() => {
               handleWearValue(data?.type);
             }}
-            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dataStyle}`}
+            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.TextHoverSeason}`}
           >
             {data?.type}
           </p>
@@ -89,14 +58,13 @@ const SingleProductTop = () => {
       })}
     </div>
   );
-  const { id } = useParams();
-  // const Newid = id?.replace(":", " "); scrollBreadcrumb webkit-center
+
   return (
-    <div className="flex flex-col md:min-h-[44px] justify-center items-center m-0 py-3 box-border border-b border-searchBgColor">
-      <div className="max-w-[1280px] h-full w-[100%] flex items-center justify-between m-auto">
-        <div className="w-[100%] md:w-fit flex items-center p-1">
-          <div className="h-10 w-[100%] md:w-fit flex items-center overflow-x-auto">
-            <div className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+    <main className="flex flex-col md:min-h-[44px] justify-center items-center m-0 py-3 box-border border-b border-searchBgColor">
+      <section className="max-w-[1280px] h-full w-[100%] flex items-center justify-between m-auto">
+        <nav className="w-[100%] md:w-fit flex items-center p-1">
+          <ul className="h-10 w-[100%] md:w-fit flex items-center overflow-auto HorizantalScroll">
+            <li className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
               <NavLink
                 to="/"
                 className="flex items-center whitespace-nowrap cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
@@ -106,56 +74,56 @@ const SingleProductTop = () => {
               <span>
                 <ItailIcons colors={"#A1A1A1"} />
               </span>
-            </div>
-            <div className="not-italic font-AeonikProRegular flex  	 items-center  text-sm leading-4 text-black tracking-[1%]">
+            </li>
+            <li className="not-italic font-AeonikProRegular flex  	 items-center  text-sm leading-4 text-black tracking-[1%]">
               <NavLink className="flex 	whitespace-nowrap  items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                 Мужская одежда
               </NavLink>
               <span>
                 <ItailIcons colors={"#A1A1A1"} />
               </span>
-            </div>
-            <div className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%]">
+            </li>
+            <li className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%]">
               <NavLink className="flex flex-row whitespace-nowrap items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                 Все категории
               </NavLink>
               <span>
                 <ItailIcons colors={"#A1A1A1"} />
               </span>
-            </div>
-            <div className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+            </li>
+            <li className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
               <NavLink className="flex items-center whitespace-nowrap cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                 Спортивное
               </NavLink>
               <span>
                 <ItailIcons colors={"#A1A1A1"} />
               </span>
-            </div>
-            <div className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+            </li>
+            <li className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
               <NavLink className="flex items-center whitespace-nowrap  cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 tracking-[1%]">
                 Кроссовки
               </NavLink>
               <span>
                 <ItailIcons colors={"#A1A1A1"} />
               </span>
-            </div>
-            <div className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+            </li>
+            <li className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
               <NavLink className="flex items-center whitespace-nowrap cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                 Nike
               </NavLink>
               <span>
                 <ItailIcons colors={"#A1A1A1"} />
               </span>
-            </div>
-            <div className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
+            </li>
+            <li className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
               <NavLink className="flex items-center whitespace-nowrap  cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
                 Nike RUN Sneakers (Sport Wears)
               </NavLink>
-            </div>
-          </div>
-        </div>
+            </li>
+          </ul>
+        </nav>
 
-        <div className="hidden md:flex">
+        <nav className="hidden md:flex">
           <Popover
             open={state?.openwear}
             onOpenChange={handleOpenChangeWear}
@@ -167,7 +135,7 @@ const SingleProductTop = () => {
           >
             <span>
               {personItems
-                ?.filter((value) => value.id === dressInfo?.type)
+                ?.filter((value) => value.id == dressInfo?.type)
                 .map((data) => {
                   return (
                     <img
@@ -186,15 +154,14 @@ const SingleProductTop = () => {
               <BiChevronDown
                 size={22}
                 style={{ color: "#000" }}
-                className={`${
-                  state?.openwear ? "rotate-[-180deg]" : ""
-                } duration-200`}
+                className={`${state?.openwear ? "rotate-[-180deg]" : ""
+                  } duration-200`}
               />{" "}
             </span>
           </Popover>
-        </div>
-      </div>
-    </div>
+        </nav>
+      </section>
+    </main>
   );
 };
 export { SingleProductTop };

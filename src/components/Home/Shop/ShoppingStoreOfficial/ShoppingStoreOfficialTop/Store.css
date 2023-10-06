@@ -1,0 +1,6 @@
+.locationIconChangeColor {
+    color: green;
+}
+.locationIconChangeColor:hover {
+    color: #007DCA;
+}

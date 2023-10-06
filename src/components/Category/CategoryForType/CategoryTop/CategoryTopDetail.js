@@ -1,27 +1,32 @@
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-import { MuslimImg, nike } from "../../../../AssetsMain";
-import {
-  ArrowTopIcons,
-  ClothesIcons,
-  FilterIcons,
-  LocationIcons,
-  ManGenIcons,
-  ProductShopIcons,
-  SortIcons,
-  StarIcons,
-  VideoStoreIcons,
-  WomanGenIcons,
-} from "../../../../AssetsMain/icons";
-import Slider from "react-slick";
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { useContext, useRef, useState } from "react";
-import { DressMenu, dressMainData } from "../../../../ContextHook/ContextMenu";
+import { MuslimImg } from "../../../../assets";
+import { ClothesIcons, FilterIcons, SearchIcons, UnderSection } from "../../../../assets/icons";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
+import FilterDropUp from "../CategoryMobileDropUp/FilterDropUp";
+import ClothingTypesDropUp from "../CategoryMobileDropUp/ClothingTypesDropUp";
 
-const CategoryTopDetail = ({ name }) => {
+const CategoryTopDetail = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [clothingTypes, setClothingTypes] = useState(false)
+  const [filter, setFilter] = useState(false)
+
+  const toggleFilter = useCallback(() => setFilter(false), [])
+  const toggleClothingTypes = useCallback(() => setClothingTypes(false), [])
+
+  // For DropUp
+  useEffect(() => {
+    if (filter || clothingTypes) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [filter, clothingTypes]);
+
+
   const handleFilter = () => {
     setDressInfo({
       ...dressInfo,
@@ -29,124 +34,16 @@ const CategoryTopDetail = ({ name }) => {
     });
   };
 
-  const [prevSliderBtn, setPrevSliderBtn] = useState(false);
-  const wearGroup = [
-    { id: 1, name: "Футболки" },
-    { id: 2, name: "Рубашки" },
-    { id: 3, name: "Шорты" },
-    { id: 4, name: "Джинсы" },
-    { id: 5, name: "Свитер" },
-    { id: 6, name: "Куртки" },
-    { id: 7, name: "Толстовки" },
-    { id: 8, name: "Обуви" },
-    { id: 9, name: "Куртки" },
-    { id: 10, name: "Сапоги" },
-    { id: 11, name: "Платья" },
-    { id: 12, name: "Юбки" },
-    { id: 13, name: "Ремень" },
-  ];
-  const data = (onClick) => {
-    onClick();
-    setPrevSliderBtn(true);
-  };
-  const NextArrow = (props) => {
-    const { onClick } = props;
-    return (
-      <div
-        className={`absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-50	right-[4px]  rounded-full bg-white    duration-200 border  border-borderColor2
-        		`}
-        onClick={() => data(onClick)}
-      >
-        <button className="next">
-          <GrFormNext size={20} />
-        </button>
-      </div>
-    );
-  };
-
-  const PrevArrow = (props) => {
-    const { onClick } = props;
-    return (
-      <div
-        className={` ${
-          prevSliderBtn ? "block" : "hidden"
-        } absolute text-center cursor-pointer no-underline opacity-50 w-12 h-12 flex items-center justify-center top-[2px] z-10	left-[2px]  rounded-full bg-white   duration-200 border  border-borderColor2
-        `}
-        onClick={onClick}
-      >
-        <button className="prev">
-          <GrFormPrevious size={20} />
-        </button>
-      </div>
-    );
-  };
-
-  let settings1 = {
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    infinite: true,
-    arrows: true,
-    speed: 500,
-    dots: false,
-    slidesToShow: 9,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    // beforeChange: (current, next) => setCurrentSlide(next),
-
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 6,
-          slidesToScroll: 1,
-          infinite: true,
-        },
-      },
-      {
-        breakpoint: 770,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 560,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-
-      {
-        breakpoint: 390,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
   const [state, setState] = useState({
     opensports: false,
     openTypesofClothes: false,
   });
 
-   // categories
+  // CATEGORIES
   const handleOpenCategories = (newOpen) => {
     setState({ ...state, opensports: newOpen });
   };
-  const [selectSports, setSelectCategories] = useState("Categories");
   const handleCategories = (value) => {
-    setSelectCategories(value);
     setState({ ...state, opensports: false });
   };
   const categories = [
@@ -159,7 +56,7 @@ const CategoryTopDetail = ({ name }) => {
     { id: 7, type: "Классическая" },
   ];
   const contentCategories = (
-    <div className="w-[230px] h-fit m-0 p-0">
+    <section className="w-[230px] h-fit m-0 p-0">
       {categories.map((data) => {
         return (
           <p
@@ -173,16 +70,29 @@ const CategoryTopDetail = ({ name }) => {
           </p>
         );
       })}
-    </div>
+    </section>
   );
+  const catalogTypes = [
+    { id: 1, name: "Тренировка" },
+    { id: 2, name: "Плавание" },
+    { id: 3, name: "Футбол" },
+    { id: 4, name: "Волейбол" },
+    { id: 5, name: "Баскетбол" },
+    { id: 6, name: "Бокс/MMA" },
+    { id: 7, name: "Каратэ" },
+    { id: 8, name: "Борьба" },
+    { id: 9, name: "Дзюдо" },
+    { id: 10, name: "Кунг-фу" },
+    { id: 11, name: "Теннис" },
+    { id: 12, name: "Настольный Теннис" },
+  ];
 
   // Types of Clothes
   const handleOpenTypesofClothes = (openTypesofClothes) => {
-    setState({...state, openTypesofClothes: openTypesofClothes})
+    setState({ ...state, openTypesofClothes: openTypesofClothes });
   };
-  const [selectTypesofClothes, setSelectTypesofClothes] = useState("Categories");
-  const handleTypesofClothes = (value) => {
-    setSelectTypesofClothes(value);
+
+  const handleTypesofClothes = () => {
     setState({ ...state, openTypesofClothes: false });
   };
   const typesofClothes = [
@@ -201,7 +111,7 @@ const CategoryTopDetail = ({ name }) => {
     { id: 13, name: "Ремень" },
   ];
   const contentTypesofClothes = (
-    <div className="w-[150px] h-[200px] overflow-auto m-0 p-0">
+    <section className="w-[150px] h-[200px] overflow-auto m-0 p-0">
       {typesofClothes.map((data) => {
         return (
           <p
@@ -215,24 +125,52 @@ const CategoryTopDetail = ({ name }) => {
           </p>
         );
       })}
-    </div>
+    </section>
   );
 
   return (
-    <div className="flex flex-col justify-center border-b border-searchBgColor items-center md:py-[60px]">
-      <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
-        <div className="w-[100%] h-fit">
-          <div className="w-full flex flex-col">
-            <div className="relative w-full  md:h-[90px]  mt-2 md:mt-0  h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
+    <main className="flex flex-col justify-center border-t border-searchBgColor items-center md:pt-[60px]">
+      
+      <div className="tableSizes">
+        <section
+          onClick={() => setFilter(false)}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${filter ? "" : "hidden"
+            }`}
+        ></section>
+        <section
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${filter ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
+        >
+          <FilterDropUp onClick={toggleFilter} />
+        </section>
+      </div>
+      <div className="locations">
+        <section
+          onClick={() => setClothingTypes(false)}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${clothingTypes ? "" : "hidden"
+            }`}
+        ></section>
+        <locations
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${clothingTypes ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
+        >
+          <ClothingTypesDropUp onClick={toggleClothingTypes} />
+        </locations>
+      </div>
+      
+      <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
+        <article className="w-[100%] h-fit md:mb-14">
+          <article className="w-full flex flex-col border-b md:border-none border-searchBgColor">
+            <figure className="relative w-full md:h-[90px] mt-6 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               {/*  */}
-              <div className="w-full md:w-fit flex h-[80px] md:h-fit items-center">
-                <div className="absolute  w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
-                  <img src={MuslimImg} alt="" />
+              <div className="w-full md:w-fit flex h-[66px] md:h-fit items-center border md:border-none border-searchBgColor rounded-b-lg">
+                <div className="absolute w-[80px] md:w-[150px] h-[80px] md:h-[150px] left-[38px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center  bg-white">
+                  <img src={MuslimImg} alt="" className="rounded-full" />
                 </div>
-                <div className="flex items-center ml-[100px] md:ml-[210px]">
-                  <div className="text-xl font-AeonikProMedium">
-                    Муслим
-                    <span className="text-base text-setTexOpacity font-AeonikProRegular ml-2">
+                <div className="flex items-center ml-[112px] md:ml-[210px]">
+                  <div className="text-2xl font-AeonikProMedium">
+                    Спортивный
+                    <span className="text-lg text-setTexOpacity font-AeonikProRegular ml-2">
                       (291)
                     </span>
                   </div>
@@ -242,7 +180,7 @@ const CategoryTopDetail = ({ name }) => {
               {/*  */}
               <div className="w-full md:w-fit flex items-center justify-between md:mr-5  mt-6 md:mt-0">
                 <div className="flex items-center">
-                  <NavLink className="flex items-center text-[15px] font-AeonikProMedium mr-[22px]">
+                  <NavLink className="hidden md:flex items-center text-[15px] font-AeonikProMedium mr-[22px]">
                     По категории
                   </NavLink>
                   <div className="md:flex items-center hidden ">
@@ -271,43 +209,59 @@ const CategoryTopDetail = ({ name }) => {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div className="w-full md:hidden flex items-center justify-between mt-6 mb-3  px-4">
+            </figure>
+          </article>
+          <article className="w-full md:hidden flex items-center justify-between mt-6 mb-3 px-4">
             <button
-              onClick={handleFilter}
-              className="h-[44px] w-[48%] active:scale-95  active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+              onClick={() => setFilter(true)}
+              className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
             >
-              <span>
-                <FilterIcons colors={"#000"} />
-              </span>
-              <span className="ml-2 not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+              <FilterIcons colors={"#000"} />
+              <p className="ml-2 not-italic  font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
                 Фильтры
-              </span>
+              </p>
             </button>
-              
-            <Popover
-              className="h-[44px] w-[48%] active:scale-95  active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
-              open={state?.openTypesofClothes}
-              onOpenChange={handleOpenTypesofClothes}
-              trigger="click"
-              options={["Hide"]}
-              placement="bottom"
-              content={contentTypesofClothes}
+            <button
+              onClick={() => setClothingTypes(true)}
+              className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
             >
-                <span>
-                  <ClothesIcons />
-                </span>
-                <span className="ml-2 not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
-                  Тип одеждый 
-                </span>
-            </Popover>
-      
-          </div>
-        </div>
-      </div>
-    </div>
+              <UnderSection />
+              <p className="ml-2 not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+              Под раздел
+              </p>
+            </button>
+          </article>
+        </article>
+        <article className="w-full border-b border-searchBgColor">
+          <article className="w-full hidden md:block mb-10">      
+            <ul className=" flex flex-row items-center flex-wrap gap-x-[14px] gap-y-[14px]">
+              {catalogTypes.map((catalog, index) => (
+                <li
+                  key={index}
+                  className="text-[15px] font-AeonikProMedium"
+                >
+                  <button className="focus:bg-borderWinter focus:text-white hover:bg-borderWinter hover:text-white bg-white border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]">
+                    {catalog.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </article>
+        </article>
+      </section>
+      <section className="w-full px-4 block md:hidden">
+        <article className="w-full search flex items-center bg-white justify-between rounded-xl font-AeonikProMedium h-11 mt-3 mb-3 border border-searchBgColor ss:mt-3">
+          <span className=" flex ss:pl-[11.65px]">
+            <SearchIcons />
+          </span>
+          <input
+            type="text"
+            placeholder="Найти товар"
+            className="font-AeonikProRegular bg-transparent w-full px-3 h-12 text-[14px] leading-4"
+          />
+        </article>
+      </section>
+    </main>
   );
 };
 export default CategoryTopDetail;

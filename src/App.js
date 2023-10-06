@@ -1,13 +1,23 @@
-import React from "react";
-import RouterList from "./views/RouterList";
-import LoadingOpacity from "./Page/Loading/LoadingOpacity";
-import RouterMain from "./views/RouterMain";
+import React, { useContext, useEffect, useState } from "react";
+import RouterMain from "./root/RouterMain";
+import { useLocation } from "react-router-dom";
+import { dressMainData } from "./ContextHook/ContextMenu";
 
 export default function App() {
-  return (
-    <>
-      {/* <RouterList /> */}
-      <RouterMain />
-    </>
-  );
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
+
+  const location = useLocation();
+
+  const [locationWindow, setLocationWindow] = useState("");
+  useEffect(() => {
+    setLocationWindow(location.pathname);
+  }, [location.pathname]);
+
+  if (locationWindow !== "/delivery-points" && dressInfo?.yandexOpenMarketLocation) {
+    setDressInfo({
+      ...dressInfo,
+      yandexOpenMarketLocation: false,
+    });
+  }
+  return <RouterMain />;
 }

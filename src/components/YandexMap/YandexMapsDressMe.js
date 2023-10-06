@@ -1,27 +1,18 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef, useCallback } from "react";
 
-import {
-  YMaps,
-  Map,
-  ZoomControl,
-  GeolocationControl,
-  Placemark,
-  Clusterer,
-} from "react-yandex-maps";
+import { YMaps, Map, ZoomControl, GeolocationControl, Placemark, Clusterer } from "react-yandex-maps";
+import Slider from "react-slick";
 
 import "./yandex.css";
 import YandexMapsIndex from "./YandexMapsNavbar/YandexMapsIndex";
 import { dressMainData } from "../../ContextHook/ContextMenu";
-import { GrFormDown } from "react-icons/gr";
 import NavbarTopOpenMenu from "./YandexMapsNavbar/NavbarTopOpenMenu";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import ScrollFilter from "./YandexMapsNavbar/ScrollFilter";
 import {
   ArrowTopIcons,
-  ClockIcons,
-  ClothesHangIcons,
-  ClothesIcons,
   CommentIcons,
+  FilterIcons,
   FullScreenMapsIcons,
   HouseStatisticIcons,
   ListCollectionIcons,
@@ -30,17 +21,38 @@ import {
   MarketIcons,
   MaximazeMapsIcons,
   MenuCloseIcons,
-  MenuOpenIcons,
   PhoneIcons,
   SearchIcons,
-  StarIcons,
   VolumeIcons,
-} from "../../AssetsMain/icons";
-import { UzbekFlag, locationIcons, markerIcons } from "../../AssetsMain";
+} from "../../assets/icons";
+import { UzbekFlag, locationIcons, markerIcons } from "../../assets";
 import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationMarketOpen";
+import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import CarouselModalMarket from "./YandexLocationMarketOpen/CarouselModalMarket";
+import MarketFilterofMaps from "./YandexLocationMarketOpen/MarketFilterofMaps";
+// import CarouselModalMarket from "./YandexMapsNavbar/CarouselModalMarket";
+
+
+const mapOptions = {
+  modules: ["geocode", "SuggestView"],
+  defaultOptions: { suppressMapOpenBlock: true },
+};
+const initialState = {
+  title: "",
+  center: [41.311753, 69.241822],
+  zoom: 14,
+};
 
 function YandexMapsDressMe() {
+
+  const [openCordinateMap, setOpenCordinateMap] = useState("");
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
+  const [openCarouselModal, setOpenCarouselModal] = useState(false);
+  const toggleCarouselModal = React.useCallback(() => setOpenCarouselModal(!openCarouselModal), []);
+
+  const [marketsFilterMaps, setMarketsFilterMaps] = useState(false);
+  const toggleMarketsFilterMaps = React.useCallback(() => setMarketsFilterMaps(false), []);
+
 
   function getCurrentDimension() {
     return {
@@ -58,7 +70,61 @@ function YandexMapsDressMe() {
     };
   }, [screenSize]);
 
+  // ------------------SearchSystem-----------------------
+
+  // const [state, setState] = useState({ ...initialState });
+  // const [mapConstructor, setMapConstructor] = useState(null);
+  // const mapRef = useRef(null);
+  // const searchRef = useRef(null);
+
+  // // submits
+
+  // // console.log({ title: state.title, center: mapRef.current.getCenter() });
+
+  // // reset state & search
+  // const handleReset = () => {
+  //   setState({ ...initialState });
+  //   // setState({ ...initialState, title: "" });
+  //   searchRef.current.value = "";
+  //   // mapRef.current.setCenter(initialState.center);
+  //   mapRef.current.setZoom(initialState.zoom);
+  // };
+
+  // // search popup
+  // useEffect(() => {
+  //   if (mapConstructor) {
+  //     new mapConstructor.SuggestView(searchRef.current).events.add(
+  //       "select",
+  //       function (e) {
+  //         const selectedName = e.get("item").value;
+  //         mapConstructor.geocode(selectedName).then((result) => {
+  //           const newCoords = result.geoObjects
+  //             .get(0)
+  //             .geometry.getCoordinates();
+  //           setState((prevState) => ({ ...prevState, center: newCoords }));
+  //         });
+  //       }
+  //     );
+  //   }
+  // }, [mapConstructor]);
+
+  // // change title
+  // const handleBoundsChange = (e) => {
+  //   const newCoords = mapRef.current.getCenter();
+  //   mapConstructor.geocode(newCoords).then((res) => {
+  //     const nearest = res.geoObjects.get(0);
+  //     const foundAddress = nearest.properties.get("text");
+  //     const [centerX, centerY] = nearest.geometry.getCoordinates();
+  //     const [initialCenterX, initialCenterY] = initialState.center;
+  //     if (centerX !== initialCenterX && centerY !== initialCenterY) {
+  //       setState((prevState) => ({ ...prevState, title: foundAddress }));
+  //     }
+  //   });
+  // };
+
+  // ------------------SearchSystem-----------------------
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+
   const wearGroup = [
     { id: 1, name: "Футболки" },
     { id: 2, name: "Рубашки" },
@@ -75,10 +141,7 @@ function YandexMapsDressMe() {
     { id: 13, name: "Ремень" },
   ];
 
-  // const [coords, setCoords] = useState("");
   const onMapClick = (e) => {
-    // const coord = e.get("coords");
-    // setCoords({ ...coords, coords: coord });
     if (dressInfo?.yandexOpenMarketLocation) {
       setDressInfo({
         ...dressInfo,
@@ -86,6 +149,7 @@ function YandexMapsDressMe() {
       });
     }
   };
+
   const HandleData = (e) => {
     if (dressInfo?.yandexOpenMarketLocation) {
       setDressInfo({
@@ -102,10 +166,6 @@ function YandexMapsDressMe() {
     });
   };
 
-  const handleOpenMenu = () => {
-    setDressInfo({ ...dressInfo, yandexOpenMenu: !dressInfo?.yandexOpenMenu });
-  };
-
   const handleOpenMarket = () => {
     setDressInfo({
       ...dressInfo,
@@ -113,19 +173,9 @@ function YandexMapsDressMe() {
     });
   };
 
-  const handleGetId = (getValue) => {
-    setDressInfo((current) => {
-      return current.MarketList.map((data) => {
-        if (data?.id == getValue) {
-          return { ...data, accordion: !data.accordion };
-        } else {
-          return { ...data, accordion: false };
-        }
-      });
-    });
-  };
   // --------------Open Main MenusetDressInfo
-  const handlePlaceMark = (value) => {
+  const handlePlaceMark = (value, cordinate) => {
+    setOpenCordinateMap(cordinate)
     setDressInfo({
       ...dressInfo,
       yandexGetMarketId: value,
@@ -134,111 +184,140 @@ function YandexMapsDressMe() {
   };
 
   //------------------------------------------------------------------------------------------------
-  const [ymaps, setYmaps] = useState(null);
   const mapState = {
     center: [41.311753, 69.241822],
     zoom: 14,
   };
   //------------------------------------------------------------------------------------------------
-  let IconsColor = "";
 
-  if (dressInfo?.type === 1111) {
-    IconsColor = "#008F0E";
-  }
-  if (dressInfo?.type === 2222) {
-    IconsColor = "#EAA700";
-  }
-  if (dressInfo?.type === 3333) {
-    IconsColor = "#E17A02";
-  }
-  if (dressInfo?.type === 4444) {
-    IconsColor = "#007DCA";
-  }
-  // left-1/2
   return (
-    <div className=" h-fit w-full flex justify-center overflow-hidden overflow-y-hidden">
-      <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden">
+    <div className="h-fit w-full flex items-center justify-center overflow-hidden overflow-y-hidden">
+      <div
+        onClick={() => {
+          setOpenCarouselModal(false);
+          setMarketsFilterMaps(false);
+        }}
+        className={`fixed inset-0 z-[215] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
+         ${openCarouselModal || marketsFilterMaps ? "" : "hidden"
+          }`}
+      >
+      </div>
+      <div className={`w-full   sm:w-fit h-fit flex items-center mx-auto justify-center fixed z-[216]   ${openCarouselModal ? "" : "hidden"
+        }`}>
+        <button
+          onClick={() => {
+            setOpenCarouselModal(false);
+          }}
+          className="absolute right-3 sm:right-[-20px] z-[218] top-[-50px] sm:top-[0px] flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px]   rounded-full bg-[#808080]">
+          <MenuCloseIcons colors="#fff" />
+        </button>
+        <div className="relative  z-[217] !w-full sm:w-fit  top-0">
+          <CarouselModalMarket />
+        </div>
+      </div>
+      <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden ymapsName">
         {/* Laptop device for */}
         {screenSize.width > 768 && (
-          <div className={`w-full bottom-[0px]  overflow-hidden  md:w-[769px] absolute md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
-          ${
-            dressInfo?.yandexOpenMarketLocation
-              ? `z-[102] h-fit bottom-[-170px] md:bottom-[-75px]`
-              : "hidden bottom-[-170px]  z-[-10]"
-          } ease-linear duration-300`}
+          <div className={`w-full bottom-[0px]  overflow-hidden  md:w-[769px] fixed md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
+          ${dressInfo?.yandexOpenMarketLocation
+              ? `z-[102] h-[350px]  bottom-[-75px]`
+              : " h-0 bottom-[0]  z-[-10]"
+            } ease-linear duration-300`}
           >
-            {dressInfo?.yandexOpenMarketLocation && (
-              <YandexLocationMarketOpen />
-            )}
+            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} />
           </div>
         )}
         {screenSize.width <= 768 && (
-          <div className={`absolute w-full overflow-hidden  ${
-              dressInfo?.yandexOpenMarketLocation
-                ? "z-[102] h-fit bg-white  bottom-0 mb-0"
-                : "bottom-[-200px] mb-[-200px] z-[-10]"
+          <div className={`fixed w-full bg-white z-[116] left-0 right-0 overflow-hidden  ${dressInfo?.yandexOpenMarketLocation
+            ? "h-[570px] bottom-0 ease-linear duration-300 "
+            : "h-0 bottom-0 ease-linear duration-300 "
             }  ease-linear duration-300 `}
           >
-            {dressInfo?.yandexOpenMarketLocation && (
-              <YandexLocationMarketOpen />
-            )}{" "}
+            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} />
           </div>
         )}
-
+        {/* // -----------------MarketFilterofMaps--------------------------- */}
+        {screenSize.width <= 768 && (
+          <div className={`fixed max-w-[440px] mx-auto w-full bg-white z-[215] left-0 right-0 overflow-hidden  ${marketsFilterMaps
+            ? "h-[570px] bottom-0 ease-linear duration-300 rounded-t-lg"
+            : "h-0 bottom-0 ease-linear duration-300 "
+            }  ease-linear duration-300 `}
+          >
+            <MarketFilterofMaps onClick={toggleMarketsFilterMaps} />
+          </div>
+        )}
         {/* Navbaryandex */}
-        <div className={`absolute z-50 hidden md:block ${
-            !dressInfo?.yandexOpenMenu
-              ? "top-0 ease-linear duration-500 "
-              : "top-[-250px] ease-linear duration-500 "
+        <div className={`absolute z-50 hidden md:block ${!dressInfo?.yandexOpenMenu
+          ? "top-0 ease-linear duration-500 "
+          : "top-[-250px] ease-linear duration-500 "
           }  ease-linear duration-500 w-full`}
         >
           <YandexMapsIndex />
         </div>
-        <div className={`absolute z-50 right-2 ${
-            dressInfo?.yandexOpenMenu
-              ? "top-2  right-2 ease-linear duration-500 "
-              : "top-[-250px]  right-2 ease-linear duration-500 "
+        <div className={`absolute z-50 right-2 ${dressInfo?.yandexOpenMenu
+          ? "top-2  right-2 ease-linear duration-500 "
+          : "top-[-250px]  right-2 ease-linear duration-500 "
           }  ease-linear duration-500 w-[74%] `}
         >
           <NavbarTopOpenMenu />
         </div>
+        {/* Yandex Search */}
+        <div className={`absolute  ${!dressInfo?.yandexFullScreen ? "top-[80px]" : "top-[8px]"
+          }  md:top-auto md:bottom-[24px] left-0 right-0 mx-auto  overflow-hidden z-50   h-[48px] w-[97%] ll:w-[94%] md:w-[400px] `}
+        >
+          <div
+            className="w-full h-full flex justify-between gap-x-2"
+          >
+            <div className="w-[85%] md:w-full h-full flex items-center rounded-lg bg-yandexNavbar backdrop-blur-sm px-2 ll:px-3 overflow-hidden shadow-lg ">
+              <div>
+                <img src={locationIcons} alt="" />
+              </div>
+              <div className="h-full flex items-center w-full mx-3">
+                <input
+                  // ref={searchRef}
+                  // type="text"
+                  name="search"
+                  type="search"
+                  className="h-full outline-none w-full bg-transparent"
+                  placeholder="Поиск мест и адресов"
+                  autoComplete="off"
+                />
+              </div>
+              <button type="button">
+                <SearchIcons />
+              </button>
 
-        <YMaps query={{ apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21" }}>
+            </div>
+            <button onClick={() => setMarketsFilterMaps(!marketsFilterMaps)} type="button" className="md:hidden h-[48px] w-[48px] rounded-lg rounded-lg bg-yandexNavbar backdrop-blur-sm flex items-center justify-center shadow-lg">
+              <FilterIcons colors={"#000"} className="w-full h-full" />
+            </button>
+          </div>
+        </div>
+        {/* <YMaps query={{ apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21" }}> */}
+        <YMaps query={{
+          apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21",
+          lang: "ru",
+        }}>
           <Map
             defaultState={mapState}
-            onLoad={(ymaps) => setYmaps(ymaps)}
+            // state={state}
+            // {...mapOptions}
+            // onLoad={setMapConstructor}
+            // onBoundsChange={handleBoundsChange}
+            // instanceRef={mapRef}
             onClick={onMapClick}
             onMouseDown={HandleData}
             width="100%"
             height="100%"
-            modules={[
-              // "control.ZoomControl",
-              "control.FullscreenControl",
-              // "control.smallMapDefaultSet",
-            ]}
+            modules={["control.FullscreenControl"]}
+
           >
-            {/* Yandex Shopping Card */}
-            {!dressInfo?.yandexOpenMarket && (
-              <div
-                onClick={handleOpenMarket}
-                className={`absolute right-2 md:hidden cursor-pointer ${
-                  !dressInfo?.yandexFullScreen
-                    ? "bottom-[180px]"
-                    : "bottom-[115px]"
-                }   w-[40px]  z-[52]  h-[40px] rounded-lg bg-white flex items-center justify-center`}
-              >
-                <div className="w-full h-full flex items-center justify-center">
-                  <MarketIcons colors={"#000"} />
-                </div>
-              </div>
-            )}
             <div
               onClick={handleFullScreen}
-              className={`absolute right-2 ${
-                !dressInfo?.yandexFullScreen
-                  ? "bottom-[128px] md:bottom-[87px]"
-                  : "bottom-[65px] md:bottom-[87px]"
-              }  cursor-pointer z-[51] w-10 h-10 rounded-lg bg-white ss:flex items-center justify-center block md:hidden`}
+              className={`absolute right-3 ${!dressInfo?.yandexFullScreen
+                ? "bottom-[128px] md:bottom-[87px]"
+                : "bottom-[65px] md:bottom-[87px]"
+                }  cursor-pointer z-[51] w-10 h-10 rounded-lg bg-white ss:flex items-center justify-center block md:hidden`}
             >
               {dressInfo?.yandexFullScreen ? (
                 <span>
@@ -263,9 +342,9 @@ function YandexMapsDressMe() {
                 size: "small",
               }}
             />{" "}
+
             {/* ---------- */}
             <Clusterer
-              // className="bg-green-500 text-red-500"
               className={"placemarkCLuster"}
               options={{
                 preset: "islands##004773ClusterIcons",
@@ -275,9 +354,10 @@ function YandexMapsDressMe() {
               {dressInfo?.MarketList.map((data, index) => (
                 <Placemark
                   className={"placemarkCLuster cursor-pointer"}
-                  // className="bg-green-500 text-red-500 p-2 "
                   key={index}
-                  onClick={() => handlePlaceMark(data?.marketId)}
+                  onClick={() => {
+                    handlePlaceMark(data?.marketId, data?.cordinate)
+                  }}
                   geometry={data?.cordinate}
                   options={{
                     iconLayout: "default#image",
@@ -285,264 +365,14 @@ function YandexMapsDressMe() {
                     iconImageSize: [32, 32],
                   }}
                   modules={["geoObject.addon.balloon"]}
-                  properties={
-                    {
-                      // balloonContentHeader: `<div class="balloonContentHeader"><a class="title" href = "#">Пункт выдачи</a><br><span class="description11">${data?.address}</span></div>`,
-                      // // Зададим содержимое основной части балуна.
-                      // balloonContentBody: <YandexLocationMarketOpen />,
-                      // balloonContentBody:
-                      //   `<div class="bodyImgs"><img  className="data" src="https://images.wbstatic.net/PickupOffice/Img154040_Photo1.jpg"/><img  className="data" src="https://images.wbstatic.net/PickupOffice/Img154040_Photo1.jpg"/> </div><br/>` +
-                      //   `<div class="bodySana">
-                      //       <span class='text'>Режим работы:<span>${data?.workTime}</span></span><br/>
-                      //       <span class='text'>Примерочные: <span>${data?.imgs.length} шт</span></span>
-                      //   </div><br/>` +
-                      //   `<div class="BtnUzGroup"><div class='BtnUz'>Выбрать</div></div>`,
-                      // balloonContentFooter: `<div class="footerText"><span>Directions:</span> ${data?.direction}</div>`,
-                    }
-                  }
                 />
               ))}
             </Clusterer>
-            {/* yandex menu Open Full Code */}
-            <div className="relative">
-              {!dressInfo?.yandexOpenMenu ? (
-                <div
-                  className={`  ease-linear duration-300 h-[40px] absolute cursor-pointer ss:top-[-200px] md:top-[8px] left-[8px] z-50 bg-white shadow-lg overflow-hidden rounded-lg  `}
-                >
-                  <div
-                    onClick={handleOpenMenu}
-                    className="w-fit flex items-center justify-between  cursor-pointer roundedn-lg h-full  "
-                  >
-                    <div className="group w-10 hover:w-[138px] bg-bgCard hover:bg-white   ease-linear duration-300 rounded-lg overflow-hidden  flex items-center justify-between ">
-                      <span className="w-[36px] h-8 flex items-center justify-center">
-                        <span className="ml-[2px]">
-                          <MenuOpenIcons />
-                        </span>
-                      </span>
-                      <span className=" flex flex-nowrap items-center mr-[-100px] group-hover:mr-[10px] w-[92px] ease-linear duration-300 pt-1 justify-center text-center  cursor-pointer bg-white not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
-                        Магазины
-                      </span>
-                    </div>
-                  </div>{" "}
-                </div>
-              ) : null}
 
-              <div
-                className={`${
-                  dressInfo?.yandexOpenMenu || dressInfo?.yandexOpenMarket
-                    ? " ml-[0px]"
-                    : "  ml-[-1000px]"
-                } absolute cursor-pointer left-0 h-[100vh] z-[102] rounded-lg overflow-hidden ${
-                  dressInfo?.yandexFullScreen
-                    ? "top-[0px]"
-                    : "ss:top-[70px] md:top-0"
-                } ${
-                  !dressInfo?.yandexOpenMarket
-                    ? "w-[25%] bg-yandexNavbar backdrop-blur-sm	"
-                    : "bg-white w-[100%]  "
-                }  p-2 ease-linear duration-[600ms]   `}
-              >
-                {!dressInfo?.yandexOpenMarket ? (
-                  <div
-                    onClick={handleOpenMenu}
-                    className="w-full h-[42px] flex items-center justify-center"
-                  >
-                    {" "}
-                    <div className="absolute left-2 top-2 w-[40px] h-[40px] rounded-lg bg-white  border border-searchBgColor flex items-center justify-center">
-                      <span>
-                        <MenuCloseIcons />
-                      </span>
-                    </div>
-                    <div className="w-fit ">
-                      <span className="not-italic font-AeonikProMedium text-xl leading-6 text-center tracking-[1%] text-black">
-                        Магазины
-                      </span>
-                    </div>
-                  </div>
-                ) : null}
-                {/* yandex Menu Top */}
-                <div className="w-full h-12 flex items-center justify-between px-3 rounded-lg bg-white mt-3 border border-searchBgColor">
-                  <div className="w-fit pr-3">
-                    <span className="w-6 h-6">
-                      <MarketIcons colors={"#000"} />
-                    </span>
-                  </div>
-                  <div className="w-[82%] h-full  ">
-                    <input
-                      className="w-[100%] h-full "
-                      type="text"
-                      name="search"
-                      placeholder="Поиск магазина (имя или район)"
-                    />
-                  </div>
-                  <div className="w-fit border-l pl-3 border-searchBgColor">
-                    <button type="button">
-                      <SearchIcons />
-                    </button>
-                  </div>
-                </div>
-                {/* Yandex Menu List */}
-                <div className="w-full h-[85vh] mt-3 py-1 flex flex-col gap-y-2 ">
-                  <div className="w-full h-full overflow-y-auto  YandexListScroll ">
-                    {dressInfo?.MarketList?.map((data) => {
-                      return (
-                        <div
-                          key={data?.id}
-                          className={`w-full relative ${
-                            data?.accordion ? "h-[426px]" : "h-[202px]"
-                          } border border-searchBgColor flex flex-col duration-300 rounded-lg   bg-white  overflow-hidden   mt-3`}
-                        >
-                          <div
-                            className={`w-full p-4 !h-[202px] ${
-                              data?.accordion ? "bg-white" : "bg-btnBgColor"
-                            } absolute top-0 flex flex-wrap content-around `}
-                          >
-                            <div className="w-full flex justify-between">
-                              <span className="not-italic font-AeonikProMedium text-lg leading-5 text-black tracking-[1%]">
-                                Button (Чиланзар)
-                              </span>
-                              <span className="flex">
-                                <span>
-                                  <StarIcons />
-                                </span>
-                                <span className="not-italic ml-[6px] flex font-AeonikProMedium text-lg leading-5 text-black tracking-[1%]">
-                                  4.8
-                                </span>
-                              </span>
-                            </div>
-                            <div className="w-full flex">
-                              <span>
-                                <LocationIcons />
-                              </span>
-                              <span className="w-[70%] not-italic ml-4 font-AeonikProRegular text-base leading-5 text-setTexOpacity">
-                                г. Ташкент, Чиланзарский район, квартал-7, д 45б
-                                (Катартал)
-                              </span>
-                            </div>
-                            <div className="w-full flex items-center">
-                              <span>
-                                <ClothesHangIcons colors={"#000"} />
-                              </span>
-                              <span className="not-italic ml-4 font-AeonikProRegular text-base leading-4 text-black tracking-[1%]">
-                                Есть примерочная
-                              </span>
-                            </div>
-                            <div
-                              className="w-full flex items-center justify-between"
-                              onClick={() => handleGetId(data.id)}
-                            >
-                              <div className="flex items-center ">
-                                <span>
-                                  <ClockIcons colors={"#000"} />
-                                </span>
-                                <span className="not-italic ml-4 font-AeonikProRegular text-base leading-4 text-black tracking-[1%]">
-                                  10:00 - 20:00, без выходных
-                                </span>
-                              </div>{" "}
-                              <div className="flex items-center justify-end">
-                                <span
-                                  className={`${
-                                    data?.accordion
-                                      ? "rotate-[-180deg]"
-                                      : "rotate-0"
-                                  } ease-linear duration-300`}
-                                >
-                                  <GrFormDown size={20} />
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div
-                            className={`h-[214px] absolute top-[202px]   overflow-hidden flex flex-wrap  content-between justify-center transition ease-in-out duration-300  w-full px-4 `}
-                          >
-                            <div className="w-full ">
-                              <div className="w-[80%] h-[2px] bg-OpacitySignIn mx-auto  mb-5 "></div>
-                              <div className="flex flex-col gap-y-3 ">
-                                <div className=" flex justify-between items-center">
-                                  <div className="flex items-center">
-                                    <span>
-                                      <ClothesIcons />
-                                    </span>
-                                    <span className="ml-4 not-italic font-AeonikProMedium text-base leading-4 text-black">
-                                      Футболки
-                                    </span>
-                                  </div>
-                                  <div className="flex justify-end items-center">
-                                    <span className="not-italic font-AeonikProMedium text-base leading-5 text-right text-setTexOpacity">
-                                      от
-                                      <span className="not-italic font-AeonikProMedium text-xl leading-5 text-right text-black">
-                                        {" "}
-                                        59 000{" "}
-                                      </span>
-                                      сум
-                                    </span>
-                                  </div>
-                                </div>
-                                <div className=" flex justify-between items-center">
-                                  <div className="flex items-center">
-                                    <span>
-                                      <ClothesIcons />
-                                    </span>
-                                    <span className="ml-4 not-italic font-AeonikProMedium text-base leading-4 text-black">
-                                      Футболки
-                                    </span>
-                                  </div>
-                                  <div className="flex justify-end items-center">
-                                    <span className="not-italic font-AeonikProMedium text-xl leading-5 text-right text-setTexOpacity">
-                                      от
-                                      <span className="not-italic font-AeonikProMedium text-xl leading-5 text-right text-black">
-                                        {" "}
-                                        59 000{" "}
-                                      </span>
-                                      сум
-                                    </span>
-                                  </div>
-                                </div>
-                                <div className=" flex justify-between items-center">
-                                  <div className="flex items-center">
-                                    <span>
-                                      <ClothesIcons />
-                                    </span>
-                                    <span className="ml-4 not-italic font-AeonikProMedium text-base leading-4 text-black">
-                                      Футболки
-                                    </span>
-                                  </div>
-                                  <div className="flex justify-end items-center">
-                                    <span className="not-italic font-AeonikProMedium text-xl leading-5 text-right text-setTexOpacity">
-                                      от
-                                      <span className="not-italic font-AeonikProMedium text-xl leading-5 text-right text-black">
-                                        {" "}
-                                        59 000{" "}
-                                      </span>
-                                      сум
-                                    </span>
-                                  </div>
-                                </div>{" "}
-                              </div>
-                              <div className="w-[80%] h-[2px] bg-OpacitySignIn mx-auto  mt-5"></div>
-                            </div>
-                            <div className="w-full h-12  flex justify-center active:scale-95	active:opacity-70  items-center rounded-lg bg-searchBgColor border border-OpacitySignIn">
-                              <span>
-                                <MarketIcons colors={"#000"} />
-                              </span>
-                              <span className="ml-3 not-italic font-AeonikProMedium text-base leading-4 text-right text-black">
-                                Посетит страницу магазина
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
             {/* Yandex Main menu */}
-            <div className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${
-                dressInfo?.openMainMenu
-                  ? "left-[-500px] md:left-[-5000px] z-[-80] ease-linear duration-500"
-                  : "hamburger flex flex-col ease-linear duration-500 overscroll-none z-[105]"
+            <div className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${dressInfo?.openMainMenu
+              ? "left-[-500px] md:left-[-5000px] z-[-80] ease-linear duration-500"
+              : "hamburger flex flex-col ease-linear duration-500 overscroll-none z-[105]"
               }`}
             >
               <div className={`w-full h-full `}>
@@ -553,26 +383,21 @@ function YandexMapsDressMe() {
                   </span>
 
                   <input
-                    type="text"
-                    placeholder="Искать товары или бренды"
+                    type="text" placeholder="Искать товары или бренды"
                     className="bg-transparent w-full px-3 h-12 text-[14px] bg-btnBgColor border border-transparent md:border-searchBgColor md:mx-0 md:-ml-[3px] md:px-3 md:h-12
-                  placeholder-italic placeholder-AeonikProMedium placeholder-sm leading-4 placeholder-setTexOpacity placeholder-[1px]
-                  "
+                    placeholder-italic placeholder-AeonikProMedium placeholder-sm leading-4 placeholder-setTexOpacity placeholder-[1px]
+                    "
                   />
                 </div>
                 {/* Music and Map selection for Mobile */}
                 <div className="flex items-center justify-between h-fit mb-3">
-                  <button
-                    // onClick={() => setState({ ...state, hamburgerMenu: false })}
-                    className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
-                  >
+                  <button className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
                     <span>
-                      <VolumeIcons colors={IconsColor} />
+                      <VolumeIcons colors={dressInfo?.ColorSeason} />
                     </span>
                     <span className=" ml-[10px]">Музика</span>
                   </button>
                   <NavLink
-                    // onClick={() => setState({ ...state, hamburgerMenu: false })}
                     to="/delivery-points"
                     className="right  h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium border border-searchBgColor bg-btnBgColor ss:w-[48%]"
                   >
@@ -662,7 +487,7 @@ function YandexMapsDressMe() {
                     className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
                   >
                     <span>
-                      <PhoneIcons />
+                      <PhoneIcons colors={"#000"} />
                     </span>
                     <span className="ml-[10px]">Contact</span>
                   </Link>
@@ -695,55 +520,24 @@ function YandexMapsDressMe() {
                 </div>
               </div>
             </div>
-            {/* Yandex Search */}
-            <div className={`absolute  ${
-                !dressInfo?.yandexFullScreen ? "top-[80px]" : "top-[8px]"
-              }  md:top-auto md:bottom-[24px] left-0 right-0 mx-auto  overflow-hidden z-50 bg-yandexNavbar backdrop-blur-sm rounded-xl h-[48px] w-[94%] md:w-fit shadow-lg`}
-            >
-              <div className="w-full h-full flex justify-between ">
-                <div className="w-[100%] h-full flex gap-x-2 items-center px-3">
-                  <div>
-                    <span>
-                      <img src={locationIcons} alt="" />
-                    </span>{" "}
-                  </div>
-                  <div className="h-full flex items-center w-[240px] mx-3">
-                    <input
-                      type="text"
-                      name="search"
-                      className="h-full  w-full bg-transparent"
-                      placeholder="Поиск мест и адресов"
-                      autoComplete="off"
-                    />
-                  </div>
-                  <button type="button">
-                    <SearchIcons />
-                  </button>
-                </div>
-                {/* <div className="w-[20%] h-full flex items-center border border-red-400"></div> */}
-              </div>
-            </div>
-            <div className={`absolute block md:hidden ml-[-1000px] duration-1000 overflow-hidden z-[103] rounded-lg shadow-lg left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%]  md:bottom-[120px]
-              ${
-                dressInfo?.yandexFullScreen
+
+            <div
+              className={`absolute block md:hidden ml-[-1000px] duration-1000 overflow-hidden z-[103] rounded-lg shadow-lg left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%]  md:bottom-[120px]
+                ${dressInfo?.yandexFullScreen
                   ? "bottom-[10px] md:bottom-auto"
                   : "bottom-[10px] md:bottom-auto"
-              }
-              ${
-                dressInfo?.yandexOpenMarket &&
+                }
+                ${dressInfo?.yandexOpenMarket &&
                 "w-[calc(100%-56px)] ml-[0] duration-1000 bg-yandexNavbar backdrop-blur-sm"
-              }
+                }
 
-              `}
+                `}
             >
               <div className="w-full h-full flex items-center justify-between  ">
                 <div
                   onClick={handleOpenMarket}
                   className={`w-full h-12 flex justify-center gap-x-3 items-center rounded-lg`}
                 >
-                  {/* {!dressInfo?.yandexOpenMarket ? (
-                      <img src={shop} alt="" />
-                  ) : ( */}
                   <div className="flex items-center justify-center">
                     <span>
                       <MenuCloseIcons />
@@ -756,15 +550,13 @@ function YandexMapsDressMe() {
                 </div>
               </div>
             </div>
-            {!dressInfo?.yandexOpenMarket && (
+            {/* {!dressInfo?.yandexOpenMarket && (
               <div
-                className={`fixed block md:hidden  bg-white  z-[55]  ${
-                  !dressInfo?.yandexFullScreen ? "bottom-[63px] " : "bottom-[0]"
-                }   w-full  bg-yandexNavbar flex items-center py-2
+                className={`fixed block md:hidden  bg-white  z-[55]  ${!dressInfo?.yandexFullScreen ? "bottom-[63px] " : "bottom-[0]"
+                  }   w-full  bg-yandexNavbar flex items-center py-2
 
-            `}
+              `}
               >
-                {/* <YandexFilter /> */}
                 <ScrollFilter _class="items gap-x-2 pl-3">
                   {wearGroup?.map((data) => {
                     return (
@@ -777,12 +569,12 @@ function YandexMapsDressMe() {
                   })}
                 </ScrollFilter>
               </div>
-            )}
+            )} */}
             {/* ---------- */}
           </Map>
         </YMaps>
       </div>
-    </div>
+    </div >
   );
 }
 

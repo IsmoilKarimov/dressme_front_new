@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
-import { NoImg, SeasonSquare } from "../../../../AssetsMain/icons";
+import { NoImg, SeasonSquare } from "../../../../assets/icons";
 
 export default function TypeSection() {
   const [dressInfo] = useContext(dressMainData);
@@ -43,26 +43,6 @@ export default function TypeSection() {
       ],
     },
   ];
-
-  let dataStyle = "";
-  let genderStyle = "";
-  if (dressInfo?.type == 1111) {
-    dataStyle = " #008F0E ";
-    genderStyle = "hover:text-borderSpring";
-  }
-  if (dressInfo?.type == 2222) {
-    dataStyle = " #EAA700";
-    genderStyle = "hover:text-borderSummer";
-  }
-  if (dressInfo?.type == 3333) {
-    dataStyle = " #E17A02 ";
-    genderStyle = "hover:text-borderAutumm";
-  }
-  if (dressInfo?.type == 4444) {
-    dataStyle = " #007DCA ";
-    genderStyle = "hover:text-borderWinter";
-  }
-
   return (
     <div className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <div className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
@@ -91,11 +71,11 @@ export default function TypeSection() {
                       </p>
                       <p className="flex items-center cursor-pointer">
                         <span
-                          className={`not-italic font-AeonikProMedium md:text-sm ss:text-base lg:text-base  leading-4 text-right mr-2 text-black ${genderStyle}`}
+                          className={`not-italic font-AeonikProMedium md:text-sm ss:text-base lg:text-base  leading-4 text-right mr-2 text-black ${dressInfo?.TextHoverSeason}`}
                         >
                           {data?.buy}
                         </span>
-                        <SeasonSquare colors={dataStyle} />
+                        <SeasonSquare colors={dressInfo?.ColorSeason} />
                       </p>
                     </div>
                     <div className="w-full flex flex-wrap gap-y-2 justify-between mt-4">

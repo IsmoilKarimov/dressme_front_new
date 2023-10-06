@@ -1,137 +1,108 @@
-import React, { useContext, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink } from "react-router-dom";
 import {
-  ActiveBasketIcons,
   ActiveCotegoryIcons,
-  ActiveHeartIcons,
   ActiveHomeIcons,
   ActivePersonIcons,
-  BasketIcons,
   CotegoryIcons,
-  HeartLinkIcons,
   HomeIcons,
   MapIcons,
   MapNavMenuIcons,
   PersonIcons,
-} from "../../AssetsMain/icons";
-import { ActivePersonImg, HeartImg } from "../../AssetsMain";
+} from "../../assets/icons";
+import { HeartImg } from "../../assets";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 
 const NavMenu = () => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
 
-  let IconsColor = "";
 
-  if (dressInfo?.type === 1111) {
-    IconsColor = "#008F0E";
-  }
-  if (dressInfo?.type === 2222) {
-    IconsColor = "#EAA700";
-  }
-  if (dressInfo?.type === 3333) {
-    IconsColor = "#E17A02";
-  }
-  if (dressInfo?.type === 4444) {
-    IconsColor = "#007DCA";
-  }
 
   return (
-    <div
-      className={`bg-white shadow-navMenuShadov  px-4 w-full rounded-t-xl md:hidden z-[55] h-full overscroll-none overflow-y-hidden`}
+    <nav
+      className={`bg-white shadow-navMenuShadov  px-4 w-full rounded-t-xl md:hidden z-[101] h-full overscroll-none overflow-y-hidden`}
     >
       <ul className="flex items-center justify-between text-[10px] font-AeonikProMedium py-1 ">
         <li className="w-[72px] h-[56px]">
           <NavLink
             to={"/"}
-            className="w-full h-full flex items-center justify-center text-center  "
+            className="w-full h-full flex items-center justify-center text-center"
           >
             {({ isActive }) =>
               isActive ? (
-                <span className="flex flex-col items-center justify-center mt-1 ">
-                  <span className=" flex items-center">
-                    <ActiveHomeIcons colors={IconsColor} />
-                  </span>
-                  <span className="mt-[7px]">
-                    <span>Главная</span>
-                  </span>{" "}
-                </span>
+                <figure className="flex flex-col items-center justify-center">
+                  <ActiveHomeIcons colors={dressInfo?.ColorSeason} />
+                  <figcaption className="pt-[8px]">
+                    <p>Главная</p>
+                  </figcaption>{" "}
+                </figure>
               ) : (
-                <span className=" flex flex-col items-center justify-center mt-1 ">
-                  <span className="">
-                    <HomeIcons colors={"#000"} />
-                  </span>
-                  <span className="mt-[7px]">
-                    <span>Главная</span>
-                  </span>
-                </span>
+                <figure className=" flex flex-col items-center justify-center mt-1">
+                  <HomeIcons colors={"#000"} />
+                  <figcaption className="pt-[8px]">
+                    <p>Главная</p>
+                  </figcaption>
+                </figure>
               )
             }
           </NavLink>
         </li>
         <li className="w-[72px] h-[56px] ">
           <NavLink
-            to={"/katolog"}
-            className="w-full h-full flex items-center justify-center text-center  "
+            to={"/catalog"}
+            className="w-full h-full flex items-center justify-center text-center"
           >
             {({ isActive }) =>
               isActive ? (
-                <span className="flex flex-col items-center justify-center mt-1  ">
-                  <span className=" flex items-center ">
-                    <ActiveCotegoryIcons colors={IconsColor} />
-                  </span>
-                  <span className="mt-2">
-                    <span>Категория</span>
-                  </span>{" "}
-                </span>
+                <figure className="flex flex-col items-center justify-center mt-1">
+                  <ActiveCotegoryIcons colors={dressInfo?.ColorSeason} />
+                  <figcaption className="mt-2">
+                    <p>Категории</p>
+                  </figcaption>
+                </figure>
               ) : (
-                <span className=" flex flex-col items-center justify-center mt-1 ">
-                  <span className="">
-                    <CotegoryIcons colors={"#000"} />
-                  </span>
-                  <span className="mt-2">
-                    <span>Категория</span>
-                  </span>
-                </span>
+                <figure className=" flex flex-col items-center justify-center mt-1">
+                  <CotegoryIcons colors={"#000"} />
+                  <figcaption className="mt-2">
+                    <p>Категории</p>
+                  </figcaption>
+                </figure>
               )
             }
           </NavLink>
         </li>
-
-        <li className="w-[72px] h-[56px] flex  justify-center ">
+        <li className="w-[72px] h-[56px] flex justify-center ">
           <NavLink
             to={"/delivery-points"}
             className="w-full h-full flex items-center justify-center text-center  "
           >
             {({ isActive }) =>
               isActive ? (
-                <span className="flex flex-col items-center justify-center mt-1">
-                  <MapNavMenuIcons colors={IconsColor} />
-                  <span className="mt-2">
-                    <span>Карта</span>
-                  </span>{" "}
-                </span>
+                <figure className="flex flex-col items-center justify-center mt-1">
+                  <MapNavMenuIcons colors={dressInfo?.ColorSeason} />
+                  <figcaption className="mt-2">
+                    <p>Карта</p>
+                  </figcaption>
+                </figure>
               ) : (
-                <span className=" flex flex-col items-center justify-center mt-1 ">
-                  <span className="">
-                    <MapIcons colors={"#000"} />
-                  </span>
-                  <span className="mt-2">
-                    <span>Карта</span>
-                  </span>
-                </span>
+                <figure className=" flex flex-col items-center justify-center mt-1 ">
+                  <MapIcons colors={"#000"} />
+                  <figcaption className="mt-2">
+                    <p>Карта</p>
+                  </figcaption>
+                </figure>
               )
             }
           </NavLink>
         </li>
-
-        <li className="w-[72px] h-[56px] flex  justify-center ">
+        <li className="w-[72px] h-[56px] flex justify-center ">
           <NavLink
             to={"/favourites"}
             className="w-full h-full flex items-center justify-center text-center  "
           >
             {({ isActive }) =>
               isActive ? (
-                <span className="flex flex-col items-center justify-center mt-1">
+                <figure className="flex flex-col items-center justify-center mt-1">
                   <svg
                     width="20"
                     height="18"
@@ -147,25 +118,22 @@ const NavMenu = () => {
                       strokeLinejoin="round"
                     />
                   </svg>{" "}
-                  <span className="mt-2">
-                    <span>Избранное</span>
-                  </span>{" "}
-                </span>
+                  <figcaption className="mt-2">
+                    <p>Избранное</p>
+                  </figcaption>{" "}
+                </figure>
               ) : (
-                <span className=" flex flex-col items-center justify-center mt-1 ">
-                  <span className="">
-                    <img src={HeartImg} className={"w-5 h-5"} alt="heart" />
-                  </span>
-                  <span className="mt-2">
-                    <span>Избранное</span>
-                  </span>
-                </span>
+                <figure className=" flex flex-col items-center justify-center mt-1 ">
+                  <img src={HeartImg} className={"w-5 h-5"} alt="heart" />
+                  <figcaption className="mt-2">
+                    <p>Избранное</p>
+                  </figcaption>
+                </figure>
               )
             }
           </NavLink>
         </li>
-
-        <li className="w-[72px] h-[56px] ">
+        <li className="w-[72px] h-[56px]">
           <NavLink
             to={
               localStorage.getItem("dressMeLogin")
@@ -176,30 +144,25 @@ const NavMenu = () => {
           >
             {({ isActive }) =>
               isActive ? (
-                <span className="flex flex-col items-center justify-center mt-1 ">
-                  <span className=" flex items-center ">
-                    {" "}
-                    <ActivePersonIcons colors={IconsColor} />
-                  </span>
-                  <span className="mt-1">
-                    <span>Профиль</span>
-                  </span>{" "}
-                </span>
+                <figure className="flex flex-col items-center justify-center mt-1 ">
+                  <ActivePersonIcons colors={dressInfo?.ColorSeason} />
+                  <figcaption className="mt-1">
+                    <p>Профиль</p>
+                  </figcaption>{" "}
+                </figure>
               ) : (
-                <span className=" flex flex-col items-center justify-center mt-1">
-                  <span className="">
-                    <PersonIcons colors={"#000"} />
-                  </span>
-                  <span className="mt-1">
-                    <span>Профиль</span>
-                  </span>
-                </span>
+                <figure className=" flex flex-col items-center justify-center mt-1">
+                  <PersonIcons colors={"#000"} />
+                  <figcaption className="mt-1">
+                    <p>Профиль</p>
+                  </figcaption>
+                </figure>
               )
             }
           </NavLink>
         </li>
       </ul>
-    </div>
+    </nav>
   );
 };
 export default NavMenu;

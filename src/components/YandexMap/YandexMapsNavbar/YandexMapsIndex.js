@@ -6,14 +6,13 @@ import YandexFilter from "./YandexFilter";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 
 export default function YandexMapsIndex() {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
-  // search
+  const [dressInfo] = useContext(dressMainData);
   return (
     <div className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ">
       <div className="max-w-[1320px] w-[100%] ss:block md:flex  md:py-0 justify-center items-center m-auto">
-        {/* {!dressInfo?.yandexOpenMenu ? ( */}
         <div className="">
-          <div className={`ss:px-3 mt-[1px] md:mt-0 md:px-[40px] md:rounded-b-[16px] ${
+          <div
+            className={`ss:px-3 mt-[1px] md:mt-0 md:px-[40px] md:rounded-b-[16px] ${
               !dressInfo?.yandexOpenMarket
                 ? "bg-yandexNavbar backdrop-blur-sm"
                 : "bg-white"
@@ -51,9 +50,3 @@ export default function YandexMapsIndex() {
     </div>
   );
 }
-// ${ !dressInfo?.yandexFullScreen ? 'bottom-[-535px] ' : 'bottom-[-670px]' }
-
-// position: absolute;
-// left: 0;
-// bottom: -669px;
-// right: 0;

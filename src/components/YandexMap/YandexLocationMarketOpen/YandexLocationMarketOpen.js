@@ -1,18 +1,37 @@
-import React, { useContext, memo, useMemo } from "react";
+import React, { useContext, memo, useState } from "react";
 import {
   ClockIcons,
   LocationIcons,
   MenuCloseIcons,
   SircleNext,
   StarIcons,
-  ThreeCicleIcon,
-} from "../../../AssetsMain/icons";
+} from "../../../assets/icons";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import { useNavigate } from "react-router-dom";
+import AddCopyCheckedIcon from "../../Home/Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
 
-function YandexLocationMarketOpen() {
+
+function YandexLocationMarketOpen({ cordinateMarkets, onClick }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+
+
+  const navigate = useNavigate();
+  const openShoppingChild = () => {
+    // const gotoOfficial = (id) => {
+    navigate(`/shopping_store/:${123456}`);
+  };
+  const [copyText, setCopyText] = useState('г. Ташкент, Чиланзарский район, квартал-7, д 45б (Катартал) ')
+
+  const handleCopyText = () => {
+    navigator.clipboard.writeText(copyText)
+  }
+  const imgGallery = [
+    { id: 1, img: "https://i.pinimg.com/736x/9d/d4/a3/9dd4a3906b318cdfd854dd46a72046ba.jpg" },
+    { id: 2, img: "https://img.hechtgroup.com/where_is_the_zara_warehouse.jpg" },
+    { id: 3, img: "https://c8.alamy.com/comp/2HEC9XP/people-queue-outside-a-zara-store-on-boxing-day-in-central-london-as-shoppers-gather-on-oxford-street-2HEC9XP.jpg" },
+  ]
   const NextArrow = (props) => {
     const { onClick } = props;
     return (
@@ -40,6 +59,7 @@ function YandexLocationMarketOpen() {
       </div>
     );
   };
+
   const settings = {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
@@ -50,23 +70,20 @@ function YandexLocationMarketOpen() {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  const handleCarouselModal = (UId) => {
+    // setOpenCarouselModal(true)
+  }
+  // console.log(openCarouselModal, "openCarouselModal");
   return (
-    <div className="w-full  h-fit flex flex-col gap-y-4 border border-searchBgColor bg-white rounded-t-[12px] md:rounded-[12px]	 px-4 py-5">
-      {/* title */}
+    <div className="w-full  h-fit flex flex-col gap-y-4 border border-searchBgColor overflow-hidden bg-white rounded-t-[12px] md:rounded-[12px]	 px-4 py-5">
 
+      {/* title */}
       <div className="relative w-full flex items-center justify-between">
-        {/* <div className="absolute top-[-40px]  w-full px-2">
-          <span>
-            {" "}
-            <ThreeCicleIcon />
-          </span>{" "}
-        </div> */}
         <div className="w-fit flex items-center gap-x-3">
           {" "}
           <span className="not-italic font-AeonikProMedium text-xl leading-5 text-fullBlue ">
             FLO (Алмазар)
           </span>
-          {/* <span>{dressInfo?.yandexGetMarketId}</span> */}
           <div className="w-fit flex items-center gap-x-[2px] ">
             <span>
               <StarIcons />
@@ -85,7 +102,7 @@ function YandexLocationMarketOpen() {
           }
           className="w-10 h-10 rounded-lg border border-searchBgColor flex items-center justify-center active:scale-95  active:opacity-70"
         >
-          <MenuCloseIcons />
+          <MenuCloseIcons colors={"#000"} />
         </button>
       </div>
       {/* Second BOlum */}
@@ -96,46 +113,26 @@ function YandexLocationMarketOpen() {
             {...settings}
             className="w-full h-full rounded-lg overflow-hidden flex flex-col justify-center"
           >
-            <div className=" flex items-center justify-center">
-              <img
-                className={
-                  "mx-auto w-full  sm:w-auto	 flex items-center object-center object-cover	"
-                }
-                src={
-                  "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract03.jpg"
-                }
-              />
-            </div>
-            <div className=" flex items-center justify-center">
-              <img
-                className={
-                  "mx-auto w-full  sm:w-auto	 flex items-center object-center object-cover	"
-                }
-                src={
-                  "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract04.jpg"
-                }
-              />
-            </div>
-            <div className=" flex items-center justify-center">
-              <img
-                className={
-                  "mx-auto w-full  sm:w-auto	 flex items-center object-center object-cover	"
-                }
-                src={
-                  "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract01.jpg"
-                }
-              />
-            </div>
-            <div className=" flex items-center justify-center">
-              <img
-                className={
-                  "mx-auto w-full  sm:w-auto	 flex items-center object-center object-cover	"
-                }
-                src={
-                  "https://s3.amazonaws.com/static.neostack.com/img/react-slick/abstract02.jpg"
-                }
-              />
-            </div>
+
+            {
+              imgGallery.map(data => {
+                return (
+
+                  <div onClick={onClick} key={data?.id} className="cursor-pointer flex items-center justify-center">
+                    <img
+                      className={
+                        "mx-auto w-full  sm:w-auto	 flex items-center object-top object-contain	"
+                      }
+                      // src={data?.img}
+                      src={data?.img}
+                      alt="img"
+                    />
+                  </div>
+                )
+              })
+            }
+
+
           </Slider>
         </div>
         {/* Details */}
@@ -146,6 +143,7 @@ function YandexLocationMarketOpen() {
               Бу магазинда сиз болажонларингиз учун (0-15 ёш) сифатли
               кийимчаларни АРЗОН ВА КУЛАЙ нархларда харид қилишингиз мумкин
             </span>
+
           </div>
           {/* Detail */}
           <div className="w-full  flex flex-col gap-y-3">
@@ -161,17 +159,34 @@ function YandexLocationMarketOpen() {
               <span>
                 <LocationIcons />
               </span>
-              <span className="w-[70%] not-italic ml-4 font-AeonikProRegular text-base leading-5 text-setTexOpacity">
-                г. Ташкент, Чиланзарский район, квартал-7, д 45б (Катартал)
+              <span className="w-[70%] flex  not-italic ml-4 font-AeonikProRegular text-base leading-5 text-setTexOpacity">
+                {copyText}
+                <button
+                  type="button"
+                  onClick={handleCopyText}
+                  className="cursor-pointer flex  ml-[8px] ">
+                  <AddCopyCheckedIcon />
+                </button>
               </span>
             </div>
           </div>
-          <div className="w-full">
-            <button
-              className={` w-full h-[52px] bg-fullBlue active:scale-95  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
+          <div className="w-full gap-x-2 flex items-center ">
+
+            {/* <button
+              onClick={clickCordinate}
+              className={` w-full h-[48px]  bg-white border border-fullBlue active:scale-95  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
             >
-              <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center capitalize text-white">
-                ПОДРОБНЕЕ
+              <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center   text-fullBlue ">
+                Открыть на карте
+              </span>
+
+            </button> */}
+            <button
+              onClick={openShoppingChild}
+              className={` w-full h-[48px] bg-fullBlue active:scale-95 mt-4 mb-2 md:mb-0 md:mt-0  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
+            >
+              <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center   capitalize text-white">
+                Подробнее
               </span>
               <span>
                 <SircleNext colors={"#fff"} />
@@ -184,4 +199,4 @@ function YandexLocationMarketOpen() {
   );
 }
 
-export default memo(YandexLocationMarketOpen);
+export default React.memo(YandexLocationMarketOpen);

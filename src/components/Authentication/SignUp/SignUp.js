@@ -9,8 +9,8 @@ import {
   PersonIcons,
   PhoneIcons,
   SircleNext,
-} from "../../../AssetsMain/icons";
-import { UzbekFlag } from "../../../AssetsMain";
+} from "../../../assets/icons";
+import { UzbekFlag } from "../../../assets";
 
 export default function SignUp() {
   const [phone, setPhone] = useState("");
@@ -36,19 +36,7 @@ export default function SignUp() {
   const sendMessagePhoneNumber = data3 + data2;
 
   const [dressInfo] = useContext(dressMainData);
-  let genderStyle = "";
-  if (dressInfo?.type === 1111) {
-    genderStyle = "text-borderSpring ";
-  }
-  if (dressInfo?.type === 2222) {
-    genderStyle = "text-borderSummer ";
-  }
-  if (dressInfo?.type === 3333) {
-    genderStyle = "text-borderAutumm ";
-  }
-  if (dressInfo?.type === 4444) {
-    genderStyle = "text-borderWinter ";
-  }
+
   const [timerDecrase, setTimerDecrase] = useState(60);
   useEffect(() => {
     const interval = setInterval(() => {
@@ -62,11 +50,11 @@ export default function SignUp() {
   return (
     <div>
       {state?.validateConfirm ? (
-        <div className=" py-8 w-full  min-h-[calc(100vh-180px)] mb-10 flex justify-center ss:px-4 md:px-0">
+        <div className=" py-8 w-full  min-h-[calc(100vh-180px)] mb-10 flex justify-center">
           <div className="max-w-[440px] w-[100%] h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
             <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-xl  leading-5 ss:text-start md:text-center  tracking-[0,16px] text-black">
               Добро пожаловать в{" "}
-              <span className={`${genderStyle}`}>Dressme</span>!
+              <span className={`${dressInfo?.TextColorSeason}`}>Dressme</span>!
             </div>
 
             <div className="mt-2 w-full h-fit">
@@ -121,13 +109,13 @@ export default function SignUp() {
                 </div>
                 <div className="ss:w-[65%] md:w-[70%] h-12 overflow-hidden">
                   <InputMask
-                    mask="(99)999-99-99"
+                    mask="(99) 999-99-99"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     className={`w-full px-4  h-full not-italic ${
                       phone ? "font-AeonikProMedium" : null
                     } text-base leading-4 text-black`}
-                    placeholder={"(77) 777-77-77"}
+                    placeholder={"(97) 123-45-67"}
                   ></InputMask>
                 </div>
               </div>
@@ -227,7 +215,7 @@ export default function SignUp() {
                   required
                 />
                 <span>
-                  <PhoneIcons />
+                  <PhoneIcons colors={"#000"} />
                 </span>{" "}
               </div>
             </div>

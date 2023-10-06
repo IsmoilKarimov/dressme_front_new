@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import {
   adidas,
@@ -9,35 +9,16 @@ import {
   puma,
   tommy,
   zara,
-} from "../../../../AssetsMain";
+} from "../../../../assets";
 
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
-import { NavLink } from "react-router-dom";
-import { NoImg, SircleNext } from "../../../../AssetsMain/icons";
-// import required modules``
+import { NavLink, useNavigate } from "react-router-dom";
+import { NoImg, ShowMoreBackIcon, SircleNext } from "../../../../assets/icons";
 export default function MainPageSliders() {
   const [dressInfo] = useContext(dressMainData);
-  let dataStyle = "";
-  let genderStyle = "";
-  if (dressInfo?.type == 1111) {
-    dataStyle = " #008F0E ";
-    genderStyle = "text-borderSpring bg-btnBgColor border-searchBgColor";
-  }
-  if (dressInfo?.type == 2222) {
-    dataStyle = " #EAA700";
-    genderStyle = "text-borderSummer bg-btnBgColor border-searchBgColor";
-  }
-  if (dressInfo?.type == 3333) {
-    dataStyle = " #E17A02 ";
-    genderStyle = "text-borderAutumm bg-btnBgColor border-searchBgColor";
-  }
-  if (dressInfo?.type == 4444) {
-    dataStyle = " #007DCA ";
-    genderStyle = "text-borderWinter bg-btnBgColor border-searchBgColor";
-  }
 
   const changeColor = [
     { id: 1, data: 1, action: false, colors: "border-black" },
@@ -65,21 +46,30 @@ export default function MainPageSliders() {
         { id: 7, type: "Relaxed", count: 180, img: "" },
         { id: 8, type: "Dramatic", count: 250, img: "" },
         { id: 9, type: "Creative", count: 190, img: "" },
+        { id: 11, type: "Student", count: 123, img: "" },
+        { id: 22, type: "Businiess", count: 223, img: "" },
+        { id: 33, type: "Muslim", count: 80, img: "" },
+        { id: 44, type: "Travel", count: 453, img: "" },
+        { id: 55, type: "Sport", count: 320, img: "" },
+        { id: 66, type: "Classic", count: 40, img: "" },
+        { id: 77, type: "Relaxed", count: 180, img: "" },
+        { id: 88, type: "Dramatic", count: 250, img: "" },
+        { id: 99, type: "Creative", count: 190, img: "" },
       ],
 
       campany: [
-        { id: 1, imgFull: adidas },
-        { id: 2, imgFull: chanel },
-        { id: 3, imgFull: adidas },
-        { id: 4, imgFull: lacoste },
-        { id: 5, imgFull: hm },
-        { id: 6, imgFull: lacoste },
-        { id: 7, imgFull: adidas },
-        { id: 8, imgFull: nike },
-        { id: 9, imgFull: puma },
-        { id: 10, imgFull: puma },
-        { id: 11, imgFull: tommy },
-        { id: 12, imgFull: zara },
+        { id: 1, name: "Adidas", imgFull: adidas },
+        { id: 2, name: "Channel", imgFull: chanel },
+        { id: 3, name: "Adidas", imgFull: adidas },
+        { id: 4, name: "Locaste", imgFull: lacoste },
+        { id: 5, name: "HM", imgFull: hm },
+        { id: 6, name: "Locaste", imgFull: lacoste },
+        { id: 7, name: "Adidas", imgFull: adidas },
+        { id: 8, name: "Nike", imgFull: nike },
+        { id: 9, name: "Puma", imgFull: puma },
+        { id: 10, name: "Puma", imgFull: puma },
+        { id: 11, name: "Tommy", imgFull: tommy },
+        { id: 12, name: "Zara", imgFull: zara },
       ],
       service: [
         { id: 1111, type: "Spring" },
@@ -245,11 +235,23 @@ export default function MainPageSliders() {
     ],
   };
 
+  const [more, setMore] = useState(false);
+
+  const navigate = useNavigate();
+  const goShoppingStore = (id) => {
+    navigate(`/shopping_store/:${id}`);
+  };
   return (
-    <div className="flex flex-col justify-center items-center m-0 p-0 box-border">
-      <div className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
-        <div className="w-full box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
-          <div className="w-full ss:hidden xs:block">
+    <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
+      <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
+        <section className="w-full box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
+          {/* Main slider */}
+
+          <div
+            className={`w-full ss:h-0 ${
+              more ? "xs:h-0" : "xs:h-auto"
+            } overflow-hidden`}
+          >
             <Slider
               {...settings}
               className="w-[100%] flex xs:justify-between flex-wrap  "
@@ -267,65 +269,101 @@ export default function MainPageSliders() {
                           .filter((e) => e.id === dressInfo?.ClothesBorder)
                           .map((value) => {
                             return (
-                              <div
+                              <button
                                 key={value?.id}
                                 className={`w-full h-full border border-solid	${value?.colors} rounded-lg`}
                               >
                                 <SircleNext />
-                              </div>
+                              </button>
                             );
                           })}
                       </div>
-                      <div className="h-12.5 flex items-center justify-start">
-                        <p className="not-italic font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
+                      <article className="h-12.5 flex items-center justify-start">
+                        <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
                           {data?.type || "type"}
-                          <span className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
+                          <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
                             ({data?.count || "0"})
-                          </span>
+                          </p>
                         </p>
-                      </div>
+                      </article>
                     </NavLink>
                   );
                 });
               })}
             </Slider>
           </div>
+
           {/* carosuel hidden block */}
-          <div className="w-full h-fit xs:hidden grid grid-cols-3 gap-2 overflow-hidden  my-0 py-0 md:my-5 md:py-7 ">
+          <div
+            className={`${
+              more ? "xs:grid" : "xs:hidden"
+            } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[38px] overflow-hidden  my-0 py-0 md:pt-7`}
+          >
             {carosuelData?.map((data) => {
-              return data.Category.map((data) => {
-                return (
-                  <NavLink
-                    to="/categoriesType"
-                    key={data?.id}
-                    className="w-[100%] "
-                  >
-                    <div className="w-[100%] h-[140px] flex items-center justify-center	p-1 bg-btnBgColor border border-searchBgColor	rounded-xl">
-                      <NoImg />
-                    </div>
-                    <div className="w-full py-1 flex items-center">
-                      <p className="not-italic font-AeonikProMedium text-sm leading-6 text-black">
-                        {data?.type || "type"}
-                        <span className="not-italic font-AeonikProRegular text-xs leading-4 text-gray-500 ml-1">
-                          ({data?.count || "0"})
-                        </span>
-                      </p>
-                    </div>
-                  </NavLink>
-                );
+              return data.Category.map((data, i) => {
+                if (more) {
+                  return (
+                    <NavLink
+                      to="/categoriesType"
+                      key={data?.id}
+                      className="w-[100%] "
+                    >
+                      <figure className="w-[100%] xs:w-[180px] h-[140px] xs:h-[224px] flex items-center justify-center	p-1 bg-btnBgColor border xs:border-[#008F0E] border-[#F2F2F2]	rounded-xl">
+                        <NoImg />
+                      </figure>
+                      <article className="w-full py-1 flex items-center">
+                        <p className="not-italic flex items-center font-AeonikProMedium text-sm leading-6 text-black">
+                          {data?.type || "type"}
+                          <p className="not-italic lex items-center  font-AeonikProRegular text-xs leading-4 text-gray-500 ml-1">
+                            ({data?.count || "0"})
+                          </p>
+                        </p>
+                      </article>
+                    </NavLink>
+                  );
+                } else {
+                  if (i > 5) {
+                    return false;
+                  } else {
+                    return (
+                      <NavLink
+                        to="/categoriesType"
+                        key={data?.id}
+                        className="w-[100%] "
+                      >
+                        <figure className="w-[100%] xs:w-[180px] h-[140px] xs:h-[224px] flex items-center justify-center	p-1 bg-btnBgColor border xs:border-[#008F0E] border-[#F2F2F2]	rounded-xl">
+                          <NoImg />
+                        </figure>
+                        <article className="w-full py-1 flex items-center">
+                          <p className="not-italic flex items-center font-AeonikProMedium text-sm leading-6 text-black">
+                            {data?.type || "type"}
+                            <p className="not-italic lex items-center  font-AeonikProRegular text-xs leading-4 text-gray-500 ml-1">
+                              ({data?.count || "0"})
+                            </p>
+                          </p>
+                        </article>
+                      </NavLink>
+                    );
+                  }
+                }
               });
             })}
           </div>
-          <div className="w-full flex justify-center items-center  mt-10 ">
+          <div className="w-full flex justify-center items-center  mt-10">
             <button
-              className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[52px] px-4 ll:px-10 rounded-xl border ${genderStyle}`}
+              className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[52px] px-4 ll:px-10 rounded-xl border ${dressInfo?.BtnSeason}`}
+              onClick={() => setMore(!more)}
             >
-              <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center">
-                Посмотреть все категории
-              </span>
-              <span className="ml-2 ">
-                <SircleNext colors={dataStyle} />
-              </span>
+              <p className="not-italic  font-AeonikProMedium text-base leading-4 text-center">
+                {more ? "Назад" : "Посмотреть все разделы"}
+              </p>
+              <p className="ml-2 ">
+                {more ? (
+                  <ShowMoreBackIcon />
+                ) : (
+                  <SircleNext colors={dressInfo?.ColorSeason} />
+                )}
+              </p>
             </button>
           </div>
           <div className="w-full mt-[60px] ss:hidden xs:block ">
@@ -338,23 +376,24 @@ export default function MainPageSliders() {
                   return (
                     <div
                       key={data?.id}
-                      className="!w-[98.88%] h-[100px]  rounded-lg bg-btnBgColor flex items-center justify-center select-none border border-solid border-searchBgColor"
+                      onClick={() => goShoppingStore(data?.name)}
+                      className="!w-[98.88%] h-[100px] cursor-pointer  rounded-lg bg-btnBgColor flex items-center justify-center select-none border border-solid border-searchBgColor"
                     >
-                      <div className=" h-full flex items-center justify-center px-[35px]">
+                      <figure className=" h-full flex items-center justify-center px-[35px]">
                         <img
                           className="h-[70px] w-[80%] "
                           src={data?.imgFull}
                           alt=""
                         />
-                      </div>
+                      </figure>
                     </div>
                   );
                 });
               })}
             </Slider>
           </div>
-        </div>
-      </div>
-    </div>
+        </section>
+      </section>
+    </main>
   );
 }

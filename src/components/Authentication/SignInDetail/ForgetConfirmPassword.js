@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { PhoneIcons, SircleNext } from "../../../AssetsMain/icons";
+import { PhoneIcons, SircleNext } from "../../../assets/icons";
 
 export default function ForgetConfirmPassword() {
   const [timerDecrase, setTimerDecrase] = useState(60);
@@ -32,12 +32,11 @@ export default function ForgetConfirmPassword() {
             <input
               className="  w-full h-12 bg-btnBgColor focus:bg-btnBgColor active:bg-btnBgColor placeholder:bg-btnBgColor placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black "
               type="text"
-              // name="phone"
               placeholder="Phone number"
               required
             />
             <span>
-              <PhoneIcons />
+              <PhoneIcons colors={"#000"} />
             </span>{" "}
           </div>
         </div>

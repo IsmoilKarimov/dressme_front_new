@@ -1,9 +1,11 @@
-import { createContext, useState } from "react";
-import { NoImg } from "../AssetsMain/icons";
+import { createContext, useState, useEffect } from "react";
+import { NoImg } from "../assets/icons";
 export const dressMainData = createContext();
+
 export const DressMenu = ({ children }) => {
+
   const [dressInfo, setDressInfo] = useState({
-    type: 1111,
+    type: 4444,
     ClothesBorder: 1,
     PageSetModal: false,
     yandexOpenMenu: false,
@@ -18,14 +20,30 @@ export const DressMenu = ({ children }) => {
 
     // Category
     openCategoryFilter: false,
+    // Catalog
+    openCatalogFilter: false,
     // Shop/:Id
     openShopIdFilter: false,
+    // Catolog/:Id
+    openCatologId: false,
+
+    // colorFull
+    BtnSeason: "",
+    BtnOpacitySeason: "",
+    BtnFocusSeason: "",
+    ColorSeason: "",
+    TextHoverSeason: "",
+    TextColorSeason: "",
+    LinkActiveSeason: "",
+    BtnActiveSeason: "",
+    AuthenActiveSeason: "",
 
     ProductList: [
       {
         id: 1,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -51,6 +69,7 @@ export const DressMenu = ({ children }) => {
         id: 2,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -76,6 +95,7 @@ export const DressMenu = ({ children }) => {
         id: 3,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -102,6 +122,7 @@ export const DressMenu = ({ children }) => {
         id: 4,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -129,6 +150,7 @@ export const DressMenu = ({ children }) => {
         id: 5,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -155,6 +177,7 @@ export const DressMenu = ({ children }) => {
         id: 6,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -181,6 +204,7 @@ export const DressMenu = ({ children }) => {
         id: 7,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -207,6 +231,7 @@ export const DressMenu = ({ children }) => {
         id: 8,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -233,6 +258,7 @@ export const DressMenu = ({ children }) => {
         id: 9,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -259,6 +285,7 @@ export const DressMenu = ({ children }) => {
         id: 10,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -285,6 +312,7 @@ export const DressMenu = ({ children }) => {
         id: 11,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -311,6 +339,7 @@ export const DressMenu = ({ children }) => {
         id: 12,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -337,6 +366,7 @@ export const DressMenu = ({ children }) => {
         id: 13,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -363,6 +393,7 @@ export const DressMenu = ({ children }) => {
         id: 14,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -389,6 +420,7 @@ export const DressMenu = ({ children }) => {
         id: 15,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -415,6 +447,7 @@ export const DressMenu = ({ children }) => {
         id: 16,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -440,6 +473,7 @@ export const DressMenu = ({ children }) => {
         id: 17,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -465,6 +499,7 @@ export const DressMenu = ({ children }) => {
         id: 18,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -491,6 +526,7 @@ export const DressMenu = ({ children }) => {
         id: 19,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -518,6 +554,7 @@ export const DressMenu = ({ children }) => {
         id: 20,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -544,6 +581,7 @@ export const DressMenu = ({ children }) => {
         id: 21,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -570,6 +608,7 @@ export const DressMenu = ({ children }) => {
         id: 22,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -596,6 +635,7 @@ export const DressMenu = ({ children }) => {
         id: 23,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -622,6 +662,7 @@ export const DressMenu = ({ children }) => {
         id: 24,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -648,6 +689,7 @@ export const DressMenu = ({ children }) => {
         id: 25,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -674,6 +716,7 @@ export const DressMenu = ({ children }) => {
         id: 26,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -700,6 +743,7 @@ export const DressMenu = ({ children }) => {
         id: 27,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -726,6 +770,7 @@ export const DressMenu = ({ children }) => {
         id: 28,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -752,6 +797,7 @@ export const DressMenu = ({ children }) => {
         id: 29,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -778,6 +824,7 @@ export const DressMenu = ({ children }) => {
         id: 30,
         discount: "-30%",
         video: true,
+        colourCard: false,
         diliver: true,
         like: true,
         buy: true,
@@ -1093,6 +1140,90 @@ export const DressMenu = ({ children }) => {
       },
     ],
   });
+  const BtnSeasonArray = [
+    {
+      id: 1111,
+      btn: "text-borderSpring bg-btnBgColor border-searchBgColor",
+      btnOpacity: "text-borderSpring bg-opacity-10 bg-bgSpring",
+      btnFocus:
+        "focus:text-borderSpring focus:bg-btnBgColor focus:border-searchBgColor",
+      textHover: "hover:text-borderSpring",
+      textColor: "text-borderSpring",
+      color: "#008F0E",
+      btnActiveSeason:
+        "text-borderSpring  bg-bgSpring border border-borderSpring",
+      authenActiveSeason:
+        "md:text-borderSpring bg-white bg-bgSpring md:border-borderSpring w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border   rounded-lg",
+      linkActive:
+        "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderSpring text-borderSpring",
+    },
+    {
+      id: 2222,
+      btn: "text-borderSummer bg-btnBgColor border-searchBgColor",
+      btnOpacity: "text-borderSummer bg-opacity-10 bg-bgSummer",
+      btnFocus:
+        "focus:text-borderSummer focus:bg-btnBgColor focus:border-searchBgColor",
+      textHover: "hover:text-borderSummer",
+      textColor: "text-borderSummer",
+      color: "#EAA700",
+      btnActiveSeason:
+        "text-borderSummer  bg-bgSummer border border-borderSummer",
+      authenActiveSeason:
+        "md:text-borderSummer bg-white bg-bgSummer md:border-borderSummer w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border   rounded-lg",
+      linkActive:
+        "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderSummer text-borderSummer",
+    },
+    {
+      id: 3333,
+      btn: "text-borderAutumm bg-btnBgColor border-searchBgColor",
+      btnOpacity: "text-borderAutumm bg-opacity-10 bg-bgAutumm",
+      btnFocus:
+        "focus:text-borderAutumm focus:bg-btnBgColor focus:border-searchBgColor",
+      textHover: "hover:text-borderAutumm",
+      textColor: "text-borderAutumm",
+      color: "#E17A02",
+      btnActiveSeason:
+        "text-borderAutumm  bg-bgAutumm border border-borderAutumm ",
+      authenActiveSeason:
+        "md:text-borderAutumm bg-white bg-bgAutumm md:border-borderAutumm w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border rounded-lg",
+      linkActive:
+        "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderAutumm text-borderAutumm",
+    },
+    {
+      id: 4444,
+      btn: "text-borderWinter bg-btnBgColor border-searchBgColor",
+      btnOpacity: "text-borderWinter bg-opacity-10 bg-bgWinter",
+      btnFocus:
+        "focus:text-borderWinter focus:bg-btnBgColor focus:border-searchBgColor",
+      textHover: "hover:text-borderWinter",
+      textColor: "text-borderWinter",
+      color: "#007DCA",
+      btnActiveSeason:
+        "text-borderWinter  bg-bgWinter border border-borderWinter",
+      authenActiveSeason:
+        "md:text-borderWinter bg-white bg-bgWinter md:border-borderWinter w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border rounded-lg",
+      linkActive:
+        "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderWinter text-borderWinter",
+    },
+  ];
+
+  useEffect(() => {
+    BtnSeasonArray.filter((e) => e.id == dressInfo?.type).map((event) => {
+      setDressInfo({
+        ...dressInfo,
+        BtnSeason: event?.btn,
+        BtnOpacitySeason: event?.btnOpacity,
+        BtnFocusSeason: event?.btnFocus,
+        ColorSeason: event?.color,
+        TextHoverSeason: event?.textHover,
+        TextColorSeason: event?.textColor,
+        LinkActiveSeason: event?.linkActive,
+        BtnActiveSeason: event?.btnActiveSeason,
+        AuthenActiveSeason: event?.authenActiveSeason,
+      });
+    });
+  }, [dressInfo.type]);
+
   return (
     <dressMainData.Provider value={[dressInfo, setDressInfo]}>
       {children}
