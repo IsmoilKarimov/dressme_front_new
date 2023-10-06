@@ -294,6 +294,7 @@ export default function MainPageSliders() {
           </div>
 
           {/* carosuel hidden block */}
+          
           <div
             className={`${
               more ? "xs:grid" : "xs:hidden"
