@@ -24,6 +24,7 @@ const ShoppingStoreBreadCrumb = () => {
     { id: 2222, man: SummerMale },
     { id: 3333, man: AutummMale },
     { id: 4444, man: WinterMale },
+    { id: 5555, man: WinterMale },
   ];
 
   const handleOpenChangeWear = (newOpen) => {
@@ -84,7 +85,7 @@ const ShoppingStoreBreadCrumb = () => {
             </NavLink>
           </article>
         </article>
-        
+
       </section>
     </main>
   );
