@@ -40,6 +40,27 @@ const BottomHeader = () => {
   }, [
     state?.showColour
   ]);
+  const [screenSize, setScreenSize] = useState(getCurrentDimension());
+
+  function getCurrentDimension() {
+    return {
+      width: window.innerWidth,
+    };
+  }
+  useEffect(() => {
+    const updateDimension = () => {
+      if (getCurrentDimension().width < 758 && state?.showColour) {
+        setState({ ...state, showColour: false })
+      }
+      setScreenSize(getCurrentDimension());
+    };
+
+    window.addEventListener("resize", updateDimension);
+
+    return () => {
+      window.removeEventListener("resize", updateDimension);
+    };
+  }, [screenSize]);
   // ----------------Wear state management----------------------------
 
   const handleOpenChangeWear = (newOpen) => {
@@ -384,10 +405,10 @@ const BottomHeader = () => {
       >
       </div>
       {state?.showColour && (
-        <div className="w-fit h-fit flex items-center mt-[20%] justify-center mx-auto ">
+        <div className="max-w-[576px] w-full fixed z-[221]  left-1/2 right-1/2 top-[50%] translate-x-[-50%] translate-y-[-50%]  h-fit flex items-center  justify-center mx-auto ">
 
           {/* </div> */}
-          <div className="relative z-[223]  top-0 w-[576px] h-fit p-4 mx-auto bg-white rounded-md shadow-lg">
+          <div className="relative z-[223]  top-0 w-full h-fit p-4 mx-auto bg-white rounded-md shadow-lg">
             <div
               className={`flex items-center justify-between border-b border-searchBgColor pb-3"
                        `}

@@ -178,14 +178,17 @@ const MediumHeader = () => {
             className="w-full h-[42px] md:flex items-center hidden  md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
             onClick={() => handleSeason(value.id)}
           >
-            <figure className="mr-2 md:mr-3">
+            <figure className="">
               <img src={value?.icons} alt="" />
             </figure>
-            <article
-              className={`flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
-            >
-              {value?.type}
-            </article>
+            {
+              value?.type &&
+              <article
+                className={`ml-2 md:ml-3 flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
+              >
+                {value?.type}
+              </article>
+            }
           </article>
         );
       })}
