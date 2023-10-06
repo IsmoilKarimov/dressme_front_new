@@ -67,6 +67,7 @@ export default function MainPageSliders() {
         { id: 2222, type: "Summer" },
         { id: 3333, type: "Autumm" },
         { id: 4444, type: "Winter" },
+        { id: 5555, type: "Winter" },
       ],
     },
   ];

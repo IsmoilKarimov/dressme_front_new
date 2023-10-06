@@ -5,7 +5,7 @@ export const dressMainData = createContext();
 export const DressMenu = ({ children }) => {
 
   const [dressInfo, setDressInfo] = useState({
-    type: 4444,
+    type: 5555,
     ClothesBorder: 1,
     PageSetModal: false,
     yandexOpenMenu: false,
@@ -1191,6 +1191,22 @@ export const DressMenu = ({ children }) => {
     },
     {
       id: 4444,
+      btn: "text-borderWinter bg-btnBgColor border-searchBgColor",
+      btnOpacity: "text-borderWinter bg-opacity-10 bg-bgWinter",
+      btnFocus:
+        "focus:text-borderWinter focus:bg-btnBgColor focus:border-searchBgColor",
+      textHover: "hover:text-borderWinter",
+      textColor: "text-borderWinter",
+      color: "#007DCA",
+      btnActiveSeason:
+        "text-borderWinter  bg-bgWinter border border-borderWinter",
+      authenActiveSeason:
+        "md:text-borderWinter bg-white bg-bgWinter md:border-borderWinter w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border rounded-lg",
+      linkActive:
+        "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderWinter text-borderWinter",
+    },
+    {
+      id: 5555,
       btn: "text-borderWinter bg-btnBgColor border-searchBgColor",
       btnOpacity: "text-borderWinter bg-opacity-10 bg-bgWinter",
       btnFocus:
