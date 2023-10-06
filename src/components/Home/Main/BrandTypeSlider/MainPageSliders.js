@@ -248,8 +248,9 @@ export default function MainPageSliders() {
           {/* Main slider */}
 
           <div
-            className={`w-full ss:h-0 ${more ? "xs:h-0" : "xs:h-auto"
-              } overflow-hidden`}
+            className={`w-full ss:h-0 ${
+              more ? "xs:h-0" : "xs:h-auto"
+            } overflow-hidden`}
           >
             <Slider
               {...settings}
@@ -270,9 +271,10 @@ export default function MainPageSliders() {
                             return (
                               <button
                                 key={value?.id}
-                                className={`w-full h-full border border-solid	${value?.colors} rounded-lg`}
+                                className={`w-full h-full rounded-lg flex items-center justify-center`}
                               >
-                                <SircleNext />
+                                {/* <SircleNext /> */}
+                                <NoImg />
                               </button>
                             );
                           })}
@@ -295,8 +297,9 @@ export default function MainPageSliders() {
           {/* carosuel hidden block */}
 
           <div
-            className={`${more ? "xs:grid" : "xs:hidden"
-              } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[20px] overflow-hidden  my-0 py-0 md:pt-7`}
+            className={`${
+              more ? "xs:grid" : "xs:hidden"
+            } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 md:pt-7`}
           >
             {carosuelData?.map((data) => {
               return data.Category.map((data, i) => {
@@ -307,25 +310,9 @@ export default function MainPageSliders() {
                       key={data?.id}
                       className="w-[100%] "
                     >
-
-                      <div className="xs:p-2 xs:bg-[#F8F8F8] xs:rounded-lg">
-                        {changeColor
-                          .filter((e) => e.id === dressInfo?.ClothesBorder)
-                          .map((value) => {
-                            return (
-                              // <button
-                              //   key={value?.id}
-                              //   className={`w-full h-full border border-solid	${value?.colors} rounded-lg`}
-                              // >
-                              //   <SircleNext />
-                              // </button>
-                              <figure className={`w-[100%] xs:w-[180px] h-[140px] xs:h-[224px] flex items-center justify-center p-1 bg-btnBgColor border ${value?.colors} xs:border-[1.5px] 	rounded-xl xs:rounded`}>
-                                <NoImg />
-                              </figure>
-                            );
-                          })}
-
-                      </div>
+                      <figure className="w-[100%] xs:w-[196px] h-[140px] xs:h-[224px] flex items-center justify-center p-1 bg-btnBgColor ]	rounded-xl xs:rounded">
+                        <NoImg />
+                      </figure>
                       <article className="w-full py-1 flex items-center">
                         <p className="not-italic flex items-center font-AeonikProMedium text-sm xs:text-base leading-6 text-black">
                           {data?.type || "type"}
@@ -337,7 +324,7 @@ export default function MainPageSliders() {
                     </NavLink>
                   );
                 } else {
-                  if (i > 5) {
+                  if (i > 8) {
                     return false;
                   } else {
                     return (
@@ -346,11 +333,9 @@ export default function MainPageSliders() {
                         key={data?.id}
                         className="w-[100%] "
                       >
-                        <div className="xs:p-2 xs:bg-[#F8F8F8] xs:rounded-lg">
-                          <figure className="w-[100%] xs:w-[180px] h-[140px] xs:h-[224px] flex items-center justify-center p-1 bg-btnBgColor border xs:border-[1.5px] xs:border-[#008F0E] border-[#F2F2F2]	rounded-xl xs:rounded">
-                            <NoImg />
-                          </figure>
-                        </div>
+                        <figure className="w-[100%] xs:w-[196px] h-[140px] xs:h-[224px] flex items-center justify-center p-1 bg-btnBgColor ]	rounded-xl xs:rounded">
+                          <NoImg />
+                        </figure>
                         <article className="w-full py-1 flex items-center">
                           <p className="not-italic flex items-center font-AeonikProMedium text-sm xs:text-base leading-6 text-black">
                             {data?.type || "type"}
