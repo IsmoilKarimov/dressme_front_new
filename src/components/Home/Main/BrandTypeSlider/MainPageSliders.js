@@ -356,15 +356,28 @@ export default function MainPageSliders() {
           </div>
           <div className="w-full flex justify-center items-center  mt-10">
             <button
-              className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[52px] px-4 ll:px-10 rounded-xl border ${dressInfo?.BtnSeason}`}
+              className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[40px] xs:h-[52px] px-4 ll:px-10 rounded-xl border ${dressInfo?.BtnSeason}`}
               onClick={() => setMore(!more)}
             >
-              <p className="not-italic  font-AeonikProMedium text-base leading-4 text-center">
+              <p className="not-italic  font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
                 {more ? "Назад" : "Посмотреть все разделы"}
               </p>
               <p className="ml-2 ">
                 {more ? (
-                  <ShowMoreBackIcon colors={dressInfo?.ColorSeason} />
+                  <div>
+                    <span className="xs:hidden">
+                      <ShowMoreBackIcon
+                        colors={dressInfo?.ColorSeason}
+                        width={18}
+                      />
+                    </span>
+                    <span className="hidden xs:block">
+                      <ShowMoreBackIcon
+                        colors={dressInfo?.ColorSeason}
+                        width={24}
+                      />
+                    </span>
+                  </div>
                 ) : (
                   <SircleNext colors={dressInfo?.ColorSeason} />
                 )}
