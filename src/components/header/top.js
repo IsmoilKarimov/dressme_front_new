@@ -25,8 +25,6 @@ const TopHeader = () => {
     openModalRegions: false,
   })
 
-  const url = "https://api.dressme.uz/api/seller"
-
   // -----Language Change-------------------
   const [selectLang, setselectLang] = useState(1);
   const LanguageList = [
@@ -68,63 +66,13 @@ const TopHeader = () => {
     </section>
   );
 
-  // ------- Loading Region ------
-  const { isLoading } = useQuery(["get region"], () => {
-    return fetch(`${url}/regions`).then(res => res.json())
-  },
-    {
-      onSuccess: (res) => {
-        setState({ ...state, getRegionList: res, })
-      },
-      onError: (err) => {
-        console.log(err, "err");
-      },
-      keepPreviousData: true, // bu browserdan tashqariga chiqib yana kirsa, yana yurishni oldini olish uchun
-      refetchOnWindowFocus: false, // bu ham focus bolgan vaqti malumot olib kelish
-    }
-  )
-
-  // ------------GET METHOD Profile-----------------
-  useQuery(["get profile"], () => {
-    return fetch(`${url}/profile`, {
-      method: "GET",
-      headers: {
-        "Content-type": "application/json",
-        'Authorization': `Bearer ${localStorage.getItem("DressmeUserToken")}`,
-      },
-
-    }).then(res => res.json())
-  },
-    {
-      onSuccess: (res) => {
-        console.log(res, "res");
-        setState({
-          ...state, getProfileList: res,
-          regionId: res?.region_id,
-          subRegionId: res?.sub_region_id,
-        })
-      },
-      onError: (err) => {
-        console.log(err, "err");
-      },
-      keepPreviousData: true, // bu browserdan tashqariga chiqib yana kirsa, yana yurishni oldini olish uchun
-      refetchOnWindowFocus: false, // bu ham focus bolgan vaqti malumot olib kelish
-    }
-  )
 
   // -------City Change -------------
   const [selectCity] = useState("Tashkent");
   const location = useLocation();
   const [locationWindow, setLocationWindow] = useState("");
-  const [activeIndex, setActiveIndex] = useState();
 
-  const accordionCityList = (id) => {
-    if (activeIndex === id) {
-      setActiveIndex(0)
-    } else {
-      setActiveIndex(id)
-    }
-  }
+
 
   useEffect(() => {
     setLocationWindow(location.pathname);
@@ -133,13 +81,7 @@ const TopHeader = () => {
 
   return (
     <nav>
-      <div
-        onClick={() => {
-          setState({ ...state, popConfirmDelete: false, openModalRegions: false })
-        }}
-        className={`fixed inset-0 z-[112] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
-         ${state?.openModalRegions ? "" : "hidden" }`}
-      ></div>
+      
 
       <div
         className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${locationWindow === "/delivery-points"
@@ -170,7 +112,7 @@ const TopHeader = () => {
                 </div>
               </Link>
               <div className={`${regionsShow ? '' : 'hidden'}`}>
-                <RegionList  regionsShow={regionsShow}/>
+                <RegionList />
               </div>
             </section>
 
