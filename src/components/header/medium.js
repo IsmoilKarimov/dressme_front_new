@@ -48,6 +48,7 @@ import {
   allBrandDesktop
 } from "../../assets";
 import NavCategoryModal from "./navCategoryModal";
+import RegionsList from "../../ContextHook/RegionsList";
 
 const MediumHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -57,7 +58,7 @@ const MediumHeader = () => {
     genderActive: true,
   });
   const [regionsList, setRegionsList] = useState(false)
-  const toggleFilter = useCallback(() => setRegionsList(false), [])
+  const toggleRegionsShow = useCallback(() => setRegionsList(false), [])
 
   // For DropUp
   // useEffect(() => {
@@ -223,6 +224,21 @@ const MediumHeader = () => {
 
   return (
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border">
+      <div
+        onClick={() => setRegionsList(false)}
+        className={`fixed inset-0 z-[230] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
+         ${regionsList ? "" : "hidden"}`}
+      ></div>
+      {regionsList && (
+        <div className={`max-w-[600px]    w-full fixed duration-500 z-[231]  h-fit flex items-center  justify-center mx-auto
+        ${regionsList
+            ? " bottom-0 md:flex flex-col z-[232]"
+            : "bottom-[-1500px] z-[-10]"
+          }
+        `}>
+          <RegionsList onClick={toggleRegionsShow} />
+        </div>
+      )}
       {dressInfo?.openCatologId && (
         <div
           onClick={() => setDressInfo({ ...dressInfo, openCatologId: false })}

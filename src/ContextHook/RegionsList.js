@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons, MenuCloseIcons } from "../assets/icons";
 
-export default function RegionList({ show, setShow }) {
+function RegionList({ onClick }) {
   const [state, setState] = useState({
     regionId: "",
     subRegionId: "",
@@ -13,7 +13,7 @@ export default function RegionList({ show, setShow }) {
     //--- Get getSellerList ---
     getSellerList: "",
     // -----region Modal ---
-    openModalRegions: show,
+    // openModalRegions: show,
   });
 
   const url = "https://api.dressme.uz/api/seller";
@@ -74,22 +74,12 @@ export default function RegionList({ show, setShow }) {
       setActiveIndex(id);
     }
   };
-
+  // show
   return (
-    <main className={`${show ? "block" : "hidden"}`}>
+    <main className={`w-full  h-fit `}>
+
       <div
-        onClick={() => {
-          setState({ ...state, openModalRegions: false });
-        }}
-        className={`fixed inset-0 z-[112] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
-         ${state?.openModalRegions ? "" : ""}`}
-      ></div>
-      <div
-        className={`max-w-[600px] h-fit fixed    px-3 md:px-6  py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg  mx-auto w-full duration-500 z-[113] md:top-[50%] md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] overflow-hidden ${
-          state?.openModalRegions
-            ? " bottom-0 md:flex flex-col"
-            : "bottom-[-1500px] z-[-10]"
-        }`}
+        className={`max-w-[600px] h-fit     px-3 md:px-6  py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg  `}
       >
         <div className="w-full flex items-center justify-between ">
           <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">
@@ -97,9 +87,7 @@ export default function RegionList({ show, setShow }) {
           </span>
           <span
             className="select-none cursor-pointer"
-            onClick={() => {
-              setShow(!show);
-            }}
+            onClick={onClick}
           >
             <MenuCloseIcons colors="#000" />
           </span>
@@ -111,9 +99,8 @@ export default function RegionList({ show, setShow }) {
               return (
                 <div
                   key={data?.id}
-                  className={`${
-                    data.id || data.sub_regions.id ? "" : ""
-                  } w-full h-fit`}
+                  className={`${data.id || data.sub_regions.id ? "" : ""
+                    } w-full h-fit`}
                 >
                   <div className="flex items-center">
                     <input
@@ -132,11 +119,10 @@ export default function RegionList({ show, setShow }) {
                         {data?.name_ru}
                       </span>
                       <span
-                        className={`${
-                          activeIndex === data?.id
-                            ? "rotate-[-0deg] duration-300"
-                            : "rotate-[-180deg] duration-300"
-                        } ml-auto`}
+                        className={`${activeIndex === data?.id
+                          ? "rotate-[-0deg] duration-300"
+                          : "rotate-[-180deg] duration-300"
+                          } ml-auto`}
                       >
                         <ArrowTopIcons colors={"#a1a1a1"} />
                       </span>
@@ -144,11 +130,10 @@ export default function RegionList({ show, setShow }) {
                   </div>
                   <div
                     className={`w-full grid grid-cols-2 xs:grid-cols-3 duration-[400ms]
-                              ${
-                                activeIndex == data?.id
-                                  ? "openAccardion"
-                                  : "CloseAccardion"
-                              } `}
+                              ${activeIndex == data?.id
+                        ? "openAccardion"
+                        : "CloseAccardion"
+                      } `}
                   >
                     {data?.sub_regions?.map((item) => {
                       return (
@@ -194,9 +179,7 @@ export default function RegionList({ show, setShow }) {
         </div>
         <div className="w-full flex items-center justify-end  mt-2">
           <span
-            onClick={() => {
-              setState({ ...state, openModalRegions: false });
-            }}
+            onClick={onClick}
             className="cursor-pointer text-borderWinter text-lg not-italic font-AeonikProMedium"
           >
             Готово
@@ -206,3 +189,4 @@ export default function RegionList({ show, setShow }) {
     </main>
   );
 }
+export default React.memo(RegionList)
