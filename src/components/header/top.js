@@ -40,7 +40,7 @@ const TopHeader = () => {
     setselectLang(value);
     setOpenLang(false);
   };
-  
+
   const contentLang = (
     <section className="w-fit h-fit m-0 p-0">
       {LanguageList.map((data) => {
@@ -65,7 +65,7 @@ const TopHeader = () => {
       })}
     </section>
   );
-  
+
   // ------- Loading Region ------
   const { isLoading } = useQuery(["get region"], () => {
     return fetch(`${url}/regions`).then(res => res.json())
@@ -115,7 +115,7 @@ const TopHeader = () => {
   const location = useLocation();
   const [locationWindow, setLocationWindow] = useState("");
   const [activeIndex, setActiveIndex] = useState();
-  
+
   const accordionCityList = (id) => {
     if (activeIndex === id) {
       setActiveIndex(0)
@@ -127,7 +127,7 @@ const TopHeader = () => {
   useEffect(() => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
- 
+
 
   return (
     <nav>
@@ -138,7 +138,7 @@ const TopHeader = () => {
         className={`fixed inset-0 z-[112] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
          ${state?.openModalRegions ? "" : "hidden" }`}
       ></div>
-      
+
       <div
         className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${locationWindow === "/delivery-points"
           ? "bg-transparent h-[40px] "
@@ -147,7 +147,7 @@ const TopHeader = () => {
       >
         <section className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">
           {/* LEFT SIDE */}
-          <article className="left h-full flex items-center overscroll-none overflow-y-hidden overscroll-y-none">          
+          <article className="left h-full flex items-center overscroll-none overflow-y-hidden overscroll-y-none">
             <div className={` max-w-[600px] h-fit fixed    px-3 md:px-6  py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg  mx-auto w-full duration-500 z-[113] md:top-[50%] md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] overflow-hidden ${state?.openModalRegions ? " bottom-0 md:flex flex-col" : "md:hidden bottom-[-1500px] z-[-10] overscroll-none"}`} >
                 <div className="w-full flex items-center justify-between  ">
                   <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">Выберите регион</span>
@@ -161,20 +161,20 @@ const TopHeader = () => {
                   </span>
                 </div>
 
-                <div className="w-full overflow-auto  flex flex-col gap-y-4 pt-3  overflow-x-hidden mt-3 h-[50vh] md:h-[60vh] VerticelScroll pr-2 ">                  
+                <div className="w-full overflow-auto  flex flex-col gap-y-4 pt-3  overflow-x-hidden mt-3 h-[50vh] md:h-[60vh] VerticelScroll pr-2 ">
                   {state?.getRegionList?.regions ?
                     state?.getRegionList?.regions?.map((data) => {
                       // console.log(data.id);
-                      // console.log(data.name_ru);
+                      // console.log(data.name_ru);------------------------------------------------------------------
                       return (
                         <div key={data?.id} className={`${data.id || data.sub_regions.id ? '' : ''} w-full h-fit`}>
                           <div className="flex items-center">
-                            <input 
+                            <input
                                 id={data?.id}
-                                type="radio" 
+                                type="radio"
                                 name="region"
                                 value={data?.id}
-                                className="w-[18px] h-[18px] cursor-pointer mr-3" 
+                                className="w-[18px] h-[18px] cursor-pointer mr-3"
                                 onClick={() => accordionCityList(data?.id)}
                               />
                             <label
@@ -193,7 +193,7 @@ const TopHeader = () => {
                             </label>
                           </div>
                           <div
-                            className={`w-full grid grid-cols-2 xs:grid-cols-3 duration-[400ms] 
+                            className={`w-full grid grid-cols-2 xs:grid-cols-3 duration-[400ms]
                               ${activeIndex == data?.id ? "openAccardion" : "CloseAccardion"} `}
                           >
                             {data?.sub_regions?.map((item) => {
@@ -208,7 +208,7 @@ const TopHeader = () => {
                                       id={item?.name_ru}
                                       name="region"
                                       value={item?.region_id}
-                                      checked={state?.subRegionId == item?.id}
+                                      // checked={state?.subRegionId == item?.id}
                                       className="w-4 h-4 border border-borderColor  cursor-pointer  flex items-center justify-center"
                                       onChange={(e) => {
                                         setState({ ...state, regionId: e.target.value, subRegionId: item?.id })
@@ -235,14 +235,14 @@ const TopHeader = () => {
                   }} className="cursor-pointer text-borderWinter text-lg not-italic font-AeonikProMedium">Готово</span>
                 </div>
             </div>
-            
+
             <section>
               <Link to="/" className="flex w-fit items-center">
                 <LocationIcons />
                 <div className="text-textColor text-[13px] ml-2 mr-[6px] font-AeonikProMedium">
                   Регион:
                 </div>
-                <div 
+                <div
                   onClick={() => {
                     setState({ ...state, openModalRegions: true });
                   }}
@@ -280,9 +280,9 @@ const TopHeader = () => {
               )}
             </section>
           </article>
-          
-          
-          
+
+
+
           {/* RIGHT SIDE */}
           <article className="right h-full flex items-center">
             <NavLink
