@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { EnglishFlag, RussianFlag, UzbekFlag } from "../../assets";
@@ -18,6 +18,7 @@ const TopHeader = () => {
   const [dressInfo] = useContext(dressMainData);
   const [selectBtn, setSelectBtn] = useState(true);
   const [regionsShow, setRegionsShow] = useState(false);
+  const toggleRegionsShow = useCallback(() => setRegionsShow(false), [])
 
   const [state, setState] = useState({
     regionId: "",
@@ -85,21 +86,35 @@ const TopHeader = () => {
   return (
     <nav>
       <div
-        className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${
-          locationWindow === "/delivery-points"
-            ? "bg-transparent h-[40px] "
-            : "bg-bgColor h-[32px] "
-        }`}
+        onClick={() => setRegionsShow(false)}
+        className={`fixed inset-0 z-[230] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
+         ${regionsShow ? "" : "hidden"}`}
+      ></div>
+      {regionsShow && (
+        <div className={`max-w-[600px]  w-full fixed duration-500 z-[231]  left-1/2 right-1/2 top-[50%] translate-x-[-50%] translate-y-[-50%]  h-fit flex items-center  justify-center mx-auto
+        ${regionsShow
+            ? " bottom-0 md:flex flex-col"
+            : "bottom-[-1500px] z-[-10]"
+          }
+        `}>
+          <RegionList onClick={toggleRegionsShow} />
+        </div>
+      )}
+
+      <div
+        className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${locationWindow === "/delivery-points"
+          ? "bg-transparent h-[40px] "
+          : "bg-bgColor h-[32px] "
+          }`}
       >
         <section className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">
           {/* LEFT SIDE */}
           <article className="left h-full flex items-center overscroll-none overflow-y-hidden overscroll-y-none">
             <section>
-              <Link
+              <button
                 onClick={() => {
                   setRegionsShow(true);
                 }}
-                to="/"
                 className="flex w-fit items-center"
               >
                 <LocationIcons />
@@ -109,9 +124,9 @@ const TopHeader = () => {
                 <div className="w-[90px] font-AeonikProMedium flex items-center text-[13px]">
                   <span className="border-b border-slate-900">Tashkent</span>
                 </div>
-              </Link>
-              <RegionList show={regionsShow} setShow={setRegionsShow} />
+              </button>
             </section>
+
 
             <section className="w-fit h-fit py-[4px] rounded bg-white font-AeonikProMedium select-none cursor-pointer">
               {LanguageList.filter((data) => data.id === selectLang).map(
