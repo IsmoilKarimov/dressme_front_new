@@ -58,6 +58,7 @@ export { default as summerSeason } from "./Season/SummerSeason.svg";
 export { default as autummSeason } from "./Season/autummSeason.svg";
 export { default as winterSeason } from "./Season/winterSeason.svg";
 export { default as springSeason } from "./Season/spirngSeason.svg";
+export { default as AllSeason } from "./Season/AllSeason.svg";
 
 // --------- PAYMENTS ----------
 export { default as Paymentpayme } from "./Payments/payme-logo.svg";
