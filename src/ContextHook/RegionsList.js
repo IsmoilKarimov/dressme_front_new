@@ -75,7 +75,7 @@ export default function RegionList() {
 
   return (
     <main>
-        <div className={` max-w-[600px] h-fit fixed  px-3 md:px-6  py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg  mx-auto w-full duration-500 z-[113] md:top-[50%] md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] overflow-hidden ${state?.openModalRegions ? " bottom-0 md:flex flex-col" : "md: bottom-[-1500px] z-[-10] overscroll-none"}`} >
+        <div className={`max-w-[600px] h-fit fixed px-3 md:px-6  py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg mx-auto w-full duration-500 z-[113] md:top-[50%] md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] overflow-hidden ${state?.openModalRegions ? " bottom-0 md:flex flex-col" : "bottom-[-1500px] z-[-10] overscroll-none"}`} >
                 <div className="w-full flex items-center justify-between  ">
                   <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">Выберите регион</span>
                   <span
