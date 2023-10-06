@@ -5,10 +5,12 @@ import { EnglishFlag, RussianFlag, UzbekFlag } from "../../assets";
 import { useQuery } from "@tanstack/react-query";
 import { Popover } from "antd";
 import { ArrowTopIcons, CommentIcons, HouseStatisticIcons, LocationIcons, MarketIcons, MenuCloseIcons } from "../../assets/icons";
+import RegionList from "../../ContextHook/RegionsList";
 
 const TopHeader = () => {
   const [dressInfo] = useContext(dressMainData);
   const [selectBtn, setSelectBtn] = useState(true)
+  const [regionShow, setRegionsShow] = useState(false)
 
   const [state, setState] = useState({
     regionId: "",
@@ -148,7 +150,7 @@ const TopHeader = () => {
         <section className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">
           {/* LEFT SIDE */}
           <article className="left h-full flex items-center overscroll-none overflow-y-hidden overscroll-y-none">
-            <div className={`max-w-[600px] h-fit fixed px-3 md:px-6  py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg  mx-auto w-full duration-500 z-[113] md:top-[50%] md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] overflow-hidden ${state?.openModalRegions ? " bottom-0 md:flex flex-col" : "md:hidden bottom-[-1500px] z-[-10] overscroll-none"}`} >
+            {/* <div className={`max-w-[600px] h-fit fixed px-3 md:px-6  py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg  mx-auto w-full duration-500 z-[113] md:top-[50%] md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] overflow-hidden ${state?.openModalRegions ? " bottom-0 md:flex flex-col" : "md:hidden bottom-[-1500px] z-[-10] overscroll-none"}`} >
                 <div className="w-full flex items-center justify-between  ">
                   <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">Выберите регион</span>
                   <span
@@ -234,18 +236,19 @@ const TopHeader = () => {
                     setState({ ...state, openModalRegions: false });
                   }} className="cursor-pointer text-borderWinter text-lg not-italic font-AeonikProMedium">Готово</span>
                 </div>
-            </div>
+            </div> */}
 
             <section>
-              <Link to="/" className="flex w-fit items-center">
+              <Link 
+                onClick={()=> setRegionsShow(!regionShow)}
+                to="/" className="flex w-fit items-center">
                 <LocationIcons />
                 <div className="text-textColor text-[13px] ml-2 mr-[6px] font-AeonikProMedium">
                   Регион:
                 </div>
                 <div
                   onClick={() => {
-                    // setState({ ...state, openModalRegions: true });
-                    // setRegionsShow()
+                    setRegionsShow()
                   }}
                   className="w-[90px] font-AeonikProMedium flex items-center text-[13px]">
                   <span className="border-b border-slate-900">
@@ -253,6 +256,9 @@ const TopHeader = () => {
                   </span>
                 </div>
               </Link>
+              <div className={`${regionShow ? '' : 'hidden'}`}>
+                <RegionList />
+                </div>
             </section>
 
             <section className="w-fit h-fit py-[4px] rounded bg-white font-AeonikProMedium select-none cursor-pointer">
