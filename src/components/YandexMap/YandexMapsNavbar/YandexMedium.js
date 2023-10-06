@@ -74,7 +74,7 @@ const YandexMedium = () => {
         return (
           <article
             key={value?.id}
-            className="w-full h-[42px] md:flex items-center hidden md:justify-center md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
+            className="w-full h-[42px] md:flex items-center hidden  md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
             onClick={() => handleSeason(value.id)}
           >
             <figure className="mr-2 md:mr-3">
@@ -92,7 +92,7 @@ const YandexMedium = () => {
         return (
           <article
             key={value?.id}
-            className="w-full h-[42px] flex items-center md:hidden md:justify-center md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
+            className="w-full h-[42px] flex items-center md:hidden  md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
             onClick={() => handleSeason(value.id)}
           >
             <figure className="mr-2 md:mr-3">
@@ -181,15 +181,18 @@ const YandexMedium = () => {
                   return (
                     <figure
                       key={data?.id}
-                      className="w-full h-full md:flex hidden items-center select-none cursor-pointer  ">
+                      className="w-full h-full hidden md:flex  items-center justify-center select-none cursor-pointer   ">
                       <img
                         src={data?.icons}
                         alt="weather"
-                        className="mr-0 md:mr-[5px] "
+                        className=" "
                       />
-                      <figcaption className=" font-AeonikProMedium  flex items-center text-[15px] ">
-                        {data?.type}
-                      </figcaption>
+                      {
+                        data?.type &&
+                        <figcaption className=" ml-[10px] font-AeonikProMedium  flex items-center text-[15px] ">
+                          {data?.type}
+                        </figcaption>
+                      }
                     </figure>
                   );
                 })}

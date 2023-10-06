@@ -331,15 +331,19 @@ const MediumHeader = () => {
                         return (
                           <figure
                             key={data?.id}
-                            className="w-full h-full md:flex hidden items-center justify-center select-none cursor-pointer  ">
+
+                            className="w-full h-full md:flex hidden items-center justify-center select-none cursor-pointer ">
                             <img
                               src={data?.icons}
                               alt="weather"
-                              className="mr-0 mr-[10px] "
+                              className=" "
                             />
-                            <figcaption className=" font-AeonikProMedium  flex items-center text-[15px] ">
-                              {data?.type}
-                            </figcaption>
+                            {
+                              data?.type &&
+                              <figcaption className=" ml-[10px] font-AeonikProMedium  flex items-center text-[15px] ">
+                                {data?.type}
+                              </figcaption>
+                            }
                           </figure>
                         );
                       })}
