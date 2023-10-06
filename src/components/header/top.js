@@ -4,13 +4,20 @@ import { dressMainData } from "../../ContextHook/ContextMenu";
 import { EnglishFlag, RussianFlag, UzbekFlag } from "../../assets";
 import { useQuery } from "@tanstack/react-query";
 import { Popover } from "antd";
-import { ArrowTopIcons, CommentIcons, HouseStatisticIcons, LocationIcons, MarketIcons, MenuCloseIcons } from "../../assets/icons";
+import {
+  ArrowTopIcons,
+  CommentIcons,
+  HouseStatisticIcons,
+  LocationIcons,
+  MarketIcons,
+  MenuCloseIcons,
+} from "../../assets/icons";
 import RegionList from "../../ContextHook/RegionsList";
 
 const TopHeader = () => {
   const [dressInfo] = useContext(dressMainData);
-  const [selectBtn, setSelectBtn] = useState(true)
-  const [regionsShow, setRegionsShow] = useState(false)
+  const [selectBtn, setSelectBtn] = useState(true);
+  const [regionsShow, setRegionsShow] = useState(false);
 
   const [state, setState] = useState({
     regionId: "",
@@ -23,7 +30,7 @@ const TopHeader = () => {
     getSellerList: "",
     // -----region Modal ---
     openModalRegions: false,
-  })
+  });
 
   // -----Language Change-------------------
   const [selectLang, setselectLang] = useState(1);
@@ -66,54 +73,44 @@ const TopHeader = () => {
     </section>
   );
 
-
   // -------City Change -------------
   const [selectCity] = useState("Tashkent");
   const location = useLocation();
   const [locationWindow, setLocationWindow] = useState("");
 
-
-
   useEffect(() => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
 
-
   return (
     <nav>
-      
-
       <div
-        className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${locationWindow === "/delivery-points"
-          ? "bg-transparent h-[40px] "
-          : "bg-bgColor h-[32px] "
-          }`}
+        className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${
+          locationWindow === "/delivery-points"
+            ? "bg-transparent h-[40px] "
+            : "bg-bgColor h-[32px] "
+        }`}
       >
         <section className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">
           {/* LEFT SIDE */}
           <article className="left h-full flex items-center overscroll-none overflow-y-hidden overscroll-y-none">
-
             <section>
-              <Link 
-                onClick={()=> setRegionsShow(!regionsShow)}
-                to="/" className="flex w-fit items-center">
+              <Link
+                onClick={() => {
+                  setRegionsShow(true);
+                }}
+                to="/"
+                className="flex w-fit items-center"
+              >
                 <LocationIcons />
                 <div className="text-textColor text-[13px] ml-2 mr-[6px] font-AeonikProMedium">
                   Регион:
                 </div>
-                <div
-                  onClick={() => {
-                    setRegionsShow()
-                  }}
-                  className="w-[90px] font-AeonikProMedium flex items-center text-[13px]">
-                  <span className="border-b border-slate-900">
-                    {selectCity}
-                  </span>
+                <div className="w-[90px] font-AeonikProMedium flex items-center text-[13px]">
+                  <span className="border-b border-slate-900">Tashkent</span>
                 </div>
               </Link>
-              <div className={`${regionsShow ? '' : 'hidden'}`}>
-                <RegionList />
-              </div>
+              <RegionList show={regionsShow} setShow={setRegionsShow} />
             </section>
 
             <section className="w-fit h-fit py-[4px] rounded bg-white font-AeonikProMedium select-none cursor-pointer">
@@ -145,9 +142,7 @@ const TopHeader = () => {
 
           {/* RIGHT SIDE */}
           <article className="right h-full flex items-center">
-            <NavLink
-              to="#"
-              className={`flex items-center h-fit py-[4px]`}>
+            <NavLink to="#" className={`flex items-center h-fit py-[4px]`}>
               <span className="mr-2">
                 <CommentIcons colors={"#707070"} />
               </span>
@@ -157,7 +152,12 @@ const TopHeader = () => {
             </NavLink>
             <button
               type="button"
-              onClick={() => window.open(' https://dressme-dashboard-new.vercel.app', "_blank")}
+              onClick={() =>
+                window.open(
+                  " https://dressme-dashboard-new.vercel.app",
+                  "_blank"
+                )
+              }
               className={`flex items-center h-fit py-[4px] ml-6
                 // ${!selectBtn ? "py-[4px] px-3 bg-white rounded" : ""}
               `}
@@ -185,7 +185,8 @@ const TopHeader = () => {
               <p className="mr-2">
                 <MarketIcons colors={"#000"} />
               </p>
-              <p className={`font-AeonikProMedium  text-[13px]
+              <p
+                className={`font-AeonikProMedium  text-[13px]
                   ${selectBtn ? "text-black" : "text-textColor"}
                 `}
               >
@@ -195,7 +196,7 @@ const TopHeader = () => {
           </article>
         </section>
       </div>
-    </nav >
+    </nav>
   );
 };
 export default TopHeader;
