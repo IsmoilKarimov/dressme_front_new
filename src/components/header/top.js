@@ -13,10 +13,6 @@ const TopHeader = () => {
   const [state, setState] = useState({
     regionId: "",
     subRegionId: "",
-    //------------------
-    // validateConfirm: true,
-    // eyesShow: true,
-    // requestPerson: true,
     //--- Regions Get ---
     getRegionList: "",
     //--- Get Profile ---
@@ -25,8 +21,6 @@ const TopHeader = () => {
     getSellerList: "",
     // -----region Modal ---
     openModalRegions: false,
-    // ----popConfirmDelete
-    // popConfirmDelete: false,
   })
 
   const url = "https://api.dressme.uz/api/seller"
@@ -106,13 +100,11 @@ const TopHeader = () => {
           ...state, getProfileList: res,
           regionId: res?.region_id,
           subRegionId: res?.sub_region_id,
-          
         })
       },
       onError: (err) => {
         console.log(err, "err");
       },
-
       keepPreviousData: true, // bu browserdan tashqariga chiqib yana kirsa, yana yurishni oldini olish uchun
       refetchOnWindowFocus: false, // bu ham focus bolgan vaqti malumot olib kelish
     }
