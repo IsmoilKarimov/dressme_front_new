@@ -248,9 +248,8 @@ export default function MainPageSliders() {
           {/* Main slider */}
 
           <div
-            className={`w-full ss:h-0 ${
-              more ? "xs:h-0" : "xs:h-auto"
-            } overflow-hidden`}
+            className={`w-full ss:h-0 ${more ? "xs:h-0" : "xs:h-auto"
+              } overflow-hidden`}
           >
             <Slider
               {...settings}
@@ -271,7 +270,7 @@ export default function MainPageSliders() {
                             return (
                               <button
                                 key={value?.id}
-                                className={`w-full h-full rounded-lg flex items-center justify-center`}
+                                className={`w-full h-full border border-searchBgColor rounded-lg flex items-center justify-center`}
                               >
                                 {/* <SircleNext /> */}
                                 <NoImg />
@@ -297,9 +296,8 @@ export default function MainPageSliders() {
           {/* carosuel hidden block */}
 
           <div
-            className={`${
-              more ? "xs:grid" : "xs:hidden"
-            } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 md:pt-7`}
+            className={`${more ? "xs:grid" : "xs:hidden"
+              } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 md:pt-7`}
           >
             {carosuelData?.map((data) => {
               return data.Category.map((data, i) => {
@@ -310,7 +308,7 @@ export default function MainPageSliders() {
                       key={data?.id}
                       className="w-[100%] "
                     >
-                      <figure className="w-[100%] xs:w-[196px] h-[140px] xs:h-[224px] flex items-center justify-center p-1 bg-btnBgColor ]	rounded-xl xs:rounded">
+                      <figure className="w-[100%] xs:w-[196px] h-[140px] xs:h-[224px] flex items-center border border-searchBgColor justify-center p-1 bg-btnBgColor ]	rounded-xl xs:rounded">
                         <NoImg />
                       </figure>
                       <article className="w-full py-1 flex items-center">
@@ -333,7 +331,7 @@ export default function MainPageSliders() {
                         key={data?.id}
                         className="w-[100%] "
                       >
-                        <figure className="w-[100%] xs:w-[196px] h-[140px] xs:h-[224px] flex items-center justify-center p-1 bg-btnBgColor ]	rounded-xl xs:rounded">
+                        <figure className="w-[100%] xs:w-[196px] h-[140px] xs:h-[224px] border border-searchBgColor flex items-center justify-center p-1 bg-btnBgColor ]	rounded-xl xs:rounded">
                           <NoImg />
                         </figure>
                         <article className="w-full py-1 flex items-center">

@@ -83,6 +83,17 @@ const TopHeader = () => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
 
+  useEffect(() => {
+    if (regionsShow) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [regionsShow]);
+
+  // -----------------------------------------------------
+
+
   return (
     <nav>
       <div

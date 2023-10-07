@@ -6,14 +6,19 @@ import ReactSlider from "react-slider";
 
 import style from "./bottom.module.css";
 import {
+  AutummBoyIcons,
   ClothesIcons,
   DollorIcons,
   InputCheckedTrueIcons,
+  ManGenIcons,
+  ManWomanGen,
   MenuCloseIcons,
   PlusAddCectorIcons,
+  SpringBoyIcons,
+  SummerBoyIcons,
+  WinterBoyIcons,
+  WomanGenIcons,
 } from "../../assets/icons";
-
-import GenderButtonsStyle from "../Home/Shop/ShoppingStore/GenderButtonsStyle/GenderButtonsStyle";
 import { GrClose } from "react-icons/gr";
 
 const BottomHeader = () => {
@@ -396,6 +401,67 @@ const BottomHeader = () => {
     });
     setIconsColor("black");
   };
+  // -----GenderType
+
+
+
+  const [personItems, setPersonItems] = useState([
+    {
+      id: 1111, childText: [
+        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 4, anyIcons: <SpringBoyIcons />, name: "", action: false },
+      ]
+    },
+    {
+      id: 2222, childText: [
+        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 4, anyIcons: <SummerBoyIcons />, name: "", action: false },
+      ]
+    },
+    {
+      id: 3333, childText: [
+        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 4, anyIcons: <AutummBoyIcons />, name: "", action: false },
+      ]
+    },
+    {
+      id: 4444, childText: [
+        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 4, anyIcons: <WinterBoyIcons />, name: "", action: false },
+      ]
+    },
+    {
+      id: 5555, childText: [
+        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 4, anyIcons: <WinterBoyIcons />, name: "", action: false },
+      ]
+    }
+  ]);
+  const handleFilterByUser = (fathId, childId) => {
+    setPersonItems((current) => {
+      return current?.map((data) => {
+        if (data?.id == fathId) {
+          let newDataColor = data.childText.map((e) => {
+            if (e.id == childId) {
+              return { ...e, action: true };
+            } else return { ...e, action: false };
+          });
+          console.log(newDataColor, "newDataColor");
+          return { ...data, childText: [...newDataColor] };
+        } else return data;
+      });
+    });
+  }
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
       <div
@@ -434,16 +500,14 @@ const BottomHeader = () => {
                         HandleIconsColor(data?.IconsColor, data?.id)
                       }
                       className={`rounded-[12px] flex items-center justify-center mr-2 w-[65px] h-[40px] ${data?.colors
-                        } cursor-pointer ${data?.id == 2 ? "border border-setTexOpacity" : ""
+                        } cursor-pointer ${data?.id == 2 ? "border border-setTexOpacity flex items-center justify-center" : ""
                         } `}
                     >
                       {data?.action && data?.id === 2 ? (
-                        <span>
-                          <InputCheckedTrueIcons colors={"#000"} />
-                        </span>
+                        <InputCheckedTrueIcons colors={"#000"} />
                       ) : null}
 
-                      {data?.action && data?.id !== 6 ? (
+                      {data?.action && data?.id !== 2 ? (
                         <InputCheckedTrueIcons colors={"#fff"} />
                       ) : null}
                     </div>
@@ -605,7 +669,45 @@ const BottomHeader = () => {
         </div>
 
         <div className="line h-6 border-r-[1px] text-textColor mx-3"></div>
-        <GenderButtonsStyle />
+        <div className="box-border	 flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-lg bg-btnBgColor">
+
+          {personItems
+            ?.filter((value) => value.id === dressInfo?.type)
+            .map((data) => {
+              return (
+                <div
+                  key={data?.id}
+                  className="w-fit h-full flex items-center  "
+                >
+                  {
+                    data?.childText?.map(item => {
+                      return (
+                        <div className="flex items-center h-full">
+                          <button
+                            key={item?.id}
+                            onClick={() => handleFilterByUser(data?.id, item?.id)}
+                            className={`${item?.action ? dressInfo?.BtnActiveSeason : " bg-btnBgColor text-black"} px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  h-[44px]  justify-center flex items-center`}
+                          >
+                            {/* <img src={item?.anyIcons} alt="male" /> */}
+                            <span>{item?.anyIcons}</span>
+                            {
+                              item?.name &&
+                              <span className="ml-2 not-italic whitespace-nowrap  text-sm font-AeonikProMedium tracking-wide	leading-5">{item?.name}</span>
+                            }
+                          </button>
+                          {
+                            item?.id !== 4 &&
+                            <span className="w-[2px] mx-1 h-[30px] border-r border-searchBgColor"></span>
+                          }
+                        </div>
+                      )
+                    })
+                  }
+
+                </div>
+              );
+            })}
+        </div>
       </section>
     </nav >
   );
