@@ -80,8 +80,8 @@ export default function CollectionCards() {
       >
         <WearType onClick={toggle} />
       </section>
-      
-      
+
+
       <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex flex-col justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
         {/* Searching section */}
         <article className="w-full h-12 flex md:hidden items-center justify-between rounded-xl font-AeonikProRegular border border-searchBgColor bg-white mt-4">
@@ -95,9 +95,14 @@ export default function CollectionCards() {
             <SearchIcons />
           </span>
         </article>
-          
+        <section className="w-full  md:hidden flex justify-start items-center my-5 ">
+          <div className="not-italic font-AeonikProMedium lg:w-fit lg:text-2xl xl:text-3xl flex items-center leading-6 text-black">
+            <p>Коллекция одежд</p>
+          </div>
+        </section>
+
         <div className="w-full flex flex-col box-border ">
-          <article className="flex flex-wrap justify-between md:justify-start md:mx-0 mt-4 md:mt-[50px]  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
+          <article className="flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
             {dressInfo.ProductList.map((data) => {
               return (
                 <article
