@@ -301,14 +301,15 @@ const MediumHeader = () => {
                 {/* Weather section */}
                 <article className="w-12 h-12 md:w-[120px]  md:h-11 bg-btnBgColor border border-searchBgColor rounded-xl ml-2">
 
-                  <div className="w-full h-full ">
+                  <div className="w-full h-full" >
                     <Popover
-                      className="w-full h-full flex items-center justify-center rounded-lg cursor-pointer  md:px-2 md:gap-x-[5px] "
+                      className={`w-full h-full flex items-center justify-center rounded-lg cursor-pointer  md:px-2 md:gap-x-[5px]`}
                       open={openwear}
                       onOpenChange={handleOpenChangeWear}
                       trigger="click"
                       options={["Hide"]}
-                      placement="bottom"
+                      placement="bottomRight"
+                      marginLeft
                       content={contentWear}
                     >
                       {SeasonTypeArray.filter(

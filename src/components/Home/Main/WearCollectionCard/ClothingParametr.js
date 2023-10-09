@@ -514,7 +514,7 @@ const ClothingParametr = () => {
                             onClick={() =>
                               HandleIconsColor(data?.IconsColor, data?.id)
                             }
-                            className={`rounded-full flex items-center justify-center mr-2 w-[35px] h-[35px] ${data?.colors
+                            className={`rounded-full flex items-center justify-center w-[35px] h-[35px] ${data?.colors
                               } cursor-pointer ${data?.id == 2 ? "border border-setTexOpacity" : ""
                               } `}
                           >

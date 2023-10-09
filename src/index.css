@@ -474,3 +474,7 @@ table tr th:nth-child(1) {
   border-radius: 5px;
   padding: 2px;
 }
+
+.mainData .ant-popover {
+  left: 279.5px !important;
+}
