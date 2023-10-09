@@ -60,21 +60,14 @@ const MediumHeader = () => {
   const [regionsList, setRegionsList] = useState(false)
   const toggleRegionsShow = useCallback(() => setRegionsList(false), [])
 
-  // For DropUp
-  // useEffect(() => {
-  //   if (regionsList) {
-  //     document.body.style.overflow = "hidden";
-  //   } else {
-  //     document.body.style.overflow = "auto";
-  //   }
-  // }, [regionsList]);
+
   useEffect(() => {
-    if (state?.hamburgerMenu, regionsList) {
+    if (state?.hamburgerMenu || regionsList) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [state?.hamburgerMenu, regionsList]);
+  }, [state?.hamburgerMenu || regionsList]);
 
   // -----------------------------------------------------
   const [scrollPost, setscrollPost] = useState(0);
@@ -170,7 +163,7 @@ const MediumHeader = () => {
   };
 
   const contentWear = (
-    <section className="ss:w-fit md:w-[120px] h-fit m-0 p-0 ">
+    <section className="ss:w-fit md:w-[120px] h-fit m-0 p-0  data1">
       {SeasonTypeArray.map((value) => {
         return (
           <article
@@ -178,8 +171,8 @@ const MediumHeader = () => {
             className="w-full h-[42px] md:flex items-center hidden  md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
             onClick={() => handleSeason(value.id)}
           >
-            <figure className="">
-              <img src={value?.icons} alt="" />
+            <figure className={`${value?.id !== 5555 ? "w-5" : ""} `}>
+              <img src={value?.icons} alt="" className="object-cover w-full" />
             </figure>
             {
               value?.type &&
@@ -196,14 +189,14 @@ const MediumHeader = () => {
         return (
           <article
             key={value?.id}
-            className="w-full h-[42px] flex items-center md:hidden md:justify-center md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
+            className="w-full h-[42px] flex items-center  md:hidden md:justify-center md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
             onClick={() => handleSeason(value.id)}
           >
-            <figure className="mr-2 md:mr-3">
-              <img src={value?.icons} alt="" />
+            <figure className="mr-1 md:mr-3 w-6 ">
+              <img src={value?.icons} alt="" className="object-cover w-full" />
             </figure>
             <article
-              className={`flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
+              className={`  flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
             >
               {value?.type}
             </article>
@@ -222,6 +215,7 @@ const MediumHeader = () => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
 
+
   return (
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <div
@@ -232,7 +226,7 @@ const MediumHeader = () => {
       {regionsList && (
         <div className={`max-w-[600px]    w-full fixed duration-500 z-[231]  h-fit flex items-center  justify-center mx-auto
         ${regionsList
-            ? " bottom-0 md:flex flex-col z-[232]"
+            ? " bottom-[64px] md:flex flex-col z-[232]"
             : "bottom-[-1500px] z-[-10]"
           }
         `}>
@@ -319,7 +313,7 @@ const MediumHeader = () => {
 
                   <div className="w-full h-full ">
                     <Popover
-                      className="w-full h-full flex items-center justify-center rounded-lg cursor-pointer  md:px-2 md:gap-x-[5px] "
+                      className=" w-full   h-full flex items-center justify-center rounded-lg cursor-pointer  md:px-2 md:gap-x-[5px] "
                       open={openwear}
                       onOpenChange={handleOpenChangeWear}
                       trigger="click"
