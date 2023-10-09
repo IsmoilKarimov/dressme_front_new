@@ -313,12 +313,12 @@ const MediumHeader = () => {
 
                   <div className="w-full h-full ">
                     <Popover
-                      className=" w-full   h-full flex items-center justify-center rounded-lg cursor-pointer  md:px-2 md:gap-x-[5px] "
+                      className=" w-full h-full flex items-center justify-center rounded-lg cursor-pointer  md:px-2 md:gap-x-[5px] "
                       open={openwear}
                       onOpenChange={handleOpenChangeWear}
                       trigger="click"
                       options={["Hide"]}
-                      placement="bottom"
+                      placement="bottomRight"
                       content={contentWear}
                     >
                       {SeasonTypeArray.filter(
