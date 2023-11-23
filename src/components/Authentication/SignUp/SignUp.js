@@ -9,6 +9,7 @@ import {
   PersonIcons,
   PhoneIcons,
   SircleNext,
+  Star6Icon,
 } from "../../../assets/icons";
 import { UzbekFlag } from "../../../assets";
 
@@ -21,6 +22,7 @@ export default function SignUp() {
     email: "",
     password: "",
     eyesShow: true,
+    eyesShowConfirmation: true,
     validateConfirm: true,
     requestPerson: true,
   });
@@ -56,10 +58,11 @@ export default function SignUp() {
               Добро пожаловать в{" "}
               <span className={`${dressInfo?.TextColorSeason}`}>Dressme</span>!
             </div>
-
+            {/* Name Registration Section */}
             <div className="mt-2 w-full h-fit">
-              <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
+              <div className="flex items-center font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
                 Имя{" "}
+                <span className="text-red-600 ml-[2px]"><Star6Icon/></span>{" "}
               </div>
               <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
                 <input
@@ -73,9 +76,11 @@ export default function SignUp() {
                 </span>
               </div>
             </div>
+            {/* Surname Registration Section */}
             <div className="mt-4 w-full h-fit">
-              <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
+              <div className="flex items-center font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
                 Фамилия{" "}
+                <span className="text-red-600 ml-[2px]"><Star6Icon/></span>{" "}
               </div>
               <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
                 <input
@@ -89,10 +94,11 @@ export default function SignUp() {
                 </span>{" "}
               </div>
             </div>
-
+            {/* Number Registration Section */}
             <div className="mt-4 w-full h-fit">
-              <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
+              <div className="flex items-center font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
                 Номер телефона{" "}
+                <span className="text-red-600 ml-[2px]"><Star6Icon/></span>{" "}
               </div>
               <div className="flex items-center justify-center overflow-hidden border border-searchBgColor rounded-lg">
                 <div className="ss:w-[35%] md:w-[30%] h-12 flex items-center justify-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
@@ -103,9 +109,9 @@ export default function SignUp() {
                     value={state.phoneCode}
                     readOnly
                   />
-                  <span className="rotate-[180deg]">
+                  {/* <span className="rotate-[180deg]">
                     <ArrowTopIcons colors={"#000"} />
-                  </span>
+                  </span> */}
                 </div>
                 <div className="ss:w-[65%] md:w-[70%] h-12 overflow-hidden">
                   <InputMask
@@ -120,25 +126,19 @@ export default function SignUp() {
                 </div>
               </div>
             </div>
-
+            {/* Email Registration Section */}
             <div className="mt-4 w-full h-fit">
               <div className=" flex items-center justify-between w-full">
-                <NavLink
-                  to={"/forget_password"}
-                  className="not-italic font-AeonikProRegular text-sm leading-4 cursor-pointer text-black  tracking-[0,16px]"
+                <div
+                  className="flex items-center font-AeonikProRegular text-sm leading-4 cursor-pointer text-black  tracking-[0,16px]"
                 >
-                  Электронная почта{" "}
-                </NavLink>
-                <NavLink
-                  to={"/forget_password"}
-                  className="not-italic 	 font-AeonikProRegular text-sm leading-4 cursor-pointer text-black  tracking-[0,16px]"
-                >
-                  *необязательная{" "}
-                </NavLink>
+                  Электронная почта
+                  <span className="text-red-600 ml-[2px]"><Star6Icon/></span>{" "}
+                </div>
               </div>
               <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
                 <input
-                  className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                  className="  w-full h-12 placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                   type="email"
                   placeholder="Адрес электронной почты"
                   required
@@ -148,13 +148,15 @@ export default function SignUp() {
                 </span>{" "}
               </div>
             </div>
+            {/* Password Registration Section */}
             <div className="mt-4 w-full h-fit">
-              <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
+              <div className="flex items-center font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
                 Пароль
+                <span className="text-red-600 ml-[2px]"><Star6Icon/></span>{" "}
               </div>
               <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
                 <input
-                  className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                  className="w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                   type={state?.eyesShow ? "password" : "text"}
                   placeholder="Enter your password"
                   required
@@ -177,7 +179,34 @@ export default function SignUp() {
                 Пароль должен быть не менее 8 символов
               </div>
             </div>
-
+            {/* Confirmation Password Registration Section */}
+            <div className="mt-4 w-full h-fit">
+              <div className="flex items-center font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
+                Повторите пароль
+                <span className="text-red-600 ml-[2px]"><Star6Icon/></span>{" "}
+              </div>
+              <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
+                <input
+                  className="w-full h-12 placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                  type={state?.eyesShowConfirmation ? "password" : "text"}
+                  placeholder="Enter your password"
+                  required
+                />
+                <span className="cursor-pointer">
+                  {state?.eyesShowConfirmation ? (
+                    <AiOutlineEyeInvisible
+                      onClick={() => setState({ ...state, eyesShowConfirmation: false })}
+                      size={20}
+                    />
+                  ) : (
+                    <AiOutlineEye
+                      onClick={() => setState({ ...state, eyesShowConfirmation: true })}
+                      size={20}
+                    />
+                  )}
+                </span>
+              </div>
+            </div>
             <NavLink
               onClick={() => setState({ ...state, validateConfirm: false })}
               className="mt-8 border  cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-SignInBgColor select-none rounded-lg active:scale-95	active:opacity-70	"
