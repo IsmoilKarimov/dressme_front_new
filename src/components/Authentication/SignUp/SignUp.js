@@ -10,9 +10,12 @@ import {
   Star6Icon,
 } from "../../../assets/icons";
 import { UzbekFlag } from "../../../assets";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function SignUp() {
-  const [phone, setPhone] = useState("");
+  // const [phone, setPhone] = useState("");
+  const url = "https://api.dressme.uz/api/user/register";
   const [state, setState] = useState({
     firstName: "",
     lastName: "",
@@ -21,49 +24,117 @@ export default function SignUp() {
     email: "",
     password: "",
     password_confirmation: "",
+    seller_type_id: "",
     eyesShow: true,
     eyesShowConfirmation: true,
     validateConfirm: true,
     requestPerson: true,
   });
 
-  const url = "https://api.dressme.uz/api/user/register";
+  // const sendRegisterData = () => {
+  //   fetch(url, {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-type": "application/json",
+  //       Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
+  //     },
+  //     body: JSON.stringify({
+  //       name: state?.firstName,
+  //       surname: state?.lastName,
+  //       phone: state?.phoneNumber,
+  //       email: state?.email,
+  //       password: state?.password,
+  //       password_confirmation: state?.password_confirmation,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       console.log(res, "DATA");
+  //     })
+  //     .catch((data) => {
+  //       console.log(data);
+  //     });
+  // };
 
-  const sendRegisterData = () => {
-    fetch(url, {
+  let data = state?.phoneNumber.split("-");
+  let arr = data.join("");
+  let data1 = arr.split("(");
+  let arr1 = data1.join("");
+  let arr2 = arr1.split(")");
+  let data2 = arr2.join("");
+  let arr3 = state.phoneCode.split("+");
+  let data3 = arr3.join("");
+  const sendPhoneNumber = data3 + data2;
+
+  // =========== GET USER DATA ===========
+  useQuery(
+    ["get_user_profile_data"],
+    () => {
+      return fetch(`https://api.dressme.uz/api/user/profile`).then((res) =>
+        res.json()
+      );
+    },
+    {
+      onSuccess: (res) => {
+        if (res) {
+          console.log(res, "DATA");
+        }
+      },
+      onError: (err) => {
+        console.log(err, "ERR-IN-USER-PROFILE-DATA");
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+    }
+  );
+
+  // =========== POST USER REGISTER DATA ==========
+  const { mutate } = useMutation(() => {
+    return fetch(`${url}/register`, {
       method: "POST",
       headers: {
+        "Content-Type": "application/json",
         Accept: "application/json",
-        "Content-type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
       },
       body: JSON.stringify({
-        name: state.firstName,
-        surname: state.lastName,
-        phone: state.phoneNumber,
-        email: state.email,
-        password: state.password,
-        password_confirmation: state.password_confirmation,
+        name: state?.firstName,
+        surname: state?.lastName,
+        phone: sendPhoneNumber,
+        email: state?.email,
+        password: state?.password,
+        password_confirmation: state?.password_confirmation,
       }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res, "DATA");
-      })
-      .catch((data) => {
-        console.log(data);
-      });
-  };
+    }).then((res) => res.json());
+  });
 
-  // let data = phone.split("-");
-  // // let arr = data.join("");
-  // let data1 = arr.split("(");
-  // let arr1 = data1.join("");
-  // let arr2 = arr1.split(")");
-  // let data2 = arr2.join("");
-  // let arr3 = state.phoneCode.split("+");
-  // let data3 = arr3.join("");
-  // const sendMessagePhoneNumber = data3 + data2;
+  const onSubmit = () => {
+    console.log(
+      state?.firstName,
+      "state?.firstName \n",
+      state?.lastName,
+      "state?.lastName \n",
+      state?.email,
+      "state?.email \n",
+      state?.password,
+      "state?.password \n",
+      state?.password_confirmation,
+      "state?.password_confirmation \n",
+      sendPhoneNumber,
+      " sendPhoneNumber\n"
+    );
+    mutate(
+      {},
+      {
+        onSuccess: (res) => {
+          console.log(res, "res");
+        },
+        onError: (err) => {
+          console.log(err, "err");
+        },
+      }
+    );
+  };
 
   const [dressInfo] = useContext(dressMainData);
 
@@ -79,6 +150,19 @@ export default function SignUp() {
 
   return (
     <div>
+      {/* <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        limit={4}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      /> */}
       {state?.validateConfirm ? (
         <div className=" py-8 w-full  min-h-[calc(100vh-180px)] mb-10 flex justify-center">
           <div className="max-w-[440px] w-[100%] h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
@@ -99,6 +183,10 @@ export default function SignUp() {
                   className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                   type="text"
                   placeholder="Имя"
+                  value={state?.firstName}
+                  onChange={(e) =>
+                    setState({ ...state, firstName: e.target.value })
+                  }
                   required
                 />
                 <span>
@@ -119,6 +207,10 @@ export default function SignUp() {
                   className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                   type="text"
                   placeholder="Фамилия"
+                  value={state?.lastName}
+                  onChange={(e) =>
+                    setState({ ...state, lastName: e.target.value })
+                  }
                   required
                 />
                 <span>
@@ -137,23 +229,27 @@ export default function SignUp() {
               <div className="flex items-center justify-center overflow-hidden border border-searchBgColor rounded-lg">
                 <div className="ss:w-[35%] md:w-[30%] h-12 flex items-center justify-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
                   <img src={UzbekFlag} alt="form-arrow-bottom" />
-                  <input
+                  <div className="w-[40px] h-fit flex items-start justify-center select-none mx-2 not-italic font-AeonikProMedium text-base leading-4 text-black">{state?.phoneCode}</div>
+                  {/* <input
                     className="w-[40px]  h-full select-none mx-2 not-italic font-AeonikProMedium text-base leading-4 text-black"
                     type="text"
-                    value={state.phoneCode}
+                    value={state?.phoneNumber || null}
+                    onChange={(e)=>setState({...state, phone:e.target.value})}
                     readOnly
-                  />
+                  /> */}
                   {/* <span className="rotate-[180deg]">
                     <ArrowTopIcons colors={"#000"} />
                   </span> */}
                 </div>
-                <div className="ss:w-[65%] md:w-[70%] h-12 overflow-hidden">
+                <div className="ss:w-[65%] md:w-[70%] h-12 flex items-center justify-center overflow-hidden">
                   <InputMask
                     mask="(99) 999-99-99"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className={`w-full px-4  h-full not-italic ${
-                      phone ? "font-AeonikProMedium" : null
+                    value={state?.phoneNumber}
+                    onChange={(e) =>
+                      setState({ ...state, phoneNumber: e.target.value })
+                    }
+                    className={`w-full px-4 h-full  flex items-center justify-center ${
+                      state?.phoneNumber ? "font-AeonikProMedium" : null
                     } text-base leading-4 text-black`}
                     placeholder={"(97) 123-45-67"}
                   ></InputMask>
@@ -175,6 +271,10 @@ export default function SignUp() {
                   className="  w-full h-12 placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                   type="email"
                   placeholder="Адрес электронной почты"
+                  value={state?.email}
+                  onChange={(e) =>
+                    setState({ ...state, email: e.target.value })
+                  }
                   required
                 />
                 <span>
@@ -195,6 +295,10 @@ export default function SignUp() {
                   className="w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                   type={state?.eyesShow ? "password" : "text"}
                   placeholder="Введите пароль"
+                  value={state?.password}
+                  onChange={(e) =>
+                    setState({ ...state, password: e.target.value })
+                  }
                   required
                 />
                 <span className="cursor-pointer">
@@ -228,6 +332,10 @@ export default function SignUp() {
                   className="w-full h-12 placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                   type={state?.eyesShowConfirmation ? "password" : "text"}
                   placeholder="Введите пароль"
+                  value={state?.password_confirmation}
+                  onChange={(e) =>
+                    setState({ ...state, password_confirmation: e.target.value })
+                  }
                   required
                 />
                 <span className="cursor-pointer">
@@ -250,10 +358,11 @@ export default function SignUp() {
               </div>
             </div>
             <NavLink
-              onClick={() => {
-                sendRegisterData();
-                setState({ ...state, validateConfirm: false });
-              }}
+              // onClick={() => {
+              //   // sendRegisterData();
+              //   setState({ ...state, validateConfirm: false });
+              // }}
+              onClick={onSubmit}
               className="mt-8 border  cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-SignInBgColor select-none rounded-lg active:scale-95	active:opacity-70	"
             >
               <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
