@@ -12,12 +12,18 @@ import "../../../../index.css";
 import { ClothingParametr } from "./ClothingParametr";
 import { CalourCard } from "../../../../assets";
 import WearType from "./WearType";
+import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
   // -------------------------------------
   const toggle = React.useCallback(() => setOpenWearType(false), []);
   // -------------------------------------
+
+  // Main data context --------
+
+  const [mainData, setMainData] = useContext(HomeMainDataContext);
+  console.log(mainData?.products?.data);
 
   useEffect(() => {
     if (openWearType) {
@@ -28,12 +34,12 @@ export default function CollectionCards() {
   }, [openWearType]);
   const navigate = useNavigate();
   const goDetail = (id) => {
-    const IdOne = id.split(" ")
-    const IdTwo = IdOne.join("-")
+    const IdOne = id.split(" ");
+    const IdTwo = IdOne.join("-");
     navigate(`/product/:${IdTwo}`);
   };
 
-  const onColorChecked = () => { };
+  const onColorChecked = () => {};
   const handleEnterMouse = (eId) => {
     const elementsIndex = dressInfo.ProductList.findIndex(
       (element) => element.id == eId
@@ -71,16 +77,17 @@ export default function CollectionCards() {
       </section>
       <div
         onClick={() => setOpenWearType(false)}
-        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openWearType ? "" : "hidden"
-          }`}
+        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+          openWearType ? "" : "hidden"
+        }`}
       ></div>
       <section
-        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openWearType ? "bottom-0" : "bottom-[-800px] z-0"
-          }`}
+        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+          openWearType ? "bottom-0" : "bottom-[-800px] z-0"
+        }`}
       >
         <WearType onClick={toggle} />
       </section>
-
 
       <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex flex-col justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
         {/* Searching section */}
@@ -103,7 +110,7 @@ export default function CollectionCards() {
 
         <div className="w-full flex flex-col box-border ">
           <article className="flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
-            {dressInfo.ProductList.map((data) => {
+            {mainData?.products?.data?.map((data) => {
               return (
                 <article
                   key={data.id}
@@ -111,10 +118,10 @@ export default function CollectionCards() {
                 >
                   <figure
                     onMouseEnter={() => handleLeaveMouse(data?.id)}
-                    onClick={() => goDetail(data?.title)}
-                    className="relative w-full cursor-pointer h-auto bg-btnBgColor flex content-between items-center overflow-hidden border-b border-solid flex-nowrap"
+                    // onClick={() => goDetail(data?.title)}
+                    className="relative w-full cursor-pointer h-[250px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
                   >
-                    {data.ProducImg ? (
+                    {/* {data.ProducImg ? (
                       <img
                         className="w-full h-full m-auto hover:scale-105 transition duration-700 ease-in-out"
                         src={data.ProducImg}
@@ -122,7 +129,10 @@ export default function CollectionCards() {
                       />
                     ) : (
                       <NoImg />
-                    )}
+                    )} */}
+                    <div>
+                      <NoImg />
+                    </div>
                   </figure>
                   <section className="relative  w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[130px] md:h-[136px] ">
                     <button
@@ -150,19 +160,21 @@ export default function CollectionCards() {
                     </button>
                     <article
                       onMouseLeave={() => handleLeaveMouse(data?.id)}
-                      className={` ${data?.colourCard
-                        ? "w-full px-1 xs:px-2 md:px-4 my-2"
-                        : "w-0 my-2"
-                        } duration-300 absolute overflow-hidden hidden top-0 z-[1] md:flex justify-between items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
+                      className={` ${
+                        data?.colourCard
+                          ? "w-full px-1 xs:px-2 md:px-4 my-2"
+                          : "w-0 my-2"
+                      } duration-300 absolute overflow-hidden hidden top-0 z-[1] md:flex justify-between items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
                     >
-                      {data?.changeColor.map((itemValue) => {
+                      {data?.colors.map((itemValue) => {
                         return (
                           <article
                             key={itemValue?.id}
                             onClick={() =>
                               onColorChecked(data?.id, itemValue?.id)
                             }
-                            className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 ls:w-[22px] ls:h-[22px] w-5 h-5 lg:w-6 lg:h-6 ${itemValue?.colors} cursor-pointer  border border-solid border-borderColorCard mr-[3px]`}
+                            style={{ backgroundColor: itemValue?.hex }}
+                            className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 ls:w-[22px] ls:h-[22px] w-5 h-5 lg:w-6 lg:h-6 ${itemValue?.hex} cursor-pointer  border border-solid border-borderColorCard mr-[3px]`}
                             htmlFor="Color1"
                           >
                             {itemValue?.action ? (
@@ -174,12 +186,12 @@ export default function CollectionCards() {
                     </article>
                     <article
                       onMouseEnter={() => handleLeaveMouse(data?.id)}
-                      onClick={() => goDetail(data?.title)}
+                      // onClick={() => goDetail(data?.title)}
                       className="w-full px-2 xs:px-3 xs:mt-3"
                     >
                       <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[15px] leading-4 text-black mb-1 md:mb-0  cursor-pointer">
                         <div className="absolute categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
-                        {data?.title || "NoData"}
+                        {data?.name_ru || "NoData"}
                       </figure>
                       <figure className="w-full flex justify-between items-center xs:mt-3">
                         <section className="flex items-center justify-between">
@@ -188,13 +200,13 @@ export default function CollectionCards() {
                           </article>
                           <article className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex items-center">
                             <p className="font-AeonikProMedium text-[10px] ls:text-xs not-italic mx-1 text-black md:mr-[6px] md:text-[13px]">
-                              5.0
+                              {data?.overall_rating || 0}
                             </p>
                             (
                             <p className="ss:hidden lg:block md:mr-1 md:text-[11px]">
                               голосов
                             </p>
-                            {data?.starCount || 0})
+                            {data?.rated_users_count || 0})
                           </article>
                         </section>
                       </figure>
@@ -204,13 +216,13 @@ export default function CollectionCards() {
                       className="w-full flex items-center justify-between  pl-3 pr-[5px]"
                     >
                       <article className="flex items-center ">
-                        {data.sale ? (
+                        {data.cost ? (
                           <figure className="flex flex-col-reverse ll:flex-row	text-start items-start ">
                             <p className="text-start m-0 p-0  not-italic font-AeonikProMedium text-[16px]  md:text-base leading-1 text-red-700 xs:text-base xs:leading-4 mr-1">
-                              {data?.sale}
+                              {data?.cost?.price}
                             </p>
                             <p className="text-start m-0 p-0 text-[11px] mt-[8px]  line-through not-italic font-AeonikProRegular leading-3  text-borderColorCard ss:leading-1 md:text-[11px]">
-                              {data?.price}
+                              {data?.cost?.discount_price}
                             </p>
                           </figure>
                         ) : (
@@ -218,7 +230,7 @@ export default function CollectionCards() {
                             className="not-italic font-AeonikProMedium text-base leading-4"
                             style={{ color: "black" }}
                           >
-                            {data?.price}{" "}
+                            {data?.cost?.price}{" "}
                           </p>
                         )}
                       </article>
