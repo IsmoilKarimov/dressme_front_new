@@ -58,7 +58,7 @@ export default function SignIn() {
               });
             } else if (res?.access_token) {
               localStorage.setItem("DressmeUserToken", res?.access_token)
-              navigate("/edit-profile")
+              navigate("/")
               window.location.reload();
               toast.success(`Успешный  вход в систему`, {
                 position: "top-right",
