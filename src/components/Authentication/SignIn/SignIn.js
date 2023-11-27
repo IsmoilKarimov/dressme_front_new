@@ -9,30 +9,44 @@ export default function SignIn() {
   const [state, setState] = useState({
     eyesShow: true,
     password: "",
+    rememberCheck: "",
     email: "",
+    errorGroup:"",
   });
 
   const navigate = useNavigate();
   const [error, setError] = useState(false);
-  const url = "https://reqres.in/api/register";
+  const url = "https://api.dressme.uz/api/user/login";
+
+  const handleChange = (e) => {
+    const { checked } = e.target;
+    setState({ ...state, rememberCheck: checked })
+  }
 
   const dataMutate = useMutation(() => {
     return fetch(`${url}`, {
       method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify({ email: state.email, password: state.password }),
+      headers: { 
+        "Accept": "application/json",
+        "Content-type": "application/json" 
+      },
+      body: JSON.stringify({ email: state.email, password: state.password, rememberToken: state.rememberCheck }),
     }).then((res) => res.json());
   });
 
   const EnterTheSystem = () => {
+    // console.log(state?.email, "email");
+    // console.log(state?.password, "password");
+    // console.log(state?.rememberCheck, "rememberCheck");
     if (state.email?.length && state.password?.length) {
       dataMutate.mutate(
         {},
         {
           onSuccess: (res) => {
             console.log(res, "res");
-            if (res?.token) {
-              toast.success("Muaffaqiyatli kirdingiz", {
+            if (res?.message && res?.errors) {
+              setState({ ...state, errorGroup: res?.message })
+              toast.error(`${res?.message}`, {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -40,14 +54,13 @@ export default function SignIn() {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "colored",
+                theme: "light",
               });
-              localStorage.setItem("dressMeLogin", res?.token);
-              navigate("/");
-              setState({ ...state, email: "" });
-            } else {
-              setError("Email yoki parolda xatolik");
-              toast.error("Email yoki parolda xatolik", {
+            } else if (res?.access_token) {
+              localStorage.setItem("DressmeUserToken", res?.access_token)
+              navigate("/edit-profile")
+              window.location.reload();
+              toast.success(`Успешный  вход в систему`, {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -55,8 +68,10 @@ export default function SignIn() {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "colored",
+                theme: "light",
               });
+              // window.location.replace(' https://dressme-dashboard-new.vercel.app/reviews');
+              setState({ ...state, email: "", password: "", errorGroup: "" });
             }
           },
           onError: (err) => {
@@ -75,8 +90,7 @@ export default function SignIn() {
         }
       );
     } else {
-      setError("Bush maydon junatish mumkin emas");
-      toast.error("Iltimos Malumotlarni kiriting", {
+      toast.error(`Заполните все поля`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -84,7 +98,7 @@ export default function SignIn() {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "colored",
+        theme: "light",
       });
     }
   };
@@ -140,6 +154,7 @@ export default function SignIn() {
               className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type={state?.eyesShow ? "password" : "text"}
               placeholder="Enter your password"
+              name="password"
               value={state.password}
               onChange={({ target: { value } }) => {
                 setError();
@@ -171,7 +186,8 @@ export default function SignIn() {
               className=" text-black bg-white placeholder-bg-white mr-2"
               id="vehicle1"
               name="vehicle1"
-              value="Bike"
+              // value="Bike"
+              onClick={handleChange}
             />
             <label
               htmlFor="vehicle1"

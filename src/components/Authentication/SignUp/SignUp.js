@@ -63,9 +63,11 @@ export default function SignUp() {
   let arr1 = data1.join("");
   let arr2 = arr1.split(")");
   let data2 = arr2.join("");
+  let data3 = data2.split(" ");
+  let data4 = data3.join("");
   let arr3 = state.phoneCode.split("+");
-  let data3 = arr3.join("");
-  const sendPhoneNumber = data3 + data2;
+  let data5 = arr3.join("");
+  const sendPhoneNumber = data5 + data4;
 
   // =========== GET USER DATA ===========
   useQuery(
@@ -78,7 +80,7 @@ export default function SignUp() {
     {
       onSuccess: (res) => {
         if (res) {
-          console.log(res, "DATA");
+          // console.log(res, "DATA");
         }
       },
       onError: (err) => {
@@ -91,7 +93,7 @@ export default function SignUp() {
 
   // =========== POST USER REGISTER DATA ==========
   const { mutate } = useMutation(() => {
-    return fetch(`${url}/register`, {
+    return fetch(`${url}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -109,25 +111,46 @@ export default function SignUp() {
   });
 
   const onSubmit = () => {
-    console.log(
-      state?.firstName,
-      "state?.firstName \n",
-      state?.lastName,
-      "state?.lastName \n",
-      state?.email,
-      "state?.email \n",
-      state?.password,
-      "state?.password \n",
-      state?.password_confirmation,
-      "state?.password_confirmation \n",
-      sendPhoneNumber,
-      " sendPhoneNumber\n"
-    );
     mutate(
       {},
       {
         onSuccess: (res) => {
           console.log(res, "res");
+          if (res?.message && res?.errors) {
+            setState({ ...state, errorGroup: res });
+            toast.error(`${res?.message}`, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
+          else if (res?.message && !res?.errors) {
+            setState({
+              ...state,
+              firstName: "",
+              lastName: "",
+              phoneNumber: "",
+              password: "",
+              cardNumber: "",
+              openModalEmailMessage: true,
+              errorGroup: "",
+            });
+            toast.success(`${res?.message}`, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
         },
         onError: (err) => {
           console.log(err, "err");
@@ -149,8 +172,8 @@ export default function SignUp() {
   }, [timerDecrase]);
 
   return (
-    <div>
-      {/* <ToastContainer
+    <div className="w-full h-full">
+      <ToastContainer
         position="top-right"
         autoClose={5000}
         limit={4}
@@ -162,7 +185,7 @@ export default function SignUp() {
         draggable
         pauseOnHover
         theme="colored"
-      /> */}
+      />
       {state?.validateConfirm ? (
         <div className=" py-8 w-full  min-h-[calc(100vh-180px)] mb-10 flex justify-center">
           <div className="max-w-[440px] w-[100%] h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
@@ -229,7 +252,9 @@ export default function SignUp() {
               <div className="flex items-center justify-center overflow-hidden border border-searchBgColor rounded-lg">
                 <div className="ss:w-[35%] md:w-[30%] h-12 flex items-center justify-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
                   <img src={UzbekFlag} alt="form-arrow-bottom" />
-                  <div className="w-[40px] h-fit flex items-start justify-center select-none mx-2 not-italic font-AeonikProMedium text-base leading-4 text-black">{state?.phoneCode}</div>
+                  <div className="w-[40px] h-fit flex items-start justify-center select-none mx-2 not-italic font-AeonikProMedium text-base leading-4 text-black">
+                    {state?.phoneCode}
+                  </div>
                   {/* <input
                     className="w-[40px]  h-full select-none mx-2 not-italic font-AeonikProMedium text-base leading-4 text-black"
                     type="text"
@@ -334,7 +359,10 @@ export default function SignUp() {
                   placeholder="Введите пароль"
                   value={state?.password_confirmation}
                   onChange={(e) =>
-                    setState({ ...state, password_confirmation: e.target.value })
+                    setState({
+                      ...state,
+                      password_confirmation: e.target.value,
+                    })
                   }
                   required
                 />
