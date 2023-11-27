@@ -4,10 +4,12 @@ import { NavLink } from "react-router-dom";
 import InputMask from "react-input-mask";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import {
+  MenuCloseIcons,
   PersonIcons,
   PhoneIcons,
   SircleNext,
   Star6Icon,
+  SuccessIconsForMail,
 } from "../../../assets/icons";
 import { UzbekFlag } from "../../../assets";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -31,6 +33,7 @@ export default function SignUp() {
     eyesShowConfirmation: true,
     validateConfirm: true,
     requestPerson: true,
+    openModalEmailMessage: false,
   });
 
   let data = state?.phoneNumber.split("-");
@@ -102,8 +105,9 @@ export default function SignUp() {
               phoneNumber: "",
               email: "",
               password: "",
-              password_confirmation:"",
+              password_confirmation: "",
               errorsGroup: "",
+              openModalEmailMessage: true,
             });
             toast.success(`${res?.message}`, {
               position: "top-right",
@@ -378,11 +382,47 @@ export default function SignUp() {
                 </p>
               )}
             </div>
-            <NavLink
-              // onClick={() => {
-              //   // sendRegisterData();
-              //   setState({ ...state, validateConfirm: false });
-              // }}
+
+            {/* -----------------------Email Verify Modal Start------------------- */}
+            <div className="w-full md:w-1/2 h-fit ">
+              <div
+                onClick={() => {
+                  setState({ ...state, openModalEmailMessage: false });
+                }}
+                className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+                  state?.openModalEmailMessage ? "" : "hidden"
+                }`}
+              ></div>
+              {state?.openModalEmailMessage && (
+                <div className="fixed max-w-[490px] h-[275px]  p-3 bg-white rounded-lg  mx-auto w-full  z-[113] top-[50%] left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
+                  <div className="flex items-center justify-end">
+                    <span
+                      className="cursor-pointer"
+                      onClick={() => {
+                        setState({ ...state, openModalEmailMessage: false });
+                      }}
+                    >
+                      <MenuCloseIcons colors="#303030" />
+                    </span>
+                  </div>
+                  <div className="w-full flex items-center justify-center flex-col">
+                    <button className="flex p-4 items-center justify-center rounded-full mt-4 bg-[#D8EDFF]">
+                      <SuccessIconsForMail />
+                    </button>
+                    <p className="text-[#1F1F1F] text-3xl not-italic font-AeonikProMedium mt-5">
+                      Мы отправили вам ссылку
+                    </p>
+                    <p className="text-[#8B8B8B] text-xl not-italic font-AeonikProRegular mt-[30px]">
+                      Проверьте свой E-mail
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+            {/* -------------------------Email Verify Modal End------------------ */}
+
+            <button
+              type="button"
               onClick={onSubmit}
               className="mt-8 border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-SignInBgColor select-none rounded-lg active:scale-95 active:opacity-70"
             >
@@ -392,7 +432,7 @@ export default function SignUp() {
               <span>
                 <SircleNext colors={"#fff"} />
               </span>{" "}
-            </NavLink>
+            </button>
           </div>
         </div>
       ) : (

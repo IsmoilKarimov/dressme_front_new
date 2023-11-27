@@ -126,7 +126,7 @@ export default function SignIn() {
 
         <div className="mt-2 w-full h-fit">
           <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-            Номер телефона / Электронная почта
+            Электронная почта
           </div>
           <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
