@@ -11,12 +11,12 @@ export default function SignIn() {
     password: "",
     rememberCheck: "",
     email: "",
-    errorGroup:"",
+    errorsGroup:"",
   });
 
   const navigate = useNavigate();
   const [error, setError] = useState(false);
-  const url = "https://api.dressme.uz/api/user/login";
+  // const url = "https://api.dressme.uz/api/user/login";
 
   const handleChange = (e) => {
     const { checked } = e.target;
@@ -24,7 +24,7 @@ export default function SignIn() {
   }
 
   const dataMutate = useMutation(() => {
-    return fetch(`${url}`, {
+    return fetch("https://api.dressme.uz/api/user/login", {
       method: "POST",
       headers: { 
         "Accept": "application/json",
@@ -43,9 +43,9 @@ export default function SignIn() {
         {},
         {
           onSuccess: (res) => {
-            console.log(res, "res");
-            if (res?.message && res?.errors) {
-              setState({ ...state, errorGroup: res?.message })
+            console.log(res, "RESPONSE-LOG-IN");
+            if (res?.message || res?.errors) {
+              setState({ ...state, errorsGroup: res })
               toast.error(`${res?.message}`, {
                 position: "top-right",
                 autoClose: 5000,
@@ -70,12 +70,11 @@ export default function SignIn() {
                 progress: undefined,
                 theme: "light",
               });
-              // window.location.replace(' https://dressme-dashboard-new.vercel.app/reviews');
-              setState({ ...state, email: "", password: "", errorGroup: "" });
+              setState({ ...state, email: "", password: "", errorsGroup: "" });
             }
           },
           onError: (err) => {
-            console.log(err, "error");
+            console.log(err, "ERROR");
             toast.error("Serverda xatolik", {
               position: "top-right",
               autoClose: 5000,
@@ -89,7 +88,8 @@ export default function SignIn() {
           },
         }
       );
-    } else {
+    } 
+    else {
       toast.error(`Заполните все поля`, {
         position: "top-right",
         autoClose: 5000,
@@ -144,6 +144,11 @@ export default function SignIn() {
               <EmailIcons colors={"#A1A1A1"} />
             </span>
           </div>
+          {state?.errorsGroup?.errors?.email && (
+                <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+                  {state?.errorsGroup?.errors?.email}
+                </p>
+              )}
         </div>
         <div className="mt-4 w-full h-fit">
           <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
@@ -176,6 +181,11 @@ export default function SignIn() {
               )}
             </span>
           </div>
+          {state?.errorsGroup?.errors?.password && (
+                <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+                  {state?.errorsGroup?.errors?.password}
+                </p>
+              )}
         </div>
         {error?.length ? <div className={`text-RedColor`}>{error}</div> : null}
 

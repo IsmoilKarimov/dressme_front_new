@@ -383,7 +383,7 @@ export default function SignUp() {
               )}
             </div>
 
-            {/* -----------------------Email Verify Modal Start------------------- */}
+            {/* ----------- Email Verify Modal Start ----------- */}
             <div className="w-full md:w-1/2 h-fit ">
               <div
                 onClick={() => {
@@ -419,7 +419,7 @@ export default function SignUp() {
                 </div>
               )}
             </div>
-            {/* -------------------------Email Verify Modal End------------------ */}
+            {/* ------------- Email Verify Modal End ----------- */}
 
             <button
               type="button"
