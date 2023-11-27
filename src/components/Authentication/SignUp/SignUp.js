@@ -16,6 +16,7 @@ import { ToastContainer, toast } from "react-toastify";
 export default function SignUp() {
   // const [phone, setPhone] = useState("");
   const url = "https://api.dressme.uz/api/user/register";
+  const [dressInfo] = useContext(dressMainData);
   const [state, setState] = useState({
     firstName: "",
     lastName: "",
@@ -25,37 +26,12 @@ export default function SignUp() {
     password: "",
     password_confirmation: "",
     seller_type_id: "",
+    errorsGroup: "",
     eyesShow: true,
     eyesShowConfirmation: true,
     validateConfirm: true,
     requestPerson: true,
   });
-
-  // const sendRegisterData = () => {
-  //   fetch(url, {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-type": "application/json",
-  //       Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
-  //     },
-  //     body: JSON.stringify({
-  //       name: state?.firstName,
-  //       surname: state?.lastName,
-  //       phone: state?.phoneNumber,
-  //       email: state?.email,
-  //       password: state?.password,
-  //       password_confirmation: state?.password_confirmation,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       console.log(res, "DATA");
-  //     })
-  //     .catch((data) => {
-  //       console.log(data);
-  //     });
-  // };
 
   let data = state?.phoneNumber.split("-");
   let arr = data.join("");
@@ -117,28 +93,17 @@ export default function SignUp() {
         onSuccess: (res) => {
           console.log(res, "res");
           if (res?.message && res?.errors) {
-            setState({ ...state, errorGroup: res });
-            toast.error(`${res?.message}`, {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
-          }
-          else if (res?.message && !res?.errors) {
+            setState({ ...state, errorsGroup: res });
+          } else if (res?.message && !res?.errors) {
             setState({
               ...state,
               firstName: "",
               lastName: "",
               phoneNumber: "",
+              email: "",
               password: "",
-              cardNumber: "",
-              openModalEmailMessage: true,
-              errorGroup: "",
+              password_confirmation:"",
+              errorsGroup: "",
             });
             toast.success(`${res?.message}`, {
               position: "top-right",
@@ -153,13 +118,21 @@ export default function SignUp() {
           }
         },
         onError: (err) => {
-          console.log(err, "err");
+          console.log(err, "Error");
+          toast.error("Serverda xatolik", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         },
       }
     );
   };
-
-  const [dressInfo] = useContext(dressMainData);
 
   const [timerDecrase, setTimerDecrase] = useState(60);
   useEffect(() => {
@@ -216,6 +189,11 @@ export default function SignUp() {
                   <PersonIcons colors={"#D2D2D2"} />
                 </span>
               </div>
+              {state?.errorsGroup?.errors?.name && (
+                <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+                  {state?.errorsGroup?.errors?.name}
+                </p>
+              )}
             </div>
             {/* Surname Registration Section */}
             <div className="mt-4 w-full h-fit">
@@ -240,6 +218,11 @@ export default function SignUp() {
                   <PersonIcons colors={"#D2D2D2"} />
                 </span>{" "}
               </div>
+              {state?.errorsGroup?.errors?.surname && (
+                <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+                  {state?.errorsGroup?.errors?.surname}
+                </p>
+              )}
             </div>
             {/* Number Registration Section */}
             <div className="mt-4 w-full h-fit">
@@ -255,16 +238,6 @@ export default function SignUp() {
                   <div className="w-[40px] h-fit flex items-start justify-center select-none mx-2 not-italic font-AeonikProMedium text-base leading-4 text-black">
                     {state?.phoneCode}
                   </div>
-                  {/* <input
-                    className="w-[40px]  h-full select-none mx-2 not-italic font-AeonikProMedium text-base leading-4 text-black"
-                    type="text"
-                    value={state?.phoneNumber || null}
-                    onChange={(e)=>setState({...state, phone:e.target.value})}
-                    readOnly
-                  /> */}
-                  {/* <span className="rotate-[180deg]">
-                    <ArrowTopIcons colors={"#000"} />
-                  </span> */}
                 </div>
                 <div className="ss:w-[65%] md:w-[70%] h-12 flex items-center justify-center overflow-hidden">
                   <InputMask
@@ -280,6 +253,11 @@ export default function SignUp() {
                   ></InputMask>
                 </div>
               </div>
+              {state?.errorsGroup?.errors?.phone && (
+                <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+                  {state?.errorsGroup?.errors?.phone}
+                </p>
+              )}
             </div>
             {/* Email Registration Section */}
             <div className="mt-4 w-full h-fit">
@@ -306,6 +284,11 @@ export default function SignUp() {
                   <PersonIcons colors={"#D2D2D2"} />
                 </span>{" "}
               </div>
+              {state?.errorsGroup?.errors?.email && (
+                <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+                  {state?.errorsGroup?.errors?.email}
+                </p>
+              )}
             </div>
             {/* Password Registration Section */}
             <div className="mt-4 w-full h-fit">
@@ -343,6 +326,11 @@ export default function SignUp() {
               <div className="not-italic mt-2 font-AeonikProRegular selec-none text-xs leading-3 text-[#9CA3AF] tracking-[0,16px]">
                 Пароль должен быть не менее 8 символов
               </div>
+              {state?.errorsGroup?.errors?.password && (
+                <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+                  {state?.errorsGroup?.errors?.password}
+                </p>
+              )}
             </div>
             {/* Confirmation Password Registration Section */}
             <div className="mt-4 w-full h-fit">
@@ -384,6 +372,11 @@ export default function SignUp() {
                   )}
                 </span>
               </div>
+              {state?.errorsGroup?.errors?.password && (
+                <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+                  {state?.errorsGroup?.errors?.password}
+                </p>
+              )}
             </div>
             <NavLink
               // onClick={() => {
@@ -391,7 +384,7 @@ export default function SignUp() {
               //   setState({ ...state, validateConfirm: false });
               // }}
               onClick={onSubmit}
-              className="mt-8 border  cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-SignInBgColor select-none rounded-lg active:scale-95	active:opacity-70	"
+              className="mt-8 border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-SignInBgColor select-none rounded-lg active:scale-95 active:opacity-70"
             >
               <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
                 Войти в систему
