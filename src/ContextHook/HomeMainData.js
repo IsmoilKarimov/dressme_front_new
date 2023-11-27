@@ -12,7 +12,7 @@ export const HomeMainDataContextProvider = ({ children }) => {
   useQuery(
     ["get_main_data"],
     () => {
-      return fetch(`${url}/api/main/`, {
+      return fetch(`${url}/api/main`, {
         method: "GET",
         headers: {
           "Accept": "application/json",
