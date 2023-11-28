@@ -393,7 +393,7 @@ export default function MainPageSliders() {
               {...settings1}
               className="w-[100%] flex xs:justify-between  px-[1px]"
             >
-              {mainData?.shops.map((data) => {
+              {mainData?.shops?.map((data) => {
                 return (
                   <div
                     key={data?.id}
