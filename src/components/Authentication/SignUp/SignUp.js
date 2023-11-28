@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import InputMask from "react-input-mask";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import {
+  EmailIcons,
   MenuCloseIcons,
   PersonIcons,
   PhoneIcons,
@@ -48,27 +49,27 @@ export default function SignUp() {
   let data5 = arr3.join("");
   const sendPhoneNumber = data5 + data4;
 
-  // =========== GET USER DATA ===========
-  useQuery(
-    ["get_user_profile_data"],
-    () => {
-      return fetch(`https://api.dressme.uz/api/user/profile`).then((res) =>
-        res.json()
-      );
-    },
-    {
-      onSuccess: (res) => {
-        if (res) {
-          // console.log(res, "DATA");
-        }
-      },
-      onError: (err) => {
-        console.log(err, "ERR-IN-USER-PROFILE-DATA");
-      },
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
-    }
-  );
+  // // =========== GET USER DATA ===========
+  // useQuery(
+  //   ["get_user_profile_data"],
+  //   () => {
+  //     return fetch(`https://api.dressme.uz/api/user/profile`).then((res) =>
+  //       res.json()
+  //     );
+  //   },
+  //   {
+  //     onSuccess: (res) => {
+  //       if (res) {
+  //         // console.log(res, "DATA");
+  //       }
+  //     },
+  //     onError: (err) => {
+  //       console.log(err, "ERR-IN-USER-PROFILE-DATA");
+  //     },
+  //     keepPreviousData: true,
+  //     refetchOnWindowFocus: false,
+  //   }
+  // );
 
   // =========== POST USER REGISTER DATA ==========
   const { mutate } = useMutation(() => {
@@ -90,7 +91,8 @@ export default function SignUp() {
   });
 
   const onSubmit = () => {
-    mutate(
+    
+   mutate(
       {},
       {
         onSuccess: (res) => {
@@ -285,7 +287,7 @@ export default function SignUp() {
                   required
                 />
                 <span>
-                  <PersonIcons colors={"#D2D2D2"} />
+                  <EmailIcons colors={"#D2D2D2"} />
                 </span>{" "}
               </div>
               {state?.errorsGroup?.errors?.email && (
@@ -427,7 +429,7 @@ export default function SignUp() {
               className="mt-8 border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-SignInBgColor select-none rounded-lg active:scale-95 active:opacity-70"
             >
               <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
-                Войти в систему
+              Зарегистрироваться
               </span>
               <span>
                 <SircleNext colors={"#fff"} />
