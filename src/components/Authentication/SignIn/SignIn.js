@@ -8,11 +8,12 @@ import { useMutation } from "@tanstack/react-query";
 export default function SignIn() {
   const [state, setState] = useState({
     eyesShow: true,
-    password: "",
-    rememberCheck: "",
-    email: "",
-    errorsGroup:"",
+    password: null,
+    rememberCheck: null,
+    email: null,
+    errorsGroup: null,
   });
+  console.log(state.errorMessage,"errorMessage");
 
   const navigate = useNavigate();
   const [error, setError] = useState(false);
@@ -20,17 +21,21 @@ export default function SignIn() {
 
   const handleChange = (e) => {
     const { checked } = e.target;
-    setState({ ...state, rememberCheck: checked })
-  }
+    setState({ ...state, rememberCheck: checked });
+  };
 
   const dataMutate = useMutation(() => {
     return fetch("https://api.dressme.uz/api/user/login", {
       method: "POST",
-      headers: { 
-        "Accept": "application/json",
-        "Content-type": "application/json" 
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
       },
-      body: JSON.stringify({ email: state.email, password: state.password, rememberToken: state.rememberCheck }),
+      body: JSON.stringify({
+        email: state.email,
+        password: state.password,
+        rememberToken: state.rememberCheck,
+      }),
     }).then((res) => res.json());
   });
 
@@ -38,14 +43,14 @@ export default function SignIn() {
     // console.log(state?.email, "email");
     // console.log(state?.password, "password");
     // console.log(state?.rememberCheck, "rememberCheck");
-    if (state.email?.length && state.password?.length) {
+    // if (state.email?.length && state.password?.length) {
       dataMutate.mutate(
         {},
         {
           onSuccess: (res) => {
             console.log(res, "RESPONSE-LOG-IN");
-            if (res?.message || res?.errors) {
-              setState({ ...state, errorsGroup: res })
+            if (res?.errors) {
+              setState({ ...state, errorsGroup: res });
               toast.error(`${res?.message}`, {
                 position: "top-right",
                 autoClose: 5000,
@@ -56,9 +61,22 @@ export default function SignIn() {
                 progress: undefined,
                 theme: "light",
               });
-            } else if (res?.access_token) {
-              localStorage.setItem("DressmeUserToken", res?.access_token)
-              navigate("/")
+            } 
+            else if (res?.message && res?.errors){
+              toast.error(`${res?.errors}`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+            }
+            else if (res?.access_token) {
+              localStorage.setItem("DressmeUserToken", res?.access_token);
+              navigate("/");
               window.location.reload();
               toast.success(`Успешный  вход в систему`, {
                 position: "top-right",
@@ -88,19 +106,20 @@ export default function SignIn() {
           },
         }
       );
-    } 
-    else {
-      toast.error(`Заполните все поля`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    }
+    // } 
+    // else {
+    //   toast.error(`Заполните все поля`, {
+    //     position: "top-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "light",
+    //   });
+    //   console.log("data");
+    // }
   };
 
   return (
@@ -137,7 +156,7 @@ export default function SignIn() {
                 setError();
                 setState({ ...state, email: value });
               }}
-              placeholder="Emailingizni kiriting..."
+              // placeholder="Emailingizni kiriting..."
               required
             />
             <span>
@@ -145,10 +164,10 @@ export default function SignIn() {
             </span>
           </div>
           {state?.errorsGroup?.errors?.email && (
-                <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
-                  {state?.errorsGroup?.errors?.email}
-                </p>
-              )}
+            <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+              {state?.errorsGroup?.errors?.email}
+            </p>
+          )}
         </div>
         <div className="mt-4 w-full h-fit">
           <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
@@ -158,7 +177,7 @@ export default function SignIn() {
             <input
               className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type={state?.eyesShow ? "password" : "text"}
-              placeholder="Enter your password"
+              // placeholder="Enter your password"
               name="password"
               value={state.password}
               onChange={({ target: { value } }) => {
@@ -182,10 +201,10 @@ export default function SignIn() {
             </span>
           </div>
           {state?.errorsGroup?.errors?.password && (
-                <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
-                  {state?.errorsGroup?.errors?.password}
-                </p>
-              )}
+            <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+              {state?.errorsGroup?.errors?.password}
+            </p>
+          )}
         </div>
         {error?.length ? <div className={`text-RedColor`}>{error}</div> : null}
 
@@ -204,7 +223,7 @@ export default function SignIn() {
               className="not-italic select-none cursor-pointer font-AeonikProRegular text-sm leading-4 text-black tracking-[0,16px]"
             >
               {" "}
-              Оставаться в системе
+              Запомнить
             </label>
           </div>
           <NavLink
