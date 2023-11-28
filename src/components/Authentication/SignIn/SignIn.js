@@ -49,21 +49,22 @@ export default function SignIn() {
         {
           onSuccess: (res) => {
             console.log(res, "RESPONSE-LOG-IN");
-            if (res?.errors) {
+            if (res?.message && res.errors !== true) {
+              setState({ ...state, errorsGroup: res });
+              // toast.error(`${res?.message}`, {
+              //   position: "top-right",
+              //   autoClose: 5000,
+              //   hideProgressBar: false,
+              //   closeOnClick: true,
+              //   pauseOnHover: true,
+              //   draggable: true,
+              //   progress: undefined,
+              //   theme: "light",
+              // });
+            } 
+            else if (res?.message && res?.errors === true){
               setState({ ...state, errorsGroup: res });
               toast.error(`${res?.message}`, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-              });
-            } 
-            else if (res?.message && res?.errors){
-              toast.error(`${res?.errors}`, {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
