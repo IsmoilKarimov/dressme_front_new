@@ -13,7 +13,6 @@ export default function SignIn() {
     email: null,
     errorsGroup: null,
   });
-  console.log(state.errorMessage,"errorMessage");
 
   const navigate = useNavigate();
   const [error, setError] = useState(false);
