@@ -23,7 +23,6 @@ export default function CollectionCards() {
   // Main data context --------
 
   const [mainData, setMainData] = useContext(HomeMainDataContext);
-  console.log(mainData?.products?.data);
 
   useEffect(() => {
     if (openWearType) {
