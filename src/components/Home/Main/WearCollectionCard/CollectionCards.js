@@ -160,7 +160,7 @@ export default function CollectionCards() {
                     <article
                       onMouseLeave={() => handleLeaveMouse(data?.id)}
                       className={` ${
-                        data?.colourCard
+                        data?.l
                           ? "w-full px-1 xs:px-2 md:px-4 my-2"
                           : "w-0 my-2"
                       } duration-300 absolute overflow-hidden hidden top-0 z-[1] md:flex justify-between items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
@@ -169,11 +169,11 @@ export default function CollectionCards() {
                         return (
                           <article
                             key={itemValue?.id}
+                            style={{backgroundColor: itemValue?.hex}}
                             onClick={() =>
                               onColorChecked(data?.id, itemValue?.id)
                             }
-                            style={{ backgroundColor: itemValue?.hex }}
-                            className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 ls:w-[22px] ls:h-[22px] w-5 h-5 lg:w-6 lg:h-6 ${itemValue?.hex} cursor-pointer  border border-solid border-borderColorCard mr-[3px]`}
+                            className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 ls:w-[22px] ls:h-[22px] w-5 h-5 lg:w-6 lg:h-6 cursor-pointer  border border-solid border-borderColorCard mr-[3px]`}
                             htmlFor="Color1"
                           >
                             {itemValue?.action ? (
