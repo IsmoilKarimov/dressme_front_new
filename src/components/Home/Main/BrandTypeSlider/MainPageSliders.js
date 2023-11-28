@@ -17,7 +17,11 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { NavLink, useNavigate } from "react-router-dom";
 import { NoImg, ShowMoreBackIcon, SircleNext } from "../../../../assets/icons";
+import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
+
 export default function MainPageSliders() {
+  const [mainData, setMainData] = useContext(HomeMainDataContext);
+  console.log(mainData?.shops);
   const [dressInfo] = useContext(dressMainData);
 
   const changeColor = [
@@ -248,47 +252,44 @@ export default function MainPageSliders() {
           {/* Main slider */}
 
           <div
-            className={`w-full ss:h-0 ${more ? "xs:h-0" : "xs:h-auto"
-              } overflow-hidden`}
+            className={`w-full ss:h-0 ${
+              more ? "xs:h-0" : "xs:h-auto"
+            } overflow-hidden`}
           >
             <Slider
               {...settings}
               className="w-[100%] flex xs:justify-between flex-wrap  "
             >
-              {carosuelData?.map((data) => {
-                return data.Category.map((data) => {
-                  return (
-                    <NavLink
-                      to={"/categoriesType"}
-                      key={data?.id}
-                      className="!w-[99%] h-[260px] rounded-lg "
-                    >
-                      <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px]  rounded-lg">
-                        {changeColor
-                          .filter((e) => e.id === dressInfo?.ClothesBorder)
-                          .map((value) => {
-                            return (
-                              <button
-                                key={value?.id}
-                                className={`w-full h-full border border-searchBgColor rounded-lg flex items-center justify-center`}
-                              >
-                                {/* <SircleNext /> */}
-                                <NoImg />
-                              </button>
-                            );
-                          })}
-                      </div>
-                      <article className="h-12.5 flex items-center justify-start">
-                        <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
-                          {data?.type || "type"}
-                          <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
-                            ({data?.count || "0"})
-                          </p>
+              {mainData?.sections?.map((data) => {
+                return (
+                  <NavLink
+                    to={"/categoriesType"}
+                    key={data?.id}
+                    className="!w-[99%] h-[260px] rounded-lg "
+                  >
+                    <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px] rounded-lg overflow-hidden">
+                      {/* <button
+                        className={`w-full h-full border border-searchBgColor rounded-lg flex items-center justify-center`}
+                      >
+                        <NoImg />
+                      </button> */}
+
+                      <img
+                        src={data?.url_photo}
+                        alt=""
+                        className="w-full h-full "
+                      />
+                    </div>
+                    <article className="h-12.5 flex items-center justify-start">
+                      <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
+                        {data?.name_ru || "type"}
+                        <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
+                          ({data?.count || "0"})
                         </p>
-                      </article>
-                    </NavLink>
-                  );
-                });
+                      </p>
+                    </article>
+                  </NavLink>
+                );
               })}
             </Slider>
           </div>
@@ -296,8 +297,9 @@ export default function MainPageSliders() {
           {/* carosuel hidden block */}
 
           <div
-            className={`${more ? "xs:grid" : "xs:hidden"
-              } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 md:pt-7`}
+            className={`${
+              more ? "xs:grid" : "xs:hidden"
+            } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 md:pt-7`}
           >
             {carosuelData?.map((data) => {
               return data.Category.map((data, i) => {
@@ -384,24 +386,22 @@ export default function MainPageSliders() {
               {...settings1}
               className="w-[100%] flex xs:justify-between  px-[1px]"
             >
-              {carosuelData?.map((data) => {
-                return data.campany.map((data) => {
-                  return (
-                    <div
-                      key={data?.id}
-                      onClick={() => goShoppingStore(data?.name)}
-                      className="!w-[98.88%] h-[100px] cursor-pointer  rounded-lg bg-btnBgColor flex items-center justify-center select-none border border-solid border-searchBgColor"
-                    >
-                      <figure className=" h-full flex items-center justify-center px-[35px]">
-                        <img
-                          className="h-[70px] w-[80%] "
-                          src={data?.imgFull}
-                          alt=""
-                        />
-                      </figure>
-                    </div>
-                  );
-                });
+              {mainData?.shops.map((data) => {
+                return (
+                  <div
+                    key={data?.id}
+                    onClick={() => goShoppingStore(data?.name)}
+                    className="!w-[98.88%] h-[100px] cursor-pointer  rounded-lg bg-btnBgColor flex items-center justify-center select-none border border-solid border-searchBgColor"
+                  >
+                    <figure className=" h-full flex items-center justify-center px-[35px]">
+                      <img
+                        className="h-[70px] w-[80%] "
+                        src={data?.url_logo_photo}
+                        alt=""
+                      />
+                    </figure>
+                  </div>
+                );
               })}
             </Slider>
           </div>
