@@ -213,7 +213,7 @@ const CatalogFilterGroup = () => {
                   className="w-full h-[44px] rounded-lg justify-center bg-bgCategory hover:text-white  focus:bg-fullBlue hover:bg-fullBlue focus:text-white flex items-center  cursor-pointer select-none  text-black"
                   onClick={HandleCheckStatus(data?.id)}
                 >
-                  <p className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
+                  <p className="not-italic font-AeonikProMedium tracking-[1%] text-sm leading-4">
                     {data?.name}
                   </p>
                 </figure>
