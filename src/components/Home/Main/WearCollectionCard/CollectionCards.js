@@ -143,7 +143,7 @@ export default function CollectionCards() {
                         <img src={CalourCard} alt="" className="h-full" />
                       </figure>
                       <span className="text-catalogText text-sm not-italic font-AeonikProMedium">
-                      {data?.colors?.length}
+                        {data?.colors?.length}
                       </span>
                     </button>
                     <button
@@ -215,7 +215,7 @@ export default function CollectionCards() {
                       className="w-full flex items-center justify-between  pl-3 pr-[5px]"
                     >
                       <article className="flex items-center ">
-                        {data?.discount_price ? (
+                        {data?.cost?.discount_price ? (
                           <figure className="flex flex-col-reverse ll:flex-row	text-start items-start ">
                             <p className="text-start m-0 p-0  not-italic font-AeonikProMedium text-[16px]  md:text-base leading-1 text-red-700 xs:text-base xs:leading-4 mr-1">
                               {data?.cost?.price}
