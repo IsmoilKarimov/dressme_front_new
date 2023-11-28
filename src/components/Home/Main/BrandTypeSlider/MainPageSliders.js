@@ -21,7 +21,6 @@ import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 
 export default function MainPageSliders() {
   const [mainData, setMainData] = useContext(HomeMainDataContext);
-  console.log(mainData?.shops);
   const [dressInfo] = useContext(dressMainData);
 
   const changeColor = [
@@ -301,54 +300,62 @@ export default function MainPageSliders() {
               more ? "xs:grid" : "xs:hidden"
             } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 md:pt-7`}
           >
-            {carosuelData?.map((data) => {
-              return data.Category.map((data, i) => {
-                if (more) {
+            {mainData?.sections?.map((data, i) => {
+              if (more) {
+                return (
+                  <NavLink
+                    to="/categoriesType"
+                    key={data?.id}
+                    className="w-[100%] "
+                  >
+                    <figure className="w-[100%] xs:w-[196px] h-[140px] xs:h-[224px] flex items-center border border-searchBgColor justify-center p-1 bg-btnBgColor ]	rounded-xl xs:rounded">
+                      {/* <NoImg /> */}
+                      <img
+                        src={data?.url_photo}
+                        alt=""
+                        className="w-full h-full "
+                      />
+                    </figure>
+                    <article className="w-full py-1 flex items-center">
+                      <p className="not-italic flex items-center font-AeonikProMedium text-sm xs:text-base leading-6 text-black">
+                        {data?.name_ru || "type"}
+                        <p className="not-italic lex items-center  font-AeonikProRegular text-xs xs:text-sm leading-4 text-gray-500 ml-1">
+                          {/* ({data?.count || "0"}) */} 0
+                        </p>
+                      </p>
+                    </article>
+                  </NavLink>
+                );
+              } else {
+                if (i > 8) {
+                  return false;
+                } else {
                   return (
                     <NavLink
                       to="/categoriesType"
                       key={data?.id}
                       className="w-[100%] "
                     >
-                      <figure className="w-[100%] xs:w-[196px] h-[140px] xs:h-[224px] flex items-center border border-searchBgColor justify-center p-1 bg-btnBgColor ]	rounded-xl xs:rounded">
-                        <NoImg />
+                      <figure className="w-[100%] xs:w-[196px] h-[140px] xs:h-[224px] border border-searchBgColor flex items-center justify-center p-1 bg-btnBgColor ]	rounded-xl xs:rounded">
+                        {/* <NoImg /> */}
+                        <img
+                          src={data?.url_photo}
+                          alt=""
+                          className="w-full h-full "
+                        />
                       </figure>
                       <article className="w-full py-1 flex items-center">
                         <p className="not-italic flex items-center font-AeonikProMedium text-sm xs:text-base leading-6 text-black">
-                          {data?.type || "type"}
+                          {data?.name_ru || "type"}
                           <p className="not-italic lex items-center  font-AeonikProRegular text-xs xs:text-sm leading-4 text-gray-500 ml-1">
-                            ({data?.count || "0"})
+                            {/* ({data?.count || "0"}) */} 0
                           </p>
                         </p>
                       </article>
                     </NavLink>
                   );
-                } else {
-                  if (i > 8) {
-                    return false;
-                  } else {
-                    return (
-                      <NavLink
-                        to="/categoriesType"
-                        key={data?.id}
-                        className="w-[100%] "
-                      >
-                        <figure className="w-[100%] xs:w-[196px] h-[140px] xs:h-[224px] border border-searchBgColor flex items-center justify-center p-1 bg-btnBgColor ]	rounded-xl xs:rounded">
-                          <NoImg />
-                        </figure>
-                        <article className="w-full py-1 flex items-center">
-                          <p className="not-italic flex items-center font-AeonikProMedium text-sm xs:text-base leading-6 text-black">
-                            {data?.type || "type"}
-                            <p className="not-italic lex items-center  font-AeonikProRegular text-xs xs:text-sm leading-4 text-gray-500 ml-1">
-                              ({data?.count || "0"})
-                            </p>
-                          </p>
-                        </article>
-                      </NavLink>
-                    );
-                  }
                 }
-              });
+              }
             })}
           </div>
           <div className="w-full flex justify-center items-center  mt-10">

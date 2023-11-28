@@ -143,7 +143,7 @@ export default function CollectionCards() {
                         <img src={CalourCard} alt="" className="h-full" />
                       </figure>
                       <span className="text-catalogText text-sm not-italic font-AeonikProMedium">
-                        6
+                      {data?.colors?.length}
                       </span>
                     </button>
                     <button
@@ -154,7 +154,7 @@ export default function CollectionCards() {
                         <img src={CalourCard} alt="" className="h-full" />
                       </figure>
                       <span className="text-catalogText text-sm not-italic font-AeonikProMedium">
-                        6
+                        {data?.colors?.length}
                       </span>
                     </button>
                     <article
@@ -165,7 +165,7 @@ export default function CollectionCards() {
                           : "w-0 my-2"
                       } duration-300 absolute overflow-hidden hidden top-0 z-[1] md:flex justify-between items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
                     >
-                      {data?.colors.map((itemValue) => {
+                      {data?.colors?.map((itemValue) => {
                         return (
                           <article
                             key={itemValue?.id}
@@ -215,7 +215,7 @@ export default function CollectionCards() {
                       className="w-full flex items-center justify-between  pl-3 pr-[5px]"
                     >
                       <article className="flex items-center ">
-                        {data.cost ? (
+                        {data?.discount_price ? (
                           <figure className="flex flex-col-reverse ll:flex-row	text-start items-start ">
                             <p className="text-start m-0 p-0  not-italic font-AeonikProMedium text-[16px]  md:text-base leading-1 text-red-700 xs:text-base xs:leading-4 mr-1">
                               {data?.cost?.price}
@@ -229,7 +229,7 @@ export default function CollectionCards() {
                             className="not-italic font-AeonikProMedium text-base leading-4"
                             style={{ color: "black" }}
                           >
-                            {data?.cost?.price}{" "}
+                            {data?.cost?.price}
                           </p>
                         )}
                       </article>
