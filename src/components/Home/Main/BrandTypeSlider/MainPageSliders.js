@@ -262,7 +262,6 @@ export default function MainPageSliders() {
               className="w-[100%] flex xs:justify-between flex-wrap  "
             >
               {mainData?.sections?.map((data) => {
-                console.log(data);
                 return (
                   <NavLink
                     to={"/categoriesType"}
