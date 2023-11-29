@@ -199,7 +199,7 @@ export default function CollectionCards() {
                           <article>
                             <StarIcons />
                           </article>
-                          <article className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex items-center">
+                          <article className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-0 text-right text-gray-500 ml-[2px] md:ml-1 flex items-center">
                             <p className="font-AeonikProMedium text-[10px] ls:text-xs not-italic mx-1 text-black md:mr-[6px] md:text-[13px]">
                               {data?.overall_rating || 0}
                             </p>
@@ -220,10 +220,16 @@ export default function CollectionCards() {
                         {data?.cost?.discount_price ? (
                           <figure className="flex flex-col-reverse ll:flex-row	text-start items-start ">
                             <p className="text-start m-0 p-0  not-italic font-AeonikProMedium text-[16px]  md:text-base leading-1 text-red-700 xs:text-base xs:leading-4 mr-1">
-                              {data?.cost?.discount_price}
+                              {parseInt(data?.cost?.discount_price)
+                                ?.toLocaleString()
+                                ?.split(",")
+                                .join(" ")}
                             </p>
                             <p className="text-start m-0 p-0 text-[11px] mt-[8px]  line-through not-italic font-AeonikProRegular leading-3  text-borderColorCard ss:leading-1 md:text-[11px]">
-                              {data?.cost?.price}
+                              {parseInt(data?.cost?.price)
+                                ?.toLocaleString()
+                                ?.split(",")
+                                .join(" ")}
                             </p>
                           </figure>
                         ) : (
@@ -231,7 +237,10 @@ export default function CollectionCards() {
                             className="not-italic font-AeonikProMedium text-base leading-4"
                             style={{ color: "black" }}
                           >
-                            {data?.cost?.price}
+                            {parseInt(data?.cost?.price)
+                              ?.toLocaleString()
+                              ?.split(",")
+                              .join(" ")}
                           </p>
                         )}
                       </article>
