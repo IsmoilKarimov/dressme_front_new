@@ -21,7 +21,7 @@ export default function SignUp() {
   // const [phone, setPhone] = useState("");
   const url = "https://api.dressme.uz/api/user/register";
   const [dressInfo] = useContext(dressMainData);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
     firstName: "",
     lastName: "",
@@ -75,10 +75,11 @@ export default function SignUp() {
       {},
       {
         onSuccess: (res) => {
-          setLoading(false);
           if (res?.message && res?.errors) {
+            setLoading(false);
             setState({ ...state, errorsGroup: res });
           } else if (res?.message && !res?.errors) {
+            setLoading(false);
             setState({
               ...state,
               firstName: "",
@@ -129,12 +130,18 @@ export default function SignUp() {
     return () => clearInterval(interval);
   }, [timerDecrase]);
 
+  const handleClick = () => {
+    return(
+      onSubmit(),
+      setLoading(true)
+      )
+  }
+
   return (
      <>
-     {/* {loading ? (
+     {loading ? (
         <LoadingFor />
      ) : (
-     )} */}
         <div className="w-full h-full">
           <ToastContainer
             position="top-right"
@@ -417,7 +424,7 @@ export default function SignUp() {
 
                 <button
                   type="button"
-                  onClick={onSubmit}
+                  onClick={handleClick}
                   className="mt-8 border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-SignInBgColor select-none rounded-lg active:scale-95 active:opacity-70"
                 >
                   <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
@@ -533,6 +540,7 @@ export default function SignUp() {
             </div>
           )}
         </div>
+     )}
      
      </>
   );
