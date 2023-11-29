@@ -226,7 +226,7 @@ export default function CollectionCards() {
                                 .join(" ")}{" "}
                               сум
                             </p>
-                            <p className="text-start m-0 p-0 text-[11px] mt-[2px]  line-through not-italic font-AeonikProRegular leading-3  text-borderColorCard ss:leading-1 md:text-[11.2px]">
+                            <p className="text-start m-0 p-0 text-[11px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[11.2px]">
                               {parseInt(data?.cost?.price)
                                 ?.toLocaleString()
                                 ?.split(",")
