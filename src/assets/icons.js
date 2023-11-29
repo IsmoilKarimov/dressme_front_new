@@ -175,11 +175,11 @@ const HeartLinkIcons = ({ colors }) => {
     </svg>
   );
 };
-const StarIcons = () => {
+const StarIcons = ({ width }) => {
   return (
     <svg
-      width="20"
-      height="20"
+      width={width ? width : 20}
+      height={width ? width : 20}
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -2683,8 +2683,8 @@ const DashboardList = ({ colors }) => {
 const StarIcon = () => {
   return (
     <svg
-      width="10"
-      height="9"
+      width="9"
+      height="8"
       viewBox="0 0 10 9"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

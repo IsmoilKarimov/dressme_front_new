@@ -190,14 +190,14 @@ export default function CollectionCards() {
                       // onClick={() => goDetail(data?.title)}
                       className="w-full px-2 xs:px-3 xs:mt-3"
                     >
-                      <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[15px] leading-4 text-black mb-1 md:mb-0  cursor-pointer">
-                        <div className="absolute text-[14px] categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
+                      <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-4 text-black mb-1 md:mb-0  cursor-pointer">
+                        <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
                         {data?.name_ru || "NoData"}
                       </figure>
                       <figure className="w-full flex justify-between items-center xs:mt-3">
                         <section className="flex items-center justify-between">
                           <article>
-                            <StarIcons />
+                            <StarIcons width={14} />
                           </article>
                           <article className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-0 text-right text-gray-500 ml-[2px] md:ml-1 flex items-center">
                             <p className="font-AeonikProMedium text-[10px] ls:text-xs not-italic mx-1 text-black md:mr-[6px] md:text-[13px]">
