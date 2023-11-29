@@ -406,12 +406,12 @@ export default function MainPageSliders() {
                       className="!w-[98.88%] h-[100px] cursor-pointer  rounded-lg bg-btnBgColor flex items-center justify-center select-none border border-solid border-searchBgColor"
                     >
                       <figure className=" h-full flex items-center justify-center px-[35px]">
-                        <NoImg />
-                        {/* <img
-                        className="h-[70px] w-[80%] "
-                        src={data?.url_logo_photo}
-                        alt=""
-                      /> */}
+                        {/* <NoImg /> */}
+                        <img
+                          className="h-[70px] w-[80%] "
+                          src={data?.url_logo_photo}
+                          alt=""
+                        />
                       </figure>
                     </div>
                   );
