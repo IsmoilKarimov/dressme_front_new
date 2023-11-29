@@ -22,6 +22,7 @@ import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 export default function MainPageSliders() {
   const [mainData, setMainData] = useContext(HomeMainDataContext);
   console.log(mainData?.sections, "mainDdddd");
+
   const [dressInfo] = useContext(dressMainData);
 
   const changeColor = [
@@ -261,6 +262,7 @@ export default function MainPageSliders() {
               className="w-[100%] flex xs:justify-between flex-wrap  "
             >
               {mainData?.sections?.map((data) => {
+                console.log(data);
                 return (
                   <NavLink
                     to={"/categoriesType"}
@@ -268,17 +270,17 @@ export default function MainPageSliders() {
                     className="!w-[99%] h-[260px] rounded-lg "
                   >
                     <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px] rounded-lg overflow-hidden">
-                      {/* <button
+                      <button
                         className={`w-full h-full border border-searchBgColor rounded-lg flex items-center justify-center`}
                       >
                         <NoImg />
-                      </button> */}
+                      </button>
 
-                      <img
+                      {/* <img
                         src={data?.url_photo}
                         alt=""
                         className="w-full h-full "
-                      />
+                      /> */}
                     </div>
                     <article className="h-12.5 flex items-center justify-start">
                       <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
@@ -310,12 +312,12 @@ export default function MainPageSliders() {
                     className="w-[100%] "
                   >
                     <figure className="w-[100%] xs:w-[196px] h-[140px] xs:h-[224px] flex items-center border border-searchBgColor justify-center p-1 bg-btnBgColor ]	rounded-xl xs:rounded">
-                      {/* <NoImg /> */}
-                      <img
+                      <NoImg />
+                      {/* <img
                         src={data?.url_photo}
                         alt=""
                         className="w-full h-full "
-                      />
+                      /> */}
                     </figure>
                     <article className="w-full py-1 flex items-center">
                       <p className="not-italic flex items-center font-AeonikProMedium text-sm xs:text-base leading-6 text-black">
@@ -338,12 +340,12 @@ export default function MainPageSliders() {
                       className="w-[100%] "
                     >
                       <figure className="w-[100%] xs:w-[196px] h-[140px] xs:h-[224px] border border-searchBgColor flex items-center justify-center p-1 bg-btnBgColor ]	rounded-xl xs:rounded">
-                        {/* <NoImg /> */}
-                        <img
+                        <NoImg />
+                        {/* <img
                           src={data?.url_photo}
                           alt=""
                           className="w-full h-full "
-                        />
+                        /> */}
                       </figure>
                       <article className="w-full py-1 flex items-center">
                         <p className="not-italic flex items-center font-AeonikProMedium text-sm xs:text-base leading-6 text-black">

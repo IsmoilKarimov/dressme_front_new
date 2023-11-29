@@ -116,7 +116,7 @@ export default function CollectionCards() {
                   className={` ss:w-[49%] md:w-[24%] lg:w-[240px] xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
                 >
                   <figure
-                    onMouseEnter={() => handleLeaveMouse(data?.id)}
+                    // onMouseEnter={() => handleLeaveMouse(data?.id)}
                     // onClick={() => goDetail(data?.title)}
                     className="relative w-full cursor-pointer h-[250px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
                   >
@@ -134,55 +134,57 @@ export default function CollectionCards() {
                     </div>
                   </figure>
                   <section className="relative  w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[130px] md:h-[136px] ">
-                    <button
-                      onMouseEnter={() => handleEnterMouse(data?.id)}
-                      // onMouseEnter={() => setColourCard(true)}
-                      className="w-12 h-7 border border-searchBgColor rounded-lg hidden md:flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 "
-                    >
-                      <figure className="w-6 h-6 flex items-center justify-center">
-                        <img src={CalourCard} alt="" className="h-full" />
-                      </figure>
-                      <span className="text-catalogText text-sm not-italic font-AeonikProMedium">
-                        {data?.colors?.length}
-                      </span>
-                    </button>
-                    <button
-                      onClick={() => setOpenWearType(true)}
-                      className="w-12 h-7 md:hidden border border-searchBgColor rounded-lg flex items-center cursor-pointer select-none my-[6px] mx-2 justify-center gap-x-1 "
-                    >
-                      <figure className="w-6 h-6 flex items-center justify-center">
-                        <img src={CalourCard} alt="" className="h-full" />
-                      </figure>
-                      <span className="text-catalogText text-sm not-italic font-AeonikProMedium">
-                        {data?.colors?.length}
-                      </span>
-                    </button>
-                    <article
-                      onMouseLeave={() => handleLeaveMouse(data?.id)}
-                      className={` ${
-                        data?.l
-                          ? "w-full px-1 xs:px-2 md:px-4 my-2"
-                          : "w-0 my-2"
-                      } duration-300 absolute overflow-hidden hidden top-0 z-[1] md:flex justify-between items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
-                    >
-                      {data?.colors?.map((itemValue) => {
-                        return (
-                          <article
-                            key={itemValue?.id}
-                            style={{backgroundColor: itemValue?.hex}}
-                            onClick={() =>
-                              onColorChecked(data?.id, itemValue?.id)
-                            }
-                            className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 ls:w-[22px] ls:h-[22px] w-5 h-5 lg:w-6 lg:h-6 cursor-pointer  border border-solid border-borderColorCard mr-[3px]`}
-                            htmlFor="Color1"
-                          >
-                            {itemValue?.action ? (
-                              <InputCheckedTrueIcons colors={"#fff"} />
-                            ) : null}
-                          </article>
-                        );
-                      })}
-                    </article>
+                    <div className="group hover:w-full hover:h-[36px] cursor-pointer">
+                      <button
+                        // onMouseEnter={() => handleEnterMouse(data?.id)}
+                        // onMouseEnter={() => setColourCard(true)}
+                        className="group-hover:hidden w-12 h-7 border border-searchBgColor rounded-lg hidden md:flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 "
+                      >
+                        <figure className="w-6 h-6 flex items-center justify-center">
+                          <img src={CalourCard} alt="" className="h-full" />
+                        </figure>
+                        <span className="text-catalogText text-sm not-italic font-AeonikProMedium">
+                          {data?.colors?.length}
+                        </span>
+                      </button>
+                      <button
+                        onClick={() => setOpenWearType(true)}
+                        className="w-12 h-7 md:hidden border border-searchBgColor rounded-lg flex items-center cursor-pointer select-none my-[6px] mx-2 justify-center gap-x-1 "
+                      >
+                        <figure className="w-6 h-6 flex items-center justify-center">
+                          <img src={CalourCard} alt="" className="h-full" />
+                        </figure>
+                        <span className="text-catalogText text-sm not-italic font-AeonikProMedium">
+                          {data?.colors?.length}
+                        </span>
+                      </button>
+                      <article
+                        // onMouseLeave={() => handleLeaveMouse(data?.id)}
+                        className={` ${
+                          data?.l
+                            ? "w-full px-1 xs:px-2 md:px-4 my-2"
+                            : "w-0 my-2"
+                        } group-hover:w-full group-hover:px-1 group-hover:xs:px-2 group-hover:md:px-4 group-hover:my-2 duration-300 w-0 my-2 absolute overflow-hidden hidden top-0 z-[1] md:flex justify-between items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
+                      >
+                        {data?.colors?.map((itemValue) => {
+                          return (
+                            <article
+                              key={itemValue?.id}
+                              style={{ backgroundColor: itemValue?.hex }}
+                              onClick={() =>
+                                onColorChecked(data?.id, itemValue?.id)
+                              }
+                              className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 ls:w-[22px] ls:h-[22px] w-5 h-5 lg:w-6 lg:h-6 cursor-pointer  border border-solid border-borderColorCard mr-[3px]`}
+                              htmlFor="Color1"
+                            >
+                              {itemValue?.action ? (
+                                <InputCheckedTrueIcons colors={"#fff"} />
+                              ) : null}
+                            </article>
+                          );
+                        })}
+                      </article>
+                    </div>
                     <article
                       onMouseEnter={() => handleLeaveMouse(data?.id)}
                       // onClick={() => goDetail(data?.title)}
@@ -218,10 +220,10 @@ export default function CollectionCards() {
                         {data?.cost?.discount_price ? (
                           <figure className="flex flex-col-reverse ll:flex-row	text-start items-start ">
                             <p className="text-start m-0 p-0  not-italic font-AeonikProMedium text-[16px]  md:text-base leading-1 text-red-700 xs:text-base xs:leading-4 mr-1">
-                              {data?.cost?.price}
+                              {data?.cost?.discount_price}
                             </p>
                             <p className="text-start m-0 p-0 text-[11px] mt-[8px]  line-through not-italic font-AeonikProRegular leading-3  text-borderColorCard ss:leading-1 md:text-[11px]">
-                              {data?.cost?.discount_price}
+                              {data?.cost?.price}
                             </p>
                           </figure>
                         ) : (
