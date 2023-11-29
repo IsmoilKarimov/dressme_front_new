@@ -24,6 +24,7 @@ export default function UserEmailVerification() {
   const pathname = window.location.pathname;
 
   let PathnameToken = pathname.replace("/mail-verify-user/:", "");
+  console.log(PathnameToken,"PathnameToken");
 
   const navigate = useNavigate();
   const [error, setError] = useState(false);
@@ -68,7 +69,7 @@ export default function UserEmailVerification() {
                 progress: undefined,
                 theme: "light",
               });
-              navigate("/edit-profile")
+              navigate("/")
               window.location.reload();
               setState({ ...state, email: "", password: "" });
 

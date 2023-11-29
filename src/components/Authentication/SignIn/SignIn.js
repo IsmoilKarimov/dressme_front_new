@@ -77,7 +77,7 @@ export default function SignIn() {
             }
             else if (res?.message) {
               localStorage.setItem("DressmeUserToken", res?.access_token);
-              // navigate("/");
+              navigate("/");
               // window.location.reload();
               toast.success(`Успешный  вход в систему`, {
                 position: "top-right",
