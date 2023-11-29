@@ -188,13 +188,13 @@ export default function CollectionCards() {
                     <article
                       onMouseEnter={() => handleLeaveMouse(data?.id)}
                       // onClick={() => goDetail(data?.title)}
-                      className="w-full px-2 xs:px-3 xs:mt-3"
+                      className="w-full px-2 xs:px-3 xs:mt-1"
                     >
-                      <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-4 text-black mb-1 md:mb-0  cursor-pointer">
+                      <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-1 md:mb-0  cursor-pointer">
                         <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
                         {data?.name_ru || "NoData"}
                       </figure>
-                      <figure className="w-full flex justify-between items-center xs:mt-3">
+                      <figure className="w-full flex justify-between items-center xs:mt-1">
                         <section className="flex items-center justify-between">
                           <article>
                             <StarIcons width={14} />
@@ -214,7 +214,7 @@ export default function CollectionCards() {
                     </article>
                     <article
                       onMouseEnter={() => handleLeaveMouse(data?.id)}
-                      className="w-full flex items-center justify-between  pl-3 pr-[5px]"
+                      className="w-full flex items-end mb-2 justify-between  pl-3 pr-[5px]"
                     >
                       <article className="flex items-center">
                         {data?.cost?.discount_price ? (
@@ -223,14 +223,14 @@ export default function CollectionCards() {
                               {parseInt(data?.cost?.discount_price)
                                 ?.toLocaleString()
                                 ?.split(",")
-                                .join(" ")}{" "}
+                                .join(" ")}
                               сум
                             </p>
-                            <p className="w-full text-start m-0 p-0 text-[10px] mb-[2px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
+                            <p className="w-full text-start m-0 p-0 text-[10px] mb-[4px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
                               {parseInt(data?.cost?.price)
                                 ?.toLocaleString()
                                 ?.split(",")
-                                .join(" ")}{" "}
+                                .join(" ")}
                               сум
                             </p>
                           </figure>
@@ -247,8 +247,8 @@ export default function CollectionCards() {
                           </p>
                         )}
                       </article>
-                      <figure className="flex items-center select-none	">
-                        <button className="w-[32px] h-[32px] active:scale-95  active:opacity-70 ll:mb-1 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
+                      <figure className="flex items-center select-none	absolute right-2 bottom-2">
+                        <button className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
                           <img src={HeartImg} alt="" />
                         </button>
                       </figure>
