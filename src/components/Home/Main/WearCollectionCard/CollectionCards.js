@@ -191,7 +191,7 @@ export default function CollectionCards() {
                       className="w-full px-2 xs:px-3 xs:mt-3"
                     >
                       <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[15px] leading-4 text-black mb-1 md:mb-0  cursor-pointer">
-                        <div className="absolute categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
+                        <div className="absolute text-[14px] categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
                         {data?.name_ru || "NoData"}
                       </figure>
                       <figure className="w-full flex justify-between items-center xs:mt-3">
@@ -223,13 +223,15 @@ export default function CollectionCards() {
                               {parseInt(data?.cost?.discount_price)
                                 ?.toLocaleString()
                                 ?.split(",")
-                                .join(" ")} сум
+                                .join(" ")}{" "}
+                              сум
                             </p>
                             <p className="text-start m-0 p-0 text-[11px] mt-[2px]  line-through not-italic font-AeonikProRegular leading-3  text-borderColorCard ss:leading-1 md:text-[11.2px]">
                               {parseInt(data?.cost?.price)
                                 ?.toLocaleString()
                                 ?.split(",")
-                                .join(" ")} сум
+                                .join(" ")}{" "}
+                              сум
                             </p>
                           </figure>
                         ) : (
@@ -240,7 +242,8 @@ export default function CollectionCards() {
                             {parseInt(data?.cost?.price)
                               ?.toLocaleString()
                               ?.split(",")
-                              .join(" ")} сум
+                              .join(" ")}{" "}
+                            сум
                           </p>
                         )}
                       </article>
