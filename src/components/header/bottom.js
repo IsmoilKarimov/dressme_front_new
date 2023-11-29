@@ -503,7 +503,7 @@ const BottomHeader = () => {
                       key={data?.id}
                       onClick={() => setSelectedId(data?.id)}
                       style={{ backgroundColor: data?.hex }}
-                      className={`rounded-[12px] flex items-center justify-center mr-2 w-[65px] h-[40px] cursor-pointer ${
+                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${
                         data?.id === selectedId
                           ? "border border-setTexOpacity flex items-center justify-center"
                           : ""
@@ -529,9 +529,9 @@ const BottomHeader = () => {
               })}
             </div>
             <div className="flex items-center justify-end">
-              {toggleAction && (
+              {selectedId && (
                 <button
-                  onClick={unCheckedAll}
+                  onClick={() => setSelectedId(null)}
                   className="flex items-center text-fullBlue active:scale-95  active:opacity-70 justify-center  px-4 py-1"
                 >
                   Отключить
@@ -636,38 +636,42 @@ const BottomHeader = () => {
                 state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
               } px-2 w-full duration-500  h-full flex items-center justify-between  `}
             >
-              {mainData?.colors?.map((data) => {
-                return (
-                  <div key={data?.id}>
-                    <label
-                      key={data?.id}
-                      htmlFor={data?.id}
-                      style={{ backgroundColor: data?.hex }}
-                      // onClick={() => colorIdPushContext(data?.id)}
-                      className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
-                        !state?.textToColor && "border"
-                      }  border-borderColorCard	`}
-                    >
-                      {data?.id === getRadio && data?.id === 2 ? (
-                        <span>
-                          <InputCheckedTrueIcons colors={"#000"} />
-                        </span>
-                      ) : null}
+              {mainData?.colors?.map((data, i) => {
+                if (i > 11) {
+                  return false;
+                } else {
+                  return (
+                    <div key={data?.id}>
+                      <label
+                        key={data?.id}
+                        htmlFor={data?.id}
+                        style={{ backgroundColor: data?.hex }}
+                        // onClick={() => colorIdPushContext(data?.id)}
+                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
+                          !state?.textToColor && "border"
+                        }  border-borderColorCard	`}
+                      >
+                        {data?.id === getRadio && data?.id === 2 ? (
+                          <span>
+                            <InputCheckedTrueIcons colors={"#000"} />
+                          </span>
+                        ) : null}
 
-                      {data?.id === getRadio && data?.id !== 2 ? (
-                        <InputCheckedTrueIcons colors={"#fff"} />
-                      ) : null}
-                    </label>
-                    <input
-                      type="radio"
-                      id={data?.id}
-                      name="checkStatus"
-                      value={data?.id}
-                      onChange={(e) => setGetRadio(e.target.value)}
-                      className={"hidden  w-full h-full"}
-                    />
-                  </div>
-                );
+                        {data?.id === getRadio && data?.id !== 2 ? (
+                          <InputCheckedTrueIcons colors={"#fff"} />
+                        ) : null}
+                      </label>
+                      <input
+                        type="radio"
+                        id={data?.id}
+                        name="checkStatus"
+                        value={data?.id}
+                        onChange={(e) => setGetRadio(e.target.value)}
+                        className={"hidden  w-full h-full"}
+                      />
+                    </div>
+                  );
+                }
               })}
               <button
                 onClick={() => {
