@@ -24,6 +24,7 @@ export default function UserEmailVerification() {
   const pathname = window.location.pathname;
 
   let PathnameToken = pathname.replace("/mail-verify-user/:", "");
+  console.log(PathnameToken,"PathnameToken");
 
   const navigate = useNavigate();
   const [error, setError] = useState(false);
@@ -47,28 +48,24 @@ export default function UserEmailVerification() {
   });
 
   const EnterTheSystem = () => {
-    // console.log(state?.email, "email");
-    // console.log(state?.password, "password");
-    // console.log(state?.rememberCheck, "rememberCheck");
     if (state.email?.length && state.password?.length) {
       dataMutate.mutate(
         {},
         {
           onSuccess: (res) => {
-            // console.log(res, "MailVerfySeller");
             if (res?.access_token) {
               localStorage.setItem("DressmeUserToken", res?.access_token);
-              toast.success("Muaffaqiyatli kirdingiz", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-              });
-              navigate("/edit-profile")
+              // toast.success("Muaffaqiyatli kirdingiz", {
+              //   position: "top-right",
+              //   autoClose: 5000,
+              //   hideProgressBar: false,
+              //   closeOnClick: true,
+              //   pauseOnHover: true,
+              //   draggable: true,
+              //   progress: undefined,
+              //   theme: "light",
+              // });
+              navigate("/")
               window.location.reload();
               setState({ ...state, email: "", password: "" });
 
