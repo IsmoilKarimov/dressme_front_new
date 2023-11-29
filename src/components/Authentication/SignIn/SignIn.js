@@ -16,7 +16,7 @@ export default function SignIn() {
 
   const navigate = useNavigate();
   const [error, setError] = useState(false);
-  // const url = "https://api.dressme.uz/api/user/login";
+  const url = "https://api.dressme.uz/api/user";
 
   const handleChange = (e) => {
     const { checked } = e.target;
@@ -24,7 +24,7 @@ export default function SignIn() {
   };
 
   const dataMutate = useMutation(() => {
-    return fetch("https://api.dressme.uz/api/user/login", {
+    return fetch(`${url}/login`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -39,15 +39,11 @@ export default function SignIn() {
   });
 
   const EnterTheSystem = () => {
-    // console.log(state?.email, "email");
-    // console.log(state?.password, "password");
-    // console.log(state?.rememberCheck, "rememberCheck");
-    // if (state.email?.length && state.password?.length) {
       dataMutate.mutate(
         {},
         {
           onSuccess: (res) => {
-            console.log(res, "RESPONSE-LOG-IN");
+            console.log(res,"RES-LOGIN");
             if (res?.message && res.errors !== true) {
               setState({ ...state, errorsGroup: res });
             } 
@@ -96,20 +92,6 @@ export default function SignIn() {
           },
         }
       );
-    // } 
-    // else {
-    //   toast.error(`Заполните все поля`, {
-    //     position: "top-right",
-    //     autoClose: 5000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     theme: "light",
-    //   });
-    //   console.log("data");
-    // }
   };
 
   return (
