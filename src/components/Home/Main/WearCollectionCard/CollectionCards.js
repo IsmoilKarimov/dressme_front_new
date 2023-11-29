@@ -216,17 +216,17 @@ export default function CollectionCards() {
                       onMouseEnter={() => handleLeaveMouse(data?.id)}
                       className="w-full flex items-center justify-between  pl-3 pr-[5px]"
                     >
-                      <article className="flex items-center wrap">
+                      <article className="flex items-center">
                         {data?.cost?.discount_price ? (
-                          <figure className="flex flex-col-reverse ll:flex-row	text-start items-start ">
-                            <p className="text-start m-0 p-0  not-italic font-AeonikProMedium text-[15px] md:text-[15px] leading-1 text-red-700 xs:text-[15px] xs:leading-0 mr-2">
+                          <figure className="flex flex-wrap flex-col-reverse	text-start items-start ">
+                            <p className="w-full text-start m-0 p-0  not-italic font-AeonikProMedium text-[15px] md:text-[15px] leading-1 text-red-700 xs:text-[15px] xs:leading-0 mr-2">
                               {parseInt(data?.cost?.discount_price)
                                 ?.toLocaleString()
                                 ?.split(",")
                                 .join(" ")}{" "}
                               сум
                             </p>
-                            <p className="text-start m-0 p-0 text-[10px] mb-[2px] md:mb-[0] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
+                            <p className="w-full text-start m-0 p-0 text-[10px] mb-[2px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
                               {parseInt(data?.cost?.price)
                                 ?.toLocaleString()
                                 ?.split(",")
