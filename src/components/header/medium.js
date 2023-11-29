@@ -642,4 +642,3 @@ const MediumHeader = () => {
   );
 };
 export default MediumHeader;
-

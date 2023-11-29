@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ArrowTopIcons, MenuCloseIcons } from "../assets/icons";
+import { HomeMainDataContext } from "./HomeMainData";
 
 function RegionList({ onClick }) {
   const [state, setState] = useState({
@@ -15,56 +16,56 @@ function RegionList({ onClick }) {
     // -----region Modal ---
     // openModalRegions: show,
   });
-
-  const url = "https://api.dressme.uz/api/seller";
+  const [mainData, setMainData] = useContext(HomeMainDataContext);
+  // const url = "https://api.dressme.uz/api/seller";
 
   // ------- Loading Region ------
-  const { isLoading } = useQuery(
-    ["get region"],
-    () => {
-      return fetch(`${url}/regions`).then((res) => res.json());
-    },
-    {
-      onSuccess: (res) => {
-        setState({ ...state, getRegionList: res });
-      },
-      onError: (err) => {
-        console.log(err, "err");
-      },
-      keepPreviousData: true, // bu browserdan tashqariga chiqib yana kirsa, yana yurishni oldini olish uchun
-      refetchOnWindowFocus: false, // bu ham focus bolgan vaqti malumot olib kelish
-    }
-  );
+  // const { isLoading } = useQuery(
+  //   ["get region"],
+  //   () => {
+  //     return fetch(`${url}/regions`).then((res) => res.json());
+  //   },
+  //   {
+  //     onSuccess: (res) => {
+  //       setState({ ...state, getRegionList: res });
+  //     },
+  //     onError: (err) => {
+  //       console.log(err, "err");
+  //     },
+  //     keepPreviousData: true, // bu browserdan tashqariga chiqib yana kirsa, yana yurishni oldini olish uchun
+  //     refetchOnWindowFocus: false, // bu ham focus bolgan vaqti malumot olib kelish
+  //   }
+  // );
 
   // ------------GET METHOD Profile-----------------
-  useQuery(
-    ["get profile"],
-    () => {
-      return fetch(`${url}/profile`, {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
-        },
-      }).then((res) => res.json());
-    },
-    {
-      onSuccess: (res) => {
-        console.log(res, "res");
-        setState({
-          ...state,
-          getProfileList: res,
-          regionId: res?.region_id,
-          subRegionId: res?.sub_region_id,
-        });
-      },
-      onError: (err) => {
-        console.log(err, "err");
-      },
-      keepPreviousData: true, // bu browserdan tashqariga chiqib yana kirsa, yana yurishni oldini olish uchun
-      refetchOnWindowFocus: false, // bu ham focus bolgan vaqti malumot olib kelish
-    }
-  );
+  // useQuery(
+  //   ["get profile"],
+  //   () => {
+  //     return fetch(`${url}/profile`, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-type": "application/json",
+  //         Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
+  //       },
+  //     }).then((res) => res.json());
+  //   },
+  //   {
+  //     onSuccess: (res) => {
+  //       console.log(res, "res");
+  //       setState({
+  //         ...state,
+  //         getProfileList: res,
+  //         regionId: res?.region_id,
+  //         subRegionId: res?.sub_region_id,
+  //       });
+  //     },
+  //     onError: (err) => {
+  //       console.log(err, "err");
+  //     },
+  //     keepPreviousData: true, // bu browserdan tashqariga chiqib yana kirsa, yana yurishni oldini olish uchun
+  //     refetchOnWindowFocus: false, // bu ham focus bolgan vaqti malumot olib kelish
+  //   }
+  // );
 
   const [activeIndex, setActiveIndex] = useState();
   const accordionCityList = (id) => {
@@ -77,7 +78,6 @@ function RegionList({ onClick }) {
   // show
   return (
     <main className={`w-full  h-fit `}>
-
       <div
         className={`max-w-[600px] h-fit     px-3 md:px-6  py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg  `}
       >
@@ -85,22 +85,20 @@ function RegionList({ onClick }) {
           <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">
             Выберите регион
           </span>
-          <span
-            className="select-none cursor-pointer"
-            onClick={onClick}
-          >
+          <span className="select-none cursor-pointer" onClick={onClick}>
             <MenuCloseIcons colors="#000" />
           </span>
         </div>
 
         <div className="w-full overflow-auto  flex flex-col gap-y-4 pt-3  overflow-x-hidden mt-3 h-[50vh] md:h-[60vh] VerticelScroll pr-2 ">
-          {state?.getRegionList?.regions ? (
-            state?.getRegionList?.regions?.map((data) => {
+          {mainData?.regions ? (
+            mainData?.regions?.map((data) => {
               return (
                 <div
                   key={data?.id}
-                  className={`${data.id || data.sub_regions.id ? "" : ""
-                    } w-full h-fit`}
+                  className={`${
+                    data.id || data.sub_regions.id ? "" : ""
+                  } w-full h-fit`}
                 >
                   <div className="flex items-center">
                     <input
@@ -119,10 +117,11 @@ function RegionList({ onClick }) {
                         {data?.name_ru}
                       </span>
                       <span
-                        className={`${activeIndex === data?.id
-                          ? "rotate-[-0deg] duration-300"
-                          : "rotate-[-180deg] duration-300"
-                          } ml-auto`}
+                        className={`${
+                          activeIndex === data?.id
+                            ? "rotate-[-0deg] duration-300"
+                            : "rotate-[-180deg] duration-300"
+                        } ml-auto`}
                       >
                         <ArrowTopIcons colors={"#a1a1a1"} />
                       </span>
@@ -130,10 +129,11 @@ function RegionList({ onClick }) {
                   </div>
                   <div
                     className={`w-full grid grid-cols-2 xs:grid-cols-3 duration-[400ms]
-                              ${activeIndex == data?.id
-                        ? "openAccardion"
-                        : "CloseAccardion"
-                      } `}
+                              ${
+                                activeIndex == data?.id
+                                  ? "openAccardion"
+                                  : "CloseAccardion"
+                              } `}
                   >
                     {data?.sub_regions?.map((item) => {
                       return (
@@ -189,4 +189,4 @@ function RegionList({ onClick }) {
     </main>
   );
 }
-export default React.memo(RegionList)
+export default React.memo(RegionList);
