@@ -21,6 +21,7 @@ import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 
 export default function MainPageSliders() {
   const [mainData, setMainData] = useContext(HomeMainDataContext);
+  console.log(mainData?.sections, "mainDdddd");
   const [dressInfo] = useContext(dressMainData);
 
   const changeColor = [
@@ -283,7 +284,7 @@ export default function MainPageSliders() {
                       <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
                         {data?.name_ru || "type"}
                         <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
-                          ({data?.count || "0"})
+                          ({data?.products_count || "0"})
                         </p>
                       </p>
                     </article>
@@ -320,7 +321,7 @@ export default function MainPageSliders() {
                       <p className="not-italic flex items-center font-AeonikProMedium text-sm xs:text-base leading-6 text-black">
                         {data?.name_ru || "type"}
                         <p className="not-italic lex items-center  font-AeonikProRegular text-xs xs:text-sm leading-4 text-gray-500 ml-1">
-                          {/* ({data?.count || "0"}) */} 0
+                          ({data?.products_count || "0"})
                         </p>
                       </p>
                     </article>
@@ -348,7 +349,7 @@ export default function MainPageSliders() {
                         <p className="not-italic flex items-center font-AeonikProMedium text-sm xs:text-base leading-6 text-black">
                           {data?.name_ru || "type"}
                           <p className="not-italic lex items-center  font-AeonikProRegular text-xs xs:text-sm leading-4 text-gray-500 ml-1">
-                            {/* ({data?.count || "0"}) */} 0
+                            ({data?.products_count || "0"})
                           </p>
                         </p>
                       </article>
