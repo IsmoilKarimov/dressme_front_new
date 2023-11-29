@@ -224,6 +224,7 @@ export default function CollectionCards() {
                                 ?.toLocaleString()
                                 ?.split(",")
                                 .join(" ")}
+                              {"  "}
                               сум
                             </p>
                             <p className="w-full text-start m-0 p-0 text-[10px] mb-[4px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
@@ -231,6 +232,7 @@ export default function CollectionCards() {
                                 ?.toLocaleString()
                                 ?.split(",")
                                 .join(" ")}
+                              {"  "}
                               сум
                             </p>
                           </figure>
@@ -242,7 +244,8 @@ export default function CollectionCards() {
                             {parseInt(data?.cost?.price)
                               ?.toLocaleString()
                               ?.split(",")
-                              .join(" ")}{" "}
+                              .join(" ")}
+                            {"  "}
                             сум
                           </p>
                         )}
