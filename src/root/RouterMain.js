@@ -8,9 +8,7 @@ import SkeletonHomeIndex from "../components/Home/Main/Skeleton/SkeletonHomeInde
 import SignInSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import SignUpSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 
-
 import MobileAllComments from "../components/Home/Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/MobileComments";
-
 
 // import ConnectDashboard from "../components/RegistrationDashboard";
 // import CatalogMain from "../components/Home/Catalog/CatalogFilter";
@@ -45,10 +43,17 @@ const Favourites = React.lazy(() => import("../components/Home/Favorite"));
 const ShoppingStore = React.lazy(() =>
   import("../components/Home/Shop/ShoppingStore")
 );
-const CategoryMainType = React.lazy(() => import("../components/Category/CategoryForType"));
+const CategoryMainType = React.lazy(() =>
+  import("../components/Category/CategoryForType")
+);
 // const ConnectDashboard = React.lazy(() => import("../components/ConnectionOfDashboard"));
 const SignUp = React.lazy(() => import("../components/Authentication/SignUp"));
 const SignIn = React.lazy(() => import("../components/Authentication/SignIn"));
+const UserEmailVerification = React.lazy(() =>
+  import(
+    "../components/Authentication/UserEmailVerification/UserEmailVerification"
+  )
+);
 
 // -------------------------------------
 
@@ -280,7 +285,8 @@ const RouterMain = () => {
           }
         />
 
-        <Route path="/allcomments"
+        <Route
+          path="/allcomments"
           element={
             <Suspense
               fallback={
@@ -293,20 +299,35 @@ const RouterMain = () => {
             </Suspense>
           }
         />
+
+        <Route
+          path="/mail-verify-user/:id"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SignInSkeletonIndex />
+                </div>
+              }
+            >
+              <UserEmailVerification />
+            </Suspense>
+          }
+        />
       </Routes>
 
       {locationWindow !== "/add_user_private_data" &&
-        locationWindow !== "/add_user_body_data" &&
-        locationWindow !== "/confirm_password" &&
-        locationWindow !== "/set_new_password" &&
-        locationWindow !== "/catalog" &&
-        locationWindow !== "/enter_password_validate" &&
-        locationWindow !== "/forget_password" &&
-        locationWindow !== "/sign_up" &&
-        locationWindow !== "/sign_in" &&
-        locationWindow !== "/profile/settings" &&
-        locationWindow !== "/allcomments" &&
-        locationWindow !== "/delivery-points" ? (
+      locationWindow !== "/add_user_body_data" &&
+      locationWindow !== "/confirm_password" &&
+      locationWindow !== "/set_new_password" &&
+      locationWindow !== "/catalog" &&
+      locationWindow !== "/enter_password_validate" &&
+      locationWindow !== "/forget_password" &&
+      locationWindow !== "/sign_up" &&
+      locationWindow !== "/sign_in" &&
+      locationWindow !== "/profile/settings" &&
+      locationWindow !== "/allcomments" &&
+      locationWindow !== "/delivery-points" ? (
         <Suspense fallback={<>Loading...</>}>
           <Footer />
         </Suspense>
