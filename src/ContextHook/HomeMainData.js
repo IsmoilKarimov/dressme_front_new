@@ -28,7 +28,7 @@ export const HomeMainDataContextProvider = ({ children }) => {
       onError: (err) => {
         console.log(err, "err");
       },
-      keepPreviousData: true,
+      // keepPreviousData: true,
       refetchOnWindowFocus: false,
     }
   );
