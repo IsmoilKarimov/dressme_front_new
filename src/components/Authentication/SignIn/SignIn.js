@@ -48,7 +48,21 @@ export default function SignIn() {
         {
           onSuccess: (res) => {
             console.log(res, "RESPONSE-LOG-IN");
-            if (res?.message && res.errors !== true) {
+            // if (res?.message && res.errors !== true) {
+            //   setState({ ...state, errorsGroup: res });
+            //   // toast.error(`${res?.message}`, {
+            //   //   position: "top-right",
+            //   //   autoClose: 5000,
+            //   //   hideProgressBar: false,
+            //   //   closeOnClick: true,
+            //   //   pauseOnHover: true,
+            //   //   draggable: true,
+            //   //   progress: undefined,
+            //   //   theme: "light",
+            //   // });
+            // } 
+            // else
+             if (res?.message && res?.errors){
               setState({ ...state, errorsGroup: res });
               // toast.error(`${res?.message}`, {
               //   position: "top-right",
@@ -60,24 +74,11 @@ export default function SignIn() {
               //   progress: undefined,
               //   theme: "light",
               // });
-            } 
-            else if (res?.message && res?.errors === true){
-              setState({ ...state, errorsGroup: res });
-              toast.error(`${res?.message}`, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-              });
             }
-            else if (res?.access_token) {
+            else if (res?.message) {
               localStorage.setItem("DressmeUserToken", res?.access_token);
-              navigate("/");
-              window.location.reload();
+              // navigate("/");
+              // window.location.reload();
               toast.success(`Успешный  вход в систему`, {
                 position: "top-right",
                 autoClose: 5000,
@@ -151,6 +152,7 @@ export default function SignIn() {
             <input
               className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black focus:bg-white placeholder-bg-white"
               type="email"
+              name="email"
               value={state.email}
               onChange={({ target: { value } }) => {
                 setError();
