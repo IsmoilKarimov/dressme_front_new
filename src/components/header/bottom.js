@@ -636,16 +636,15 @@ const BottomHeader = () => {
                 state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
               } px-2 w-full duration-500  h-full flex items-center justify-between  `}
             >
-              {changeColor?.map((data) => {
+              {mainData?.colors?.map((data) => {
                 return (
                   <div key={data?.id}>
                     <label
                       key={data?.id}
                       htmlFor={data?.id}
-                      onClick={() => colorIdPushContext(data?.id)}
-                      className={`rounded-full w-6 h-6 ${
-                        data?.colors
-                      } cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
+                      style={{ backgroundColor: data?.hex }}
+                      // onClick={() => colorIdPushContext(data?.id)}
+                      className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
                         !state?.textToColor && "border"
                       }  border-borderColorCard	`}
                     >
