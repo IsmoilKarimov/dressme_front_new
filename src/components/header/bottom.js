@@ -25,6 +25,8 @@ import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 const BottomHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
+  const [selectedId, setSelectedId] = useState(null);
+
   const [state, setState] = useState({
     openwear: false,
     openPrice: false,
@@ -77,13 +79,6 @@ const BottomHeader = () => {
 
   const [mainData, setMainData] = useContext(HomeMainDataContext);
 
-  const wearList = [
-    { id: 1, type: "Головные уборы" },
-    { id: 2, type: "Верхняя одежда" },
-    { id: 3, type: "Нижняя одежда" },
-    { id: 4, type: "Аксессуары" },
-    { id: 5, type: "Обувь" },
-  ];
   const contentWear = (
     <div className="w-[170px] h-fit m-0 p-0">
       {mainData?.categories?.map((data) => {
@@ -501,34 +496,33 @@ const BottomHeader = () => {
               </button>
             </div>
             <div className="py-4 gap-x-2 gap-y-4 grid gap-4 grid-cols-6">
-              {changeColor?.map((data) => {
+              {mainData?.colors?.map((data) => {
                 return (
                   <div className="flex flex-col items-center justify-center ">
                     <div
                       key={data?.id}
-                      onClick={() =>
-                        HandleIconsColor(data?.IconsColor, data?.id)
-                      }
-                      className={`rounded-[12px] flex items-center justify-center mr-2 w-[65px] h-[40px] ${
-                        data?.colors
-                      } cursor-pointer ${
-                        data?.id == 2
+                      onClick={() => setSelectedId(data?.id)}
+                      style={{ backgroundColor: data?.hex }}
+                      className={`rounded-[12px] flex items-center justify-center mr-2 w-[65px] h-[40px] cursor-pointer ${
+                        data?.id === selectedId
                           ? "border border-setTexOpacity flex items-center justify-center"
                           : ""
                       } `}
                     >
-                      {data?.action && data?.id === 2 ? (
-                        <InputCheckedTrueIcons colors={"#000"} />
+                      {selectedId === data?.id ? (
+                        <InputCheckedTrueIcons
+                          colors={data?.hex === "#000000" ? "#fff" : "#000"}
+                        />
                       ) : null}
 
-                      {data?.action && data?.id !== 2 ? (
+                      {/* {data?.action && data?.id !== 2 ? (
                         <InputCheckedTrueIcons colors={"#fff"} />
-                      ) : null}
+                      ) : null} */}
                     </div>
                     <span
                       className={`text-black text-center text-xs not-italic font-AeonikProRegular`}
                     >
-                      {data?.colorName}
+                      {data?.name_ru}
                     </span>
                   </div>
                 );
