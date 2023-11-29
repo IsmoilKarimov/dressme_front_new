@@ -257,42 +257,44 @@ export default function MainPageSliders() {
               more ? "xs:h-0" : "xs:h-auto"
             } overflow-hidden`}
           >
-            <Slider
-              {...settings}
-              className="w-[100%] flex xs:justify-between flex-wrap  "
-            >
-              {mainData?.sections?.map((data) => {
-                return (
-                  <NavLink
-                    to={"/categoriesType"}
-                    key={data?.id}
-                    className="!w-[99%] h-[260px] rounded-lg "
-                  >
-                    <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px] rounded-lg overflow-hidden">
-                      <button
-                        className={`w-full h-full border border-searchBgColor rounded-lg flex items-center justify-center`}
-                      >
-                        <NoImg />
-                      </button>
+            {mainData?.sections ? (
+              <Slider
+                {...settings}
+                className="w-[100%] flex xs:justify-between flex-wrap  "
+              >
+                {mainData?.sections?.map((data) => {
+                  return (
+                    <NavLink
+                      to={"/categoriesType"}
+                      key={data?.id}
+                      className="!w-[99%] h-[260px] rounded-lg "
+                    >
+                      <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px] rounded-lg overflow-hidden">
+                        <button
+                          className={`w-full h-full border border-searchBgColor rounded-lg flex items-center justify-center`}
+                        >
+                          <NoImg />
+                        </button>
 
-                      {/* <img
+                        {/* <img
                         src={data?.url_photo}
                         alt=""
                         className="w-full h-full "
                       /> */}
-                    </div>
-                    <article className="h-12.5 flex items-center justify-start">
-                      <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
-                        {data?.name_ru || "type"}
-                        <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
-                          ({data?.products_count || "0"})
+                      </div>
+                      <article className="h-12.5 flex items-center justify-start">
+                        <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
+                          {data?.name_ru || "type"}
+                          <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
+                            ({data?.products_count || "0"})
+                          </p>
                         </p>
-                      </p>
-                    </article>
-                  </NavLink>
-                );
-              })}
-            </Slider>
+                      </article>
+                    </NavLink>
+                  );
+                })}
+              </Slider>
+            ) : null}
           </div>
 
           {/* carosuel hidden block */}
@@ -391,28 +393,31 @@ export default function MainPageSliders() {
             </button>
           </div>
           <div className="w-full mt-[60px] ss:hidden xs:block ">
-            <Slider
-              {...settings1}
-              className="w-[100%] flex xs:justify-between  px-[1px]"
-            >
-              {mainData?.shops?.map((data) => {
-                return (
-                  <div
-                    key={data?.id}
-                    onClick={() => goShoppingStore(data?.name)}
-                    className="!w-[98.88%] h-[100px] cursor-pointer  rounded-lg bg-btnBgColor flex items-center justify-center select-none border border-solid border-searchBgColor"
-                  >
-                    <figure className=" h-full flex items-center justify-center px-[35px]">
-                      <img
+            {mainData?.shops ? (
+              <Slider
+                {...settings1}
+                className="w-[100%] flex xs:justify-between  px-[1px]"
+              >
+                {mainData?.shops?.map((data) => {
+                  return (
+                    <div
+                      key={data?.id}
+                      onClick={() => goShoppingStore(data?.name)}
+                      className="!w-[98.88%] h-[100px] cursor-pointer  rounded-lg bg-btnBgColor flex items-center justify-center select-none border border-solid border-searchBgColor"
+                    >
+                      <figure className=" h-full flex items-center justify-center px-[35px]">
+                        <NoImg />
+                        {/* <img
                         className="h-[70px] w-[80%] "
                         src={data?.url_logo_photo}
                         alt=""
-                      />
-                    </figure>
-                  </div>
-                );
-              })}
-            </Slider>
+                      /> */}
+                      </figure>
+                    </div>
+                  );
+                })}
+              </Slider>
+            ) : null}
           </div>
         </section>
       </section>
