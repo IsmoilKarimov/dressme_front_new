@@ -33,9 +33,9 @@ export default function CollectionCards() {
   }, [openWearType]);
   const navigate = useNavigate();
   const goDetail = (id) => {
-    const IdOne = id.split(" ");
-    const IdTwo = IdOne.join("-");
-    navigate(`/product/:${IdTwo}`);
+    // const IdOne = id.split(" ");
+    // const IdTwo = IdOne.join("-");
+    navigate(`/product/${id}`);
   };
 
   const onColorChecked = () => {};
@@ -117,7 +117,7 @@ export default function CollectionCards() {
                 >
                   <figure
                     // onMouseEnter={() => handleLeaveMouse(data?.id)}
-                    // onClick={() => goDetail(data?.title)}
+                    onClick={() => goDetail(data?.id)}
                     className="relative w-full cursor-pointer h-[250px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
                   >
                     {/* {data.ProducImg ? (
@@ -187,7 +187,7 @@ export default function CollectionCards() {
                     </div>
                     <article
                       onMouseEnter={() => handleLeaveMouse(data?.id)}
-                      // onClick={() => goDetail(data?.title)}
+                      onClick={() => goDetail(data?.id)}
                       className="w-full px-2 xs:px-3 xs:mt-1"
                     >
                       <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-1 md:mb-0  cursor-pointer">
