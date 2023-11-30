@@ -506,7 +506,7 @@ const BottomHeader = () => {
                       className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${
                         data?.id === selectedId
                           ? "border border-setTexOpacity flex items-center justify-center"
-                          : ""
+                          : "border"
                       } `}
                     >
                       {selectedId === data?.id ? (
