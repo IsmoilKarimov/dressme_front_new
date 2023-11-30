@@ -39,7 +39,7 @@ const MyOrderSettings = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const LogOut = () => {
-    localStorage.removeItem("dressMeLogin");
+    localStorage.removeItem("DressmeUserToken");
     if (location?.pathname?.includes("profile/settings")) {
       navigate("/");
     } else if (location?.pathname?.includes("my-order")) {

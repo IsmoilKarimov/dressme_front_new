@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 export default function UserEmailVerification() {
   const [timer, setTimer] = useState(false);
+  const navigate = useNavigate();
   const [state, setState] = useState({
     eyesShow: true,
     password: "",
@@ -29,11 +30,10 @@ export default function UserEmailVerification() {
     const { checked } = e.target;
     setState({ ...state, rememberCheck: checked });
   };
+
   const pathname = window.location.pathname;
-
   let PathnameToken = pathname.replace("/mail-verify-user/:", "");
-
-  const navigate = useNavigate();
+  
   const [error, setError] = useState(false);
   const url = "https://api.dressme.uz/api/user";
 
@@ -91,6 +91,7 @@ export default function UserEmailVerification() {
       }
     );
   };
+
   function handleAuthSystem(){
     EnterTheSystem();
     setTimeForNotif();
@@ -190,7 +191,6 @@ export default function UserEmailVerification() {
             </p>
           )}
         </div>
-        {/* {error?.length ? <div className={`text-[12px] mt-1 text-RedColor`}>{error}</div> : null} */}
 
         <div className="my-5 flex items-center justify-between w-full">
           <div className="flex items-center">

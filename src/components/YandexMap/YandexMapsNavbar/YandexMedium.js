@@ -267,7 +267,7 @@ const YandexMedium = () => {
           <div className="line h-5 border-x-[1px] text-textColor ss:hidden md:block mx-3"></div>
 
           {/* User section */}
-          {localStorage.getItem("dressMeLogin") ? (
+          {localStorage.getItem("DressmeUserToken") ? (
             <NavLink
               to="/my-order"
               className=" bg-btnBgColor rounded-lg items-center justify-center w-11 h-11 mr-2 hidden md:flex"

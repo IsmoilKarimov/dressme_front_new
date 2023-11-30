@@ -424,7 +424,7 @@ function YandexMapsDressMe() {
                     </button>
                   </li>
                   <li>
-                    {localStorage.getItem("dressMeLogin") ? (
+                    {localStorage.getItem("DressmeUserToken") ? (
                       <NavLink
                         to="/my-order"
                         className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 w-full"
