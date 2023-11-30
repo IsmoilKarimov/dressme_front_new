@@ -6,6 +6,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function UserEmailVerification() {
+  const [timer, setTimer] = useState(false);
   const [state, setState] = useState({
     eyesShow: true,
     password: "",
@@ -13,9 +14,16 @@ export default function UserEmailVerification() {
     rememberCheck: "",
     // get method
     getVerfyMessage: "",
-    // errorMesage
+    errorMessage: "",
     errorsGroup: null,
   });
+
+  const setTimeForNotif = () => {
+    setTimer(true);
+    setTimeout(() => {
+      setTimer(false);
+    }, 3000);
+  };
 
   const handleChange = (e) => {
     const { checked } = e.target;
@@ -59,32 +67,18 @@ export default function UserEmailVerification() {
       {
         onSuccess: (res) => {
           console.log(res, "RES-AUTH");
-          if (res?.message && res.errors !== true) {
+          if (res?.message && !res.errors) {
             setState({ ...state, errorsGroup: res });
-          } else if (res?.message && res?.errors === true) {
-            setState({ ...state, errorsGroup: res });
-            toast.error(`${res?.message}`, {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
+          } 
+          else if (res?.message && res?.errors) {
+            setState({
+              ...state,
+              errorsGroup: res,
+              errorMessage: res?.message,
             });
-          } else if (res?.access_token) {
+          } 
+          else if (res?.access_token) {
             localStorage.setItem("DressmeUserToken", res?.access_token);
-            toast.success(`Успешный  вход в систему`, {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
             navigate("/");
             window.location.reload();
             setState({ ...state, email: "", password: "", errorsGroup: "" });
@@ -92,20 +86,15 @@ export default function UserEmailVerification() {
         },
         onError: (err) => {
           console.log(err, "ERR");
-          toast.error("Serverda xatolik", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          setState({ ...state, errorMessage: err?.message });
         },
       }
     );
   };
+  function handleAuthSystem(){
+    EnterTheSystem();
+    setTimeForNotif();
+  }
 
   useEffect(() => {
     document.title = "Подтвердить адрес электронной почты";
@@ -113,27 +102,18 @@ export default function UserEmailVerification() {
 
   return (
     <div className=" w-full h-[calc(100vh-110px)] px-4 md:px-0 flex flex-col items-center justify-center">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        limit={4}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
-      {/* <div>{PathnameToken}</div> */}
       <div className="max-w-[650px] w-[100%] flex flex-col items-center justify-center  h-fit mb-5 px-2">
         <div className="w-full flex items-center justify-center flex-col">
           <p className="mt-3 not-italic font-AeonikProRegular text-[20px] md:text-[25px] text-center leading-[30px]   tracking-[0,16px] text-black">
             {state?.getVerfyMessage?.message}
           </p>
+          {timer && state?.errorMessage && state?.errorsGroup?.errors === true && (
+            <span className="w-full h-fit text-center text-[20px] text-red-500 mt-2">
+              {state?.errorMessage || null}
+            </span>
+          )}
         </div>
-        <div className=" w-full pb-[20px] pt-[30px]  md:hidden not-italic font-AeonikProMedium text-xl text-center leading-5   tracking-[0,16px] text-black">
+        <div className=" w-full pb-[20px] pt-[30px] md:hidden not-italic font-AeonikProMedium text-xl text-center leading-5   tracking-[0,16px] text-black">
           Вход для продавцов
         </div>
       </div>
@@ -230,14 +210,9 @@ export default function UserEmailVerification() {
             </label>
           </div>
         </div>
-        {state?.errorMessage && (
-          <span className="w-full h-fit text-12 text-red-500">
-            {state?.errorMessage || null}
-          </span>
-        )}
         <button
           type="button"
-          onClick={EnterTheSystem}
+          onClick={handleAuthSystem}
           className="mt-[50px] border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-fullBlue select-none rounded-lg active:scale-95	active:opacity-70 "
         >
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
