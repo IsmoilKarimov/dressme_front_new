@@ -160,7 +160,7 @@ const YandexTop = () => {
           </span>
           <span className="text-textColor text-[13px]   font-AeonikProMedium  ">
             Помощь
-          </span>
+          </span> 
         </Link>
         <Link to="#" className="flex items-center h-full  ml-6 ">
           <span className="mr-2">
@@ -171,7 +171,7 @@ const YandexTop = () => {
           </span>
         </Link>
         <div className="line h-5 border text-textColor ml-6"></div>
-        {localStorage.getItem("dressMeLogin") && (
+        {localStorage.getItem("DressmeUserToken") && (
           <NavLink to="/my-order" className="flex items-center h-full  ml-6 ">
             <span className="mr-2">
               <MyPurchaseIcons colors={"#707070"} />

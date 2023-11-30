@@ -136,7 +136,7 @@ const NavMenu = () => {
         <li className="w-[72px] h-[56px]">
           <NavLink
             to={
-              localStorage.getItem("dressMeLogin")
+              localStorage.getItem("DressmeUserToken")
                 ? "/profile/settings"
                 : "/sign_in"
             }
