@@ -6,12 +6,12 @@ import {
   LogOutIcons,
   PersonIcons,
   SircleNext,
-} from "../../../../assets/icons";
+} from "../../../../../assets/icons";
 import InputMask from "react-input-mask";
-import { UzbekFlag } from "../../../../assets";
+import { UzbekFlag } from "../../../../../assets";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const MyOrderSettings = () => {
+const UserProfilePage = () => {
   const [phone, setPhone] = useState("");
   const [state, setState] = useState({
     firstName: "",
@@ -127,7 +127,6 @@ const MyOrderSettings = () => {
             <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
               <div className="flex justify-between mt-[6px]  w-full items-center not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
                 <span>Электронная почта</span>
-                <span>*необязательная</span>
               </div>
               <div className="mt-[6px] px-[16px] w-full flex items-center bg-btnBgColor border border-searchBgColor rounded-lg ">
                 <input
@@ -143,77 +142,7 @@ const MyOrderSettings = () => {
             </div>
           </div>
         </div>
-        <div className="md:px-[40px] md:py-[30px] ">
-          <div className="flex  flex-col md:flex-row justify-between items-center">
-            <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
-              <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-                Пол
-              </div>
-              <div className="w-full mt-[6px]  flex items-center justify-center bg-btnBgColor overflow-hidden border border-searchBgColor rounded-lg">
-                <button
-                  className={`w-1/2 h-12 flex items-center justify-center border-r border-searchBgColor not-italic font-AeonikProMedium tracking-[1%] text-base leading-4 text-center ${
-                    state.Male ? "text-fullBlue" : "text-black"
-                  }`}
-                  onClick={() =>
-                    setState({ ...state, Female: false, Male: true })
-                  }
-                >
-                  Мужской
-                </button>
-                <button
-                  className={`w-1/2 h-12 flex items-center justify-center not-italic font-AeonikProMedium tracking-[1%] text-base leading-4 text-center ${
-                    state.Female ? "text-fullBlue" : "text-black"
-                  }`}
-                  onClick={() =>
-                    setState({ ...state, Female: true, Male: false })
-                  }
-                >
-                  Женский
-                </button>
-              </div>
-            </div>
-            <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
-              <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-                Дата рождения
-              </div>
-              <div className="w-full mt-[6px]  h-12 flex items-center  bg-btnBgColor overflow-hidden border border-searchBgColor rounded-lg">
-                <button
-                  className={`w-[48px] h-full  flex items-center justify-center border-r border-searchBgColor`}
-                >
-                  <CalendarIcons colors={"#000"} />
-                </button>
-                <button
-                  className={`w-[66px] h-full  flex items-center justify-center border-r border-searchBgColor`}
-                >
-                  <span className="not-italic font-AeonikProRegular text-base leading-4 tracking-[1%] text-closeColorBtn">
-                    День
-                  </span>
-                </button>
-                <button
-                  className={`w-[calc(100%-200px)] h-full  flex items-center justify-between px-2 border-r border-searchBgColor`}
-                >
-                  <span className="not-italic font-AeonikProRegular text-base leading-4 tracking-[1%] text-closeColorBtn">
-                    Месяц
-                  </span>{" "}
-                  <span className="ml-2 rotate-[90deg]">
-                    <ArrowTopIcons colors={"#B8B8B8"} />
-                  </span>{" "}
-                </button>
-                <button
-                  className={`w-[86px] h-full  flex items-center justify-center `}
-                >
-                  <span className="not-italic font-AeonikProRegular  text-base leading-4 tracking-[1%] text-closeColorBtn">
-                    1996
-                  </span>{" "}
-                  <span className="ml-2 rotate-[90deg]">
-                    <ArrowTopIcons colors={"#B8B8B8"} />
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="w-full  mx-auto flex items-center justify-between  md:px-[40px] md:py-[30px] mt-6 md:mt-0">
+        <div className="w-full  mx-auto flex items-center justify-between md:px-[40px] md:py-[30px] mt-6 md:mt-0">
           <div className="">
             <button
               onClick={LogOut}
@@ -242,4 +171,4 @@ const MyOrderSettings = () => {
     </div>
   );
 };
-export { MyOrderSettings };
+export { UserProfilePage };
