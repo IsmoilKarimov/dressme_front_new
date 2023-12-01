@@ -140,7 +140,7 @@ const UserProfilePage = () => {
                 <div className="ss:w-[65%] bg-btnBgColor md:w-[70%] h-12 overflow-hidden">
                   <InputMask
                     mask="(99)999-99-99"
-                    value={profileData.phone}
+                    value={profileData?.phone}
                     onChange={(e) => setPhone(e.target.value)}
                     className={`w-full px-4  h-full not-italic bg-btnBgColor ${
                       phone ? "font-AeonikProMedium" : null
