@@ -16,24 +16,26 @@ import MobileAllComments from "../components/Home/Products/SignleMainProducts/Si
 // -------------------------------------
 const HomeIndex = React.lazy(() => import("../components/Home/Main"));
 const SingleMainProduct = React.lazy(() =>
-import("../components/Home/Products/SignleMainProducts")
+  import("../components/Home/Products/SignleMainProducts")
 );
 const CatalogMain = React.lazy(() =>
-import("../components/Home/Catalog/CatalogFilter")
+  import("../components/Home/Catalog/CatalogFilter")
 );
 // import CatalogPage from "../components/Home/Catalog";
 const YandexMapDressMe = React.lazy(() => import("../components/YandexMap"));
 const ForgetConfirmPassword = React.lazy(() =>
-import("../components/Authentication/SignInDetail/ForgetConfirmPassword")
+  import("../components/Authentication/SignInDetail/ForgetConfirmPassword")
 );
 const SetNewPassword = React.lazy(() =>
-import("../components/Authentication/SignInDetail/SetNewPassword")
+  import("../components/Authentication/SignInDetail/SetNewPassword")
 );
 const ForgetPassword = React.lazy(() =>
-import("../components/Authentication/SignInDetail/ForgetPassword")
+  import("../components/Authentication/SignInDetail/ForgetPassword")
 );
 const Footer = React.lazy(() => import("../components/footer/footer"));
-const ProfilePage = React.lazy(() => import("../components/Authentication/UserProfile/PorofilePage/ProfilePage"));
+const ProfilePage = React.lazy(() =>
+  import("../components/Authentication/UserProfile/PorofilePage/ProfilePage")
+);
 const CatalogPage = React.lazy(() => import("../components/Home/Catalog"));
 
 const ShoppingStoreOfficial = React.lazy(() =>
@@ -157,13 +159,7 @@ const RouterMain = () => {
         <Route
           path="/sign_in"
           element={
-            <Suspense
-              fallback={
-                <div>
-                  <SignInSkeletonIndex />
-                </div>
-              }
-            >
+            <Suspense>
               <SignIn />
             </Suspense>
           }
@@ -187,15 +183,15 @@ const RouterMain = () => {
           index
           path="/profile/settings"
           element={
-            <Suspense
-              fallback={
-                <div>
-                  <SkeletonHomeIndex />
-                </div>
-              }
-            >
-              <ProfilePage />
-            </Suspense>
+            // <Suspense
+            //   fallback={
+            //     <div>
+            //       <SkeletonHomeIndex />
+            //     </div>
+            //   }
+            // >
+            <ProfilePage />
+            // </Suspense>
           }
         />
 
