@@ -327,6 +327,7 @@ const RouterMain = () => {
       locationWindow !== "/sign_in" &&
       locationWindow !== "/src" &&
       locationWindow !== "/allcomments" &&
+      locationWindow !== "/profile/settings" &&
       locationWindow !== "/delivery-points" ? (
         <Suspense fallback={<>Loading...</>}>
           <Footer />
