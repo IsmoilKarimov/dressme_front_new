@@ -49,7 +49,7 @@ export default function SignUp() {
   let data4 = data3.join("");
   let arr3 = state.phoneCode.split("+");
   let data5 = arr3.join("");
-  const sendPhoneNumber = data5 + data4;
+  const sendPhoneNumber = state.phoneNumber ? (data5 + data4) : "";
 
   // =========== POST USER REGISTER DATA ==========
   const { mutate } = useMutation(() => {
@@ -138,9 +138,9 @@ export default function SignUp() {
   }
 
   return (
-     <>
+     <div className="relative">
      {loading ? (
-        <LoadingFor />
+        <div className="absolute left-0 right-0 md:top-[-200px]"><LoadingFor /></div>
      ) : (
         <div className="w-full h-full">
           <ToastContainer
@@ -542,6 +542,6 @@ export default function SignUp() {
         </div>
      )}
      
-     </>
+     </div>
   );
 }
