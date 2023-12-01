@@ -72,7 +72,7 @@ export default function SignIn() {
                 progress: undefined,
                 theme: "light",
               });
-              navigate("/");
+              navigate("/profile/settings");
               window.location.reload();
               setState({ ...state, email: "", password: "", errorsGroup: "" });
             }
