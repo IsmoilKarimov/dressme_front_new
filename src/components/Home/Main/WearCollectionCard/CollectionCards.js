@@ -205,7 +205,7 @@ export default function CollectionCards() {
                             </p>
                             (
                             <p className="ss:hidden lg:block md:mr-1 md:text-[11px]">
-                              голосов
+                              голосов:
                             </p>
                             {data?.rated_users_count || 0})
                           </article>
