@@ -65,9 +65,9 @@ const UserProfilePage = () => {
   const LogOut = () => {
     localStorage.removeItem("DressmeUserToken");
     if (location?.pathname?.includes("profile/settings")) {
-      navigate("/");
+      navigate("/sign_in");
     } else if (location?.pathname?.includes("my-order")) {
-      navigate("/");
+      navigate("/sign_in");
     } else {
       navigate(location.pathname);
     }
@@ -186,7 +186,7 @@ const UserProfilePage = () => {
           <div className="w-[80%] xs:w-[60%] md:w-auto ">
             <button className="w-[100%] md:w-[244px] h-[52px] bg-fullBlue text-white active:scale-95  active:opacity-70 rounded-lg flex items-center justify-center">
               <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center tracking-[1%]">
-                Сохранить данные
+                Обновить данные
               </span>
               <span className="ml-2">
                 <SircleNext colors={"#fff"} />
