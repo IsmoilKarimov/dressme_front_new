@@ -184,7 +184,8 @@ const UserProfilePage = () => {
             </button>
           </div>
           <div className="w-[80%] xs:w-[60%] md:w-auto ">
-            <button className="w-[100%] md:w-[244px] h-[52px] bg-fullBlue text-white active:scale-95  active:opacity-70 rounded-lg flex items-center justify-center">
+            {/* active:scale-95  active:opacity-70 */}
+            <button className="w-[100%] md:w-[244px] h-[52px] cursor-text bg-fullBlue text-white opacity-60 rounded-lg flex items-center justify-center">
               <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center tracking-[1%]">
                 Обновить данные
               </span>
