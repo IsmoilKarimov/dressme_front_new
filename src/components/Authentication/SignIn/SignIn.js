@@ -104,9 +104,9 @@ export default function SignIn() {
 
   return (
     <div className="relative">
-    {loading ? (
+    {/* {loading ? (
         <div className="absolute left-0 right-0 md:top-[-200px]"><LoadingFor /></div>
-     ) : (
+     ) : ( */}
       <div className=" py-8 w-full min-h-[calc(100vh-180px)] flex justify-center ">
         <ToastContainer
           position="top-right"
@@ -245,7 +245,7 @@ export default function SignIn() {
           </NavLink>
         </div>
       </div>
-     )} 
+    {/* //  )}  */}
     </div>
   );
 }
