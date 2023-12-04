@@ -125,7 +125,7 @@ const UserProfilePage = () => {
                 Номер телефона{" "}
               </div>
               <div className="flex mt-[6px] items-center justify-center overflow-hidden border border-searchBgColor rounded-lg">
-                <div className="ss:w-[35%] md:w-[30%]   h-12 flex bg-btnBgColor items-center justify-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
+                <div className="w-[35%] md:w-[25%] h-12 flex bg-btnBgColor items-center justify-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
                   <img src={UzbekFlag} alt="form-arrow-bottom" />
                   <input
                     className="w-[40px] bg-btnBgColor h-full select-none mx-2 not-italic font-AeonikProMedium text-base leading-4 text-black"
@@ -133,11 +133,8 @@ const UserProfilePage = () => {
                     value={state.phoneCode}
                     readOnly
                   />
-                  <span className="rotate-[180deg]">
-                    <ArrowTopIcons colors={"#000"} />
-                  </span>
                 </div>
-                <div className="ss:w-[65%] bg-btnBgColor md:w-[70%] h-12 overflow-hidden">
+                <div className="w-[65%] md:w-[75%] bg-btnBgColor h-12 overflow-hidden">
                   <InputMask
                     mask="(99)999-99-99"
                     value={profileData?.phone}
@@ -185,7 +182,7 @@ const UserProfilePage = () => {
           </div>
           <div className="w-[80%] xs:w-[60%] md:w-auto ">
             {/* active:scale-95  active:opacity-70 */}
-            <button className="w-[100%] md:w-[244px] h-[52px] cursor-text bg-fullBlue text-white opacity-60 rounded-lg flex items-center justify-center">
+            <button className="w-[100%] md:w-[244px] h-[52px] cursor-not-allowed bg-gray-300 text-white rounded-lg flex items-center justify-center">
               <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center tracking-[1%]">
                 Обновить данные
               </span>
