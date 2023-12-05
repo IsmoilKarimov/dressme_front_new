@@ -69,42 +69,27 @@ const ProductDetails = () => {
   const params = useParams();
 
   // ------------GET METHOD Main data -----------------
-  // useQuery(
-  //   ["get_main_data"],
-  //   () => {
-  //     return fetch(`${url}/api/main/products/${params?.id}`, {
-  //       method: "GET",
-  //       headers: {
-  //         Accept: "application/json",
-  //         //   "Content-type": "application/json; charset=UTF-8",
-  //       },
-  //     }).then((res) => res.json());
-  //   },
-  //   {
-  //     onSuccess: (res) => {
-  //       setData(res);
-  //     },
-  //     onError: (err) => {
-  //       console.log(err, "err");
-  //     },
-  //     keepPreviousData: true,
-  //     refetchOnWindowFocus: true,
-  //   }
-  // );
-
-  fetch(`${url}/api/main/products/${params?.id}`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
+  useQuery(
+    ["get_main_detail_data"],
+    () => {
+      return fetch(`${url}/api/main/products/${params?.id}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      }).then((res) => res.json());
     },
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      setData(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    {
+      onSuccess: (res) => {
+        setData(res);
+      },
+      onError: (err) => {
+        console.log(err, "err");
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: true,
+    }
+  );
 
   console.log(data?.product);
 
