@@ -73,7 +73,7 @@ export default function SignIn() {
               progress: undefined,
               theme: "light",
             });
-            navigate("/profile/settings");
+            navigate("/profile/edit");
             window.location.reload();
             setState({ ...state, email: "", password: "", errorsGroup: "" });
           }
@@ -126,7 +126,7 @@ export default function SignIn() {
           <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-xl ss:text-start md:text-center leading-5   tracking-[0,16px] text-black">
             Авторизоваться
           </div>
-
+     
           <div className="mt-2 w-full h-fit">
             <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
               Электронная почта

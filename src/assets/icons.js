@@ -3569,6 +3569,23 @@ const Star6Icon = () => {
   );
 };
 
+const DeleteIcon = ({ width }) => {
+  return (
+    <svg
+      width={width}
+      height={width}
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M5.83331 17.5C5.37498 17.5 4.98248 17.3367 4.65581 17.01C4.32915 16.6833 4.16609 16.2911 4.16665 15.8333V5H3.33331V3.33333H7.49998V2.5H12.5V3.33333H16.6666V5H15.8333V15.8333C15.8333 16.2917 15.67 16.6842 15.3433 17.0108C15.0166 17.3375 14.6244 17.5006 14.1666 17.5H5.83331ZM7.49998 14.1667H9.16665V6.66667H7.49998V14.1667ZM10.8333 14.1667H12.5V6.66667H10.8333V14.1667Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+};
+
 export {
   ActivePersonIcons,
   ActiveHomeIcons,
@@ -3683,6 +3700,7 @@ export {
   PlusAddCectorIcons,
   ShowMoreBackIcon,
   Star6Icon,
+  DeleteIcon,
 };
 
 // video
