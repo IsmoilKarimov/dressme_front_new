@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SircleNext, UserMailIcon } from "../../../assets/icons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { ToastContainer, toast } from "react-toastify";
 
 export default function UserEmailVerification() {
   const [timer, setTimer] = useState(false);
@@ -79,7 +78,7 @@ export default function UserEmailVerification() {
           } 
           else if (res?.access_token) {
             localStorage.setItem("DressmeUserToken", res?.access_token);
-            navigate("/");
+            navigate("/profile/edit");
             window.location.reload();
             setState({ ...state, email: "", password: "", errorsGroup: "" });
           }
