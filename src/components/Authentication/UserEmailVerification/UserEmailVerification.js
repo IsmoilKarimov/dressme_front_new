@@ -78,7 +78,7 @@ export default function UserEmailVerification() {
           } 
           else if (res?.access_token) {
             localStorage.setItem("DressmeUserToken", res?.access_token);
-            navigate("/");
+            navigate("/profile/edit");
             window.location.reload();
             setState({ ...state, email: "", password: "", errorsGroup: "" });
           }

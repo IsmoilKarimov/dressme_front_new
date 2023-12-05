@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from "react";
 import InputMask from "react-input-mask";
 import {
-  DeleteIcon,
-  DeleteIcons,
   EmailIcons,
   LogOutIcons,
-  MenuCloseIcons,
   PersonIcons,
   SircleNext,
 } from "../../../../assets/icons";
-import {toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useMutation, useQuery } from "@tanstack/react-query";
 // import { Select } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import { UzbekFlag } from "../../../../assets";
+import { ToastContainer, toast } from "react-toastify";
 
 const EditProfilePage = () => {
   const [ProfileData, setProfileData] = useState("");
+  const [activeEditButton, setActiveEditButton] = useState(false);
   const [state, setState] = useState({
     userFirstname: "",
     userLastname: "",
@@ -26,46 +24,30 @@ const EditProfilePage = () => {
     userStatus: "",
     userPhoneCode: "",
     userPhoneNumber: "",
-
-    // -------------
-    validateConfirm: true,
-    eyesShow: true,
-    requestPerson: true,
-    // ------Regions Get -----
-    getRegionList: "",
-    // ------ Get Profile-----
-    getProfileList: "",
-    // ------ Get getSellerList-----
-    getSellerList: "",
-    // -----region Modal-----
-    openModalRegions: false,
-    // ----popConfirmDelete
-    popConfirmDelete: false,
+    errorsGroup: null,
+    
   });
 
   const [openEditModal, setOpenEditModal] = useState(false);
 
-  // -------------------------------------
-  // const togglePassword = React.useCallback(() => setOpenEditModal(false), []);
-  // -------------------------------------
-
   const url = "https://api.dressme.uz/api/user";
 
-  // ----------------Get Seller Profile-------------
-  useQuery(
+  // ----------------GET USER PROFILE-------------
+  const { refetch } = useQuery(
     ["get-user-profile"],
-    () => {
-      return fetch(`${url}/profile`, {
+    async () => {
+      const res = await fetch(`${url}/profile`, {
         method: "GET",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
           Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
         },
-      }).then((res) => res.json());
+      });
+      return await res.json();
     },
     {
       onSuccess: (res) => {
-        console.log(res, "Response in Profile");
+        console.log(res, "SUCCESS, GET USER PROFILE");
         setProfileData(res);
         setState({
           ...state,
@@ -77,7 +59,7 @@ const EditProfilePage = () => {
         });
       },
       onError: (err) => {
-        console.log(err, "err get profile");
+        console.log(err, "THERE IS AN ERROR IN GET-USER-PROFILE");
       },
 
       keepPreviousData: true,
@@ -85,30 +67,53 @@ const EditProfilePage = () => {
     }
   );
 
-  // -----------------------USER Delete---------------
+  let data = state?.userPhoneNumber.split("-");
+  let arr = data.join("");
+  let data1 = arr.split("(");
+  let arr1 = data1.join("");
+  let arr2 = arr1.split(")");
+  let data2 = arr2.join("");
+  let arr3 = state.userPhoneCode.split("+");
+  let data3 = arr3.join("");
+  const sendMessagePhoneNumber = data3 + data2;
+
+  // =========== POST USER REGISTER DATA ==========
   const { mutate } = useMutation(() => {
-    return fetch(`${url}/delete`, {
+    return fetch(`${url}/update-user-info`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
         Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
       },
+      body: JSON.stringify({
+        name: state?.userFirstname,
+        surname: state?.userLastname,
+        phone: sendMessagePhoneNumber,
+      }),
     }).then((res) => res.json());
   });
 
-  const onUserDelete = () => {
+  const onEdit = () => {
     mutate(
       {},
       {
         onSuccess: (res) => {
-          if (res?.message) {
-            localStorage.clear();
-            navigate("/signup-seller");
-            window.location.reload();
-            setState({ ...state, popConfirmDelete: false });
-            console.log(res, "Delete");
-            toast.warn(`${res?.message}`, {
+          refetch();
+          console.log(res, "RES");
+          if (res?.message && !res.errors) {
+            toast.success(`${res?.message}`, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          } else if (res?.message && res.errors) {
+            toast.error(`${res?.message}`, {
               position: "top-right",
               autoClose: 5000,
               hideProgressBar: false,
@@ -121,7 +126,7 @@ const EditProfilePage = () => {
           }
         },
         onError: (err) => {
-          console.log(err, "ERR");
+          console.log(err);
         },
       }
     );
@@ -151,6 +156,19 @@ const EditProfilePage = () => {
     <>
       {ProfileData && (
         <div className="pt-3 md:pt-8 w-full flex justify-center ss:px-4 md:px-0">
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            limit={4}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
           <div
             onClick={() => {
               setOpenEditModal(false);
@@ -161,73 +179,14 @@ const EditProfilePage = () => {
               });
             }}
             className={`fixed inset-0 z-[112] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
-          ${
-            state?.popConfirmDelete || openEditModal || state?.openModalRegions
-              ? ""
-              : "hidden"
-          }`}
+          ${openEditModal ? "" : "hidden"}`}
           ></div>
-          {/* Delete Account Of Pop Confirm */}
-          <section
-            className={` max-w-[440px] md:max-w-[550px] mx-auto w-full flex-col h-fit bg-white fixed px-4 py-5 md:py-[35px] md:px-[50px] rounded-t-lg md:rounded-b-lg z-[113] left-0 right-0 md:top-[50%] duration-300 overflow-hidden md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%] ${
-              state?.popConfirmDelete
-                ? " bottom-0 md:flex"
-                : "md:hidden bottom-[-800px] z-[-10]"
-            }`}
-          >
-            <button
-              onClick={() => setState({ ...state, popConfirmDelete: false })}
-              type="button"
-              className="absolute  right-3 top-3 w-5 h-5 "
-            >
-              <MenuCloseIcons className="w-full h-full" colors={"#a1a1a1"} />
-            </button>
-            <div className="flex flex-col justify-center items-center gap-y-2 ll:gap-y-4">
-              <span className="w-10 h-10 rounded-full border border-[#a2a2a2] flex items-center justify-center">
-                <span className="cursor-pointer active:translate-y-[2px] text-[#a2a2a2] transition-colors duration-[0.2s] ease-linear">
-                  <DeleteIcons width={30} />
-                </span>
-              </span>
-              <span className=" text-black text-lg xs:text-xl not-italic font-AeonikProMedium text-center">
-                Вы уверены?
-              </span>
-              <span className=" text-[#a2a2a2] text-base xs:text-lg not-italic font-AeonikProMedium text-center">
-                Если вы удалите аккаунт все ваши товары и магазины удалятся,
-                если они имеются
-              </span>
-            </div>
-            <div className="w-full flex items-center justify-between mt-5 xs:mt-10 gap-x-2">
-              <button
-                onClick={() => setState({ ...state, popConfirmDelete: false })}
-                type="button"
-                className="w-1/2 xs:w-[45%] active:scale-95 active:opacity-70 flex items-center justify-center rounded-[12px] border border-textBlueColor text-textBlueColor bg-white h-[42px] px-4  text-center text-base not-italic font-AeonikProMedium"
-              >
-                Oтмена
-              </button>
-              <button
-                onClick={onUserDelete}
-                type="button"
-                className="w-1/2 xs:w-[45%] active:scale-95  active:opacity-70 flex items-center justify-center rounded-[12px] border border-textRedColor text-white bg-[#FF4747]  h-[42px] px-4  text-center text-base not-italic font-AeonikProMedium"
-              >
-                Удалить
-              </button>
-            </div>
-          </section>
           <div className="md:max-w-[820px] max-w-[440px] w-[100%] h-fit p-4 md:px-0  border border-searchBgColor rounded-lg mb-[100px] md:mb-0">
             <div className="md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
               <div className="w-full flex justify-between items-center">
                 <span className="not-italic font-AeonikProMedium text-xl leading-6 text-black tracking-[1%]">
                   Мои данные
                 </span>
-                <button
-                  onClick={() => setState({ ...state, popConfirmDelete: true })}
-                  className="h-5 flex items-center text-[14px] xs:text-base not-italic font-AeonikProRegular leading-5"
-                >
-                  {/* <VerticalMenuIcons className="h-full" /> */}
-                  <span className="cursor-pointer active:translate-y-[2px] text-[#a2a2a2] transition-colors duration-[0.2s] ease-linear">
-                    <DeleteIcon width={30} />
-                  </span>
-                </button>
               </div>
               <div className="flex flex-col md:flex-row justify-between items-center mt-6">
                 <div className="w-full md:w-[48%] h-fit">
@@ -240,8 +199,10 @@ const EditProfilePage = () => {
                       type="text"
                       name="firstname"
                       value={state?.userFirstname || null}
-                      onChange={(e) =>
+                      onChange={(e) => {
+                        setActiveEditButton(true)
                         setState({ ...state, userFirstname: e.target.value })
+                      }
                       }
                       placeholder="Имя"
                       required
@@ -261,8 +222,10 @@ const EditProfilePage = () => {
                       type="text"
                       name="lastName"
                       value={state?.userLastname || null}
-                      onChange={(e) =>
+                      onChange={(e) =>{
+                        setActiveEditButton(true)
                         setState({ ...state, userLastname: e.target.value })
+                      }
                       }
                       placeholder="Фамилия"
                       required
@@ -294,11 +257,13 @@ const EditProfilePage = () => {
                       <InputMask
                         mask="(99)999-99-99"
                         value={state?.userPhoneNumber || null}
-                        onChange={(e) =>
+                        onChange={(e) =>{
+                          setActiveEditButton(true)
                           setState({
                             ...state,
                             userPhoneNumber: e.target.value,
                           })
+                        }
                         }
                         className={`w-full px-4  h-full not-italic bg-btnBgColor ${
                           state?.userPhoneNumber ? "font-AeonikProMedium" : null
@@ -346,7 +311,12 @@ const EditProfilePage = () => {
               </div>
               <div className="w-[80%] xs:w-[60%] md:w-auto ">
                 {/* active:scale-95  active:opacity-70 */}
-                <button className="w-[100%] md:w-[244px] h-[52px] cursor-not-allowed bg-gray-300 text-white rounded-lg flex items-center justify-center">
+                <button
+                  onClick={onEdit}
+                  type="button"
+                  disabled={activeEditButton ? false : true}
+                  className={`${activeEditButton ? "cursor-pointer bg-borderWinter" : "cursor-not-allowed bg-gray-300"} w-[100%] md:w-[244px] h-[52px]  text-white rounded-lg flex items-center justify-center`}
+                >
                   <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center tracking-[1%]">
                     Обновить данные
                   </span>
