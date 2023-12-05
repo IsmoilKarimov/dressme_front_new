@@ -9,6 +9,8 @@ import SignInSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import SignUpSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 
 import MobileAllComments from "../components/Home/Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/MobileComments";
+import { EditProfilePage } from "../components/Authentication/UserProfile/ProfileEditPage/EditPageProfile";
+
 
 // import ConnectDashboard from "../components/RegistrationDashboard";
 // import CatalogMain from "../components/Home/Catalog/CatalogFilter";
@@ -36,6 +38,10 @@ const Footer = React.lazy(() => import("../components/footer/footer"));
 const ProfilePage = React.lazy(() =>
   import("../components/Authentication/UserProfile/PorofilePage/ProfilePage")
 );
+// const EditProfilePage = React.lazy(() =>
+//   import("../components/Authentication/UserProfile/ProfileEditPage/EditPageProfile")
+// );
+
 const CatalogPage = React.lazy(() => import("../components/Home/Catalog"));
 
 const ShoppingStoreOfficial = React.lazy(() =>
@@ -179,7 +185,7 @@ const RouterMain = () => {
           }
         />
 
-        <Route
+        {/* <Route
           index
           path="/profile/settings"
           element={
@@ -192,6 +198,14 @@ const RouterMain = () => {
             // >
             <ProfilePage />
             // </Suspense>
+          }
+        /> */}
+
+        <Route
+          index
+          path="/profile/edit"
+          element={
+            <EditProfilePage />
           }
         />
 

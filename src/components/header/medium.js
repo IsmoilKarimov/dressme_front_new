@@ -420,7 +420,7 @@ const MediumHeader = () => {
                 {/* User section */}
                 {localStorage.getItem("DressmeUserToken") ? (
                   <NavLink
-                    to="/profile/settings"
+                    to="/profile/edit"
                     className=" bg-btnBgColor rounded-xl items-center justify-center w-11 h-11 mr-2 hidden md:flex"
                   >
                     {({ isActive }) =>
