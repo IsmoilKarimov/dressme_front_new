@@ -13,6 +13,7 @@ import { UzbekFlag } from "../../../../assets";
 import { ToastContainer, toast } from "react-toastify";
 import EditPassword from "./EditPassword/EditPassword";
 import { useHttp } from "../../../../hook/useHttp";
+import EditEmail from "./EditPassword/EditEmail";
 
 const EditProfilePage = () => {
   const { request } = useHttp();
@@ -30,10 +31,12 @@ const EditProfilePage = () => {
     isChange: false,
   });
   console.log(state?.isChange);
-  const [openEditModal, setOpenEditModal] = useState(false);
+  const [openEditPasswordModal, setOpenEditPasswordModal] = useState(false);
+  const [openEditEmailModal, setOpenEditEmailModal] = useState(false);
 
   // =====================
-  const togglePassword = React.useCallback(() => setOpenEditModal(false), []);
+  const togglePassword = React.useCallback(() => setOpenEditPasswordModal(false), []);
+  const toggleEmail = React.useCallback(() => setOpenEditEmailModal(false), []);
   // =====================
 
   const url = "https://api.dressme.uz/api/user";
@@ -234,17 +237,24 @@ const EditProfilePage = () => {
           />
           <section
             onClick={() => {
-              setOpenEditModal(false);
+              setOpenEditPasswordModal(false);
             }}
             className={`fixed inset-0 z-[112] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
-          ${openEditModal ? "" : "hidden"}`}
+          ${openEditPasswordModal || openEditEmailModal ? "" : "hidden"}`}
           ></section>
           <section
             className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${
-              openEditModal ? "" : "hidden z-0"
+              openEditPasswordModal ? "" : "hidden z-0"
             }`}
           >
             <EditPassword onClick={togglePassword} />
+          </section>
+          <section
+            className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${
+              openEditEmailModal ? "" : "hidden z-0"
+            }`}
+          >
+            <EditEmail onClick={toggleEmail} />
           </section>
           <div className="md:max-w-[820px] max-w-[440px] w-[100%] h-fit p-4 md:px-0  border border-searchBgColor rounded-lg mb-[100px] md:mb-0">
             <div className="md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
@@ -263,7 +273,6 @@ const EditProfilePage = () => {
                       className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="text"
                       name="firstname"
-                      value={state?.userFirstname || null}
                       onChange={(e) => {
                         setActiveEditButton(true);
                         setState({
@@ -353,9 +362,10 @@ const EditProfilePage = () => {
                       className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="email"
                       value={state?.userEmail || null}
-                      onChange={(e) =>
+                      onChange={(e) =>{
+                        setActiveEditButton(true)
                         setState({ ...state, userEmail: e.target.value })
-                      }
+                      }}
                       placeholder="Адрес электронной почты"
                       required
                     />
@@ -368,12 +378,20 @@ const EditProfilePage = () => {
               {/* EditPassword */}
               <div className="w-full flex items-center xs:justify-start justify-end xs:mt-5 ">
                 <button
-                  onClick={() => setOpenEditModal(true)}
+                  onClick={() => setOpenEditPasswordModal(true)}
+                  className={
+                    "w-full text-start text-borderWinter text-base not-italic font-AeonikProRegular hover:underline"
+                  }
+                >
+                  Изменить пароль
+                </button>
+                <button
+                  onClick={() => setOpenEditEmailModal(true)}
                   className={
                     "w-full text-end text-borderWinter text-base not-italic font-AeonikProRegular hover:underline"
                   }
                 >
-                  Изменить пароль
+                  Обновить почту
                 </button>
               </div>
             </div>
@@ -398,7 +416,7 @@ const EditProfilePage = () => {
                   disabled={activeEditButton ? false : true}
                   className={`${
                     activeEditButton
-                      ? "cursor-pointer bg-borderWinter active:scale-95  active:opacity-70"
+                      ? "cursor-pointer bg-borderWinter active:scale-95 active:opacity-70"
                       : "cursor-not-allowed bg-gray-300"
                   } w-[100%] md:w-[244px] h-[52px]  text-white rounded-lg flex items-center justify-center`}
                 >
