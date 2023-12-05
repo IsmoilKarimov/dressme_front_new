@@ -8,12 +8,14 @@ import {
 } from "../../../../assets/icons";
 import "react-toastify/dist/ReactToastify.css";
 import { useMutation, useQuery } from "@tanstack/react-query";
-// import { Select } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import { UzbekFlag } from "../../../../assets";
 import { ToastContainer, toast } from "react-toastify";
+import EditPassword from "./EditPassword/EditPassword";
+import { useHttp } from "../../../../hook/useHttp";
 
 const EditProfilePage = () => {
+  const { request } = useHttp();
   const [ProfileData, setProfileData] = useState("");
   const [activeEditButton, setActiveEditButton] = useState(false);
   const [state, setState] = useState({
@@ -26,10 +28,13 @@ const EditProfilePage = () => {
     userPhoneNumber: "",
     errorsGroup: null,
     isChange: false,
-    
   });
- console.log(state?.isChange);
+  console.log(state?.isChange);
   const [openEditModal, setOpenEditModal] = useState(false);
+
+  // =====================
+  const togglePassword = React.useCallback(() => setOpenEditModal(false), []);
+  // =====================
 
   const url = "https://api.dressme.uz/api/user";
 
@@ -37,14 +42,7 @@ const EditProfilePage = () => {
   const { refetch } = useQuery(
     ["get-user-profile"],
     async () => {
-      const res = await fetch(`${url}/profile`, {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-          Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
-        },
-      });
-      return await res.json();
+      return request({ url: `/user/profile`, token: true });
     },
     {
       onSuccess: (res) => {
@@ -78,7 +76,7 @@ const EditProfilePage = () => {
   let data3 = arr3.join("");
   const sendMessagePhoneNumber = data3 + data2;
 
-  // =========== POST USER REGISTER DATA ==========
+  // =========== POST USER EDIT DATA ==========
   const dataMutate = useMutation(() => {
     return fetch(`${url}/update-user-info`, {
       method: "POST",
@@ -90,7 +88,7 @@ const EditProfilePage = () => {
       body: JSON.stringify({
         name: state?.isChange === true && state?.userFirstname,
         surname: state?.isChange === true && state?.userLastname,
-        phone:  state?.isChange === true && sendMessagePhoneNumber,
+        phone: state?.isChange === true && sendMessagePhoneNumber,
       }),
     }).then((res) => res.json());
   });
@@ -172,13 +170,20 @@ const EditProfilePage = () => {
             pauseOnHover
             theme="colored"
           />
-          <div
+          <section
             onClick={() => {
               setOpenEditModal(false);
             }}
             className={`fixed inset-0 z-[112] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
           ${openEditModal ? "" : "hidden"}`}
-          ></div>
+          ></section>
+          <section
+            className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${
+              openEditModal ? "" : "hidden z-0"
+            }`}
+          >
+            <EditPassword onClick={togglePassword} />
+          </section>
           <div className="md:max-w-[820px] max-w-[440px] w-[100%] h-fit p-4 md:px-0  border border-searchBgColor rounded-lg mb-[100px] md:mb-0">
             <div className="md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
               <div className="w-full flex justify-between items-center">
@@ -198,10 +203,13 @@ const EditProfilePage = () => {
                       name="firstname"
                       value={state?.userFirstname || null}
                       onChange={(e) => {
-                        setActiveEditButton(true)
-                        setState({ ...state, userFirstname: e.target.value, isChange: true })
-                      }
-                      }
+                        setActiveEditButton(true);
+                        setState({
+                          ...state,
+                          userFirstname: e.target.value,
+                          isChange: true,
+                        });
+                      }}
                       placeholder="Имя"
                       required
                     />
@@ -209,7 +217,6 @@ const EditProfilePage = () => {
                       <PersonIcons colors={"#D2D2D2"} />
                     </span>
                   </div>
-
                 </div>
                 <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
                   <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
@@ -221,11 +228,14 @@ const EditProfilePage = () => {
                       type="text"
                       name="lastName"
                       value={state?.userLastname || null}
-                      onChange={(e) =>{
-                        setActiveEditButton(true)
-                        setState({ ...state, userLastname: e.target.value, isChange:true })
-                      }
-                      }
+                      onChange={(e) => {
+                        setActiveEditButton(true);
+                        setState({
+                          ...state,
+                          userLastname: e.target.value,
+                          isChange: true,
+                        });
+                      }}
                       placeholder="Фамилия"
                       required
                     />
@@ -236,7 +246,7 @@ const EditProfilePage = () => {
                 </div>
               </div>
             </div>
-            <div className="md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
+            <div className="w-full md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
               <div className="flex  flex-col md:flex-row justify-between items-center">
                 <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
                   <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
@@ -256,15 +266,14 @@ const EditProfilePage = () => {
                       <InputMask
                         mask="(99)999-99-99"
                         value={state?.userPhoneNumber || null}
-                        onChange={(e) =>{
-                          setActiveEditButton(true)
+                        onChange={(e) => {
+                          setActiveEditButton(true);
                           setState({
                             ...state,
                             userPhoneNumber: e.target.value,
-                            isChange: true
-                          })
-                        }
-                        }
+                            isChange: true,
+                          });
+                        }}
                         className={`w-full px-4  h-full not-italic bg-btnBgColor ${
                           state?.userPhoneNumber ? "font-AeonikProMedium" : null
                         } text-base leading-4 text-black`}
@@ -294,6 +303,17 @@ const EditProfilePage = () => {
                   </div>
                 </div>
               </div>
+              {/* EditPassword */}
+              <div className="w-full flex items-center xs:justify-start justify-end xs:mt-5 ">
+                <button
+                  onClick={() => setOpenEditModal(true)}
+                  className={
+                    "w-full text-end text-borderWinter text-base not-italic font-AeonikProRegular hover:underline"
+                  }
+                >
+                  Изменить пароль
+                </button>
+              </div>
             </div>
             <div className="w-full  mx-auto flex items-center justify-between md:px-[40px] md:py-[30px] mt-6 md:mt-0">
               <div className="">
@@ -314,7 +334,11 @@ const EditProfilePage = () => {
                   onClick={onEdit}
                   type="button"
                   disabled={activeEditButton ? false : true}
-                  className={`${activeEditButton ? "cursor-pointer bg-borderWinter active:scale-95  active:opacity-70" : "cursor-not-allowed bg-gray-300"} w-[100%] md:w-[244px] h-[52px]  text-white rounded-lg flex items-center justify-center`}
+                  className={`${
+                    activeEditButton
+                      ? "cursor-pointer bg-borderWinter active:scale-95  active:opacity-70"
+                      : "cursor-not-allowed bg-gray-300"
+                  } w-[100%] md:w-[244px] h-[52px]  text-white rounded-lg flex items-center justify-center`}
                 >
                   <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center tracking-[1%]">
                     Обновить данные
