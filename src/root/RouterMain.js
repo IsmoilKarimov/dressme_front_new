@@ -185,7 +185,7 @@ const RouterMain = () => {
           }
         />
 
-        {/* <Route
+        <Route
           index
           path="/profile/settings"
           element={
@@ -199,7 +199,7 @@ const RouterMain = () => {
             <ProfilePage />
             // </Suspense>
           }
-        /> */}
+        />
 
         <Route
           index
@@ -338,6 +338,7 @@ const RouterMain = () => {
       locationWindow !== "/src" &&
       locationWindow !== "/allcomments" &&
       locationWindow !== "/profile/settings" &&
+      locationWindow !== "/profile/edit" &&
       locationWindow !== "/delivery-points" ? (
         <Suspense fallback={<>Loading...</>}>
           <Footer />
