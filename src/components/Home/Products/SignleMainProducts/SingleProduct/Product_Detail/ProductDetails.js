@@ -1,9 +1,37 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { FaTelegramPlane } from "react-icons/fa";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { BsCircleFill } from "react-icons/bs";
-import { CalendarIcons, CategoryUsersIcon, ChapterIcon, CircleWarningIcons, DeliveryIcons, DiscountShapeIcons, DollorIcons, LocationColoursIcons, MarketIcons, PaymeSystemIcons, PhoneIcons, ProductArticleIcons, ProductSwitchIcons, QualityIcon, SettingsIcon, StarIcons } from "../../../../../../assets/icons";
-import { summerSeason, autummSeason, winterSeason, HeartImg } from "../../../../../../assets";
+import {
+  CalendarIcons,
+  CategoryUsersIcon,
+  ChapterIcon,
+  CircleWarningIcons,
+  DeliveryIcons,
+  DiscountShapeIcons,
+  DollorIcons,
+  LocationColoursIcons,
+  MarketIcons,
+  PaymeSystemIcons,
+  PhoneIcons,
+  ProductArticleIcons,
+  ProductSwitchIcons,
+  QualityIcon,
+  SettingsIcon,
+  StarIcons,
+} from "../../../../../../assets/icons";
+import {
+  summerSeason,
+  autummSeason,
+  winterSeason,
+  HeartImg,
+} from "../../../../../../assets";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { Modal, Popover, Radio } from "antd";
@@ -11,26 +39,60 @@ import AddCopyCheckedIcon from "./AddCopyCheckedIcon/AddCopyCheckedIcon";
 import LocationOfYandex from "./LocationOfYandex/LocationOfYandex";
 import TableSizesDropUp from "./MobileDropUp/TableSizesDropUp/TableSizesDropUp";
 import LocationDropUp from "./MobileDropUp/LocationsDropUp/LocationsDropUp";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
 
 const ProductDetails = () => {
   const [dressInfo] = useContext(dressMainData);
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
-  const [tableSizes, setTableSizes] = useState(false)
-  const [locations, setLocations] = useState(false)
+  const [tableSizes, setTableSizes] = useState(false);
+  const [locations, setLocations] = useState(false);
 
-  const toggleTableSizes = useCallback(() => setTableSizes(false), [])
-  const toggleLocations = useCallback(() => setLocations(false), [])
+  const toggleTableSizes = useCallback(() => setTableSizes(false), []);
+  const toggleLocations = useCallback(() => setLocations(false), []);
 
   const slider = useRef(null);
-  const [copyText, setCopyText] = useState('AA009842')
-  const [copyCardNumber, setCopyCardNumber] = useState('8600-000-2345-1234')
+  const [copyText, setCopyText] = useState("AA009842");
+  const [copyCardNumber, setCopyCardNumber] = useState("8600-000-2345-1234");
   const handleCopyText = () => {
-    navigator.clipboard.writeText(copyText)
-  }
+    navigator.clipboard.writeText(copyText);
+  };
   const handleCopyCardNumber = () => {
-    navigator.clipboard.writeText(copyCardNumber)
-  }
+    navigator.clipboard.writeText(copyCardNumber);
+  };
+
+  const url = "https://api.dressme.uz";
+
+  const [data, setData] = useState();
+
+  const params = useParams();
+
+  // ------------GET METHOD Main data -----------------
+  useQuery(
+    ["get_main_data"],
+    () => {
+      return fetch(`${url}/api/main/products/${params?.id}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          //   "Content-type": "application/json; charset=UTF-8",
+        },
+      }).then((res) => res.json());
+    },
+    {
+      onSuccess: (res) => {
+        setData(res);
+      },
+      onError: (err) => {
+        console.log(err, "err");
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: true,
+    }
+  );
+
+  console.log(data?.product);
 
   // For DropUp
   useEffect(() => {
@@ -44,22 +106,22 @@ const ProductDetails = () => {
   const [openTab, setOpenTab] = useState(1);
 
   const [selectSize] = useState([
-    { id: 1, size: "S", sizeNumbers: '36-44' },
-    { id: 2, size: "M", sizeNumbers: '36-44' },
-    { id: 3, size: "L", sizeNumbers: '36-44' },
-    { id: 4, size: "XL", sizeNumbers: '36-44' },
-    { id: 5, size: "XXL", sizeNumbers: '36-44' },
-    { id: 6, size: "3XL", sizeNumbers: '36-44' },
-    { id: 7, size: "4XL", sizeNumbers: '23-28' },
-    { id: 8, size: "5XL", sizeNumbers: '36-44' },
-    { id: 9, size: "6XL", sizeNumbers: '23-28' },
+    { id: 1, size: "S", sizeNumbers: "36-44" },
+    { id: 2, size: "M", sizeNumbers: "36-44" },
+    { id: 3, size: "L", sizeNumbers: "36-44" },
+    { id: 4, size: "XL", sizeNumbers: "36-44" },
+    { id: 5, size: "XXL", sizeNumbers: "36-44" },
+    { id: 6, size: "3XL", sizeNumbers: "36-44" },
+    { id: 7, size: "4XL", sizeNumbers: "23-28" },
+    { id: 8, size: "5XL", sizeNumbers: "36-44" },
+    { id: 9, size: "6XL", sizeNumbers: "23-28" },
   ]);
   const [locationsList] = useState([
-    { id: 1, size: "S", location: 'Bektemir' },
-    { id: 2, size: "M", location: 'Mirzo Ulugbek' },
-    { id: 3, size: "L", location: 'Yunusobod' },
-    { id: 4, size: "XL", location: 'Chilonzor' },
-    { id: 5, size: "XXL", location: 'Mirobod' },
+    { id: 1, size: "S", location: "Bektemir" },
+    { id: 2, size: "M", location: "Mirzo Ulugbek" },
+    { id: 3, size: "L", location: "Yunusobod" },
+    { id: 4, size: "XL", location: "Chilonzor" },
+    { id: 5, size: "XXL", location: "Mirobod" },
   ]);
   const [imgGroup] = useState([
     {
@@ -109,7 +171,13 @@ const ProductDetails = () => {
     },
   ]);
   const SizeBtnList = [
-    { id: 1, size_in_numbers: "36-44", chest_gitrh: "23-25", waist: "5-12", hip_gitrh: "1-6" },
+    {
+      id: 1,
+      size_in_numbers: "36-44",
+      chest_gitrh: "23-25",
+      waist: "5-12",
+      hip_gitrh: "1-6",
+    },
     // { id: 2, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
     // { id: 3, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
     // { id: 4, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
@@ -156,21 +224,22 @@ const ProductDetails = () => {
   );
 
   const onChange = (checkedValues) => {
-    console.log('checked = ', checkedValues);
+    console.log("checked = ", checkedValues);
   };
 
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
-
       <div className="tableSizes">
         <section
           onClick={() => setTableSizes(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${tableSizes ? "" : "hidden"
-            }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+            tableSizes ? "" : "hidden"
+          }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${tableSizes ? "bottom-0" : "bottom-[-800px] z-0"
-            }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+            tableSizes ? "bottom-0" : "bottom-[-800px] z-0"
+          }`}
         >
           <TableSizesDropUp onClick={toggleTableSizes} />
         </section>
@@ -178,12 +247,14 @@ const ProductDetails = () => {
       <div className="locations">
         <section
           onClick={() => setLocations(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${locations ? "" : "hidden"
-            }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+            locations ? "" : "hidden"
+          }`}
         ></section>
         <locations
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${locations ? "bottom-0" : "bottom-[-800px] z-0"
-            }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${
+            locations ? "bottom-0" : "bottom-[-800px] z-0"
+          }`}
         >
           <LocationDropUp onClick={toggleLocations} />
         </locations>
@@ -202,10 +273,10 @@ const ProductDetails = () => {
             </p>
             <article className="flex items-center w-fit ml-2 text-base md:text-[14px]">
               <p className="not-italic font-AeonikProMedium mt-1 leading-4 text-black tracking-[1%]">
-                4.7
+                {data?.product?.overall_rating}
               </p>
               <p className=" pl-1 not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
-                (265 votes)
+                ({data?.product?.rated_users_count} votes)
               </p>
               <div className="text-setTexOpacity mx-[10px]">|</div>
               <p className=" not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
@@ -214,19 +285,24 @@ const ProductDetails = () => {
             </article>
             <article>
               <div className="flex items-center ml-[25px]">
-                <span className="mr-[6px]"><ProductArticleIcons /></span>
-                <span className="text-sm font-AeonikProRegular leading-4 tracking-[1%]">Артикль:</span>
+                <span className="mr-[6px]">
+                  <ProductArticleIcons />
+                </span>
+                <span className="text-sm font-AeonikProRegular leading-4 tracking-[1%]">
+                  Артикль:
+                </span>
                 <input
                   type="text"
                   readOnly
-                  value={copyText}
+                  value={data?.product?.sku}
                   onChange={(e) => setCopyText(e.target.value)}
                   className="text-sm bg-transparent w-[68px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]"
                 />
                 <button
                   type="button"
                   onClick={handleCopyText}
-                  className="cursor-pointer ml-[8px]">
+                  className="cursor-pointer ml-[8px]"
+                >
                   <AddCopyCheckedIcon />
                 </button>
               </div>
@@ -251,7 +327,7 @@ const ProductDetails = () => {
               </article>
               <article className="w-fit ml-2">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                  Nike Store Official Dealer
+                  {data?.product?.name_ru}
                 </p>
               </article>
             </div>
@@ -322,7 +398,8 @@ const ProductDetails = () => {
               </article>
               <article className="w-fit ml-2">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                  36-44
+                  {data?.product?.min_age_category} -{" "}
+                  {data?.product?.max_age_category}
                 </p>
               </article>
             </div>
@@ -350,7 +427,7 @@ const ProductDetails = () => {
               </article>
               <article className="w-fit ml-2">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                  Оригинал
+                  {data?.product?.quality_ru}
                 </p>
               </article>
             </div>
@@ -372,7 +449,8 @@ const ProductDetails = () => {
                 <button
                   type="button"
                   onClick={handleCopyCardNumber}
-                  className="cursor-pointer ml-[8px]">
+                  className="cursor-pointer ml-[8px]"
+                >
                   <AddCopyCheckedIcon />
                 </button>
               </article>
@@ -400,20 +478,28 @@ const ProductDetails = () => {
             <p className="not-italic leading-4 text-[#757575]">Синий океан</p>
           </div>
           <div className="flex items-center py-3 md:py-0">
-            <span className="hidden md:block"><LocationColoursIcons colors={"#757575"} /></span>
-            <span className="block md:hidden"><LocationColoursIcons colors={"#303030"} /></span>
-            <p className="text-[#303030] md:text-[#757575] font-AeonikProRegular md:font-AeonikProMedium text-base md:text-sm ml-[3px] md:ml-2">Ташкент, Юнусобод</p>
+            <span className="hidden md:block">
+              <LocationColoursIcons colors={"#757575"} />
+            </span>
+            <span className="block md:hidden">
+              <LocationColoursIcons colors={"#303030"} />
+            </span>
+            <p className="text-[#303030] md:text-[#757575] font-AeonikProRegular md:font-AeonikProMedium text-base md:text-sm ml-[3px] md:ml-2">
+              Ташкент, Юнусобод
+            </p>
           </div>
           <button
             type="primary"
             onClick={() => setOpenLocationModal(true)}
-            className="hidden md:block text-borderWinter font-AeonikProMedium">
+            className="hidden md:block text-borderWinter font-AeonikProMedium"
+          >
             В других локациях
           </button>
           <button
             type="primary"
             onClick={() => setLocations(true)}
-            className="block md:hidden text-borderWinter font-AeonikProMedium">
+            className="block md:hidden text-borderWinter font-AeonikProMedium"
+          >
             В других локациях
           </button>
           <Modal
@@ -425,23 +511,38 @@ const ProductDetails = () => {
             className="w-full p-6"
           >
             <div className="w-full px-[25px] pb-[30px] pt-[20px]">
-              <div className="text-2xl font-AeonikProRegular mb-[30px]">Выберите локацию</div>
-              <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">Tashkent</div>
+              <div className="text-2xl font-AeonikProRegular mb-[30px]">
+                Выберите локацию
+              </div>
+              <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
+                Tashkent
+              </div>
               <Radio.Group
                 style={{
-                  width: '100%',
+                  width: "100%",
                 }}
                 onChange={onChange}
               >
                 <div className="w-full flex flex-wrap items-center gap-y-2">
-                  {locationsList.map(data => (
+                  {locationsList.map((data) => (
                     <div key={data.id} className="w-1/3">
-                      <Radio value={data.location} name="location" className="text-lg font-AeonikProRegular">{data.location}</Radio>
+                      <Radio
+                        value={data.location}
+                        name="location"
+                        className="text-lg font-AeonikProRegular"
+                      >
+                        {data.location}
+                      </Radio>
                     </div>
                   ))}
                 </div>
               </Radio.Group>
-              <button type="button" className="w-full flex justify-end mt-[60px] text-borderWinter text-lg font-AeonikProMedium">Готово</button>
+              <button
+                type="button"
+                className="w-full flex justify-end mt-[60px] text-borderWinter text-lg font-AeonikProMedium"
+              >
+                Готово
+              </button>
             </div>
           </Modal>
         </article>
@@ -471,7 +572,10 @@ const ProductDetails = () => {
 
         {/* Images Slider */}
         <article className="w-full hidden md:flex items-center mb-[30px]">
-          <button className="button mt-[-5px]" onClick={() => slider?.current?.slickPrev()}>
+          <button
+            className="button mt-[-5px]"
+            onClick={() => slider?.current?.slickPrev()}
+          >
             <GrFormPrevious size={30} />
           </button>
           <Slider
@@ -479,13 +583,23 @@ const ProductDetails = () => {
             {...settings}
             className="hidden md:flex md:w-[88%] h-[80px] items-center"
           >
-            {imgGroup?.map(data => (
-              <div key={data.id} className="!w-[64px] h-[72px] rounded-lg cursor-pointer">
-                <img src={data.img} alt="imgs" className="w-fit h-full rounded-lg" />
+            {imgGroup?.map((data) => (
+              <div
+                key={data.id}
+                className="!w-[64px] h-[72px] rounded-lg cursor-pointer"
+              >
+                <img
+                  src={data.img}
+                  alt="imgs"
+                  className="w-fit h-full rounded-lg"
+                />
               </div>
             ))}
           </Slider>
-          <button className="button mt-[-5px]" onClick={() => slider?.current?.slickNext()}>
+          <button
+            className="button mt-[-5px]"
+            onClick={() => slider?.current?.slickNext()}
+          >
             <GrFormNext size={30} />
           </button>
         </article>
@@ -494,7 +608,8 @@ const ProductDetails = () => {
           <button
             type="primary"
             onClick={() => setOpenSizeList(true)}
-            className="not-italic mr-3 font-AeonikProRegular border-b border-dashed border-borderWinter md:font-AeonikProMedium text-borderWinter">
+            className="not-italic mr-3 font-AeonikProRegular border-b border-dashed border-borderWinter md:font-AeonikProMedium text-borderWinter"
+          >
             Таблица размеров
           </button>
           <Modal
@@ -555,12 +670,14 @@ const ProductDetails = () => {
                   content={contentSize}
                   className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
                 >
-
-                  <p className={`font-AeonikProMedium text-sm uppercase text-center text-black`} >
+                  <p
+                    className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                  >
                     {data?.size}
                   </p>
-                  <span className="text-[10px] font-AeonikProRegular text-[#757575]">{data.sizeNumbers}</span>
-
+                  <span className="text-[10px] font-AeonikProRegular text-[#757575]">
+                    {data.sizeNumbers}
+                  </span>
                 </Popover>
               );
             })}
@@ -572,19 +689,23 @@ const ProductDetails = () => {
 
         {/* Mobile Product Infos */}
         <article className="w-full flex md:hidden flex-col items-center">
-          <div className="w-full text-xl font-AeonikProMedium mb-[18px]">Line-Pattern Zipper Sweatshirt (Original High Quality)</div>
+          <div className="w-full text-xl font-AeonikProMedium mb-[18px]">
+            Line-Pattern Zipper Sweatshirt (Original High Quality)
+          </div>
           <div className="w-full flex flex-col items-center border border-[#f0f0f0] p-[15px] bg-categoryModalBgColor rounded-xl">
             <div className="w-full flex items-center mb-4">
               <div className="flex items-center text-base font-AeonikProRegular">
                 <DeliveryIcons />
                 <span className="ml-[6px]">Метод доставки:</span>
               </div>
-              <div className="text-sm font-AeonikProRegular ml-[6px] text-[#666]">Собственная доставка</div>
+              <div className="text-sm font-AeonikProRegular ml-[6px] text-[#666]">
+                Собственная доставка
+              </div>
             </div>
             <div className="w-full flex items-center mb-4">
               <section className="w-fit flex items-center h-fit text-base">
                 <div className="flex items-center font-AeonikProRegular leading-4 tracking-[1%]">
-                  <CalendarIcons colors={'#000'} />
+                  <CalendarIcons colors={"#000"} />
                   <span className="ml-[6px]">Сезон:</span>
                 </div>
                 <figure className="flex items-center ml-[6px]">
@@ -624,7 +745,9 @@ const ProductDetails = () => {
             </div>
             <div className="w-full flex items-center mb-4">
               <ProductArticleIcons />
-              <span className="text-base font-AeonikProRegular leading-4 tracking-[1%] ml-[6px]">Артикль:</span>
+              <span className="text-base font-AeonikProRegular leading-4 tracking-[1%] ml-[6px]">
+                Артикль:
+              </span>
               <input
                 type="text"
                 readOnly
@@ -635,7 +758,8 @@ const ProductDetails = () => {
               <button
                 type="button"
                 onClick={handleCopyText}
-                className="cursor-pointer ml-[8px]">
+                className="cursor-pointer ml-[8px]"
+              >
                 <AddCopyCheckedIcon />
               </button>
             </div>
@@ -709,7 +833,8 @@ const ProductDetails = () => {
                 <button
                   type="button"
                   onClick={handleCopyCardNumber}
-                  className="cursor-pointer ml-[8px]">
+                  className="cursor-pointer ml-[8px]"
+                >
                   <AddCopyCheckedIcon />
                 </button>
               </article>
@@ -718,7 +843,9 @@ const ProductDetails = () => {
         </article>
 
         {/* Mobile Price */}
-        <article className={`w-full h-fit mt-[34px] pb-6 md:pb-0 border-b md:border-none md:hidden`}>
+        <article
+          className={`w-full h-fit mt-[34px] pb-6 md:pb-0 border-b md:border-none md:hidden`}
+        >
           <article className="h-fit w-full flex items-center justify-between mb-2 gap-x-2">
             <address className="max-w-1/2 md:max-w-[70%] w-full">
               <a
@@ -771,12 +898,8 @@ const ProductDetails = () => {
           <section
             className={`w-fit ${dressInfo?.TextColorSeason} items-center text-sm hidden md:flex ml-8`}
           >
-            <p className="font-AeonikProRegular text-right">
-              В наличии:
-            </p>
-            <p className="ml-2 font-AeonikProMedium text-right">
-              28
-            </p>
+            <p className="font-AeonikProRegular text-right">В наличии:</p>
+            <p className="ml-2 font-AeonikProMedium text-right">28</p>
           </section>
         </article>
 
@@ -813,38 +936,41 @@ const ProductDetails = () => {
       {/* 4  Buttons */}
       <article className="w-full h-11 flex justify-between items-center rounded-lg bg-[#fafafa] border border-solid mt-6 md:mt-[15px] md:h-12 md:w-[540px]">
         <button
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             setOpenTab(1);
           }}
-          className={`w-[28%] md:w-1/3 md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${openTab === 1
-            ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
-            : ""
-            } `}
+          className={`w-[28%] md:w-1/3 md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
+            openTab === 1
+              ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
+              : ""
+          } `}
         >
           <p>Локация</p>
         </button>
         <button
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             setOpenTab(2);
           }}
-          className={`w-[44%] md:w-1/3 md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${openTab === 2
-            ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
-            : ""
-            } `}
+          className={`w-[44%] md:w-1/3 md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
+            openTab === 2
+              ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
+              : ""
+          } `}
         >
           <p>Описания товара </p>
         </button>
         <button
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             setOpenTab(3);
           }}
-          className={`w-[28%] md:w-1/3 md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${openTab === 3
-            ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-aut rounded-lg"
-            : ""
-            } `}
+          className={`w-[28%] md:w-1/3 md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
+            openTab === 3
+              ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-aut rounded-lg"
+              : ""
+          } `}
         >
           <p>Состав</p>
         </button>
@@ -863,9 +989,9 @@ const ProductDetails = () => {
               Кратко о товаре
             </action>
             <article className="font-AeonikProRegular text-base">
-              Бренд GRN занимает №4 место в Юго-Восточной Азии, относится к ТОПовому
-              сегменту качества. Бренд GRN один из самых старейших брендов обуви и
-              одежды в Азии - был основан в 1978 году.
+              Бренд GRN занимает №4 место в Юго-Восточной Азии, относится к
+              ТОПовому сегменту качества. Бренд GRN один из самых старейших
+              брендов обуви и одежды в Азии - был основан в 1978 году.
             </article>
             <article className="font-AeonikProRegular text-base">
               Бренд GRN имеет более 12000 магазинов собственной розницы в таких
@@ -873,13 +999,13 @@ const ProductDetails = () => {
               Словения, Польша.
             </article>
             <article className="font-AeonikProRegular text-base">
-              Бренд GRN ориентирован на выпуск высококачественной одежды и обуви для
-              спорта и для носки на каждый день.
+              Бренд GRN ориентирован на выпуск высококачественной одежды и обуви
+              для спорта и для носки на каждый день.
             </article>
             <article className="font-AeonikProRegular text-base">
-              Суммарные объемы выпускаемой обуви – 20.000.000 пар в год, что делает
-              бренд GRN одним из самых крупных брендов не только в Азии, но и в
-              мире.
+              Суммарные объемы выпускаемой обуви – 20.000.000 пар в год, что
+              делает бренд GRN одним из самых крупных брендов не только в Азии,
+              но и в мире.
             </article>
             <article className="font-AeonikProRegular text-base">
               Отличительные черты продукции GRN – высокое качество, комфортные
@@ -910,7 +1036,8 @@ const ProductDetails = () => {
                   "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
                 }
               >
-                <BsCircleFill size={5} className="mx-2" /> Нереально легкие и мягкие
+                <BsCircleFill size={5} className="mx-2" /> Нереально легкие и
+                мягкие
               </li>
               <li
                 className={
@@ -925,13 +1052,13 @@ const ProductDetails = () => {
                   "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
                 }
               >
-                <BsCircleFill size={5} className="mx-2" /> Отличная фиксация стопы
+                <BsCircleFill size={5} className="mx-2" /> Отличная фиксация
+                стопы
               </li>
             </ul>
           </action>
         </div>
       </div>
-
     </main>
   );
 };
