@@ -69,28 +69,42 @@ const ProductDetails = () => {
   const params = useParams();
 
   // ------------GET METHOD Main data -----------------
-  useQuery(
-    ["get_main_data"],
-    () => {
-      return fetch(`${url}/api/main/products/${params?.id}`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          //   "Content-type": "application/json; charset=UTF-8",
-        },
-      }).then((res) => res.json());
+  // useQuery(
+  //   ["get_main_data"],
+  //   () => {
+  //     return fetch(`${url}/api/main/products/${params?.id}`, {
+  //       method: "GET",
+  //       headers: {
+  //         Accept: "application/json",
+  //         //   "Content-type": "application/json; charset=UTF-8",
+  //       },
+  //     }).then((res) => res.json());
+  //   },
+  //   {
+  //     onSuccess: (res) => {
+  //       setData(res);
+  //     },
+  //     onError: (err) => {
+  //       console.log(err, "err");
+  //     },
+  //     keepPreviousData: true,
+  //     refetchOnWindowFocus: true,
+  //   }
+  // );
+
+  fetch(`${url}/api/main/products/${params?.id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
     },
-    {
-      onSuccess: (res) => {
-        setData(res);
-      },
-      onError: (err) => {
-        console.log(err, "err");
-      },
-      keepPreviousData: true,
-      refetchOnWindowFocus: true,
-    }
-  );
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      setData(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   console.log(data?.product);
 
