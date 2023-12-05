@@ -256,7 +256,7 @@ export default function MainPageSliders() {
               more ? "xs:h-0" : "xs:h-auto"
             } overflow-hidden`}
           >
-            {mainData?.sections.length > 6 ? (
+            {mainData?.sections?.length > 6 ? (
               <Slider
                 {...settings}
                 vertical={false}
