@@ -92,7 +92,7 @@ export default function EditPassword({ onClick }) {
         {" "}
         <button
           onClick={onClick}
-          className=" border border-borderColor rounded-lg p-[3px]"
+          className=" border border-[#e2e2e2] rounded-lg p-[3px]"
         >
           <MenuCloseIcons colors={"#000"} />
         </button>
