@@ -21,7 +21,7 @@ import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 
 export default function MainPageSliders() {
   const [mainData, setMainData] = useContext(HomeMainDataContext);
-  console.log(mainData?.sections, "mainDdddd");
+  console.log(mainData?.sections, "MAIN-DATA-CATEGORIES");
 
   const [dressInfo] = useContext(dressMainData);
 
@@ -124,7 +124,6 @@ export default function MainPageSliders() {
       </div>
     );
   };
-
   const PrevArrow1 = (props) => {
     const { onClick } = props;
     return (
@@ -257,9 +256,10 @@ export default function MainPageSliders() {
               more ? "xs:h-0" : "xs:h-auto"
             } overflow-hidden`}
           >
-            {mainData?.sections ? (
+            {mainData?.sections.length > 6 ? (
               <Slider
                 {...settings}
+                vertical={false}
                 className="w-[100%] flex xs:justify-between flex-wrap  "
               >
                 {mainData?.sections?.map((data) => {
@@ -294,11 +294,45 @@ export default function MainPageSliders() {
                   );
                 })}
               </Slider>
-            ) : null}
+            ) : (
+              <section className="w-full box-border flex flex-row justify-start gap-x-3 mt-4 mb-6 md:my-6">
+                {mainData?.sections?.map((data) => {
+                  console.log(data, "categories-cards");
+                  return (
+                    <NavLink
+                      to={"/categoriesType"}
+                      key={data?.id}
+                      className="w-1/6 h-[260px] rounded-lg "
+                    >
+                      <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px] rounded-lg overflow-hidden">
+                        <button
+                          className={`w-full h-full border border-searchBgColor rounded-lg flex items-center justify-center`}
+                        >
+                          <NoImg />
+                        </button>
+
+                        {/* <img
+                        src={data?.url_photo}
+                        alt=""
+                        className="w-full h-full "
+                      /> */}
+                      </div>
+                      <article className="h-12.5 flex items-center justify-start">
+                        <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
+                          {data?.name_ru || "type"}
+                          <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
+                            ({data?.products_count || "0"})
+                          </p>
+                        </p>
+                      </article>
+                    </NavLink>
+                  );
+                })}
+              </section>
+            )}
           </div>
 
-          {/* carosuel hidden block */}
-
+          {/* CAROUSEL HIDDEN BLOCK */}
           <div
             className={`${
               more ? "xs:grid" : "xs:hidden"
@@ -392,7 +426,7 @@ export default function MainPageSliders() {
               </p>
             </button>
           </div>
-          <div className="w-full mt-[60px] ss:hidden xs:block ">
+          <div className="w-full mt-[60px] hidden xs:block">
             {mainData?.shops ? (
               <Slider
                 {...settings1}
