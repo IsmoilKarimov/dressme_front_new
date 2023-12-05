@@ -277,10 +277,6 @@ const ProductDetails = () => {
               <p className=" pl-1 not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
                 ({data?.product?.rated_users_count} votes)
               </p>
-              <div className="text-setTexOpacity mx-[10px]">|</div>
-              <p className=" not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
-                678 orders
-              </p>
             </article>
             <article>
               <div className="flex items-center ml-[25px]">
@@ -310,7 +306,7 @@ const ProductDetails = () => {
         </section>
         <section className="w-full mb-8">
           <p className="not-italic font-AeonikProMedium text-xl md:text-[22px] leading-7 text-TextTitle tracking-[1%]">
-            Спортивная мужская кроссовка Nike RUN
+            {data?.product?.name_ru}
           </p>
         </section>
 
@@ -326,7 +322,7 @@ const ProductDetails = () => {
               </article>
               <article className="w-fit ml-2">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                  {data?.product?.name_ru}
+                  {data?.product?.shop?.name}
                 </p>
               </article>
             </div>
@@ -335,7 +331,7 @@ const ProductDetails = () => {
                 <div className="not-italic mr-3  font-AeonikProMedium leading-4 text-black tracking-[1%]">
                   Сезон:
                 </div>
-                <figure className="flex items-center">
+                {/* <figure className="flex items-center">
                   <img src={winterSeason} alt="" />
 
                   <figcaption className="not-italic  ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
@@ -355,7 +351,7 @@ const ProductDetails = () => {
                   <figcaption className="not-italic  ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
                     Осень
                   </figcaption>
-                </figure>
+                </figure> */}
               </section>
             </div>
           </div>
@@ -369,7 +365,7 @@ const ProductDetails = () => {
               </article>
               <article className="w-fit ml-2">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                  Собственная доставка
+                  {data?.product?.shop?.delivery?.name_ru}
                 </p>
               </article>
             </div>
@@ -410,9 +406,13 @@ const ProductDetails = () => {
                 </div>
               </article>
               <article className="w-fit ml-2">
-                <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                  Спортивный (Тренировка)
-                </p>
+                {data?.product?.sections?.map((item) => {
+                  return (
+                    <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+                      {item?.name_ru}{" "}
+                    </p>
+                  );
+                })}
               </article>
             </div>
           </div>
@@ -440,7 +440,7 @@ const ProductDetails = () => {
               <article className="w-fit flex items-center ml-2">
                 <input
                   className="text-sm bg-transparent w-[138px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]"
-                  value={copyCardNumber}
+                  value={data?.product?.seller?.card_number}
                   onChange={(e) => setCopyCardNumber(e.target.value)}
                   readOnly
                   type="text"
