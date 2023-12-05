@@ -25,9 +25,10 @@ const EditProfilePage = () => {
     userPhoneCode: "",
     userPhoneNumber: "",
     errorsGroup: null,
+    isChange: false,
     
   });
-
+ console.log(state?.isChange);
   const [openEditModal, setOpenEditModal] = useState(false);
 
   const url = "https://api.dressme.uz/api/user";
@@ -78,7 +79,7 @@ const EditProfilePage = () => {
   const sendMessagePhoneNumber = data3 + data2;
 
   // =========== POST USER REGISTER DATA ==========
-  const { mutate } = useMutation(() => {
+  const dataMutate = useMutation(() => {
     return fetch(`${url}/update-user-info`, {
       method: "POST",
       headers: {
@@ -87,21 +88,22 @@ const EditProfilePage = () => {
         Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
       },
       body: JSON.stringify({
-        name: state?.userFirstname,
-        surname: state?.userLastname,
-        phone: sendMessagePhoneNumber,
+        name: state?.isChange === true && state?.userFirstname,
+        surname: state?.isChange === true && state?.userLastname,
+        phone:  state?.isChange === true && sendMessagePhoneNumber,
       }),
     }).then((res) => res.json());
   });
 
   const onEdit = () => {
-    mutate(
+    dataMutate.mutate(
       {},
       {
         onSuccess: (res) => {
           refetch();
           console.log(res, "RES");
           if (res?.message && !res.errors) {
+            setState({ ...state, errorsGroup: res });
             toast.success(`${res?.message}`, {
               position: "top-right",
               autoClose: 5000,
@@ -113,6 +115,7 @@ const EditProfilePage = () => {
               theme: "light",
             });
           } else if (res?.message && res.errors) {
+            setState({ ...state, errorsGroup: res });
             toast.error(`${res?.message}`, {
               position: "top-right",
               autoClose: 5000,
@@ -172,11 +175,6 @@ const EditProfilePage = () => {
           <div
             onClick={() => {
               setOpenEditModal(false);
-              setState({
-                ...state,
-                popConfirmDelete: false,
-                openModalRegions: false,
-              });
             }}
             className={`fixed inset-0 z-[112] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
           ${openEditModal ? "" : "hidden"}`}
@@ -201,7 +199,7 @@ const EditProfilePage = () => {
                       value={state?.userFirstname || null}
                       onChange={(e) => {
                         setActiveEditButton(true)
-                        setState({ ...state, userFirstname: e.target.value })
+                        setState({ ...state, userFirstname: e.target.value, isChange: true })
                       }
                       }
                       placeholder="Имя"
@@ -211,6 +209,7 @@ const EditProfilePage = () => {
                       <PersonIcons colors={"#D2D2D2"} />
                     </span>
                   </div>
+
                 </div>
                 <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
                   <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
@@ -224,7 +223,7 @@ const EditProfilePage = () => {
                       value={state?.userLastname || null}
                       onChange={(e) =>{
                         setActiveEditButton(true)
-                        setState({ ...state, userLastname: e.target.value })
+                        setState({ ...state, userLastname: e.target.value, isChange:true })
                       }
                       }
                       placeholder="Фамилия"
@@ -262,6 +261,7 @@ const EditProfilePage = () => {
                           setState({
                             ...state,
                             userPhoneNumber: e.target.value,
+                            isChange: true
                           })
                         }
                         }
@@ -310,12 +310,11 @@ const EditProfilePage = () => {
                 </button>
               </div>
               <div className="w-[80%] xs:w-[60%] md:w-auto ">
-                {/* active:scale-95  active:opacity-70 */}
                 <button
                   onClick={onEdit}
                   type="button"
                   disabled={activeEditButton ? false : true}
-                  className={`${activeEditButton ? "cursor-pointer bg-borderWinter" : "cursor-not-allowed bg-gray-300"} w-[100%] md:w-[244px] h-[52px]  text-white rounded-lg flex items-center justify-center`}
+                  className={`${activeEditButton ? "cursor-pointer bg-borderWinter active:scale-95  active:opacity-70" : "cursor-not-allowed bg-gray-300"} w-[100%] md:w-[244px] h-[52px]  text-white rounded-lg flex items-center justify-center`}
                 >
                   <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center tracking-[1%]">
                     Обновить данные

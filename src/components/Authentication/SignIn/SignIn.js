@@ -63,7 +63,7 @@ export default function SignIn() {
           } else if (res?.access_token) {
             setLoading(false)
             localStorage.setItem("DressmeUserToken", res?.access_token);
-            toast.success(`Успешный  вход в систему`, {
+            toast.success(`Успешный вход в систему`, {
               position: "top-right",
               autoClose: 5000,
               hideProgressBar: false,
