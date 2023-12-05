@@ -133,6 +133,68 @@ const EditProfilePage = () => {
     );
   };
 
+  // =========== POST EDIT USER EMAIL ==========
+  const { mutate } = useMutation(() => {
+    return fetch(`${url}/update-user-email`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
+      },
+      body: JSON.stringify({
+        email: state?.userEmail,
+      }),
+    }).then((res) => res.json());
+  });
+
+  const editEmail = () => {
+    mutate(
+      {},
+      {
+        onSuccess: (res) => {
+          refetch();
+          console.log(res, "USER-EMAIL");
+          if (res?.message && !res.errors) {
+            setState({ ...state, errorsGroup: res });
+            toast.success(`${res?.message}`, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          } else if (res?.message && res.errors) {
+            setState({ ...state, errorsGroup: res });
+            toast.error(`${res?.message}`, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
+        },
+        onError: (err) => {
+          console.log(err);
+        },
+      }
+    );
+  };
+
+  const sendEditData = () => {
+    return(
+      onEdit(),
+      editEmail()
+    )
+  }
+
   const navigate = useNavigate();
   const location = useLocation();
   const LogOut = () => {
@@ -291,11 +353,11 @@ const EditProfilePage = () => {
                       className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="email"
                       value={state?.userEmail || null}
-                      // onChange={(e) =>
-                      //   setState({ ...state, userEmail: e.target.value })
-                      // }
+                      onChange={(e) =>
+                        setState({ ...state, userEmail: e.target.value })
+                      }
                       placeholder="Адрес электронной почты"
-                      // required
+                      required
                     />
                     <span>
                       <EmailIcons colors={"#D2D2D2"} />
@@ -331,7 +393,7 @@ const EditProfilePage = () => {
               </div>
               <div className="w-[80%] xs:w-[60%] md:w-auto ">
                 <button
-                  onClick={onEdit}
+                  onClick={sendEditData}
                   type="button"
                   disabled={activeEditButton ? false : true}
                   className={`${
