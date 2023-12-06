@@ -513,7 +513,8 @@ const ProductDetails = () => {
               <LocationColoursIcons colors={"#303030"} />
             </span>
             <p className="text-[#303030] md:text-[#757575] font-AeonikProRegular md:font-AeonikProMedium text-base md:text-sm ml-[3px] md:ml-2">
-              Ташкент, Юнусобод
+              {data?.product?.locations[0]?.region?.name_ru},{" "}
+              {data?.product?.locations[0]?.sub_region?.name_ru}
             </p>
           </div>
           <button
@@ -543,7 +544,7 @@ const ProductDetails = () => {
                 Выберите локацию
               </div>
               <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
-                Tashkent
+                {data?.product?.locations[0]?.region?.name_ru}
               </div>
               <Radio.Group
                 style={{
@@ -552,14 +553,14 @@ const ProductDetails = () => {
                 onChange={onChange}
               >
                 <div className="w-full flex flex-wrap items-center gap-y-2">
-                  {locationsList.map((data) => (
+                  {data?.product?.locations.map((data) => (
                     <div key={data.id} className="w-1/3">
                       <Radio
-                        value={data.location}
+                        value={data?.data?.region?.name_ru}
                         name="location"
                         className="text-lg font-AeonikProRegular"
                       >
-                        {data.location}
+                        {data?.region?.name_ru}
                       </Radio>
                     </div>
                   ))}
@@ -701,7 +702,7 @@ const ProductDetails = () => {
                   <p
                     className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
                   >
-                    {data?.size}
+                    {data?.letter_size}
                   </p>
                   <span className="text-[10px] font-AeonikProRegular text-[#757575]">
                     {data.sizeNumbers}
