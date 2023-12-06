@@ -437,7 +437,7 @@ const MediumHeader = () => {
                   </NavLink>
                 ) : (
                   <NavLink
-                    to="/sign_in"
+                    to="/sign_up"
                     className=" bg-btnBgColor rounded-xl items-center justify-center w-11 h-11 mr-2 hidden md:flex"
                   >
                     <span>

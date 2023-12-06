@@ -163,7 +163,6 @@ const EditProfilePage = () => {
       {},
       {
         onSuccess: (res) => {
-          refetch();
           console.log(res, "USER-EMAIL");
           if (res?.message && !res.errors) {
             setLoading(false);
