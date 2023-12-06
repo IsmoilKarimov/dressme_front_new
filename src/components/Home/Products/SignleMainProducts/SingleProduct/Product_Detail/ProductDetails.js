@@ -551,7 +551,7 @@ const ProductDetails = () => {
                 Выберите локацию
               </div>
               <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
-                {data?.product?.locations[0]?.region?.name_ru}
+                {data?.product?.locations[0]?.sub_region?.name_ru}
               </div>
               <Radio.Group
                 style={{
@@ -567,11 +567,11 @@ const ProductDetails = () => {
                       return (
                         <div key={data.id} className="">
                           <Radio
-                            value={data?.region?.name_ru}
+                            value={data?.sub_region?.name_ru}
                             name="location"
                             className="text-lg font-AeonikProRegular"
                           >
-                            {data?.region?.name_ru}
+                            {data?.sub_region?.name_ru}
                           </Radio>
                         </div>
                       );
