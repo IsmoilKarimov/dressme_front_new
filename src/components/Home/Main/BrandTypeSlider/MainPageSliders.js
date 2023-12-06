@@ -301,7 +301,7 @@ export default function MainPageSliders() {
                     <NavLink
                       to={"/categoriesType"}
                       key={data?.id}
-                      className="h-[260px] rounded-lg "
+                      className="max-w-[192px] w-full h-[260px] rounded-lg "
                     >
                       <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px] rounded-lg overflow-hidden">
                         <button
@@ -400,7 +400,7 @@ export default function MainPageSliders() {
               }
             })}
           </div>
-          {mainData?.sections?.length ? (
+          {mainData?.sections?.length > 6 ? (
             <div className="w-full flex justify-center items-center  mt-10">
               <button
                 className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[40px] xs:h-[52px] px-4 ll:px-10 rounded-xl border ${dressInfo?.BtnSeason}`}
