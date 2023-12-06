@@ -31,6 +31,7 @@ import {
   autummSeason,
   winterSeason,
   HeartImg,
+  springSeason,
 } from "../../../../../../assets";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
@@ -332,27 +333,33 @@ const ProductDetails = () => {
                 <div className="not-italic mr-3  font-AeonikProMedium leading-4 text-black tracking-[1%]">
                   Сезон:
                 </div>
-                {/* <figure className="flex items-center">
-                  <img src={winterSeason} alt="" />
 
-                  <figcaption className="not-italic  ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
-                    Зима
-                  </figcaption>
-                </figure>
-                <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
-                <figure className="flex items-center">
-                  <img src={summerSeason} alt="" />
-                  <figcaption className="not-italic  ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
-                    Весна
-                  </figcaption>
-                </figure>
-                <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
-                <figure className="flex items-center">
-                  <img src={autummSeason} alt="" />
-                  <figcaption className="not-italic  ml-1 font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                    Осень
-                  </figcaption>
-                </figure> */}
+                {data?.product?.seasons?.map((item) => {
+                  return (
+                    <>
+                      <figure className="flex items-center pr-3 mr-3 last:border-none border-r-[2px] border-searchBgColor">
+                        <img
+                          src={
+                            item?.name_ru === "Весна"
+                              ? springSeason
+                              : item?.name_ru === "Лето"
+                              ? summerSeason
+                              : item?.name_ru === "Осень"
+                              ? autummSeason
+                              : item?.name_ru === "Зима"
+                              ? winterSeason
+                              : null
+                          }
+                          alt=""
+                        />
+
+                        <figcaption className="not-italic  ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
+                          {item?.name_ru}
+                        </figcaption>
+                      </figure>
+                    </>
+                  );
+                })}
               </section>
             </div>
           </div>
@@ -400,7 +407,7 @@ const ProductDetails = () => {
               </article>
             </div>
             <div className="w-1/2 flex flex-col">
-              <div className="flex items-center mb-2">
+              <div className="flex items-center mb-1">
                 <article className="w-fit flex items-center">
                   <ChapterIcon colors={"#000"} />
                   <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
@@ -419,7 +426,7 @@ const ProductDetails = () => {
                   })}
                 </article>
               </div>
-              <div className="flex">
+              <div className="flex flex-wrap">
                 {data?.product?.sections?.map((item, i) => {
                   if (i > 1) {
                     return (
@@ -490,7 +497,13 @@ const ProductDetails = () => {
             <div className="not-italic ml-2 mr-3 font-AeonikProRegular md:font-AeonikProMedium leading-4 text-[#757575]">
               Цвет:
             </div>
-            <p className="not-italic leading-4 text-[#757575]">Синий океан</p>
+            {data?.product?.colors?.map((item) => {
+              return (
+                <p className="mr-1 not-italic leading-4 text-[#757575]">
+                  {item?.name_ru}
+                </p>
+              );
+            })}
           </div>
           <div className="flex items-center py-3 md:py-0">
             <span className="hidden md:block">
@@ -677,7 +690,7 @@ const ProductDetails = () => {
 
         <article className="w-full hidden md:flex items-center">
           <section className="flex flex-wrap items-center gap-x-3 gap-y-3">
-            {selectSize.map((data) => {
+            {data?.product?.sizes?.map((data) => {
               return (
                 <Popover
                   key={data.id}
