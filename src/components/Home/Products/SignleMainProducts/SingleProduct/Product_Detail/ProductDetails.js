@@ -565,7 +565,7 @@ const ProductDetails = () => {
                       return null;
                     } else {
                       return (
-                        <div key={data.id} className="w-1/3">
+                        <div key={data.id} className="">
                           <Radio
                             value={data?.region?.name_ru}
                             name="location"
