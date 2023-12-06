@@ -16,11 +16,13 @@ import { ToastContainer, toast } from "react-toastify";
 import EditPassword from "./EditPassword/EditPassword";
 import { useHttp } from "../../../../hook/useHttp";
 import LoadingFor from "../../../Loading/LoadingFor";
+import EmailSend from "./EmailSend/EmailSend";
 
 const EditProfilePage = () => {
   const { request } = useHttp();
   const [profileData, setProfileData] = useState("");
   const [openEditPasswordModal, setOpenEditPasswordModal] = useState(false);
+  const [sendEmailModal, setSendEmailModal] = useState(false);
   const [loading, setLoading] = useState(false);
   // const [activeEditPasswordBtn, setActiveEditPasswordBtn] = useState(false);
   // const [activeEditEmailBtn, setActiveEditEmailBtn] = useState(false);
@@ -42,6 +44,10 @@ const EditProfilePage = () => {
   // =====================
   const togglePassword = React.useCallback(
     () => setOpenEditPasswordModal(false),
+    []
+  );
+  const toggleEmail = React.useCallback(
+    () => setSendEmailModal(false),
     []
   );
   // =====================
@@ -227,7 +233,7 @@ const EditProfilePage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="relative">
       {loading ? (
         <div className="absolute left-0 right-0 md:top-[-200px]">
           <LoadingFor />
@@ -257,11 +263,25 @@ const EditProfilePage = () => {
                 ${openEditPasswordModal ? "" : "hidden"}`}
               ></section>
               <section
+                onClick={() => {
+                  setSendEmailModal(false);
+                }}
+                className={`fixed inset-0 z-[112] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
+                ${sendEmailModal ? "" : "hidden"}`}
+              ></section>
+              <section
                 className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${
                   openEditPasswordModal ? "" : "hidden z-0"
                 }`}
               >
                 <EditPassword onClick={togglePassword} />
+              </section>
+              <section
+                className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${
+                  sendEmailModal ? "" : "hidden z-0"
+                }`}
+              >
+                <EmailSend onClick={toggleEmail} />
               </section>
               {/* ----------- Email Verify Modal Start ----------- */}
               <div className="w-full md:w-1/2 h-fit ">
@@ -436,19 +456,21 @@ const EditProfilePage = () => {
                       onClick={() => setOpenEditPasswordModal(true)}
                       type="button"
                       className={
-                        "w-full active:scale-95 text-start text-borderWinter text-base not-italic font-AeonikProRegular hover:underline"
+                        "w-full text-start text-borderWinter text-base not-italic font-AeonikProRegular hover:underline"
                       }
                     >
                       Изменить пароль
                     </button>
                     <button
-                      onClick={sendData}
+                      // onClick={sendData}
+                      onClick={() => setSendEmailModal(true)}
+                      type="button"
                       disabled={state.activeEditEmail ? false : true}
                       className={`${
                         state.activeEditEmail
-                          ? "text-borderWinter"
-                          : "text-[#e2e2e2]"
-                      } w-full active:scale-95 text-end text-base not-italic font-AeonikProRegular hover:underline`}
+                          ? "text-borderWinter hover:underline"
+                          : "text-[#e2e2e2] hover:no-underline"
+                      } w-full text-end  text-base not-italic font-AeonikProRegular `}
                     >
                       Обновить почту
                     </button>

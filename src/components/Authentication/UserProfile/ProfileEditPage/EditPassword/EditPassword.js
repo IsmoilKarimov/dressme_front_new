@@ -94,7 +94,7 @@ export default function EditPassword({ onClick }) {
           onClick={onClick}
           className=" border border-[#e2e2e2] rounded-lg p-[3px]"
         >
-          <MenuCloseIcons colors={"#000"} />
+          <MenuCloseIcons width={24} height={24} colors={"#000"} />
         </button>
       </div>
       <div className="w-full flex items-center justify-center">
