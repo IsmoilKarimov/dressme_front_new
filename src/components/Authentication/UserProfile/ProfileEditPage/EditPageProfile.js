@@ -166,7 +166,7 @@ const EditProfilePage = () => {
           refetch();
           console.log(res, "USER-EMAIL");
           if (res?.message && !res.errors) {
-            setLoading(false)
+            setLoading(false);
             setState({
               ...state,
               errorsGroup: "",
@@ -194,7 +194,7 @@ const EditProfilePage = () => {
               progress: undefined,
               theme: "light",
             });
-          }
+          } 
         },
         onError: (err) => {
           console.log(err);
@@ -217,11 +217,8 @@ const EditProfilePage = () => {
   };
 
   const sendData = () => {
-    return(
-      sendEditedEmailData(),
-      setLoading(true)
-    )
-  }
+    return sendEditedEmailData(), setLoading(true);
+  };
 
   useEffect(() => {
     window.scrollTo({
@@ -231,269 +228,274 @@ const EditProfilePage = () => {
   }, []);
 
   return (
-    <>
+    <div>
       {loading ? (
-        <LoadingFor />
+        <div className="absolute left-0 right-0 md:top-[-200px]">
+          <LoadingFor />
+        </div>
       ) : (
-        profileData && (
-          <div className="pt-3 md:pt-8 w-full flex justify-center ss:px-4 md:px-0">
-            <ToastContainer
-              position="top-right"
-              autoClose={5000}
-              limit={4}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="colored"
-            />
-            <section
-              onClick={() => {
-                setOpenEditPasswordModal(false);
-              }}
-              className={`fixed inset-0 z-[112] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
-              ${openEditPasswordModal ? "" : "hidden"}`}
-            ></section>
-            <section
-              className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${
-                openEditPasswordModal ? "" : "hidden z-0"
-              }`}
-            >
-              <EditPassword onClick={togglePassword} />
-            </section>
-            {/* ----------- Email Verify Modal Start ----------- */}
-            <div className="w-full md:w-1/2 h-fit ">
-              <div
+        <div className="w-full">
+          {profileData && (
+            <div className="w-full block pt-3 md:pt-8 ss:px-4 md:px-0">
+              <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                limit={4}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+              />
+              <section
                 onClick={() => {
-                  setState({ ...state, openModalEmailMessage: false });
+                  setOpenEditPasswordModal(false);
                 }}
-                className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-                  state?.openModalEmailMessage ? "" : "hidden"
+                className={`fixed inset-0 z-[112] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
+                ${openEditPasswordModal ? "" : "hidden"}`}
+              ></section>
+              <section
+                className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${
+                  openEditPasswordModal ? "" : "hidden z-0"
                 }`}
-              ></div>
-              {state?.openModalEmailMessage && (
-                <div className="fixed max-w-[490px] h-[275px]  p-3 bg-white rounded-lg  mx-auto w-full  z-[113] top-[50%] left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
-                  <div className="flex items-center justify-end">
-                    <button type="button"
-                      className="cursor-pointer"
-                      onClick={() => {
-                        navigate(`/sign_in`)
-                        setState({
-                          ...state,
-                          openModalEmailMessage: false,
-                        });
-                      }}
-                    >
-                      <MenuCloseIcons colors="#303030" />
-                    </button>
-                  </div>
-                  <div className="w-full flex items-center justify-center flex-col">
-                    <button className="flex p-4 items-center justify-center rounded-full mt-4 bg-[#D8EDFF]">
-                      <SuccessIconsForMail />
-                    </button>
-                    <p className="text-[#1F1F1F] text-3xl not-italic font-AeonikProMedium mt-5">
-                      Мы отправили вам ссылку
-                    </p>
-                    <p className="text-[#8B8B8B] text-xl not-italic font-AeonikProRegular mt-[30px]">
-                      Проверьте свой E-mail
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
-            {/* ----------- Email Verify Modal END ----------- */}
-            <div className="md:max-w-[820px] max-w-[440px] w-[100%] h-fit p-4 md:px-0  border border-searchBgColor rounded-lg mb-[100px] md:mb-0">
-              <div className="md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
-                <div className="w-full flex justify-between items-center">
-                  <span className="not-italic font-AeonikProMedium text-xl leading-6 text-black tracking-[1%]">
-                    Мои данные
-                  </span>
-                </div>
-                <div className="flex flex-col md:flex-row justify-between items-center mt-6">
-                  <div className="w-full md:w-[48%] h-fit">
-                    <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-                      Имя{" "}
-                    </div>
-                    <div className="mt-[6px] px-[16px] w-full flex bg-btnBgColor items-center border border-searchBgColor rounded-lg ">
-                      <input
-                        className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
-                        type="text"
-                        name="firstname"
-                        value={state?.userFirstname || null}
-                        onChange={(e) => {
+              >
+                <EditPassword onClick={togglePassword} />
+              </section>
+              {/* ----------- Email Verify Modal Start ----------- */}
+              <div className="w-full md:w-1/2 h-fit ">
+                <div
+                  onClick={() => {
+                    setState({ ...state, openModalEmailMessage: false });
+                  }}
+                  className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+                    state?.openModalEmailMessage ? "" : "hidden"
+                  }`}
+                ></div>
+                {state?.openModalEmailMessage && (
+                  <div className="fixed max-w-[490px] h-[275px]  p-3 bg-white rounded-lg  mx-auto w-full  z-[113] top-[50%] left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
+                    <div className="flex items-center justify-end">
+                      <button
+                        type="button"
+                        className="cursor-pointer"
+                        onClick={() => {
+                          navigate(`/sign_in`);
                           setState({
                             ...state,
-                            userFirstname: e.target.value,
-                            isChange: true,
-                            activeEditPassword: true,
+                            openModalEmailMessage: false,
                           });
                         }}
-                        placeholder="Имя"
-                        required
-                      />
-                      <span>
-                        <PersonIcons colors={"#D2D2D2"} />
-                      </span>
+                      >
+                        <MenuCloseIcons colors="#303030" />
+                      </button>
+                    </div>
+                    <div className="w-full flex items-center justify-center flex-col">
+                      <button className="flex p-4 items-center justify-center rounded-full mt-4 bg-[#D8EDFF]">
+                        <SuccessIconsForMail />
+                      </button>
+                      <p className="text-[#1F1F1F] text-3xl not-italic font-AeonikProMedium mt-5">
+                        Мы отправили вам ссылку
+                      </p>
+                      <p className="text-[#8B8B8B] text-xl not-italic font-AeonikProRegular mt-[30px]">
+                        Проверьте свой E-mail
+                      </p>
                     </div>
                   </div>
-                  <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
-                    <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-                      Фамилия{" "}
-                    </div>
-                    <div className="mt-[6px] px-[16px] w-full flex bg-btnBgColor items-center border border-searchBgColor rounded-lg ">
-                      <input
-                        className="w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
-                        type="text"
-                        name="lastName"
-                        value={state?.userLastname || null}
-                        onChange={(e) => {
-                          setState({
-                            ...state,
-                            userLastname: e.target.value,
-                            isChange: true,
-                            activeEditPassword: true,
-                          });
-                        }}
-                        placeholder="Фамилия"
-                        required
-                      />
-                      <span>
-                        <PersonIcons colors={"#D2D2D2"} />
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                )}
               </div>
-              <div className="w-full md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
-                <div className="flex  flex-col md:flex-row justify-between items-center">
-                  <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
-                    <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-                      Номер телефона{" "}
-                    </div>
-                    <div className="flex mt-[6px] items-center justify-center overflow-hidden border border-searchBgColor rounded-lg">
-                      <div className="w-[35%] md:w-[25%] h-12 flex bg-btnBgColor items-center justify-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
-                        <img src={UzbekFlag} alt="form-arrow-bottom" />
-                        <input
-                          className="w-[40px] bg-btnBgColor h-full select-none mx-2 not-italic font-AeonikProMedium text-base leading-4 text-black"
-                          type="text"
-                          value={"+" + state?.userPhoneCode || ""}
-                          readOnly
-                        />
+              {/* ----------- Email Verify Modal END ----------- */}
+              <div className="md:max-w-[820px] max-w-[440px] w-[100%] h-fit p-4 md:px-0  border border-searchBgColor rounded-lg mb-[100px] md:mx-auto md:mb-0">
+                <div className="md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
+                  <div className="w-full flex justify-between items-center">
+                    <span className="not-italic font-AeonikProMedium text-xl leading-6 text-black tracking-[1%]">
+                      Мои данные
+                    </span>
+                  </div>
+                  <div className="flex flex-col md:flex-row justify-between items-center mt-6">
+                    <div className="w-full md:w-[48%] h-fit">
+                      <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
+                        Имя{" "}
                       </div>
-                      <div className="w-[65%] md:w-[75%] bg-btnBgColor h-12 overflow-hidden">
-                        <InputMask
-                          mask="(99)999-99-99"
-                          value={state?.userPhoneNumber || null}
+                      <div className="mt-[6px] px-[16px] w-full flex bg-btnBgColor items-center border border-searchBgColor rounded-lg ">
+                        <input
+                          className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                          type="text"
+                          name="firstname"
+                          value={state?.userFirstname || null}
                           onChange={(e) => {
                             setState({
                               ...state,
-                              userPhoneNumber: e.target.value,
+                              userFirstname: e.target.value,
                               isChange: true,
                               activeEditPassword: true,
                             });
                           }}
-                          className={`w-full px-4  h-full not-italic bg-btnBgColor ${
-                            state?.userPhoneNumber
-                              ? "font-AeonikProMedium"
-                              : null
-                          } text-base leading-4 text-black`}
-                          placeholder={"(77) 777-77-77"}
-                        ></InputMask>
+                          placeholder="Имя"
+                          required
+                        />
+                        <span>
+                          <PersonIcons colors={"#D2D2D2"} />
+                        </span>
+                      </div>
+                    </div>
+                    <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
+                      <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
+                        Фамилия{" "}
+                      </div>
+                      <div className="mt-[6px] px-[16px] w-full flex bg-btnBgColor items-center border border-searchBgColor rounded-lg ">
+                        <input
+                          className="w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                          type="text"
+                          name="lastName"
+                          value={state?.userLastname || null}
+                          onChange={(e) => {
+                            setState({
+                              ...state,
+                              userLastname: e.target.value,
+                              isChange: true,
+                              activeEditPassword: true,
+                            });
+                          }}
+                          placeholder="Фамилия"
+                          required
+                        />
+                        <span>
+                          <PersonIcons colors={"#D2D2D2"} />
+                        </span>
                       </div>
                     </div>
                   </div>
-                  <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
-                    <div className="flex justify-between mt-[6px]  w-full items-center not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-                      <span>Электронная почта</span>
+                </div>
+                <div className="w-full md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
+                  <div className="flex  flex-col md:flex-row justify-between items-center">
+                    <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
+                      <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
+                        Номер телефона{" "}
+                      </div>
+                      <div className="flex mt-[6px] items-center justify-center overflow-hidden border border-searchBgColor rounded-lg">
+                        <div className="w-[35%] md:w-[25%] h-12 flex bg-btnBgColor items-center justify-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
+                          <img src={UzbekFlag} alt="form-arrow-bottom" />
+                          <input
+                            className="w-[40px] bg-btnBgColor h-full select-none mx-2 not-italic font-AeonikProMedium text-base leading-4 text-black"
+                            type="text"
+                            value={"+" + state?.userPhoneCode || ""}
+                            readOnly
+                          />
+                        </div>
+                        <div className="w-[65%] md:w-[75%] bg-btnBgColor h-12 overflow-hidden">
+                          <InputMask
+                            mask="(99)999-99-99"
+                            value={state?.userPhoneNumber || null}
+                            onChange={(e) => {
+                              setState({
+                                ...state,
+                                userPhoneNumber: e.target.value,
+                                isChange: true,
+                                activeEditPassword: true,
+                              });
+                            }}
+                            className={`w-full px-4  h-full not-italic bg-btnBgColor ${
+                              state?.userPhoneNumber
+                                ? "font-AeonikProMedium"
+                                : null
+                            } text-base leading-4 text-black`}
+                            placeholder={"(77) 777-77-77"}
+                          ></InputMask>
+                        </div>
+                      </div>
                     </div>
-                    <div className="mt-[6px] px-[16px] w-full flex items-center bg-btnBgColor border border-searchBgColor rounded-lg ">
-                      <input
-                        className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
-                        type="email"
-                        value={state?.userEmail || null}
-                        onChange={(e) => {
-                          setState({
-                            ...state,
-                            userEmail: e.target.value,
-                            activeEditEmail: true,
-                          });
-                        }}
-                        placeholder="Адрес электронной почты"
-                        required
-                      />
-                      <span>
-                        <EmailIcons colors={"#D2D2D2"} />
-                      </span>
+                    <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
+                      <div className="flex justify-between mt-[6px]  w-full items-center not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
+                        <span>Электронная почта</span>
+                      </div>
+                      <div className="mt-[6px] px-[16px] w-full flex items-center bg-btnBgColor border border-searchBgColor rounded-lg ">
+                        <input
+                          className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                          type="email"
+                          value={state?.userEmail || null}
+                          onChange={(e) => {
+                            setState({
+                              ...state,
+                              userEmail: e.target.value,
+                              activeEditEmail: true,
+                            });
+                          }}
+                          placeholder="Адрес электронной почты"
+                          required
+                        />
+                        <span>
+                          <EmailIcons colors={"#D2D2D2"} />
+                        </span>
+                      </div>
                     </div>
                   </div>
+                  {/* EditPassword and Send Edited Email */}
+                  <div className="w-full flex items-center xs:justify-start justify-end xs:mt-5 ">
+                    <button
+                      onClick={() => setOpenEditPasswordModal(true)}
+                      type="button"
+                      className={
+                        "w-full active:scale-95 text-start text-borderWinter text-base not-italic font-AeonikProRegular hover:underline"
+                      }
+                    >
+                      Изменить пароль
+                    </button>
+                    <button
+                      onClick={sendData}
+                      disabled={state.activeEditEmail ? false : true}
+                      className={`${
+                        state.activeEditEmail
+                          ? "text-borderWinter"
+                          : "text-[#e2e2e2]"
+                      } w-full active:scale-95 text-end text-base not-italic font-AeonikProRegular hover:underline`}
+                    >
+                      Обновить почту
+                    </button>
+                  </div>
                 </div>
-                {/* EditPassword and Send Edited Email */}
-                <div className="w-full flex items-center xs:justify-start justify-end xs:mt-5 ">
-                  <button
-                    onClick={() => setOpenEditPasswordModal(true)}
-                    type="button"
-                    className={
-                      "w-full active:scale-95 text-start text-borderWinter text-base not-italic font-AeonikProRegular hover:underline"
-                    }
-                  >
-                    Изменить пароль
-                  </button>
-                  <button
-                    onClick={sendData}
-                    disabled={state.activeEditEmail ? false : true}
-                    className={`${
-                      state.activeEditEmail
-                        ? "text-borderWinter"
-                        : "text-[#e2e2e2]"
-                    } w-full active:scale-95 text-end text-base not-italic font-AeonikProRegular hover:underline`}
-                  >
-                    Обновить почту
-                  </button>
-                </div>
-              </div>
-              {/* SEND BUTTON */}
-              <div className="w-full  mx-auto flex items-center justify-between md:px-[40px] md:py-[30px] mt-6 md:mt-0">
-                <div className="">
-                  <button
-                    onClick={LogOut}
-                    className="flex items-center active:scale-95  active:opacity-70 "
-                  >
-                    <span>
-                      <LogOutIcons colors={"#D50000"} />
-                    </span>
-                    <span className="not-italic hidden md:block ml-2  font-AeonikProMedium text-base leading-4 tracking-[1%] text-RedColor text-center">
-                      Выйти из системы
-                    </span>
-                  </button>
-                </div>
-                <div className="w-[80%] xs:w-[60%] md:w-auto ">
-                  <button
-                    onClick={sendEditedData}
-                    type="button"
-                    disabled={state.activeEditPassword ? false : true}
-                    className={`${
-                      state.activeEditPassword
-                        ? "cursor-pointer bg-borderWinter active:scale-95 active:opacity-70"
-                        : "cursor-not-allowed bg-gray-300"
-                    } w-[100%] md:w-[244px] h-[52px]  text-white rounded-lg flex items-center justify-center`}
-                  >
-                    <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center tracking-[1%]">
-                      Обновить данные
-                    </span>
-                    <span className="ml-2">
-                      <SircleNext colors={"#fff"} />
-                    </span>
-                  </button>
+                {/* SEND BUTTON */}
+                <div className="w-full  mx-auto flex items-center justify-between md:px-[40px] md:py-[30px] mt-6 md:mt-0">
+                  <div className="">
+                    <button
+                      onClick={LogOut}
+                      className="flex items-center active:scale-95  active:opacity-70 "
+                    >
+                      <span>
+                        <LogOutIcons colors={"#D50000"} />
+                      </span>
+                      <span className="not-italic hidden md:block ml-2  font-AeonikProMedium text-base leading-4 tracking-[1%] text-RedColor text-center">
+                        Выйти из системы
+                      </span>
+                    </button>
+                  </div>
+                  <div className="w-[80%] xs:w-[60%] md:w-auto ">
+                    <button
+                      onClick={sendEditedData}
+                      type="button"
+                      disabled={state.activeEditPassword ? false : true}
+                      className={`${
+                        state.activeEditPassword
+                          ? "cursor-pointer bg-borderWinter active:scale-95 active:opacity-70"
+                          : "cursor-not-allowed bg-gray-300"
+                      } w-[100%] md:w-[244px] h-[52px]  text-white rounded-lg flex items-center justify-center`}
+                    >
+                      <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center tracking-[1%]">
+                        Обновить данные
+                      </span>
+                      <span className="ml-2">
+                        <SircleNext colors={"#fff"} />
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        )
+          )}
+        </div>
       )}
-    </>
+    </div>
   );
 };
 export { EditProfilePage };
