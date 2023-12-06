@@ -1024,7 +1024,9 @@ const ProductDetails = () => {
       <div className="w-full">
         <div className={openTab === 1 ? "block" : "hidden"}>
           <action className=" flex">
-            <LocationOfYandex />
+            <LocationOfYandex
+              locationText={data?.product?.locations[0]?.address}
+            />
           </action>
         </div>
         <div className={openTab === 2 ? "block" : "hidden"}>

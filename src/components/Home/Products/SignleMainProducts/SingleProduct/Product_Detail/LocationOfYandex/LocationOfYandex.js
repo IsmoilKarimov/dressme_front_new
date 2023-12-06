@@ -10,8 +10,7 @@ import "./LocationOfYandex.css";
 import { markerIcons } from "../../../../../../../assets";
 import AddCopyCheckedIcon from "../AddCopyCheckedIcon/AddCopyCheckedIcon";
 
-
-function LocationOfYandex() {
+function LocationOfYandex({ locationText }) {
   //------------------------------------------------------------------------------------------------
   const mapState = {
     center: [41.327228, 69.249023],
@@ -23,11 +22,13 @@ function LocationOfYandex() {
   //   window.open(`https://yandex.uz/maps/10335/tashkent/?ll=${mapState?.center[1]}%2C${mapState?.center[0]}&mode=search&sll=${mapState?.center[1]}%2C${mapState?.center[0]}&text=${mapState?.center[0]}%2C${mapState?.center[1]}&z=15`, "_blank")
 
   // }
-  const [copyText, setCopyText] = useState('Ташкент, улица Абдуллы Кадыри, 23, ')
+  const [copyText, setCopyText] = useState(
+    "Ташкент, улица Абдуллы Кадыри, 23, "
+  );
 
   const handleCopyText = () => {
-    navigator.clipboard.writeText(copyText)
-  }
+    navigator.clipboard.writeText(copyText);
+  };
 
   useEffect(() => {
     window.scrollTo({
@@ -41,17 +42,17 @@ function LocationOfYandex() {
           {/* <span className="text-[#000] not-italic font-AeonikProMedium text-[14px] xs:text-base ">Адрес:</span> */}
           <div className="flex items-center">
             <span className="text-[#000] not-italic font-AeonikProRegular text-[14px] xs:text-base ">
-              {copyText}
+              {locationText}
             </span>
             <button
               type="button"
               onClick={handleCopyText}
-              className="cursor-pointer ml-[8px]">
+              className="cursor-pointer ml-[8px]"
+            >
               <AddCopyCheckedIcon />
             </button>
           </div>
         </div>
-
       </div>
       <div className={"mapRoot"}>
         <YMaps
@@ -64,7 +65,6 @@ function LocationOfYandex() {
             className={` overflow-hidden w-full h-[350px] md:h-[400px] rounded-lg productDetailsMaps`}
             defaultState={mapState}
             modules={["control.FullscreenControl"]}
-
           >
             <Placemark
               className={"placemarkCLuster cursor-pointer"}
@@ -81,7 +81,7 @@ function LocationOfYandex() {
             <ZoomControl
               options={{
                 float: "right",
-                position: { bottom: 170, right: 10, },
+                position: { bottom: 170, right: 10 },
                 size: "small",
               }}
             />{" "}
