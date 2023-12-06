@@ -163,7 +163,6 @@ const EditProfilePage = () => {
       {},
       {
         onSuccess: (res) => {
-          refetch();
           console.log(res, "USER-EMAIL");
           if (res?.message && !res.errors) {
             setLoading(false);
@@ -275,7 +274,7 @@ const EditProfilePage = () => {
                   }`}
                 ></div>
                 {state?.openModalEmailMessage && (
-                  <div className="fixed max-w-[490px] h-[275px]  p-3 bg-white rounded-lg  mx-auto w-full  z-[113] top-[50%] left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
+                  <div className="fixed max-w-[490px] h-[275px]  p-3 bg-white rounded-lg mx-auto w-full z-[113] top-[50%] left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
                     <div className="flex items-center justify-end">
                       <button
                         type="button"
@@ -465,7 +464,7 @@ const EditProfilePage = () => {
                       <span>
                         <LogOutIcons colors={"#D50000"} />
                       </span>
-                      <span className="not-italic hidden md:block ml-2  font-AeonikProMedium text-base leading-4 tracking-[1%] text-RedColor text-center">
+                      <span className="not-italic hidden md:block ml-2 font-AeonikProMedium text-base leading-4 tracking-[1%] text-RedColor text-center">
                         Выйти из системы
                       </span>
                     </button>
