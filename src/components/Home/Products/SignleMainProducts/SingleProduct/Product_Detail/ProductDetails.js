@@ -263,36 +263,37 @@ const ProductDetails = () => {
       <section className="w-full hidden md:block">
         <section className="h-fit flex items-center mb-4">
           <article className="hidden md:flex items-center justify-start ">
-            <p className="w-fit flex items-center gap-x-[1px]">
-              <StarIcons />
-              <StarIcons />
-              <StarIcons />
-              <StarIcons />
-              <StarIcons />
-            </p>
-            <article className="flex items-center w-fit ml-2 text-base md:text-[14px]">
-              <p className="not-italic font-AeonikProMedium mt-1 leading-4 text-black tracking-[1%]">
-                {data?.product?.overall_rating}
-              </p>
-              <p className=" pl-1 not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
-                ({data?.product?.rated_users_count} votes)
-              </p>
-            </article>
+            {data?.product?.overall_rating ? (
+              <>
+                {" "}
+                <p className="w-fit flex items-center gap-x-[1px]">
+                  <StarIcons />
+                </p>
+                <article className="mr-[25px] flex items-center w-fit ml-2 text-base md:text-[14px]">
+                  <p className="not-italic font-AeonikProMedium mt-1 leading-4 text-black tracking-[1%]">
+                    {data?.product?.overall_rating}
+                  </p>
+                  <p className=" pl-1 not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
+                    ({data?.product?.rated_users_count} votes)
+                  </p>
+                </article>
+              </>
+            ) : null}
             <article>
-              <div className="flex items-center ml-[25px]">
+              <div className="flex items-center justify-start">
                 <span className="mr-[6px]">
                   <ProductArticleIcons />
                 </span>
                 <span className="text-sm font-AeonikProRegular leading-4 tracking-[1%]">
                   Артикль:
                 </span>
-                <input
-                  type="text"
-                  readOnly
-                  value={data?.product?.sku}
+                <div
                   onChange={(e) => setCopyText(e.target.value)}
-                  className="text-sm bg-transparent w-[68px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]"
+                  className="text-sm bg-transparent w-fit font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]"
                 />
+                <div className="w-fit text-sm font-AeonikProRegular text-[#a1a1a1]">
+                  {data?.product?.sku}
+                </div>
                 <button
                   type="button"
                   onClick={handleCopyText}
@@ -398,22 +399,37 @@ const ProductDetails = () => {
                 </p>
               </article>
             </div>
-            <div className="w-1/2 flex items-center ">
-              <article className="w-fit flex items-center">
-                <ChapterIcon colors={"#000"} />
-                <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
-                  Раздел:
-                </div>
-              </article>
-              <article className="w-fit ml-2">
-                {data?.product?.sections?.map((item) => {
-                  return (
-                    <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                      {item?.name_ru}{" "}
-                    </p>
-                  );
+            <div className="w-1/2 flex flex-col">
+              <div className="flex items-center mb-2">
+                <article className="w-fit flex items-center">
+                  <ChapterIcon colors={"#000"} />
+                  <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
+                    Раздел:
+                  </div>
+                </article>
+                <article className="w-fit ml-2 flex flex-wrap">
+                  {data?.product?.sections?.map((item, i) => {
+                    if (i < 2) {
+                      return (
+                        <p className="mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+                          {item?.name_ru}
+                        </p>
+                      );
+                    }
+                  })}
+                </article>
+              </div>
+              <div className="flex">
+                {data?.product?.sections?.map((item, i) => {
+                  if (i > 1) {
+                    return (
+                      <p className="mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+                        {item?.name_ru}
+                      </p>
+                    );
+                  }
                 })}
-              </article>
+              </div>
             </div>
           </div>
           <div className="w-full flex items-center mb-4">
@@ -438,13 +454,13 @@ const ProductDetails = () => {
                 </div>
               </article>
               <article className="w-fit flex items-center ml-2">
-                <input
-                  className="text-sm bg-transparent w-[138px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]"
-                  value={data?.product?.seller?.card_number}
+                <div
+                  className="text-sm w-fit bg-transparent font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]"
                   onChange={(e) => setCopyCardNumber(e.target.value)}
-                  readOnly
-                  type="text"
                 />
+                <div className="w-fit text-sm font-AeonikProRegular text-[#a1a1a1]">
+                  {data?.product?.seller?.card_number}
+                </div>
                 <button
                   type="button"
                   onClick={handleCopyCardNumber}
