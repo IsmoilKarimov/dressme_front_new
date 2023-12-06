@@ -909,25 +909,35 @@ const ProductDetails = () => {
             </article>
             <span className="text-base font-AeonikProMedium mr-3">от</span>
             <p className="hidden md:block font-AeonikProMedium text-[20px] text-black">
-              452 000 сум
+              {data?.product?.cost?.discount_price
+                ? data?.product?.cost?.discount_price
+                : data?.product?.cost?.price}{" "}
+              сум
             </p>
-            <p className="hidden md:block ml-[10px] font-AeonikProRegular line-through text-[18px] text-setTexOpacity">
-              652 000 сум
-            </p>
+            {data?.product?.cost?.discount_price ? (
+              <p className="hidden md:block ml-[10px] font-AeonikProRegular line-through text-[18px] text-setTexOpacity">
+                {data?.product?.cost?.price} сум
+              </p>
+            ) : null}
           </section>
-          <section className="w-[84px] h-9 md:w-[100px] md:h-11 cursor-pointer flex items-center justify-center border border-searchBgColor rounded-lg ml-8 active:scale-95">
-            <p>
-              <DiscountShapeIcons />
-            </p>
-            <p className="ml-[6px] font-AeonikProMedium text-sm md:text-sm text-red-700">
-              -30%
-            </p>
-          </section>
+          {data?.product?.cost?.discount_percent ? (
+            <section className="w-[84px] h-9 md:w-[100px] md:h-11 cursor-pointer flex items-center justify-center border border-searchBgColor rounded-lg ml-8 active:scale-95">
+              <p>
+                <DiscountShapeIcons />
+              </p>
+              <p className="ml-[6px] font-AeonikProMedium text-sm md:text-sm text-red-700">
+                -{data?.product?.cost?.discount_percent}%
+              </p>
+            </section>
+          ) : null}
+
           <section
             className={`w-fit ${dressInfo?.TextColorSeason} items-center text-sm hidden md:flex ml-8`}
           >
             <p className="font-AeonikProRegular text-right">В наличии:</p>
-            <p className="ml-2 font-AeonikProMedium text-right">28</p>
+            <p className="ml-2 font-AeonikProMedium text-right">
+              {data?.product?.sizes_sum_amount}
+            </p>
           </section>
         </article>
 
@@ -936,20 +946,25 @@ const ProductDetails = () => {
             <address className="w-[65%] md:w-fit">
               <a
                 className="w-[232px] h-12 md:h-[52px] px-5  rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex gap-x-3 items-center justify-center bg-fullBlue"
-                href="tel:+998 (97) 720-30-40"
+                href={`${
+                  "tel:" + data?.product?.locations[0]?.assistant_phone
+                }`}
               >
-                <PhoneIcons colors={"#fff"} /> Самандар
+                <PhoneIcons colors={"#fff"} />{" "}
+                {data?.product?.locations[0]?.assistant_name}
               </a>
             </address>
             <address className="w-[35%] md:w-fit  ml-4">
               <a
                 className={`w-[232px] h-12 md:h-[52px] px-5 rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center flex gap-x-3 items-center justify-center text-fullBlue border border-fullBlue`}
-                href="https://t.me/itpark_uz"
+                href={`https://t.me/${data?.product?.locations[0]?.assistant_messenger.slice(
+                  1
+                )}`}
               >
                 <span className="w-7 h-7 bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
                   <FaTelegramPlane size={16} />
                 </span>{" "}
-                <span>@itpark_uz</span>{" "}
+                <span>{data?.product?.locations[0]?.assistant_messenger}</span>{" "}
               </a>
             </address>
           </article>
@@ -1017,27 +1032,7 @@ const ProductDetails = () => {
               Кратко о товаре
             </action>
             <article className="font-AeonikProRegular text-base">
-              Бренд GRN занимает №4 место в Юго-Восточной Азии, относится к
-              ТОПовому сегменту качества. Бренд GRN один из самых старейших
-              брендов обуви и одежды в Азии - был основан в 1978 году.
-            </article>
-            <article className="font-AeonikProRegular text-base">
-              Бренд GRN имеет более 12000 магазинов собственной розницы в таких
-              странах как: Китай, Япония, Вьетнам, Малайзия, Марокко, Югославия,
-              Словения, Польша.
-            </article>
-            <article className="font-AeonikProRegular text-base">
-              Бренд GRN ориентирован на выпуск высококачественной одежды и обуви
-              для спорта и для носки на каждый день.
-            </article>
-            <article className="font-AeonikProRegular text-base">
-              Суммарные объемы выпускаемой обуви – 20.000.000 пар в год, что
-              делает бренд GRN одним из самых крупных брендов не только в Азии,
-              но и в мире.
-            </article>
-            <article className="font-AeonikProRegular text-base">
-              Отличительные черты продукции GRN – высокое качество, комфортные
-              лекала и стиль.
+              {data?.product?.description_ru}
             </article>
           </action>
         </div>
@@ -1049,39 +1044,8 @@ const ProductDetails = () => {
                   "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
                 }
               >
-                <BsCircleFill size={5} className="mx-2" /> Подошва 100% EVA
-              </li>
-              <li
-                className={
-                  "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
-                }
-              >
-                <BsCircleFill size={5} className="mx-2" /> Подметка 100% резина
-                высокого трения
-              </li>
-              <li
-                className={
-                  "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
-                }
-              >
-                <BsCircleFill size={5} className="mx-2" /> Нереально легкие и
-                мягкие
-              </li>
-              <li
-                className={
-                  "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
-                }
-              >
-                <BsCircleFill size={5} className="mx-2" /> Стрейчевый верх –
-                комфортные как носки
-              </li>
-              <li
-                className={
-                  "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
-                }
-              >
-                <BsCircleFill size={5} className="mx-2" /> Отличная фиксация
-                стопы
+                <BsCircleFill size={5} className="mx-2" />{" "}
+                {data?.product?.composition_ru}
               </li>
             </ul>
           </action>
