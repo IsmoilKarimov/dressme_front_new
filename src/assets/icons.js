@@ -2882,11 +2882,11 @@ const GoBackIcon = () => {
     </svg>
   );
 };
-const MenuCloseIcons = ({ colors }) => {
+const MenuCloseIcons = ({ colors, width, height }) => {
   return (
     <svg
-      width="30"
-      height="30"
+      width={width}
+      height={height}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
