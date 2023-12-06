@@ -297,12 +297,11 @@ export default function MainPageSliders() {
             ) : (
               <section className="w-full box-border flex flex-row justify-start gap-x-3 mt-4 mb-6 md:my-6">
                 {mainData?.sections?.map((data) => {
-                  console.log(data, "categories-cards");
                   return (
                     <NavLink
                       to={"/categoriesType"}
                       key={data?.id}
-                      className="w-1/6 h-[260px] rounded-lg "
+                      className="h-[260px] rounded-lg "
                     >
                       <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px] rounded-lg overflow-hidden">
                         <button
@@ -342,22 +341,27 @@ export default function MainPageSliders() {
               if (more) {
                 return (
                   <NavLink
-                    to="/categoriesType"
+                    to={"/categoriesType"}
                     key={data?.id}
-                    className="w-[100%] "
+                    className="!w-[99%] h-[260px] rounded-lg "
                   >
-                    <figure className="w-[100%] xs:w-[196px] h-[140px] xs:h-[224px] flex items-center border border-searchBgColor justify-center p-1 bg-btnBgColor ]	rounded-xl xs:rounded">
-                      <NoImg />
+                    <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px] rounded-lg overflow-hidden">
+                      <button
+                        className={`w-full h-full border border-searchBgColor rounded-lg flex items-center justify-center`}
+                      >
+                        <NoImg />
+                      </button>
+
                       {/* <img
-                        src={data?.url_photo}
-                        alt=""
-                        className="w-full h-full "
-                      /> */}
-                    </figure>
-                    <article className="w-full py-1 flex items-center">
-                      <p className="not-italic flex items-center font-AeonikProMedium text-sm xs:text-base leading-6 text-black">
+                    src={data?.url_photo}
+                    alt=""
+                    className="w-full h-full "
+                  /> */}
+                    </div>
+                    <article className="h-12.5 flex items-center justify-start">
+                      <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
                         {data?.name_ru || "type"}
-                        <p className="not-italic lex items-center  font-AeonikProRegular text-xs xs:text-sm leading-4 text-gray-500 ml-1">
+                        <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
                           ({data?.products_count || "0"})
                         </p>
                       </p>
@@ -396,36 +400,39 @@ export default function MainPageSliders() {
               }
             })}
           </div>
-          <div className="w-full flex justify-center items-center  mt-10">
-            <button
-              className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[40px] xs:h-[52px] px-4 ll:px-10 rounded-xl border ${dressInfo?.BtnSeason}`}
-              onClick={() => setMore(!more)}
-            >
-              <p className="not-italic  font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
-                {more ? "Назад" : "Посмотреть все разделы"}
-              </p>
-              <p className="ml-2 ">
-                {more ? (
-                  <div>
-                    <span className="xs:hidden">
-                      <ShowMoreBackIcon
-                        colors={dressInfo?.ColorSeason}
-                        width={18}
-                      />
-                    </span>
-                    <span className="hidden xs:block">
-                      <ShowMoreBackIcon
-                        colors={dressInfo?.ColorSeason}
-                        width={24}
-                      />
-                    </span>
-                  </div>
-                ) : (
-                  <SircleNext colors={dressInfo?.ColorSeason} />
-                )}
-              </p>
-            </button>
-          </div>
+          {mainData?.sections?.length ? (
+            <div className="w-full flex justify-center items-center  mt-10">
+              <button
+                className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[40px] xs:h-[52px] px-4 ll:px-10 rounded-xl border ${dressInfo?.BtnSeason}`}
+                onClick={() => setMore(!more)}
+              >
+                <p className="not-italic  font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
+                  {more ? "Назад" : "Посмотреть все разделы"}
+                </p>
+                <p className="ml-2 ">
+                  {more ? (
+                    <div>
+                      <span className="xs:hidden">
+                        <ShowMoreBackIcon
+                          colors={dressInfo?.ColorSeason}
+                          width={18}
+                        />
+                      </span>
+                      <span className="hidden xs:block">
+                        <ShowMoreBackIcon
+                          colors={dressInfo?.ColorSeason}
+                          width={24}
+                        />
+                      </span>
+                    </div>
+                  ) : (
+                    <SircleNext colors={dressInfo?.ColorSeason} />
+                  )}
+                </p>
+              </button>
+            </div>
+          ) : null}
+
           <div className="w-full mt-[60px] hidden xs:block">
             {mainData?.shops ? (
               <Slider
