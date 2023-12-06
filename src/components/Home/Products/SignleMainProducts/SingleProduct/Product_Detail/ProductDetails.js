@@ -505,25 +505,32 @@ const ProductDetails = () => {
               );
             })}
           </div>
-          <div className="flex items-center py-3 md:py-0">
-            <span className="hidden md:block">
-              <LocationColoursIcons colors={"#757575"} />
-            </span>
-            <span className="block md:hidden">
-              <LocationColoursIcons colors={"#303030"} />
-            </span>
-            <p className="text-[#303030] md:text-[#757575] font-AeonikProRegular md:font-AeonikProMedium text-base md:text-sm ml-[3px] md:ml-2">
-              {data?.product?.locations[0]?.region?.name_ru},{" "}
-              {data?.product?.locations[0]?.sub_region?.name_ru}
-            </p>
-          </div>
-          <button
-            type="primary"
-            onClick={() => setOpenLocationModal(true)}
-            className="hidden md:block text-borderWinter font-AeonikProMedium"
-          >
-            В других локациях
-          </button>
+          {data?.product?.locations?.length ? (
+            <div className="flex items-center py-3 md:py-0">
+              <span className="hidden md:block">
+                <LocationColoursIcons colors={"#757575"} />
+              </span>
+              <span className="block md:hidden">
+                <LocationColoursIcons colors={"#303030"} />
+              </span>
+              <p className="text-[#303030] md:text-[#757575] font-AeonikProRegular md:font-AeonikProMedium text-base md:text-sm ml-[3px] md:ml-2">
+                {data?.product?.locations[0]?.region?.name_ru},{" "}
+                {data?.product?.locations[0]?.sub_region?.name_ru}
+              </p>
+            </div>
+          ) : null}
+
+          {data?.product?.locations?.length > 1 ? (
+            <button
+              type="primary"
+              onClick={() => setOpenLocationModal(true)}
+              className="hidden md:block text-borderWinter font-AeonikProMedium"
+            >
+              В других локациях
+            </button>
+          ) : (
+            <div></div>
+          )}
           <button
             type="primary"
             onClick={() => setLocations(true)}
@@ -553,17 +560,23 @@ const ProductDetails = () => {
                 onChange={onChange}
               >
                 <div className="w-full flex flex-wrap items-center gap-y-2">
-                  {data?.product?.locations.map((data) => (
-                    <div key={data.id} className="w-1/3">
-                      <Radio
-                        value={data?.data?.region?.name_ru}
-                        name="location"
-                        className="text-lg font-AeonikProRegular"
-                      >
-                        {data?.region?.name_ru}
-                      </Radio>
-                    </div>
-                  ))}
+                  {data?.product?.locations.map((data, i) => {
+                    if (i === 0) {
+                      return null;
+                    } else {
+                      return (
+                        <div key={data.id} className="w-1/3">
+                          <Radio
+                            value={data?.region?.name_ru}
+                            name="location"
+                            className="text-lg font-AeonikProRegular"
+                          >
+                            {data?.region?.name_ru}
+                          </Radio>
+                        </div>
+                      );
+                    }
+                  })}
                 </div>
               </Radio.Group>
               <button
