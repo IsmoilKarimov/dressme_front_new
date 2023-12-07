@@ -239,9 +239,9 @@ const EditProfilePage = () => {
           <LoadingFor />
         </div>
       ) : (
-        <div className="w-full">
+        <div className="w-full flex  items-center justify-center mx-auto">
           {profileData && (
-            <div className="w-full block pt-3 md:pt-8 ss:px-4 md:px-0">
+            <div className="w-full flex flex-col items-center justify-center mx-auto pt-3 md:pt-8 ss:px-4 md:px-0">
               <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -325,7 +325,7 @@ const EditProfilePage = () => {
                 )}
               </div>
               {/* ----------- Email Verify Modal END ----------- */}
-              <div className="md:max-w-[820px] max-w-[440px] w-[100%] h-fit p-4 md:px-0  border border-searchBgColor rounded-lg mb-[100px] md:mx-auto md:mb-0">
+              <div className="md:w-[820px] w-full h-fit p-4 md:px-0 border border-searchBgColor rounded-lg mb-[100px] md:mx-auto md:mb-0">
                 <div className="md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
                   <div className="w-full flex justify-between items-center">
                     <span className="not-italic font-AeonikProMedium text-xl leading-6 text-black tracking-[1%]">
