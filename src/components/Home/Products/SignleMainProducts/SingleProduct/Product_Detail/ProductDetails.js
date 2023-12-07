@@ -541,8 +541,8 @@ const ProductDetails = () => {
                 <LocationColoursIcons colors={"#303030"} />
               </span>
               <p className="text-[#303030] md:text-[#757575] font-AeonikProRegular md:font-AeonikProMedium text-base md:text-sm ml-[3px] md:ml-2">
-                {data?.product?.locations[0]?.region?.name_ru},{" "}
-                {data?.product?.locations[0]?.sub_region?.name_ru}
+                {selectedLocation?.region?.name_ru},{" "}
+                {selectedLocation?.sub_region?.name_ru}
               </p>
             </div>
           ) : null}
@@ -583,6 +583,7 @@ const ProductDetails = () => {
                   style={{
                     width: "100%",
                   }}
+                  defaultValue={selectedLocation?.id}
                   // onChange={onChange}
                 >
                   {existRegions.map((item) => {
