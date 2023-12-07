@@ -24,8 +24,6 @@ const EditProfilePage = () => {
   const [openEditPasswordModal, setOpenEditPasswordModal] = useState(false);
   const [sendEmailModal, setSendEmailModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  // const [activeEditPasswordBtn, setActiveEditPasswordBtn] = useState(false);
-  // const [activeEditEmailBtn, setActiveEditEmailBtn] = useState(false);
   const [state, setState] = useState({
     userFirstname: "",
     userLastname: "",
@@ -34,12 +32,16 @@ const EditProfilePage = () => {
     userStatus: "",
     userPhoneCode: "",
     userPhoneNumber: "",
+    countryPhoneCode: "+998",
     errorsGroup: null,
     isChange: false,
     activeEditPassword: false,
     activeEditEmail: false,
     openModalEmailMessage: false,
   });
+
+  console.log(state?.countryPhoneCode, "CODE");
+
 
   // =====================
   const togglePassword = React.useCallback(
@@ -82,14 +84,14 @@ const EditProfilePage = () => {
     }
   );
 
-  let data = state?.userPhoneNumber.split("-");
-  let arr = data.join("");
-  let data1 = arr.split("(");
-  let arr1 = data1.join("");
-  let arr2 = arr1.split(")");
-  let data2 = arr2.join("");
-  let arr3 = state.userPhoneCode.split("+");
-  let data3 = arr3.join("");
+  let data = state?.userPhoneNumber?.split("-");
+  let arr = data?.join("");
+  let data1 = arr?.split("(");
+  let arr1 = data1?.join("");
+  let arr2 = arr1?.split(")");
+  let data2 = arr2?.join("");
+  let arr3 = state?.userPhoneCode?.split("+");
+  let data3 = arr3?.join("");
   const sendMessagePhoneNumber = data3 + data2;
 
   // =========== POST USER EDIT DATA ==========
@@ -102,9 +104,9 @@ const EditProfilePage = () => {
         Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
       },
       body: JSON.stringify({
-        name: state?.isChange === true && state?.userFirstname,
-        surname: state?.isChange === true && state?.userLastname,
-        phone: state?.isChange === true && sendMessagePhoneNumber,
+        name: state?.userFirstname,
+        surname: state?.userLastname,
+        phone: sendMessagePhoneNumber,
       }),
     }).then((res) => res.json());
   });
@@ -326,6 +328,7 @@ const EditProfilePage = () => {
                 )}
               </div>
               {/* ----------- Email Verify Modal END ----------- */}
+             
               <div className="md:w-[820px] w-full h-fit p-4 md:px-0 border border-searchBgColor rounded-lg mb-[100px] md:mx-auto md:mb-0">
                 {/* 1 */}
                 <div className="md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
@@ -398,13 +401,15 @@ const EditProfilePage = () => {
                       </div>
                       <div className="flex mt-[6px] items-center justify-center overflow-hidden border border-searchBgColor rounded-lg">
                         <div className="w-[35%] md:w-[25%] h-12 flex bg-btnBgColor items-center justify-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
-                          <img src={UzbekFlag} alt="form-arrow-bottom" />
+                         <div className="w-full flex items-center justify-center gap-x-1">
+                          <img src={UzbekFlag} className="w-fit h-fit" alt="form-arrow-bottom" />
                           <input
-                            className="w-[40px] bg-btnBgColor h-full select-none mx-2 not-italic font-AeonikProMedium text-base leading-4 text-black"
+                            className="w-[40px] bg-btnBgColor h-full select-none not-italic font-AeonikProMedium text-base leading-4 text-black"
                             type="text"
-                            value={"+" + state?.userPhoneCode || ""}
+                            value={"+" + state?.userPhoneCode === "" ? state?.userPhoneCode : state?.countryPhoneCode }
                             readOnly
                           />
+                          </div>
                         </div>
                         <div className="w-[65%] md:w-[75%] bg-btnBgColor h-12 overflow-hidden">
                           <InputMask
