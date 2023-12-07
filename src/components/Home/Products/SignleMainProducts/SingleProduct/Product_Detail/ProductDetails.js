@@ -54,14 +54,6 @@ const ProductDetails = () => {
   const toggleLocations = useCallback(() => setLocations(false), []);
 
   const slider = useRef(null);
-  const [copyText, setCopyText] = useState("AA009842");
-  const [copyCardNumber, setCopyCardNumber] = useState("8600-000-2345-1234");
-  const handleCopyText = () => {
-    navigator.clipboard.writeText(copyText);
-  };
-  const handleCopyCardNumber = () => {
-    navigator.clipboard.writeText(copyCardNumber);
-  };
 
   const url = "https://api.dressme.uz";
 
@@ -91,8 +83,6 @@ const ProductDetails = () => {
       refetchOnWindowFocus: true,
     }
   );
-
-  console.log(data?.product);
 
   // For DropUp
   useEffect(() => {
@@ -227,6 +217,19 @@ const ProductDetails = () => {
     console.log("checked = ", checkedValues);
   };
 
+  const [copyText, setCopyText] = useState(data?.product?.sku);
+  const [copyCardNumber, setCopyCardNumber] = useState("");
+
+  const skuRef = useRef();
+  const cardRef = useRef();
+
+  const handleCopyText = () => {
+    navigator.clipboard.writeText(skuRef.current.innerText);
+  };
+  const handleCopyCardNumber = () => {
+    navigator.clipboard.writeText(cardRef.current.innerText);
+  };
+
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
       <div className="tableSizes">
@@ -288,11 +291,11 @@ const ProductDetails = () => {
                 <span className="text-sm font-AeonikProRegular leading-4 tracking-[1%]">
                   Артикль:
                 </span>
+                <div className="text-sm bg-transparent w-fit font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]" />
                 <div
-                  onChange={(e) => setCopyText(e.target.value)}
-                  className="text-sm bg-transparent w-fit font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]"
-                />
-                <div className="w-fit text-sm font-AeonikProRegular text-[#a1a1a1]">
+                  ref={skuRef}
+                  className="w-fit text-sm font-AeonikProRegular text-[#a1a1a1]"
+                >
                   {data?.product?.sku}
                 </div>
                 <button
@@ -461,11 +464,11 @@ const ProductDetails = () => {
                 </div>
               </article>
               <article className="w-fit flex items-center ml-2">
+                <div className="text-sm w-fit bg-transparent font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]" />
                 <div
-                  className="text-sm w-fit bg-transparent font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]"
-                  onChange={(e) => setCopyCardNumber(e.target.value)}
-                />
-                <div className="w-fit text-sm font-AeonikProRegular text-[#a1a1a1]">
+                  ref={cardRef}
+                  className="w-fit text-sm font-AeonikProRegular text-[#a1a1a1]"
+                >
                   {data?.product?.seller?.card_number}
                 </div>
                 <button
@@ -550,38 +553,40 @@ const ProductDetails = () => {
               <div className="text-2xl font-AeonikProRegular mb-[30px]">
                 Выберите локацию
               </div>
-              <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
-                {data?.product?.locations[0]?.sub_region?.name_ru}
-              </div>
-              <Radio.Group
-                style={{
-                  width: "100%",
-                }}
-                onChange={onChange}
-              >
-                <div className="w-full flex flex-wrap items-center gap-y-2">
-                  {data?.product?.locations.map((data, i) => {
-                    if (i === 0) {
-                      return null;
-                    } else {
-                      return (
-                        <div key={data.id} className="">
-                          <Radio
-                            value={data?.sub_region?.name_ru}
-                            name="location"
-                            className="text-lg font-AeonikProRegular"
-                          >
-                            {data?.sub_region?.name_ru}
-                          </Radio>
-                        </div>
-                      );
-                    }
-                  })}
+              <div className="h-[250px] overflow-y-auto">
+                <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
+                  {data?.product?.locations[0]?.region?.name_ru}
                 </div>
-              </Radio.Group>
+                <Radio.Group
+                  style={{
+                    width: "100%",
+                  }}
+                  onChange={onChange}
+                >
+                  <div className="w-full">
+                    {data?.product?.locations.map((data, i) => {
+                      if (i === 0) {
+                        return null;
+                      } else {
+                        return (
+                          <div key={data.id} className="mb-[5px]">
+                            <Radio
+                              value={data?.sub_region?.name_ru}
+                              name="location"
+                              className="text-lg font-AeonikProRegular"
+                            >
+                              {data?.sub_region?.name_ru} ({data?.address})
+                            </Radio>
+                          </div>
+                        );
+                      }
+                    })}
+                  </div>
+                </Radio.Group>
+              </div>
               <button
                 type="button"
-                className="w-full flex justify-end mt-[60px] text-borderWinter text-lg font-AeonikProMedium"
+                className="w-full flex justify-end text-borderWinter text-lg font-AeonikProMedium"
               >
                 Готово
               </button>
