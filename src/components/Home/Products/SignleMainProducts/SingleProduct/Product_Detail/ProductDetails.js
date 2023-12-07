@@ -624,6 +624,7 @@ const ProductDetails = () => {
               </div>
               <button
                 type="button"
+                onClick={() => setOpenLocationModal(false)}
                 className="w-full flex justify-end text-borderWinter text-lg font-AeonikProMedium"
               >
                 Готово
