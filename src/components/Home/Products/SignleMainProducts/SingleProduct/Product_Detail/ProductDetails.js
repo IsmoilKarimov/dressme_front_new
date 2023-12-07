@@ -213,9 +213,9 @@ const ProductDetails = () => {
     </section>
   );
 
-  const onChange = (checkedValues) => {
-    console.log("checked = ", checkedValues);
-  };
+  // const onChange = (checkedValues) => {
+  //   console.log("checked = ", checkedValues);
+  // };
 
   const [copyText, setCopyText] = useState("");
   const [copyCardNumber, setCopyCardNumber] = useState("");
@@ -240,11 +240,19 @@ const ProductDetails = () => {
     existRegionsObj[item?.region_id] = item?.region?.name_ru;
   });
 
-  console.log(existRegionsObj);
-
   const uniqueRegions = new Set(existRegions);
 
   existRegions = [...uniqueRegions];
+
+  // Location state
+
+  const [selectedLocation, setSelectedLocation] = useState(
+    data?.product?.locations[0]
+  );
+
+  useEffect(() => {
+    setSelectedLocation(data?.product?.locations[0]);
+  }, [data]);
 
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
@@ -571,26 +579,32 @@ const ProductDetails = () => {
                 Выберите локацию
               </div>
               <div className="h-[300px] overflow-y-auto mb-[20px] VerticelScroll pr-2">
-                {existRegions.map((item) => {
-                  return (
-                    <>
-                      <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
-                        {existRegionsObj[item]}
-                      </div>
+                <Radio.Group
+                  style={{
+                    width: "100%",
+                  }}
+                  // onChange={onChange}
+                >
+                  {existRegions.map((item) => {
+                    return (
+                      <>
+                        <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
+                          {existRegionsObj[item]}
+                        </div>
 
-                      <Radio.Group
-                        style={{
-                          width: "100%",
-                        }}
-                        onChange={onChange}
-                      >
                         <div className="w-full">
                           {data?.product?.locations.map((data) => {
                             if (data?.sub_region?.region_id === item) {
                               return (
-                                <div key={data.id} className="mb-[8px]">
+                                <div
+                                  onClick={() => {
+                                    setSelectedLocation(data);
+                                  }}
+                                  key={data.id}
+                                  className="mb-[8px]"
+                                >
                                   <Radio
-                                    value={data?.sub_region?.name_ru}
+                                    value={data?.id}
                                     name="location"
                                     className="text-lg font-AeonikProRegular"
                                   >
@@ -602,10 +616,10 @@ const ProductDetails = () => {
                             }
                           })}
                         </div>
-                      </Radio.Group>
-                    </>
-                  );
-                })}
+                      </>
+                    );
+                  })}
+                </Radio.Group>
               </div>
               <button
                 type="button"
@@ -988,25 +1002,23 @@ const ProductDetails = () => {
             <address className="w-[65%] md:w-fit">
               <a
                 className="w-[232px] h-12 md:h-[52px] px-5  rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex gap-x-3 items-center justify-center bg-fullBlue"
-                href={`${
-                  "tel:" + data?.product?.locations[0]?.assistant_phone
-                }`}
+                href={`${"tel:" + selectedLocation?.assistant_phone}`}
               >
                 <PhoneIcons colors={"#fff"} />{" "}
-                {data?.product?.locations[0]?.assistant_name}
+                {selectedLocation?.assistant_name}
               </a>
             </address>
             <address className="w-[35%] md:w-fit  ml-4">
               <a
                 className={`w-[232px] h-12 md:h-[52px] px-5 rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center flex gap-x-3 items-center justify-center text-fullBlue border border-fullBlue`}
-                href={`https://t.me/${data?.product?.locations[0]?.assistant_messenger.slice(
+                href={`https://t.me/${selectedLocation?.assistant_messenger.slice(
                   1
                 )}`}
               >
                 <span className="w-7 h-7 bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
                   <FaTelegramPlane size={16} />
                 </span>{" "}
-                <span>{data?.product?.locations[0]?.assistant_messenger}</span>{" "}
+                <span>{selectedLocation?.assistant_messenger}</span>{" "}
               </a>
             </address>
           </article>
@@ -1065,9 +1077,7 @@ const ProductDetails = () => {
       <div className="w-full">
         <div className={openTab === 1 ? "block" : "hidden"}>
           <action className=" flex">
-            <LocationOfYandex
-              locationText={data?.product?.locations[0]?.address}
-            />
+            <LocationOfYandex locationText={selectedLocation?.address} />
           </action>
         </div>
         <div className={openTab === 2 ? "block" : "hidden"}>
