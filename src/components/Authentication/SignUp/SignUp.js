@@ -138,9 +138,9 @@ export default function SignUp() {
   }
 
   return (
-     <div className="relative">
+     <div>
      {loading ? (
-        <div className="absolute left-0 right-0 md:top-[-200px]"><LoadingFor /></div>
+       <div><LoadingFor /></div>   
      ) : (
         <div className="w-full h-full">
           <ToastContainer
