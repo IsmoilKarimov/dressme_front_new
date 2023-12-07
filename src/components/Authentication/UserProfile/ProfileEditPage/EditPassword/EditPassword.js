@@ -52,6 +52,8 @@ export default function EditPassword({ onClick }) {
               progress: undefined,
               theme: "light",
             });
+            window.location.reload(1000);
+            setState({ ...state, new_password: "", current_password: "", errorsGroup: "" });
           } 
           else if (res?.access_token) {
             localStorage.setItem("DressmeUserToken", res?.access_token);
@@ -78,13 +80,6 @@ export default function EditPassword({ onClick }) {
       }
     );
   };
-
-  const handleClick = () => {
-    return(
-      SendNewPassword(), 
-      onClick()
-    )
-  }
 
   return (
     <div className="w-full md:w-[455px] h-fit bg-white rounded-t-lg md:rounded-lg px-4 py-5 md:py-[35px] md:px-[50px]">
@@ -244,7 +239,7 @@ export default function EditPassword({ onClick }) {
       <div className="w-full mt-[50px]">
         <button
           type="button"
-          onClick={handleClick}
+          onClick={SendNewPassword}
           className="h-12 w-full active:scale-95  active:opacity-70 text-white rounded-lg  flex bg-borderWinter items-center justify-center text-center text-lg not-italic font-AeonikProMedium"
         >
           Обновить пароль

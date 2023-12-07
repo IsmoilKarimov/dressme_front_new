@@ -132,8 +132,8 @@ export default function SignUp() {
 
   const handleClick = () => {
     return(
-      onSubmit(),
-      setLoading(true)
+      onSubmit()
+      // setLoading(true)
       )
   }
 
