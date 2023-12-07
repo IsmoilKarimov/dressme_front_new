@@ -52,9 +52,10 @@ export default function EditPassword({ onClick }) {
               progress: undefined,
               theme: "light",
             });
-          } else if (res?.message && res.errors) {
-            setState({ ...state, errorsGroup: res });
-            toast.error(`${res?.message}`, {
+          } 
+          else if (res?.access_token) {
+            localStorage.setItem("DressmeUserToken", res?.access_token);
+            toast.success(`Успешный вход в систему`, {
               position: "top-right",
               autoClose: 5000,
               hideProgressBar: false,
@@ -64,6 +65,11 @@ export default function EditPassword({ onClick }) {
               progress: undefined,
               theme: "light",
             });
+            setState({ ...state, new_password: "", current_password: "", errorsGroup: "" });
+          } 
+          else if (res?.message && res.errors) {
+            setState({ ...state, errorsGroup: res });
+           
           }
         },
         onError: (err) => {
@@ -72,6 +78,13 @@ export default function EditPassword({ onClick }) {
       }
     );
   };
+
+  const handleClick = () => {
+    return(
+      SendNewPassword(), 
+      onClick()
+    )
+  }
 
   return (
     <div className="w-full md:w-[455px] h-fit bg-white rounded-t-lg md:rounded-lg px-4 py-5 md:py-[35px] md:px-[50px]">
@@ -107,7 +120,7 @@ export default function EditPassword({ onClick }) {
           <span className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
             Старый пароль
           </span>
-          <label className="mt-[6px]  overflow-hidden pr-2 w-full flex items-center border border-searchBgColor rounded-lg ">
+          <label className="mt-[6px] overflow-hidden pr-2 w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
               className=" outline-none w-full h-[40px] pl-2 xs:h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type={state?.eyesShowOld ? "text" : "password"}
@@ -137,6 +150,11 @@ export default function EditPassword({ onClick }) {
               )}
             </span>
           </label>
+          {state?.errorsGroup?.errors?.current_password && (
+            <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+              {state?.errorsGroup?.errors?.current_password}
+            </p>
+          )}
         </div>
         <div className="w-full  h-fit ">
           <span className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
@@ -173,6 +191,11 @@ export default function EditPassword({ onClick }) {
               )}
             </span>
           </label>
+          {state?.errorsGroup?.errors?.new_password && (
+            <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+              {state?.errorsGroup?.errors?.new_password}
+            </p>
+          )}
         </div>
         <div className="w-full  h-fit ">
           <span className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
@@ -211,12 +234,17 @@ export default function EditPassword({ onClick }) {
               )}
             </span>
           </label>
+          {state?.errorsGroup?.errors?.new_confirm_password && (
+            <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+              {state?.errorsGroup?.errors?.new_confirm_password}
+            </p>
+          )}
         </div>
       </div>
       <div className="w-full mt-[50px]">
         <button
           type="button"
-          onClick={SendNewPassword}
+          onClick={handleClick}
           className="h-12 w-full active:scale-95  active:opacity-70 text-white rounded-lg  flex bg-borderWinter items-center justify-center text-center text-lg not-italic font-AeonikProMedium"
         >
           Обновить пароль
