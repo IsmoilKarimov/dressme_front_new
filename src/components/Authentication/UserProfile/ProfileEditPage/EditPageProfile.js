@@ -188,6 +188,7 @@ const EditProfilePage = () => {
               theme: "light",
             });
           } else if (res?.message && res.errors) {
+            setLoading(false)
             setState({ ...state, errorsGroup: res });
             toast.error(`${res?.message}`, {
               position: "top-right",
@@ -222,7 +223,7 @@ const EditProfilePage = () => {
   };
 
   const sendData = () => {
-    return sendEditedEmailData(), setLoading(true);
+    return sendEditedEmailData(), 33
   };
 
   useEffect(() => {
