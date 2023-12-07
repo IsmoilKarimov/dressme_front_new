@@ -27,31 +27,25 @@ const EditProfilePage = () => {
   const [state, setState] = useState({
     userFirstname: "",
     userLastname: "",
-    userEmail: "",
-    userTypeId: "",
-    userStatus: "",
     userPhoneCode: "",
     userPhoneNumber: "",
-    countryPhoneCode: "+998",
+    userLastnameForEdit: "",
+    userFirstnameForEdit: "",
+    userPhoneNumberForEdit: "",
+    userEmail: "",
+    // countryPhoneCode: "+998",
     errorsGroup: null,
-    isChange: false,
     activeEditPassword: false,
     activeEditEmail: false,
     openModalEmailMessage: false,
   });
-
-  console.log(state?.countryPhoneCode, "CODE");
-
 
   // =====================
   const togglePassword = React.useCallback(
     () => setOpenEditPasswordModal(false),
     []
   );
-  const toggleEmail = React.useCallback(
-    () => setSendEmailModal(false),
-    []
-  );
+  const toggleEmail = React.useCallback(() => setSendEmailModal(false), []);
   // =====================
 
   const url = "https://api.dressme.uz/api/user";
@@ -73,12 +67,15 @@ const EditProfilePage = () => {
           userEmail: res?.email,
           userPhoneCode: res?.phone && res?.phone.slice(0, 3),
           userPhoneNumber: res?.phone && res?.phone.slice(3, 12),
+          // --------------
+          userFirstnameForEdit: res?.name,
+          userLastnameForEdit: res?.surname,
+          userPhoneNumberForEdit: res?.phone && res?.phone.slice(3, 12),
         });
       },
       onError: (err) => {
         console.log(err, "THERE IS AN ERROR IN GET-USER-PROFILE");
       },
-
       keepPreviousData: true,
       refetchOnWindowFocus: false,
     }
@@ -95,60 +92,53 @@ const EditProfilePage = () => {
   const sendMessagePhoneNumber = data3 + data2;
 
   // =========== POST USER EDIT DATA ==========
-  const dataMutate = useMutation(() => {
+  const sendEditedData = () => {
+    let form = new FormData();
+    state?.userFirstname !== state?.userFirstnameForEdit &&
+      form.append("name", state?.userFirstname);
+    state?.userLastname !== state?.userLastnameForEdit &&
+      form.append("surname", state?.userLastname);
+    data2 !== state?.userPhoneNumberForEdit &&
+      form.append("phone", sendMessagePhoneNumber);
     return fetch(`${url}/update-user-info`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         Accept: "application/json",
         Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
       },
-      body: JSON.stringify({
-        name: state?.userFirstname,
-        surname: state?.userLastname,
-        phone: sendMessagePhoneNumber,
-      }),
-    }).then((res) => res.json());
-  });
-
-  const sendEditedData = () => {
-    dataMutate.mutate(
-      {},
-      {
-        onSuccess: (res) => {
-          refetch();
-          console.log(res, "RES");
-          if (res?.message && !res.errors) {
-            setState({ ...state, errorsGroup: res });
-            toast.success(`${res?.message}`, {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
-          } else if (res?.message && res.errors) {
-            setState({ ...state, errorsGroup: res });
-            toast.error(`${res?.message}`, {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
-          }
-        },
-        onError: (err) => {
-          console.log(err);
-        },
-      }
-    );
+      body: form,
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res?.errors && res?.message) {
+          console.log(res, "BU--Error");
+          setState({ ...state, errorsGroup: res });
+          toast.error(`${res?.message}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        } else if (res?.message) {
+          console.log(res, "BU--Success");
+          setState({ ...state, errorsGroup: res });
+          toast.success(`${res?.message}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
+      })
+      .catch((err) => console.log(err, "errImage"));
   };
 
   // =========== POST EDIT USER EMAIL ==========
@@ -190,7 +180,7 @@ const EditProfilePage = () => {
               theme: "light",
             });
           } else if (res?.message && res.errors) {
-            setLoading(false)
+            setLoading(false);
             setState({ ...state, errorsGroup: res });
             toast.error(`${res?.message}`, {
               position: "top-right",
@@ -202,7 +192,7 @@ const EditProfilePage = () => {
               progress: undefined,
               theme: "light",
             });
-          } 
+          }
         },
         onError: (err) => {
           console.log(err);
@@ -225,7 +215,7 @@ const EditProfilePage = () => {
   };
 
   const sendData = () => {
-    return sendEditedEmailData(), 33
+    return sendEditedEmailData(), 33;
   };
 
   useEffect(() => {
@@ -238,7 +228,9 @@ const EditProfilePage = () => {
   return (
     <div>
       {loading ? (
-          <div><LoadingFor /></div>
+        <div>
+          <LoadingFor />
+        </div>
       ) : (
         <div className="w-full flex items-center justify-center mx-auto">
           {profileData && (
@@ -310,7 +302,11 @@ const EditProfilePage = () => {
                           });
                         }}
                       >
-                        <MenuCloseIcons width={28} height={28} colors="#303030" />
+                        <MenuCloseIcons
+                          width={28}
+                          height={28}
+                          colors="#303030"
+                        />
                       </button>
                     </div>
                     <div className="w-full flex items-center justify-center flex-col">
@@ -328,7 +324,7 @@ const EditProfilePage = () => {
                 )}
               </div>
               {/* ----------- Email Verify Modal END ----------- */}
-             
+
               <div className="md:w-[820px] w-full h-fit p-4 md:px-0 border border-searchBgColor rounded-lg mb-[100px] md:mx-auto md:mb-0">
                 {/* 1 */}
                 <div className="md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
@@ -352,7 +348,6 @@ const EditProfilePage = () => {
                             setState({
                               ...state,
                               userFirstname: e.target.value,
-                              isChange: true,
                               activeEditPassword: true,
                             });
                           }}
@@ -378,7 +373,6 @@ const EditProfilePage = () => {
                             setState({
                               ...state,
                               userLastname: e.target.value,
-                              isChange: true,
                               activeEditPassword: true,
                             });
                           }}
@@ -401,14 +395,22 @@ const EditProfilePage = () => {
                       </div>
                       <div className="flex mt-[6px] items-center justify-center overflow-hidden border border-searchBgColor rounded-lg">
                         <div className="w-[35%] md:w-[25%] h-12 flex bg-btnBgColor items-center justify-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
-                         <div className="w-full flex items-center justify-center gap-x-1">
-                          <img src={UzbekFlag} className="w-fit h-fit" alt="form-arrow-bottom" />
-                          <input
-                            className="w-[40px] bg-btnBgColor h-full select-none not-italic font-AeonikProMedium text-base leading-4 text-black"
-                            type="text"
-                            value={"+" + state?.userPhoneCode === "" ? state?.userPhoneCode : state?.countryPhoneCode }
-                            readOnly
-                          />
+                          <div className="w-full flex items-center justify-center gap-x-1">
+                            <img
+                              src={UzbekFlag}
+                              className="w-fit h-fit"
+                              alt="form-arrow-bottom"
+                            />
+                            <input
+                              className="w-[40px] bg-btnBgColor h-full select-none not-italic font-AeonikProMedium text-base leading-4 text-black"
+                              type="text"
+                              value={
+                                "+" + state?.userPhoneCode === ""
+                                  ? state?.userPhoneCode
+                                  : "+998"
+                              }
+                              readOnly
+                            />
                           </div>
                         </div>
                         <div className="w-[65%] md:w-[75%] bg-btnBgColor h-12 overflow-hidden">
@@ -419,7 +421,6 @@ const EditProfilePage = () => {
                               setState({
                                 ...state,
                                 userPhoneNumber: e.target.value,
-                                isChange: true,
                                 activeEditPassword: true,
                               });
                             }}
