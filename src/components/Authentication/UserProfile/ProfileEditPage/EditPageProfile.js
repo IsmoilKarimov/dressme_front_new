@@ -233,15 +233,13 @@ const EditProfilePage = () => {
   }, []);
 
   return (
-    <div className="relative">
+    <div>
       {loading ? (
-        <div className="absolute left-0 right-0 md:top-[-200px]">
-          <LoadingFor />
-        </div>
+          <div><LoadingFor /></div>
       ) : (
-        <div className="w-full">
+        <div className="w-full flex items-center justify-center mx-auto">
           {profileData && (
-            <div className="w-full block pt-3 md:pt-8 ss:px-4 md:px-0">
+            <div className="w-full flex flex-col items-center justify-center mx-auto pt-3 md:pt-8 ss:px-4 md:px-0">
               <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -269,6 +267,7 @@ const EditProfilePage = () => {
                 className={`fixed inset-0 z-[112] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
                 ${sendEmailModal ? "" : "hidden"}`}
               ></section>
+              {/* PASSWORD COMPONENT */}
               <section
                 className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${
                   openEditPasswordModal ? "" : "hidden z-0"
@@ -276,12 +275,13 @@ const EditProfilePage = () => {
               >
                 <EditPassword onClick={togglePassword} />
               </section>
+              {/* EMAIL COMPONENT */}
               <section
                 className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${
                   sendEmailModal ? "" : "hidden z-0"
                 }`}
               >
-                <EmailSend onClick={toggleEmail} />
+                <EmailSend sendData={sendData} onClick={toggleEmail} />
               </section>
               {/* ----------- Email Verify Modal Start ----------- */}
               <div className="w-full md:w-1/2 h-fit ">
@@ -307,7 +307,7 @@ const EditProfilePage = () => {
                           });
                         }}
                       >
-                        <MenuCloseIcons colors="#303030" />
+                        <MenuCloseIcons width={28} height={28} colors="#303030" />
                       </button>
                     </div>
                     <div className="w-full flex items-center justify-center flex-col">
@@ -325,7 +325,8 @@ const EditProfilePage = () => {
                 )}
               </div>
               {/* ----------- Email Verify Modal END ----------- */}
-              <div className="md:max-w-[820px] max-w-[440px] w-[100%] h-fit p-4 md:px-0  border border-searchBgColor rounded-lg mb-[100px] md:mx-auto md:mb-0">
+              <div className="md:w-[820px] w-full h-fit p-4 md:px-0 border border-searchBgColor rounded-lg mb-[100px] md:mx-auto md:mb-0">
+                {/* 1 */}
                 <div className="md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
                   <div className="w-full flex justify-between items-center">
                     <span className="not-italic font-AeonikProMedium text-xl leading-6 text-black tracking-[1%]">
@@ -387,6 +388,7 @@ const EditProfilePage = () => {
                     </div>
                   </div>
                 </div>
+                {/* 2 */}
                 <div className="w-full md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
                   <div className="flex  flex-col md:flex-row justify-between items-center">
                     <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
@@ -462,7 +464,6 @@ const EditProfilePage = () => {
                       Изменить пароль
                     </button>
                     <button
-                      // onClick={sendData}
                       onClick={() => setSendEmailModal(true)}
                       type="button"
                       disabled={state.activeEditEmail ? false : true}
