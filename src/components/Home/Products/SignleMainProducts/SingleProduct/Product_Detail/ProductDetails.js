@@ -217,7 +217,7 @@ const ProductDetails = () => {
     console.log("checked = ", checkedValues);
   };
 
-  const [copyText, setCopyText] = useState(data?.product?.sku);
+  const [copyText, setCopyText] = useState("");
   const [copyCardNumber, setCopyCardNumber] = useState("");
 
   const skuRef = useRef();
@@ -229,6 +229,22 @@ const ProductDetails = () => {
   const handleCopyCardNumber = () => {
     navigator.clipboard.writeText(cardRef.current.innerText);
   };
+
+  // Regions show
+
+  let existRegions = [];
+  let existRegionsObj = {};
+
+  data?.product?.locations?.map((item) => {
+    existRegions.push(item?.region_id);
+    existRegionsObj[item?.region_id] = item?.region?.name_ru;
+  });
+
+  console.log(existRegionsObj);
+
+  const uniqueRegions = new Set(existRegions);
+
+  existRegions = [...uniqueRegions];
 
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
@@ -543,6 +559,7 @@ const ProductDetails = () => {
           </button>
           <Modal
             centered
+            width={700}
             open={openLocationModal}
             onOk={() => setOpenLocationModal(false)}
             onCancel={() => setOpenLocationModal(false)}
@@ -553,36 +570,42 @@ const ProductDetails = () => {
               <div className="text-2xl font-AeonikProRegular mb-[30px]">
                 Выберите локацию
               </div>
-              <div className="h-[250px] overflow-y-auto">
-                <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
-                  {data?.product?.locations[0]?.region?.name_ru}
-                </div>
-                <Radio.Group
-                  style={{
-                    width: "100%",
-                  }}
-                  onChange={onChange}
-                >
-                  <div className="w-full">
-                    {data?.product?.locations.map((data, i) => {
-                      if (i === 0) {
-                        return null;
-                      } else {
-                        return (
-                          <div key={data.id} className="mb-[5px]">
-                            <Radio
-                              value={data?.sub_region?.name_ru}
-                              name="location"
-                              className="text-lg font-AeonikProRegular"
-                            >
-                              {data?.sub_region?.name_ru} ({data?.address})
-                            </Radio>
-                          </div>
-                        );
-                      }
-                    })}
-                  </div>
-                </Radio.Group>
+              <div className="h-[300px] overflow-y-auto mb-[20px] VerticelScroll pr-2">
+                {existRegions.map((item) => {
+                  return (
+                    <>
+                      <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
+                        {existRegionsObj[item]}
+                      </div>
+
+                      <Radio.Group
+                        style={{
+                          width: "100%",
+                        }}
+                        onChange={onChange}
+                      >
+                        <div className="w-full">
+                          {data?.product?.locations.map((data) => {
+                            if (data?.sub_region?.region_id === item) {
+                              return (
+                                <div key={data.id} className="mb-[8px]">
+                                  <Radio
+                                    value={data?.sub_region?.name_ru}
+                                    name="location"
+                                    className="text-lg font-AeonikProRegular"
+                                  >
+                                    {data?.sub_region?.name_ru} ({data?.address}
+                                    )
+                                  </Radio>
+                                </div>
+                              );
+                            }
+                          })}
+                        </div>
+                      </Radio.Group>
+                    </>
+                  );
+                })}
               </div>
               <button
                 type="button"
