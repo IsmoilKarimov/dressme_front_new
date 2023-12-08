@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-
+import React, { useContext, useState } from "react";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
@@ -8,20 +7,46 @@ import {
   StarIcons,
 } from "../../../../assets/icons";
 import { AddBasket, HeartImg } from "../../../../assets";
+import { useQuery } from "@tanstack/react-query";
+import { useHttp } from "../../../../hook/useHttp";
 
 export default function FavouriteProducts() {
   const [dressInfo] = useContext(dressMainData);
+  const [favProducts, setFavProductss] = useState([])
 
+  const {request} = useHttp()
   const onColorChecked = () => {};
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/product/:${id}`);
   };
+
+  // ========= GET WISHLISHT PRODUCTS ==========
+  useQuery(
+    ["get-wishlist-products"],
+    async () => {
+      return request({ url: `/main/wishlist`, token: true });
+    },
+    {
+      onSuccess: (res) => {
+        console.log(res, "SUCCESS, GET WISHLIST PROFILE");
+        setFavProductss(res?.wishlist_products?.data)
+      },
+      onError: (err) => {
+        console.log(err, "THERE IS AN ERROR IN GET-WISHLIST-PROFILE");
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+    }
+  );
+
   return (
     <main className="flex flex-col min-h-[44px]  justify-center items-center mt-8">
       <div className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto mb-[90px] ss:px-4 md:px-0">
         <section className="w-full flex flex-col box-border ">
+          
           {dressInfo?.ProductList.length ? (
+            
             <article className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
               {dressInfo?.ProductList.map((data) => {
                 return (
@@ -31,7 +56,7 @@ export default function FavouriteProducts() {
                   >
                     <figure
                       onClick={() => goDetail(data?.title)}
-                      className=" w-full cursor-pointer ss:h-[200px] ls:h-[220px] ll:h-[238px] xs:h-[309px] lg:h-[320px] bg-btnBgColor  flex content-between items-center overflow-hidden border-b border-solid flex-nowrap"
+                      className=" w-full cursor-pointer h-[200px] ls:h-[220px] ll:h-[238px] xs:h-[309px] lg:h-[320px] bg-btnBgColor  flex content-between items-center overflow-hidden border-b border-solid flex-nowrap"
                     >
                       {data.ProducImg ? (
                         <img
@@ -100,7 +125,7 @@ export default function FavouriteProducts() {
                               <p className="text-start m-0 p-0  not-italic font-AeonikProMedium text-[16px]  md:text-base leading-1 text-red-700 xs:text-base xs:leading-4 mr-1">
                                 {data?.sale}
                               </p>
-                              <p className="text-start m-0 p-0 text-[11px] mt-[8px]  line-through not-italic font-AeonikProRegular leading-3  text-borderColorCard ss:leading-1 md:text-[11px]">
+                              <p className="text-start m-0 p-0 text-[11px] mt-[8px]  line-through not-italic font-AeonikProRegular leading-3 text-borderColorCard ss:leading-1 md:text-[11px]">
                                 {data?.price}
                               </p>
                             </div>
@@ -124,6 +149,7 @@ export default function FavouriteProducts() {
                 );
               })}
             </article>
+
           ) : (
             <article className="md:my-[50px] mx-auto">
               <div className="w-[800px] text-center p-8 flex flex-col items-center justify-center">
@@ -146,6 +172,7 @@ export default function FavouriteProducts() {
               </div>
             </article>
           )}
+
         </section>
 
         <section className="w-full h-fit flex items-center justify-center mt-14 md:hidden">

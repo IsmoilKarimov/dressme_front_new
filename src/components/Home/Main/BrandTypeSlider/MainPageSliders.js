@@ -97,7 +97,6 @@ export default function MainPageSliders() {
       </div>
     );
   };
-
   const PrevArrow = (props) => {
     const { onClick } = props;
     return (

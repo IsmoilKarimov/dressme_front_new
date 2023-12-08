@@ -30,7 +30,6 @@ export default function SignUp() {
     email: "",
     password: "",
     password_confirmation: "",
-    seller_type_id: "",
     errorsGroup: "",
     eyesShow: true,
     eyesShowConfirmation: true,
