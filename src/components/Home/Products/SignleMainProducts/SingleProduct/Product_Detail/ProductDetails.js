@@ -224,7 +224,7 @@ const ProductDetails = () => {
       );
     } else if (data?.category_id === "3") {
       return (
-        <section className="w-[220px] h-[135px] p-[5px] ">
+        <section className="w-[220px] h-fit p-[5px] ">
           <article
             // key={value?.id}
             className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center"
@@ -241,18 +241,20 @@ const ProductDetails = () => {
                 {data?.min_waist_girth} - {data?.max_waist_girth}
               </span>
             </div>
-            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular">
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
               Обхват бедер, <span className="text-[#a5a5a5] ml-1">в см</span>:
               <span className="ml-auto">
                 {data?.min_hip_girth} - {data?.max_hip_girth}
               </span>
             </div>
-            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
-              Рост, <span className="text-[#a5a5a5] ml-1">в см</span>:
-              <span className="ml-auto">
-                {data?.min_height} - {data?.max_height}
-              </span>
-            </div>
+            {data?.min_height ? (
+              <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+                Рост, <span className="text-[#a5a5a5] ml-1">в см</span>:
+                <span className="ml-auto">
+                  {data?.min_height} - {data?.max_height}
+                </span>
+              </div>
+            ) : null}
           </article>
         </section>
       );
@@ -337,6 +339,8 @@ const ProductDetails = () => {
 
   // Location state
 
+  let checkedData = {};
+
   const [selectedLocation, setSelectedLocation] = useState(
     data?.product?.locations[0]
   );
@@ -344,6 +348,8 @@ const ProductDetails = () => {
   useEffect(() => {
     setSelectedLocation(data?.product?.locations[0]);
   }, [data]);
+
+  checkedData = selectedLocation;
 
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
@@ -690,7 +696,8 @@ const ProductDetails = () => {
                               return (
                                 <div
                                   onClick={() => {
-                                    setSelectedLocation(data);
+                                    checkedData = data;
+                                    console.log(checkedData);
                                   }}
                                   key={data.id}
                                   className="mb-[8px]"
@@ -715,7 +722,10 @@ const ProductDetails = () => {
               </div>
               <button
                 type="button"
-                onClick={() => setOpenLocationModal(false)}
+                onClick={() => {
+                  setOpenLocationModal(false);
+                  setSelectedLocation(checkedData);
+                }}
                 className="w-full flex justify-end text-borderWinter text-lg font-AeonikProMedium"
               >
                 Готово
@@ -808,30 +818,18 @@ const ProductDetails = () => {
                 <li>Возраст</li>
               </div>
               <div className="w-full">
-                <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
-                  <li>45-52</li>
-                  <li>45-52</li>
-                  <li>45-52</li>
-                  <li>45-52</li>
-                  <li>45-52</li>
-                  <li>45-52</li>
-                </div>
-                <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
-                  <li>45-52</li>
-                  <li>45-52</li>
-                  <li>45-52</li>
-                  <li>45-52</li>
-                  <li>45-52</li>
-                  <li>45-52</li>
-                </div>
-                <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
-                  <li>45-52</li>
-                  <li>45-52</li>
-                  <li>45-52</li>
-                  <li>45-52</li>
-                  <li>45-52</li>
-                  <li>45-52</li>
-                </div>
+                {data?.product?.sizes?.map((data) => {
+                  return (
+                    <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                      <li></li>
+                      <li>45-52</li>
+                      <li>45-52</li>
+                      <li>45-52</li>
+                      <li>45-52</li>
+                      <li>45-52</li>
+                    </div>
+                  );
+                })}
               </div>
             </ul>
           </Modal>
