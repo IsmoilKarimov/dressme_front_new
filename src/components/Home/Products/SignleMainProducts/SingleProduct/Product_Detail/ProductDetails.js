@@ -247,14 +247,13 @@ const ProductDetails = () => {
                 {data?.min_hip_girth} - {data?.max_hip_girth}
               </span>
             </div>
-            {data?.min_height ? (
-              <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
-                Рост, <span className="text-[#a5a5a5] ml-1">в см</span>:
-                <span className="ml-auto">
-                  {data?.min_height} - {data?.max_height}
-                </span>
-              </div>
-            ) : null}
+
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              Рост, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">
+                {data?.min_height} - {data?.max_height}
+              </span>
+            </div>
           </article>
         </section>
       );
@@ -792,13 +791,16 @@ const ProductDetails = () => {
         </article>
 
         <article className="w-full hidden md:flex items-center mb-4 text-sm">
-          <button
-            type="primary"
-            onClick={() => setOpenSizeList(true)}
-            className="not-italic mr-3 font-AeonikProRegular border-b border-dashed border-borderWinter md:font-AeonikProMedium text-borderWinter"
-          >
-            Таблица размеров
-          </button>
+          {data?.product?.category_id === "1" ? null : (
+            <button
+              type="primary"
+              onClick={() => setOpenSizeList(true)}
+              className="not-italic mr-3 font-AeonikProRegular border-b border-dashed border-borderWinter md:font-AeonikProMedium text-borderWinter"
+            >
+              Таблица размеров
+            </button>
+          )}
+
           <Modal
             centered
             open={openSizeList}
@@ -808,30 +810,112 @@ const ProductDetails = () => {
             footer={null}
             className="w-full p-6"
           >
-            <ul className="w-full px-[25px] pb-[30px] pt-[60px]">
-              <div className="flex items-center justify-between bg-[#F4F6FB] px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
-                <li>Размер</li>
-                <li>Буквенный Размер</li>
-                <li>Обхват груди, в см</li>
-                <li>Обхват талии, в см</li>
-                <li>Обхват бедер, в см</li>
-                <li>Возраст</li>
-              </div>
-              <div className="w-full">
-                {data?.product?.sizes?.map((data) => {
-                  return (
-                    <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
-                      <li></li>
-                      <li>45-52</li>
-                      <li>45-52</li>
-                      <li>45-52</li>
-                      <li>45-52</li>
-                      <li>45-52</li>
-                    </div>
-                  );
-                })}
-              </div>
-            </ul>
+            {data?.product?.category_id === "2" ? (
+              <ul className="w-full px-[25px] pb-[30px] pt-[60px]">
+                <div className="flex items-center justify-between bg-[#F4F6FB] px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                  <li>Размер в числах</li>
+                  <li>Буквенный Размер</li>
+                  <li>Обхват груди, в см</li>
+                  <li>Обхват талии, в см</li>
+                  <li>Обхват бедер, в см</li>
+                </div>
+                <div className="w-full">
+                  {data?.product?.sizes?.map((data) => {
+                    return (
+                      <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                        <li>
+                          {data?.min_wear_size} - {data?.max_wear_size}
+                        </li>
+                        <li>{data?.letter_size}</li>
+                        <li>
+                          {data?.min_chest_girth} - {data?.max_chest_girth}
+                        </li>
+                        <li>
+                          {data?.min_waist_girth} - {data?.max_waist_girth}
+                        </li>
+                        <li>
+                          {data?.min_hip_girth} - {data?.max_hip_girth}
+                        </li>
+                      </div>
+                    );
+                  })}
+                </div>
+              </ul>
+            ) : null}
+            {data?.product?.category_id === "3" ? (
+              <ul className="w-full px-[25px] pb-[30px] pt-[60px]">
+                <div className="flex items-center justify-between bg-[#F4F6FB] px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                  <li>Размер в числах</li>
+                  <li>Буквенный Размер</li>
+                  <li>Рост, в см</li>
+                  <li>Обхват талии, в см</li>
+                  <li>Обхват бедер, в см</li>
+                </div>
+                <div className="w-full">
+                  {data?.product?.sizes?.map((data) => {
+                    return (
+                      <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                        <li>
+                          {data?.min_wear_size} - {data?.max_wear_size}
+                        </li>
+                        <li>{data?.letter_size}</li>
+                        <li>
+                          {data?.min_height} - {data?.max_height}
+                        </li>
+                        <li>
+                          {data?.min_waist_girth} - {data?.max_waist_girth}
+                        </li>
+                        <li>
+                          {data?.min_hip_girth} - {data?.max_hip_girth}
+                        </li>
+                      </div>
+                    );
+                  })}
+                </div>
+              </ul>
+            ) : null}
+            {data?.product?.category_id === "4" ? (
+              <ul className="w-full px-[25px] pb-[30px] pt-[60px]">
+                <div className="flex items-center justify-between bg-[#F4F6FB] px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                  <li>Размер в числах, в см</li>
+                  <li>Длина стопы, в см</li>
+                </div>
+                <div className="w-full">
+                  {data?.product?.sizes?.map((data) => {
+                    return (
+                      <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                        <li>{data?.wear_size}</li>
+                        <li>
+                          {data?.min_foot_length} - {data?.max_foot_length}
+                        </li>
+                      </div>
+                    );
+                  })}
+                </div>
+              </ul>
+            ) : null}
+            {data?.product?.category_id === "5" ? (
+              <ul className="w-full px-[25px] pb-[30px] pt-[60px]">
+                <div className="flex items-center justify-between bg-[#F4F6FB] px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                  <li>Размер в числах, в см</li>
+                  <li>Буквенный Размер</li>
+                  <li>Длина, в см</li>
+                  <li>Ширина, в см</li>
+                </div>
+                <div className="w-full">
+                  {data?.product?.sizes?.map((data) => {
+                    return (
+                      <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                        <li>{data?.wear_size}</li>
+                        <li>{data?.letter_size}</li>
+                        <li>{data?.length}</li>
+                        <li>{data?.width}</li>
+                      </div>
+                    );
+                  })}
+                </div>
+              </ul>
+            ) : null}
           </Modal>
         </article>
 
