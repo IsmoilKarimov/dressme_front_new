@@ -33,7 +33,6 @@ const EditProfilePage = () => {
     userFirstnameForEdit: "",
     userPhoneNumberForEdit: "",
     userEmail: "",
-    // countryPhoneCode: "+998",
     errorsGroup: null,
     activeEditPassword: false,
     activeEditEmail: false,

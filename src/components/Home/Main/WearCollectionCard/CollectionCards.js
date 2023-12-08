@@ -13,6 +13,7 @@ import { ClothingParametr } from "./ClothingParametr";
 import { CalourCard } from "../../../../assets";
 import WearType from "./WearType";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
+
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
@@ -39,21 +40,6 @@ export default function CollectionCards() {
   };
 
   const onColorChecked = () => {};
-  const handleEnterMouse = (eId) => {
-    const elementsIndex = dressInfo.ProductList.findIndex(
-      (element) => element.id == eId
-    );
-    // const elementsIndex = dressInfo.ProductList.map((data) => data?.id == eId);
-    let newArray = [...dressInfo.ProductList];
-    newArray[elementsIndex] = {
-      ...newArray[elementsIndex],
-      colourCard: true,
-      // colourCard: !newArray[elementsIndex].colourCard,
-    };
-    setDressInfo((current) => {
-      return { ...current, ProductList: newArray };
-    });
-  };
 
   const handleLeaveMouse = (eId) => {
     const elementsIndex = dressInfo.ProductList.findIndex(
@@ -116,30 +102,16 @@ export default function CollectionCards() {
                   className={` ss:w-[49%] md:w-[24%] lg:w-[240px] xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
                 >
                   <figure
-                    // onMouseEnter={() => handleLeaveMouse(data?.id)}
                     onClick={() => goDetail(data?.id)}
                     className="relative w-full cursor-pointer h-[250px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
                   >
-                    {/* {data.ProducImg ? (
-                      <img
-                        className="w-full h-full m-auto hover:scale-105 transition duration-700 ease-in-out"
-                        src={data.ProducImg}
-                        alt="ProducImg"
-                      />
-                    ) : (
-                      <NoImg />
-                    )} */}
                     <div>
                       <NoImg />
                     </div>
                   </figure>
                   <section className="relative  w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[130px] md:h-[136px] ">
                     <div className="group hover:w-full hover:h-[36px] cursor-pointer">
-                      <button
-                        // onMouseEnter={() => handleEnterMouse(data?.id)}
-                        // onMouseEnter={() => setColourCard(true)}
-                        className="group-hover:hidden w-12 h-7 border border-searchBgColor rounded-lg hidden md:flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 "
-                      >
+                      <button className="group-hover:hidden w-12 h-7 border border-searchBgColor rounded-lg hidden md:flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 ">
                         <figure className="w-6 h-6 flex items-center justify-center">
                           <img src={CalourCard} alt="" className="h-full" />
                         </figure>
@@ -159,7 +131,6 @@ export default function CollectionCards() {
                         </span>
                       </button>
                       <article
-                        // onMouseLeave={() => handleLeaveMouse(data?.id)}
                         className={` ${
                           data?.l
                             ? "w-full px-1 xs:px-2 md:px-4 my-2"
