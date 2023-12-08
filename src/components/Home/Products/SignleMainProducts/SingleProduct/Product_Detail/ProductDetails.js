@@ -160,6 +160,8 @@ const ProductDetails = () => {
       img: "https://images.uzum.uz/cgl7vevhj8j9g69br4e0/original.jpg",
     },
   ]);
+
+  // mock data---
   const SizeBtnList = [
     {
       id: 1,
@@ -175,6 +177,7 @@ const ProductDetails = () => {
     // { id: 6, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
     // { id: 7, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
   ];
+
   let settings = {
     focusOnSelect: true,
     infinite: true,
@@ -183,35 +186,123 @@ const ProductDetails = () => {
     slidesToScroll: 1,
     speed: 500,
   };
-  const contentSize = (
-    <section className="w-[220px] h-[135px] p-[5px] ">
-      {SizeBtnList.map((value) => {
-        return (
+
+  const contentSize = (data) => {
+    if (data?.category_id === "2") {
+      return (
+        <section className="w-[220px] h-[135px] p-[5px] ">
           <article
-            key={value?.id}
+            // key={value?.id}
             className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center"
           >
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
-              Размер:
-              <span className="ml-auto">{value.size_in_numbers}</span>
+              Размер в числах:
+              <span className="ml-auto">
+                {data?.min_wear_size} - {data?.max_wear_size}
+              </span>
             </div>
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
               Обхват груди, <span className="text-[#a5a5a5] ml-1">в см</span>:
-              <span className="ml-auto">{value.waist}</span>
+              <span className="ml-auto">
+                {data?.min_chest_girth} - {data?.max_chest_girth}
+              </span>
             </div>
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
               Обхват талии, <span className="text-[#a5a5a5] ml-1">в см</span>:
-              <span className="ml-auto">{value.chest_gitrh}</span>
+              <span className="ml-auto">
+                {data?.min_waist_girth} - {data?.max_waist_girth}
+              </span>
             </div>
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular">
               Обхват бедер, <span className="text-[#a5a5a5] ml-1">в см</span>:
-              <span className="ml-auto">{value.hip_gitrh}</span>
+              <span className="ml-auto">
+                {data?.min_hip_girth} - {data?.max_hip_girth}
+              </span>
             </div>
           </article>
-        );
-      })}
-    </section>
-  );
+        </section>
+      );
+    } else if (data?.category_id === "3") {
+      return (
+        <section className="w-[220px] h-[135px] p-[5px] ">
+          <article
+            // key={value?.id}
+            className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center"
+          >
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              Размер в числах:
+              <span className="ml-auto">
+                {data?.min_wear_size} - {data?.max_wear_size}
+              </span>
+            </div>
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
+              Обхват талии, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">
+                {data?.min_waist_girth} - {data?.max_waist_girth}
+              </span>
+            </div>
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular">
+              Обхват бедер, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">
+                {data?.min_hip_girth} - {data?.max_hip_girth}
+              </span>
+            </div>
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              Рост, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">
+                {data?.min_height} - {data?.max_height}
+              </span>
+            </div>
+          </article>
+        </section>
+      );
+    } else if (data?.category_id === "4") {
+      return (
+        <section className="w-[220px] h-[135px] p-[5px] ">
+          <article
+            // key={value?.id}
+            className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center"
+          >
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
+              Размер в числах, <span className="text-[#a5a5a5] ml-1">в см</span>
+              :<span className="ml-auto">{data?.wear_size}</span>
+            </div>
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular">
+              Длина стопы, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">
+                {data?.min_foot_length} - {data?.max_foot_length}
+              </span>
+            </div>
+          </article>
+        </section>
+      );
+    } else if (data?.category_id === "5") {
+      return (
+        <section className="w-[220px] h-[135px] p-[5px] ">
+          <article
+            // key={value?.id}
+            className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center"
+          >
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
+              Размер в числах, <span className="text-[#a5a5a5] ml-1">в см</span>
+              :
+              <span className="ml-auto">
+                {data?.min_wear_size} - {data?.max_wear_size}
+              </span>
+            </div>
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular">
+              Длина, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">{data?.length}</span>
+            </div>
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              Ширина, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">{data?.width}</span>
+            </div>
+          </article>
+        </section>
+      );
+    }
+  };
 
   // const onChange = (checkedValues) => {
   //   console.log("checked = ", checkedValues);
@@ -748,7 +839,109 @@ const ProductDetails = () => {
 
         <article className="w-full hidden md:flex items-center">
           <section className="flex flex-wrap items-center gap-x-3 gap-y-3">
-            {data?.product?.sizes?.map((data) => {
+            {data?.product?.category_id === "1"
+              ? data?.product?.sizes?.map((data) => {
+                  return (
+                    <Popover
+                      key={data?.id}
+                      trigger="false"
+                      content={contentSize}
+                      className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
+                    >
+                      <p
+                        className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                      >
+                        {data?.min_head_girth} - {data?.max_head_girth}
+                      </p>
+                    </Popover>
+                  );
+                })
+              : null}
+
+            {data?.product?.category_id === "2"
+              ? data?.product?.sizes?.map((data) => {
+                  return (
+                    <Popover
+                      key={data.id}
+                      trigger="hover"
+                      content={() => contentSize(data)}
+                      className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
+                    >
+                      <p
+                        className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                      >
+                        {data?.letter_size}
+                      </p>
+                      <span className="text-[10px] font-AeonikProRegular text-[#757575]">
+                        {data?.min_wear_size} - {data?.max_wear_size}
+                      </span>
+                    </Popover>
+                  );
+                })
+              : null}
+
+            {data?.product?.category_id === "3"
+              ? data?.product?.sizes?.map((data) => {
+                  return (
+                    <Popover
+                      key={data.id}
+                      trigger="hover"
+                      content={() => contentSize(data)}
+                      className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
+                    >
+                      <p
+                        className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                      >
+                        {data?.letter_size}
+                      </p>
+                      <span className="text-[10px] font-AeonikProRegular text-[#757575]">
+                        {data?.min_wear_size} - {data?.max_wear_size}
+                      </span>
+                    </Popover>
+                  );
+                })
+              : null}
+
+            {data?.product?.category_id === "4"
+              ? data?.product?.sizes?.map((data) => {
+                  return (
+                    <Popover
+                      key={data.id}
+                      trigger="hover"
+                      content={() => contentSize(data)}
+                      className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
+                    >
+                      <span className="text-[10px] font-AeonikProRegular text-[#757575]">
+                        {data?.min_wear_size} - {data?.max_wear_size}
+                      </span>
+                    </Popover>
+                  );
+                })
+              : null}
+
+            {data?.product?.category_id === "5"
+              ? data?.product?.sizes?.map((data) => {
+                  return (
+                    <Popover
+                      key={data.id}
+                      trigger="hover"
+                      content={() => contentSize(data)}
+                      className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
+                    >
+                      <p
+                        className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                      >
+                        {data?.letter_size}
+                      </p>
+                      <span className="text-[10px] font-AeonikProRegular text-[#757575]">
+                        {data?.min_wear_size} - {data?.max_wear_size}
+                      </span>
+                    </Popover>
+                  );
+                })
+              : null}
+
+            {/* {data?.product?.sizes?.map((data) => {
               return (
                 <Popover
                   key={data.id}
@@ -766,7 +959,8 @@ const ProductDetails = () => {
                   </span>
                 </Popover>
               );
-            })}
+            })} */}
+
             <p className="w-[80px] h-11 flex md:hidden items-center justify-center rounded-lg border border-searchBgColor">
               <CircleWarningIcons colors={"#000"} />
             </p>
