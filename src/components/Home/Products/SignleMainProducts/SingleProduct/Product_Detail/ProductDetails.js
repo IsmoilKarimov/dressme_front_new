@@ -95,24 +95,6 @@ const ProductDetails = () => {
 
   const [openTab, setOpenTab] = useState(1);
 
-  const [selectSize] = useState([
-    { id: 1, size: "S", sizeNumbers: "36-44" },
-    { id: 2, size: "M", sizeNumbers: "36-44" },
-    { id: 3, size: "L", sizeNumbers: "36-44" },
-    { id: 4, size: "XL", sizeNumbers: "36-44" },
-    { id: 5, size: "XXL", sizeNumbers: "36-44" },
-    { id: 6, size: "3XL", sizeNumbers: "36-44" },
-    { id: 7, size: "4XL", sizeNumbers: "23-28" },
-    { id: 8, size: "5XL", sizeNumbers: "36-44" },
-    { id: 9, size: "6XL", sizeNumbers: "23-28" },
-  ]);
-  const [locationsList] = useState([
-    { id: 1, size: "S", location: "Bektemir" },
-    { id: 2, size: "M", location: "Mirzo Ulugbek" },
-    { id: 3, size: "L", location: "Yunusobod" },
-    { id: 4, size: "XL", location: "Chilonzor" },
-    { id: 5, size: "XXL", location: "Mirobod" },
-  ]);
   const [imgGroup] = useState([
     {
       id: 1,
@@ -160,23 +142,6 @@ const ProductDetails = () => {
       img: "https://images.uzum.uz/cgl7vevhj8j9g69br4e0/original.jpg",
     },
   ]);
-
-  // mock data---
-  const SizeBtnList = [
-    {
-      id: 1,
-      size_in_numbers: "36-44",
-      chest_gitrh: "23-25",
-      waist: "5-12",
-      hip_gitrh: "1-6",
-    },
-    // { id: 2, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
-    // { id: 3, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
-    // { id: 4, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
-    // { id: 5, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
-    // { id: 6, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
-    // { id: 7, size_in_numbers: "36-44", chest_gitrh:"23-25", waist:"5-12", hip_gitrh: "1-6"},
-  ];
 
   let settings = {
     focusOnSelect: true,
@@ -305,10 +270,6 @@ const ProductDetails = () => {
     }
   };
 
-  // const onChange = (checkedValues) => {
-  //   console.log("checked = ", checkedValues);
-  // };
-
   const [copyText, setCopyText] = useState("");
   const [copyCardNumber, setCopyCardNumber] = useState("");
 
@@ -349,6 +310,93 @@ const ProductDetails = () => {
   }, [data]);
 
   checkedData = selectedLocation;
+
+  const sizes = [
+    {
+      id: 7,
+      category_id: "3",
+      product_id: "2",
+      shop_location_id: "6",
+      amount: "1",
+      product_color_id: "3",
+      age: "20",
+      wear_size: "25",
+      one_size: null,
+      min_head_girth: "20",
+      max_head_girth: "20",
+      letter_size: "XS",
+      min_wear_size: "28",
+      max_wear_size: "60",
+      min_chest_girth: "20",
+      max_chest_girth: "20",
+      min_waist_girth: "27",
+      max_waist_girth: "78",
+      min_hip_girth: "40",
+      max_hip_girth: "53",
+      min_height: "20",
+      max_height: "20",
+      min_foot_length: "20",
+      max_foot_length: "20",
+      length: "20",
+      width: "20",
+    },
+    {
+      id: 7,
+      category_id: "3",
+      product_id: "2",
+      shop_location_id: "6",
+      amount: "1",
+      product_color_id: "3",
+      age: "20",
+      wear_size: "25",
+      one_size: null,
+      min_head_girth: "20",
+      max_head_girth: "20",
+      letter_size: "XS",
+      min_wear_size: "28",
+      max_wear_size: "60",
+      min_chest_girth: "20",
+      max_chest_girth: "20",
+      min_waist_girth: "27",
+      max_waist_girth: "78",
+      min_hip_girth: "40",
+      max_hip_girth: "53",
+      min_height: "20",
+      max_height: "20",
+      min_foot_length: "20",
+      max_foot_length: "20",
+      length: "20",
+      width: "20",
+    },
+    {
+      id: 7,
+      category_id: "3",
+      product_id: "2",
+      shop_location_id: "6",
+      amount: "1",
+      product_color_id: "3",
+      age: "20",
+      wear_size: "25",
+      one_size: null,
+      min_head_girth: "20",
+      max_head_girth: "20",
+      letter_size: "XS",
+      min_wear_size: "28",
+      max_wear_size: "60",
+      min_chest_girth: "20",
+      max_chest_girth: "20",
+      min_waist_girth: "27",
+      max_waist_girth: "78",
+      min_hip_girth: "40",
+      max_hip_girth: "53",
+      min_height: "20",
+      max_height: "20",
+      min_foot_length: "20",
+      max_foot_length: "20",
+      length: "20",
+      width: "20",
+    },
+  ];
 
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
@@ -820,7 +868,7 @@ const ProductDetails = () => {
                   <li>Обхват бедер, в см</li>
                 </div>
                 <div className="w-full">
-                  {data?.product?.sizes?.map((data) => {
+                  {sizes?.map((data) => {
                     return (
                       <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
                         <li>
@@ -852,7 +900,8 @@ const ProductDetails = () => {
                   <li>Обхват бедер, в см</li>
                 </div>
                 <div className="w-full">
-                  {data?.product?.sizes?.map((data) => {
+                  {sizes?.map((data) => {
+                    //data?.product?.sizes?.
                     return (
                       <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
                         <li>
@@ -881,7 +930,7 @@ const ProductDetails = () => {
                   <li>Длина стопы, в см</li>
                 </div>
                 <div className="w-full">
-                  {data?.product?.sizes?.map((data) => {
+                  {sizes?.map((data) => {
                     return (
                       <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
                         <li>{data?.wear_size}</li>
@@ -903,7 +952,7 @@ const ProductDetails = () => {
                   <li>Ширина, в см</li>
                 </div>
                 <div className="w-full">
-                  {data?.product?.sizes?.map((data) => {
+                  {sizes?.map((data) => {
                     return (
                       <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
                         <li>{data?.wear_size}</li>
@@ -941,7 +990,8 @@ const ProductDetails = () => {
               : null}
 
             {data?.product?.category_id === "2"
-              ? data?.product?.sizes?.map((data) => {
+              ? sizes?.map((data) => {
+                  //data?.product?.sizes?.
                   return (
                     <Popover
                       key={data.id}
@@ -963,7 +1013,7 @@ const ProductDetails = () => {
               : null}
 
             {data?.product?.category_id === "3"
-              ? data?.product?.sizes?.map((data) => {
+              ? sizes.map((data) => {
                   return (
                     <Popover
                       key={data.id}
@@ -985,7 +1035,7 @@ const ProductDetails = () => {
               : null}
 
             {data?.product?.category_id === "4"
-              ? data?.product?.sizes?.map((data) => {
+              ? sizes.map((data) => {
                   return (
                     <Popover
                       key={data.id}
@@ -1002,7 +1052,7 @@ const ProductDetails = () => {
               : null}
 
             {data?.product?.category_id === "5"
-              ? data?.product?.sizes?.map((data) => {
+              ? sizes.map((data) => {
                   return (
                     <Popover
                       key={data.id}
@@ -1022,26 +1072,6 @@ const ProductDetails = () => {
                   );
                 })
               : null}
-
-            {/* {data?.product?.sizes?.map((data) => {
-              return (
-                <Popover
-                  key={data.id}
-                  trigger="hover"
-                  content={contentSize}
-                  className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
-                >
-                  <p
-                    className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
-                  >
-                    {data?.letter_size}
-                  </p>
-                  <span className="text-[10px] font-AeonikProRegular text-[#757575]">
-                    {data.sizeNumbers}
-                  </span>
-                </Popover>
-              );
-            })} */}
 
             <p className="w-[80px] h-11 flex md:hidden items-center justify-center rounded-lg border border-searchBgColor">
               <CircleWarningIcons colors={"#000"} />
