@@ -13,17 +13,17 @@ import { ClothingParametr } from "./ClothingParametr";
 import { CalourCard } from "../../../../assets";
 import WearType from "./WearType";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
+import { useMutation } from "@tanstack/react-query";
 
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
+  const [mainData, setMainData] = useContext(HomeMainDataContext);
+  const url = "https://api.dressme.uz/api";
+
   // -------------------------------------
   const toggle = React.useCallback(() => setOpenWearType(false), []);
   // -------------------------------------
-
-  // Main data context --------
-
-  const [mainData, setMainData] = useContext(HomeMainDataContext);
 
   useEffect(() => {
     if (openWearType) {
@@ -39,8 +39,35 @@ export default function CollectionCards() {
     navigate(`/product/${id}`);
   };
 
-  const onColorChecked = () => {};
+  // =========== POST FAVOURITE PRODUCT ==========
+  const dataEmailMutate = useMutation((id) => {
+    return fetch(`${url}/user-main/products/add-to-wishlist`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
+      },
+      body: JSON.stringify({
+        product_id: id,
+      }),
+    }).then((res) => res.json());
+  });
 
+  const sendFavData = (id) => {
+    dataEmailMutate.mutate(id, {
+      onSuccess: (res) => {
+        console.log(res);
+      },
+      onError: (err) => {
+        console.log(err, "ERROR IN PRODUCTS");
+      },
+    });
+  };
+
+  console.log(mainData);
+
+  const onColorChecked = () => {};
   const handleLeaveMouse = (eId) => {
     const elementsIndex = dressInfo.ProductList.findIndex(
       (element) => element.id == eId
@@ -109,7 +136,7 @@ export default function CollectionCards() {
                       <NoImg />
                     </div>
                   </figure>
-                  <section className="relative  w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[130px] md:h-[136px] ">
+                  <section className="relative w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[130px] md:h-[136px] ">
                     <div className="group hover:w-full hover:h-[36px] cursor-pointer">
                       <button className="group-hover:hidden w-12 h-7 border border-searchBgColor rounded-lg hidden md:flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 ">
                         <figure className="w-6 h-6 flex items-center justify-center">
@@ -222,7 +249,10 @@ export default function CollectionCards() {
                         )}
                       </article>
                       <figure className="flex items-center select-none	absolute right-2 bottom-2">
-                        <button className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
+                        <button
+                          onClick={() => sendFavData(data?.id)}
+                          className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                        >
                           <img src={HeartImg} alt="" />
                         </button>
                       </figure>

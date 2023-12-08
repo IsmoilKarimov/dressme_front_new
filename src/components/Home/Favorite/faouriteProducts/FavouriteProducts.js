@@ -12,7 +12,8 @@ import { useHttp } from "../../../../hook/useHttp";
 
 export default function FavouriteProducts() {
   const [dressInfo] = useContext(dressMainData);
-  const [favProducts, setFavProductss] = useState([])
+  const [favProducts, setFavProducts] = useState(null)
+  // console.log(favProducts.length);
 
   const {request} = useHttp()
   const onColorChecked = () => {};
@@ -25,12 +26,12 @@ export default function FavouriteProducts() {
   useQuery(
     ["get-wishlist-products"],
     async () => {
-      return request({ url: `/main/wishlist`, token: true });
+      return request({ url: `/user-main/products/wishlist`, token: true });
     },
     {
       onSuccess: (res) => {
-        console.log(res, "SUCCESS, GET WISHLIST PROFILE");
-        setFavProductss(res?.wishlist_products?.data)
+        console.log(res?.userProductWishlist, "SUCCESS, GET WISHLIST PROFILE");
+        setFavProducts(res?.userProductWishlist)
       },
       onError: (err) => {
         console.log(err, "THERE IS AN ERROR IN GET-WISHLIST-PROFILE");
@@ -45,10 +46,10 @@ export default function FavouriteProducts() {
       <div className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto mb-[90px] ss:px-4 md:px-0">
         <section className="w-full flex flex-col box-border ">
           
-          {dressInfo?.ProductList.length ? (
-            
+          {favProducts?.length ? (
             <article className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
-              {dressInfo?.ProductList.map((data) => {
+              {favProducts?.map((data) => {
+                console.log(data,"DATA");
                 return (
                   <div
                     key={data.id}
@@ -56,20 +57,14 @@ export default function FavouriteProducts() {
                   >
                     <figure
                       onClick={() => goDetail(data?.title)}
-                      className=" w-full cursor-pointer h-[200px] ls:h-[220px] ll:h-[238px] xs:h-[309px] lg:h-[320px] bg-btnBgColor  flex content-between items-center overflow-hidden border-b border-solid flex-nowrap"
+                      className=" w-full cursor-pointer h-[200px] ls:h-[220px] ll:h-[238px] xs:h-[309px] lg:h-[320px] bg-btnBgColor  flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
                     >
-                      {data.ProducImg ? (
-                        <img
-                          className="w-full h-full m-auto hover:scale-105 transition duration-700 ease-in-out"
-                          src={data.ProducImg}
-                          alt="ProducImg"
-                        />
-                      ) : (
+                      <div>
                         <NoImg />
-                      )}
+                      </div>
                     </figure>
                     <div className="w-full rounded-b-xl bg-white  flex flex-wrap h-[130px] md:h-[136px] ">
-                      <section className=" w-full flex justify-between items-center px-1  border-solid xs:h-[38px] lg:h-8 ss:h-[30px] xs:px-2 md:px-4 bg-white">
+                      {/* <section className=" w-full flex justify-between items-center px-1  border-solid xs:h-[38px] lg:h-8 ss:h-[30px] xs:px-2 md:px-4 bg-white">
                         {data?.changeColor.map((itemValue) => {
                           return (
                             <div
@@ -86,14 +81,14 @@ export default function FavouriteProducts() {
                             </div>
                           );
                         })}
-                      </section>
+                      </section> */}
                       <section
-                        onClick={() => goDetail(data?.title)}
+                        onClick={() => goDetail(data?.product?.name_ru)}
                         className="w-full  xs:px-3 ss:px-3 xs:mt-3 ss:mt-2 z-auto"
                       >
                         <section className="relative z-10 w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[15px] leading-4 text-black mb-2 md:mb-0  cursor-pointer">
                           <p className="absolute categoryLinearText left-0 w-full h-full z-[10] top-0"></p>
-                          {data?.title || "NoData"}
+                          {data?.product.name_ru || "NoData"}
                         </section>
                         <section className="w-full flex justify-between items-center xs:mt-3">
                           <article className="flex items-center justify-between">
@@ -102,9 +97,9 @@ export default function FavouriteProducts() {
                             </span>
                             <span className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex items-center">
                               <p className="font-AeonikProMedium text-[10px] ls:text-xs not-italic mx-1 text-black md:mr-[6px] md:text-[13px]">
-                                5.0{" "}
+                                {data?.product?.overall_rating}
                               </p>
-                              ({data?.starCount || 0}{" "}
+                              ({data?.product?.rated_users_count || 0}{" "}
                               <p className="ss:hidden lg:block md:ml-1 md:text-[11px]">
                                 голосов
                               </p>
@@ -149,7 +144,6 @@ export default function FavouriteProducts() {
                 );
               })}
             </article>
-
           ) : (
             <article className="md:my-[50px] mx-auto">
               <div className="w-[800px] text-center p-8 flex flex-col items-center justify-center">
