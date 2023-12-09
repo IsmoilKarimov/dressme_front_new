@@ -789,35 +789,37 @@ const ProductDetails = () => {
                 </div>
                 <div className="w-full">
                   {data?.product?.sizes?.map((data) => {
-                    return (
-                      <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
-                        <li>
-                          {data?.min_wear_size}{" "}
-                          {data?.max_wear_size
-                            ? "- " + data?.max_wear_size
-                            : null}
-                        </li>
-                        <li>{data?.letter_size}</li>
-                        <li>
-                          {data?.min_chest_girth}{" "}
-                          {data?.max_chest_girth
-                            ? "- " + data?.max_chest_girth
-                            : null}
-                        </li>
-                        <li>
-                          {data?.min_waist_girth}{" "}
-                          {data?.max_waist_girth
-                            ? "- " + data?.max_waist_girth
-                            : null}
-                        </li>
-                        <li>
-                          {data?.min_hip_girth}{" "}
-                          {data?.max_hip_girth
-                            ? "- " + data?.max_hip_girth
-                            : null}
-                        </li>
-                      </div>
-                    );
+                    if (data?.shop_location_id == selectedLocation?.id) {
+                      return (
+                        <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                          <li>
+                            {data?.min_wear_size}{" "}
+                            {data?.max_wear_size
+                              ? "- " + data?.max_wear_size
+                              : null}
+                          </li>
+                          <li>{data?.letter_size}</li>
+                          <li>
+                            {data?.min_chest_girth}{" "}
+                            {data?.max_chest_girth
+                              ? "- " + data?.max_chest_girth
+                              : null}
+                          </li>
+                          <li>
+                            {data?.min_waist_girth}{" "}
+                            {data?.max_waist_girth
+                              ? "- " + data?.max_waist_girth
+                              : null}
+                          </li>
+                          <li>
+                            {data?.min_hip_girth}{" "}
+                            {data?.max_hip_girth
+                              ? "- " + data?.max_hip_girth
+                              : null}
+                          </li>
+                        </div>
+                      );
+                    }
                   })}
                 </div>
               </ul>
@@ -833,33 +835,35 @@ const ProductDetails = () => {
                 </div>
                 <div className="w-full">
                   {data?.product?.sizes?.map((data) => {
-                    return (
-                      <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
-                        <li>
-                          {data?.min_wear_size}{" "}
-                          {data?.max_wear_size
-                            ? "- " + data?.max_wear_size
-                            : null}
-                        </li>
-                        <li>{data?.letter_size}</li>
-                        <li>
-                          {data?.min_height}{" "}
-                          {data?.max_height ? "- " + data?.max_height : null}
-                        </li>
-                        <li>
-                          {data?.min_waist_girth}{" "}
-                          {data?.max_waist_girth
-                            ? "- " + data?.max_waist_girth
-                            : null}
-                        </li>
-                        <li>
-                          {data?.min_hip_girth}{" "}
-                          {data?.max_hip_girth
-                            ? "- " + data?.max_hip_girth
-                            : null}
-                        </li>
-                      </div>
-                    );
+                    if (data?.shop_location_id == selectedLocation?.id) {
+                      return (
+                        <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                          <li>
+                            {data?.min_wear_size}{" "}
+                            {data?.max_wear_size
+                              ? "- " + data?.max_wear_size
+                              : null}
+                          </li>
+                          <li>{data?.letter_size}</li>
+                          <li>
+                            {data?.min_height}{" "}
+                            {data?.max_height ? "- " + data?.max_height : null}
+                          </li>
+                          <li>
+                            {data?.min_waist_girth}{" "}
+                            {data?.max_waist_girth
+                              ? "- " + data?.max_waist_girth
+                              : null}
+                          </li>
+                          <li>
+                            {data?.min_hip_girth}{" "}
+                            {data?.max_hip_girth
+                              ? "- " + data?.max_hip_girth
+                              : null}
+                          </li>
+                        </div>
+                      );
+                    }
                   })}
                 </div>
               </ul>
@@ -872,17 +876,19 @@ const ProductDetails = () => {
                 </div>
                 <div className="w-full">
                   {data?.product?.sizes?.map((data) => {
-                    return (
-                      <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
-                        <li>{data?.wear_size}</li>
-                        <li>
-                          {data?.min_foot_length}{" "}
-                          {data?.max_foot_length
-                            ? "- " + data?.max_foot_length
-                            : null}
-                        </li>
-                      </div>
-                    );
+                    if (data?.shop_location_id == selectedLocation?.id) {
+                      return (
+                        <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                          <li>{data?.wear_size}</li>
+                          <li>
+                            {data?.min_foot_length}{" "}
+                            {data?.max_foot_length
+                              ? "- " + data?.max_foot_length
+                              : null}
+                          </li>
+                        </div>
+                      );
+                    }
                   })}
                 </div>
               </ul>
@@ -897,14 +903,16 @@ const ProductDetails = () => {
                 </div>
                 <div className="w-full">
                   {data?.product?.sizes?.map((data) => {
-                    return (
-                      <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
-                        <li>{data?.wear_size}</li>
-                        <li>{data?.letter_size}</li>
-                        <li>{data?.length}</li>
-                        <li>{data?.width}</li>
-                      </div>
-                    );
+                    if (data?.shop_location_id == selectedLocation?.id) {
+                      return (
+                        <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                          <li>{data?.wear_size}</li>
+                          <li>{data?.letter_size}</li>
+                          <li>{data?.length}</li>
+                          <li>{data?.width}</li>
+                        </div>
+                      );
+                    }
                   })}
                 </div>
               </ul>
@@ -916,111 +924,121 @@ const ProductDetails = () => {
           <section className="flex flex-wrap items-center gap-x-3 gap-y-3">
             {data?.product?.category_id === "1"
               ? data?.product?.sizes?.map((data) => {
-                  return (
-                    <Popover
-                      key={data?.id}
-                      trigger={data?.min_head_girth ? "hover" : "false"}
-                      content={() => contentSize(data)}
-                      className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
-                    >
-                      <p
-                        className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                  if (data?.shop_location_id == selectedLocation?.id) {
+                    return (
+                      <Popover
+                        key={data?.id}
+                        trigger={data?.min_head_girth ? "hover" : "false"}
+                        content={() => contentSize(data)}
+                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
                       >
-                        {data?.one_size ? "ONE SIZE" : null}
-                      </p>
-                    </Popover>
-                  );
+                        <p
+                          className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                        >
+                          {data?.one_size ? "ONE SIZE" : null}
+                        </p>
+                      </Popover>
+                    );
+                  }
                 })
               : null}
 
             {data?.product?.category_id === "2"
               ? data?.product?.sizes?.map((data) => {
-                  return (
-                    <Popover
-                      key={data.id}
-                      trigger="hover"
-                      content={() => contentSize(data)}
-                      className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
-                    >
-                      <p
-                        className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                  if (data?.shop_location_id == selectedLocation?.id) {
+                    return (
+                      <Popover
+                        key={data.id}
+                        trigger="hover"
+                        content={() => contentSize(data)}
+                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
                       >
-                        {data?.letter_size}
-                      </p>
-                      <span className="text-[10px] font-AeonikProRegular text-[#757575]">
-                        {data?.min_wear_size}{" "}
-                        {data?.max_wear_size
-                          ? "- " + data?.max_wear_size
-                          : null}
-                      </span>
-                    </Popover>
-                  );
+                        <p
+                          className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                        >
+                          {data?.letter_size}
+                        </p>
+                        <span className="text-[10px] font-AeonikProRegular text-[#757575]">
+                          {data?.min_wear_size}{" "}
+                          {data?.max_wear_size
+                            ? "- " + data?.max_wear_size
+                            : null}
+                        </span>
+                      </Popover>
+                    );
+                  }
                 })
               : null}
 
             {data?.product?.category_id === "3"
               ? data?.product?.sizes?.map((data) => {
-                  return (
-                    <Popover
-                      key={data.id}
-                      trigger="hover"
-                      content={() => contentSize(data)}
-                      className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
-                    >
-                      <p
-                        className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                  if (data?.shop_location_id == selectedLocation?.id) {
+                    return (
+                      <Popover
+                        key={data.id}
+                        trigger="hover"
+                        content={() => contentSize(data)}
+                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
                       >
-                        {data?.letter_size}
-                      </p>
-                      <span className="text-[10px] font-AeonikProRegular text-[#757575]">
-                        {data?.min_wear_size}{" "}
-                        {data?.max_wear_size
-                          ? "- " + data?.max_wear_size
-                          : null}
-                      </span>
-                    </Popover>
-                  );
+                        <p
+                          className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                        >
+                          {data?.letter_size}
+                        </p>
+                        <span className="text-[10px] font-AeonikProRegular text-[#757575]">
+                          {data?.min_wear_size}{" "}
+                          {data?.max_wear_size
+                            ? "- " + data?.max_wear_size
+                            : null}
+                        </span>
+                      </Popover>
+                    );
+                  }
                 })
               : null}
 
             {data?.product?.category_id === "4"
               ? data?.product?.sizes?.map((data) => {
-                  return (
-                    <Popover
-                      key={data.id}
-                      trigger="hover"
-                      content={() => contentSize(data)}
-                      className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
-                    >
-                      <p
-                        className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                  if (data?.shop_location_id == selectedLocation?.id) {
+                    return (
+                      <Popover
+                        key={data.id}
+                        trigger="hover"
+                        content={() => contentSize(data)}
+                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
                       >
-                        {data?.wear_size}
-                      </p>
-                    </Popover>
-                  );
+                        <p
+                          className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                        >
+                          {data?.wear_size}
+                        </p>
+                      </Popover>
+                    );
+                  }
                 })
               : null}
 
             {data?.product?.category_id === "5"
               ? data?.product?.sizes?.map((data) => {
-                  return (
-                    <Popover
-                      key={data.id}
-                      trigger="hover"
-                      content={() => contentSize(data)}
-                      className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
-                    >
-                      <p
-                        className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                  if (data?.shop_location_id == selectedLocation?.id) {
+                    return (
+                      <Popover
+                        key={data.id}
+                        trigger="hover"
+                        content={() => contentSize(data)}
+                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
                       >
-                        {data?.letter_size}
-                      </p>
-                      <span className="text-[10px] font-AeonikProRegular text-[#757575]">
-                        {data?.wear_size}
-                      </span>
-                    </Popover>
-                  );
+                        <p
+                          className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                        >
+                          {data?.letter_size}
+                        </p>
+                        <span className="text-[10px] font-AeonikProRegular text-[#757575]">
+                          {data?.wear_size}
+                        </span>
+                      </Popover>
+                    );
+                  }
                 })
               : null}
 
