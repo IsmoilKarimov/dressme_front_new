@@ -88,12 +88,12 @@ const ProductDetails = () => {
 
   // For DropUp
   useEffect(() => {
-    if (tableSizes || locations) {
+    if (tableSizes || locations || openLocationModal) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [tableSizes, locations]);
+  }, [tableSizes, locations, openLocationModal]);
 
   const [openTab, setOpenTab] = useState(1);
 
@@ -1344,6 +1344,7 @@ const ProductDetails = () => {
             {selectedLocation?.assistant_phone ? (
               <address className="w-[65%] md:w-fit">
                 <a
+                  target="_blank"
                   className="w-[232px] h-12 md:h-[52px] px-5  rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex gap-x-3 items-center justify-center bg-fullBlue"
                   href={`${"tel:" + selectedLocation?.assistant_phone}`}
                 >
@@ -1356,6 +1357,7 @@ const ProductDetails = () => {
             {selectedLocation?.assistant_messenger ? (
               <address className="w-[35%] md:w-fit  ml-4">
                 <a
+                  target="_blank"
                   className={`w-[232px] h-12 md:h-[52px] px-5 rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center flex gap-x-3 items-center justify-center text-fullBlue border border-fullBlue`}
                   href={`https://t.me/${selectedLocation?.assistant_messenger?.slice(
                     1
@@ -1381,6 +1383,7 @@ const ProductDetails = () => {
             {selectedLocation?.second_assistant_phone ? (
               <address className="w-[65%] md:w-fit">
                 <a
+                  target="_blank"
                   className="w-[232px] h-12 md:h-[52px] px-5  rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex gap-x-3 items-center justify-center bg-fullBlue"
                   href={`${"tel:" + selectedLocation?.second_assistant_phone}`}
                 >
@@ -1393,6 +1396,7 @@ const ProductDetails = () => {
             {selectedLocation?.second_assistant_messenger ? (
               <address className="w-[35%] md:w-fit  ml-4">
                 <a
+                  target="_blank"
                   className={`w-[232px] h-12 md:h-[52px] px-5 rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center flex gap-x-3 items-center justify-center text-fullBlue border border-fullBlue`}
                   href={`https://t.me/${selectedLocation?.second_assistant_messenger?.slice(
                     1
