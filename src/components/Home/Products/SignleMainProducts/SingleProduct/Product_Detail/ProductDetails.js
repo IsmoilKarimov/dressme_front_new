@@ -313,6 +313,10 @@ const ProductDetails = () => {
     data?.product?.locations[0]
   );
 
+  let checkTableShow = data?.product?.sizes?.find(
+    (item) => item?.shop_location_id == selectedLocation?.id
+  );
+
   useEffect(() => {
     setSelectedLocation(data?.product?.locations[0]);
   }, [data]);
@@ -725,7 +729,7 @@ const ProductDetails = () => {
         </article>
 
         {/* Images Slider */}
-        <article className="w-full hidden md:flex items-center mb-[30px]">
+        <article className="w-full hidden md:flex items-center">
           <button
             className="button mt-[-5px]"
             onClick={() => slider?.current?.slickPrev()}
@@ -758,16 +762,18 @@ const ProductDetails = () => {
           </button>
         </article>
 
-        <article className="w-full hidden md:flex items-center mb-4 text-sm">
-          {data?.product?.category_id === "1" ? null : (
-            <button
-              type="primary"
-              onClick={() => setOpenSizeList(true)}
-              className="not-italic mr-3 font-AeonikProRegular border-b border-dashed border-borderWinter md:font-AeonikProMedium text-borderWinter"
-            >
-              Таблица размеров
-            </button>
-          )}
+        <article className="w-full hidden md:flex items-center text-sm">
+          {checkTableShow ? (
+            data?.product?.category_id === "1" ? null : (
+              <button
+                type="primary"
+                onClick={() => setOpenSizeList(true)}
+                className="not-italic mr-3 font-AeonikProRegular mt-[30px] border-b border-dashed border-borderWinter md:font-AeonikProMedium text-borderWinter"
+              >
+                Таблица размеров
+              </button>
+            )
+          ) : null}
 
           <Modal
             centered
@@ -930,7 +936,7 @@ const ProductDetails = () => {
                         key={data?.id}
                         trigger={data?.min_head_girth ? "hover" : "false"}
                         content={() => contentSize(data)}
-                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
+                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center mt-4"
                       >
                         <p
                           className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
@@ -951,7 +957,7 @@ const ProductDetails = () => {
                         key={data.id}
                         trigger="hover"
                         content={() => contentSize(data)}
-                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
+                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center mt-4"
                       >
                         <p
                           className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
@@ -978,7 +984,7 @@ const ProductDetails = () => {
                         key={data.id}
                         trigger="hover"
                         content={() => contentSize(data)}
-                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
+                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center mt-4"
                       >
                         <p
                           className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
@@ -1005,7 +1011,7 @@ const ProductDetails = () => {
                         key={data.id}
                         trigger="hover"
                         content={() => contentSize(data)}
-                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
+                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center mt-4"
                       >
                         <p
                           className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
@@ -1026,7 +1032,7 @@ const ProductDetails = () => {
                         key={data.id}
                         trigger="hover"
                         content={() => contentSize(data)}
-                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
+                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center mt-4"
                       >
                         <p
                           className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
