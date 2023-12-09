@@ -16,18 +16,18 @@ body {
 }
 
 @font-face {
-  font-family: 'AeonikPro-Regular';
-  src: url('/src/fonts/aeonic-pro/AeonikPro-Regular.woff2') format('woff2'),
-    url('/src/fonts/aeonic-pro/AeonikPro-Regular.woff') format('woff');
+  font-family: "AeonikPro-Regular";
+  src: url("/src/fonts/aeonic-pro/AeonikPro-Regular.woff2") format("woff2"),
+    url("/src/fonts/aeonic-pro/AeonikPro-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'AeonikPro-Medium';
-  src: url('/src/fonts/aeonic-pro/AeonikPro-Medium.woff2') format('woff2'),
-    url('/src/fonts/aeonic-pro/AeonikPro-Medium.woff') format('woff');
+  font-family: "AeonikPro-Medium";
+  src: url("/src/fonts/aeonic-pro/AeonikPro-Medium.woff2") format("woff2"),
+    url("/src/fonts/aeonic-pro/AeonikPro-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -37,7 +37,7 @@ body {
   overflow: hidden;
 }
 
-.slick-slide>div {
+.slick-slide > div {
   margin: 0 10px;
 }
 
@@ -50,10 +50,9 @@ body {
   border-radius: 8px;
 }
 
-.showpageSlider .slick-slide>div {
+.showpageSlider .slick-slide > div {
   margin: 0;
 }
-
 
 .MoonLoad {
   width: 100%;
@@ -110,7 +109,7 @@ select {
   transition: all 0.5s ease-out;
 }
 
-.nav-link:hover+.followers {
+.nav-link:hover + .followers {
   left: 31px;
   z-index: 10;
 }
@@ -220,9 +219,11 @@ select {
 
 /* ----------CateGory----------- */
 .categoryLinearText {
-  background: linear-gradient(to right,
-      rgba(167, 207, 223, 0) 50%,
-      rgba(255, 255, 255, 0.99) 100%);
+  background: linear-gradient(
+    to right,
+    rgba(167, 207, 223, 0) 50%,
+    rgba(255, 255, 255, 0.99) 100%
+  );
 }
 
 /* Table */
@@ -314,7 +315,8 @@ table tr th:nth-child(1) {
 }
 
 .example-thumb1 {
-  background: rgba(0, 125, 202, 1) url("./assets//Category//ReactSliderMenu.svg");
+  background: rgba(0, 125, 202, 1)
+    url("./assets//Category//ReactSliderMenu.svg");
   width: 24px;
   height: 16px;
   background-repeat: no-repeat;
@@ -376,6 +378,17 @@ table tr th:nth-child(1) {
 }
 
 .VerticelScroll::-webkit-scrollbar-thumb {
+  background-color: #a1a1a1;
+  width: 2px;
+  border-radius: 8px;
+}
+
+body::-webkit-scrollbar {
+  width: 2px;
+  height: 50px;
+}
+
+body::-webkit-scrollbar-thumb {
   background-color: #a1a1a1;
   width: 2px;
   border-radius: 8px;
@@ -447,7 +460,6 @@ table tr th:nth-child(1) {
 
 .marketFilter .example-thumb1.active {
   border: 4px solid #fff;
-  ;
 }
 
 .marketFilter .example-track1 {
