@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ProductCarousel } from "./Product_Carousel/ProductCarousel";
 import { ProductDetails } from "./Product_Detail/ProductDetails";
 import { SingleProductTop } from "../SingleProductTop/SingleProductTop";
@@ -12,6 +12,7 @@ import {
 } from "../../../../../assets/icons";
 import { HeartImg } from "../../../../../assets";
 import ProductComment from "./ProductComment/ProductComment";
+import { useQuery } from "@tanstack/react-query";
 
 const SingleProduct = () => {
   const [dressInfo] = useContext(dressMainData);
@@ -65,6 +66,36 @@ const SingleProduct = () => {
     };
   }, [show, scrollPost, ShowNavMenu, ScrollPostNavMenu]);
 
+  // ------------GET METHOD Main data ------------------------------------------------
+
+  const url = "https://api.dressme.uz";
+
+  const params = useParams();
+
+  const [data, setData] = useState();
+
+  useQuery(
+    ["get_main_detail_data"],
+    () => {
+      return fetch(`${url}/api/main/products/${params?.id}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      }).then((res) => res.json());
+    },
+    {
+      onSuccess: (res) => {
+        setData(res);
+      },
+      onError: (err) => {
+        console.log(err, "err");
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: true,
+    }
+  );
+
   return (
     <main className="flex flex-col m-0 p-0 box-border">
       <section>
@@ -72,13 +103,11 @@ const SingleProduct = () => {
       </section>
       <section className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto border-box mb-20 md:mb-[60px]">
         <section className="w-[100%] h-fit mt-6 flex justify-between flex-col md:flex-row">
-          <section
-            className={`md:w-1/2`}
-          >
-            <ProductCarousel show = {show} />
+          <section className={`md:w-1/2`}>
+            <ProductCarousel show={show} data={data} />
           </section>
           <section className="w-full md:w-1/2 h-full ">
-            <ProductDetails />
+            <ProductDetails data={data} />
           </section>
         </section>
         {/* Products Comment */}

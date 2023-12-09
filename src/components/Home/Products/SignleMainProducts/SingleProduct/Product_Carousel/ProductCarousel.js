@@ -8,7 +8,7 @@ import {
 } from "../../../../../../assets/icons";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 
-const ProductCarousel = ({ show }) => {
+const ProductCarousel = ({ show, data }) => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [dressInfo] = useContext(dressMainData);
   const [nav1, setNav1] = useState();
@@ -154,14 +154,12 @@ const ProductCarousel = ({ show }) => {
     speed: 500,
   };
   let settings1 = {
-    slidesToShow: 5,
     slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 5,
           slidesToScroll: 1,
         },
       },
@@ -203,8 +201,6 @@ const ProductCarousel = ({ show }) => {
     swipeToSlide: true,
     initialSlide: 0,
     speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
   };
   let settingsModal = {
     nextArrow: <NextArrowModal />,
@@ -239,11 +235,15 @@ const ProductCarousel = ({ show }) => {
               className="relative w-full h-fit md:!w-[750px] md:h-[100vh] showpageSlider !overflow-visible bg-white md:rounded-lg"
               {...settingsModal}
             >
-              {imgGroup?.map((data) => {
+              {data?.photos?.map((data) => {
                 return (
                   <article>
                     <figure className="relative overflow-hidden h-fit w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-                      <img className="w-full h-full" src={data?.img} alt="" />
+                      <img
+                        className="w-full h-full"
+                        src={data?.url_photo}
+                        alt=""
+                      />
                       <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                         <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
                           <p> {data.id}</p>/<p>{imgGroup.length}</p>
@@ -269,13 +269,13 @@ const ProductCarousel = ({ show }) => {
             <Slider
               asNavFor={nav1}
               ref={slider2}
-              slidesToShow={6}
+              slidesToShow={data?.product?.photos?.length}
               swipeToSlide={true}
               focusOnSelect={true}
               vertical={true}
               className="flex flex-col flex-wrap w-full h-full pt-0 rounded-lg"
             >
-              {imgGroup?.map((data) => {
+              {data?.product?.photos?.map((data) => {
                 return (
                   <figure
                     key={data?.id}
@@ -283,7 +283,7 @@ const ProductCarousel = ({ show }) => {
                   >
                     <img
                       className="w-full h-full rounded-lg"
-                      src={data?.img}
+                      src={data?.url_photo}
                       alt=""
                     />
                   </figure>
@@ -299,17 +299,22 @@ const ProductCarousel = ({ show }) => {
               ref={slider1}
               {...settings}
             >
-              {imgGroup?.map((data) => {
+              {data?.product?.photos?.map((data) => {
                 return (
                   <article
                     key={data?.id}
                     onClick={() => handleClickCarosuel(data?.id)}
                   >
-                    <figure className="relative w-full h-full overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
-                      <img className="w-full h-fit" src={data?.img} alt="" />
-                      <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
+                    <figure className="relative w-full h-[620px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
+                      <img
+                        className="w-full h-fit"
+                        src={data?.url_photo}
+                        alt=""
+                      />
+                      {/* <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                         <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
-                          <p> {data.id}</p>/<p>{imgGroup.length}</p>
+                          <p> {data.id}</p>
+                          <p>{data?.product?.photos?.length}</p>
                         </span>
                         <span className="w-fit flex items-center p-2 gap-x-2 rounded-lg bg-bgCard border border-searchBgColor">
                           <p className="flex items-center ">
@@ -319,7 +324,7 @@ const ProductCarousel = ({ show }) => {
                             Видео
                           </p>
                         </span>
-                      </figcaption>
+                      </figcaption> */}
                     </figure>
                   </article>
                 );
