@@ -1256,35 +1256,73 @@ const ProductDetails = () => {
           </section>
         </article>
 
+        {/* Social btns 1 */}
         <article className="w-full flex items-center justify-between gap-x-3 md:gap-x-0 md:mt-6">
           <article className="w-full flex items-center">
-            <address className="w-[65%] md:w-fit">
-              <a
-                className="w-[232px] h-12 md:h-[52px] px-5  rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex gap-x-3 items-center justify-center bg-fullBlue"
-                href={`${"tel:" + selectedLocation?.assistant_phone}`}
-              >
-                <PhoneIcons colors={"#fff"} />{" "}
-                {selectedLocation?.assistant_name}
-              </a>
-            </address>
-            <address className="w-[35%] md:w-fit  ml-4">
-              <a
-                className={`w-[232px] h-12 md:h-[52px] px-5 rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center flex gap-x-3 items-center justify-center text-fullBlue border border-fullBlue`}
-                href={`https://t.me/${selectedLocation?.assistant_messenger?.slice(
-                  1
-                )}`}
-              >
-                <span className="w-7 h-7 bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
-                  <FaTelegramPlane size={16} />
-                </span>{" "}
-                <span>{selectedLocation?.assistant_messenger}</span>{" "}
-              </a>
-            </address>
+            {selectedLocation?.assistant_phone ? (
+              <address className="w-[65%] md:w-fit">
+                <a
+                  className="w-[232px] h-12 md:h-[52px] px-5  rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex gap-x-3 items-center justify-center bg-fullBlue"
+                  href={`${"tel:" + selectedLocation?.assistant_phone}`}
+                >
+                  <PhoneIcons colors={"#fff"} />{" "}
+                  {selectedLocation?.assistant_name}
+                </a>
+              </address>
+            ) : null}
+
+            {selectedLocation?.assistant_messenger ? (
+              <address className="w-[35%] md:w-fit  ml-4">
+                <a
+                  className={`w-[232px] h-12 md:h-[52px] px-5 rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center flex gap-x-3 items-center justify-center text-fullBlue border border-fullBlue`}
+                  href={`https://t.me/${selectedLocation?.assistant_messenger?.slice(
+                    1
+                  )}`}
+                >
+                  <span className="w-7 h-7 bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
+                    <FaTelegramPlane size={16} />
+                  </span>{" "}
+                  <span>{selectedLocation?.assistant_messenger}</span>{" "}
+                </a>
+              </address>
+            ) : null}
           </article>
           <article className="w-fit md:ml-3 hidden md:block">
             <button className="w-[52px] h-[52px] hidden md:flex items-center justify-center rounded-xl active:scale-95 border border-searchBgColor">
               <img src={HeartImg} alt="" className="w-5 h-5" />
             </button>
+          </article>
+        </article>
+        {/* Social btns 2 */}
+        <article className="w-full flex items-center justify-between gap-x-3 md:gap-x-0 md:mt-6">
+          <article className="w-full flex items-center">
+            {selectedLocation?.second_assistant_phone ? (
+              <address className="w-[65%] md:w-fit">
+                <a
+                  className="w-[232px] h-12 md:h-[52px] px-5  rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex gap-x-3 items-center justify-center bg-fullBlue"
+                  href={`${"tel:" + selectedLocation?.second_assistant_phone}`}
+                >
+                  <PhoneIcons colors={"#fff"} />{" "}
+                  {selectedLocation?.second_assistant_name}
+                </a>
+              </address>
+            ) : null}
+
+            {selectedLocation?.second_assistant_messenger ? (
+              <address className="w-[35%] md:w-fit  ml-4">
+                <a
+                  className={`w-[232px] h-12 md:h-[52px] px-5 rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center flex gap-x-3 items-center justify-center text-fullBlue border border-fullBlue`}
+                  href={`https://t.me/${selectedLocation?.second_assistant_messenger?.slice(
+                    1
+                  )}`}
+                >
+                  <span className="w-7 h-7 bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
+                    <FaTelegramPlane size={16} />
+                  </span>{" "}
+                  <span>{selectedLocation?.second_assistant_messenger}</span>{" "}
+                </a>
+              </address>
+            ) : null}
           </article>
         </article>
       </section>
