@@ -1225,13 +1225,23 @@ const ProductDetails = () => {
             <span className="text-base font-AeonikProMedium mr-3">от</span>
             <p className="hidden md:block font-AeonikProMedium text-[20px] text-black">
               {data?.product?.cost?.discount_price
-                ? data?.product?.cost?.discount_price
-                : data?.product?.cost?.price}{" "}
+                ? parseInt(data?.product?.cost?.discount_price)
+                    ?.toLocaleString()
+                    ?.split(",")
+                    .join(" ")
+                : parseInt(data?.product?.cost?.price)
+                    ?.toLocaleString()
+                    ?.split(",")
+                    .join(" ")}{" "}
               сум
             </p>
             {data?.product?.cost?.discount_price ? (
               <p className="hidden md:block ml-[10px] font-AeonikProRegular line-through text-[18px] text-setTexOpacity">
-                {data?.product?.cost?.price} сум
+                {parseInt(data?.product?.cost?.price)
+                  ?.toLocaleString()
+                  ?.split(",")
+                  .join(" ")}{" "}
+                сум
               </p>
             ) : null}
           </section>
