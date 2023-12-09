@@ -10,6 +10,7 @@ import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { BsCircleFill } from "react-icons/bs";
 import {
   CalendarIcons,
+  CategoryIcon,
   CategoryUsersIcon,
   ChapterIcon,
   CircleWarningIcons,
@@ -25,6 +26,7 @@ import {
   QualityIcon,
   SettingsIcon,
   StarIcons,
+  TypeIcon,
 } from "../../../../../../assets/icons";
 import {
   summerSeason,
@@ -540,6 +542,47 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
+          {/* ---- */}
+          <div className="w-full flex items-center mb-4">
+            <div className="w-1/2 flex items-center">
+              <article className="w-fit flex items-center">
+                <CategoryIcon />
+                <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
+                  Категория:
+                </div>
+              </article>
+              <article className="w-fit ml-2">
+                <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+                  {data?.product?.category?.name_ru}
+                </p>
+              </article>
+            </div>
+            <div className="w-1/2 flex flex-col">
+              <div className="flex items-center mb-1">
+                <article className="w-fit flex items-center">
+                  <TypeIcon />
+                  <div className="not-italic flex items-center  font-AeonikProMedium text-[14px] leading-0 text-black tracking-[1%] ml-2">
+                    Тип:
+                  </div>
+                </article>
+                <article className="w-fit ml-2 flex flex-wrap font-AeonikProRegular">
+                  {data?.product?.type?.name_ru}
+                </article>
+              </div>
+              <div className="flex flex-wrap">
+                {data?.product?.sections?.map((item, i) => {
+                  if (i > 1) {
+                    return (
+                      <p className="mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+                        {item?.name_ru}
+                      </p>
+                    );
+                  }
+                })}
+              </div>
+            </div>
+          </div>
+          {/* --- */}
           <div className="w-full flex items-center mb-4">
             <div className="w-1/2 flex items-center">
               <article className="w-fit flex items-center">
@@ -1367,13 +1410,13 @@ const ProductDetails = () => {
       </section>
 
       {/* 4  Buttons */}
-      <article className="w-full h-11 flex justify-between items-center rounded-lg bg-[#fafafa] border border-solid mt-6 md:mt-[15px] md:h-12 md:w-[540px]">
+      <article className="w-full h-11 flex justify-between items-center rounded-lg bg-[#fafafa] border border-solid mt-6 md:mt-[15px] md:h-12 md:w-full">
         <button
           onClick={(e) => {
             e.preventDefault();
             setOpenTab(1);
           }}
-          className={`w-[28%] md:w-1/3 md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
+          className={`w-[28%] md:w-full md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
             openTab === 1
               ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
               : ""
@@ -1381,32 +1424,37 @@ const ProductDetails = () => {
         >
           <p>Локация</p>
         </button>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            setOpenTab(2);
-          }}
-          className={`w-[44%] md:w-1/3 md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
-            openTab === 2
-              ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
-              : ""
-          } `}
-        >
-          <p>Описания товара </p>
-        </button>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            setOpenTab(3);
-          }}
-          className={`w-[28%] md:w-1/3 md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
-            openTab === 3
-              ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-aut rounded-lg"
-              : ""
-          } `}
-        >
-          <p>Состав</p>
-        </button>
+        {data?.product?.composition_ru ? (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setOpenTab(2);
+            }}
+            className={`w-[44%] md:w-full md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
+              openTab === 2
+                ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
+                : ""
+            } `}
+          >
+            <p>Описания товара </p>
+          </button>
+        ) : null}
+
+        {data?.product?.description_ru ? (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setOpenTab(3);
+            }}
+            className={`w-[28%] md:w-full md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
+              openTab === 3
+                ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-aut rounded-lg"
+                : ""
+            } `}
+          >
+            <p>Состав</p>
+          </button>
+        ) : null}
       </article>
 
       {/* 5 */}
