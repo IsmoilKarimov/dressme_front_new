@@ -153,35 +153,50 @@ const ProductDetails = () => {
   };
 
   const contentSize = (data) => {
-    if (data?.category_id === "2") {
+    if (data?.category_id === "1") {
       return (
-        <section className="w-[220px] h-[135px] p-[5px] ">
-          <article
-            // key={value?.id}
-            className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center"
-          >
+        <section className="w-[220px] h-fit p-[5px] ">
+          <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
               Размер в числах:
               <span className="ml-auto">
-                {data?.min_wear_size} - {data?.max_wear_size}
+                {data?.min_head_girth}{" "}
+                {data?.max_head_girth ? "- " + data?.max_head_girth : null}
+              </span>
+            </div>
+          </article>
+        </section>
+      );
+    } else if (data?.category_id === "2") {
+      return (
+        <section className="w-[220px] h-[135px] p-[5px] ">
+          <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              Размер в числах:
+              <span className="ml-auto">
+                {data?.min_wear_size}{" "}
+                {data?.max_wear_size ? "- " + data?.max_wear_size : null}
               </span>
             </div>
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
               Обхват груди, <span className="text-[#a5a5a5] ml-1">в см</span>:
               <span className="ml-auto">
-                {data?.min_chest_girth} - {data?.max_chest_girth}
+                {data?.min_chest_girth}{" "}
+                {data?.max_chest_girth ? "- " + data?.max_chest_girth : null}
               </span>
             </div>
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
               Обхват талии, <span className="text-[#a5a5a5] ml-1">в см</span>:
               <span className="ml-auto">
-                {data?.min_waist_girth} - {data?.max_waist_girth}
+                {data?.min_waist_girth}{" "}
+                {data?.max_waist_girth ? "- " + data?.max_waist_girth : null}
               </span>
             </div>
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular">
               Обхват бедер, <span className="text-[#a5a5a5] ml-1">в см</span>:
               <span className="ml-auto">
-                {data?.min_hip_girth} - {data?.max_hip_girth}
+                {data?.min_hip_girth}{" "}
+                {data?.max_hip_girth ? "- " + data?.max_hip_girth : null}
               </span>
             </div>
           </article>
@@ -190,33 +205,34 @@ const ProductDetails = () => {
     } else if (data?.category_id === "3") {
       return (
         <section className="w-[220px] h-fit p-[5px] ">
-          <article
-            // key={value?.id}
-            className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center"
-          >
+          <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
               Размер в числах:
               <span className="ml-auto">
-                {data?.min_wear_size} - {data?.max_wear_size}
+                {data?.min_wear_size}{" "}
+                {data?.max_wear_size ? "- " + data?.max_wear_size : null}
               </span>
             </div>
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
               Обхват талии, <span className="text-[#a5a5a5] ml-1">в см</span>:
               <span className="ml-auto">
-                {data?.min_waist_girth} - {data?.max_waist_girth}
+                {data?.min_waist_girth}{" "}
+                {data?.max_waist_girth ? "- " + data?.max_waist_girth : null}
               </span>
             </div>
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
               Обхват бедер, <span className="text-[#a5a5a5] ml-1">в см</span>:
               <span className="ml-auto">
-                {data?.min_hip_girth} - {data?.max_hip_girth}
+                {data?.min_hip_girth}{" "}
+                {data?.max_hip_girth ? "- " + data?.max_hip_girth : null}
               </span>
             </div>
 
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
               Рост, <span className="text-[#a5a5a5] ml-1">в см</span>:
               <span className="ml-auto">
-                {data?.min_height} - {data?.max_height}
+                {data?.min_height}{" "}
+                {data?.max_height ? "- " + data?.max_height : null}
               </span>
             </div>
           </article>
@@ -224,11 +240,8 @@ const ProductDetails = () => {
       );
     } else if (data?.category_id === "4") {
       return (
-        <section className="w-[220px] h-[135px] p-[5px] ">
-          <article
-            // key={value?.id}
-            className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center"
-          >
+        <section className="w-[220px] h-fit p-[5px] ">
+          <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
               Размер в числах, <span className="text-[#a5a5a5] ml-1">в см</span>
               :<span className="ml-auto">{data?.wear_size}</span>
@@ -236,7 +249,8 @@ const ProductDetails = () => {
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular">
               Длина стопы, <span className="text-[#a5a5a5] ml-1">в см</span>:
               <span className="ml-auto">
-                {data?.min_foot_length} - {data?.max_foot_length}
+                {data?.min_foot_length}{" "}
+                {data?.max_foot_length ? "- " + data?.max_foot_length : null}
               </span>
             </div>
           </article>
@@ -244,19 +258,13 @@ const ProductDetails = () => {
       );
     } else if (data?.category_id === "5") {
       return (
-        <section className="w-[220px] h-[135px] p-[5px] ">
-          <article
-            // key={value?.id}
-            className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center"
-          >
+        <section className="w-[220px] h-fit p-[5px] ">
+          <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
               Размер в числах, <span className="text-[#a5a5a5] ml-1">в см</span>
-              :
-              <span className="ml-auto">
-                {data?.min_wear_size} - {data?.max_wear_size}
-              </span>
+              :<span className="ml-auto">{data?.wear_size}</span>
             </div>
-            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular">
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
               Длина, <span className="text-[#a5a5a5] ml-1">в см</span>:
               <span className="ml-auto">{data?.length}</span>
             </div>
@@ -310,93 +318,6 @@ const ProductDetails = () => {
   }, [data]);
 
   checkedData = selectedLocation;
-
-  const sizes = [
-    {
-      id: 7,
-      category_id: "3",
-      product_id: "2",
-      shop_location_id: "6",
-      amount: "1",
-      product_color_id: "3",
-      age: "20",
-      wear_size: "25",
-      one_size: null,
-      min_head_girth: "20",
-      max_head_girth: "20",
-      letter_size: "XS",
-      min_wear_size: "28",
-      max_wear_size: "60",
-      min_chest_girth: "20",
-      max_chest_girth: "20",
-      min_waist_girth: "27",
-      max_waist_girth: "78",
-      min_hip_girth: "40",
-      max_hip_girth: "53",
-      min_height: "20",
-      max_height: "20",
-      min_foot_length: "20",
-      max_foot_length: "20",
-      length: "20",
-      width: "20",
-    },
-    {
-      id: 7,
-      category_id: "3",
-      product_id: "2",
-      shop_location_id: "6",
-      amount: "1",
-      product_color_id: "3",
-      age: "20",
-      wear_size: "25",
-      one_size: null,
-      min_head_girth: "20",
-      max_head_girth: "20",
-      letter_size: "XS",
-      min_wear_size: "28",
-      max_wear_size: "60",
-      min_chest_girth: "20",
-      max_chest_girth: "20",
-      min_waist_girth: "27",
-      max_waist_girth: "78",
-      min_hip_girth: "40",
-      max_hip_girth: "53",
-      min_height: "20",
-      max_height: "20",
-      min_foot_length: "20",
-      max_foot_length: "20",
-      length: "20",
-      width: "20",
-    },
-    {
-      id: 7,
-      category_id: "3",
-      product_id: "2",
-      shop_location_id: "6",
-      amount: "1",
-      product_color_id: "3",
-      age: "20",
-      wear_size: "25",
-      one_size: null,
-      min_head_girth: "20",
-      max_head_girth: "20",
-      letter_size: "XS",
-      min_wear_size: "28",
-      max_wear_size: "60",
-      min_chest_girth: "20",
-      max_chest_girth: "20",
-      min_waist_girth: "27",
-      max_waist_girth: "78",
-      min_hip_girth: "40",
-      max_hip_girth: "53",
-      min_height: "20",
-      max_height: "20",
-      min_foot_length: "20",
-      max_foot_length: "20",
-      length: "20",
-      width: "20",
-    },
-  ];
 
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
@@ -744,7 +665,6 @@ const ProductDetails = () => {
                                 <div
                                   onClick={() => {
                                     checkedData = data;
-                                    console.log(checkedData);
                                   }}
                                   key={data.id}
                                   className="mb-[8px]"
@@ -868,21 +788,33 @@ const ProductDetails = () => {
                   <li>Обхват бедер, в см</li>
                 </div>
                 <div className="w-full">
-                  {sizes?.map((data) => {
+                  {data?.product?.sizes?.map((data) => {
                     return (
                       <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
                         <li>
-                          {data?.min_wear_size} - {data?.max_wear_size}
+                          {data?.min_wear_size}{" "}
+                          {data?.max_wear_size
+                            ? "- " + data?.max_wear_size
+                            : null}
                         </li>
                         <li>{data?.letter_size}</li>
                         <li>
-                          {data?.min_chest_girth} - {data?.max_chest_girth}
+                          {data?.min_chest_girth}{" "}
+                          {data?.max_chest_girth
+                            ? "- " + data?.max_chest_girth
+                            : null}
                         </li>
                         <li>
-                          {data?.min_waist_girth} - {data?.max_waist_girth}
+                          {data?.min_waist_girth}{" "}
+                          {data?.max_waist_girth
+                            ? "- " + data?.max_waist_girth
+                            : null}
                         </li>
                         <li>
-                          {data?.min_hip_girth} - {data?.max_hip_girth}
+                          {data?.min_hip_girth}{" "}
+                          {data?.max_hip_girth
+                            ? "- " + data?.max_hip_girth
+                            : null}
                         </li>
                       </div>
                     );
@@ -900,22 +832,31 @@ const ProductDetails = () => {
                   <li>Обхват бедер, в см</li>
                 </div>
                 <div className="w-full">
-                  {sizes?.map((data) => {
-                    //data?.product?.sizes?.
+                  {data?.product?.sizes?.map((data) => {
                     return (
                       <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
                         <li>
-                          {data?.min_wear_size} - {data?.max_wear_size}
+                          {data?.min_wear_size}{" "}
+                          {data?.max_wear_size
+                            ? "- " + data?.max_wear_size
+                            : null}
                         </li>
                         <li>{data?.letter_size}</li>
                         <li>
-                          {data?.min_height} - {data?.max_height}
+                          {data?.min_height}{" "}
+                          {data?.max_height ? "- " + data?.max_height : null}
                         </li>
                         <li>
-                          {data?.min_waist_girth} - {data?.max_waist_girth}
+                          {data?.min_waist_girth}{" "}
+                          {data?.max_waist_girth
+                            ? "- " + data?.max_waist_girth
+                            : null}
                         </li>
                         <li>
-                          {data?.min_hip_girth} - {data?.max_hip_girth}
+                          {data?.min_hip_girth}{" "}
+                          {data?.max_hip_girth
+                            ? "- " + data?.max_hip_girth
+                            : null}
                         </li>
                       </div>
                     );
@@ -930,12 +871,15 @@ const ProductDetails = () => {
                   <li>Длина стопы, в см</li>
                 </div>
                 <div className="w-full">
-                  {sizes?.map((data) => {
+                  {data?.product?.sizes?.map((data) => {
                     return (
                       <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
                         <li>{data?.wear_size}</li>
                         <li>
-                          {data?.min_foot_length} - {data?.max_foot_length}
+                          {data?.min_foot_length}{" "}
+                          {data?.max_foot_length
+                            ? "- " + data?.max_foot_length
+                            : null}
                         </li>
                       </div>
                     );
@@ -952,7 +896,7 @@ const ProductDetails = () => {
                   <li>Ширина, в см</li>
                 </div>
                 <div className="w-full">
-                  {sizes?.map((data) => {
+                  {data?.product?.sizes?.map((data) => {
                     return (
                       <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
                         <li>{data?.wear_size}</li>
@@ -975,14 +919,14 @@ const ProductDetails = () => {
                   return (
                     <Popover
                       key={data?.id}
-                      trigger="false"
-                      content={contentSize}
+                      trigger={data?.min_head_girth ? "hover" : "false"}
+                      content={() => contentSize(data)}
                       className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
                     >
                       <p
                         className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
                       >
-                        {data?.min_head_girth} - {data?.max_head_girth}
+                        {data?.one_size ? "ONE SIZE" : null}
                       </p>
                     </Popover>
                   );
@@ -990,8 +934,7 @@ const ProductDetails = () => {
               : null}
 
             {data?.product?.category_id === "2"
-              ? sizes?.map((data) => {
-                  //data?.product?.sizes?.
+              ? data?.product?.sizes?.map((data) => {
                   return (
                     <Popover
                       key={data.id}
@@ -1005,7 +948,10 @@ const ProductDetails = () => {
                         {data?.letter_size}
                       </p>
                       <span className="text-[10px] font-AeonikProRegular text-[#757575]">
-                        {data?.min_wear_size} - {data?.max_wear_size}
+                        {data?.min_wear_size}{" "}
+                        {data?.max_wear_size
+                          ? "- " + data?.max_wear_size
+                          : null}
                       </span>
                     </Popover>
                   );
@@ -1013,7 +959,7 @@ const ProductDetails = () => {
               : null}
 
             {data?.product?.category_id === "3"
-              ? sizes.map((data) => {
+              ? data?.product?.sizes?.map((data) => {
                   return (
                     <Popover
                       key={data.id}
@@ -1027,7 +973,10 @@ const ProductDetails = () => {
                         {data?.letter_size}
                       </p>
                       <span className="text-[10px] font-AeonikProRegular text-[#757575]">
-                        {data?.min_wear_size} - {data?.max_wear_size}
+                        {data?.min_wear_size}{" "}
+                        {data?.max_wear_size
+                          ? "- " + data?.max_wear_size
+                          : null}
                       </span>
                     </Popover>
                   );
@@ -1035,7 +984,7 @@ const ProductDetails = () => {
               : null}
 
             {data?.product?.category_id === "4"
-              ? sizes.map((data) => {
+              ? data?.product?.sizes?.map((data) => {
                   return (
                     <Popover
                       key={data.id}
@@ -1043,16 +992,18 @@ const ProductDetails = () => {
                       content={() => contentSize(data)}
                       className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center"
                     >
-                      <span className="text-[10px] font-AeonikProRegular text-[#757575]">
-                        {data?.min_wear_size} - {data?.max_wear_size}
-                      </span>
+                      <p
+                        className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                      >
+                        {data?.wear_size}
+                      </p>
                     </Popover>
                   );
                 })
               : null}
 
             {data?.product?.category_id === "5"
-              ? sizes.map((data) => {
+              ? data?.product?.sizes?.map((data) => {
                   return (
                     <Popover
                       key={data.id}
@@ -1066,7 +1017,7 @@ const ProductDetails = () => {
                         {data?.letter_size}
                       </p>
                       <span className="text-[10px] font-AeonikProRegular text-[#757575]">
-                        {data?.min_wear_size} - {data?.max_wear_size}
+                        {data?.wear_size}
                       </span>
                     </Popover>
                   );
@@ -1319,7 +1270,7 @@ const ProductDetails = () => {
             <address className="w-[35%] md:w-fit  ml-4">
               <a
                 className={`w-[232px] h-12 md:h-[52px] px-5 rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center flex gap-x-3 items-center justify-center text-fullBlue border border-fullBlue`}
-                href={`https://t.me/${selectedLocation?.assistant_messenger.slice(
+                href={`https://t.me/${selectedLocation?.assistant_messenger?.slice(
                   1
                 )}`}
               >
