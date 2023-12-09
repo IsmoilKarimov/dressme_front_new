@@ -42,10 +42,9 @@ import AddCopyCheckedIcon from "./AddCopyCheckedIcon/AddCopyCheckedIcon";
 import LocationOfYandex from "./LocationOfYandex/LocationOfYandex";
 import TableSizesDropUp from "./MobileDropUp/TableSizesDropUp/TableSizesDropUp";
 import LocationDropUp from "./MobileDropUp/LocationsDropUp/LocationsDropUp";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
 
-const ProductDetails = () => {
+const ProductDetails = ({ data }) => {
+  console.log(data, "44444444444444");
   const [dressInfo] = useContext(dressMainData);
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
@@ -56,35 +55,6 @@ const ProductDetails = () => {
   const toggleLocations = useCallback(() => setLocations(false), []);
 
   const slider = useRef(null);
-
-  const url = "https://api.dressme.uz";
-
-  const [data, setData] = useState();
-
-  const params = useParams();
-
-  // ------------GET METHOD Main data -----------------
-  useQuery(
-    ["get_main_detail_data"],
-    () => {
-      return fetch(`${url}/api/main/products/${params?.id}`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-        },
-      }).then((res) => res.json());
-    },
-    {
-      onSuccess: (res) => {
-        setData(res);
-      },
-      onError: (err) => {
-        console.log(err, "err");
-      },
-      keepPreviousData: true,
-      refetchOnWindowFocus: true,
-    }
-  );
 
   // For DropUp
   useEffect(() => {
@@ -101,52 +71,42 @@ const ProductDetails = () => {
     {
       id: 1,
       action: true,
-      img: "",
+      img: "https://api.dressme.uz/storage/productPhotos/13/6572f3ff8f276_4k2.jpeg",
     },
     {
-      id: 2,
+      id: 1,
       action: true,
-      img: "",
+      img: "https://api.dressme.uz/storage/productPhotos/13/6572f3ff8f276_4k2.jpeg",
     },
     {
-      id: 3,
+      id: 1,
       action: true,
-      img: "",
+      img: "https://api.dressme.uz/storage/productPhotos/13/6572f3ff8f276_4k2.jpeg",
     },
     {
-      id: 4,
+      id: 1,
       action: true,
-      img: "",
+      img: "https://api.dressme.uz/storage/productPhotos/13/6572f3ff8f276_4k2.jpeg",
     },
     {
-      id: 5,
+      id: 1,
       action: true,
-      img: "",
+      img: "https://api.dressme.uz/storage/productPhotos/13/6572f3ff8f276_4k2.jpeg",
     },
     {
-      id: 6,
+      id: 1,
       action: true,
-      img: "",
+      img: "https://api.dressme.uz/storage/productPhotos/13/6572f3ff8f276_4k2.jpeg",
     },
     {
-      id: 7,
+      id: 1,
       action: true,
-      img: "",
+      img: "https://api.dressme.uz/storage/productPhotos/13/6572f3ff8f276_4k2.jpeg",
     },
     {
-      id: 8,
+      id: 1,
       action: true,
-      img: "",
-    },
-    {
-      id: 9,
-      action: true,
-      img: "",
-    },
-    {
-      id: 10,
-      action: true,
-      img: "",
+      img: "https://api.dressme.uz/storage/productPhotos/13/6572f3ff8f276_4k2.jpeg",
     },
   ]);
 
@@ -154,7 +114,6 @@ const ProductDetails = () => {
     focusOnSelect: true,
     infinite: true,
     swipeToSlide: true,
-    slidesToShow: 8,
     slidesToScroll: 1,
     speed: 500,
   };
@@ -565,20 +524,9 @@ const ProductDetails = () => {
                     Тип:
                   </div>
                 </article>
-                <article className="w-fit ml-2 flex flex-wrap font-AeonikProRegular">
+                <article className="w-fit ml-2 flex text-[14px] flex-wrap font-AeonikProRegular">
                   {data?.product?.type?.name_ru}
                 </article>
-              </div>
-              <div className="flex flex-wrap">
-                {data?.product?.sections?.map((item, i) => {
-                  if (i > 1) {
-                    return (
-                      <p className="mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                        {item?.name_ru}
-                      </p>
-                    );
-                  }
-                })}
               </div>
             </div>
           </div>
@@ -787,20 +735,23 @@ const ProductDetails = () => {
           <Slider
             ref={slider}
             {...settings}
+            slidesToShow={data?.product?.photos?.length}
             className="hidden md:flex md:w-[88%] h-[80px] items-center"
           >
-            {imgGroup?.map((data) => (
-              <div
-                key={data.id}
-                className="!w-[64px] h-[72px] rounded-lg cursor-pointer"
-              >
-                <img
-                  src={data.img}
-                  alt="imgs"
-                  className="w-fit h-full rounded-lg"
-                />
-              </div>
-            ))}
+            {data?.product?.photos.map((data) => {
+              return (
+                <div
+                  key={data.id}
+                  className="!w-[64px] h-[72px] rounded-lg cursor-pointer"
+                >
+                  <img
+                    src={data?.url_photo}
+                    alt="imgs"
+                    className="w-full h-full rounded-lg"
+                  />
+                </div>
+              );
+            })}
           </Slider>
           <button
             className="button mt-[-5px]"
@@ -1344,7 +1295,6 @@ const ProductDetails = () => {
             {selectedLocation?.assistant_phone ? (
               <address className="w-[65%] md:w-fit">
                 <a
-                  target="_blank"
                   className="w-[232px] h-12 md:h-[52px] px-5  rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex gap-x-3 items-center justify-center bg-fullBlue"
                   href={`${"tel:" + selectedLocation?.assistant_phone}`}
                 >
@@ -1383,7 +1333,6 @@ const ProductDetails = () => {
             {selectedLocation?.second_assistant_phone ? (
               <address className="w-[65%] md:w-fit">
                 <a
-                  target="_blank"
                   className="w-[232px] h-12 md:h-[52px] px-5  rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex gap-x-3 items-center justify-center bg-fullBlue"
                   href={`${"tel:" + selectedLocation?.second_assistant_phone}`}
                 >
