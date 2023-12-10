@@ -65,7 +65,31 @@ export default function CollectionCards() {
     });
   };
 
-  console.log(mainData);
+  // =========== POST FAVOURITE PRODUCT FOR NON AUTHENTICATED ==========
+  const dataEmailMutateNotAuth = useMutation((id) => {
+    return fetch(`${url}/main/wishlist/add-to-wishlist`, {
+      method: "POST",
+      headers: {
+        
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        product_id: id,
+      }),
+    }).then((res) => res.json());
+  });
+
+  const sendFavDataForNotAuth = (id) => {
+    dataEmailMutateNotAuth.mutate(id, {
+      onSuccess: (res) => {
+        console.log(res);
+      },
+      onError: (err) => {
+        console.log(err, "ERROR IN PRODUCTS");
+      },
+    });
+  };
 
   const onColorChecked = () => {};
   const handleLeaveMouse = (eId) => {
@@ -252,7 +276,12 @@ export default function CollectionCards() {
                       </article>
                       <figure className="flex items-center select-none	absolute right-2 bottom-2">
                         <button
-                          onClick={() => sendFavData(data?.id)}
+                          onClick={() =>
+                            // {localStorage.getItem("DressmeUserToken")
+                            //   ? sendFavData(data?.id)
+                            //   : 
+                              sendFavDataForNotAuth(data?.id)}
+                          // }
                           className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                         >
                           <img src={HeartImg} alt="" />
