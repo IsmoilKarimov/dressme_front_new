@@ -192,22 +192,24 @@ export default function CollectionCards() {
                         <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
                         {data?.name_ru || "NoData"}
                       </figure>
-                      <figure className="w-full flex justify-between items-center xs:mt-1">
-                        <section className="flex items-center justify-between">
-                          <article>
-                            <StarIcons width={14} />
-                          </article>
-                          <article className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-0 text-right text-gray-500 ml-[2px] md:ml-1 flex items-center">
-                            <p className="font-AeonikProMedium text-[10px] ls:text-xs not-italic mx-1 text-black md:mr-[6px] md:text-[13px]">
-                              {data?.overall_rating || 0}
-                            </p>
-                            (
-                            <p className="ss:hidden lg:block md:mr-1 md:text-[11px]">
-                              голосов:
-                            </p>
-                            {data?.rated_users_count || 0})
-                          </article>
-                        </section>
+                      <figure className="w-full h-[16px] flex justify-between items-center xs:mt-1">
+                        {data?.overall_rating ? (
+                          <section className="flex items-center justify-between">
+                            <article>
+                              <StarIcons width={14} />
+                            </article>
+                            <article className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-0 text-right text-gray-500 ml-[2px] md:ml-1 flex items-center">
+                              <p className="font-AeonikProMedium text-[10px] ls:text-xs not-italic mx-1 text-black md:mr-[6px] md:text-[13px]">
+                                {data?.overall_rating || 0}
+                              </p>
+                              (
+                              <p className="ss:hidden lg:block md:mr-1 md:text-[11px]">
+                                голосов:
+                              </p>
+                              {data?.rated_users_count || 0})
+                            </article>
+                          </section>
+                        ) : null}
                       </figure>
                     </article>
                     <article
