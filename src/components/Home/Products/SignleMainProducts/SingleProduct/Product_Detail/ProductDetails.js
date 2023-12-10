@@ -44,7 +44,6 @@ import TableSizesDropUp from "./MobileDropUp/TableSizesDropUp/TableSizesDropUp";
 import LocationDropUp from "./MobileDropUp/LocationsDropUp/LocationsDropUp";
 
 const ProductDetails = ({ data }) => {
-  console.log(data, "44444444444444");
   const [dressInfo] = useContext(dressMainData);
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
@@ -66,49 +65,6 @@ const ProductDetails = ({ data }) => {
   }, [tableSizes, locations, openLocationModal]);
 
   const [openTab, setOpenTab] = useState(1);
-
-  const [imgGroup] = useState([
-    {
-      id: 1,
-      action: true,
-      img: "https://api.dressme.uz/storage/productPhotos/13/6572f3ff8f276_4k2.jpeg",
-    },
-    {
-      id: 1,
-      action: true,
-      img: "https://api.dressme.uz/storage/productPhotos/13/6572f3ff8f276_4k2.jpeg",
-    },
-    {
-      id: 1,
-      action: true,
-      img: "https://api.dressme.uz/storage/productPhotos/13/6572f3ff8f276_4k2.jpeg",
-    },
-    {
-      id: 1,
-      action: true,
-      img: "https://api.dressme.uz/storage/productPhotos/13/6572f3ff8f276_4k2.jpeg",
-    },
-    {
-      id: 1,
-      action: true,
-      img: "https://api.dressme.uz/storage/productPhotos/13/6572f3ff8f276_4k2.jpeg",
-    },
-    {
-      id: 1,
-      action: true,
-      img: "https://api.dressme.uz/storage/productPhotos/13/6572f3ff8f276_4k2.jpeg",
-    },
-    {
-      id: 1,
-      action: true,
-      img: "https://api.dressme.uz/storage/productPhotos/13/6572f3ff8f276_4k2.jpeg",
-    },
-    {
-      id: 1,
-      action: true,
-      img: "https://api.dressme.uz/storage/productPhotos/13/6572f3ff8f276_4k2.jpeg",
-    },
-  ]);
 
   let settings = {
     focusOnSelect: true,
@@ -730,7 +686,9 @@ const ProductDetails = ({ data }) => {
             className="button mt-[-5px]"
             onClick={() => slider?.current?.slickPrev()}
           >
-            <GrFormPrevious size={30} />
+            {data?.product?.photos?.length > 7 ? (
+              <GrFormPrevious size={30} />
+            ) : null}
           </button>
           <Slider
             ref={slider}
@@ -740,15 +698,18 @@ const ProductDetails = ({ data }) => {
           >
             {data?.product?.photos.map((data) => {
               return (
-                <div
-                  key={data.id}
-                  className="!w-[64px] h-[72px] rounded-lg cursor-pointer"
-                >
-                  <img
-                    src={data?.url_photo}
-                    alt="imgs"
-                    className="w-full h-full rounded-lg"
-                  />
+                <div>
+                  <div
+                    key={data.id}
+                    className="!w-[64px] h-[72px] rounded-lg cursor-pointer bg-black"
+                    style={{
+                      backgroundImage: `url("${data?.url_photo}")`,
+                      backgroundColor: "rgba(0,0,0,0.6)",
+                      backgroundPosition: "center center",
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  ></div>
                 </div>
               );
             })}
@@ -757,7 +718,9 @@ const ProductDetails = ({ data }) => {
             className="button mt-[-5px]"
             onClick={() => slider?.current?.slickNext()}
           >
-            <GrFormNext size={30} />
+            {data?.product?.photos?.length > 7 ? (
+              <GrFormNext size={30} />
+            ) : null}
           </button>
         </article>
 

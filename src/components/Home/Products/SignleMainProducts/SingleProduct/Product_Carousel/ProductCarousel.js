@@ -16,8 +16,48 @@ const ProductCarousel = ({ show, data }) => {
   const slider1 = useRef(null);
   const slider2 = useRef(null);
 
+  const NextArrowModal = (props) => {
+    const { onClick } = props;
+    return (
+      <main
+        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] hidden md:flex items-center justify-center top-[50%] z-10 right-[15px] md:right-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        onClick={onClick}
+      >
+        <button className="next">
+          <GrFormNext size={20} />
+        </button>
+      </main>
+    );
+  };
+  const PrevArrowModal = (props) => {
+    const { onClick } = props;
+    return (
+      <main
+        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] hidden md:flex items-center justify-center top-[50%] z-10 left-[15px] md:left-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
+        onClick={onClick}
+      >
+        <button className="prev">
+          <GrFormPrevious size={20} />
+        </button>
+      </main>
+    );
+  };
+
+  let settingsModal = {
+    nextArrow: <NextArrowModal />,
+    prevArrow: <PrevArrowModal />,
+    infinite: true,
+    dots: false,
+    speed: 500,
+  };
+
   const [modalOfCarsouel, setModalOfCarsouel] = useState(false);
-  const handleClickCarosuel = (id) => {
+  const [currendSlideIndex, setCurrendSlideIndex] = useState(3);
+
+  console.log(currendSlideIndex);
+
+  const handleClickCarosuel = (index) => {
+    setCurrendSlideIndex(index);
     setModalOfCarsouel(true);
   };
 
@@ -120,32 +160,7 @@ const ProductCarousel = ({ show, data }) => {
       </main>
     );
   };
-  const NextArrowModal = (props) => {
-    const { onClick } = props;
-    return (
-      <main
-        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] hidden md:flex items-center justify-center top-[50%] z-10 right-[15px] md:right-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
-        onClick={onClick}
-      >
-        <button className="next">
-          <GrFormNext size={20} />
-        </button>
-      </main>
-    );
-  };
-  const PrevArrowModal = (props) => {
-    const { onClick } = props;
-    return (
-      <main
-        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] hidden md:flex items-center justify-center top-[50%] z-10 left-[15px] md:left-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
-        onClick={onClick}
-      >
-        <button className="prev">
-          <GrFormPrevious size={20} />
-        </button>
-      </main>
-    );
-  };
+
   let settings = {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
@@ -202,13 +217,6 @@ const ProductCarousel = ({ show, data }) => {
     initialSlide: 0,
     speed: 500,
   };
-  let settingsModal = {
-    nextArrow: <NextArrowModal />,
-    prevArrow: <PrevArrowModal />,
-    infinite: true,
-    dots: false,
-    speed: 500,
-  };
 
   return (
     <main className="w-full md:w-fit h-full ">
@@ -226,27 +234,38 @@ const ProductCarousel = ({ show, data }) => {
         >
           <button
             onClick={() => setModalOfCarsouel(false)}
-            className="absolute flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px] top-[-60px] right-1 md:top-3 z-40 md:right-[-80px]  md:rounded-full md:bg-[#808080]"
+            className="absolute flex items-center justify-center w-10 h-10 md:w-[45px] md:h-[45px] top-[-60px] right-1 md:top-3 z-40 md:right-[-80px]  md:rounded-full md:bg-[#808080]"
           >
-            <MenuCloseIcons colors="#fff" />
+            <MenuCloseIcons width={20} height={20} colors="#fff" />
           </button>
           <div className="w-full h-full">
             <Slider
               className="relative w-full h-fit md:!w-[750px] md:h-[100vh] showpageSlider !overflow-visible bg-white md:rounded-lg"
               {...settingsModal}
+              initialSlide={currendSlideIndex}
             >
-              {data?.photos?.map((data) => {
+              {data?.product?.photos?.map((data) => {
                 return (
                   <article>
-                    <figure className="relative overflow-hidden h-fit w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-                      <img
+                    <figure
+                      style={{
+                        backgroundImage: `url("${data?.url_photo}")`,
+                        backgroundColor: "rgba(0,0,0,0.6)",
+                        backgroundPosition: "center center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                      }}
+                      className="relative overflow-hidden h-fit w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                    >
+                      {/* <img
                         className="w-full h-full"
                         src={data?.url_photo}
                         alt=""
-                      />
+                      /> */}
                       <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                         <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
-                          <p> {data.id}</p>/<p>{imgGroup.length}</p>
+                          <p>{data.id}</p>
+                          <p>{data?.product?.photos?.length}</p>
                         </span>
                       </figcaption>
                     </figure>
@@ -277,16 +296,25 @@ const ProductCarousel = ({ show, data }) => {
             >
               {data?.product?.photos?.map((data) => {
                 return (
-                  <figure
-                    key={data?.id}
-                    className="!w-[90px] cursor-pointer !h-[120px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center"
-                  >
-                    <img
+                  <div>
+                    <figure
+                      key={data?.id}
+                      style={{
+                        backgroundImage: `url("${data?.url_photo}")`,
+                        backgroundColor: "rgba(0,0,0,0.6)",
+                        backgroundPosition: "center center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                      }}
+                      className="!w-[90px] cursor-pointer !h-[120px] border border-searchBgColor bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center"
+                    >
+                      {/* <img
                       className="w-full h-full rounded-lg"
                       src={data?.url_photo}
                       alt=""
-                    />
-                  </figure>
+                    /> */}
+                    </figure>
+                  </div>
                 );
               })}
             </Slider>
@@ -299,18 +327,31 @@ const ProductCarousel = ({ show, data }) => {
               ref={slider1}
               {...settings}
             >
-              {data?.product?.photos?.map((data) => {
+              {data?.product?.photos?.map((data, i) => {
                 return (
                   <article
                     key={data?.id}
-                    onClick={() => handleClickCarosuel(data?.id)}
+                    onClick={() => {
+                      handleClickCarosuel();
+                      setCurrendSlideIndex(i);
+                    }}
                   >
-                    <figure className="relative w-full h-[620px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center">
-                      <img
+                    <figure
+                      style={{
+                        backgroundImage: `url("${data?.url_photo}")`,
+                        backgroundColor: "rgba(0,0,0,0.6)",
+                        backgroundPosition: "center center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        // backgroundBlendMode: "darken",
+                      }}
+                      className="relative w-full h-[620px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer"
+                    >
+                      {/* <img
                         className="w-full h-fit"
                         src={data?.url_photo}
                         alt=""
-                      />
+                      /> */}
                       <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                         <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
                           <p> {data.id}</p>
