@@ -26,6 +26,17 @@ export default function FavouriteProducts() {
     navigate(`/product/:${id}`);
   };
 
+  // React.useEffect(() => {
+  //   fetch(`${url}/email-verify/${PathnameToken ? PathnameToken : null}`)
+  //     .then((results) => results.json())
+  //     .then((data) => {
+  //       setState({ ...state, getVerfyMessage: data });
+  //       console.log(data, "Return Get method");
+  //     });
+  // }, []);
+
+  const url = "https://api.dressme.uz/api"
+
   // ========= GET WISHLISHT PRODUCTS FOR AUTHENTICATED USERS ==========
   useQuery(
     ["get-wishlist-products-auth"],
@@ -50,7 +61,14 @@ export default function FavouriteProducts() {
   useQuery(
     ["get-wishlist-products-not-auth"],
     async () => {
-      return request({ url: "/main/wishlist", token: false});
+      return fetch(`${url}/main/wishlist`,{
+        method:'GET',
+        headers:{
+          'Accept':'application/json',
+          'Content-Type': 'application/json',
+          // Cookie: 'sessionid=a3NzqWiqERDAILqLzxL9bXhkO7lXzLKMrgpTZsgg',
+        }
+      }).then((res)=>res.json())
     },
     {
       onSuccess: (res) => {
