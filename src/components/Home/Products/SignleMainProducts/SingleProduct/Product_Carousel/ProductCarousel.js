@@ -252,14 +252,15 @@ const ProductCarousel = ({ show, data }) => {
                         backgroundPosition: "center center",
                         backgroundSize: "cover",
                         backgroundRepeat: "no-repeat",
+                        backgroundBlendMode: "darken",
                       }}
                       className="relative overflow-hidden h-fit w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                     >
-                      {/* <img
+                      <img
                         className="w-full h-full"
                         src={data?.url_photo}
                         alt=""
-                      /> */}
+                      />
                       <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                         <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
                           <p>{data.id}</p>
@@ -341,15 +342,15 @@ const ProductCarousel = ({ show, data }) => {
                         backgroundPosition: "center center",
                         backgroundSize: "cover",
                         backgroundRepeat: "no-repeat",
-                        // backgroundBlendMode: "darken",
+                        backgroundBlendMode: "darken",
                       }}
                       className="relative w-full h-[620px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer"
                     >
-                      {/* <img
+                      <img
                         className="w-full h-fit"
                         src={data?.url_photo}
                         alt=""
-                      /> */}
+                      />
                       <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                         <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
                           <p> {data.id}</p>
