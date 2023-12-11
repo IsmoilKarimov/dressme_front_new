@@ -16,6 +16,8 @@ const ProductCarousel = ({ show, data }) => {
   const slider1 = useRef(null);
   const slider2 = useRef(null);
 
+  slider1.current?.slickGoTo(0);
+
   const NextArrowModal = (props) => {
     const { onClick } = props;
     return (
@@ -174,15 +176,17 @@ const ProductCarousel = ({ show, data }) => {
     infinite: true,
     dots: false,
     speed: 500,
+    initialSlide: -1,
   };
   let settings1 = {
     slidesToScroll: 1,
-    initialSlide: 0,
+    initialSlide: -1,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToScroll: 1,
+          initialSlide: -1,
         },
       },
       {
@@ -190,7 +194,7 @@ const ProductCarousel = ({ show, data }) => {
         settings: {
           slidesToShow: 5,
           slidesToScroll: 1,
-          initialSlide: 2,
+          initialSlide: -1,
         },
       },
       {
@@ -198,6 +202,7 @@ const ProductCarousel = ({ show, data }) => {
         settings: {
           slidesToShow: 5,
           slidesToScroll: 1,
+          initialSlide: -1,
         },
       },
       {
@@ -205,6 +210,7 @@ const ProductCarousel = ({ show, data }) => {
         settings: {
           slidesToShow: 5,
           slidesToScroll: 1,
+          initialSlide: -1,
         },
       },
 
@@ -213,6 +219,7 @@ const ProductCarousel = ({ show, data }) => {
         settings: {
           slidesToShow: 5,
           slidesToScroll: 1,
+          initialSlide: -1,
         },
       },
     ],
@@ -221,7 +228,7 @@ const ProductCarousel = ({ show, data }) => {
     dots: false,
     infinite: true,
     swipeToSlide: true,
-    initialSlide: 0,
+    initialSlide: -1,
     speed: 500,
   };
 
@@ -286,7 +293,7 @@ const ProductCarousel = ({ show, data }) => {
               swipeToSlide={true}
               focusOnSelect={true}
               vertical={true}
-              initialSlide={0}
+              initialSlide={-1}
               className="flex flex-col flex-wrap w-full h-full pt-0 rounded-lg"
             >
               {data?.product?.photos?.map((data) => {
@@ -320,7 +327,7 @@ const ProductCarousel = ({ show, data }) => {
               className="w-full h-full rounded-lg"
               asNavFor={nav2}
               ref={slider1}
-              initialSlide={0}
+              initialSlide={-1}
               {...settings}
             >
               {data?.product?.photos?.map((data, i) => {
