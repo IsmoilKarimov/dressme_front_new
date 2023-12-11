@@ -70,7 +70,6 @@ export default function CollectionCards() {
     return fetch(`${url}/main/wishlist/add-to-wishlist`, {
       method: "POST",
       headers: {
-        
         "Content-Type": "application/json",
         Accept: "application/json",
       },
@@ -154,11 +153,15 @@ export default function CollectionCards() {
                 >
                   <figure
                     onClick={() => goDetail(data?.id)}
+                    style={{
+                      backgroundImage: `url("${data?.photos[0]?.url_photo}")`,
+                      backgroundPosition: "center center",
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                    }}
                     className="relative w-full cursor-pointer h-[250px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
                   >
-                    <div>
-                      <NoImg />
-                    </div>
+                    {/* <div><NoImg /></div> */}
                   </figure>
                   <section className="relative w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[130px] md:h-[136px] ">
                     <div className="group hover:w-full hover:h-[36px] cursor-pointer">
@@ -279,8 +282,9 @@ export default function CollectionCards() {
                           onClick={() =>
                             // {localStorage.getItem("DressmeUserToken")
                             //   ? sendFavData(data?.id)
-                            //   : 
-                              sendFavDataForNotAuth(data?.id)}
+                            //   :
+                            sendFavDataForNotAuth(data?.id)
+                          }
                           // }
                           className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                         >
