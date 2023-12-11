@@ -255,11 +255,7 @@ const ProductCarousel = ({ show, data }) => {
                 return (
                   <article>
                     <figure className="relative overflow-hidden h-fit w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-                      <img
-                        className="w-full h-fit"
-                        src={data?.url_photo}
-                        alt=""
-                      />
+                      <img src={data?.url_photo} alt="" />
                       <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                         <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
                           <p>{data.id}</p>
@@ -336,21 +332,20 @@ const ProductCarousel = ({ show, data }) => {
                     <figure
                       style={{
                         backgroundImage: `url("${data?.url_photo}")`,
-                        backgroundColor: "rgba(0,0,0,0.6)",
+                        backgroundColor: "rgba(0,0,0,0.85)",
                         backgroundPosition: "center center",
                         backgroundSize: "cover",
                         backgroundRepeat: "no-repeat",
                         backgroundBlendMode: "darken",
                       }}
-                      className=" BackgImageBLur relative w-full h-[620px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer"
+                      className="relative w-full h-[620px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer"
                     >
-                      <div className="backdrop-blur-md w-full h-full flex items-center justify-center">
-                        <img
-                          className="w-full h-fit"
-                          src={data?.url_photo}
-                          alt=""
-                        />
-                      </div>
+                      <img
+                        className="w-full h-fit"
+                        src={data?.url_photo}
+                        alt=""
+                      />
+
                       <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                         <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
                           <p> {data.id}</p>
