@@ -286,6 +286,7 @@ const ProductCarousel = ({ show, data }) => {
               swipeToSlide={true}
               focusOnSelect={true}
               vertical={true}
+              initialSlide={0}
               className="flex flex-col flex-wrap w-full h-full pt-0 rounded-lg"
             >
               {data?.product?.photos?.map((data) => {
@@ -319,6 +320,7 @@ const ProductCarousel = ({ show, data }) => {
               className="w-full h-full rounded-lg"
               asNavFor={nav2}
               ref={slider1}
+              initialSlide={0}
               {...settings}
             >
               {data?.product?.photos?.map((data, i) => {

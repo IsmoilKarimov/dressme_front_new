@@ -926,12 +926,23 @@ const ProductDetails = ({ data }) => {
                         >
                           {data?.letter_size}
                         </p>
-                        <span className="text-[10px] font-AeonikProRegular text-[#757575]">
-                          {data?.min_wear_size}{" "}
-                          {data?.max_wear_size
-                            ? "- " + data?.max_wear_size
-                            : null}
-                        </span>
+                        {data?.letter_size ? (
+                          <span className="text-[10px] font-AeonikProRegular text-[#757575]">
+                            {data?.min_wear_size}{" "}
+                            {data?.max_wear_size
+                              ? "- " + data?.max_wear_size
+                              : null}
+                          </span>
+                        ) : (
+                          <p
+                            className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                          >
+                            {data?.min_wear_size}{" "}
+                            {data?.max_wear_size
+                              ? "- " + data?.max_wear_size
+                              : null}
+                          </p>
+                        )}
                       </Popover>
                     );
                   }
@@ -953,12 +964,23 @@ const ProductDetails = ({ data }) => {
                         >
                           {data?.letter_size}
                         </p>
-                        <span className="text-[10px] font-AeonikProRegular text-[#757575]">
-                          {data?.min_wear_size}{" "}
-                          {data?.max_wear_size
-                            ? "- " + data?.max_wear_size
-                            : null}
-                        </span>
+                        {data?.letter_size ? (
+                          <span className="text-[10px] font-AeonikProRegular text-[#757575]">
+                            {data?.min_wear_size}{" "}
+                            {data?.max_wear_size
+                              ? "- " + data?.max_wear_size
+                              : null}
+                          </span>
+                        ) : (
+                          <p
+                            className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                          >
+                            {data?.min_wear_size}{" "}
+                            {data?.max_wear_size
+                              ? "- " + data?.max_wear_size
+                              : null}
+                          </p>
+                        )}
                       </Popover>
                     );
                   }
