@@ -52,12 +52,21 @@ const ProductCarousel = ({ show, data }) => {
   };
 
   const [modalOfCarsouel, setModalOfCarsouel] = useState(false);
-  const [currendSlideIndex, setCurrendSlideIndex] = useState(3);
+
+  const sliderRef = useRef();
 
   const handleClickCarosuel = (index) => {
-    setCurrendSlideIndex(index);
+    sliderRef.current.slickGoTo(index);
     setModalOfCarsouel(true);
   };
+
+  useEffect(() => {
+    if (modalOfCarsouel) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [modalOfCarsouel]);
 
   function getCurrentDimension() {
     return {
@@ -240,9 +249,9 @@ const ProductCarousel = ({ show, data }) => {
             <Slider
               className="relative w-full h-fit md:!w-[750px] md:h-[100vh] showpageSlider !overflow-visible bg-white md:rounded-lg"
               {...settingsModal}
-              initialSlide={currendSlideIndex}
+              ref={sliderRef}
             >
-              {data?.product?.photos?.map((data) => {
+              {data?.product?.photos?.map((data, i) => {
                 return (
                   <article>
                     <figure
@@ -257,7 +266,7 @@ const ProductCarousel = ({ show, data }) => {
                       className="relative overflow-hidden h-fit w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                     >
                       <img
-                        className="w-full h-full"
+                        className="w-fit h-fit"
                         src={data?.url_photo}
                         alt=""
                       />
@@ -331,8 +340,7 @@ const ProductCarousel = ({ show, data }) => {
                   <article
                     key={data?.id}
                     onClick={() => {
-                      handleClickCarosuel();
-                      setCurrendSlideIndex(i);
+                      handleClickCarosuel(i);
                     }}
                   >
                     <figure

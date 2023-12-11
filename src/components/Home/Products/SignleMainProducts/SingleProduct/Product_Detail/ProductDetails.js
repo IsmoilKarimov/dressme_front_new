@@ -57,12 +57,12 @@ const ProductDetails = ({ data }) => {
 
   // For DropUp
   useEffect(() => {
-    if (tableSizes || locations || openLocationModal) {
+    if (tableSizes || locations || openLocationModal || openSizeList) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [tableSizes, locations, openLocationModal]);
+  }, [tableSizes, locations, openLocationModal, openSizeList]);
 
   const [openTab, setOpenTab] = useState(1);
 
