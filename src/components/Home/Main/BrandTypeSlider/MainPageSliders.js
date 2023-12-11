@@ -21,7 +21,6 @@ import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 
 export default function MainPageSliders() {
   const [mainData, setMainData] = useContext(HomeMainDataContext);
-  console.log(mainData?.sections, "MAIN-DATA-CATEGORIES");
 
   const [dressInfo] = useContext(dressMainData);
 
