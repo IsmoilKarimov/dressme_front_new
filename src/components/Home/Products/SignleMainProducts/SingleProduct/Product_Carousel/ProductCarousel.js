@@ -266,7 +266,7 @@ const ProductCarousel = ({ show, data }) => {
                       className="relative overflow-hidden h-fit w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                     >
                       <img
-                        className="w-fit h-fit"
+                        className="w-full h-fit"
                         src={data?.url_photo}
                         alt=""
                       />
