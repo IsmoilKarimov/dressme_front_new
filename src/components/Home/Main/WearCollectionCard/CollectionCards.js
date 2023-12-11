@@ -159,7 +159,7 @@ export default function CollectionCards() {
                       backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
                     }}
-                    className="relative w-full cursor-pointer h-[250px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
+                    className="relative w-full cursor-pointer h-[310px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
                   >
                     {/* <div><NoImg /></div> */}
                   </figure>
