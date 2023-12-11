@@ -279,13 +279,13 @@ export default function CollectionCards() {
                       </article>
                       <figure className="flex items-center select-none	absolute right-2 bottom-2">
                         <button
-                          onClick={() =>
-                            // {localStorage.getItem("DressmeUserToken")
-                            //   ? sendFavData(data?.id)
-                            //   :
-                            sendFavDataForNotAuth(data?.id)
-                          }
-                          // }
+                        onClick={() =>
+                          // {localStorage.getItem("DressmeUserToken")
+                          //   ? sendFavData(data?.id)
+                          //   :
+                          sendFavDataForNotAuth(data?.id)
+                        }
+                        // }
                           className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                         >
                           <img src={HeartImg} alt="" />
