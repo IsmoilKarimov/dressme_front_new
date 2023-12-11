@@ -16,7 +16,9 @@ const ProductCarousel = ({ show, data }) => {
   const slider1 = useRef(null);
   const slider2 = useRef(null);
 
-  slider1.current?.slickGoTo(0);
+  useEffect(() => {
+    slider1.current?.slickGoTo(0);
+  }, []);
 
   const NextArrowModal = (props) => {
     const { onClick } = props;
