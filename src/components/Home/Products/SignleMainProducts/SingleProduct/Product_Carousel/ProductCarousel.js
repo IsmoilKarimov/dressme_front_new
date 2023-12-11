@@ -54,8 +54,6 @@ const ProductCarousel = ({ show, data }) => {
   const [modalOfCarsouel, setModalOfCarsouel] = useState(false);
   const [currendSlideIndex, setCurrendSlideIndex] = useState(3);
 
-  console.log(currendSlideIndex);
-
   const handleClickCarosuel = (index) => {
     setCurrendSlideIndex(index);
     setModalOfCarsouel(true);
