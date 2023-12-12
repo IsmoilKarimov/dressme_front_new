@@ -239,11 +239,22 @@ const ProductDetails = ({ data }) => {
     (item) => item?.shop_location_id == selectedLocation?.id
   );
 
+  checkedData = selectedLocation;
+
+  // Selected color ------------------
+
+  const [selectedColor, setSelectedColor] = useState(data?.product?.colors[0]);
+
   useEffect(() => {
     setSelectedLocation(data?.product?.locations[0]);
+    setSelectedColor(data?.product?.colors[0]);
   }, [data]);
 
-  checkedData = selectedLocation;
+  const filterColorsOnSelect = (id) => {
+    setSelectedColor(
+      data?.product?.colors?.find((item) => item?.pivot?.id === id)
+    );
+  };
 
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
@@ -304,7 +315,7 @@ const ProductDetails = ({ data }) => {
                   <ProductArticleIcons />
                 </span>
                 <span className="text-sm font-AeonikProRegular leading-4 tracking-[1%]">
-                  Артикль:
+                  Артикул:
                 </span>
                 <div className="text-sm bg-transparent w-fit font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]" />
                 <div
@@ -545,13 +556,9 @@ const ProductDetails = ({ data }) => {
             <div className="not-italic ml-2 mr-3 font-AeonikProRegular md:font-AeonikProMedium leading-4 text-[#757575]">
               Цвет:
             </div>
-            {data?.product?.colors?.map((item) => {
-              return (
-                <p className="mr-1 not-italic leading-4 text-[#757575]">
-                  {item?.name_ru}
-                </p>
-              );
-            })}
+            <p className="mr-1 not-italic leading-4 text-[#757575]">
+              {selectedColor?.name_ru}
+            </p>
           </div>
           {data?.product?.locations?.length ? (
             <div className="flex items-center py-3 md:py-0">
@@ -702,6 +709,9 @@ const ProductDetails = ({ data }) => {
                   <div
                     key={data.id}
                     className="!w-[64px] h-[72px] rounded-lg cursor-pointer bg-black"
+                    onClick={() => {
+                      filterColorsOnSelect(data?.product_color_id);
+                    }}
                     style={{
                       backgroundImage: `url("${data?.url_photo}")`,
                       backgroundColor: "rgba(0,0,0,0.6)",
