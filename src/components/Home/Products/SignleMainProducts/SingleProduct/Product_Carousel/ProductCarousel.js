@@ -22,11 +22,9 @@ const ProductCarousel = ({ show, data }) => {
     (item) => item?.product_color_id === colorId
   );
 
-  console.log(countOfSelectedColors?.length, "s65d4as5d4as6d45");
-
   useEffect(() => {
     slider1.current?.slickGoTo(0);
-  }, []);
+  }, [data]);
 
   const NextArrowModal = (props) => {
     const { onClick } = props;
