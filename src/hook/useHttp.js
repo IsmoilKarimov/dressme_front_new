@@ -1,3 +1,5 @@
+import Cookies from "js-cookie";
+
 const { REACT_APP_BASE_URL } = process.env;
 
 export const useHttp = () => {
@@ -9,7 +11,7 @@ export const useHttp = () => {
         token = false,
     }) => {
         if (token) {
-            headers["authorization"] = `Bearer ${localStorage.getItem("DressmeUserToken")}`;
+            headers["authorization"] = `Bearer ${Cookies.get("DressmeUserToken")}`;
             headers["Content-type"] = "application/json";
             headers["Accept"] = "application/json";
         }

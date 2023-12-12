@@ -11,6 +11,7 @@ import {
   MyPurchaseIcons,
 } from "../../../assets/icons";
 import { EnglishFlag, RussianFlag, UzbekFlag } from "../../../assets";
+import Cookies from "js-cookie";
 
 const YandexTop = () => {
   const [dressInfo] = useContext(dressMainData);
@@ -171,7 +172,7 @@ const YandexTop = () => {
           </span>
         </Link>
         <div className="line h-5 border text-textColor ml-6"></div>
-        {localStorage.getItem("DressmeUserToken") && (
+        {Cookies.get("DressmeUserToken") && (
           <NavLink to="/my-order" className="flex items-center h-full  ml-6 ">
             <span className="mr-2">
               <MyPurchaseIcons colors={"#707070"} />

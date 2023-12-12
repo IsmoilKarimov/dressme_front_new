@@ -17,6 +17,7 @@ import EditPassword from "./EditPassword/EditPassword";
 import { useHttp } from "../../../../hook/useHttp";
 import LoadingFor from "../../../Loading/LoadingFor";
 import EmailSend from "./EmailSend/EmailSend";
+import Cookies from "js-cookie";
 
 const EditProfilePage = () => {
   const { request } = useHttp();
@@ -103,7 +104,7 @@ const EditProfilePage = () => {
       method: "POST",
       headers: {
         Accept: "application/json",
-        Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
+        Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
       },
       body: form,
     })
@@ -147,7 +148,7 @@ const EditProfilePage = () => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
+        Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
       },
       body: JSON.stringify({
         email: state?.userEmail,
@@ -203,7 +204,7 @@ const EditProfilePage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const LogOut = () => {
-    localStorage.removeItem("DressmeUserToken");
+    Cookies.remove("DressmeUserToken");
     if (location?.pathname?.includes("profile/edit")) {
       navigate("/sign_in");
     } else if (location?.pathname?.includes("my-order")) {

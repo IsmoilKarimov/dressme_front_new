@@ -49,6 +49,7 @@ import {
 } from "../../assets";
 import NavCategoryModal from "./navCategoryModal";
 import RegionsList from "../../ContextHook/RegionsList";
+import Cookies from "js-cookie";
 
 const MediumHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -418,7 +419,7 @@ const MediumHeader = () => {
                 <p className="line h-5 border-x-[1px] text-textColor ss:hidden md:block mx-3"></p>
 
                 {/* User section */}
-                {localStorage.getItem("DressmeUserToken") ? (
+                {Cookies.get("DressmeUserToken") ? (
                   <NavLink
                     to="/profile/edit"
                     className=" bg-btnBgColor rounded-xl items-center justify-center w-11 h-11 mr-2 hidden md:flex"

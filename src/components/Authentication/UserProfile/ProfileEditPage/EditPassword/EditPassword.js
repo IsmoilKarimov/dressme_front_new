@@ -3,6 +3,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { MenuCloseIcons } from "../../../../../assets/icons";
 import { useMutation } from "@tanstack/react-query";
 import { ToastContainer, toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 export default function EditPassword({ onClick }) {
   const [state, setState] = useState({
@@ -24,7 +25,7 @@ export default function EditPassword({ onClick }) {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
+        Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
       },
       body: JSON.stringify({
         current_password: state?.oldPassword,
@@ -56,7 +57,7 @@ export default function EditPassword({ onClick }) {
             setState({ ...state, new_password: "", current_password: "", errorsGroup: "" });
           } 
           else if (res?.access_token) {
-            localStorage.setItem("DressmeUserToken", res?.access_token);
+            Cookies.set("DressmeUserToken", res?.access_token);
             toast.success(`Успешный вход в систему`, {
               position: "top-right",
               autoClose: 5000,

@@ -30,6 +30,7 @@ import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationM
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import CarouselModalMarket from "./YandexLocationMarketOpen/CarouselModalMarket";
 import MarketFilterofMaps from "./YandexLocationMarketOpen/MarketFilterofMaps";
+import Cookies from "js-cookie";
 // import CarouselModalMarket from "./YandexMapsNavbar/CarouselModalMarket";
 
 
@@ -424,7 +425,7 @@ function YandexMapsDressMe() {
                     </button>
                   </li>
                   <li>
-                    {localStorage.getItem("DressmeUserToken") ? (
+                    {Cookies.get("DressmeUserToken") ? (
                       <NavLink
                         to="/my-order"
                         className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 w-full"

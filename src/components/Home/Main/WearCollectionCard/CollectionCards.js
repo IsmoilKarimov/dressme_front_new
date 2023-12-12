@@ -15,6 +15,7 @@ import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { useMutation } from "@tanstack/react-query";
 import { SliderPhotosColorContext } from "../../../../ContextHook/SliderPhotosColor";
+import Cookies from "js-cookie";
 
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -48,7 +49,7 @@ export default function CollectionCards() {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
+        Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
       },
       body: JSON.stringify({
         product_id: id,
@@ -78,7 +79,7 @@ export default function CollectionCards() {
         Accept: "application/json",
         withCredentials: true,
         credentials: "include",
-        Cookie: `dressme_session=${localStorage.getItem("DressmeUserToken")}`,
+        Cookie: `dressme_session=${Cookies.get("DressmeUserToken")}`,
       },
       body: JSON.stringify({
         product_id: id,
