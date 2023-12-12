@@ -14,6 +14,7 @@ import WearType from "./WearType";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { useMutation } from "@tanstack/react-query";
+import { SliderPhotosColorContext } from "../../../../ContextHook/SliderPhotosColor";
 
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -25,6 +26,8 @@ export default function CollectionCards() {
   // -------------------------------------
   const toggle = React.useCallback(() => setOpenWearType(false), []);
   // -------------------------------------
+
+  const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
 
   useEffect(() => {
     if (openWearType) {
@@ -160,7 +163,10 @@ export default function CollectionCards() {
                   className={`ss:w-[49%] md:w-[24%] lg:w-[240px] xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
                 >
                   <figure
-                    onClick={() => goDetail(data?.id)}
+                    onClick={() => {
+                      setcolorId(null);
+                      goDetail(data?.id);
+                    }}
                     style={{
                       backgroundImage: `url("${data?.photos[0]?.url_photo}")`,
                       backgroundPosition: "center center",
@@ -198,7 +204,7 @@ export default function CollectionCards() {
                           data?.l
                             ? "w-full px-1 xs:px-2 md:px-4 my-2"
                             : "w-0 my-2"
-                        } group-hover:w-full group-hover:px-1 group-hover:xs:px-2 group-hover:md:px-4 group-hover:my-2 duration-300 w-0 my-2 absolute overflow-hidden hidden top-0 z-[1] md:flex justify-between items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
+                        } group-hover:w-full group-hover:px-1 group-hover:xs:px-2 group-hover:md:px-4 group-hover:my-2 duration-300 w-0 my-2 absolute overflow-hidden hidden top-0 z-[1] md:flex items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
                       >
                         {data?.colors?.map((itemValue) => {
                           return (
@@ -208,7 +214,7 @@ export default function CollectionCards() {
                               onClick={() =>
                                 onColorChecked(data?.id, itemValue?.id)
                               }
-                              className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 ls:w-[22px] ls:h-[22px] w-5 h-5 lg:w-6 lg:h-6 cursor-pointer  border border-solid border-borderColorCard mr-[3px]`}
+                              className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 ls:w-[22px] ls:h-[22px] w-5 h-5 lg:w-6 lg:h-6 cursor-pointer  border border-solid border-borderColorCard mr-[5px]`}
                               htmlFor="Color1"
                             >
                               {itemValue?.action ? (
