@@ -3,7 +3,6 @@ import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { useNavigate } from "react-router-dom";
 import {
   InputCheckedTrueIcons,
-  NoImg,
   SearchIcons,
   StarIcons,
 } from "../../../../assets/icons";
@@ -12,13 +11,15 @@ import "../../../../index.css";
 import { ClothingParametr } from "./ClothingParametr";
 import { CalourCard } from "../../../../assets";
 import WearType from "./WearType";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { useMutation } from "@tanstack/react-query";
 
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
-  const [mainData, setMainData] = useContext(HomeMainDataContext);
+  const [heartChangeColor, setHeartChangeColor] = useState(false);
+  const [mainData] = useContext(HomeMainDataContext);
   const url = "https://api.dressme.uz/api";
 
   // -------------------------------------
@@ -34,8 +35,6 @@ export default function CollectionCards() {
   }, [openWearType]);
   const navigate = useNavigate();
   const goDetail = (id) => {
-    // const IdOne = id.split(" ");
-    // const IdTwo = IdOne.join("-");
     navigate(`/product/${id}`);
   };
 
@@ -111,10 +110,7 @@ export default function CollectionCards() {
   };
 
   const handleData = (id) => {
-    return (
-      sendFavData(id),
-      sendFavDataForNotAuth(id)
-    );
+    return sendFavData(id), sendFavDataForNotAuth(id);
   };
 
   return (
@@ -176,6 +172,7 @@ export default function CollectionCards() {
                     {/* <div><NoImg /></div> */}
                   </figure>
                   <section className="relative w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[130px] md:h-[136px] ">
+                    {/* 1 */}
                     <div className="group hover:w-full hover:h-[36px] cursor-pointer">
                       <button className="group-hover:hidden w-12 h-7 border border-searchBgColor rounded-lg hidden md:flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 ">
                         <figure className="w-6 h-6 flex items-center justify-center">
@@ -222,6 +219,7 @@ export default function CollectionCards() {
                         })}
                       </article>
                     </div>
+                    {/* 2 */}
                     <article
                       onMouseEnter={() => handleLeaveMouse(data?.id)}
                       onClick={() => goDetail(data?.id)}
@@ -251,7 +249,7 @@ export default function CollectionCards() {
                         ) : null}
                       </figure>
                     </article>
-
+                    {/* 3 */}
                     <article
                       onMouseEnter={() => handleLeaveMouse(data?.id)}
                       className="w-full flex items-end mb-2 justify-between  pl-3 pr-[5px]"
@@ -292,16 +290,17 @@ export default function CollectionCards() {
                       </article>
                       <figure className="flex items-center select-none	absolute right-2 bottom-2">
                         <button
-                          onClick={() =>
-                            // {localStorage.getItem("DressmeUserToken")
-                            //   ? sendFavData(data?.id)
-                            //   :
-                            handleData(data?.id)
-                          }
-                          // }
+                          onClick={() => {
+                            setHeartChangeColor(!heartChangeColor);
+                            handleData(data?.id);
+                          }}
                           className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                         >
-                          <img src={HeartImg} alt="" />
+                          {heartChangeColor ? (
+                            <BsHeartFill color="#d50000" />
+                          ) : (
+                            <BsHeart />
+                          )}
                         </button>
                       </figure>
                     </article>
