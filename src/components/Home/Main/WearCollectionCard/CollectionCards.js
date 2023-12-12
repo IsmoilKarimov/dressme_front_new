@@ -69,9 +69,14 @@ export default function CollectionCards() {
   const dataEmailMutateNotAuth = useMutation((id) => {
     return fetch(`${url}/main/wishlist/add-to-wishlist`, {
       method: "POST",
+      // withCredentials: true,
+      // credentials: "include",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        withCredentials: true,
+        credentials: "include",
+        Cookie: `dressme_session=${localStorage.getItem("DressmeUserToken")}`,
       },
       body: JSON.stringify({
         product_id: id,
@@ -82,7 +87,7 @@ export default function CollectionCards() {
   const sendFavDataForNotAuth = (id) => {
     dataEmailMutateNotAuth.mutate(id, {
       onSuccess: (res) => {
-        console.log(res);
+        console.log(res, "BU dont use token");
       },
       onError: (err) => {
         console.log(err, "ERROR IN PRODUCTS");
@@ -103,6 +108,13 @@ export default function CollectionCards() {
     setDressInfo((current) => {
       return { ...current, ProductList: newArray };
     });
+  };
+
+  const handleData = (id) => {
+    return (
+      sendFavData(id),
+      sendFavDataForNotAuth(id)
+    );
   };
 
   return (
@@ -149,7 +161,7 @@ export default function CollectionCards() {
               return (
                 <article
                   key={data.id}
-                  className={` ss:w-[49%] md:w-[24%] lg:w-[240px] xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
+                  className={`ss:w-[49%] md:w-[24%] lg:w-[240px] xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
                 >
                   <figure
                     onClick={() => goDetail(data?.id)}
@@ -239,6 +251,7 @@ export default function CollectionCards() {
                         ) : null}
                       </figure>
                     </article>
+
                     <article
                       onMouseEnter={() => handleLeaveMouse(data?.id)}
                       className="w-full flex items-end mb-2 justify-between  pl-3 pr-[5px]"
@@ -279,13 +292,13 @@ export default function CollectionCards() {
                       </article>
                       <figure className="flex items-center select-none	absolute right-2 bottom-2">
                         <button
-                        onClick={() =>
-                          // {localStorage.getItem("DressmeUserToken")
-                          //   ? sendFavData(data?.id)
-                          //   :
-                          sendFavDataForNotAuth(data?.id)
-                        }
-                        // }
+                          onClick={() =>
+                            // {localStorage.getItem("DressmeUserToken")
+                            //   ? sendFavData(data?.id)
+                            //   :
+                            handleData(data?.id)
+                          }
+                          // }
                           className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                         >
                           <img src={HeartImg} alt="" />
