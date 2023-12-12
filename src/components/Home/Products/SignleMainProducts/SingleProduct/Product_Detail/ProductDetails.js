@@ -42,6 +42,7 @@ import AddCopyCheckedIcon from "./AddCopyCheckedIcon/AddCopyCheckedIcon";
 import LocationOfYandex from "./LocationOfYandex/LocationOfYandex";
 import TableSizesDropUp from "./MobileDropUp/TableSizesDropUp/TableSizesDropUp";
 import LocationDropUp from "./MobileDropUp/LocationsDropUp/LocationsDropUp";
+import { SliderPhotosColorContext } from "../../../../../../ContextHook/SliderPhotosColor";
 
 const ProductDetails = ({ data }) => {
   const [dressInfo] = useContext(dressMainData);
@@ -49,6 +50,9 @@ const ProductDetails = ({ data }) => {
   const [openSizeList, setOpenSizeList] = useState(false);
   const [tableSizes, setTableSizes] = useState(false);
   const [locations, setLocations] = useState(false);
+
+  // color context---
+  const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
 
   const toggleTableSizes = useCallback(() => setTableSizes(false), []);
   const toggleLocations = useCallback(() => setLocations(false), []);
@@ -711,6 +715,7 @@ const ProductDetails = ({ data }) => {
                     className="!w-[64px] h-[72px] rounded-lg cursor-pointer bg-black"
                     onClick={() => {
                       filterColorsOnSelect(data?.product_color_id);
+                      setcolorId(data?.product_color_id);
                     }}
                     style={{
                       backgroundImage: `url("${data?.url_photo}")`,

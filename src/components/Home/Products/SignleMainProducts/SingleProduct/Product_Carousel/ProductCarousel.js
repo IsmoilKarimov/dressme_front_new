@@ -7,14 +7,22 @@ import {
   VideoStoreIcons,
 } from "../../../../../../assets/icons";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
+import { SliderPhotosColorContext } from "../../../../../../ContextHook/SliderPhotosColor";
 
 const ProductCarousel = ({ show, data }) => {
+  const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [dressInfo] = useContext(dressMainData);
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
   const slider1 = useRef(null);
   const slider2 = useRef(null);
+
+  let countOfSelectedColors = data?.product?.photos?.filter(
+    (item) => item?.product_color_id === colorId
+  );
+
+  console.log(countOfSelectedColors?.length, "s65d4as5d4as6d45");
 
   useEffect(() => {
     slider1.current?.slickGoTo(0);
@@ -252,21 +260,39 @@ const ProductCarousel = ({ show, data }) => {
               {...settingsModal}
               ref={sliderRef}
             >
-              {data?.product?.photos?.map((data, i) => {
-                return (
-                  <article>
-                    <figure className="relative overflow-hidden h-fit w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-                      <img src={data?.url_photo} alt="" />
-                      <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
-                        <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
-                          <p>{data.id}</p>
-                          <p>{data?.product?.photos?.length}</p>
-                        </span>
-                      </figcaption>
-                    </figure>
-                  </article>
-                );
-              })}
+              {colorId
+                ? data?.product?.photos?.map((data, i) => {
+                    if (data?.product_color_id === colorId) {
+                      return (
+                        <article>
+                          <figure className="relative overflow-hidden h-fit w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center">
+                            <img src={data?.url_photo} alt="" />
+                            <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
+                              <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
+                                <p>{data.id}</p>
+                                <p>{data?.product?.photos?.length}</p>
+                              </span>
+                            </figcaption>
+                          </figure>
+                        </article>
+                      );
+                    }
+                  })
+                : data?.product?.photos?.map((data, i) => {
+                    return (
+                      <article>
+                        <figure className="relative overflow-hidden h-fit w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center">
+                          <img src={data?.url_photo} alt="" />
+                          <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
+                            <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
+                              <p>{data.id}</p>
+                              <p>{data?.product?.photos?.length}</p>
+                            </span>
+                          </figcaption>
+                        </figure>
+                      </article>
+                    );
+                  })}
             </Slider>
           </div>
         </section>
@@ -283,35 +309,53 @@ const ProductCarousel = ({ show, data }) => {
             <Slider
               asNavFor={nav1}
               ref={slider2}
-              slidesToShow={data?.product?.photos?.length}
+              slidesToShow={
+                colorId
+                  ? countOfSelectedColors?.length
+                  : data?.product?.photos?.length
+              }
               swipeToSlide={true}
               focusOnSelect={true}
               vertical={true}
               className="flex flex-col flex-wrap w-full h-full pt-0 rounded-lg"
             >
-              {data?.product?.photos?.map((data) => {
-                return (
-                  <div>
-                    <figure
-                      key={data?.id}
-                      style={{
-                        backgroundImage: `url("${data?.url_photo}")`,
-                        backgroundColor: "rgba(0,0,0,0.6)",
-                        backgroundPosition: "center center",
-                        backgroundSize: "cover",
-                        backgroundRepeat: "no-repeat",
-                      }}
-                      className="!w-[90px] cursor-pointer !h-[120px] border border-searchBgColor bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center"
-                    >
-                      {/* <img
-                      className="w-full h-full rounded-lg"
-                      src={data?.url_photo}
-                      alt=""
-                    /> */}
-                    </figure>
-                  </div>
-                );
-              })}
+              {colorId
+                ? data?.product?.photos?.map((data) => {
+                    if (data?.product_color_id === colorId) {
+                      return (
+                        <div>
+                          <figure
+                            key={data?.id}
+                            style={{
+                              backgroundImage: `url("${data?.url_photo}")`,
+                              backgroundColor: "rgba(0,0,0,0.6)",
+                              backgroundPosition: "center center",
+                              backgroundSize: "cover",
+                              backgroundRepeat: "no-repeat",
+                            }}
+                            className="!w-[90px] cursor-pointer !h-[120px] border border-searchBgColor bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center"
+                          ></figure>
+                        </div>
+                      );
+                    }
+                  })
+                : data?.product?.photos?.map((data) => {
+                    return (
+                      <div>
+                        <figure
+                          key={data?.id}
+                          style={{
+                            backgroundImage: `url("${data?.url_photo}")`,
+                            backgroundColor: "rgba(0,0,0,0.6)",
+                            backgroundPosition: "center center",
+                            backgroundSize: "cover",
+                            backgroundRepeat: "no-repeat",
+                          }}
+                          className="!w-[90px] cursor-pointer !h-[120px] border border-searchBgColor bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center"
+                        ></figure>
+                      </div>
+                    );
+                  })}
             </Slider>
           </article>
 
@@ -322,49 +366,95 @@ const ProductCarousel = ({ show, data }) => {
               ref={slider1}
               {...settings}
             >
-              {data?.product?.photos?.map((data, i) => {
-                return (
-                  <article
-                    key={data?.id}
-                    onClick={() => {
-                      handleClickCarosuel(i);
-                    }}
-                  >
-                    <figure
-                      style={{
-                        backgroundImage: `url("${data?.url_photo}")`,
-                        backgroundColor: "rgba(0,0,0,0.85)",
-                        backgroundPosition: "center center",
-                        backgroundSize: "cover",
-                        backgroundRepeat: "no-repeat",
-                        backgroundBlendMode: "darken",
-                      }}
-                      className="relative w-full h-[620px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer"
-                    >
-                      <img
-                        className="w-full h-fit"
-                        src={data?.url_photo}
-                        alt=""
-                      />
+              {colorId
+                ? data?.product?.photos?.map((data, i) => {
+                    if (data?.product_color_id === colorId) {
+                      return (
+                        <article
+                          key={data?.id}
+                          onClick={() => {
+                            handleClickCarosuel(i);
+                          }}
+                        >
+                          <figure
+                            style={{
+                              backgroundImage: `url("${data?.url_photo}")`,
+                              backgroundColor: "rgba(0,0,0,0.85)",
+                              backgroundPosition: "center center",
+                              backgroundSize: "cover",
+                              backgroundRepeat: "no-repeat",
+                              backgroundBlendMode: "darken",
+                            }}
+                            className="relative w-full h-[620px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer"
+                          >
+                            <img
+                              className="w-full h-fit"
+                              src={data?.url_photo}
+                              alt=""
+                            />
 
-                      <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
-                        <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
-                          <p> {data.id}</p>
-                          <p>{data?.product?.photos?.length}</p>
-                        </span>
-                        <span className="w-fit flex items-center p-2 gap-x-2 rounded-lg bg-bgCard border border-searchBgColor">
-                          <p className="flex items-center ">
-                            <VideoStoreIcons />
-                          </p>
-                          <p className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-black">
-                            Видео
-                          </p>
-                        </span>
-                      </figcaption>
-                    </figure>
-                  </article>
-                );
-              })}
+                            <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
+                              <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
+                                <p> {data.id}</p>
+                                <p>{data?.product?.photos?.length}</p>
+                              </span>
+                              <span className="w-fit flex items-center p-2 gap-x-2 rounded-lg bg-bgCard border border-searchBgColor">
+                                <p className="flex items-center ">
+                                  <VideoStoreIcons />
+                                </p>
+                                <p className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-black">
+                                  Видео
+                                </p>
+                              </span>
+                            </figcaption>
+                          </figure>
+                        </article>
+                      );
+                    }
+                  })
+                : data?.product?.photos?.map((data, i) => {
+                    return (
+                      <article
+                        key={data?.id}
+                        onClick={() => {
+                          handleClickCarosuel(i);
+                        }}
+                      >
+                        <figure
+                          style={{
+                            backgroundImage: `url("${data?.url_photo}")`,
+                            backgroundColor: "rgba(0,0,0,0.85)",
+                            backgroundPosition: "center center",
+                            backgroundSize: "cover",
+                            backgroundRepeat: "no-repeat",
+                            backgroundBlendMode: "darken",
+                          }}
+                          className="relative w-full h-[620px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer"
+                        >
+                          <img
+                            className="w-full h-fit"
+                            src={data?.url_photo}
+                            alt=""
+                          />
+
+                          <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
+                            <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
+                              <p> {data.id}</p>
+                              <p>{data?.product?.photos?.length}</p>
+                            </span>
+                            <span className="w-fit flex items-center p-2 gap-x-2 rounded-lg bg-bgCard border border-searchBgColor">
+                              <p className="flex items-center ">
+                                <VideoStoreIcons />
+                              </p>
+                              <p className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-black">
+                                Видео
+                              </p>
+                            </span>
+                          </figcaption>
+                        </figure>
+                      </article>
+                    );
+                  })}
             </Slider>
           </article>
         </section>
