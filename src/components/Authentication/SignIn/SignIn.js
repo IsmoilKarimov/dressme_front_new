@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useMutation } from "@tanstack/react-query";
 import LoadingFor from "../../Loading/LoadingFor";
+import Cookies from "js-cookie";
 export default function SignIn() {
   const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
@@ -62,7 +63,7 @@ export default function SignIn() {
             });
           } else if (res?.access_token) {
             setLoading(false)
-            localStorage.setItem("DressmeUserToken", res?.access_token);
+            Cookies.set("DressmeUserToken", res?.access_token);
             toast.success(`Успешный вход в систему`, {
               position: "top-right",
               autoClose: 5000,

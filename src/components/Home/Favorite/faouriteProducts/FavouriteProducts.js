@@ -10,6 +10,7 @@ import { CalourCard, HeartImg } from "../../../../assets";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useHttp } from "../../../../hook/useHttp";
 import WearType from "../../Main/WearCollectionCard/WearType";
+import Cookies from "js-cookie";
 
 export default function FavouriteProducts() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -103,7 +104,7 @@ export default function FavouriteProducts() {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
+        Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
       },
       body: JSON.stringify({
         product_id: id,
@@ -129,9 +130,6 @@ export default function FavouriteProducts() {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        // withCredentials: true,
-        // credentials: "include",
-        // Cookie: `dressme_session=${localStorage.getItem("DressmeUserToken")}`,
       },
       body: JSON.stringify({
         product_id: id,
@@ -172,7 +170,7 @@ export default function FavouriteProducts() {
       <div className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto mb-[90px] ss:px-4 md:px-0">
         <section className="w-full flex flex-col box-border ">
           {authProducts || nonAuthProducts?.length ? (
-            localStorage.getItem("DressmeUserToken") ? (
+            Cookies.get("DressmeUserToken") ? (
               <article className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
                 {authProducts?.map((data) => {
                   console.log(data, "DATA-Authentificated-user");
@@ -319,7 +317,7 @@ export default function FavouriteProducts() {
                           <figure className="flex items-center select-none	absolute right-2 bottom-2">
                             <button
                               onClick={() =>
-                                // {localStorage.getItem("DressmeUserToken")
+                                // {Cookies.get("DressmeUserToken")
                                 //   ? sendFavData(data?.id)
                                 //   :
                                 handleData(data?.id)

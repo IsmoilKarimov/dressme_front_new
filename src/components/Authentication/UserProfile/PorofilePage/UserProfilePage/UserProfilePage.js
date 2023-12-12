@@ -10,6 +10,7 @@ import { UzbekFlag } from "../../../../../assets";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useHttp } from "../../../../../hook/useHttp";
+import Cookies from "js-cookie";
 
 const UserProfilePage = () => {
   const [phone, setPhone] = useState("");
@@ -62,7 +63,7 @@ const UserProfilePage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const LogOut = () => {
-    localStorage.removeItem("DressmeUserToken");
+    Cookies.remove("DressmeUserToken");
     if (location?.pathname?.includes("profile/settings")) { 
       navigate("/sign_in");
     } else if (location?.pathname?.includes("my-order")) {

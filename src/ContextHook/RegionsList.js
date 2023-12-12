@@ -45,7 +45,7 @@ function RegionList({ onClick }) {
   //       method: "GET",
   //       headers: {
   //         "Content-type": "application/json",
-  //         Authorization: `Bearer ${localStorage.getItem("DressmeUserToken")}`,
+  //         Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
   //       },
   //     }).then((res) => res.json());
   //   },

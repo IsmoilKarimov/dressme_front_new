@@ -12,6 +12,7 @@ import {
 } from "../../assets/icons";
 import { HeartImg } from "../../assets";
 import { dressMainData } from "../../ContextHook/ContextMenu";
+import Cookies from "js-cookie";
 
 const NavMenu = () => {
   const [dressInfo] = useContext(dressMainData);
@@ -136,7 +137,7 @@ const NavMenu = () => {
         <li className="w-[72px] h-[56px]">
           <NavLink
             to={
-              localStorage.getItem("DressmeUserToken")
+              Cookies.get("DressmeUserToken")
                 ? "/profile/settings"
                 : "/sign_in"
             }
