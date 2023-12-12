@@ -232,6 +232,16 @@ const ProductCarousel = ({ show, data }) => {
     speed: 500,
   };
 
+  // filtered for modal
+
+  let filteredForModal = data?.product?.photos?.filter(
+    (item) => item?.product_color_id === colorId
+  );
+
+  // current Slide ----
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   return (
     <main className="w-full md:w-fit h-full ">
       <div className="w-full">
@@ -303,10 +313,13 @@ const ProductCarousel = ({ show, data }) => {
           }
         `}
         >
-          <article className="flex w-[90px] flex-col">
+          <article className="flex w-[93px] flex-col">
             <Slider
               asNavFor={nav1}
               ref={slider2}
+              afterChange={(current) => {
+                setCurrentSlide(current);
+              }}
               slidesToShow={
                 colorId
                   ? countOfSelectedColors?.length
@@ -318,7 +331,7 @@ const ProductCarousel = ({ show, data }) => {
               className="flex flex-col flex-wrap w-full h-full pt-0 rounded-lg"
             >
               {colorId
-                ? data?.product?.photos?.map((data) => {
+                ? filteredForModal?.map((data, i) => {
                     if (data?.product_color_id === colorId) {
                       return (
                         <div>
@@ -331,13 +344,17 @@ const ProductCarousel = ({ show, data }) => {
                               backgroundSize: "cover",
                               backgroundRepeat: "no-repeat",
                             }}
-                            className="!w-[90px] cursor-pointer !h-[120px] border border-searchBgColor bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center"
+                            className={`${
+                              currentSlide === i
+                                ? "border-2 border-[#007DCA]"
+                                : "border border-searchBgColor"
+                            } !w-[90px] cursor-pointer !h-[120px]  bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center`}
                           ></figure>
                         </div>
                       );
                     }
                   })
-                : data?.product?.photos?.map((data) => {
+                : data?.product?.photos?.map((data, i) => {
                     return (
                       <div>
                         <figure
@@ -349,7 +366,11 @@ const ProductCarousel = ({ show, data }) => {
                             backgroundSize: "cover",
                             backgroundRepeat: "no-repeat",
                           }}
-                          className="!w-[90px] cursor-pointer !h-[120px] border border-searchBgColor bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center"
+                          className={`${
+                            currentSlide === i
+                              ? "border-2 border-[#007DCA]"
+                              : "border border-searchBgColor"
+                          }  !w-[90px] cursor-pointer !h-[120px] bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center`}
                         ></figure>
                       </div>
                     );
@@ -365,7 +386,7 @@ const ProductCarousel = ({ show, data }) => {
               {...settings}
             >
               {colorId
-                ? data?.product?.photos?.map((data, i) => {
+                ? filteredForModal?.map((data, i) => {
                     if (data?.product_color_id === colorId) {
                       return (
                         <article
