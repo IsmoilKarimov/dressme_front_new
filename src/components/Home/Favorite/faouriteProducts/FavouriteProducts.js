@@ -2,12 +2,11 @@ import React, { useContext, useState } from "react";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
-  HeartIcon,
   InputCheckedTrueIcons,
   NoImg,
   StarIcons,
 } from "../../../../assets/icons";
-import { AddBasket, CalourCard, HeartImg } from "../../../../assets";
+import { CalourCard, HeartImg } from "../../../../assets";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useHttp } from "../../../../hook/useHttp";
 import WearType from "../../Main/WearCollectionCard/WearType";
@@ -15,11 +14,8 @@ import WearType from "../../Main/WearCollectionCard/WearType";
 export default function FavouriteProducts() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
-  const [authentificatedFavProducts, setAuthentificatedFavProducts] =
-    useState(null);
-  const [nonAuthentificatedFavProducts, setNonAuthentificatedFavProducts] =
-    useState(null);
-  // console.log(favProducts.length);
+  const [authProducts, setAuthProducts] = useState(null);
+  const [nonAuthProducts, setNonAuthProducts] = useState(null);
 
   // -------------------------------------
   const toggle = React.useCallback(() => setOpenWearType(false), []);
@@ -60,7 +56,7 @@ export default function FavouriteProducts() {
           res?.user_wishlist_products,
           "SUCCESS, HAVE USER GET WISHLIST PROFILE"
         );
-        setAuthentificatedFavProducts(res?.user_wishlist_products);
+        setAuthProducts(res?.user_wishlist_products);
       },
       onError: (err) => {
         console.log(err, "THERE IS AN ERROR IN GET-WISHLIST-PROFILE");
@@ -81,9 +77,6 @@ export default function FavouriteProducts() {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          // withCredentials:true,
-          // credentials: 'include'
-          // Cookie: 'sessionid=a3NzqWiqERDAILqLzxL9bXhkO7lXzLKMrgpTZsgg',
         },
       }).then((res) => console.log(res.headers, "RESPONSE"));
     },
@@ -93,7 +86,7 @@ export default function FavouriteProducts() {
           res?.wishlist_products?.data,
           "SUCCESS, NOT USER GET WISHLIST PROFILE"
         );
-        setNonAuthentificatedFavProducts(res?.wishlist_products?.data);
+        setNonAuthProducts(res?.wishlist_products?.data);
       },
       onError: (err) => {
         console.log(err, "THERE IS AN ERROR IN GET-WISHLIST-PROFILE");
@@ -133,14 +126,12 @@ export default function FavouriteProducts() {
   const dataEmailMutateNotAuth = useMutation((id) => {
     return fetch(`${url}/main/wishlist/add-to-wishlist`, {
       method: "POST",
-      // withCredentials: true,
-      // credentials: "include",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        withCredentials: true,
-        credentials: "include",
-        Cookie: `dressme_session=${localStorage.getItem("DressmeUserToken")}`,
+        // withCredentials: true,
+        // credentials: "include",
+        // Cookie: `dressme_session=${localStorage.getItem("DressmeUserToken")}`,
       },
       body: JSON.stringify({
         product_id: id,
@@ -180,15 +171,14 @@ export default function FavouriteProducts() {
       </section>
       <div className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto mb-[90px] ss:px-4 md:px-0">
         <section className="w-full flex flex-col box-border ">
-          {authentificatedFavProducts ||
-          nonAuthentificatedFavProducts?.length ? (
+          {authProducts || nonAuthProducts?.length ? (
             localStorage.getItem("DressmeUserToken") ? (
               <article className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
-                {authentificatedFavProducts?.map((data) => {
+                {authProducts?.map((data) => {
                   console.log(data, "DATA-Authentificated-user");
                   return (
                     <div
-                      key={data.id}
+                      key={data?.id}
                       className={`ss:w-[49%] md:w-[24%] lg:w-[240px] xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
                     >
                       <figure
@@ -233,13 +223,16 @@ export default function FavouriteProducts() {
                             } group-hover:w-full group-hover:px-1 group-hover:xs:px-2 group-hover:md:px-4 group-hover:my-2 duration-300 w-0 my-2 absolute overflow-hidden hidden top-0 z-[1] md:flex justify-between items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
                           >
                             {data?.product?.colors?.map((itemValue) => {
-                              console.log(itemValue,"DATA");
+                              console.log(itemValue, "DATA");
                               return (
                                 <article
                                   key={itemValue?.id}
                                   style={{ backgroundColor: itemValue?.hex }}
                                   onClick={() =>
-                                    onColorChecked(data?.product?.id, itemValue?.id)
+                                    onColorChecked(
+                                      data?.product?.id,
+                                      itemValue?.id
+                                    )
                                   }
                                   className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 ls:w-[22px] ls:h-[22px] w-5 h-5 lg:w-6 lg:h-6 cursor-pointer  border border-solid border-borderColorCard mr-[3px]`}
                                   htmlFor="Color1"
@@ -345,11 +338,11 @@ export default function FavouriteProducts() {
               </article>
             ) : (
               <article className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
-                {authentificatedFavProducts?.map((data) => {
-                  console.log(data, "DATA-Authentificated-user");
+                {authProducts?.map((data) => {
+                  console.log(data, "DATA-AUTHENTICATED-USER");
                   return (
                     <div
-                      key={data.id}
+                      key={data?.id}
                       className={`ss:w-[49%] md:w-[24%] lg:w-[240px]  xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
                     >
                       <figure
@@ -385,7 +378,7 @@ export default function FavouriteProducts() {
                         >
                           <section className="relative z-10 w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[15px] leading-4 text-black mb-2 md:mb-0  cursor-pointer">
                             <p className="absolute categoryLinearText left-0 w-full h-full z-[10] top-0"></p>
-                            {data?.product.name_ru || "NoData"}
+                            {data?.product?.name_ru || "NoData"}
                           </section>
                           <section className="w-full flex justify-between items-center xs:mt-3">
                             <article className="flex items-center justify-between">
@@ -412,7 +405,7 @@ export default function FavouriteProducts() {
                         </section>
                         <section className="w-full flex items-center justify-between  pl-3 pr-[5px]">
                           <div className="flex items-center ">
-                            {data.sale ? (
+                            {data?.sale ? (
                               <div className="flex flex-col-reverse ll:flex-row	text-start items-start ">
                                 <p className="text-start m-0 p-0  not-italic font-AeonikProMedium text-[16px]  md:text-base leading-1 text-red-700 xs:text-base xs:leading-4 mr-1">
                                   {data?.sale}
@@ -457,7 +450,7 @@ export default function FavouriteProducts() {
                 </p>
                 <NavLink
                   to="/"
-                  className="border text-white bg-blue-500 hover:bg-blue-400 transition ease-linear duration-300 rounded-lg px-[16px] py-3 font-AeonikProMedium text-lg"
+                  className="border text-white bg-bgWinter hover:bg-blue-400 transition ease-linear duration-300 rounded-lg px-[16px] py-3 font-AeonikProMedium text-lg"
                 >
                   Войти в аккаунт
                 </NavLink>
