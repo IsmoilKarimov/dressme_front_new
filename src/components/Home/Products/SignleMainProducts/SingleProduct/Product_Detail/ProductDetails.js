@@ -260,6 +260,18 @@ const ProductDetails = ({ data }) => {
     );
   };
 
+  // Remove duplicates and select only first -----
+
+  let idMap = new Map();
+  let uniqueArray = [];
+
+  data?.product?.photos?.forEach((obj) => {
+    if (!idMap.has(obj.product_color_id)) {
+      idMap.set(obj.product_color_id, obj);
+      uniqueArray.push(obj);
+    }
+  });
+
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
       <div className="tableSizes">
@@ -704,10 +716,10 @@ const ProductDetails = ({ data }) => {
           <Slider
             ref={slider}
             {...settings}
-            slidesToShow={data?.product?.photos?.length}
+            slidesToShow={uniqueArray?.length}
             className="hidden md:flex md:w-[88%] h-[80px] items-center"
           >
-            {data?.product?.photos.map((data) => {
+            {uniqueArray?.map((data) => {
               return (
                 <div>
                   <div
