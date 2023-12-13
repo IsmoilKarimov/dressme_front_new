@@ -22,7 +22,8 @@ export default function CollectionCards() {
   const [openWearType, setOpenWearType] = useState(false);
   const [heartChangeColor, setHeartChangeColor] = useState(false);
 
-  const [mainData] = useContext(HomeMainDataContext);
+  const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
+
   const url = "https://api.dressme.uz/api";
 
   // -------------------------------------
@@ -344,12 +345,21 @@ export default function CollectionCards() {
                         ) : (
                           <button
                             onClick={() => {
-                              // setHeartChangeColor(!heartChangeColor);
-                              // productDelete(data?.id);
+                              if (wishList?.includes(data?.id)) {
+                                setWishlist(
+                                  wishList?.filter((item) => item !== data?.id)
+                                );
+                              } else {
+                                setWishlist([...wishList, data?.id]);
+                              }
                             }}
                             className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                           >
-                            <BsHeart />
+                            {wishList.includes(data?.id) ? (
+                              <BsHeartFill color="#d50000" />
+                            ) : (
+                              <BsHeart />
+                            )}
                           </button>
                         )}
                       </figure>
