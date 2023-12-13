@@ -1,10 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
+import Cookies from "js-cookie";
 import { createContext, useEffect, useState } from "react";
 
 export const HomeMainDataContext = createContext();
 
 export const HomeMainDataContextProvider = ({ children }) => {
   const [data, setData] = useState([]);
+
+  let WishlistDataFromCookies = Cookies.get("WishList");
+
+  const [wishList, setWishlist] = useState([]);
+
+  useEffect(() => {
+    if (WishlistDataFromCookies) {
+      setWishlist(JSON.parse(WishlistDataFromCookies));
+    }
+  }, []);
+
+  Cookies.set("WishList", JSON.stringify(wishList), { expires: 2 });
 
   const url = "https://api.dressme.uz";
 
@@ -33,7 +46,9 @@ export const HomeMainDataContextProvider = ({ children }) => {
   );
 
   return (
-    <HomeMainDataContext.Provider value={[data, setData]}>
+    <HomeMainDataContext.Provider
+      value={[data, setData, wishList, setWishlist]}
+    >
       {children}
     </HomeMainDataContext.Provider>
   );
