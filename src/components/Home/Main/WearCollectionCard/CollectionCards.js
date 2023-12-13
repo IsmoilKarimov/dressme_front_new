@@ -160,7 +160,7 @@ export default function CollectionCards() {
             {mainData?.products?.data?.map((data) => {
               return (
                 <article
-                  key={data.id}
+                  key={data?.id}
                   className={`ss:w-[49%] md:w-[24%] lg:w-[240px] xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
                 >
                   <figure
@@ -299,6 +299,7 @@ export default function CollectionCards() {
                         <button
                           onClick={() => {
                             setHeartChangeColor(!heartChangeColor);
+                            console.log(data?.id);
                             handleData(data?.id);
                           }}
                           className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
