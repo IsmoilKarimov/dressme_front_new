@@ -6,7 +6,6 @@ import {
   SearchIcons,
   StarIcons,
 } from "../../../../assets/icons";
-import { HeartImg } from "../../../../assets";
 import "../../../../index.css";
 import { ClothingParametr } from "./ClothingParametr";
 import { CalourCard } from "../../../../assets";
@@ -16,6 +15,7 @@ import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { useMutation } from "@tanstack/react-query";
 import { SliderPhotosColorContext } from "../../../../ContextHook/SliderPhotosColor";
 import Cookies from "js-cookie";
+import { useHttp } from "../../../../hook/useHttp";
 
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -37,6 +37,8 @@ export default function CollectionCards() {
       document.body.style.overflow = "auto";
     }
   }, [openWearType]);
+
+  const { request } = useHttp();
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/product/${id}`);
@@ -56,7 +58,6 @@ export default function CollectionCards() {
       }),
     }).then((res) => res.json());
   });
-
   const sendFavData = (id) => {
     dataEmailMutate.mutate(id, {
       onSuccess: (res) => {
@@ -86,7 +87,6 @@ export default function CollectionCards() {
       }),
     }).then((res) => res.json());
   });
-
   const sendFavDataForNotAuth = (id) => {
     dataEmailMutateNotAuth.mutate(id, {
       onSuccess: (res) => {
@@ -97,6 +97,59 @@ export default function CollectionCards() {
       },
     });
   };
+
+  const pathname = window.location.pathname;
+  let id = pathname.replace("/product/:", "");
+
+  // For Authenticated User
+  const deleteFavProduct = useMutation(() => {
+    return request({
+      url: `/user-main/products/${id}/delete-from-wishlist`,
+      method: "DELETE",
+      token: true,
+    });
+  });
+
+  function productDelete() {
+    deleteFavProduct.mutate(
+      {},
+      {
+        onSuccess: (res) => {
+          if (res?.message) {
+            console.log(res?.mesasge, "SUCCESS MESSAGE");
+          }
+        },
+        onError: (err) => {
+          console.log(err, "THERE IS AN ERROR ON WISHLISHT PRODUCT");
+        },
+      }
+    );
+  }
+
+  // For Non-Authenticated User
+  const deleteFavProductNonAuthUser = useMutation(() => {
+    return request({
+      url: `/user-main/products/${id}/delete-from-wishlist`,
+      method: "DELETE",
+      token: false,
+    });
+  });
+
+  function productDeleteNonAuthUser() {
+    deleteFavProductNonAuthUser.mutate(
+      {},
+      {
+        onSuccess: (res) => {
+          if (res?.message) {
+            console.log(res?.mesasge, "SUCCESS MESSAGE");
+          }
+        },
+        onError: (err) => {
+          console.log(err, "THERE IS AN ERROR ON WISHLISHT PRODUCT");
+        },
+      }
+    );
+  }
 
   const onColorChecked = () => {};
   const handleLeaveMouse = (eId) => {
@@ -296,20 +349,28 @@ export default function CollectionCards() {
                         )}
                       </article>
                       <figure className="flex items-center select-none	absolute right-2 bottom-2">
-                        <button
-                          onClick={() => {
-                            setHeartChangeColor(!heartChangeColor);
-                            console.log(data?.id);
-                            handleData(data?.id);
-                          }}
-                          className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
-                        >
-                          {heartChangeColor ? (
+                        {heartChangeColor ? (
+                          <button
+                            onClick={() => {
+                              setHeartChangeColor(!heartChangeColor);
+                              console.log(data?.id);
+                              handleData(data?.id);
+                            }}
+                            className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                          >
                             <BsHeartFill color="#d50000" />
-                          ) : (
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => {
+                              setHeartChangeColor(!heartChangeColor);
+                              productDelete(data?.id);
+                            }}
+                            className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                          >
                             <BsHeart />
-                          )}
-                        </button>
+                          </button>
+                        )}
                       </figure>
                     </article>
                   </section>
