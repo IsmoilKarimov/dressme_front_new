@@ -11,6 +11,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useHttp } from "../../../../hook/useHttp";
 import WearType from "../../Main/WearCollectionCard/WearType";
 import Cookies from "js-cookie";
+import { BsHeartFill } from "react-icons/bs";
 
 export default function FavouriteProducts() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -97,60 +98,26 @@ export default function FavouriteProducts() {
     }
   );
 
-  // =========== POST FAVOURITE PRODUCT ==========
-  const dataEmailMutate = useMutation((id) => {
-    return fetch(`${url}/user-main/products/add-to-wishlist`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
-      },
-      body: JSON.stringify({
-        product_id: id,
-      }),
-    }).then((res) => res.json());
+  const pathname = window.location.pathname;
+  let id = pathname.replace("/product/:", "");
+
+  const deleteProductByAddress = useMutation(() => {
+    return request({ url: `user-main/products/${id}/delete-from-wishlist`, method: "DELETE", token: true });
   });
 
-  const sendFavData = (id) => {
-    dataEmailMutate.mutate(id, {
-      onSuccess: (res) => {
-        console.log(res);
-      },
-      onError: (err) => {
-        console.log(err, "ERROR IN PRODUCTS");
-      },
-    });
-  };
-
-  // =========== POST FAVOURITE PRODUCT FOR NON AUTHENTICATED ==========
-  const dataEmailMutateNotAuth = useMutation((id) => {
-    return fetch(`${url}/main/wishlist/add-to-wishlist`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        product_id: id,
-      }),
-    }).then((res) => res.json());
-  });
-
-  const sendFavDataForNotAuth = (id) => {
-    dataEmailMutateNotAuth.mutate(id, {
-      onSuccess: (res) => {
-        console.log(res, "RES DATA");
-      },
-      onError: (err) => {
-        console.log(err, "ERROR IN PRODUCTS");
-      },
-    });
-  };
-
-  const handleData = (id) => {
-    return sendFavData(id), sendFavDataForNotAuth(id);
-  };
+  function productDelete() {
+    deleteProductByAddress.mutate({},
+      {
+        onSuccess: res => {
+          if (res?.message) {
+            console.log(res?.mesasge,"SUCCESS MESSAGE");
+          }
+        },
+        onError: err => {
+          console.log(err,'THERE IS AN ERROR ON WISHLISHT PRODUCT');
+        }
+      })
+  }
 
   return (
     <main className="flex flex-col min-h-[44px]  justify-center items-center mt-8">
@@ -316,11 +283,11 @@ export default function FavouriteProducts() {
                           <figure className="flex items-center select-none	absolute right-2 bottom-2">
                             <button
                               onClick={() =>
-                                handleData(data?.id)
+                                productDelete(data?.id)
                               }
                               className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                             >
-                              <img src={HeartImg} alt="" />
+                              <BsHeartFill color="#d50000" />
                             </button>
                           </figure>
                         </article>
