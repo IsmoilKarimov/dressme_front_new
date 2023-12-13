@@ -74,34 +74,6 @@ export default function FavouriteProducts() {
     }
   );
 
-  // ========= GET WISHLISHT PRODUCTS FOR NON AUTHENTICATED USERS ==========
-  useQuery(
-    ["get-wishlist-products-not-auth"],
-    async () => {
-      return fetch(`${url}/main/wishlist`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }).then((res) => res.json());
-    },
-    {
-      onSuccess: (res) => {
-        console.log(
-          res?.wishlist_products?.data,
-          "SUCCESS, NOT USER GET WISHLIST PROFILE"
-        );
-        setNonAuthProducts(res?.wishlist_products?.data);
-      },
-      onError: (err) => {
-        console.log(err, "THERE IS AN ERROR IN GET-WISHLIST-PROFILE");
-      },
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
-    }
-  );
-
   const pathname = window.location.pathname;
   let id = pathname.replace("/product/:", "");
 
@@ -150,7 +122,6 @@ export default function FavouriteProducts() {
             Cookies.get("DressmeUserToken") ? (
               <article className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 ">
                 {authProducts?.map((data) => {
-                  console.log(data, "DATA-Authentificated-user");
                   return (
                     <div
                       key={data?.id}
@@ -196,7 +167,6 @@ export default function FavouriteProducts() {
                             } group-hover:w-full group-hover:px-1 group-hover:xs:px-2 group-hover:md:px-4 group-hover:my-2 duration-300 w-0 my-2 absolute overflow-hidden hidden top-0 z-[1] md:flex justify-between items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
                           >
                             {data?.product.colors?.map((itemValue) => {
-                              console.log(itemValue, "DATA");
                               return (
                                 <article
                                   key={itemValue?.id}
