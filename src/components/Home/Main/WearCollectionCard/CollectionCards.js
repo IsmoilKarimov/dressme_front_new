@@ -12,7 +12,7 @@ import { CalourCard } from "../../../../assets";
 import WearType from "./WearType";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { SliderPhotosColorContext } from "../../../../ContextHook/SliderPhotosColor";
 import Cookies from "js-cookie";
 import { useHttp } from "../../../../hook/useHttp";
@@ -21,6 +21,9 @@ export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
   const [heartChangeColor, setHeartChangeColor] = useState(false);
+  const [authProducts, setAuthProducts] = useState(null);
+  const [favIds, setFavIds] = useState([]);
+  const [favourites, setFavourites] = useState([]);
 
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
@@ -40,12 +43,49 @@ export default function CollectionCards() {
     }
   }, [openWearType]);
 
+  const addFavouriteCart = (id) => {
+    const newFavouriteListIds = [...favourites, id];
+    setFavourites(newFavouriteListIds);
+  };
+
   const { request } = useHttp();
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/product/${id}`);
   };
 
+  // ========= GET WISHLISHT PRODUCTS FOR AUTHENTICATED USERS ==========
+  const { refresh } = useQuery(
+    ["get-wishlist-products-for-cart"],
+    async () => {
+      return request({ url: "/user-main/products/wishlist", token: true });
+    },
+    {
+      onSuccess: (res) => {
+        // console.log(
+        //   res?.user_wishlist_products,
+        //   "SUCCESS, HAVE USER GET WISHLIST PROFILE"
+        // );
+        res?.user_wishlist_products?.map((item) => {
+          if (!favourites?.includes(item?.product?.id)) {
+            setFavourites((favourites) => [...favourites, item?.product?.id]);
+          }
+        });
+        // setAuthProducts(res?.user_wishlist_products);
+      },
+      onError: (err) => {
+        console.log(err, "THERE IS AN ERROR IN GET-WISHLIST-PROFILE");
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+    }
+  );
+  // useEffect(()=>{
+  //   if (favourites?.length !== 0) {
+  //     setFavourites(favourites.filter((x, i, a) => a.indexOf(x) == i));
+  //   }
+  // },[])
+  console.log(favourites, "favourites");
   // =========== POST FAVOURITE PRODUCT ==========
   const dataEmailMutate = useMutation((id) => {
     return fetch(`${url}/user-main/products/add-to-wishlist`, {
@@ -64,6 +104,7 @@ export default function CollectionCards() {
     dataEmailMutate.mutate(id, {
       onSuccess: (res) => {
         console.log(res);
+        refresh();
       },
       onError: (err) => {
         console.log(err, "ERROR IN PRODUCTS");
@@ -320,11 +361,12 @@ export default function CollectionCards() {
                       <figure className="flex items-center select-none	absolute right-2 bottom-2">
                         {Cookies.get("DressmeUserToken") ? (
                           <>
-                            {heartChangeColor ? (
+                            {/* {favourites?.map((value) => {})} */}
+                            {favourites?.includes(data?.id) ? (
                               <button
                                 onClick={() => {
-                                  setHeartChangeColor(!heartChangeColor);
-                                  // sendFavData(data?.id);
+                                  // setHeartChangeColor(!heartChangeColor);
+                                  sendFavData(data?.id);
                                 }}
                                 className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                               >
@@ -333,8 +375,9 @@ export default function CollectionCards() {
                             ) : (
                               <button
                                 onClick={() => {
-                                  setHeartChangeColor(!heartChangeColor);
+                                  // setHeartChangeColor(!heartChangeColor);
                                   // productDelete(data?.id);
+                                  sendFavData(data?.id);
                                 }}
                                 className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                               >
