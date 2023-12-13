@@ -21,6 +21,7 @@ export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
   const [heartChangeColor, setHeartChangeColor] = useState(false);
+
   const [mainData] = useContext(HomeMainDataContext);
   const url = "https://api.dressme.uz/api";
 
@@ -62,35 +63,6 @@ export default function CollectionCards() {
     dataEmailMutate.mutate(id, {
       onSuccess: (res) => {
         console.log(res);
-      },
-      onError: (err) => {
-        console.log(err, "ERROR IN PRODUCTS");
-      },
-    });
-  };
-
-  // =========== POST FAVOURITE PRODUCT FOR NON AUTHENTICATED ==========
-  const dataEmailMutateNotAuth = useMutation((id) => {
-    return fetch(`${url}/main/wishlist/add-to-wishlist`, {
-      method: "POST",
-      // withCredentials: true,
-      // credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        withCredentials: true,
-        credentials: "include",
-        Cookie: `dressme_session=${Cookies.get("DressmeUserToken")}`,
-      },
-      body: JSON.stringify({
-        product_id: id,
-      }),
-    }).then((res) => res.json());
-  });
-  const sendFavDataForNotAuth = (id) => {
-    dataEmailMutateNotAuth.mutate(id, {
-      onSuccess: (res) => {
-        console.log(res, "BU dont use token");
       },
       onError: (err) => {
         console.log(err, "ERROR IN PRODUCTS");
@@ -164,10 +136,6 @@ export default function CollectionCards() {
     setDressInfo((current) => {
       return { ...current, ProductList: newArray };
     });
-  };
-
-  const handleData = (id) => {
-    return sendFavData(id), sendFavDataForNotAuth(id);
   };
 
   return (
@@ -349,22 +317,35 @@ export default function CollectionCards() {
                         )}
                       </article>
                       <figure className="flex items-center select-none	absolute right-2 bottom-2">
-                        {heartChangeColor ? (
-                          <button
-                            onClick={() => {
-                              setHeartChangeColor(!heartChangeColor);
-                              console.log(data?.id);
-                              handleData(data?.id);
-                            }}
-                            className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
-                          >
-                            <BsHeartFill color="#d50000" />
-                          </button>
+                        {Cookies.get("DressmeUserToken") ? (
+                          <>
+                            {heartChangeColor ? (
+                              <button
+                                onClick={() => {
+                                  setHeartChangeColor(!heartChangeColor);
+                                  // sendFavData(data?.id);
+                                }}
+                                className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                              >
+                                <BsHeartFill color="#d50000" />
+                              </button>
+                            ) : (
+                              <button
+                                onClick={() => {
+                                  setHeartChangeColor(!heartChangeColor);
+                                  // productDelete(data?.id);
+                                }}
+                                className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                              >
+                                <BsHeart />
+                              </button>
+                            )}
+                          </>
                         ) : (
                           <button
                             onClick={() => {
-                              setHeartChangeColor(!heartChangeColor);
-                              productDelete(data?.id);
+                              // setHeartChangeColor(!heartChangeColor);
+                              // productDelete(data?.id);
                             }}
                             className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                           >
