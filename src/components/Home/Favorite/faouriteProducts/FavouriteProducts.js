@@ -79,7 +79,7 @@ export default function FavouriteProducts() {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-      }).then((res) => console.log(res.headers, "RESPONSE"));
+      }).then((res) => res.json());
     },
     {
       onSuccess: (res) => {
@@ -140,7 +140,7 @@ export default function FavouriteProducts() {
   const sendFavDataForNotAuth = (id) => {
     dataEmailMutateNotAuth.mutate(id, {
       onSuccess: (res) => {
-        console.log(res, "BU dont use token");
+        console.log(res, "RES DATA");
       },
       onError: (err) => {
         console.log(err, "ERROR IN PRODUCTS");
@@ -189,7 +189,6 @@ export default function FavouriteProducts() {
                         }}
                         className="relative w-full cursor-pointer h-[310px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
                       >
-                        {/* <div><NoImg /></div> */}
                       </figure>
                       <section className="relative w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[130px] md:h-[136px]">
                         {/* 1 */}
@@ -317,12 +316,8 @@ export default function FavouriteProducts() {
                           <figure className="flex items-center select-none	absolute right-2 bottom-2">
                             <button
                               onClick={() =>
-                                // {Cookies.get("DressmeUserToken")
-                                //   ? sendFavData(data?.id)
-                                //   :
                                 handleData(data?.id)
                               }
-                              // }
                               className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                             >
                               <img src={HeartImg} alt="" />
@@ -336,7 +331,7 @@ export default function FavouriteProducts() {
               </article>
             ) : (
               <article className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
-                {authProducts?.map((data) => {
+                {nonAuthProducts?.map((data) => {
                   console.log(data, "DATA-AUTHENTICATED-USER");
                   return (
                     <div
@@ -448,7 +443,7 @@ export default function FavouriteProducts() {
                 </p>
                 <NavLink
                   to="/"
-                  className="border text-white bg-bgWinter hover:bg-blue-400 transition ease-linear duration-300 rounded-lg px-[16px] py-3 font-AeonikProMedium text-lg"
+                  className="border text-white bg-borderWinter hover:bg-sky-500 transition ease-linear duration-300 rounded-lg px-[16px] py-3 font-AeonikProMedium text-lg"
                 >
                   Войти в аккаунт
                 </NavLink>
