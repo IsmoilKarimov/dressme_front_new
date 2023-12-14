@@ -19,7 +19,7 @@ export default function FavouriteProducts() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
   const [authProducts, setAuthProducts] = useState(null);
-
+  const [favourites, setFavourites] = useState([]);
   // -------------------------------------
   const toggle = React.useCallback(() => setOpenWearType(false), []);
   // -------------------------------------
@@ -33,6 +33,7 @@ export default function FavouriteProducts() {
   const goDetail = (id) => {
     navigate(`/product/${id}`);
   };
+  const url = "https://api.dressme.uz/api";
 
   const handleLeaveMouse = (eId) => {
     const elementsIndex = dressInfo.ProductList.findIndex(
@@ -48,22 +49,46 @@ export default function FavouriteProducts() {
     });
   };
 
-  console.log(authProducts,"authproducts");
+  // console.log(authProducts, "authproducts");
+  console.log(favourites, "favourites");
 
   // const url = "https://api.dressme.uz/api";
 
   // ========= GET WISHLISHT PRODUCTS FOR AUTHENTICATED USERS ==========
+  // const { refetch } = useQuery(
+  //   ["get-wishlist-products-for-wishlist"],
+  //   async () => {
+  //     return request({ url: "/user-main/products/wishlist", token: true });
+  //   },
+  //   {
+  //     onSuccess: (res) => {
+  //       console.log(
+  //         res?.user_wishlist_products,
+  //         "SUCCESS, HAVE USER GET WISHLIST PROFILE"
+  //       );
+  //       setAuthProducts(res?.user_wishlist_products?.data);
+  //     },
+  //     onError: (err) => {
+  //       console.log(err, "THERE IS AN ERROR IN GET-WISHLIST-PROFILE");
+  //     },
+  //     keepPreviousData: true,
+  //     refetchOnWindowFocus: false,
+  //   }
+  // );
+
   const { refetch } = useQuery(
-    ["get-wishlist-products-auth"],
+    ["get-wishlist-products-for-cart"],
     async () => {
       return request({ url: "/user-main/products/wishlist", token: true });
     },
     {
       onSuccess: (res) => {
-        console.log(
-          res?.user_wishlist_products,
-          "SUCCESS, HAVE USER GET WISHLIST PROFILE"
-        );
+        console.log(res?.user_wishlist_products, "ishga tushdi");
+        res?.user_wishlist_products?.data?.map((item) => {
+          if (!favourites?.includes(item?.product?.id)) {
+            setFavourites((favourites) => [...favourites, item?.product?.id]);
+          }
+        });
         setAuthProducts(res?.user_wishlist_products?.data);
       },
       onError: (err) => {
@@ -73,6 +98,36 @@ export default function FavouriteProducts() {
       refetchOnWindowFocus: false,
     }
   );
+
+  // =========== POST FAVOURITE PRODUCT ==========
+  const dataEmailMutate = useMutation((id) => {
+    return fetch(`${url}/user-main/products/add-to-wishlist`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
+      },
+      body: JSON.stringify({
+        product_id: id,
+      }),
+    }).then((res) => res.json());
+  });
+
+  const sendFavData = (id) => {
+    dataEmailMutate.mutate(id, {
+      onSuccess: (res) => {
+        if (res?.message) {
+          refetch();
+          setFavourites([]);
+          console.log(res, "RES");
+        }
+      },
+      onError: (err) => {
+        console.log(err, "ERROR IN PRODUCTS");
+      },
+    });
+  };
 
   return (
     <main className="flex flex-col min-h-[44px]  justify-center items-center mt-8">
@@ -228,12 +283,16 @@ export default function FavouriteProducts() {
                             )}
                           </article>
                           <figure className="flex items-center select-none	absolute right-2 bottom-2">
-                            <button
-                              // onClick={() => productDelete(data?.id)}
-                              className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
-                            >
-                              <BsHeartFill color="#d50000" />
-                            </button>
+                          {favourites?.includes(data?.product?.id) && (
+                              <button
+                                onClick={() => {
+                                  sendFavData(data?.product?.id);
+                                }}
+                                className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                              >
+                                <BsHeartFill color="#d50000" />
+                              </button>
+                            )}
                           </figure>
                         </article>
                       </section>
