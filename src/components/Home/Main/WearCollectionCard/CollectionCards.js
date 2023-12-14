@@ -20,9 +20,6 @@ import { useHttp } from "../../../../hook/useHttp";
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
-  const [heartChangeColor, setHeartChangeColor] = useState(false);
-  const [authProducts, setAuthProducts] = useState(null);
-  const [favIds, setFavIds] = useState([]);
   const [favourites, setFavourites] = useState([]);
 
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
@@ -43,11 +40,6 @@ export default function CollectionCards() {
     }
   }, [openWearType]);
 
-  const addFavouriteCart = (id) => {
-    const newFavouriteListIds = [...favourites, id];
-    setFavourites(newFavouriteListIds);
-  };
-
   const { request } = useHttp();
   const navigate = useNavigate();
   const goDetail = (id) => {
@@ -55,18 +47,15 @@ export default function CollectionCards() {
   };
 
   // ========= GET WISHLISHT PRODUCTS FOR AUTHENTICATED USERS ==========
-  const { refresh } = useQuery(
+  const { refetch } = useQuery(
     ["get-wishlist-products-for-cart"],
     async () => {
       return request({ url: "/user-main/products/wishlist", token: true });
     },
     {
       onSuccess: (res) => {
-        // console.log(
-        //   res?.user_wishlist_products,
-        //   "SUCCESS, HAVE USER GET WISHLIST PROFILE"
-        // );
-        res?.user_wishlist_products?.map((item) => {
+        console.log(res?.user_wishlist_products, "ishga tushdi");
+        res?.user_wishlist_products?.data?.map((item) => {
           if (!favourites?.includes(item?.product?.id)) {
             setFavourites((favourites) => [...favourites, item?.product?.id]);
           }
@@ -80,12 +69,8 @@ export default function CollectionCards() {
       refetchOnWindowFocus: false,
     }
   );
-  // useEffect(()=>{
-  //   if (favourites?.length !== 0) {
-  //     setFavourites(favourites.filter((x, i, a) => a.indexOf(x) == i));
-  //   }
-  // },[])
-  console.log(favourites, "favourites");
+  // console.log(favourites, "favourites");
+
   // =========== POST FAVOURITE PRODUCT ==========
   const dataEmailMutate = useMutation((id) => {
     return fetch(`${url}/user-main/products/add-to-wishlist`, {
@@ -100,11 +85,15 @@ export default function CollectionCards() {
       }),
     }).then((res) => res.json());
   });
+
   const sendFavData = (id) => {
     dataEmailMutate.mutate(id, {
       onSuccess: (res) => {
-        console.log(res);
-        refresh();
+        if(res?.message){
+          refetch();
+          setFavourites([])
+          console.log(res,"RES");
+        }
       },
       onError: (err) => {
         console.log(err, "ERROR IN PRODUCTS");
@@ -112,58 +101,27 @@ export default function CollectionCards() {
     });
   };
 
-  const pathname = window.location.pathname;
-  let id = pathname.replace("/product/:", "");
-
-  // For Authenticated User
-  const deleteFavProduct = useMutation(() => {
-    return request({
-      url: `/user-main/products/${id}/delete-from-wishlist`,
-      method: "DELETE",
-      token: true,
-    });
-  });
-
-  function productDelete() {
-    deleteFavProduct.mutate(
-      {},
-      {
-        onSuccess: (res) => {
-          if (res?.message) {
-            console.log(res?.mesasge, "SUCCESS MESSAGE");
-          }
-        },
-        onError: (err) => {
-          console.log(err, "THERE IS AN ERROR ON WISHLISHT PRODUCT");
-        },
-      }
-    );
-  }
-
-  // For Non-Authenticated User
-  const deleteFavProductNonAuthUser = useMutation(() => {
-    return request({
-      url: `/user-main/products/${id}/delete-from-wishlist`,
-      method: "DELETE",
-      token: false,
-    });
-  });
-
-  function productDeleteNonAuthUser() {
-    deleteFavProductNonAuthUser.mutate(
-      {},
-      {
-        onSuccess: (res) => {
-          if (res?.message) {
-            console.log(res?.mesasge, "SUCCESS MESSAGE");
-          }
-        },
-        onError: (err) => {
-          console.log(err, "THERE IS AN ERROR ON WISHLISHT PRODUCT");
-        },
-      }
-    );
-  }
+  // DELETE FOR AUTHENTICATED USER
+  // const deleteFavProduct = useMutation((id) => {
+  //   return request({
+  //     url: `/user-main/products/${id}/delete-from-wishlist`,
+  //     method: "DELETE",
+  //     token: true,
+  //   });
+  // });
+  // function productDelete(id) {
+  //   deleteFavProduct.mutate(id, {
+  //     onSuccess: (res) => {
+  //       if (res) {
+  //         console.log(res, "SUCCESS MESSAGE");
+  //         refetch();
+  //       }
+  //     },
+  //     onError: (err) => {
+  //       console.log(err, "THERE IS AN ERROR ON WISHLISHT PRODUCT");
+  //     },
+  //   });
+  // }
 
   const onColorChecked = () => {};
   const handleLeaveMouse = (eId) => {
@@ -228,7 +186,6 @@ export default function CollectionCards() {
                 >
                   <figure
                     onClick={() => {
-                      setcolorId(null);
                       goDetail(data?.id);
                     }}
                     style={{
@@ -361,11 +318,9 @@ export default function CollectionCards() {
                       <figure className="flex items-center select-none	absolute right-2 bottom-2">
                         {Cookies.get("DressmeUserToken") ? (
                           <>
-                            {/* {favourites?.map((value) => {})} */}
                             {favourites?.includes(data?.id) ? (
                               <button
                                 onClick={() => {
-                                  // setHeartChangeColor(!heartChangeColor);
                                   sendFavData(data?.id);
                                 }}
                                 className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
@@ -375,8 +330,6 @@ export default function CollectionCards() {
                             ) : (
                               <button
                                 onClick={() => {
-                                  // setHeartChangeColor(!heartChangeColor);
-                                  // productDelete(data?.id);
                                   sendFavData(data?.id);
                                 }}
                                 className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"

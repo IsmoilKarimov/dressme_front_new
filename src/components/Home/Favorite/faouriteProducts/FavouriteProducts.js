@@ -13,14 +13,12 @@ import WearType from "../../Main/WearCollectionCard/WearType";
 import Cookies from "js-cookie";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
-import { SliderPhotosColorContext } from "../../../../ContextHook/SliderPhotosColor";
+// import { SliderPhotosColorContext } from "../../../../ContextHook/SliderPhotosColor";
 
 export default function FavouriteProducts() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
   const [authProducts, setAuthProducts] = useState(null);
-  const [nonAuthProducts, setNonAuthProducts] = useState(null);
-  const [setcolorId] = useContext(SliderPhotosColorContext);
 
   // -------------------------------------
   const toggle = React.useCallback(() => setOpenWearType(false), []);
@@ -50,10 +48,12 @@ export default function FavouriteProducts() {
     });
   };
 
-  const url = "https://api.dressme.uz/api";
+  console.log(authProducts,"authproducts");
+
+  // const url = "https://api.dressme.uz/api";
 
   // ========= GET WISHLISHT PRODUCTS FOR AUTHENTICATED USERS ==========
-  useQuery(
+  const { refetch } = useQuery(
     ["get-wishlist-products-auth"],
     async () => {
       return request({ url: "/user-main/products/wishlist", token: true });
@@ -64,7 +64,7 @@ export default function FavouriteProducts() {
           res?.user_wishlist_products,
           "SUCCESS, HAVE USER GET WISHLIST PROFILE"
         );
-        setAuthProducts(res?.user_wishlist_products);
+        setAuthProducts(res?.user_wishlist_products?.data);
       },
       onError: (err) => {
         console.log(err, "THERE IS AN ERROR IN GET-WISHLIST-PROFILE");
@@ -73,33 +73,6 @@ export default function FavouriteProducts() {
       refetchOnWindowFocus: false,
     }
   );
-
-  const pathname = window.location.pathname;
-  let id = pathname.replace("/product/:", "");
-
-  const deleteProductByAddress = useMutation(() => {
-    return request({
-      url: `user-main/products/${id}/delete-from-wishlist`,
-      method: "DELETE",
-      token: true,
-    });
-  });
-
-  function productDelete() {
-    deleteProductByAddress.mutate(
-      {},
-      {
-        onSuccess: (res) => {
-          if (res?.message) {
-            console.log(res?.mesasge, "SUCCESS MESSAGE");
-          }
-        },
-        onError: (err) => {
-          console.log(err, "THERE IS AN ERROR ON WISHLISHT PRODUCT");
-        },
-      }
-    );
-  }
 
   return (
     <main className="flex flex-col min-h-[44px]  justify-center items-center mt-8">
@@ -118,7 +91,7 @@ export default function FavouriteProducts() {
       </section>
       <div className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto mb-[90px] ss:px-4 md:px-0">
         <section className="w-full flex flex-col">
-          {authProducts || wishList?.length ? (
+          {authProducts?.length || wishList?.length ? (
             Cookies.get("DressmeUserToken") ? (
               <article className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 ">
                 {authProducts?.map((data) => {
@@ -256,7 +229,7 @@ export default function FavouriteProducts() {
                           </article>
                           <figure className="flex items-center select-none	absolute right-2 bottom-2">
                             <button
-                              onClick={() => productDelete(data?.id)}
+                              // onClick={() => productDelete(data?.id)}
                               className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                             >
                               <BsHeartFill color="#d50000" />
@@ -420,8 +393,7 @@ export default function FavouriteProducts() {
                             <figure className="flex items-center select-none	absolute right-2 bottom-2">
                               {Cookies.get("DressmeUserToken") ? (
                                 <>
-                                  {/* {heartChangeColor ? ( */}
-                                  <button
+                                  {/* <button
                                     onClick={() => {
                                       // setHeartChangeColor(!heartChangeColor);
                                       // sendFavData(data?.id);
@@ -429,16 +401,14 @@ export default function FavouriteProducts() {
                                     className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                                   >
                                     <BsHeartFill color="#d50000" />
-                                  </button>
-                                  {/* ) : ( */}
+                                  </button> */}
                                   <button
                                     onClick={() => {
-                                      // setHeartChangeColor(!heartChangeColor);
                                       // productDelete(data?.id);
                                     }}
                                     className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                                   >
-                                    {/* <BsHeart /> */}
+                                    <BsHeart />
                                   </button>
                                   {/* )} */}
                                 </>
