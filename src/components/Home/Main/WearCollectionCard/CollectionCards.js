@@ -69,7 +69,6 @@ export default function CollectionCards() {
       refetchOnWindowFocus: false,
     }
   );
-  // console.log(favourites, "favourites");
 
   // =========== POST FAVOURITE PRODUCT ==========
   const dataEmailMutate = useMutation((id) => {
@@ -100,28 +99,6 @@ export default function CollectionCards() {
       },
     });
   };
-
-  // DELETE FOR AUTHENTICATED USER
-  // const deleteFavProduct = useMutation((id) => {
-  //   return request({
-  //     url: `/user-main/products/${id}/delete-from-wishlist`,
-  //     method: "DELETE",
-  //     token: true,
-  //   });
-  // });
-  // function productDelete(id) {
-  //   deleteFavProduct.mutate(id, {
-  //     onSuccess: (res) => {
-  //       if (res) {
-  //         console.log(res, "SUCCESS MESSAGE");
-  //         refetch();
-  //       }
-  //     },
-  //     onError: (err) => {
-  //       console.log(err, "THERE IS AN ERROR ON WISHLISHT PRODUCT");
-  //     },
-  //   });
-  // }
 
   const onColorChecked = () => {};
   const handleLeaveMouse = (eId) => {
