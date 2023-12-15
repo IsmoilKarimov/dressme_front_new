@@ -263,7 +263,8 @@ export default function CollectionCards() {
               onClick={() => {
                 setPagination((prev) => prev + 15);
               }}
-              className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-black flex items-center justify-center rounded-xl border border-searchBgColor bg-btnBgColor"
+              // searchBgColor
+              className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
             >
               Показать ещё 15 наборов
             </button>
