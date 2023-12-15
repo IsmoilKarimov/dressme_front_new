@@ -12,25 +12,18 @@ import { CalourCard } from "../../../../assets";
 import WearType from "./WearType";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { SliderPhotosColorContext } from "../../../../ContextHook/SliderPhotosColor";
-import Cookies from "js-cookie";
-import { useHttp } from "../../../../hook/useHttp";
 
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
-  const [favourites, setFavourites] = useState([]);
 
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
-
-  const url = "https://api.dressme.uz/api";
 
   // -------------------------------------
   const toggle = React.useCallback(() => setOpenWearType(false), []);
   // -------------------------------------
 
-  const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
+  // const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
 
   useEffect(() => {
     if (openWearType) {
@@ -40,64 +33,9 @@ export default function CollectionCards() {
     }
   }, [openWearType]);
 
-  const { request } = useHttp();
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/product/${id}`);
-  };
-
-  // ========= GET WISHLISHT PRODUCTS FOR AUTHENTICATED USERS ==========
-  const { refetch } = useQuery(
-    ["get-wishlist-products-for-cart"],
-    async () => {
-      return request({ url: "/user-main/products/wishlist", token: true });
-    },
-    {
-      onSuccess: (res) => {
-        console.log(res?.user_wishlist_products, "ishga tushdi");
-        res?.user_wishlist_products?.data?.map((item) => {
-          if (!favourites?.includes(item?.product?.id)) {
-            setFavourites((favourites) => [...favourites, item?.product?.id]);
-          }
-        });
-        // setAuthProducts(res?.user_wishlist_products);
-      },
-      onError: (err) => {
-        console.log(err, "THERE IS AN ERROR IN GET-WISHLIST-PROFILE");
-      },
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
-    }
-  );
-
-  // =========== POST FAVOURITE PRODUCT ==========
-  const dataEmailMutate = useMutation((id) => {
-    return fetch(`${url}/user-main/products/add-to-wishlist`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
-      },
-      body: JSON.stringify({
-        product_id: id,
-      }),
-    }).then((res) => res.json());
-  });
-
-  const sendFavData = (id) => {
-    dataEmailMutate.mutate(id, {
-      onSuccess: (res) => {
-        if(res?.message){
-          refetch();
-          setFavourites([])
-          console.log(res,"RES");
-        }
-      },
-      onError: (err) => {
-        console.log(err, "ERROR IN PRODUCTS");
-      },
-    });
   };
 
   const onColorChecked = () => {};
@@ -293,48 +231,24 @@ export default function CollectionCards() {
                         )}
                       </article>
                       <figure className="flex items-center select-none	absolute right-2 bottom-2">
-                        {Cookies.get("DressmeUserToken") ? (
-                          <>
-                            {favourites?.includes(data?.id) ? (
-                              <button
-                                onClick={() => {
-                                  sendFavData(data?.id);
-                                }}
-                                className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
-                              >
-                                <BsHeartFill color="#d50000" />
-                              </button>
-                            ) : (
-                              <button
-                                onClick={() => {
-                                  sendFavData(data?.id);
-                                }}
-                                className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
-                              >
-                                <BsHeart />
-                              </button>
-                            )}
-                          </>
-                        ) : (
-                          <button
-                            onClick={() => {
-                              if (wishList?.includes(data?.id)) {
-                                setWishlist(
-                                  wishList?.filter((item) => item !== data?.id)
-                                );
-                              } else {
-                                setWishlist([...wishList, data?.id]);
-                              }
-                            }}
-                            className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
-                          >
-                            {wishList.includes(data?.id) ? (
-                              <BsHeartFill color="#d50000" />
-                            ) : (
-                              <BsHeart />
-                            )}
-                          </button>
-                        )}
+                        <button
+                          onClick={() => {
+                            if (wishList?.includes(data?.id)) {
+                              setWishlist(
+                                wishList?.filter((item) => item !== data?.id)
+                              );
+                            } else {
+                              setWishlist([...wishList, data?.id]);
+                            }
+                          }}
+                          className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                        >
+                          {wishList.includes(data?.id) ? (
+                            <BsHeartFill color="#d50000" />
+                          ) : (
+                            <BsHeart />
+                          )}
+                        </button>                     
                       </figure>
                     </article>
                   </section>

@@ -16,8 +16,12 @@ export const HomeMainDataContextProvider = ({ children }) => {
       setWishlist(JSON.parse(WishlistDataFromCookies));
     }
   }, []);
-
-  Cookies.set("WishList", JSON.stringify(wishList), { expires: 2 });
+  
+  if(Cookies.get("DressmeUserToken")){
+    Cookies.set("WishList", JSON.stringify(wishList), { expires: 99999 });
+  } else {
+    Cookies.set("WishList", JSON.stringify(wishList), { expires: 2 });
+  }
 
   const url = "https://api.dressme.uz";
 
