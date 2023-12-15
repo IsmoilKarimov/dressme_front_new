@@ -44,7 +44,649 @@ import TableSizesDropUp from "./MobileDropUp/TableSizesDropUp/TableSizesDropUp";
 import LocationDropUp from "./MobileDropUp/LocationsDropUp/LocationsDropUp";
 import { SliderPhotosColorContext } from "../../../../../../ContextHook/SliderPhotosColor";
 
-const ProductDetails = ({ data }) => {
+const ProductDetails = () => {
+  // -- {data} --
+
+  // Mock data -------
+
+  const [data, setData] = useState({
+    product: {
+      id: 1,
+      name_uz: "product_name_1",
+      name_ru: "product_name_1",
+      gender_id: "1",
+      min_age_category: "6",
+      max_age_category: "82",
+      sku: "585-800",
+      description_uz: "non",
+      description_ru: "labore",
+      quality_uz: "Original",
+      quality_ru: "Оригинал",
+      composition_uz: "cotton 100%",
+      composition_ru: "хлопок 100%",
+      status: "approved",
+      status_reason: null,
+      status_update: null,
+      overall_rating: "5.0",
+      rated_users_count: "167",
+      producer_id: "3",
+      category_id: "2",
+      type_id: "9",
+      brand_id: "30",
+      shop_id: "5",
+      seller_id: "6",
+      created_at: "06-12-2023",
+      updated_at: "06-12-2023",
+      sizes_sum_amount: "9",
+      category: {
+        id: 2,
+        name_uz: "Ustki kiyimlar",
+        name_ru: "Верхняя одежда",
+      },
+      type: {
+        id: 9,
+        category_id: "2",
+        name_uz: "Futbolka",
+        name_ru: "Футболка",
+      },
+      seller: {
+        id: 6,
+        name: "Seller_5",
+        surname: "Kemmer",
+        email: "prohaska.samantha@huel.biz",
+        phone: "201.385.3263",
+        is_email_verified: "0",
+        card_number: "8600572984398155",
+        status: "declined",
+        status_reason: null,
+        seller_type_id: "6",
+        region_id: "7",
+        sub_region_id: "68",
+        email_verified_at: null,
+        created_at: "06-12-2023",
+        updated_at: "06-12-2023",
+      },
+      cost: {
+        product_id: "1",
+        price: "58176",
+        discount_price: "5463",
+        discount_percent: "17",
+      },
+      sizes: [
+        {
+          id: 6,
+          category_id: "2",
+          product_id: "1",
+          shop_location_id: "8",
+          amount: "4",
+          product_color_id: "11",
+          age: "15",
+          wear_size: "15",
+          one_size: "15",
+          min_head_girth: "15",
+          max_head_girth: "15",
+          letter_size: "XS",
+          min_wear_size: "47",
+          max_wear_size: "57",
+          min_chest_girth: "45",
+          max_chest_girth: "69",
+          min_waist_girth: "37",
+          max_waist_girth: "94",
+          min_hip_girth: "40",
+          max_hip_girth: "55",
+          min_height: "15",
+          max_height: "15",
+          min_foot_length: "15",
+          max_foot_length: "15",
+          length: "15",
+          width: "15",
+          price: "48176",
+          discount_price: "15",
+          discount_percent: "15",
+          measure_unit: "cm",
+          currency: "UZS",
+          created_at: "2023-12-06T13:15:10.000000Z",
+          updated_at: "2023-12-06T13:15:10.000000Z",
+        },
+        {
+          id: 7,
+          category_id: "2",
+          product_id: "1",
+          shop_location_id: "8",
+          amount: "7",
+          product_color_id: "11",
+          age: "15",
+          wear_size: "45",
+          one_size: "45",
+          min_head_girth: "45",
+          max_head_girth: "45",
+          letter_size: "XS",
+          min_wear_size: "47",
+          max_wear_size: "57",
+          min_chest_girth: "45",
+          max_chest_girth: "69",
+          min_waist_girth: "37",
+          max_waist_girth: "94",
+          min_hip_girth: "40",
+          max_hip_girth: "55",
+          min_height: "45",
+          max_height: "45",
+          min_foot_length: "45",
+          max_foot_length: "45",
+          length: "45",
+          width: "45",
+          price: "88176",
+          discount_price: "5445",
+          discount_percent: "6",
+          measure_unit: "cm",
+          currency: "UZS",
+          created_at: "2023-12-06T13:15:10.000000Z",
+          updated_at: "2023-12-06T13:15:10.000000Z",
+        },
+        {
+          id: 8,
+          category_id: "2",
+          product_id: "1",
+          shop_location_id: "8",
+          amount: "2",
+          product_color_id: "11",
+          age: "15",
+          wear_size: "49",
+          one_size: "49",
+          min_head_girth: "49",
+          max_head_girth: "49",
+          letter_size: "XL",
+          min_wear_size: "47",
+          max_wear_size: "57",
+          min_chest_girth: "45",
+          max_chest_girth: "69",
+          min_waist_girth: "37",
+          max_waist_girth: "94",
+          min_hip_girth: "40",
+          max_hip_girth: "55",
+          min_height: "49",
+          max_height: "49",
+          min_foot_length: "49",
+          max_foot_length: "49",
+          length: "49",
+          width: "49",
+          price: "958176",
+          discount_price: "49",
+          discount_percent: "49",
+          measure_unit: "cm",
+          currency: "UZS",
+          created_at: "2023-12-06T13:15:10.000000Z",
+          updated_at: "2023-12-06T13:15:10.000000Z",
+        },
+        {
+          id: 9,
+          category_id: "2",
+          product_id: "1",
+          shop_location_id: "8",
+          amount: "2",
+          product_color_id: "11",
+          age: "15",
+          wear_size: "58",
+          one_size: "58",
+          min_head_girth: "58",
+          max_head_girth: "58",
+          letter_size: "XS",
+          min_wear_size: "43",
+          max_wear_size: "54",
+          min_chest_girth: "49",
+          max_chest_girth: "59",
+          min_waist_girth: "47",
+          max_waist_girth: "34",
+          min_hip_girth: "45",
+          max_hip_girth: "59",
+          min_height: "58",
+          max_height: "58",
+          min_foot_length: "58",
+          max_foot_length: "58",
+          length: "58",
+          width: "58",
+          price: "581765",
+          discount_price: "48652",
+          discount_percent: "5",
+          measure_unit: "cm",
+          currency: "UZS",
+          created_at: "2023-12-06T13:15:10.000000Z",
+          updated_at: "2023-12-06T13:15:10.000000Z",
+        },
+      ],
+      colors: [
+        {
+          id: 7,
+          name_uz: "Ko`k",
+          name_ru: "Синий",
+          hex: "#0000FF",
+          pivot: {
+            product_id: "1",
+            color_id: "7",
+            id: "1",
+          },
+        },
+        {
+          id: 3,
+          name_uz: "Pushti",
+          name_ru: "Розовый",
+          hex: "#ffc0cb",
+          pivot: {
+            product_id: "1",
+            color_id: "3",
+            id: "10",
+          },
+        },
+      ],
+      photos: [
+        {
+          id: 1,
+          url_photo:
+            "https://api.dressme.uz/storage/productPhotos/t-shirt.webp",
+          status: "approved",
+          status_reason: null,
+          status_update: null,
+          product_id: "1",
+          product_color_id: "1",
+          created_at: "2023-12-06T13:15:10.000000Z",
+          updated_at: "2023-12-06T13:15:10.000000Z",
+        },
+        {
+          id: 10,
+          url_photo:
+            "https://api.dressme.uz/storage/productPhotos/costume.jpeg",
+          status: "approved",
+          status_reason: null,
+          status_update: null,
+          product_id: "1",
+          product_color_id: "10",
+          created_at: "2023-12-06T13:15:10.000000Z",
+          updated_at: "2023-12-06T13:15:10.000000Z",
+        },
+        {
+          id: 11,
+          url_photo: "https://api.dressme.uz/storage/productPhotos/street.jpeg",
+          status: "approved",
+          status_reason: null,
+          status_update: null,
+          product_id: "1",
+          product_color_id: "1",
+          created_at: "2023-12-06T13:15:10.000000Z",
+          updated_at: "2023-12-06T13:15:10.000000Z",
+        },
+        {
+          id: 12,
+          url_photo: "https://api.dressme.uz/storage/productPhotos/sport.jpeg",
+          status: "approved",
+          status_reason: null,
+          status_update: null,
+          product_id: "1",
+          product_color_id: "11",
+          created_at: "2023-12-06T13:15:10.000000Z",
+          updated_at: "2023-12-06T13:15:10.000000Z",
+        },
+        {
+          id: 13,
+          url_photo:
+            "https://api.dressme.uz/storage/productPhotos/13/6573f1c6808bf_shoes.jpeg",
+          status: "pending",
+          status_reason: null,
+          status_update: "1",
+          product_id: "1",
+          product_color_id: "11",
+          created_at: "2023-12-07T04:33:11.000000Z",
+          updated_at: "2023-12-09T04:49:10.000000Z",
+        },
+        {
+          id: 14,
+          url_photo:
+            "https://api.dressme.uz/storage/productPhotos/13/65716032c7186_4k4.jpeg",
+          status: "pending",
+          status_reason: null,
+          status_update: null,
+          product_id: "1",
+          product_color_id: "10",
+          created_at: "2023-12-07T06:03:30.000000Z",
+          updated_at: "2023-12-07T06:03:30.000000Z",
+        },
+      ],
+      seasons: [
+        {
+          id: 1,
+          name_uz: "Yoz",
+          name_ru: "Лето",
+          pivot: {
+            product_id: "1",
+            season_id: "1",
+          },
+        },
+      ],
+      sections: [
+        {
+          id: 11,
+          name_uz: "Komikslar",
+          name_ru: "Комиксный",
+          url_photo: "https://api.dressme.uz/storage/Eos.",
+          pivot: {
+            product_id: "1",
+            section_id: "11",
+          },
+        },
+      ],
+      sub_sections: [
+        {
+          id: 6,
+          name_uz: "Politsiya",
+          name_ru: "Полиция",
+          section_id: "9",
+          pivot: {
+            product_id: "1",
+            sub_section_id: "6",
+          },
+        },
+      ],
+      shop: {
+        id: 5,
+        name: "Miss Kamille Barton PhD",
+        url_logo_photo: "https://api.dressme.uz/storage/Aut.",
+        url_background_photo: null,
+        status: "show",
+        gender_id: "1",
+        delivery_id: "2",
+        overall_rating: null,
+        rated_users_count: null,
+        seller_id: "9",
+        created_at: null,
+        updated_at: null,
+        delivery: {
+          id: 2,
+          name_uz: "Taksi",
+          name_ru: "Такси",
+          created_at: "2023-12-06T13:15:10.000000Z",
+          updated_at: "2023-12-06T13:15:10.000000Z",
+        },
+      },
+      locations: [
+        {
+          id: 1,
+          shop_id: "1",
+          region_id: "1",
+          sub_region_id: "1",
+          status: "show",
+          address: "25766 Hoeger Groves Apt. 145\nNoemiefurt, NC 97047-4297",
+          longitude: "160.009013",
+          latitude: "-57.70026",
+          work_time_from: "09:00",
+          work_time_to: "21:00",
+          assistant_name: "Gaylord Romaguera",
+          assistant_phone: "1-865-903-9288",
+          assistant_messenger: "@Dishkan_Kh",
+          second_assistant_name: "Name",
+          second_assistant_phone: "99895462545",
+          second_assistant_messenger: null,
+          url_image_path_one: "https://api.dressme.uz/storage/Ea.",
+          url_image_path_two: null,
+          url_image_path_three: null,
+          created_at: null,
+          updated_at: null,
+          pivot: {
+            product_id: "1",
+            shop_location_id: "1",
+          },
+          region: {
+            id: 1,
+            name_uz: "Qoraqalpog`iston Respublikasi",
+            name_ru: "Республика Каракалпакстан",
+            created_at: null,
+            updated_at: null,
+          },
+          sub_region: {
+            id: 1,
+            name_uz: "Beruniy",
+            name_ru: "Беруний",
+            region_id: "1",
+            created_at: null,
+            updated_at: null,
+          },
+        },
+        {
+          id: 7,
+          shop_id: "7",
+          region_id: "2",
+          sub_region_id: "5",
+          status: "show",
+          address: "484 Cloyd Trail\nJastmouth, VA 09045",
+          longitude: "-157.611077",
+          latitude: "-31.000472",
+          work_time_from: "09:00",
+          work_time_to: "21:00",
+          assistant_name: "Brody Hessel",
+          assistant_phone: "+1.980.206.5394",
+          assistant_messenger: "@Dishkan_Kh",
+          second_assistant_name: null,
+          second_assistant_phone: null,
+          second_assistant_messenger: null,
+          url_image_path_one: "https://api.dressme.uz/storage/Ab.",
+          url_image_path_two: null,
+          url_image_path_three: null,
+          created_at: null,
+          updated_at: null,
+          pivot: {
+            product_id: "1",
+            shop_location_id: "7",
+          },
+          region: {
+            id: 2,
+            name_uz: "Toshkent",
+            name_ru: "Ташкент",
+            created_at: null,
+            updated_at: null,
+          },
+          sub_region: {
+            id: 5,
+            name_uz: "Bektemir",
+            name_ru: "Бектемир",
+            region_id: "2",
+            created_at: null,
+            updated_at: null,
+          },
+        },
+        {
+          id: 8,
+          shop_id: "8",
+          region_id: "9",
+          sub_region_id: "91",
+          status: "show",
+          address: "703 Kayla Plaza\nNew Kellimouth, TX 66581-6166",
+          longitude: "-111.241653",
+          latitude: "-17.436936",
+          work_time_from: "09:00",
+          work_time_to: "21:00",
+          assistant_name: "Estrella Lynch",
+          assistant_phone: "(908) 709-1566",
+          assistant_messenger: "@Dishkan_Kh",
+          second_assistant_name: null,
+          second_assistant_phone: null,
+          second_assistant_messenger: null,
+          url_image_path_one: "https://api.dressme.uz/storage/Quo.",
+          url_image_path_two: null,
+          url_image_path_three: null,
+          created_at: null,
+          updated_at: null,
+          pivot: {
+            product_id: "1",
+            shop_location_id: "8",
+          },
+          region: {
+            id: 9,
+            name_uz: "Namangan",
+            name_ru: "Наманган",
+            created_at: null,
+            updated_at: null,
+          },
+          sub_region: {
+            id: 91,
+            name_uz: "Davlatobod",
+            name_ru: "Давлатобод",
+            region_id: "9",
+            created_at: null,
+            updated_at: null,
+          },
+        },
+        {
+          id: 9,
+          shop_id: "9",
+          region_id: "1",
+          sub_region_id: "1",
+          status: "show",
+          address: "1831 Luettgen Ford\nLake Keeganberg, UT 05023-5225",
+          longitude: "129.814433",
+          latitude: "33.005376",
+          work_time_from: "09:00",
+          work_time_to: "21:00",
+          assistant_name: "Wilburn Corkery II",
+          assistant_phone: "+1-352-768-2874",
+          assistant_messenger: "@Dishkan_Kh",
+          second_assistant_name: null,
+          second_assistant_phone: null,
+          second_assistant_messenger: null,
+          url_image_path_one: "https://api.dressme.uz/storage/Qui.",
+          url_image_path_two: null,
+          url_image_path_three: null,
+          created_at: null,
+          updated_at: null,
+          pivot: {
+            product_id: "1",
+            shop_location_id: "9",
+          },
+          region: {
+            id: 1,
+            name_uz: "Qoraqalpog`iston Respublikasi",
+            name_ru: "Республика Каракалпакстан",
+            created_at: null,
+            updated_at: null,
+          },
+          sub_region: {
+            id: 1,
+            name_uz: "Beruniy",
+            name_ru: "Беруний",
+            region_id: "1",
+            created_at: null,
+            updated_at: null,
+          },
+        },
+        {
+          id: 10,
+          shop_id: "10",
+          region_id: "2",
+          sub_region_id: "5",
+          status: "show",
+          address: "387 McClure Ville Apt. 381\nLake Demarco, NH 65951",
+          longitude: "59.382925",
+          latitude: "15.671856",
+          work_time_from: "09:00",
+          work_time_to: "21:00",
+          assistant_name: "Rosie Moore",
+          assistant_phone: "+1-480-253-1824",
+          assistant_messenger: "@Dishkan_Kh",
+          second_assistant_name: null,
+          second_assistant_phone: null,
+          second_assistant_messenger: null,
+          url_image_path_one: "https://api.dressme.uz/storage/Quo.",
+          url_image_path_two: null,
+          url_image_path_three: null,
+          created_at: null,
+          updated_at: null,
+          pivot: {
+            product_id: "1",
+            shop_location_id: "10",
+          },
+          region: {
+            id: 2,
+            name_uz: "Toshkent",
+            name_ru: "Ташкент",
+            created_at: null,
+            updated_at: null,
+          },
+          sub_region: {
+            id: 5,
+            name_uz: "Bektemir",
+            name_ru: "Бектемир",
+            region_id: "2",
+            created_at: null,
+            updated_at: null,
+          },
+        },
+        {
+          id: 11,
+          shop_id: "11",
+          region_id: "2",
+          sub_region_id: "5",
+          status: "show",
+          address: "16964 Kreiger Parks Apt. 315\nEast Frederikmouth, MD 47084",
+          longitude: "-3.32526",
+          latitude: "-71.458165",
+          work_time_from: "09:00",
+          work_time_to: "21:00",
+          assistant_name: "Imogene Fahey",
+          assistant_phone: "+1-240-778-7320",
+          assistant_messenger: "@Dishkan_Kh",
+          second_assistant_name: null,
+          second_assistant_phone: null,
+          second_assistant_messenger: null,
+          url_image_path_one: "https://api.dressme.uz/storage/Qui.",
+          url_image_path_two: null,
+          url_image_path_three: null,
+          created_at: null,
+          updated_at: null,
+          pivot: {
+            product_id: "1",
+            shop_location_id: "11",
+          },
+          region: {
+            id: 2,
+            name_uz: "Toshkent",
+            name_ru: "Ташкент",
+            created_at: null,
+            updated_at: null,
+          },
+          sub_region: {
+            id: 5,
+            name_uz: "Bektemir",
+            name_ru: "Бектемир",
+            region_id: "2",
+            created_at: null,
+            updated_at: null,
+          },
+        },
+      ],
+      ratings: [
+        {
+          id: 1,
+          user_id: "1",
+          rateable_id: "1",
+          rateable_type: "App\\Models\\Product",
+          score: "3",
+          comment: "Some comment 1",
+          reply: null,
+          created_at: "06-12-2023",
+          updated_at: "06-12-2023",
+          user: {
+            id: 1,
+            name: "Loren Durgan",
+            surname: "Anderson",
+            phone: "425.272.7888",
+            email: "kaylee.zemlak@hotmail.com",
+            is_email_verified: "0",
+            email_verified_at: null,
+            created_at: null,
+            updated_at: null,
+          },
+        },
+      ],
+    },
+  });
+
   const [dressInfo] = useContext(dressMainData);
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
@@ -271,6 +913,11 @@ const ProductDetails = ({ data }) => {
       uniqueArray.push(obj);
     }
   });
+
+  // Selected size --------
+
+  const [selectedSize, setSelectedSize] = useState(null);
+  console.log(selectedSize);
 
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
@@ -671,6 +1318,7 @@ const ProductDetails = ({ data }) => {
                 onClick={() => {
                   setOpenLocationModal(false);
                   setSelectedLocation(checkedData);
+                  setSelectedSize(null);
                 }}
                 className="w-full flex justify-end text-borderWinter text-lg font-AeonikProMedium"
               >
@@ -703,7 +1351,7 @@ const ProductDetails = ({ data }) => {
           </button>
         </article>
 
-        {/* Images Slider */}
+        {/* --------------------------- Images Slider ------------------------ */}
         <article className="w-full hidden md:flex items-center">
           <button
             className="button mt-[-5px]"
@@ -719,27 +1367,63 @@ const ProductDetails = ({ data }) => {
             slidesToShow={uniqueArray?.length}
             className="hidden md:flex md:w-[88%] h-[80px] items-center"
           >
-            {uniqueArray?.map((data) => {
-              return (
-                <div>
-                  <div
-                    key={data.id}
-                    className="!w-[64px] h-[72px] rounded-lg cursor-pointer bg-black"
-                    onClick={() => {
-                      filterColorsOnSelect(data?.product_color_id);
-                      setcolorId(data?.product_color_id);
-                    }}
-                    style={{
-                      backgroundImage: `url("${data?.url_photo}")`,
-                      backgroundColor: "rgba(0,0,0,0.6)",
-                      backgroundPosition: "center center",
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat",
-                    }}
-                  ></div>
-                </div>
-              );
-            })}
+            {selectedSize
+              ? uniqueArray?.map((data) => {
+                  return (
+                    <div
+                      className={`${
+                        data?.product_color_id ===
+                        selectedSize?.product_color_id
+                          ? "cursor-pointer"
+                          : "opacity-40 cursor-not-allowed"
+                      } `}
+                    >
+                      <div
+                        key={data.id}
+                        className="!w-[64px] h-[72px] rounded-lg  bg-black"
+                        onClick={() => {
+                          if (
+                            data?.product_color_id ===
+                            selectedSize?.product_color_id
+                          ) {
+                            filterColorsOnSelect(data?.product_color_id);
+                            setcolorId(data?.product_color_id);
+                          } else {
+                            return false;
+                          }
+                        }}
+                        style={{
+                          backgroundImage: `url("${data?.url_photo}")`,
+                          backgroundColor: "rgba(0,0,0,0.6)",
+                          backgroundPosition: "center center",
+                          backgroundSize: "cover",
+                          backgroundRepeat: "no-repeat",
+                        }}
+                      ></div>
+                    </div>
+                  );
+                })
+              : uniqueArray?.map((data) => {
+                  return (
+                    <div>
+                      <div
+                        key={data.id}
+                        className="!w-[64px] h-[72px] rounded-lg cursor-pointer bg-black"
+                        onClick={() => {
+                          filterColorsOnSelect(data?.product_color_id);
+                          setcolorId(data?.product_color_id);
+                        }}
+                        style={{
+                          backgroundImage: `url("${data?.url_photo}")`,
+                          backgroundColor: "rgba(0,0,0,0.6)",
+                          backgroundPosition: "center center",
+                          backgroundSize: "cover",
+                          backgroundRepeat: "no-repeat",
+                        }}
+                      ></div>
+                    </div>
+                  );
+                })}
           </Slider>
           <button
             className="button mt-[-5px]"
@@ -921,18 +1605,29 @@ const ProductDetails = ({ data }) => {
               ? data?.product?.sizes?.map((data) => {
                   if (data?.shop_location_id == selectedLocation?.id) {
                     return (
-                      <Popover
-                        key={data?.id}
-                        trigger={data?.min_head_girth ? "hover" : "false"}
-                        content={() => contentSize(data)}
-                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center mt-4"
+                      <div
+                        onClick={() => {
+                          setSelectedSize(data);
+                        }}
+                        className={`${
+                          data?.id === selectedSize?.id
+                            ? "border-fullBlue"
+                            : "border-[#dadada]"
+                        }  h-fit w-fit mt-4 rounded-lg border  hover:border-fullBlue`}
                       >
-                        <p
-                          className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                        <Popover
+                          key={data?.id}
+                          trigger={data?.min_head_girth ? "hover" : "false"}
+                          content={() => contentSize(data)}
+                          className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center"
                         >
-                          {data?.one_size ? "ONE SIZE" : null}
-                        </p>
-                      </Popover>
+                          <p
+                            className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                          >
+                            {data?.one_size ? "ONE SIZE" : null}
+                          </p>
+                        </Popover>
+                      </div>
                     );
                   }
                 })
@@ -942,35 +1637,46 @@ const ProductDetails = ({ data }) => {
               ? data?.product?.sizes?.map((data) => {
                   if (data?.shop_location_id == selectedLocation?.id) {
                     return (
-                      <Popover
-                        key={data.id}
-                        trigger="hover"
-                        content={() => contentSize(data)}
-                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center mt-4"
+                      <div
+                        onClick={() => {
+                          setSelectedSize(data);
+                        }}
+                        className={`${
+                          data?.id === selectedSize?.id
+                            ? "border-fullBlue"
+                            : "border-[#dadada]"
+                        }  h-fit w-fit mt-4 rounded-lg border   hover:border-fullBlue`}
                       >
-                        <p
-                          className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                        <Popover
+                          key={data.id}
+                          trigger="hover"
+                          content={() => contentSize(data)}
+                          className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg  px-4 flex flex-col items-center justify-center"
                         >
-                          {data?.letter_size}
-                        </p>
-                        {data?.letter_size ? (
-                          <span className="text-[10px] font-AeonikProRegular text-[#757575]">
-                            {data?.min_wear_size}{" "}
-                            {data?.max_wear_size
-                              ? "- " + data?.max_wear_size
-                              : null}
-                          </span>
-                        ) : (
                           <p
                             className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
                           >
-                            {data?.min_wear_size}{" "}
-                            {data?.max_wear_size
-                              ? "- " + data?.max_wear_size
-                              : null}
+                            {data?.letter_size}
                           </p>
-                        )}
-                      </Popover>
+                          {data?.letter_size ? (
+                            <span className="text-[10px] font-AeonikProRegular text-[#757575]">
+                              {data?.min_wear_size}{" "}
+                              {data?.max_wear_size
+                                ? "- " + data?.max_wear_size
+                                : null}
+                            </span>
+                          ) : (
+                            <p
+                              className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                            >
+                              {data?.min_wear_size}{" "}
+                              {data?.max_wear_size
+                                ? "- " + data?.max_wear_size
+                                : null}
+                            </p>
+                          )}
+                        </Popover>
+                      </div>
                     );
                   }
                 })
@@ -980,35 +1686,46 @@ const ProductDetails = ({ data }) => {
               ? data?.product?.sizes?.map((data) => {
                   if (data?.shop_location_id == selectedLocation?.id) {
                     return (
-                      <Popover
-                        key={data.id}
-                        trigger="hover"
-                        content={() => contentSize(data)}
-                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center mt-4"
+                      <div
+                        onClick={() => {
+                          setSelectedSize(data);
+                        }}
+                        className={`${
+                          data?.id === selectedSize?.id
+                            ? "border-fullBlue"
+                            : "border-[#dadada]"
+                        }  h-fit w-fit mt-4 rounded-lg border   hover:border-fullBlue`}
                       >
-                        <p
-                          className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                        <Popover
+                          key={data.id}
+                          trigger="hover"
+                          content={() => contentSize(data)}
+                          className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center"
                         >
-                          {data?.letter_size}
-                        </p>
-                        {data?.letter_size ? (
-                          <span className="text-[10px] font-AeonikProRegular text-[#757575]">
-                            {data?.min_wear_size}{" "}
-                            {data?.max_wear_size
-                              ? "- " + data?.max_wear_size
-                              : null}
-                          </span>
-                        ) : (
                           <p
                             className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
                           >
-                            {data?.min_wear_size}{" "}
-                            {data?.max_wear_size
-                              ? "- " + data?.max_wear_size
-                              : null}
+                            {data?.letter_size}
                           </p>
-                        )}
-                      </Popover>
+                          {data?.letter_size ? (
+                            <span className="text-[10px] font-AeonikProRegular text-[#757575]">
+                              {data?.min_wear_size}{" "}
+                              {data?.max_wear_size
+                                ? "- " + data?.max_wear_size
+                                : null}
+                            </span>
+                          ) : (
+                            <p
+                              className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                            >
+                              {data?.min_wear_size}{" "}
+                              {data?.max_wear_size
+                                ? "- " + data?.max_wear_size
+                                : null}
+                            </p>
+                          )}
+                        </Popover>
+                      </div>
                     );
                   }
                 })
@@ -1018,18 +1735,29 @@ const ProductDetails = ({ data }) => {
               ? data?.product?.sizes?.map((data) => {
                   if (data?.shop_location_id == selectedLocation?.id) {
                     return (
-                      <Popover
-                        key={data.id}
-                        trigger="hover"
-                        content={() => contentSize(data)}
-                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center mt-4"
+                      <div
+                        onClick={() => {
+                          setSelectedSize(data);
+                        }}
+                        className={`${
+                          data?.id === selectedSize?.id
+                            ? "border-fullBlue"
+                            : "border-[#dadada]"
+                        }  h-fit w-fit mt-4 rounded-lg border   hover:border-fullBlue`}
                       >
-                        <p
-                          className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                        <Popover
+                          key={data.id}
+                          trigger="hover"
+                          content={() => contentSize(data)}
+                          className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center"
                         >
-                          {data?.wear_size}
-                        </p>
-                      </Popover>
+                          <p
+                            className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                          >
+                            {data?.wear_size}
+                          </p>
+                        </Popover>
+                      </div>
                     );
                   }
                 })
@@ -1039,21 +1767,32 @@ const ProductDetails = ({ data }) => {
               ? data?.product?.sizes?.map((data) => {
                   if (data?.shop_location_id == selectedLocation?.id) {
                     return (
-                      <Popover
-                        key={data.id}
-                        trigger="hover"
-                        content={() => contentSize(data)}
-                        className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg border border-[#dadada]  hover:border-fullBlue px-4 flex flex-col items-center justify-center mt-4"
+                      <div
+                        onClick={() => {
+                          setSelectedSize(data);
+                        }}
+                        className={`${
+                          data?.id === selectedSize?.id
+                            ? "border-fullBlue"
+                            : "border-[#dadada]"
+                        }  h-fit w-fit mt-4 rounded-lg border   hover:border-fullBlue`}
                       >
-                        <p
-                          className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                        <Popover
+                          key={data.id}
+                          trigger="hover"
+                          content={() => contentSize(data)}
+                          className="h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center"
                         >
-                          {data?.letter_size}
-                        </p>
-                        <span className="text-[10px] font-AeonikProRegular text-[#757575]">
-                          {data?.wear_size}
-                        </span>
-                      </Popover>
+                          <p
+                            className={`font-AeonikProMedium text-sm uppercase text-center text-black`}
+                          >
+                            {data?.letter_size}
+                          </p>
+                          <span className="text-[10px] font-AeonikProRegular text-[#757575]">
+                            {data?.wear_size}
+                          </span>
+                        </Popover>
+                      </div>
                     );
                   }
                 })
@@ -1252,35 +1991,84 @@ const ProductDetails = ({ data }) => {
       {/* 3 This Section For Desctop Version*/}
       <section className=" w-full hidden md:block md:pb-[35px] pt-[25px] md:border-b border-searchBgColor mb-12 md:mb-0">
         <article className="w-full flex items-center mb-[14px] md:mb-0">
-          <section className="w-fit flex items-center">
-            <article className="flex md:hidden">
-              <DollorIcons colors={"#000"} />
-              <p className="text-base font-AeonikProRegular ml-[6px]">Цена:</p>
-            </article>
-            <span className="text-base font-AeonikProMedium mr-3">от</span>
-            <p className="hidden md:block font-AeonikProMedium text-[20px] text-black">
-              {data?.product?.cost?.discount_price
-                ? parseInt(data?.product?.cost?.discount_price)
-                    ?.toLocaleString()
-                    ?.split(",")
-                    .join(" ")
-                : parseInt(data?.product?.cost?.price)
+          {selectedSize ? (
+            <section className="w-fit flex items-center">
+              <article className="flex md:hidden">
+                <DollorIcons colors={"#000"} />
+                <p className="text-base font-AeonikProRegular ml-[6px]">
+                  Цена:
+                </p>
+              </article>
+              <span className="text-base font-AeonikProMedium mr-3">от</span>
+              <p className="hidden md:block font-AeonikProMedium text-[20px] text-black">
+                {selectedSize?.discount_price
+                  ? parseInt(selectedSize?.discount_price)
+                      ?.toLocaleString()
+                      ?.split(",")
+                      .join(" ")
+                  : parseInt(selectedSize?.price)
+                      ?.toLocaleString()
+                      ?.split(",")
+                      .join(" ")}{" "}
+                сум
+              </p>
+              {selectedSize?.discount_price ? (
+                <p className="hidden md:block ml-[10px] font-AeonikProRegular line-through text-[18px] text-setTexOpacity">
+                  {parseInt(selectedSize?.price)
                     ?.toLocaleString()
                     ?.split(",")
                     .join(" ")}{" "}
-              сум
-            </p>
-            {data?.product?.cost?.discount_price ? (
-              <p className="hidden md:block ml-[10px] font-AeonikProRegular line-through text-[18px] text-setTexOpacity">
-                {parseInt(data?.product?.cost?.price)
-                  ?.toLocaleString()
-                  ?.split(",")
-                  .join(" ")}{" "}
+                  сум
+                </p>
+              ) : null}
+            </section>
+          ) : (
+            <section className="w-fit flex items-center">
+              <article className="flex md:hidden">
+                <DollorIcons colors={"#000"} />
+                <p className="text-base font-AeonikProRegular ml-[6px]">
+                  Цена:
+                </p>
+              </article>
+              <span className="text-base font-AeonikProMedium mr-3">от</span>
+              <p className="hidden md:block font-AeonikProMedium text-[20px] text-black">
+                {data?.product?.cost?.discount_price
+                  ? parseInt(data?.product?.cost?.discount_price)
+                      ?.toLocaleString()
+                      ?.split(",")
+                      .join(" ")
+                  : parseInt(data?.product?.cost?.price)
+                      ?.toLocaleString()
+                      ?.split(",")
+                      .join(" ")}{" "}
                 сум
               </p>
-            ) : null}
-          </section>
-          {data?.product?.cost?.discount_percent ? (
+              {data?.product?.cost?.discount_price ? (
+                <p className="hidden md:block ml-[10px] font-AeonikProRegular line-through text-[18px] text-setTexOpacity">
+                  {parseInt(data?.product?.cost?.price)
+                    ?.toLocaleString()
+                    ?.split(",")
+                    .join(" ")}{" "}
+                  сум
+                </p>
+              ) : null}
+            </section>
+          )}
+
+          {selectedSize ? (
+            <section
+              className={`${
+                selectedSize?.discount_percent ? "flex" : "hidden"
+              } w-[84px] h-9 md:w-[100px] md:h-11 cursor-pointer  items-center justify-center border border-searchBgColor rounded-lg ml-8 active:scale-95`}
+            >
+              <p>
+                <DiscountShapeIcons />
+              </p>
+              <p className="ml-[6px] font-AeonikProMedium text-sm md:text-sm text-red-700">
+                -{selectedSize?.discount_percent}%
+              </p>
+            </section>
+          ) : data?.product?.cost?.discount_percent ? (
             <section className="w-[84px] h-9 md:w-[100px] md:h-11 cursor-pointer flex items-center justify-center border border-searchBgColor rounded-lg ml-8 active:scale-95">
               <p>
                 <DiscountShapeIcons />
@@ -1296,10 +2084,14 @@ const ProductDetails = ({ data }) => {
           >
             <p className="font-AeonikProRegular text-right">В наличии:</p>
             <p className="ml-2 font-AeonikProMedium text-right">
-              {data?.product?.sizes_sum_amount}
+              {selectedSize
+                ? selectedSize?.amount
+                : data?.product?.sizes_sum_amount}
             </p>
           </section>
         </article>
+
+        {/* ------------------------------------------------------------------------------------------- */}
 
         {/* Social btns 1 */}
         <article className="w-full flex items-center justify-between gap-x-3 md:gap-x-0 md:mt-6">
