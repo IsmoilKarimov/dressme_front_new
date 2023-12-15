@@ -1,69 +1,24 @@
-import { useContext, useState } from "react";
-
-import { dressMainData } from "../../../../../ContextHook/ContextMenu";
-import {
-  ArrowTopIcons,
-  ChildGenIcon,
-  GenderTypeIcon,
-  ManGenIcons,
-  ManWomanGen,
-  SearchChangeColorIcon,
-  SearchIcons,
-  WomanGenIcons,
-} from "../../../../../assets/icons";
+import { SearchIcons } from "../../../../../assets/icons";
 import GenderButtonsStyle from "../GenderButtonsStyle/GenderButtonsStyle";
 
 const ShoppingTop = () => {
-  const [dressInfo] = useContext(dressMainData);
 
-  let dataStyle = "";
-  if (dressInfo?.type === 1111) {
-    dataStyle = "text-borderSpring ";
-  }
-  if (dressInfo?.type === 2222) {
-    dataStyle = "text-borderSummer";
-  }
-  if (dressInfo?.type === 3333) {
-    dataStyle = "text-borderAutumm";
-  }
-  if (dressInfo?.type === 4444) {
-    dataStyle = "text-borderWinter";
-  }
-
-  const [typesCategory, setTypeCategory] = useState([
-    {
-      id: 1,
-      action: true,
-      name: "Все",
-      icon: <ManWomanGen colors={"#007DCA"} />,
-    },
-    { id: 2, action: false, name: "Верхняя", icon: "" },
-    { id: 3, action: false, name: "Нижняя", icon: "" },
-    { id: 4, action: false, name: "Обувь", icon: "" },
-    { id: 5, action: false, name: "Аксессуары", icon: "" },
-  ]);
-
-  const handleTypeCheck = (value) => {
-    setTypeCategory((data) => {
-      return data.map((e) => {
-        if (e.id == value) {
-          return { ...e, action: true };
-        } else return { ...e, action: false };
-      });
-    });
-  };
+  
 
   return (
     <main className="flex flex-col min-h-[44px] justify-center items-center mb-5 md:my-4">
       <section className="md:max-w-[1280px] w-[100%] flex flex-col md:flex-row items-center justify-between m-auto">
-
-          <GenderButtonsStyle />
+        <GenderButtonsStyle />
         <article className="w-full flex items-center mt-3 md:mt-0 md:justify-end">
           <article className="w-[400px] h-11 flex flex-row-reverse md:flex-row items-center justify-between bg-btnBgColor md:bg-white rounded-xl border border-searchBgColor font-AeonikProRegular text-base">
-            <input type="text" className="w-[90%] px-3 text-sm md:text-base bg-btnBgColor md:bg-white" placeholder="Искать магазины" />
+            <input
+              type="text"
+              className="w-[90%] px-3 text-sm md:text-base bg-btnBgColor md:bg-white"
+              placeholder="Искать магазины"
+            />
             <span className="hidden md:block h-full w-[1px] bg-searchBgColor"></span>
             <div className=" w-[10%] h-full flex items-center justify-center cursor-pointer">
-              <SearchIcons colors={"#a1a1a1"} className=""/>
+              <SearchIcons colors={"#a1a1a1"} className="" />
             </div>
           </article>
         </article>
