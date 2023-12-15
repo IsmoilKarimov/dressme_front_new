@@ -243,7 +243,7 @@ export default function CollectionCards() {
                           }}
                           className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                         >
-                          {wishList.includes(data?.id) ? (
+                          {wishList?.includes(data?.id) ? (
                             <BsHeartFill color="#d50000" />
                           ) : (
                             <BsHeart />
