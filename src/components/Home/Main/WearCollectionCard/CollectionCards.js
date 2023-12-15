@@ -16,7 +16,7 @@ import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
-
+  const [pagination, setPagination] = useState(15);
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
   // -------------------------------------
@@ -93,7 +93,7 @@ export default function CollectionCards() {
 
         <div className="w-full flex flex-col box-border ">
           <article className="flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
-            {mainData?.products?.data?.map((data) => {
+            {mainData?.products?.data?.slice(0, pagination).map((data) => {
               return (
                 <article
                   key={data?.id}
@@ -248,7 +248,7 @@ export default function CollectionCards() {
                           ) : (
                             <BsHeart />
                           )}
-                        </button>                     
+                        </button>
                       </figure>
                     </article>
                   </section>
@@ -258,8 +258,14 @@ export default function CollectionCards() {
           </article>
 
           <div className="w-full h-fit flex items-center justify-center mt-14">
-            <button className="w-[760px] h-[60px] cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-black flex items-center justify-center rounded-xl border border-searchBgColor bg-btnBgColor">
-              Показать ещё 30 наборов
+            <button
+              type="button"
+              onClick={() => {
+                setPagination((prev) => prev + 15);
+              }}
+              className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-black flex items-center justify-center rounded-xl border border-searchBgColor bg-btnBgColor"
+            >
+              Показать ещё 15 наборов
             </button>
           </div>
         </div>

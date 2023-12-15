@@ -145,11 +145,11 @@ export default function ProductComment() {
     });
   }, []);
 
-  const showNextComments = allComments.slice(0, visibleComments).map((allComments) => {
+  const showNextComments = allComments.slice(0, visibleComments).map((item) => {
     return (
-      <article key={allComments.id} className="w-[45%] h-fit border-b border-borderColor2 pr-5 pb-10 mt-10 ">
+      <article key={item.id} className="w-[45%] h-fit border-b border-borderColor2 pr-5 pb-10 mt-10 ">
         <p className="not-italic font-AeonikProMedium text-xl leading-6 text-black">
-          {allComments?.Name}
+          {item?.Name}
         </p>
         <article className="flex items-center mt-3">
           <p className="flex items-center">
@@ -165,7 +165,7 @@ export default function ProductComment() {
         </article>
         <article className="mt-4">
           <p className="not-italic font-AeonikProRegular text-base leading-4 text-black">
-            {allComments?.SendText}
+            {item?.SendText}
           </p>
         </article>
         <article className="mt-6 ml-8">
@@ -174,12 +174,12 @@ export default function ProductComment() {
               Nike Store Official Dealer
             </p>
             <p className="not-italic ml-3 font-AeonikProRegular text-base leading-4 text-setTexOpacity">
-              {allComments?.replyDate}
+              {item?.replyDate}
             </p>
           </article>
           <article className="mt-4">
             <p className="not-italic font-AeonikProRegular text-base leading-4 text-black">
-              {allComments?.replyText}
+              {item?.replyText}
             </p>
           </article>
         </article>
