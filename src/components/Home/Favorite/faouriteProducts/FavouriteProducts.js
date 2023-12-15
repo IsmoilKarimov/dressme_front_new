@@ -438,10 +438,6 @@ export default function FavouriteProducts() {
                 <p className="text-3xl font-AeonikProMedium mb-3">
                   Добавьте то, что понравилось
                 </p>
-                <p className="text-lg mb-3">
-                  Нажмите на <span className="text-xl text-red-600">♡</span>{" "}
-                  в товаре. Войдите в аккаунт и всё избранное сохранится
-                </p>
                 <NavLink
                   to="/"
                   className="border text-white bg-borderWinter hover:bg-sky-500 transition ease-linear duration-300 rounded-lg px-[16px] py-3 font-AeonikProMedium text-lg"
