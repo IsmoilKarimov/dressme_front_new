@@ -1615,14 +1615,14 @@ const ProductDetails = () => {
                           trigger={data?.min_head_girth ? "hover" : "false"}
                           content={() => contentSize(data)}
                           className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${
-                            data?.amount === "0" || !data?.amount
+                            data?.amount === "0"
                               ? "bg-[#f6f6f9] text-[#d3d4dd]"
                               : ""
                           }`}
                         >
                           <p
                             className={`font-AeonikProMedium text-sm uppercase text-center ${
-                              data?.amount === "0" || !data?.amount
+                              data?.amount === "0"
                                 ? "text-[#d3d4dd]"
                                 : "text-black"
                             } `}
@@ -1655,14 +1655,14 @@ const ProductDetails = () => {
                           trigger="hover"
                           content={() => contentSize(data)}
                           className={`h-11 w-[80px] md:w-auto ${
-                            data?.amount === "0" || !data?.amount
+                            data?.amount === "0"
                               ? "bg-[#f6f6f9] text-[#d3d4dd]"
                               : ""
                           }  cursor-pointer rounded-lg  px-4 flex flex-col items-center justify-center`}
                         >
                           <p
                             className={`font-AeonikProMedium text-sm uppercase text-center ${
-                              data?.amount === "0" || !data?.amount
+                              data?.amount === "0"
                                 ? "text-[#d3d4dd]"
                                 : "text-black"
                             } `}
@@ -1672,7 +1672,7 @@ const ProductDetails = () => {
                           {data?.letter_size ? (
                             <span
                               className={`text-[10px] font-AeonikProRegular ${
-                                data?.amount === "0" || !data?.amount
+                                data?.amount === "0"
                                   ? "text-[#d3d4dd]"
                                   : "text-[#757575]"
                               } `}
@@ -1685,7 +1685,7 @@ const ProductDetails = () => {
                           ) : (
                             <p
                               className={`font-AeonikProMedium text-sm uppercase text-center ${
-                                data?.amount === "0" || !data?.amount
+                                data?.amount === "0"
                                   ? "text-[#d3d4dd]"
                                   : "text-black"
                               }`}
@@ -1722,14 +1722,14 @@ const ProductDetails = () => {
                           trigger="hover"
                           content={() => contentSize(data)}
                           className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${
-                            data?.amount === "0" || !data?.amount
+                            data?.amount === "0"
                               ? "bg-[#f6f6f9] text-[#d3d4dd]"
                               : ""
                           }`}
                         >
                           <p
                             className={`font-AeonikProMedium text-sm uppercase text-center ${
-                              data?.amount === "0" || !data?.amount
+                              data?.amount === "0"
                                 ? "text-[#d3d4dd]"
                                 : "text-black"
                             }`}
@@ -1739,7 +1739,7 @@ const ProductDetails = () => {
                           {data?.letter_size ? (
                             <span
                               className={`text-[10px] font-AeonikProRegular ${
-                                data?.amount === "0" || !data?.amount
+                                data?.amount === "0"
                                   ? "text-[#d3d4dd]"
                                   : "text-[#757575]"
                               }`}
@@ -1752,7 +1752,7 @@ const ProductDetails = () => {
                           ) : (
                             <p
                               className={`font-AeonikProMedium text-sm uppercase text-center ${
-                                data?.amount === "0" || !data?.amount
+                                data?.amount === "0"
                                   ? "text-[#d3d4dd]"
                                   : "text-black"
                               }`}
@@ -1789,14 +1789,14 @@ const ProductDetails = () => {
                           trigger="hover"
                           content={() => contentSize(data)}
                           className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${
-                            data?.amount === "0" || !data?.amount
+                            data?.amount === "0"
                               ? "bg-[#f6f6f9] text-[#d3d4dd]"
                               : ""
                           }`}
                         >
                           <p
                             className={`font-AeonikProMedium text-sm uppercase text-center ${
-                              data?.amount === "0" || !data?.amount
+                              data?.amount === "0"
                                 ? "text-[#d3d4dd]"
                                 : "text-black"
                             }`}
@@ -1829,14 +1829,14 @@ const ProductDetails = () => {
                           trigger="hover"
                           content={() => contentSize(data)}
                           className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${
-                            data?.amount === "0" || !data?.amount
+                            data?.amount === "0"
                               ? "bg-[#f6f6f9] text-[#d3d4dd]"
                               : ""
                           }`}
                         >
                           <p
                             className={`font-AeonikProMedium text-sm uppercase text-center ${
-                              data?.amount === "0" || !data?.amount
+                              data?.amount === "0"
                                 ? "text-[#d3d4dd]"
                                 : "text-black"
                             }`}
@@ -1845,7 +1845,7 @@ const ProductDetails = () => {
                           </p>
                           <span
                             className={`text-[10px] font-AeonikProRegular ${
-                              data?.amount === "0" || !data?.amount
+                              data?.amount === "0"
                                 ? "text-[#d3d4dd]"
                                 : "text-[#757575]"
                             }`}
