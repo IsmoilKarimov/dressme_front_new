@@ -39,7 +39,7 @@ export default function FavouriteProducts() {
   };
 
   return (
-    <main className="flex flex-col min-h-[44px]  justify-center items-center mt-8">
+    <main className="flex flex-col min-h-[44px] justify-center items-center mt-8">
       <div
         onClick={() => setOpenWearType(false)}
         className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
@@ -438,12 +438,6 @@ export default function FavouriteProducts() {
                 <p className="text-3xl font-AeonikProMedium mb-3">
                   Добавьте то, что понравилось
                 </p>
-                <NavLink
-                  to="/"
-                  className="border text-white bg-borderWinter hover:bg-sky-500 transition ease-linear duration-300 rounded-lg px-[16px] py-3 font-AeonikProMedium text-lg"
-                >
-                  Войти в аккаунт
-                </NavLink>
               </div>
             </article>
           )}
