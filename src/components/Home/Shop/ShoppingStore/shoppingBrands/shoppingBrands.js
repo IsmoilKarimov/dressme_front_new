@@ -23,7 +23,7 @@ const ShoppingBrands = () => {
     },
     {
       onSuccess: (res) => {
-        console.log(res?.shops?.data, "SUCCESS, RESPONSE");
+        // console.log(res?.shops?.data, "SUCCESS, RESPONSE");
         setShops(res?.shops?.data);
       },
       onError: (err) => {
@@ -42,7 +42,6 @@ const ShoppingBrands = () => {
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto md:mt-[50px] mb-20 md:mb-[90px]">
         <section className="w-full ">
           {shops?.map((data) => {
-            // console.log(data, "DATA");
             return (
               <div
                 key={data?.id}
