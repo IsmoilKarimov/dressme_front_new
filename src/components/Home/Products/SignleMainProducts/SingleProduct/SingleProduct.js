@@ -74,7 +74,7 @@ const SingleProduct = () => {
 
   const [data, setData] = useState();
 
-  useQuery(
+  const { refetch } = useQuery(
     ["get_main_detail_data"],
     () => {
       return fetch(`${url}/api/main/products/${params?.id}`, {
@@ -112,7 +112,7 @@ const SingleProduct = () => {
         </section>
         {/* Products Comment */}
         <section className="md:mt-20 w-full">
-          <ProductComment />
+          <ProductComment data={data} refetch={refetch} />
         </section>
         <section className="w-full h-fit">
           <article className="w-full mt-[34px] md:mt-0">
