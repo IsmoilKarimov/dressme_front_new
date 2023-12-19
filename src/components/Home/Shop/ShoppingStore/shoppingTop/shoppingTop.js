@@ -1,67 +1,62 @@
-import { useState } from "react";
-import { SearchIcons } from "../../../../../assets/icons";
-import { useHttp } from "../../../../../hook/useHttp";
+import { useEffect, useState } from "react";
+import { GoBackIcon, MenuCloseIcons, SearchIcons } from "../../../../../assets/icons";
 import GenderButtonsStyle from "../GenderButtonsStyle/GenderButtonsStyle";
-import { useQuery } from "@tanstack/react-query";
+// import axios from "axios";
+import SearchComponent from "./SearchComponent";
+import Cookies from "js-cookie";
 
 const ShoppingTop = () => {
-  const { request } = useHttp();
-  const [searchData, setSearchData] = useState();
-  const [state, setState] = useState({
-    // searchData: null,
-    genderId: null,
-    baby: null,
-  });
+  const [genderId, setGenderId] = useState();
+  const [keywords, setKeywords] = useState();
+  const [searchInputData, setSearchInputData] = useState();
+  const [changeInputIcon, setChangeInputIcon] = useState(true);
+  const [getData, setgetData] = useState([]);
+  console.log(keywords);
 
-  const [genderFilter, setGenderFilter] = useState(null);
+  const apiUrl = "https://api.dressme.uz/api/main/shops";
+
   function handleGetId(childData) {
-    setGenderFilter(childData?.genderFilterId);
-    // useQuery(
-    //   ["magazin"],
-    //   () => {
-    //     return request({ url: `/main/shops/${genderFilter}`, token: true });
-    //   },
-    //   {
-    //     onSuccess: (res) => {
-    //       console.log(res);
-    //       // setState({
-    //       //   ...state,
-    //       //   searchData: res?.shop?.name,
-    //       // });
-    //     },
-    //     onError: (err) => {
-    //       console.log(err, "err getDelivery-method");
-    //     },
-    //     keepPreviousData: true,
-    //     refetchOnWindowFocus: false,
-    //   }
-    // );
+    setGenderId(childData?.genderFilterId);
   }
-  
-  console.log(genderFilter, "genderFilter");
 
-  // ------------GET Has Shops ?-----------------
-  useQuery(
-    ["magazin"],
-    () => {
-      return request({ url: `/main/shops?gender=${genderFilter}`, token: true });
-    },
-    {
-      onSuccess: (res) => {
-        console.log(res,"RESPONSE GENDER");
-        setState({
-          ...state,
-          searchData: res?.shop?.name,
-        });
-      },
-      onError: (err) => {
-        console.log(err, "err getDelivery-method");
-      },
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
-    }
-  );
-  
+  const fetchGetAllData = (params) => {
+    Object.entries(params).forEach((i) => {
+      if (!i[1]) delete params[i[0]];
+    });
+    fetch(`${apiUrl}?` + new URLSearchParams(params), {
+      headers: { Authorization: `Token ${Cookies.get("DressmeUserToken")}` },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setgetData(res);
+      })
+      .catch((err) => console.log(err, "ERROrLIST"));
+  };
+
+  const debounce = (func, delay) => {
+    let debounceTimer;
+    return function () {
+      const context = this;
+      const args = arguments;
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    };
+  };
+  // this variable should put in onchange event into input
+  const onChangeGenderData = debounce(setKeywords, 500);
+
+  useEffect(() => {
+    fetchGetAllData({
+      gender: genderId,
+      keywords: searchInputData,
+    });
+  }, [genderId, searchInputData]);
+
+  const sendSearchInputData = () => {
+    setSearchInputData(keywords);
+  };
+
+  console.log(genderId, "genderId");
 
   return (
     <main className="flex flex-col min-h-[44px] justify-center items-center mb-5 md:my-4">
@@ -72,14 +67,37 @@ const ShoppingTop = () => {
           <article className="w-[400px] h-11 flex flex-row-reverse md:flex-row items-center justify-between bg-btnBgColor md:bg-white rounded-xl border border-searchBgColor font-AeonikProRegular text-base">
             <input
               type="text"
-              onChange={(e) => setSearchData(e.target.value)}
+              name="keywords"
+              onChange={(e) => {
+                setKeywords(e.target.value);
+              }}
               className="w-[90%] px-3 text-sm md:text-base bg-btnBgColor md:bg-white"
               placeholder="Искать магазины"
             />
             <span className="hidden md:block h-full w-[1px] bg-searchBgColor"></span>
-            <div className=" w-[10%] h-full flex items-center justify-center cursor-pointer">
-              <SearchIcons colors={"#a1a1a1"} />
-            </div>
+            {changeInputIcon && !searchInputData ? (
+              <button
+                onClick={() => {
+                  setChangeInputIcon(false);
+                  sendSearchInputData();
+                }}
+                type="button"
+                className="w-[10%] h-full flex items-center justify-center cursor-pointer"
+              >
+                <SearchIcons colors={"#a1a1a1"} />
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  setChangeInputIcon(true);
+                  sendSearchInputData();
+                }}
+                type="button"
+                className="w-[10%] h-full flex items-center justify-center cursor-pointer"
+              >
+                <MenuCloseIcons width={24} height={24} colors={"#000"} />
+              </button>
+            )}
           </article>
         </article>
       </section>
