@@ -9,7 +9,7 @@ import {
  function GenderButtonsStyle({ handleGetId }) {
 
   function onGetId(id) {
-    console.log(id, "getId");
+    // console.log(id, "getId");
     handleGetId({
       genderFilterId: id,
     });
@@ -52,7 +52,7 @@ import {
       <span className="w-[1px] h-5 border-r border-searchBgColor"></span>
       <button
         type="button"
-        onClick={() => onGetId()}
+        onClick={() => onGetId(4)}
         className={`w-1/4 flex items-center justify-center active:scale-95 focus:bg-white focus:border focus:border-searchBgColor rounded-xl overflow-hidden h-11 text-[15px] px-5 text-center font-AeonikProRegular `}
       >
         <span>

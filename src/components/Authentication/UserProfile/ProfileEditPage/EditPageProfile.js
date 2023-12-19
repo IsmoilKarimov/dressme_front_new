@@ -111,7 +111,7 @@ const EditProfilePage = () => {
       .then((res) => res.json())
       .then((res) => {
         if (res?.errors && res?.message) {
-          console.log(res, "BU--Error");
+          console.log(res, "Bu-Error");
           setState({ ...state, errorsGroup: res });
           toast.error(`${res?.message}`, {
             position: "top-right",
@@ -124,7 +124,7 @@ const EditProfilePage = () => {
             theme: "light",
           });
         } else if (res?.message) {
-          console.log(res, "BU--Success");
+          console.log(res, "Bu-Success");
           setState({ ...state, errorsGroup: res });
           toast.success(`${res?.message}`, {
             position: "top-right",
