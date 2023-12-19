@@ -242,20 +242,20 @@ export default function ProductComment({ data, refetch }) {
               {allComments?.comment}
             </p>
           </article>
-          <article className="mt-6 ml-8">
-            <article className="flex">
-              <p className="not-italic font-AeonikProMedium text-lg leading-5 text-black">
-                {data?.product?.shop?.name}
-              </p>
-            </article>
-            {allComments?.reply ? (
-              <article className="mt-4">
-                <p className="not-italic font-AeonikProRegular text-base leading-4 text-black">
-                  {allComments?.replyText} sdf
+          {allComments?.reply ? (
+            <article className="mt-6 ml-8">
+              <article className="flex">
+                <p className="not-italic font-AeonikProMedium text-lg leading-5 text-black">
+                  {data?.product?.shop?.name}
                 </p>
               </article>
-            ) : null}
-          </article>
+              <article className="mt-4">
+                <p className="not-italic font-AeonikProRegular text-base leading-4 text-black">
+                  {allComments?.replyText}
+                </p>
+              </article>
+            </article>
+          ) : null}
         </article>
       );
     });
@@ -293,16 +293,19 @@ export default function ProductComment({ data, refetch }) {
             <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black track%]">
               Отзывы о товаре
             </p>
-            <button
-              onClick={() => setOpenComment(true)}
-              type="button"
-              className="flex items-center ml-[20px] text-SignInBgColor text-lg font-AeonikProRegular"
-            >
-              Написать отзыв
-              <span className="ml-[5px]">
-                <ReviewIcon />
-              </span>
-            </button>
+            {Cookies.get("DressmeUserToken") ? (
+              <button
+                onClick={() => setOpenComment(true)}
+                type="button"
+                className="flex items-center ml-[20px] text-SignInBgColor text-lg font-AeonikProRegular"
+              >
+                Написать отзыв
+                <span className="ml-[5px]">
+                  <ReviewIcon />
+                </span>
+              </button>
+            ) : null}
+
             <Modal
               centered
               open={openComment}
