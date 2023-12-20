@@ -8,30 +8,8 @@ import {
   StarIcons,
   WomanGenIcons,
 } from "../../../../../assets/icons";
-import { useQuery } from "@tanstack/react-query";
-import { useHttp } from "../../../../../hook/useHttp";
 
 const ShoppingBrands = ({getData}) => {
-  const { request } = useHttp();
-  const [shops, setShops] = useState(null);
-
-  //------ GET SHOPS LIST DATA -------
-  useQuery(
-    ["get-shops"],
-    async () => {
-      return request({ url: `/main/shops`, token: true });
-    },
-    {
-      onSuccess: (res) => {
-        // console.log(res?.shops?.data, "SUCCESS, RESPONSE");
-        setShops(res?.shops?.data);
-      },
-      onError: (err) => {
-        console.log(err, "THERE IS AN ERROR IN SHOPS LIST");
-      },
-    }
-  );
-
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/shopping_store/:${id}`);
@@ -90,11 +68,19 @@ const ShoppingBrands = ({getData}) => {
                     </p>
                   </div>
                   <div className="flex items-center md:ml-[88px] md:mt-0">
-                    <div className="flex items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white w-9 h-9 md:w-12 md:h-12 rounded-lg mr-1">
+                    <div className={`flex items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white w-9 h-9 md:w-12 md:h-12 rounded-lg mr-1`}>
+                    {data?.gender_id !== 2 ? (
                       <ManGenIcons />
+                    ):(
+                      null
+                    )}
                     </div>
-                    <div className="flex items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white w-9 h-9 md:w-12 md:h-12 rounded-lg">
+                    <div className={`flex items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white w-9 h-9 md:w-12 md:h-12 rounded-lg`}>
+                    {data?.gender_id !== 1 ? (
                       <WomanGenIcons />
+                    ):(
+                      null
+                    )}
                     </div>
                   </div>
                 </div>
