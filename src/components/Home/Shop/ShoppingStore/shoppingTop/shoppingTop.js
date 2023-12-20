@@ -27,7 +27,7 @@ const ShoppingTop = ({handleData,getAllShops,setGetAllShops}) => {
       .then((res) => {
         handleData(res);
       })
-      .catch((err) => console.log(err, "ERROrLIST"));
+      .catch((err) => console.log(err, "ERRORLIST"));
   };
 
   useEffect(() => {
@@ -41,12 +41,15 @@ const ShoppingTop = ({handleData,getAllShops,setGetAllShops}) => {
     setSearchInputData(keywords);
   };
 
+  useEffect(()=>{
+    setChangeInputIcon(false)
+  },[keywords])
+
   const removeSearchInputData = () => {
     setSearchInputData('');
     setKeywords('')
     console.log(keywords,"keywords");
   };
-
 
   console.log(genderId, "genderId");
 
@@ -68,7 +71,7 @@ const ShoppingTop = ({handleData,getAllShops,setGetAllShops}) => {
               placeholder="Искать магазины"
             />
             <span className="hidden md:block h-full w-[1px] bg-searchBgColor"></span>
-            {searchInputData ? (
+            {changeInputIcon ? (
               <button
                 onClick={() => {
                   setChangeInputIcon(false);
