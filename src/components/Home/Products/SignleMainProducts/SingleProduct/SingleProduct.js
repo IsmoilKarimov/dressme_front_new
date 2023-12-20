@@ -5,12 +5,6 @@ import { ProductDetails } from "./Product_Detail/ProductDetails";
 import { SingleProductTop } from "../SingleProductTop/SingleProductTop";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 
-import {
-  InputCheckedTrueIcons,
-  NoImg,
-  StarIcons,
-} from "../../../../../assets/icons";
-import { CalourCard, HeartImg } from "../../../../../assets";
 import ProductComment from "./ProductComment/ProductComment";
 import { useQuery } from "@tanstack/react-query";
 import { HomeMainDataContext } from "../../../../../ContextHook/HomeMainData";
@@ -124,6 +118,14 @@ const SingleProduct = () => {
     });
   };
 
+  const sameTypeData = mainData?.products?.data
+    ?.filter(
+      (item) =>
+        item?.type_id === singleData?.product?.type_id &&
+        item?.id !== singleData?.product?.id
+    )
+    ?.slice(0, 6);
+
   return (
     <main className="flex flex-col m-0 p-0 box-border">
       <section>
@@ -150,20 +152,16 @@ const SingleProduct = () => {
               </p>
             </div>
             <article className="flex flex-wrap justify-between md:justify-start md:mx-0  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
-              {mainData?.products?.data?.map((data) => {
-                if (singleData?.product?.id === data?.id) {
-                  return false;
-                } else if (singleData?.product?.type_id === data?.type_id) {
-                  return (
-                    <CollectionCardItem
-                      data={data}
-                      setOpenWearType={setOpenWearType}
-                      handleLeaveMouse={handleLeaveMouse}
-                      wishList={wishList}
-                      setWishlist={setWishlist}
-                    />
-                  );
-                }
+              {sameTypeData?.map((data) => {
+                return (
+                  <CollectionCardItem
+                    data={data}
+                    setOpenWearType={setOpenWearType}
+                    handleLeaveMouse={handleLeaveMouse}
+                    wishList={wishList}
+                    setWishlist={setWishlist}
+                  />
+                );
               })}
             </article>
           </article>
