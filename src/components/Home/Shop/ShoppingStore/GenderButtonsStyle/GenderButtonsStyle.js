@@ -44,6 +44,7 @@ function GenderButtonsStyle({ handleGetId, getAllShops, setGetAllShops }) {
       <button
         onClick={() => {
           setGetAllShops(true);
+          onGetId();
         }}
         className={`${
           getAllShops
