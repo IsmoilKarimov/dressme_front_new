@@ -11,7 +11,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { useHttp } from "../../../../../hook/useHttp";
 
-const ShoppingBrands = () => {
+const ShoppingBrands = ({getData}) => {
   const { request } = useHttp();
   const [shops, setShops] = useState(null);
 
@@ -41,7 +41,7 @@ const ShoppingBrands = () => {
     <main className="flex flex-col min-h-[44px]  justify-center items-center my-3">
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto md:mt-[50px] mb-20 md:mb-[90px]">
         <section className="w-full ">
-          {shops?.map((data) => {
+          {getData?.shops?.data?.map((data) => {
             return (
               <div
                 key={data?.id}
@@ -52,7 +52,7 @@ const ShoppingBrands = () => {
                     <img
                       src={data?.url_logo_photo}
                       alt=""
-                      className="w-[70%] md:w-fit"
+                      className="w-full h-full object-cover"
                     />
                   </figure>
                   <div className="flex flex-col ml-4 md:ml-10">
