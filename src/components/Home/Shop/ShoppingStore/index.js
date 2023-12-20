@@ -1,9 +1,15 @@
 import ShoppingBrands from "./shoppingBrands/shoppingBrands";
 import ShoppingStoreBreadCrumb from "./shoppingStoreBreadcrumb/shoppingStoreBreadcrumb";
 import ShoppingTop from "../ShoppingStore/shoppingTop/shoppingTop";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function ShoppingStore() {
+  const [getData, setGetData] = useState([]);
+
+  function handleData(data){
+    setGetData(data)
+  }
+  console.log(getData);
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -15,10 +21,10 @@ export default function ShoppingStore() {
         <ShoppingStoreBreadCrumb />
       </section>
       <section className="w-full md:border-b md:border-searchBgColor">
-        <ShoppingTop />
+        <ShoppingTop handleData={handleData}/>
       </section>
       <section className="w-full">
-        <ShoppingBrands />
+        <ShoppingBrands getData={getData}/>
       </section>
     </main>
   );

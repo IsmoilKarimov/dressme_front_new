@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
-import { GoBackIcon, MenuCloseIcons, SearchIcons } from "../../../../../assets/icons";
+import { MenuCloseIcons, SearchIcons } from "../../../../../assets/icons";
 import GenderButtonsStyle from "../GenderButtonsStyle/GenderButtonsStyle";
 // import axios from "axios";
-import SearchComponent from "./SearchComponent";
 import Cookies from "js-cookie";
 
-const ShoppingTop = () => {
+const ShoppingTop = ({handleData}) => {
   const [genderId, setGenderId] = useState();
   const [keywords, setKeywords] = useState();
   const [searchInputData, setSearchInputData] = useState();
   const [changeInputIcon, setChangeInputIcon] = useState(true);
-  const [getData, setgetData] = useState([]);
-  console.log(keywords);
 
   const apiUrl = "https://api.dressme.uz/api/main/shops";
 
@@ -28,22 +25,10 @@ const ShoppingTop = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        setgetData(res);
+        handleData(res);
       })
       .catch((err) => console.log(err, "ERROrLIST"));
   };
-
-  const debounce = (func, delay) => {
-    let debounceTimer;
-    return function () {
-      const context = this;
-      const args = arguments;
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(() => func.apply(context, args), delay);
-    };
-  };
-  // this variable should put in onchange event into input
-  const onChangeGenderData = debounce(setKeywords, 500);
 
   useEffect(() => {
     fetchGetAllData({
