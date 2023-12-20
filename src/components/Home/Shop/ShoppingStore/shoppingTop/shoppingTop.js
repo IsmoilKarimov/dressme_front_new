@@ -41,6 +41,8 @@ const ShoppingTop = ({handleData}) => {
     setSearchInputData(keywords);
   };
 
+
+
   console.log(genderId, "genderId");
 
   return (
@@ -60,7 +62,7 @@ const ShoppingTop = ({handleData}) => {
               placeholder="Искать магазины"
             />
             <span className="hidden md:block h-full w-[1px] bg-searchBgColor"></span>
-            {changeInputIcon && !searchInputData ? (
+            {searchInputData ? (
               <button
                 onClick={() => {
                   setChangeInputIcon(false);
@@ -69,7 +71,7 @@ const ShoppingTop = ({handleData}) => {
                 type="button"
                 className="w-[10%] h-full flex items-center justify-center cursor-pointer"
               >
-                <SearchIcons colors={"#a1a1a1"} />
+                <MenuCloseIcons width={24} height={24} colors={"#000"} />
               </button>
             ) : (
               <button
@@ -80,7 +82,7 @@ const ShoppingTop = ({handleData}) => {
                 type="button"
                 className="w-[10%] h-full flex items-center justify-center cursor-pointer"
               >
-                <MenuCloseIcons width={24} height={24} colors={"#000"} />
+                 <SearchIcons colors={"#a1a1a1"} />
               </button>
             )}
           </article>
