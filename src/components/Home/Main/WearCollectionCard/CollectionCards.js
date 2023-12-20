@@ -110,7 +110,7 @@ export default function CollectionCards() {
               // searchBgColor
               className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
             >
-              Показать ещё 15 наборов
+              Показать ещё
             </button>
           </div>
         </div>

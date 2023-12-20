@@ -23,7 +23,7 @@ const ProductCarousel = ({ show, data }) => {
   );
 
   useEffect(() => {
-    slider1.current?.slickGoTo(0);
+    slider1.current?.slickGoTo(0, true);
   }, [data]);
 
   const NextArrowModal = (props) => {
@@ -177,6 +177,8 @@ const ProductCarousel = ({ show, data }) => {
       </main>
     );
   };
+
+  const [initialSlide, setInitialSlide] = useState(0);
 
   let settings = {
     nextArrow: <NextArrow />,
