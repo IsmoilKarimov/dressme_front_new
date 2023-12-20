@@ -5,11 +5,14 @@ import { useEffect, useState } from "react";
 
 export default function ShoppingStore() {
   const [getData, setGetData] = useState([]);
+  const [getAllShops, setGetAllShops] = useState(true)
 
   function handleData(data){
     setGetData(data)
   }
-  console.log(getData);
+
+  // function handleAllShops()
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -21,10 +24,10 @@ export default function ShoppingStore() {
         <ShoppingStoreBreadCrumb />
       </section>
       <section className="w-full md:border-b md:border-searchBgColor">
-        <ShoppingTop handleData={handleData}/>
+        <ShoppingTop handleData={handleData} setGetAllShops={setGetAllShops} getAllShops={getAllShops} />
       </section>
       <section className="w-full">
-        <ShoppingBrands getData={getData}/>
+        <ShoppingBrands getData={getData} getAllShops={getAllShops} />
       </section>
     </main>
   );

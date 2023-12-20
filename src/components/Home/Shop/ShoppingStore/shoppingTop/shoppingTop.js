@@ -4,7 +4,7 @@ import GenderButtonsStyle from "../GenderButtonsStyle/GenderButtonsStyle";
 // import axios from "axios";
 import Cookies from "js-cookie";
 
-const ShoppingTop = ({handleData}) => {
+const ShoppingTop = ({handleData,getAllShops,setGetAllShops}) => {
   const [genderId, setGenderId] = useState();
   const [keywords, setKeywords] = useState();
   const [searchInputData, setSearchInputData] = useState();
@@ -41,6 +41,11 @@ const ShoppingTop = ({handleData}) => {
     setSearchInputData(keywords);
   };
 
+  const removeSearchInputData = () => {
+    setSearchInputData('');
+    setKeywords('')
+    console.log(keywords,"keywords");
+  };
 
 
   console.log(genderId, "genderId");
@@ -48,13 +53,14 @@ const ShoppingTop = ({handleData}) => {
   return (
     <main className="flex flex-col min-h-[44px] justify-center items-center mb-5 md:my-4">
       <section className="md:max-w-[1280px] w-[100%] flex flex-col md:flex-row items-center justify-between m-auto">
-        <GenderButtonsStyle handleGetId={handleGetId} />
+        <GenderButtonsStyle handleGetId={handleGetId} getAllShops={getAllShops} setGetAllShops={setGetAllShops}/>
 
         <article className="w-full flex items-center mt-3 md:mt-0 md:justify-end">
           <article className="w-[400px] h-11 flex flex-row-reverse md:flex-row items-center justify-between bg-btnBgColor md:bg-white rounded-xl border border-searchBgColor font-AeonikProRegular text-base">
             <input
               type="text"
               name="keywords"
+              value={keywords}
               onChange={(e) => {
                 setKeywords(e.target.value);
               }}
@@ -66,7 +72,7 @@ const ShoppingTop = ({handleData}) => {
               <button
                 onClick={() => {
                   setChangeInputIcon(false);
-                  sendSearchInputData();
+                  removeSearchInputData();
                 }}
                 type="button"
                 className="w-[10%] h-full flex items-center justify-center cursor-pointer"

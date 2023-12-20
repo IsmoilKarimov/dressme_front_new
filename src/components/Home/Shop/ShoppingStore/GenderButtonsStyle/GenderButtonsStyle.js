@@ -6,28 +6,17 @@ import {
   WomanGenIcons,
 } from "../../../../../assets/icons";
 
-function GenderButtonsStyle({ handleGetId }) {
+function GenderButtonsStyle({ handleGetId, getAllShops, setGetAllShops }) {
   const [genderCategory, setGenderCategory] = useState([
     {
       id: 1,
-      action: true,
-      name: "Все",
-      icon: <ManWomanGen />,
-    },
-    {
-      id: 2,
       action: false,
       name: "",
       icon: <ManGenIcons />,
     },
+    { id: 2, action: false, name: "", icon: <WomanGenIcons /> },
     {
       id: 3,
-      action: false,
-      name: "",
-      icon: <WomanGenIcons />,
-    },
-    {
-      id: 4,
       action: false,
       name: "",
       icon: <ChildGenIcon />,
@@ -35,7 +24,6 @@ function GenderButtonsStyle({ handleGetId }) {
   ]);
 
   function onGetId(id) {
-    // console.log(id, "getId");
     handleGetId({
       genderFilterId: id,
     });
@@ -53,6 +41,19 @@ function GenderButtonsStyle({ handleGetId }) {
 
   return (
     <section className="w-full md:w-[480px] flex items-center border border-searchBgColor rounded-xl bg-slate-50 md:mt-0">
+      <button
+        onClick={() => {
+          setGetAllShops(true);
+        }}
+        className={`${
+          getAllShops
+            ? "bg-white border active:scale-95 my-auto mx-auto border-searchBgColor rounded-xl"
+            : ""
+        } w-1/4 flex items-center justify-center active:scale-95 h-11 text-[15px] text-center font-AeonikProRegular`}
+      >
+        <ManWomanGen />
+      </button>
+      <span className="text-searchBgColor flex items-center">|</span>
       {genderCategory?.map((data) => {
         return (
           <div
@@ -62,14 +63,19 @@ function GenderButtonsStyle({ handleGetId }) {
             <button
               key={data?.id}
               onClick={() => {
+                setGetAllShops(false);
                 handleGenderCheck(data?.id);
                 onGetId(data?.id);
               }}
-              className={`w-full flex items-center justify-center active:scale-95 h-11 text-[15px] text-center font-AeonikProRegular ${
-                data?.action
-                  ? `{ bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-xl`
-                  : ""
-              } `}
+              className={`${
+                getAllShops
+                  ? "bg-"
+                  : `${
+                      data?.action
+                        ? "bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-xl"
+                        : ""
+                    }`
+              } w-full flex items-center justify-center active:scale-95 h-11 text-[15px] text-center font-AeonikProRegular  `}
             >
               <span>{data.icon}</span>
               {data.name ? (
@@ -80,7 +86,7 @@ function GenderButtonsStyle({ handleGetId }) {
             </button>
             <span
               className={`${
-                data.id === 4
+                data.id === 3
                   ? "text-searchBgColor hidden"
                   : "text-searchBgColor flex items-center"
               }`}
