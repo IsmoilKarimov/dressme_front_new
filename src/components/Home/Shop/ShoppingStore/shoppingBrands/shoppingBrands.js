@@ -7,8 +7,7 @@ import {
   WomanGenIcons,
 } from "../../../../../assets/icons";
 
-const ShoppingBrands = ({ getData}) => {
-  
+const ShoppingBrands = ({ getData }) => {
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/shopping_store/:${id}`);
@@ -69,18 +68,18 @@ const ShoppingBrands = ({ getData}) => {
                   <div className="flex items-center md:ml-[88px] md:mt-0">
                     <div
                       className={`${
-                        data.gender_id === "1"
-                          ? "flex w-9 h-9 md:w-12 md:h-12 items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white rounded-lg mr-1"
-                          : "hidden"
+                        data.gender_id === "2"
+                          ? "hidden"
+                          : "flex w-9 h-9 md:w-12 md:h-12 items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white rounded-lg mr-1"
                       } `}
                     >
                       <ManGenIcons />
                     </div>
                     <div
                       className={`${
-                        data.gender_id === "2"
-                          ? "flex items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white w-9 h-9 md:w-12 md:h-12 rounded-lg"
-                          : "hidden"
+                        data.gender_id === "1"
+                          ? "hidden"
+                          : "flex items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white w-9 h-9 md:w-12 md:h-12 rounded-lg"
                       } `}
                     >
                       <WomanGenIcons />
@@ -93,7 +92,7 @@ const ShoppingBrands = ({ getData}) => {
                     goDetail(data?.id);
                   }}
                   className={
-                    "w-full md:w-fit flex items-center justify-center font-AeonikProMedium text-base text-SignInBgColor border border-searchBgColor md:border-none bg-[#E8F5FD] md:bg-white mt-6 md:mt-0 md:ml-[117px] py-2 md:py-0 rounded-lg"
+                    "w-full md:w-fit flex items-center justify-center font-AeonikProMedium text-base text-SignInBgColor border border-searchBgColor md:border-SignInBgColor bg-[#E8F5FD] md:bg-white mt-6 md:mt-0 md:ml-[117px] py-2 md:py-1 md:px-3 md:hover:bg-SignInBgColor duration-300 ease-out md:hover:text-white rounded-lg"
                   }
                 >
                   Подробнее

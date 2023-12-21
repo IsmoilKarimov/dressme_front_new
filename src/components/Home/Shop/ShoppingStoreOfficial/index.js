@@ -7,20 +7,17 @@ import LocationOfYandex from "../../Products/SignleMainProducts/SingleProduct/Pr
 import ShowPageComment from "./ShowPageComment/ShowPageComment";
 import { GoBackIcon } from "../../../../assets/icons";
 import { useQuery } from "@tanstack/react-query";
-import {useHttp} from "../../../../hook/useHttp"
+import { useHttp } from "../../../../hook/useHttp";
 
 const ShoppingStoreOfficial = () => {
   const [openTabComment, setOpenTabComment] = useState(false);
   const [openTabLocation, setOpenTabLocation] = useState(false);
-  const [storeData, setStoreData] = useState({})
-  const {request} = useHttp()
+  const [storeData, setStoreData] = useState({});
+  const { request } = useHttp();
   const { id } = useParams();
   const NewId = id.replace(":", "");
 
-  console.log(storeData, 'sd');
-
-
-    //------ GET STORE DATA -------
+  //------ GET STORE DATA -------
   useQuery(
     ["get-store-info"],
     async () => {
@@ -37,6 +34,12 @@ const ShoppingStoreOfficial = () => {
     }
   );
 
+  const clickButtons = {
+    openTabComment,
+    setOpenTabComment,
+    openTabLocation,
+    setOpenTabLocation,
+  };
 
   useEffect(() => {
     window.scrollTo({
@@ -52,18 +55,10 @@ const ShoppingStoreOfficial = () => {
 
       <section className="w-full border-searchBgColor ">
         <ShoppingStoreOfficialTop
-          openTabComment={openTabComment}
-          setOpenTabComment={setOpenTabComment}
-          openTabLocation={openTabLocation}
-          setOpenTabLocation={setOpenTabLocation}
+          clickButtons={clickButtons}
           storeData={storeData}
-          />
+        />
       </section>
-
-
-
-
-
 
       <section className="w-full flex items-center justify-center">
         <div className="w-full flex flex-col items-center justify-center">

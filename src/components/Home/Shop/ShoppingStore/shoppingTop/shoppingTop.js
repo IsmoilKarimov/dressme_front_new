@@ -51,8 +51,6 @@ const ShoppingTop = ({handleData,getAllShops,setGetAllShops}) => {
     console.log(keywords,"keywords");
   };
 
-  console.log(genderId, "genderId");
-
   return (
     <main className="flex flex-col min-h-[44px] justify-center items-center mb-5 md:my-4">
       <section className="md:max-w-[1280px] w-[100%] flex flex-col md:flex-row items-center justify-between m-auto">
