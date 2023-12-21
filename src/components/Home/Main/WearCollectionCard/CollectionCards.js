@@ -101,18 +101,20 @@ export default function CollectionCards() {
             })}
           </article>
 
-          <div className="w-full h-fit flex items-center justify-center mt-14">
-            <button
-              type="button"
-              onClick={() => {
-                setPagination((prev) => prev + 15);
-              }}
-              // searchBgColor
-              className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
-            >
-              Показать ещё
-            </button>
-          </div>
+          {mainData?.products?.data?.length < 16 ? null : (
+            <div className="w-full h-fit flex items-center justify-center mt-14">
+              <button
+                type="button"
+                onClick={() => {
+                  setPagination((prev) => prev + 15);
+                }}
+                // searchBgColor
+                className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
+              >
+                Показать ещё
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </main>

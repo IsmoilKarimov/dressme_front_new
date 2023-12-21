@@ -263,7 +263,7 @@ export default function MainPageSliders() {
                 {mainData?.sections?.map((data) => {
                   return (
                     <NavLink
-                      to={"/categoriesType"}
+                      to={`/${data?.id}`}
                       key={data?.id}
                       className="!w-[99%] h-[260px] rounded-lg "
                     >
