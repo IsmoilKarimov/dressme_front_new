@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import "./Store.css"
+import "./Store.css";
 import { nike } from "../../../../../assets";
 import {
   ArrowTopIcons,
@@ -16,14 +16,19 @@ import { useCallback, useEffect, useState } from "react";
 import { Modal, Radio } from "antd";
 import FilterDropUp from "../../../../Category/CategoryForType/CategoryMobileDropUp/FilterDropUp";
 
-const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, openTabLocation, setOpenTabLocation }) => {
-
+const ShoppingStoreOfficialTop = ({
+  storeData,
+  openTabComment,
+  setOpenTabComment,
+  openTabLocation,
+  setOpenTabLocation,
+}) => {
   const [openLocationModal, setOpenLocationModal] = useState(false);
-  const [filter, setFilter] = useState(false)
-  const toggleFilter = useCallback(() => setFilter(false), [])
+  const [filter, setFilter] = useState(false);
+  const toggleFilter = useCallback(() => setFilter(false), []);
 
-   // For DropUp
-   useEffect(() => {
+  // For DropUp
+  useEffect(() => {
     if (filter) {
       document.body.style.overflow = "hidden";
     } else {
@@ -32,28 +37,32 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
   }, [filter]);
 
   const [locationsList] = useState([
-    { id: 1, location: 'Bektemir' },
-    { id: 2, location: 'Mirzo Ulugbek' },
-    { id: 3, location: 'Yunusobod' },
-    { id: 4, location: 'Chilonzor' },
-    { id: 5, location: 'Mirobod' },
+    { id: 1, location: "Bektemir" },
+    { id: 2, location: "Mirzo Ulugbek" },
+    { id: 3, location: "Yunusobod" },
+    { id: 4, location: "Chilonzor" },
+    { id: 5, location: "Mirobod" },
   ]);
 
   const onChange = (checkedValues) => {
-    console.log('checked = ', checkedValues);
+    console.log("checked = ", checkedValues);
   };
+
+  console.log(storeData, "STOREDATA");
 
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:my-5">
       <div className="filter">
         <section
           onClick={() => setFilter(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${filter ? "" : "hidden"
-            }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+            filter ? "" : "hidden"
+          }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${filter ? "bottom-0" : "bottom-[-800px] z-0"
-            }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+            filter ? "bottom-0" : "bottom-[-800px] z-0"
+          }`}
         >
           <FilterDropUp onClick={toggleFilter} />
         </section>
@@ -72,27 +81,28 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
             <div className="w-full md:h-[90px] mt-2 md:mt-0 h-fit flex flex-col md:flex-row items-center border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               {/* 1 */}
               <div className="w-full md:w-[40%] flex h-[80px] md:h-fit items-center md:ml-[40px]">
-                <figure className="w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white">
-                  <img src={nike} alt="" />
+                <figure className="w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white overflow-hidden">
+                  <img src={storeData?.url_logo_photo} className="w-full h-full object-cover" alt="" />
                 </figure>
                 <div className="flex flex-col ml-8">
-                  <p className="text-xl font-AeonikProMedium mb-3">{name}</p>
-                  <div className="">
-                    <div className="flex items-center">
-                      <div className="flex items-center mr-[6px]">
-                        <StarIcons />
-                      </div>
-                      <div className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 md:ml-1 flex items-center text-sm">
-                        <p className="font-AeonikProMedium text-black mr-1">
-                          5.0
-                        </p>
-                        <p className="text-setTexOpacity font-AeonikProRegular">
-                          (859 votes) <span className="ml-[10px]">|</span>{" "}
-                        </p>
-                        <p className="font-AeonikProRegular ml-[10px] text-setTexOpacity">
-                          4937 orders
-                        </p>
-                      </div>
+                  <p className="text-xl font-AeonikProMedium mb-3">
+                    {storeData?.name}
+                  </p>
+                  <div
+                    className={`${
+                      storeData?.overall_rating ? "flex" : "hidden"
+                    } items-center`}
+                  >
+                    <div className="flex items-center mr-[6px]">
+                      <StarIcons />
+                    </div>
+                    <div className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 md:ml-1 flex items-center text-sm">
+                      <p className="font-AeonikProMedium text-black mr-1">
+                        {storeData?.overall_rating}
+                      </p>
+                      <p className="text-setTexOpacity font-AeonikProRegular">
+                        ({storeData?.rated_users_count} votes){" "}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -108,10 +118,10 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
                   </span>
                 </NavLink>
                 <button
-                  onClick={e => {
+                  onClick={(e) => {
                     e.preventDefault();
                     setOpenTabLocation(!openTabLocation);
-                    setOpenTabComment(false)
+                    setOpenTabComment(false);
                   }}
                   className="flex flex-col ml-3 w-[70%] md:w-full"
                 >
@@ -149,21 +159,22 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
                   </button>
                   <div className="flex items-center justify-end">
                     <div
-                      onClick={e => {
+                      onClick={(e) => {
                         e.preventDefault();
                         setOpenTabComment(!openTabComment);
-                        setOpenTabLocation(false)
-                        
+                        setOpenTabLocation(false);
                       }}
-                      className="w-[42%] min-w-min hidden md:block text-sm font-AeonikProRegular text-borderWinter ml-auto cursor-pointer">
-                        Посмотреть отзывы
+                      className="w-[42%] min-w-min hidden md:block text-sm font-AeonikProRegular text-borderWinter ml-auto cursor-pointer"
+                    >
+                      Посмотреть отзывы
                     </div>
                     <button
-                      onClick={e => {
+                      onClick={(e) => {
                         e.preventDefault();
                         setOpenTabComment(!openTabComment);
                       }}
-                      className="flex items-center justify-center border border-searchBgColor w-[48px] h-[48px] rounded-xl ml-[24px] md:ml-[10px] flex-shrink-0">
+                      className="flex items-center justify-center border border-searchBgColor w-[48px] h-[48px] rounded-xl ml-[24px] md:ml-[10px] flex-shrink-0"
+                    >
                       <CommentStarIcon colors={"#007DCA"} />
                     </button>
                   </div>
@@ -173,40 +184,76 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
           </div>
           <div className="w-full  hidden md:flex justify-end items-center my-3">
             <div className="w-fit flex gap-x-7 items-center">
-              <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
-                <p><LocationColoursIcons colors={"#303030"} /></p>
-                <p className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}>
+              <NavLink
+                to="#"
+                className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer"
+              >
+                <p>
+                  <LocationColoursIcons colors={"#303030"} />
+                </p>
+                <p
+                  className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
+                >
                   Мирзо Улугбек
                 </p>
               </NavLink>
-              <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
-                <p><LocationColoursIcons colors={"#303030"} /></p>
-                <p className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}>
+              <NavLink
+                to="#"
+                className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer"
+              >
+                <p>
+                  <LocationColoursIcons colors={"#303030"} />
+                </p>
+                <p
+                  className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
+                >
                   Юнусабад
                 </p>
               </NavLink>
-              <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
-                <p><LocationColoursIcons colors={"#303030"} /></p>
-                <p className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}>
+              <NavLink
+                to="#"
+                className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer"
+              >
+                <p>
+                  <LocationColoursIcons colors={"#303030"} />
+                </p>
+                <p
+                  className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
+                >
                   Алмазар
                 </p>
               </NavLink>
-              <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
-                <p><LocationColoursIcons colors={"#303030"} /></p>
-                <p className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}>
+              <NavLink
+                to="#"
+                className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer"
+              >
+                <p>
+                  <LocationColoursIcons colors={"#303030"} />
+                </p>
+                <p
+                  className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
+                >
                   Чиланзар
                 </p>
               </NavLink>
-              <NavLink to="#" className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer">
-                <p><LocationColoursIcons colors={"#303030"} /></p>
-                <p className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}>
+              <NavLink
+                to="#"
+                className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer"
+              >
+                <p>
+                  <LocationColoursIcons colors={"#303030"} />
+                </p>
+                <p
+                  className={`text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
+                >
                   Учтепа
                 </p>
               </NavLink>
               <button
                 type="primary"
                 onClick={() => setOpenLocationModal(true)}
-                className={`text-borderWinter text-base font-AeonikProMedium`}>
+                className={`text-borderWinter text-base font-AeonikProMedium`}
+              >
                 Все локации
               </button>
               <Modal
@@ -218,28 +265,45 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
                 className="w-full p-6"
               >
                 <div className="w-full px-[25px] pb-[30px] pt-[20px]">
-                  <div className="text-2xl font-AeonikProRegular mb-[30px]">Выберите локацию</div>
-                  <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">Tashkent</div>
+                  <div className="text-2xl font-AeonikProRegular mb-[30px]">
+                    Выберите локацию
+                  </div>
+                  <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
+                    Tashkent
+                  </div>
                   <Radio.Group
                     style={{
-                      width: '100%',
+                      width: "100%",
                     }}
                     onChange={onChange}
                   >
                     <div className="w-full flex flex-wrap items-center gap-y-2">
-                      {locationsList.map(data => (
+                      {locationsList.map((data) => (
                         <div key={data.id} className="w-1/3">
-                          <Radio value={data.location} name="location" className="text-lg font-AeonikProRegular">{data.location}</Radio>
+                          <Radio
+                            value={data.location}
+                            name="location"
+                            className="text-lg font-AeonikProRegular"
+                          >
+                            {data.location}
+                          </Radio>
                         </div>
                       ))}
                     </div>
                   </Radio.Group>
-                  <button type="button" className="w-full flex justify-end mt-[60px] text-borderWinter text-lg font-AeonikProMedium">Готово</button>
+                  <button
+                    type="button"
+                    className="w-full flex justify-end mt-[60px] text-borderWinter text-lg font-AeonikProMedium"
+                  >
+                    Готово
+                  </button>
                 </div>
               </Modal>
             </div>
           </div>
-          <action className={`w-full md:hidden flex items-center justify-between mt-3 mb-3 px-4 gap-x-2`}>
+          <action
+            className={`w-full md:hidden flex items-center justify-between mt-3 mb-3 px-4 gap-x-2`}
+          >
             <div className="search flex items-center bg-btnBgColor justify-between rounded-xl font-AeonikProMedium h-12 my-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
               <span className=" flex ss:pl-[11.65px] md:hidden">
                 <SearchIcons />
@@ -260,7 +324,6 @@ const ShoppingStoreOfficialTop = ({ name, openTabComment, setOpenTabComment, ope
             </button>
           </action>
         </div>
-
       </section>
     </main>
   );

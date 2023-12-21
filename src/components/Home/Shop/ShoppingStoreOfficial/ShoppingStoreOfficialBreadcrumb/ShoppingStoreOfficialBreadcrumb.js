@@ -1,61 +1,7 @@
-import { useContext, useState } from "react";
-import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { NavLink } from "react-router-dom";
-import { Popover } from "antd";
-import { BiChevronDown } from "react-icons/bi";
-import {
-  AutummMale,
-  SpringMale,
-  SummerMale,
-  WinterMale,
-} from "../../../../../assets";
 import { ItailIcons } from "../../../../../assets/icons";
 
 const ShoppingStoreOfficialBreadCrumb = ({ name }) => {
-  const [dressInfo] = useContext(dressMainData);
-  const [state, setState] = useState({
-    openwear: false,
-  });
-
-  const personItems = [
-    { id: 1111, man: SpringMale },
-    { id: 2222, man: SummerMale },
-    { id: 3333, man: AutummMale },
-    { id: 4444, man: WinterMale },
-    { id: 5555, man: WinterMale },
-  ];
-  const handleOpenChangeWear = (newOpen) => {
-    setState({ ...state, openwear: newOpen });
-  };
-  const handleWearValue = () => {
-    setState({ ...state, openwear: false });
-  };
-
-  const wearList = [
-    { id: 1, type: "All Clothing types" },
-    { id: 2, type: "Headwear" },
-    { id: 3, type: "Outwear" },
-    { id: 4, type: "Underwear" },
-    { id: 5, type: "Legwear" },
-    { id: 6, type: "Accessory" },
-  ];
-  const contentWear = (
-    <div className="w-[170px] h-fit m-0 p-0">
-      {wearList.map((data) => {
-        return (
-          <p
-            key={data?.id}
-            onClick={() => {
-              handleWearValue(data?.type);
-            }}
-            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.TextHoverSeason}`}
-          >
-            {data?.type}
-          </p>
-        );
-      })}
-    </div>
-  );
 
   return (
     <main className="flex flex-col min-h-[44px]  justify-center items-center md:my-3">
@@ -89,43 +35,6 @@ const ShoppingStoreOfficialBreadCrumb = ({ name }) => {
               </span>
             </action>
           </div>
-        </action>
-        <action className="hidden md:block">
-          <Popover
-            open={state?.openwear}
-            onOpenChange={handleOpenChangeWear}
-            className="w-[168px] px-[17px] h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
-            trigger="click"
-            options={["Hide"]}
-            placement="bottom"
-            content={contentWear}
-          >
-            <figure>
-              {personItems
-                ?.filter((value) => value.id === dressInfo?.type)
-                .map((data) => {
-                  return (
-                    <img
-                      key={data.id}
-                      className="mr-3"
-                      src={data?.man}
-                      alt="female"
-                    />
-                  );
-                })}
-            </figure>
-            <p className="not-italic font-AeonikProMedium text-center  text-sm leading-4 text-black">
-              Абдулазиз{" "}
-            </p>
-            <span>
-              <BiChevronDown
-                size={22}
-                style={{ color: "#000" }}
-                className={`${state?.openwear ? "rotate-[-180deg]" : ""
-                  } duration-200`}
-              />{" "}
-            </span>
-          </Popover>
         </action>
       </section>
     </main>

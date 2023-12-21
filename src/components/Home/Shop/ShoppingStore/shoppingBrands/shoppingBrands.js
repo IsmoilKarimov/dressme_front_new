@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { useNavigate } from "react-router-dom";
 import {
   ArrowTopIcons,
@@ -8,40 +6,19 @@ import {
   StarIcons,
   WomanGenIcons,
 } from "../../../../../assets/icons";
-import { useQuery } from "@tanstack/react-query";
-import { useHttp } from "../../../../../hook/useHttp";
 
-const ShoppingBrands = ({ getData, getAllShops }) => {
-  const { request } = useHttp();
+const ShoppingBrands = ({ getData}) => {
+  
   const navigate = useNavigate();
-  const [shops, setShops] = useState(null);
   const goDetail = (id) => {
     navigate(`/shopping_store/:${id}`);
   };
-
-  //------ GET SHOPS LIST DATA -------
-  // useQuery(
-  //   ["get-shops"],
-  //   async () => {
-  //     return request({ url: `/main/shops`, token: true });
-  //   },
-  //   {
-  //     onSuccess: (res) => {
-  //       console.log(res?.shops?.data, "SUCCESS, RESPONSE");
-  //       setShops(res?.shops?.data);
-  //     },
-  //     onError: (err) => {
-  //       console.log(err, "THERE IS AN ERROR IN SHOPS LIST");
-  //     },
-  //   }
-  // );
 
   return (
     <main className="flex flex-col min-h-[44px]  justify-center items-center my-3">
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto md:mt-[50px] mb-20 md:mb-[90px]">
         <section className="w-full ">
           {getData?.shops?.data?.map((data) => {
-            console.log(data.gender_id, "DATA");
             return (
               <div
                 key={data?.id}
@@ -89,7 +66,6 @@ const ShoppingBrands = ({ getData, getAllShops }) => {
                       {data?.delivery?.name_ru}
                     </p>
                   </div>
-
                   <div className="flex items-center md:ml-[88px] md:mt-0">
                     <div
                       className={`${
@@ -100,7 +76,6 @@ const ShoppingBrands = ({ getData, getAllShops }) => {
                     >
                       <ManGenIcons />
                     </div>
-
                     <div
                       className={`${
                         data.gender_id === "2"
