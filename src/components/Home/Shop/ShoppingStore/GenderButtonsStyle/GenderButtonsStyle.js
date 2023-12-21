@@ -40,7 +40,7 @@ function GenderButtonsStyle({ handleGetId, getAllShops, setGetAllShops }) {
   };
 
   return (
-    <section className="w-full md:w-[480px] flex items-center border border-searchBgColor rounded-xl bg-slate-50 md:mt-0">
+    <section className="w-full md:w-[520px] flex items-center border border-searchBgColor rounded-xl bg-slate-50 md:mt-0">
       <button
         onClick={() => {
           setGetAllShops(true);
@@ -53,6 +53,7 @@ function GenderButtonsStyle({ handleGetId, getAllShops, setGetAllShops }) {
         } w-1/4 flex items-center justify-center active:scale-95 h-11 text-[15px] text-center font-AeonikProRegular`}
       >
         <ManWomanGen />
+        <span className="text-base ml-3 font-AeonikProRegular">Все</span>
       </button>
       <span className="text-searchBgColor flex items-center">|</span>
       {genderCategory?.map((data) => {

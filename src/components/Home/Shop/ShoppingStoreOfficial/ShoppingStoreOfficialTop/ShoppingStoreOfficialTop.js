@@ -151,10 +151,10 @@ const ShoppingStoreOfficialTop = ({
                   </div>
                 </div>
                 <div className="flex items-center ml-auto">
-                  <button className="flex flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1">
+                  <button className={`${storeData?.gender_id === "1" ? 'flex' : 'hidden'}  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}>
                     <ManGenIcons />
                   </button>
-                  <button className="flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl">
+                  <button className={`${storeData?.gender_id === "2" ? 'flex' : 'hidden'} flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}>
                     <WomanGenIcons />
                   </button>
                   <div className="flex items-center justify-end">
