@@ -54,6 +54,7 @@ const Catalog = () => {
   const goCatalogId = (id) => {
     navigate(`/catalog/:${id}`);
   };
+
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">

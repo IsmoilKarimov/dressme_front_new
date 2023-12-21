@@ -178,8 +178,6 @@ const ProductCarousel = ({ show, data }) => {
     );
   };
 
-  const [initialSlide, setInitialSlide] = useState(0);
-
   let settings = {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,

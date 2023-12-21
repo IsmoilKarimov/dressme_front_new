@@ -11,7 +11,6 @@ import SignUpSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import MobileAllComments from "../components/Home/Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/MobileComments";
 import { EditProfilePage } from "../components/Authentication/UserProfile/ProfileEditPage/EditPageProfile";
 
-
 // import ConnectDashboard from "../components/RegistrationDashboard";
 // import CatalogMain from "../components/Home/Catalog/CatalogFilter";
 
@@ -106,7 +105,7 @@ const RouterMain = () => {
           }
         />
         <Route
-          path="/categoriesType"
+          path="/:id"
           element={
             <Suspense
               fallback={
@@ -201,13 +200,7 @@ const RouterMain = () => {
           }
         />
 
-        <Route
-          index
-          path="/profile/edit"
-          element={
-            <EditProfilePage />
-          }
-        />
+        <Route index path="/profile/edit" element={<EditProfilePage />} />
 
         <Route
           path="/favourites"
