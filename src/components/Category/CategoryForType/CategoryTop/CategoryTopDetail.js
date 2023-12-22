@@ -4,6 +4,7 @@ import { MuslimImg } from "../../../../assets";
 import {
   ClothesIcons,
   FilterIcons,
+  GoBackIcon,
   SearchIcons,
   UnderSection,
 } from "../../../../assets/icons";
@@ -167,7 +168,16 @@ const CategoryTopDetail = () => {
   );
 
   return (
-    <main className="flex flex-col justify-center border-t border-searchBgColor items-center md:pt-[60px]">
+    <main className="flex flex-col justify-center border-t border-searchBgColor items-center">
+      <div className="pt-8 pb-12 w-full max-w-[1280px]">
+        <NavLink
+          to="/"
+          className={`w-fit flex items-center cursor-pointer justify-start md:justify-center md:border border-borderColor2 rounded-lg mr-20 md:mr-5`}
+        >
+          <GoBackIcon />
+        </NavLink>
+      </div>
+
       <div className="tableSizes">
         <section
           onClick={() => setFilter(false)}
