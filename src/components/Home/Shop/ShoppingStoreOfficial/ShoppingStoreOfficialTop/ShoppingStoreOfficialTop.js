@@ -44,6 +44,20 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
     console.log("checked = ", checkedValues);
   };
 
+  // ---- Regions show ----
+
+  let existRegions = [];
+  let existRegionsObj = {};
+
+  storeData?.shop?.shop_locations?.map((item) => {
+    existRegions.push(item?.region_id);
+    existRegionsObj[item?.region_id] = item?.region?.name_ru;
+  });
+
+  const uniqueRegions = new Set(existRegions);
+
+  existRegions = [...uniqueRegions];
+
   // ---- Location state ----
 
   let checkedData = {};
@@ -219,6 +233,7 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
               </div>
               <div className="w-full md:w-fit hidden md:flex justify-end items-center mt-1 mb-14">
                 <div className="w-fit flex gap-x-[30px] items-center ">
+                  
                   <button
                     type="primary"
                     onClick={() => setOpenLocationModal(true)}
@@ -229,8 +244,10 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
                     </p>
                     Все локации
                   </button>
+
                   <Modal
                     centered
+                    width={700}
                     open={openLocationModal}
                     onOk={() => setOpenLocationModal(false)}
                     onCancel={() => setOpenLocationModal(false)}
@@ -241,34 +258,50 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
                       <div className="text-2xl font-AeonikProRegular mb-[30px]">
                         Выберите локацию
                       </div>
-                      <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
-                        {storeData?.shop?.shop_locations?.sub_region?.map(
-                          (item) => {
-                            console.log(item, "ITEM");
-                            return <div key={item.id}>{item?.name_ru}</div>;
-                          }
-                        )}
+                      <div className="h-[250px] overflow-y-auto mb-[20px] VerticelScroll pr-2">
+                        <Radio.Group
+                          style={{
+                            width: "100%",
+                          }}
+                          defaultValue={selectedLocation?.id}
+                          // onChange={onChange}
+                        >
+                          {existRegions.map((item) => {
+                            return (
+                              <>
+                                <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
+                                  {existRegionsObj[item]}
+                                </div>
+
+                                <div className="w-full">
+                                  {storeData?.shop?.shop_locations.map((data) => {
+                                    if (data?.sub_region?.region_id === item) {
+                                      return (
+                                        <div
+                                          onClick={() => {
+                                            checkedData = data;
+                                          }}
+                                          key={data.id}
+                                          className="mb-[8px]"
+                                        >
+                                          <Radio
+                                            value={data?.id}
+                                            name="location"
+                                            className="text-lg font-AeonikProRegular"
+                                          >
+                                            {data?.sub_region?.name_ru} (
+                                            {data?.address})
+                                          </Radio>
+                                        </div>
+                                      );
+                                    }
+                                  })}
+                                </div>
+                              </>
+                            );
+                          })}
+                        </Radio.Group>
                       </div>
-                      <Radio.Group
-                        style={{
-                          width: "100%",
-                        }}
-                        onChange={onChange}
-                      >
-                        <div className="w-full flex flex-wrap items-center gap-y-2">
-                          {storeData?.shop?.shop_locations?.map((location) => (
-                            <div key={location.id} className="w-1/3">
-                              <Radio
-                                value={location?.region?.name_ru}
-                                name="location"
-                                className="text-lg font-AeonikProRegular"
-                              >
-                                {location?.region?.name_ru}
-                              </Radio>
-                            </div>
-                          ))}
-                        </div>
-                      </Radio.Group>
                       <button
                         type="button"
                         className="w-full flex justify-end mt-[60px] text-borderWinter text-lg font-AeonikProMedium"
