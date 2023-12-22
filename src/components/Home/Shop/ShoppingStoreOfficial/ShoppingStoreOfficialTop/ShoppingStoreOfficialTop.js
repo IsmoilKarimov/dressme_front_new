@@ -304,6 +304,10 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
                       </div>
                       <button
                         type="button"
+                        onClick={() => {
+                          setOpenLocationModal(false);
+                          setSelectedLocation(checkedData);
+                        }}
                         className="w-full flex justify-end mt-[60px] text-borderWinter text-lg font-AeonikProMedium"
                       >
                         Готово
