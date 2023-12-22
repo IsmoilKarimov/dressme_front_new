@@ -35,7 +35,7 @@ function LocationOfYandex({ locationText }) {
   }, []);
   return (
     <div className={`w-full `}>
-      <div className={`w-full flex items-center mb-3 mt-6`}>
+      <div className={`w-full flex items-center mb-3 mt-4`}>
         <div className="flex flex-col xs:flex-row xs:items-center gap-x-1 md:gap-x-[6px] ">
           {/* <span className="text-[#000] not-italic font-AeonikProMedium text-[14px] xs:text-base ">Адрес:</span> */}
           <div className="flex items-center">

@@ -1,12 +1,8 @@
 import { NavLink } from "react-router-dom";
 import "./Store.css";
-import { nike } from "../../../../../assets";
 import {
-  ArrowTopIcons,
-  ClothesIcons,
   CommentStarIcon,
   DeliveryIcon,
-  DeliveryIcons,
   FilterIcons,
   LocationColoursIcons,
   ManGenIcons,
@@ -32,18 +28,6 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
     }
   }, [filter]);
 
-  const [locationsList] = useState([
-    { id: 1, location: "Bektemir" },
-    { id: 2, location: "Mirzo Ulugbek" },
-    { id: 3, location: "Yunusobod" },
-    { id: 4, location: "Chilonzor" },
-    { id: 5, location: "Mirobod" },
-  ]);
-
-  const onChange = (checkedValues) => {
-    console.log("checked = ", checkedValues);
-  };
-
   // ---- Regions show ----
 
   let existRegions = [];
@@ -65,9 +49,9 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
   const [selectedLocation, setSelectedLocation] = useState(
     storeData?.shop?.shop_locations[0]
   );
+  console.log(storeData);
 
   checkedData = selectedLocation;
-  console.log(storeData?.shop?.shop_locations[0], "STORE-DATA");
 
   useEffect(() => {
     setSelectedLocation(storeData?.shop?.shop_locations[0]);
@@ -268,7 +252,7 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
                         >
                           {existRegions.map((item) => {
                             return (
-                              <>
+                              <div key={item?.id}>
                                 <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
                                   {existRegionsObj[item]}
                                 </div>
@@ -297,7 +281,7 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
                                     }
                                   })}
                                 </div>
-                              </>
+                              </div>
                             );
                           })}
                         </Radio.Group>
