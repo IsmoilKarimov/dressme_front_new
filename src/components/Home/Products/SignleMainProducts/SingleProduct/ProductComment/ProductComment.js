@@ -261,7 +261,7 @@ export default function ProductComment({ data, refetch }) {
     });
 
   return (
-    <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box md:mb-[60px]">
+    <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box md:mb-[0px]">
       <ToastContainer />
       {/* <ToastContainer
         position="top-right"
@@ -290,9 +290,11 @@ export default function ProductComment({ data, refetch }) {
                 <GoBackIcon />
               </button>
             )}
+
             <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black track%]">
               Отзывы о товаре
             </p>
+
             {Cookies.get("DressmeUserToken") ? (
               <button
                 onClick={() => setOpenComment(true)}
