@@ -26,7 +26,7 @@ const ShoppingStoreOfficial = () => {
     {
       onSuccess: (res) => {
         console.log(res?.shop, "SUCCESS, RESPONSE");
-        setStoreData(res?.shop);
+        setStoreData(res);
       },
       onError: (err) => {
         console.log(err, "THERE IS AN ERROR IN SHOPS LIST");
