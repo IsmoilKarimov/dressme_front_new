@@ -44,6 +44,21 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
     console.log("checked = ", checkedValues);
   };
 
+  // ---- Location state ----
+
+  let checkedData = {};
+
+  const [selectedLocation, setSelectedLocation] = useState(
+    storeData?.shop?.shop_locations[0]
+  );
+
+  checkedData = selectedLocation;
+  console.log(storeData?.shop?.shop_locations[0], "STORE-DATA");
+
+  useEffect(() => {
+    setSelectedLocation(storeData?.shop?.shop_locations[0]);
+  }, [storeData]);
+
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
       <div className="filter">
@@ -68,7 +83,7 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
             <figure className="w-full h-[240px] md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
               <img
                 className="w-full h-full object-cover"
-                src={storeData?.url_background_photo || null}
+                src={storeData?.shop?.url_background_photo || null}
                 alt=""
               />
             </figure>
@@ -77,18 +92,18 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
               <div className="w-full md:w-[40%] flex h-[80px] md:h-fit items-center md:ml-[40px]">
                 <figure className="w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white overflow-hidden">
                   <img
-                    src={storeData?.url_logo_photo || null}
+                    src={storeData?.shop?.url_logo_photo || null}
                     className="w-full h-full object-cover"
                     alt=""
                   />
                 </figure>
                 <div className="flex flex-col ml-8">
                   <p className="text-xl font-AeonikProMedium mb-3">
-                    {storeData?.name}
+                    {storeData?.shop?.name}
                   </p>
                   <div
                     className={`${
-                      storeData?.overall_rating ? "flex" : "hidden"
+                      storeData?.shop?.overall_rating ? "flex" : "hidden"
                     } items-center`}
                   >
                     <div className="flex items-center mr-[6px]">
@@ -99,7 +114,7 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
                         {storeData?.overall_rating}
                       </p>
                       <p className="text-setTexOpacity font-AeonikProRegular">
-                        ({storeData?.rated_users_count} votes){" "}
+                        ({storeData?.shop?.rated_users_count} votes){" "}
                       </p>
                     </div>
                   </div>
@@ -125,9 +140,11 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
                   }}
                   className="flex flex-col ml-3 w-[70%] md:w-full"
                 >
-                  <p className="text-sm font-AeonikProRegular text-borderWinter">
-                    60 Amir Temur Avenue, Mirzo Ulugbek district Tashkent 100017
-                  </p>
+                  {storeData?.shop?.shop_locations?.length ? (
+                    <p className="text-sm font-AeonikProRegular text-borderWinter">
+                      {selectedLocation?.address}
+                    </p>
+                  ) : null}
                 </button>
               </div>
               {/* 3 */}
@@ -153,14 +170,14 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
                 <div className="flex items-center ml-auto">
                   <button
                     className={`${
-                      storeData?.gender_id === "1" ? "flex" : "hidden"
+                      storeData?.shop?.gender_id === "2" ? "hidden" : "flex"
                     }  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}
                   >
                     <ManGenIcons />
                   </button>
                   <button
                     className={`${
-                      storeData?.gender_id === "2" ? "flex" : "hidden"
+                      storeData?.shop?.gender_id === "1" ? "hidden" : "flex"
                     } flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}
                   >
                     <WomanGenIcons />
@@ -197,35 +214,19 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
               <div className="flex items-start ml-[222px]">
                 <DeliveryIcon />
                 <span className="text-base text-[#2C2C2C] ml-[5px] font-AeonikProMedium">
-                  {storeData?.delivery?.name_ru}
+                  {storeData?.shop?.delivery?.name_ru}
                 </span>
               </div>
               <div className="w-full md:w-fit hidden md:flex justify-end items-center mt-1 mb-14">
                 <div className="w-fit flex gap-x-[30px] items-center ">
-                  {storeData?.shop_locations?.map((location) => {
-                    console.log(location,"Locations");
-                    return (
-                      <NavLink
-                        to="#"
-                        key={location?.id}
-                        className="w-fit h-fit flex flex-col items-center justify-center gap-y-1 cursor-pointer"
-                      >
-                        <p>
-                          <LocationColoursIcons colors={"#303030"} />
-                        </p>
-                        <p
-                          className={`text-center text-base not-italic font-AeonikProRegular  text-[#303030] hover:text-borderWinter`}
-                        >
-                          {location?.sub_region?.name_ru}
-                        </p>
-                      </NavLink>
-                    );
-                  })}
                   <button
                     type="primary"
                     onClick={() => setOpenLocationModal(true)}
-                    className={`text-borderWinter md:ml-[26px] text-base font-AeonikProMedium`}
+                    className={`flex items-center text-borderWinter md:ml-[26px] text-base font-AeonikProMedium`}
                   >
+                    <p className="mr-[6px]">
+                      <LocationColoursIcons colors={"#0077B6"} />
+                    </p>
                     Все локации
                   </button>
                   <Modal
@@ -241,13 +242,12 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
                         Выберите локацию
                       </div>
                       <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
-                        {storeData?.shop_locations?.sub_region?.map(item => {
-                          console.log(item,"ITEM");
-                          return(
-                            <div key={item.id}>{item?.name_ru }</div>
-                          )
-                        })}
-                        
+                        {storeData?.shop?.shop_locations?.sub_region?.map(
+                          (item) => {
+                            console.log(item, "ITEM");
+                            return <div key={item.id}>{item?.name_ru}</div>;
+                          }
+                        )}
                       </div>
                       <Radio.Group
                         style={{
@@ -256,7 +256,7 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
                         onChange={onChange}
                       >
                         <div className="w-full flex flex-wrap items-center gap-y-2">
-                          {storeData?.shop_locations?.map((location) => (
+                          {storeData?.shop?.shop_locations?.map((location) => (
                             <div key={location.id} className="w-1/3">
                               <Radio
                                 value={location?.region?.name_ru}
