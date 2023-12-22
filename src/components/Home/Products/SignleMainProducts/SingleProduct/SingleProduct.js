@@ -131,7 +131,7 @@ const SingleProduct = () => {
       <section>
         <SingleProductTop />
       </section>
-      <section className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto border-box mb-20 md:mb-[60px]">
+      <section className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto border-box mb-20 md:mb-[0px]">
         <section className="w-[100%] h-fit mt-6 flex justify-between flex-col md:flex-row">
           <section className={`md:w-1/2`}>
             <ProductCarousel show={show} data={singleData} />
@@ -141,31 +141,35 @@ const SingleProduct = () => {
           </section>
         </section>
         {/* Products Comment */}
-        <section className="md:mt-20 w-full">
-          <ProductComment data={singleData} refetch={refetch} />
-        </section>
-        <section className="w-full h-fit">
-          <article className="w-full mt-[34px] md:mt-0">
-            <div className="md:mb-4">
-              <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black mb-3 md:mb-0">
-                Похожие продукты
-              </p>
-            </div>
-            <article className="flex flex-wrap justify-between md:justify-start md:mx-0  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
-              {sameTypeData?.map((data) => {
-                return (
-                  <CollectionCardItem
-                    data={data}
-                    setOpenWearType={setOpenWearType}
-                    handleLeaveMouse={handleLeaveMouse}
-                    wishList={wishList}
-                    setWishlist={setWishlist}
-                  />
-                );
-              })}
+        {singleData?.product?.ratings?.length ? (
+          <section className="md:mt-20 w-full">
+            <ProductComment data={singleData} refetch={refetch} />
+          </section>
+        ) : null}
+        {sameTypeData?.length ? (
+          <section className="w-full h-fit">
+            <article className="w-full mt-[34px] md:mt-[60px] md:mb-[60px]">
+              <div className="md:mb-4">
+                <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black mb-3 md:mb-0">
+                  Похожие продукты
+                </p>
+              </div>
+              <article className="flex flex-wrap justify-between md:justify-start md:mx-0  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
+                {sameTypeData?.map((data) => {
+                  return (
+                    <CollectionCardItem
+                      data={data}
+                      setOpenWearType={setOpenWearType}
+                      handleLeaveMouse={handleLeaveMouse}
+                      wishList={wishList}
+                      setWishlist={setWishlist}
+                    />
+                  );
+                })}
+              </article>
             </article>
-          </article>
-        </section>
+          </section>
+        ) : null}
       </section>
     </main>
   );
