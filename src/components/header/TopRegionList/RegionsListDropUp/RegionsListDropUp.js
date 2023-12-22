@@ -134,20 +134,10 @@ function RegionsListDropUp({ onClick }) {
                     <button
                         onClick={onClick}
                     >
-                        <MenuCloseIcons colors={"#000"} />
+                        <MenuCloseIcons width={"24"} height={"24"} colors={"#000"} />
                     </button>
                 </section>
                 <section className="w-full h-[550px] flex flex-col items-center">
-                    <action className="w-full h-fit flex items-center justify-center flex-wrap gap-x-7 mb-[24px] px-4">
-                        <form className='w-full flex flex-col items-center'>
-                            <div className='w-full h-[380px] overflow-scroll mt-2'>
-                               
-
-                            </div>
-                        </form>
-                    </action>
-
-
                     <action className="w-full px-4 flex items-center border-t pt-[18px] justify-between gap-x-3 mb-9">
                         <button
                             onClick={onClick}
