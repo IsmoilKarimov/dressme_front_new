@@ -888,6 +888,8 @@ const ProductDetails = () => {
     (item) => item?.shop_location_id == selectedLocation?.id
   );
 
+  console.log(data?.product?.locations[0], "AASASSA");
+
   checkedData = selectedLocation;
 
   // Selected color ------------------
@@ -1240,17 +1242,14 @@ const ProductDetails = () => {
             </div>
           ) : null}
 
-          {data?.product?.locations?.length > 1 ? (
-            <button
-              type="primary"
-              onClick={() => setOpenLocationModal(true)}
-              className="hidden md:block text-borderWinter font-AeonikProMedium"
-            >
-              В других локациях
-            </button>
-          ) : (
-            <div></div>
-          )}
+          <button
+            type="primary"
+            onClick={() => setOpenLocationModal(true)}
+            className="hidden md:block text-borderWinter font-AeonikProMedium"
+          >
+            В других локациях
+          </button>
+
           <button
             type="primary"
             onClick={() => setLocations(true)}
@@ -1258,6 +1257,7 @@ const ProductDetails = () => {
           >
             В других локациях
           </button>
+          
           <Modal
             centered
             width={700}
