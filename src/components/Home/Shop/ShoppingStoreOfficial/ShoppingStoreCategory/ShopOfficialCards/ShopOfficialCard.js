@@ -58,7 +58,7 @@ export default function ShopOfficialCard({ storeData }) {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                 }}
-                className="relative w-full cursor-pointer h-[310px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
+                className="relative w-full hover:scale-105 duration-300 ease-linear cursor-pointer h-[310px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
               >
                 {/* <div><NoImg /></div> */}
               </figure>
@@ -232,20 +232,8 @@ export default function ShopOfficialCard({ storeData }) {
             <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-10 ll:w-[44px] h-10 ll:h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
               3
             </li>
-            <li className="not-italic hidden md:block font-AeonikProRegular text-lg leading-4 text-center w-10 ll:w-[44px] h-10 ll:h-[44px] rounded-lg hover:bg-searchBgColor flex md:flex items-center justify-center cursor-pointer ">
+            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-10 ll:w-[44px] h-10 ll:h-[44px] rounded-lg hover:bg-searchBgColor flex md:flex items-center justify-center cursor-pointer ">
               4
-            </li>
-            <li className="not-italic hidden md:block font-AeonikProRegular text-lg leading-4 text-center w-10 ll:w-[44px] h-10 ll:h-[44px] rounded-lg hover:bg-searchBgColor flex md:flex items-center justify-center cursor-pointer ">
-              5
-            </li>
-            <li className="not-italic hidden md:block font-AeonikProRegular text-lg leading-4 text-center w-10 ll:w-[44px] h-10 ll:h-[44px] rounded-lg hover:bg-searchBgColor flex md:flex items-center justify-center cursor-pointer ">
-              6
-            </li>
-            <li className="not-italic hidden md:block font-AeonikProRegular text-lg leading-4 text-center w-10 ll:w-[44px] h-10 ll:h-[44px] rounded-lg hover:bg-searchBgColor flex md:flex items-center justify-center cursor-pointer ">
-              7
-            </li>
-            <li className="not-italic hidden md:block font-AeonikProRegular text-lg leading-4 text-center w-10 ll:w-[44px] h-10 ll:h-[44px] rounded-lg hover:bg-searchBgColor flex md:flex items-center justify-center cursor-pointer ">
-              8
             </li>
             <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-10 ll:w-[44px] h-10 ll:h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
               ...
