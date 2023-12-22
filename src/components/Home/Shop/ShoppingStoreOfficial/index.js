@@ -18,14 +18,14 @@ const ShoppingStoreOfficial = () => {
   const NewId = id.replace(":", "");
 
   //------ GET STORE DATA -------
-  useQuery(
+  const { refetch } = useQuery(
     ["get-store-info"],
     async () => {
       return request({ url: `/main/shops/${NewId}`, token: true });
     },
     {
       onSuccess: (res) => {
-        console.log(res?.shop, "SUCCESS, RESPONSE");
+        // console.log(res?.shop, "SUCCESS, RESPONSE");
         setStoreData(res);
       },
       onError: (err) => {
@@ -73,7 +73,7 @@ const ShoppingStoreOfficial = () => {
 
           {/* Comment Section For Shopping Page */}
           <action className={`${openTabComment ? "block" : "hidden"} w-full `}>
-            <ShowPageComment setOpenTabComment={setOpenTabComment} />
+            <ShowPageComment refetch={refetch} storeData={storeData} setOpenTabComment={setOpenTabComment} />
           </action>
 
           {/* Map Section */}
@@ -86,7 +86,7 @@ const ShoppingStoreOfficial = () => {
               onClick={() => {
                 setOpenTabLocation(false);
               }}
-              className={`flex items-center cursor-pointer justify-start md:justify-center md:border border-borderColor2 rounded-lg mr-20 md:mr-5`}
+              className={`flex items-center cursor-pointer justify-start md:justify-center md:border border-borderColor2 rounded-lg mr-20 md:mt-4 md:mr-5`}
             >
               <GoBackIcon />
             </button>
