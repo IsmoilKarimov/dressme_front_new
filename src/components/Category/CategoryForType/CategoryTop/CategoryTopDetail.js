@@ -96,16 +96,16 @@ const CategoryTopDetail = () => {
 
   const contentCategories = (
     <section className="w-[230px] h-fit m-0 p-0">
-      {categories.map((data) => {
+      {data?.sections?.map((data) => {
         return (
           <p
             key={data?.id}
             onClick={() => {
-              handleCategories(data?.type);
+              handleCategories(data?.name_ru);
             }}
             className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
-            {data?.type}
+            {data?.name_ru}
           </p>
         );
       })}
@@ -169,7 +169,7 @@ const CategoryTopDetail = () => {
 
   return (
     <main className="flex flex-col justify-center border-t border-searchBgColor items-center">
-      <div className="pt-8 pb-12 w-full max-w-[1280px]">
+      <div className="pt-8 pb-14 w-full max-w-[1280px]">
         <NavLink
           to="/"
           className={`w-fit flex items-center cursor-pointer justify-start md:justify-center md:border border-borderColor2 rounded-lg mr-20 md:mr-5`}
@@ -294,7 +294,7 @@ const CategoryTopDetail = () => {
                 {data?.section?.sub_sections?.map((catalog, index) => (
                   <li key={index} className="text-[15px] font-AeonikProMedium">
                     <button className="focus:bg-borderWinter focus:text-white hover:bg-borderWinter hover:text-white bg-white border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]">
-                      {catalog.name}
+                      {catalog.name_ru}
                     </button>
                   </li>
                 ))}
