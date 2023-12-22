@@ -180,7 +180,7 @@ export default function ShopOfficialCard({ storeData }) {
                     )}
                   </article>
                   <figure className="flex items-center select-none	absolute right-2 bottom-2">
-                    {Cookies.get("DressmeUserToken") && (
+                   {/*  {Cookies.get("DressmeUserToken") && ( */}
                       <button
                         onClick={() => {
                           if (wishList?.includes(data?.id)) {
@@ -199,7 +199,7 @@ export default function ShopOfficialCard({ storeData }) {
                           <BsHeart />
                         )}
                       </button>
-                    )}
+                   {/*  )} */}
                   </figure>
                 </article>
               </section>
