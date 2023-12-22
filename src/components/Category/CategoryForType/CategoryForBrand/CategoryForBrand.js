@@ -119,7 +119,7 @@ const CategoryForBrand = () => {
     budgetShow: screenSize.width <= 768 ? true : false,
     ColorsShow: screenSize.width <= 768 ? true : false,
     ClothingShow: screenSize.width <= 768 ? true : false,
-    
+
     TrouserShow: screenSize.width <= 768 ? true : false,
     ShoesShow: screenSize.width <= 768 ? true : false,
     customerRreviews: screenSize.width <= 768 ? true : false,
@@ -222,89 +222,6 @@ const CategoryForBrand = () => {
             })}
           </article>
         </section>
-        {/* Brands filter */}
-        <section className="w-full h-fit mt-[50px]  ">
-          {/* Controls */}
-          <article
-            className="openBrands w-full flex justify-between items-center"
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <figure
-              onClick={() =>
-                setState({ ...state, brandShow: !state.brandShow })
-              }
-              className="flex items-center cursor-pointer select-none"
-            >
-              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Бренды
-              </p>
-              <p
-                className={`${
-                  state?.brandShow ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </p>
-            </figure>
-            <span className="not-italic font-AeonikProMedium text-sm leading-4 text-fullBlue cursor-pointer">
-              Очистить все
-            </span>
-          </article>
-          <article
-            className={` openedBrands border-0  overflow-hidden  ${
-              state?.brandShow
-                ? "duration-300 h-0"
-                : "duration-300 h-[375px] mt-5"
-            } duration-300`}
-          >
-            {/* Search */}
-            <form className="h-[44px] w-full flex items-center justify-between px-4 border border-searchBgColor rounded-lg ">
-              <input
-                className="w-[85%] h-full text-sm font-AeonikProRegular"
-                type="text"
-                name="search"
-                placeholder="Поиск бренда"
-                autoComplete="off"
-              />
-              <p>
-                <SearchIcons />
-              </p>
-            </form>
-
-            {/* Field */}
-            <article
-              className={`h-[300px] w-full mt-7 overflow-auto  categoryScroll `}
-            >
-              {product?.brandWear.map((data) => {
-                return (
-                  <figure
-                    key={data?.id}
-                    onClick={() => HandleBrandFilter(data?.id)}
-                    className="flex items-center cursor-pointer select-none mb-4 "
-                  >
-                    <article
-                      className={`w-[22px] h-[22px] p-1 flex items-center ${
-                        data?.action ? "bg-fullBlue " : "bg-white"
-                      }  mr-[10px] rounded border border-borderColorCard`}
-                    >
-                      <p className="text-white">
-                        <BsCheckLg size={12} />
-                      </p>
-                    </article>
-                    <article className="flex items-center not-italic   font-AeonikProRegular text-sm leading-4 text-black">
-                      {data?.name}
-                      <p className=" not-italic ml-2 font-AeonikProRegular text-sm leading-4 text-setTexOpacity">
-                        ({data?.count})
-                      </p>
-                    </article>
-                  </figure>
-                );
-              })}
-            </article>
-          </article>
-        </section>
 
         {/* Prizes */}
         <section className=" mt-[50px]">
@@ -336,19 +253,9 @@ const CategoryForBrand = () => {
             className={`  border-1 border-green-600  overflow-hidden  ${
               state?.budgetShow
                 ? "duration-300 h-0"
-                : "duration-300 h-[170px] mt-5"
+                : "duration-300 h-[70px] mt-5"
             } duration-300`}
           >
-            <figure className="w-full flex flex-wrap gap-x-1 gap-y-2">
-              {product.prizes.map((item) => (
-                <button
-                  key={item.id}
-                  className="h-11 w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory transition ease-linear duration-200 rounded-lg focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white"
-                >
-                  {item.prize}
-                </button>
-              ))}
-            </figure>
             <figure className="w-full h-12 bg-bgCategory  mt-4 pb-1 px-[2px]">
               <div className=" w-full flex justify-center items-center gap-x-1">
                 <div className=" h-fit  not-italic font-AeonikProMedium text-base leading-4 text-center text-fullBlue tracking-[1%]">
@@ -432,71 +339,6 @@ const CategoryForBrand = () => {
           </article>
         </section>
 
-        {/* Availability */}
-        <section className="w-full h-fit mt-[50px] ">
-          <article
-            className="w-full flex justify-between items-center "
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <figure
-              onClick={() =>
-                setState({ ...state, availability: !state.availability })
-              }
-              className="flex items-center cursor-pointer select-none"
-            >
-              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Доступность
-              </p>
-              <p
-                className={`${
-                  state?.availability ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </p>
-            </figure>
-          </article>
-
-          {/* Field */}
-          <article
-            className={`w-full overflow-hidden ${
-              state?.availability
-                ? "duration-300 h-0"
-                : "duration-300 h-[70px] mt-5"
-            } duration-300 flex flex-col gap-y-4`}
-          >
-            {product?.availability.map((data) => {
-              return (
-                <article
-                  key={data?.id}
-                  className="flex items-center  cursor-pointer select-none "
-                  onClick={HandleCheckStatus(data?.id)}
-                >
-                  <figure
-                    className={`w-[22px] h-[22px] p-1 flex items-center ${
-                      state?.checkBrand ? "bg-fullBlue " : "bg-white"
-                    }  mr-[10px] rounded border border-borderColorCard`}
-                  >
-                    {state?.checkBrand && (
-                      <span className="text-white">
-                        <BsCheckLg size={12} />
-                      </span>
-                    )}
-                  </figure>
-                  <p className="flex items-center not-italic mr-2 font-AeonikProRegular text-sm leading-4 text-black">
-                    {data?.title}
-                  </p>
-                  <p className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-setTexOpacity">
-                    ({data?.count})
-                  </p>
-                </article>
-              );
-            })}
-          </article>
-        </section>
-
         {/* Customer reviews */}
         <section className="w-full h-fit mt-[50px] ">
           <article
@@ -556,9 +398,6 @@ const CategoryForBrand = () => {
                     <StarIcons />
                     <StarIcons />
                   </div>
-                  <div className="flex items-endnot-italic font-AeonikProMedium text-base leading-4 text-black mt-[4px]">
-                    {data?.text || null}
-                  </div>
                 </div>
               );
             })}
@@ -590,9 +429,6 @@ const CategoryForBrand = () => {
                 <ArrowTopIcons colors={"#000"} />
               </p>
             </figure>
-            <p className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
-              3XL
-            </p>
           </article>
           <article
             className={` overflow-hidden ${
@@ -639,9 +475,6 @@ const CategoryForBrand = () => {
                 <ArrowTopIcons colors={"#000"} />
               </p>
             </figure>
-            <p className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
-              2XL
-            </p>
           </article>
           <article
             className={` overflow-hidden ${
@@ -688,9 +521,6 @@ const CategoryForBrand = () => {
                 <ArrowTopIcons colors={"#000"} />
               </p>
             </figure>
-            <p className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
-              44
-            </p>
           </article>
           <article
             className={` overflow-hidden ${
