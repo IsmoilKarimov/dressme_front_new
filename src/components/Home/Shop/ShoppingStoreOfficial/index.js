@@ -50,7 +50,7 @@ const ShoppingStoreOfficial = () => {
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
       <section className="w-full border-b border-searchBgColor">
-        <ShoppingStoreOfficialBreadCrumb name={storeData?.name} />
+        <ShoppingStoreOfficialBreadCrumb name={storeData?.shop?.name} />
       </section>
 
       <section className="w-full border-searchBgColor ">

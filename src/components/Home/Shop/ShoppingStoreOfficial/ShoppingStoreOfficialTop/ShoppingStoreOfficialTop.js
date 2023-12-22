@@ -208,97 +208,94 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
                 </div>
               </div>
             </div>
-            <div className="w-full flex justify-between mt-[10px]">
-              <div className="flex items-start ml-[222px]">
-                <DeliveryIcon />
-                <span className="text-base text-[#2C2C2C] ml-[5px] font-AeonikProMedium">
-                  {storeData?.shop?.delivery?.name_ru}
-                </span>
-              </div>
-              <div className="w-full md:w-fit hidden md:flex justify-end items-center mt-1 mb-14">
-                <div className="w-fit flex gap-x-[30px] items-center ">
-                  
-                  <button
-                    type="primary"
-                    onClick={() => setOpenLocationModal(true)}
-                    className={`flex items-center text-borderWinter md:ml-[26px] text-base font-AeonikProMedium`}
-                  >
-                    <p className="mr-[6px]">
-                      <LocationColoursIcons colors={"#0077B6"} />
-                    </p>
-                    Все локации
-                  </button>
-
-                  <Modal
-                    centered
-                    width={700}
-                    open={openLocationModal}
-                    onOk={() => setOpenLocationModal(false)}
-                    onCancel={() => setOpenLocationModal(false)}
-                    footer={null}
-                    className="w-full p-6"
-                  >
-                    <div className="w-full px-[25px] pb-[30px] pt-[20px]">
-                      <div className="text-2xl font-AeonikProRegular mb-[30px]">
-                        Выберите локацию
-                      </div>
-                      <div className="h-[250px] overflow-y-auto mb-[20px] VerticelScroll pr-2">
-                        <Radio.Group
-                          style={{
-                            width: "100%",
-                          }}
-                          defaultValue={selectedLocation?.id}
-                          // onChange={onChange}
-                        >
-                          {existRegions.map((item) => {
-                            return (
-                              <div key={item?.id}>
-                                <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
-                                  {existRegionsObj[item]}
-                                </div>
-
-                                <div className="w-full">
-                                  {storeData?.shop?.shop_locations.map((data) => {
-                                    if (data?.sub_region?.region_id === item) {
-                                      return (
-                                        <div
-                                          onClick={() => {
-                                            checkedData = data;
-                                          }}
-                                          key={data.id}
-                                          className="mb-[8px]"
-                                        >
-                                          <Radio
-                                            value={data?.id}
-                                            name="location"
-                                            className="text-lg font-AeonikProRegular"
-                                          >
-                                            {data?.sub_region?.name_ru} (
-                                            {data?.address})
-                                          </Radio>
-                                        </div>
-                                      );
-                                    }
-                                  })}
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </Radio.Group>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setOpenLocationModal(false);
-                          setSelectedLocation(checkedData);
-                        }}
-                        className="w-full flex justify-end mt-[60px] text-borderWinter text-lg font-AeonikProMedium"
-                      >
-                        Готово
-                      </button>
+          </div>
+          <div className="w-full hidden md:flex items-center justify-between mt-10 mb-3">
+            <div className="flex items-center text-base font-AeonikProMedium text-[#2C2C2C] ">
+              <DeliveryIcon />
+              <span className="mx-[5px]">Доставка:</span>
+              <span>{storeData?.shop?.delivery?.name_ru}</span>
+            </div>
+            <div className="w-full md:w-fit flex md:items-center justify-end items-center mt-1">
+              <div className="w-fit flex gap-x-[30px] items-center ">
+                <button
+                  type="primary"
+                  onClick={() => setOpenLocationModal(true)}
+                  className={`flex items-center text-borderWinter md:ml-[26px] text-base font-AeonikProMedium`}
+                >
+                  <p className="mr-[6px]">
+                    <LocationColoursIcons colors={"#0077B6"} />
+                  </p>
+                  Все локации
+                </button>
+                <Modal
+                  centered
+                  width={700}
+                  open={openLocationModal}
+                  onOk={() => setOpenLocationModal(false)}
+                  onCancel={() => setOpenLocationModal(false)}
+                  footer={null}
+                  className="w-full p-6"
+                >
+                  <div className="w-full px-[25px] pb-[30px] pt-[20px]">
+                    <div className="text-2xl font-AeonikProRegular mb-[30px]">
+                      Выберите локацию
                     </div>
-                  </Modal>
-                </div>
+                    <div className="h-[250px] overflow-y-auto mb-[20px] VerticelScroll pr-2">
+                      <Radio.Group
+                        style={{
+                          width: "100%",
+                        }}
+                        defaultValue={selectedLocation?.id}
+                        // onChange={onChange}
+                      >
+                        {existRegions.map((item) => {
+                          return (
+                            <div key={item?.id}>
+                              <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
+                                {existRegionsObj[item]}
+                              </div>
+
+                              <div className="w-full">
+                                {storeData?.shop?.shop_locations.map((data) => {
+                                  if (data?.sub_region?.region_id === item) {
+                                    return (
+                                      <div
+                                        onClick={() => {
+                                          checkedData = data;
+                                        }}
+                                        key={data.id}
+                                        className="mb-[8px]"
+                                      >
+                                        <Radio
+                                          value={data?.id}
+                                          name="location"
+                                          className="text-lg font-AeonikProRegular"
+                                        >
+                                          {data?.sub_region?.name_ru} (
+                                          {data?.address})
+                                        </Radio>
+                                      </div>
+                                    );
+                                  }
+                                })}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </Radio.Group>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setOpenLocationModal(false);
+                        setSelectedLocation(checkedData);
+                      }}
+                      className="w-full flex justify-end mt-[60px] text-borderWinter text-lg font-AeonikProMedium"
+                    >
+                      Готово
+                    </button>
+                  </div>
+                </Modal>
               </div>
             </div>
           </div>

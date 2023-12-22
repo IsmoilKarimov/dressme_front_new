@@ -4,10 +4,13 @@ import { Modal, Rate } from "antd";
 import CommentDropUp from "../../../Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/CommentDropUp";
 import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
-import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
-export default function ShowPageComment({ refetch,storeData, setOpenTabComment }) {
+export default function ShowPageComment({
+  refetch,
+  storeData,
+  setOpenTabComment,
+}) {
   const [addComment, setAddComment] = useState(false);
   const toggleAddComment = useCallback(() => setAddComment(false), []);
   const [openComment, setOpenComment] = useState(false);
@@ -25,7 +28,8 @@ export default function ShowPageComment({ refetch,storeData, setOpenTabComment }
 
   const textRef = useRef();
   const rateRef = useRef();
-  const params = useParams();
+
+  console.log(storeData?.shop?.id, 'storedata');
 
   const commentMutate = useMutation(() => {
     return fetch(`${url}/user-main/ratings/store-rating`, {
@@ -38,43 +42,32 @@ export default function ShowPageComment({ refetch,storeData, setOpenTabComment }
       body: JSON.stringify({
         score: rateRef.current.state.value,
         comment: textRef.current.value,
-        rateable_id: params?.id,
-        rateable_type: "product",
+        rateable_id: storeData?.shop?.id,
+        rateable_type: "shop",
       }),
     }).then((res) => res.json());
   });
 
+  // ----- POST COMMENT FOR SHOPPING STORE -----
   const sendFunc = () => {
     commentMutate.mutate(
       {},
       {
         onSuccess: (res) => {
-          console.log(res, "RES");
+          // console.log(res, "RES");
           refetch();
           if (!res?.errors) {
             toast.success(res?.message);
           }
-          // if (!res?.errors) {
-          //   toast.success(res?.message, {
-          //     position: "top-right",
-          //     autoClose: 5000,
-          //     hideProgressBar: false,
-          //     closeOnClick: true,
-          //     pauseOnHover: true,
-          //     draggable: true,
-          //     progress: undefined,
-          //     theme: "colored",
-          //   });
-          // }
           if (res.errors) {
-            console.log(res?.message);
+            // console.log(res?.message);
             toast.error(res?.message);
           }
           rateRef.current.state.value = 1;
           textRef.current.value = null;
         },
         onError: (err) => {
-          console.log(err, "ERROR");
+          // console.log(err, "ERROR");
           rateRef.current.state.value = 1;
           textRef.current.value = null;
         },
@@ -90,7 +83,19 @@ export default function ShowPageComment({ refetch,storeData, setOpenTabComment }
 
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box md:mb-[60px]">
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        limit={4}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <div className="comments">
         <section
           onClick={() => setAddComment(false)}
@@ -122,16 +127,18 @@ export default function ShowPageComment({ refetch,storeData, setOpenTabComment }
               <p className="not-italic font-AeonikProMedium text-base md:text-2xl leading-7 text-black track%]">
                 Отзывы о магазины
               </p>
-              <button
-                onClick={() => setOpenComment(true)}
-                type="button"
-                className="hidden md:flex items-center ml-[20px] text-SignInBgColor text-lg font-AeonikProRegular"
-              >
-                Написать отзыв
-                <span className="ml-[5px]">
-                  <ReviewIcon />
-                </span>
-              </button>
+              {Cookies.get("DressmeUserToken") ? (
+                <button
+                  onClick={() => setOpenComment(true)}
+                  type="button"
+                  className="flex items-center ml-[20px] text-SignInBgColor text-lg font-AeonikProRegular"
+                >
+                  Написать отзыв
+                  <span className="ml-[5px]">
+                    <ReviewIcon />
+                  </span>
+                </button>
+              ) : null}
             </div>
             <Modal
               centered
@@ -146,6 +153,7 @@ export default function ShowPageComment({ refetch,storeData, setOpenTabComment }
                   <textarea
                     name="comment"
                     id="comment"
+                    ref={textRef}
                     placeholder="Написать отзыв"
                     className="w-full h-[148px] resize-none bg-[#fdfdfd]"
                   ></textarea>
@@ -154,14 +162,17 @@ export default function ShowPageComment({ refetch,storeData, setOpenTabComment }
                     type="button"
                     className="absolute right-1 w-fit flex items-center bg-[#F8F8F8] ml-auto p-[5px] rounded-md "
                   >
-                    <Rate defaultValue={1} />
+                    <Rate ref={rateRef} defaultValue={1} />
                   </button>
                 </div>
                 <div className="w-full flex items-center justify-end">
-                  <button onClick={() => {
+                  <button
+                    onClick={() => {
                       sendFunc();
                       setOpenComment(false);
-                    }}className="px-5 py-3 rounded-lg bg-borderWinter text-white text-base font-AeonikProMedium active:scale-95">
+                    }}
+                    className="px-5 py-3 rounded-lg bg-borderWinter text-white text-base font-AeonikProMedium active:scale-95"
+                  >
                     Отправить
                   </button>
                 </div>
@@ -201,7 +212,7 @@ export default function ShowPageComment({ refetch,storeData, setOpenTabComment }
             className="flex justify-between flex-wrap w-full h-fit overflow-hidden"
           >
             {storeData?.shop?.ratings?.map((allComments) => {
-              console.log(allComments, "Allcomments");
+              // console.log(allComments, "Allcomments");
               return (
                 <article
                   key={allComments.id}
