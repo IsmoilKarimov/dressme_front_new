@@ -209,7 +209,7 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
               </div>
             </div>
           </div>
-          <div className="w-full hidden md:flex items-center justify-between mt-10 mb-3">
+          <div className="w-full hidden md:flex items-center justify-between mt-12 mb-3">
             <div className="flex items-center text-base font-AeonikProMedium text-[#2C2C2C] ">
               <DeliveryIcon />
               <span className="mx-[5px]">Доставка:</span>

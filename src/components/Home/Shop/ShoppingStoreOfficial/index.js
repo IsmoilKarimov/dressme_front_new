@@ -68,7 +68,7 @@ const ShoppingStoreOfficial = () => {
               openTabComment || openTabLocation ? "hidden" : "block"
             } w-full`}
           >
-            <ShoppingStoreCategory />
+            <ShoppingStoreCategory storeData={storeData} />
           </article>
 
           {/* Comment Section For Shopping Page */}

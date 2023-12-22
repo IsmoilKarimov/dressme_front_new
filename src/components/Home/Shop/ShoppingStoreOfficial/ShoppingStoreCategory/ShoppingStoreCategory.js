@@ -3,8 +3,9 @@ import ShopOfficialCard from "./ShopOfficialCards/ShopOfficialCard";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { ShopOfficialBrand } from "./ShopOfficialBrand/ShopOfficialBrand";
 
-const ShoppingStoreCategory = () => {
+const ShoppingStoreCategory = ({storeData}) => {
   const [dressInfo] = useContext(dressMainData);
+ 
   useEffect(() => {
     if (dressInfo?.openShopIdFilter) {
       document.body.style.overflow = "hidden";
@@ -12,6 +13,7 @@ const ShoppingStoreCategory = () => {
       document.body.style.overflow = "auto";
     }
   }, [dressInfo?.openShopIdFilter]);
+ 
   return (
     <main className="max-w-[1280px] w-[100%]  flex justify-center items-center m-auto">
       <section className="w-[100%] h-fit">
@@ -27,7 +29,7 @@ const ShoppingStoreCategory = () => {
             <ShopOfficialBrand />
           </action>
           <action className="md:w-[77%] w-full h-[full] ss:px-4 md:px-0">
-            <ShopOfficialCard />
+            <ShopOfficialCard storeData={storeData} />
           </action>
         </section>
       </section>
