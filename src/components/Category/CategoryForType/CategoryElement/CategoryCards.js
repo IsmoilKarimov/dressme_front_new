@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import {
@@ -179,6 +179,18 @@ export default function CategoryCards() {
       refetchOnWindowFocus: true,
     }
   );
+
+  useEffect(() => {
+    fetch(`${url}/api/main/section/${params?.id}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        //   "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => setShowData(res));
+  }, [params]);
 
   return (
     <main className="flex flex-col box-border mt-2 md:mt-[34px]">
