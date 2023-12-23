@@ -1,4 +1,4 @@
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 
 import { MuslimImg } from "../../../../assets";
 import {
@@ -41,35 +41,37 @@ const CategoryTopDetail = () => {
     });
   };
 
+  const params = useParams();
+
   const [state, setState] = useState({
     opensports: false,
     openTypesofClothes: false,
   });
 
+  const [selectedSection, setSelectedSection] = useState({
+    value: null,
+    id: null,
+  });
+
+  console.log(selectedSection);
+
+  const navigate = useNavigate();
+
   // CATEGORIES
   const handleOpenCategories = (newOpen) => {
     setState({ ...state, opensports: newOpen });
   };
-  const handleCategories = (value) => {
+  const handleCategories = (value, id) => {
     setState({ ...state, opensports: false });
+    setSelectedSection({ value, id });
+    navigate(`/${id}`);
   };
-  const categories = [
-    { id: 1, type: "Все категории" },
-    { id: 2, type: "Студент" },
-    { id: 3, type: "Бизнесмен" },
-    { id: 4, type: "Муслим" },
-    { id: 5, type: "Туризм" },
-    { id: 6, type: "Спортивные" },
-    { id: 7, type: "Классическая" },
-  ];
 
   // --------------------------------------
 
   const [data, setData] = useState({});
 
   const url = "https://api.dressme.uz";
-
-  const params = useParams();
 
   // ------------GET METHOD Main data -----------------
   useQuery(
@@ -102,7 +104,7 @@ const CategoryTopDetail = () => {
           <p
             key={data?.id}
             onClick={() => {
-              handleCategories(data?.name_ru);
+              handleCategories(data?.name_ru, data?.id);
             }}
             className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
@@ -112,20 +114,6 @@ const CategoryTopDetail = () => {
       })}
     </section>
   );
-  const catalogTypes = [
-    { id: 1, name: "Тренировка" },
-    { id: 2, name: "Плавание" },
-    { id: 3, name: "Футбол" },
-    { id: 4, name: "Волейбол" },
-    { id: 5, name: "Баскетбол" },
-    { id: 6, name: "Бокс/MMA" },
-    { id: 7, name: "Каратэ" },
-    { id: 8, name: "Борьба" },
-    { id: 9, name: "Дзюдо" },
-    { id: 10, name: "Кунг-фу" },
-    { id: 11, name: "Теннис" },
-    { id: 12, name: "Настольный Теннис" },
-  ];
 
   // Types of Clothes
   const handleOpenTypesofClothes = (openTypesofClothes) => {
@@ -167,6 +155,21 @@ const CategoryTopDetail = () => {
       })}
     </section>
   );
+
+  // Category change ---------------
+
+  useEffect(() => {
+    fetch(`${url}/api/main/section/${selectedSection?.id}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        //   "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => setData(res))
+      .catch((res) => console.log(res));
+  }, [selectedSection]);
 
   return (
     <main className="flex flex-col justify-center border-t border-searchBgColor items-center">
@@ -304,11 +307,11 @@ const CategoryTopDetail = () => {
                       className="w-[260px] px-4 h-[52px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
                       trigger="click"
                       options={["Hide"]}
-                      placement="bottom"
+                      // placement="bottom"
                       content={contentCategories}
                     >
                       <span className="text-[15px] font-AeonikProMedium">
-                        Спортивный
+                        {data?.section?.name_ru}
                       </span>
                       <span>
                         <BiChevronDown
