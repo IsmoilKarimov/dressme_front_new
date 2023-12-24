@@ -372,35 +372,91 @@ const CategoryForBrand = () => {
             className={`flex flex-col   gap-y-3 overflow-hidden ${
               state?.customerRreviews
                 ? "duration-300 h-0"
-                : "duration-300 h-[110px] mt-5"
+                : "duration-300 h-[160px] mt-5"
             } duration-300`}
           >
             {/* Field */}
-            {product?.ArrayRating.map((data) => {
-              return (
-                <div
-                  key={data?.id}
-                  className="flex items-center cursor-pointer select-none  overflow-auto"
-                >
-                  <div
-                    className={`w-[22px] h-[22px] p-1 flex items-center  mr-[10px] rounded border border-borderColorCard`}
-                  >
-                    {state?.checkBrand && (
-                      <span className="text-white">
-                        <BsCheckLg size={12} />
-                      </span>
-                    )}
-                  </div>
-                  <div className="flex items-center not-italic mr-2 font-AeonikProRegular  text-lg leading-4 text-black">
-                    <StarIcons />
-                    <StarIcons />
-                    <StarIcons />
-                    <StarIcons />
-                    <StarIcons />
-                  </div>
-                </div>
-              );
-            })}
+
+            <div className="flex items-center cursor-pointer select-none  ">
+              <div
+                className={`w-[22px] h-[22px] p-1 flex items-center  mr-[10px] rounded border border-borderColorCard`}
+              >
+                {state?.checkBrand && (
+                  <span className="text-white">
+                    <BsCheckLg size={12} />
+                  </span>
+                )}
+              </div>
+              <div className="flex items-center not-italic mr-2 font-AeonikProRegular  text-lg leading-4 text-black">
+                <StarIcons />
+                <StarIcons />
+                <StarIcons />
+                <StarIcons />
+                <StarIcons />
+              </div>
+            </div>
+            <div className="flex items-center cursor-pointer select-none  ">
+              <div
+                className={`w-[22px] h-[22px] p-1 flex items-center  mr-[10px] rounded border border-borderColorCard`}
+              >
+                {state?.checkBrand && (
+                  <span className="text-white">
+                    <BsCheckLg size={12} />
+                  </span>
+                )}
+              </div>
+              <div className="flex items-center not-italic mr-2 font-AeonikProRegular  text-lg leading-4 text-black">
+                <StarIcons />
+                <StarIcons />
+                <StarIcons />
+                <StarIcons />
+              </div>
+            </div>
+            <div className="flex items-center cursor-pointer select-none  ">
+              <div
+                className={`w-[22px] h-[22px] p-1 flex items-center  mr-[10px] rounded border border-borderColorCard`}
+              >
+                {state?.checkBrand && (
+                  <span className="text-white">
+                    <BsCheckLg size={12} />
+                  </span>
+                )}
+              </div>
+              <div className="flex items-center not-italic mr-2 font-AeonikProRegular  text-lg leading-4 text-black">
+                <StarIcons />
+                <StarIcons />
+                <StarIcons />
+              </div>
+            </div>
+            <div className="flex items-center cursor-pointer select-none  ">
+              <div
+                className={`w-[22px] h-[22px] p-1 flex items-center  mr-[10px] rounded border border-borderColorCard`}
+              >
+                {state?.checkBrand && (
+                  <span className="text-white">
+                    <BsCheckLg size={12} />
+                  </span>
+                )}
+              </div>
+              <div className="flex items-center not-italic mr-2 font-AeonikProRegular  text-lg leading-4 text-black">
+                <StarIcons />
+                <StarIcons />
+              </div>
+            </div>
+            <div className="flex items-center cursor-pointer select-none ">
+              <div
+                className={`w-[22px] h-[22px] p-1 flex items-center  mr-[10px] rounded border border-borderColorCard`}
+              >
+                {state?.checkBrand && (
+                  <span className="text-white">
+                    <BsCheckLg size={12} />
+                  </span>
+                )}
+              </div>
+              <div className="flex items-center not-italic mr-2 font-AeonikProRegular  text-lg leading-4 text-black">
+                <StarIcons />
+              </div>
+            </div>
           </article>
         </section>
 

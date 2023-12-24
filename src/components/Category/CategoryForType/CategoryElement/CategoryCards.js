@@ -152,6 +152,8 @@ export default function CategoryCards() {
 
   const [showData, setShowData] = useState({});
 
+  console.log(showData, "sdfsdf54654sdfsdf");
+
   const url = "https://api.dressme.uz";
 
   const params = useParams();
@@ -255,6 +257,7 @@ export default function CategoryCards() {
           Показать ещё 30 наборов
         </p>
       </section>
+
       <section className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6">
         <article className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
           <p className="rotate-[-90deg]">
@@ -304,6 +307,7 @@ export default function CategoryCards() {
           </p>
         </figure>
       </section>
+      {showData?.section_products?.next_page_url ? "" : null}
     </main>
   );
 }

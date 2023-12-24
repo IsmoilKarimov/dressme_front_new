@@ -53,8 +53,6 @@ const CategoryTopDetail = () => {
     id: null,
   });
 
-  console.log(selectedSection);
-
   const navigate = useNavigate();
 
   // CATEGORIES
