@@ -209,7 +209,7 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
               </div>
             </div>
           </div>
-          <div className="w-full hidden md:flex items-center justify-between mt-12 mb-3">
+          <div className="w-full hidden md:flex items-center justify-between px-[22px] mt-[72px] mb-3">
             <div className="flex items-center text-base font-AeonikProMedium text-[#2C2C2C] ">
               <DeliveryIcon />
               <span className="mx-[5px]">Доставка:</span>
@@ -220,7 +220,7 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
                 <button
                   type="primary"
                   onClick={() => setOpenLocationModal(true)}
-                  className={`flex items-center text-borderWinter md:ml-[26px] text-base font-AeonikProMedium`}
+                  className={`flex items-center text-borderWinter text-base font-AeonikProMedium`}
                 >
                   <p className="mr-[6px]">
                     <LocationColoursIcons colors={"#0077B6"} />
