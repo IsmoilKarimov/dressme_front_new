@@ -187,7 +187,7 @@ const CategoryForBrand = () => {
               className="flex items-center cursor-pointer select-none"
             >
               <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Каталоги
+                Категории
               </p>
               <p
                 className={`${
