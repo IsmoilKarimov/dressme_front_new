@@ -86,6 +86,7 @@ const CategoryTopDetail = () => {
     {
       onSuccess: (res) => {
         setData(res);
+        setSelectedSection({ ...selectedSection, id: res?.section?.id });
       },
       onError: (err) => {
         console.log(err, "err");
