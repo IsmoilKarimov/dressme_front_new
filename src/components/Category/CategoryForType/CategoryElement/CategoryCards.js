@@ -152,8 +152,6 @@ export default function CategoryCards() {
 
   const [showData, setShowData] = useState({});
 
-  console.log(showData, "sdfsdf54654sdfsdf");
-
   const url = "https://api.dressme.uz";
 
   const params = useParams();
