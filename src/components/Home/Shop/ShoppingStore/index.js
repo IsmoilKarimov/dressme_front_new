@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 
 export default function ShoppingStore() {
   const [getData, setGetData] = useState([]);
+  const [loading, setLoading] = useState(true)
   const [getAllShops, setGetAllShops] = useState(true)
-
   function handleData(data){
     setGetData(data)
   }
@@ -24,10 +24,10 @@ export default function ShoppingStore() {
         <ShoppingStoreBreadCrumb />
       </section>
       <section className="w-full md:border-b md:border-searchBgColor">
-        <ShoppingTop handleData={handleData} setGetAllShops={setGetAllShops} getAllShops={getAllShops} />
+        <ShoppingTop setLoading={setLoading} handleData={handleData} setGetAllShops={setGetAllShops} getAllShops={getAllShops} />
       </section>
       <section className="w-full">
-        <ShoppingBrands getData={getData} getAllShops={getAllShops} />
+        <ShoppingBrands loading={loading} getData={getData} handleData={handleData} />
       </section>
     </main>
   );

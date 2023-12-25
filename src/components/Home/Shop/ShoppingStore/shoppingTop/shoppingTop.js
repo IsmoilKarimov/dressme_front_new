@@ -4,9 +4,10 @@ import GenderButtonsStyle from "../GenderButtonsStyle/GenderButtonsStyle";
 // import axios from "axios";
 import Cookies from "js-cookie";
 
-const ShoppingTop = ({handleData,getAllShops,setGetAllShops}) => {
+const ShoppingTop = ({handleData,getAllShops,setGetAllShops,setLoading}) => {
   const [genderId, setGenderId] = useState();
   const [keywords, setKeywords] = useState();
+  
   const [searchInputData, setSearchInputData] = useState();
   const [changeInputIcon, setChangeInputIcon] = useState(true);
 
@@ -26,7 +27,8 @@ const ShoppingTop = ({handleData,getAllShops,setGetAllShops}) => {
       .then((res) => res.json())
       .then((res) => {
         handleData(res);
-      })
+        setLoading(false)
+      }).then(res => setLoading(false))
       .catch((err) => console.log(err, "ERRORLIST"));
   };
 
