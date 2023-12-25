@@ -22,7 +22,7 @@ export default function ShoppingStore() {
     <main className="w-full flex flex-col items-center px-4 md:px-0">
       <section className="w-full md:border-b md:border-searchBgColor">
         <ShoppingStoreBreadCrumb />
-      </section>
+      </section>  
       <section className="w-full md:border-b md:border-searchBgColor">
         <ShoppingTop setLoading={setLoading} handleData={handleData} setGetAllShops={setGetAllShops} getAllShops={getAllShops} />
       </section>

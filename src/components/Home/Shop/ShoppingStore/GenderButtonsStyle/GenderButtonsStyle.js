@@ -56,6 +56,7 @@ function GenderButtonsStyle({ handleGetId, getAllShops, setGetAllShops }) {
         <span className="text-base ml-3 font-AeonikProRegular">Все</span>
       </button>
       <span className="text-searchBgColor flex items-center">|</span>
+      
       {genderCategory?.map((data) => {
         return (
           <div
@@ -71,7 +72,7 @@ function GenderButtonsStyle({ handleGetId, getAllShops, setGetAllShops }) {
               }}
               className={`${
                 getAllShops
-                  ? "bg-"
+                  ? ""
                   : `${
                       data?.action
                         ? "bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-xl"
@@ -98,6 +99,7 @@ function GenderButtonsStyle({ handleGetId, getAllShops, setGetAllShops }) {
           </div>
         );
       })}
+
     </section>
   );
 }
