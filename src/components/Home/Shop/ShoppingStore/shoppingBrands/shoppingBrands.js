@@ -156,7 +156,7 @@ const ShoppingBrands = ({ getData, loading }) => {
                   </span>
                 </action>
               </section>
-            ) : null}
+            ) : null}       
           </section>
         </main>
       )} 
