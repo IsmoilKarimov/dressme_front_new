@@ -10,9 +10,19 @@ import {
   MenuCloseIcons,
 } from "../../../../assets/icons";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
+import CategoryTopButtons from "../CategoryTop/CategoryTopButtons/CategoryTopButtons";
+import Cookies from "js-cookie";
+import { useParams } from "react-router-dom";
 
 const CategoryForBrand = () => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
+  const [genderId, setGenderId] = useState();
+  const [discountId, setDiscountId] = useState();
+  const [dataAction,setDataAction] = useState(false)
+  const [dataActionDiscount,setDataActionDiscount] = useState(false)
+  const [data, setData] = useState([])
+  console.log(genderId,"genderId");
+  console.log(discountId,"discountId");
 
   function getCurrentDimension() {
     return {
@@ -29,6 +39,41 @@ const CategoryForBrand = () => {
       window.removeEventListener("resize", updateDimension);
     };
   }, [screenSize]);
+
+  const params = useParams()
+
+
+  const apiUrl = `https://api.dressme.uz/api/main/shops/${params?.id}`;
+
+  const fetchGetAllData = (params) => {
+    Object.entries(params).forEach((i) => {
+      if (!i[1]) delete params[i[0]];
+    });
+    fetch(`${apiUrl}?` + new URLSearchParams(params), {
+      headers: { Authorization: `Token ${Cookies.get("DressmeUserToken")}` },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res);
+      })
+      .catch((err) => console.log(err, "ERRORLIST"));
+  };
+
+  useEffect(() => {
+    fetchGetAllData({
+      gender: genderId,
+      discountId: discountId,
+    });
+  }, [genderId, discountId]);
+
+  function handleGetId(childData) {
+    setGenderId(childData?.genderFilterId);
+  }
+
+  function handleGetDiscountId(childData) {
+    setDiscountId(childData?.discountId);
+  }
+
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [product] = useState({
@@ -136,6 +181,7 @@ const CategoryForBrand = () => {
 
   const HandleColorCheck = () => {};
 
+
   return (
     <main
       className={`w-full h-fit ${
@@ -160,20 +206,8 @@ const CategoryForBrand = () => {
             </button>
           </article>
         )}
-        <article className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px]">
-          <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg">
-            Женщинам
-          </button>
-          <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg">
-            Мужчинам
-          </button>
-          <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg">
-            Детям
-          </button>
-          <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center  bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg text-red-600">
-            Скидки
-          </button>
-        </article>
+
+        <CategoryTopButtons dataAction={dataAction} setDataAction={setDataAction} dataActionDiscount={dataActionDiscount} setDataActionDiscount={setDataActionDiscount} handleGetId={handleGetId} handleGetDiscountId={handleGetDiscountId} />
         {/* Availability */}
         <section className="w-full h-fit mt-[50px] ">
           <article

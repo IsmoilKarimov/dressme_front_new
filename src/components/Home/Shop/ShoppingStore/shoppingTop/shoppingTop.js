@@ -11,7 +11,7 @@ const ShoppingTop = ({handleData,getAllShops,setGetAllShops,setLoading}) => {
   const [searchInputData, setSearchInputData] = useState();
   const [changeInputIcon, setChangeInputIcon] = useState(true);
 
-  const apiUrl = "https://api.dressme.uz/api/main/shops";
+  const apiUrl = `https://api.dressme.uz/api/main/shops`;
 
   function handleGetId(childData) {
     setGenderId(childData?.genderFilterId);
@@ -21,7 +21,7 @@ const ShoppingTop = ({handleData,getAllShops,setGetAllShops,setLoading}) => {
     Object.entries(params).forEach((i) => {
       if (!i[1]) delete params[i[0]];
     });
-    fetch(`$image.png{apiUrl}?` + new URLSearchParams(params), {
+    fetch(`${apiUrl}?` + new URLSearchParams(params), {
       headers: { Authorization: `Token ${Cookies.get("DressmeUserToken")}` },
     })
       .then((res) => res.json())
