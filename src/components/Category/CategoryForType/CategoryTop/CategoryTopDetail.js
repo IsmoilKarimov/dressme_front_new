@@ -96,7 +96,7 @@ const CategoryTopDetail = () => {
   );
 
   const contentCategories = (
-    <section className="w-[230px] h-fit m-0 p-0">
+    <section className="w-[230px] h-[350px] overflow-y-auto m-0 p-0 VerticelScroll">
       {data?.sections?.map((data) => {
         return (
           <p
@@ -104,7 +104,9 @@ const CategoryTopDetail = () => {
             onClick={() => {
               handleCategories(data?.name_ru, data?.id);
             }}
-            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+            className={`${
+              selectedSection?.id === data?.id ? "bg-bgColor" : null
+            } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {data?.name_ru}
           </p>
@@ -171,8 +173,8 @@ const CategoryTopDetail = () => {
 
   return (
     <main className="flex flex-col justify-center border-t border-searchBgColor items-center">
-      <div className="pt-8 pb-14 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 py-3 box-border border-b border-searchBgColor">
-        <section className="max-w-[1280px] h-full w-[100%] flex items-center justify-between m-auto">
+      <div className="pt-8 pb-16 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 py-3">
+        <section className="max-w-[1280px] w-[100%] h-full  flex items-center justify-between m-auto">
           <nav className="w-[100%] md:w-fit flex items-center p-1">
             <ul className="h-10 w-[100%] md:w-fit flex items-center overflow-auto HorizantalScroll">
               <li className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
@@ -188,48 +190,11 @@ const CategoryTopDetail = () => {
               </li>
               <li className="not-italic font-AeonikProRegular flex  	 items-center  text-sm leading-4 text-black tracking-[1%]">
                 <NavLink className="flex 	whitespace-nowrap  items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-                  Мужская одежда
+                  Категории
                 </NavLink>
                 <span>
                   <ItailIcons colors={"#A1A1A1"} />
                 </span>
-              </li>
-              <li className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%]">
-                <NavLink className="flex flex-row whitespace-nowrap items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-                  Все категории
-                </NavLink>
-                <span>
-                  <ItailIcons colors={"#A1A1A1"} />
-                </span>
-              </li>
-              <li className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
-                <NavLink className="flex items-center whitespace-nowrap cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-                  Спортивное
-                </NavLink>
-                <span>
-                  <ItailIcons colors={"#A1A1A1"} />
-                </span>
-              </li>
-              <li className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
-                <NavLink className="flex items-center whitespace-nowrap  cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 tracking-[1%]">
-                  Кроссовки
-                </NavLink>
-                <span>
-                  <ItailIcons colors={"#A1A1A1"} />
-                </span>
-              </li>
-              <li className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
-                <NavLink className="flex items-center whitespace-nowrap cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-                  Nike
-                </NavLink>
-                <span>
-                  <ItailIcons colors={"#A1A1A1"} />
-                </span>
-              </li>
-              <li className="not-italic font-AeonikProRegular flex items-center   text-sm leading-4 text-black tracking-[1%]">
-                <NavLink className="flex items-center whitespace-nowrap  cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]">
-                  Nike RUN Sneakers (Sport Wears)
-                </NavLink>
               </li>
             </ul>
           </nav>
@@ -270,7 +235,7 @@ const CategoryTopDetail = () => {
       </div>
 
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
-        <article className="w-[100%] h-fit md:mb-14">
+        <article className="w-[100%] h-fit md:mb-12">
           <article className="w-full flex flex-col border-b md:border-none border-searchBgColor">
             <figure className="relative w-full md:h-[90px] mt-6 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               {/*  */}
@@ -298,7 +263,7 @@ const CategoryTopDetail = () => {
                   <NavLink className="hidden md:flex items-center text-[15px] font-AeonikProMedium mr-[22px]">
                     По категории
                   </NavLink>
-                  <div className="md:flex items-center hidden ">
+                  <div className="md:flex items-center hidden">
                     <Popover
                       open={state?.opensports}
                       onOpenChange={handleOpenCategories}

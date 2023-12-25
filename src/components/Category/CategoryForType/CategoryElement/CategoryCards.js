@@ -195,8 +195,8 @@ export default function CategoryCards() {
   }, [params]);
 
   return (
-    <main className="flex flex-col box-border mt-2 md:mt-[34px]">
-      <section className="hidden">
+    <main className="flex flex-col box-border mt-2">
+      {/* <section className="hidden">
         <ClothesFilterGroup _class="items gap-x-2 ">
           {wearGroup?.map((data) => {
             return (
@@ -211,35 +211,9 @@ export default function CategoryCards() {
             );
           })}
         </ClothesFilterGroup>
-      </section>
-      <section className="w-full h-full hidden md:block">
-        <article>
-          <p className="not-italic font-AeonikProMedium text-sm  leading-4 text-black tracking-[1%]">
-            По типу
-          </p>
-        </article>
-        <section className="w-full mt-3 h-[52px] flex flex-col items-center">
-          <Slider
-            {...settings1}
-            className="w-[100%] h-full items-center flex xs:justify-between"
-          >
-            {wearGroup?.map((data) => {
-              return (
-                <article key={data.id} className="!w-[100px ] h-full ">
-                  <article
-                    className={` w-full h-[52px] px-5 m-auto  bg-bgCategory rounded-lg flex justify-center items-center cursor-pointer  border border-searchBgColor`}
-                  >
-                    <p className="not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
-                      {data?.name || "0"}
-                    </p>
-                  </article>
-                </article>
-              );
-            })}
-          </Slider>
-        </section>
-      </section>
-      <section className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 mt-1 md:mt-12">
+      </section> */}
+
+      <section className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 mt-1 md:mt-8">
         {showData?.section_products?.data?.map((data) => {
           return (
             <CollectionCardItem
