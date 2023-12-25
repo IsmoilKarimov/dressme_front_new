@@ -251,34 +251,65 @@ const CategoryForBrand = () => {
           </article>
           <article
             className={`  border-1 border-green-600  overflow-hidden  ${
-              state?.budgetShow
-                ? "duration-300 h-0"
-                : "duration-300 h-[70px] mt-5"
+              state?.budgetShow ? "duration-300 h-0" : "duration-300 h-fit mt-5"
             } duration-300`}
           >
-            <figure className="w-full h-12 bg-bgCategory  mt-4 pb-1 px-[2px]">
-              <div className=" w-full flex justify-center items-center gap-x-1">
-                <div className=" h-fit  not-italic font-AeonikProMedium text-base leading-4 text-center text-fullBlue tracking-[1%]">
-                  {values[0]}
-                </div>{" "}
-                <div className=" h-fit pb-2">-</div>
-                <div className=" h-fit not-italic font-AeonikProMedium text-base leading-4 text-center text-fullBlue tracking-[1%]">
-                  {values[1]}
+            <div className="  flex flex-col rounded-lg  w-full pb-5 pt-10">
+              <div className="flex flex-wrap justify-between items-center mb-6 w-full px-2">
+                <div className="flex mb-4">
+                  <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
+                    от
+                  </span>
+                  <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                    <input
+                      className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                      value={state?.minPrice}
+                      onChange={(e) =>
+                        setState({ ...state, minPrice: e.target.value })
+                      }
+                    />{" "}
+                    sum
+                  </span>
                 </div>
-              </div>{" "}
-              <div className="relative z-10">
+                <div className="flex ">
+                  <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
+                    до
+                  </span>
+                  <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                    <input
+                      className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                      value={state?.maxPrice}
+                      onChange={(e) =>
+                        setState({ ...state, maxPrice: e.target.value })
+                      }
+                    />
+                    sum
+                  </span>
+                </div>
+              </div>
+              <div className="relative z-50 mb-[6px] w-full  marketFilter">
                 {" "}
                 <ReactSlider
                   className="horizontal-slider"
-                  thumbClassName="example-thumb"
-                  trackClassName="example-track"
-                  defaultValue={[0, 100]}
+                  thumbClassName="example-thumb1"
+                  trackClassName="example-track1"
+                  defaultValue={[10, 90]}
                   ariaLabel={["Lower thumb", "Upper thumb"]}
+                  // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
+                  // renderThumb={() => <div>1</div>}
                   pearling
                   minDistance={10}
                 />
               </div>
-            </figure>
+              <div className="flex items-center justify-end mt-6">
+                <span
+                  onClick={() => setState({ ...state, openPrice: false })}
+                  className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue"
+                >
+                  Готово
+                </span>
+              </div>
+            </div>
           </article>
         </section>
 
@@ -308,9 +339,6 @@ const CategoryForBrand = () => {
                 <ArrowTopIcons colors={"#000"} />
               </p>
             </figure>
-            <span className="not-italic font-AeonikProMedium text-sm leading-4 text-fullBlue cursor-pointer">
-              Очистить все
-            </span>
           </article>
           {/* Colors */}
           <article
@@ -495,52 +523,6 @@ const CategoryForBrand = () => {
           >
             <figure className="w-full flex flex-wrap justify-between  gap-y-2">
               {product.clothingSize.map((item) => (
-                <button
-                  key={item.id}
-                  className="h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg"
-                >
-                  {item.size}
-                </button>
-              ))}
-            </figure>
-          </article>
-        </section>
-
-        {/* Размер брюк */}
-        <section className="w-full h-fit  mt-[50px] ">
-          <article
-            className="w-full flex justify-between items-center "
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <figure
-              onClick={() =>
-                setState({ ...state, TrouserShow: !state.TrouserShow })
-              }
-              className="flex items-center cursor-pointer select-none"
-            >
-              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Размер брюк
-              </p>
-              <p
-                className={`${
-                  state?.TrouserShow ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </p>
-            </figure>
-          </article>
-          <article
-            className={` overflow-hidden ${
-              state?.TrouserShow
-                ? "duration-300 h-0"
-                : "duration-300 h-[90px] mt-5"
-            } duration-300`}
-          >
-            <figure className="w-full flex flex-wrap justify-between gap-y-2">
-              {product.pantsSize.map((item) => (
                 <button
                   key={item.id}
                   className="h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg"
