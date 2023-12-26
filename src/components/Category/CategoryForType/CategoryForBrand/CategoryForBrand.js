@@ -6,23 +6,25 @@ import {
   StarIcons,
   ArrowTopIcons,
   InputCheckedTrueIcons,
-  SearchIcons,
   MenuCloseIcons,
 } from "../../../../assets/icons";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import CategoryTopButtons from "../CategoryTop/CategoryTopButtons/CategoryTopButtons";
 import Cookies from "js-cookie";
 import { useParams } from "react-router-dom";
+import CategoriesFilter from "./FiilterForApi/CategoriesFilter";
 
 const CategoryForBrand = () => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [genderId, setGenderId] = useState();
-  const [discountId, setDiscountId] = useState();
+  const [discountId, setDiscountId] = useState();  
+  const [categoryId, setCategoryId] = useState();  
   const [dataAction,setDataAction] = useState(false)
   const [dataActionDiscount,setDataActionDiscount] = useState(false)
   const [data, setData] = useState([])
-  console.log(genderId,"genderId");
-  console.log(discountId,"discountId");
+  // console.log(genderId,"genderId");
+  // console.log(discountId,"discountId");
+  console.log(data,"DATA");
 
   function getCurrentDimension() {
     return {
@@ -63,16 +65,9 @@ const CategoryForBrand = () => {
     fetchGetAllData({
       gender: genderId,
       discountId: discountId,
+      categoryId: categoryId,
     });
-  }, [genderId, discountId]);
-
-  function handleGetId(childData) {
-    setGenderId(childData?.genderFilterId);
-  }
-
-  function handleGetDiscountId(childData) {
-    setDiscountId(childData?.discountId);
-  }
+  }, [genderId, discountId, categoryId]);
 
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -168,18 +163,28 @@ const CategoryForBrand = () => {
     TrouserShow: screenSize.width <= 768 ? true : false,
     ShoesShow: screenSize.width <= 768 ? true : false,
     customerRreviews: screenSize.width <= 768 ? true : false,
-    availability: screenSize.width <= 768 ? true : false,
-    catolog: screenSize.width <= 768 ? true : false,
+    availability: screenSize.width <= 768 ? true : false, 
+    category: screenSize.width <= 768 ? true : false,
     //--------------
     checkBrand: false,
     checkedPrize: true,
   });
 
-  const HandleBrandFilter = () => {};
-
-  const HandleCheckStatus = () => {};
-
   const HandleColorCheck = () => {};
+
+  function handleGetId(childData) {
+    setGenderId(childData?.genderFilterId);
+  }
+
+  function handleGetDiscountId(childData) {
+    setDiscountId(childData?.discountId);
+  }
+
+  function handleGetCategoryId(childData) {
+    setCategoryId(childData?.categoryId);
+  }
+
+
 
 
   return (
@@ -207,55 +212,11 @@ const CategoryForBrand = () => {
           </article>
         )}
 
+        {/* Gender Buttons */}
         <CategoryTopButtons dataAction={dataAction} setDataAction={setDataAction} dataActionDiscount={dataActionDiscount} setDataActionDiscount={setDataActionDiscount} handleGetId={handleGetId} handleGetDiscountId={handleGetDiscountId} />
-        {/* Availability */}
-        <section className="w-full h-fit mt-[50px] ">
-          <article
-            className="w-full flex justify-between items-center "
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <figure
-              onClick={() => setState({ ...state, catolog: !state.catolog })}
-              className="flex items-center cursor-pointer select-none"
-            >
-              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Категории
-              </p>
-              <p
-                className={`${
-                  state?.catolog ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </p>
-            </figure>
-          </article>
-
-          {/* Field */}
-          <article
-            className={`w-full overflow-hidden ${
-              state?.catolog
-                ? "duration-300 h-0"
-                : "duration-300 h-[300px] mt-5 "
-            } duration-300 flex flex-col gap-y-4`}
-          >
-            {product?.Catolog.map((data) => {
-              return (
-                <figure
-                  key={data?.id}
-                  className="w-full h-[44px] rounded-lg justify-center bg-bgCategory hover:text-white  focus:bg-fullBlue hover:bg-fullBlue focus:text-white flex items-center  cursor-pointer select-none  text-black"
-                  onClick={HandleCheckStatus(data?.id)}
-                >
-                  <p className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
-                    {data?.name}
-                  </p>
-                </figure>
-              );
-            })}
-          </article>
-        </section>
+        
+        {/* Categories */}
+        <CategoriesFilter state={state} setState={setState} handleGetCategoryId={handleGetCategoryId}/>
 
         {/* Prizes */}
         <section className=" mt-[50px]">
