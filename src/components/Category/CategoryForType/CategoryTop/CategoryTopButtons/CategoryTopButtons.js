@@ -22,6 +22,8 @@ function CategoryTopButtons({
     },
   ]);
 
+  console.log(dataAction,'dataAction');
+
   function onGetId(id) {
     handleGetId({
       genderFilterId: id,
@@ -77,9 +79,9 @@ function CategoryTopButtons({
         }}
         className={`${
           dataActionDiscount
-            ? "bg-fullBlue text-white active:scale-95 "
+            ? "bg-fullBlue"
             : "bg-bgCategory"
-        } h-[44px] w-[49%] flex items-center justify-center text-red-600 font-AeonikProMedium text-sm leading-3 text-center   hover:bg-fullBlue hover:text-white rounded-lg `}
+        } h-[44px] w-[49%] flex items-center justify-center text-red-600 font-AeonikProMedium text-sm leading-3 text-center active:scale-95  hover:bg-fullBlue rounded-lg `}
       >
         Скидки
       </button>
