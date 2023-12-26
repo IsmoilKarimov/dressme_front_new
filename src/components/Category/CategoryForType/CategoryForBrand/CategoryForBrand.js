@@ -9,11 +9,12 @@ import {
   MenuCloseIcons,
 } from "../../../../assets/icons";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
-import CategoryTopButtons from "../CategoryTop/CategoryTopButtons/CategoryTopButtons";
+import CategoryTopButtons from "./FiilterForApi/CategoryButtonsFilter";
 import Cookies from "js-cookie";
 import { useParams } from "react-router-dom";
 import CategoriesFilter from "./FiilterForApi/CategoriesFilter";
 import BudgetFilter from "./FiilterForApi/BudgetFilter";
+import CategoryButtonsFilter from "./FiilterForApi/CategoryButtonsFilter";
 
 const CategoryForBrand = () => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
@@ -25,11 +26,7 @@ const CategoryForBrand = () => {
   const [dataAction, setDataAction] = useState(false);
   const [dataActionDiscount, setDataActionDiscount] = useState(false);
   const [data, setData] = useState([]);
-  const minPrice = 10000;
-  const maxPrice = 300000;
-  const [values, setValues] = useState([minPrice, maxPrice]);
-  console.log(values);
-
+ 
   const [state, setState] = useState({
     brandShow: screenSize.width <= 768 ? true : false,
     budgetShow: screenSize.width <= 768 ? true : false,
@@ -44,9 +41,11 @@ const CategoryForBrand = () => {
     //--------------
     checkBrand: false,
     checkedPrize: true,
+    minPrice: 10000,
+    maxPrice: 300000
   });
 
-  console.log(data, "DATA");
+  const [values, setValues] = useState([state?.minPrice, state?.maxPrice]);
 
   function getCurrentDimension() {
     return {
@@ -84,12 +83,12 @@ const CategoryForBrand = () => {
   useEffect(() => {
     fetchGetAllData({
       gender: genderId,
-      discountId: discountId,
-      categoryId: categoryId,
-      budgetFrom: budgetFrom,
-      budgetTo: budgetTo,
+      discount: discountId,
+      category: categoryId,
+      'budget[from]': budgetFrom,
+      'budget[to]': budgetTo,
     });
-  }, [genderId, discountId, categoryId]);
+  }, [genderId, discountId, categoryId,'budget[from]','budget[to]']);
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [product] = useState({
@@ -158,12 +157,12 @@ const CategoryForBrand = () => {
     setCategoryId(childData?.categoryId);
   }
 
-  function handleGetBudgetPrize(childData) {
-    setBudgetFrom(childData?.categoryId);
+  function handleGetBudgetMinValue(childData) {
+    setBudgetFrom(childData?.budgetFrom);
   }
 
-  function handleGetBudgetPrizeTwo(childData) {
-    setBudgetTo(childData?.categoryId);
+  function handleGetBudgetMaxValue(childData) {
+    setBudgetTo(childData?.budgetTo);
   }
 
   return (
@@ -192,7 +191,7 @@ const CategoryForBrand = () => {
         )}
 
         {/* Gender Buttons */}
-        <CategoryTopButtons
+        <CategoryButtonsFilter
           dataAction={dataAction}
           setDataAction={setDataAction}
           dataActionDiscount={dataActionDiscount}
@@ -212,12 +211,10 @@ const CategoryForBrand = () => {
         <BudgetFilter
           state={state}
           setState={setState}
-          handleGetBudgetPrize={handleGetBudgetPrize}
-          handleGetBudgetPrizeTwo={handleGetBudgetPrizeTwo}
+          handleGetBudgetPrize={handleGetBudgetMinValue}
+          handleGetBudgetPrizeTwo={handleGetBudgetMaxValue}
           values={values}
           setValues={setValues}
-          minPrice={minPrice}
-          maxPrice={maxPrice}
         />
 
         {/* Colors */}
