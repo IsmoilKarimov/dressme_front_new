@@ -1,17 +1,24 @@
 import React from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
-import ReactSlider from "react-slider";
 import Slider from "react-slider";
 
-export default function BudgetFilter({
-  state,
-  setState,
-  values,
-  setValues,
-  minPrice,
-  maxPrice,
-}) {
-  console.log(state, "STATE_DATA");
+export default function BudgetFilter({ state, setState, values, setValues,handleGetBudgetMinValue,handleGetBudgetMaxValue }) {
+
+  function onGetBudgetMinValue(text){
+    handleGetBudgetMinValue(text)
+  }
+
+  function onGetBudgetMaxValue(text){
+    handleGetBudgetMaxValue(text)
+  }
+
+  // const sendPrizeData = () => {
+  //   return(
+  //     onGetBudgetMinValue(),
+  //     onGetBudgetMaxValue(),
+  //     )
+  // }
+
   return (
     <section className="w-full h-fit mt-[50px]">
       <article
@@ -51,7 +58,10 @@ export default function BudgetFilter({
                 <input
                   className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                   value={values[0]}
-                  onChange={(e) => setValues({ minPrice: e.target.value })}
+                  onChange={(e) =>{
+                    onGetBudgetMinValue(e.target.value)
+                    setState({ ...state, minPrice: e.target.value })}
+                  }
                 />{" "}
               </span>
             </div>
@@ -63,7 +73,11 @@ export default function BudgetFilter({
                 <input
                   className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
                   value={values[1]}
-                  onChange={(e) => setValues({ maxPrice: e.target.value })}
+                  onChange={(e) =>{
+                    onGetBudgetMaxValue(e.target.value)
+                    setState({ ...state, maxPrice: e.target.value })
+                  }
+                  }
                 />
               </span>
             </div>
@@ -72,13 +86,13 @@ export default function BudgetFilter({
             className="slider w-full h-[4px] bg-fullBlue border rounded-[1px] mt-5"
             onChange={setValues}
             value={values}
-            min={minPrice}
-            max={maxPrice}
+            min={state?.minPrice}
+            max={state?.maxPrice}
           />
           <div className="flex items-center justify-end mt-6">
             <span
-              // onClick={() => setState({ ...state, openPrice: false })}
-              className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue"
+              // onClick={() => {onGetBudgetMinValue()}}
+              className="flex items-center font-AeonikProMedium cursor-pointer text-sm justify-center  text-fullBlue"
             >
               Готово
             </span>

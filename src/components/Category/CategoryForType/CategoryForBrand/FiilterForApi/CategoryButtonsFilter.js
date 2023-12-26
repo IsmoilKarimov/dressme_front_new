@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function CategoryTopButtons({
+function CategoryButtonsFilter({
   dataAction,
   setDataAction,
   dataActionDiscount,
@@ -88,4 +88,4 @@ function CategoryTopButtons({
     </article>
   );
 }
-export default React.memo(CategoryTopButtons);
+export default React.memo(CategoryButtonsFilter);

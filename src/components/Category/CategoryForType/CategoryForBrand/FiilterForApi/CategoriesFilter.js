@@ -14,6 +14,8 @@ export default function CategoriesFilter({
     { id: 5, action: false, name: "Аксессуары" },
   ];
 
+  
+
   function onGetId(id) {
     console.log(id, "category id");
     handleGetCategoryId({
