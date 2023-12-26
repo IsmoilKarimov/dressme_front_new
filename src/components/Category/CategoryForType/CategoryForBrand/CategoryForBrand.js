@@ -13,18 +13,40 @@ import CategoryTopButtons from "../CategoryTop/CategoryTopButtons/CategoryTopBut
 import Cookies from "js-cookie";
 import { useParams } from "react-router-dom";
 import CategoriesFilter from "./FiilterForApi/CategoriesFilter";
+import BudgetFilter from "./FiilterForApi/BudgetFilter";
 
 const CategoryForBrand = () => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [genderId, setGenderId] = useState();
-  const [discountId, setDiscountId] = useState();  
-  const [categoryId, setCategoryId] = useState();  
-  const [dataAction,setDataAction] = useState(false)
-  const [dataActionDiscount,setDataActionDiscount] = useState(false)
-  const [data, setData] = useState([])
-  // console.log(genderId,"genderId");
-  // console.log(discountId,"discountId");
-  console.log(data,"DATA");
+  const [discountId, setDiscountId] = useState();
+  const [categoryId, setCategoryId] = useState();
+  const [budgetFrom, setBudgetFrom] = useState();
+  const [budgetTo, setBudgetTo] = useState();
+  const [dataAction, setDataAction] = useState(false);
+  const [dataActionDiscount, setDataActionDiscount] = useState(false);
+  const [data, setData] = useState([]);
+  const minPrice = 10000;
+  const maxPrice = 300000;
+  const [values, setValues] = useState([minPrice, maxPrice]);
+  console.log(values);
+
+  const [state, setState] = useState({
+    brandShow: screenSize.width <= 768 ? true : false,
+    budgetShow: screenSize.width <= 768 ? true : false,
+    ColorsShow: screenSize.width <= 768 ? true : false,
+    ClothingShow: screenSize.width <= 768 ? true : false,
+
+    TrouserShow: screenSize.width <= 768 ? true : false,
+    ShoesShow: screenSize.width <= 768 ? true : false,
+    customerRreviews: screenSize.width <= 768 ? true : false,
+    availability: screenSize.width <= 768 ? true : false,
+    category: screenSize.width <= 768 ? true : false,
+    //--------------
+    checkBrand: false,
+    checkedPrize: true,
+  });
+
+  console.log(data, "DATA");
 
   function getCurrentDimension() {
     return {
@@ -42,9 +64,7 @@ const CategoryForBrand = () => {
     };
   }, [screenSize]);
 
-  const params = useParams()
-
-
+  const params = useParams();
   const apiUrl = `https://api.dressme.uz/api/main/shops/${params?.id}`;
 
   const fetchGetAllData = (params) => {
@@ -66,36 +86,13 @@ const CategoryForBrand = () => {
       gender: genderId,
       discountId: discountId,
       categoryId: categoryId,
+      budgetFrom: budgetFrom,
+      budgetTo: budgetTo,
     });
   }, [genderId, discountId, categoryId]);
 
-
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [product] = useState({
-    Catolog: [
-      { id: 1, action: false, name: "Головной убор" },
-      { id: 2, action: false, name: "Верхняя одежда" },
-      { id: 3, action: false, name: "Нижняя одежда" },
-      { id: 4, action: false, name: "Обувь" },
-      { id: 5, action: false, name: "Аксессуары" },
-    ],
-    brandWear: [
-      { id: 1, action: true, name: "Adidas", count: 125 },
-      { id: 2, action: false, name: "Reebok", count: 125 },
-      { id: 3, action: false, name: "Nike", count: 125 },
-      { id: 4, action: false, name: "Puma", count: 125 },
-      { id: 5, action: false, name: "ECCO", count: 125 },
-      { id: 6, action: false, name: "New Balance", count: 125 },
-      { id: 7, action: false, name: " Asics", count: 125 },
-      { id: 8, action: false, name: "Columbian", count: 125 },
-      { id: 9, action: false, name: "Under Armour", count: 125 },
-    ],
-    prizes: [
-      { id: 1, action: false, prize: "До 100 000" },
-      { id: 2, action: false, prize: "До 500 000" },
-      { id: 3, action: false, prize: "До 1 000 000" },
-      { id: 4, action: false, prize: "Выше" },
-    ],
     changeColor: [
       { id: 1, value: 1, action: false, colors: "bg-black" },
       { id: 2, value: 2, action: false, colors: "bg-white" },
@@ -109,10 +106,6 @@ const CategoryForBrand = () => {
       { id: 10, value: 10, action: false, colors: "bg-rose-900" },
       { id: 11, value: 11, action: false, colors: "bg-pink-600" },
       { id: 12, value: 12, action: false, colors: "bg-cyan-900" },
-    ],
-    availability: [
-      { id: 1, action: false, title: "На складе доступен", count: 892 },
-      { id: 2, action: false, title: "Доставка доступна", count: 641 },
     ],
     clothingSize: [
       { id: 1, action: false, size: "XS" },
@@ -150,25 +143,6 @@ const CategoryForBrand = () => {
       { id: 3, check: false, value: 2, text: "" },
     ],
   });
-  const Min = "100";
-  const Max = "12 000";
-  const [values] = useState([Min, Max]);
-
-  const [state, setState] = useState({
-    brandShow: screenSize.width <= 768 ? true : false,
-    budgetShow: screenSize.width <= 768 ? true : false,
-    ColorsShow: screenSize.width <= 768 ? true : false,
-    ClothingShow: screenSize.width <= 768 ? true : false,
-
-    TrouserShow: screenSize.width <= 768 ? true : false,
-    ShoesShow: screenSize.width <= 768 ? true : false,
-    customerRreviews: screenSize.width <= 768 ? true : false,
-    availability: screenSize.width <= 768 ? true : false, 
-    category: screenSize.width <= 768 ? true : false,
-    //--------------
-    checkBrand: false,
-    checkedPrize: true,
-  });
 
   const HandleColorCheck = () => {};
 
@@ -184,8 +158,13 @@ const CategoryForBrand = () => {
     setCategoryId(childData?.categoryId);
   }
 
+  function handleGetBudgetPrize(childData) {
+    setBudgetFrom(childData?.categoryId);
+  }
 
-
+  function handleGetBudgetPrizeTwo(childData) {
+    setBudgetTo(childData?.categoryId);
+  }
 
   return (
     <main
@@ -213,100 +192,33 @@ const CategoryForBrand = () => {
         )}
 
         {/* Gender Buttons */}
-        <CategoryTopButtons dataAction={dataAction} setDataAction={setDataAction} dataActionDiscount={dataActionDiscount} setDataActionDiscount={setDataActionDiscount} handleGetId={handleGetId} handleGetDiscountId={handleGetDiscountId} />
-        
+        <CategoryTopButtons
+          dataAction={dataAction}
+          setDataAction={setDataAction}
+          dataActionDiscount={dataActionDiscount}
+          setDataActionDiscount={setDataActionDiscount}
+          handleGetId={handleGetId}
+          handleGetDiscountId={handleGetDiscountId}
+        />
+
         {/* Categories */}
-        <CategoriesFilter state={state} setState={setState} handleGetCategoryId={handleGetCategoryId}/>
+        <CategoriesFilter
+          state={state}
+          setState={setState}
+          handleGetCategoryId={handleGetCategoryId}
+        />
 
         {/* Prizes */}
-        <section className=" mt-[50px]">
-          <article
-            className="w-full flex justify-between items-center "
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <figure
-              onClick={() =>
-                setState({ ...state, budgetShow: !state.budgetShow })
-              }
-              className="flex items-center cursor-pointer select-none"
-            >
-              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Budget
-              </p>
-              <p
-                className={`${
-                  state?.budgetShow ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </p>
-            </figure>
-          </article>
-          <article
-            className={`  border-1 border-green-600  overflow-hidden  ${
-              state?.budgetShow ? "duration-300 h-0" : "duration-300 h-fit mt-5"
-            } duration-300`}
-          >
-            <div className="  flex flex-col rounded-lg  w-full pb-5 pt-10">
-              <div className="flex flex-wrap justify-between items-center mb-6 w-full px-2">
-                <div className="flex mb-4">
-                  <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
-                    от
-                  </span>
-                  <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-                    <input
-                      className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-                      value={state?.minPrice}
-                      onChange={(e) =>
-                        setState({ ...state, minPrice: e.target.value })
-                      }
-                    />{" "}
-                    sum
-                  </span>
-                </div>
-                <div className="flex ">
-                  <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
-                    до
-                  </span>
-                  <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-                    <input
-                      className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-                      value={state?.maxPrice}
-                      onChange={(e) =>
-                        setState({ ...state, maxPrice: e.target.value })
-                      }
-                    />
-                    sum
-                  </span>
-                </div>
-              </div>
-              <div className="relative z-50 mb-[6px] w-full  marketFilter">
-                {" "}
-                <ReactSlider
-                  className="horizontal-slider"
-                  thumbClassName="example-thumb1"
-                  trackClassName="example-track1"
-                  defaultValue={[10, 90]}
-                  ariaLabel={["Lower thumb", "Upper thumb"]}
-                  // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
-                  // renderThumb={() => <div>1</div>}
-                  pearling
-                  minDistance={10}
-                />
-              </div>
-              <div className="flex items-center justify-end mt-6">
-                <span
-                  onClick={() => setState({ ...state, openPrice: false })}
-                  className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue"
-                >
-                  Готово
-                </span>
-              </div>
-            </div>
-          </article>
-        </section>
+        <BudgetFilter
+          state={state}
+          setState={setState}
+          handleGetBudgetPrize={handleGetBudgetPrize}
+          handleGetBudgetPrizeTwo={handleGetBudgetPrizeTwo}
+          values={values}
+          setValues={setValues}
+          minPrice={minPrice}
+          maxPrice={maxPrice}
+        />
 
         {/* Colors */}
         <section className="w-full h-fit mt-[50px] ">
