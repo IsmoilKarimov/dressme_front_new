@@ -486,3 +486,17 @@ body::-webkit-scrollbar-thumb {
   border-radius: 5px;
   padding: 2px;
 }
+
+.slider .thumb {
+  width: 23px;
+  height: 23px;
+  cursor: grab;
+  background: #007dca;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  top: -10px;
+}
+
+.track-1 {
+  background-color: #275efe;
+}
