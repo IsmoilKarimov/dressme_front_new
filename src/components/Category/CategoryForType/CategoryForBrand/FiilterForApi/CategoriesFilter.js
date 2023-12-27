@@ -1,11 +1,11 @@
 import React from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
+import { useQuery } from "@tanstack/react-query";
+import { useHttp } from "../../../../../hook/useHttp";
 
-export default function CategoriesFilter({
-  state,
-  setState,
-  handleGetCategoryId,
-}) {
+export default function CategoriesFilter({ state, setState, handleGetCategoryId}) {
+  const { request } = useHttp();
+
   const categories = [
     { id: 1, action: false, name: "Головной убор" },
     { id: 2, action: false, name: "Верхняя одежда" },
@@ -14,7 +14,23 @@ export default function CategoriesFilter({
     { id: 5, action: false, name: "Аксессуары" },
   ];
 
-  
+  // ------------GET METHOD Gender-type-----------------
+  useQuery(
+    ["get_genders"],
+    () => {
+      return request({ url: "/main/section/:", token: true });
+    },
+    {
+      onSuccess: (res) => {
+        setState({ ...state, genderList: res?.genders });
+      },
+      onError: (err) => {
+        console.log(err, "err getGenderlist-method");
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+    }
+  );
 
   function onGetId(id) {
     console.log(id, "category id");
@@ -22,7 +38,7 @@ export default function CategoriesFilter({
       categoryId: id,
     });
   }
-  
+
   return (
     <>
       <section className="w-full h-fit mt-[50px] ">
@@ -52,9 +68,7 @@ export default function CategoriesFilter({
         {/* Field */}
         <article
           className={`w-full overflow-hidden ${
-            state?.category
-              ? "duration-300 h-0"
-              : "duration-300 h-[300px] mt-5 "
+            state?.category ? "duration-300 h-0" : "duration-300 h-fit mt-5 "
           } duration-300 flex flex-col gap-y-4`}
         >
           {categories?.map((data) => {
