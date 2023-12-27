@@ -15,6 +15,7 @@ import { useParams } from "react-router-dom";
 import CategoriesFilter from "./FiilterForApi/CategoriesFilter";
 import BudgetFilter from "./FiilterForApi/BudgetFilter";
 import CategoryButtonsFilter from "./FiilterForApi/CategoryButtonsFilter";
+import ColorsFilter from "./FiilterForApi/ColorsFilter";
 
 const CategoryForBrand = () => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
@@ -218,58 +219,7 @@ const CategoryForBrand = () => {
         />
 
         {/* Colors */}
-        <section className="w-full h-fit mt-[50px] ">
-          {/* Controls */}
-          <article
-            className="openBrands w-full flex justify-between items-center"
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <figure
-              onClick={() =>
-                setState({ ...state, ColorsShow: !state.ColorsShow })
-              }
-              className="flex items-center cursor-pointer select-none"
-            >
-              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Цвет
-              </p>
-              <p
-                className={`${
-                  state?.ColorsShow ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </p>
-            </figure>
-          </article>
-          {/* Colors */}
-          <article
-            className={`w-full px-[2px] flex justify-between flex-wrap items-center   bg-white hover:backdrop-brightness-125 hover:bg-white/60 transition ease-out duration-300 gap-x-[10px] gap-y-[10px] border-0  overflow-hidden  ${
-              state?.ColorsShow
-                ? "duration-300 h-0"
-                : "duration-300 h-[80px] mt-5"
-            } duration-300 `}
-          >
-            {product?.changeColor.map((item) => {
-              return (
-                <figure
-                  key={item?.id}
-                  onClick={() => HandleColorCheck(item?.id)}
-                  className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 w-8 h-8 ${item?.colors} cursor-pointer  border border-solid border-borderColorCard`}
-                  htmlFor="Color1"
-                >
-                  {item?.action ? (
-                    <p className="w-[14px]">
-                      <InputCheckedTrueIcons colors={"#fff"} />
-                    </p>
-                  ) : null}
-                </figure>
-              );
-            })}
-          </article>
-        </section>
+        <ColorsFilter state={state} setState={setState}/>
 
         {/* Customer reviews */}
         <section className="w-full h-fit mt-[50px] ">

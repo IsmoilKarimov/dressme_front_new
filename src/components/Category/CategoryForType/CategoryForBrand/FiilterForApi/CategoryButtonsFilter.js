@@ -22,7 +22,7 @@ function CategoryButtonsFilter({
     },
   ]);
 
-  console.log(dataAction,'dataAction');
+  // console.log(dataAction,'dataAction');
 
   function onGetId(id) {
     handleGetId({
