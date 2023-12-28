@@ -11,16 +11,13 @@ import CustomerReviewsFilter from "./FiilterForApi/CustomerReviewsFilter";
 import ClothingSizesFilter from "./FiilterForApi/ClothingSizesFilter";
 import ShoesSizesFilter from "./FiilterForApi/ShoesSizesFilter";
 
-const CategoryForBrand = () => {
+const CategoryForBrand = ({setFilterData}) => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [genderId, setGenderId] = useState();
   const [discountId, setDiscountId] = useState();
   const [categoryId, setCategoryId] = useState();
   const [dataAction, setDataAction] = useState(false);
   const [dataActionDiscount, setDataActionDiscount] = useState(false);
-  const [filterData, setFilterData] = useState([]);
-
-  // console.log(filterData, "FILTER-DATA");
 
   const [state, setState] = useState({
     brandShow: screenSize.width <= 768 ? true : false,
@@ -47,6 +44,7 @@ const CategoryForBrand = () => {
       width: window.innerWidth,
     };
   }
+
   useEffect(() => {
     const updateDimension = () => {
       setScreenSize(getCurrentDimension());
