@@ -13,9 +13,7 @@ function BudgetFilter({ state, setState, getMinMaxPrice }) {
       max: values[1],
     });
   }
-  console.log(values, "values ");
-  console.log(minPrice, "minPrice ");
-  console.log(maxPrice, "maxPrice ");
+
   return (
     <section className="w-full h-fit mt-[50px]">
       <article

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../category.css";
 import CategoryCards from "./CategoryElement/CategoryCards";
 import { CategoryForBrand } from "./CategoryForBrand/CategoryForBrand";
@@ -6,6 +6,9 @@ import { dressMainData } from "../../../ContextHook/ContextMenu";
 
 export default function CategoryForType() {
   const [dressInfo] = useContext(dressMainData);
+  const [filterData, setFilterData] = useState([]);
+
+  console.log(filterData, "FILTER-DATA");
 
   useEffect(() => {
     if (dressInfo?.openCategoryFilter) {
@@ -28,10 +31,10 @@ export default function CategoryForType() {
 
         {/* For Desktop Version */}
         <article className="hidden md:block md:w-[21%] h-full mt-10 ss:px-4 md:px-0 ">
-          <CategoryForBrand />
+          <CategoryForBrand setFilterData={setFilterData} />
         </article>
         <article className="w-full md:w-[78%] h-[full] ss:px-4 md:px-0 ">
-          <CategoryCards />
+          <CategoryCards filterData={filterData}/>
         </article>
       </section>
     </main>
