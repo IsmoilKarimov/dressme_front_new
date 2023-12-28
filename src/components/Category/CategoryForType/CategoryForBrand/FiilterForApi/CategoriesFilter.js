@@ -1,17 +1,24 @@
-import React from "react";
+/* eslint-disable array-callback-return */
+import React, { useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 import { useQuery } from "@tanstack/react-query";
 import { useHttp } from "../../../../../hook/useHttp";
 
-export default function CategoriesFilter({ state, setState, handleGetCategoryId,params}) {
+export default function CategoriesFilter({
+  state,
+  setState,
+  handleGetCategoryId,
+  params,
+}) {
   const { request } = useHttp();
+  const [getCategoryId, setGetCategoryId] = useState();
 
   const categories = [
-    // { id: 1, action: false, name: "Головной убор" },
-    // { id: 2, action: false, name: "Верхняя одежда" },
-    { id: 3, action: false, name: "Нижняя одежда" },
-    { id: 4, action: false, name: "Обувь" },
-    // { id: 5, action: false, name: "Аксессуары" },
+    { id: '1', action: false, name: "Головной убор" },
+    { id: '2', action: false, name: "Верхняя одежда" },
+    { id: '3', action: false, name: "Нижняя одежда" },
+    { id: '4', action: false, name: "Обувь" },
+    { id: '5', action: false, name: "Аксессуары" },
   ];
 
   // ------------GET METHOD Gender-type-----------------
@@ -22,7 +29,8 @@ export default function CategoriesFilter({ state, setState, handleGetCategoryId,
     },
     {
       onSuccess: (res) => {
-        console.log(res,'RES');
+        console.log(res, "RES");
+        setGetCategoryId(res?.category_ids);
         setState({ ...state, genderList: res?.genders });
       },
       onError: (err) => {
@@ -32,7 +40,6 @@ export default function CategoriesFilter({ state, setState, handleGetCategoryId,
       refetchOnWindowFocus: false,
     }
   );
-
 
   function onGetId(id) {
     console.log(id, "category id");
@@ -74,18 +81,22 @@ export default function CategoriesFilter({ state, setState, handleGetCategoryId,
           } duration-300 flex flex-col gap-y-4`}
         >
           {categories?.map((data) => {
-            return (
-              <button
-                key={data?.id}
-                className="w-full h-[44px] rounded-lg justify-center bg-bgCategory hover:text-white  focus:bg-fullBlue hover:bg-fullBlue focus:text-white flex items-center  cursor-pointer select-none  text-black"
-                type="button"
-                onClick={() => onGetId(data?.id)}
-              >
-                <p className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
-                  {data?.name}
-                </p>
-              </button>
-            );
+            return getCategoryId?.map((id) => {
+              if (id === data.id) {
+                return (
+                  <button
+                    key={data?.id}
+                    className="w-full h-[44px] rounded-lg justify-center bg-bgCategory hover:text-white  focus:bg-fullBlue hover:bg-fullBlue focus:text-white flex items-center  cursor-pointer select-none  text-black"
+                    type="button"
+                    onClick={() => onGetId(data?.id)}
+                  >
+                    <p className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
+                      {data?.name}
+                    </p>
+                  </button>
+                );
+              }
+            });
           })}
         </article>
       </section>

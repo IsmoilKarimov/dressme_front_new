@@ -39,8 +39,15 @@ const CategoryForBrand = () => {
     checkedPrize: true,
     minPrice: 50000,
     maxPrice: 3000000,
+    getBadgePrice: {},
   });
+  function getMinMaxPrice(childData) {
+    // console.log(childData);
+    setState({ ...state, getBadgePrice: childData });
+  }
   const [values, setValues] = useState([state?.minPrice, state?.maxPrice]);
+
+  console.log(state?.getBadgePrice, "getBadgePrice");
 
   function getCurrentDimension() {
     return {
@@ -58,15 +65,15 @@ const CategoryForBrand = () => {
   }, [screenSize]);
 
   const params = useParams();
-  const apiUrl = `https://api.dressme.uz/api/main/shops/${params?.id}`;
+  const apiUrl = `https://api.dressme.uz/api/main/section/${params?.id}`;
 
   const fetchGetAllData = (params) => {
     const urlParams = new URLSearchParams();
-    if (budgetFrom) {
-      urlParams.set("budget[from]", budgetFrom);
+    if ("budget[from]") {
+      urlParams.set("budget[from]", "budget[from]");
     }
-    if (budgetTo) {
-      urlParams.set("budget[to]", budgetTo);
+    if ("budget[to]") {
+      urlParams.set("budget[to]", "budget[to]");
     }
 
     // Replace the current URL with the updated query parameters
@@ -75,6 +82,7 @@ const CategoryForBrand = () => {
     Object.entries(params).forEach((i) => {
       if (!i[1]) delete params[i[0]];
     });
+
     fetch(`${apiUrl}?` + new URLSearchParams(params), {
       headers: { Authorization: `Token ${Cookies.get("DressmeUserToken")}` },
     })
@@ -90,11 +98,11 @@ const CategoryForBrand = () => {
       gender: genderId,
       discount: discountId,
       category: categoryId,
-      budgetFrom: budgetFrom,
-      budgetTo: budgetTo,
+      "budget[from]": state?.getBadgePrice?.min,
+      "budget[to]": state?.getBadgePrice?.max,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [genderId, discountId, categoryId, budgetFrom, budgetTo]);
+  }, [genderId, discountId, categoryId, state?.getBadgePrice] , );
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
@@ -165,10 +173,11 @@ const CategoryForBrand = () => {
         <BudgetFilter
           state={state}
           setState={setState}
-          handleGetBudgetPrize={handleGetBudgetMinValue}
-          handleGetBudgetPrizeTwo={handleGetBudgetMaxValue}
-          values={values}
-          setValues={setValues}
+          getMinMaxPrice={getMinMaxPrice}
+          // handleGetBudgetPrize={handleGetBudgetMinValue}
+          // handleGetBudgetPrizeTwo={handleGetBudgetMaxValue}
+          // values={values}
+          // setValues={setValues}
         />
 
         {/* Colors */}

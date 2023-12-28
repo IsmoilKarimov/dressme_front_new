@@ -1,29 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 import Slider from "react-slider";
 
-export default function BudgetFilter({
+function BudgetFilter({
   state,
   setState,
-  values,
-  setValues,
-  handleGetBudgetMinValue,
-  handleGetBudgetMaxValue,
+  // values,
+  // setValues,
+  // handleGetBudgetMinValue,
+  // handleGetBudgetMaxValue,
+  getMinMaxPrice,
 }) {
-  function onGetBudgetMinValue(text) {
-    console.log(text);
-    handleGetBudgetMinValue(text);
-  }
+  // function onGetBudgetMinValue(text) {
+  //   console.log(text);
+  //   handleGetBudgetMinValue(text);
+  // }
 
-  function onGetBudgetMaxValue(text) {
-    console.log(text);
-    handleGetBudgetMaxValue(text);
-  }
+  // function onGetBudgetMaxValue(text) {
+  //   console.log(text);
+  //   handleGetBudgetMaxValue(text);
+  // }
+  const [minPrice, setMinPrice] = useState(1);
+  const [maxPrice, setMaxPrice] = useState(10);
+  const [values, setValues] = useState([minPrice, maxPrice]);
 
   function sendPrizeData() {
-    return onGetBudgetMinValue(), onGetBudgetMaxValue();
+    getMinMaxPrice({
+      min: values[0],
+      max: values[1],
+    });
+    // setState({ ...state, minPrice: minPrice, maxPrice: maxPrice });
   }
-
+  console.log(values, "values ");
+  console.log(minPrice, "minPrice ");
+  console.log(maxPrice, "maxPrice ");
   return (
     <section className="w-full h-fit mt-[50px]">
       <article
@@ -64,8 +74,9 @@ export default function BudgetFilter({
                   className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                   value={values[0]}
                   onChange={(e) => {
-                    onGetBudgetMinValue(e.target.value);
-                    setState({ ...state, minPrice: e.target.value });
+                    // onGetBudgetMinValue(e.target.value);
+                    // setState({ ...state, minPrice: e.target.value });
+                    setMinPrice(e.target.value);
                   }}
                 />{" "}
               </span>
@@ -79,8 +90,10 @@ export default function BudgetFilter({
                   className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
                   value={values[1]}
                   onChange={(e) => {
-                    onGetBudgetMaxValue(e.target.value);
-                    setState({ ...state, maxPrice: e.target.value });
+                    // console.log(e.target.value, "e.target.value");
+                    setMaxPrice(e.target.value);
+                    // onGetBudgetMaxValue(e.target.value);
+                    // setState({ ...state, maxPrice: e.target.value });
                   }}
                 />
               </span>
@@ -90,8 +103,8 @@ export default function BudgetFilter({
             className="slider w-full h-[4px] bg-fullBlue border rounded-[1px] mt-5"
             onChange={setValues}
             value={values}
-            min={state?.minPrice}
-            max={state?.maxPrice}
+            min={minPrice}
+            max={maxPrice}
           />
           <div className="flex items-center justify-end mt-6">
             <span
@@ -106,3 +119,4 @@ export default function BudgetFilter({
     </section>
   );
 }
+export default React.memo(BudgetFilter);
