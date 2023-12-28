@@ -31,12 +31,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { Popover } from "antd";
 import ScrollToTop from "react-scroll-to-top";
 import { ReactComponent as MySVG } from "../../assets/backTop/backTop.svg";
-import {
-  BrandBlack,
-  EnglishFlag,
-  RussianFlag,
-  UzbekFlag,
-} from "../../assets";
+import { BrandBlack, EnglishFlag, RussianFlag, UzbekFlag } from "../../assets";
 import {
   ArrowTopIcons,
   CommentIcons,
@@ -358,7 +353,7 @@ const Footer = () => {
 
   return (
     <footer>
-      <section className="flex flex-col h-fit justify-center items-center m-0 p-0 ss:px-4 md:px-0 box-border border-t border-searchBgColor  md:mt-[40px] mb-[40px] md:mb-[60px] bg-btnBgColor md:bg-white md:border-t-0">
+      <section className="flex flex-col h-fit justify-center items-center m-0 p-0 ss:px-4 md:px-0 box-border border-t border-searchBgColor  md:mt-[60px] mb-[40px] md:mb-[60px] bg-btnBgColor md:bg-white md:border-t-0">
         <article className="">
           <ScrollToTop
             smooth

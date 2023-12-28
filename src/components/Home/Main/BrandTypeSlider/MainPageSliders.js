@@ -17,7 +17,11 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { NavLink, useNavigate } from "react-router-dom";
 import { NoImg, ShowMoreBackIcon, SircleNext } from "../../../../assets/icons";
+import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
+
 export default function MainPageSliders() {
+  const [mainData, setMainData] = useContext(HomeMainDataContext);
+
   const [dressInfo] = useContext(dressMainData);
 
   const changeColor = [
@@ -92,7 +96,6 @@ export default function MainPageSliders() {
       </div>
     );
   };
-
   const PrevArrow = (props) => {
     const { onClick } = props;
     return (
@@ -119,7 +122,6 @@ export default function MainPageSliders() {
       </div>
     );
   };
-
   const PrevArrow1 = (props) => {
     const { onClick } = props;
     return (
@@ -248,144 +250,194 @@ export default function MainPageSliders() {
           {/* Main slider */}
 
           <div
-            className={`w-full ss:h-0 ${more ? "xs:h-0" : "xs:h-auto"
-              } overflow-hidden`}
+            className={`w-full ss:h-0 ${
+              more ? "xs:h-0" : "xs:h-auto"
+            } overflow-hidden`}
           >
-            <Slider
-              {...settings}
-              className="w-[100%] flex xs:justify-between flex-wrap  "
-            >
-              {carosuelData?.map((data) => {
-                return data.Category.map((data) => {
+            {mainData?.sections?.length > 6 ? (
+              <Slider
+                {...settings}
+                vertical={false}
+                className="w-[100%] flex xs:justify-between flex-wrap  "
+              >
+                {mainData?.sections?.map((data) => {
                   return (
                     <NavLink
-                      to={"/categoriesType"}
+                      to={`/${data?.id}`}
                       key={data?.id}
                       className="!w-[99%] h-[260px] rounded-lg "
                     >
-                      <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px]  rounded-lg">
-                        {changeColor
-                          .filter((e) => e.id === dressInfo?.ClothesBorder)
-                          .map((value) => {
-                            return (
-                              <button
-                                key={value?.id}
-                                className={`w-full h-full border border-searchBgColor rounded-lg flex items-center justify-center`}
-                              >
-                                {/* <SircleNext /> */}
-                                <NoImg />
-                              </button>
-                            );
-                          })}
+                      <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px] rounded-lg overflow-hidden">
+                        <button
+                          className={`w-full h-full border border-searchBgColor rounded-lg flex items-center justify-center`}
+                        >
+                          <NoImg />
+                        </button>
+
+                        {/* <img
+                        src={data?.url_photo}
+                        alt=""
+                        className="w-full h-full "
+                      /> */}
                       </div>
                       <article className="h-12.5 flex items-center justify-start">
                         <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
-                          {data?.type || "type"}
+                          {data?.name_ru || "type"}
                           <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
-                            ({data?.count || "0"})
+                            ({data?.products_count || "0"})
                           </p>
                         </p>
                       </article>
                     </NavLink>
                   );
-                });
-              })}
-            </Slider>
-          </div>
-
-          {/* carosuel hidden block */}
-
-          <div
-            className={`${more ? "xs:grid" : "xs:hidden"
-              } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 md:pt-7`}
-          >
-            {carosuelData?.map((data) => {
-              return data.Category.map((data, i) => {
-                if (more) {
+                })}
+              </Slider>
+            ) : (
+              <section className="w-full box-border flex flex-row justify-start gap-x-3 mt-4 mb-6 md:my-6">
+                {mainData?.sections?.map((data) => {
                   return (
                     <NavLink
-                      to="/categoriesType"
+                      to={`/${data?.id}`}
+                      key={data?.id}
+                      className="max-w-[192px] w-full h-[260px] rounded-lg "
+                    >
+                      <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px] rounded-lg overflow-hidden">
+                        <button
+                          className={`w-full h-full border border-searchBgColor rounded-lg flex items-center justify-center`}
+                        >
+                          <NoImg />
+                        </button>
+
+                        {/* <img
+                        src={data?.url_photo}
+                        alt=""
+                        className="w-full h-full "
+                      /> */}
+                      </div>
+                      <article className="h-12.5 flex items-center justify-start">
+                        <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
+                          {data?.name_ru || "type"}
+                          <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
+                            ({data?.products_count || "0"})
+                          </p>
+                        </p>
+                      </article>
+                    </NavLink>
+                  );
+                })}
+              </section>
+            )}
+          </div>
+
+          {/* CAROUSEL HIDDEN BLOCK */}
+          <div
+            className={`${
+              more ? "xs:grid" : "xs:hidden"
+            } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 md:pt-7`}
+          >
+            {mainData?.sections?.map((data, i) => {
+              if (more) {
+                return (
+                  <NavLink
+                    to={`/${data?.id}`}
+                    key={data?.id}
+                    className="!w-[99%] h-[260px] rounded-lg "
+                  >
+                    <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px] rounded-lg overflow-hidden">
+                      <button
+                        className={`w-full h-full border border-searchBgColor rounded-lg flex items-center justify-center`}
+                      >
+                        <NoImg />
+                      </button>
+
+                      {/* <img
+                    src={data?.url_photo}
+                    alt=""
+                    className="w-full h-full "
+                  /> */}
+                    </div>
+                    <article className="h-12.5 flex items-center justify-start">
+                      <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
+                        {data?.name_ru || "type"}
+                        <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
+                          ({data?.products_count || "0"})
+                        </p>
+                      </p>
+                    </article>
+                  </NavLink>
+                );
+              } else {
+                if (i > 8) {
+                  return false;
+                } else {
+                  return (
+                    <NavLink
+                      to={`/${data?.id}`}
                       key={data?.id}
                       className="w-[100%] "
                     >
-                      <figure className="w-[100%] xs:w-[196px] h-[140px] xs:h-[224px] flex items-center border border-searchBgColor justify-center p-1 bg-btnBgColor ]	rounded-xl xs:rounded">
+                      <figure className="w-[100%] xs:w-[196px] h-[140px] xs:h-[224px] border border-searchBgColor flex items-center justify-center p-1 bg-btnBgColor ]	rounded-xl xs:rounded">
                         <NoImg />
+                        {/* <img
+                          src={data?.url_photo}
+                          alt=""
+                          className="w-full h-full "
+                        /> */}
                       </figure>
                       <article className="w-full py-1 flex items-center">
                         <p className="not-italic flex items-center font-AeonikProMedium text-sm xs:text-base leading-6 text-black">
-                          {data?.type || "type"}
+                          {data?.name_ru || "type"}
                           <p className="not-italic lex items-center  font-AeonikProRegular text-xs xs:text-sm leading-4 text-gray-500 ml-1">
-                            ({data?.count || "0"})
+                            ({data?.products_count || "0"})
                           </p>
                         </p>
                       </article>
                     </NavLink>
                   );
-                } else {
-                  if (i > 8) {
-                    return false;
-                  } else {
-                    return (
-                      <NavLink
-                        to="/categoriesType"
-                        key={data?.id}
-                        className="w-[100%] "
-                      >
-                        <figure className="w-[100%] xs:w-[196px] h-[140px] xs:h-[224px] border border-searchBgColor flex items-center justify-center p-1 bg-btnBgColor ]	rounded-xl xs:rounded">
-                          <NoImg />
-                        </figure>
-                        <article className="w-full py-1 flex items-center">
-                          <p className="not-italic flex items-center font-AeonikProMedium text-sm xs:text-base leading-6 text-black">
-                            {data?.type || "type"}
-                            <p className="not-italic lex items-center  font-AeonikProRegular text-xs xs:text-sm leading-4 text-gray-500 ml-1">
-                              ({data?.count || "0"})
-                            </p>
-                          </p>
-                        </article>
-                      </NavLink>
-                    );
-                  }
                 }
-              });
+              }
             })}
           </div>
-          <div className="w-full flex justify-center items-center  mt-10">
-            <button
-              className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[40px] xs:h-[52px] px-4 ll:px-10 rounded-xl border ${dressInfo?.BtnSeason}`}
-              onClick={() => setMore(!more)}
-            >
-              <p className="not-italic  font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
-                {more ? "Назад" : "Посмотреть все разделы"}
-              </p>
-              <p className="ml-2 ">
-                {more ? (
-                  <div>
-                    <span className="xs:hidden">
-                      <ShowMoreBackIcon
-                        colors={dressInfo?.ColorSeason}
-                        width={18}
-                      />
-                    </span>
-                    <span className="hidden xs:block">
-                      <ShowMoreBackIcon
-                        colors={dressInfo?.ColorSeason}
-                        width={24}
-                      />
-                    </span>
-                  </div>
-                ) : (
-                  <SircleNext colors={dressInfo?.ColorSeason} />
-                )}
-              </p>
-            </button>
-          </div>
-          <div className="w-full mt-[60px] ss:hidden xs:block ">
-            <Slider
-              {...settings1}
-              className="w-[100%] flex xs:justify-between  px-[1px]"
-            >
-              {carosuelData?.map((data) => {
-                return data.campany.map((data) => {
+          {mainData?.sections?.length > 6 ? (
+            <div className="w-full flex justify-center items-center  mt-10">
+              <button
+                className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[40px] xs:h-[52px] px-4 ll:px-10 rounded-xl border ${dressInfo?.BtnSeason}`}
+                onClick={() => setMore(!more)}
+              >
+                <p className="not-italic  font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
+                  {more ? "Назад" : "Посмотреть все разделы"}
+                </p>
+                <p className="ml-2 ">
+                  {more ? (
+                    <div>
+                      <span className="xs:hidden">
+                        <ShowMoreBackIcon
+                          colors={dressInfo?.ColorSeason}
+                          width={18}
+                        />
+                      </span>
+                      <span className="hidden xs:block">
+                        <ShowMoreBackIcon
+                          colors={dressInfo?.ColorSeason}
+                          width={24}
+                        />
+                      </span>
+                    </div>
+                  ) : (
+                    <SircleNext colors={dressInfo?.ColorSeason} />
+                  )}
+                </p>
+              </button>
+            </div>
+          ) : null}
+
+          <div className="w-full mt-[60px] hidden xs:block">
+            {mainData?.shops ? (
+              <Slider
+                {...settings1}
+                className="w-[100%] flex xs:justify-between  px-[1px]"
+              >
+                {mainData?.shops?.map((data) => {
                   return (
                     <div
                       key={data?.id}
@@ -393,17 +445,18 @@ export default function MainPageSliders() {
                       className="!w-[98.88%] h-[100px] cursor-pointer  rounded-lg bg-btnBgColor flex items-center justify-center select-none border border-solid border-searchBgColor"
                     >
                       <figure className=" h-full flex items-center justify-center px-[35px]">
+                        {/* <NoImg /> */}
                         <img
                           className="h-[70px] w-[80%] "
-                          src={data?.imgFull}
+                          src={data?.url_logo_photo}
                           alt=""
                         />
                       </figure>
                     </div>
                   );
-                });
-              })}
-            </Slider>
+                })}
+              </Slider>
+            ) : null}
           </div>
         </section>
       </section>

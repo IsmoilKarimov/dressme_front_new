@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import {
-  ArrowTopIcons,
-  CalendarIcons,
   EmailIcons,
   LogOutIcons,
   PersonIcons,
   SircleNext,
-} from "../../../../assets/icons";
+} from "../../../../../assets/icons";
 import InputMask from "react-input-mask";
-import { UzbekFlag } from "../../../../assets";
+import { UzbekFlag } from "../../../../../assets";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { useHttp } from "../../../../../hook/useHttp";
+import Cookies from "js-cookie";
 
-const MyOrderSettings = () => {
+const UserProfilePage = () => {
   const [phone, setPhone] = useState("");
+  const { request } = useHttp();
+  const [profileData, setProfileData] = useState()
   const [state, setState] = useState({
     firstName: "",
     lastName: "",
@@ -25,6 +28,27 @@ const MyOrderSettings = () => {
     Male: true,
     Female: false,
   });
+
+    // -------------  GET ALL PRODUCTS LENGTH --------------
+    useQuery(
+      ["profile-data"],
+      () => {
+        return request({ url: "/user/profile", token: true });
+      },
+      {
+        onSuccess: (res) => {
+          if (res) {
+            console.log(res,"PROFILE");
+            setProfileData(res);
+          }
+        },
+        onError: (err) => {
+          console.log(err, "ERR-PROFILE");
+        },
+        keepPreviousData: true,
+        refetchOnWindowFocus: false,
+      }
+    );
 
   let data = phone.split("-");
   let arr = data.join("");
@@ -39,11 +63,11 @@ const MyOrderSettings = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const LogOut = () => {
-    localStorage.removeItem("dressMeLogin");
-    if (location?.pathname?.includes("profile/settings")) {
-      navigate("/");
+    Cookies.remove("DressmeUserToken");
+    if (location?.pathname?.includes("profile/settings")) { 
+      navigate("/sign_in");
     } else if (location?.pathname?.includes("my-order")) {
-      navigate("/");
+      navigate("/sign_in");
     } else {
       navigate(location.pathname);
     }
@@ -66,6 +90,7 @@ const MyOrderSettings = () => {
                 <input
                   className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                   type="text"
+                  value={profileData?.name}
                   placeholder="Имя"
                   required
                 />
@@ -82,6 +107,7 @@ const MyOrderSettings = () => {
                 <input
                   className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                   type="text"
+                  value={profileData?.surname}
                   placeholder="Фамилия"
                   required
                 />
@@ -99,7 +125,7 @@ const MyOrderSettings = () => {
                 Номер телефона{" "}
               </div>
               <div className="flex mt-[6px] items-center justify-center overflow-hidden border border-searchBgColor rounded-lg">
-                <div className="ss:w-[35%] md:w-[30%]   h-12 flex bg-btnBgColor items-center justify-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
+                <div className="w-[35%] md:w-[25%] h-12 flex bg-btnBgColor items-center justify-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
                   <img src={UzbekFlag} alt="form-arrow-bottom" />
                   <input
                     className="w-[40px] bg-btnBgColor h-full select-none mx-2 not-italic font-AeonikProMedium text-base leading-4 text-black"
@@ -107,14 +133,11 @@ const MyOrderSettings = () => {
                     value={state.phoneCode}
                     readOnly
                   />
-                  <span className="rotate-[180deg]">
-                    <ArrowTopIcons colors={"#000"} />
-                  </span>
                 </div>
-                <div className="ss:w-[65%] bg-btnBgColor md:w-[70%] h-12 overflow-hidden">
+                <div className="w-[65%] md:w-[75%] bg-btnBgColor h-12 overflow-hidden">
                   <InputMask
                     mask="(99)999-99-99"
-                    value={phone}
+                    value={profileData?.phone}
                     onChange={(e) => setPhone(e.target.value)}
                     className={`w-full px-4  h-full not-italic bg-btnBgColor ${
                       phone ? "font-AeonikProMedium" : null
@@ -127,12 +150,12 @@ const MyOrderSettings = () => {
             <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
               <div className="flex justify-between mt-[6px]  w-full items-center not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
                 <span>Электронная почта</span>
-                <span>*необязательная</span>
               </div>
               <div className="mt-[6px] px-[16px] w-full flex items-center bg-btnBgColor border border-searchBgColor rounded-lg ">
                 <input
                   className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                   type="email"
+                  value={profileData?.email}
                   placeholder="Адрес электронной почты"
                   required
                 />
@@ -143,77 +166,7 @@ const MyOrderSettings = () => {
             </div>
           </div>
         </div>
-        <div className="md:px-[40px] md:py-[30px] ">
-          <div className="flex  flex-col md:flex-row justify-between items-center">
-            <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
-              <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-                Пол
-              </div>
-              <div className="w-full mt-[6px]  flex items-center justify-center bg-btnBgColor overflow-hidden border border-searchBgColor rounded-lg">
-                <button
-                  className={`w-1/2 h-12 flex items-center justify-center border-r border-searchBgColor not-italic font-AeonikProMedium tracking-[1%] text-base leading-4 text-center ${
-                    state.Male ? "text-fullBlue" : "text-black"
-                  }`}
-                  onClick={() =>
-                    setState({ ...state, Female: false, Male: true })
-                  }
-                >
-                  Мужской
-                </button>
-                <button
-                  className={`w-1/2 h-12 flex items-center justify-center not-italic font-AeonikProMedium tracking-[1%] text-base leading-4 text-center ${
-                    state.Female ? "text-fullBlue" : "text-black"
-                  }`}
-                  onClick={() =>
-                    setState({ ...state, Female: true, Male: false })
-                  }
-                >
-                  Женский
-                </button>
-              </div>
-            </div>
-            <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
-              <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-                Дата рождения
-              </div>
-              <div className="w-full mt-[6px]  h-12 flex items-center  bg-btnBgColor overflow-hidden border border-searchBgColor rounded-lg">
-                <button
-                  className={`w-[48px] h-full  flex items-center justify-center border-r border-searchBgColor`}
-                >
-                  <CalendarIcons colors={"#000"} />
-                </button>
-                <button
-                  className={`w-[66px] h-full  flex items-center justify-center border-r border-searchBgColor`}
-                >
-                  <span className="not-italic font-AeonikProRegular text-base leading-4 tracking-[1%] text-closeColorBtn">
-                    День
-                  </span>
-                </button>
-                <button
-                  className={`w-[calc(100%-200px)] h-full  flex items-center justify-between px-2 border-r border-searchBgColor`}
-                >
-                  <span className="not-italic font-AeonikProRegular text-base leading-4 tracking-[1%] text-closeColorBtn">
-                    Месяц
-                  </span>{" "}
-                  <span className="ml-2 rotate-[90deg]">
-                    <ArrowTopIcons colors={"#B8B8B8"} />
-                  </span>{" "}
-                </button>
-                <button
-                  className={`w-[86px] h-full  flex items-center justify-center `}
-                >
-                  <span className="not-italic font-AeonikProRegular  text-base leading-4 tracking-[1%] text-closeColorBtn">
-                    1996
-                  </span>{" "}
-                  <span className="ml-2 rotate-[90deg]">
-                    <ArrowTopIcons colors={"#B8B8B8"} />
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="w-full  mx-auto flex items-center justify-between  md:px-[40px] md:py-[30px] mt-6 md:mt-0">
+        <div className="w-full  mx-auto flex items-center justify-between md:px-[40px] md:py-[30px] mt-6 md:mt-0">
           <div className="">
             <button
               onClick={LogOut}
@@ -228,9 +181,10 @@ const MyOrderSettings = () => {
             </button>
           </div>
           <div className="w-[80%] xs:w-[60%] md:w-auto ">
-            <button className="w-[100%] md:w-[244px] h-[52px] bg-fullBlue text-white active:scale-95  active:opacity-70 rounded-lg flex items-center justify-center">
+            {/* active:scale-95  active:opacity-70 */}
+            <button className="w-[100%] md:w-[244px] h-[52px] cursor-not-allowed bg-gray-300 text-white rounded-lg flex items-center justify-center">
               <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center tracking-[1%]">
-                Сохранить данные
+                Обновить данные
               </span>
               <span className="ml-2">
                 <SircleNext colors={"#fff"} />
@@ -240,6 +194,7 @@ const MyOrderSettings = () => {
         </div>
       </div>
     </div>
+  
   );
 };
-export { MyOrderSettings };
+export { UserProfilePage };

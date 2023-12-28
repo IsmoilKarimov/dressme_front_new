@@ -8,9 +8,8 @@ import SkeletonHomeIndex from "../components/Home/Main/Skeleton/SkeletonHomeInde
 import SignInSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import SignUpSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 
-
 import MobileAllComments from "../components/Home/Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/MobileComments";
-
+import { EditProfilePage } from "../components/Authentication/UserProfile/ProfileEditPage/EditPageProfile";
 
 // import ConnectDashboard from "../components/RegistrationDashboard";
 // import CatalogMain from "../components/Home/Catalog/CatalogFilter";
@@ -35,7 +34,13 @@ const ForgetPassword = React.lazy(() =>
   import("../components/Authentication/SignInDetail/ForgetPassword")
 );
 const Footer = React.lazy(() => import("../components/footer/footer"));
-const OrderSettings = React.lazy(() => import("../components/Home/MyOrder"));
+const ProfilePage = React.lazy(() =>
+  import("../components/Authentication/UserProfile/PorofilePage/ProfilePage")
+);
+// const EditProfilePage = React.lazy(() =>
+//   import("../components/Authentication/UserProfile/ProfileEditPage/EditPageProfile")
+// );
+
 const CatalogPage = React.lazy(() => import("../components/Home/Catalog"));
 
 const ShoppingStoreOfficial = React.lazy(() =>
@@ -45,10 +50,17 @@ const Favourites = React.lazy(() => import("../components/Home/Favorite"));
 const ShoppingStore = React.lazy(() =>
   import("../components/Home/Shop/ShoppingStore")
 );
-const CategoryMainType = React.lazy(() => import("../components/Category/CategoryForType"));
+const CategoryMainType = React.lazy(() =>
+  import("../components/Category/CategoryForType")
+);
 // const ConnectDashboard = React.lazy(() => import("../components/ConnectionOfDashboard"));
 const SignUp = React.lazy(() => import("../components/Authentication/SignUp"));
 const SignIn = React.lazy(() => import("../components/Authentication/SignIn"));
+const UserEmailVerification = React.lazy(() =>
+  import(
+    "../components/Authentication/UserEmailVerification/UserEmailVerification"
+  )
+);
 
 // -------------------------------------
 
@@ -93,7 +105,7 @@ const RouterMain = () => {
           }
         />
         <Route
-          path="/categoriesType"
+          path="/:id"
           element={
             <Suspense
               fallback={
@@ -152,13 +164,7 @@ const RouterMain = () => {
         <Route
           path="/sign_in"
           element={
-            <Suspense
-              fallback={
-                <div>
-                  <SignInSkeletonIndex />
-                </div>
-              }
-            >
+            <Suspense>
               <SignIn />
             </Suspense>
           }
@@ -182,17 +188,19 @@ const RouterMain = () => {
           index
           path="/profile/settings"
           element={
-            <Suspense
-              fallback={
-                <div>
-                  <SkeletonHomeIndex />
-                </div>
-              }
-            >
-              <OrderSettings />
-            </Suspense>
+            // <Suspense
+            //   fallback={
+            //     <div>
+            //       <SkeletonHomeIndex />
+            //     </div>
+            //   }
+            // >
+            <ProfilePage />
+            // </Suspense>
           }
         />
+
+        <Route index path="/profile/edit" element={<EditProfilePage />} />
 
         <Route
           path="/favourites"
@@ -280,7 +288,8 @@ const RouterMain = () => {
           }
         />
 
-        <Route path="/allcomments"
+        <Route
+          path="/allcomments"
           element={
             <Suspense
               fallback={
@@ -294,20 +303,36 @@ const RouterMain = () => {
           }
         />
 
+        <Route
+          path="/mail-verify-user/:id"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SignInSkeletonIndex />
+                </div>
+              }
+            >
+              <UserEmailVerification />
+            </Suspense>
+          }
+        />
       </Routes>
 
       {locationWindow !== "/add_user_private_data" &&
-        locationWindow !== "/add_user_body_data" &&
-        locationWindow !== "/confirm_password" &&
-        locationWindow !== "/set_new_password" &&
-        locationWindow !== "/catalog" &&
-        locationWindow !== "/enter_password_validate" &&
-        locationWindow !== "/forget_password" &&
-        locationWindow !== "/sign_up" &&
-        locationWindow !== "/sign_in" &&
-        locationWindow !== "/profile/settings" &&
-        locationWindow !== "/allcomments" &&
-        locationWindow !== "/delivery-points" ? (
+      locationWindow !== "/add_user_body_data" &&
+      locationWindow !== "/confirm_password" &&
+      locationWindow !== "/set_new_password" &&
+      locationWindow !== "/catalog" &&
+      locationWindow !== "/enter_password_validate" &&
+      locationWindow !== "/forget_password" &&
+      locationWindow !== "/sign_up" &&
+      locationWindow !== "/sign_in" &&
+      locationWindow !== "/src" &&
+      locationWindow !== "/allcomments" &&
+      locationWindow !== "/profile/settings" &&
+      locationWindow !== "/profile/edit" &&
+      locationWindow !== "/delivery-points" ? (
         <Suspense fallback={<>Loading...</>}>
           <Footer />
         </Suspense>

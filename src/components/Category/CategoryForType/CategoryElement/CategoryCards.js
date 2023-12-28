@@ -1,38 +1,31 @@
-import React, { useContext, useState } from "react";
-
+import React, { useContext, useEffect, useState } from "react";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
-import {
-  ArrowTopIcons,
-  InputCheckedTrueIcons,
-  NoImg,
-  StarIcons,
-} from "../../../../assets/icons";
-import { HeartImg } from "../../../../assets";
-import ClothesFilterGroup from "../ClothesFilterGroup/ClothesFIlterGroup";
-import Slider from "react-slick";
+import { ArrowTopIcons } from "../../../../assets/icons";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { CollectionCardItem } from "../../../Home/Main/WearCollectionCard/CollectionCardItem";
+import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
+import { useQuery } from "@tanstack/react-query";
 
-export default function CategoryCards() {
-  const [dressInfo] = useContext(dressMainData);
-  const wearGroup = [
-    { id: 1, name: "Футболки" },
-    { id: 2, name: "Рубашки" },
-    { id: 3, name: "Шорты" },
-    { id: 4, name: "Джинсы" },
-    { id: 5, name: "Свитер" },
-    { id: 6, name: "Куртки" },
-    { id: 7, name: "Толстовки" },
-    { id: 8, name: "Обуви" },
-    { id: 9, name: "Куртки" },
-    { id: 10, name: "Сапоги" },
-    { id: 11, name: "Платья" },
-    { id: 12, name: "Юбки" },
-    { id: 13, name: "Ремень" },
-  ];
-  const onColorChecked = () => {};
-
+export default function CategoryCards({filterData}) {
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [prevSliderBtn, setPrevSliderBtn] = useState(false);
+  const [openWearType, setOpenWearType] = useState(false);
+  const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
+
+  const handleLeaveMouse = (eId) => {
+    const elementsIndex = dressInfo.ProductList.findIndex(
+      (element) => element.id == eId
+    );
+    let newArray = [...dressInfo.ProductList];
+    newArray[elementsIndex] = {
+      ...newArray[elementsIndex],
+      colourCard: false,
+    };
+    setDressInfo((current) => {
+      return { ...current, ProductList: newArray };
+    });
+  };
   const data = (onClick) => {
     onClick();
     setPrevSliderBtn(true);
@@ -51,7 +44,6 @@ export default function CategoryCards() {
       </div>
     );
   };
-
   const PrevArrow = (props) => {
     const { onClick } = props;
     return (
@@ -125,11 +117,56 @@ export default function CategoryCards() {
   const goDetail = (id) => {
     navigate(`/product/:${id}`);
   };
-  
-  
+
+  console.log(filterData?.section_products?.data);
+
+  // ---------------------------------
+
+  const [showData, setShowData] = useState({});
+
+  const url = "https://api.dressme.uz";
+
+  const params = useParams();
+
+  // ------------GET METHOD Main data -----------------
+  useQuery(
+    ["get_section_show_data"],
+    () => {
+      return fetch(`${url}/api/main/section/${params?.id}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          //   "Content-type": "application/json; charset=UTF-8",
+        },
+      }).then((res) => res.json());
+    },
+    {
+      onSuccess: (res) => {
+        setShowData(res);
+      },
+      onError: (err) => {
+        console.log(err, "err");
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: true,
+    }
+  );
+
+  useEffect(() => {
+    fetch(`${url}/api/main/section/${params?.id}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        //   "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => setShowData(res));
+  }, [params]);
+
   return (
-    <main className="flex flex-col box-border mt-2 md:mt-[34px]">
-      <section className="hidden">
+    <main className="flex flex-col box-border mt-2">
+      {/* <section className="hidden">
         <ClothesFilterGroup _class="items gap-x-2 ">
           {wearGroup?.map((data) => {
             return (
@@ -144,131 +181,19 @@ export default function CategoryCards() {
             );
           })}
         </ClothesFilterGroup>
-      </section>
-      <section className="w-full h-full hidden md:block">
-        <article>
-          <p className="not-italic font-AeonikProMedium text-sm  leading-4 text-black tracking-[1%]">
-            По типу
-          </p>
-        </article>
-        <section className="w-full mt-3 h-[52px] flex flex-col items-center">
-          <Slider
-            {...settings1}
-            className="w-[100%] h-full items-center flex xs:justify-between"
-          >
-            {wearGroup?.map((data) => {
-              return (
-                <article key={data.id} className="!w-[100px ] h-full ">
-                  <article
-                    className={` w-full h-[52px] px-5 m-auto  bg-bgCategory rounded-lg flex justify-center items-center cursor-pointer  border border-searchBgColor`}
-                  >
-                    <p className="not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
-                      {data?.name || "0"}
-                    </p>
-                  </article>
-                </article>
-              );
-            })}
-          </Slider>
-        </section>
-      </section>
-      <section className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 mt-1 md:mt-12">
-        {dressInfo.ProductList.map((data) => {
+      </section> */}
+
+      <section className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 mt-1 md:mt-8">
+        {filterData?.section_products?.data.map((data) => {
+          console.log(data,'data');
           return (
-            <article
-              key={data.id}
-              className={`ss:w-[49%] md:w-[24%] lg:w-[240px]  xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
-            >
-              <figure
-                onClick={() => goDetail(data?.title)}
-                className="relative w-full cursor-pointer ss:h-[200px] ls:h-[220px] ll:h-[238px] xs:h-[309px] lg:h-[320px] bg-btnBgColor  flex content-between items-center overflow-hidden border-b border-solid flex-nowrap"
-              >
-                {data.ProducImg ? (
-                  <img
-                    className="w-full h-full m-auto hover:scale-105 transition duration-700 ease-in-out"
-                    src={data.ProducImg}
-                    alt="ProducImg"
-                  />
-                ) : (
-                  <NoImg />
-                )}
-              </figure>
-              <section className="w-full rounded-b-xl bg-white  flex flex-wrap h-[130px] md:h-[136px] ">
-                <article className=" w-full flex justify-between items-center px-1  border-solid xs:h-[38px] lg:h-8 ss:h-[30px] xs:px-2 md:px-4 bg-white">
-                  {data?.changeColor.map((itemValue) => {
-                    return (
-                      <article
-                        key={itemValue?.id}
-                        onClick={() => onColorChecked(data?.id, itemValue?.id)}
-                        className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 ls:w-[22px] ls:h-[22px] w-5 h-5 lg:w-6 lg:h-6 ${itemValue?.colors} cursor-pointer  border border-solid border-borderColorCard mr-[3px]`}
-                        htmlFor="Color1"
-                      >
-                        {itemValue?.action ? (
-                          <InputCheckedTrueIcons colors={"#fff"} />
-                        ) : null}
-                      </article>
-                    );
-                  })}
-                </article>
-                <article
-                  onClick={() => goDetail(data?.title)}
-                  className="w-full  xs:px-3 ss:px-3 xs:mt-3 ss:mt-2"
-                >
-                  <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[15px] leading-4 text-black mb-2 md:mb-0  cursor-pointer">
-                    <div className="absolute categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
-                    {data?.title || "NoData"}
-                  </figure>
-                  <figure className="w-full flex justify-between items-center xs:mt-3">
-                    <section className="flex items-center justify-between">
-                      <article>
-                        <StarIcons />
-                      </article>
-                      <article className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex items-center">
-                        <p className="font-AeonikProMedium text-[10px] ls:text-xs not-italic mx-1 text-black md:mr-[6px] md:text-[13px]">
-                          5.0
-                        </p>
-                        ({data?.starCount || 0}
-                        <p className="ss:hidden lg:block md:ml-1 md:text-[11px]">
-                          голосов
-                        </p>
-                        )
-                      </article>
-                    </section>
-                    <section className="not-italic xs:font-AeonikProMedium ss:font-AeonikProRegular leading-4 text-black  ss:text-[11px] sm:text-xs  md:text-[13px] ">
-                      <b>
-                        <p>{data?.shirtSize || 0}</p>
-                      </b>
-                    </section>
-                  </figure>
-                </article>
-                <article className="w-full flex items-center justify-between  pl-3 pr-[5px]">
-                  <article className="flex items-center ">
-                    {data.sale ? (
-                      <figure className="flex flex-col-reverse ll:flex-row	text-start items-start ">
-                        <p className="text-start m-0 p-0  not-italic font-AeonikProMedium text-[16px]  md:text-base leading-1 text-red-700 xs:text-base xs:leading-4 mr-1">
-                          {data?.sale}
-                        </p>
-                        <p className="text-start m-0 p-0 text-[11px] mt-[8px]  line-through not-italic font-AeonikProRegular leading-3  text-borderColorCard ss:leading-1 md:text-[11px]">
-                          {data?.price}
-                        </p>
-                      </figure>
-                    ) : (
-                      <p
-                        className="not-italic font-AeonikProMedium text-base leading-4"
-                        style={{ color: "black" }}
-                      >
-                        {data?.price}{" "}
-                      </p>
-                    )}
-                  </article>
-                  <figure className="flex items-center select-none	">
-                    <button className="w-[32px] h-[32px] active:scale-95  active:opacity-70 ll:mb-1 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center">
-                      <img src={HeartImg} alt="" />
-                    </button>
-                  </figure>
-                </article>
-              </section>
-            </article>
+            <CollectionCardItem
+              data={data}
+              setOpenWearType={setOpenWearType}
+              handleLeaveMouse={handleLeaveMouse}
+              wishList={wishList}
+              setWishlist={setWishlist}
+            />
           );
         })}
       </section>
@@ -277,6 +202,7 @@ export default function CategoryCards() {
           Показать ещё 30 наборов
         </p>
       </section>
+
       <section className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6">
         <article className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
           <p className="rotate-[-90deg]">
@@ -301,18 +227,6 @@ export default function CategoryCards() {
               4
             </li>
             <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-              5
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-              6
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-              7
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-              8{" "}
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
               . . .
             </li>
           </ul>
@@ -326,6 +240,7 @@ export default function CategoryCards() {
           </p>
         </figure>
       </section>
+      {showData?.section_products?.next_page_url ? "" : null}
     </main>
   );
 }

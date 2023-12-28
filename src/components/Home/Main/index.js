@@ -12,7 +12,7 @@ export default function HomeIndex() {
     <main className="w-[100%] h-fit">
       <MainPageSliders />
       <CollectionCards />
-      <TypeSection />
+      {/* <TypeSection /> */}
     </main>
   );
 }

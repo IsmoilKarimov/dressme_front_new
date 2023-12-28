@@ -49,6 +49,7 @@ import {
 } from "../../assets";
 import NavCategoryModal from "./navCategoryModal";
 import RegionsList from "../../ContextHook/RegionsList";
+import Cookies from "js-cookie";
 
 const MediumHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -313,12 +314,12 @@ const MediumHeader = () => {
 
                   <div className="w-full h-full ">
                     <Popover
-                      className=" w-full   h-full flex items-center justify-center rounded-lg cursor-pointer  md:px-2 md:gap-x-[5px] "
+                      className=" w-full h-full flex items-center justify-center rounded-lg cursor-pointer  md:px-2 md:gap-x-[5px] "
                       open={openwear}
                       onOpenChange={handleOpenChangeWear}
                       trigger="click"
                       options={["Hide"]}
-                      placement="bottom"
+                      placement="bottomRight"
                       content={contentWear}
                     >
                       {SeasonTypeArray.filter(
@@ -418,9 +419,9 @@ const MediumHeader = () => {
                 <p className="line h-5 border-x-[1px] text-textColor ss:hidden md:block mx-3"></p>
 
                 {/* User section */}
-                {localStorage.getItem("dressMeLogin") ? (
+                {Cookies.get("DressmeUserToken") ? (
                   <NavLink
-                    to="/profile/settings"
+                    to="/profile/edit"
                     className=" bg-btnBgColor rounded-xl items-center justify-center w-11 h-11 mr-2 hidden md:flex"
                   >
                     {({ isActive }) =>
@@ -642,4 +643,3 @@ const MediumHeader = () => {
   );
 };
 export default MediumHeader;
-

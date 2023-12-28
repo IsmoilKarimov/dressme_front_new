@@ -1,80 +1,106 @@
-import React, { useState } from 'react'
-import { ChildGenIcon,ManGenIcons, ManWomanGen, WomanGenIcons } from '../../../../../assets/icons';
+import React, { useState } from "react";
+import {
+  ChildGenIcon,
+  ManGenIcons,
+  ManWomanGen,
+  WomanGenIcons,
+} from "../../../../../assets/icons";
 
-export default function GenderButtonsStyle() {
-  
-    const [genderCategory, setGenderCategory] = useState([
-        {
-          id: 1,
-          action: true,
-          name: "Все",
-          icon: <ManWomanGen />,
-        },
-        {
-          id: 2,
-          action: false,
-          name: "",
-          icon: <ManGenIcons />,
-        },
-        {
-          id: 3,
-          action: false,
-          name: "",
-          icon: <WomanGenIcons />,
-        },
-        {
-          id: 4,
-          action: false,
-          name: "",
-          icon: <ChildGenIcon />,
-        },
-      ]);
-    
-    const handleGenderCheck = (value) => {
-    setGenderCategory((data) => {
-        return data.map((e) => {
-        if (e.id == value) {
-            return { ...e, action: true };
-        } else return { ...e, action: false };
-        });
+function GenderButtonsStyle({ handleGetId, getAllShops, setGetAllShops }) {
+  const [genderCategory, setGenderCategory] = useState([
+    {
+      id: 1,
+      action: false,
+      name: "",
+      icon: <ManGenIcons />,
+    },
+    { id: 2, action: false, name: "", icon: <WomanGenIcons /> },
+    {
+      id: 3,
+      action: false,
+      name: "",
+      icon: <ChildGenIcon />,
+    },
+  ]);
+
+  function onGetId(id) {
+    handleGetId({
+      genderFilterId: id,
     });
-    };
-  
-    return (
-        <section className="flex items-center border border-searchBgColor rounded-xl bg-slate-50 md:mt-0">
-            {genderCategory.map((data) => {
-            return (
-                <div
-                key={data.id}
-                className="w-fit flex justify-between h-11 rounded-xl"
-                >
-                <button
-                    key={data.id}
-                    onClick={() => handleGenderCheck(data.id)}
-                    className={`flex items-center justify-center h-11 text-[15px] text-center ${
-                    !data.name ? "px-5" : "px-7"
-                    } font-AeonikProRegular ${
-                    data.action
-                        ? `{ bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-xl`
-                        : ""
-                    } `}
-                >
-                    <span>{data.icon}</span>
-                    {data.name ? <p className="ml-2 text-borderWinter">{data.name}</p> : ""}
-                </button>
-                <span
-                    className={`${
-                    data.id === 4
-                        ? "text-searchBgColor hidden"
-                        : "text-searchBgColor flex items-center"
-                    }`}
-                >
-                    |
-                </span>
-                </div>
-            );
-            })}
-        </section>
-  )
-}
+  }
 
+  const handleGenderCheck = (value) => {
+    setGenderCategory((data) => {
+      return data.map((e) => {
+        if (e.id == value) {
+          return { ...e, action: true };
+        } else return { ...e, action: false };
+      });
+    });
+  };
+
+  return (
+    <section className="w-full md:w-[520px] flex items-center border border-searchBgColor rounded-xl bg-slate-50 md:mt-0">
+      <button
+        onClick={() => {
+          setGetAllShops(true);
+          onGetId();
+        }}
+        className={`${
+          getAllShops
+            ? "bg-white border active:scale-95 my-auto mx-auto border-searchBgColor rounded-xl"
+            : ""
+        } w-1/4 flex items-center justify-center active:scale-95 h-11 text-[15px] text-center font-AeonikProRegular`}
+      >
+        <ManWomanGen />
+        <span className="text-base ml-3 font-AeonikProRegular">Все</span>
+      </button>
+      <span className="text-searchBgColor flex items-center">|</span>
+      
+      {genderCategory?.map((data) => {
+        return (
+          <div
+            key={data?.id}
+            className={`w-1/4 flex items-center justify-center h-11 rounded-xl`}
+          >
+            <button
+              key={data?.id}
+              onClick={() => {
+                setGetAllShops(false);
+                handleGenderCheck(data?.id);
+                onGetId(data?.id);
+              }}
+              className={`${
+                getAllShops
+                  ? ""
+                  : `${
+                      data?.action
+                        ? "bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-xl"
+                        : ""
+                    }`
+              } w-full flex items-center justify-center active:scale-95 h-11 text-[15px] text-center font-AeonikProRegular  `}
+            >
+              <span>{data.icon}</span>
+              {data.name ? (
+                <p className="px-2 text-borderWinter">{data.name}</p>
+              ) : (
+                ""
+              )}
+            </button>
+            <span
+              className={`${
+                data.id === 3
+                  ? "text-searchBgColor hidden"
+                  : "text-searchBgColor flex items-center"
+              }`}
+            >
+              |
+            </span>
+          </div>
+        );
+      })}
+
+    </section>
+  );
+}
+export default React.memo(GenderButtonsStyle);
