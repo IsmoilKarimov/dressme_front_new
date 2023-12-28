@@ -14,7 +14,6 @@ const ShoppingBrands = ({ getData, loading }) => {
   const goDetail = (id) => {
     navigate(`/shopping_store/:${id}`);
   };
-  console.log(getData?.shops?.data?.length);
   
   // if(getData?.shops){
   //   setLoading(false)

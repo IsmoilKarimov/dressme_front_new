@@ -14,7 +14,12 @@ function GenderButtonsStyle({ handleGetId, getAllShops, setGetAllShops }) {
       name: "",
       icon: <ManGenIcons />,
     },
-    { id: 2, action: false, name: "", icon: <WomanGenIcons /> },
+    {
+      id: 2,
+      action: false,
+      name: "",
+      icon: <WomanGenIcons />,
+    },
     {
       id: 3,
       action: false,
@@ -56,7 +61,7 @@ function GenderButtonsStyle({ handleGetId, getAllShops, setGetAllShops }) {
         <span className="text-base ml-3 font-AeonikProRegular">Все</span>
       </button>
       <span className="text-searchBgColor flex items-center">|</span>
-      
+
       {genderCategory?.map((data) => {
         return (
           <div
@@ -99,7 +104,6 @@ function GenderButtonsStyle({ handleGetId, getAllShops, setGetAllShops }) {
           </div>
         );
       })}
-
     </section>
   );
 }
