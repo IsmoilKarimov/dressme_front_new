@@ -57,4 +57,4 @@ function ShoesSizesFilter({ state, setState }) {
   );
 }
 
-export default ShoesSizesFilter;
+export default React.memo(ShoesSizesFilter);

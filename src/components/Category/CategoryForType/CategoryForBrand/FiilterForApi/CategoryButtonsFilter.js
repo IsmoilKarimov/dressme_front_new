@@ -12,9 +12,9 @@ function CategoryButtonsFilter({
     {
       id: 1,
       action: false,
-      name: "Женщинам",
+      name: "Мужчинам",
     },
-    { id: 2, action: false, name: "Мужчинам" },
+    { id: 2, action: false, name: "Женщинам" },
     {
       id: 3,
       action: false,
@@ -78,9 +78,7 @@ function CategoryButtonsFilter({
           onGetDiscontId(1);
         }}
         className={`${
-          dataActionDiscount
-            ? "bg-fullBlue"
-            : "bg-bgCategory"
+          dataActionDiscount ? "bg-fullBlue" : "bg-bgCategory"
         } h-[44px] w-[49%] flex items-center justify-center text-red-600 font-AeonikProMedium text-sm leading-3 text-center active:scale-95  hover:bg-fullBlue rounded-lg `}
       >
         Скидки

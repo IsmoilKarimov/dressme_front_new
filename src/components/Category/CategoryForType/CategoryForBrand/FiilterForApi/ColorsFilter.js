@@ -74,4 +74,4 @@ function ColorsFilter({ state, setState }) {
   );
 }
 
-export default ColorsFilter;
+export default React.memo(ColorsFilter);

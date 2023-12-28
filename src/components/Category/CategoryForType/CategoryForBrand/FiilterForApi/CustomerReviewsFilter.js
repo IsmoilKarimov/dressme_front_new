@@ -126,4 +126,4 @@ function CustomerReviewsFilter({state, setState}) {
   )
 }
 
-export default CustomerReviewsFilter
+export default React.memo(CustomerReviewsFilter)
