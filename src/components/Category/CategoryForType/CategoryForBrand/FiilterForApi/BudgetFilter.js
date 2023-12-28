@@ -2,24 +2,27 @@ import React from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 import Slider from "react-slider";
 
-export default function BudgetFilter({ state, setState, values, setValues,handleGetBudgetMinValue,handleGetBudgetMaxValue }) {
-
-  function onGetBudgetMinValue(text){
+export default function BudgetFilter({
+  state,
+  setState,
+  values,
+  setValues,
+  handleGetBudgetMinValue,
+  handleGetBudgetMaxValue,
+}) {
+  function onGetBudgetMinValue(text) {
     console.log(text);
-    handleGetBudgetMinValue(text)
+    handleGetBudgetMinValue(text);
   }
 
-  function onGetBudgetMaxValue(text){
+  function onGetBudgetMaxValue(text) {
     console.log(text);
-    handleGetBudgetMaxValue(text)
+    handleGetBudgetMaxValue(text);
   }
 
-  // const sendPrizeData = () => {
-  //   return(
-  //     onGetBudgetMinValue(),
-  //     onGetBudgetMaxValue(),
-  //     )
-  // }
+  function sendPrizeData() {
+    return onGetBudgetMinValue(), onGetBudgetMaxValue();
+  }
 
   return (
     <section className="w-full h-fit mt-[50px]">
@@ -60,9 +63,10 @@ export default function BudgetFilter({ state, setState, values, setValues,handle
                 <input
                   className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                   value={values[0]}
-                  onChange={(e) =>{ onGetBudgetMinValue(e.target.value)
-                    setState({ ...state, minPrice: e.target.value })}
-                  }
+                  onChange={(e) => {
+                    onGetBudgetMinValue(e.target.value);
+                    setState({ ...state, minPrice: e.target.value });
+                  }}
                 />{" "}
               </span>
             </div>
@@ -74,11 +78,10 @@ export default function BudgetFilter({ state, setState, values, setValues,handle
                 <input
                   className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
                   value={values[1]}
-                  onChange={(e) =>{
-                    onGetBudgetMaxValue(console.log(e.target.value))
-                    setState({ ...state, maxPrice: e.target.value })
-                  }
-                  }
+                  onChange={(e) => {
+                    onGetBudgetMaxValue(e.target.value);
+                    setState({ ...state, maxPrice: e.target.value });
+                  }}
                 />
               </span>
             </div>
@@ -92,7 +95,7 @@ export default function BudgetFilter({ state, setState, values, setValues,handle
           />
           <div className="flex items-center justify-end mt-6">
             <span
-              // onClick={sendPrizeData}
+              onClick={sendPrizeData}
               className="flex items-center font-AeonikProMedium cursor-pointer text-sm justify-center  text-fullBlue"
             >
               Готово

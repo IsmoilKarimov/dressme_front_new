@@ -3,25 +3,26 @@ import { ArrowTopIcons } from "../../../../../assets/icons";
 import { useQuery } from "@tanstack/react-query";
 import { useHttp } from "../../../../../hook/useHttp";
 
-export default function CategoriesFilter({ state, setState, handleGetCategoryId}) {
+export default function CategoriesFilter({ state, setState, handleGetCategoryId,params}) {
   const { request } = useHttp();
 
   const categories = [
-    { id: 1, action: false, name: "Головной убор" },
-    { id: 2, action: false, name: "Верхняя одежда" },
+    // { id: 1, action: false, name: "Головной убор" },
+    // { id: 2, action: false, name: "Верхняя одежда" },
     { id: 3, action: false, name: "Нижняя одежда" },
     { id: 4, action: false, name: "Обувь" },
-    { id: 5, action: false, name: "Аксессуары" },
+    // { id: 5, action: false, name: "Аксессуары" },
   ];
 
   // ------------GET METHOD Gender-type-----------------
   useQuery(
     ["get_genders"],
     () => {
-      return request({ url: "/main/section/:", token: true });
+      return request({ url: `/main/section/${params?.id}`, token: true });
     },
     {
       onSuccess: (res) => {
+        console.log(res,'RES');
         setState({ ...state, genderList: res?.genders });
       },
       onError: (err) => {
@@ -31,6 +32,7 @@ export default function CategoriesFilter({ state, setState, handleGetCategoryId}
       refetchOnWindowFocus: false,
     }
   );
+
 
   function onGetId(id) {
     console.log(id, "category id");

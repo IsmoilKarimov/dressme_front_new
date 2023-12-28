@@ -22,7 +22,7 @@ const CategoryForBrand = () => {
   const [dataActionDiscount, setDataActionDiscount] = useState(false);
   const [filterData, setFilterData] = useState([]);
 
-  console.log(filterData, "FILTER-DATA");
+  // console.log(filterData, "FILTER-DATA");
 
   const [state, setState] = useState({
     brandShow: screenSize.width <= 768 ? true : false,
@@ -37,10 +37,9 @@ const CategoryForBrand = () => {
     //--//--//--//--//--//--//--//
     checkBrand: false,
     checkedPrize: true,
-    minPrice: 10000,
-    maxPrice: 300000,
+    minPrice: 50000,
+    maxPrice: 3000000,
   });
-
   const [values, setValues] = useState([state?.minPrice, state?.maxPrice]);
 
   function getCurrentDimension() {
@@ -53,7 +52,6 @@ const CategoryForBrand = () => {
       setScreenSize(getCurrentDimension());
     };
     window.addEventListener("resize", updateDimension);
-
     return () => {
       window.removeEventListener("resize", updateDimension);
     };
@@ -63,6 +61,17 @@ const CategoryForBrand = () => {
   const apiUrl = `https://api.dressme.uz/api/main/shops/${params?.id}`;
 
   const fetchGetAllData = (params) => {
+    const urlParams = new URLSearchParams();
+    if (budgetFrom) {
+      urlParams.set("budget[from]", budgetFrom);
+    }
+    if (budgetTo) {
+      urlParams.set("budget[to]", budgetTo);
+    }
+
+    // Replace the current URL with the updated query parameters
+    window.history.replaceState({}, "", `?${urlParams.toString()}`);
+
     Object.entries(params).forEach((i) => {
       if (!i[1]) delete params[i[0]];
     });
@@ -84,7 +93,7 @@ const CategoryForBrand = () => {
       budgetFrom: budgetFrom,
       budgetTo: budgetTo,
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [genderId, discountId, categoryId, budgetFrom, budgetTo]);
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -149,6 +158,7 @@ const CategoryForBrand = () => {
           state={state}
           setState={setState}
           handleGetCategoryId={handleGetCategoryId}
+          params={params}
         />
 
         {/* Prizes */}
