@@ -61,4 +61,4 @@ function ClothingSizesFilter({ state, setState }) {
   );
 }
 
-export default ClothingSizesFilter;
+export default React.memo(ClothingSizesFilter);

@@ -16,8 +16,6 @@ const CategoryForBrand = () => {
   const [genderId, setGenderId] = useState();
   const [discountId, setDiscountId] = useState();
   const [categoryId, setCategoryId] = useState();
-  const [budgetFrom, setBudgetFrom] = useState();
-  const [budgetTo, setBudgetTo] = useState();
   const [dataAction, setDataAction] = useState(false);
   const [dataActionDiscount, setDataActionDiscount] = useState(false);
   const [filterData, setFilterData] = useState([]);
@@ -37,17 +35,12 @@ const CategoryForBrand = () => {
     //--//--//--//--//--//--//--//
     checkBrand: false,
     checkedPrize: true,
-    minPrice: 50000,
-    maxPrice: 3000000,
     getBadgePrice: {},
   });
+
   function getMinMaxPrice(childData) {
-    // console.log(childData);
     setState({ ...state, getBadgePrice: childData });
   }
-  const [values, setValues] = useState([state?.minPrice, state?.maxPrice]);
-
-  console.log(state?.getBadgePrice, "getBadgePrice");
 
   function getCurrentDimension() {
     return {
@@ -118,14 +111,6 @@ const CategoryForBrand = () => {
     setCategoryId(childData?.categoryId);
   }
 
-  function handleGetBudgetMinValue(childData) {
-    setBudgetFrom(childData?.budgetFrom);
-  }
-
-  function handleGetBudgetMaxValue(childData) {
-    setBudgetTo(childData?.budgetTo);
-  }
-
   return (
     <main
       className={`w-full h-fit ${
@@ -174,10 +159,6 @@ const CategoryForBrand = () => {
           state={state}
           setState={setState}
           getMinMaxPrice={getMinMaxPrice}
-          // handleGetBudgetPrize={handleGetBudgetMinValue}
-          // handleGetBudgetPrizeTwo={handleGetBudgetMaxValue}
-          // values={values}
-          // setValues={setValues}
         />
 
         {/* Colors */}

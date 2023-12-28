@@ -2,24 +2,7 @@ import React, { useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 import Slider from "react-slider";
 
-function BudgetFilter({
-  state,
-  setState,
-  // values,
-  // setValues,
-  // handleGetBudgetMinValue,
-  // handleGetBudgetMaxValue,
-  getMinMaxPrice,
-}) {
-  // function onGetBudgetMinValue(text) {
-  //   console.log(text);
-  //   handleGetBudgetMinValue(text);
-  // }
-
-  // function onGetBudgetMaxValue(text) {
-  //   console.log(text);
-  //   handleGetBudgetMaxValue(text);
-  // }
+function BudgetFilter({ state, setState, getMinMaxPrice }) {
   const [minPrice, setMinPrice] = useState(1);
   const [maxPrice, setMaxPrice] = useState(10);
   const [values, setValues] = useState([minPrice, maxPrice]);
@@ -29,7 +12,6 @@ function BudgetFilter({
       min: values[0],
       max: values[1],
     });
-    // setState({ ...state, minPrice: minPrice, maxPrice: maxPrice });
   }
   console.log(values, "values ");
   console.log(minPrice, "minPrice ");
@@ -74,8 +56,6 @@ function BudgetFilter({
                   className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                   value={values[0]}
                   onChange={(e) => {
-                    // onGetBudgetMinValue(e.target.value);
-                    // setState({ ...state, minPrice: e.target.value });
                     setMinPrice(e.target.value);
                   }}
                 />{" "}
@@ -90,10 +70,7 @@ function BudgetFilter({
                   className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
                   value={values[1]}
                   onChange={(e) => {
-                    // console.log(e.target.value, "e.target.value");
                     setMaxPrice(e.target.value);
-                    // onGetBudgetMaxValue(e.target.value);
-                    // setState({ ...state, maxPrice: e.target.value });
                   }}
                 />
               </span>
