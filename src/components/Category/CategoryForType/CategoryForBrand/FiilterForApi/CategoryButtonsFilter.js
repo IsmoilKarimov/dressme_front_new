@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 
-function CategoryButtonsFilter({
-  dataAction,
-  setDataAction,
-  dataActionDiscount,
-  setDataActionDiscount,
-  handleGetId,
-  handleGetDiscountId,
-}) {
+function CategoryButtonsFilter({ handleGetId, handleGetDiscountId }) {
+  const [dataAction, setDataAction] = useState(true);
+  const [dataActionDiscount, setDataActionDiscount] = useState(false);
   const [genderCategory, setGenderCategory] = useState([
     {
       id: 1,
       action: false,
       name: "Мужчинам",
     },
-    { id: 2, action: false, name: "Женщинам" },
+    {
+      id: 2,
+      action: false,
+      name: "Женщинам",
+    },
     {
       id: 3,
       action: false,
@@ -22,7 +21,7 @@ function CategoryButtonsFilter({
     },
   ]);
 
-  // console.log(dataAction,'dataAction');
+  console.log(dataAction, "dataAction");
 
   function onGetId(id) {
     handleGetId({
@@ -52,10 +51,9 @@ function CategoryButtonsFilter({
           <button
             key={data?.id}
             onClick={() => {
-              setDataAction(true);
+              setDataAction(false);
               handleGenderCheck(data?.id);
               onGetId(data?.id);
-              console.log(data.id);
             }}
             className={`${
               dataAction
@@ -65,7 +63,7 @@ function CategoryButtonsFilter({
                       ? "bg-fullBlue active:scale-95 text-white "
                       : ""
                   }`
-            } h-[44px] w-[49%] flex items-center justify-center bg-bgCategory font-AeonikProMedium text-sm leading-3 text-center text-black  hover:bg-fullBlue  hover:text-white rounded-lg`}
+            } h-[44px] w-[49%] flex items-center justify-center bg-bgCategory font-AeonikProMedium text-sm leading-3 text-center text-black  hover:bg-fullBlue  hover:text-white rounded-lg duration-300`}
           >
             {data?.name}
           </button>
@@ -78,8 +76,8 @@ function CategoryButtonsFilter({
           onGetDiscontId(1);
         }}
         className={`${
-          dataActionDiscount ? "bg-fullBlue" : "bg-bgCategory"
-        } h-[44px] w-[49%] flex items-center justify-center text-red-600 font-AeonikProMedium text-sm leading-3 text-center active:scale-95  hover:bg-fullBlue rounded-lg `}
+          dataActionDiscount ? "bg-fullBlue text-red-500 " : "bg-bgCategory text-red-600 "
+        } h-[44px] w-[49%] flex items-center justify-center font-AeonikProMedium text-sm leading-3 text-center active:scale-95 hover:text-red-500 hover:bg-fullBlue rounded-lg duration-300`}
       >
         Скидки
       </button>

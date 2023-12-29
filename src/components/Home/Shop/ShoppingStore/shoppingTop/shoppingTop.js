@@ -7,7 +7,6 @@ import Cookies from "js-cookie";
 const ShoppingTop = ({handleData,getAllShops,setGetAllShops,setLoading}) => {
   const [genderId, setGenderId] = useState();
   const [keywords, setKeywords] = useState();
-  
   const [searchInputData, setSearchInputData] = useState();
   const [changeInputIcon, setChangeInputIcon] = useState(true);
 
@@ -37,6 +36,7 @@ const ShoppingTop = ({handleData,getAllShops,setGetAllShops,setLoading}) => {
       gender: genderId,
       keywords: searchInputData,
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [genderId, searchInputData]);
 
   const sendSearchInputData = () => {

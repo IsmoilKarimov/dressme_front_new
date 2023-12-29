@@ -59,9 +59,7 @@ export const CollectionCardItem = ({
           backgroundRepeat: "no-repeat",
         }}
         className="relative w-full cursor-pointer h-[310px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
-      >
-        {/* <div><NoImg /></div> */}
-      </figure>
+      ></figure>
       <section className="relative w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[130px] md:h-[136px] ">
         {/* 1 */}
         <div className="group hover:w-full h-[36px] cursor-pointer">
@@ -189,7 +187,7 @@ export const CollectionCardItem = ({
               className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
             >
               {wishList?.includes(data?.id) ? (
-                <BsHeartFill color="#d50000" />
+                <BsHeartFill width={18} height={18} color="#d50000" />
               ) : (
                 <BsHeart />
               )}

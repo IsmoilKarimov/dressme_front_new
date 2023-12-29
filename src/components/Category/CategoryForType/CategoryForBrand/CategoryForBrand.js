@@ -16,8 +16,7 @@ const CategoryForBrand = ({setFilterData}) => {
   const [genderId, setGenderId] = useState();
   const [discountId, setDiscountId] = useState();
   const [categoryId, setCategoryId] = useState();
-  const [dataAction, setDataAction] = useState(false);
-  const [dataActionDiscount, setDataActionDiscount] = useState(false);
+  // const [dataActionDiscount, setDataActionDiscount] = useState(false);
 
   const [state, setState] = useState({
     brandShow: screenSize.width <= 768 ? true : false,
@@ -136,10 +135,8 @@ const CategoryForBrand = ({setFilterData}) => {
 
         {/* Gender Buttons */}
         <CategoryButtonsFilter
-          dataAction={dataAction}
-          setDataAction={setDataAction}
-          dataActionDiscount={dataActionDiscount}
-          setDataActionDiscount={setDataActionDiscount}
+          // dataActionDiscount={dataActionDiscount}
+          // setDataActionDiscount={setDataActionDiscount}
           handleGetId={handleGetId}
           handleGetDiscountId={handleGetDiscountId}
         />
