@@ -31,20 +31,12 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import CarouselModalMarket from "./YandexLocationMarketOpen/CarouselModalMarket";
 import MarketFilterofMaps from "./YandexLocationMarketOpen/MarketFilterofMaps";
 import Cookies from "js-cookie";
+import { useQuery } from "@tanstack/react-query";
 // import CarouselModalMarket from "./YandexMapsNavbar/CarouselModalMarket";
 
 
-const mapOptions = {
-  modules: ["geocode", "SuggestView"],
-  defaultOptions: { suppressMapOpenBlock: true },
-};
-const initialState = {
-  title: "",
-  center: [41.311753, 69.241822],
-  zoom: 14,
-};
-
 function YandexMapsDressMe() {
+  const url = "https://api.dressme.uz/api/main";
 
   const [openCordinateMap, setOpenCordinateMap] = useState("");
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
@@ -53,6 +45,29 @@ function YandexMapsDressMe() {
 
   const [marketsFilterMaps, setMarketsFilterMaps] = useState(false);
   const toggleMarketsFilterMaps = React.useCallback(() => setMarketsFilterMaps(false), []);
+  // request get
+  const [getMapsInfo, setGetMapsInfo] = useState(null);
+
+  // -------------Get Request
+  useQuery(["get_map_index"], () => {
+    return fetch(`${url}/map/index`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+    }).then((res) => res.json());
+  },
+    {
+      onSuccess: (res) => {
+        setGetMapsInfo(res?.locations);
+      },
+      onError: (err) => {
+        console.log(err, "err");
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: true,
+    }
+  );
 
 
   function getCurrentDimension() {
@@ -71,76 +86,7 @@ function YandexMapsDressMe() {
     };
   }, [screenSize]);
 
-  // ------------------SearchSystem-----------------------
-
-  // const [state, setState] = useState({ ...initialState });
-  // const [mapConstructor, setMapConstructor] = useState(null);
-  // const mapRef = useRef(null);
-  // const searchRef = useRef(null);
-
-  // // submits
-
-  // // console.log({ title: state.title, center: mapRef.current.getCenter() });
-
-  // // reset state & search
-  // const handleReset = () => {
-  //   setState({ ...initialState });
-  //   // setState({ ...initialState, title: "" });
-  //   searchRef.current.value = "";
-  //   // mapRef.current.setCenter(initialState.center);
-  //   mapRef.current.setZoom(initialState.zoom);
-  // };
-
-  // // search popup
-  // useEffect(() => {
-  //   if (mapConstructor) {
-  //     new mapConstructor.SuggestView(searchRef.current).events.add(
-  //       "select",
-  //       function (e) {
-  //         const selectedName = e.get("item").value;
-  //         mapConstructor.geocode(selectedName).then((result) => {
-  //           const newCoords = result.geoObjects
-  //             .get(0)
-  //             .geometry.getCoordinates();
-  //           setState((prevState) => ({ ...prevState, center: newCoords }));
-  //         });
-  //       }
-  //     );
-  //   }
-  // }, [mapConstructor]);
-
-  // // change title
-  // const handleBoundsChange = (e) => {
-  //   const newCoords = mapRef.current.getCenter();
-  //   mapConstructor.geocode(newCoords).then((res) => {
-  //     const nearest = res.geoObjects.get(0);
-  //     const foundAddress = nearest.properties.get("text");
-  //     const [centerX, centerY] = nearest.geometry.getCoordinates();
-  //     const [initialCenterX, initialCenterY] = initialState.center;
-  //     if (centerX !== initialCenterX && centerY !== initialCenterY) {
-  //       setState((prevState) => ({ ...prevState, title: foundAddress }));
-  //     }
-  //   });
-  // };
-
-  // ------------------SearchSystem-----------------------
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-
-  const wearGroup = [
-    { id: 1, name: "Футболки" },
-    { id: 2, name: "Рубашки" },
-    { id: 3, name: "Шорты" },
-    { id: 4, name: "Джинсы" },
-    { id: 5, name: "Свитер" },
-    { id: 6, name: "Куртки" },
-    { id: 7, name: "Толстовки" },
-    { id: 8, name: "Обуви" },
-    { id: 9, name: "Куртки" },
-    { id: 10, name: "Сапоги" },
-    { id: 11, name: "Платья" },
-    { id: 12, name: "Юбки" },
-    { id: 13, name: "Ремень" },
-  ];
 
   const onMapClick = (e) => {
     if (dressInfo?.yandexOpenMarketLocation) {
@@ -190,7 +136,7 @@ function YandexMapsDressMe() {
     zoom: 14,
   };
   //------------------------------------------------------------------------------------------------
-
+  // console.log(getMapsInfo, "getMapsInfo");
   return (
     <div className="h-fit w-full flex items-center justify-center overflow-hidden overflow-y-hidden">
       <div
@@ -219,13 +165,13 @@ function YandexMapsDressMe() {
       <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden ymapsName">
         {/* Laptop device for */}
         {screenSize.width > 768 && (
-          <div className={`w-full bottom-[0px]  overflow-hidden  md:w-[769px] fixed md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
+          <div className={`w-full bottom-[0px]   overflow-hidden  md:w-[769px] fixed md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
           ${dressInfo?.yandexOpenMarketLocation
               ? `z-[102] h-[350px]  bottom-[-75px]`
               : " h-0 bottom-[0]  z-[-10]"
             } ease-linear duration-300`}
           >
-            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} />
+            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} modalInfo={getMapsInfo} />
           </div>
         )}
         {screenSize.width <= 768 && (
@@ -234,7 +180,7 @@ function YandexMapsDressMe() {
             : "h-0 bottom-0 ease-linear duration-300 "
             }  ease-linear duration-300 `}
           >
-            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} />
+            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} modalInfo={getMapsInfo} />
           </div>
         )}
         {/* // -----------------MarketFilterofMaps--------------------------- */}
@@ -352,21 +298,26 @@ function YandexMapsDressMe() {
                 groupByCoordinates: false,
               }}
             >
-              {dressInfo?.MarketList.map((data, index) => (
-                <Placemark
-                  className={"placemarkCLuster cursor-pointer"}
-                  key={index}
-                  onClick={() => {
-                    handlePlaceMark(data?.marketId, data?.cordinate)
-                  }}
-                  geometry={data?.cordinate}
-                  options={{
-                    iconLayout: "default#image",
-                    iconImageHref: markerIcons,
-                    iconImageSize: [32, 32],
-                  }}
-                  modules={["geoObject.addon.balloon"]}
-                />
+              {getMapsInfo?.map((data, index) => (
+                <>
+                  <Placemark
+                    className={"placemarkCLuster cursor-pointer"}
+                    key={index}
+                    onClick={() => {
+                      handlePlaceMark(data?.id, data?.latitude, data?.longitude)
+                    }}
+                    geometry={[data?.latitude, data?.longitude]}
+                    options={{
+                      iconLayout: "default#image",
+                      iconImageHref: markerIcons,
+                      // iconShadowImageHref: data?.shop?.url_logo_photo,
+                      // iconImageHref: <img src={data?.shop?.url_logo_photo} alt={data?.id} />,
+                      iconImageSize: [32, 32],
+                    }}
+                    modules={["geoObject.addon.balloon"]}
+                  />
+                  {/* <img src={data?.shop?.url_logo_photo} alt={data?.id} /> */}
+                </>
               ))}
             </Clusterer>
 
