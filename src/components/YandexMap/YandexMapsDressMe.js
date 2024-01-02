@@ -136,6 +136,12 @@ function YandexMapsDressMe() {
     zoom: 14,
   };
   //------------------------------------------------------------------------------------------------
+  const CustomContentLayout = React.memo((props) => (
+    <div className="flex flex-col items-center">
+      <img className="w-20 h-20 rounded-full" src={'https://i.pinimg.com/736x/9d/d4/a3/9dd4a3906b318cdfd854dd46a72046ba.jpg'} alt="Placemark" />
+      <span className="mt-2 text-sm">Rating: 4.5</span>
+    </div>
+  ));
   console.log(getMapsInfo, "getMapsInfo");
   return (
     <div className="h-fit w-full flex items-center justify-center overflow-hidden overflow-y-hidden">
@@ -292,7 +298,7 @@ function YandexMapsDressMe() {
 
             {/* ---------- */}
             <Clusterer
-              className={"placemarkCLuster"}
+              className={""}
               options={{
                 preset: "islands##004773ClusterIcons",
                 groupByCoordinates: false,
@@ -313,7 +319,8 @@ function YandexMapsDressMe() {
                       // iconShadowImageHref: data?.shop?.url_logo_photo,
                       // iconImageHref: <img src={data?.shop?.url_logo_photo} alt={data?.id} />,
                       iconImageHref: data?.shop?.url_logo_photo,
-                      iconImageSize: [32, 32], // Set the size of your image
+                      iconImageSize: [40, 40], // Set the size of your image
+                      iconContentLayout: CustomContentLayout
                       // // iconImageOffset: [-30, -60], // Set the offset if needed
                       // iconImageShape: {
                       //   type: 'Circle',
