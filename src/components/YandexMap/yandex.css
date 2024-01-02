@@ -357,16 +357,15 @@ body {
   display: flex;
 }
 
+
+
 .ymaps-2-1-79-image {
   background-color: white;
   object-fit: contain;
   border-radius: 50%;
   overflow: hidden;
-  height: 80%;
-  width: 80%;
-  display: flex;
-  align-items: center;
-  padding: 1px 1px;
+  background-position: center center !important;
   background-repeat: no-repeat;
-
+  background-size: contain !important;
+  margin: 4px;
 }
