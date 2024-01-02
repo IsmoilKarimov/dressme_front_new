@@ -136,12 +136,7 @@ function YandexMapsDressMe() {
     zoom: 14,
   };
   //------------------------------------------------------------------------------------------------
-  const CustomContentLayout = React.memo((props) => (
-    <div className="flex flex-col items-center">
-      <img className="w-20 h-20 rounded-full" src={'https://i.pinimg.com/736x/9d/d4/a3/9dd4a3906b318cdfd854dd46a72046ba.jpg'} alt="Placemark" />
-      <span className="mt-2 text-sm">Rating: 4.5</span>
-    </div>
-  ));
+
   console.log(getMapsInfo, "getMapsInfo");
   return (
     <div className="h-fit w-full flex items-center justify-center overflow-hidden overflow-y-hidden">
@@ -305,6 +300,7 @@ function YandexMapsDressMe() {
               }}
             >
               {getMapsInfo?.map((data, index) => (
+
                 <>
                   <Placemark
                     className={"placemarkCLuster cursor-pointer border border-red-500"}
@@ -317,36 +313,10 @@ function YandexMapsDressMe() {
                       iconLayout: "default#image",
                       // iconImageHref: markerIcons,
                       iconImageHref: data?.shop?.url_logo_photo,
-                      iconImageSize: [40, 40], // Set the size of your image
-                      iconContentLayout: CustomContentLayout
-                    }}
-                    properties={{
-                      balloonContent: () => <span>item.name</span>,
-                      iconCaption: "name"
+                      iconImageSize: [45, 45], // Set the size of your image
                     }}
                     modules={["geoObject.addon.balloon"]}
                   />
-                  {/* <div
-                    style={{
-                      position: 'absolute',
-                      left: '50%', // Adjust the position based on your needs
-                      top: '50%', // Adjust the position based on your needs
-                      transform: 'translate(-50%, -50%)',
-                      textAlign: 'center',
-                      background: 'white', // Adjust the background color as needed
-                      padding: '5px',
-                      borderRadius: '5px',
-                      boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
-                      zIndex: 1000, // Ensure it's above the map
-                    }}
-                  >
-                    <img
-                      src={data?.shop?.url_logo_photo}
-                      alt="Placemark"
-                      style={{ width: '30px', height: '30px', borderRadius: '50%' }}
-                    />
-                    <p>Your custom text here!</p>
-                  </div> */}
                 </>
               ))}
             </Clusterer >

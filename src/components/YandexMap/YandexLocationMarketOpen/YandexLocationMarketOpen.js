@@ -87,7 +87,7 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
     <div className="w-full h-full ">
       {modalInfo?.filter(e => e?.id === dressInfo?.yandexGetMarketId)?.map(data => {
         return (
-          <div className="w-full  h-fit flex flex-col gap-y-4 border border-searchBgColor overflow-hidden bg-white rounded-t-[12px] md:rounded-[12px]	 px-4 py-5">
+          <div className="w-full  h-fit flex flex-col gap-y-2 border border-searchBgColor overflow-hidden bg-white rounded-t-[12px] md:rounded-[12px]	 px-4 pb-4 pt-2">
             {/* title */}
             <div className="relative w-full flex items-center justify-between">
               <div className="w-fit flex items-center gap-x-3">
