@@ -356,3 +356,17 @@ body {
 .marketfilter .input-range__label--min {
   display: flex;
 }
+
+.ymaps-2-1-79-image {
+  background-color: white;
+  object-fit: contain;
+  border-radius: 50%;
+  overflow: hidden;
+  height: 80%;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  padding: 1px 1px;
+  background-repeat: no-repeat;
+
+}
