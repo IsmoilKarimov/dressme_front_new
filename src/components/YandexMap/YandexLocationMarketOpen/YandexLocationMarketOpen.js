@@ -20,7 +20,7 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
   const navigate = useNavigate();
   const openShoppingChild = () => {
     // const gotoOfficial = (id) => {
-    navigate(`/shopping_store/:${123456}`);
+    navigate(`/shopping_store/:${dressInfo?.yandexGetMarketId}`);
   };
   const [copyText, setCopyText] = useState(null)
   const [imgGallery, setImgGallery] = useState()
