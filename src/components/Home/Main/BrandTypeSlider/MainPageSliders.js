@@ -250,9 +250,8 @@ export default function MainPageSliders() {
           {/* Main slider */}
 
           <div
-            className={`w-full ss:h-0 ${
-              more ? "xs:h-0" : "xs:h-auto"
-            } overflow-hidden`}
+            className={`w-full ss:h-0 ${more ? "xs:h-0" : "xs:h-auto"
+              } overflow-hidden`}
           >
             {mainData?.sections?.length > 6 ? (
               <Slider
@@ -331,9 +330,8 @@ export default function MainPageSliders() {
 
           {/* CAROUSEL HIDDEN BLOCK */}
           <div
-            className={`${
-              more ? "xs:grid" : "xs:hidden"
-            } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 md:pt-7`}
+            className={`${more ? "xs:grid" : "xs:hidden"
+              } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 md:pt-7`}
           >
             {mainData?.sections?.map((data, i) => {
               if (more) {
@@ -444,10 +442,10 @@ export default function MainPageSliders() {
                       onClick={() => goShoppingStore(data?.name)}
                       className="!w-[98.88%] h-[100px] cursor-pointer  rounded-lg bg-btnBgColor flex items-center justify-center select-none border border-solid border-searchBgColor"
                     >
-                      <figure className=" h-full flex items-center justify-center px-[35px]">
+                      <figure className=" h-full h-full flex items-center justify-center">
                         {/* <NoImg /> */}
                         <img
-                          className="h-[70px] w-[80%] "
+                          className="h-[95%] w-[80%] object-contain"
                           src={data?.url_logo_photo}
                           alt=""
                         />
