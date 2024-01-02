@@ -316,22 +316,37 @@ function YandexMapsDressMe() {
                     options={{
                       iconLayout: "default#image",
                       // iconImageHref: markerIcons,
-                      // iconShadowImageHref: data?.shop?.url_logo_photo,
-                      // iconImageHref: <img src={data?.shop?.url_logo_photo} alt={data?.id} />,
                       iconImageHref: data?.shop?.url_logo_photo,
                       iconImageSize: [40, 40], // Set the size of your image
                       iconContentLayout: CustomContentLayout
-                      // // iconImageOffset: [-30, -60], // Set the offset if needed
-                      // iconImageShape: {
-                      //   type: 'Circle',
-                      //   // coordinates: [30, 30],
-                      //   radius: 30,
-                      // },
                     }}
-
-
+                    properties={{
+                      balloonContent: () => <span>item.name</span>,
+                      iconCaption: "name"
+                    }}
                     modules={["geoObject.addon.balloon"]}
                   />
+                  {/* <div
+                    style={{
+                      position: 'absolute',
+                      left: '50%', // Adjust the position based on your needs
+                      top: '50%', // Adjust the position based on your needs
+                      transform: 'translate(-50%, -50%)',
+                      textAlign: 'center',
+                      background: 'white', // Adjust the background color as needed
+                      padding: '5px',
+                      borderRadius: '5px',
+                      boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+                      zIndex: 1000, // Ensure it's above the map
+                    }}
+                  >
+                    <img
+                      src={data?.shop?.url_logo_photo}
+                      alt="Placemark"
+                      style={{ width: '30px', height: '30px', borderRadius: '50%' }}
+                    />
+                    <p>Your custom text here!</p>
+                  </div> */}
                 </>
               ))}
             </Clusterer >
