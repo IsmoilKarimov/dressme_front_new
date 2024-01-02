@@ -68,7 +68,7 @@ function LocationOfYandex({ locationText }) {
             modules={["control.FullscreenControl"]}
           >
             <Placemark
-              className={"placemarkCLuster cursor-pointer"}
+              className={" cursor-pointer"}
               // key={index}
               // onClick={() => handlePlaceMark(data?.marketId, data?.cordinate)}
               geometry={mapState?.center}
