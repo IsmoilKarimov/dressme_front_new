@@ -136,7 +136,7 @@ function YandexMapsDressMe() {
     zoom: 14,
   };
   //------------------------------------------------------------------------------------------------
-  // console.log(getMapsInfo, "getMapsInfo");
+  console.log(getMapsInfo, "getMapsInfo");
   return (
     <div className="h-fit w-full flex items-center justify-center overflow-hidden overflow-y-hidden">
       <div
@@ -301,7 +301,7 @@ function YandexMapsDressMe() {
               {getMapsInfo?.map((data, index) => (
                 <>
                   <Placemark
-                    className={"placemarkCLuster cursor-pointer"}
+                    className={"placemarkCLuster cursor-pointer border border-red-500"}
                     key={index}
                     onClick={() => {
                       handlePlaceMark(data?.id, data?.latitude, data?.longitude)
@@ -309,20 +309,28 @@ function YandexMapsDressMe() {
                     geometry={[data?.latitude, data?.longitude]}
                     options={{
                       iconLayout: "default#image",
-                      iconImageHref: markerIcons,
+                      // iconImageHref: markerIcons,
                       // iconShadowImageHref: data?.shop?.url_logo_photo,
                       // iconImageHref: <img src={data?.shop?.url_logo_photo} alt={data?.id} />,
-                      iconImageSize: [32, 32],
+                      iconImageHref: data?.shop?.url_logo_photo,
+                      iconImageSize: [32, 32], // Set the size of your image
+                      // // iconImageOffset: [-30, -60], // Set the offset if needed
+                      // iconImageShape: {
+                      //   type: 'Circle',
+                      //   // coordinates: [30, 30],
+                      //   radius: 30,
+                      // },
                     }}
+
+
                     modules={["geoObject.addon.balloon"]}
                   />
-                  {/* <img src={data?.shop?.url_logo_photo} alt={data?.id} /> */}
                 </>
               ))}
-            </Clusterer>
+            </Clusterer >
 
             {/* Yandex Main menu */}
-            <div className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${dressInfo?.openMainMenu
+            < div className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${dressInfo?.openMainMenu
               ? "left-[-500px] md:left-[-5000px] z-[-80] ease-linear duration-500"
               : "hamburger flex flex-col ease-linear duration-500 overscroll-none z-[105]"
               }`}

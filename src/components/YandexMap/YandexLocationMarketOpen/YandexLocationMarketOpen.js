@@ -31,7 +31,7 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
     })
 
   }, [modalInfo, dressInfo?.yandexGetMarketId])
-  console.log(imgGallery, "imgGallery");
+  // console.log(imgGallery, "imgGallery");
   const handleCopyText = () => {
     navigator.clipboard.writeText(copyText)
   }
@@ -120,7 +120,7 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
             <div className="flex flex-col md:flex-row justify-center md:justify-between md:gap-y-0 gap-y-4">
               {/* Carosuel */}
               <div className="w-full h-[220px] md:w-[48%] md:h-[250px] mx-auto ">
-                <img src={imgGallery} alt={imgGallery} className="w-full h-full object-cover" />
+                <img src={'https://i.pinimg.com/736x/9d/d4/a3/9dd4a3906b318cdfd854dd46a72046ba.jpg'} alt={imgGallery} className="w-full h-full object-cover" />
                 {/* <Slider
                   {...settings}
                   className="w-full h-full rounded-lg overflow-hidden flex flex-col justify-center"
