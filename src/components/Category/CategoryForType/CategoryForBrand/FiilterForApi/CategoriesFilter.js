@@ -50,7 +50,7 @@ export default function CategoriesFilter({
 
   return (
     <>
-      <section className="w-full h-fit mt-[50px] ">
+      <section className={`${state?.category ? 'block' : 'hidden'}  w-full h-fit mt-[50px] `}>
         <article
           className="w-full flex justify-between items-center "
           onClick={(event) => {
@@ -59,9 +59,9 @@ export default function CategoriesFilter({
         >
           <figure
             onClick={() => setState({ ...state, category: !state.category })}
-            className="flex items-center cursor-pointer select-none"
+            className={`flex items-center cursor-pointer select-none`}
           >
-            <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+            <p className={`not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black`}>
               Категории
             </p>
             <p
