@@ -4,21 +4,7 @@ import {
   InputCheckedTrueIcons,
 } from "../../../../../assets/icons";
 
-function ColorsFilter({ state, setState }) {
-  const changeColor = [
-    { id: 1, value: 1, action: false, colors: "bg-black" },
-    { id: 2, value: 2, action: false, colors: "bg-white" },
-    { id: 3, value: 3, action: false, colors: "bg-purple-700" },
-    { id: 4, value: 4, action: false, colors: "bg-gray-500" },
-    { id: 5, value: 5, action: false, colors: "bg-red-700" },
-    { id: 6, value: 6, action: false, colors: "bg-yellow-500" },
-    { id: 7, value: 7, action: false, colors: "bg-green-600" },
-    { id: 8, value: 8, action: false, colors: "bg-sky-500" },
-    { id: 9, value: 9, action: false, colors: "bg-yellow-700" },
-    { id: 10, value: 10, action: false, colors: "bg-rose-900" },
-    { id: 11, value: 11, action: false, colors: "bg-pink-600" },
-    { id: 12, value: 12, action: false, colors: "bg-cyan-900" },
-  ];
+function ColorsFilter({ state, setState, colors, getColors }) {
 
   const HandleColorCheck = () => {};
 
@@ -47,25 +33,25 @@ function ColorsFilter({ state, setState }) {
           </p>
         </figure>
       </article>
+      
       {/* Colors */}
       <article
         className={`w-full px-[2px] flex justify-start flex-wrap items-center bg-white hover:backdrop-brightness-125 hover:bg-white/60 transition ease-out duration-300 gap-x-[14px] gap-y-[10px] border-0  overflow-clip  ${
-          state?.ColorsShow ? "duration-300 h-0" : "duration-300 h-fit pt-5"
+          state?.ColorsShow ? "duration-300 h-0" : "duration-300 h-fit py-5"
         } duration-300 `}
       >
-        {changeColor.map((item) => {
+        {colors?.map((color,index) => {
+          console.log(color,index,'color,index');
           return (
             <figure
-              key={item?.id}
-              onClick={() => HandleColorCheck(item?.id)}
-              className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 w-8 h-8 ${item?.colors} cursor-pointer  border border-solid border-borderColorCard`}
-              htmlFor="Color1"
+              key={index}
+              // onClick={() => HandleColorCheck(color?.hex)}
+              className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 w-8 h-8 bg-[${color}] cursor-pointer border border-solid border-borderColorCard`}
+              // htmlFor={`${color?.hex}`}
             >
-              {item?.action ? (
-                <p className="w-[14px]">
-                  <InputCheckedTrueIcons colors={"#fff"} />
-                </p>
-              ) : null}
+              <p className="w-[14px]">
+                <InputCheckedTrueIcons colors={"#000"} />
+              </p>
             </figure>
           );
         })}
