@@ -21,6 +21,8 @@ function CategoryButtonsFilter({ handleGetId, handleGetDiscountId }) {
     },
   ]);
 
+  console.log(dataAction, "dataAction");
+
   function onGetId(id) {
     handleGetId({
       genderFilterId: id,
@@ -49,7 +51,7 @@ function CategoryButtonsFilter({ handleGetId, handleGetDiscountId }) {
           <button
             key={data?.id}
             onClick={() => {
-              setDataAction(!dataAction);    
+              setDataAction(false);
               handleGenderCheck(data?.id);
               onGetId(data?.id);
             }}
@@ -58,7 +60,7 @@ function CategoryButtonsFilter({ handleGetId, handleGetDiscountId }) {
                 ? ""
                 : `${
                     data?.action
-                      ? "bg-fullBlue active:scale-95 text-white"
+                      ? "bg-fullBlue active:scale-95 text-white "
                       : ""
                   }`
             } h-[44px] w-[49%] flex items-center justify-center bg-bgCategory font-AeonikProMedium text-sm leading-3 text-center text-black  hover:bg-fullBlue  hover:text-white rounded-lg duration-300`}
@@ -70,7 +72,7 @@ function CategoryButtonsFilter({ handleGetId, handleGetDiscountId }) {
 
       <button
         onClick={() => {
-          setDataActionDiscount(!dataActionDiscount);
+          setDataActionDiscount(true);
           onGetDiscontId(1);
         }}
         className={`${
