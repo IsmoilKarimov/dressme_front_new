@@ -81,8 +81,8 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
   const handleCarouselModal = (UId) => {
     // setOpenCarouselModal(true)
   }
-  console.log(modalInfo, "modalInfo");
-  console.log(dressInfo?.yandexGetMarketId, "yandexGetMarketId");
+  // console.log(modalInfo, "modalInfo");
+  // console.log(dressInfo?.yandexGetMarketId, "yandexGetMarketId");
   return (
     <div className="w-full h-full ">
       {modalInfo?.filter(e => e?.id === dressInfo?.yandexGetMarketId)?.map(data => {
