@@ -5,7 +5,9 @@ import Slider from "react-slider";
 function BudgetFilter({ state, setState, getMinMaxPrice }) {
   const [minPrice, setMinPrice] = useState(1);
   const [maxPrice, setMaxPrice] = useState(10);
+  const [checkChange, setCheckChange] = useState(false)
   const [values, setValues] = useState([minPrice, maxPrice]);
+  console.log(checkChange);
 
   function sendPrizeData() {
     getMinMaxPrice({
@@ -75,13 +77,13 @@ function BudgetFilter({ state, setState, getMinMaxPrice }) {
             </div>
           </div>
           <Slider
-            className="slider w-full h-[4px] bg-fullBlue border rounded-[1px] mt-5"
-            onChange={setValues}
+            className="slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] my-5"
+            onChange={()=>{setValues(); setCheckChange(true)}}
             value={values}
             min={minPrice}
             max={maxPrice}
           />
-          <div className="flex items-center justify-end mt-6">
+          <div className={`${checkChange ? 'flex items-center justify-end mt-1' : 'hidden'} `}>
             <span
               onClick={sendPrizeData}
               className="flex items-center font-AeonikProMedium cursor-pointer text-sm justify-center  text-fullBlue"

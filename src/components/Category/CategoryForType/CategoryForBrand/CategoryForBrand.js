@@ -135,8 +135,6 @@ const CategoryForBrand = ({setFilterData}) => {
 
         {/* Gender Buttons */}
         <CategoryButtonsFilter
-          // dataActionDiscount={dataActionDiscount}
-          // setDataActionDiscount={setDataActionDiscount}
           handleGetId={handleGetId}
           handleGetDiscountId={handleGetDiscountId}
         />

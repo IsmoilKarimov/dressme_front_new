@@ -29,7 +29,7 @@ export default function CategoriesFilter({
     },
     {
       onSuccess: (res) => {
-        console.log(res, "RES");
+        // console.log(res, "RES");
         setGetCategoryId(res?.category_ids);
         setState({ ...state, genderList: res?.genders });
       },
