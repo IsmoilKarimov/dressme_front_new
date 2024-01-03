@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Popover, } from "antd";
+import { Popover, Select, Space, } from "antd";
 import { AutummBoyIcons, ByBrandIcon, ChildGenIcon, ClothesIcons, DollorIcons, ManGenIcons, ManWomanGen, MenuCloseIcons, SpringBoyIcons, SummerBoyIcons, WinterBoyIcons, WomanGenIcons } from "../../../assets/icons";
 import { BiChevronDown } from "react-icons/bi";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
@@ -123,6 +123,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             ariaLabel={["Lower thumb", "Upper thumb"]}
             // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
             // renderThumb={() => <div>1</div>}
+            minDistance={100000}
             pearling
             onChange={setValues}
             value={values}
@@ -246,11 +247,55 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
       genderType: state?.genderId,
     })
   }, [selectWear, selectBrand, getRange, state?.genderId])
-  console.log(personItems, "personItems");
+  console.log(state?.categoryWearId, "state?.categoryWearId");
+  const onSearch = (value) => {
+    // console.log("search:", value);
+  };
+
   return (
     <div className=" border border-red-500 w-fit px-10 py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex flex-col justify-between items-center m-auto md:border-t">
       <div className="flex items-center justify-center gap-x-2  w-fit   ">
-        <Popover
+        <div
+          className="!w-[210px] gap-x-1 px-2 h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  "
+        >
+          <span>
+            <ClothesIcons colors={"#000"} />
+          </span>
+          <Select
+            showSearch
+            className="w-[75%] h-full !outline-none text-center overflow-hidden  !p-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
+            bordered={false}
+            placeholder="По категории"
+            optionFilterProp="children"
+            defaultValue={"По категории"}
+            onChange={(e) => setState({ ...state, categoryWearId: e })}
+            onSearch={onSearch}
+            allowClear
+            suffixIcon={<></>}
+            size="large"
+            filterOption={(input, option) =>
+              (option?.label ?? "")
+                .toLowerCase()
+                .includes(input.toLowerCase())
+            }
+            options={getMapsInfo?.categories?.map((item) => {
+              return {
+                value: item?.id,
+                label: item?.name_ru,
+              };
+            })}
+          />
+
+          <span>
+            <BiChevronDown
+              size={25}
+              style={{ color: "#000" }}
+              className={`${state?.openwear ? "rotate-[-180deg]" : ""
+                } duration-200`}
+            />
+          </span>
+        </div>
+        {/* <Popover
           open={state?.openwear}
           onOpenChange={handleOpenChangeWear}
           className="!w-[190px] gap-x-1 px-2 h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
@@ -264,7 +309,6 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           </span>
           <p className="not-italic w-full overflow-hidden flex items-center justify-center  whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
             {selectWear || "По категории"}
-            {/* По категории */}
           </p>
           <span>
             <BiChevronDown
@@ -274,12 +318,12 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
                 } duration-200`}
             />
           </span>
-        </Popover>
+        </Popover> */}
 
         <Popover
           open={state?.openPrice}
           onOpenChange={handleOpenChangePrice}
-          className="!w-[190px] gap-x-2 px-4 h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
+          className="!w-[210px] gap-x-2 px-2 h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
           trigger="click"
           options={["Hide"]}
           placement="bottom"
@@ -301,7 +345,47 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             />
           </span>
         </Popover>
-        <Popover
+        <div
+          className="!w-[210px] gap-x-1 px-2 h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  "
+        >
+          <span className="">
+            <ByBrandIcon />
+          </span>
+          <Select
+            showSearch
+            className="w-[75%] h-full !outline-none text-center overflow-hidden  !p-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
+            bordered={false}
+            placeholder="По магазину"
+            optionFilterProp="children"
+            defaultValue={"По магазину"}
+            onChange={(e) => setState({ ...state, categoryBrandId: e })}
+            onSearch={onSearch}
+            allowClear
+            suffixIcon={<></>}
+            size="large"
+            filterOption={(input, option) =>
+              (option?.label ?? "")
+                .toLowerCase()
+                .includes(input.toLowerCase())
+            }
+            options={getMapsInfo?.shops?.map((item) => {
+              return {
+                value: item?.id,
+                label: item?.name,
+              };
+            })}
+          />
+
+          <span>
+            <BiChevronDown
+              size={25}
+              style={{ color: "#000" }}
+              className={`${state?.openwear ? "rotate-[-180deg]" : ""
+                } duration-200`}
+            />
+          </span>
+        </div>
+        {/* <Popover
           open={state?.openBrand}
           onOpenChange={handleOpenChangeBrand}
           className="!w-[190px] gap-x-1 px-2 h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
@@ -315,7 +399,6 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           </span>
           <p className="not-italic w-full overflow-hidden flex items-center justify-center whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
             {selectBrand || "По магазину"}
-            {/* По магазину */}
           </p>
           <span>
             <BiChevronDown
@@ -325,7 +408,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
                 } duration-200 `}
             />
           </span>
-        </Popover>
+        </Popover> */}
         <div className="box-border	 flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-lg bg-btnBgColor">
 
           {personItems
