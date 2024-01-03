@@ -7,7 +7,7 @@ import "./yandex.css";
 import YandexMapsIndex from "./YandexMapsNavbar/YandexMapsIndex";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import NavbarTopOpenMenu from "./YandexMapsNavbar/NavbarTopOpenMenu";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import ScrollFilter from "./YandexMapsNavbar/ScrollFilter";
 import {
   ArrowTopIcons,
@@ -32,11 +32,13 @@ import CarouselModalMarket from "./YandexLocationMarketOpen/CarouselModalMarket"
 import MarketFilterofMaps from "./YandexLocationMarketOpen/MarketFilterofMaps";
 import Cookies from "js-cookie";
 import { useQuery } from "@tanstack/react-query";
+import UseReplace from "../../ContextHook/useReplace";
 // import CarouselModalMarket from "./YandexMapsNavbar/CarouselModalMarket";
 
 
 function YandexMapsDressMe() {
   const url = "https://api.dressme.uz/api/main";
+  const navigate = useNavigate();
 
   const [openCordinateMap, setOpenCordinateMap] = useState("");
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
@@ -47,30 +49,39 @@ function YandexMapsDressMe() {
   const toggleMarketsFilterMaps = React.useCallback(() => setMarketsFilterMaps(false), []);
   // request get
   const [getMapsInfo, setGetMapsInfo] = useState(null);
+  const [getAllFilterSearch, setGetAllFilterSearch] = useState({});
+
   function getFilterData(childData) {
-    console.log(childData, "childData");
+    setGetAllFilterSearch(childData)
   }
   // -------------Get Request
-  useQuery(["get_map_index"], () => {
-    return fetch(`${url}/map/index`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-      },
-    }).then((res) => res.json());
-  },
-    {
-      onSuccess: (res) => {
-        setGetMapsInfo(res);
-      },
-      onError: (err) => {
-        console.log(err, "err");
-      },
-      keepPreviousData: true,
-      refetchOnWindowFocus: true,
-    }
-  );
 
+  const fetchGetAllData = (params) => {
+    // for (const property in params) {
+    //   navigate(`/delivery-points/${UseReplace(property, params[property])}`);
+    // }
+    Object.entries(params).forEach((i) => {
+      if (!i[1]) delete params[i[0]];
+    });
+
+    fetch(`${url}/map/index/?` + new URLSearchParams(params),)
+      .then((res) => res.json())
+      .then((res) => {
+        setGetMapsInfo(res);
+        console.log(res, "BuRes");
+      })
+      .catch((err) => console.log(err, "ERRORLIST"));
+  };
+
+  useEffect(() => {
+    fetchGetAllData({
+      gender: getAllFilterSearch?.genderType,
+      shop: getAllFilterSearch?.category_brand,
+      category: getAllFilterSearch?.category_wear,
+      "budget[from]": getAllFilterSearch?.minPrice,
+      "budget[to]": getAllFilterSearch?.maxPrice
+    })
+  }, [getAllFilterSearch])
 
   function getCurrentDimension() {
     return {
