@@ -76,8 +76,8 @@ function CategoryButtonsFilter({ handleGetId, handleGetDiscountId }) {
           onGetDiscontId(1);
         }}
         className={`${
-          dataActionDiscount ? "bg-fullBlue text-red-500 " : "bg-bgCategory text-red-600 "
-        } h-[44px] w-[49%] flex items-center justify-center font-AeonikProMedium text-sm leading-3 text-center active:scale-95 hover:text-red-500 hover:bg-fullBlue rounded-lg duration-300`}
+          dataActionDiscount ? "border border-fullBlue bg-bgCategory text-red-500 " : "bg-bgCategory text-red-600"
+        } h-[44px] w-[49%] flex items-center justify-center font-AeonikProMedium text-sm leading-3 text-center active:scale-95 hover:text-red-500 hover:border hover:border-fullBlue rounded-lg duration-300`}
       >
         Скидки
       </button>

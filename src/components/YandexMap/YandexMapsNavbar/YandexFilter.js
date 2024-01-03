@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Popover, } from "antd";
 import { AutummBoyIcons, ByBrandIcon, ChildGenIcon, ClothesIcons, DollorIcons, ManGenIcons, ManWomanGen, MenuCloseIcons, SpringBoyIcons, SummerBoyIcons, WinterBoyIcons, WomanGenIcons } from "../../../assets/icons";
 import { BiChevronDown } from "react-icons/bi";
@@ -11,7 +11,7 @@ import UseSearch from "../../../ContextHook/useSearch";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slider";
 
-export default function YandexFilter() {
+export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   // useReplace
   const navigate = useNavigate();
@@ -20,23 +20,12 @@ export default function YandexFilter() {
     openPrice: false,
     openBrand: false,
     textToColor: false,
-    genderActive: true
+    genderActive: true,
+    genderId: null,
+    categoryWearId: null,
+    categoryBrandId: null,
   });
-  const wearGroup = [
-    { id: 1, name: "Футболки" },
-    { id: 2, name: "Рубашки" },
-    { id: 3, name: "Шорты" },
-    { id: 4, name: "Джинсы" },
-    { id: 5, name: "Свитер" },
-    { id: 6, name: "Куртки" },
-    { id: 7, name: "Толстовки" },
-    { id: 8, name: "Обуви" },
-    { id: 9, name: "Куртки" },
-    { id: 10, name: "Сапоги" },
-    { id: 11, name: "Платья" },
-    { id: 12, name: "Юбки" },
-    { id: 13, name: "Ремень" },
-  ];
+
   // ----------------Wear state management----------------------------
 
   const handleOpenChangeWear = (newOpen) => {
@@ -44,48 +33,44 @@ export default function YandexFilter() {
   };
   const [selectWear, setSelectWear] = useState();
 
-  const handleWearValue = (value) => {
+  const handleWearValue = (value, id) => {
     setSelectWear(value);
-    setState({ ...state, openwear: false });
-    navigate(`/delivery-points/${UseReplace("by_category", value)}`);
+    setState({ ...state, openwear: false, categoryWearId: id });
+    // navigate(`/delivery-points/${UseReplace("by_category", value)}`);
   };
   const ClearSelectWear = () => {
     setSelectWear();
-    navigate(`/delivery-points/${UseReplace("by_category", null)}`);
+    // navigate(`/delivery-points/${UseReplace("by_category", null)}`);
   }
 
-  const wearList = [
-    { id: 1, type: "Головные уборы" },
-    { id: 2, type: "Верхняя одежда" },
-    { id: 3, type: "Нижняя одежда" },
-    { id: 4, type: "Аксессуары" },
-    { id: 5, type: "Обувь" },
-  ];
+
   const contentWear = (
     <div className="w-[170px] h-fit m-0 p-0">
-      {wearList.map((data) => {
+      {getMapsInfo?.categories?.map((data) => {
         return (
           <p
             key={data?.id}
             onClick={() => {
-              handleWearValue(data?.type);
+              handleWearValue(data?.name_ru, data?.id);
             }}
             className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.TextHoverSeason}`}
           >
-            {data?.type}
+            {data?.name_ru}
           </p>
         );
       })}
     </div>
   );
   // ----------------------Price State Management----------------------
-  const [minPrice, setMinPrice] = useState(60000);
-  const [maxPrice, setMaxPrice] = useState(1800000);
+  const [minPrice, setMinPrice] = useState(100000);
+  const [maxPrice, setMaxPrice] = useState(500000);
   const [values, setValues] = useState([minPrice, maxPrice]);
+  const [getRange, setGetRange] = useState([]);
 
   const sendPriceList = () => {
-    navigate(`/delivery-points/${UseReplace("min", values[0])}`);
-    navigate(`/delivery-points/${UseReplace("max", values[1])}`);
+    setGetRange(values)
+    // navigate(`/delivery-points/${UseReplace("min", values[0])}`);
+    // navigate(`/delivery-points/${UseReplace("max", values[1])}`);
   };
   const handleOpenChangePrice = (newOpen) => {
     setState({ ...state, openPrice: newOpen });
@@ -163,37 +148,27 @@ export default function YandexFilter() {
   };
   const [selectBrand, setSelectBrand] = useState();
 
-  const handleBrandValue = (value) => {
+  const handleBrandValue = (value, id) => {
     setSelectBrand(value);
-    setState({ ...state, openBrand: false });
-    navigate(`/delivery-points/${UseReplace("by_brand", value)}`);
-
+    setState({ ...state, openBrand: false, categoryBrandId: id });
   };
+
   const CloseSelectBrand = () => {
     setSelectBrand()
-    navigate(`/delivery-points/${UseReplace("by_brand", null)}`);
   }
-  const brandList = [
-    { id: 1, type: "Adidas" },
-    { id: 2, type: "Nike" },
-    { id: 3, type: "Puma" },
-    { id: 4, type: "Dolce" },
-    { id: 5, type: "GUcci" },
-    { id: 6, type: "Calvin" },
-    { id: 7, type: "Louis/Vuitton" },
-  ];
+
   const contentBrand = (
     <div className="w-[170px] h-[250px] overflow-auto VerticelScroll m-0 p-0 ">
-      {brandList.map((data) => {
+      {getMapsInfo?.shops?.map((data) => {
         return (
           <p
             key={data?.id}
             onClick={() => {
-              handleBrandValue(data?.type);
+              handleBrandValue(data?.name, data?.id);
             }}
             className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.TextHoverSeason}`}
           >
-            {data?.type}
+            {data?.name}
           </p>
         );
       })}
@@ -204,46 +179,51 @@ export default function YandexFilter() {
   const [personItems, setPersonItems] = useState([
     {
       id: 1111, childText: [
-        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
-        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
-        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
-        { id: 4, anyIcons: <SpringBoyIcons />, name: "", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <SpringBoyIcons />, name: "", action: false },
       ]
     },
     {
       id: 2222, childText: [
-        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
-        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
-        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
-        { id: 4, anyIcons: <SummerBoyIcons />, name: "", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <SummerBoyIcons />, name: "", action: false },
       ]
     },
     {
       id: 3333, childText: [
-        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
-        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
-        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
-        { id: 4, anyIcons: <AutummBoyIcons />, name: "", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <AutummBoyIcons />, name: "", action: false },
       ]
     },
     {
       id: 4444, childText: [
-        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
-        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
-        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
-        { id: 4, anyIcons: <WinterBoyIcons />, name: "", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
       ]
     },
     {
       id: 5555, childText: [
-        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
-        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
-        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
-        { id: 4, anyIcons: <WinterBoyIcons />, name: "", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
       ]
     }
   ]);
   const handleFilterByUser = (fathId, childId) => {
+    if (childId === 0) {
+      setState({ ...state, genderId: "" })
+    } else if (childId > 0) {
+      setState({ ...state, genderId: childId })
+    }
     setPersonItems((current) => {
       return current?.map((data) => {
         if (data?.id == fathId) {
@@ -252,19 +232,28 @@ export default function YandexFilter() {
               return { ...e, action: true };
             } else return { ...e, action: false };
           });
-          console.log(newDataColor, "newDataColor");
           return { ...data, childText: [...newDataColor] };
         } else return data;
       });
     });
   }
+  useEffect(() => {
+    getYandexFilterData({
+      category_wear: state?.categoryWearId,
+      category_brand: state?.categoryBrandId,
+      minPrice: getRange[0],
+      maxPrice: getRange[1],
+      genderType: state?.genderId,
+    })
+  }, [selectWear, selectBrand, getRange, state?.genderId])
+  console.log(personItems, "personItems");
   return (
     <div className=" border border-red-500 w-fit px-10 py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex flex-col justify-between items-center m-auto md:border-t">
       <div className="flex items-center justify-center gap-x-2  w-fit   ">
         <Popover
           open={state?.openwear}
           onOpenChange={handleOpenChangeWear}
-          className="!w-[190px] gap-x-2 px-4 h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
+          className="!w-[190px] gap-x-1 px-2 h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
           trigger="click"
           options={["Hide"]}
           placement="bottom"
@@ -273,9 +262,9 @@ export default function YandexFilter() {
           <span>
             <ClothesIcons colors={"#000"} />
           </span>
-          <p className="not-italic whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
-            {/* {selectWear} */}
-            По категории
+          <p className="not-italic w-full overflow-hidden flex items-center justify-center  whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
+            {selectWear || "По категории"}
+            {/* По категории */}
           </p>
           <span>
             <BiChevronDown
@@ -286,6 +275,7 @@ export default function YandexFilter() {
             />
           </span>
         </Popover>
+
         <Popover
           open={state?.openPrice}
           onOpenChange={handleOpenChangePrice}
@@ -298,7 +288,7 @@ export default function YandexFilter() {
           <span>
             <DollorIcons colors={"#000"} />
           </span>
-          <p className="not-italic whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
+          <p className="not-italic whitespace-nowrap  text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
             {/* {selectWear} */}
             По бюджету
           </p>
@@ -314,25 +304,25 @@ export default function YandexFilter() {
         <Popover
           open={state?.openBrand}
           onOpenChange={handleOpenChangeBrand}
-          className="!w-[190px] gap-x-2 px-4 h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
+          className="!w-[190px] gap-x-1 px-2 h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
           trigger="click"
           options={["Hide"]}
           placement="bottom"
           content={contentBrand}
         >
-          <span>
+          <span className="">
             <ByBrandIcon />
           </span>
-          <p className="not-italic whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
-            {/* {selectWear} */}
-            По бренду
+          <p className="not-italic w-full overflow-hidden flex items-center justify-center whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
+            {selectBrand || "По магазину"}
+            {/* По магазину */}
           </p>
           <span>
             <BiChevronDown
               size={25}
               style={{ color: "#000" }}
               className={`${state?.openBrand ? "rotate-[-180deg]" : ""
-                } duration-200`}
+                } duration-200 `}
             />
           </span>
         </Popover>
@@ -363,7 +353,7 @@ export default function YandexFilter() {
                             }
                           </button>
                           {
-                            item?.id !== 4 &&
+                            item?.id !== 3 &&
                             <span className="w-[2px] mx-1 h-[30px] border-r border-searchBgColor"></span>
                           }
                         </div>
@@ -377,7 +367,7 @@ export default function YandexFilter() {
         </div>
         {/* </article> */}
       </div >
-      <div className="w-full flex items-center gap-x-2 mt-2">
+      <div className="w-full flex items-center gap-x-2 mt-2 hidden">
         <div className="w-[190px]  flex items-center">
           {
             selectWear &&

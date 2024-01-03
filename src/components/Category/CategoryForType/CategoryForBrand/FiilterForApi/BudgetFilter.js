@@ -16,8 +16,8 @@ function BudgetFilter({ state, setState, getMinMaxPrice }) {
     });
   }
 
-  function sendData() {
-    return setValues, setCheckChange(true);
+  function sendData() { 
+    setCheckChange(true);
   }
 
   return (
@@ -82,15 +82,15 @@ function BudgetFilter({ state, setState, getMinMaxPrice }) {
           </div>
           <Slider
             className="slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] my-5"
-            onChange={sendData}
+            onChange={setValues}
             value={values}
             min={minPrice}
             max={maxPrice}
           />
           <div
-            className={`${
-              checkChange ? "flex" : "hidden"
-            } items-center justify-end mt-1`}
+            className={`
+           
+            flex items-center justify-end mt-1`}
           >
             <span
               onClick={sendPrizeData}

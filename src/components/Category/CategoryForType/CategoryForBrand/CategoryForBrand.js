@@ -11,11 +11,12 @@ import CustomerReviewsFilter from "./FiilterForApi/CustomerReviewsFilter";
 import ClothingSizesFilter from "./FiilterForApi/ClothingSizesFilter";
 import ShoesSizesFilter from "./FiilterForApi/ShoesSizesFilter";
 
-const CategoryForBrand = ({setFilterData}) => {
+const CategoryForBrand = ({ setFilterData }) => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [genderId, setGenderId] = useState();
   const [discountId, setDiscountId] = useState();
   const [categoryId, setCategoryId] = useState();
+  const [colors, setColors] = useState();
   // const [dataActionDiscount, setDataActionDiscount] = useState(false);
 
   const [state, setState] = useState({
@@ -32,10 +33,15 @@ const CategoryForBrand = ({setFilterData}) => {
     checkBrand: false,
     checkedPrize: true,
     getBadgePrice: {},
+    getColors: [],
   });
 
   function getMinMaxPrice(childData) {
     setState({ ...state, getBadgePrice: childData });
+  }
+
+  function getColors(childData) {
+    setState({ ...state, getColors: childData });
   }
 
   function getCurrentDimension() {
@@ -65,6 +71,9 @@ const CategoryForBrand = ({setFilterData}) => {
     if ("budget[to]") {
       urlParams.set("budget[to]", "budget[to]");
     }
+    if ("colors[]") {
+      urlParams.set("colors[]", "colors[]");
+    }
 
     // Replace the current URL with the updated query parameters
     window.history.replaceState({}, "", `?${urlParams.toString()}`);
@@ -78,6 +87,8 @@ const CategoryForBrand = ({setFilterData}) => {
     })
       .then((res) => res.json())
       .then((res) => {
+        console.log(res, "res-data");
+        setColors(res?.filter?.colors);
         setFilterData(res);
       })
       .catch((err) => console.log(err, "ERRORLIST"));
@@ -90,9 +101,10 @@ const CategoryForBrand = ({setFilterData}) => {
       category: categoryId,
       "budget[from]": state?.getBadgePrice?.min,
       "budget[to]": state?.getBadgePrice?.max,
+      // "colors[]": state,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [genderId, discountId, categoryId, state?.getBadgePrice] , );
+  }, [genderId, discountId, categoryId, state?.getBadgePrice]);
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
@@ -155,7 +167,12 @@ const CategoryForBrand = ({setFilterData}) => {
         />
 
         {/* Colors */}
-        <ColorsFilter state={state} setState={setState} />
+        <ColorsFilter
+          state={state}
+          setState={setState}
+          colors={colors}
+          getColors={getColors}
+        />
 
         {/* Customer reviews */}
         <CustomerReviewsFilter state={state} setState={setState} />
