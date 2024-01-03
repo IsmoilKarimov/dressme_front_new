@@ -49,8 +49,8 @@ function ColorsFilter({ state, setState }) {
       </article>
       {/* Colors */}
       <article
-        className={`w-full px-[2px] flex justify-between flex-wrap items-center   bg-white hover:backdrop-brightness-125 hover:bg-white/60 transition ease-out duration-300 gap-x-[10px] gap-y-[10px] border-0  overflow-hidden  ${
-          state?.ColorsShow ? "duration-300 h-0" : "duration-300 h-[80px] mt-5"
+        className={`w-full px-[2px] flex justify-start flex-wrap items-center bg-white hover:backdrop-brightness-125 hover:bg-white/60 transition ease-out duration-300 gap-x-[14px] gap-y-[10px] border-0  overflow-clip  ${
+          state?.ColorsShow ? "duration-300 h-0" : "duration-300 h-fit pt-5"
         } duration-300 `}
       >
         {changeColor.map((item) => {
