@@ -1,16 +1,12 @@
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-
-import { MuslimImg } from "../../../../assets";
 import {
-  ClothesIcons,
   FilterIcons,
-  GoBackIcon,
   ItailIcons,
   SearchIcons,
   UnderSection,
 } from "../../../../assets/icons";
 import { useCallback, useContext, useEffect, useState } from "react";
-import { dressMainData } from "../../../../ContextHook/ContextMenu";
+// import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 import FilterDropUp from "../CategoryMobileDropUp/FilterDropUp";
@@ -18,7 +14,7 @@ import ClothingTypesDropUp from "../CategoryMobileDropUp/ClothingTypesDropUp";
 import { useQuery } from "@tanstack/react-query";
 
 const CategoryTopDetail = () => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  // const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [clothingTypes, setClothingTypes] = useState(false);
   const [filter, setFilter] = useState(false);
 
@@ -34,12 +30,12 @@ const CategoryTopDetail = () => {
     }
   }, [filter, clothingTypes]);
 
-  const handleFilter = () => {
-    setDressInfo({
-      ...dressInfo,
-      openCategoryFilter: !dressInfo.openCategoryFilter,
-    });
-  };
+  // const handleFilter = () => {
+  //   setDressInfo({
+  //     ...dressInfo,
+  //     openCategoryFilter: !dressInfo.openCategoryFilter,
+  //   });
+  // };
 
   const params = useParams();
 
@@ -116,48 +112,7 @@ const CategoryTopDetail = () => {
     </section>
   );
 
-  // Types of Clothes
-  const handleOpenTypesofClothes = (openTypesofClothes) => {
-    setState({ ...state, openTypesofClothes: openTypesofClothes });
-  };
-
-  const handleTypesofClothes = () => {
-    setState({ ...state, openTypesofClothes: false });
-  };
-  const typesofClothes = [
-    { id: 1, name: "Футболки" },
-    { id: 2, name: "Рубашки" },
-    { id: 3, name: "Шорты" },
-    { id: 4, name: "Джинсы" },
-    { id: 5, name: "Свитер" },
-    { id: 6, name: "Куртки" },
-    { id: 7, name: "Толстовки" },
-    { id: 8, name: "Обуви" },
-    { id: 9, name: "Куртки" },
-    { id: 10, name: "Сапоги" },
-    { id: 11, name: "Платья" },
-    { id: 12, name: "Юбки" },
-    { id: 13, name: "Ремень" },
-  ];
-  const contentTypesofClothes = (
-    <section className="w-[150px] h-[200px] overflow-auto m-0 p-0">
-      {typesofClothes.map((data) => {
-        return (
-          <p
-            key={data?.id}
-            onClick={() => {
-              handleTypesofClothes(data?.type);
-            }}
-            className={`w-full py-3 flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
-          >
-            {data?.name}
-          </p>
-        );
-      })}
-    </section>
-  );
-
-  // Category change ---------------
+  // ----- Category change -----
 
   useEffect(() => {
     fetch(`${url}/api/main/section/${selectedSection?.id}`, {
@@ -174,7 +129,7 @@ const CategoryTopDetail = () => {
 
   return (
     <main className="flex flex-col justify-center border-t border-searchBgColor items-center">
-      <div className="pt-8 pb-16 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 py-3">
+      <div className="md:pt-8 md:pb-16 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 py-3">
         <section className="max-w-[1280px] w-[100%] h-full  flex items-center justify-between m-auto">
           <nav className="w-[100%] md:w-fit flex items-center p-1">
             <ul className="h-10 w-[100%] md:w-fit flex items-center overflow-auto HorizantalScroll">
@@ -190,12 +145,12 @@ const CategoryTopDetail = () => {
                 </span>
               </li>
               <li className="not-italic font-AeonikProRegular flex  	 items-center  text-sm leading-4 text-black tracking-[1%]">
-                <NavLink className="flex 	whitespace-nowrap  items-center cursor-pointer mt-[6px] px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                <NavLink className="flex 	whitespace-nowrap  items-center cursor-pointer mt-[6px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                   Категории
                 </NavLink>
-                <span>
+                {/* <span>
                   <ItailIcons colors={"#A1A1A1"} />
-                </span>
+                </span> */}
               </li>
             </ul>
           </nav>
