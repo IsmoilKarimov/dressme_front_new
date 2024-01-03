@@ -64,7 +64,7 @@ function YandexMapsDressMe() {
       if (!i[1]) delete params[i[0]];
     });
 
-    fetch(`${url}/map/index/?` + new URLSearchParams(params),)
+    fetch(`${url}/map/index?` + new URLSearchParams(params),)
       .then((res) => res.json())
       .then((res) => {
         setGetMapsInfo(res);

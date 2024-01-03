@@ -63,7 +63,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   );
   // ----------------------Price State Management----------------------
   const [minPrice, setMinPrice] = useState(100000);
-  const [maxPrice, setMaxPrice] = useState(500000);
+  const [maxPrice, setMaxPrice] = useState(900000);
   const [values, setValues] = useState([minPrice, maxPrice]);
   const [getRange, setGetRange] = useState([]);
 

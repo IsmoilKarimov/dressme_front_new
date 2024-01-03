@@ -5,7 +5,7 @@ import YandexMedium from "./YandexMedium";
 import YandexFilter from "./YandexFilter";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 
-export default function YandexMapsIndex({ getMapsInfo, getFilterData }) {
+function YandexMapsIndex({ getMapsInfo, getFilterData }) {
   const [dressInfo] = useContext(dressMainData);
   function getYandexFilterData(childData) {
     getFilterData(childData)
@@ -53,3 +53,4 @@ export default function YandexMapsIndex({ getMapsInfo, getFilterData }) {
     </div>
   );
 }
+export default React.memo(YandexMapsIndex)
