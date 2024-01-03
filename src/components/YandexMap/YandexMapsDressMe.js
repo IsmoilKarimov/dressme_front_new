@@ -47,7 +47,9 @@ function YandexMapsDressMe() {
   const toggleMarketsFilterMaps = React.useCallback(() => setMarketsFilterMaps(false), []);
   // request get
   const [getMapsInfo, setGetMapsInfo] = useState(null);
-
+  function getFilterData(childData) {
+    console.log(childData, "childData");
+  }
   // -------------Get Request
   useQuery(["get_map_index"], () => {
     return fetch(`${url}/map/index`, {
@@ -59,7 +61,7 @@ function YandexMapsDressMe() {
   },
     {
       onSuccess: (res) => {
-        setGetMapsInfo(res?.locations);
+        setGetMapsInfo(res);
       },
       onError: (err) => {
         console.log(err, "err");
@@ -172,7 +174,7 @@ function YandexMapsDressMe() {
               : " h-0 bottom-[0]  z-[-10]"
             } ease-linear duration-300`}
           >
-            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} modalInfo={getMapsInfo} />
+            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} modalInfo={getMapsInfo?.locations} />
           </div>
         )}
         {screenSize.width <= 768 && (
@@ -181,7 +183,7 @@ function YandexMapsDressMe() {
             : "h-0 bottom-0 ease-linear duration-300 "
             }  ease-linear duration-300 `}
           >
-            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} modalInfo={getMapsInfo} />
+            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} modalInfo={getMapsInfo?.locations} />
           </div>
         )}
         {/* // -----------------MarketFilterofMaps--------------------------- */}
@@ -200,7 +202,7 @@ function YandexMapsDressMe() {
           : "top-[-250px] ease-linear duration-500 "
           }  ease-linear duration-500 w-full`}
         >
-          <YandexMapsIndex />
+          <YandexMapsIndex getMapsInfo={getMapsInfo} getFilterData={getFilterData} />
         </div>
         <div className={`absolute z-50 right-2 ${dressInfo?.yandexOpenMenu
           ? "top-2  right-2 ease-linear duration-500 "
@@ -299,7 +301,7 @@ function YandexMapsDressMe() {
                 groupByCoordinates: false,
               }}
             >
-              {getMapsInfo?.map((data, index) => (
+              {getMapsInfo?.locations?.map((data, index) => (
 
                 <>
                   <Placemark
