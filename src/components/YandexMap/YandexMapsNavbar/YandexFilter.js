@@ -21,7 +21,9 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
     openBrand: false,
     textToColor: false,
     genderActive: true,
-    genderId: null
+    genderId: null,
+    categoryWearId: null,
+    categoryBrandId: null,
   });
 
   // ----------------Wear state management----------------------------
@@ -31,14 +33,14 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   };
   const [selectWear, setSelectWear] = useState();
 
-  const handleWearValue = (value) => {
+  const handleWearValue = (value, id) => {
     setSelectWear(value);
-    setState({ ...state, openwear: false });
-    navigate(`/delivery-points/${UseReplace("by_category", value)}`);
+    setState({ ...state, openwear: false, categoryWearId: id });
+    // navigate(`/delivery-points/${UseReplace("by_category", value)}`);
   };
   const ClearSelectWear = () => {
     setSelectWear();
-    navigate(`/delivery-points/${UseReplace("by_category", null)}`);
+    // navigate(`/delivery-points/${UseReplace("by_category", null)}`);
   }
 
 
@@ -49,7 +51,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           <p
             key={data?.id}
             onClick={() => {
-              handleWearValue(data?.name_ru);
+              handleWearValue(data?.name_ru, data?.id);
             }}
             className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.TextHoverSeason}`}
           >
@@ -67,8 +69,8 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
 
   const sendPriceList = () => {
     setGetRange(values)
-    navigate(`/delivery-points/${UseReplace("min", values[0])}`);
-    navigate(`/delivery-points/${UseReplace("max", values[1])}`);
+    // navigate(`/delivery-points/${UseReplace("min", values[0])}`);
+    // navigate(`/delivery-points/${UseReplace("max", values[1])}`);
   };
   const handleOpenChangePrice = (newOpen) => {
     setState({ ...state, openPrice: newOpen });
@@ -146,15 +148,13 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   };
   const [selectBrand, setSelectBrand] = useState();
 
-  const handleBrandValue = (value) => {
+  const handleBrandValue = (value, id) => {
     setSelectBrand(value);
-    setState({ ...state, openBrand: false });
-    navigate(`/delivery-points/${UseReplace("by_brand", value)}`);
-
+    setState({ ...state, openBrand: false, categoryBrandId: id });
   };
+
   const CloseSelectBrand = () => {
     setSelectBrand()
-    navigate(`/delivery-points/${UseReplace("by_brand", null)}`);
   }
 
   const contentBrand = (
@@ -164,7 +164,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           <p
             key={data?.id}
             onClick={() => {
-              handleBrandValue(data?.name);
+              handleBrandValue(data?.name, data?.id);
             }}
             className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.TextHoverSeason}`}
           >
@@ -219,7 +219,11 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
     }
   ]);
   const handleFilterByUser = (fathId, childId) => {
-    setState({ ...state, genderId: childId })
+    if (childId === 0) {
+      setState({ ...state, genderId: "" })
+    } else if (childId > 0) {
+      setState({ ...state, genderId: childId })
+    }
     setPersonItems((current) => {
       return current?.map((data) => {
         if (data?.id == fathId) {
@@ -235,19 +239,21 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   }
   useEffect(() => {
     getYandexFilterData({
-      selectWear: selectWear,
-      selectBrand: selectBrand,
-      values: getRange,
-      genderId: state?.genderId,
+      category_wear: state?.categoryWearId,
+      category_brand: state?.categoryBrandId,
+      minPrice: getRange[0],
+      maxPrice: getRange[1],
+      genderType: state?.genderId,
     })
   }, [selectWear, selectBrand, getRange, state?.genderId])
+  console.log(personItems, "personItems");
   return (
     <div className=" border border-red-500 w-fit px-10 py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex flex-col justify-between items-center m-auto md:border-t">
       <div className="flex items-center justify-center gap-x-2  w-fit   ">
         <Popover
           open={state?.openwear}
           onOpenChange={handleOpenChangeWear}
-          className="!w-[190px] gap-x-2 px-4 h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
+          className="!w-[190px] gap-x-1 px-2 h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
           trigger="click"
           options={["Hide"]}
           placement="bottom"
@@ -256,9 +262,9 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           <span>
             <ClothesIcons colors={"#000"} />
           </span>
-          <p className="not-italic whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
-            {/* {selectWear} */}
-            По категории
+          <p className="not-italic w-full overflow-hidden flex items-center justify-center  whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
+            {selectWear || "По категории"}
+            {/* По категории */}
           </p>
           <span>
             <BiChevronDown
@@ -269,6 +275,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             />
           </span>
         </Popover>
+
         <Popover
           open={state?.openPrice}
           onOpenChange={handleOpenChangePrice}
@@ -281,7 +288,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           <span>
             <DollorIcons colors={"#000"} />
           </span>
-          <p className="not-italic whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
+          <p className="not-italic whitespace-nowrap  text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
             {/* {selectWear} */}
             По бюджету
           </p>
@@ -297,25 +304,25 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
         <Popover
           open={state?.openBrand}
           onOpenChange={handleOpenChangeBrand}
-          className="!w-[190px] gap-x-2 px-4 h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
+          className="!w-[190px] gap-x-1 px-2 h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
           trigger="click"
           options={["Hide"]}
           placement="bottom"
           content={contentBrand}
         >
-          <span>
+          <span className="">
             <ByBrandIcon />
           </span>
-          <p className="not-italic whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
-            {/* {selectWear} */}
-            По магазину
+          <p className="not-italic w-full overflow-hidden flex items-center justify-center whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
+            {selectBrand || "По магазину"}
+            {/* По магазину */}
           </p>
           <span>
             <BiChevronDown
               size={25}
               style={{ color: "#000" }}
               className={`${state?.openBrand ? "rotate-[-180deg]" : ""
-                } duration-200`}
+                } duration-200 `}
             />
           </span>
         </Popover>
@@ -346,7 +353,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
                             }
                           </button>
                           {
-                            item?.id !== 4 &&
+                            item?.id !== 3 &&
                             <span className="w-[2px] mx-1 h-[30px] border-r border-searchBgColor"></span>
                           }
                         </div>
@@ -360,7 +367,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
         </div>
         {/* </article> */}
       </div >
-      <div className="w-full flex items-center gap-x-2 mt-2">
+      <div className="w-full flex items-center gap-x-2 mt-2 hidden">
         <div className="w-[190px]  flex items-center">
           {
             selectWear &&

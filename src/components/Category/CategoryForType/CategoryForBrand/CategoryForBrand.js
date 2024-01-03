@@ -11,7 +11,7 @@ import CustomerReviewsFilter from "./FiilterForApi/CustomerReviewsFilter";
 import ClothingSizesFilter from "./FiilterForApi/ClothingSizesFilter";
 import ShoesSizesFilter from "./FiilterForApi/ShoesSizesFilter";
 
-const CategoryForBrand = ({setFilterData}) => {
+const CategoryForBrand = ({ setFilterData }) => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [genderId, setGenderId] = useState();
   const [discountId, setDiscountId] = useState();
@@ -92,7 +92,7 @@ const CategoryForBrand = ({setFilterData}) => {
       "budget[to]": state?.getBadgePrice?.max,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [genderId, discountId, categoryId, state?.getBadgePrice] , );
+  }, [genderId, discountId, categoryId, state?.getBadgePrice],);
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
@@ -110,11 +110,10 @@ const CategoryForBrand = ({setFilterData}) => {
 
   return (
     <main
-      className={`w-full h-fit ${
-        dressInfo?.openShopIdFilter
+      className={`w-full h-fit ${dressInfo?.openShopIdFilter
           ? " border-0 "
           : " border border-searchBgColor"
-      } py-5 rounded-lg overflow-hidden`}
+        } py-5 rounded-lg overflow-hidden`}
     >
       <section className="w-full px-3 ">
         {dressInfo?.openCategoryFilter && (
