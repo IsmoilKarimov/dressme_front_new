@@ -137,7 +137,7 @@ function YandexMapsDressMe() {
   };
   //------------------------------------------------------------------------------------------------
 
-  console.log(getMapsInfo, "getMapsInfo");
+  // console.log(getMapsInfo, "getMapsInfo");
   return (
     <div className="h-fit w-full flex items-center justify-center overflow-hidden overflow-y-hidden">
       <div

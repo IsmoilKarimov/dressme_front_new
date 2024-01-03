@@ -1,15 +1,20 @@
 import React, { useContext, useState } from "react";
-import { Popover } from "antd";
+import { Popover, } from "antd";
 import { AutummBoyIcons, ByBrandIcon, ChildGenIcon, ClothesIcons, DollorIcons, ManGenIcons, ManWomanGen, MenuCloseIcons, SpringBoyIcons, SummerBoyIcons, WinterBoyIcons, WomanGenIcons } from "../../../assets/icons";
 import { BiChevronDown } from "react-icons/bi";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { AutummChild, AutummFemale, AutummGirl, AutummMale, SpringChild, SpringFemale, SpringGirl, SpringMale, SummerChild, SummerFemale, SummerGirl, SummerMale, WinterChild, WinterFemale, WinterGirl, WinterMale } from "../../../assets";
 import '../yandex.css'
 import ReactSlider from "react-slider";
+import UseReplace from "../../../ContextHook/useReplace";
+import UseSearch from "../../../ContextHook/useSearch";
+import { useNavigate } from "react-router-dom";
+import Slider from "react-slider";
 
 export default function YandexFilter() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-
+  // useReplace
+  const navigate = useNavigate();
   const [state, setState] = useState({
     openwear: false,
     openPrice: false,
@@ -37,12 +42,17 @@ export default function YandexFilter() {
   const handleOpenChangeWear = (newOpen) => {
     setState({ ...state, openwear: newOpen });
   };
-  const [selectWear, setSelectWear] = useState("");
+  const [selectWear, setSelectWear] = useState();
 
   const handleWearValue = (value) => {
     setSelectWear(value);
     setState({ ...state, openwear: false });
+    navigate(`/delivery-points/${UseReplace("by_category", value)}`);
   };
+  const ClearSelectWear = () => {
+    setSelectWear();
+    navigate(`/delivery-points/${UseReplace("by_category", null)}`);
+  }
 
   const wearList = [
     { id: 1, type: "Головные уборы" },
@@ -69,15 +79,18 @@ export default function YandexFilter() {
     </div>
   );
   // ----------------------Price State Management----------------------
+  const [minPrice, setMinPrice] = useState(60000);
+  const [maxPrice, setMaxPrice] = useState(1800000);
+  const [values, setValues] = useState([minPrice, maxPrice]);
 
+  const sendPriceList = () => {
+    navigate(`/delivery-points/${UseReplace("min", values[0])}`);
+    navigate(`/delivery-points/${UseReplace("max", values[1])}`);
+  };
   const handleOpenChangePrice = (newOpen) => {
     setState({ ...state, openPrice: newOpen });
   };
-  const [selectPrice, setSelectPrice] = useState("");
-
-  const [minPrice, setMinPrice] = useState(60000);
-  const [maxPrice, setMaxPrice] = useState(1800000);
-
+  // console.log();
   const contentPrice = (
     <div className="w-[350px] h-[170px] m-0 ">
       <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
@@ -96,8 +109,9 @@ export default function YandexFilter() {
             </span>
             <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
               <input className='w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
-                value={minPrice}
-                onChange={(e) => setMinPrice(e.target.value)} />  sum
+                value={values[0]}
+              // onChange={(e) => setMaxPrice(e.target.value)}
+              />  sum
             </span>
           </div>
           <div className="flex ">
@@ -106,46 +120,59 @@ export default function YandexFilter() {
             </span>
             <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
               <input className='w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
-                value={maxPrice}
-                onChange={(e) => setMaxPrice(e.target.value)} />
+                value={values[1]}
+              // onChange={(e) => setMaxPrice(e.target.value)}
+              />
               sum
             </span>
           </div>
         </div>
         <div className="relative z-50 mb-[6px] w-full  marketFilter">
           {" "}
+
           <ReactSlider
-            className="horizontal-slider"
+            className="horizontal-slider slider"
             thumbClassName="example-thumb1"
             trackClassName="example-track1"
-            defaultValue={[10, 90]}
+            // defaultValue={[10, 90]}
             ariaLabel={["Lower thumb", "Upper thumb"]}
             // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
             // renderThumb={() => <div>1</div>}
             pearling
-            minDistance={10}
-          />
+            onChange={setValues}
+            value={values}
+            min={minPrice}
+            max={maxPrice} />
         </div>
         <div className="flex items-center justify-end mt-4">
           <span
-            onClick={() => setState({ ...state, openPrice: false })}
+            onClick={() => {
+              sendPriceList()
+              setState({ ...state, openPrice: false })
+            }}
             className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue">Готово</span>
         </div>
-
-
       </div>
     </div>
   );
+
   // ----------------------Brend State Management----------------------
 
   const handleOpenChangeBrand = (newOpen) => {
     setState({ ...state, openBrand: newOpen });
   };
-  const [selectBrand, setSelectBrand] = useState("");
+  const [selectBrand, setSelectBrand] = useState();
+
   const handleBrandValue = (value) => {
     setSelectBrand(value);
     setState({ ...state, openBrand: false });
+    navigate(`/delivery-points/${UseReplace("by_brand", value)}`);
+
   };
+  const CloseSelectBrand = () => {
+    setSelectBrand()
+    navigate(`/delivery-points/${UseReplace("by_brand", null)}`);
+  }
   const brandList = [
     { id: 1, type: "Adidas" },
     { id: 2, type: "Nike" },
@@ -232,7 +259,7 @@ export default function YandexFilter() {
     });
   }
   return (
-    <div className=" w-fit px-10 py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex flex-col justify-between items-center m-auto md:border-t">
+    <div className=" border border-red-500 w-fit px-10 py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex flex-col justify-between items-center m-auto md:border-t">
       <div className="flex items-center justify-center gap-x-2  w-fit   ">
         <Popover
           open={state?.openwear}
@@ -356,7 +383,7 @@ export default function YandexFilter() {
             selectWear &&
             <button type="button" className={`h-[32px] px-2 flex items-center ${dressInfo?.BtnOpacitySeason} rounded-lg gap-x-[6px]`}>
               <span className="text-sm not-italic font-AeonikProMedium leading-5">{selectWear}</span>
-              <span onClick={() => setSelectWear("")} className="w-4 h-4 px-[2px] rounded-full flex items-center justify-center bg-white">
+              <span onClick={() => ClearSelectWear()} className="w-4 h-4 px-[2px] rounded-full flex items-center justify-center bg-white">
                 <MenuCloseIcons colors={dressInfo?.ColorSeason} className="w-full h-full" />
               </span>
             </button>
@@ -378,7 +405,7 @@ export default function YandexFilter() {
             selectBrand &&
             <button type="button" className={`h-[32px] px-2 flex items-center ${dressInfo?.BtnOpacitySeason} rounded-lg gap-x-[6px]`}>
               <span className="text-sm not-italic font-AeonikProMedium leading-5">{selectBrand}</span>
-              <span onClick={() => setSelectBrand("")} className="w-4 h-4 px-[2px] rounded-full flex items-center justify-center bg-white">
+              <span onClick={() => CloseSelectBrand()} className="w-4 h-4 px-[2px] rounded-full flex items-center justify-center bg-white">
                 <MenuCloseIcons colors={dressInfo?.ColorSeason} className="w-full h-full" />
               </span>
             </button>
