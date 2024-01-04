@@ -36,6 +36,10 @@ function CategoryGenderButtonsFilter({
     });
   }
 
+  function sendClearedData() {
+
+  }
+
   const handleGenderCheck = (value) => {
     setGenderCategory((data) => {
       return data.map((e) => {
@@ -93,7 +97,7 @@ function CategoryGenderButtonsFilter({
         ) : null}
       </div>
       {filter?.gender_ids.length && !dataAction ? (
-        <button type="button" className={` w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}>Очистить</button>
+        <button type="button" onClick={sendClearedData} className={` w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}>Очистить</button>
         ): null}
     </div>
   );

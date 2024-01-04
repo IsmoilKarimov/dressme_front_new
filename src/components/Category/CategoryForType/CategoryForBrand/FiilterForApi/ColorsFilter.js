@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import {
   ArrowTopIcons,
-  InputCheckedTrueIcons,
 } from "../../../../../assets/icons";
-import { BiCheck } from "react-icons/bi";
 import { FaCheck } from "react-icons/fa";
 
 function ColorsFilter({ state, setState, filter, getColors }) {
@@ -44,6 +42,7 @@ function ColorsFilter({ state, setState, filter, getColors }) {
           } duration-300 `}
         >
           {filter?.colors?.map((colorHex,index) => {
+            console.log(colorHex);
             return (
               <figure
                 key={index}
@@ -54,7 +53,7 @@ function ColorsFilter({ state, setState, filter, getColors }) {
               >
                 {selectedColorId === index ? (
                   <p className="w-[14px] flex items-center justify-center">
-                    <FaCheck color={colorHex === "#ffffff" ? "#000" : "#fff"} className="flex items-center justify-center" />
+                    <FaCheck color={colorHex === "#ffffff" || colorHex === "#f5f5dc" ? "#000" : "#fff"} className="flex items-center justify-center" />
                   </p>
                 ) : null}
               </figure>
