@@ -12,14 +12,15 @@ export default function CategoriesFilter({
 }) {
   const { request } = useHttp();
   const [getCategoryId, setGetCategoryId] = useState();
+  const [dataAction, setDataAction] = useState(false);
 
-  const categories = [
-    { id: '1', action: false, name: "Головной убор" },
-    { id: '2', action: false, name: "Верхняя одежда" },
-    { id: '3', action: false, name: "Нижняя одежда" },
-    { id: '4', action: false, name: "Обувь" },
-    { id: '5', action: false, name: "Аксессуары" },
-  ];
+  const [categories, setCategories] = useState([
+    { id: "1", action: false, name: "Головной убор" },
+    { id: "2", action: false, name: "Верхняя одежда" },
+    { id: "3", action: false, name: "Нижняя одежда" },
+    { id: "4", action: false, name: "Обувь" },
+    { id: "5", action: false, name: "Аксессуары" },
+  ]);
 
   // ------------GET METHOD Gender-type-----------------
   useQuery(
@@ -30,7 +31,7 @@ export default function CategoriesFilter({
     {
       onSuccess: (res) => {
         console.log(res, "RES");
-        setGetCategoryId(res?.filter?.category_ids);
+        setGetCategoryId(res?.filter);
         setState({ ...state, genderList: res?.genders });
       },
       onError: (err) => {
@@ -48,9 +49,23 @@ export default function CategoriesFilter({
     });
   }
 
+  const handleCategoryCheck = (value) => {
+    setCategories((data) => {
+      return data.map((e) => {
+        if (e.id === value) {
+          return { ...e, action: true };
+        } else return { ...e, action: false };
+      });
+    });
+  };
+
   return (
     <div className="w-full flex flex-col items-center">
-      <section className={`${getCategoryId ? 'block' : 'hidden'}  w-full h-fit mt-[50px] `}>
+      <section
+        className={`${
+          getCategoryId?.category_ids ? "block" : "hidden"
+        }  w-full h-fit mt-[12px] `}
+      >
         <article
           className="w-full flex justify-between items-center "
           onClick={(event) => {
@@ -61,7 +76,9 @@ export default function CategoriesFilter({
             onClick={() => setState({ ...state, category: !state.category })}
             className={`flex items-center cursor-pointer select-none`}
           >
-            <p className={`not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black`}>
+            <p
+              className={`not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black`}
+            >
               Категории
             </p>
             <p
@@ -80,14 +97,22 @@ export default function CategoriesFilter({
           } duration-300 flex flex-col gap-y-4`}
         >
           {categories?.map((data) => {
-            return getCategoryId?.map((id) => {
+            return getCategoryId?.category_ids?.map((id) => {
               if (id === data.id) {
                 return (
                   <button
                     key={data?.id}
-                    className="w-full h-[44px] rounded-lg justify-center bg-bgCategory hover:text-white  focus:bg-fullBlue hover:bg-fullBlue focus:text-white flex items-center  cursor-pointer select-none  text-black"
+                    className={`${
+                      dataAction
+                        ? `${data.action ? "bg-fullBlue text-white" : ""}`
+                        : ""
+                    } w-full h-[44px] rounded-lg justify-center bg-bgCategory hover:text-white hover:bg-fullBlue flex items-center  cursor-pointer select-none  text-black`}
                     type="button"
-                    onClick={() => onGetId(data?.id)}
+                    onClick={() => {
+                      onGetId(data?.id);
+                      setDataAction(true);
+                      handleCategoryCheck(data?.id);
+                    }}
                   >
                     <p className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
                       {data?.name}
@@ -99,7 +124,14 @@ export default function CategoriesFilter({
           })}
         </article>
       </section>
-      <button type="button" className="w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-2">Очистить</button>
+      <button
+        type="button"
+        className={`${
+          dataAction ? "flex" : "hidden"
+        } w-full flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
+      >
+        Очистить
+      </button>
     </div>
   );
 }

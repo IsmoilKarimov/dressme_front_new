@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 import Slider from "react-slider";
 
@@ -7,7 +7,8 @@ function BudgetFilter({ state, setState, getMinMaxPrice }) {
   const [maxPrice, setMaxPrice] = useState(10);
   const [checkChange, setCheckChange] = useState(false);
   const [values, setValues] = useState([minPrice, maxPrice]);
-  console.log(checkChange);
+
+  console.log(checkChange, "checkChange");
 
   function sendPrizeData() {
     getMinMaxPrice({
@@ -16,9 +17,9 @@ function BudgetFilter({ state, setState, getMinMaxPrice }) {
     });
   }
 
-  function sendData() {
-    setCheckChange(true);
-  }
+  useEffect(() => {
+    if (minPrice !== values[0] || maxPrice !== values[1]) setCheckChange(true);
+  }, [values]);
 
   return (
     <section className="w-full h-fit mt-[50px]">
@@ -87,10 +88,14 @@ function BudgetFilter({ state, setState, getMinMaxPrice }) {
             min={minPrice}
             max={maxPrice}
           />
-          <div className={`w-full flex items-center justify-between mt-1`}>
+          <div
+            className={`${
+              checkChange ? "flex" : "hidden"
+            } w-full items-center justify-between mt-1`}
+          >
             <button
               type="button"
-              className="flex items-center text-sm text-borderWinter font-AeonikProRegular"
+              className={`flex items-center text-sm text-borderWinter font-AeonikProRegular`}
             >
               Очистить
             </button>
