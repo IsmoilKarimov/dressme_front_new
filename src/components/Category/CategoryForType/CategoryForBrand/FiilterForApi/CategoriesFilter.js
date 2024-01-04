@@ -23,14 +23,14 @@ export default function CategoriesFilter({
 
   // ------------GET METHOD Gender-type-----------------
   useQuery(
-    ["get_genders"],
+    ["get_category_id"],
     () => {
       return request({ url: `/main/section/${params?.id}`, token: true });
     },
     {
       onSuccess: (res) => {
-        // console.log(res, "RES");
-        setGetCategoryId(res?.category_ids);
+        console.log(res, "RES");
+        setGetCategoryId(res?.filter?.category_ids);
         setState({ ...state, genderList: res?.genders });
       },
       onError: (err) => {
@@ -50,7 +50,7 @@ export default function CategoriesFilter({
 
   return (
     <>
-      <section className={`${state?.category ? 'block' : 'hidden'}  w-full h-fit mt-[50px] `}>
+      <section className={`${getCategoryId ? 'block' : 'hidden'}  w-full h-fit mt-[50px] `}>
         <article
           className="w-full flex justify-between items-center "
           onClick={(event) => {

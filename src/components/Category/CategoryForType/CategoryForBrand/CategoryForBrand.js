@@ -16,7 +16,7 @@ const CategoryForBrand = ({ setFilterData }) => {
   const [genderId, setGenderId] = useState();
   const [discountId, setDiscountId] = useState();
   const [categoryId, setCategoryId] = useState();
-  const [colors, setColors] = useState();
+  const [filter, setFilter] = useState();
   // const [dataActionDiscount, setDataActionDiscount] = useState(false);
 
   const [state, setState] = useState({
@@ -87,8 +87,8 @@ const CategoryForBrand = ({ setFilterData }) => {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res, "res-data");
-        setColors(res?.filter?.colors);
+        console.log(res?.filter, "res-data");
+        setFilter(res?.filter);
         setFilterData(res);
       })
       .catch((err) => console.log(err, "ERRORLIST"));
@@ -170,12 +170,16 @@ const CategoryForBrand = ({ setFilterData }) => {
         <ColorsFilter
           state={state}
           setState={setState}
-          colors={colors}
+          filter={filter}
           getColors={getColors}
         />
 
         {/* Customer reviews */}
-        <CustomerReviewsFilter state={state} setState={setState} />
+        <CustomerReviewsFilter
+          state={state}
+          setState={setState}
+          filter={filter}
+        />
 
         {/* Clothing sizes */}
         <ClothingSizesFilter state={state} setState={setState} />

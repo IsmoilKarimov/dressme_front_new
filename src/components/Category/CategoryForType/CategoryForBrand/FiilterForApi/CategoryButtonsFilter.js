@@ -21,8 +21,6 @@ function CategoryButtonsFilter({ handleGetId, handleGetDiscountId }) {
     },
   ]);
 
-  console.log(dataAction, "dataAction");
-
   function onGetId(id) {
     handleGetId({
       genderFilterId: id,

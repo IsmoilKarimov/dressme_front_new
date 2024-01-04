@@ -4,7 +4,7 @@ import {
   InputCheckedTrueIcons,
 } from "../../../../../assets/icons";
 
-function ColorsFilter({ state, setState, colors, getColors }) {
+function ColorsFilter({ state, setState, filter, getColors }) {
 
   const [selectedColorId,setSelectedColorId] = useState(null)
 
@@ -40,7 +40,7 @@ function ColorsFilter({ state, setState, colors, getColors }) {
           state?.ColorsShow ? "duration-300 h-0" : "duration-300 h-fit py-5"
         } duration-300 `}
       >
-        {colors?.map((color,index) => {
+        {filter?.colors?.map((color,index) => {
           return (
             <figure
               key={index}
