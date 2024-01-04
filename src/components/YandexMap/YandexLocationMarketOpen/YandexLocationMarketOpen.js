@@ -3,6 +3,8 @@ import {
   ClockIcons,
   LocationIcons,
   MenuCloseIcons,
+  PersonIcons,
+  PhoneIcons,
   SircleNext,
   StarIcons,
 } from "../../../assets/icons";
@@ -25,7 +27,7 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
   const [copyText, setCopyText] = useState(null)
   const [imgGallery, setImgGallery] = useState()
   useEffect(() => {
-    modalInfo?.filter(e => e?.id === dressInfo?.yandexGetMarketId)?.map(data => {
+    modalInfo?.locations?.filter(e => e?.id === dressInfo?.yandexGetMarketId)?.map(data => {
       setCopyText(data?.address)
       setImgGallery(data?.url_image_path_one)
     })
@@ -81,11 +83,14 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
   const handleCarouselModal = (UId) => {
     // setOpenCarouselModal(true)
   }
-  // console.log(modalInfo, "modalInfo");
+  console.log(modalInfo, "modalInfo");
   // console.log(dressInfo?.yandexGetMarketId, "yandexGetMarketId");
+  const handlePhoneNumberClick = (id) => {
+    window.location.href = `tel:${id}`;
+  };
   return (
     <div className="w-full h-full ">
-      {modalInfo?.filter(e => e?.id === dressInfo?.yandexGetMarketId)?.map(data => {
+      {modalInfo?.locations?.filter(e => e?.id === dressInfo?.yandexGetMarketId)?.map(data => {
         return (
           <div className="w-full  h-fit flex flex-col gap-y-2 border border-searchBgColor overflow-hidden bg-white rounded-t-[12px] md:rounded-[12px]	 px-4 pb-4 pt-2">
             {/* title */}
@@ -158,9 +163,9 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
 
                 </div>
                 {/* Detail */}
-                <div className="w-full  flex flex-col gap-y-3">
+                <div className="w-full  flex flex-col gap-y-4">
                   <div className="flex items-center ">
-                    <span>
+                    <span className=" font-AeonikProRegular">
                       <ClockIcons colors={"#000"} />
                     </span>
                     <span className="not-italic ml-4 font-AeonikProRegular text-base leading-4 text-black tracking-[1%]">
@@ -168,7 +173,7 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
                     </span>
                   </div>{" "}
                   <div className="w-full flex">
-                    <span>
+                    <span >
                       <LocationIcons />
                     </span>
                     <span className="w-[70%] flex  not-italic ml-4 font-AeonikProRegular text-base leading-5 text-setTexOpacity">
@@ -181,6 +186,25 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
                       </button>
                     </span>
                   </div>
+                  <div className="flex items-center ">
+                    <span className="font-AeonikProRegular">
+                      {/* <ClockIcons colors={"#000"} /> */}
+                      <PersonIcons colors={"#000"} />
+                    </span>
+                    <span className="not-italic ml-4 font-AeonikProRegular text-base leading-4 text-black tracking-[1%]">
+                      {data?.assistant_name}
+                    </span>
+                  </div>{" "}
+                  <div
+                    onClick={handlePhoneNumberClick(data?.assistant_phone)}
+                    className="flex items-center ">
+                    <span className="font-AeonikProRegular cursor-pointer">
+                      <PhoneIcons colors={"#000"} />
+                    </span>
+                    <span className="not-italic ml-4 font-AeonikProRegular text-base leading-4 text-black tracking-[1%]">
+                      {data?.assistant_phone}
+                    </span>
+                  </div>{" "}
                 </div>
                 <div className="w-full gap-x-2 flex items-center ">
 

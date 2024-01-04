@@ -14,50 +14,53 @@ function ClothingSizesFilter({ state, setState }) {
   ];
 
   return (
-    <section className="w-full h-fit mt-[50px] ">
-      <article
-        className="w-full flex justify-between items-center "
-        onClick={(event) => {
-          event.target.classList.toggle("open");
-        }}
-      >
-        <figure
-          onClick={() =>
-            setState({ ...state, ClothingShow: !state.ClothingShow })
-          }
-          className="flex items-center cursor-pointer select-none"
+    <div className="w-full flex flex-col items-center">
+      <section className="w-full h-fit mt-[50px] ">
+        <article
+          className="w-full flex justify-between items-center "
+          onClick={(event) => {
+            event.target.classList.toggle("open");
+          }}
         >
-          <figcaption className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-            Размер одежды
-          </figcaption>
-          <p
-            className={`${
-              state?.ClothingShow ? "rotate-[180deg]" : ""
-            } duration-300 ml-1`}
+          <figure
+            onClick={() =>
+              setState({ ...state, ClothingShow: !state.ClothingShow })
+            }
+            className="flex items-center cursor-pointer select-none"
           >
-            <ArrowTopIcons colors={"#000"} />
-          </p>
-        </figure>
-      </article>
-      <article
-        className={` overflow-hidden ${
-          state?.ClothingShow
-            ? "duration-300 h-0"
-            : "duration-300 h-[90px] mt-5"
-        } duration-300`}
-      >
-        <figure className="w-full flex flex-wrap justify-between  gap-y-2">
-          {clothingSize.map((item) => (
-            <button
-              key={item.id}
-              className="h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg"
+            <figcaption className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              Размер одежды
+            </figcaption>
+            <p
+              className={`${
+                state?.ClothingShow ? "rotate-[180deg]" : ""
+              } duration-300 ml-1`}
             >
-              {item.size}
-            </button>
-          ))}
-        </figure>
-      </article>
-    </section>
+              <ArrowTopIcons colors={"#000"} />
+            </p>
+          </figure>
+        </article>
+        <article
+          className={` overflow-hidden ${
+            state?.ClothingShow
+              ? "duration-300 h-0"
+              : "duration-300 h-[90px] mt-5"
+          } duration-300`}
+        >
+          <figure className="w-full flex flex-wrap justify-between  gap-y-2">
+            {clothingSize.map((item) => (
+              <button
+                key={item.id}
+                className="h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg"
+              >
+                {item.size}
+              </button>
+            ))}
+          </figure>
+        </article>
+      </section>
+      <button type="button" className="w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-2">Очистить</button>
+    </div>
   );
 }
 

@@ -49,7 +49,7 @@ export default function CategoriesFilter({
   }
 
   return (
-    <>
+    <div className="w-full flex flex-col items-center">
       <section className={`${getCategoryId ? 'block' : 'hidden'}  w-full h-fit mt-[50px] `}>
         <article
           className="w-full flex justify-between items-center "
@@ -73,7 +73,6 @@ export default function CategoriesFilter({
             </p>
           </figure>
         </article>
-
         {/* Field */}
         <article
           className={`w-full overflow-hidden ${
@@ -100,6 +99,7 @@ export default function CategoriesFilter({
           })}
         </article>
       </section>
-    </>
+      <button type="button" className="w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-2">Очистить</button>
+    </div>
   );
 }

@@ -14,6 +14,7 @@ function ShoesSizesFilter({ state, setState }) {
   ];
 
   return (
+    <div className="w-full flex flex-col items-center">
     <section className="w-full h-fit mt-[50px] ">
       <article
         className="w-full flex justify-between items-center "
@@ -54,6 +55,8 @@ function ShoesSizesFilter({ state, setState }) {
         </figure>
       </article>
     </section>
+    <button type="button" className="w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-2">Очистить</button>
+    </div>
   );
 }
 

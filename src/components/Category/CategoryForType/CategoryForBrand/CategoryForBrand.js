@@ -3,9 +3,9 @@ import { MenuCloseIcons } from "../../../../assets/icons";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import Cookies from "js-cookie";
 import { useParams } from "react-router-dom";
+import CategoryGenderButtonsFilter from "./FiilterForApi/CategoryGenderButtonsFilter";
 import CategoriesFilter from "./FiilterForApi/CategoriesFilter";
 import BudgetFilter from "./FiilterForApi/BudgetFilter";
-import CategoryButtonsFilter from "./FiilterForApi/CategoryButtonsFilter";
 import ColorsFilter from "./FiilterForApi/ColorsFilter";
 import CustomerReviewsFilter from "./FiilterForApi/CustomerReviewsFilter";
 import ClothingSizesFilter from "./FiilterForApi/ClothingSizesFilter";
@@ -17,7 +17,6 @@ const CategoryForBrand = ({ setFilterData }) => {
   const [discountId, setDiscountId] = useState();
   const [categoryId, setCategoryId] = useState();
   const [filter, setFilter] = useState();
-  // const [dataActionDiscount, setDataActionDiscount] = useState(false);
 
   const [state, setState] = useState({
     brandShow: screenSize.width <= 768 ? true : false,
@@ -146,9 +145,10 @@ const CategoryForBrand = ({ setFilterData }) => {
         )}
 
         {/* Gender Buttons */}
-        <CategoryButtonsFilter
+        <CategoryGenderButtonsFilter
           handleGetId={handleGetId}
           handleGetDiscountId={handleGetDiscountId}
+          filter={filter}
         />
 
         {/* Categories */}
