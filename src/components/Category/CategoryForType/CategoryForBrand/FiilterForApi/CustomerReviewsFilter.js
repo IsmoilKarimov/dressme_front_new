@@ -2,8 +2,36 @@ import React, { useState } from "react";
 import { ArrowTopIcons, StarIcons } from "../../../../../assets/icons";
 import { BsCheckLg } from "react-icons/bs";
 
-function CustomerReviewsFilter({ state, setState }) {
+function CustomerReviewsFilter({ state, setState, filter }) {
   const [selected, setSelected] = useState(0);
+
+  const [reviewStars, setRewievStart] = useState([
+    {
+      id: 1,
+      action: false,
+      starNumber: 1
+    },
+    {
+      id: 2,
+      action: false,
+      starNumber: 3
+    },
+    {
+      id: 3,
+      action: false,
+      starNumber: 3
+    },
+    {
+      id: 4,
+      action: false,
+      starNumber: 4
+    },
+    {
+      id: 5,
+      action: false,
+      starNumber: 5
+    },
+  ])
 
   return (
     <section className="w-full h-fit mt-[50px] ">

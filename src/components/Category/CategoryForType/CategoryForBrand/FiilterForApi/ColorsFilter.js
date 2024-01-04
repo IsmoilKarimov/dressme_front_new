@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ArrowTopIcons,
   InputCheckedTrueIcons,
 } from "../../../../../assets/icons";
 
-function ColorsFilter({ state, setState, colors, getColors }) {
+function ColorsFilter({ state, setState, filter, getColors }) {
 
-  const HandleColorCheck = () => {};
+  const [selectedColorId,setSelectedColorId] = useState(null)
 
   return (
     <section className="w-full h-fit mt-[50px] ">
@@ -40,18 +40,20 @@ function ColorsFilter({ state, setState, colors, getColors }) {
           state?.ColorsShow ? "duration-300 h-0" : "duration-300 h-fit py-5"
         } duration-300 `}
       >
-        {colors?.map((color,index) => {
-          console.log(color,index,'color,index');
+        {filter?.colors?.map((color,index) => {
           return (
             <figure
               key={index}
-              // onClick={() => HandleColorCheck(color?.hex)}
-              className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 w-8 h-8 bg-[${color}] cursor-pointer border border-solid border-borderColorCard`}
-              // htmlFor={`${color?.hex}`}
+              style={{background:color}}
+              onClick={() => setSelectedColorId(index)}
+              className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 w-8 h-8 cursor-pointer border border-solid border-borderColorCard`}
+              htmlFor={`${color}`}
             >
-              <p className="w-[14px]">
-                <InputCheckedTrueIcons colors={"#000"} />
-              </p>
+              {selectedColorId === index ? (
+                <p className="w-[14px]">
+                  <InputCheckedTrueIcons colors={color === "#000000" ? "#fff" : "#000"} />
+                </p>
+              ) : null}
             </figure>
           );
         })}
