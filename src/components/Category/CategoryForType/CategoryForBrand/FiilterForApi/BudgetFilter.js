@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 import Slider from "react-slider";
 
-function BudgetFilter({ state, setState, getMinMaxPrice }) {
-  const [minPrice, setMinPrice] = useState(1);
-  const [maxPrice, setMaxPrice] = useState(10);
+function BudgetFilter({ state, setState, getMinMaxPrice, filter }) {
+  const [minPrice, setMinPrice] = useState(Number(filter?.budget?.min_price) || 0); //Number(filter?.budget?.min_price)
+  const [maxPrice, setMaxPrice] = useState(Number(filter?.budget?.max_price) || 100); //Number(filter?.budget?.max_price)
   const [checkChange, setCheckChange] = useState(false);
   const [values, setValues] = useState([minPrice, maxPrice]);
 
-  console.log(checkChange, "checkChange");
+  console.log(minPrice,'minPrice');
+  console.log(maxPrice,'maxPrice');
+
+  // console.log(checkChange, "checkChange");
 
   function sendPrizeData() {
     getMinMaxPrice({

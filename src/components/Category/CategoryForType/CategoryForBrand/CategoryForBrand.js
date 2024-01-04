@@ -164,6 +164,7 @@ const CategoryForBrand = ({ setFilterData }) => {
           state={state}
           setState={setState}
           getMinMaxPrice={getMinMaxPrice}
+          filter={filter}
         />
 
         {/* Colors */}
