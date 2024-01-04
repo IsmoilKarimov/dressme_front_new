@@ -16,7 +16,7 @@ function BudgetFilter({ state, setState, getMinMaxPrice }) {
     });
   }
 
-  function sendData() { 
+  function sendData() {
     setCheckChange(true);
   }
 
@@ -45,11 +45,11 @@ function BudgetFilter({ state, setState, getMinMaxPrice }) {
         </figure>
       </article>
       <article
-        className={`  border-1 border-green-600  overflow-hidden  ${
+        className={`border-1 border-green-600  overflow-hidden  ${
           state?.budgetShow ? "duration-300 h-0" : "duration-300 h-fit mt-5"
         } duration-300`}
       >
-        <div className="  flex flex-col rounded-lg  w-full">
+        <div className="flex flex-col rounded-lg  w-full">
           <div className="flex flex-wrap justify-between items-center mb-6 w-full px-2">
             <div className="flex">
               <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#000] ">
@@ -87,17 +87,20 @@ function BudgetFilter({ state, setState, getMinMaxPrice }) {
             min={minPrice}
             max={maxPrice}
           />
-          <div
-            className={`
-           
-            flex items-center justify-end mt-1`}
-          >
-            <span
+          <div className={`w-full flex items-center justify-between mt-1`}>
+            <button
+              type="button"
+              className="flex items-center text-sm text-borderWinter font-AeonikProRegular"
+            >
+              Очистить
+            </button>
+            <button
+              type="button"
               onClick={sendPrizeData}
-              className="flex items-center font-AeonikProMedium cursor-pointer text-sm justify-center  text-fullBlue"
+              className="flex items-center font-AeonikProRegular cursor-pointer text-sm justify-center  text-fullBlue"
             >
               Готово
-            </span>
+            </button>
           </div>
         </div>
       </article>
