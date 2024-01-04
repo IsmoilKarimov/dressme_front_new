@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Popover, Select, Space, } from "antd";
-import { AutummBoyIcons, ByBrandIcon, ChildGenIcon, ClothesIcons, DollorIcons, ManGenIcons, ManWomanGen, MenuCloseIcons, SpringBoyIcons, SummerBoyIcons, WinterBoyIcons, WomanGenIcons } from "../../../assets/icons";
+import { AutummBoyIcons, ByBrandIcon, ChildGenIcon, ClothesIcons, DollorIcons, DownArrowAntd, ManGenIcons, ManWomanGen, MenuCloseIcons, SpringBoyIcons, SummerBoyIcons, WinterBoyIcons, WomanGenIcons } from "../../../assets/icons";
 import { BiChevronDown } from "react-icons/bi";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { AutummChild, AutummFemale, AutummGirl, AutummMale, SpringChild, SpringFemale, SpringGirl, SpringMale, SummerChild, SummerFemale, SummerGirl, SummerMale, WinterChild, WinterFemale, WinterGirl, WinterMale } from "../../../assets";
@@ -10,6 +10,8 @@ import UseReplace from "../../../ContextHook/useReplace";
 import UseSearch from "../../../ContextHook/useSearch";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slider";
+import { DownOutlined } from '@ant-design/icons'
+const { Option } = Select;
 
 export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -43,30 +45,21 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
     // navigate(`/delivery-points/${UseReplace("by_category", null)}`);
   }
 
-
-  const contentWear = (
-    <div className="w-[170px] h-fit m-0 p-0">
-      {getMapsInfo?.categories?.map((data) => {
-        return (
-          <p
-            key={data?.id}
-            onClick={() => {
-              handleWearValue(data?.name_ru, data?.id);
-            }}
-            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.TextHoverSeason}`}
-          >
-            {data?.name_ru}
-          </p>
-        );
-      })}
-    </div>
-  );
   // ----------------------Price State Management----------------------
+
   const [minPrice, setMinPrice] = useState(100000);
-  const [maxPrice, setMaxPrice] = useState(900000);
+  const [maxPrice, setMaxPrice] = useState(800000);
+  // useEffect(() => {
+  //   setMinPrice(Number(getMapsInfo?.budget?.min_price))
+  //   setMaxPrice(Number(getMapsInfo?.budget?.max_price))
+  // }, [getMapsInfo?.budget])
+
   const [values, setValues] = useState([minPrice, maxPrice]);
   const [getRange, setGetRange] = useState([]);
 
+  // console.log(minPrice, "minPrice");
+  // console.log(maxPrice, "maxPrice");
+  // console.log(values, "values");
   const sendPriceList = () => {
     setGetRange(values)
     // navigate(`/delivery-points/${UseReplace("min", values[0])}`);
@@ -95,7 +88,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
               <input className='w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
                 value={values[0]}
-              // onChange={(e) => setMaxPrice(e.target.value)}
+                onChange={(e) => setMaxPrice(e.target.value)}
               />  сум
             </span>
           </div>
@@ -106,7 +99,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
               <input className='w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
                 value={values[1]}
-              // onChange={(e) => setMaxPrice(e.target.value)}
+                onChange={(e) => setMaxPrice(e.target.value)}
               />
               сум
             </span>
@@ -129,6 +122,13 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             value={values}
             min={minPrice}
             max={maxPrice} />
+          {/* <Slider
+            className="slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] my-5"
+            onChange={setValues}
+            value={values}
+            min={minPrice}
+            max={maxPrice}
+          /> */}
         </div>
         <div className="flex items-center justify-end mt-4">
           <span
@@ -157,25 +157,6 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   const CloseSelectBrand = () => {
     setSelectBrand()
   }
-
-  const contentBrand = (
-    <div className="w-[170px] h-[250px] overflow-auto VerticelScroll m-0 p-0 ">
-      {getMapsInfo?.shops?.map((data) => {
-        return (
-          <p
-            key={data?.id}
-            onClick={() => {
-              handleBrandValue(data?.name, data?.id);
-            }}
-            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.TextHoverSeason}`}
-          >
-            {data?.name}
-          </p>
-        );
-      })}
-    </div>
-  );
-
 
   const [personItems, setPersonItems] = useState([
     {
@@ -255,74 +236,52 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
 
 
   return (
-    <div className=" border border-red-500 w-fit px-10 py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex flex-col justify-between items-center m-auto md:border-t">
+    <div className="  w-fit px-10 py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex flex-col justify-between items-center m-auto md:border-t">
       <div className="flex items-center justify-center gap-x-2  w-fit   ">
         <div
-          className="!w-[210px] gap-x-1 px-2 h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  "
+          className="!w-[210px] relative gap-x-1 px-1 h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  "
         >
-          <span>
+          <span className="absolute left-2">
             <ClothesIcons colors={"#000"} />
           </span>
           <Select
             showSearch
-            className="w-[75%] h-full !outline-none text-center overflow-hidden  !p-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
+            className="w-[100%] !caret-transparent 	 h-full !outline-none text-center overflow-hidden  !p-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
             bordered={false}
-            // placeholder="По категории"
             placeholder={<span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide	leading-5">По категории</span>}
-
             optionFilterProp="children"
-            // defaultValue={"По категории"}
             onChange={(e) => setState({ ...state, categoryWearId: e })}
             onSearch={onSearch}
             allowClear
-            suffixIcon={<></>}
+            // suffixIcon={<></>}
             size="large"
             filterOption={(input, option) =>
               (option?.label ?? "")
                 .toLowerCase()
                 .includes(input.toLowerCase())
             }
-            options={getMapsInfo?.categories?.map((item) => {
-              return {
-                value: item?.id,
-                label: item?.name_ru,
-              };
+          // options={getMapsInfo?.categories?.map((item) => {
+          //   return {
+          //     value: item?.id,
+          //     label: item?.name_ru,
+          //   };
+          // })}
+          >
+            {getMapsInfo?.categories?.map((item) => {
+              return (
+                <Option
+                  key={item.id}
+                  value={item.id}
+                  label={item.name_ru}
+                >
+                  <Space>
+                    <span className="text-black text-sm font-AeonikProMedium tracking-wide	leading-5">{item.name_ru}</span>
+                  </Space>
+                </Option>
+              );
             })}
-          />
-
-          <span>
-            <BiChevronDown
-              size={25}
-              style={{ color: "#000" }}
-              className={`${state?.openwear ? "rotate-[-180deg]" : ""
-                } duration-200`}
-            />
-          </span>
+          </Select>
         </div>
-        {/* <Popover
-          open={state?.openwear}
-          onOpenChange={handleOpenChangeWear}
-          className="!w-[190px] gap-x-1 px-2 h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
-          trigger="click"
-          options={["Hide"]}
-          placement="bottom"
-          content={contentWear}
-        >
-          <span>
-            <ClothesIcons colors={"#000"} />
-          </span>
-          <p className="not-italic w-full overflow-hidden flex items-center justify-center  whitespace-nowrap text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
-            {selectWear || "По категории"}
-          </p>
-          <span>
-            <BiChevronDown
-              size={25}
-              style={{ color: "#000" }}
-              className={`${state?.openwear ? "rotate-[-180deg]" : ""
-                } duration-200`}
-            />
-          </span>
-        </Popover> */}
 
         <Popover
           open={state?.openPrice}
@@ -336,28 +295,26 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           <span>
             <DollorIcons colors={"#000"} />
           </span>
-          <p className="not-italic whitespace-nowrap  text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
+          <p className="not-italic whitespace-nowrap mt-1 text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
             {/* {selectWear} */}
             По бюджету
           </p>
-          <span>
-            <BiChevronDown
-              size={25}
-              style={{ color: "#000" }}
-              className={`${state?.openPrice ? "rotate-[-180deg]" : ""
-                } duration-200`}
-            />
+
+
+          <span className="font-AeonikProMedium iconArrow">
+            <DownArrowAntd />
+            {/* <DownOutlined size={20} /> */}
           </span>
         </Popover>
         <div
-          className="!w-[210px] gap-x-1 px-2 h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  "
+          className="!w-[210px] relative gap-x-1 px-1 h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  "
         >
-          <span className="">
+          <span className="absolute left-2 ">
             <ByBrandIcon />
           </span>
           <Select
             showSearch
-            className="w-[75%] h-full !outline-none text-center overflow-hidden  !p-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
+            className="w-[100%] h-full !caret-transparent	px-2 !outline-none text-center overflow-hidden  !p-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
             bordered={false}
             // placeholder="По магазину"
             placeholder={<span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide	leading-5">По магазину</span>}
@@ -367,29 +324,42 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             onChange={(e) => setState({ ...state, categoryBrandId: e })}
             onSearch={onSearch}
             allowClear
-            suffixIcon={<></>}
+            // suffixIcon={<></>}
             size="large"
             filterOption={(input, option) =>
               (option?.label ?? "")
                 .toLowerCase()
                 .includes(input.toLowerCase())
             }
-            options={getMapsInfo?.shops?.map((item) => {
-              return {
-                value: item?.id,
-                label: item?.name,
-              };
+          // options={getMapsInfo?.shops?.map((item) => {
+          //   return {
+          //     value: item?.id,
+          //     label: item?.name,
+          //   };
+          // })}
+          >
+            {getMapsInfo?.shops?.map((item) => {
+              return (
+                <Option
+                  key={item.id}
+                  value={item.id}
+                  label={item.name}
+                >
+                  <Space>
+                    <span className="text-black text-sm font-AeonikProMedium tracking-wide	leading-5">{item.name}</span>
+                  </Space>
+                </Option>
+              );
             })}
-          />
-
-          <span>
+          </Select>
+          {/* <span>
             <BiChevronDown
               size={25}
               style={{ color: "#000" }}
               className={`${state?.openwear ? "rotate-[-180deg]" : ""
                 } duration-200`}
             />
-          </span>
+          </span> */}
         </div>
         {/* <Popover
           open={state?.openBrand}

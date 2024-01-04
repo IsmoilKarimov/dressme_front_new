@@ -51,6 +51,8 @@ function YandexMapsDressMe() {
   const [getMapsInfo, setGetMapsInfo] = useState(null);
   const [getAllFilterSearch, setGetAllFilterSearch] = useState({});
 
+  console.log(getMapsInfo, 'getMapsInfo');
+
   function getFilterData(childData) {
     setGetAllFilterSearch(childData)
   }
@@ -72,7 +74,7 @@ function YandexMapsDressMe() {
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
-  console.log(getAllFilterSearch, "getAllFilterSearch");
+  // console.log(getAllFilterSearch, "getAllFilterSearch");
   useEffect(() => {
     fetchGetAllData({
       gender: getAllFilterSearch?.genderType,
