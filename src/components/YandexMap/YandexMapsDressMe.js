@@ -185,7 +185,7 @@ function YandexMapsDressMe() {
               : " h-0 bottom-[0]  z-[-10]"
             } ease-linear duration-300`}
           >
-            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} modalInfo={getMapsInfo?.locations} />
+            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} modalInfo={getMapsInfo} />
           </div>
         )}
         {screenSize.width <= 768 && (
@@ -194,7 +194,7 @@ function YandexMapsDressMe() {
             : "h-0 bottom-0 ease-linear duration-300 "
             }  ease-linear duration-300 `}
           >
-            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} modalInfo={getMapsInfo?.locations} />
+            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} modalInfo={getMapsInfo} />
           </div>
         )}
         {/* // -----------------MarketFilterofMaps--------------------------- */}
