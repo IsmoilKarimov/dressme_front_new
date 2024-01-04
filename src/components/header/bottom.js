@@ -37,6 +37,7 @@ const BottomHeader = () => {
     // --------
     showColour: false,
   });
+  
   useEffect(() => {
     if (state?.showColour) {
       document.body.style.overflow = "hidden";
@@ -51,6 +52,7 @@ const BottomHeader = () => {
       width: window.innerWidth,
     };
   }
+  
   useEffect(() => {
     const updateDimension = () => {
       if (getCurrentDimension().width < 758 && state?.showColour) {
@@ -174,236 +176,8 @@ const BottomHeader = () => {
       </div>
     </div>
   );
-  const [changeColor, setChangeColor] = useState([
-    {
-      id: 1,
-      data: 1,
-      icons: <InputCheckedTrueIcons />,
-      action: false,
-      colors: "bg-black",
-      colorName: "Black",
-    },
-    {
-      id: 2,
-      data: 2,
-      icons: <InputCheckedTrueIcons />,
-      action: false,
-      colors: "bg-white",
-      colorName: "Black",
-    },
-    {
-      id: 3,
-      data: 3,
-      icons: <InputCheckedTrueIcons />,
-      action: false,
-      colors: "bg-zinc-500",
-      colorName: "Black",
-    },
-    {
-      id: 4,
-      data: 4,
-      icons: <InputCheckedTrueIcons />,
-      action: false,
-      colors: "bg-purple-500",
-      colorName: "Black",
-    },
-    {
-      id: 5,
-      data: 5,
-      icons: <InputCheckedTrueIcons />,
-      action: false,
-      colors: "bg-sky-600",
-      colorName: "Black",
-    },
-    {
-      id: 6,
-      data: 6,
-      icons: <InputCheckedTrueIcons />,
-      action: false,
-      colorName: "Black",
-      colors: "bg-amber-400 ",
-    },
-    {
-      id: 7,
-      data: 7,
-      icons: <InputCheckedTrueIcons />,
-      action: false,
-      colorName: "Black",
-      colors: "bg-green-700 ",
-    },
-    {
-      id: 8,
-      data: 8,
-      icons: <InputCheckedTrueIcons />,
-      action: false,
-      colorName: "Black",
-      colors: "bg-amber-600 ",
-    },
-    {
-      id: 9,
-      data: 9,
-      icons: <InputCheckedTrueIcons />,
-      action: false,
-      colorName: "Black",
-      colors: "bg-red-700  ",
-    },
-    {
-      id: 10,
-      data: 10,
-      icons: <InputCheckedTrueIcons />,
-      action: false,
-      colorName: "Black",
-      colors: "bg-purple-800 ",
-    },
-    {
-      id: 11,
-      data: 11,
-      icons: <InputCheckedTrueIcons />,
-      action: false,
-      colorName: "Black",
-      colors: "bg-blue-900  ",
-    },
-    {
-      id: 12,
-      data: 12,
-      icons: <InputCheckedTrueIcons />,
-      action: false,
-      colorName: "Black",
-      colors: "bg-yellow-900 ",
-    },
-  ]);
+
   const [getRadio, setGetRadio] = useState("");
-  const colorIdPushContext = (id) => {
-    setDressInfo({ ...dressInfo, ClothesBorder: id });
-  };
-
-  // const [changeColor, setChangeColor] = useState([
-  //   {
-  //     colorName: "Black",
-  //     id: 1,
-  //     value: 1,
-  //     action: false,
-  //     IconsColor: "#4B5563",
-  //     colors: "bg-black",
-  //   },
-  //   {
-  //     colorName: "Белый",
-  //     id: 2,
-  //     value: 2,
-  //     action: false,
-  //     IconsColor: "#4B5563",
-  //     colors: "bg-white",
-  //   },
-  //   {
-  //     id: 3,
-  //     value: 3,
-  //     colorName: "Серый",
-  //     action: false,
-  //     IconsColor: "#4B5563",
-  //     colors: "bg-zinc-500",
-  //   },
-  //   {
-  //     id: 4,
-  //     value: 4,
-  //     colorName: "Фиолетовый",
-  //     action: false,
-  //     IconsColor: "#4B5563",
-  //     colors: "bg-purple-500",
-  //   },
-  //   {
-  //     id: 5,
-  //     value: 5,
-  //     colorName: "Голубой",
-  //     action: false,
-  //     IconsColor: "#4B5563",
-  //     colors: "bg-sky-600",
-  //   },
-  //   {
-  //     id: 6,
-  //     value: 6,
-  //     colorName: "Желтый",
-  //     action: false,
-  //     IconsColor: "#4B5563",
-  //     colors: "bg-amber-400 ",
-  //   },
-  //   {
-  //     id: 7,
-  //     value: 7,
-  //     colorName: "Зеленый",
-  //     action: false,
-  //     IconsColor: "#4B5563",
-  //     colors: "bg-green-700 ",
-  //   },
-  //   {
-  //     id: 8,
-  //     value: 8,
-  //     colorName: "Amber",
-  //     action: false,
-  //     IconsColor: "#4B5563",
-  //     colors: "bg-amber-600 ",
-  //   },
-  //   {
-  //     id: 9,
-  //     value: 9,
-  //     colorName: "Красный",
-  //     action: false,
-  //     IconsColor: "#4B5563",
-  //     colors: "bg-red-700  ",
-  //   },
-  //   {
-  //     id: 10,
-  //     value: 10,
-  //     colorName: "Фиолетовый",
-  //     action: false,
-  //     IconsColor: "#4B5563",
-  //     colors: "bg-purple-800 ",
-  //   },
-  //   {
-  //     id: 11,
-  //     value: 11,
-  //     colorName: "Blue",
-  //     action: false,
-  //     IconsColor: "#4B5563",
-  //     colors: "bg-blue-900 ",
-  //   },
-  //   {
-  //     id: 12,
-  //     value: 12,
-  //     colorName: "Brown",
-  //     action: false,
-  //     IconsColor: "#4B5563",
-  //     colors: "bg-yellow-900 ",
-  //   },
-  // ])
-  const [iconsColor, setIconsColor] = useState("black");
-  const HandleIconsColor = (color, id) => {
-    setIconsColor(color);
-    setChangeColor((current) => {
-      return current.map((data) => {
-        if (data?.id == id) {
-          return { ...data, action: true };
-        } else {
-          return { ...data, action: false };
-        }
-      });
-    });
-  };
-
-  // Checks whether an element is even
-  const even = (element) => element.action == true;
-  let toggleAction = changeColor.some(even);
-
-  const unCheckedAll = () => {
-    setState({ ...state, showColour: false });
-
-    setChangeColor((current) => {
-      return current.map((data) => {
-        return { ...data, action: false };
-      });
-    });
-    setIconsColor("black");
-  };
-  // -----GenderType
 
   const [personItems, setPersonItems] = useState([
     {
@@ -452,6 +226,7 @@ const BottomHeader = () => {
       ],
     },
   ]);
+
   const handleFilterByUser = (fathId, childId) => {
     setPersonItems((current) => {
       return current?.map((data) => {
@@ -467,6 +242,7 @@ const BottomHeader = () => {
       });
     });
   };
+
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
       <div
@@ -478,7 +254,6 @@ const BottomHeader = () => {
       ></div>
       {state?.showColour && (
         <div className="max-w-[576px] w-full fixed z-[221]  left-1/2 right-1/2 top-[50%] translate-x-[-50%] translate-y-[-50%]  h-fit flex items-center  justify-center mx-auto ">
-          {/* </div> */}
           <div className="relative z-[223]  top-0 w-full h-fit p-4 mx-auto bg-white rounded-md shadow-lg">
             <div
               className={`flex items-center justify-between border-b border-searchBgColor pb-3"
@@ -489,7 +264,7 @@ const BottomHeader = () => {
               </span>
               <button
                 className="py-2"
-                type=""
+                type="button"
                 onClick={() => setState({ ...state, showColour: false })}
               >
                 <GrClose size={22} />
@@ -514,10 +289,6 @@ const BottomHeader = () => {
                           colors={data?.hex === "#000000" ? "#fff" : "#000"}
                         />
                       ) : null}
-
-                      {/* {data?.action && data?.id !== 2 ? (
-                        <InputCheckedTrueIcons colors={"#fff"} />
-                      ) : null} */}
                     </div>
                     <span
                       className={`text-black text-center text-xs not-italic font-AeonikProRegular`}
@@ -537,7 +308,6 @@ const BottomHeader = () => {
                   Отключить
                 </button>
               )}
-              {/* </div> */}
             </div>
           </div>
         </div>
@@ -694,7 +464,7 @@ const BottomHeader = () => {
         </div>
 
         <div className="line h-6 border-r-[1px] text-textColor mx-3"></div>
-        <div className="box-border	 flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-lg bg-btnBgColor">
+        <div className="box-border flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-lg bg-btnBgColor">
           {personItems
             ?.filter((value) => value.id === dressInfo?.type)
             .map((data) => {
@@ -713,18 +483,17 @@ const BottomHeader = () => {
                             item?.action
                               ? dressInfo?.BtnActiveSeason
                               : " bg-btnBgColor text-black"
-                          } px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  h-[44px]  justify-center flex items-center`}
+                          } px-6 h-full cursor-pointer  font-AeonikProMedium rounded-lg justify-center flex items-center`}
                         >
-                          {/* <img src={item?.anyIcons} alt="male" /> */}
                           <span>{item?.anyIcons}</span>
                           {item?.name && (
-                            <span className="ml-2 not-italic whitespace-nowrap  text-sm font-AeonikProMedium tracking-wide	leading-5">
+                            <span className="ml-2 not-italic whitespace-nowrap text-sm font-AeonikProMedium tracking-wide	leading-5">
                               {item?.name}
                             </span>
                           )}
                         </button>
                         {item?.id !== 4 && (
-                          <span className="w-[2px] mx-1 h-[30px] border-r border-searchBgColor"></span>
+                          <span className="w-[2px] h-[30px] border-r border-searchBgColor"></span>
                         )}
                       </div>
                     );
