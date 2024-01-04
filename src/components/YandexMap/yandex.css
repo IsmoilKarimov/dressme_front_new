@@ -384,5 +384,11 @@ body {
 }
 
 .ant-select-selector {
-  padding: 0 !important;
+  padding-left: 25px !important;
+}
+
+.ant-select-clear {
+  /* height: 40px !important;
+  width: 40px !important; */
+  /* border: 1px solid red; */
 }

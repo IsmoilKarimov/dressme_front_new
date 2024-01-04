@@ -24,18 +24,23 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
     // const gotoOfficial = (id) => {
     navigate(`/shopping_store/:${dressInfo?.yandexGetMarketId}`);
   };
-  const [copyText, setCopyText] = useState(null)
+  const [copyAddress, setCopyAddress] = useState(null)
+  const [phoneNum, setPhoneNum] = useState(null)
   const [imgGallery, setImgGallery] = useState()
   useEffect(() => {
     modalInfo?.locations?.filter(e => e?.id === dressInfo?.yandexGetMarketId)?.map(data => {
-      setCopyText(data?.address)
+      setCopyAddress(data?.address)
+      setPhoneNum(data?.assistant_phone)
       setImgGallery(data?.url_image_path_one)
     })
 
   }, [modalInfo, dressInfo?.yandexGetMarketId])
   // console.log(imgGallery, "imgGallery");
-  const handleCopyText = () => {
-    navigator.clipboard.writeText(copyText)
+  const handleCopyAddress = () => {
+    navigator.clipboard.writeText(copyAddress)
+  }
+  const handleCopyPhone = () => {
+    navigator.clipboard.writeText(phoneNum)
   }
   // const [imgGallery, setImgGallery] = useState([
   //   // { id: 1, img: "https://i.pinimg.com/736x/9d/d4/a3/9dd4a3906b318cdfd854dd46a72046ba.jpg" },
@@ -86,7 +91,9 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
   console.log(modalInfo, "modalInfo");
   // console.log(dressInfo?.yandexGetMarketId, "yandexGetMarketId");
   const handlePhoneNumberClick = (id) => {
-    window.location.href = `tel:${id}`;
+    // window.location.href = `tel:${id}`;
+    // window.open(`tel:${id}`, '_blank');
+
   };
   return (
     <div className="w-full h-full ">
@@ -163,7 +170,7 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
 
                 </div>
                 {/* Detail */}
-                <div className="w-full  flex flex-col gap-y-4">
+                <div className="w-full  flex flex-col gap-y-3">
                   <div className="flex items-center ">
                     <span className=" font-AeonikProRegular">
                       <ClockIcons colors={"#000"} />
@@ -172,24 +179,11 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
                       {data?.work_time_from || "00:00"} - {data?.work_time_to || "00:00"}
                     </span>
                   </div>{" "}
-                  <div className="w-full flex">
-                    <span >
-                      <LocationIcons />
-                    </span>
-                    <span className="w-[70%] flex  not-italic ml-4 font-AeonikProRegular text-base leading-5 text-setTexOpacity">
-                      {copyText}
-                      <button
-                        type="button"
-                        onClick={handleCopyText}
-                        className="cursor-pointer flex  ml-[8px] ">
-                        <AddCopyCheckedIcon />
-                      </button>
-                    </span>
-                  </div>
-                  <div className="flex items-center ">
-                    <span className="font-AeonikProRegular">
+
+                  <div className="flex items-center  ">
+                    <span className="font-AeonikProRegular ml-[-2px]x`">
                       {/* <ClockIcons colors={"#000"} /> */}
-                      <PersonIcons colors={"#000"} />
+                      <PersonIcons colors={"#000"} width={20} height={20} />
                     </span>
                     <span className="not-italic ml-4 font-AeonikProRegular text-base leading-4 text-black tracking-[1%]">
                       {data?.assistant_name}
@@ -197,14 +191,38 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
                   </div>{" "}
                   <div
                     onClick={handlePhoneNumberClick(data?.assistant_phone)}
-                    className="flex items-center ">
-                    <span className="font-AeonikProRegular cursor-pointer">
-                      <PhoneIcons colors={"#000"} />
-                    </span>
-                    <span className="not-italic ml-4 font-AeonikProRegular text-base leading-4 text-black tracking-[1%]">
-                      {data?.assistant_phone}
-                    </span>
+                    className="flex items-center cursor-pointer   ">
+                    <p className="w-[80%] flex ">
+                      <span className="font-AeonikProRegular cursor-pointer  ">
+                        <PhoneIcons colors={"#000"} />
+                      </span>
+                      <a href={`tel:${phoneNum}`} className="not-italic hover:text-fullBlue flex items-center flex ml-4 font-AeonikProRegular text-base leading-4 text-black tracking-[1%]">
+                        {phoneNum}
+                      </a>
+                    </p>
+                    <button
+                      type="button"
+                      onClick={handleCopyPhone}
+                      className="cursor-pointer flex  ml-[8px] ">
+                      <AddCopyCheckedIcon />
+                    </button>
                   </div>{" "}
+                  <div className="w-full flex  h-[100px] overflow-hidden">
+                    <p className="w-[80%] flex ">
+                      <span >
+                        <LocationIcons />
+                      </span>
+                      <span className=" flex  not-italic ml-4 font-AeonikProRegular text-base leading-5 text-setTexOpacity">
+                        {copyAddress}
+                      </span>
+                    </p>
+                    <button
+                      type="button"
+                      onClick={handleCopyAddress}
+                      className="cursor-pointer flex  ml-[8px] ">
+                      <AddCopyCheckedIcon />
+                    </button>
+                  </div>
                 </div>
                 <div className="w-full gap-x-2 flex items-center ">
 
