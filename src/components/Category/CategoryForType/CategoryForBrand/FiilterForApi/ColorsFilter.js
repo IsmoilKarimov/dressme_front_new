@@ -3,10 +3,13 @@ import {
   ArrowTopIcons,
   InputCheckedTrueIcons,
 } from "../../../../../assets/icons";
+import { BiCheck } from "react-icons/bi";
+import { FaCheck } from "react-icons/fa";
 
 function ColorsFilter({ state, setState, filter, getColors }) {
 
   const [selectedColorId,setSelectedColorId] = useState(null)
+  const [changeClick,setChangeClick] = useState(false)
 
   return (
     <div className="w-full flex items-center flex-col">
@@ -40,18 +43,18 @@ function ColorsFilter({ state, setState, filter, getColors }) {
             state?.ColorsShow ? "duration-300 h-0" : "duration-300 h-fit py-5"
           } duration-300 `}
         >
-          {filter?.colors?.map((color,index) => {
+          {filter?.colors?.map((colorHex,index) => {
             return (
               <figure
                 key={index}
-                style={{background:color}}
-                onClick={() => setSelectedColorId(index)}
+                style={{background:colorHex}}
+                onClick={() => {setSelectedColorId(index); setChangeClick(true)}}
                 className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 w-8 h-8 cursor-pointer border border-solid border-borderColorCard`}
-                htmlFor={`${color}`}
+                htmlFor={`${colorHex}`}
               >
                 {selectedColorId === index ? (
-                  <p className="w-[14px]">
-                    <InputCheckedTrueIcons colors={color === "#000000" ? "#fff" : "#000"} />
+                  <p className="w-[14px] flex items-center justify-center">
+                    <FaCheck color={colorHex === "#ffffff" ? "#000" : "#fff"} className="flex items-center justify-center" />
                   </p>
                 ) : null}
               </figure>
@@ -59,7 +62,7 @@ function ColorsFilter({ state, setState, filter, getColors }) {
           })}
         </article>
       </section>
-      <button type="button" className="w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular">Очистить</button>
+      <button type="button" className={`${changeClick ? 'flex' : 'hidden'} w-full flex-start text-sm text-borderWinter font-AeonikProRegular`}>Очистить</button>
     </div>
   );
 }

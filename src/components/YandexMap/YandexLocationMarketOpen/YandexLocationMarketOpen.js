@@ -31,13 +31,17 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
     modalInfo?.locations?.filter(e => e?.id === dressInfo?.yandexGetMarketId)?.map(data => {
       setCopyText(data?.address)
       setPhoneNumber(data?.assistant_phone)
+
       setImgGallery(data?.url_image_path_one)
     })
 
   }, [modalInfo, dressInfo?.yandexGetMarketId])
   // console.log(imgGallery, "imgGallery");
-  const handleCopyText = () => {
-    navigator.clipboard.writeText(copyText)
+  const handleCopyAddress = () => {
+    navigator.clipboard.writeText(copyAddress)
+  }
+  const handleCopyPhone = () => {
+    navigator.clipboard.writeText(phoneNum)
   }
   const handleCopyPhoneNum = () => {
     navigator.clipboard.writeText(phoneNumber)
@@ -91,7 +95,9 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
   console.log(modalInfo, "modalInfo");
   // console.log(dressInfo?.yandexGetMarketId, "yandexGetMarketId");
   const handlePhoneNumberClick = (id) => {
-    window.location.href = `tel:${id}`;
+    // window.location.href = `tel:${id}`;
+    // window.open(`tel:${id}`, '_blank');
+
   };
   return (
     <div className="w-full h-full ">
@@ -178,10 +184,11 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
                     </span>
                   </div>{" "}
 
-                  <div className="flex items-center ">
-                    <span className="font-AeonikProRegular ml-[-3px]">
+
+                  <div className="flex items-center  ">
+                    <span className="font-AeonikProRegular ml-[-2px]x`">
                       {/* <ClockIcons colors={"#000"} /> */}
-                      <PersonIcons colors={"#000"} />
+                      <PersonIcons colors={"#000"} width={20} height={20} />
                     </span>
                     <span className="not-italic ml-4 font-AeonikProRegular text-base leading-4 text-black tracking-[1%]">
                       {data?.assistant_name}
@@ -189,18 +196,19 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
                   </div>{" "}
                   <div
                     onClick={handlePhoneNumberClick(data?.assistant_phone)}
-                    className="flex items-center ">
-                    <p className="flex items-center w-[80%] ">
-                      <span className="font-AeonikProRegular cursor-pointer">
+
+                    className="flex items-center cursor-pointer   ">
+                    <p className="w-[80%] flex ">
+                      <span className="font-AeonikProRegular cursor-pointer  ">
                         <PhoneIcons colors={"#000"} />
                       </span>
-                      <span className="not-italic ml-4 font-AeonikProRegular text-base leading-4 text-black tracking-[1%]">
-                        {data?.assistant_phone}
-                      </span>
+                      <a href={`tel:${phoneNum}`} className="not-italic hover:text-fullBlue flex items-center flex ml-4 font-AeonikProRegular text-base leading-4 text-black tracking-[1%]">
+                        {phoneNum}
+                      </a>
                     </p>
                     <button
                       type="button"
-                      onClick={handleCopyPhoneNum}
+                      onClick={handleCopyPhone}
                       className="cursor-pointer flex  ml-[8px] ">
                       <AddCopyCheckedIcon />
                     </button>
@@ -212,11 +220,13 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
                       </span>
                       <span className=" h-full max-h-[100px] overflow-hidden flex  not-italic ml-4 font-AeonikProRegular text-base leading-5 text-setTexOpacity">
                         {copyText}
+
                       </span>
                     </p>
                     <button
                       type="button"
                       onClick={handleCopyText}
+
                       className="cursor-pointer flex  ml-[8px] ">
                       <AddCopyCheckedIcon />
                     </button>
