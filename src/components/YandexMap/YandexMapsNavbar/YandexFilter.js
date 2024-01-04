@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Popover, Select, Space, } from "antd";
-import { AutummBoyIcons, ByBrandIcon, ChildGenIcon, ClothesIcons, DollorIcons, ManGenIcons, ManWomanGen, MenuCloseIcons, SpringBoyIcons, SummerBoyIcons, WinterBoyIcons, WomanGenIcons } from "../../../assets/icons";
+import { AutummBoyIcons, ByBrandIcon, ChildGenIcon, ClothesIcons, DollorIcons, DownArrowAntd, ManGenIcons, ManWomanGen, MenuCloseIcons, SpringBoyIcons, SummerBoyIcons, WinterBoyIcons, WomanGenIcons } from "../../../assets/icons";
 import { BiChevronDown } from "react-icons/bi";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { AutummChild, AutummFemale, AutummGirl, AutummMale, SpringChild, SpringFemale, SpringGirl, SpringMale, SummerChild, SummerFemale, SummerGirl, SummerMale, WinterChild, WinterFemale, WinterGirl, WinterMale } from "../../../assets";
@@ -44,43 +44,23 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
     // navigate(`/delivery-points/${UseReplace("by_category", null)}`);
   }
 
-
-  const contentWear = (
-    <div className="w-[170px] h-fit m-0 p-0">
-      {getMapsInfo?.categories?.map((data) => {
-        return (
-          <p
-            key={data?.id}
-            onClick={() => {
-              handleWearValue(data?.name_ru, data?.id);
-            }}
-            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.TextHoverSeason}`}
-          >
-            {data?.name_ru}
-          </p>
-        );
-      })}
-    </div>
-  );
   // ----------------------Price State Management----------------------
-  console.log(getMapsInfo?.budget?.min_price, "getMapsInfo?.budget[0]?.min_price");
-  console.log(getMapsInfo?.budget?.max_price, "getMapsInfo?.budget[0]?.max_price");
-  const [minPrice, setMinPrice] = useState(100000);
-  const [maxPrice, setMaxPrice] = useState(900000);
-  useEffect(() => {
-    setMinPrice(Number(getMapsInfo?.budget?.min_price))
-    setMaxPrice(Number(getMapsInfo?.budget?.max_price))
-  }, [getMapsInfo?.budget])
 
-  console.log(minPrice);
-  console.log(maxPrice);
+  const [minPrice, setMinPrice] = useState(Number(getMapsInfo?.budget?.min_price));
+  const [maxPrice, setMaxPrice] = useState(Number(getMapsInfo?.budget?.max_price));
+  // useEffect(() => {
+  //   setMinPrice(Number(getMapsInfo?.budget?.min_price))
+  //   setMaxPrice(Number(getMapsInfo?.budget?.max_price))
+  // }, [getMapsInfo?.budget])
+
   const [values, setValues] = useState([minPrice, maxPrice]);
   const [getRange, setGetRange] = useState([]);
 
+  // console.log(minPrice, "minPrice");
+  // console.log(maxPrice, "maxPrice");
+  // console.log(values, "values");
   const sendPriceList = () => {
     setGetRange(values)
-    // navigate(`/delivery-points/${UseReplace("min", values[0])}`);
-    // navigate(`/delivery-points/${UseReplace("max", values[1])}`);
   };
   const handleOpenChangePrice = (newOpen) => {
     setState({ ...state, openPrice: newOpen });
@@ -168,25 +148,6 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
     setSelectBrand()
   }
 
-  const contentBrand = (
-    <div className="w-[170px] h-[250px] overflow-auto VerticelScroll m-0 p-0 ">
-      {getMapsInfo?.shops?.map((data) => {
-        return (
-          <p
-            key={data?.id}
-            onClick={() => {
-              handleBrandValue(data?.name, data?.id);
-            }}
-            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.TextHoverSeason}`}
-          >
-            {data?.name}
-          </p>
-        );
-      })}
-    </div>
-  );
-
-
   const [personItems, setPersonItems] = useState([
     {
       id: 1111, childText: [
@@ -272,7 +233,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
     <div className=" border border-red-500 w-fit px-10 py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex flex-col justify-between items-center m-auto md:border-t">
       <div className="flex items-center justify-center gap-x-2  w-fit   ">
         <div
-          className="!w-[210px] relative gap-x-1  h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  "
+          className="!w-[210px] relative gap-x-1 px-1 h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  "
         >
           <span className="absolute left-2">
             <ClothesIcons colors={"#000"} />
@@ -330,22 +291,24 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           <span className="font-AeonikProMedium">
             <DollorIcons colors={"#000"} />
           </span>
-          <p className="not-italic whitespace-nowrap  text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
+          <p className="not-italic whitespace-nowrap mt-1 text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
             {/* {selectWear} */}
             По бюджету
           </p>
 
-          <span className="font-AeonikProMedium">
-            <BiChevronDown
+          <span className="font-AeonikProMedium iconArrow">
+            <DownArrowAntd />
+
+            {/* <BiChevronDown
               size={20}
               style={{ color: "#c2c2c2" }}
               className={`${state?.openwear ? "rotate-[-180deg]" : ""
                 } duration-200`}
-            />
+            /> */}
           </span>
         </Popover>
         <div
-          className="!w-[210px] relative gap-x-1 px-2 h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  "
+          className="!w-[210px] relative gap-x-1 px-1 h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  "
         >
           <span className="absolute left-2">
             <ByBrandIcon />
