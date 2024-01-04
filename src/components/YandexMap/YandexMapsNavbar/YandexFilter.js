@@ -96,7 +96,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
               <input className='w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
                 value={values[0]}
               // onChange={(e) => setMaxPrice(e.target.value)}
-              />  sum
+              />  сум
             </span>
           </div>
           <div className="flex ">
@@ -108,7 +108,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
                 value={values[1]}
               // onChange={(e) => setMaxPrice(e.target.value)}
               />
-              sum
+              сум
             </span>
           </div>
         </div>
@@ -246,11 +246,13 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
       maxPrice: getRange[1],
       genderType: state?.genderId,
     })
-  }, [selectWear, selectBrand, getRange, state?.genderId])
-  console.log(state?.categoryWearId, "state?.categoryWearId");
+  }, [state?.categoryWearId, state?.categoryBrandId, getRange, state?.genderId])
+  // console.log(state?.categoryWearId, "state?.categoryWearId");
+  // console.log(state?.categoryBrandId, "state?.categoryBrandId");
   const onSearch = (value) => {
     // console.log("search:", value);
   };
+
 
   return (
     <div className=" border border-red-500 w-fit px-10 py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex flex-col justify-between items-center m-auto md:border-t">
@@ -265,9 +267,11 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             showSearch
             className="w-[75%] h-full !outline-none text-center overflow-hidden  !p-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
             bordered={false}
-            placeholder="По категории"
+            // placeholder="По категории"
+            placeholder={<span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide	leading-5">По категории</span>}
+
             optionFilterProp="children"
-            defaultValue={"По категории"}
+            // defaultValue={"По категории"}
             onChange={(e) => setState({ ...state, categoryWearId: e })}
             onSearch={onSearch}
             allowClear
@@ -355,9 +359,11 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             showSearch
             className="w-[75%] h-full !outline-none text-center overflow-hidden  !p-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
             bordered={false}
-            placeholder="По магазину"
+            // placeholder="По магазину"
+            placeholder={<span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide	leading-5">По магазину</span>}
+
             optionFilterProp="children"
-            defaultValue={"По магазину"}
+            // defaultValue={"По магазину"}
             onChange={(e) => setState({ ...state, categoryBrandId: e })}
             onSearch={onSearch}
             allowClear

@@ -72,7 +72,7 @@ function YandexMapsDressMe() {
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
-
+  console.log(getAllFilterSearch, "getAllFilterSearch");
   useEffect(() => {
     fetchGetAllData({
       gender: getAllFilterSearch?.genderType,
