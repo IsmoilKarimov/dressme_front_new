@@ -4,7 +4,7 @@ import { BsCheckLg } from "react-icons/bs";
 
 function CustomerReviewsFilter({ state, setState, filter }) {
   const [selected, setSelected] = useState(0);
-
+  const [clickChange, setChangeClick] = useState(false)
   const [reviewStars, setRewievStart] = useState([
     {
       id: 1,
@@ -74,7 +74,7 @@ function CustomerReviewsFilter({ state, setState, filter }) {
 
         <div
           className="flex items-center cursor-pointer select-none"
-          onClick={() => setSelected(5)}
+          onClick={() => {setSelected(5); setChangeClick(true)}}
         >
           <div
             className={`w-[22px] h-[22px] flex items-center  mr-[10px] rounded border border-borderColorCard`}
@@ -95,7 +95,7 @@ function CustomerReviewsFilter({ state, setState, filter }) {
         </div>
         <div
           className="flex items-center cursor-pointer select-none"
-          onClick={() => setSelected(4)}
+          onClick={() => {setSelected(4); setChangeClick(true)}}
         >
           <div
             className={`w-[22px] h-[22px] flex items-center  mr-[10px] rounded border border-borderColorCard`}
@@ -115,7 +115,7 @@ function CustomerReviewsFilter({ state, setState, filter }) {
         </div>
         <div
           className="flex items-center cursor-pointer select-none"
-          onClick={() => setSelected(3)}
+          onClick={() => {setSelected(3); setChangeClick(true)}}
         >
           <div
             className={`w-[22px] h-[22px] flex items-center  mr-[10px] rounded border border-borderColorCard`}
@@ -134,7 +134,7 @@ function CustomerReviewsFilter({ state, setState, filter }) {
         </div>
         <div
           className="flex items-center cursor-pointer select-none"
-          onClick={() => setSelected(2)}
+          onClick={() => {setSelected(2); setChangeClick(true)}}
         >
           <div
             className={`w-[22px] h-[22px] flex items-center  mr-[10px] rounded border border-borderColorCard`}
@@ -169,7 +169,7 @@ function CustomerReviewsFilter({ state, setState, filter }) {
         </div>
       </article>
     </section>
-    <button type="button" className="w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-3">Очистить</button>
+    <button type="button" className={`${clickChange ? 'flex' : 'hidden'} w-full flex-start text-sm text-borderWinter font-AeonikProRegular mt-3`}>Очистить</button>
     </div>
   );
 }

@@ -47,7 +47,7 @@ function CategoryGenderButtonsFilter({
   };
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className={`${filter?.gender_ids.length ? 'mb-[38px]' : ''} w-full flex flex-col items-center`}>
       <div className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px]">
         {genderCategory?.map((data) => {
           return filter?.gender_ids?.map((id) => {
@@ -92,7 +92,9 @@ function CategoryGenderButtonsFilter({
           </button>
         ) : null}
       </div>
-      <button type="button" className="w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-2">Очистить</button>
+      {filter?.gender_ids.length && !dataAction ? (
+        <button type="button" className={` w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}>Очистить</button>
+        ): null}
     </div>
   );
 }
