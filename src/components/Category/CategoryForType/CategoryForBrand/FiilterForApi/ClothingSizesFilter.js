@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 
 function ClothingSizesFilter({ state, setState }) {
+  const [changeClick, setChangeClick] = useState(false)
   const clothingSize = [
     { id: 1, action: false, size: "XS" },
     { id: 2, action: false, size: "S" },
@@ -51,6 +52,7 @@ function ClothingSizesFilter({ state, setState }) {
             {clothingSize.map((item) => (
               <button
                 key={item.id}
+                onClick={()=>{setChangeClick(true)}}
                 className="h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg"
               >
                 {item.size}
@@ -59,7 +61,7 @@ function ClothingSizesFilter({ state, setState }) {
           </figure>
         </article>
       </section>
-      <button type="button" className="w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-2">Очистить</button>
+      <button type="button" className={`${changeClick ? 'flex' : 'hidden'} w-full flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}>Очистить</button>
     </div>
   );
 }
