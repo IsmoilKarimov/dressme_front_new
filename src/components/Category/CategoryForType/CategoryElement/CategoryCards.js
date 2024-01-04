@@ -8,6 +8,8 @@ export default function CategoryCards({ filterData }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
+  console.log(filterData, "sdffsdf564sdfs");
+
   const handleLeaveMouse = (eId) => {
     const elementsIndex = dressInfo.ProductList.findIndex(
       (element) => element.id == eId
@@ -26,7 +28,6 @@ export default function CategoryCards({ filterData }) {
     <main className="flex flex-col box-border mt-2">
       <section className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 mt-1 md:mt-8">
         {filterData?.section_products?.data.map((data) => {
-          // console.log(data,'data');
           return (
             <CollectionCardItem
               data={data}
@@ -54,18 +55,18 @@ export default function CategoryCards({ filterData }) {
         </article>
         <article className="flex items-center">
           <ul className="flex items-center gap-x-3">
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg bg-fullBlue text-white flex items-center justify-center cursor-pointer ">
-              1
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-              2
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-              3
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-              4
-            </li>
+            {filterData?.section_products?.links?.map((item) => {
+              return (
+                <li
+                  className={`not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg ${
+                    item?.active ? "bg-fullBlue text-white" : null
+                  }  flex items-center justify-center cursor-pointer`}
+                >
+                  {item?.label}
+                </li>
+              );
+            })}
+
             <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
               . . .
             </li>
