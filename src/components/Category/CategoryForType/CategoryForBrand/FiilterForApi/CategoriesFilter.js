@@ -9,6 +9,7 @@ export default function CategoriesFilter({
   setState,
   handleGetCategoryId,
   params,
+  setFilterData,
 }) {
   const { request } = useHttp();
   const [getCategoryId, setGetCategoryId] = useState();
@@ -22,7 +23,7 @@ export default function CategoriesFilter({
     { id: "5", action: false, name: "Аксессуары" },
   ]);
 
-  // ------------GET METHOD Gender-type-----------------
+  // ------------GET METHOD CATEGORY-TYPE-----------------
   useQuery(
     ["get_category_id"],
     () => {
@@ -33,6 +34,8 @@ export default function CategoriesFilter({
         console.log(res, "RES");
         setGetCategoryId(res?.filter);
         setState({ ...state, genderList: res?.genders });
+        // setFilterData(res);
+
       },
       onError: (err) => {
         console.log(err, "err getGenderlist-method");
@@ -41,6 +44,21 @@ export default function CategoriesFilter({
       refetchOnWindowFocus: false,
     }
   );
+
+  // ===== GET DATA FOR CLEAR ALL CATEGORY BUTTONS ======
+  function sendClearedData() {
+    fetch(`https://api.dressme.uz/api/main/section/${params?.id}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res, "RES-CATEGORIES");
+        setFilterData(res);
+      });
+  }
 
   function onGetId(id) {
     console.log(id, "category id");
@@ -66,72 +84,77 @@ export default function CategoriesFilter({
           getCategoryId?.category_ids ? "block" : "hidden"
         }  w-full h-fit mt-[12px] `}
       >
-        <article
-          className="w-full flex justify-between items-center "
-          onClick={(event) => {
-            event.target.classList.toggle("open");
-          }}
-        >
-          <figure
-            onClick={() => setState({ ...state, category: !state.category })}
-            className={`flex items-center cursor-pointer select-none`}
+          <article
+            className="w-full flex justify-between items-center "
+            onClick={(event) => {
+              event.target.classList.toggle("open");
+            }}
           >
-            <p
-              className={`not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black`}
+            <figure
+              onClick={() => setState({ ...state, category: !state.category })}
+              className={`flex items-center cursor-pointer select-none`}
             >
-              Категории
-            </p>
-            <p
-              className={`${
-                state?.category ? "rotate-[180deg]" : ""
-              } duration-300 ml-1`}
-            >
-              <ArrowTopIcons colors={"#000"} />
-            </p>
-          </figure>
-        </article>
-        {/* Field */}
-        <article
-          className={`w-full overflow-hidden ${
-            state?.category ? "duration-300 h-0" : "duration-300 h-fit mt-5 "
-          } duration-300 flex flex-col gap-y-4`}
-        >
-          {categories?.map((data) => {
-            return getCategoryId?.category_ids?.map((id) => {
-              if (id === data.id) {
-                return (
-                  <button
-                    key={data?.id}
-                    className={`${
-                      dataAction
-                        ? `${data.action ? "bg-fullBlue text-white" : ""}`
-                        : ""
-                    } w-full h-[44px] rounded-lg justify-center bg-bgCategory hover:text-white hover:bg-fullBlue flex items-center  cursor-pointer select-none  text-black`}
-                    type="button"
-                    onClick={() => {
-                      onGetId(data?.id);
-                      setDataAction(true);
-                      handleCategoryCheck(data?.id);
-                    }}
-                  >
-                    <p className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
-                      {data?.name}
-                    </p>
-                  </button>
-                );
-              }
-            });
-          })}
-        </article>
+              <p
+                className={`not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black`}
+              >
+                Категории
+              </p>
+              <p
+                className={`${
+                  state?.category ? "rotate-[180deg]" : ""
+                } duration-300 ml-1`}
+              >
+                <ArrowTopIcons colors={"#000"} />
+              </p>
+            </figure>
+          </article>
+          {/* Field */}
+          <article
+            className={`w-full overflow-hidden ${
+              state?.category ? "duration-300 h-0" : "duration-300 h-fit mt-5 "
+            } duration-300 flex flex-col gap-y-4`}
+          >
+            {categories?.map((data) => {
+              return getCategoryId?.category_ids?.map((id) => {
+                if (id === data.id) {
+                  return (
+                    <button
+                      key={data?.id}
+                      className={`${
+                        dataAction
+                          ? `${data.action ? "bg-fullBlue text-white" : ""}`
+                          : ""
+                      } w-full h-[44px] rounded-lg justify-center bg-bgCategory hover:text-white hover:bg-fullBlue flex items-center  cursor-pointer select-none  text-black`}
+                      type="button"
+                      onClick={() => {
+                        onGetId(data?.id);
+                        setDataAction(true);
+                        handleCategoryCheck(data?.id);
+                      }}
+                    >
+                      <p className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
+                        {data?.name}
+                      </p>
+                    </button>
+                  );
+                }
+              });
+            })}
+          <button
+            type="button"
+            onClick={() => {
+              sendClearedData();
+              setDataAction(false);
+            }}
+            className={`${
+              dataAction ? "flex" : "hidden"
+            } w-full flex-start text-sm text-borderWinter font-AeonikProRegular`}
+          >
+            Очистить
+          </button>
+          </article>
+        
       </section>
-      <button
-        type="button"
-        className={`${
-          dataAction ? "flex" : "hidden"
-        } w-full flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
-      >
-        Очистить
-      </button>
     </div>
   );
 }

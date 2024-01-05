@@ -149,7 +149,7 @@ const CategoryForBrand = ({ setFilterData }) => {
           handleGetId={handleGetId}
           handleGetDiscountId={handleGetDiscountId}
           filter={filter}
-          setFilter={setFilter}
+          setFilterData={setFilterData}
         />
 
         {/* Categories */}
@@ -158,6 +158,7 @@ const CategoryForBrand = ({ setFilterData }) => {
           setState={setState}
           handleGetCategoryId={handleGetCategoryId}
           params={params}
+          setFilterData={setFilterData}
         />
 
         {/* Prizes */}
@@ -166,6 +167,7 @@ const CategoryForBrand = ({ setFilterData }) => {
           setState={setState}
           getMinMaxPrice={getMinMaxPrice}
           filter={filter}
+          setFilterData={setFilterData}
         />
 
         {/* Colors */}
@@ -174,6 +176,7 @@ const CategoryForBrand = ({ setFilterData }) => {
           setState={setState}
           filter={filter}
           getColors={getColors}
+          setFilterData={setFilterData}
         />
 
         {/* Customer reviews */}
@@ -181,13 +184,22 @@ const CategoryForBrand = ({ setFilterData }) => {
           state={state}
           setState={setState}
           filter={filter}
+          setFilterData={setFilterData}
         />
 
         {/* Clothing sizes */}
-        <ClothingSizesFilter state={state} setState={setState} />
+        <ClothingSizesFilter
+          state={state}
+          setState={setState}
+          setFilterData={setFilterData}
+        />
 
         {/* Shoes sizes */}
-        <ShoesSizesFilter state={state} setState={setState} />
+        <ShoesSizesFilter
+          state={state}
+          setState={setState}
+          setFilterData={setFilterData}
+        />
       </section>
       <section className=" mt-8 border-t border-searchBgColor py-5 px-3">
         <button className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70">

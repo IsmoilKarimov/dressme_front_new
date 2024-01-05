@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 import Slider from "react-slider";
+import { useParams } from "react-router-dom";
 
-function BudgetFilter({ state, setState, getMinMaxPrice, filter }) {
+function BudgetFilter({ state, setState, getMinMaxPrice, filter, setFilterData }) {
   const [minPrice, setMinPrice] = useState(Number(filter?.budget?.min_price) || 10000); //Number(filter?.budget?.min_price)
   const [maxPrice, setMaxPrice] = useState(Number(filter?.budget?.max_price) || 1000000); //Number(filter?.budget?.max_price)
   const [checkChange, setCheckChange] = useState(false);
@@ -13,8 +14,8 @@ function BudgetFilter({ state, setState, getMinMaxPrice, filter }) {
     setMaxPrice(Number(filter?.budget?.max_price || 1000000));
   }, [filter]);
 
-  console.log(minPrice, "minPrice");
-  console.log(maxPrice, "maxPrice");
+  // console.log(minPrice, "minPrice");
+  // console.log(maxPrice, "maxPrice");
 
   function sendPrizeData() {
     getMinMaxPrice({
@@ -26,6 +27,21 @@ function BudgetFilter({ state, setState, getMinMaxPrice, filter }) {
   useEffect(() => {
     if (minPrice !== values[0] || maxPrice !== values[1]) setCheckChange(true);
   }, [values]);
+
+  const params = useParams()
+
+  function sendClearedData() {
+    fetch(`https://api.dressme.uz/api/main/section/${params?.id}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setFilterData(res);
+      });
+  }
 
   return (
     <section className="w-full h-fit mt-[50px]">
@@ -101,6 +117,14 @@ function BudgetFilter({ state, setState, getMinMaxPrice, filter }) {
           >
             <button
               type="button"
+              onClick={() => {
+                sendClearedData();
+                setCheckChange(false)
+                getMinMaxPrice({
+                  min: Number(filter?.budget?.min_price),
+                  max: Number(filter?.budget?.max_price),
+                })
+              }}
               className={`flex items-center text-sm text-borderWinter font-AeonikProRegular`}
             >
               Очистить
