@@ -5,7 +5,7 @@ function CategoryGenderButtonsFilter({
   handleGetId,
   handleGetDiscountId,
   filter,
-  setFilter
+  setFilterData,
 }) {
   const [dataAction, setDataAction] = useState(true);
   const [dataActionDiscount, setDataActionDiscount] = useState(false);
@@ -32,22 +32,28 @@ function CategoryGenderButtonsFilter({
       genderFilterId: id,
     });
   }
-  
+
   function onGetDiscontId(id) {
     handleGetDiscountId({
       discountId: id,
     });
   }
 
-  const params = useParams()
+  const params = useParams();
+  console.log(params.id);
 
   function sendClearedData() {
-    fetch(`https://api.dressme.uz/api/main/section/${params.id}`,{
+    fetch(`https://api.dressme.uz/api/main/section/${params?.id}`, {
       headers: {
-        // "Content-type": "application/json";
-      }
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
     })
-    
+      .then((res) => res.json())
+      .then((res) => {
+          console.log(res?.section_products?.data, "RES-GENDER-DATA");
+          setFilterData(res)
+      });
   }
 
   const handleGenderCheck = (value) => {
@@ -61,7 +67,11 @@ function CategoryGenderButtonsFilter({
   };
 
   return (
-    <div className={`${filter?.gender_ids.length ? 'mb-[38px]' : ''} w-full flex flex-col items-center`}>
+    <div
+      className={`${
+        filter?.gender_ids.length ? "mb-[38px]" : ""
+      } w-full flex flex-col items-center`}
+    >
       <div className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px]">
         {genderCategory?.map((data) => {
           return filter?.gender_ids?.map((id) => {
@@ -107,8 +117,14 @@ function CategoryGenderButtonsFilter({
         ) : null}
       </div>
       {filter?.gender_ids.length && !dataAction ? (
-        <button type="button" onClick={sendClearedData} className={` w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}>Очистить</button>
-        ): null}
+        <button
+          type="button"
+          onClick={()=> {sendClearedData(); setDataAction(true)}}
+          className={` w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
+        >
+          Очистить
+        </button>
+      ) : null}
     </div>
   );
 }
