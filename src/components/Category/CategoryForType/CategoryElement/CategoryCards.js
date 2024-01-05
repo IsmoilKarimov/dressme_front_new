@@ -4,7 +4,7 @@ import { ArrowTopIcons } from "../../../../assets/icons";
 import { CollectionCardItem } from "../../../Home/Main/WearCollectionCard/CollectionCardItem";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 
-export default function CategoryCards({ filterData }) {
+export default function CategoryCards({ filterData, setPaginationUrl }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
@@ -56,8 +56,11 @@ export default function CategoryCards({ filterData }) {
             {filterData?.section_products?.links?.map((item) => {
               return (
                 <li
-                  className={`not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] border h-[44px] rounded-lg hover:bg-searchBgColor ${
-                    item?.active ? "bg-fullBlue text-white" : null
+                  onClick={() => setPaginationUrl(item?.url)}
+                  className={`not-italic font-AeonikProRegular text-lg leading-4 text-center px-4 min-w-[44px] border h-[44px] rounded-lg  ${
+                    item?.active
+                      ? "bg-fullBlue text-white"
+                      : "hover:bg-searchBgColor"
                   } mx-[10px] flex items-center justify-center cursor-pointer`}
                 >
                   {item?.label}
