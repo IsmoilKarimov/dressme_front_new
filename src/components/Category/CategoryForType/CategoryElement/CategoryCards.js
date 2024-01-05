@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { ArrowTopIcons } from "../../../../assets/icons";
 import { CollectionCardItem } from "../../../Home/Main/WearCollectionCard/CollectionCardItem";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 
-export default function CategoryCards({ filterData, setPaginationUrl }) {
+export default function CategoryCards({ filterData }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
@@ -21,6 +21,11 @@ export default function CategoryCards({ filterData, setPaginationUrl }) {
       return { ...current, ProductList: newArray };
     });
   };
+
+  // ------------------
+
+  const [paginationUrl, setPaginationUrl] = useState();
+  console.log(paginationUrl, "************");
 
   return (
     <main className="flex flex-col box-border mt-2">
@@ -56,12 +61,20 @@ export default function CategoryCards({ filterData, setPaginationUrl }) {
             {filterData?.section_products?.links?.map((item) => {
               return (
                 <li
-                  onClick={() => setPaginationUrl(item?.url)}
+                  onClick={() => {
+                    if (item?.url) {
+                      setPaginationUrl(item?.url);
+                    }
+                  }}
                   className={`not-italic font-AeonikProRegular text-lg leading-4 text-center px-4 min-w-[44px] border h-[44px] rounded-lg  ${
                     item?.active
                       ? "bg-fullBlue text-white"
                       : "hover:bg-searchBgColor"
-                  } mx-[10px] flex items-center justify-center cursor-pointer`}
+                  } mx-[10px] flex items-center justify-center  ${
+                    item?.url
+                      ? "cursor-pointer"
+                      : "opacity-70 cursor-not-allowed"
+                  }`}
                 >
                   {item?.label}
                 </li>
