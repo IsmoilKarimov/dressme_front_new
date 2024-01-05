@@ -17,6 +17,7 @@ export default function CategoryForType() {
       document.body.style.overflow = "auto";
     }
   }, [dressInfo?.openCategoryFilter]);
+
   return (
     <main className="w-full h-full">
       <section className="flex justify-between mb-10">
@@ -36,6 +37,7 @@ export default function CategoryForType() {
         <article className="w-full md:w-[78%] h-[full] ss:px-4 md:px-0 ">
           <CategoryCards
             filterData={filterData}
+            setFilterData={setFilterData}
           />
         </article>
       </section>

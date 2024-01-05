@@ -4,7 +4,7 @@ import { ArrowTopIcons } from "../../../../assets/icons";
 import { CollectionCardItem } from "../../../Home/Main/WearCollectionCard/CollectionCardItem";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 
-export default function CategoryCards({ filterData }) {
+export default function CategoryCards({ filterData, setFilterData }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
@@ -24,8 +24,18 @@ export default function CategoryCards({ filterData }) {
 
   // ------------------
 
-  const [paginationUrl, setPaginationUrl] = useState();
-  console.log(paginationUrl, "************");
+  const setPaginationFunc = (url) => {
+    fetch(url, {
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setFilterData(res);
+      });
+  };
 
   return (
     <main className="flex flex-col box-border mt-2">
@@ -63,7 +73,7 @@ export default function CategoryCards({ filterData }) {
                 <li
                   onClick={() => {
                     if (item?.url) {
-                      setPaginationUrl(item?.url);
+                      setPaginationFunc(item?.url);
                     }
                   }}
                   className={`not-italic font-AeonikProRegular text-lg leading-4 text-center px-4 min-w-[44px] border h-[44px] rounded-lg  ${
