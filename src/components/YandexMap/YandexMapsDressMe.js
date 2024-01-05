@@ -149,8 +149,18 @@ function YandexMapsDressMe() {
     zoom: 14,
   };
   //------------------------------------------------------------------------------------------------
-
-  console.log(getMapsInfo?.locations, "getMapsInfo?.locations");
+  const [zoomLevel, setZoomLevel] = useState()
+  const handleBoundsChange = (e) => {
+    setZoomLevel(e.get('newZoom'))
+    // console.log('Bounds changed:', e.get('newBounds'));
+    // console.log('Zoom level:', e.get('newZoom'));
+    // console.log(getMapsInfo?.locations, "getMapsInfo?.locations");
+    // console.log(window.ymaps, "window.ymaps");
+  };
+  console.log(zoomLevel, "zoomLevel");
+  const handleError = () => {
+    console.error('Error loading Placemark');
+  };
   return (
     <div className="h-fit w-full flex items-center justify-center overflow-hidden overflow-y-hidden">
       <div
@@ -261,6 +271,7 @@ function YandexMapsDressMe() {
         }}>
           <Map
             defaultState={mapState}
+            onBoundsChange={handleBoundsChange}
             // state={state}
             // {...mapOptions}
             // onLoad={setMapConstructor}
@@ -309,11 +320,13 @@ function YandexMapsDressMe() {
               className={""}
               options={{
                 preset: "islands##004773ClusterIcons",
-                groupByCoordinates: false,
+
+                groupByCoordinates: true,
               }}
             >
               {getMapsInfo?.locations?.map((data, index) => (
                 <Placemark
+                  onError={handleError}
                   className={"placemarkCLuster cursor-pointer border border-red-500"}
                   key={index}
                   onClick={() => {
