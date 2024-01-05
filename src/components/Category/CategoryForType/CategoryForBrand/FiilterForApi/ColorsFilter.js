@@ -42,7 +42,7 @@ function ColorsFilter({ state, setState, filter, getColors }) {
           } duration-300 `}
         >
           {filter?.colors?.map((colorHex,index) => {
-            console.log(colorHex);
+            // console.log(colorHex);
             return (
               <figure
                 key={index}

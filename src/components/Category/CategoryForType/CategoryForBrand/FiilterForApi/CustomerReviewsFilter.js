@@ -71,7 +71,6 @@ function CustomerReviewsFilter({ state, setState, filter }) {
         } duration-300`}
       >
         {/* Field */}
-
         <div
           className="flex items-center cursor-pointer select-none"
           onClick={() => {setSelected(5); setChangeClick(true)}}
@@ -169,7 +168,7 @@ function CustomerReviewsFilter({ state, setState, filter }) {
         </div>
       </article>
     </section>
-    <button type="button" className={`${clickChange ? 'flex' : 'hidden'} w-full flex-start text-sm text-borderWinter font-AeonikProRegular mt-3`}>Очистить</button>
+    <button type="button" onClick={()=>setSelected(0)} className={`${clickChange ? 'flex' : 'hidden'} w-full flex-start text-sm text-borderWinter font-AeonikProRegular mt-3`}>Очистить</button>
     </div>
   );
 }
