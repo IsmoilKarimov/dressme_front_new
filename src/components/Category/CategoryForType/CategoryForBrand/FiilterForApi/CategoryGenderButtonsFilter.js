@@ -91,7 +91,7 @@ function CategoryGenderButtonsFilter({
                             ? "bg-fullBlue active:scale-95 text-white "
                             : ""
                         }`
-                  } ${filter?.gender_ids.length == 1 && filter?.discount === false ? 'w-full cursor-not-allowed hover:bg-bgCategory hover:text-black' : '' } h-[44px] w-[49%] flex items-center justify-center bg-bgCategory font-AeonikProMedium text-sm leading-3 text-center text-black  hover:bg-fullBlue  hover:text-white rounded-lg duration-300`}
+                  } ${filter?.gender_ids.length == 1 && filter?.discount === false ? 'w-full cursor-not-allowed hover:bg-bgCategory hover:text-black' : 'hover:bg-fullBlue hover:text-white' } h-[44px] w-[49%] flex items-center justify-center bg-bgCategory font-AeonikProMedium text-sm leading-3 text-center text-black rounded-lg duration-300`}
                 >
                   {data?.name}
                 </button>
