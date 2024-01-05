@@ -149,6 +149,7 @@ const CategoryForBrand = ({ setFilterData }) => {
           handleGetId={handleGetId}
           handleGetDiscountId={handleGetDiscountId}
           filter={filter}
+          setFilter={setFilter}
         />
 
         {/* Categories */}
