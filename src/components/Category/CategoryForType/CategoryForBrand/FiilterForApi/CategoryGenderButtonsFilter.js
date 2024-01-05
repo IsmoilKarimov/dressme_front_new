@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 
 function CategoryGenderButtonsFilter({
   handleGetId,
   handleGetDiscountId,
   filter,
+  setFilter
 }) {
   const [dataAction, setDataAction] = useState(true);
   const [dataActionDiscount, setDataActionDiscount] = useState(false);
@@ -30,14 +32,22 @@ function CategoryGenderButtonsFilter({
       genderFilterId: id,
     });
   }
+  
   function onGetDiscontId(id) {
     handleGetDiscountId({
       discountId: id,
     });
   }
 
-  function sendClearedData() {
+  const params = useParams()
 
+  function sendClearedData() {
+    fetch(`https://api.dressme.uz/api/main/section/${params.id}`,{
+      headers: {
+        // "Content-type": "application/json";
+      }
+    })
+    
   }
 
   const handleGenderCheck = (value) => {
