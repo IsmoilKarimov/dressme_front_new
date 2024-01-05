@@ -8,8 +8,6 @@ export default function CategoryCards({ filterData }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
-  console.log(filterData, "sdffsdf564sdfs");
-
   const handleLeaveMouse = (eId) => {
     const elementsIndex = dressInfo.ProductList.findIndex(
       (element) => element.id == eId
