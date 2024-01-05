@@ -64,7 +64,8 @@ function YandexMapsDressMe() {
       if (!i[1]) delete params[i[0]];
     });
 
-    fetch(`${url}/map/index?` + new URLSearchParams(params),)
+    // fetch(`${url}/map/index?` + new URLSearchParams(params),)
+    fetch(`${url}/map/index`)
       .then((res) => res.json())
       .then((res) => {
         setGetMapsInfo(res);
@@ -149,15 +150,15 @@ function YandexMapsDressMe() {
     zoom: 14,
   };
   //------------------------------------------------------------------------------------------------
-  const [zoomLevel, setZoomLevel] = useState()
-  const handleBoundsChange = (e) => {
-    setZoomLevel(e.get('newZoom'))
-    // console.log('Bounds changed:', e.get('newBounds'));
-    // console.log('Zoom level:', e.get('newZoom'));
-    // console.log(getMapsInfo?.locations, "getMapsInfo?.locations");
-    // console.log(window.ymaps, "window.ymaps");
-  };
-  console.log(zoomLevel, "zoomLevel");
+  // const [zoomLevel, setZoomLevel] = useState()
+  // const handleBoundsChange = (e) => {
+  //   setZoomLevel(e.get('newZoom'))
+  //   // console.log('Bounds changed:', e.get('newBounds'));
+  //   // console.log('Zoom level:', e.get('newZoom'));
+  //   // console.log(getMapsInfo?.locations, "getMapsInfo?.locations");
+  //   // console.log(window.ymaps, "window.ymaps");
+  // };
+  // console.log(zoomLevel, "zoomLevel");
   const handleError = () => {
     console.error('Error loading Placemark');
   };
@@ -271,7 +272,7 @@ function YandexMapsDressMe() {
         }}>
           <Map
             defaultState={mapState}
-            onBoundsChange={handleBoundsChange}
+            // onBoundsChange={handleBoundsChange}
             // state={state}
             // {...mapOptions}
             // onLoad={setMapConstructor}
@@ -321,7 +322,7 @@ function YandexMapsDressMe() {
               options={{
                 preset: "islands##004773ClusterIcons",
 
-                groupByCoordinates: true,
+                groupByCoordinates: false,
               }}
             >
               {getMapsInfo?.locations?.map((data, index) => (
