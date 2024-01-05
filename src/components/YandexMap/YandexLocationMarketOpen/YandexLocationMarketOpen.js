@@ -180,10 +180,10 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
                     </span>
                   </div>{" "}
 
-                  <div className="flex items-center  ">
-                    <span className="font-AeonikProRegular ml-[-2px]x`">
+                  <div className="flex items-center ">
+                    <span className="font-AeonikProRegular ml-[-3px]">
                       {/* <ClockIcons colors={"#000"} /> */}
-                      <PersonIcons colors={"#000"} width={20} height={20} />
+                      <PersonIcons colors={"#000"} />
                     </span>
                     <span className="not-italic ml-4 font-AeonikProRegular text-base leading-4 text-black tracking-[1%]">
                       {data?.assistant_name}
@@ -207,7 +207,7 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
                       <AddCopyCheckedIcon />
                     </button>
                   </div>{" "}
-                  <div className="w-full flex  h-[100px] overflow-hidden">
+                  <div className="w-full flex  h-full max-h-[100px] overflow-hidden">
                     <p className="w-[80%] flex ">
                       <span >
                         <LocationIcons />

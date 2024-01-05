@@ -13,8 +13,13 @@ function BudgetFilter({ state, setState, getMinMaxPrice, filter }) {
     setMaxPrice(Number(filter?.budget?.max_price || 1000000));
   }, [filter]);
 
+
   // console.log(minPrice, "minPrice");
   // console.log(maxPrice, "maxPrice");
+
+  console.log(minPrice, "minPrice");
+  console.log(maxPrice, "maxPrice");
+
 
   function sendPrizeData() {
     getMinMaxPrice({

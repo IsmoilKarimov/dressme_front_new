@@ -149,8 +149,18 @@ function YandexMapsDressMe() {
     zoom: 14,
   };
   //------------------------------------------------------------------------------------------------
-
-  // console.log(getMapsInfo, "getMapsInfo");
+  const [zoomLevel, setZoomLevel] = useState()
+  const handleBoundsChange = (e) => {
+    setZoomLevel(e.get('newZoom'))
+    // console.log('Bounds changed:', e.get('newBounds'));
+    // console.log('Zoom level:', e.get('newZoom'));
+    // console.log(getMapsInfo?.locations, "getMapsInfo?.locations");
+    // console.log(window.ymaps, "window.ymaps");
+  };
+  console.log(zoomLevel, "zoomLevel");
+  const handleError = () => {
+    console.error('Error loading Placemark');
+  };
   return (
     <div className="h-fit w-full flex items-center justify-center overflow-hidden overflow-y-hidden">
       <div
@@ -261,6 +271,7 @@ function YandexMapsDressMe() {
         }}>
           <Map
             defaultState={mapState}
+            onBoundsChange={handleBoundsChange}
             // state={state}
             // {...mapOptions}
             // onLoad={setMapConstructor}
@@ -309,31 +320,29 @@ function YandexMapsDressMe() {
               className={""}
               options={{
                 preset: "islands##004773ClusterIcons",
-                groupByCoordinates: false,
+
+                groupByCoordinates: true,
               }}
             >
               {getMapsInfo?.locations?.map((data, index) => (
-
-                <>
-                  <Placemark
-                    className={"placemarkCLuster cursor-pointer border border-red-500"}
-                    key={index}
-                    onClick={() => {
-                      handlePlaceMark(data?.id, data?.latitude, data?.longitude)
-                    }}
-                    geometry={[data?.latitude, data?.longitude]}
-                    options={{
-                      iconLayout: "default#image",
-                      // iconImageHref: markerIcons,
-                      iconImageHref: data?.shop?.url_logo_photo,
-                      iconImageSize: [45, 45], // Set the size of your image
-                    }}
-                    modules={["geoObject.addon.balloon"]}
-                  />
-                </>
+                <Placemark
+                  onError={handleError}
+                  className={"placemarkCLuster cursor-pointer border border-red-500"}
+                  key={index}
+                  onClick={() => {
+                    handlePlaceMark(data?.id, data?.latitude, data?.longitude)
+                  }}
+                  geometry={[data?.latitude, data?.longitude]}
+                  options={{
+                    iconLayout: "default#image",
+                    // iconImageHref: markerIcons,
+                    iconImageHref: data?.shop?.url_logo_photo,
+                    iconImageSize: [45, 45], // Set the size of your image
+                  }}
+                  modules={["geoObject.addon.balloon"]}
+                />
               ))}
             </Clusterer >
-
             {/* Yandex Main menu */}
             < div className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${dressInfo?.openMainMenu
               ? "left-[-500px] md:left-[-5000px] z-[-80] ease-linear duration-500"

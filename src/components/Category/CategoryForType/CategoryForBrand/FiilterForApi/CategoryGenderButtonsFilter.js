@@ -5,7 +5,11 @@ function CategoryGenderButtonsFilter({
   handleGetId,
   handleGetDiscountId,
   filter,
+
   setFilterData,
+
+  setFilter
+
 }) {
   const [dataAction, setDataAction] = useState(true);
   const [dataActionDiscount, setDataActionDiscount] = useState(false);
@@ -33,11 +37,15 @@ function CategoryGenderButtonsFilter({
     });
   }
 
+
+
+
   function onGetDiscontId(id) {
     handleGetDiscountId({
       discountId: id,
     });
   }
+
 
   const params = useParams();
   console.log(params.id);
@@ -54,6 +62,17 @@ function CategoryGenderButtonsFilter({
           console.log(res?.section_products?.data, "RES-GENDER-DATA");
           setFilterData(res)
       });
+
+  const params = useParams()
+
+  function sendClearedData() {
+    fetch(`https://api.dressme.uz/api/main/section/${params.id}`,{
+      headers: {
+        // "Content-type": "application/json";
+      }
+    })
+    
+
   }
 
   const handleGenderCheck = (value) => {
