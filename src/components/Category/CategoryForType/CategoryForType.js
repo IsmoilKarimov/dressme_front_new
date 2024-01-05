@@ -7,8 +7,6 @@ import { dressMainData } from "../../../ContextHook/ContextMenu";
 export default function CategoryForType() {
   const [dressInfo] = useContext(dressMainData);
   const [filterData, setFilterData] = useState([]);
-  const [paginationUrl, setPaginationUrl] = useState();
-  console.log(paginationUrl, "-------------");
 
   console.log(filterData, "FILTER-DATA");
 
@@ -38,7 +36,6 @@ export default function CategoryForType() {
         <article className="w-full md:w-[78%] h-[full] ss:px-4 md:px-0 ">
           <CategoryCards
             filterData={filterData}
-            setPaginationUrl={setPaginationUrl}
           />
         </article>
       </section>
