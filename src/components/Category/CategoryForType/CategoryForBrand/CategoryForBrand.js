@@ -12,11 +12,13 @@ import ClothingSizesFilter from "./FiilterForApi/ClothingSizesFilter";
 import ShoesSizesFilter from "./FiilterForApi/ShoesSizesFilter";
 
 const CategoryForBrand = ({ setFilterData }) => {
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [genderId, setGenderId] = useState();
   const [discountId, setDiscountId] = useState();
   const [categoryId, setCategoryId] = useState();
   const [filter, setFilter] = useState();
+  const [colorHexCode, setColorHexCode] = useState()
 
   const [state, setState] = useState({
     brandShow: screenSize.width <= 768 ? true : false,
@@ -32,15 +34,33 @@ const CategoryForBrand = ({ setFilterData }) => {
     checkBrand: false,
     checkedPrize: true,
     getBadgePrice: {},
-    getColors: [],
   });
 
+  // Gender GetID
+  function handleGetId(childData) {
+    setGenderId(childData?.genderFilterId);
+  }
+
+  // Discount GetID
+  function handleGetDiscountId(childData) {
+    setDiscountId(childData?.discountId);
+  }
+
+  // Categoty GetID
+  function handleGetCategoryId(childData) {
+    console.log(childData);
+    setCategoryId(childData?.categoryId);
+  }
+
+  // Budjet GetPrize
   function getMinMaxPrice(childData) {
     setState({ ...state, getBadgePrice: childData });
   }
 
-  function getColors(childData) {
-    setState({ ...state, getColors: childData });
+  // Color GetID
+  function handleGetColorHexCode(childData) {
+    console.log(childData);
+    setColorHexCode(childData?.colorFilterHexCode);
   }
 
   function getCurrentDimension() {
@@ -100,24 +120,10 @@ const CategoryForBrand = ({ setFilterData }) => {
       category: categoryId,
       "budget[from]": state?.getBadgePrice?.min,
       "budget[to]": state?.getBadgePrice?.max,
-      // "colors[]": state,
+      "colors[]": colorHexCode,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [genderId, discountId, categoryId, state?.getBadgePrice]);
-
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
-
-  function handleGetId(childData) {
-    setGenderId(childData?.genderFilterId);
-  }
-
-  function handleGetDiscountId(childData) {
-    setDiscountId(childData?.discountId);
-  }
-
-  function handleGetCategoryId(childData) {
-    setCategoryId(childData?.categoryId);
-  }
+  }, [genderId, discountId, categoryId, state?.getBadgePrice, colorHexCode ]);
 
   return (
     <main
@@ -175,7 +181,7 @@ const CategoryForBrand = ({ setFilterData }) => {
           state={state}
           setState={setState}
           filter={filter}
-          getColors={getColors}
+          handleGetColorHexCode={handleGetColorHexCode}
           setFilterData={setFilterData}
         />
 

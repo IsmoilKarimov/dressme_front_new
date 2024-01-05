@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import {
-  ArrowTopIcons,
-} from "../../../../../assets/icons";
+import { ArrowTopIcons } from "../../../../../assets/icons";
 import { FaCheck } from "react-icons/fa";
 
-function ColorsFilter({ state, setState, filter, getColors }) {
+function ColorsFilter({ state, setState, filter, handleGetColorHexCode }) {
+  const [selectedColorId, setSelectedColorId] = useState(null);
+  const [changeClick, setChangeClick] = useState(false);
 
-  const [selectedColorId,setSelectedColorId] = useState(null)
-  const [changeClick,setChangeClick] = useState(false)
+  function onGetColorHexCode(hexCode) {
+    handleGetColorHexCode({
+      colorFilterHexCode: hexCode,
+    });
+  }
 
   return (
     <div className="w-full flex items-center flex-col">
@@ -20,7 +23,9 @@ function ColorsFilter({ state, setState, filter, getColors }) {
           }}
         >
           <figure
-            onClick={() => setState({ ...state, ColorsShow: !state.ColorsShow })}
+            onClick={() =>
+              setState({ ...state, ColorsShow: !state.ColorsShow })
+            }
             className="flex items-center cursor-pointer select-none"
           >
             <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
@@ -41,27 +46,45 @@ function ColorsFilter({ state, setState, filter, getColors }) {
             state?.ColorsShow ? "duration-300 h-0" : "duration-300 h-fit py-5"
           } duration-300 `}
         >
-          {filter?.colors?.map((colorHex,index) => {
-            // console.log(colorHex);
+          {filter?.colors?.map((colorHex, index) => {
             return (
-              <figure
+              <button
+                type="button"
                 key={index}
-                style={{background:colorHex}}
-                onClick={() => {setSelectedColorId(index); setChangeClick(true)}}
+                style={{ background: colorHex }}
+                onClick={() => {
+                  setSelectedColorId(index);
+                  setChangeClick(true);
+                  onGetColorHexCode(colorHex);
+                }}
                 className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 w-8 h-8 cursor-pointer border border-solid border-borderColorCard`}
                 htmlFor={`${colorHex}`}
               >
                 {selectedColorId === index ? (
                   <p className="w-[14px] flex items-center justify-center">
-                    <FaCheck color={colorHex === "#ffffff" || colorHex === "#f5f5dc" ? "#000" : "#fff"} className="flex items-center justify-center" />
+                    <FaCheck
+                      color={
+                        colorHex === "#ffffff" || colorHex === "#f5f5dc"
+                          ? "#000"
+                          : "#fff"
+                      }
+                      className="flex items-center justify-center"
+                    />
                   </p>
                 ) : null}
-              </figure>
+              </button>
             );
           })}
         </article>
       </section>
-      <button type="button" className={`${changeClick ? 'flex' : 'hidden'} w-full flex-start text-sm text-borderWinter font-AeonikProRegular`}>Очистить</button>
+      <button
+        type="button"
+        className={`${
+          changeClick ? "flex" : "hidden"
+        } w-full flex-start text-sm text-borderWinter font-AeonikProRegular`}
+      >
+        Очистить
+      </button>
     </div>
   );
 }

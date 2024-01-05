@@ -4,18 +4,18 @@ import Slider from "react-slider";
 import { useParams } from "react-router-dom";
 
 function BudgetFilter({ state, setState, getMinMaxPrice, filter, setFilterData }) {
-  const [minPrice, setMinPrice] = useState(Number(filter?.budget?.min_price) || 10000); //Number(filter?.budget?.min_price)
-  const [maxPrice, setMaxPrice] = useState(Number(filter?.budget?.max_price) || 1000000); //Number(filter?.budget?.max_price)
+  const [minPrice, setMinPrice] = useState(filter?.budget?.min_price || 10000); 
+  const [maxPrice, setMaxPrice] = useState(filter?.budget?.max_price || 1000000); 
   const [checkChange, setCheckChange] = useState(false);
   const [values, setValues] = useState([minPrice, maxPrice]);
 
   useEffect(() => {
-    setMinPrice(Number(filter?.budget?.min_price || 10000));
-    setMaxPrice(Number(filter?.budget?.max_price || 1000000));
+    setMinPrice((filter?.budget?.min_price || 10000));
+    setMaxPrice((filter?.budget?.max_price || 1000000));
   }, [filter]);
 
-  // console.log(minPrice, "minPrice");
-  // console.log(maxPrice, "maxPrice");
+  // console.log(filter?.budget?.min_price,typeof(filter?.budget?.min_price), "minPrice");
+  // console.log(filter?.budget?.max_price,typeof(filter?.budget?.max_price), "maxPrice");
 
   function sendPrizeData() {
     getMinMaxPrice({
