@@ -17,8 +17,10 @@ import { CollectionCardItem } from "./CollectionCardItem";
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
-  const [pagination, setPagination] = useState(15);
+  const [pagination, setPagination] = useState(30);
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
+
+  console.log(mainData, "555ddddd555");
 
   // -------------------------------------
   const toggle = React.useCallback(() => setOpenWearType(false), []);
@@ -88,7 +90,7 @@ export default function CollectionCards() {
 
         <div className="w-full flex flex-col box-border ">
           <article className="flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
-            {mainData?.products?.data?.slice(0, pagination).map((data) => {
+            {mainData?.products?.slice(0, pagination).map((data) => {
               return (
                 <CollectionCardItem
                   data={data}
@@ -106,7 +108,7 @@ export default function CollectionCards() {
               <button
                 type="button"
                 onClick={() => {
-                  setPagination((prev) => prev + 15);
+                  setPagination((prev) => prev + 30);
                 }}
                 // searchBgColor
                 className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
