@@ -19,6 +19,7 @@ const CategoryForBrand = ({ setFilterData }) => {
   const [categoryId, setCategoryId] = useState();
   const [filter, setFilter] = useState();
   const [colorHexCode, setColorHexCode] = useState()
+  const [customerReviews, setCustomerReviews] = useState()
 
   const [state, setState] = useState({
     brandShow: screenSize.width <= 768 ? true : false,
@@ -61,6 +62,11 @@ const CategoryForBrand = ({ setFilterData }) => {
   function handleGetColorHexCode(childData) {
     console.log(childData);
     setColorHexCode(childData?.colorFilterHexCode);
+  }
+  
+  // Rating GetID
+  function handleCustomerReviews(childData) {
+    setCustomerReviews(childData?.ratingId);
   }
 
   function getCurrentDimension() {
@@ -121,9 +127,10 @@ const CategoryForBrand = ({ setFilterData }) => {
       "budget[from]": state?.getBadgePrice?.min,
       "budget[to]": state?.getBadgePrice?.max,
       "colors[]": colorHexCode,
+      rating: customerReviews,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [genderId, discountId, categoryId, state?.getBadgePrice, colorHexCode ]);
+  }, [genderId, discountId, categoryId, state?.getBadgePrice, colorHexCode, customerReviews ]);
 
   return (
     <main
@@ -190,6 +197,7 @@ const CategoryForBrand = ({ setFilterData }) => {
           state={state}
           setState={setState}
           filter={filter}
+          handleCustomerReviews={handleCustomerReviews}
           setFilterData={setFilterData}
         />
 

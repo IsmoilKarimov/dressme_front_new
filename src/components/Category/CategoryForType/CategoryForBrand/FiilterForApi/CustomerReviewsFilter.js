@@ -1,25 +1,45 @@
 import React, { useState } from "react";
 import { ArrowTopIcons, StarIcons } from "../../../../../assets/icons";
 import { BsCheckLg } from "react-icons/bs";
+import { useParams } from "react-router-dom";
 
-function CustomerReviewsFilter({ state, setState, filter, setFilterData }) {
-  const [selected, setSelected] = useState(0);
+function CustomerReviewsFilter({ state, setState, filter, handleCustomerReviews, setFilterData }) {
+  const [selected, setSelected] = useState(null);
   const [clickChange, setChangeClick] = useState(false);
 
-  // const ratings = filter?.ratings
-  // console.log(filter?.ratings,'filter');
-
-  const [ratings, setRatings] = useState({
-    "1.0": 15,
-    "2.0": 17,
-    "3.0": 17,
-    "4.0": 22,
-    "5.0": 29,
+  const [ratings] = useState({
+    "1.0": 0,
+    "2.0": 0,
+    "3.0": 0,
+    "4.0": 0,
+    "5.0": 0,
   });
 
-  console.log(filter);
-  console.log(ratings);
-  console.log(filter?.ratings);
+ const params = useParams()
+  // ===== GET DATA FOR CLEAR ALL CATEGORY BUTTONS ======
+  function sendClearedData() {
+    fetch(`https://api.dressme.uz/api/main/section/${params?.id}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res, "RES-CATEGORIES");
+        setFilterData(res);
+      });
+  }
+
+  function onGetRatingId(id) {
+    handleCustomerReviews({
+      ratingId: id,
+    });
+  }
+
+  // console.log(filter);
+  // console.log(ratings);
+  // console.log(filter?.ratings);
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -60,12 +80,12 @@ function CustomerReviewsFilter({ state, setState, filter, setFilterData }) {
         >
           {/* Field */}
           {Object.keys(ratings).map((rating, index) => {
-            console.log(rating, index, "rating");
             return (
               <div
                 key={index}
                 className="flex items-center cursor-pointer select-none"
                 onClick={() => {
+                  onGetRatingId(index)
                   setSelected(index);
                   setChangeClick(true);
                 }}
@@ -129,7 +149,7 @@ function CustomerReviewsFilter({ state, setState, filter, setFilterData }) {
           })}
         <button
           type="button"
-          onClick={() => setSelected(0)}
+          onClick={() => {setSelected(null); sendClearedData();}}
           className={`${
             clickChange ? "flex" : "hidden"
           } w-full flex-start text-sm text-borderWinter font-AeonikProRegular`}
