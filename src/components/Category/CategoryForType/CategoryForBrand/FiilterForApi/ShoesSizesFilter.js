@@ -57,7 +57,7 @@ function ShoesSizesFilter({ state, setState }) {
         </figure>
       </article>
     </section>
-    <button type="button" className={`${changeClick ? 'flex' : 'hidden'} w-full flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}>Очистить</button>
+    <button type="button" className={`${changeClick ? 'flex' : 'hidden'} w-full flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}>Сбросить</button>
     </div>
   );
 }

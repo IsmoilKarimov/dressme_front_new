@@ -127,7 +127,7 @@ function BudgetFilter({ state, setState, getMinMaxPrice, filter, setFilterData }
               }}
               className={`flex items-center text-sm text-borderWinter font-AeonikProRegular`}
             >
-              Очистить
+              Сбросить
             </button>
             <button
               type="button"

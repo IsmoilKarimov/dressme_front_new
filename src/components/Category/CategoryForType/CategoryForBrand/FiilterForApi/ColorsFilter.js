@@ -105,7 +105,7 @@ function ColorsFilter({ state, setState, filter, handleGetColorHexCode, setFilte
           changeClick ? "flex" : "hidden"
         } w-full flex-start text-sm text-borderWinter font-AeonikProRegular`}
       >
-        Очистить
+        Сбросить
       </button>
     </div>
   );

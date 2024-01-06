@@ -184,7 +184,7 @@ function CustomerReviewsFilter({ state, setState, filter, setFilterData }) {
           clickChange ? "flex" : "hidden"
         } w-full flex-start text-sm text-borderWinter font-AeonikProRegular mt-3`}
       >
-        Очистить
+        Сбросить
       </button>
     </div>
   );
