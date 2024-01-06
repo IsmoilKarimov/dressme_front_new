@@ -67,7 +67,7 @@ export default function CategoryCards({ filterData, setFilterData }) {
           </p>
         </article> */}
         <article className="flex items-center">
-          <ul className="flex items-center gap-x-6">
+          <ul className="flex items-center">
             {filterData?.section_products?.links?.map((item) => {
               return (
                 <li
@@ -76,11 +76,11 @@ export default function CategoryCards({ filterData, setFilterData }) {
                       setPaginationFunc(item?.url);
                     }
                   }}
-                  className={`not-italic font-AeonikProRegular text-lg leading-4 text-center px-4 min-w-[44px] border h-[44px] rounded-lg  ${
+                  className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[35px] border h-[35px] rounded-lg  ${
                     item?.active
                       ? "bg-fullBlue text-white"
                       : "hover:bg-searchBgColor"
-                  } mx-[10px] flex items-center justify-center  ${
+                  } mx-[5px] flex items-center justify-center  ${
                     item?.url
                       ? "cursor-pointer"
                       : "opacity-70 cursor-not-allowed"
