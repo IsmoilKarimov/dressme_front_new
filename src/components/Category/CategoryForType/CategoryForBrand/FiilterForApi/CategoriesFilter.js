@@ -60,7 +60,6 @@ export default function CategoriesFilter({
   }
 
   function onGetId(id) {
-    console.log(id, "category id");
     handleGetCategoryId({
       categoryId: id,
     });
