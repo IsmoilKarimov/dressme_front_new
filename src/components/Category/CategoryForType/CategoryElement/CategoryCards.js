@@ -76,7 +76,7 @@ export default function CategoryCards({ filterData, setFilterData }) {
                       setPaginationFunc(item?.url);
                     }
                   }}
-                  className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[35px] border h-[35px] rounded-lg  ${
+                  className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${
                     item?.active
                       ? "bg-fullBlue text-white"
                       : "hover:bg-searchBgColor"
