@@ -3,9 +3,16 @@ import { ArrowTopIcons, StarIcons } from "../../../../../assets/icons";
 import { BsCheckLg } from "react-icons/bs";
 import { useParams } from "react-router-dom";
 
-function CustomerReviewsFilter({ state, setState, filter, handleCustomerReviews, setFilterData }) {
+function CustomerReviewsFilter({
+  state,
+  setState,
+  filter,
+  handleCustomerReviews,
+  setFilterData,
+}) {
   const [selected, setSelected] = useState(null);
   const [clickChange, setChangeClick] = useState(false);
+  const params = useParams();
 
   const [ratings] = useState({
     "1.0": 0,
@@ -15,8 +22,7 @@ function CustomerReviewsFilter({ state, setState, filter, handleCustomerReviews,
     "5.0": 0,
   });
 
- const params = useParams()
-  // ===== GET DATA FOR CLEAR ALL CATEGORY BUTTONS ======
+  // ===== GET DATA FOR CLEAR ALL CUSTOMER REVIEWS ======
   function sendClearedData() {
     fetch(`https://api.dressme.uz/api/main/section/${params?.id}`, {
       headers: {
@@ -36,10 +42,6 @@ function CustomerReviewsFilter({ state, setState, filter, handleCustomerReviews,
       ratingId: id,
     });
   }
-
-  // console.log(filter);
-  // console.log(ratings);
-  // console.log(filter?.ratings);
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -85,7 +87,7 @@ function CustomerReviewsFilter({ state, setState, filter, handleCustomerReviews,
                 key={index}
                 className="flex items-center cursor-pointer select-none"
                 onClick={() => {
-                  onGetRatingId(index)
+                  onGetRatingId(index + 1);
                   setSelected(index);
                   setChangeClick(true);
                 }}
@@ -115,47 +117,52 @@ function CustomerReviewsFilter({ state, setState, filter, handleCustomerReviews,
                         </div>
                       );
                     } else if (index === 2)
-                    return (
-                      <div className="flex items-center">
-                        <StarIcons />
-                        <StarIcons />
-                        <StarIcons />
-                      </div>
-                    );
+                      return (
+                        <div className="flex items-center">
+                          <StarIcons />
+                          <StarIcons />
+                          <StarIcons />
+                        </div>
+                      );
                     else if (index === 3)
-                    return (
-                      <div className="flex items-center">
-                        <StarIcons />
-                        <StarIcons />
-                        <StarIcons />
-                        <StarIcons />
-                      </div>
-                    );
+                      return (
+                        <div className="flex items-center">
+                          <StarIcons />
+                          <StarIcons />
+                          <StarIcons />
+                          <StarIcons />
+                        </div>
+                      );
                     else
-                    return (
-                      <div className="flex items-center">
-                        <StarIcons />
-                        <StarIcons />
-                        <StarIcons />
-                        <StarIcons />
-                        <StarIcons />
-                      </div>
-                    );
+                      return (
+                        <div className="flex items-center">
+                          <StarIcons />
+                          <StarIcons />
+                          <StarIcons />
+                          <StarIcons />
+                          <StarIcons />
+                        </div>
+                      );
                   })()}
                 </div>
-                <span className="text-base leading-3 font-AeonikProRegular">({filter?.ratings[rating]})</span>
+                <span className="text-base leading-3 font-AeonikProRegular">
+                  ({filter?.ratings[rating]})
+                </span>
               </div>
             );
           })}
-        <button
-          type="button"
-          onClick={() => {setSelected(null); sendClearedData();}}
-          className={`${
-            clickChange ? "flex" : "hidden"
-          } w-full flex-start text-sm text-borderWinter font-AeonikProRegular`}
-        >
-          Сбросить
-        </button>
+          <button
+            type="button"
+            onClick={() => {
+              setSelected(null);
+              sendClearedData();
+            }}
+            className={`${
+              clickChange ? "flex" : "hidden"
+            } w-full flex-start text-sm text-borderWinter font-AeonikProRegular`}
+          >
+            Сбросить
+          </button>
         </article>
       </section>
     </div>
