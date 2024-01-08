@@ -15,8 +15,8 @@ function ShoesSizesFilter({ state, setState }) {
   ];
 
   return (
-    <div className="w-full flex flex-col items-center">
-    <section className="w-full h-fit mt-[50px] ">
+    <div className="w-full flex flex-col items-center mb-[38px]">
+    <section className="w-full h-fit mt-[12px] ">
       <article
         className="w-full flex justify-between items-center "
         onClick={(event) => {

@@ -14,9 +14,6 @@ function BudgetFilter({ state, setState, getMinMaxPrice, filter, setFilterData }
     setMaxPrice((filter?.budget?.max_price || 1000000));
   }, [filter]);
 
-  // console.log(filter?.budget?.min_price,typeof(filter?.budget?.min_price), "minPrice");
-  // console.log(filter?.budget?.max_price,typeof(filter?.budget?.max_price), "maxPrice");
-
   function sendPrizeData() {
     getMinMaxPrice({
       min: values[0],
@@ -50,9 +47,9 @@ function BudgetFilter({ state, setState, getMinMaxPrice, filter, setFilterData }
   // }
 
   return (
-    <section className="w-full h-fit mt-[50px]">
+    <section className="w-full h-fit md:mb-[38px]">
       <article
-        className="w-full flex justify-between items-center "
+        className="w-full flex justify-between items-center md:pt-[12px]"
         onClick={(event) => {
           event.target.classList.toggle("open");
         }}
@@ -74,12 +71,12 @@ function BudgetFilter({ state, setState, getMinMaxPrice, filter, setFilterData }
         </figure>
       </article>
       <article
-        className={`border-1 border-green-600  overflow-hidden  ${
-          state?.budgetShow ? "duration-300 h-0" : "duration-300 h-fit mt-5"
+        className={`border-1  overflow-hidden  ${
+          state?.budgetShow ? "duration-300 h-0" : "duration-300 h-[110px] mt-5"
         } duration-300`}
       >
         <div className="flex flex-col rounded-lg  w-full">
-          <div className="flex flex-wrap justify-between items-center mb-6 w-full px-2">
+          <div className="flex flex-wrap justify-between items-center mb-3 w-full px-2">
             <div className="flex">
               <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#000] ">
                 от

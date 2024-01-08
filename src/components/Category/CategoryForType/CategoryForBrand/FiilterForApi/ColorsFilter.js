@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 import { FaCheck } from "react-icons/fa";
-import { useParams } from "react-router-dom";
 
 function ColorsFilter({
   state,
@@ -12,7 +11,6 @@ function ColorsFilter({
 }) {
   const [selectedColorId, setSelectedColorId] = useState(null);
   const [changeClick, setChangeClick] = useState(false);
-  const params = useParams();
 
   function onGetColorHexCode(hexCode) {
     handleGetColorHexCode({
@@ -39,11 +37,11 @@ function ColorsFilter({
   // }
 
   return (
-    <div className="w-full flex items-center flex-col">
-      <section className="w-full h-fit mt-[50px] ">
+    <div className="w-full flex items-center flex-col md:mb-[38px]">
+      <section className="w-full h-fit ">
         {/* Controls */}
         <article
-          className="openBrands w-full flex justify-between items-center"
+          className="openBrands w-full flex justify-between items-center md:pt-[12px]"
           onClick={(event) => {
             event.target.classList.toggle("open");
           }}
@@ -68,9 +66,17 @@ function ColorsFilter({
         </article>
         {/* Colors */}
         <article
-          className={`w-full px-[2px] flex justify-start flex-wrap items-center bg-white hover:backdrop-brightness-125 hover:bg-white/60 transition ease-out duration-300 gap-x-[14px] gap-y-[10px] border-0  overflow-clip  ${
-            state?.ColorsShow ? "duration-300 h-0" : "duration-300 h-fit py-5"
-          } duration-300 `}
+          className={`border-1 overflow-hidden gap-x-[14px] gap-y-[10px] ${
+            state?.ColorsShow
+              ? "duration-300 h-0"
+              : `${
+                  filter?.colors?.length > 5
+                    ? "h-[120px]"
+                    : `${
+                        filter?.colors?.length > 10 ? "h-[150px]" : ""
+                      }`
+                } duration-300 h-[85px] pt-5`
+          }`}
         >
           {filter?.colors?.map((colorHex, index) => {
             return (
@@ -110,7 +116,7 @@ function ColorsFilter({
             }}
             className={`${
               changeClick ? "flex" : "hidden"
-            } w-full flex-start text-sm text-borderWinter font-AeonikProRegular`}
+            } w-full mt-2 flex-start text-sm text-borderWinter font-AeonikProRegular`}
           >
             Сбросить
           </button>

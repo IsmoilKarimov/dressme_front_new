@@ -42,8 +42,8 @@ function CustomerReviewsFilter({
   }
 
   return (
-    <div className="w-full flex flex-col items-center">
-      <section className="w-full h-fit mt-[50px] ">
+    <div className="w-full flex flex-col items-center mb-[38px]">
+      <section className="w-full h-fit mt-[12px]">
         <article
           className="w-full flex justify-between items-center"
           onClick={(event) => {
@@ -75,7 +75,7 @@ function CustomerReviewsFilter({
           className={`flex flex-col   gap-y-3 overflow-hidden ${
             state?.customerRreviews
               ? "duration-300 h-0"
-              : "duration-300 h-[200px] mt-5"
+              : "duration-300 h-[190px] mt-5"
           } duration-300`}
         >
           {/* Field */}

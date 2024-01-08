@@ -2,16 +2,17 @@
 import React, { useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 import { useHttp } from "../../../../../hook/useHttp";
+import { useQuery } from "@tanstack/react-query";
 
 export default function CategoriesFilter({
   state,
   setState,
   handleGetCategoryId,
   params,
-  setFilterData,
 }) {
   const [getCategoryId, setGetCategoryId] = useState();
   const [dataAction, setDataAction] = useState(false);
+  const { request } = useHttp();
 
   const [categories, setCategories] = useState([
     { id: "1", action: false, name: "Головной убор" },
@@ -20,6 +21,27 @@ export default function CategoriesFilter({
     { id: "4", action: false, name: "Обувь" },
     { id: "5", action: false, name: "Аксессуары" },
   ]);
+
+  // ------------GET METHOD CATEGORY-TYPE-----------------
+  useQuery(
+    ["get_category_id"],
+    () => {
+      return request({ url: `/main/section/${params?.id}`, token: true });
+    },
+    {
+      onSuccess: (res) => {
+        console.log(res, "RES");
+        setGetCategoryId(res?.filter);
+        setState({ ...state, genderList: res?.genders });
+        // setFilterData(res);
+      },
+      onError: (err) => {
+        console.log(err, "err getGenderlist-method");
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+    }
+  );
 
   function onGetId(id) {
     handleGetCategoryId({
@@ -44,7 +66,9 @@ export default function CategoriesFilter({
   };
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className={`${
+      getCategoryId?.gender_ids.length ? "flex" : "hidden"
+    } w-full flex-col items-center md:mb-[38px]`}>
       <section
         className={`${
           getCategoryId?.category_ids ? "block" : "hidden"
@@ -74,7 +98,7 @@ export default function CategoriesFilter({
             </p>
           </figure>
         </article>
-        
+
         {/* Field */}
         <article
           className={`w-full overflow-hidden ${
@@ -91,7 +115,11 @@ export default function CategoriesFilter({
                       dataAction
                         ? `${data.action ? "bg-fullBlue text-white" : ""}`
                         : ""
-                    } w-full h-[44px] rounded-lg justify-center bg-bgCategory hover:text-white hover:bg-fullBlue flex items-center  cursor-pointer select-none  text-black`}
+                    } ${
+                      getCategoryId?.category_ids?.length == 1
+                        ? "w-full cursor-not-allowed hover:bg-bgCategory hover:text-black"
+                        : "hover:bg-fullBlue hover:text-white"
+                    } w-full h-[44px] rounded-lg justify-center bg-bgCategory flex items-center select-none  text-black`}
                     type="button"
                     onClick={() => {
                       onGetId(data?.id);
