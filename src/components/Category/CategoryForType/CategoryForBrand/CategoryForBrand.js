@@ -49,7 +49,6 @@ const CategoryForBrand = ({ setFilterData }) => {
 
   // Categoty GetID
   function handleGetCategoryId(childData) {
-    console.log(childData);
     setCategoryId(childData?.categoryId);
   }
 
@@ -162,7 +161,6 @@ const CategoryForBrand = ({ setFilterData }) => {
           handleGetId={handleGetId}
           handleGetDiscountId={handleGetDiscountId}
           filter={filter}
-          setFilterData={setFilterData}
         />
 
         {/* Categories */}
@@ -171,7 +169,6 @@ const CategoryForBrand = ({ setFilterData }) => {
           setState={setState}
           handleGetCategoryId={handleGetCategoryId}
           params={params}
-          setFilterData={setFilterData}
         />
 
         {/* Prizes */}
@@ -180,7 +177,6 @@ const CategoryForBrand = ({ setFilterData }) => {
           setState={setState}
           getMinMaxPrice={getMinMaxPrice}
           filter={filter}
-          setFilterData={setFilterData}
         />
 
         {/* Colors */}
@@ -189,7 +185,6 @@ const CategoryForBrand = ({ setFilterData }) => {
           setState={setState}
           filter={filter}
           handleGetColorHexCode={handleGetColorHexCode}
-          setFilterData={setFilterData}
         />
 
         {/* Customer reviews */}
@@ -198,21 +193,18 @@ const CategoryForBrand = ({ setFilterData }) => {
           setState={setState}
           filter={filter}
           handleCustomerReviews={handleCustomerReviews}
-          setFilterData={setFilterData}
         />
 
         {/* Clothing sizes */}
         <ClothingSizesFilter
           state={state}
           setState={setState}
-          setFilterData={setFilterData}
         />
 
         {/* Shoes sizes */}
         <ShoesSizesFilter
           state={state}
           setState={setState}
-          setFilterData={setFilterData}
         />
       </section>
       <section className=" mt-8 border-t border-searchBgColor py-5 px-3">
