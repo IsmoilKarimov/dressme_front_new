@@ -80,7 +80,7 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
           <div className="w-full flex flex-col border-[#F0F0F0]">
             <figure className="w-full h-[240px] md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
               <img
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
                 src={storeData?.shop?.url_background_photo || null}
                 alt=""
               />
