@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useRef, useCallback } from "react";
 
-import { YMaps, Map, ZoomControl, GeolocationControl, Placemark, Clusterer } from "react-yandex-maps";
+import { YMaps, Map, ZoomControl, GeolocationControl, Placemark, Clusterer, SearchControl } from "react-yandex-maps";
 import Slider from "react-slick";
 
 import "./yandex.css";
@@ -145,20 +145,96 @@ function YandexMapsDressMe() {
   };
 
   //------------------------------------------------------------------------------------------------
+  // const [searchQuery, setSearchQuery] = useState('');
+  // const [searchResult, setSearchResult] = useState(null);
+
+  // const handleSearchChange = (e) => {
+  //   setSearchQuery(e.get('target').get('value'));
+  // };
+
+  // const handleSearchResult = (e) => {
+  //   const firstResult = e.get('target').get('results').get(0);
+
+  //   if (firstResult) {
+  //     setSearchResult({
+  //       coordinates: firstResult.geometry.getCoordinates(),
+  //       address: firstResult.properties.get('text'),
+  //     });
+  //   }
+  // };
   const mapState = {
+
     center: [41.311753, 69.241822],
     zoom: 14,
   };
-  //------------------------------------------------------------------------------------------------
-  // const [zoomLevel, setZoomLevel] = useState()
-  // const handleBoundsChange = (e) => {
-  //   setZoomLevel(e.get('newZoom'))
-  //   // console.log('Bounds changed:', e.get('newBounds'));
-  //   // console.log('Zoom level:', e.get('newZoom'));
-  //   // console.log(getMapsInfo?.locations, "getMapsInfo?.locations");
-  //   // console.log(window.ymaps, "window.ymaps");
+  // const [isSendedLocation, setIsSendedLocation] = useState(true);
+  // const [forMaps, setForMaps] = useState({
+  //   title: "",
+  //   center: [41.311753, 69.241822],
+  //   zoom: 14,
+  // });
+  // //------------------------------------------------------------------------------------------------
+  // const mapOptions = {
+  //   modules: ["geocode", "SuggestView"],
+  //   defaultOptions: { suppressMapOpenBlock: true },
   // };
-  // console.log(zoomLevel, "zoomLevel");
+
+  // const [mapConstructor, setMapConstructor] = useState(null);
+  // const mapRef = useRef(null);
+  // const searchRef = useRef(null);
+
+  // const handleSubmit = () => {
+
+  //   setForMaps({
+  //     ...forMaps,
+  //     title: forMaps?.title,
+  //     center: [mapRef.current.getCenter()[0], mapRef.current.getCenter()[1]]
+  //   })
+
+  //   setIsSendedLocation(false);
+  // };
+  // // reset state & search
+  // const handleReset = () => {
+  //   setForMaps({ ...forMaps, title: "" });
+  //   searchRef.current.value = "";
+
+  // };
+
+  // // search popup
+  // useEffect(() => {
+
+  //   if (mapConstructor) {
+  //     new mapConstructor.SuggestView(searchRef.current).events.add(
+  //       "select",
+  //       function (e) {
+  //         const selectedName = e.get("item").value;
+  //         mapConstructor.geocode(selectedName).then((result) => {
+  //           const newCoords = result.geoObjects
+  //             .get(0)
+  //             .geometry.getCoordinates();
+  //           setForMaps((prevState) => ({ ...prevState, center: newCoords }));
+  //         });
+  //       }
+  //     );
+  //   }
+  // }, [mapConstructor]);
+
+  // // change title
+  // const handleBoundsChange = (e) => {
+  //   setIsSendedLocation(true);
+
+  //   const newCoords = mapRef.current.getCenter();
+  //   mapConstructor.geocode(newCoords).then((res) => {
+  //     const nearest = res.geoObjects.get(0);
+  //     const foundAddress = nearest.properties.get("text");
+  //     const [centerX, centerY] = nearest.geometry.getCoordinates();
+  //     const [initialCenterX, initialCenterY] = forMaps.center;
+  //     if (centerX !== initialCenterX && centerY !== initialCenterY) {
+  //       setForMaps((prevState) => ({ ...prevState, title: foundAddress }));
+  //     }
+  //   });
+  // };
+
   const handleError = () => {
     console.error('Error loading Placemark');
   };
@@ -233,38 +309,7 @@ function YandexMapsDressMe() {
         >
           <NavbarTopOpenMenu />
         </div>
-        {/* Yandex Search */}
-        <div className={`absolute  ${!dressInfo?.yandexFullScreen ? "top-[80px]" : "top-[8px]"
-          }  md:top-auto md:bottom-[24px] left-0 right-0 mx-auto  overflow-hidden z-50   h-[48px] w-[97%] ll:w-[94%] md:w-[400px] `}
-        >
-          <div
-            className="w-full h-full flex justify-between gap-x-2"
-          >
-            <div className="w-[85%] md:w-full h-full flex items-center rounded-lg bg-yandexNavbar backdrop-blur-sm px-2 ll:px-3 overflow-hidden shadow-lg ">
-              <div>
-                <img src={locationIcons} alt="" />
-              </div>
-              <div className="h-full flex items-center w-full mx-3">
-                <input
-                  // ref={searchRef}
-                  // type="text"
-                  name="search"
-                  type="search"
-                  className="h-full outline-none w-full bg-transparent"
-                  placeholder="Поиск мест и адресов"
-                  autoComplete="off"
-                />
-              </div>
-              <button type="button">
-                <SearchIcons />
-              </button>
 
-            </div>
-            <button onClick={() => setMarketsFilterMaps(!marketsFilterMaps)} type="button" className="md:hidden h-[48px] w-[48px] rounded-lg rounded-lg bg-yandexNavbar backdrop-blur-sm flex items-center justify-center shadow-lg">
-              <FilterIcons colors={"#000"} className="w-full h-full" />
-            </button>
-          </div>
-        </div>
         {/* <YMaps query={{ apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21" }}> */}
         <YMaps query={{
           apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21",
@@ -283,6 +328,15 @@ function YandexMapsDressMe() {
             width="100%"
             height="100%"
             modules={["control.FullscreenControl"]}
+
+          // {...mapOptions}
+          // state={{
+          //   center: forMaps?.center,
+          //   zoom: forMaps?.zoom,
+          // }}
+          // onLoad={setMapConstructor}
+          // onBoundsChange={handleBoundsChange}
+          // instanceRef={mapRef}
 
           >
             <div
@@ -317,32 +371,32 @@ function YandexMapsDressMe() {
             />{" "}
 
             {/* ---------- */}
-            <Clusterer
+            {/* <Clusterer
               className={""}
               options={{
                 preset: "islands##004773ClusterIcons",
                 groupByCoordinates: false,
               }}
-            >
-              {getMapsInfo?.locations?.map((data, index) => (
-                <Placemark
-                  onError={handleError}
-                  className={"placemarkCLuster cursor-pointer border border-red-500"}
-                  key={data?.id}
-                  onClick={() => {
-                    handlePlaceMark(data?.id, data?.latitude, data?.longitude)
-                  }}
-                  geometry={[data?.latitude, data?.longitude]}
-                  options={{
-                    iconLayout: "default#image",
-                    // iconImageHref: markerIcons,
-                    iconImageHref: data?.shop?.url_logo_photo,
-                    iconImageSize: [45, 45], // Set the size of your image
-                  }}
-                  modules={["geoObject.addon.balloon"]}
-                />
-              ))}
-            </Clusterer >
+            > */}
+            {getMapsInfo?.locations?.map((data, index) => (
+              <Placemark
+                onError={handleError}
+                className={"placemarkCLuster cursor-pointer "}
+                key={data?.id}
+                onClick={() => {
+                  handlePlaceMark(data?.id, data?.latitude, data?.longitude)
+                }}
+                geometry={[data?.latitude, data?.longitude]}
+                options={{
+                  iconLayout: "default#image",
+                  // iconImageHref: markerIcons,
+                  iconImageHref: data?.shop?.url_logo_photo,
+                  iconImageSize: [45, 45], // Set the size of your image
+                }}
+                modules={["geoObject.addon.balloon"]}
+              />
+            ))}
+            {/* </Clusterer > */}
             {/* Yandex Main menu */}
             < div className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${dressInfo?.openMainMenu
               ? "left-[-500px] md:left-[-5000px] z-[-80] ease-linear duration-500"
@@ -545,6 +599,74 @@ function YandexMapsDressMe() {
               </div>
             )} */}
             {/* ---------- */}
+            {/* <SearchControl
+              options={{ float: 'right' }}
+              instanceRef={(searchControl) => {
+                if (searchControl) {
+                  searchControl.events.add('resultselect', handleSearchResult);
+                }
+              }}
+              onSearchChange={handleSearchChange}
+            /> */}
+            {/* Yandex Search */}
+            <div className={`absolute  ${!dressInfo?.yandexFullScreen ? "top-[80px]" : "top-[8px]"
+              }  md:top-auto md:bottom-[24px] left-0 right-0 mx-auto  overflow-hidden z-50   h-[48px] w-[97%] ll:w-[94%] md:w-[400px] `}
+            >
+              <div
+                className="w-full h-full flex justify-between gap-x-2"
+              >
+                <div className="w-[85%] md:w-full h-full flex items-center rounded-lg bg-yandexNavbar backdrop-blur-sm px-2 ll:px-3 overflow-hidden shadow-lg ">
+                  <div>
+                    <img src={locationIcons} alt="" />
+                  </div>
+                  <div className="h-full flex items-center w-full mx-3">
+                    <input
+                      // ref={searchRef}
+                      // type="text"
+                      name="search"
+                      type="search"
+                      className="h-full outline-none w-full bg-transparent"
+                      placeholder="Поиск мест и адресов2"
+                      autoComplete="off"
+                    />
+                  </div>
+                  <button type="button">
+                    <SearchIcons />
+                  </button>
+
+                </div>
+                <button onClick={() => setMarketsFilterMaps(!marketsFilterMaps)} type="button" className="md:hidden h-[48px] w-[48px] rounded-lg rounded-lg bg-yandexNavbar backdrop-blur-sm flex items-center justify-center shadow-lg">
+                  <FilterIcons colors={"#000"} className="w-full h-full" />
+                </button>
+              </div>
+              <div
+                className="w-full h-full flex justify-between gap-x-2"
+              >
+                <div className="w-[85%] md:w-full h-full flex items-center rounded-lg bg-yandexNavbar backdrop-blur-sm px-2 ll:px-3 overflow-hidden shadow-lg ">
+                  <div>
+                    <img src={locationIcons} alt="" />
+                  </div>
+                  <div className="h-full flex items-center w-full mx-3">
+                    <input
+                      // ref={searchRef}
+                      // type="text"
+                      name="search"
+                      type="search"
+                      className="h-full outline-none w-full bg-transparent"
+                      placeholder="Поиск мест и адресов1"
+                      autoComplete="off"
+                    />
+                  </div>
+                  <button type="button">
+                    <SearchIcons />
+                  </button>
+
+                </div>
+                <button onClick={() => setMarketsFilterMaps(!marketsFilterMaps)} type="button" className="md:hidden h-[48px] w-[48px] rounded-lg rounded-lg bg-yandexNavbar backdrop-blur-sm flex items-center justify-center shadow-lg">
+                  <FilterIcons colors={"#000"} className="w-full h-full" />
+                </button>
+              </div>
+            </div>
           </Map>
         </YMaps>
       </div>

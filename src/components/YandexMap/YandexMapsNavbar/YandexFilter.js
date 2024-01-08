@@ -46,15 +46,15 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
 
   // ----------------------Price State Management----------------------
 
-  const [minPrice, setMinPrice] = useState(Number(getMapsInfo?.budget?.min_price));
-  const [maxPrice, setMaxPrice] = useState(Number(getMapsInfo?.budget?.max_price));
-  // useEffect(() => {
-  //   setMinPrice(Number(getMapsInfo?.budget?.min_price))
-  //   setMaxPrice(Number(getMapsInfo?.budget?.max_price))
-  // }, [getMapsInfo?.budget])
-
+  const [minPrice, setMinPrice] = useState(Number(getMapsInfo?.budget?.min_price) || 100000);
+  const [maxPrice, setMaxPrice] = useState(Number(getMapsInfo?.budget?.max_price) || 1000000);
   const [values, setValues] = useState([minPrice, maxPrice]);
   const [getRange, setGetRange] = useState([]);
+  useEffect(() => {
+    setMinPrice(Number(getMapsInfo?.budget?.min_price) || 100000)
+    setMaxPrice(Number(getMapsInfo?.budget?.max_price) || 1000000)
+  }, [getMapsInfo?.budget])
+
 
   // console.log(minPrice, "minPrice");
   // console.log(maxPrice, "maxPrice");
