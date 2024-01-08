@@ -73,7 +73,11 @@ const ShoppingStoreOfficial = () => {
 
           {/* Comment Section For Shopping Page */}
           <action className={`${openTabComment ? "block" : "hidden"} w-full `}>
-            <ShowPageComment refetch={refetch} storeData={storeData} setOpenTabComment={setOpenTabComment} />
+            <ShowPageComment
+              refetch={refetch}
+              storeData={storeData}
+              setOpenTabComment={setOpenTabComment}
+            />
           </action>
 
           {/* Map Section */}

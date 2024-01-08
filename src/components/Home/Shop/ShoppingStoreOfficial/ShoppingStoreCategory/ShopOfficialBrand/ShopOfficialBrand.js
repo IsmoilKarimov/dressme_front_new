@@ -9,9 +9,122 @@ import {
   MenuCloseIcons,
 } from "../../../../../../assets/icons";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
+import CategoryGenderButtonsFilter from "./StoreFilter/CategoryGenderButtonsFilter";
+import { useParams } from "react-router-dom";
+import Cookies from "js-cookie";
+import CategoriesFilter from "./StoreFilter/CategoriesFilter";
+import BudgetFilter from "../../../../../Category/CategoryForType/CategoryForBrand/FiilterForApi/BudgetFilter";
+
+import CustomerReviewsFilter from "./StoreFilter/CustomerReviewsFilter";
+import ColorsFilter from "./StoreFilter/ColorsFilter";
 
 const ShopOfficialBrand = () => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
+  const [genderId, setGenderId] = useState();
+  const [discountId, setDiscountId] = useState();
+  const [categoryId, setCategoryId] = useState();
+  const [filter, setFilter] = useState();
+  const [colorHexCode, setColorHexCode] = useState();
+  const [customerReviews, setCustomerReviews] = useState();
+
+  const [state, setState] = useState({
+    brandShow: screenSize.width <= 768 ? true : false,
+    budgetShow: screenSize.width <= 768 ? true : false,
+    ColorsShow: screenSize.width <= 768 ? true : false,
+    ClothingShow: screenSize.width <= 768 ? true : false,
+    TrouserShow: screenSize.width <= 768 ? true : false,
+    ShoesShow: screenSize.width <= 768 ? true : false,
+    customerRreviews: screenSize.width <= 768 ? true : false,
+    availability: screenSize.width <= 768 ? true : false,
+    catolog: screenSize.width <= 768 ? true : false,
+    //--------------
+    checkBrand: false,
+  });
+
+  // Gender GetID
+  function handleGetId(childData) {
+    setGenderId(childData?.genderFilterId);
+  }
+
+  // Discount GetID
+  function handleGetDiscountId(childData) {
+    setDiscountId(childData?.discountId);
+  }
+
+  // Categoty GetID
+  function handleGetCategoryId(childData) {
+    setCategoryId(childData?.categoryId);
+  }
+
+  // Budjet GetPrize
+  function getMinMaxPrice(childData) {
+    setState({ ...state, getBadgePrice: childData });
+  }
+
+  // Color GetID
+  function handleGetColorHexCode(childData) {
+    console.log(childData);
+    setColorHexCode(childData?.colorFilterHexCode);
+  }
+
+   // Rating GetID
+   function handleCustomerReviews(childData) {
+    setCustomerReviews(childData?.ratingId);
+  }
+
+  const params = useParams();
+  const apiUrl = `https://api.dressme.uz/api/main/shop/${params?.id}`;
+
+  const fetchGetAllData = (params) => {
+    const urlParams = new URLSearchParams();
+    if ("budget[from]") {
+      urlParams.set("budget[from]", "budget[from]");
+    }
+    if ("budget[to]") {
+      urlParams.set("budget[to]", "budget[to]");
+    }
+    if ("colors[]") {
+      urlParams.set("colors[]", "colors[]");
+    }
+
+    // Replace the current URL with the updated query parameters
+    window.history.replaceState({}, "", `?${urlParams.toString()}`);
+
+    Object.entries(params).forEach((i) => {
+      if (!i[1]) delete params[i[0]];
+    });
+
+    fetch(`${apiUrl}?` + new URLSearchParams(params), {
+      headers: { Authorization: `Token ${Cookies.get("DressmeUserToken")}` },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res?.filter, "res-data");
+        setFilter(res?.filter);
+        // setFilterData(res);
+      })
+      .catch((err) => console.log(err, "ERRORLIST"));
+  };
+
+  useEffect(() => {
+    fetchGetAllData({
+      gender: genderId,
+      discount: discountId,
+      category: categoryId,
+      "budget[from]": state?.getBadgePrice?.min,
+      "budget[to]": state?.getBadgePrice?.max,
+      "colors[]": colorHexCode,
+      rating: customerReviews,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    genderId,
+    discountId,
+    categoryId,
+    state?.getBadgePrice,
+    colorHexCode,
+    customerReviews,
+  ]);
 
   function getCurrentDimension() {
     return {
@@ -114,22 +227,6 @@ const ShopOfficialBrand = () => {
   const Max = "12 000";
   const [values] = useState([Min, Max]);
 
-  const [state, setState] = useState({
-    brandShow: screenSize.width <= 768 ? true : false,
-    budgetShow: screenSize.width <= 768 ? true : false,
-    ColorsShow: screenSize.width <= 768 ? true : false,
-    ClothingShow: screenSize.width <= 768 ? true : false,
-    TrouserShow: screenSize.width <= 768 ? true : false,
-    ShoesShow: screenSize.width <= 768 ? true : false,
-    customerRreviews: screenSize.width <= 768 ? true : false,
-    availability: screenSize.width <= 768 ? true : false,
-    catolog: screenSize.width <= 768 ? true : false,
-    //--------------
-    checkBrand: false,
-  });
-
-  const HandleBrandFilter = (e) => {};
-
   const HandleCheckStatus = (e) => {};
 
   const HandleColorCheck = (itemId) => {};
@@ -158,6 +255,14 @@ const ShopOfficialBrand = () => {
             </button>
           </action>
         )}
+
+        {/* Gender Buttons */}
+        <CategoryGenderButtonsFilter
+          handleGetId={handleGetId}
+          handleGetDiscountId={handleGetDiscountId}
+          filter={filter}
+        />
+
         {/* Genders */}
         <section className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px]">
           <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg">
@@ -173,6 +278,14 @@ const ShopOfficialBrand = () => {
             Скидки
           </button>
         </section>
+
+        {/* Categories */}
+        <CategoriesFilter
+          state={state}
+          setState={setState}
+          handleGetCategoryId={handleGetCategoryId}
+          params={params}
+        />
 
         {/* Category */}
         <section className="w-full h-fit ">
@@ -222,7 +335,15 @@ const ShopOfficialBrand = () => {
             })}
           </div>
         </section>
-        
+
+        {/* Prizes */}
+        <BudgetFilter
+          state={state}
+          setState={setState}
+          getMinMaxPrice={getMinMaxPrice}
+          filter={filter}
+        />
+
         {/* Prizes */}
         <section>
           <article
@@ -283,6 +404,14 @@ const ShopOfficialBrand = () => {
         </section>
 
         {/* Colors */}
+        <ColorsFilter
+          state={state}
+          setState={setState}
+          filter={filter}
+          handleGetColorHexCode={handleGetColorHexCode}
+        />
+
+        {/* Colors */}
         <section className="w-full h-fit">
           {/* Controls */}
           <section
@@ -340,125 +469,12 @@ const ShopOfficialBrand = () => {
         </section>
 
         {/* Customer reviews */}
-        <section className="w-full h-fit">
-          <article
-            className="w-full flex justify-between items-center"
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <figure
-              onClick={() =>
-                setState({
-                  ...state,
-                  customerRreviews: !state.customerRreviews,
-                })
-              }
-              className="flex items-center cursor-pointer select-none"
-            >
-              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Отзывы клиентов
-              </p>
-              <p
-                className={`${
-                  state?.customerRreviews ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </p>
-            </figure>
-          </article>
-          <article
-            className={`flex flex-col   gap-y-3 overflow-hidden ${
-              state?.customerRreviews
-                ? "duration-300 h-0"
-                : "duration-300 h-[160px] mt-5"
-            } duration-300`}
-          >
-            {/* Field */}
-
-            <div className="flex items-center cursor-pointer select-none  ">
-              <div
-                className={`w-[22px] h-[22px] p-1 flex items-center  mr-[10px] rounded border border-borderColorCard`}
-              >
-                {state?.checkBrand && (
-                  <span className="text-white">
-                    <BsCheckLg size={12} />
-                  </span>
-                )}
-              </div>
-              <div className="flex items-center not-italic mr-2 font-AeonikProRegular  text-lg leading-4 text-black">
-                <StarIcons />
-                <StarIcons />
-                <StarIcons />
-                <StarIcons />
-                <StarIcons />
-              </div>
-            </div>
-            <div className="flex items-center cursor-pointer select-none  ">
-              <div
-                className={`w-[22px] h-[22px] p-1 flex items-center  mr-[10px] rounded border border-borderColorCard`}
-              >
-                {state?.checkBrand && (
-                  <span className="text-white">
-                    <BsCheckLg size={12} />
-                  </span>
-                )}
-              </div>
-              <div className="flex items-center not-italic mr-2 font-AeonikProRegular  text-lg leading-4 text-black">
-                <StarIcons />
-                <StarIcons />
-                <StarIcons />
-                <StarIcons />
-              </div>
-            </div>
-            <div className="flex items-center cursor-pointer select-none  ">
-              <div
-                className={`w-[22px] h-[22px] p-1 flex items-center  mr-[10px] rounded border border-borderColorCard`}
-              >
-                {state?.checkBrand && (
-                  <span className="text-white">
-                    <BsCheckLg size={12} />
-                  </span>
-                )}
-              </div>
-              <div className="flex items-center not-italic mr-2 font-AeonikProRegular  text-lg leading-4 text-black">
-                <StarIcons />
-                <StarIcons />
-                <StarIcons />
-              </div>
-            </div>
-            <div className="flex items-center cursor-pointer select-none  ">
-              <div
-                className={`w-[22px] h-[22px] p-1 flex items-center  mr-[10px] rounded border border-borderColorCard`}
-              >
-                {state?.checkBrand && (
-                  <span className="text-white">
-                    <BsCheckLg size={12} />
-                  </span>
-                )}
-              </div>
-              <div className="flex items-center not-italic mr-2 font-AeonikProRegular  text-lg leading-4 text-black">
-                <StarIcons />
-                <StarIcons />
-              </div>
-            </div>
-            <div className="flex items-center cursor-pointer select-none ">
-              <div
-                className={`w-[22px] h-[22px] p-1 flex items-center  mr-[10px] rounded border border-borderColorCard`}
-              >
-                {state?.checkBrand && (
-                  <span className="text-white">
-                    <BsCheckLg size={12} />
-                  </span>
-                )}
-              </div>
-              <div className="flex items-center not-italic mr-2 font-AeonikProRegular  text-lg leading-4 text-black">
-                <StarIcons />
-              </div>
-            </div>
-          </article>
-        </section>
+        <CustomerReviewsFilter
+          state={state}
+          setState={setState}
+          filter={filter}
+          handleCustomerReviews={handleCustomerReviews}
+        />
 
         {/* Размер одежды */}
         <section className="w-full h-fit  ">
@@ -508,7 +524,6 @@ const ShopOfficialBrand = () => {
             </div>
           </section>
         </section>
-
       </section>
       <section className=" mt-8 border-t border-searchBgColor py-5 px-3">
         <button className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70">
