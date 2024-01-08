@@ -20,8 +20,6 @@ export default function CollectionCards() {
   const [pagination, setPagination] = useState(30);
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
-  console.log(mainData, "555ddddd555");
-
   // -------------------------------------
   const toggle = React.useCallback(() => setOpenWearType(false), []);
   // -------------------------------------
@@ -103,7 +101,7 @@ export default function CollectionCards() {
             })}
           </article>
 
-          {mainData?.products?.data?.length < 16 ? null : (
+          {mainData?.products?.length < 30 ? null : (
             <div className="w-full h-fit flex items-center justify-center mt-14">
               <button
                 type="button"
