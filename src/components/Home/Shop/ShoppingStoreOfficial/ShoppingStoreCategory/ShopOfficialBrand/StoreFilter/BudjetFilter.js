@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 import Slider from "react-slider";
+import { useParams } from "react-router-dom";
 
 function BudgetFilter({ state, setState, getMinMaxPrice, filter }) {
   const [minPrice, setMinPrice] = useState(filter?.budget?.min_price || 10000); 

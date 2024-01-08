@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowTopIcons, StarIcons } from "../../../../../assets/icons";
+import { ArrowTopIcons, StarIcons } from "../../../../../../../assets/icons";
 import { BsCheckLg } from "react-icons/bs";
 
 function CustomerReviewsFilter({
