@@ -369,6 +369,27 @@ function YandexMapsDressMe() {
                 size: "small",
               }}
             />{" "}
+            <div className="YSearch">
+              {/* <div className="absolute ">
+                <img src={locationIcons} alt="" />
+              </div> */}
+              <SearchControl
+                options={{
+                  float: "left",
+                  floatIndex: 3000,
+                  provider: "yandex#search",
+                  geoObjectStandardPreset: "islands#blueDotIcon",
+                  placeholderContent: "Поиск мест и адресов",
+                  // maxWidth: 400,
+                  size: "large",
+                }}
+              // options={{
+              // float: "left",
+              // position: { bottom: 270, left: 10, size: "small" },
+              // size: "small",
+              // }}
+              />{" "}
+            </div>
 
             {/* ---------- */}
             {/* <Clusterer
@@ -609,7 +630,7 @@ function YandexMapsDressMe() {
               onSearchChange={handleSearchChange}
             /> */}
             {/* Yandex Search */}
-            <div className={`absolute  ${!dressInfo?.yandexFullScreen ? "top-[80px]" : "top-[8px]"
+            <div className={`absolute hidden  ${!dressInfo?.yandexFullScreen ? "top-[80px]" : "top-[8px]"
               }  md:top-auto md:bottom-[24px] left-0 right-0 mx-auto  overflow-hidden z-50   h-[48px] w-[97%] ll:w-[94%] md:w-[400px] `}
             >
               <div

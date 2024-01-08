@@ -238,22 +238,28 @@ body {
 }
 
 /* ---------------------------------------- */
+.YSearch {
+  border: 1px solid green
+}
+
+.ymapsName .ymaps-2-1-79-search::before {}
+
 .ymapsName .ymaps-2-1-79-search {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   position: absolute !important;
   /* left: 50% !important; */
-  right: 50% !important;
-  bottom: 30px !important;
+  right: 40% !important;
+  bottom: -95vh !important;
+  width: 400px !important;
 
 }
 
-.ymaps-2-1-79-searchbox {
+/* .ymaps-2-1-79-searchbox {
   border: 1px solid black;
   position: absolute !important;
-  /* left: 50% !important; */
   right: 50% !important;
   bottom: 30px !important;
-}
+} */
 
 /* ---------------------------------------- */
 
