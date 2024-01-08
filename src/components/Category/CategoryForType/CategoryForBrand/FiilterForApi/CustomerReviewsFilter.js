@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { ArrowTopIcons, StarIcons } from "../../../../../assets/icons";
 import { BsCheckLg } from "react-icons/bs";
 import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { useHttp } from "../../../../../hook/useHttp";
 
 function CustomerReviewsFilter({
   state,
@@ -13,33 +15,29 @@ function CustomerReviewsFilter({
   const [selected, setSelected] = useState(null);
   const [clickChange, setChangeClick] = useState(false);
   const params = useParams();
+  const { request } = useHttp();
 
   const [ratings] = useState({
-    "1.0": 0,
-    "2.0": 0,
-    "3.0": 0,
-    "4.0": 0,
-    "5.0": 0,
+    "1.0": 0, // 5
+    "2.0": 0, // 4
+    "3.0": 0, // 3
+    "4.0": 0, // 2
+    "5.0": 0, // 1
   });
 
-  // ===== GET DATA FOR CLEAR ALL CUSTOMER REVIEWS ======
-  function sendClearedData() {
-    fetch(`https://api.dressme.uz/api/main/section/${params?.id}`, {
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res, "RES-CATEGORIES");
-        setFilterData(res);
-      });
-  }
+  console.log(ratings);
+  console.log(filter?.ratings);
+  // console.log(Object.keys(ratings).length);
 
   function onGetRatingId(id) {
     handleCustomerReviews({
       ratingId: id,
+    });
+  }
+
+  function sendClearedData() {
+    handleCustomerReviews({
+      ratingId: null,
     });
   }
 
@@ -103,15 +101,21 @@ function CustomerReviewsFilter({
                 </div>
                 <div className="flex items-center not-italic mr-2 font-AeonikProRegular  text-lg leading-4 text-black">
                   {(() => {
-                    if (index === 0) {
+                    if (index === 4) {
                       return (
                         <div className="flex items-center">
                           <StarIcons />
+                          <StarIcons />
+                          <StarIcons />
+                          <StarIcons />
+                          <StarIcons />
                         </div>
                       );
-                    } else if (index === 1) {
+                    } else if (index === 3) {
                       return (
                         <div className="flex items-center">
+                          <StarIcons />
+                          <StarIcons />
                           <StarIcons />
                           <StarIcons />
                         </div>
@@ -124,11 +128,9 @@ function CustomerReviewsFilter({
                           <StarIcons />
                         </div>
                       );
-                    else if (index === 3)
+                    else if (index === 1)
                       return (
                         <div className="flex items-center">
-                          <StarIcons />
-                          <StarIcons />
                           <StarIcons />
                           <StarIcons />
                         </div>
@@ -136,10 +138,6 @@ function CustomerReviewsFilter({
                     else
                       return (
                         <div className="flex items-center">
-                          <StarIcons />
-                          <StarIcons />
-                          <StarIcons />
-                          <StarIcons />
                           <StarIcons />
                         </div>
                       );
@@ -151,6 +149,7 @@ function CustomerReviewsFilter({
               </div>
             );
           })}
+
           <button
             type="button"
             onClick={() => {
@@ -170,3 +169,43 @@ function CustomerReviewsFilter({
 }
 
 export default React.memo(CustomerReviewsFilter);
+
+// {(() => {
+//   for (let index = 5; index <= Object.keys(ratings).length; index--) {
+//     console.log(index, "INDEX");
+//     // console.log(Object.keys(filter?.ratings));
+//     <div
+//       key={index}
+//       className="flex items-center cursor-pointer select-none"
+//       onClick={() => {
+//         onGetRatingId(index );
+//         setSelected(index);
+//         setChangeClick(true);
+//       }}
+//     >
+//       <div
+//         className={`w-[22px] h-[22px] flex items-center  mr-[10px] rounded border border-borderColorCard`}
+//       >
+//         {selected === index && (
+//           <span className="bg-blue-600 h-full w-full text-white flex items-center justify-center">
+//             <BsCheckLg size={12} />
+//           </span>
+//         )}
+//       </div>
+//       <div className="flex items-center not-italic mr-2 font-AeonikProRegular  text-lg leading-4 text-black">
+//         <div className="flex items-center">
+//           <StarIcons />
+//           <StarIcons />
+//           <StarIcons />
+//           <StarIcons />
+//           <StarIcons />
+//         </div>
+//       </div>
+//       <span className="text-base leading-3 font-AeonikProRegular">
+//         {/* ({filter?.ratings[rating]}) */}
+//       </span>
+//     </div>;
+
+//     if (index === 0) break;
+//   }
+// })()}

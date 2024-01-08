@@ -1,7 +1,6 @@
 /* eslint-disable array-callback-return */
 import React, { useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
-import { useQuery } from "@tanstack/react-query";
 import { useHttp } from "../../../../../hook/useHttp";
 
 export default function CategoriesFilter({
@@ -11,7 +10,6 @@ export default function CategoriesFilter({
   params,
   setFilterData,
 }) {
-  const { request } = useHttp();
   const [getCategoryId, setGetCategoryId] = useState();
   const [dataAction, setDataAction] = useState(false);
 
@@ -23,45 +21,15 @@ export default function CategoriesFilter({
     { id: "5", action: false, name: "Аксессуары" },
   ]);
 
-  // ------------GET METHOD CATEGORY-TYPE-----------------
-  useQuery(
-    ["get_category_id"],
-    () => {
-      return request({ url: `/main/section/${params?.id}`, token: true });
-    },
-    {
-      onSuccess: (res) => {
-        console.log(res, "RES");
-        setGetCategoryId(res?.filter);
-        setState({ ...state, genderList: res?.genders });
-        // setFilterData(res);
-      },
-      onError: (err) => {
-        console.log(err, "err getGenderlist-method");
-      },
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
-    }
-  );
-
-  // ===== GET DATA FOR CLEAR ALL CATEGORY BUTTONS ======
-  function sendClearedData() {
-    fetch(`https://api.dressme.uz/api/main/section/${params?.id}`, {
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res, "RES-CATEGORIES");
-        setFilterData(res);
-      });
-  }
-
   function onGetId(id) {
     handleGetCategoryId({
       categoryId: id,
+    });
+  }
+
+  function sendClearedData() {
+    handleGetCategoryId({
+      categoryId: null,
     });
   }
 
@@ -106,6 +74,7 @@ export default function CategoriesFilter({
             </p>
           </figure>
         </article>
+        
         {/* Field */}
         <article
           className={`w-full overflow-hidden ${

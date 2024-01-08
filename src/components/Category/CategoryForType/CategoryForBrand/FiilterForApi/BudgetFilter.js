@@ -23,25 +23,31 @@ function BudgetFilter({ state, setState, getMinMaxPrice, filter, setFilterData }
       max: values[1],
     });
   }
+  function sendClearedData() {
+    getMinMaxPrice({
+      min: null,
+      max: null,
+    });
+  }
 
   useEffect(() => {
     if (minPrice !== values[0] || maxPrice !== values[1]) setCheckChange(true);
   }, [values]);
 
-  const params = useParams()
+  // const params = useParams()
 
-  function sendClearedData() {
-    fetch(`https://api.dressme.uz/api/main/section/${params?.id}`, {
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        setFilterData(res);
-      });
-  }
+  // function sendClearedData() {
+  //   fetch(`https://api.dressme.uz/api/main/section/${params?.id}`, {
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       setFilterData(res);
+  //     });
+  // }
 
   return (
     <section className="w-full h-fit mt-[50px]">

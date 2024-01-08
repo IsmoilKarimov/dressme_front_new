@@ -3,31 +3,40 @@ import { ArrowTopIcons } from "../../../../../assets/icons";
 import { FaCheck } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 
-function ColorsFilter({ state, setState, filter, handleGetColorHexCode, setFilterData }) {
+function ColorsFilter({
+  state,
+  setState,
+  filter,
+  handleGetColorHexCode,
+  setFilterData,
+}) {
   const [selectedColorId, setSelectedColorId] = useState(null);
   const [changeClick, setChangeClick] = useState(false);
-  const params = useParams()
+  const params = useParams();
 
   function onGetColorHexCode(hexCode) {
     handleGetColorHexCode({
       colorFilterHexCode: hexCode,
     });
   }
-
-
-
   function sendClearedData() {
-    fetch(`https://api.dressme.uz/api/main/section/${params?.id}`, {
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        setFilterData(res);
-      });
+    handleGetColorHexCode({
+      colorFilterHexCode: null,
+    });
   }
+
+  // function sendClearedData() {
+  //   fetch(`https://api.dressme.uz/api/main/section/${params?.id}`, {
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       setFilterData(res);
+  //     });
+  // }
 
   return (
     <div className="w-full flex items-center flex-col">
@@ -92,21 +101,21 @@ function ColorsFilter({ state, setState, filter, handleGetColorHexCode, setFilte
               </button>
             );
           })}
+          <button
+            type="button"
+            onClick={() => {
+              sendClearedData();
+              setChangeClick(false);
+              setSelectedColorId(null);
+            }}
+            className={`${
+              changeClick ? "flex" : "hidden"
+            } w-full flex-start text-sm text-borderWinter font-AeonikProRegular`}
+          >
+            Сбросить
+          </button>
         </article>
       </section>
-      <button
-        type="button"
-        onClick={() => {
-          sendClearedData();
-          setChangeClick(false);
-          setSelectedColorId(null)
-        }}
-        className={`${
-          changeClick ? "flex" : "hidden"
-        } w-full flex-start text-sm text-borderWinter font-AeonikProRegular`}
-      >
-        Сбросить
-      </button>
     </div>
   );
 }
