@@ -367,21 +367,9 @@ body {
   background-position: center center !important;
   background-repeat: no-repeat;
   background-size: 80% !important;
-  /* margin: 8px; */
-  /* margin: 0px 10px !important; */
-  /* padding: 0px 5px !important; */
   border: 2px solid #007dca;
 }
 
-.ymaps-2-1-79-placemark-overlay.ymaps-2-1-79-user-selection-none {
-  border: 2px solid #a1a1a1;
-
-}
-
-.ymaps-2-1-79-places-pane {
-  border: 2px solid #a1a1a1;
-
-}
 
 .ant-select-selector {
   padding-left: 25px !important;
