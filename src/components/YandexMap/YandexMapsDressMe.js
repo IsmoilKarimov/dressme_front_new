@@ -64,8 +64,8 @@ function YandexMapsDressMe() {
       if (!i[1]) delete params[i[0]];
     });
 
-    // fetch(`${url}/map/index?` + new URLSearchParams(params),)
-    fetch(`${url}/map/index`)
+    // fetch(`${url}/map/index`)
+    fetch(`${url}/map/index?` + new URLSearchParams(params),)
       .then((res) => res.json())
       .then((res) => {
         setGetMapsInfo(res);
@@ -321,7 +321,6 @@ function YandexMapsDressMe() {
               className={""}
               options={{
                 preset: "islands##004773ClusterIcons",
-
                 groupByCoordinates: false,
               }}
             >
@@ -329,7 +328,7 @@ function YandexMapsDressMe() {
                 <Placemark
                   onError={handleError}
                   className={"placemarkCLuster cursor-pointer border border-red-500"}
-                  key={index}
+                  key={data?.id}
                   onClick={() => {
                     handlePlaceMark(data?.id, data?.latitude, data?.longitude)
                   }}

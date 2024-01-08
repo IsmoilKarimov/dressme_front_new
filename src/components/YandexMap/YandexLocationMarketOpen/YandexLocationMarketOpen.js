@@ -88,7 +88,7 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
   const handleCarouselModal = (UId) => {
     // setOpenCarouselModal(true)
   }
-  console.log(modalInfo, "modalInfo");
+  // console.log(modalInfo, "modalInfo");
   // console.log(dressInfo?.yandexGetMarketId, "yandexGetMarketId");
   const handlePhoneNumberClick = (id) => {
     // window.location.href = `tel:${id}`;
