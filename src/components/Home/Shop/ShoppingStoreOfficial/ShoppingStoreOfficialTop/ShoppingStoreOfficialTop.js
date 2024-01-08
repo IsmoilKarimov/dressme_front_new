@@ -91,7 +91,7 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
                 <figure className="w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white overflow-hidden">
                   <img
                     src={storeData?.shop?.url_logo_photo || null}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     alt=""
                   />
                 </figure>

@@ -66,9 +66,11 @@ export default function CategoriesFilter({
   };
 
   return (
-    <div className={`${
-      getCategoryId?.gender_ids.length ? "flex" : "hidden"
-    } w-full flex-col items-center md:mb-[38px]`}>
+    <div
+      className={`${
+        getCategoryId?.gender_ids.length ? "flex" : "hidden"
+      } w-full flex-col items-center md:mb-[38px]`}
+    >
       <section
         className={`${
           getCategoryId?.category_ids ? "block" : "hidden"
