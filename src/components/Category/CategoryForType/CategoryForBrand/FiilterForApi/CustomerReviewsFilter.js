@@ -1,21 +1,15 @@
 import React, { useState } from "react";
 import { ArrowTopIcons, StarIcons } from "../../../../../assets/icons";
 import { BsCheckLg } from "react-icons/bs";
-import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { useHttp } from "../../../../../hook/useHttp";
 
 function CustomerReviewsFilter({
   state,
   setState,
   filter,
   handleCustomerReviews,
-  setFilterData,
 }) {
   const [selected, setSelected] = useState(null);
   const [clickChange, setChangeClick] = useState(false);
-  const params = useParams();
-  const { request } = useHttp();
 
   const [ratings] = useState({
     "1.0": 0, // 5
@@ -24,10 +18,6 @@ function CustomerReviewsFilter({
     "4.0": 0, // 2
     "5.0": 0, // 1
   });
-
-  console.log(ratings);
-  console.log(filter?.ratings);
-  // console.log(Object.keys(ratings).length);
 
   function onGetRatingId(id) {
     handleCustomerReviews({

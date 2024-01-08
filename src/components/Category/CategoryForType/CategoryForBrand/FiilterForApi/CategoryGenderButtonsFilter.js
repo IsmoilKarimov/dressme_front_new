@@ -5,7 +5,6 @@ function CategoryGenderButtonsFilter({
   handleGetId,
   handleGetDiscountId,
   filter,
-  setFilterData,
 }) {
   const [dataAction, setDataAction] = useState(true);
   const [openGenderField, setOpenGenderField] = useState(false);

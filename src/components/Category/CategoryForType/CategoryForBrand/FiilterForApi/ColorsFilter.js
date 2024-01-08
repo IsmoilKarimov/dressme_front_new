@@ -6,8 +6,7 @@ function ColorsFilter({
   state,
   setState,
   filter,
-  handleGetColorHexCode,
-  setFilterData,
+  handleGetColorHexCode
 }) {
   const [selectedColorId, setSelectedColorId] = useState(null);
   const [changeClick, setChangeClick] = useState(false);
@@ -22,19 +21,6 @@ function ColorsFilter({
       colorFilterHexCode: null,
     });
   }
-
-  // function sendClearedData() {
-  //   fetch(`https://api.dressme.uz/api/main/section/${params?.id}`, {
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       setFilterData(res);
-  //     });
-  // }
 
   return (
     <div className="w-full flex items-center flex-col md:mb-[38px]">
@@ -66,47 +52,47 @@ function ColorsFilter({
         </article>
         {/* Colors */}
         <article
-          className={`border-1 overflow-hidden gap-x-[14px] gap-y-[10px] ${
+          className={`overflow-hidden ${
             state?.ColorsShow
               ? "duration-300 h-0"
               : `${
                   filter?.colors?.length > 5
                     ? "h-[120px]"
-                    : `${
-                        filter?.colors?.length > 10 ? "h-[150px]" : ""
-                      }`
+                    : `${filter?.colors?.length > 10 ? "h-[150px]" : ""}`
                 } duration-300 h-[85px] pt-5`
           }`}
         >
-          {filter?.colors?.map((colorHex, index) => {
-            return (
-              <button
-                type="button"
-                key={index}
-                style={{ background: colorHex }}
-                onClick={() => {
-                  setSelectedColorId(index);
-                  setChangeClick(true);
-                  onGetColorHexCode(colorHex);
-                }}
-                className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 w-8 h-8 cursor-pointer border border-solid border-borderColorCard`}
-                htmlFor={`${colorHex}`}
-              >
-                {selectedColorId === index ? (
-                  <p className="w-[14px] flex items-center justify-center">
-                    <FaCheck
-                      color={
-                        colorHex === "#ffffff" || colorHex === "#f5f5dc"
-                          ? "#000"
-                          : "#fff"
-                      }
-                      className="flex items-center justify-center"
-                    />
-                  </p>
-                ) : null}
-              </button>
-            );
-          })}
+          <div className="flex items-center justify-start mx-1 gap-x-[10px] gap-y-[10px]">
+            {filter?.colors?.map((colorHex, index) => {
+              return (
+                <button
+                  type="button"
+                  key={index}
+                  style={{ background: colorHex }}
+                  onClick={() => {
+                    setSelectedColorId(index);
+                    setChangeClick(true);
+                    onGetColorHexCode(colorHex);
+                  }}
+                  className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 w-8 h-8 cursor-pointer border border-solid border-borderColorCard`}
+                  htmlFor={`${colorHex}`}
+                >
+                  {selectedColorId === index ? (
+                    <p className="w-[14px] flex items-center justify-center">
+                      <FaCheck
+                        color={
+                          colorHex === "#ffffff" || colorHex === "#f5f5dc"
+                            ? "#000"
+                            : "#fff"
+                        }
+                        className="flex items-center justify-center"
+                      />
+                    </p>
+                  ) : null}
+                </button>
+              );
+            })}
+          </div>
           <button
             type="button"
             onClick={() => {

@@ -3,7 +3,7 @@ import { ArrowTopIcons } from "../../../../../assets/icons";
 import Slider from "react-slider";
 import { useParams } from "react-router-dom";
 
-function BudgetFilter({ state, setState, getMinMaxPrice, filter, setFilterData }) {
+function BudgetFilter({ state, setState, getMinMaxPrice, filter }) {
   const [minPrice, setMinPrice] = useState(filter?.budget?.min_price || 10000); 
   const [maxPrice, setMaxPrice] = useState(filter?.budget?.max_price || 1000000); 
   const [checkChange, setCheckChange] = useState(false);
@@ -31,20 +31,7 @@ function BudgetFilter({ state, setState, getMinMaxPrice, filter, setFilterData }
     if (minPrice !== values[0] || maxPrice !== values[1]) setCheckChange(true);
   }, [values]);
 
-  // const params = useParams()
 
-  // function sendClearedData() {
-  //   fetch(`https://api.dressme.uz/api/main/section/${params?.id}`, {
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       setFilterData(res);
-  //     });
-  // }
 
   return (
     <section className="w-full h-fit md:mb-[38px]">
@@ -123,10 +110,6 @@ function BudgetFilter({ state, setState, getMinMaxPrice, filter, setFilterData }
               onClick={() => {
                 sendClearedData();
                 setCheckChange(false)
-                getMinMaxPrice({
-                  min: Number(filter?.budget?.min_price),
-                  max: Number(filter?.budget?.max_price),
-                })
               }}
               className={`flex items-center text-sm text-borderWinter font-AeonikProRegular`}
             >
