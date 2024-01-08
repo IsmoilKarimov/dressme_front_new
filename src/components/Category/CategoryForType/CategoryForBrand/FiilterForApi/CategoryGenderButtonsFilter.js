@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 
 function CategoryGenderButtonsFilter({
@@ -40,20 +39,10 @@ function CategoryGenderButtonsFilter({
       discountId: id,
     });
   }
-
-  const params = useParams();
-
   function sendClearedData() {
-    fetch(`https://api.dressme.uz/api/main/section/${params?.id}`, {
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        setFilterData(res);
-      });
+    handleGetDiscountId({
+      discountId: null,
+    });
   }
 
   const handleGenderCheck = (value) => {
@@ -67,7 +56,11 @@ function CategoryGenderButtonsFilter({
   };
 
   return (
-    <div className={`${filter?.gender_ids.length ? 'flex' : 'hidden'} w-full flex-col items-center md:mb-[38px]`}>
+    <div
+      className={`${
+        filter?.gender_ids.length ? "flex" : "hidden"
+      } w-full flex-col items-center md:mb-[38px]`}
+    >
       <article
         className="w-full flex justify-between items-center"
         onClick={(event) => {
@@ -76,11 +69,9 @@ function CategoryGenderButtonsFilter({
       >
         <figure
           onClick={() => setOpenGenderField(!openGenderField)}
-          className={`flex items-center cursor-pointer select-none`}
+          className="flex items-center cursor-pointer select-none"
         >
-          <p
-            className={`not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black`}
-          >
+          <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
             По полу
           </p>
           <p
@@ -155,7 +146,7 @@ function CategoryGenderButtonsFilter({
             <button
               type="button"
               onClick={() => {
-                sendClearedData();
+                sendClearedData()
                 setDataAction(true);
               }}
               className={` w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
