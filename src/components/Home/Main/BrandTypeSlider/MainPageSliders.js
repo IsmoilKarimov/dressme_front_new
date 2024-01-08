@@ -1,15 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-
-import {
-  adidas,
-  chanel,
-  hm,
-  lacoste,
-  nike,
-  puma,
-  tommy,
-  zara,
-} from "../../../../assets";
+import React, { useContext, useState } from "react";
 
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
@@ -24,65 +13,6 @@ export default function MainPageSliders() {
 
   const [dressInfo] = useContext(dressMainData);
 
-  const changeColor = [
-    { id: 1, data: 1, action: false, colors: "border-black" },
-    { id: 2, data: 2, action: false, colors: "border-white" },
-    { id: 3, data: 3, action: false, colors: "border-zinc-500" },
-    { id: 4, data: 4, action: false, colors: "border-purple-500" },
-    { id: 5, data: 5, action: false, colors: "border-sky-600" },
-    { id: 6, data: 6, action: false, colors: "border-amber-400 " },
-    { id: 7, data: 7, action: false, colors: "border-green-700 " },
-    { id: 8, data: 8, action: false, colors: "border-amber-600 " },
-    { id: 9, data: 9, action: false, colors: "border-red-700  " },
-    { id: 10, data: 10, action: false, colors: "border-purple-800 " },
-    { id: 11, data: 11, action: false, colors: "border-blue-900  " },
-    { id: 12, data: 12, action: false, colors: "border-yellow-900 " },
-  ];
-  const carosuelData = [
-    {
-      Category: [
-        { id: 1, type: "Student", count: 123, img: "" },
-        { id: 2, type: "Businiess", count: 223, img: "" },
-        { id: 3, type: "Muslim", count: 80, img: "" },
-        { id: 4, type: "Travel", count: 453, img: "" },
-        { id: 5, type: "Sport", count: 320, img: "" },
-        { id: 6, type: "Classic", count: 40, img: "" },
-        { id: 7, type: "Relaxed", count: 180, img: "" },
-        { id: 8, type: "Dramatic", count: 250, img: "" },
-        { id: 9, type: "Creative", count: 190, img: "" },
-        { id: 11, type: "Student", count: 123, img: "" },
-        { id: 22, type: "Businiess", count: 223, img: "" },
-        { id: 33, type: "Muslim", count: 80, img: "" },
-        { id: 44, type: "Travel", count: 453, img: "" },
-        { id: 55, type: "Sport", count: 320, img: "" },
-        { id: 66, type: "Classic", count: 40, img: "" },
-        { id: 77, type: "Relaxed", count: 180, img: "" },
-        { id: 88, type: "Dramatic", count: 250, img: "" },
-        { id: 99, type: "Creative", count: 190, img: "" },
-      ],
-
-      campany: [
-        { id: 1, name: "Adidas", imgFull: adidas },
-        { id: 2, name: "Channel", imgFull: chanel },
-        { id: 3, name: "Adidas", imgFull: adidas },
-        { id: 4, name: "Locaste", imgFull: lacoste },
-        { id: 5, name: "HM", imgFull: hm },
-        { id: 6, name: "Locaste", imgFull: lacoste },
-        { id: 7, name: "Adidas", imgFull: adidas },
-        { id: 8, name: "Nike", imgFull: nike },
-        { id: 9, name: "Puma", imgFull: puma },
-        { id: 10, name: "Puma", imgFull: puma },
-        { id: 11, name: "Tommy", imgFull: tommy },
-        { id: 12, name: "Zara", imgFull: zara },
-      ],
-      service: [
-        { id: 1111, type: "Spring" },
-        { id: 2222, type: "Summer" },
-        { id: 3333, type: "Autumm" },
-        { id: 4444, type: "Winter" },
-      ],
-    },
-  ];
   const NextArrow = (props) => {
     const { onClick } = props;
     return (
@@ -240,18 +170,18 @@ export default function MainPageSliders() {
   const [more, setMore] = useState(false);
 
   const navigate = useNavigate();
-  const goShoppingStore = (id) => {
+  const goDetail = (id) => {
     navigate(`/shopping_store/:${id}`);
   };
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
         <section className="w-full box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
-          {/* Main slider */}
-
+          {/* MAIN SLIDER */}
           <div
-            className={`w-full ss:h-0 ${more ? "xs:h-0" : "xs:h-auto"
-              } overflow-hidden`}
+            className={`w-full ss:h-0 ${
+              more ? "xs:h-0" : "xs:h-auto"
+            } overflow-hidden`}
           >
             {mainData?.sections?.length > 6 ? (
               <Slider
@@ -272,12 +202,6 @@ export default function MainPageSliders() {
                         >
                           <NoImg />
                         </button>
-
-                        {/* <img
-                        src={data?.url_photo}
-                        alt=""
-                        className="w-full h-full "
-                      /> */}
                       </div>
                       <article className="h-12.5 flex items-center justify-start">
                         <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
@@ -306,12 +230,6 @@ export default function MainPageSliders() {
                         >
                           <NoImg />
                         </button>
-
-                        {/* <img
-                        src={data?.url_photo}
-                        alt=""
-                        className="w-full h-full "
-                      /> */}
                       </div>
                       <article className="h-12.5 flex items-center justify-start">
                         <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
@@ -327,11 +245,12 @@ export default function MainPageSliders() {
               </section>
             )}
           </div>
-
+          
           {/* CAROUSEL HIDDEN BLOCK */}
           <div
-            className={`${more ? "xs:grid" : "xs:hidden"
-              } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 md:pt-7`}
+            className={`${
+              more ? "xs:grid" : "xs:hidden"
+            } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 md:pt-7`}
           >
             {mainData?.sections?.map((data, i) => {
               if (more) {
@@ -347,12 +266,6 @@ export default function MainPageSliders() {
                       >
                         <NoImg />
                       </button>
-
-                      {/* <img
-                    src={data?.url_photo}
-                    alt=""
-                    className="w-full h-full "
-                  /> */}
                     </div>
                     <article className="h-12.5 flex items-center justify-start">
                       <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
@@ -376,11 +289,6 @@ export default function MainPageSliders() {
                     >
                       <figure className="w-[100%] xs:w-[196px] h-[140px] xs:h-[224px] border border-searchBgColor flex items-center justify-center p-1 bg-btnBgColor ]	rounded-xl xs:rounded">
                         <NoImg />
-                        {/* <img
-                          src={data?.url_photo}
-                          alt=""
-                          className="w-full h-full "
-                        /> */}
                       </figure>
                       <article className="w-full py-1 flex items-center">
                         <p className="not-italic flex items-center font-AeonikProMedium text-sm xs:text-base leading-6 text-black">
@@ -396,6 +304,7 @@ export default function MainPageSliders() {
               }
             })}
           </div>
+
           {mainData?.sections?.length > 6 ? (
             <div className="w-full flex justify-center items-center  mt-10">
               <button
@@ -436,13 +345,14 @@ export default function MainPageSliders() {
                 className="w-[100%] flex xs:justify-between  px-[1px]"
               >
                 {mainData?.shops?.map((data) => {
+                  console.log(data, "shops-data");
                   return (
                     <div
                       key={data?.id}
-                      onClick={() => goShoppingStore(data?.name)}
+                      onClick={() => goDetail(data?.id)}
                       className="!w-[98.88%] h-[100px] cursor-pointer  rounded-lg bg-btnBgColor flex items-center justify-center select-none border border-solid border-searchBgColor"
                     >
-                      <figure className=" h-full h-full flex items-center justify-center">
+                      <figure className=" h-full flex items-center justify-center">
                         {/* <NoImg /> */}
                         <img
                           className="h-[95%] w-[80%] object-contain"
