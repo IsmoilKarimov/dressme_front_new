@@ -49,7 +49,7 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
   const [selectedLocation, setSelectedLocation] = useState(
     storeData?.shop?.shop_locations[0]
   );
-  console.log(storeData);
+  // console.log(storeData);
 
   checkedData = selectedLocation;
 
