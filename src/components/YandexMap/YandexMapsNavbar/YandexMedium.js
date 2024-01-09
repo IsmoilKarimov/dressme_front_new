@@ -27,6 +27,8 @@ import {
   allBrandDesktop,
 } from "../../../assets";
 import Cookies from "js-cookie";
+import { MdClose } from "react-icons/md";
+
 
 const YandexMedium = ({ getYandexSearchName }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -110,12 +112,22 @@ const YandexMedium = ({ getYandexSearchName }) => {
       })}
     </section>
   );
+  const handleChange = (event) => {
+    setSearchMarketName(event.target.value);
+  }
+
+  const handleClear = () => {
+    setSearchMarketName("");
+    getYandexSearchName({
+      searchMarketName: null
+    })
+  };
   function getSearchClick() {
     getYandexSearchName({
       searchMarketName: searchMarketName
     })
   }
-
+  console.log(searchMarketName, "searchMarketName");
 
   return (
     <div className=" flex justify-between items-center m-auto ">
@@ -241,13 +253,24 @@ const YandexMedium = ({ getYandexSearchName }) => {
             <span className="flex md:hidden">
               <SearchIcons />
             </span>
-            <input
-              type="text"
-              value={searchMarketName}
-              onChange={(e) => setSearchMarketName(e.target.value)}
-              placeholder="Поиск магазинов на карте"
-              className="bg-transparent w-full px-3 h-[44px] text-sm border  md:border-searchBgColor placeholder:font-AeonikProRegular"
-            />
+            <div className="w-full flex items-center relative">
+              <input
+                type="text"
+                placeholder="Поиск магазинов на карте"
+                className="bg-transparent w-full px-3 h-[44px] text-sm border  md:border-searchBgColor placeholder:font-AeonikProRegular"
+                value={searchMarketName}
+                onChange={handleChange}
+              />
+              {searchMarketName &&
+                <button
+                  onClick={handleClear}
+                  className="absolute right-2 "
+                  type="button">
+                  <MdClose size={20} color={"#a1a1a1"} />
+                </button>}
+
+            </div>
+
             <button type="button" onClick={() => getSearchClick()} className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]">
               <SearchIcons />
             </button>
