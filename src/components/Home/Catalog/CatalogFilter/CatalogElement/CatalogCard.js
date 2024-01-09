@@ -125,6 +125,11 @@ export default function CatalogCard() {
   const goDetail = (id) => {
     navigate(`/product/:${id}`);
   };
+
+  let filterData = {
+    section_products: { links: [{ label: 5 }, { label: 5 }] },
+  };
+
   return (
     <main className="flex flex-col box-border mt-2 md:mt-[34px]">
       <section className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 mt-1 md:mt-0">
@@ -232,54 +237,54 @@ export default function CatalogCard() {
           Показать ещё 30 наборов
         </p>
       </section>
+
       <section className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6">
-        <article className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
+        {/* <article className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
           <p className="rotate-[-90deg]">
             <ArrowTopIcons colors={"#007DCA"} />
           </p>{" "}
           <p className="not-italic ml-1   font-AeonikProRegular text-lg leading-4 text-fullBlue">
             Previous
           </p>
-        </article>
+        </article> */}
         <article className="flex items-center">
-          <ul className="flex items-center gap-x-3">
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg bg-fullBlue text-white flex items-center justify-center cursor-pointer ">
-              1
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-              2
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-              3
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-              4
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-              5
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-              6
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-              7
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-              8{" "}
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
+          <ul className="flex items-center">
+            {filterData?.section_products?.links?.map((item) => {
+              return (
+                <li
+                  onClick={() => {
+                    if (item?.url) {
+                      // setPaginationFunc(item?.url);
+                    }
+                  }}
+                  className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${
+                    item?.active
+                      ? "bg-fullBlue text-white"
+                      : "hover:bg-searchBgColor"
+                  } mx-[5px] flex items-center justify-center  ${
+                    item?.url
+                      ? "cursor-pointer"
+                      : "opacity-70 cursor-not-allowed"
+                  }`}
+                >
+                  {item?.label}
+                </li>
+              );
+            })}
+
+            {/* <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
               . . .
-            </li>
+            </li> */}
           </ul>
         </article>
-        <figure className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
+        {/* <figure className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
           <p className="not-italic  font-AeonikProRegular mr-1 text-lg leading-4 text-fullBlue">
             Next
           </p>
           <p className="rotate-[90deg]">
             <ArrowTopIcons colors={"#007DCA"} />
           </p>
-        </figure>
+        </figure> */}
       </section>
     </main>
   );
