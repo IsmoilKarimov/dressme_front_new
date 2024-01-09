@@ -202,6 +202,10 @@ body {
   /* backdrop-filter: blur(5px); */
 }
 
+.ymapsName .ymaps-2-1-79-searchbox-list-button {
+  display: none !important;
+}
+
 /* ----Zoom Controll---- */
 .ymapsName .ymaps-2-1-79-zoom__scale {
   display: none !important;
