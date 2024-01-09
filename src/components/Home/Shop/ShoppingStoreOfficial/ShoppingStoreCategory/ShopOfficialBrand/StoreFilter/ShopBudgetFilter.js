@@ -58,7 +58,7 @@ function ShopBudgetFilter({ state, setState, getMinMaxPrice, filter }) {
       </article>
       <article
         className={`border-1  overflow-hidden  ${
-          state?.budgetShow ? "duration-300 h-0" : "duration-300 h-[110px] mt-5"
+          state?.budgetShow ? "duration-300 h-0" : `${checkChange ? 'h-[110px]' : 'h-[80px]'} duration-300 mt-5`
         } duration-300`}
       >
         <div className="flex flex-col rounded-lg  w-full">

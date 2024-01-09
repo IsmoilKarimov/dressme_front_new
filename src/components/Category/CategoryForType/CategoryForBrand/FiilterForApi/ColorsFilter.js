@@ -59,7 +59,7 @@ function ColorsFilter({
                   filter?.colors?.length > 5
                     ? "h-[120px]"
                     : `${filter?.colors?.length > 10 ? "h-[150px]" : ""}`
-                } duration-300 h-[85px] pt-5`
+                } ${changeClick ? 'h-[80px]' : 'h-[56px]'} duration-300  pt-5`
           }`}
         >
           <div className="flex items-center justify-start mx-1 gap-x-[10px] gap-y-[10px]">
