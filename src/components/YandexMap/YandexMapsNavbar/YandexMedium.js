@@ -28,12 +28,13 @@ import {
 } from "../../../assets";
 import Cookies from "js-cookie";
 
-const YandexMedium = () => {
+const YandexMedium = ({ getYandexSearchName }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const navigate = useNavigate()
   const handleMainMenu = () => {
     setDressInfo({ ...dressInfo, openMainMenu: !dressInfo.openMainMenu });
   };
+  const [searchMarketName, setSearchMarketName] = useState()
 
   const SeasonTypeArray = [
     { id: 5555, type: "", icons: AllSeasonDesktop },
@@ -109,6 +110,11 @@ const YandexMedium = () => {
       })}
     </section>
   );
+  function getSearchClick() {
+    getYandexSearchName({
+      searchMarketName: searchMarketName
+    })
+  }
 
 
   return (
@@ -237,10 +243,12 @@ const YandexMedium = () => {
             </span>
             <input
               type="text"
-              placeholder="Поиск продуктов или брендов"
-              className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColorSeason placeholder:font-AeonikProRegular"
+              value={searchMarketName}
+              onChange={(e) => setSearchMarketName(e.target.value)}
+              placeholder="Поиск магазинов на карте"
+              className="bg-transparent w-full px-3 h-[44px] text-sm border  md:border-searchBgColor placeholder:font-AeonikProRegular"
             />
-            <button className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]">
+            <button type="button" onClick={() => getSearchClick()} className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]">
               <SearchIcons />
             </button>
           </div>

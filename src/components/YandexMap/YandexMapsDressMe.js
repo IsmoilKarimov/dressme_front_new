@@ -50,9 +50,13 @@ function YandexMapsDressMe() {
   // request get
   const [getMapsInfo, setGetMapsInfo] = useState(null);
   const [getAllFilterSearch, setGetAllFilterSearch] = useState({});
+  const [FilterSearchByBrand, setFilterSearchByBrand] = useState({});
 
   function getFilterData(childData) {
     setGetAllFilterSearch(childData)
+  }
+  function getFilterSearchByBrand(childData) {
+    setFilterSearchByBrand(childData)
   }
   // -------------Get Request
 
@@ -74,15 +78,17 @@ function YandexMapsDressMe() {
       .catch((err) => console.log(err, "ERRORLIST"));
   };
   console.log(getAllFilterSearch, "getAllFilterSearch");
+  console.log(FilterSearchByBrand, "FilterSearchByBrand");
   useEffect(() => {
     fetchGetAllData({
       gender: getAllFilterSearch?.genderType,
       shop: getAllFilterSearch?.category_brand,
       category: getAllFilterSearch?.category_wear,
+      keywords: FilterSearchByBrand?.searchMarketName,
       "budget[from]": getAllFilterSearch?.minPrice,
       "budget[to]": getAllFilterSearch?.maxPrice
     })
-  }, [getAllFilterSearch])
+  }, [getAllFilterSearch, FilterSearchByBrand])
 
   function getCurrentDimension() {
     return {
@@ -300,7 +306,7 @@ function YandexMapsDressMe() {
           : "top-[-250px] ease-linear duration-500 "
           }  ease-linear duration-500 w-full`}
         >
-          <YandexMapsIndex getMapsInfo={getMapsInfo} getFilterData={getFilterData} />
+          <YandexMapsIndex getMapsInfo={getMapsInfo} getFilterData={getFilterData} getFilterSearchByBrand={getFilterSearchByBrand} />
         </div>
         <div className={`absolute z-50 right-2 ${dressInfo?.yandexOpenMenu
           ? "top-2  right-2 ease-linear duration-500 "

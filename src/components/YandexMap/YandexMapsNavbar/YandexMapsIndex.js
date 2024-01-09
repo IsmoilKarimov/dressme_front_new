@@ -5,10 +5,13 @@ import YandexMedium from "./YandexMedium";
 import YandexFilter from "./YandexFilter";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 
-function YandexMapsIndex({ getMapsInfo, getFilterData }) {
+function YandexMapsIndex({ getMapsInfo, getFilterData, getFilterSearchByBrand }) {
   const [dressInfo] = useContext(dressMainData);
   function getYandexFilterData(childData) {
     getFilterData(childData)
+  }
+  function getYandexSearchName(childData) {
+    getFilterSearchByBrand(childData)
   }
   useEffect(() => {
   }, [])
@@ -28,7 +31,7 @@ function YandexMapsIndex({ getMapsInfo, getFilterData }) {
             </div>
             {!dressInfo?.yandexFullScreen && (
               <div className="overflow-hidden">
-                <YandexMedium />
+                <YandexMedium getYandexSearchName={getYandexSearchName} />
               </div>
             )}
           </div>
