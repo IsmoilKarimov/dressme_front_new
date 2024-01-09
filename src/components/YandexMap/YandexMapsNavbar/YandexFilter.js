@@ -105,7 +105,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
         <div className="relative z-50 mb-[6px] w-[350px]  marketFilter">
           {" "}
 
-          <ReactSlider
+          <Slider
             className="horizontal-slider "
             thumbClassName="example-thumb1"
             trackClassName="example-track1"
