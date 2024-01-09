@@ -4,7 +4,7 @@ import { ArrowTopIcons } from "../../../../../../../assets/icons";
 import { useHttp } from "../../../../../../../hook/useHttp";
 import { useQuery } from "@tanstack/react-query";
 
-export default function CategoriesFilter({
+function ShopCategoriesFilter({
   state,
   setState,
   handleGetCategoryId,
@@ -30,7 +30,7 @@ export default function CategoriesFilter({
     },
     {
       onSuccess: (res) => {
-        console.log(res, "RES");
+        // console.log(res, "RES");
         setGetCategoryId(res?.filter);
         setState({ ...state, genderList: res?.genders });
         // setFilterData(res);
@@ -152,3 +152,5 @@ export default function CategoriesFilter({
     </div>
   );
 }
+
+export default React.memo(ShopCategoriesFilter)

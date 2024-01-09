@@ -18,8 +18,8 @@ const CategoryForBrand = ({ setFilterData }) => {
   const [discountId, setDiscountId] = useState();
   const [categoryId, setCategoryId] = useState();
   const [filter, setFilter] = useState();
-  const [colorHexCode, setColorHexCode] = useState()
-  const [customerReviews, setCustomerReviews] = useState()
+  const [colorHexCode, setColorHexCode] = useState();
+  const [customerReviews, setCustomerReviews] = useState();
 
   const [state, setState] = useState({
     brandShow: screenSize.width <= 768 ? true : false,
@@ -62,7 +62,7 @@ const CategoryForBrand = ({ setFilterData }) => {
     console.log(childData);
     setColorHexCode(childData?.colorFilterHexCode);
   }
-  
+
   // Rating GetID
   function handleCustomerReviews(childData) {
     setCustomerReviews(childData?.ratingId);
@@ -111,7 +111,7 @@ const CategoryForBrand = ({ setFilterData }) => {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res?.filter, "res-data");
+        // console.log(res?.filter, "res-data");
         setFilter(res?.filter);
         setFilterData(res);
       })
@@ -129,7 +129,14 @@ const CategoryForBrand = ({ setFilterData }) => {
       rating: customerReviews,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [genderId, discountId, categoryId, state?.getBadgePrice, colorHexCode, customerReviews ]);
+  }, [
+    genderId,
+    discountId,
+    categoryId,
+    state?.getBadgePrice,
+    colorHexCode,
+    customerReviews,
+  ]);
 
   return (
     <main
@@ -196,16 +203,10 @@ const CategoryForBrand = ({ setFilterData }) => {
         />
 
         {/* Clothing sizes */}
-        <ClothingSizesFilter
-          state={state}
-          setState={setState}
-        />
+        <ClothingSizesFilter state={state} setState={setState} />
 
         {/* Shoes sizes */}
-        <ShoesSizesFilter
-          state={state}
-          setState={setState}
-        />
+        <ShoesSizesFilter state={state} setState={setState} />
       </section>
       <section className=" mt-8 border-t border-searchBgColor py-5 px-3">
         <button className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70">
