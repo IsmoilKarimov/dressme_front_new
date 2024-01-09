@@ -37,6 +37,8 @@ export const DressMenu = ({ children }) => {
     LinkActiveSeason: "",
     BtnActiveSeason: "",
     AuthenActiveSeason: "",
+    // BottomComponentProducts
+    mainCardProducts: [],
 
     ProductList: [
       {

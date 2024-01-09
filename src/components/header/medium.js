@@ -50,6 +50,7 @@ import {
 import NavCategoryModal from "./navCategoryModal";
 import RegionsList from "../../ContextHook/RegionsList";
 import Cookies from "js-cookie";
+import { useQuery } from "@tanstack/react-query";
 
 const MediumHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -57,7 +58,9 @@ const MediumHeader = () => {
     hamburgerMenu: false,
     toggle: false,
     genderActive: true,
+    getAllCardList: null
   });
+
   const [regionsList, setRegionsList] = useState(false)
   const toggleRegionsShow = useCallback(() => setRegionsList(false), [])
 
@@ -180,7 +183,7 @@ const MediumHeader = () => {
               <article
                 className={`ml-2 md:ml-3 flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
               >
-                {value?.type}
+                {value?.type}1
               </article>
             }
           </article>
