@@ -128,6 +128,7 @@ export default function CategoriesFilter({
                       setDataAction(true);
                       handleCategoryCheck(data?.id);
                     }}
+                    disabled={getCategoryId?.category_ids.length == 1}
                   >
                     <p className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
                       {data?.name}

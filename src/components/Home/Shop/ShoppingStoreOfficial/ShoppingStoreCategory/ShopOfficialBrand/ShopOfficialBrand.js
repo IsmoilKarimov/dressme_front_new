@@ -99,7 +99,7 @@ const ShopOfficialBrand = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res?.filter, "res-data");
+        console.log(res, "shop-data");
         setFilter(res?.filter);
         // setFilterData(res);
       })
