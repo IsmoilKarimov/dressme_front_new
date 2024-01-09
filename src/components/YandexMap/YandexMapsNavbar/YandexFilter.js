@@ -67,7 +67,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   };
   // console.log();
   const contentPrice = (
-    <div className="w-[350px] h-[170px] m-0 ">
+    <div className="w-fit h-[170px] m-0 overflow-hidden">
       <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
         <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">По ценам</span>
         <span
@@ -76,8 +76,8 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           <MenuCloseIcons className="w-[24px] h-[24px]" colors={"#000"} />
         </span>
       </div>
-      <div className="  flex flex-col rounded-lg  w-full pb-5 pt-10">
-        <div className="flex justify-between items-center mb-6 w-full px-2">
+      <div className="w-[350px]  flex flex-col rounded-lg  w-full pb-5 px-4 pt-10 ">
+        <div className=" w-[350px] flex justify-between items-center mb-4 w-full ">
           <div className="flex ">
             <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
               от
@@ -102,11 +102,11 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             </span>
           </div>
         </div>
-        <div className="relative z-50 mb-[6px] w-full  marketFilter">
+        <div className="relative z-50 mb-[6px] w-[350px]  marketFilter">
           {" "}
 
           <ReactSlider
-            className="horizontal-slider slider"
+            className="horizontal-slider "
             thumbClassName="example-thumb1"
             trackClassName="example-track1"
             // defaultValue={[10, 90]}
