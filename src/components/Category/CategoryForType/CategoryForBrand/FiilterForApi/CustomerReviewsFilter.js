@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowTopIcons, StarIcons } from "../../../../../assets/icons";
 import { BsCheckLg } from "react-icons/bs";
 
@@ -10,14 +10,29 @@ function CustomerReviewsFilter({
 }) {
   const [selected, setSelected] = useState(null);
   const [clickChange, setChangeClick] = useState(false);
+  const [totalValue, setTotalValue] = useState(0);
 
-  const [ratings] = useState({
+  const ratings = filter?.ratings
+
+  const [ratingsObj] = useState({
     "1.0": 0, // 5
     "2.0": 0, // 4
     "3.0": 0, // 3
     "4.0": 0, // 2
     "5.0": 0, // 1
   });
+
+   // useEffect to recalculate totalValue whenever myObject changes
+  useEffect(() => {
+    calculateTotalValue();
+  }, [ratings]);
+
+   // Function to calculate the total value
+   async function calculateTotalValue() {
+    const values = await Object.values(ratings);
+    const total = values.reduce((acc, curr) => acc + curr, 0);
+    setTotalValue(total);
+  }
 
   function onGetRatingId(id) {
     handleCustomerReviews({
@@ -32,7 +47,7 @@ function CustomerReviewsFilter({
   }
 
   return (
-    <div className="w-full flex flex-col items-center mb-[38px]">
+    <div className={`${totalValue > 0 ? 'flex' : 'hidden'} w-full flex-col items-center mb-[38px]`}>
       <section className="w-full h-fit mt-[12px]">
         <article
           className="w-full flex justify-between items-center"
@@ -65,11 +80,11 @@ function CustomerReviewsFilter({
           className={`flex flex-col   gap-y-3 overflow-hidden ${
             state?.customerRreviews
               ? "duration-300 h-0"
-              : "duration-300 h-[190px] mt-5"
+              : `duration-300 ${clickChange ? 'h-[190px]' : 'h-[160px]'} mt-5`
           } duration-300`}
         >
           {/* Field */}
-          {Object.keys(ratings).map((rating, index) => {
+          {Object.keys(ratingsObj).map((rating, index) => {
             return (
               <div
                 key={index}
@@ -144,6 +159,7 @@ function CustomerReviewsFilter({
             type="button"
             onClick={() => {
               setSelected(null);
+              setChangeClick(false)
               sendClearedData();
             }}
             className={`${
