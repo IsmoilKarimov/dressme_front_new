@@ -3,16 +3,14 @@ import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import {
   ArrowTopIcons,
   InputCheckedTrueIcons,
-  NoImg,
   StarIcons,
 } from "../../../../../../assets/icons";
-import { CalourCard, HeartImg } from "../../../../../../assets";
+import { CalourCard } from "../../../../../../assets";
 import { useNavigate } from "react-router-dom";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
-import Cookies from "js-cookie";
 import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData";
 
-export default function ShopOfficialCard({ storeData }) {
+export default function ShopOfficialCard({ filteredData }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
 
@@ -42,7 +40,7 @@ export default function ShopOfficialCard({ storeData }) {
   return (
     <div className="flex flex-col box-border">
       <div className="flex justify-start flex-wrap gap-x-2 gap-y-2">
-        {storeData?.products?.data.map((data) => {
+        {filteredData?.products?.data.map((data) => {
           return (
             <div
               key={data.id}

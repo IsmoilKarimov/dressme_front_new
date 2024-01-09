@@ -6,33 +6,15 @@ import { useParams } from "react-router-dom";
 import LocationOfYandex from "../../Products/SignleMainProducts/SingleProduct/Product_Detail/LocationOfYandex/LocationOfYandex";
 import ShowPageComment from "./ShowPageComment/ShowPageComment";
 import { GoBackIcon } from "../../../../assets/icons";
-import { useQuery } from "@tanstack/react-query";
-import { useHttp } from "../../../../hook/useHttp";
 
 const ShoppingStoreOfficial = () => {
   const [openTabComment, setOpenTabComment] = useState(false);
   const [openTabLocation, setOpenTabLocation] = useState(false);
-  const [storeData, setStoreData] = useState({});
-  const { request } = useHttp();
-  const { id } = useParams();
-  const NewId = id.replace(":", "");
+  const [filteredData, setFilteredData] = useState()
+  // const [storeData, setStoreData] = useState({});
 
-  //------ GET STORE DATA -------
-  const { refetch } = useQuery(
-    ["get-store-info"],
-    async () => {
-      return request({ url: `/main/shops/${NewId}`, token: true });
-    },
-    {
-      onSuccess: (res) => {
-        console.log(res, "SUCCESS, RESPONSE");
-        setStoreData(res);
-      },
-      onError: (err) => {
-        console.log(err, "THERE IS AN ERROR IN SHOPS LIST");
-      },
-    }
-  );
+  console.log(filteredData, 'filteredData');
+
 
   const clickButtons = {
     openTabComment,
@@ -50,13 +32,13 @@ const ShoppingStoreOfficial = () => {
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
       <section className="w-full border-b border-searchBgColor">
-        <ShoppingStoreOfficialBreadCrumb name={storeData?.shop?.name} />
+        <ShoppingStoreOfficialBreadCrumb name={filteredData?.shop?.name} />
       </section>
 
       <section className="w-full border-searchBgColor ">
         <ShoppingStoreOfficialTop
           clickButtons={clickButtons}
-          storeData={storeData}
+          filteredData={filteredData}
         />
       </section>
 
@@ -68,14 +50,13 @@ const ShoppingStoreOfficial = () => {
               openTabComment || openTabLocation ? "hidden" : "block"
             } w-full`}
           >
-            <ShoppingStoreCategory storeData={storeData} />
+            <ShoppingStoreCategory filteredData={filteredData} setFilteredData={setFilteredData}  />
           </article>
 
           {/* Comment Section For Shopping Page */}
           <action className={`${openTabComment ? "block" : "hidden"} w-full `}>
             <ShowPageComment
-              refetch={refetch}
-              storeData={storeData}
+              filteredData={filteredData}
               setOpenTabComment={setOpenTabComment}
             />
           </action>

@@ -32,7 +32,7 @@ export default function CategoryForType() {
 
         {/* For Desktop Version */}
         <article className="hidden md:block md:w-[21%] h-full mt-10 ss:px-4 md:px-0 ">
-          <CategoryForBrand setFilterData={setFilterData} />
+          <CategoryForBrand filterData={filterData} setFilterData={setFilterData} />
         </article>
         <article className="w-full md:w-[78%] h-[full] ss:px-4 md:px-0 ">
           <CategoryCards

@@ -15,13 +15,13 @@ import ShopCategoriesFilter from "./StoreFilter/ShopCategoriesFilter";
 import ShopCategoryGenderButtonsFilter from "./StoreFilter/ShopCategoryGenderButtonsFilter";
 import ShopBudgetFilter from "./StoreFilter/ShopBudgetFilter";
 
-const ShopOfficialBrand = () => {
+const ShopOfficialBrand = ({setFilteredData}) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [filter, setFilter] = useState();
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [genderId, setGenderId] = useState();
   const [discountId, setDiscountId] = useState();
   const [categoryId, setCategoryId] = useState();
-  const [filter, setFilter] = useState();
   const [colorHexCode, setColorHexCode] = useState();
   const [customerReviews, setCustomerReviews] = useState();
 
@@ -39,40 +39,43 @@ const ShopOfficialBrand = () => {
     checkBrand: false,
   });
 
-  // // Gender GetID
-  // function handleGetId(childData) {
-  //   setGenderId(childData?.genderFilterId);
-  // }
+  console.log(filter,"FILTER");
 
-  // // Discount GetID
-  // function handleGetDiscountId(childData) {
-  //   setDiscountId(childData?.discountId);
-  // }
+  // Gender GetID
+  function handleGetId(childData) {
+    setGenderId(childData?.genderFilterId);
+  }
 
-  // // Categoty GetID
-  // function handleGetCategoryId(childData) {
-  //   setCategoryId(childData?.categoryId);
-  // }
+  // Discount GetID
+  function handleGetDiscountId(childData) {
+    setDiscountId(childData?.discountId);
+  }
 
-  // // Budjet GetPrize
-  // function getMinMaxPrice(childData) {
-  //   setState({ ...state, getBadgePrice: childData });
-  // }
+  // Categoty GetID
+  function handleGetCategoryId(childData) {
+    setCategoryId(childData?.categoryId);
+  }
 
-  // // Color GetID
-  // function handleGetColorHexCode(childData) {
-  //   console.log(childData);
-  //   setColorHexCode(childData?.colorFilterHexCode);
-  // }
+  // Budjet GetPrize
+  function getMinMaxPrice(childData) {
+    setState({ ...state, getBadgePrice: childData });
+  }
 
-  // // Rating GetID
-  // function handleCustomerReviews(childData) {
-  //   setCustomerReviews(childData?.ratingId);
-  // }
+  // Color GetID
+  function handleGetColorHexCode(childData) {
+    console.log(childData);
+    setColorHexCode(childData?.colorFilterHexCode);
+  }
+
+  // Rating GetID
+  function handleCustomerReviews(childData) {
+    setCustomerReviews(childData?.ratingId);
+  }
 
   const params = useParams();
-  const apiUrl = `https://api.dressme.uz/api/main/shops/${params?.id}`;
-  
+  const id = params?.id.replace(':','')
+  const URL = `https://api.dressme.uz/api/main/shops/${id}`;
+
   const fetchGetAllData = (params) => {
     const urlParams = new URLSearchParams();
     if ("budget[from]") {
@@ -92,14 +95,18 @@ const ShopOfficialBrand = () => {
       if (!i[1]) delete params[i[0]];
     });
 
-    fetch(`${apiUrl}?` + new URLSearchParams(params), {
-      headers: { Authorization: `Token ${Cookies.get("DressmeUserToken")}` },
+    fetch(`${URL}?` + new URLSearchParams(params), {
+      headers: { 
+        accept: 'application/json',
+        "Content-Type": "application/json",
+        Authorization: `Token ${Cookies.get("DressmeUserToken")}` 
+      },
     })
       .then((res) => res.json())
       .then((res) => {
         console.log(res, "res-data");
-        setFilter(res);
-        // setFilterData(res);
+        setFilter(res?.filter)
+        setFilteredData(res)
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
@@ -107,12 +114,12 @@ const ShopOfficialBrand = () => {
   useEffect(() => {
     fetchGetAllData({
       gender: genderId,
-      // discount: discountId,
-      // category: categoryId,
-      // "budget[from]": state?.getBadgePrice?.min,
-      // "budget[to]": state?.getBadgePrice?.max,
-      // "colors[]": colorHexCode,
-      // rating: customerReviews,
+      discount: discountId,
+      category: categoryId,
+      "budget[from]": state?.getBadgePrice?.min,
+      "budget[to]": state?.getBadgePrice?.max,
+      "colors[]": colorHexCode,
+      rating: customerReviews,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
@@ -139,7 +146,6 @@ const ShopOfficialBrand = () => {
       window.removeEventListener("resize", updateDimension);
     };
   }, [screenSize]);
-
 
   const [product] = useState({
     Catolog: [
@@ -220,13 +226,6 @@ const ShopOfficialBrand = () => {
       { id: 3, check: false, value: 2, text: "" },
     ],
   });
-  const Min = "100";
-  const Max = "12 000";
-  const [values] = useState([Min, Max]);
-
-  const HandleCheckStatus = (e) => {};
-
-  const HandleColorCheck = (itemId) => {};
 
   return (
     <main
@@ -236,7 +235,7 @@ const ShopOfficialBrand = () => {
           : " border border-searchBgColor"
       } py-5 rounded-lg overflow-hidden `}
     >
-      <section className="w-full px-3 flex flex-col gap-y-[50px] ">
+      <section className="w-full px-3 flex flex-col">
         {dressInfo?.openShopIdFilter && (
           <action className="flex items-center justify-end mb-4">
             <button
@@ -255,222 +254,45 @@ const ShopOfficialBrand = () => {
 
         {/* Gender Buttons */}
         <ShopCategoryGenderButtonsFilter
-          // handleGetId={handleGetId}
-          // handleGetDiscountId={handleGetDiscountId}
+          handleGetId={handleGetId}
+          handleGetDiscountId={handleGetDiscountId}
           filter={filter}
         />
-
-        {/* Genders */}
-        <section className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px]">
-          <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg">
-            Женщинам
-          </button>
-          <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg">
-            Мужчинам
-          </button>
-          <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg">
-            Детям
-          </button>
-          <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg text-red-600">
-            Скидки
-          </button>
-        </section>
 
         {/* Categories */}
         <ShopCategoriesFilter
           state={state}
           setState={setState}
-          // handleGetCategoryId={handleGetCategoryId}
+          handleGetCategoryId={handleGetCategoryId}
           params={params}
+          filter={filter}
         />
-
-        {/* Category */}
-        <section className="w-full h-fit ">
-          <div
-            className="w-full flex justify-between items-center "
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <div
-              className="flex items-center cursor-pointer select-none"
-              onClick={() => setState({ ...state, catolog: !state.catolog })}
-            >
-              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Категория
-              </p>
-              <span
-                className={`${
-                  state?.catolog ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </span>
-            </div>
-          </div>
-
-          {/* Field */}
-          <div
-            className={`w-full overflow-hidden ${
-              state?.catolog
-                ? "duration-300 h-0"
-                : "duration-300 h-[300px] mt-5 "
-            } duration-300 flex flex-col gap-y-4`}
-          >
-            {product?.Catolog.map((data) => {
-              return (
-                <div
-                  key={data?.id}
-                  className="w-full h-[44px] rounded-lg justify-center bg-bgCategory hover:text-white focus:bg-fullBlue hover:bg-fullBlue focus:text-white flex items-center  cursor-pointer select-none  text-black"
-                  onClick={HandleCheckStatus(data?.id)}
-                >
-                  <p className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
-                    {data?.name}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </section>
 
         {/* Prizes */}
         <ShopBudgetFilter
           state={state}
           setState={setState}
-          // getMinMaxPrice={getMinMaxPrice}
+          getMinMaxPrice={getMinMaxPrice}
           filter={filter}
         />
 
-        {/* Prizes */}
-        <section>
-          <article
-            className="w-full flex justify-between items-center "
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <figure
-              onClick={() =>
-                setState({ ...state, budgetShow: !state.budgetShow })
-              }
-              className="flex items-center cursor-pointer select-none"
-            >
-              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Budget
-              </p>
-              <p
-                className={`${
-                  state?.budgetShow ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </p>
-            </figure>
-          </article>
-          <article
-            className={` border-1 border-green-600 overflow-hidden  ${
-              state?.budgetShow
-                ? "duration-300 h-0"
-                : "duration-300 h-[70px] mt-5"
-            } duration-300`}
-          >
-            <figure className="w-full h-12 bg-bgCategory  mt-4 pb-1 px-[2px]">
-              <div className=" w-full flex justify-center items-center gap-x-1">
-                <div className=" h-fit  not-italic font-AeonikProMedium text-base leading-4 text-center text-fullBlue tracking-[1%]">
-                  {values[0]}
-                </div>{" "}
-                <div className=" h-fit pb-2">-</div>
-                <div className=" h-fit not-italic font-AeonikProMedium text-base leading-4 text-center text-fullBlue tracking-[1%]">
-                  {values[1]}
-                </div>
-              </div>{" "}
-              <div className="relative z-10">
-                {" "}
-                <ReactSlider
-                  className="horizontal-slider"
-                  thumbClassName="example-thumb"
-                  trackClassName="example-track"
-                  defaultValue={[0, 100]}
-                  ariaLabel={["Lower thumb", "Upper thumb"]}
-                  pearling
-                  minDistance={10}
-                />
-              </div>
-            </figure>
-          </article>
-        </section>
 
         {/* Colors */}
         <ShopColorsFilter
           state={state}
           setState={setState}
           filter={filter}
-          // handleGetColorHexCode={handleGetColorHexCode}
+          handleGetColorHexCode={handleGetColorHexCode}
         />
 
-        {/* Colors */}
-        <section className="w-full h-fit">
-          {/* Controls */}
-          <section
-            className="openBrands w-full flex justify-between items-center"
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <div
-              className="flex items-center cursor-pointer select-none"
-              onClick={() =>
-                setState({ ...state, ColorsShow: !state.ColorsShow })
-              }
-            >
-              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Цвет
-              </p>
-              <span
-                className={`${
-                  state?.ColorsShow ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </span>
-            </div>
-            <p className="not-italic font-AeonikProMedium text-sm leading-4 text-fullBlue cursor-pointer">
-              Очистить все
-            </p>
-          </section>
-          {/* Colors */}
-          <section
-            className={`w-full px-[2px] flex justify-between flex-wrap items-center   bg-white hover:backdrop-brightness-125 hover:bg-white/60 transition ease-out gap-x-[10px] gap-y-[10px] border-0  overflow-hidden  ${
-              state?.ColorsShow
-                ? "duration-300 h-0"
-                : "duration-300 h-[80px] mt-5"
-            } duration-300 `}
-          >
-            {product?.changeColor.map((item) => {
-              return (
-                <div
-                  key={item?.id}
-                  onClick={() => HandleColorCheck(item?.id)}
-                  className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 w-8 h-8 ${item?.colors} cursor-pointer  border border-solid border-borderColorCard`}
-                  htmlFor="Color1"
-                >
-                  {item?.action ? (
-                    <span className="w-[14px]">
-                      <InputCheckedTrueIcons colors={"#fff"} />
-                    </span>
-                  ) : null}
-                </div>
-              );
-            })}
-          </section>
-        </section>
+       
 
         {/* Customer reviews */}
         <ShopCustomerReviewsFilter
           state={state}
           setState={setState}
           filter={filter}
-          // handleCustomerReviews={handleCustomerReviews}
+          handleCustomerReviews={handleCustomerReviews}
         />
 
         {/* Размер одежды */}
@@ -521,6 +343,7 @@ const ShopOfficialBrand = () => {
             </div>
           </section>
         </section>
+
       </section>
       <section className=" mt-8 border-t border-searchBgColor py-5 px-3">
         <button className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70">
@@ -530,4 +353,4 @@ const ShopOfficialBrand = () => {
     </main>
   );
 };
-export { ShopOfficialBrand };
+export {ShopOfficialBrand} ;

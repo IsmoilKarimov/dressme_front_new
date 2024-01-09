@@ -59,7 +59,6 @@ const CategoryForBrand = ({ setFilterData }) => {
 
   // Color GetID
   function handleGetColorHexCode(childData) {
-    console.log(childData);
     setColorHexCode(childData?.colorFilterHexCode);
   }
 
@@ -85,7 +84,8 @@ const CategoryForBrand = ({ setFilterData }) => {
   }, [screenSize]);
 
   const params = useParams();
-  const apiUrl = `https://api.dressme.uz/api/main/section/${params?.id}`;
+  const id = params?.id.replace(':','')
+  const apiUrl = `https://api.dressme.uz/api/main/section/${id}`;
 
   const fetchGetAllData = (params) => {
     const urlParams = new URLSearchParams();
@@ -176,6 +176,7 @@ const CategoryForBrand = ({ setFilterData }) => {
           setState={setState}
           handleGetCategoryId={handleGetCategoryId}
           params={params}
+          filter={filter}
         />
 
         {/* Prizes */}
