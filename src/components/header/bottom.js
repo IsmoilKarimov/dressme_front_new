@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { dressMainData } from "../../ContextHook/ContextMenu";
-import { BiChevronDown } from "react-icons/bi";
-import { Popover } from "antd";
+import { BiCheck, BiChevronDown } from "react-icons/bi";
+import { Popover, Select, Space, } from "antd";
 import ReactSlider from "react-slider";
+import Slider from "react-slider";
 
 import style from "./bottom.module.css";
 import {
@@ -21,6 +22,8 @@ import {
 } from "../../assets/icons";
 import { GrClose } from "react-icons/gr";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
+import { useQuery } from "@tanstack/react-query";
+const { Option } = Select;
 
 const BottomHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -36,8 +39,52 @@ const BottomHeader = () => {
     selectPrice: "По бюджету",
     // --------
     showColour: false,
+    getAllCardList: null,
+
+    categorySelectId: null,
+    colorSelectId: [],
+    genderSelectId: null,
+
   });
-  
+  const [filterGroup, setFilterGroup] = useState({
+    category: null,
+    category: null,
+    "budget[from]": null,
+    "budget[to]": null,
+    "colors[]": [],
+    gender: null
+  });
+  const [colorSelectId, setColorSelectId] = useState([]);
+  const [minPrice, setMinPrice] = useState(Number(state?.getAllCardList?.budget?.min_price) || 100000);
+  const [maxPrice, setMaxPrice] = useState(Number(state?.getAllCardList?.budget?.max_price) || 1000000);
+  const [values, setValues] = useState([minPrice, maxPrice]);
+  const [getRange, setGetRange] = useState([]);
+
+  useEffect(() => {
+    setMinPrice(Number(state?.getAllCardList?.budget?.min_price) || 100000)
+    setMaxPrice(Number(state?.getAllCardList?.budget?.max_price) || 1000000)
+  }, [state?.getAllCardList?.budget])
+
+  const url = "https://api.dressme.uz/api/main";
+  // ------------GET METHOD Main data -----------------
+
+  const fetchGetAllData = (params) => {
+    console.log(params, "params");
+    Object.entries(params).forEach((i) => {
+      if (!i[1]) delete params[i[0]];
+    });
+
+    fetch(`${url}?` + new URLSearchParams(params))
+      .then((res) => res.json())
+      .then((res) => {
+        setState({ ...state, getAllCardList: res })
+        console.log(res, "Medium");
+        setDressInfo({ ...dressInfo, mainCardProducts: res })
+      })
+      .catch((err) => console.log(err, "ERRORLIST"));
+  };
+
+
   useEffect(() => {
     if (state?.showColour) {
       document.body.style.overflow = "hidden";
@@ -52,7 +99,7 @@ const BottomHeader = () => {
       width: window.innerWidth,
     };
   }
-  
+
   useEffect(() => {
     const updateDimension = () => {
       if (getCurrentDimension().width < 758 && state?.showColour) {
@@ -76,63 +123,42 @@ const BottomHeader = () => {
 
   const handleWearValue = (value) => {
     setselectWear(value);
-    setState({ ...state, openwear: false });
+    setState({ ...state, openwear: false, });
   };
 
-  const [mainData, setMainData] = useContext(HomeMainDataContext);
+  // const [mainData, setMainData] = useContext(HomeMainDataContext);
+  console.log(state?.getAllCardList, "getAllCardList--bottom");
 
-  const contentWear = (
-    <div className="w-[170px] h-fit m-0 p-0">
-      {mainData?.categories?.map((data) => {
-        return (
-          <p
-            key={data?.id}
-            onClick={() => {
-              handleWearValue(data?.name_ru);
-            }}
-            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.TextHoverSeason}`}
-          >
-            {data?.name_ru}
-          </p>
-        );
-      })}
-    </div>
-  );
+
 
   // ----------------------Price State Management----------------------
-
-  const handleOpenChangePrice = (newOpen) => {
+  const sendPriceList = () => {
+    setGetRange(values)
+  }; const handleOpenChangePrice = (newOpen) => {
     setState({ ...state, openPrice: newOpen });
   };
 
   const contentPrice = (
-    <div className="w-[350px] h-[170px] m-0 ">
+    <div className="w-fit h-[170px] m-0 overflow-hidden">
       <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
-        <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
-          По ценам
-        </span>
+        <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">По ценам</span>
         <span
           onClick={() => setState({ ...state, openPrice: false })}
-          className="w-6 h-6 cursor-pointer"
-        >
+          className="w-6 h-6 cursor-pointer">
           <MenuCloseIcons className="w-[24px] h-[24px]" colors={"#000"} />
         </span>
       </div>
-      <div className="  flex flex-col rounded-lg  w-full pb-5 pt-10">
-        <div className="flex justify-between items-center mb-6 w-full px-2">
+      <div className="w-[350px]  flex flex-col rounded-lg  w-full pb-5 px-4 pt-10 ">
+        <div className=" w-[350px] flex justify-between items-center mb-4 w-full ">
           <div className="flex ">
             <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
               от
             </span>
             <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-              <input
-                className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-                value={state?.minPrice}
-                onChange={(e) =>
-                  setState({ ...state, minPrice: e.target.value })
-                }
-              />{" "}
-              sum
+              <input className='w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+                value={values[0]}
+              // onChange={(e) => setMaxPrice(e.target.value)}
+              />  сум
             </span>
           </div>
           <div className="flex ">
@@ -140,38 +166,39 @@ const BottomHeader = () => {
               до
             </span>
             <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-              <input
-                className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-                value={state?.maxPrice}
-                onChange={(e) =>
-                  setState({ ...state, maxPrice: e.target.value })
-                }
+              <input className='w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+                value={values[1]}
+              // onChange={(e) => setMaxPrice(e.target.value)}
               />
-              sum
+              сум
             </span>
           </div>
         </div>
-        <div className="relative z-50 mb-[6px] w-full  marketFilter">
+        <div className="relative z-50 mb-[6px] w-[350px]  marketFilter">
           {" "}
-          <ReactSlider
-            className="horizontal-slider"
+
+          <Slider
+            className="horizontal-slider "
             thumbClassName="example-thumb1"
             trackClassName="example-track1"
-            defaultValue={[10, 90]}
+            // defaultValue={[10, 90]}
             ariaLabel={["Lower thumb", "Upper thumb"]}
             // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
             // renderThumb={() => <div>1</div>}
+            minDistance={100000}
             pearling
-            minDistance={10}
-          />
+            onChange={setValues}
+            value={values}
+            min={minPrice}
+            max={maxPrice} />
         </div>
         <div className="flex items-center justify-end mt-4">
           <span
-            onClick={() => setState({ ...state, openPrice: false })}
-            className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue"
-          >
-            Готово
-          </span>
+            onClick={() => {
+              sendPriceList()
+              setState({ ...state, openPrice: false })
+            }}
+            className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue">Готово</span>
         </div>
       </div>
     </div>
@@ -183,51 +210,58 @@ const BottomHeader = () => {
     {
       id: 1111,
       childText: [
-        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
-        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
-        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
-        { id: 4, anyIcons: <SpringBoyIcons />, name: "", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <SpringBoyIcons />, name: "", action: false },
       ],
     },
     {
       id: 2222,
       childText: [
-        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
-        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
-        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
-        { id: 4, anyIcons: <SummerBoyIcons />, name: "", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <SummerBoyIcons />, name: "", action: false },
       ],
     },
     {
       id: 3333,
       childText: [
-        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
-        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
-        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
-        { id: 4, anyIcons: <AutummBoyIcons />, name: "", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <AutummBoyIcons />, name: "", action: false },
       ],
     },
     {
       id: 4444,
       childText: [
-        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
-        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
-        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
-        { id: 4, anyIcons: <WinterBoyIcons />, name: "", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
       ],
     },
     {
       id: 5555,
       childText: [
-        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
-        { id: 2, anyIcons: <ManGenIcons />, name: "", action: false },
-        { id: 3, anyIcons: <WomanGenIcons />, name: "", action: false },
-        { id: 4, anyIcons: <WinterBoyIcons />, name: "", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
       ],
     },
   ]);
-
+  const onSearch = (value) => {
+    // console.log("search:", value);
+  };
   const handleFilterByUser = (fathId, childId) => {
+    if (childId === 0) {
+      setState({ ...state, genderSelectId: "" })
+    } else if (childId > 0) {
+      setState({ ...state, genderSelectId: childId })
+    }
     setPersonItems((current) => {
       return current?.map((data) => {
         if (data?.id == fathId) {
@@ -242,7 +276,30 @@ const BottomHeader = () => {
       });
     });
   };
+  const newColorArrayId = (id) => {
+    if (colorSelectId?.length == 0) {
+      setColorSelectId(colorSelectId => [...colorSelectId, id]);
+    }
+    if (colorSelectId?.length > 0 && !colorSelectId?.includes(id)) {
+      setColorSelectId(colorSelectId => [...colorSelectId, id]);
+    }
+    if (colorSelectId?.length > 0 && colorSelectId?.includes(id)) {
+      setColorSelectId(colorSelectId?.filter(e => e !== id))
 
+    }
+
+  }
+  console.log(colorSelectId, "colorSelectId");
+  useEffect(() => {
+    fetchGetAllData({
+      category: state?.categorySelectId,
+      "budget[from]": getRange[0],
+      "budget[to]": getRange[1],
+      "colors[]": colorSelectId?.length && colorSelectId,
+      gender: state?.genderSelectId
+    })
+
+  }, [state?.categorySelectId, colorSelectId, getRange, state?.genderSelectId])
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
       <div
@@ -271,18 +328,17 @@ const BottomHeader = () => {
               </button>
             </div>
             <div className="py-4 gap-x-2 gap-y-4 grid gap-4 grid-cols-6">
-              {mainData?.colors?.map((data) => {
+              {state?.getAllCardList?.colors?.map((data) => {
                 return (
                   <div className="flex flex-col items-center justify-center ">
                     <div
                       key={data?.id}
                       onClick={() => setSelectedId(data?.id)}
                       style={{ backgroundColor: data?.hex }}
-                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${
-                        data?.id === selectedId
-                          ? "border border-setTexOpacity flex items-center justify-center"
-                          : "border"
-                      } `}
+                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${data?.id === selectedId
+                        ? "border border-setTexOpacity flex items-center justify-center"
+                        : "border"
+                        } `}
                     >
                       {selectedId === data?.id ? (
                         <InputCheckedTrueIcons
@@ -314,31 +370,52 @@ const BottomHeader = () => {
       )}
 
       <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto">
-        <Popover
-          open={state?.openwear}
-          onOpenChange={handleOpenChangeWear}
-          className="w-[195px] px-[17px] h-[44px] rounded-xl bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
-          trigger="click"
-          options={["Hide"]}
-          placement="bottom"
-          content={contentWear}
+        <div
+          className="!w-[195px] relative gap-x-1 px-1 h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  "
         >
-          <span>
+          <span className="absolute left-2">
             <ClothesIcons colors={"#000"} />
           </span>
-          <p className="not-italic font-AeonikProMedium text-center text-sm ml-[5px] leading-4 text-black">
-            {selectWear}
-          </p>
-          <span>
-            <BiChevronDown
-              size={20}
-              style={{ color: "#c2c2c2" }}
-              className={`${
-                state?.openwear ? "rotate-[-180deg]" : ""
-              } duration-200`}
-            />
-          </span>
-        </Popover>
+          <Select
+            showSearch
+            className="w-[100%] cursor-pointer !caret-transparent	 h-full !outline-none text-center overflow-hidden  !p-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
+            bordered={false}
+            placeholder={<span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide	leading-5">По категории</span>}
+            optionFilterProp="children"
+            onChange={(e) => setState({ ...state, categorySelectId: e })}
+            onSearch={onSearch}
+            // suffixIcon={<></>}
+            allowClear
+            // onClear={handleClear}
+            size="large"
+            filterOption={(input, option) =>
+              (option?.label ?? "")
+                .toLowerCase()
+                .includes(input.toLowerCase())
+            }
+          // options={getMapsInfo?.categories?.map((item) => {
+          //   return {
+          //     value: item?.id,
+          //     label: item?.name_ru,
+          //   };
+          // })}
+          >
+            {state?.getAllCardList?.categories?.map((item) => {
+              return (
+                <Option
+                  key={item.id}
+                  value={item.id}
+                  label={item.name_ru}
+                >
+                  <Space>
+                    <span className="text-black text-sm font-AeonikProMedium tracking-wide	leading-5">{item.name_ru}</span>
+                  </Space>
+                </Option>
+              );
+            })}
+          </Select>
+        </div>
+
         <Popover
           open={state?.openPrice}
           onOpenChange={handleOpenChangePrice}
@@ -359,9 +436,8 @@ const BottomHeader = () => {
               <BiChevronDown
                 size={20}
                 style={{ color: "#c2c2c2" }}
-                className={`${
-                  state?.openPrice ? "rotate-[-180deg]" : ""
-                } duration-200`}
+                className={`${state?.openPrice ? "rotate-[-180deg]" : ""
+                  } duration-200`}
               />
             </span>
           </div>
@@ -402,11 +478,10 @@ const BottomHeader = () => {
           </article>
           <article className="w-[480px] h-full overflow-hidden flex items-center justify-between">
             <div
-              className={`${
-                state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
-              } px-2 w-full duration-500  h-full flex items-center justify-between  `}
+              className={`${state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
+                } px-2 w-full duration-500  h-full flex items-center justify-between  `}
             >
-              {mainData?.colors?.map((data, i) => {
+              {state?.getAllCardList?.colors?.map((data, i) => {
                 if (i > 11) {
                   return false;
                 } else {
@@ -415,21 +490,23 @@ const BottomHeader = () => {
                       <label
                         key={data?.id}
                         htmlFor={data?.id}
+                        onClick={() => newColorArrayId(data?.hex)}
                         style={{ backgroundColor: data?.hex }}
                         // onClick={() => colorIdPushContext(data?.id)}
-                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
-                          !state?.textToColor && "border"
-                        }  border-borderColorCard	`}
+                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${!state?.textToColor && "border"
+                          }  border-borderColorCard	`}
                       >
-                        {data?.id === getRadio && data?.id === 2 ? (
+                        {colorSelectId.includes(data?.hex) && (
                           <span>
-                            <InputCheckedTrueIcons colors={"#000"} />
+                            <BiCheck size={25} color={"#000"} className="flex items-center justify-center" />
                           </span>
-                        ) : null}
+                        )}
+                        {/* {colorSelectId.includes(data?.id) && colorSelectId?.includes(1) && (
+                          <span>
+                            <BiCheck size={25} color={"#fff"} className="flex items-center justify-center" />
+                          </span>
+                        )} */}
 
-                        {data?.id === getRadio && data?.id !== 2 ? (
-                          <InputCheckedTrueIcons colors={"#fff"} />
-                        ) : null}
                       </label>
                       <input
                         type="radio"
@@ -454,9 +531,8 @@ const BottomHeader = () => {
               </button>
             </div>
             <p
-              className={`${
-                state?.textToColor ? " mr-0" : " mr-[-500px]"
-              } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
+              className={`${state?.textToColor ? " mr-0" : " mr-[-500px]"
+                } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
             >
               Не давай своей гардеробной шкафной жизни стать скучной.
             </p>
@@ -479,11 +555,10 @@ const BottomHeader = () => {
                         <button
                           key={item?.id}
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${
-                            item?.action
-                              ? dressInfo?.BtnActiveSeason
-                              : " bg-btnBgColor text-black"
-                          } px-6 h-full cursor-pointer  font-AeonikProMedium rounded-lg justify-center flex items-center`}
+                          className={`${item?.action
+                            ? dressInfo?.BtnActiveSeason
+                            : " bg-btnBgColor text-black"
+                            } px-6 h-full cursor-pointer  font-AeonikProMedium rounded-lg justify-center flex items-center`}
                         >
                           <span>{item?.anyIcons}</span>
                           {item?.name && (
