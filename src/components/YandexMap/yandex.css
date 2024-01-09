@@ -164,7 +164,7 @@ body {
   outline: none;
   border: none;
   background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(5px);
+  /* backdrop-filter: blur(5px); */
   /* Note: backdrop-filter has minimal browser support */
   font-family: "Aeonik Pro";
   font-style: normal;
