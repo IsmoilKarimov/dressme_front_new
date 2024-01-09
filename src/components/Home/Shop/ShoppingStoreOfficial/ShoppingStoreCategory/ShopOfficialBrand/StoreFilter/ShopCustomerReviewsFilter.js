@@ -19,6 +19,8 @@ function ShopCustomerReviewsFilter({
     "5.0": 0, // 1
   });
 
+  console.log(filter?.ratings);
+
   function onGetRatingId(id) {
     handleCustomerReviews({
       ratingId: id,

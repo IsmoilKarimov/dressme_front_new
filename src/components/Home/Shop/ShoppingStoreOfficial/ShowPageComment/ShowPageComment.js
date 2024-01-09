@@ -6,7 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { ToastContainer, toast } from "react-toastify";
 
-export default function ShowPageComment({
+function ShowPageComment({
   filteredData,
   setOpenTabComment,
 }) {
@@ -273,3 +273,5 @@ export default function ShowPageComment({
     </main>
   );
 }
+
+export default React.memo(ShowPageComment)

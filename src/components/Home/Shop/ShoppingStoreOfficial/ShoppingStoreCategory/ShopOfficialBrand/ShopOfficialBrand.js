@@ -1,11 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import ReactSlider from "react-slider";
-
-import {
-  ArrowTopIcons,
-  InputCheckedTrueIcons,
-  MenuCloseIcons,
-} from "../../../../../../assets/icons";
+import { ArrowTopIcons, MenuCloseIcons } from "../../../../../../assets/icons";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { useParams } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -15,7 +9,7 @@ import ShopCategoriesFilter from "./StoreFilter/ShopCategoriesFilter";
 import ShopCategoryGenderButtonsFilter from "./StoreFilter/ShopCategoryGenderButtonsFilter";
 import ShopBudgetFilter from "./StoreFilter/ShopBudgetFilter";
 
-const ShopOfficialBrand = ({setFilteredData}) => {
+const ShopOfficialBrand = ({ setFilteredData }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [filter, setFilter] = useState();
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
@@ -39,7 +33,7 @@ const ShopOfficialBrand = ({setFilteredData}) => {
     checkBrand: false,
   });
 
-  console.log(filter,"FILTER");
+  // console.log(filter, "FILTER");
 
   // Gender GetID
   function handleGetId(childData) {
@@ -73,7 +67,7 @@ const ShopOfficialBrand = ({setFilteredData}) => {
   }
 
   const params = useParams();
-  const id = params?.id.replace(':','')
+  const id = params?.id.replace(":", "");
   const URL = `https://api.dressme.uz/api/main/shops/${id}`;
 
   const fetchGetAllData = (params) => {
@@ -96,17 +90,17 @@ const ShopOfficialBrand = ({setFilteredData}) => {
     });
 
     fetch(`${URL}?` + new URLSearchParams(params), {
-      headers: { 
-        accept: 'application/json',
+      headers: {
+        accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Token ${Cookies.get("DressmeUserToken")}` 
+        Authorization: `Token ${Cookies.get("DressmeUserToken")}`,
       },
     })
       .then((res) => res.json())
       .then((res) => {
         console.log(res, "res-data");
-        setFilter(res?.filter)
-        setFilteredData(res)
+        setFilter(res?.filter);
+        setFilteredData(res);
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
@@ -276,7 +270,6 @@ const ShopOfficialBrand = ({setFilteredData}) => {
           filter={filter}
         />
 
-
         {/* Colors */}
         <ShopColorsFilter
           state={state}
@@ -284,8 +277,6 @@ const ShopOfficialBrand = ({setFilteredData}) => {
           filter={filter}
           handleGetColorHexCode={handleGetColorHexCode}
         />
-
-       
 
         {/* Customer reviews */}
         <ShopCustomerReviewsFilter
@@ -343,7 +334,6 @@ const ShopOfficialBrand = ({setFilteredData}) => {
             </div>
           </section>
         </section>
-
       </section>
       <section className=" mt-8 border-t border-searchBgColor py-5 px-3">
         <button className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70">
@@ -353,4 +343,4 @@ const ShopOfficialBrand = ({setFilteredData}) => {
     </main>
   );
 };
-export {ShopOfficialBrand} ;
+export default React.memo(ShopOfficialBrand);

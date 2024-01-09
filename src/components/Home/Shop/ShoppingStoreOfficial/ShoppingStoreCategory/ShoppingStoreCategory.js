@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import ShopOfficialCard from "./ShopOfficialCards/ShopOfficialCard";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
-import { ShopOfficialBrand } from "./ShopOfficialBrand/ShopOfficialBrand";
+import ShopOfficialBrand from "./ShopOfficialBrand/ShopOfficialBrand";
 
 const ShoppingStoreCategory = ({ filteredData, setFilteredData}) => {
   const [dressInfo] = useContext(dressMainData);
@@ -37,4 +37,4 @@ const ShoppingStoreCategory = ({ filteredData, setFilteredData}) => {
   );
 };
 
-export default ShoppingStoreCategory;
+export default React.memo(ShoppingStoreCategory);
