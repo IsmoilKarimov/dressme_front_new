@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ShoppingStoreCategory from "./ShoppingStoreCategory/ShoppingStoreCategory";
 import ShoppingStoreOfficialBreadCrumb from "./ShoppingStoreOfficialBreadcrumb/ShoppingStoreOfficialBreadcrumb";
 import ShoppingStoreOfficialTop from "./ShoppingStoreOfficialTop/ShoppingStoreOfficialTop";
-import { useParams } from "react-router-dom";
 import LocationOfYandex from "../../Products/SignleMainProducts/SingleProduct/Product_Detail/LocationOfYandex/LocationOfYandex";
 import ShowPageComment from "./ShowPageComment/ShowPageComment";
 import { GoBackIcon } from "../../../../assets/icons";
@@ -11,10 +10,8 @@ const ShoppingStoreOfficial = () => {
   const [openTabComment, setOpenTabComment] = useState(false);
   const [openTabLocation, setOpenTabLocation] = useState(false);
   const [filteredData, setFilteredData] = useState()
-  // const [storeData, setStoreData] = useState({});
 
   console.log(filteredData, 'filteredData');
-
 
   const clickButtons = {
     openTabComment,
@@ -83,4 +80,4 @@ const ShoppingStoreOfficial = () => {
   );
 };
 
-export default ShoppingStoreOfficial;
+export default React.memo(ShoppingStoreOfficial);

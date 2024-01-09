@@ -10,7 +10,7 @@ import {
   StarIcons,
   WomanGenIcons,
 } from "../../../../../assets/icons";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Modal, Radio } from "antd";
 import FilterDropUp from "../../../../Category/CategoryForType/CategoryMobileDropUp/FilterDropUp";
 
@@ -326,4 +326,4 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons }) => {
     </main>
   );
 };
-export default ShoppingStoreOfficialTop;
+export default React.memo(ShoppingStoreOfficialTop);
