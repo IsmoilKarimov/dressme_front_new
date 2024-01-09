@@ -3,7 +3,7 @@ import ShopOfficialCard from "./ShopOfficialCards/ShopOfficialCard";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { ShopOfficialBrand } from "./ShopOfficialBrand/ShopOfficialBrand";
 
-const ShoppingStoreCategory = ({storeData}) => {
+const ShoppingStoreCategory = ({ filteredData, setFilteredData}) => {
   const [dressInfo] = useContext(dressMainData);
  
   useEffect(() => {
@@ -19,7 +19,7 @@ const ShoppingStoreCategory = ({storeData}) => {
       <section className="w-[100%] h-fit">
         <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
           <action className="hidden md:block md:w-[22%] h-full ss:px-4 md:px-0">
-            <ShopOfficialBrand />
+            <ShopOfficialBrand setFilteredData={setFilteredData}/>
           </action>
           <action
             className={`w-full h-[100vh] overflow-hidden overflow-y-auto  md:hidden fixed top-0 bottom-0 left-0 right-0 ${
@@ -29,7 +29,7 @@ const ShoppingStoreCategory = ({storeData}) => {
             <ShopOfficialBrand />
           </action>
           <action className="md:w-[77%] w-full h-[full] ss:px-4 md:px-0">
-            <ShopOfficialCard storeData={storeData} />
+            <ShopOfficialCard filteredData={filteredData} />
           </action>
         </section>
       </section>

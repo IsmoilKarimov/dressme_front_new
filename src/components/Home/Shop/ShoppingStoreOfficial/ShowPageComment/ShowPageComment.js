@@ -7,8 +7,7 @@ import Cookies from "js-cookie";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function ShowPageComment({
-  refetch,
-  storeData,
+  filteredData,
   setOpenTabComment,
 }) {
   const [addComment, setAddComment] = useState(false);
@@ -29,7 +28,7 @@ export default function ShowPageComment({
   const textRef = useRef();
   const rateRef = useRef();
 
-  console.log(storeData?.shop?.id, 'storedata');
+  console.log(filteredData?.shop?.id, 'storedata');
 
   const commentMutate = useMutation(() => {
     return fetch(`${url}/user-main/ratings/store-rating`, {
@@ -42,7 +41,7 @@ export default function ShowPageComment({
       body: JSON.stringify({
         score: rateRef.current.state.value,
         comment: textRef.current.value,
-        rateable_id: storeData?.shop?.id,
+        rateable_id: filteredData?.shop?.id,
         rateable_type: "shop",
       }),
     }).then((res) => res.json());
@@ -55,7 +54,7 @@ export default function ShowPageComment({
       {
         onSuccess: (res) => {
           // console.log(res, "RES");
-          refetch();
+          // refetch();
           if (!res?.errors) {
             toast.success(res?.message);
           }
@@ -211,7 +210,7 @@ export default function ShowPageComment({
             id="comment"
             className="flex justify-between flex-wrap w-full h-fit overflow-hidden"
           >
-            {storeData?.shop?.ratings?.map((allComments) => {
+            {filteredData?.shop?.ratings?.map((allComments) => {
               // console.log(allComments, "Allcomments");
               return (
                 <article
@@ -253,7 +252,7 @@ export default function ShowPageComment({
                   <article className="bg-[#F4F6FB] md:bg-white px-[15px] py-3 md:px-0 md:py-0 rounded-lg mt-6 md:ml-8">
                     <article className="flex items-center justify-between md:justify-start">
                       <p className="not-italic font-AeonikProMedium text-[13px] md:text-lg leading-5 text-[#2C2C2C]">
-                        {storeData?.shop?.name}
+                        {filteredData?.shop?.name}
                       </p>
                       <p className="not-italic ml-3 font-AeonikProRegular text-[11px] md:text-base leading-4 text-setTexOpacity">
                         {allComments?.updated_at}

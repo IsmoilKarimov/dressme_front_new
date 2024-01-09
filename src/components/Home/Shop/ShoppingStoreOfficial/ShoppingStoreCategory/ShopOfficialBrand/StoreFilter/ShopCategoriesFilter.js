@@ -9,6 +9,7 @@ function ShopCategoriesFilter({
   setState,
   handleGetCategoryId,
   params,
+  filter,
 }) {
   const [getCategoryId, setGetCategoryId] = useState();
   const [dataAction, setDataAction] = useState(false);
@@ -23,25 +24,25 @@ function ShopCategoriesFilter({
   ]);
 
   // ------------GET METHOD CATEGORY-TYPE-----------------
-  useQuery(
-    ["get_category_id"],
-    () => {
-      return request({ url: `/main/section/${params?.id}`, token: true });
-    },
-    {
-      onSuccess: (res) => {
-        // console.log(res, "RES");
-        setGetCategoryId(res?.filter);
-        setState({ ...state, genderList: res?.genders });
-        // setFilterData(res);
-      },
-      onError: (err) => {
-        console.log(err, "err getGenderlist-method");
-      },
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
-    }
-  );
+  // useQuery(
+  //   ["get_shop_category_id"],
+  //   () => {
+  //     return request({ url: `/main/section/${params?.id}`, token: true });
+  //   },
+  //   {
+  //     onSuccess: (res) => {
+  //       // console.log(res, "RES");
+  //       setGetCategoryId(res?.filter);
+  //       setState({ ...state, genderList: res?.genders });
+  //       // setFilterData(res);
+  //     },
+  //     onError: (err) => {
+  //       console.log(err, "err getGenderlist-method");
+  //     },
+  //     keepPreviousData: true,
+  //     refetchOnWindowFocus: false,
+  //   }
+  // );
 
   function onGetId(id) {
     handleGetCategoryId({
@@ -66,12 +67,14 @@ function ShopCategoriesFilter({
   };
 
   return (
-    <div className={`${
-      getCategoryId?.gender_ids.length ? "flex" : "hidden"
-    } w-full flex-col items-center md:mb-[38px]`}>
+    <div
+      className={`${
+        filter?.gender_ids.length ? "flex" : "hidden"
+      } w-full flex-col items-center md:mb-[38px]`}
+    >
       <section
         className={`${
-          getCategoryId?.category_ids ? "block" : "hidden"
+          filter?.category_ids ? "block" : "hidden"
         }  w-full h-fit mt-[12px] `}
       >
         <article
@@ -106,7 +109,7 @@ function ShopCategoriesFilter({
           } duration-300 flex flex-col gap-y-4`}
         >
           {categories?.map((data) => {
-            return getCategoryId?.category_ids?.map((id) => {
+            return filter?.category_ids?.map((id) => {
               if (id === data.id) {
                 return (
                   <button
@@ -116,11 +119,12 @@ function ShopCategoriesFilter({
                         ? `${data.action ? "bg-fullBlue text-white" : ""}`
                         : ""
                     } ${
-                      getCategoryId?.category_ids?.length == 1
+                      filter?.category_ids?.length == 1
                         ? "w-full cursor-not-allowed hover:bg-bgCategory hover:text-black"
                         : "hover:bg-fullBlue hover:text-white"
                     } w-full h-[44px] rounded-lg justify-center bg-bgCategory flex items-center select-none  text-black`}
                     type="button"
+                    disabled={filter?.gender_ids.length == 1}
                     onClick={() => {
                       onGetId(data?.id);
                       setDataAction(true);
@@ -153,4 +157,4 @@ function ShopCategoriesFilter({
   );
 }
 
-export default React.memo(ShopCategoriesFilter)
+export default React.memo(ShopCategoriesFilter);

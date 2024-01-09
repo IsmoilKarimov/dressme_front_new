@@ -14,7 +14,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Modal, Radio } from "antd";
 import FilterDropUp from "../../../../Category/CategoryForType/CategoryMobileDropUp/FilterDropUp";
 
-const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
+const ShoppingStoreOfficialTop = ({ filteredData, clickButtons }) => {
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [filter, setFilter] = useState(false);
   const toggleFilter = useCallback(() => setFilter(false), []);
@@ -33,7 +33,7 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
   let existRegions = [];
   let existRegionsObj = {};
 
-  storeData?.shop?.shop_locations?.map((item) => {
+  filteredData?.shop?.shop_locations?.map((item) => {
     existRegions.push(item?.region_id);
     existRegionsObj[item?.region_id] = item?.region?.name_ru;
   });
@@ -47,15 +47,15 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
   let checkedData = {};
 
   const [selectedLocation, setSelectedLocation] = useState(
-    storeData?.shop?.shop_locations[0]
+    filteredData?.shop?.shop_locations[0]
   );
   // console.log(storeData);
 
   checkedData = selectedLocation;
 
   useEffect(() => {
-    setSelectedLocation(storeData?.shop?.shop_locations[0]);
-  }, [storeData]);
+    setSelectedLocation(filteredData?.shop?.shop_locations[0]);
+  }, [filteredData]);
 
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
@@ -81,7 +81,7 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
             <figure className="w-full h-[240px] md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
               <img
                 className="w-full h-full object-contain"
-                src={storeData?.shop?.url_background_photo || null}
+                src={filteredData?.shop?.url_background_photo || null}
                 alt=""
               />
             </figure>
@@ -90,18 +90,18 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
               <div className="w-full md:w-[40%] flex h-[80px] md:h-fit items-center md:ml-[40px]">
                 <figure className="w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white overflow-hidden">
                   <img
-                    src={storeData?.shop?.url_logo_photo || null}
+                    src={filteredData?.shop?.url_logo_photo || null}
                     className="w-full h-full object-contain"
                     alt=""
                   />
                 </figure>
                 <div className="flex flex-col ml-8">
                   <p className="text-xl font-AeonikProMedium mb-3">
-                    {storeData?.shop?.name}
+                    {filteredData?.shop?.name}
                   </p>
                   <div
                     className={`${
-                      storeData?.shop?.overall_rating ? "flex" : "hidden"
+                      filteredData?.shop?.overall_rating ? "flex" : "hidden"
                     } items-center`}
                   >
                     <div className="flex items-center mr-[6px]">
@@ -109,10 +109,10 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
                     </div>
                     <div className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 md:ml-1 flex items-center text-sm">
                       <p className="font-AeonikProMedium text-black mr-1">
-                        {storeData?.overall_rating}
+                        {filteredData?.overall_rating}
                       </p>
                       <p className="text-setTexOpacity font-AeonikProRegular">
-                        ({storeData?.shop?.rated_users_count} votes){" "}
+                        ({filteredData?.shop?.rated_users_count} votes){" "}
                       </p>
                     </div>
                   </div>
@@ -138,7 +138,7 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
                   }}
                   className="flex flex-col ml-3 w-[70%] md:w-full"
                 >
-                  {storeData?.shop?.shop_locations?.length ? (
+                  {filteredData?.shop?.shop_locations?.length ? (
                     <p className="text-sm font-AeonikProRegular text-borderWinter">
                       {selectedLocation?.address}
                     </p>
@@ -168,14 +168,14 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
                 <div className="flex items-center ml-auto">
                   <button
                     className={`${
-                      storeData?.shop?.gender_id === "2" ? "hidden" : "flex"
+                      filteredData?.shop?.gender_id === "2" ? "hidden" : "flex"
                     }  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}
                   >
                     <ManGenIcons />
                   </button>
                   <button
                     className={`${
-                      storeData?.shop?.gender_id === "1" ? "hidden" : "flex"
+                      filteredData?.shop?.gender_id === "1" ? "hidden" : "flex"
                     } flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}
                   >
                     <WomanGenIcons />
@@ -213,7 +213,7 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
             <div className="flex items-center text-base font-AeonikProMedium text-[#2C2C2C] ">
               <DeliveryIcon />
               <span className="mx-[5px]">Доставка:</span>
-              <span>{storeData?.shop?.delivery?.name_ru}</span>
+              <span>{filteredData?.shop?.delivery?.name_ru}</span>
             </div>
             <div className="w-full md:w-fit flex md:items-center justify-end items-center mt-1">
               <div className="w-fit flex gap-x-[30px] items-center ">
@@ -256,7 +256,7 @@ const ShoppingStoreOfficialTop = ({ storeData, clickButtons }) => {
                               </div>
 
                               <div className="w-full">
-                                {storeData?.shop?.shop_locations.map((data) => {
+                                {filteredData?.shop?.shop_locations.map((data) => {
                                   if (data?.sub_region?.region_id === item) {
                                     return (
                                       <div
