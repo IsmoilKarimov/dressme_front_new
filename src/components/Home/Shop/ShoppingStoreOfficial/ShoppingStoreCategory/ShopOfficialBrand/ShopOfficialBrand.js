@@ -1,24 +1,22 @@
 import React, { useContext, useState, useEffect } from "react";
-import { BsCheckLg } from "react-icons/bs";
 import ReactSlider from "react-slider";
 
 import {
-  StarIcons,
   ArrowTopIcons,
   InputCheckedTrueIcons,
   MenuCloseIcons,
 } from "../../../../../../assets/icons";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
-import CategoryGenderButtonsFilter from "./StoreFilter/CategoryGenderButtonsFilter";
 import { useParams } from "react-router-dom";
 import Cookies from "js-cookie";
-import CategoriesFilter from "./StoreFilter/CategoriesFilter";
-import BudgetFilter from "../../../../../Category/CategoryForType/CategoryForBrand/FiilterForApi/BudgetFilter";
-
-import CustomerReviewsFilter from "./StoreFilter/CustomerReviewsFilter";
-import ColorsFilter from "./StoreFilter/ColorsFilter";
+import ShopCustomerReviewsFilter from "./StoreFilter/ShopCustomerReviewsFilter";
+import ShopColorsFilter from "./StoreFilter/ShopColorsFilter";
+import ShopCategoriesFilter from "./StoreFilter/ShopCategoriesFilter";
+import ShopCategoryGenderButtonsFilter from "./StoreFilter/ShopCategoryGenderButtonsFilter";
+import ShopBudgetFilter from "./StoreFilter/ShopBudgetFilter";
 
 const ShopOfficialBrand = () => {
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [genderId, setGenderId] = useState();
   const [discountId, setDiscountId] = useState();
@@ -41,40 +39,40 @@ const ShopOfficialBrand = () => {
     checkBrand: false,
   });
 
-  // Gender GetID
-  function handleGetId(childData) {
-    setGenderId(childData?.genderFilterId);
-  }
+  // // Gender GetID
+  // function handleGetId(childData) {
+  //   setGenderId(childData?.genderFilterId);
+  // }
 
-  // Discount GetID
-  function handleGetDiscountId(childData) {
-    setDiscountId(childData?.discountId);
-  }
+  // // Discount GetID
+  // function handleGetDiscountId(childData) {
+  //   setDiscountId(childData?.discountId);
+  // }
 
-  // Categoty GetID
-  function handleGetCategoryId(childData) {
-    setCategoryId(childData?.categoryId);
-  }
+  // // Categoty GetID
+  // function handleGetCategoryId(childData) {
+  //   setCategoryId(childData?.categoryId);
+  // }
 
-  // Budjet GetPrize
-  function getMinMaxPrice(childData) {
-    setState({ ...state, getBadgePrice: childData });
-  }
+  // // Budjet GetPrize
+  // function getMinMaxPrice(childData) {
+  //   setState({ ...state, getBadgePrice: childData });
+  // }
 
-  // Color GetID
-  function handleGetColorHexCode(childData) {
-    console.log(childData);
-    setColorHexCode(childData?.colorFilterHexCode);
-  }
+  // // Color GetID
+  // function handleGetColorHexCode(childData) {
+  //   console.log(childData);
+  //   setColorHexCode(childData?.colorFilterHexCode);
+  // }
 
-   // Rating GetID
-   function handleCustomerReviews(childData) {
-    setCustomerReviews(childData?.ratingId);
-  }
+  // // Rating GetID
+  // function handleCustomerReviews(childData) {
+  //   setCustomerReviews(childData?.ratingId);
+  // }
 
   const params = useParams();
-  const apiUrl = `https://api.dressme.uz/api/main/shop/${params?.id}`;
-
+  const apiUrl = `https://api.dressme.uz/api/main/shops/${params?.id}`;
+  
   const fetchGetAllData = (params) => {
     const urlParams = new URLSearchParams();
     if ("budget[from]") {
@@ -99,8 +97,8 @@ const ShopOfficialBrand = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res, "shop-data");
-        setFilter(res?.filter);
+        console.log(res, "res-data");
+        setFilter(res);
         // setFilterData(res);
       })
       .catch((err) => console.log(err, "ERRORLIST"));
@@ -109,12 +107,12 @@ const ShopOfficialBrand = () => {
   useEffect(() => {
     fetchGetAllData({
       gender: genderId,
-      discount: discountId,
-      category: categoryId,
-      "budget[from]": state?.getBadgePrice?.min,
-      "budget[to]": state?.getBadgePrice?.max,
-      "colors[]": colorHexCode,
-      rating: customerReviews,
+      // discount: discountId,
+      // category: categoryId,
+      // "budget[from]": state?.getBadgePrice?.min,
+      // "budget[to]": state?.getBadgePrice?.max,
+      // "colors[]": colorHexCode,
+      // rating: customerReviews,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
@@ -142,7 +140,6 @@ const ShopOfficialBrand = () => {
     };
   }, [screenSize]);
 
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const [product] = useState({
     Catolog: [
@@ -257,9 +254,9 @@ const ShopOfficialBrand = () => {
         )}
 
         {/* Gender Buttons */}
-        <CategoryGenderButtonsFilter
-          handleGetId={handleGetId}
-          handleGetDiscountId={handleGetDiscountId}
+        <ShopCategoryGenderButtonsFilter
+          // handleGetId={handleGetId}
+          // handleGetDiscountId={handleGetDiscountId}
           filter={filter}
         />
 
@@ -280,10 +277,10 @@ const ShopOfficialBrand = () => {
         </section>
 
         {/* Categories */}
-        <CategoriesFilter
+        <ShopCategoriesFilter
           state={state}
           setState={setState}
-          handleGetCategoryId={handleGetCategoryId}
+          // handleGetCategoryId={handleGetCategoryId}
           params={params}
         />
 
@@ -337,10 +334,10 @@ const ShopOfficialBrand = () => {
         </section>
 
         {/* Prizes */}
-        <BudgetFilter
+        <ShopBudgetFilter
           state={state}
           setState={setState}
-          getMinMaxPrice={getMinMaxPrice}
+          // getMinMaxPrice={getMinMaxPrice}
           filter={filter}
         />
 
@@ -404,11 +401,11 @@ const ShopOfficialBrand = () => {
         </section>
 
         {/* Colors */}
-        <ColorsFilter
+        <ShopColorsFilter
           state={state}
           setState={setState}
           filter={filter}
-          handleGetColorHexCode={handleGetColorHexCode}
+          // handleGetColorHexCode={handleGetColorHexCode}
         />
 
         {/* Colors */}
@@ -469,11 +466,11 @@ const ShopOfficialBrand = () => {
         </section>
 
         {/* Customer reviews */}
-        <CustomerReviewsFilter
+        <ShopCustomerReviewsFilter
           state={state}
           setState={setState}
           filter={filter}
-          handleCustomerReviews={handleCustomerReviews}
+          // handleCustomerReviews={handleCustomerReviews}
         />
 
         {/* Размер одежды */}

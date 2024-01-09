@@ -25,7 +25,7 @@ const ShoppingStoreOfficial = () => {
     },
     {
       onSuccess: (res) => {
-        console.log(res?.shop, "SUCCESS, RESPONSE");
+        console.log(res, "SUCCESS, RESPONSE");
         setStoreData(res);
       },
       onError: (err) => {

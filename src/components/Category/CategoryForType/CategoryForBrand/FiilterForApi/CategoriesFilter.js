@@ -30,10 +30,8 @@ export default function CategoriesFilter({
     },
     {
       onSuccess: (res) => {
-        console.log(res, "RES");
         setGetCategoryId(res?.filter);
         setState({ ...state, genderList: res?.genders });
-        // setFilterData(res);
       },
       onError: (err) => {
         console.log(err, "err getGenderlist-method");
