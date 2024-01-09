@@ -127,51 +127,8 @@ export default function CatalogCard() {
   };
   return (
     <main className="flex flex-col box-border mt-2 md:mt-[34px]">
-      <section className="hidden">
-        <CatalogBtnGroup _class="items gap-x-2 ">
-          {wearGroup?.map((data) => {
-            return (
-              <article
-                key={data.id}
-                className={`flex items-center justify-center px-4 py-3 border border-searchBgColor rounded-[20px]   bg-btnBgColor`}
-              >
-                <p className=" cursor-pointer  not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
-                  {data?.name || "0"}
-                </p>
-              </article>
-            );
-          })}
-        </CatalogBtnGroup>{" "}
-      </section>
-      <section className="w-full h-full hidden md:block">
-        <article>
-          <p className="not-italic font-AeonikProMedium text-sm  leading-4 text-black tracking-[1%]">
-            По типу
-          </p>
-        </article>
-        <section className="w-full mt-3 h-[52px] flex flex-col items-center">
-          <Slider
-            {...settings1}
-            className="w-[100%] h-full items-center flex xs:justify-between"
-          >
-            {wearGroup?.map((data) => {
-              return (
-                <article key={data.id} className="!w-[100px ] h-full ">
-                  <article
-                    className={` w-full h-[52px] px-5 m-auto  bg-bgCategory rounded-lg flex justify-center items-center cursor-pointer  border border-searchBgColor`}
-                  >
-                    <p className="not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
-                      {data?.name || "0"}
-                    </p>
-                  </article>
-                </article>
-              );
-            })}
-          </Slider>
-        </section>
-      </section>
-      <section className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 mt-1 md:mt-12">
-        {dressInfo.ProductList.map((data) => {
+      <section className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 mt-1 md:mt-0">
+        {/* {dressInfo.ProductList.map((data) => {
           return (
             <article
               key={data.id}
@@ -268,7 +225,7 @@ export default function CatalogCard() {
               </section>
             </article>
           );
-        })}
+        })} */}
       </section>
       <section className="w-full h-fit md:hidden flex items-center justify-center mt-14">
         <p className="w-[760px] h-[60px] cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-black flex items-center justify-center rounded-lg border border-searchBgColor bg-btnBgColor">
