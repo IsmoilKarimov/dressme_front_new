@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, Fragment, useCallback } from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./header.css";
 import { dressMainData } from "../../ContextHook/ContextMenu";
@@ -29,14 +29,6 @@ import {
   BrandSpring,
   BrandSummer,
   BrandWinter,
-  SpringMale,
-  SummerMale,
-  AutummMale,
-  WinterMale,
-  SpringFemale,
-  SummerFemale,
-  AutummFemale,
-  WinterFemale,
   springSeason,
   summerSeason,
   winterSeason,
@@ -50,7 +42,6 @@ import {
 import NavCategoryModal from "./navCategoryModal";
 import RegionsList from "../../ContextHook/RegionsList";
 import Cookies from "js-cookie";
-import { useQuery } from "@tanstack/react-query";
 import { MdClose } from "react-icons/md";
 
 const MediumHeader = () => {

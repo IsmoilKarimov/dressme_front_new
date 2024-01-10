@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
-import { ArrowTopIcons } from "../../../../assets/icons";
 import { CollectionCardItem } from "../../../Home/Main/WearCollectionCard/CollectionCardItem";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 
@@ -44,6 +43,7 @@ export default function CategoryCards({ filterData, setFilterData }) {
           return (
             <CollectionCardItem
               data={data}
+              key={data?.id}
               // setOpenWearType={setOpenWearType}
               handleLeaveMouse={handleLeaveMouse}
               wishList={wishList}
@@ -58,19 +58,12 @@ export default function CategoryCards({ filterData, setFilterData }) {
         </p>
       </section>
       <section className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6">
-        {/* <article className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
-          <p className="rotate-[-90deg]">
-            <ArrowTopIcons colors={"#007DCA"} />
-          </p>{" "}
-          <p className="not-italic ml-1   font-AeonikProRegular text-lg leading-4 text-fullBlue">
-            Previous
-          </p>
-        </article> */}
         <article className="flex items-center">
           <ul className="flex items-center">
-            {filterData?.section_products?.links?.map((item) => {
+            {filterData?.section_products?.links?.map((item,index) => {
               return (
                 <li
+                  key={index}
                   onClick={() => {
                     if (item?.url) {
                       setPaginationFunc(item?.url);
@@ -90,20 +83,8 @@ export default function CategoryCards({ filterData, setFilterData }) {
                 </li>
               );
             })}
-
-            {/* <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-[44px] h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-              . . .
-            </li> */}
           </ul>
         </article>
-        {/* <figure className="flex items-center cursor-pointer bg-searchBgColor px-5 py-3 rounded-lg">
-          <p className="not-italic  font-AeonikProRegular mr-1 text-lg leading-4 text-fullBlue">
-            Next
-          </p>
-          <p className="rotate-[90deg]">
-            <ArrowTopIcons colors={"#007DCA"} />
-          </p>
-        </figure> */}
       </section>
     </main>
   );

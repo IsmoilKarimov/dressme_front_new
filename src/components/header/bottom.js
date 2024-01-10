@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { dressMainData } from "../../ContextHook/ContextMenu";
-import { BiCheck, BiChevronDown } from "react-icons/bi";
-import { Popover, Select, Space, } from "antd";
-import ReactSlider from "react-slider";
+import { BiCheck } from "react-icons/bi";
+import { Popover, Select, Space } from "antd";
 import Slider from "react-slider";
 
 import style from "./bottom.module.css";
@@ -11,7 +10,6 @@ import {
   ClothesIcons,
   DollorIcons,
   DownArrowAntd,
-  InputCheckedTrueIcons,
   ManGenIcons,
   ManWomanGen,
   MenuCloseIcons,
@@ -22,8 +20,6 @@ import {
   WomanGenIcons,
 } from "../../assets/icons";
 import { GrClose } from "react-icons/gr";
-import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
-import { useQuery } from "@tanstack/react-query";
 const { Option } = Select;
 
 function BottomHeader() {
@@ -45,34 +41,39 @@ function BottomHeader() {
     categorySelectId: null,
     colorSelectId: [],
     genderSelectId: null,
-
   });
 
   const [colorSelectId, setColorSelectId] = useState([]);
-  const [minPrice, setMinPrice] = useState(Number(state?.getAllCardList?.budget?.min_price) || 100000);
-  const [maxPrice, setMaxPrice] = useState(Number(state?.getAllCardList?.budget?.max_price) || 1000000);
+  const [minPrice, setMinPrice] = useState(
+    Number(state?.getAllCardList?.budget?.min_price) || 100000
+  );
+  const [maxPrice, setMaxPrice] = useState(
+    Number(state?.getAllCardList?.budget?.max_price) || 1000000
+  );
   const [values, setValues] = useState([minPrice, maxPrice]);
   const [getRange, setGetRange] = useState([]);
 
   useEffect(() => {
-    setMinPrice(Number(state?.getAllCardList?.budget?.min_price) || 100000)
-    setMaxPrice(Number(state?.getAllCardList?.budget?.max_price) || 1000000)
-  }, [state?.getAllCardList?.budget])
+    setMinPrice(Number(state?.getAllCardList?.budget?.min_price) || 100000);
+    setMaxPrice(Number(state?.getAllCardList?.budget?.max_price) || 1000000);
+  }, [state?.getAllCardList?.budget]);
 
   const url = "https://api.dressme.uz/api/main";
   // ------------GET METHOD Main data -----------------
 
   const fetchGetAllData = () => {
     var params = new URLSearchParams();
-    dressInfo?.mainSearchName && params.append('keywords', dressInfo?.mainSearchName);
-    state?.categorySelectId && params.append('category', state?.categorySelectId);
-    getRange[0] && params.append('budget[from]', getRange[0]);
-    getRange[1] && params.append('budget[to]', getRange[1]);
-    state?.genderSelectId && params.append('gender', state?.genderSelectId);
+    dressInfo?.mainSearchName &&
+      params.append("keywords", dressInfo?.mainSearchName);
+    state?.categorySelectId &&
+      params.append("category", state?.categorySelectId);
+    getRange[0] && params.append("budget[from]", getRange[0]);
+    getRange[1] && params.append("budget[to]", getRange[1]);
+    state?.genderSelectId && params.append("gender", state?.genderSelectId);
     colorSelectId?.length &&
       colorSelectId?.forEach((e, index) => {
-        params.append('colors[]', colorSelectId[index]);
-      })
+        params.append("colors[]", colorSelectId[index]);
+      });
 
     // Object.entries(params).forEach((i) => {
     //   if (!i[1]) delete params[i[0]];
@@ -81,13 +82,12 @@ function BottomHeader() {
     fetch(`${url}?` + params)
       .then((res) => res.json())
       .then((res) => {
-        setState({ ...state, getAllCardList: res })
+        setState({ ...state, getAllCardList: res });
         console.log(res, "Medium");
-        setDressInfo({ ...dressInfo, mainCardProducts: res })
+        setDressInfo({ ...dressInfo, mainCardProducts: res });
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
-
 
   useEffect(() => {
     if (state?.showColour) {
@@ -127,28 +127,30 @@ function BottomHeader() {
 
   const handleWearValue = (value) => {
     setselectWear(value);
-    setState({ ...state, openwear: false, });
+    setState({ ...state, openwear: false });
   };
 
   // const [mainData, setMainData] = useContext(HomeMainDataContext);
   console.log(state?.getAllCardList, "getAllCardList--bottom");
 
-
-
   // ----------------------Price State Management----------------------
   const sendPriceList = () => {
-    setGetRange(values)
-  }; const handleOpenChangePrice = (newOpen) => {
+    setGetRange(values);
+  };
+  const handleOpenChangePrice = (newOpen) => {
     setState({ ...state, openPrice: newOpen });
   };
 
   const contentPrice = (
     <div className="w-fit h-[170px] m-0 overflow-hidden">
       <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
-        <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">По ценам</span>
+        <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
+          По ценам
+        </span>
         <span
           onClick={() => setState({ ...state, openPrice: false })}
-          className="w-6 h-6 cursor-pointer">
+          className="w-6 h-6 cursor-pointer"
+        >
           <MenuCloseIcons className="w-[24px] h-[24px]" colors={"#000"} />
         </span>
       </div>
@@ -159,10 +161,12 @@ function BottomHeader() {
               от
             </span>
             <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-              <input className='w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+              <input
+                className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={values[0]}
-              // onChange={(e) => setMaxPrice(e.target.value)}
-              />  сум
+                // onChange={(e) => setMaxPrice(e.target.value)}
+              />{" "}
+              сум
             </span>
           </div>
           <div className="flex ">
@@ -170,9 +174,10 @@ function BottomHeader() {
               до
             </span>
             <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-              <input className='w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+              <input
+                className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={values[1]}
-              // onChange={(e) => setMaxPrice(e.target.value)}
+                // onChange={(e) => setMaxPrice(e.target.value)}
               />
               сум
             </span>
@@ -180,7 +185,6 @@ function BottomHeader() {
         </div>
         <div className="relative z-50 mb-[6px] w-[350px]  marketFilter">
           {" "}
-
           <Slider
             className="horizontal-slider "
             thumbClassName="example-thumb1"
@@ -194,15 +198,19 @@ function BottomHeader() {
             onChange={setValues}
             value={values}
             min={minPrice}
-            max={maxPrice} />
+            max={maxPrice}
+          />
         </div>
         <div className="flex items-center justify-end mt-4">
           <span
             onClick={() => {
-              sendPriceList()
-              setState({ ...state, openPrice: false })
+              sendPriceList();
+              setState({ ...state, openPrice: false });
             }}
-            className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue">Готово</span>
+            className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue"
+          >
+            Готово
+          </span>
         </div>
       </div>
     </div>
@@ -262,9 +270,9 @@ function BottomHeader() {
   };
   const handleFilterByUser = (fathId, childId) => {
     if (childId === 0) {
-      setState({ ...state, genderSelectId: "" })
+      setState({ ...state, genderSelectId: "" });
     } else if (childId > 0) {
-      setState({ ...state, genderSelectId: childId })
+      setState({ ...state, genderSelectId: childId });
     }
     setPersonItems((current) => {
       return current?.map((data) => {
@@ -282,21 +290,25 @@ function BottomHeader() {
   };
   const newColorArrayId = (id) => {
     if (colorSelectId?.length == 0) {
-      setColorSelectId(colorSelectId => [...colorSelectId, id]);
+      setColorSelectId((colorSelectId) => [...colorSelectId, id]);
     }
     if (colorSelectId?.length > 0 && !colorSelectId?.includes(id)) {
-      setColorSelectId(colorSelectId => [...colorSelectId, id]);
+      setColorSelectId((colorSelectId) => [...colorSelectId, id]);
     }
     if (colorSelectId?.length > 0 && colorSelectId?.includes(id)) {
-      setColorSelectId(colorSelectId?.filter(e => e !== id))
-
+      setColorSelectId(colorSelectId?.filter((e) => e !== id));
     }
-
-  }
+  };
   // console.log(colorSelectId, "colorSelectId");
   useEffect(() => {
-    fetchGetAllData()
-  }, [state?.categorySelectId, colorSelectId, getRange, state?.genderSelectId, dressInfo?.mainSearchName])
+    fetchGetAllData();
+  }, [
+    state?.categorySelectId,
+    colorSelectId,
+    getRange,
+    state?.genderSelectId,
+    dressInfo?.mainSearchName,
+  ]);
   // mt ss:w-full flex flex-col justify-center md:mt-[6px]
   // console.log("Renderer");
   return (
@@ -333,14 +345,15 @@ function BottomHeader() {
                     <div
                       key={data?.id}
                       onClick={() => {
-                        newColorArrayId(data?.hex)
-                        setSelectedId(data?.id)
+                        newColorArrayId(data?.hex);
+                        setSelectedId(data?.id);
                       }}
                       style={{ backgroundColor: data?.hex }}
-                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${data?.id === selectedId
-                        ? "border border-setTexOpacity flex items-center justify-center"
-                        : "border"
-                        } `}
+                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${
+                        data?.id === selectedId
+                          ? "border border-setTexOpacity flex items-center justify-center"
+                          : "border"
+                      } `}
                     >
                       {/* {selectedId === data?.id ? (
                         <InputCheckedTrueIcons
@@ -349,12 +362,20 @@ function BottomHeader() {
                       ) : null} */}
                       {colorSelectId.includes(data?.hex) && data?.id == 1 && (
                         <span>
-                          <BiCheck size={30} color={"#fff"} className="flex items-center justify-center" />
+                          <BiCheck
+                            size={30}
+                            color={"#fff"}
+                            className="flex items-center justify-center"
+                          />
                         </span>
                       )}
                       {colorSelectId.includes(data?.hex) && data?.id !== 1 && (
                         <span>
-                          <BiCheck size={30} color={"#000"} className="flex items-center justify-center" />
+                          <BiCheck
+                            size={30}
+                            color={"#000"}
+                            className="flex items-center justify-center"
+                          />
                         </span>
                       )}
                     </div>
@@ -382,9 +403,7 @@ function BottomHeader() {
       )}
 
       <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto ">
-        <div
-          className="mainCategory !w-[195px] relative gap-x-1 pl-1 h-[44px] border-searchBgColor border  rounded-[12px] bg-btnBgColor  overflow-hidden flex items-center  cursor-pointer select-none group  "
-        >
+        <div className="mainCategory !w-[195px] relative gap-x-1 pl-1 h-[44px] border-searchBgColor border  rounded-[12px] bg-btnBgColor  overflow-hidden flex items-center  cursor-pointer select-none group  ">
           <span className="absolute left-2">
             <ClothesIcons colors={"#000"} />
           </span>
@@ -393,7 +412,10 @@ function BottomHeader() {
             className="w-[100%] cursor-pointer text-center flex items-center !caret-transparent h-full !outline-none text-center overflow-hidden  !p-0 text-black text-sm font-AeonikProMedium tracking-wide	"
             bordered={false}
             placeholder={
-              <span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide">По категории</span>}
+              <span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide">
+                По категории
+              </span>
+            }
             optionFilterProp="children"
             onChange={(e) => setState({ ...state, categorySelectId: e })}
             onSearch={onSearch}
@@ -401,20 +423,16 @@ function BottomHeader() {
             allowClear
             size="large"
             filterOption={(input, option) =>
-              (option?.label ?? "")
-                .toLowerCase()
-                .includes(input.toLowerCase())
+              (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }
           >
             {state?.getAllCardList?.categories?.map((item) => {
               return (
-                <Option
-                  key={item.id}
-                  value={item.id}
-                  label={item.name_ru}
-                >
+                <Option key={item.id} value={item.id} label={item.name_ru}>
                   <Space>
-                    <span className="text-black  text-[13px] font-AeonikProMedium tracking-wide	">{item.name_ru}</span>
+                    <span className="text-black  text-[13px] font-AeonikProMedium tracking-wide	">
+                      {item.name_ru}
+                    </span>
                   </Space>
                 </Option>
               );
@@ -477,8 +495,9 @@ function BottomHeader() {
           </article>
           <article className="w-[480px] h-full overflow-hidden flex items-center justify-between">
             <div
-              className={`${state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
-                } px-2 w-full duration-500  h-full flex items-center justify-between  `}
+              className={`${
+                state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
+              } px-2 w-full duration-500  h-full flex items-center justify-between  `}
             >
               {state?.getAllCardList?.colors?.map((data, i) => {
                 if (i > 11) {
@@ -492,8 +511,9 @@ function BottomHeader() {
                         onClick={() => newColorArrayId(data?.hex)}
                         style={{ backgroundColor: data?.hex }}
                         // onClick={() => colorIdPushContext(data?.id)}
-                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${!state?.textToColor && "border"
-                          }  border-borderColorCard	`}
+                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
+                          !state?.textToColor && "border"
+                        }  border-borderColorCard	`}
                       >
                         {/* {colorSelectId.includes(data?.hex) && (
                           <span>
@@ -502,15 +522,23 @@ function BottomHeader() {
                         )} */}
                         {colorSelectId.includes(data?.hex) && data?.id == 1 && (
                           <span>
-                            <BiCheck size={25} color={"#fff"} className="flex items-center justify-center" />
+                            <BiCheck
+                              size={25}
+                              color={"#fff"}
+                              className="flex items-center justify-center"
+                            />
                           </span>
                         )}
-                        {colorSelectId.includes(data?.hex) && data?.id !== 1 && (
-                          <span>
-                            <BiCheck size={25} color={"#000"} className="flex items-center justify-center" />
-                          </span>
-                        )}
-
+                        {colorSelectId.includes(data?.hex) &&
+                          data?.id !== 1 && (
+                            <span>
+                              <BiCheck
+                                size={25}
+                                color={"#000"}
+                                className="flex items-center justify-center"
+                              />
+                            </span>
+                          )}
                       </label>
                       <input
                         type="radio"
@@ -535,8 +563,9 @@ function BottomHeader() {
               </button>
             </div>
             <p
-              className={`${state?.textToColor ? " mr-0" : " mr-[-500px]"
-                } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
+              className={`${
+                state?.textToColor ? " mr-0" : " mr-[-500px]"
+              } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
             >
               Не давай своей гардеробной шкафной жизни стать скучной.
             </p>
@@ -559,10 +588,11 @@ function BottomHeader() {
                         <button
                           key={item?.id}
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${item?.action
-                            ? dressInfo?.BtnActiveSeason
-                            : " bg-btnBgColor text-black"
-                            } px-6 h-full cursor-pointer  font-AeonikProMedium rounded-lg justify-center flex items-center`}
+                          className={`${
+                            item?.action
+                              ? dressInfo?.BtnActiveSeason
+                              : " bg-btnBgColor text-black"
+                          } px-6 h-full cursor-pointer  font-AeonikProMedium rounded-lg justify-center flex items-center`}
                         >
                           <span>{item?.anyIcons}</span>
                           {item?.name && (
@@ -584,6 +614,6 @@ function BottomHeader() {
       </section>
     </nav>
   );
-};
+}
 
 export default React.memo(BottomHeader);

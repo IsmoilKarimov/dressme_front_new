@@ -8,7 +8,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { NoImg, ShowMoreBackIcon, SircleNext } from "../../../../assets/icons";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 
-export default function MainPageSliders() {
+function MainPageSliders() {
   const [mainData, setMainData] = useContext(HomeMainDataContext);
 
   const [dressInfo] = useContext(dressMainData);
@@ -369,3 +369,4 @@ export default function MainPageSliders() {
     </main>
   );
 }
+export default React.memo(MainPageSliders)

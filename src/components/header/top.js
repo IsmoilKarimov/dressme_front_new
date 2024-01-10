@@ -1,16 +1,13 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { EnglishFlag, RussianFlag, UzbekFlag } from "../../assets";
-import { useQuery } from "@tanstack/react-query";
 import { Popover } from "antd";
 import {
-  ArrowTopIcons,
   CommentIcons,
   HouseStatisticIcons,
   LocationIcons,
   MarketIcons,
-  MenuCloseIcons,
 } from "../../assets/icons";
 import RegionList from "../../ContextHook/RegionsList";
 
@@ -18,20 +15,7 @@ const TopHeader = () => {
   const [dressInfo] = useContext(dressMainData);
   const [selectBtn, setSelectBtn] = useState(true);
   const [regionsShow, setRegionsShow] = useState(false);
-  const toggleRegionsShow = useCallback(() => setRegionsShow(false), [])
-
-  const [state, setState] = useState({
-    regionId: "",
-    subRegionId: "",
-    //--- Regions Get ---
-    getRegionList: "",
-    //--- Get Profile ---
-    getProfileList: "",
-    //--- Get getSellerList ---
-    getSellerList: "",
-    // -----region Modal ---
-    openModalRegions: false,
-  });
+  const toggleRegionsShow = useCallback(() => setRegionsShow(false), []);
 
   // -----Language Change-------------------
   const [selectLang, setselectLang] = useState(1);
@@ -75,7 +59,7 @@ const TopHeader = () => {
   );
 
   // -------City Change -------------
-  const [selectCity] = useState("Tashkent");
+  // const [selectCity] = useState("Tashkent");
   const location = useLocation();
   const [locationWindow, setLocationWindow] = useState("");
 
@@ -93,7 +77,6 @@ const TopHeader = () => {
 
   // -----------------------------------------------------
 
-
   return (
     <nav>
       <div
@@ -102,21 +85,25 @@ const TopHeader = () => {
          ${regionsShow ? "" : "hidden"}`}
       ></div>
       {regionsShow && (
-        <div className={`max-w-[600px]  w-full fixed duration-500 z-[231]  left-1/2 right-1/2 top-[50%] translate-x-[-50%] translate-y-[-50%]  h-fit flex items-center  justify-center mx-auto
-        ${regionsShow
+        <div
+          className={`max-w-[600px]  w-full fixed duration-500 z-[231]  left-1/2 right-1/2 top-[50%] translate-x-[-50%] translate-y-[-50%]  h-fit flex items-center  justify-center mx-auto
+        ${
+          regionsShow
             ? " bottom-0 md:flex flex-col"
             : "bottom-[-1500px] z-[-10]"
-          }
-        `}>
+        }
+        `}
+        >
           <RegionList onClick={toggleRegionsShow} />
         </div>
       )}
 
       <div
-        className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${locationWindow === "/delivery-points"
-          ? "bg-transparent h-[40px] "
-          : "bg-bgColor h-[32px] "
-          }`}
+        className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${
+          locationWindow === "/delivery-points"
+            ? "bg-transparent h-[40px] "
+            : "bg-bgColor h-[32px] "
+        }`}
       >
         <section className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">
           {/* LEFT SIDE */}
@@ -137,7 +124,6 @@ const TopHeader = () => {
                 </div>
               </button>
             </section>
-
 
             <section className="w-fit h-fit py-[4px] rounded bg-white font-AeonikProMedium select-none cursor-pointer">
               {LanguageList.filter((data) => data.id === selectLang).map(
