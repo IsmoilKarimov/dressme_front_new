@@ -183,7 +183,7 @@ const MediumHeader = () => {
               <article
                 className={`ml-2 md:ml-3 flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
               >
-                {value?.type}1
+                {value?.type}
               </article>
             }
           </article>
