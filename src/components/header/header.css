@@ -69,8 +69,30 @@
   border-radius: 2px;
 }
 
+.ant-select-selector {
+  padding-left: 28px !important;
+}
 
-.ant-space.css-dev-only-do-not-override-1me4733 {
+.iconArrow {
+  display: flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.25);
+  font-style: normal;
+  line-height: 1;
+  text-align: center;
+  text-transform: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  inset-inline-start: auto;
+  inset-inline-end: 11px;
+  height: 12px;
+  font-size: 12px;
+  pointer-events: none;
+
+}
+
+/* .ant-space.css-dev-only-do-not-override-1me4733 {
   height: 100%;
   padding: 0 !important;
 }
@@ -87,4 +109,4 @@
 
 .ant-select-single.ant-select-lg .ant-select-selector .ant-select-selection-item {
   line-height: 0 !important;
-}
+} */

@@ -127,7 +127,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
       searchMarketName: searchMarketName
     })
   }
-  console.log(searchMarketName, "searchMarketName");
+  // console.log(searchMarketName, "searchMarketName");
 
   return (
     <div className=" flex justify-between items-center m-auto ">
