@@ -8,7 +8,7 @@ import {
 } from "../../../../../assets/icons";
 import LoadingFor from "../../../../Loading/LoadingFor";
 
-const ShoppingBrands = ({ getData, loading, setLoading }) => {
+const ShoppingBrands = ({ getData, setGetData, loading, setLoading }) => {
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/shopping_store/:${id}`);
@@ -17,6 +17,21 @@ const ShoppingBrands = ({ getData, loading, setLoading }) => {
   if (getData?.shops) {
     setLoading(false);
   }
+
+  // ------------------
+
+  const setPaginationFunc = (url) => {
+    fetch(url, {
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setGetData(res);
+      });
+  };
 
   return (
     <main className="relative">
@@ -118,45 +133,35 @@ const ShoppingBrands = ({ getData, loading, setLoading }) => {
                 </div>
               )}
             </section>
-            {getData?.shops?.data?.length > 10 ? (
-              <section className="w-full h-fit flex items-center justify-center mt-10 md:mt-[75px] gap-x-3 ll:gap-x-6">
-                <action className="flex items-center justify-center cursor-pointer bg-searchBgColor w-10 ll:w-[44px] md:w-fit  md:px-4 h-10 ll:h-[44px] rounded-lg">
-                  <span className="rotate-[-90deg]">
-                    <ArrowTopIcons colors={"#007DCA"} />
-                  </span>{" "}
-                  <p className="hidden md:block not-italic ml-1 font-AeonikProRegular text-lg leading-4 text-fullBlue">
-                    Previous
-                  </p>
-                </action>
-                <action className="flex items-center">
-                  <ul className="flex items-center gap-x-2 ll:gap-x-3">
-                    <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-10 ll:w-[44px] h-10 ll:h-[44px] rounded-lg bg-fullBlue text-white flex items-center justify-center cursor-pointer ">
-                      1
-                    </li>
-                    <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-10 ll:w-[44px] h-10 ll:h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-                      2
-                    </li>
-                    <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-10 ll:w-[44px] h-10 ll:h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-                      3
-                    </li>
-                    <li className="not-italic hidden font-AeonikProRegular text-lg leading-4 text-center w-10 ll:w-[44px] h-10 ll:h-[44px] rounded-lg hover:bg-searchBgColor md:flex items-center justify-center cursor-pointer ">
-                      4
-                    </li>
-                    <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-10 ll:w-[44px] h-10 ll:h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-                      ...
-                    </li>
-                  </ul>
-                </action>
-                <action className="flex items-center justify-center cursor-pointer bg-searchBgColor w-10 ll:w-[44px]  md:w-fit md:px-4 h-10 ll:h-[44px] rounded-lg">
-                  <p className="hidden md:block not-italic  font-AeonikProRegular mr-1 text-lg leading-4 text-fullBlue">
-                    Next
-                  </p>
-                  <span className="rotate-[90deg]">
-                    <ArrowTopIcons colors={"#007DCA"} />
-                  </span>
-                </action>
-              </section>
-            ) : null}
+            <section className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6">
+              <article className="flex items-center">
+                <ul className="flex items-center">
+                  {getData?.shops?.links?.map((item) => {
+                    return (
+                      <li
+                        key={item?.label}
+                        onClick={() => {
+                          if (item?.url) {
+                            setPaginationFunc(item?.url);
+                          }
+                        }}
+                        className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${
+                          item?.active
+                            ? "bg-fullBlue text-white"
+                            : "hover:bg-searchBgColor"
+                        } mx-[5px] flex items-center justify-center  ${
+                          item?.url
+                            ? "cursor-pointer"
+                            : "opacity-70 cursor-not-allowed"
+                        }`}
+                      >
+                        {item?.label}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </article>
+            </section>
           </section>
         </div>
       )}
