@@ -51,6 +51,7 @@ import NavCategoryModal from "./navCategoryModal";
 import RegionsList from "../../ContextHook/RegionsList";
 import Cookies from "js-cookie";
 import { useQuery } from "@tanstack/react-query";
+import { MdClose } from "react-icons/md";
 
 const MediumHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -60,6 +61,7 @@ const MediumHeader = () => {
     genderActive: true,
     getAllCardList: null
   });
+  const [searchMarketName, setSearchMarketName] = useState()
 
   const [regionsList, setRegionsList] = useState(false)
   const toggleRegionsShow = useCallback(() => setRegionsList(false), [])
@@ -219,6 +221,17 @@ const MediumHeader = () => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
 
+  const handleChange = (event) => {
+    setSearchMarketName(event.target.value);
+  }
+
+  const handleClear = () => {
+    setSearchMarketName("");
+    setDressInfo({ ...dressInfo, mainSearchName: null })
+  };
+  function getSearchClick() {
+    setDressInfo({ ...dressInfo, mainSearchName: searchMarketName })
+  }
 
   return (
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border">
@@ -392,12 +405,23 @@ const MediumHeader = () => {
                   <span className="flex md:hidden">
                     <SearchIcons />
                   </span>
-                  <input
-                    type="text"
-                    placeholder="Поиск продуктов или брендов"
-                    className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
-                  />
-                  <button className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]">
+                  <div className="w-full flex items-center relative">
+                    <input
+                      type="text"
+                      placeholder="Поиск продуктов или брендов"
+                      className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
+                      value={searchMarketName}
+                      onChange={handleChange}
+                    />
+                    {searchMarketName &&
+                      <button
+                        onClick={handleClear}
+                        className="absolute right-2 "
+                        type="button">
+                        <MdClose size={20} color={"#a1a1a1"} />
+                      </button>}
+                  </div>
+                  <button type="button" onClick={() => getSearchClick()} className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]">
                     <span>
                       <SearchIcons />
                     </span>

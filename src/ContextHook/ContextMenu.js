@@ -39,6 +39,8 @@ export const DressMenu = ({ children }) => {
     AuthenActiveSeason: "",
     // BottomComponentProducts
     mainCardProducts: [],
+    mainSearchName: null,
+
 
     ProductList: [
       {

@@ -10,6 +10,7 @@ import {
   AutummBoyIcons,
   ClothesIcons,
   DollorIcons,
+  DownArrowAntd,
   InputCheckedTrueIcons,
   ManGenIcons,
   ManWomanGen,
@@ -46,14 +47,7 @@ const BottomHeader = () => {
     genderSelectId: null,
 
   });
-  const [filterGroup, setFilterGroup] = useState({
-    category: null,
-    category: null,
-    "budget[from]": null,
-    "budget[to]": null,
-    "colors[]": [],
-    gender: null
-  });
+
   const [colorSelectId, setColorSelectId] = useState([]);
   const [minPrice, setMinPrice] = useState(Number(state?.getAllCardList?.budget?.min_price) || 100000);
   const [maxPrice, setMaxPrice] = useState(Number(state?.getAllCardList?.budget?.max_price) || 1000000);
@@ -68,13 +62,23 @@ const BottomHeader = () => {
   const url = "https://api.dressme.uz/api/main";
   // ------------GET METHOD Main data -----------------
 
-  const fetchGetAllData = (params) => {
-    console.log(params, "params");
-    Object.entries(params).forEach((i) => {
-      if (!i[1]) delete params[i[0]];
-    });
+  const fetchGetAllData = () => {
+    var params = new URLSearchParams();
+    dressInfo?.mainSearchName && params.append('keywords', dressInfo?.mainSearchName);
+    state?.categorySelectId && params.append('category', state?.categorySelectId);
+    getRange[0] && params.append('budget[from]', getRange[0]);
+    getRange[1] && params.append('budget[to]', getRange[1]);
+    state?.genderSelectId && params.append('gender', state?.genderSelectId);
+    colorSelectId?.length &&
+      colorSelectId?.forEach((e, index) => {
+        params.append('colors[]', colorSelectId[index]);
+      })
 
-    fetch(`${url}?` + new URLSearchParams(params))
+    // Object.entries(params).forEach((i) => {
+    //   if (!i[1]) delete params[i[0]];
+    // });
+
+    fetch(`${url}?` + params)
       .then((res) => res.json())
       .then((res) => {
         setState({ ...state, getAllCardList: res })
@@ -291,15 +295,8 @@ const BottomHeader = () => {
   }
   console.log(colorSelectId, "colorSelectId");
   useEffect(() => {
-    fetchGetAllData({
-      category: state?.categorySelectId,
-      "budget[from]": getRange[0],
-      "budget[to]": getRange[1],
-      "colors[]": colorSelectId?.length && colorSelectId,
-      gender: state?.genderSelectId
-    })
-
-  }, [state?.categorySelectId, colorSelectId, getRange, state?.genderSelectId])
+    fetchGetAllData()
+  }, [state?.categorySelectId, colorSelectId, getRange, state?.genderSelectId, dressInfo?.mainSearchName])
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
       <div
@@ -386,15 +383,15 @@ const BottomHeader = () => {
         <div
           className="!w-[195px] relative gap-x-1 h-[44px] border-searchBgColor border  rounded-[12px] bg-btnBgColor  overflow-hidden flex items-center  cursor-pointer select-none group  "
         >
-          <span className="absolute left-2">
+          <span className="absolute left-1">
             <ClothesIcons colors={"#000"} />
           </span>
           <Select
             showSearch
-            className="w-[100%] cursor-pointer   text-center flex items-center  !caret-transparent	 h-full !outline-none text-center overflow-hidden  !p-0 text-black text-sm font-AeonikProMedium tracking-wide	"
+            className="w-[100%] cursor-pointer text-center flex items-center !caret-transparent h-full !outline-none text-center overflow-hidden  !p-0 text-black text-sm font-AeonikProMedium tracking-wide	"
             bordered={false}
             placeholder={
-              <span className="placeholder   text-black text-sm font-AeonikProMedium tracking-wide	">По категории</span>}
+              <span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide">По категории</span>}
             optionFilterProp="children"
             onChange={(e) => setState({ ...state, categorySelectId: e })}
             onSearch={onSearch}
@@ -433,28 +430,21 @@ const BottomHeader = () => {
         <Popover
           open={state?.openPrice}
           onOpenChange={handleOpenChangePrice}
-          className="w-[190px]  h-[44px]  rounded-xl bg-btnBgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group ml-2"
+          className="w-[190px]  gap-x-2 px-2 h-[44px] rounded-xl bg-btnBgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group ml-2"
           trigger="click"
           options={["Hide"]}
           placement="bottom"
           content={contentPrice}
         >
-          <span className="w-[48px] h-full flex items-center justify-center border-r border-searchBgColor">
+          <span className=" flex items-center ">
             <DollorIcons colors={"#000"} />
           </span>
-          <div className=" w-[142px] h-full flex justify-between items-center px-3">
-            <p className="not-italic  pt-[2px] font-AeonikProMedium text-center text-sm leading-4 text-black ">
-              {state?.selectPrice}
-            </p>
-            <span>
-              <BiChevronDown
-                size={20}
-                style={{ color: "#c2c2c2" }}
-                className={`${state?.openPrice ? "rotate-[-180deg]" : ""
-                  } duration-200`}
-              />
-            </span>
-          </div>
+          <p className="not-italic whitespace-nowrap mt-1 text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
+            По бюджету
+          </p>
+          <span className="font-AeonikProMedium iconArrow">
+            <DownArrowAntd />
+          </span>
         </Popover>
 
         <div className="flex items-center w-[536px] justify-start bg-btnBgColor overflow-hidden rounded-xl border-searchBgColor border h-[44px] ml-2">
@@ -586,7 +576,7 @@ const BottomHeader = () => {
                             </span>
                           )}
                         </button>
-                        {item?.id !== 4 && (
+                        {item?.id !== 3 && (
                           <span className="w-[2px] h-[30px] border-r border-searchBgColor"></span>
                         )}
                       </div>
