@@ -9,7 +9,7 @@ export default function HomeIndex() {
     });
   }, []);
   return (
-    <main className="w-[100%] h-fit">
+    <main className="w-[100%] h-fit mt-[170px] ">
       <MainPageSliders />
       <CollectionCards />
       {/* <TypeSection /> */}

@@ -179,9 +179,8 @@ export default function MainPageSliders() {
         <section className="w-full box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
           {/* MAIN SLIDER */}
           <div
-            className={`w-full ss:h-0 ${
-              more ? "xs:h-0" : "xs:h-auto"
-            } overflow-hidden`}
+            className={`w-full ss:h-0 ${more ? "xs:h-0" : "xs:h-auto"
+              } overflow-hidden`}
           >
             {mainData?.sections?.length > 6 ? (
               <Slider
@@ -245,12 +244,11 @@ export default function MainPageSliders() {
               </section>
             )}
           </div>
-          
+
           {/* CAROUSEL HIDDEN BLOCK */}
           <div
-            className={`${
-              more ? "xs:grid" : "xs:hidden"
-            } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 md:pt-7`}
+            className={`${more ? "xs:grid" : "xs:hidden"
+              } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 md:pt-7`}
           >
             {mainData?.sections?.map((data, i) => {
               if (more) {

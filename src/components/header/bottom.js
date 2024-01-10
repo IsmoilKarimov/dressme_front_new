@@ -297,6 +297,7 @@ const BottomHeader = () => {
   useEffect(() => {
     fetchGetAllData()
   }, [state?.categorySelectId, colorSelectId, getRange, state?.genderSelectId, dressInfo?.mainSearchName])
+  // mt ss:w-full flex flex-col justify-center md:mt-[6px]
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
       <div
@@ -379,7 +380,7 @@ const BottomHeader = () => {
         </div>
       )}
 
-      <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto">
+      <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto ">
         <div
           className="!w-[195px] relative gap-x-1 h-[44px] border-searchBgColor border  rounded-[12px] bg-btnBgColor  overflow-hidden flex items-center  cursor-pointer select-none group  "
         >
