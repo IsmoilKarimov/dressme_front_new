@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import AddCopyCheckedIcon from "../../Home/Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
 
 
-function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
+function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
 
@@ -26,16 +26,32 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
   };
   const [copyAddress, setCopyAddress] = useState(null)
   const [phoneNum, setPhoneNum] = useState(null)
-  const [imgGallery, setImgGallery] = useState()
+  const [imgGallery, setImgGallery] = useState([])
+  const [imgGallery1, setImgGallery1] = useState()
+  const [imgGallery2, setImgGallery2] = useState()
+  const [imgGallery3, setImgGallery3] = useState()
+  const arrImg = []
   useEffect(() => {
     modalInfo?.locations?.filter(e => e?.id === dressInfo?.yandexGetMarketId)?.map(data => {
       setCopyAddress(data?.address)
       setPhoneNum(data?.assistant_phone)
-      setImgGallery(data?.url_image_path_one)
+      setImgGallery1({ img: data?.url_image_path_one })
+      setImgGallery2({ img: data?.url_image_path_two })
+      setImgGallery3({ img: data?.url_image_path_three })
+      setImgGallery([
+        { img: data?.url_image_path_one },
+        { img: data?.url_image_path_two },
+        { img: data?.url_image_path_three },])
     })
 
   }, [modalInfo, dressInfo?.yandexGetMarketId])
-  // console.log(imgGallery, "imgGallery");
+  // imgGallery?.map((data, index) => {
+  //   console.log(data, `filter1---${index}--  arrImg`);
+  // })
+  // console.log(
+  //   imgGallery1,
+  //   imgGallery2,
+  //   imgGallery3, "filter  arrImg");
   const handleCopyAddress = () => {
     navigator.clipboard.writeText(copyAddress)
   }
@@ -85,6 +101,10 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  const sendImgGallery = () => {
+    getImgGallery(imgGallery)
+    onClick()
+  }
   const handleCarouselModal = (UId) => {
     // setOpenCarouselModal(true)
   }
@@ -93,11 +113,12 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
   const handlePhoneNumberClick = (id) => {
     // window.location.href = `tel:${id}`;
     // window.open(`tel:${id}`, '_blank');
-
   };
+  console.log(imgGallery, "imgGallery");
   return (
     <div className="w-full h-full ">
       {modalInfo?.locations?.filter(e => e?.id === dressInfo?.yandexGetMarketId)?.map(data => {
+        // console.log(data, "filter modal");
         return (
           <div className="w-full  h-fit flex flex-col gap-y-2 border border-searchBgColor overflow-hidden bg-white rounded-t-[12px] md:rounded-[12px]	 px-4 pb-4 pt-2">
             {/* title */}
@@ -132,32 +153,34 @@ function YandexLocationMarketOpen({ cordinateMarkets, onClick, modalInfo }) {
             <div className="flex flex-col md:flex-row justify-center md:justify-between md:gap-y-0 gap-y-4">
               {/* Carosuel */}
               <div className="w-full h-[220px] md:w-[48%] md:h-[250px] mx-auto ">
-                <img src={'https://i.pinimg.com/736x/9d/d4/a3/9dd4a3906b318cdfd854dd46a72046ba.jpg'} alt={imgGallery} className="w-full h-full object-cover" />
-                {/* <Slider
+                {/* <img src={'https://i.pinimg.com/736x/9d/d4/a3/9dd4a3906b318cdfd854dd46a72046ba.jpg'} alt={imgGallery} className="w-full h-full object-cover" /> */}
+                <Slider
                   {...settings}
                   className="w-full h-full rounded-lg overflow-hidden flex flex-col justify-center"
                 >
-
                   {
                     imgGallery?.map(data => {
                       return (
-
-                        <div onClick={onClick} key={data?.id} className="cursor-pointer flex items-center justify-center">
-                          <img
-                            className={
-                              "mx-auto w-full  sm:w-auto	 flex items-center object-top object-contain	"
-                            }
-                            // src={data?.img}
-                            src={data?.img}
-                            alt="img"
-                          />
-                        </div>
+                        <>
+                          {data?.img &&
+                            <div onClick={() => sendImgGallery()} key={data?.id} className="cursor-pointer flex items-center justify-center">
+                              <img
+                                className={
+                                  "mx-auto w-full sm:w-auto flex items-center object-contain	"
+                                }
+                                // src={data?.img}
+                                src={data?.img}
+                                alt="img"
+                              />
+                            </div>
+                          }
+                        </>
                       )
                     })
                   }
 
 
-                </Slider> */}
+                </Slider>
               </div>
               {/* Details */}
               <div className="md:w-[48%]  md:h-[250px] text-justify	 flex flex-wrap md:gap-y-0 gap-y-4 content-between   ">
