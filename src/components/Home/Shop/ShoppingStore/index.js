@@ -36,6 +36,7 @@ export default function ShoppingStore() {
           loading={loading}
           setLoading={setLoading}
           getData={getData}
+          setGetData={setGetData}
           handleData={handleData}
         />
       </section>

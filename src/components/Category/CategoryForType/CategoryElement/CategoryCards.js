@@ -105,7 +105,6 @@ export default function CategoryCards({ filterData, setFilterData }) {
           </p>
         </figure> */}
       </section>
-      {filterData?.section_products?.next_page_url ? "" : null}
     </main>
   );
 }
