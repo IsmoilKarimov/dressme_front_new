@@ -12,7 +12,7 @@ import {
   PersonPlusIcons,
   SircleNext,
 } from "../../assets/icons";
-const NavbarBottomIndex = () => {
+function NavbarBottomIndex() {
   const [dressInfo] = useContext(dressMainData);
 
   const location = useLocation();
@@ -137,4 +137,4 @@ const NavbarBottomIndex = () => {
   );
 };
 
-export default NavbarBottomIndex;
+export default React.memo(NavbarBottomIndex);

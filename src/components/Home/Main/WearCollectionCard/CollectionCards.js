@@ -112,7 +112,7 @@ export default function CollectionCards() {
 
         <div className="w-full flex flex-col box-border ">
           <article className="flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
-            {dressInfo?.mainCardProducts?.products?.slice(0, pagination).map((data) => {
+            {dressInfo?.mainCardProducts?.products?.length ? dressInfo?.mainCardProducts?.products?.slice(0, pagination).map((data) => {
               // console.log(data, "data");
               return (
                 <CollectionCardItem
@@ -123,7 +123,12 @@ export default function CollectionCards() {
                   setWishlist={setWishlist}
                 />
               );
-            })}
+            })
+              :
+              <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[300px] ">
+                Ничего не найдено
+              </div>
+            }
           </article>
 
           {dressInfo?.mainCardProducts?.products?.length < 30 ? null : (
