@@ -16,9 +16,7 @@ import Cookies from "js-cookie";
 
 const NavMenu = () => {
   const [dressInfo] = useContext(dressMainData);
-
-
-
+  
   return (
     <nav
       className={`bg-white shadow-navMenuShadov  px-4 w-full rounded-t-xl md:hidden z-[101] h-full overscroll-none overflow-y-hidden`}

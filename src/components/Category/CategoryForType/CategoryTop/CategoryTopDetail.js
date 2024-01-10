@@ -82,19 +82,6 @@ const CategoryTopDetail = () => {
     }
   );
 
-    // ----- Category change -----
-    useEffect(() => {
-      fetch(`${url}/api/main/section/${selectedSection?.id}`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((res) => setData(res))
-        .catch((res) => console.log(res));
-    }, [selectedSection]);
-
   const contentCategories = (
     <section className="w-[230px] h-[350px] overflow-y-auto m-0 p-0 VerticelScroll">
       {data?.sections?.map((data) => {
@@ -166,13 +153,13 @@ const CategoryTopDetail = () => {
             clothingTypes ? "" : "hidden"
           }`}
         ></section>
-        <locations
+        <section
           className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${
             clothingTypes ? "bottom-0" : "bottom-[-800px] z-0"
           }`}
         >
           <ClothingTypesDropUp onClick={toggleClothingTypes} />
-        </locations>
+        </section>
       </div>
 
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">

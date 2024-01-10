@@ -3,14 +3,14 @@ import { ArrowTopIcons } from "../../../../../assets/icons";
 import Slider from "react-slider";
 
 function BudgetFilter({ state, setState, getMinMaxPrice, filter }) {
-  const [minPrice, setMinPrice] = useState(filter?.budget?.min_price || 10000); 
-  const [maxPrice, setMaxPrice] = useState(filter?.budget?.max_price || 1000000); 
+  const [minPrice, setMinPrice] = useState(Number(filter?.budget?.min_price) || 10000); 
+  const [maxPrice, setMaxPrice] = useState(Number(filter?.budget?.max_price )|| 1000000); 
   const [checkChange, setCheckChange] = useState(false);
   const [values, setValues] = useState([minPrice, maxPrice]);
 
   useEffect(() => {
-    setMinPrice((filter?.budget?.min_price || 10000));
-    setMaxPrice((filter?.budget?.max_price || 1000000));
+    setMinPrice((Number(filter?.budget?.min_price) || 10000));
+    setMaxPrice((Number(filter?.budget?.max_price) || 1000000));
   }, [filter]);
 
   function sendPrizeData() {
@@ -96,8 +96,8 @@ function BudgetFilter({ state, setState, getMinMaxPrice, filter }) {
             className="slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] my-5"
             onChange={setValues}
             value={values}
-            min={minPrice !== undefined ? minPrice : 0}
-            max={maxPrice !== undefined ? maxPrice : 100}
+            min={Number(minPrice)}
+            max={Number(maxPrice)}
           />
           <div
             className={`${
