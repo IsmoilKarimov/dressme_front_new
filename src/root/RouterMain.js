@@ -2,17 +2,12 @@ import React, { useEffect, Suspense, useState, Fragment } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import "../index.css";
 import Header from "../components/header/header";
-// -------------------------------------
 import LoadingFor from "../components/Loading/LoadingFor";
 import SkeletonHomeIndex from "../components/Home/Main/Skeleton/SkeletonHomeIndex";
 import SignInSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import SignUpSkeletonIndex from "../components/Authentication/SignUpSkeleton";
-
 import MobileAllComments from "../components/Home/Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/MobileComments";
 import { EditProfilePage } from "../components/Authentication/UserProfile/ProfileEditPage/EditPageProfile";
-
-// import ConnectDashboard from "../components/RegistrationDashboard";
-// import CatalogMain from "../components/Home/Catalog/CatalogFilter";
 
 // -------------------------------------
 const HomeIndex = React.lazy(() => import("../components/Home/Main"));
@@ -22,7 +17,6 @@ const SingleMainProduct = React.lazy(() =>
 const CatalogMain = React.lazy(() =>
   import("../components/Home/Catalog/CatalogFilter")
 );
-// import CatalogPage from "../components/Home/Catalog";
 const YandexMapDressMe = React.lazy(() => import("../components/YandexMap"));
 const ForgetConfirmPassword = React.lazy(() =>
   import("../components/Authentication/SignInDetail/ForgetConfirmPassword")
@@ -37,12 +31,7 @@ const Footer = React.lazy(() => import("../components/footer/footer"));
 const ProfilePage = React.lazy(() =>
   import("../components/Authentication/UserProfile/PorofilePage/ProfilePage")
 );
-// const EditProfilePage = React.lazy(() =>
-//   import("../components/Authentication/UserProfile/ProfileEditPage/EditPageProfile")
-// );
-
 const CatalogPage = React.lazy(() => import("../components/Home/Catalog"));
-
 const ShoppingStoreOfficial = React.lazy(() =>
   import("../components/Home/Shop/ShoppingStoreOfficial")
 );
@@ -53,7 +42,6 @@ const ShoppingStore = React.lazy(() =>
 const CategoryMainType = React.lazy(() =>
   import("../components/Category/CategoryForType")
 );
-// const ConnectDashboard = React.lazy(() => import("../components/ConnectionOfDashboard"));
 const SignUp = React.lazy(() => import("../components/Authentication/SignUp"));
 const SignIn = React.lazy(() => import("../components/Authentication/SignIn"));
 const UserEmailVerification = React.lazy(() =>
@@ -62,7 +50,7 @@ const UserEmailVerification = React.lazy(() =>
   )
 );
 
-// -------------------------------------
+// ------------------ ROUTERS -------------------
 
 const RouterMain = () => {
   const location = useLocation();
@@ -105,7 +93,7 @@ const RouterMain = () => {
           }
         />
         <Route
-          path="/:id"
+          path="/section/:id"
           element={
             <Suspense
               fallback={
@@ -184,21 +172,7 @@ const RouterMain = () => {
           }
         />
 
-        <Route
-          index
-          path="/profile/settings"
-          element={
-            // <Suspense
-            //   fallback={
-            //     <div>
-            //       <SkeletonHomeIndex />
-            //     </div>
-            //   }
-            // >
-            <ProfilePage />
-            // </Suspense>
-          }
-        />
+        <Route index path="/profile/settings" element={<ProfilePage />} />
 
         <Route index path="/profile/edit" element={<EditProfilePage />} />
 

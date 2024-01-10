@@ -5,8 +5,7 @@ import {
   SearchIcons,
   UnderSection,
 } from "../../../../assets/icons";
-import { useCallback, useContext, useEffect, useState } from "react";
-// import { dressMainData } from "../../../../ContextHook/ContextMenu";
+import { useCallback, useEffect, useState } from "react";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 import FilterDropUp from "../CategoryMobileDropUp/FilterDropUp";
@@ -14,9 +13,9 @@ import ClothingTypesDropUp from "../CategoryMobileDropUp/ClothingTypesDropUp";
 import { useQuery } from "@tanstack/react-query";
 
 const CategoryTopDetail = () => {
-  // const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [clothingTypes, setClothingTypes] = useState(false);
   const [filter, setFilter] = useState(false);
+  const [data, setData] = useState({});
 
   const toggleFilter = useCallback(() => setFilter(false), []);
   const toggleClothingTypes = useCallback(() => setClothingTypes(false), []);
@@ -30,14 +29,8 @@ const CategoryTopDetail = () => {
     }
   }, [filter, clothingTypes]);
 
-  // const handleFilter = () => {
-  //   setDressInfo({
-  //     ...dressInfo,
-  //     openCategoryFilter: !dressInfo.openCategoryFilter,
-  //   });
-  // };
-
-  const params = useParams();
+  const { id } = useParams();
+  const newId = id?.replace(":", "");
 
   const [state, setState] = useState({
     opensports: false,
@@ -63,19 +56,16 @@ const CategoryTopDetail = () => {
 
   // --------------------------------------
 
-  const [data, setData] = useState({});
-
   const url = "https://api.dressme.uz";
 
   // ------------GET METHOD Main data -----------------
   useQuery(
     ["get_section_show_data"],
     () => {
-      return fetch(`${url}/api/main/section/${params?.id}`, {
+      return fetch(`${url}/api/main/section/${newId}`, {
         method: "GET",
         headers: {
           Accept: "application/json",
-          //   "Content-type": "application/json; charset=UTF-8",
         },
       }).then((res) => res.json());
     },
@@ -91,6 +81,19 @@ const CategoryTopDetail = () => {
       refetchOnWindowFocus: true,
     }
   );
+
+    // ----- Category change -----
+    useEffect(() => {
+      fetch(`${url}/api/main/section/${selectedSection?.id}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => setData(res))
+        .catch((res) => console.log(res));
+    }, [selectedSection]);
 
   const contentCategories = (
     <section className="w-[230px] h-[350px] overflow-y-auto m-0 p-0 VerticelScroll">
@@ -111,21 +114,6 @@ const CategoryTopDetail = () => {
       })}
     </section>
   );
-
-  // ----- Category change -----
-
-  useEffect(() => {
-    fetch(`${url}/api/main/section/${selectedSection?.id}`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        //   "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => setData(res))
-      .catch((res) => console.log(res));
-  }, [selectedSection]);
 
   return (
     <main className="flex flex-col justify-center border-t border-searchBgColor items-center">
@@ -148,9 +136,6 @@ const CategoryTopDetail = () => {
                 <NavLink className="flex 	whitespace-nowrap  items-center cursor-pointer mt-[6px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                   Категории
                 </NavLink>
-                {/* <span>
-                  <ItailIcons colors={"#A1A1A1"} />
-                </span> */}
               </li>
             </ul>
           </nav>
@@ -217,7 +202,7 @@ const CategoryTopDetail = () => {
               <div className="w-full md:w-fit flex items-center justify-between md:mr-5  mt-6 md:mt-0">
                 <div className="flex items-center">
                   <NavLink className="hidden md:flex items-center text-[15px] font-AeonikProMedium mr-[22px]">
-                    По категории
+                    По разделу
                   </NavLink>
                   <div className="md:flex items-center hidden">
                     <Popover
@@ -263,7 +248,7 @@ const CategoryTopDetail = () => {
             >
               <UnderSection />
               <p className="ml-2 not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%] cursor-pointer">
-                Под раздел
+                Под разделу
               </p>
             </button>
           </article>
