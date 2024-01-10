@@ -21,11 +21,11 @@ const NavbarBottomIndex = () => {
   useEffect(() => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
-
+  // ss:w-full flex flex-col justify-center md:mt-[6px]
   return (
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border ">
       <div className="max-w-[1280px] w-[100%] flex justify-center  items-center m-auto">
-        <div className="ss:w-full flex flex-col justify-center md:mt-[6px]">
+        <div className="ss:w-full flex flex-col justify-center ">
           <div className=" w-full  flex flex-col justify-center ss:px-4 md:px-0">
             {locationWindow === "/sign_in" || locationWindow === "/sign_up" ? (
               <div className="max-w-[440px] w-[100%] md:mx-auto my-3  flex gap-x-2 items-center justify-between ss:border md:border-0 ss:bg-btnBgColor md:bg-transparent border-searchBgColor rounded-lg">
@@ -62,8 +62,8 @@ const NavbarBottomIndex = () => {
               </div>
             ) : null}
             {locationWindow === "/forget_password" ||
-            locationWindow === "/enter_password_validate" ||
-            locationWindow === "/set_new_password" ? (
+              locationWindow === "/enter_password_validate" ||
+              locationWindow === "/set_new_password" ? (
               <div>
                 {/* Mobile-Device */}
                 <div className="w-full md:hidden md:mx-auto  my-3 md:w-fit ss:flex gap-x-2 items-center justify-between ss:border md:border-0 ss:bg-btnBgColor md:bg-transparent border-searchBgColor rounded-lg">

@@ -21,11 +21,10 @@ const Header = () => {
   // ----------------NavBar----------------
   const handleScroll = () => {
     setscrollPost(document.body.getBoundingClientRect().top);
-    if (parseInt(Math.abs(scrollPost)) > 300) {
+    if (parseInt(Math.abs(scrollPost)) > 500) {
       setShow(document.body.getBoundingClientRect().top > scrollPost);
     }
   };
-
   // ----------------NavMenu----------------
   const handleScrollNavMenu = () => {
     setScrollPostNavMenu(document.body.getBoundingClientRect().top);
@@ -34,6 +33,7 @@ const Header = () => {
     );
   };
 
+  console.log(scrollPost, "scrollPost");
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("scroll", handleScrollNavMenu);
@@ -55,23 +55,25 @@ const Header = () => {
         {locationWindow !== "/delivery-points" ? (
           <div className="w-full">
             <article className={`block md:hidden relative z-[100]
-              ${ show
+              ${show
                 ? "visible duration-500 z-[25]"
                 : "visible duration-500 z-[25] translate-y-[-100%]"
               }`}
             >
               <MediumHeader />
             </article>
-            <article className={`fixed top-0  w-full bg-white block
-              ${ show
+            <article className={`fixed top-0  w-full bg-white block 
+              ${show
                 ? "visible duration-500 z-[25]"
                 : "visible duration-500 z-[25] translate-y-[-100%]"
               }`
             }
-          >
+            >
               <TopHeader />
               <MediumHeader />
+              {scrollPost > -530 && <div className={`${scrollPost > -530 ? "" : "h-0"} visible duration-500`}> <NavbarBottomIndex /></div>}
             </article>
+
           </div>
         ) : (
           <div className={`fixed top-0 z-[150] w-full block md:hidden bg-transparent`}>
@@ -83,23 +85,20 @@ const Header = () => {
           </div>
         )}
 
-        <div className={`${
-            locationWindow !== "/delivery-points"
-              ? "md:mt-[99px]"
-              : "mt-[0] h-0 overflow-hidden"
+        <div className={`${locationWindow !== "/delivery-points"
+          ? "md:mt-[99px]"
+          : "mt-[0] h-0 overflow-hidden"
           } `}
         >
-          <article className={`${
-              locationWindow !== "/delivery-points" ? "block" : "hidden mt-[0]"
+          {/* <article className={`${locationWindow !== "/delivery-points" ? "block" : "hidden mt-[0]"
             } `}
           >
             <NavbarBottomIndex />
-          </article>
+          </article> */}
           {!dressInfo?.yandexFullScreen && (
-            <article className={`fixed bottom-0 w-full bg-white ${
-                show
-                  ? "visible duration-500 z-[101]"
-                  : "visible duration-500 z-[101] translate-y-[100%]"
+            <article className={`fixed bottom-0 w-full bg-white ${show
+              ? "visible duration-500 z-[101]"
+              : "visible duration-500 z-[101] translate-y-[100%]"
               } block md:hidden`}
             >
               <NavMenu />
