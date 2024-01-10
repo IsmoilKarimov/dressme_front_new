@@ -83,7 +83,7 @@ const ShopOfficialBrand = ({ setFilteredData }) => {
     }
 
     // Replace the current URL with the updated query parameters
-    window.history.replaceState({}, "", `?${urlParams.toString()}`);
+    // window.history.replaceState({}, "", `?${urlParams.toString()}`);
 
     Object.entries(params).forEach((i) => {
       if (!i[1]) delete params[i[0]];
