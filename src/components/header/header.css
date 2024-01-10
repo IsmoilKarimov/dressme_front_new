@@ -92,21 +92,23 @@
 
 }
 
-/* .ant-space.css-dev-only-do-not-override-1me4733 {
+.mainCategory .ant-space.css-dev-only-do-not-override-1me4733 {
   height: 100%;
   padding: 0 !important;
 }
 
-.ant-select-selection-item {
-  padding: 0 !important;
-
-}
-
-.ant-select-selector {
-  padding: 0 !important;
-
-}
-
-.ant-select-single.ant-select-lg .ant-select-selector .ant-select-selection-item {
+.mainCategory .ant-select-selection-item {
+  /* padding: 0 !important; */
   line-height: 0 !important;
-} */
+
+}
+
+.mainCategory .ant-select-selector {
+  /* padding: 0 !important; */
+  line-height: 0 !important;
+
+}
+
+.mainCategory .ant-select-single.ant-select-lg .ant-select-selector .ant-select-selection-item {
+  line-height: 0 !important;
+}

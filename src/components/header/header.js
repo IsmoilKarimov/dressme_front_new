@@ -33,7 +33,6 @@ const Header = () => {
     );
   };
 
-  console.log(scrollPost, "scrollPost");
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("scroll", handleScrollNavMenu);
@@ -71,7 +70,7 @@ const Header = () => {
             >
               <TopHeader />
               <MediumHeader />
-              {scrollPost > -530 && <div className={`${scrollPost > -530 ? "" : "h-0"} visible duration-500`}> <NavbarBottomIndex /></div>}
+              <div className={`${scrollPost > -530 ? "" : "h-0 overflow-hidden"} visible duration-500`}> <NavbarBottomIndex /></div>
             </article>
 
           </div>

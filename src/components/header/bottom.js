@@ -26,7 +26,7 @@ import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 import { useQuery } from "@tanstack/react-query";
 const { Option } = Select;
 
-const BottomHeader = () => {
+function BottomHeader() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const [selectedId, setSelectedId] = useState(null);
@@ -293,11 +293,12 @@ const BottomHeader = () => {
     }
 
   }
-  console.log(colorSelectId, "colorSelectId");
+  // console.log(colorSelectId, "colorSelectId");
   useEffect(() => {
     fetchGetAllData()
   }, [state?.categorySelectId, colorSelectId, getRange, state?.genderSelectId, dressInfo?.mainSearchName])
   // mt ss:w-full flex flex-col justify-center md:mt-[6px]
+  // console.log("Renderer");
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
       <div
@@ -382,9 +383,9 @@ const BottomHeader = () => {
 
       <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto ">
         <div
-          className="!w-[195px] relative gap-x-1 h-[44px] border-searchBgColor border  rounded-[12px] bg-btnBgColor  overflow-hidden flex items-center  cursor-pointer select-none group  "
+          className="mainCategory !w-[195px] relative gap-x-1 pl-1 h-[44px] border-searchBgColor border  rounded-[12px] bg-btnBgColor  overflow-hidden flex items-center  cursor-pointer select-none group  "
         >
-          <span className="absolute left-1">
+          <span className="absolute left-2">
             <ClothesIcons colors={"#000"} />
           </span>
           <Select
@@ -398,19 +399,12 @@ const BottomHeader = () => {
             onSearch={onSearch}
             // suffixIcon={<></>}
             allowClear
-            // onClear={handleClear}
             size="large"
             filterOption={(input, option) =>
               (option?.label ?? "")
                 .toLowerCase()
                 .includes(input.toLowerCase())
             }
-          // options={getMapsInfo?.categories?.map((item) => {
-          //   return {
-          //     value: item?.id,
-          //     label: item?.name_ru,
-          //   };
-          // })}
           >
             {state?.getAllCardList?.categories?.map((item) => {
               return (
@@ -420,7 +414,7 @@ const BottomHeader = () => {
                   label={item.name_ru}
                 >
                   <Space>
-                    <span className="text-black  text-sm font-AeonikProMedium tracking-wide	leading-5">{item.name_ru}</span>
+                    <span className="text-black  text-[13px] font-AeonikProMedium tracking-wide	">{item.name_ru}</span>
                   </Space>
                 </Option>
               );
@@ -592,4 +586,4 @@ const BottomHeader = () => {
   );
 };
 
-export default BottomHeader;
+export default React.memo(BottomHeader);

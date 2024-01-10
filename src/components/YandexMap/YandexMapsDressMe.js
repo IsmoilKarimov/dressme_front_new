@@ -150,96 +150,12 @@ function YandexMapsDressMe() {
     });
   };
 
-  //------------------------------------------------------------------------------------------------
-  // const [searchQuery, setSearchQuery] = useState('');
-  // const [searchResult, setSearchResult] = useState(null);
 
-  // const handleSearchChange = (e) => {
-  //   setSearchQuery(e.get('target').get('value'));
-  // };
-
-  // const handleSearchResult = (e) => {
-  //   const firstResult = e.get('target').get('results').get(0);
-
-  //   if (firstResult) {
-  //     setSearchResult({
-  //       coordinates: firstResult.geometry.getCoordinates(),
-  //       address: firstResult.properties.get('text'),
-  //     });
-  //   }
-  // };
   const mapState = {
 
     center: [41.311753, 69.241822],
-    zoom: 14,
+    zoom: 12,
   };
-  // const [isSendedLocation, setIsSendedLocation] = useState(true);
-  // const [forMaps, setForMaps] = useState({
-  //   title: "",
-  //   center: [41.311753, 69.241822],
-  //   zoom: 14,
-  // });
-  // //------------------------------------------------------------------------------------------------
-  // const mapOptions = {
-  //   modules: ["geocode", "SuggestView"],
-  //   defaultOptions: { suppressMapOpenBlock: true },
-  // };
-
-  // const [mapConstructor, setMapConstructor] = useState(null);
-  // const mapRef = useRef(null);
-  // const searchRef = useRef(null);
-
-  // const handleSubmit = () => {
-
-  //   setForMaps({
-  //     ...forMaps,
-  //     title: forMaps?.title,
-  //     center: [mapRef.current.getCenter()[0], mapRef.current.getCenter()[1]]
-  //   })
-
-  //   setIsSendedLocation(false);
-  // };
-  // // reset state & search
-  // const handleReset = () => {
-  //   setForMaps({ ...forMaps, title: "" });
-  //   searchRef.current.value = "";
-
-  // };
-
-  // // search popup
-  // useEffect(() => {
-
-  //   if (mapConstructor) {
-  //     new mapConstructor.SuggestView(searchRef.current).events.add(
-  //       "select",
-  //       function (e) {
-  //         const selectedName = e.get("item").value;
-  //         mapConstructor.geocode(selectedName).then((result) => {
-  //           const newCoords = result.geoObjects
-  //             .get(0)
-  //             .geometry.getCoordinates();
-  //           setForMaps((prevState) => ({ ...prevState, center: newCoords }));
-  //         });
-  //       }
-  //     );
-  //   }
-  // }, [mapConstructor]);
-
-  // // change title
-  // const handleBoundsChange = (e) => {
-  //   setIsSendedLocation(true);
-
-  //   const newCoords = mapRef.current.getCenter();
-  //   mapConstructor.geocode(newCoords).then((res) => {
-  //     const nearest = res.geoObjects.get(0);
-  //     const foundAddress = nearest.properties.get("text");
-  //     const [centerX, centerY] = nearest.geometry.getCoordinates();
-  //     const [initialCenterX, initialCenterY] = forMaps.center;
-  //     if (centerX !== initialCenterX && centerY !== initialCenterY) {
-  //       setForMaps((prevState) => ({ ...prevState, title: foundAddress }));
-  //     }
-  //   });
-  // };
 
   const handleError = () => {
     console.error('Error loading Placemark');
