@@ -333,18 +333,31 @@ const BottomHeader = () => {
                   <div className="flex flex-col items-center justify-center ">
                     <div
                       key={data?.id}
-                      onClick={() => setSelectedId(data?.id)}
+                      onClick={() => {
+                        newColorArrayId(data?.hex)
+                        setSelectedId(data?.id)
+                      }}
                       style={{ backgroundColor: data?.hex }}
                       className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${data?.id === selectedId
                         ? "border border-setTexOpacity flex items-center justify-center"
                         : "border"
                         } `}
                     >
-                      {selectedId === data?.id ? (
+                      {/* {selectedId === data?.id ? (
                         <InputCheckedTrueIcons
                           colors={data?.hex === "#000000" ? "#fff" : "#000"}
                         />
-                      ) : null}
+                      ) : null} */}
+                      {colorSelectId.includes(data?.hex) && data?.id == 1 && (
+                        <span>
+                          <BiCheck size={30} color={"#fff"} className="flex items-center justify-center" />
+                        </span>
+                      )}
+                      {colorSelectId.includes(data?.hex) && data?.id !== 1 && (
+                        <span>
+                          <BiCheck size={30} color={"#000"} className="flex items-center justify-center" />
+                        </span>
+                      )}
                     </div>
                     <span
                       className={`text-black text-center text-xs not-italic font-AeonikProRegular`}
@@ -371,16 +384,17 @@ const BottomHeader = () => {
 
       <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto">
         <div
-          className="!w-[195px] relative gap-x-1 px-1 h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  "
+          className="!w-[195px] relative gap-x-1 h-[44px] border-searchBgColor border  rounded-[12px] bg-btnBgColor  overflow-hidden flex items-center  cursor-pointer select-none group  "
         >
           <span className="absolute left-2">
             <ClothesIcons colors={"#000"} />
           </span>
           <Select
             showSearch
-            className="w-[100%] cursor-pointer !caret-transparent	 h-full !outline-none text-center overflow-hidden  !p-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
+            className="w-[100%] cursor-pointer   text-center flex items-center  !caret-transparent	 h-full !outline-none text-center overflow-hidden  !p-0 text-black text-sm font-AeonikProMedium tracking-wide	"
             bordered={false}
-            placeholder={<span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide	leading-5">По категории</span>}
+            placeholder={
+              <span className="placeholder   text-black text-sm font-AeonikProMedium tracking-wide	">По категории</span>}
             optionFilterProp="children"
             onChange={(e) => setState({ ...state, categorySelectId: e })}
             onSearch={onSearch}
@@ -408,7 +422,7 @@ const BottomHeader = () => {
                   label={item.name_ru}
                 >
                   <Space>
-                    <span className="text-black text-sm font-AeonikProMedium tracking-wide	leading-5">{item.name_ru}</span>
+                    <span className="text-black  text-sm font-AeonikProMedium tracking-wide	leading-5">{item.name_ru}</span>
                   </Space>
                 </Option>
               );
@@ -429,7 +443,7 @@ const BottomHeader = () => {
             <DollorIcons colors={"#000"} />
           </span>
           <div className=" w-[142px] h-full flex justify-between items-center px-3">
-            <p className="not-italic font-AeonikProMedium text-center text-sm leading-4 text-black ">
+            <p className="not-italic  pt-[2px] font-AeonikProMedium text-center text-sm leading-4 text-black ">
               {state?.selectPrice}
             </p>
             <span>
@@ -496,16 +510,21 @@ const BottomHeader = () => {
                         className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${!state?.textToColor && "border"
                           }  border-borderColorCard	`}
                       >
-                        {colorSelectId.includes(data?.hex) && (
+                        {/* {colorSelectId.includes(data?.hex) && (
+                          <span>
+                            <BiCheck size={25} color={"#000"} className="flex items-center justify-center" />
+                          </span>
+                        )} */}
+                        {colorSelectId.includes(data?.hex) && data?.id == 1 && (
+                          <span>
+                            <BiCheck size={25} color={"#fff"} className="flex items-center justify-center" />
+                          </span>
+                        )}
+                        {colorSelectId.includes(data?.hex) && data?.id !== 1 && (
                           <span>
                             <BiCheck size={25} color={"#000"} className="flex items-center justify-center" />
                           </span>
                         )}
-                        {/* {colorSelectId.includes(data?.id) && colorSelectId?.includes(1) && (
-                          <span>
-                            <BiCheck size={25} color={"#fff"} className="flex items-center justify-center" />
-                          </span>
-                        )} */}
 
                       </label>
                       <input

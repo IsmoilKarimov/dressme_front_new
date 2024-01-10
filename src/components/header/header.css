@@ -68,3 +68,23 @@
   height: 2px;
   border-radius: 2px;
 }
+
+
+.ant-space.css-dev-only-do-not-override-1me4733 {
+  height: 100%;
+  padding: 0 !important;
+}
+
+.ant-select-selection-item {
+  padding: 0 !important;
+
+}
+
+.ant-select-selector {
+  padding: 0 !important;
+
+}
+
+.ant-select-single.ant-select-lg .ant-select-selector .ant-select-selection-item {
+  line-height: 0 !important;
+}
