@@ -580,14 +580,14 @@ function BottomHeader() {
                 >
                   {data?.childText?.map((item) => {
                     return (
-                      <div className="flex items-center h-full box-sizing">
+                      <div className="flex items-center h-full box-border">
                         <button
                           key={item?.id}
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
                           className={`${item?.action
-                            ? "bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-lg"
+                            ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-lg"
                             : " bg-btnBgColor text-black h-full"
-                            } px-6  cursor-pointer box-sizing  font-AeonikProMedium rounded-lg justify-center flex items-center`}
+                            } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-lg justify-center flex items-center`}
                         >
                           <span>{item?.anyIcons}</span>
                           {item?.name && (
