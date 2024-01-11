@@ -67,6 +67,17 @@ const CategoryForBrand = ({ setFilterData }) => {
     setCustomerReviews(childData?.ratingId);
   }
 
+  // function clearAllFilteredData() {
+  //   return (
+  //     handleGetId(),
+  //     handleGetDiscountId(),
+  //     handleGetCategoryId(),
+  //     getMinMaxPrice(),
+  //     handleGetColorHexCode(),
+  //     handleCustomerReviews()
+  //   )
+  // }
+
   function getCurrentDimension() {
     return {
       width: window.innerWidth,
@@ -100,7 +111,7 @@ const CategoryForBrand = ({ setFilterData }) => {
     }
 
     // Replace the current URL with the updated query parameters
-    window.history.replaceState({}, "", `?${urlParams.toString()}`);
+    // window.history.replaceState({}, "", `?${urlParams.toString()}`);
 
     Object.entries(params).forEach((i) => {
       if (!i[1]) delete params[i[0]];
@@ -210,7 +221,7 @@ const CategoryForBrand = ({ setFilterData }) => {
         <ShoesSizesFilter state={state} setState={setState} />
       </section>
       <section className=" mt-8 border-t border-searchBgColor py-5 px-3">
-        <button className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70">
+        <button type="button" className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70">
           Сбросить фильтр
         </button>
       </section>

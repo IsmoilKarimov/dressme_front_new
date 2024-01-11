@@ -3,7 +3,7 @@ import { MenuCloseIcons } from '../../../assets/icons';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import Slider from "react-slick";
 
-function CarouselModalMarket() {
+function CarouselModalMarket({ getAllImgGallery }) {
     const imgGallery = [
         { id: 1, img: "https://i.pinimg.com/736x/9d/d4/a3/9dd4a3906b318cdfd854dd46a72046ba.jpg" },
         { id: 2, img: "https://img.hechtgroup.com/where_is_the_zara_warehouse.jpg" },
@@ -53,16 +53,18 @@ function CarouselModalMarket() {
                     className="relative !w-full  xs:!w-[580px]  !overflow-visible  md:!w-[780px] sm:!h-[550px] md:!h-[700px]   md:rounded-lg sm:px-[50px]"
                     {...settingsModal}
                 >
-                    {imgGallery?.map((data) => {
+                    {getAllImgGallery?.length && getAllImgGallery?.map((data) => {
                         return (
-                            <figure className="relative  overflow-hidden !w-full ll:h-[400px] h-[450px] xs:h-[550px] md:h-[700px] sm:rounded-lg border border-searchBgColor bg-white  flex items-center justify-center">
-                                <img className="w-full h-full object-contain" src={data?.img} alt="" />
-                                <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
-                                    <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
-                                        <p> {data.id}</p>/<p>{imgGallery.length}</p>
-                                    </span>
-                                </figcaption>
-                            </figure>
+                            <>
+                                {data?.img && <figure className="relative  overflow-hidden !w-full ll:h-[400px] h-[450px] xs:h-[550px] md:h-[700px] sm:rounded-lg border border-searchBgColor bg-white  flex items-center justify-center">
+                                    <img className="w-full h-full object-contain" src={data?.img} alt="" />
+                                    <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
+                                        <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
+                                            <p> {data.id}</p>/<p>{imgGallery.length}</p>
+                                        </span>
+                                    </figcaption>
+                                </figure>}
+                            </>
 
                         );
                     })}

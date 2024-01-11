@@ -1,16 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
-import { useNavigate } from "react-router-dom";
-import {
-  InputCheckedTrueIcons,
-  SearchIcons,
-  StarIcons,
-} from "../../../../assets/icons";
+import { SearchIcons } from "../../../../assets/icons";
 import "../../../../index.css";
 import { ClothingParametr } from "./ClothingParametr";
-import { CalourCard } from "../../../../assets";
 import WearType from "./WearType";
-import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { CollectionCardItem } from "./CollectionCardItem";
 import { useQuery } from "@tanstack/react-query";
@@ -19,12 +12,12 @@ export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
   const [pagination, setPagination] = useState(30);
-  const [mainData, setData, wishList, setWishlist] = useContext(HomeMainDataContext);
+  const [mainData, setData, wishList, setWishlist] =
+    useContext(HomeMainDataContext);
 
   // -------------------------------------
   const toggle = React.useCallback(() => setOpenWearType(false), []);
   // -------------------------------------
-
 
   const url = "https://api.dressme.uz";
 
@@ -81,12 +74,14 @@ export default function CollectionCards() {
       </section>
       <div
         onClick={() => setOpenWearType(false)}
-        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openWearType ? "" : "hidden"
-          }`}
+        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+          openWearType ? "" : "hidden"
+        }`}
       ></div>
       <section
-        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openWearType ? "bottom-0" : "bottom-[-800px] z-0"
-          }`}
+        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+          openWearType ? "bottom-0" : "bottom-[-800px] z-0"
+        }`}
       >
         <WearType onClick={toggle} />
       </section>
@@ -112,23 +107,26 @@ export default function CollectionCards() {
 
         <div className="w-full flex flex-col box-border ">
           <article className="flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
-            {dressInfo?.mainCardProducts?.products?.length ? dressInfo?.mainCardProducts?.products?.slice(0, pagination).map((data) => {
-              // console.log(data, "data");
-              return (
-                <CollectionCardItem
-                  data={data}
-                  setOpenWearType={setOpenWearType}
-                  handleLeaveMouse={handleLeaveMouse}
-                  wishList={wishList}
-                  setWishlist={setWishlist}
-                />
-              );
-            })
-              :
+            {dressInfo?.mainCardProducts?.products?.length ? (
+              dressInfo?.mainCardProducts?.products
+                ?.slice(0, pagination)
+                .map((data) => {
+                  // console.log(data, "data");
+                  return (
+                    <CollectionCardItem
+                      data={data}
+                      setOpenWearType={setOpenWearType}
+                      handleLeaveMouse={handleLeaveMouse}
+                      wishList={wishList}
+                      setWishlist={setWishlist}
+                    />
+                  );
+                })
+            ) : (
               <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[300px] ">
                 Ничего не найдено
               </div>
-            }
+            )}
           </article>
 
           {dressInfo?.mainCardProducts?.products?.length < 30 ? null : (

@@ -51,7 +51,11 @@ function YandexMapsDressMe() {
   const [getMapsInfo, setGetMapsInfo] = useState(null);
   const [getAllFilterSearch, setGetAllFilterSearch] = useState({});
   const [FilterSearchByBrand, setFilterSearchByBrand] = useState({});
+  const [getAllImgGallery, setGetAllImgGallery] = useState();
 
+  function getImgGallery(childData) {
+    setGetAllImgGallery(childData)
+  }
   function getFilterData(childData) {
     setGetAllFilterSearch(childData)
   }
@@ -77,8 +81,8 @@ function YandexMapsDressMe() {
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
-  console.log(getAllFilterSearch, "getAllFilterSearch");
-  console.log(FilterSearchByBrand, "FilterSearchByBrand");
+  // console.log(getAllFilterSearch, "getAllFilterSearch");
+  // console.log(FilterSearchByBrand, "FilterSearchByBrand");
   useEffect(() => {
     fetchGetAllData({
       gender: getAllFilterSearch?.genderType,
@@ -160,6 +164,7 @@ function YandexMapsDressMe() {
   const handleError = () => {
     console.error('Error loading Placemark');
   };
+  // console.log(getAllImgGallery, "getAllImgGallery");
   return (
     <div className="h-fit w-full flex items-center justify-center overflow-hidden overflow-y-hidden">
       <div
@@ -182,7 +187,7 @@ function YandexMapsDressMe() {
           <MenuCloseIcons colors="#fff" />
         </button>
         <div className="relative  z-[217] !w-full sm:w-fit  top-0">
-          <CarouselModalMarket />
+          <CarouselModalMarket getAllImgGallery={getAllImgGallery} />
         </div>
       </div>
       <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden ymapsName">
@@ -194,7 +199,7 @@ function YandexMapsDressMe() {
               : " h-0 bottom-[0]  z-[-10]"
             } ease-linear duration-300`}
           >
-            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} modalInfo={getMapsInfo} />
+            <YandexLocationMarketOpen onClick={toggleCarouselModal} getImgGallery={getImgGallery} modalInfo={getMapsInfo} />
           </div>
         )}
         {screenSize.width <= 768 && (
@@ -203,7 +208,7 @@ function YandexMapsDressMe() {
             : "h-0 bottom-0 ease-linear duration-300 "
             }  ease-linear duration-300 `}
           >
-            <YandexLocationMarketOpen onClick={toggleCarouselModal} cordinateMarkets={openCordinateMap} modalInfo={getMapsInfo} />
+            <YandexLocationMarketOpen onClick={toggleCarouselModal} getImgGallery={getImgGallery} modalInfo={getMapsInfo} />
           </div>
         )}
         {/* // -----------------MarketFilterofMaps--------------------------- */}
