@@ -18,8 +18,10 @@ const CategoryForBrand = ({ setFilterData }) => {
   const [discountId, setDiscountId] = useState();
   const [categoryId, setCategoryId] = useState();
   const [filter, setFilter] = useState();
-  const [colorHexCode, setColorHexCode] = useState();
+  const [colorHexCode, setColorHexCode] = useState([]);
   const [customerReviews, setCustomerReviews] = useState();
+
+  console.log(colorHexCode, "colorHexCode");
 
   const [state, setState] = useState({
     brandShow: screenSize.width <= 768 ? true : false,
@@ -35,67 +37,11 @@ const CategoryForBrand = ({ setFilterData }) => {
     checkBrand: false,
     checkedPrize: true,
     getBadgePrice: {},
+    colorHexCode: [],
   });
 
-  // Gender GetID
-  function handleGetId(childData) {
-    setGenderId(childData?.genderFilterId);
-  }
-
-  // Discount GetID
-  function handleGetDiscountId(childData) {
-    setDiscountId(childData?.discountId);
-  }
-
-  // Categoty GetID
-  function handleGetCategoryId(childData) {
-    setCategoryId(childData?.categoryId);
-  }
-
-  // Budjet GetPrize
-  function getMinMaxPrice(childData) {
-    setState({ ...state, getBadgePrice: childData });
-  }
-
-  // Color GetID
-  function handleGetColorHexCode(childData) {
-    setColorHexCode(childData?.colorFilterHexCode);
-  }
-
-  // Rating GetID
-  function handleCustomerReviews(childData) {
-    setCustomerReviews(childData?.ratingId);
-  }
-
-  // function clearAllFilteredData() {
-  //   return (
-  //     handleGetId(),
-  //     handleGetDiscountId(),
-  //     handleGetCategoryId(),
-  //     getMinMaxPrice(),
-  //     handleGetColorHexCode(),
-  //     handleCustomerReviews()
-  //   )
-  // }
-
-  function getCurrentDimension() {
-    return {
-      width: window.innerWidth,
-    };
-  }
-
-  useEffect(() => {
-    const updateDimension = () => {
-      setScreenSize(getCurrentDimension());
-    };
-    window.addEventListener("resize", updateDimension);
-    return () => {
-      window.removeEventListener("resize", updateDimension);
-    };
-  }, [screenSize]);
-
   const params = useParams();
-  const id = params?.id.replace(':','')
+  const id = params?.id.replace(":", "");
   const apiUrl = `https://api.dressme.uz/api/main/section/${id}`;
 
   const fetchGetAllData = (params) => {
@@ -109,9 +55,11 @@ const CategoryForBrand = ({ setFilterData }) => {
     if ("colors[]") {
       urlParams.set("colors[]", "colors[]");
     }
-
-    // Replace the current URL with the updated query parameters
-    // window.history.replaceState({}, "", `?${urlParams.toString()}`);
+    if (colorHexCode?.length) {
+      colorHexCode?.forEach((e, index) => {
+        urlParams.append("colors[]", colorHexCode[index]);
+      });
+    }
 
     Object.entries(params).forEach((i) => {
       if (!i[1]) delete params[i[0]];
@@ -136,7 +84,7 @@ const CategoryForBrand = ({ setFilterData }) => {
       category: categoryId,
       "budget[from]": state?.getBadgePrice?.min,
       "budget[to]": state?.getBadgePrice?.max,
-      "colors[]": colorHexCode,
+      // "colors[]": colorHexCode,
       rating: customerReviews,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -148,6 +96,75 @@ const CategoryForBrand = ({ setFilterData }) => {
     colorHexCode,
     customerReviews,
   ]);
+
+  // Gender GetID
+  function handleGetId(childData) {
+    setGenderId(childData?.genderFilterId);
+  }
+
+  // Discount GetID
+  function handleGetDiscountId(childData) {
+    setDiscountId(childData?.discountId);
+  }
+
+  // Categoty GetID
+  function handleGetCategoryId(childData) {
+    setCategoryId(childData?.categoryId);
+  }
+
+  // Budjet GetPrize
+  function getMinMaxPrice(childData) {
+    setState({ ...state, getBadgePrice: childData });
+  }
+
+  // Color GetID
+  function handleGetColorHexCode(childData) {
+    console.log(childData?.colorFilterHexCode);
+    if (colorHexCode?.length == 0) {
+      setColorHexCode((colorHexCode) => [
+        ...colorHexCode,
+        childData?.colorFilterHexCode,
+      ]);
+    }
+    if (
+      colorHexCode?.length > 0 &&
+      !colorHexCode?.includes(childData?.colorFilterHexCode)
+    ) {
+      setColorHexCode((colorHexCode) => [
+        ...colorHexCode,
+        childData?.colorFilterHexCode,
+      ]);
+    }
+    if (
+      colorHexCode?.length > 0 &&
+      colorHexCode?.includes(childData?.colorFilterHexCode)
+    ) {
+      setColorHexCode(
+        colorHexCode?.filter((e) => e !== childData?.colorFilterHexCode)
+      );
+    }
+  }
+
+  // Rating GetID
+  function handleCustomerReviews(childData) {
+    setCustomerReviews(childData?.ratingId);
+  }
+
+  function getCurrentDimension() {
+    return {
+      width: window.innerWidth,
+    };
+  }
+
+  useEffect(() => {
+    const updateDimension = () => {
+      setScreenSize(getCurrentDimension());
+    };
+    window.addEventListener("resize", updateDimension);
+    return () => {
+      window.removeEventListener("resize", updateDimension);
+    };
+  }, [screenSize]);
 
   return (
     <main
@@ -203,6 +220,7 @@ const CategoryForBrand = ({ setFilterData }) => {
           state={state}
           setState={setState}
           filter={filter}
+          colorHexCode={colorHexCode}
           handleGetColorHexCode={handleGetColorHexCode}
         />
 
@@ -221,7 +239,10 @@ const CategoryForBrand = ({ setFilterData }) => {
         <ShoesSizesFilter state={state} setState={setState} />
       </section>
       <section className=" mt-8 border-t border-searchBgColor py-5 px-3">
-        <button type="button" className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70">
+        <button
+          type="button"
+          className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70"
+        >
           Сбросить фильтр
         </button>
       </section>
