@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useEffect, useState } from "react";
 import { ArrowTopIcons, MenuCloseIcons } from "../assets/icons";
 import { HomeMainDataContext } from "./HomeMainData";
+import { dressMainData } from "./ContextMenu";
 
 function RegionList({ onClick }) {
   const [state, setState] = useState({
-    regionId: "",
+    regionId: 2,
     subRegionId: "",
     //--- Regions Get ---
     getRegionList: "",
@@ -16,65 +17,45 @@ function RegionList({ onClick }) {
     // -----region Modal ---
     // openModalRegions: show,
   });
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [mainData, setMainData] = useContext(HomeMainDataContext);
   // const url = "https://api.dressme.uz/api/seller";
 
-  // ------- Loading Region ------
-  // const { isLoading } = useQuery(
-  //   ["get region"],
-  //   () => {
-  //     return fetch(`${url}/regions`).then((res) => res.json());
-  //   },
-  //   {
-  //     onSuccess: (res) => {
-  //       setState({ ...state, getRegionList: res });
-  //     },
-  //     onError: (err) => {
-  //       console.log(err, "err");
-  //     },
-  //     keepPreviousData: true, // bu browserdan tashqariga chiqib yana kirsa, yana yurishni oldini olish uchun
-  //     refetchOnWindowFocus: false, // bu ham focus bolgan vaqti malumot olib kelish
-  //   }
-  // );
 
-  // ------------GET METHOD Profile-----------------
-  // useQuery(
-  //   ["get profile"],
-  //   () => {
-  //     return fetch(`${url}/profile`, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-type": "application/json",
-  //         Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
-  //       },
-  //     }).then((res) => res.json());
-  //   },
-  //   {
-  //     onSuccess: (res) => {
-  //       console.log(res, "res");
-  //       setState({
-  //         ...state,
-  //         getProfileList: res,
-  //         regionId: res?.region_id,
-  //         subRegionId: res?.sub_region_id,
-  //       });
-  //     },
-  //     onError: (err) => {
-  //       console.log(err, "err");
-  //     },
-  //     keepPreviousData: true, // bu browserdan tashqariga chiqib yana kirsa, yana yurishni oldini olish uchun
-  //     refetchOnWindowFocus: false, // bu ham focus bolgan vaqti malumot olib kelish
-  //   }
-  // );
 
   const [activeIndex, setActiveIndex] = useState();
   const accordionCityList = (id) => {
+    setState({ ...state, regionId: id, });
     if (activeIndex === id) {
       setActiveIndex(0);
     } else {
       setActiveIndex(id);
     }
   };
+  const sendRegions = () => {
+    onClick()
+    setDressInfo({
+      ...dressInfo, mainRegionId: state?.regionId,
+      mainSubRegionId: state?.subRegionId,
+    })
+  }
+  useEffect(() => {
+
+    if (dressInfo?.mainSubRegionId) {
+      mainData?.regions?.filter(e => e?.id == dressInfo?.mainRegionId)?.map(item => {
+        item?.sub_regions?.map(data => {
+          if (item?.id === dressInfo?.mainRegionId) {
+            if (dressInfo?.mainSubRegionId !== data?.id) {
+              setDressInfo({
+                ...dressInfo, mainSubRegionId: null,
+              })
+            }
+          }
+        })
+      })
+    }
+
+  }, [state?.regionId])
   // show
   return (
     <main className={`w-full  h-fit `}>
@@ -96,13 +77,12 @@ function RegionList({ onClick }) {
               return (
                 <div
                   key={data?.id}
-                  className={`${
-                    data.id || data.sub_regions.id ? "" : ""
-                  } w-full h-fit`}
+                  className={`${data.id || data.sub_regions.id ? "" : ""
+                    } w-full h-fit`}
                 >
                   <div className="flex items-center">
                     <input
-                      id={data?.id}
+                      id={data?.name_ru}
                       type="radio"
                       name="region"
                       value={data?.id}
@@ -110,18 +90,17 @@ function RegionList({ onClick }) {
                       onClick={() => accordionCityList(data?.id)}
                     />
                     <label
-                      htmlFor={data?.id}
+                      htmlFor={data?.name_ru}
                       className="w-full cursor-pointer flex items-center pr-1 border-b border-[#F0F0F0] "
                     >
                       <span className="text-[#303030] text-lg not-italic font-AeonikProRegular">
                         {data?.name_ru}
                       </span>
                       <span
-                        className={`${
-                          activeIndex === data?.id
-                            ? "rotate-[-0deg] duration-300"
-                            : "rotate-[-180deg] duration-300"
-                        } ml-auto`}
+                        className={`${activeIndex === data?.id
+                          ? "rotate-[-0deg] duration-300"
+                          : "rotate-[-180deg] duration-300"
+                          } ml-auto`}
                       >
                         <ArrowTopIcons colors={"#a1a1a1"} />
                       </span>
@@ -129,11 +108,10 @@ function RegionList({ onClick }) {
                   </div>
                   <div
                     className={`w-full grid grid-cols-2 xs:grid-cols-3 duration-[400ms]
-                              ${
-                                activeIndex == data?.id
-                                  ? "openAccardion"
-                                  : "CloseAccardion"
-                              } `}
+                              ${activeIndex == data?.id
+                        ? "openAccardion"
+                        : "CloseAccardion"
+                      } `}
                   >
                     {data?.sub_regions?.map((item) => {
                       return (
@@ -155,7 +133,7 @@ function RegionList({ onClick }) {
                               onChange={(e) => {
                                 setState({
                                   ...state,
-                                  regionId: e.target.value,
+                                  // regionId: e.target.value,
                                   subRegionId: item?.id,
                                 });
                               }}
@@ -179,7 +157,7 @@ function RegionList({ onClick }) {
         </div>
         <div className="w-full flex items-center justify-end  mt-2">
           <span
-            onClick={onClick}
+            onClick={() => sendRegions()}
             className="cursor-pointer text-borderWinter text-lg not-italic font-AeonikProMedium"
           >
             Готово

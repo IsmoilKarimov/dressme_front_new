@@ -46,12 +46,12 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
 
   // ----------------------Price State Management----------------------
 
-  const [minPrice, setMinPrice] = useState(Number(getMapsInfo?.budget?.min_price) || 100000);
+  const [minPrice, setMinPrice] = useState(Number(getMapsInfo?.budget?.min_price) || 10000);
   const [maxPrice, setMaxPrice] = useState(Number(getMapsInfo?.budget?.max_price) || 1000000);
   const [values, setValues] = useState([minPrice, maxPrice]);
   const [getRange, setGetRange] = useState([]);
   useEffect(() => {
-    setMinPrice(Number(getMapsInfo?.budget?.min_price) || 100000)
+    setMinPrice(Number(getMapsInfo?.budget?.min_price) || 10000)
     setMaxPrice(Number(getMapsInfo?.budget?.max_price) || 1000000)
   }, [getMapsInfo?.budget])
 
@@ -230,7 +230,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   };
 
   return (
-    <div className=" border border-red-500 w-fit px-10 py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex flex-col justify-between items-center m-auto md:border-t">
+    <div className="  w-fit px-10 py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex flex-col justify-between items-center m-auto md:border-t">
       <div className="flex items-center justify-center gap-x-2  w-fit   ">
         <div
           className="!w-[210px] relative gap-x-1 px-1 h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  "

@@ -40,6 +40,8 @@ export const DressMenu = ({ children }) => {
     // BottomComponentProducts
     mainCardProducts: [],
     mainSearchName: null,
+    mainRegionId: 2,
+    mainSubRegionId: null,
 
 
     ProductList: [

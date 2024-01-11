@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { Popover } from "antd";
@@ -12,10 +12,12 @@ import {
 } from "../../../assets/icons";
 import { EnglishFlag, RussianFlag, UzbekFlag } from "../../../assets";
 import Cookies from "js-cookie";
+import RegionsList from "../../../ContextHook/RegionsList";
+import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 
 const YandexTop = () => {
   const [dressInfo] = useContext(dressMainData);
-
+  const [mainData, setMainData] = useContext(HomeMainDataContext);
   const [state, setState] = useState({
     openLang: false,
     openRegion: false,
@@ -102,31 +104,53 @@ const YandexTop = () => {
       })}
     </div>
   );
+  const [regionsShow, setRegionsShow] = useState(false);
+  const toggleRegionsShow = useCallback(() => setRegionsShow(false), []);
 
   return (
     <div className="flex justify-between items-center m-auto ">
+      <div
+        onClick={() => setRegionsShow(false)}
+        className={`fixed inset-0 z-[230] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
+         ${regionsShow ? "" : "hidden"}`}
+      ></div>
+      {regionsShow && (
+        <div
+          className={`max-w-[600px]  w-full fixed duration-500 z-[231]  left-1/2 right-1/2 top-[50%] translate-x-[-50%] translate-y-[-50%]  h-fit flex items-center  justify-center mx-auto
+        ${regionsShow
+              ? " bottom-0 md:flex flex-col"
+              : "bottom-[-1500px] z-[-10]"
+            }
+        `}
+        >
+          <RegionsList onClick={toggleRegionsShow} />
+        </div>
+      )}
       <div className="left h-full flex items-center  ">
-        <div className="flex w-fit items-center">
+        <div onClick={() => {
+          setRegionsShow(true);
+        }} className="flex w-fit items-center">
           <span className="mr-2">
             <LocationIcons />
           </span>
           <span className="text-textColor text-[13px] mr-[6px] font-AeonikProMedium">
             Город:
           </span>
-          <div className="w-[90px] font-AeonikProMedium   flex items-center ">
-            <Popover
-              open={state?.openRegion}
-              onOpenChange={handleOpenChangeCity}
-              className=" flex text-[13px]  items-center  "
-              trigger="click"
-              options={["Hide"]}
-              placement="bottom"
-              content={contentCity}
-            >
-              <span className="border-b border-slate-900" href="#">
-                {selectCity}
-              </span>
-            </Popover>
+          <div className="w-full min-w-[90px] font-AeonikProMedium flex items-center text-[13px]">
+            {
+              mainData?.regions?.filter(e => e?.id === dressInfo?.mainRegionId)?.map(item => {
+                return (
+                  <>
+                    <span className="border-b border-slate-900">{item?.name_ru} </span>
+                    {item?.sub_regions?.filter(e => e?.id == dressInfo?.mainSubRegionId)?.map(data => {
+                      return (
+                        <span className="  ">, <span className="border-b border-slate-900 ml-2">{data?.name_ru}</span></span>
+                      )
+                    })}
+                  </>
+                )
+              })
+            }
           </div>
         </div>
 
@@ -161,7 +185,7 @@ const YandexTop = () => {
           </span>
           <span className="text-textColor text-[13px]   font-AeonikProMedium  ">
             Помощь
-          </span> 
+          </span>
         </Link>
         <Link to="#" className="flex items-center h-full  ml-6 ">
           <span className="mr-2">

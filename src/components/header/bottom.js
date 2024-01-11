@@ -63,6 +63,10 @@ function BottomHeader() {
 
   const fetchGetAllData = () => {
     var params = new URLSearchParams();
+    dressInfo?.mainRegionId &&
+      params.append("region", dressInfo?.mainRegionId);
+    dressInfo?.mainSubRegionId &&
+      params.append("sub_region", dressInfo?.mainSubRegionId);
     dressInfo?.mainSearchName &&
       params.append("keywords", dressInfo?.mainSearchName);
     state?.categorySelectId &&
@@ -308,6 +312,8 @@ function BottomHeader() {
     getRange,
     state?.genderSelectId,
     dressInfo?.mainSearchName,
+    dressInfo?.mainRegionId,
+    dressInfo?.mainSubRegionId,
   ]);
   // mt ss:w-full flex flex-col justify-center md:mt-[6px]
   // console.log("Renderer");
