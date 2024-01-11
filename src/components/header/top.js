@@ -127,7 +127,7 @@ const TopHeader = () => {
                           <span className="border-b border-slate-900">{item?.name_ru} </span>
                           {item?.sub_regions?.filter(e => e?.id == dressInfo?.mainSubRegionId)?.map(data => {
                             return (
-                              <span className="  ">, <span className="border-b border-slate-900 ml-2">{data?.name_ru}</span></span>
+                              <span className="  ">, <span className="border-b border-slate-900 ml-[1px]">{data?.name_ru}</span></span>
                             )
                           })}
                         </>
