@@ -115,16 +115,18 @@ const CategoryTopDetail = () => {
   // ----- Category change -----
 
   useEffect(() => {
-    fetch(`${url}/api/main/section/${selectedSection?.id}`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        //   "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => setData(res))
-      .catch((res) => console.log(res));
+    if (selectedSection?.id) {
+      fetch(`${url}/api/main/section/${selectedSection?.id}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          //   "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => setData(res))
+        .catch((res) => console.log(res));
+    }
   }, [selectedSection]);
 
   return (

@@ -1,14 +1,5 @@
 import React, { useContext } from "react";
-import {
-  img1,
-  img2,
-  img3,
-  img4,
-  img5,
-  img6,
-  img7,
-  img8,
-} from "../../assets";
+import { img1, img2, img3, img4, img5, img6, img7, img8 } from "../../assets";
 import { MenuCloseIcons } from "../../assets/icons";
 import { useNavigate } from "react-router-dom";
 import { dressMainData } from "../../ContextHook/ContextMenu";
@@ -29,8 +20,8 @@ const NavCategoryModal = () => {
 
   const navigate = useNavigate();
   const goCatalogId = (id) => {
-    const uId = id.toLowerCase();
-    navigate(`/catalog/:${uId}`);
+    // const uId = id.toLowerCase();
+    navigate(`/catalog/${id}`);
   };
 
   return (
@@ -59,7 +50,7 @@ const NavCategoryModal = () => {
                   className="w-1/4 flex items-center justify-center"
                 >
                   <figure
-                    onClick={() => goCatalogId(data?.type)}
+                    onClick={() => goCatalogId(data?.id)}
                     className="group cursor-pointer"
                   >
                     <div className="group-hover:border-black transition duration-300 w-[120px] h-[120px] border border-categoryModalBorderColor bg-categoryModalBgColor flex items-center justify-center rounded-xl">
