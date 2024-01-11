@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MenuCloseIcons } from "../../../../assets/icons";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
-import Cookies from "js-cookie";
 import { useParams } from "react-router-dom";
 import CategoryGenderButtonsFilter from "./FiilterForApi/CategoryGenderButtonsFilter";
 import CategoriesFilter from "./FiilterForApi/CategoriesFilter";
@@ -37,8 +36,6 @@ const CategoryForBrand = ({ setFilterData }) => {
     getBadgePrice: {},
     colorHexCode: [],
   });
-
-  console.log(state?.getBadgePrice, "getBadgePrice");
 
   // Gender GetID
   function handleGetId(childData) {
@@ -88,12 +85,16 @@ const CategoryForBrand = ({ setFilterData }) => {
     }
   }
 
-  const { id } = useParams();
+  const {id} = useParams();
   const newId = id.replace(":", "");
   const apiUrl = `https://api.dressme.uz/api/main/section/${newId}`;
 
   const fetchGetAllData = () => {
     let params = new URLSearchParams();
+    genderId && params.append("gender", genderId)
+    discountId && params.append("discount", discountId)
+    categoryId && params.append("category", categoryId)
+    customerReviews && params.append("rating", customerReviews)
     state?.getBadgePrice?.min && params.append("budget[from]", state?.getBadgePrice?.min);
     state?.getBadgePrice?.max && params.append("budget[to]", state?.getBadgePrice?.max);
     colorHexCode?.length &&
@@ -101,7 +102,11 @@ const CategoryForBrand = ({ setFilterData }) => {
         params.append("colors[]", colorHexCode[index]);
       });
 
-    fetch(`${apiUrl}?` + params)
+      Object.entries(params).forEach((i) => {
+        if (!i[1]) delete params[i[0]];
+      });
+
+    fetch(`${apiUrl}?` + new URLSearchParams(params))
       .then((res) => res.json())
       .then((res) => {
         // console.log(res?.filter, "res-data");
@@ -111,15 +116,8 @@ const CategoryForBrand = ({ setFilterData }) => {
       .catch((err) => console.log(err, "ERRORLIST"));
   };
 
-  console.log(colorHexCode);
-
   useEffect(() => {
-    fetchGetAllData({
-      gender: genderId,
-      discount: discountId,
-      category: categoryId,
-      rating: customerReviews,
-    });
+    fetchGetAllData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     genderId,
@@ -206,6 +204,7 @@ const CategoryForBrand = ({ setFilterData }) => {
           setState={setState}
           filter={filter}
           colorHexCode={colorHexCode}
+          setColorHexCode={setColorHexCode}
           handleGetColorHexCode={handleGetColorHexCode}
         />
 
@@ -234,4 +233,4 @@ const CategoryForBrand = ({ setFilterData }) => {
     </main>
   );
 };
-export { CategoryForBrand };
+export default React.memo(CategoryForBrand);
