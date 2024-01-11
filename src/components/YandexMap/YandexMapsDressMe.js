@@ -157,7 +157,7 @@ function YandexMapsDressMe() {
 
   const mapState = {
 
-    center: [41.311753, 69.241822],
+    center: [41.311151, 69.279737],
     zoom: 12,
   };
 

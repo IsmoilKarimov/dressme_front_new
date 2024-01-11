@@ -45,19 +45,19 @@ function BottomHeader() {
 
   const [colorSelectId, setColorSelectId] = useState([]);
   const [minPrice, setMinPrice] = useState(
-    Number(state?.getAllCardList?.budget?.min_price) || 100000
+    Number(state?.getAllCardList?.budget?.min_price) || 10000
   );
   const [maxPrice, setMaxPrice] = useState(
     Number(state?.getAllCardList?.budget?.max_price) || 1000000
   );
-  const [values, setValues] = useState([minPrice, maxPrice]);
   const [getRange, setGetRange] = useState([]);
 
   useEffect(() => {
-    setMinPrice(Number(state?.getAllCardList?.budget?.min_price) || 100000);
+    setMinPrice(Number(state?.getAllCardList?.budget?.min_price) || 10000);
     setMaxPrice(Number(state?.getAllCardList?.budget?.max_price) || 1000000);
   }, [state?.getAllCardList?.budget]);
 
+  const [values, setValues] = useState([minPrice, maxPrice]);
   const url = "https://api.dressme.uz/api/main";
   // ------------GET METHOD Main data -----------------
 
@@ -164,7 +164,7 @@ function BottomHeader() {
               <input
                 className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={values[0]}
-                // onChange={(e) => setMaxPrice(e.target.value)}
+              // onChange={(e) => setMaxPrice(e.target.value)}
               />{" "}
               сум
             </span>
@@ -177,7 +177,7 @@ function BottomHeader() {
               <input
                 className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={values[1]}
-                // onChange={(e) => setMaxPrice(e.target.value)}
+              // onChange={(e) => setMaxPrice(e.target.value)}
               />
               сум
             </span>
@@ -349,11 +349,10 @@ function BottomHeader() {
                         setSelectedId(data?.id);
                       }}
                       style={{ backgroundColor: data?.hex }}
-                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${
-                        data?.id === selectedId
-                          ? "border border-setTexOpacity flex items-center justify-center"
-                          : "border"
-                      } `}
+                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${data?.id === selectedId
+                        ? "border border-setTexOpacity flex items-center justify-center"
+                        : "border"
+                        } `}
                     >
                       {/* {selectedId === data?.id ? (
                         <InputCheckedTrueIcons
@@ -495,9 +494,8 @@ function BottomHeader() {
           </article>
           <article className="w-[480px] h-full overflow-hidden flex items-center justify-between">
             <div
-              className={`${
-                state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
-              } px-2 w-full duration-500  h-full flex items-center justify-between  `}
+              className={`${state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
+                } px-2 w-full duration-500  h-full flex items-center justify-between  `}
             >
               {state?.getAllCardList?.colors?.map((data, i) => {
                 if (i > 11) {
@@ -511,9 +509,8 @@ function BottomHeader() {
                         onClick={() => newColorArrayId(data?.hex)}
                         style={{ backgroundColor: data?.hex }}
                         // onClick={() => colorIdPushContext(data?.id)}
-                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
-                          !state?.textToColor && "border"
-                        }  border-borderColorCard	`}
+                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${!state?.textToColor && "border"
+                          }  border-borderColorCard	`}
                       >
                         {/* {colorSelectId.includes(data?.hex) && (
                           <span>
@@ -563,9 +560,8 @@ function BottomHeader() {
               </button>
             </div>
             <p
-              className={`${
-                state?.textToColor ? " mr-0" : " mr-[-500px]"
-              } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
+              className={`${state?.textToColor ? " mr-0" : " mr-[-500px]"
+                } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
             >
               Не давай своей гардеробной шкафной жизни стать скучной.
             </p>
@@ -584,15 +580,14 @@ function BottomHeader() {
                 >
                   {data?.childText?.map((item) => {
                     return (
-                      <div className="flex items-center h-full">
+                      <div className="flex items-center h-full box-sizing">
                         <button
                           key={item?.id}
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${
-                            item?.action
-                              ? dressInfo?.BtnActiveSeason
-                              : " bg-btnBgColor text-black"
-                          } px-6 h-full cursor-pointer  font-AeonikProMedium rounded-lg justify-center flex items-center`}
+                          className={`${item?.action
+                            ? "bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-lg"
+                            : " bg-btnBgColor text-black h-full"
+                            } px-6  cursor-pointer box-sizing  font-AeonikProMedium rounded-lg justify-center flex items-center`}
                         >
                           <span>{item?.anyIcons}</span>
                           {item?.name && (
@@ -602,7 +597,7 @@ function BottomHeader() {
                           )}
                         </button>
                         {item?.id !== 3 && (
-                          <span className="w-[2px] h-[30px] border-r border-searchBgColor"></span>
+                          <span className="w-[2px] h-[30px] mx-[1px] border-r border-searchBgColor"></span>
                         )}
                       </div>
                     );
