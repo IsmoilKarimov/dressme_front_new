@@ -13,7 +13,8 @@ import CatalogBtnGroup from "../CatalogBtnGroup/CatalogBtnGroup";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { HeartImg } from "../../../../../assets";
 
-export default function CatalogCard() {
+export default function CatalogCard({ getData, setData }) {
+  console.log(getData, "ldkfgjldfkgjldfkg");
   const [dressInfo] = useContext(dressMainData);
   const wearGroup = [
     { id: 1, name: "Футболки" },
@@ -130,13 +131,26 @@ export default function CatalogCard() {
     section_products: { links: [{ label: 5 }, { label: 5 }] },
   };
 
+  const setPaginationFunc = (url) => {
+    fetch(url, {
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res);
+      });
+  };
+
   return (
     <main className="flex flex-col box-border mt-2 md:mt-[34px]">
       <section className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 mt-1 md:mt-0">
-        {/* {dressInfo.ProductList.map((data) => {
+        {getData?.category_products?.data?.map((data) => {
           return (
             <article
-              key={data.id}
+              key={data?.id}
               className={`ss:w-[49%] md:w-[24%] lg:w-[240px]  xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
             >
               <figure
@@ -146,7 +160,7 @@ export default function CatalogCard() {
                 {data.ProducImg ? (
                   <img
                     className="w-full h-full m-auto hover:scale-105 transition duration-700 ease-in-out"
-                    src={data.ProducImg}
+                    src={data?.ProducImg}
                     alt="ProducImg"
                   />
                 ) : (
@@ -155,7 +169,7 @@ export default function CatalogCard() {
               </figure>
               <section className="w-full rounded-b-xl bg-white  flex flex-wrap h-[130px] md:h-[136px] ">
                 <article className=" w-full flex justify-between items-center px-1  border-solid xs:h-[38px] lg:h-8 ss:h-[30px] xs:px-2 md:px-4 bg-white">
-                  {data?.changeColor.map((itemValue) => {
+                  {data?.changeColor?.map((itemValue) => {
                     return (
                       <article
                         key={itemValue?.id}
@@ -203,7 +217,7 @@ export default function CatalogCard() {
                 </article>
                 <article className="w-full flex items-center justify-between  pl-3 pr-[5px]">
                   <article className="flex items-center ">
-                    {data.sale ? (
+                    {data?.sale ? (
                       <figure className="flex flex-col-reverse ll:flex-row	text-start items-start ">
                         <p className="text-start m-0 p-0  not-italic font-AeonikProMedium text-[16px]  md:text-base leading-1 text-red-700 xs:text-base xs:leading-4 mr-1">
                           {data?.sale}
@@ -230,8 +244,9 @@ export default function CatalogCard() {
               </section>
             </article>
           );
-        })} */}
+        })}
       </section>
+
       <section className="w-full h-fit md:hidden flex items-center justify-center mt-14">
         <p className="w-[760px] h-[60px] cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-black flex items-center justify-center rounded-lg border border-searchBgColor bg-btnBgColor">
           Показать ещё 30 наборов
@@ -241,12 +256,12 @@ export default function CatalogCard() {
       <section className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6">
         <article className="flex items-center">
           <ul className="flex items-center">
-            {filterData?.section_products?.links?.map((item) => {
+            {getData?.category_products?.links?.map((item) => {
               return (
                 <li
                   onClick={() => {
                     if (item?.url) {
-                      // setPaginationFunc(item?.url);
+                      setPaginationFunc(item?.url);
                     }
                   }}
                   className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${
