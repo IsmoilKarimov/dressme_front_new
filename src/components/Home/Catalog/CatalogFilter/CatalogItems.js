@@ -1,18 +1,16 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import "../category.css";
 import { CatalogFilterGroup } from "./CatalogFilterGroup/CatalogFilterGroup";
 import CatalogCard from "./CatalogElement/CatalogCard";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import {
   FilterIcons,
   ItailIcons,
   UnderSection,
 } from "../../../../assets/icons";
 import { Popover } from "antd";
-
-let data = {};
-let state = [];
+import { useQuery } from "@tanstack/react-query";
 
 export default function CatalogItems() {
   const [dressInfo] = useContext(dressMainData);
@@ -24,6 +22,94 @@ export default function CatalogItems() {
       document.body.style.overflow = "auto";
     }
   }, [dressInfo?.openCatalogFilter]);
+
+  const navigate = useNavigate();
+  const params = useParams();
+
+  const [state, setState] = useState({
+    opensports: false,
+    openTypesofClothes: false,
+  });
+
+  const [selectedSection, setSelectedSection] = useState({
+    value: null,
+    id: null,
+  });
+
+  const handleOpenCategories = (newOpen) => {
+    setState({ ...state, opensports: newOpen });
+  };
+  const handleCategories = (value, id) => {
+    setState({ ...state, opensports: false });
+    setSelectedSection({ value, id });
+    navigate(`/catalog/${id}`);
+  };
+
+  const [data, setData] = useState({});
+
+  const url = "https://api.dressme.uz";
+
+  useQuery(
+    ["get_catalog_show_data"],
+    () => {
+      return fetch(`${url}/api/main/category/${params?.id}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          //   "Content-type": "application/json; charset=UTF-8",
+        },
+      }).then((res) => res.json());
+    },
+    {
+      onSuccess: (res) => {
+        setData(res);
+        setSelectedSection({ ...selectedSection, id: res?.section?.id });
+      },
+      onError: (err) => {
+        console.log(err, "err");
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: true,
+    }
+  );
+
+  const contentCategories = (
+    <section className="w-[230px] h-fit max-h-[350px] overflow-y-auto m-0 p-0 VerticelScroll">
+      {data?.categories?.map((data) => {
+        return (
+          <p
+            key={data?.id}
+            onClick={() => {
+              handleCategories(data?.name_ru, data?.id);
+            }}
+            className={`${
+              selectedSection?.id === data?.id ? "bg-bgColor" : null
+            } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+          >
+            {data?.name_ru}
+          </p>
+        );
+      })}
+    </section>
+  );
+
+  // ----- Category change -----
+
+  useEffect(() => {
+    if (selectedSection?.id) {
+      fetch(`${url}/api/main/category/${selectedSection?.id}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          //   "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => setData(res))
+        .catch((res) => console.log(res));
+    }
+  }, [selectedSection]);
+
   return (
     <main className="w-full h-full">
       <div className="md:pt-8 md:pb-16 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 py-3">
@@ -66,16 +152,16 @@ export default function CatalogItems() {
               <div className="w-full md:w-fit flex h-[66px] md:h-fit items-center border md:border-none border-searchBgColor rounded-b-lg">
                 <div className="absolute w-[80px] md:w-[150px] h-[80px] md:h-[150px] left-[38px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center  bg-white">
                   <img
-                    src={data?.section?.url_photo}
+                    // src={data?.section?.url_photo}
                     alt=""
                     className="rounded-full"
                   />
                 </div>
                 <div className="flex items-center ml-[112px] md:ml-[210px]">
                   <div className="text-2xl font-AeonikProMedium">
-                    {data?.section?.name_ru}
+                    {data?.category?.name_ru}
                     <span className="text-lg text-setTexOpacity font-AeonikProRegular ml-2">
-                      ({data?.section_products?.total})
+                      ({data?.category_products?.total})
                     </span>
                   </div>
                 </div>
@@ -90,15 +176,15 @@ export default function CatalogItems() {
                   <div className="md:flex items-center hidden">
                     <Popover
                       open={state?.opensports}
-                      // onOpenChange={handleOpenCategories}
+                      onOpenChange={handleOpenCategories}
                       className="w-[260px] px-4 h-[52px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
                       trigger="click"
                       options={["Hide"]}
-                      // placement="bottom"
-                      // content={contentCategories}
+                      placement="bottom"
+                      content={contentCategories}
                     >
                       <span className="text-[15px] font-AeonikProMedium">
-                        {data?.section?.name_ru}
+                        {data?.category?.name_ru}
                       </span>
                       <span>
                         {/* <BiChevronDown
@@ -115,7 +201,7 @@ export default function CatalogItems() {
               </div>
             </figure>
           </article>
-          <article className="w-full md:hidden flex items-center justify-between mt-6 mb-3 px-4">
+          {/* <article className="w-full md:hidden flex items-center justify-between mt-6 mb-3 px-4">
             <button
               // onClick={() => setFilter(true)}
               className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
@@ -134,7 +220,7 @@ export default function CatalogItems() {
                 Под раздел
               </p>
             </button>
-          </article>
+          </article> */}
         </article>
         {data?.section?.sub_sections ? (
           <article className="w-full border-b border-searchBgColor">
