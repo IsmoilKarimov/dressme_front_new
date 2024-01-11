@@ -39,23 +39,23 @@ function RegionList({ onClick }) {
       mainSubRegionId: state?.subRegionId,
     })
   }
-  useEffect(() => {
+  // useEffect(() => {
 
-    if (dressInfo?.mainSubRegionId) {
-      mainData?.regions?.filter(e => e?.id == dressInfo?.mainRegionId)?.map(item => {
-        item?.sub_regions?.map(data => {
-          if (item?.id === dressInfo?.mainRegionId) {
-            if (dressInfo?.mainSubRegionId !== data?.id) {
-              setDressInfo({
-                ...dressInfo, mainSubRegionId: null,
-              })
-            }
-          }
-        })
-      })
-    }
+  //   if (dressInfo?.mainSubRegionId) {
+  //     mainData?.regions?.filter(e => e?.id == dressInfo?.mainRegionId)?.map(item => {
+  //       item?.sub_regions?.map(data => {
+  //         if (item?.id === dressInfo?.mainRegionId) {
+  //           if (dressInfo?.mainSubRegionId !== data?.id) {
+  //             setDressInfo({
+  //               ...dressInfo, mainSubRegionId: null,
+  //             })
+  //           }
+  //         }
+  //       })
+  //     })
+  //   }
 
-  }, [state?.regionId])
+  // }, [state?.regionId])
   // show
   return (
     <main className={`w-full  h-fit `}>
