@@ -21,8 +21,6 @@ const CategoryForBrand = ({ setFilterData }) => {
   const [colorHexCode, setColorHexCode] = useState([]);
   const [customerReviews, setCustomerReviews] = useState();
 
-  console.log(colorHexCode, "colorHexCode");
-
   const [state, setState] = useState({
     brandShow: screenSize.width <= 768 ? true : false,
     budgetShow: screenSize.width <= 768 ? true : false,
@@ -40,62 +38,7 @@ const CategoryForBrand = ({ setFilterData }) => {
     colorHexCode: [],
   });
 
-  const params = useParams();
-  const id = params?.id.replace(":", "");
-  const apiUrl = `https://api.dressme.uz/api/main/section/${id}`;
-
-  const fetchGetAllData = (params) => {
-    const urlParams = new URLSearchParams();
-    if ("budget[from]") {
-      urlParams.set("budget[from]", "budget[from]");
-    }
-    if ("budget[to]") {
-      urlParams.set("budget[to]", "budget[to]");
-    }
-    if ("colors[]") {
-      urlParams.set("colors[]", "colors[]");
-    }
-    if (colorHexCode?.length) {
-      colorHexCode?.forEach((e, index) => {
-        urlParams.append("colors[]", colorHexCode[index]);
-      });
-    }
-
-    Object.entries(params).forEach((i) => {
-      if (!i[1]) delete params[i[0]];
-    });
-
-    fetch(`${apiUrl}?` + new URLSearchParams(params), {
-      headers: { Authorization: `Token ${Cookies.get("DressmeUserToken")}` },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        // console.log(res?.filter, "res-data");
-        setFilter(res?.filter);
-        setFilterData(res);
-      })
-      .catch((err) => console.log(err, "ERRORLIST"));
-  };
-
-  useEffect(() => {
-    fetchGetAllData({
-      gender: genderId,
-      discount: discountId,
-      category: categoryId,
-      "budget[from]": state?.getBadgePrice?.min,
-      "budget[to]": state?.getBadgePrice?.max,
-      // "colors[]": colorHexCode,
-      rating: customerReviews,
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    genderId,
-    discountId,
-    categoryId,
-    state?.getBadgePrice,
-    colorHexCode,
-    customerReviews,
-  ]);
+  console.log(state?.getBadgePrice, "getBadgePrice");
 
   // Gender GetID
   function handleGetId(childData) {
@@ -144,6 +87,48 @@ const CategoryForBrand = ({ setFilterData }) => {
       );
     }
   }
+
+  const { id } = useParams();
+  const newId = id.replace(":", "");
+  const apiUrl = `https://api.dressme.uz/api/main/section/${newId}`;
+
+  const fetchGetAllData = () => {
+    let params = new URLSearchParams();
+    state?.getBadgePrice?.min && params.append("budget[from]", state?.getBadgePrice?.min);
+    state?.getBadgePrice?.max && params.append("budget[to]", state?.getBadgePrice?.max);
+    colorHexCode?.length &&
+      colorHexCode?.forEach((e, index) => {
+        params.append("colors[]", colorHexCode[index]);
+      });
+
+    fetch(`${apiUrl}?` + params)
+      .then((res) => res.json())
+      .then((res) => {
+        // console.log(res?.filter, "res-data");
+        setFilter(res?.filter);
+        setFilterData(res);
+      })
+      .catch((err) => console.log(err, "ERRORLIST"));
+  };
+
+  console.log(colorHexCode);
+
+  useEffect(() => {
+    fetchGetAllData({
+      gender: genderId,
+      discount: discountId,
+      category: categoryId,
+      rating: customerReviews,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    genderId,
+    discountId,
+    categoryId,
+    state?.getBadgePrice,
+    colorHexCode,
+    customerReviews,
+  ]);
 
   // Rating GetID
   function handleCustomerReviews(childData) {
@@ -203,7 +188,7 @@ const CategoryForBrand = ({ setFilterData }) => {
           state={state}
           setState={setState}
           handleGetCategoryId={handleGetCategoryId}
-          params={params}
+          newId={newId}
           filter={filter}
         />
 
