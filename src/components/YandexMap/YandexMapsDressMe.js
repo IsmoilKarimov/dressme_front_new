@@ -177,16 +177,16 @@ function YandexMapsDressMe() {
           }`}
       >
       </div>
-      <div className={`w-full   sm:w-fit h-fit flex items-center mx-auto justify-center fixed z-[216]   ${openCarouselModal ? "" : "hidden"
+      <div className={`w-full   sm:w-fit h-fit flex items-center mx-auto justify-center fixed z-[217]   ${openCarouselModal ? "" : "hidden"
         }`}>
         <button
           onClick={() => {
             setOpenCarouselModal(false);
           }}
-          className="absolute right-3 sm:right-[-20px] z-[218] top-[-50px] sm:top-[0px] flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px]   rounded-full bg-[#808080]">
+          className="absolute right-3 sm:right-[-20px] bg-[#f4f4f4] z-[218] top-[-50px] sm:top-[0px] flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px]   rounded-full bg-[#808080]">
           <MenuCloseIcons colors="#fff" />
         </button>
-        <div className="relative  z-[217] !w-full sm:w-fit  top-0">
+        <div className="relative  z-[218] !w-full sm:w-fit top-0">
           <CarouselModalMarket getAllImgGallery={getAllImgGallery} />
         </div>
       </div>
