@@ -128,7 +128,13 @@ const YandexMedium = ({ getYandexSearchName }) => {
     })
   }
   // console.log(searchMarketName, "searchMarketName");
-
+  const _handleKeyDownSearchYandex = (event) => {
+    if (event.key === 'Enter') {
+      getYandexSearchName({
+        searchMarketName: searchMarketName
+      })
+    }
+  }
   return (
     <div className=" flex justify-between items-center m-auto ">
       {/* Starting of Full Screen page section */}
@@ -260,6 +266,8 @@ const YandexMedium = ({ getYandexSearchName }) => {
                 className="bg-transparent w-full px-3 h-[44px] text-sm border  md:border-searchBgColor placeholder:font-AeonikProRegular"
                 value={searchMarketName}
                 onChange={handleChange}
+                onKeyDown={_handleKeyDownSearchYandex}
+
               />
               {searchMarketName &&
                 <button

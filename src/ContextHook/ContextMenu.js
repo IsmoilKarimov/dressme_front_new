@@ -17,6 +17,7 @@ export const DressMenu = ({ children }) => {
     // Cordinate
     yandexPositionX: null,
     yandexPositionY: null,
+    yandexOpenRegionList: false,
 
     // Category
     openCategoryFilter: false,
@@ -42,6 +43,7 @@ export const DressMenu = ({ children }) => {
     mainSearchName: null,
     mainRegionId: 2,
     mainSubRegionId: null,
+
 
 
     ProductList: [

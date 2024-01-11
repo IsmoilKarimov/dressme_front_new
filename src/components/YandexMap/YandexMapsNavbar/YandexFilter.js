@@ -364,16 +364,17 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
               return (
                 <div
                   key={data?.id}
-                  className="w-fit h-full flex items-center  "
+                  className="w-fit h-full flex items-center box-border "
                 >
                   {
                     data?.childText?.map(item => {
                       return (
-                        <div className="flex items-center h-full">
+                        <div className="flex items-center h-full box-border">
                           <button
                             key={item?.id}
                             onClick={() => handleFilterByUser(data?.id, item?.id)}
-                            className={`${item?.action ? dressInfo?.BtnActiveSeason : " bg-btnBgColor text-black"} px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  h-[44px]  justify-center flex items-center`}
+                            className={`${item?.action ?
+                              " bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-lg" : " bg-btnBgColor text-black"} px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  h-[44px]  justify-center flex items-center`}
                           >
                             {/* <img src={item?.anyIcons} alt="male" /> */}
                             <span>{item?.anyIcons}</span>

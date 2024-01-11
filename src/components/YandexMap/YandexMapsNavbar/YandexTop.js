@@ -16,7 +16,7 @@ import RegionsList from "../../../ContextHook/RegionsList";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 
 const YandexTop = () => {
-  const [dressInfo] = useContext(dressMainData);
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [mainData, setMainData] = useContext(HomeMainDataContext);
   const [state, setState] = useState({
     openLang: false,
@@ -109,26 +109,10 @@ const YandexTop = () => {
 
   return (
     <div className="flex justify-between items-center m-auto ">
-      <div
-        onClick={() => setRegionsShow(false)}
-        className={`fixed inset-0 z-[230] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
-         ${regionsShow ? "" : "hidden"}`}
-      ></div>
-      {regionsShow && (
-        <div
-          className={`max-w-[600px]  w-full fixed duration-500 z-[231]  left-1/2 right-1/2 top-[50%] translate-x-[-50%] translate-y-[-50%]  h-fit flex items-center  justify-center mx-auto
-        ${regionsShow
-              ? " bottom-0 md:flex flex-col"
-              : "bottom-[-1500px] z-[-10]"
-            }
-        `}
-        >
-          <RegionsList onClick={toggleRegionsShow} />
-        </div>
-      )}
+
       <div className="left h-full flex items-center  ">
         <div onClick={() => {
-          setRegionsShow(true);
+          setDressInfo({ ...dressInfo, yandexOpenRegionList: true })
         }} className="flex w-fit items-center">
           <span className="mr-2">
             <LocationIcons />
@@ -138,7 +122,7 @@ const YandexTop = () => {
           </span>
           <div className="w-full min-w-[90px] font-AeonikProMedium flex items-center text-[13px]">
             {
-              mainData?.regions?.filter(e => e?.id === dressInfo?.mainRegionId)?.map(item => {
+              mainData?.regions?.filter(e => e?.id == dressInfo?.mainRegionId)?.map(item => {
                 return (
                   <>
                     <span className="border-b border-slate-900">{item?.name_ru} </span>

@@ -37,7 +37,15 @@ function RegionList({ onClick }) {
     setDressInfo({
       ...dressInfo, mainRegionId: state?.regionId,
       mainSubRegionId: state?.subRegionId,
+      yandexOpenRegionList: false
     })
+  }
+  const MenuClose = () => {
+    setDressInfo({
+      ...dressInfo, yandexOpenRegionList: false
+    })
+    onClick()
+
   }
   // useEffect(() => {
 
@@ -66,7 +74,7 @@ function RegionList({ onClick }) {
           <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">
             Выберите регион
           </span>
-          <span className="select-none cursor-pointer" onClick={onClick}>
+          <span className="select-none cursor-pointer" onClick={() => MenuClose()}>
             <MenuCloseIcons colors="#000" />
           </span>
         </div>
