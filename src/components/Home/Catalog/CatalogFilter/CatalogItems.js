@@ -257,7 +257,7 @@ export default function CatalogItems() {
           <CatalogFilterGroup />
         </article>
         <article className="w-full md:w-[78%] h-[full] ss:px-4 md:px-0 ">
-          <CatalogCard />
+          <CatalogCard getData={data} setData={setData} />
         </article>
       </section>
     </main>
