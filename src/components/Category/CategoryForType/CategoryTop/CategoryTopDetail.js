@@ -102,6 +102,23 @@ const CategoryTopDetail = () => {
     </section>
   );
 
+  // ----- Category change -----
+
+  useEffect(() => {
+    if (selectedSection?.id) {
+      fetch(`${url}/api/main/section/${selectedSection?.id}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          //   "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => setData(res))
+        .catch((res) => console.log(res));
+    }
+  }, [selectedSection]);
+
   return (
     <main className="flex flex-col justify-center border-t border-searchBgColor items-center">
       <div className="md:pt-8 md:pb-16 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 py-3">
