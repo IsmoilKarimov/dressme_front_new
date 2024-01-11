@@ -11,6 +11,7 @@ import {
 } from "../../../../assets/icons";
 import { Popover } from "antd";
 import { useQuery } from "@tanstack/react-query";
+import { BiChevronDown } from "react-icons/bi";
 
 export default function CatalogItems() {
   const [dressInfo] = useContext(dressMainData);
@@ -187,13 +188,13 @@ export default function CatalogItems() {
                         {data?.category?.name_ru}
                       </span>
                       <span>
-                        {/* <BiChevronDown
+                        <BiChevronDown
                           size={22}
                           style={{ color: "#000" }}
                           className={`${
                             state?.opensports ? "rotate-[-180deg]" : ""
                           } duration-200`}
-                        /> */}
+                        />
                       </span>
                     </Popover>
                   </div>
