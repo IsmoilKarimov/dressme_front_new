@@ -220,10 +220,15 @@ const MediumHeader = () => {
     setSearchMarketName("");
     setDressInfo({ ...dressInfo, mainSearchName: null })
   };
+
   function getSearchClick() {
     setDressInfo({ ...dressInfo, mainSearchName: searchMarketName })
   }
-
+  const _handleKeyDownSearch = (event) => {
+    if (event.key === 'Enter') {
+      setDressInfo({ ...dressInfo, mainSearchName: searchMarketName })
+    }
+  }
   return (
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <div
@@ -403,6 +408,7 @@ const MediumHeader = () => {
                       className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
                       value={searchMarketName}
                       onChange={handleChange}
+                      onKeyDown={_handleKeyDownSearch}
                     />
                     {searchMarketName &&
                       <button
