@@ -8,7 +8,7 @@ export default function CategoryForType() {
   const [dressInfo] = useContext(dressMainData);
   const [filterData, setFilterData] = useState([]);
 
-  // console.log(filterData, "FILTER-DATA");
+  console.log(filterData, "FILTER-DATA");
 
   useEffect(() => {
     if (dressInfo?.openCategoryFilter) {

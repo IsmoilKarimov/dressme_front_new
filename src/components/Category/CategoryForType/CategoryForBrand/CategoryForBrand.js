@@ -9,6 +9,7 @@ import ColorsFilter from "./FiilterForApi/ColorsFilter";
 import CustomerReviewsFilter from "./FiilterForApi/CustomerReviewsFilter";
 import ClothingSizesFilter from "./FiilterForApi/ClothingSizesFilter";
 import ShoesSizesFilter from "./FiilterForApi/ShoesSizesFilter";
+import UnderwearSizes from "./FiilterForApi/UnderwearSizes";
 
 const CategoryForBrand = ({ setFilterData }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -21,18 +22,13 @@ const CategoryForBrand = ({ setFilterData }) => {
   const [customerReviews, setCustomerReviews] = useState();
 
   const [state, setState] = useState({
-    brandShow: screenSize.width <= 768 ? true : false,
     budgetShow: screenSize.width <= 768 ? true : false,
+    category: screenSize.width <= 768 ? true : false,
     ColorsShow: screenSize.width <= 768 ? true : false,
     ClothingShow: screenSize.width <= 768 ? true : false,
-    TrouserShow: screenSize.width <= 768 ? true : false,
-    ShoesShow: screenSize.width <= 768 ? true : false,
     customerRreviews: screenSize.width <= 768 ? true : false,
-    availability: screenSize.width <= 768 ? true : false,
-    category: screenSize.width <= 768 ? true : false,
-    //--//--//--//--//--//--//--//
-    checkBrand: false,
-    checkedPrize: true,
+    ShoesShow: screenSize.width <= 768 ? true : false,
+    UnderwearShow: screenSize.width <= 768 ? true : false,
     getBadgePrice: {},
     colorHexCode: [],
   });
@@ -106,10 +102,10 @@ const CategoryForBrand = ({ setFilterData }) => {
         if (!i[1]) delete params[i[0]];
       });
 
-    fetch(`${apiUrl}?` + new URLSearchParams(params))
+    fetch(`${apiUrl}?` + params)
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res?.filter, "res-data");
+        console.log(res?.filter, "res-data");
         setFilter(res?.filter);
         setFilterData(res);
       })
@@ -219,6 +215,9 @@ const CategoryForBrand = ({ setFilterData }) => {
         {/* Clothing sizes */}
         <ClothingSizesFilter state={state} setState={setState} />
 
+        {/* Shoes sizes */}
+        <UnderwearSizes state={state} setState={setState} />
+        
         {/* Shoes sizes */}
         <ShoesSizesFilter state={state} setState={setState} />
       </section>
