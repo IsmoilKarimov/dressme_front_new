@@ -6,9 +6,11 @@ function ColorsFilter({
   state,
   setState,
   filter,
-  handleGetColorHexCode
+  colorHexCode,
+  handleGetColorHexCode,
 }) {
   const [selectedColorId, setSelectedColorId] = useState(null);
+  console.log(selectedColorId, "selectedColorId");
   const [changeClick, setChangeClick] = useState(false);
 
   function onGetColorHexCode(hexCode) {
@@ -51,6 +53,7 @@ function ColorsFilter({
           </figure>
         </article>
         {/* Colors */}
+
         <article
           className={`overflow-hidden ${
             state?.ColorsShow
@@ -59,26 +62,28 @@ function ColorsFilter({
                   filter?.colors?.length > 5
                     ? "h-[120px]"
                     : `${filter?.colors?.length > 10 ? "h-[150px]" : ""}`
-                } ${changeClick ? 'h-[80px]' : 'h-[56px]'} duration-300  pt-5`
+                } ${changeClick ? "h-[120px]" : "h-[95px]"} duration-300 pt-5`
           }`}
         >
-          <div className="flex items-center justify-start mx-1 gap-x-[10px] gap-y-[10px]">
+          <div className="flex items-center justify-start flex-wrap mx-1 gap-x-[10px] gap-y-[10px]">
             {filter?.colors?.map((colorHex, index) => {
+              console.log(index + 1, colorHex);
               return (
                 <button
                   type="button"
                   key={index}
                   style={{ background: colorHex }}
                   onClick={() => {
-                    setSelectedColorId(index);
+                    setSelectedColorId(index + 1);
                     setChangeClick(true);
                     onGetColorHexCode(colorHex);
                   }}
-                  className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 w-8 h-8 cursor-pointer border border-solid border-borderColorCard`}
+                  className={`
+                    } rounded-full flex items-center justify-center hover:scale-110 duration-300 w-8 h-8 cursor-pointer border border-solid border-borderColorCard`}
                   htmlFor={`${colorHex}`}
                 >
-                  {selectedColorId === index ? (
-                    <p className="w-[14px] flex items-center justify-center">
+                  <p className="w-[14px] flex items-center justify-center">
+                    {colorHexCode.includes(colorHex) && (
                       <FaCheck
                         color={
                           colorHex === "#ffffff" || colorHex === "#f5f5dc"
@@ -87,8 +92,8 @@ function ColorsFilter({
                         }
                         className="flex items-center justify-center"
                       />
-                    </p>
-                  ) : null}
+                    )}
+                  </p>
                 </button>
               );
             })}
