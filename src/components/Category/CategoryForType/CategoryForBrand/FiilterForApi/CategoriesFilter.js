@@ -8,7 +8,7 @@ export default function CategoriesFilter({
   state,
   setState,
   handleGetCategoryId,
-  params,
+  newId,
 }) {
   const [getCategoryId, setGetCategoryId] = useState();
   const [dataAction, setDataAction] = useState(false);
@@ -26,7 +26,7 @@ export default function CategoriesFilter({
   useQuery(
     ["get_category_id"],
     () => {
-      return request({ url: `/main/section/${params?.id}`, token: true });
+      return request({ url: `/main/section/${newId}`, token: true });
     },
     {
       onSuccess: (res) => {

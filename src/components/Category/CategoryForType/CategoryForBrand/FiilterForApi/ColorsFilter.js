@@ -10,7 +10,7 @@ function ColorsFilter({
   handleGetColorHexCode,
 }) {
   const [selectedColorId, setSelectedColorId] = useState(null);
-  console.log(selectedColorId, "selectedColorId");
+  // console.log(selectedColorId, "selectedColorId");
   const [changeClick, setChangeClick] = useState(false);
 
   function onGetColorHexCode(hexCode) {
@@ -58,16 +58,12 @@ function ColorsFilter({
           className={`overflow-hidden ${
             state?.ColorsShow
               ? "duration-300 h-0"
-              : `${
-                  filter?.colors?.length > 5
-                    ? "h-[120px]"
-                    : `${filter?.colors?.length > 10 ? "h-[150px]" : ""}`
-                } ${changeClick ? "h-[120px]" : "h-[95px]"} duration-300 pt-5`
-          }`}
+              : `h-fit duration-300 pt-5`
+          }  ${changeClick ? "block" : ""}`}
         >
-          <div className="flex items-center justify-start flex-wrap mx-1 gap-x-[10px] gap-y-[10px]">
+          <div className="flex items-center justify-start flex-wrap mx-1 gap-x-2 gap-y-2">
             {filter?.colors?.map((colorHex, index) => {
-              console.log(index + 1, colorHex);
+              // console.log(index + 1, colorHex);
               return (
                 <button
                   type="button"
@@ -79,7 +75,7 @@ function ColorsFilter({
                     onGetColorHexCode(colorHex);
                   }}
                   className={`
-                    } rounded-full flex items-center justify-center hover:scale-110 duration-300 w-8 h-8 cursor-pointer border border-solid border-borderColorCard`}
+                    } rounded-full flex items-center justify-center hover:scale-110 duration-300 w-6 h-6 cursor-pointer border border-solid border-borderColorCard`}
                   htmlFor={`${colorHex}`}
                 >
                   <p className="w-[14px] flex items-center justify-center">
