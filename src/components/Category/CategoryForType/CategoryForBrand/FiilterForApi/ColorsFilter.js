@@ -55,7 +55,7 @@ function ColorsFilter({
 
         <article
           className={`overflow-hidden ${
-            state?.ColorsShow ? "duration-300 h-0" : `h-fit duration-300 pt-5`
+            state?.ColorsShow ? "duration-300 h-0" : `h-fit duration-300 pt-5 pb-1`
           }  ${changeClick ? "block" : ""}`}
         >
           <div className="flex items-center justify-start flex-wrap mx-1 gap-x-2 gap-y-2">

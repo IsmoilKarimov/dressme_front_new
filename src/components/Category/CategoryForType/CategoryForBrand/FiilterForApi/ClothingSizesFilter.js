@@ -30,7 +30,7 @@ function ClothingSizesFilter({ state, setState }) {
             className="flex items-center cursor-pointer select-none"
           >
             <figcaption className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-              Размер одежды
+              Размер верхней одежды
             </figcaption>
             <p
               className={`${
