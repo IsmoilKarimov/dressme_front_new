@@ -38,11 +38,6 @@ function CategoryGenderButtonsFilter({
       discountId: id,
     });
   }
-  function sendClearedData() {
-    handleGetDiscountId({
-      discountId: null,
-    });
-  }
 
   const handleGenderCheck = (value) => {
     setGenderCategory((data) => {
@@ -75,7 +70,7 @@ function CategoryGenderButtonsFilter({
           </p>
           <p
             className={`
-                ${openGenderField ? "rotate-[180deg]" : ""} duration-300 ml-1`}
+              ${openGenderField ? "rotate-[180deg]" : ""} duration-300 ml-1`}
           >
             <ArrowTopIcons colors={"#000"} />
           </p>
@@ -141,11 +136,12 @@ function CategoryGenderButtonsFilter({
               </button>
             ) : null}
           </div>
-          {filter?.gender_ids.length && !dataAction ? (
+          {filter?.gender_ids.length > 0 && !dataAction ? (
             <button
               type="button"
               onClick={() => {
-                sendClearedData()
+                onGetId(null)
+                onGetDiscontId(null)
                 setDataAction(true);
               }}
               className={` w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}

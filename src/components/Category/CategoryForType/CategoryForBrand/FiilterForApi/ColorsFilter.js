@@ -7,20 +7,19 @@ function ColorsFilter({
   setState,
   filter,
   colorHexCode,
+  setColorHexCode,
   handleGetColorHexCode,
 }) {
   const [selectedColorId, setSelectedColorId] = useState(null);
-  // console.log(selectedColorId, "selectedColorId");
   const [changeClick, setChangeClick] = useState(false);
+  console.log(changeClick,'change-click');
+
+  console.log(selectedColorId, "selectedColorId");
+  console.log(colorHexCode, "colorHexCode");
 
   function onGetColorHexCode(hexCode) {
     handleGetColorHexCode({
       colorFilterHexCode: hexCode,
-    });
-  }
-  function sendClearedData() {
-    handleGetColorHexCode({
-      colorFilterHexCode: null,
     });
   }
 
@@ -56,9 +55,7 @@ function ColorsFilter({
 
         <article
           className={`overflow-hidden ${
-            state?.ColorsShow
-              ? "duration-300 h-0"
-              : `h-fit duration-300 pt-5`
+            state?.ColorsShow ? "duration-300 h-0" : `h-fit duration-300 pt-5`
           }  ${changeClick ? "block" : ""}`}
         >
           <div className="flex items-center justify-start flex-wrap mx-1 gap-x-2 gap-y-2">
@@ -71,7 +68,7 @@ function ColorsFilter({
                   style={{ background: colorHex }}
                   onClick={() => {
                     setSelectedColorId(index + 1);
-                    setChangeClick(true);
+                    // setChangeClick(true);
                     onGetColorHexCode(colorHex);
                   }}
                   className={`
@@ -97,13 +94,11 @@ function ColorsFilter({
           <button
             type="button"
             onClick={() => {
-              sendClearedData();
+              setColorHexCode([])
               setChangeClick(false);
               setSelectedColorId(null);
             }}
-            className={`${
-              changeClick ? "flex" : "hidden"
-            } w-full mt-2 flex-start text-sm text-borderWinter font-AeonikProRegular`}
+            className={`${ colorHexCode?.length ? "flex" : "hidden" } w-full mt-2 flex-start text-sm text-borderWinter font-AeonikProRegular`}
           >
             Сбросить
           </button>

@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../category.css";
 import CategoryCards from "./CategoryElement/CategoryCards";
-import { CategoryForBrand } from "./CategoryForBrand/CategoryForBrand";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
+import CategoryForBrand from "./CategoryForBrand/CategoryForBrand";
 
 export default function CategoryForType() {
   const [dressInfo] = useContext(dressMainData);

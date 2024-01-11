@@ -5,7 +5,7 @@ import {
   SearchIcons,
   UnderSection,
 } from "../../../../assets/icons";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 import FilterDropUp from "../CategoryMobileDropUp/FilterDropUp";
@@ -104,20 +104,20 @@ const CategoryTopDetail = () => {
 
   // ----- Category change -----
 
-  useEffect(() => {
-    if (selectedSection?.id) {
-      fetch(`${url}/api/main/section/${selectedSection?.id}`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          //   "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((res) => res.json())
-        .then((res) => setData(res))
-        .catch((res) => console.log(res));
-    }
-  }, [selectedSection]);
+  // useEffect(() => {
+  //   if (selectedSection?.id) {
+  //     fetch(`${url}/api/main/section/${selectedSection?.id}`, {
+  //       method: "GET",
+  //       headers: {
+  //         Accept: "application/json",
+  //         //   "Content-type": "application/json; charset=UTF-8",
+  //       },
+  //     })
+  //       .then((res) => res.json())
+  //       .then((res) => setData(res))
+  //       .catch((res) => console.log(res));
+  //   }
+  // }, [selectedSection]);
 
   return (
     <main className="flex flex-col justify-center border-t border-searchBgColor items-center">
@@ -288,4 +288,4 @@ const CategoryTopDetail = () => {
     </main>
   );
 };
-export default CategoryTopDetail;
+export default React.memo(CategoryTopDetail);
