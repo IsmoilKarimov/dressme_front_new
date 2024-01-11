@@ -51,7 +51,7 @@ const CategoryTopDetail = () => {
   const handleCategories = (value, id) => {
     setState({ ...state, opensports: false });
     setSelectedSection({ value, id });
-    navigate(`/${id}`);
+    navigate(`/section/${id}`);
   };
 
   // --------------------------------------
