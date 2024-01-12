@@ -1,11 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useEffect, useState } from "react";
-// import { ArrowTopIcons, MenuCloseIcons } from "../assets/icons";
-// import { HomeMainDataContext } from "./HomeMainData";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 import { MenuCloseIcons, ArrowTopIcons } from "../../../assets/icons";
-// import { dressMainData } from "./ContextMenu";
+
 
 function RegionListYandex({ onClick }) {
     const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -20,6 +18,7 @@ function RegionListYandex({ onClick }) {
         getSellerList: "",
         // -----region Modal ---
         // openModalRegions: show,
+        uniqueId: null
     });
     const [mainData, setMainData] = useContext(HomeMainDataContext);
     // const url = "https://api.dressme.uz/api/seller";
@@ -27,9 +26,12 @@ function RegionListYandex({ onClick }) {
 
 
     const [activeIndex, setActiveIndex] = useState();
+    const RegId = (id) => {
+        setState({
+            ...state, regionId: id, subRegionId: null,
+        });
+    }
     const accordionCityList = (id) => {
-        setState({ ...state, regionId: id, });
-        // setDressInfo({ ...dressInfo, mainRegionId: id })
 
         if (activeIndex === id) {
             setActiveIndex(0);
@@ -37,6 +39,15 @@ function RegionListYandex({ onClick }) {
             setActiveIndex(id);
         }
     };
+    const regSubRegId = (regId, subRegId) => {
+        setState({
+            ...state,
+            regionId: regId,
+            subRegionId: subRegId,
+            uniqueId: subRegId
+
+        });
+    }
     const sendRegions = () => {
         onClick()
         setDressInfo({
@@ -103,31 +114,34 @@ function RegionListYandex({ onClick }) {
                                 <div
                                     key={data?.id}
                                     className={`${data.id || data.sub_regions.id ? "" : ""
-                                        } w-full h-fit`}
+                                        } w-full h-fit `}
                                 >
                                     <div className="flex items-center">
-                                        <input
-                                            id={data?.name_ru}
-                                            type="radio"
-                                            name="region"
-                                            value={data?.id}
-                                            // checked={state?.regionId == data?.id}
-                                            className="w-[18px] h-[18px] cursor-pointer mr-3"
-                                            onClick={() => accordionCityList(data?.id)}
-                                            onChange={(e) => {
-                                                setState({
-                                                    ...state,
-                                                    regionId: data?.id,
-                                                });
-                                            }}
-                                        />
-                                        <label
-                                            htmlFor={data?.name_ru}
-                                            className="w-full cursor-pointer flex items-center pr-1 border-b border-[#F0F0F0] "
-                                        >
-                                            <span className="text-[#303030] text-lg not-italic font-AeonikProRegular">
-                                                {data?.name_ru}
-                                            </span>
+                                        <div onClick={() => accordionCityList(data?.id)} className="w-full cursor-pointer flex items-center  border-b border-[#F0F0F0] ">
+                                            <label
+                                                htmlFor={data?.name_ru}
+                                                onClick={() => RegId(data?.id)}
+                                                className="w-fit cursor-pointer flex items-center"
+                                            >
+                                                <input
+                                                    id={data?.name_ru}
+                                                    type="radio"
+                                                    name="region"
+                                                    value={data?.id}
+                                                    checked={state?.subRegionId ? false : state?.regionId == data?.id}
+                                                    className="w-[18px] h-[18px] cursor-pointer mr-3"
+                                                    onChange={(e) => {
+                                                        setState({
+                                                            ...state,
+                                                            regionId: data?.id,
+                                                            subRegionId: null
+                                                        });
+                                                    }}
+                                                />
+                                                <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
+                                                    {data?.name_ru}
+                                                </span>
+                                            </label>
                                             <span
                                                 className={`${activeIndex === data?.id
                                                     ? "rotate-[-0deg] duration-300"
@@ -136,7 +150,9 @@ function RegionListYandex({ onClick }) {
                                             >
                                                 <ArrowTopIcons colors={"#a1a1a1"} />
                                             </span>
-                                        </label>
+                                        </div>
+
+
                                     </div>
                                     <div
                                         className={`w-full grid grid-cols-2 xs:grid-cols-3 duration-[400ms]
@@ -153,22 +169,24 @@ function RegionListYandex({ onClick }) {
                                                 >
                                                     <label
                                                         htmlFor={item?.name_ru}
+                                                        onClick={() => regSubRegId(data?.id, item?.id)}
+
                                                         className="flex items-center gap-x-[6px]"
                                                     >
                                                         <input
                                                             type="radio"
                                                             id={item?.name_ru}
-                                                            name="region"
+                                                            name="Subregion"
                                                             value={item?.region_id}
                                                             checked={state?.subRegionId == item?.id}
                                                             className="w-4 h-4 border border-borderColor  cursor-pointer  flex items-center justify-center"
                                                             onChange={(e) => {
                                                                 // setDressInfo({ ...dressInfo, mainSubRegionId: item?.id })
-                                                                setState({
-                                                                    ...state,
-                                                                    // regionId: e.target.value,
-                                                                    subRegionId: item?.id,
-                                                                });
+                                                                // setState({
+                                                                //   ...state,
+                                                                //   regionId: data?.id,
+                                                                //   subRegionId: item?.id,
+                                                                // });
                                                             }}
                                                         />
                                                         <span className="text-[#303030]  cursor-pointer text-[15px] not-italic font-AeonikProRegular">
