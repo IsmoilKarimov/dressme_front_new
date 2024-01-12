@@ -35,7 +35,6 @@ export default function CollectionCards() {
     },
     {
       onSuccess: (res) => {
-        // setData(res)
         setData(res);
       },
       onError: (err) => {
@@ -66,7 +65,7 @@ export default function CollectionCards() {
       return { ...current, ProductList: newArray };
     });
   };
-  // console.log(mainData, "mainData?.products");
+
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <section className="w-full mt-[50px]">
@@ -111,7 +110,6 @@ export default function CollectionCards() {
               dressInfo?.mainCardProducts?.products
                 ?.slice(0, pagination)
                 .map((data) => {
-                  // console.log(data, "data");
                   return (
                     <CollectionCardItem
                       data={data}
@@ -129,7 +127,8 @@ export default function CollectionCards() {
             )}
           </article>
 
-          {dressInfo?.mainCardProducts?.products?.length < 30 ? null : (
+          {dressInfo?.mainCardProducts?.products?.length < 30 ||
+          dressInfo?.mainCardProducts?.products?.length < pagination ? null : (
             <div className="w-full h-fit flex items-center justify-center mt-14">
               <button
                 type="button"
