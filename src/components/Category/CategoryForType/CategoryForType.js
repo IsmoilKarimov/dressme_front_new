@@ -9,7 +9,7 @@ export default function CategoryForType() {
   const [filterData, setFilterData] = useState([]);
   const [pageId, setPageId] = useState();
 
-  console.log(filterData, "FILTER-DATA");
+  // console.log(filterData, "FILTER-DATA");
 
   useEffect(() => {
     if (dressInfo?.openCategoryFilter) {

@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 
-function ClothingSizesFilter({ state, setState }) {
-  const [changeClick, setChangeClick] = useState(false)
-  const clothingSize = [
-    { id: 1, action: false, size: "XS" },
-    { id: 2, action: false, size: "S" },
-    { id: 3, action: false, size: "M" },
-    { id: 4, action: false, size: "L" },
-    { id: 5, action: false, size: "XL" },
-    { id: 6, action: false, size: "2XL" },
-    { id: 7, action: false, size: "3XL" },
-    { id: 8, action: false, size: "4XL" },
-  ];
+function ClothingSizesFilter({ state, setState, filter }) {
+  const [changeClick, setChangeClick] = useState(false);
+  const [outwearData, setOutwearData] = useState(null);
+  
+  // console.log(outwearData, "outwearData");
+
+  useEffect(() => {
+    async function outwearSizes() {
+      const outwear = filter?.wear_sizes?.outwear;
+      console.log(outwear);
+      const transformedArray = await Object.entries(outwear).map(
+        ([size, details]) => ({ size, ...details})
+      );
+      setOutwearData(transformedArray);
+    }
+    outwearSizes();
+  }, [filter]);
 
   return (
     <div className="w-full flex flex-col items-center mb-[38px]">
@@ -43,25 +48,43 @@ function ClothingSizesFilter({ state, setState }) {
         </article>
         <article
           className={` overflow-hidden ${
-            state?.ClothingShow
-              ? "duration-300 h-0"
-              : "duration-300 h-[90px] mt-5"
+            state?.ClothingShow ? "duration-300 h-0" : "duration-300 h-fit mt-5"
           } duration-300`}
         >
-          <figure className="w-full flex flex-wrap justify-between  gap-y-2">
-            {clothingSize.map((item) => (
-              <button
-                key={item.id}
-                onClick={()=>{setChangeClick(true)}}
-                className="h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg"
-              >
-                {item.size}
-              </button>
-            ))}
+          <figure className="w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2">
+            {outwearData?.map((outwear) => {
+              // console.log(item, "item");
+              return (
+                <button
+                  key={outwear.id}
+                  onClick={() => {
+                    setChangeClick(true);
+                  }}
+                  className={`${
+                    outwear?.letter_size && outwear?.size ? 'flex' : 'hidden' } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg`}
+                >
+                  {outwear?.letter_size ? (
+                    <div className="flex items-center">
+                      <span>{outwear?.letter_size}</span>
+                      <span className="ml-1">({outwear?.amount})</span>
+                    </div>
+                  ) : (
+                    <span className="ml-1">({outwear?.size})</span>
+                  )}
+                </button>
+              );
+            })}
+            <button
+              type="button"
+              className={`${
+                changeClick ? "flex" : "hidden"
+              } w-full flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
+            >
+              Сбросить
+            </button>
           </figure>
         </article>
       </section>
-      <button type="button" className={`${changeClick ? 'flex' : 'hidden'} w-full flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}>Сбросить</button>
     </div>
   );
 }
