@@ -108,8 +108,22 @@ export default function CatalogItems() {
         .then((res) => res.json())
         .then((res) => setData(res))
         .catch((res) => console.log(res));
+    } else {
     }
   }, [selectedSection]);
+
+  useEffect(() => {
+    fetch(`${url}/api/main/category/${params?.id}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        //   "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => setData(res))
+      .catch((res) => console.log(res));
+  }, [params]);
 
   return (
     <main className="w-full h-full">

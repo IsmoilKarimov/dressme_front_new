@@ -37,7 +37,7 @@ import {
   HeartImg,
   AllSeason,
   AllSeasonDesktop,
-  allBrandDesktop
+  allBrandDesktop,
 } from "../../assets";
 import NavCategoryModal from "./navCategoryModal";
 import RegionsList from "../../ContextHook/RegionsList";
@@ -50,13 +50,12 @@ const MediumHeader = () => {
     hamburgerMenu: false,
     toggle: false,
     genderActive: true,
-    getAllCardList: null
+    getAllCardList: null,
   });
-  const [searchMarketName, setSearchMarketName] = useState()
+  const [searchMarketName, setSearchMarketName] = useState();
 
-  const [regionsList, setRegionsList] = useState(false)
-  const toggleRegionsShow = useCallback(() => setRegionsList(false), [])
-
+  const [regionsList, setRegionsList] = useState(false);
+  const toggleRegionsShow = useCallback(() => setRegionsList(false), []);
 
   useEffect(() => {
     if (state?.hamburgerMenu || regionsList) {
@@ -171,14 +170,13 @@ const MediumHeader = () => {
             <figure className={`${value?.id !== 5555 ? "w-5" : ""} `}>
               <img src={value?.icons} alt="" className="object-cover w-full" />
             </figure>
-            {
-              value?.type &&
+            {value?.type && (
               <article
                 className={`ml-2 md:ml-3 flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
               >
                 {value?.type}
               </article>
-            }
+            )}
           </article>
         );
       })}
@@ -214,21 +212,21 @@ const MediumHeader = () => {
 
   const handleChange = (event) => {
     setSearchMarketName(event.target.value);
-  }
+  };
 
   const handleClear = () => {
     setSearchMarketName("");
-    setDressInfo({ ...dressInfo, mainSearchName: null })
+    setDressInfo({ ...dressInfo, mainSearchName: null });
   };
 
   function getSearchClick() {
-    setDressInfo({ ...dressInfo, mainSearchName: searchMarketName })
+    setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
   }
   const _handleKeyDownSearch = (event) => {
-    if (event.key === 'Enter') {
-      setDressInfo({ ...dressInfo, mainSearchName: searchMarketName })
+    if (event.key === "Enter") {
+      setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
     }
-  }
+  };
   return (
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <div
@@ -237,12 +235,15 @@ const MediumHeader = () => {
          ${regionsList ? "" : "hidden"}`}
       ></div>
       {regionsList && (
-        <div className={`max-w-[600px]    w-full fixed duration-500 z-[231]  h-fit flex items-center  justify-center mx-auto
-        ${regionsList
+        <div
+          className={`max-w-[600px]    w-full fixed duration-500 z-[231]  h-fit flex items-center  justify-center mx-auto
+        ${
+          regionsList
             ? " bottom-[64px] md:flex flex-col z-[232]"
             : "bottom-[-1500px] z-[-10]"
-          }
-        `}>
+        }
+        `}
+        >
           <RegionsList onClick={toggleRegionsShow} />
         </div>
       )}
@@ -253,8 +254,9 @@ const MediumHeader = () => {
         ></div>
       )}
       <article
-        className={`fixed top-[300px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${dressInfo?.openCatologId ? "" : "hidden"
-          }`}
+        className={`fixed top-[235px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${
+          dressInfo?.openCatologId ? "" : "hidden"
+        }`}
       >
         <NavCategoryModal />
       </article>
@@ -323,7 +325,6 @@ const MediumHeader = () => {
 
                 {/* Weather section */}
                 <article className="w-12 h-12 md:w-[120px]  md:h-11 bg-btnBgColor border border-searchBgColor rounded-xl ml-2">
-
                   <div className="w-full h-full ">
                     <Popover
                       className=" w-full h-full flex items-center justify-center rounded-lg cursor-pointer  md:px-2 md:gap-x-[5px] "
@@ -340,19 +341,18 @@ const MediumHeader = () => {
                         return (
                           <figure
                             key={data?.id}
-
-                            className="w-full h-full md:flex hidden items-center justify-center select-none cursor-pointer ">
+                            className="w-full h-full md:flex hidden items-center justify-center select-none cursor-pointer "
+                          >
                             <img
                               src={data?.icons}
                               alt="weather"
                               className=" "
                             />
-                            {
-                              data?.type &&
+                            {data?.type && (
                               <figcaption className=" ml-[10px] font-AeonikProMedium  flex items-center text-[15px] ">
                                 {data?.type}
                               </figcaption>
-                            }
+                            )}
                           </figure>
                         );
                       })}
@@ -362,7 +362,8 @@ const MediumHeader = () => {
                         return (
                           <figure
                             key={data?.id}
-                            className="w-full h-full md:hidden flex items-center justify-center select-none cursor-pointer  ">
+                            className="w-full h-full md:hidden flex items-center justify-center select-none cursor-pointer  "
+                          >
                             <img
                               src={data?.icons}
                               alt="weather"
@@ -374,7 +375,6 @@ const MediumHeader = () => {
                     </Popover>
                   </div>
                 </article>
-
 
                 {/* Searching section */}
                 <article className="items-center justify-center rounded-xl font-AeonikProMedium h-[44px] md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
@@ -410,15 +410,21 @@ const MediumHeader = () => {
                       onChange={handleChange}
                       onKeyDown={_handleKeyDownSearch}
                     />
-                    {searchMarketName &&
+                    {searchMarketName && (
                       <button
                         onClick={handleClear}
                         className="absolute right-2 "
-                        type="button">
+                        type="button"
+                      >
                         <MdClose size={20} color={"#a1a1a1"} />
-                      </button>}
+                      </button>
+                    )}
                   </div>
-                  <button type="button" onClick={() => getSearchClick()} className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]">
+                  <button
+                    type="button"
+                    onClick={() => getSearchClick()}
+                    className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]"
+                  >
                     <span>
                       <SearchIcons />
                     </span>
@@ -508,10 +514,11 @@ const MediumHeader = () => {
             </section>
             {/*Starting of Opened Hamburger Menu section */}
             <section
-              className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen pb-[140px] px-3 ${state?.hamburgerMenu
-                ? " flex flex-col ease-linear duration-500 overscroll-none"
-                : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
-                }`}
+              className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen pb-[140px] px-3 ${
+                state?.hamburgerMenu
+                  ? " flex flex-col ease-linear duration-500 overscroll-none"
+                  : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
+              }`}
             >
               <div className={`w-full h-fit flex flex-wrap `}>
                 {/* Gender selection for Mobile */}
@@ -525,20 +532,29 @@ const MediumHeader = () => {
                         <button
                           key={data.id}
                           onClick={() => handleGenderDataCheck(data.id)}
-                          className={`w-full flex items-center justify-center h-12 text-[15px] text-center ${!data.name ? "px-5" : "px-7"
-                            } font-AeonikProRegular ${data.action
+                          className={`w-full flex items-center justify-center h-12 text-[15px] text-center ${
+                            !data.name ? "px-5" : "px-7"
+                          } font-AeonikProRegular ${
+                            data.action
                               ? `{ bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-xl `
                               : ""
-                            } `}
+                          } `}
                         >
                           <span>{data.icon}</span>
-                          {data.name ? <p className="pl-2 text-borderWinter">{data.name}</p> : ""}
+                          {data.name ? (
+                            <p className="pl-2 text-borderWinter">
+                              {data.name}
+                            </p>
+                          ) : (
+                            ""
+                          )}
                         </button>
                         <span
-                          className={`${data.id === 4
-                            ? "text-searchBgColor hidden"
-                            : "text-searchBgColor flex items-center"
-                            }`}
+                          className={`${
+                            data.id === 4
+                              ? "text-searchBgColor hidden"
+                              : "text-searchBgColor flex items-center"
+                          }`}
                         >
                           |
                         </span>
@@ -635,7 +651,8 @@ const MediumHeader = () => {
                   <div className="flex items-center justify-between h-fit mb-3">
                     <button
                       onClick={() => setRegionsList(true)}
-                      className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
+                      className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
+                    >
                       <span>
                         <LocationIcons />
                       </span>
