@@ -14,7 +14,6 @@ import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { HeartImg } from "../../../../../assets";
 
 export default function CatalogCard({ getData, setData }) {
-  console.log(getData, "ldkfgjldfkgjldfkg");
   const [dressInfo] = useContext(dressMainData);
   const wearGroup = [
     { id: 1, name: "Футболки" },
