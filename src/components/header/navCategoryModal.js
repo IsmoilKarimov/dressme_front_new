@@ -14,11 +14,11 @@ const NavCategoryModal = () => {
   // console.log(mainData?.categories, "mainData");
 
   const categoryModalArray = [
-    { id: 4, img: img4, type: "Головные уборы" },
-    { id: 5, img: img5, type: "Верхняя одежда" },
-    { id: 6, img: img6, type: "Нижняя одежда" },
-    { id: 7, img: img7, type: "Обувь" },
-    { id: 8, img: img8, type: "Аксессуары" },
+    { id: 0, img: img4, type: "Головные уборы" },
+    { id: 1, img: img5, type: "Верхняя одежда" },
+    { id: 2, img: img6, type: "Нижняя одежда" },
+    { id: 3, img: img7, type: "Обувь" },
+    { id: 4, img: img8, type: "Аксессуары" },
   ];
 
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ const NavCategoryModal = () => {
           className="ss:w-fit md:w-[650px] h-[210px] m-0 p-2 pb-4 pt-4"
         >
           <div className="w-full flex items-start flex-wrap gap-y-6">
-            {mainData?.categories?.map((data) => {
+            {mainData?.categories?.map((data, i) => {
               return (
                 <article
                   key={data?.id}
@@ -57,7 +57,8 @@ const NavCategoryModal = () => {
                     className="group cursor-pointer"
                   >
                     <div className="group-hover:border-black transition duration-300 w-[120px] h-[120px] border border-categoryModalBorderColor bg-categoryModalBgColor flex items-center justify-center rounded-xl">
-                      <img src={data?.url_photo} alt="" />
+                      {/* <img src={data?.url_photo} alt="" /> */}
+                      <img src={categoryModalArray[i].img} alt="" />
                     </div>
                     <figcaption className="group-hover:text-black transition duration-300 text-center mt-2 text-setTexOpacity text-sm">
                       {data?.name_ru}
