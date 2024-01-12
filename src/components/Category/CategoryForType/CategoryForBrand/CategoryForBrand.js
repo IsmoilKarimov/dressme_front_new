@@ -20,7 +20,6 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
   const [filter, setFilter] = useState();
   const [colorHexCode, setColorHexCode] = useState([]);
   const [customerReviews, setCustomerReviews] = useState();
-  
 
   const [state, setState] = useState({
     budgetShow: screenSize.width <= 768 ? true : false,
@@ -82,37 +81,39 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     }
   }
 
-  const {id} = useParams();
+  const { id } = useParams();
   const newId = id.replace(":", "");
   const apiUrl = `https://api.dressme.uz/api/main/section/${newId}`;
 
-  const fetchGetAllData = () => {
+  async function fetchGetAllData() {
     let params = new URLSearchParams();
-    genderId && params.append("gender", genderId)
-    discountId && params.append("discount", discountId)
-    categoryId && params.append("category", categoryId)
-    customerReviews && params.append("rating", customerReviews)
-    pageId && params.append("page", pageId)
-    state?.getBadgePrice?.min && params.append("budget[from]", state?.getBadgePrice?.min);
-    state?.getBadgePrice?.max && params.append("budget[to]", state?.getBadgePrice?.max);
+    genderId && params.append("gender", genderId);
+    discountId && params.append("discount", discountId);
+    categoryId && params.append("category", categoryId);
+    customerReviews && params.append("rating", customerReviews);
+    pageId && params.append("page", pageId);
+    state?.getBadgePrice?.min &&
+      params.append("budget[from]", state?.getBadgePrice?.min);
+    state?.getBadgePrice?.max &&
+      params.append("budget[to]", state?.getBadgePrice?.max);
     colorHexCode?.length &&
       colorHexCode?.forEach((e, index) => {
         params.append("colors[]", colorHexCode[index]);
       });
 
-      Object.entries(params).forEach((i) => {
-        if (!i[1]) delete params[i[0]];
-      });
+    Object.entries(params).forEach((i) => {
+      if (!i[1]) delete params[i[0]];
+    });
 
-    fetch(`${apiUrl}?` + params)
+    await fetch(`${apiUrl}?` + params)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res?.filter, "res-data");
+        // console.log(res?.filter, "res-data");
         setFilter(res?.filter);
         setFilterData(res);
       })
       .catch((err) => console.log(err, "ERRORLIST"));
-  };
+  }
 
   useEffect(() => {
     fetchGetAllData();
@@ -216,13 +217,17 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
         />
 
         {/* Clothing sizes */}
-        <ClothingSizesFilter state={state} setState={setState} />
+        <ClothingSizesFilter
+          state={state}
+          setState={setState}
+          filter={filter}
+        />
 
         {/* Shoes sizes */}
-        <UnderwearSizes state={state} setState={setState} />
-        
+        <UnderwearSizes state={state} setState={setState} filter={filter} />
+
         {/* Shoes sizes */}
-        <ShoesSizesFilter state={state} setState={setState} />
+        <ShoesSizesFilter state={state} setState={setState} filter={filter} />
       </section>
       <section className=" mt-8 border-t border-searchBgColor py-5 px-3">
         <button
