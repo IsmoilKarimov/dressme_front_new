@@ -71,6 +71,7 @@ function RegionList({ onClick }) {
   console.log(dressInfo?.mainSubRegionId, "filt--dressInfo?.mainSubRegionId");
   console.log(state?.regionId, "filt--state?.regionId");
   console.log(state?.subRegionId, "filt--state?.subRegionId");
+  console.log(dressInfo?.yandexOpenRegionList, "filt--state?.yandexOpenRegionList");
   console.log("filt----------------------");
   return (
     <main className={`w-full  h-fit `}>
@@ -81,7 +82,13 @@ function RegionList({ onClick }) {
           <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">
             Выберите регион
           </span>
-          <span className="select-none cursor-pointer" onClick={() => MenuClose()}>
+          <span className="select-none cursor-pointer" onClick={() => {
+            setDressInfo({
+              ...dressInfo,
+              yandexOpenRegionList: false
+            })
+            MenuClose()
+          }}>
             <MenuCloseIcons colors="#000" />
           </span>
         </div>
@@ -180,7 +187,13 @@ function RegionList({ onClick }) {
         </div>
         <div className="w-full flex items-center justify-end  mt-2">
           <span
-            onClick={() => sendRegions()}
+            onClick={() => {
+              setDressInfo({
+                ...dressInfo,
+                yandexOpenRegionList: false
+              })
+              sendRegions()
+            }}
             className="cursor-pointer text-borderWinter text-lg not-italic font-AeonikProMedium"
           >
             Готово
