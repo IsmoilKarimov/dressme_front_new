@@ -34,6 +34,7 @@ import Cookies from "js-cookie";
 import { useQuery } from "@tanstack/react-query";
 import UseReplace from "../../ContextHook/useReplace";
 import RegionsList from "../../ContextHook/RegionsList";
+import RegionListYandex from "./YandexMapsNavbar/RegionListYandex";
 // import CarouselModalMarket from "./YandexMapsNavbar/CarouselModalMarket";
 
 
@@ -87,18 +88,20 @@ function YandexMapsDressMe() {
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
-  // console.log(getAllFilterSearch, "getAllFilterSearch");
-  // console.log(FilterSearchByBrand, "FilterSearchByBrand");
+
   useEffect(() => {
     fetchGetAllData({
       gender: getAllFilterSearch?.genderType,
       shop: getAllFilterSearch?.category_brand,
       category: getAllFilterSearch?.category_wear,
       keywords: FilterSearchByBrand?.searchMarketName,
+      region: dressInfo?.mainRegionId,
+      sub_region: dressInfo?.mainSubRegionId,
       "budget[from]": getAllFilterSearch?.minPrice,
       "budget[to]": getAllFilterSearch?.maxPrice
     })
-  }, [getAllFilterSearch, FilterSearchByBrand])
+  }, [getAllFilterSearch, FilterSearchByBrand, dressInfo?.mainRegionId,
+    dressInfo?.mainSubRegionId,])
 
   function getCurrentDimension() {
     return {
@@ -179,22 +182,11 @@ function YandexMapsDressMe() {
           setDressInfo({ ...dressInfo, yandexOpenRegionList: false })
         }}
         className={`fixed inset-0 z-[215] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
-         ${openCarouselModal || marketsFilterMaps || dressInfo?.yandexOpenRegionList ? "" : "hidden"
+         ${openCarouselModal || marketsFilterMaps ? "" : "hidden"
           }`}
       >
       </div>
-      {dressInfo?.yandexOpenRegionList && (
-        <div
-          className={`max-w-[600px]  w-full fixed duration-500 z-[231]  left-1/2 right-1/2 top-[50%] translate-x-[-50%] translate-y-[-50%]  h-fit flex items-center  justify-center mx-auto
-        ${dressInfo?.yandexOpenRegionList
-              ? " bottom-0 md:flex flex-col"
-              : "bottom-[-1500px] z-[-10]"
-            }
-        `}
-        >
-          <RegionsList data={dressInfo?.yandexOpenRegionList} />
-        </div>
-      )}
+
 
       <div className={`w-full   sm:w-fit h-fit flex items-center mx-auto justify-center fixed z-[217]   ${openCarouselModal ? "" : "hidden"
         }`}>

@@ -108,7 +108,7 @@ function RegionList({ onClick }) {
                       type="radio"
                       name="region"
                       value={data?.id}
-                      checked={state?.regionId == data?.id}
+                      // checked={state?.regionId == data?.id}
                       className="w-[18px] h-[18px] cursor-pointer mr-3"
                       onClick={() => accordionCityList(data?.id)}
                       onChange={(e) => {
