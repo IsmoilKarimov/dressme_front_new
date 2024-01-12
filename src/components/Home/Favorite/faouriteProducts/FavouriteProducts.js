@@ -58,7 +58,7 @@ export default function FavouriteProducts() {
           {wishList?.length ? (
             Cookies.get("DressmeUserToken") ? (
               <article className="flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-3 lg:gap-y-3">
-                {mainData?.products?.data?.map((data) => {
+                {mainData?.products?.map((data) => {
                   if (wishList?.includes(data?.id)) {
                     return (
                       <article
@@ -125,18 +125,13 @@ export default function FavouriteProducts() {
                                       backgroundColor: itemValue?.hex,
                                     }}
                                     onClick={() =>
-                                      onColorChecked(
-                                        data?.id,
-                                        itemValue?.id
-                                      )
+                                      onColorChecked(data?.id, itemValue?.id)
                                     }
                                     className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 ls:w-[22px] ls:h-[22px] w-5 h-5 lg:w-6 lg:h-6 cursor-pointer  border border-solid border-borderColorCard mr-[5px]`}
                                     htmlFor="Color1"
                                   >
                                     {itemValue?.action ? (
-                                      <InputCheckedTrueIcons
-                                        colors={"#fff"}
-                                      />
+                                      <InputCheckedTrueIcons colors={"#fff"} />
                                     ) : null}
                                   </article>
                                 );
@@ -245,7 +240,7 @@ export default function FavouriteProducts() {
               </article>
             ) : (
               <article className="flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-3 lg:gap-y-3">
-                {mainData?.products?.data?.map((data) => {
+                {mainData?.products?.map((data) => {
                   if (wishList?.includes(data?.id)) {
                     return (
                       <article
@@ -312,18 +307,13 @@ export default function FavouriteProducts() {
                                       backgroundColor: itemValue?.hex,
                                     }}
                                     onClick={() =>
-                                      onColorChecked(
-                                        data?.id,
-                                        itemValue?.id
-                                      )
+                                      onColorChecked(data?.id, itemValue?.id)
                                     }
                                     className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 ls:w-[22px] ls:h-[22px] w-5 h-5 lg:w-6 lg:h-6 cursor-pointer  border border-solid border-borderColorCard mr-[5px]`}
                                     htmlFor="Color1"
                                   >
                                     {itemValue?.action ? (
-                                      <InputCheckedTrueIcons
-                                        colors={"#fff"}
-                                      />
+                                      <InputCheckedTrueIcons colors={"#fff"} />
                                     ) : null}
                                   </article>
                                 );
