@@ -84,7 +84,7 @@ export default function CatalogItems() {
               handleCategories(data?.name_ru, data?.id);
             }}
             className={`${
-              selectedSection?.id === data?.id ? "bg-bgColor" : null
+              params?.id == data?.id ? "bg-bgColor" : null
             } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {data?.name_ru}
