@@ -8,9 +8,6 @@ const NavCategoryModal = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const categoryModalArray = [
-    { id: 1, img: img1, type: "Мужчинам" },
-    { id: 2, img: img2, type: "Женщинам" },
-    { id: 3, img: img3, type: "Детям" },
     { id: 4, img: img4, type: "Головные уборы" },
     { id: 5, img: img5, type: "Верхняя одежда" },
     { id: 6, img: img6, type: "Нижняя одежда" },
@@ -37,9 +34,9 @@ const NavCategoryModal = () => {
           // onClick={(e) => {
           //   e.stopPropagation();
           // }}
-          className="ss:w-fit md:w-[650px] h-fit m-0 p-2 pb-4 pt-0"
+          className="ss:w-fit md:w-[650px] h-[200px] m-0 p-2 pb-4 pt-4"
         >
-          <div className=" w-full flex items-center flex-wrap gap-y-6">
+          <div className="w-full flex items-center flex-wrap gap-y-6">
             {categoryModalArray.map((data) => {
               return (
                 <article
@@ -47,7 +44,7 @@ const NavCategoryModal = () => {
                   onClick={() =>
                     setDressInfo({ ...dressInfo, openCatologId: false })
                   }
-                  className="w-1/4 flex items-center justify-center"
+                  className="w-1/5 flex items-center justify-center"
                 >
                   <figure
                     onClick={() => goCatalogId(data?.id)}
