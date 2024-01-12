@@ -15,7 +15,7 @@ import Cookies from "js-cookie";
 import RegionsList from "../../../ContextHook/RegionsList";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 
-const YandexTop = () => {
+const YandexTop = ({ onClick }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [mainData, setMainData] = useContext(HomeMainDataContext);
   const [state, setState] = useState({
@@ -111,9 +111,7 @@ const YandexTop = () => {
     <div className="flex justify-between items-center m-auto ">
 
       <div className="left h-full flex items-center  ">
-        <div onClick={() => {
-          setDressInfo({ ...dressInfo, yandexOpenRegionList: true })
-        }} className="flex w-fit items-center">
+        <div onClick={onClick} className="flex w-fit items-center">
           <span className="mr-2">
             <LocationIcons />
           </span>
@@ -138,7 +136,7 @@ const YandexTop = () => {
           </div>
         </div>
 
-        <div className="w-fit h-full rounded bg-white font-AeonikProMedium select-none cursor-pointer">
+        <div className="w-fit h-full rounded bg-white ml-2 font-AeonikProMedium select-none cursor-pointer">
           {LanguageList.filter((data) => data.id === selectLang).map((data) => {
             return (
               <Popover
