@@ -76,7 +76,7 @@ const TopHeader = () => {
       document.body.style.overflow = "auto";
     }
   }, [regionsShow]);
-  console.log(dressInfo?.mainRegionId, dressInfo?.mainSubRegionId, "mainSubregionId");
+  // console.log(dressInfo?.mainRegionId, dressInfo?.mainSubRegionId, "mainSubregionId");
   // -----------------------------------------------------
 
   return (

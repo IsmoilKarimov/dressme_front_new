@@ -7,6 +7,7 @@ import CategoryForBrand from "./CategoryForBrand/CategoryForBrand";
 export default function CategoryForType() {
   const [dressInfo] = useContext(dressMainData);
   const [filterData, setFilterData] = useState([]);
+  const [pageId, setPageId] = useState();
 
   console.log(filterData, "FILTER-DATA");
 
@@ -32,12 +33,12 @@ export default function CategoryForType() {
 
         {/* For Desktop Version */}
         <article className="hidden md:block md:w-[21%] h-full mt-10 ss:px-4 md:px-0 ">
-          <CategoryForBrand filterData={filterData} setFilterData={setFilterData} />
+          <CategoryForBrand filterData={filterData} setFilterData={setFilterData} pageId={pageId}/>
         </article>
         <article className="w-full md:w-[78%] h-[full] ss:px-4 md:px-0 ">
           <CategoryCards
             filterData={filterData}
-            setFilterData={setFilterData}
+            setPageId={setPageId}
           />
         </article>
       </section>

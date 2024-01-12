@@ -3,7 +3,7 @@ import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { CollectionCardItem } from "../../../Home/Main/WearCollectionCard/CollectionCardItem";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 
-export default function CategoryCards({ filterData, setFilterData }) {
+export default function CategoryCards({ filterData, setPageId }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
@@ -23,17 +23,8 @@ export default function CategoryCards({ filterData, setFilterData }) {
 
   // ------------------
 
-  const setPaginationFunc = (url) => {
-    fetch(url, {
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        setFilterData(res);
-      });
+  const setPaginationFunc = (id) => {
+    setPageId(+id)
   };
 
   return (
@@ -66,7 +57,8 @@ export default function CategoryCards({ filterData, setFilterData }) {
                   key={index}
                   onClick={() => {
                     if (item?.url) {
-                      setPaginationFunc(item?.url);
+                      const newPageId = String(item?.url?.substr(-3)?.split('')?.reverse()?.join(''))?.split('')?.filter((item) => !isNaN(item))?.reverse()?.join('')
+                      setPaginationFunc(newPageId);
                     }
                   }}
                   className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${
