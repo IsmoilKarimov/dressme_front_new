@@ -11,7 +11,7 @@ import ClothingSizesFilter from "./FiilterForApi/ClothingSizesFilter";
 import ShoesSizesFilter from "./FiilterForApi/ShoesSizesFilter";
 import UnderwearSizes from "./FiilterForApi/UnderwearSizes";
 
-const CategoryForBrand = ({ setFilterData }) => {
+const CategoryForBrand = ({ setFilterData, pageId }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [genderId, setGenderId] = useState();
@@ -20,6 +20,7 @@ const CategoryForBrand = ({ setFilterData }) => {
   const [filter, setFilter] = useState();
   const [colorHexCode, setColorHexCode] = useState([]);
   const [customerReviews, setCustomerReviews] = useState();
+  
 
   const [state, setState] = useState({
     budgetShow: screenSize.width <= 768 ? true : false,
@@ -91,6 +92,7 @@ const CategoryForBrand = ({ setFilterData }) => {
     discountId && params.append("discount", discountId)
     categoryId && params.append("category", categoryId)
     customerReviews && params.append("rating", customerReviews)
+    pageId && params.append("page", pageId)
     state?.getBadgePrice?.min && params.append("budget[from]", state?.getBadgePrice?.min);
     state?.getBadgePrice?.max && params.append("budget[to]", state?.getBadgePrice?.max);
     colorHexCode?.length &&
@@ -122,6 +124,7 @@ const CategoryForBrand = ({ setFilterData }) => {
     state?.getBadgePrice,
     colorHexCode,
     customerReviews,
+    pageId,
   ]);
 
   // Rating GetID

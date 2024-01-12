@@ -12,10 +12,10 @@ function ColorsFilter({
 }) {
   const [selectedColorId, setSelectedColorId] = useState(null);
   const [changeClick, setChangeClick] = useState(false);
-  console.log(changeClick,'change-click');
+  // console.log(changeClick,'change-click');
 
-  console.log(selectedColorId, "selectedColorId");
-  console.log(colorHexCode, "colorHexCode");
+  // console.log(selectedColorId, "selectedColorId");
+  // console.log(colorHexCode, "colorHexCode");
 
   function onGetColorHexCode(hexCode) {
     handleGetColorHexCode({
