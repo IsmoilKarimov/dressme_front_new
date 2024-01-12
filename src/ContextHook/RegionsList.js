@@ -5,9 +5,10 @@ import { HomeMainDataContext } from "./HomeMainData";
 import { dressMainData } from "./ContextMenu";
 
 function RegionList({ onClick }) {
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [state, setState] = useState({
-    regionId: 2,
-    subRegionId: "",
+    regionId: dressInfo?.mainRegionId,
+    subRegionId: dressInfo?.mainSubRegionId,
     //--- Regions Get ---
     getRegionList: "",
     //--- Get Profile ---
@@ -17,7 +18,6 @@ function RegionList({ onClick }) {
     // -----region Modal ---
     // openModalRegions: show,
   });
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [mainData, setMainData] = useContext(HomeMainDataContext);
   // const url = "https://api.dressme.uz/api/seller";
 
@@ -26,6 +26,8 @@ function RegionList({ onClick }) {
   const [activeIndex, setActiveIndex] = useState();
   const accordionCityList = (id) => {
     setState({ ...state, regionId: id, });
+    // setDressInfo({ ...dressInfo, mainRegionId: id })
+
     if (activeIndex === id) {
       setActiveIndex(0);
     } else {
@@ -65,6 +67,11 @@ function RegionList({ onClick }) {
 
   // }, [state?.regionId])
   // show
+  console.log(dressInfo?.mainRegionId, "filt--dressInfo?.mainRegionId");
+  console.log(dressInfo?.mainSubRegionId, "filt--dressInfo?.mainSubRegionId");
+  console.log(state?.regionId, "filt--state?.regionId");
+  console.log(state?.subRegionId, "filt--state?.subRegionId");
+  console.log("filt----------------------");
   return (
     <main className={`w-full  h-fit `}>
       <div
@@ -94,8 +101,15 @@ function RegionList({ onClick }) {
                       type="radio"
                       name="region"
                       value={data?.id}
+                      checked={state?.regionId == data?.id}
                       className="w-[18px] h-[18px] cursor-pointer mr-3"
                       onClick={() => accordionCityList(data?.id)}
+                      onChange={(e) => {
+                        setState({
+                          ...state,
+                          regionId: data?.id,
+                        });
+                      }}
                     />
                     <label
                       htmlFor={data?.name_ru}
@@ -134,11 +148,12 @@ function RegionList({ onClick }) {
                             <input
                               type="radio"
                               id={item?.name_ru}
-                              name="region"
+                              name="Subregion"
                               value={item?.region_id}
-                              // checked={state?.subRegionId == item?.id}
+                              checked={state?.subRegionId == item?.id}
                               className="w-4 h-4 border border-borderColor  cursor-pointer  flex items-center justify-center"
                               onChange={(e) => {
+                                // setDressInfo({ ...dressInfo, mainSubRegionId: item?.id })
                                 setState({
                                   ...state,
                                   // regionId: e.target.value,
