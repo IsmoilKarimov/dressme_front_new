@@ -158,7 +158,7 @@ function RegionListYandex({ onClick }) {
                                                         <input
                                                             type="radio"
                                                             id={item?.name_ru}
-                                                            name="Subregion"
+                                                            name="region"
                                                             value={item?.region_id}
                                                             checked={state?.subRegionId == item?.id}
                                                             className="w-4 h-4 border border-borderColor  cursor-pointer  flex items-center justify-center"
