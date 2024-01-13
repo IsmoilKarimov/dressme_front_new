@@ -111,7 +111,7 @@ const YandexTop = ({ onClick }) => {
     <div className="flex justify-between items-center m-auto ">
 
       <div className="left h-full flex items-center  ">
-        <div onClick={onClick} className="flex w-fit items-center">
+        <div onClick={onClick} className="flex w-fit items-center cursor-pointer">
           <span className="mr-2">
             <LocationIcons />
           </span>
