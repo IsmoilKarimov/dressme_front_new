@@ -4,15 +4,19 @@ import { ArrowTopIcons } from "../../../../../assets/icons";
 function ClothingSizesFilter({ state, setState, filter }) {
   const [changeClick, setChangeClick] = useState(false);
   const [outwearData, setOutwearData] = useState(null);
-  
-  // console.log(outwearData, "outwearData");
+  const [visibleButtons, setVisibleButtons] = useState(12);
+
+  // console.log(visibleButtons);
+  // console.log(outwearData?.length);
+
+  console.log(outwearData, "outwearData");
 
   useEffect(() => {
     async function outwearSizes() {
       const outwear = filter?.wear_sizes?.outwear;
       console.log(outwear);
       const transformedArray = await Object.entries(outwear).map(
-        ([size, details]) => ({ size, ...details})
+        ([size, details]) => ({ size, ...details })
       );
       setOutwearData(transformedArray);
     }
@@ -20,7 +24,11 @@ function ClothingSizesFilter({ state, setState, filter }) {
   }, [filter]);
 
   return (
-    <div className="w-full flex flex-col items-center mb-[38px]">
+    <div
+      className={` ${
+        outwearData?.length > 0 ? "flex" : "hidden"
+      } w-full flex-col items-center mb-[38px]`}
+    >
       <section className="w-full h-fit mt-[12px] ">
         <article
           className="w-full flex justify-between items-center "
@@ -52,8 +60,8 @@ function ClothingSizesFilter({ state, setState, filter }) {
           } duration-300`}
         >
           <figure className="w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2">
-            {outwearData?.map((outwear) => {
-              // console.log(item, "item");
+            {outwearData?.slice(0, visibleButtons)?.map((outwear) => {
+              // console.log(outwear, "outwear");
               return (
                 <button
                   key={outwear.id}
@@ -61,27 +69,64 @@ function ClothingSizesFilter({ state, setState, filter }) {
                     setChangeClick(true);
                   }}
                   className={`${
-                    outwear?.letter_size && outwear?.size ? 'flex' : 'hidden' } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg`}
+                    outwear?.letter_size || outwear?.size ? "flex" : "hidden"
+                  } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
-                  {outwear?.letter_size ? (
-                    <div className="flex items-center">
-                      <span>{outwear?.letter_size}</span>
-                      <span className="ml-1">({outwear?.amount})</span>
-                    </div>
-                  ) : (
-                    <span className="ml-1">({outwear?.size})</span>
-                  )}
+                  <div className="flex items-center">
+                    <span>{outwear?.size}</span>
+                    <span className="ml-1">({outwear?.amount})</span>
+                  </div>
                 </button>
               );
             })}
-            <button
-              type="button"
-              className={`${
-                changeClick ? "flex" : "hidden"
-              } w-full flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
-            >
-              Сбросить
-            </button>
+
+            <div className="w-full flex items-center justify-between">
+              <div className="flex w-1/3 justify-start items-center">
+                <button
+                  type="button"
+                  className={`${
+                    changeClick ? "flex" : "hidden"
+                  } flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                >
+                  Сбросить
+                </button>
+              </div>
+              <div
+                className={`${
+                  outwearData?.length > 12 ? "flex" : "hidden"
+                } w-2/3 items-center justify-end`}
+              >
+                <button
+                  type="button"
+                  disabled={visibleButtons === 12}
+                  onClick={() => {
+                    setVisibleButtons((prev) => prev - 12);
+                  }}
+                  className={`${
+                    visibleButtons === 12
+                      ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                      : ""
+                  } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                >
+                  Меньше
+                </button>
+
+                <button
+                  type="button"
+                  disabled={outwearData?.length <= visibleButtons}
+                  onClick={() => {
+                    setVisibleButtons((prev) => prev + 12);
+                  }}
+                  className={`${
+                    outwearData?.length <= visibleButtons
+                      ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                      : ""
+                  } w-full flex justify-center text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                >
+                  Больше
+                </button>
+              </div>
+            </div>
           </figure>
         </article>
       </section>

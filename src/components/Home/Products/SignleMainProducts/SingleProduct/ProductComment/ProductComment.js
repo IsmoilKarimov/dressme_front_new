@@ -14,11 +14,8 @@ import { ToastContainer, toast } from "react-toastify";
 
 export default function ProductComment({ data, refetch }) {
   const [openComment, setOpenComment] = useState(false);
-
   const params = useParams();
-
   const [visibleComments, setVisibleCommnets] = useState(4);
-
   const [allComments] = useState([
     {
       id: 1,
@@ -214,9 +211,7 @@ export default function ProductComment({ data, refetch }) {
 
   // --------------------
 
-  const showNextComments = data?.product?.ratings
-    .slice(0, visibleComments)
-    .map((allComments) => {
+  const showNextComments = data?.product?.ratings.slice(0, visibleComments).map((allComments) => {
       return (
         <article
           key={allComments?.id}
@@ -263,19 +258,6 @@ export default function ProductComment({ data, refetch }) {
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box md:mb-[0px]">
       <ToastContainer />
-      {/* <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        limit={4}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      /> */}
       <section className="relative w-[100%] h-fit md:mt-6 flex justify-between">
         {/* Desktop version of comment*/}
         <article className="w-full hidden md:block">

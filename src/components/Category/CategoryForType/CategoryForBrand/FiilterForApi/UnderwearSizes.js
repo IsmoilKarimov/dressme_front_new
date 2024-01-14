@@ -4,8 +4,9 @@ import { ArrowTopIcons } from "../../../../../assets/icons";
 function UnderwearSizes({ state, setState, filter }) {
   const [changeClick, setChangeClick] = useState(false);
   const [underwearData, setUnderwearData] = useState(null);
+  const [visibleButtons, setVisibleButtons] = useState(12);
 
-  // console.log(underwearData, "underwearData");
+  console.log(underwearData, "underwearData");
 
   useEffect(() => {
     async function underwearSizes() {
@@ -20,7 +21,11 @@ function UnderwearSizes({ state, setState, filter }) {
   }, [filter]);
 
   return (
-    <div className="w-full flex flex-col items-center mb-[38px]">
+    <div
+      className={`${
+        underwearData?.length > 0 ? "flex" : "hidden"
+      } w-full flex flex-col items-center mb-[38px]`}
+    >
       <section className="w-full h-fit mt-[12px] ">
         <article
           className="w-full flex justify-between items-center "
@@ -54,40 +59,76 @@ function UnderwearSizes({ state, setState, filter }) {
           } duration-300`}
         >
           <figure className="w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2">
-            {underwearData?.map((underwear) => {
+            {underwearData?.slice(0, visibleButtons)?.map((underwear) => {
               // console.log(item, "item");
               return (
                 <button
-                  key={underwear.id}
+                  key={underwear?.id}
                   onClick={() => {
                     setChangeClick(true);
                   }}
                   className={`${
-                    underwear?.letter_size && underwear?.size ? "flex" : "hidden"
+                    underwear?.letter_size || underwear?.size
+                      ? "flex"
+                      : "hidden"
                   } h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
-                  {underwear?.letter_size ? (
-                    <div className="flex items-center">
-                      <span>{underwear?.letter_size}</span>
-                      <span className="ml-1">({underwear?.amount})</span>
-                    </div>
-                  ) : (
-                    <span className="ml-1">({underwear?.size})</span>
-                  )}
+                  <div className="flex items-center">
+                    <span>{underwear?.size}</span>
+                    <span className="ml-1">({underwear?.amount})</span>
+                  </div>
                 </button>
               );
             })}
+            <div className="w-full flex items-center justify-between">
+              <div className="flex w-1/3 justify-start items-center">
+                <button
+                  type="button"
+                  className={`${
+                    changeClick ? "flex" : "hidden"
+                  } flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                >
+                  Сбросить
+                </button>
+              </div>
+              <div
+                className={`${
+                  underwearData?.length > 8 ? "flex" : "hidden"
+                } w-2/3 items-center justify-end`}
+              >
+                <button
+                  type="button"
+                  disabled={visibleButtons === 12}
+                  onClick={() => {
+                    setVisibleButtons((prev) => prev - 12);
+                  }}
+                  className={`${
+                    visibleButtons === 12
+                      ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                      : ""
+                  } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                >
+                  Меньше
+                </button>
+                <button
+                  type="button"
+                  disabled={underwearData?.length <= visibleButtons}
+                  onClick={() => {
+                    setVisibleButtons((prev) => prev + 12);
+                  }}
+                  className={`${
+                    underwearData?.length <= visibleButtons
+                      ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                      : ""
+                  } w-full flex-end justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                >
+                  Больше
+                </button>
+              </div>
+            </div>
           </figure>
         </article>
       </section>
-      <button
-        type="button"
-        className={`${
-          changeClick ? "flex" : "hidden"
-        } w-full flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
-      >
-        Сбросить
-      </button>
     </div>
   );
 }
