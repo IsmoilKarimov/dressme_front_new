@@ -74,7 +74,15 @@ function UnderwearSizes({ state, setState, filter }) {
                   } h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
                   <div className="flex items-center">
-                    <span>{underwear?.size}</span>
+                  {underwear?.letter_size ? (
+                    <span>{underwear?.letter_size}</span>
+                  ) : (
+                    underwear?.max_wear_size ? (
+                      <span>{underwear?.min_wear_size}-{underwear?.max_wear_size}</span>
+                      ) : (
+                      <span>{underwear?.min_wear_size}</span>
+                    )
+                  )}
                     <span className="ml-1">({underwear?.amount})</span>
                   </div>
                 </button>
