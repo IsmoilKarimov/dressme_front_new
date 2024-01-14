@@ -6,8 +6,6 @@ function ShoesSizesFilter({ state, setState, filter, handleWearSize }) {
   const [footwearData, setFootwearData] = useState(null);
   const [visibleButtons, setVisibleButtons] = useState(12);
 
-  console.log(footwearData, "footwearData");
-
   useEffect(() => {
     async function footwearSizes() {
       const footwear = filter?.wear_sizes?.footwear;
@@ -68,7 +66,6 @@ function ShoesSizesFilter({ state, setState, filter, handleWearSize }) {
         >
           <figure className="w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2">
             {footwearData?.slice(0, visibleButtons)?.map((footwear) => {
-              console.log(footwear, "item-foootwear");
               return (
                 <button
                   key={footwear?.id}
@@ -76,7 +73,9 @@ function ShoesSizesFilter({ state, setState, filter, handleWearSize }) {
                     setChangeClick(true);
                     onGetWearSize(footwear?.wear_size);
                   }}
-                  className={`${footwear?.size ? '' : '' } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue focus:text-white hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
+                  className={`${
+                    footwear?.size ? "" : ""
+                  } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue focus:text-white hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
                   <div className="flex items-center">
                     <span>{footwear?.size}</span>
@@ -90,8 +89,8 @@ function ShoesSizesFilter({ state, setState, filter, handleWearSize }) {
                 <button
                   type="button"
                   onClick={() => {
-                    setChangeClick(false)
-                    sendClearedData()
+                    setChangeClick(false);
+                    sendClearedData();
                   }}
                   className={`${
                     changeClick ? "flex" : "hidden"

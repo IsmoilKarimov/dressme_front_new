@@ -1,7 +1,8 @@
+/* eslint-disable no-lone-blocks */
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 
-function ClothingSizesFilter({ state, setState, filter }) {
+function ClothingSizesFilter({ state, setState, filter, handleOutwearSizes }) {
   const [changeClick, setChangeClick] = useState(false);
   const [outwearData, setOutwearData] = useState(null);
   const [visibleButtons, setVisibleButtons] = useState(12);
@@ -22,6 +23,13 @@ function ClothingSizesFilter({ state, setState, filter }) {
     }
     outwearSizes();
   }, [filter]);
+
+  function onGetOutwearSizes (min,max) {
+    console.log(min,max);
+    handleOutwearSizes({
+      outwearSizes: min, max
+    })
+  }
 
   return (
     <div
@@ -61,21 +69,40 @@ function ClothingSizesFilter({ state, setState, filter }) {
         >
           <figure className="w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2">
             {outwearData?.slice(0, visibleButtons)?.map((outwear) => {
-              // console.log(outwear, "outwear");
               return (
                 <button
                   key={outwear.id}
                   onClick={() => {
                     setChangeClick(true);
+                    
+                    // {outwear?.letter_size ? (
+                    //   onGetOutwearSizes(outwear?.letter_size)
+                    //   ) : (
+                        // outwear?.max_wear_size ? (
+                        //   onGetOutwearSizes(outwear?.min_wear_size, outwear?.max_wear_size)   
+                          // ) : (
+                            // onGetOutwearSizes(outwear?.min_wear_size)   
+                      // )
+                    // )}
+
                   }}
                   className={`${
                     outwear?.letter_size || outwear?.size ? "flex" : "hidden"
                   } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
                   <div className="flex items-center">
-                    <span>{outwear?.size}</span>
+                  {outwear?.letter_size ? (
+                    <span>{outwear?.letter_size}</span>
+                  ) : (
+                    outwear?.max_wear_size ? (
+                      <span>{outwear?.min_wear_size}-{outwear?.max_wear_size}</span>
+                      ) : (
+                      <span>{outwear?.min_wear_size}</span>
+                    )
+                  )}
                     <span className="ml-1">({outwear?.amount})</span>
                   </div>
+
                 </button>
               );
             })}
