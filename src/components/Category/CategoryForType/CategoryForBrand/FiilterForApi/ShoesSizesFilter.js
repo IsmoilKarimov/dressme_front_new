@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 
-function ShoesSizesFilter({ state, setState, filter }) {
+function ShoesSizesFilter({ state, setState, filter, handleWearSize }) {
   const [changeClick, setChangeClick] = useState(false);
   const [footwearData, setFootwearData] = useState(null);
   const [visibleButtons, setVisibleButtons] = useState(12);
@@ -20,10 +20,24 @@ function ShoesSizesFilter({ state, setState, filter }) {
     footwearSizes();
   }, [filter]);
 
+  function onGetWearSize(size) {
+    handleWearSize({
+      wearSize: size,
+    });
+  }
+
+  function sendClearedData(size) {
+    handleWearSize({
+      wearSize: null,
+    });
+  }
+
   return (
-    <div className={`${
-      footwearData?.length > 0 ? "flex" : "hidden"
-    } w-full flex flex-col items-center mb-[38px]`}>
+    <div
+      className={`${
+        footwearData?.length > 0 ? "flex" : "hidden"
+      } w-full flex flex-col items-center mb-[38px]`}
+    >
       <section className="w-full h-fit mt-[12px] ">
         <article
           className="w-full flex justify-between items-center "
@@ -54,26 +68,31 @@ function ShoesSizesFilter({ state, setState, filter }) {
         >
           <figure className="w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2">
             {footwearData?.slice(0, visibleButtons)?.map((footwear) => {
-              // console.log(footwear, "item-foootwear");
+              console.log(footwear, "item-foootwear");
               return (
                 <button
-                  key={footwear.id}
+                  key={footwear?.id}
                   onClick={() => {
                     setChangeClick(true);
+                    onGetWearSize(footwear?.wear_size);
                   }}
-                  className={`h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg`}
+                  className={`${footwear?.size ? '' : '' } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue focus:text-white hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
                   <div className="flex items-center">
                     <span>{footwear?.size}</span>
-                    {/* <span className="ml-1">({footwear?.amount})</span> */}
+                    <span className="ml-1">({footwear?.amount})</span>
                   </div>
                 </button>
               );
             })}
-             <div className="w-full flex items-center justify-between">
+            <div className="w-full flex items-center justify-between">
               <div className="flex w-1/3 justify-start items-center">
                 <button
                   type="button"
+                  onClick={() => {
+                    setChangeClick(false)
+                    sendClearedData()
+                  }}
                   className={`${
                     changeClick ? "flex" : "hidden"
                   } flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}

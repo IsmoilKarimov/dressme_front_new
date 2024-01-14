@@ -20,6 +20,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
   const [filter, setFilter] = useState();
   const [colorHexCode, setColorHexCode] = useState([]);
   const [customerReviews, setCustomerReviews] = useState();
+  const [shoesSize, setShoesSize] = useState();
 
   const [state, setState] = useState({
     budgetShow: screenSize.width <= 768 ? true : false,
@@ -81,6 +82,11 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     }
   }
 
+  // Shoes GET Size
+  function handleWearSize(childData) {
+    setShoesSize(childData?.wearSize);
+  }
+
   const { id } = useParams();
   const newId = id.replace(":", "");
   const apiUrl = `https://api.dressme.uz/api/main/section/${newId}`;
@@ -91,6 +97,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     discountId && params.append("discount", discountId);
     categoryId && params.append("category", categoryId);
     customerReviews && params.append("rating", customerReviews);
+    shoesSize && params.append("footwear_size", shoesSize);
     pageId && params.append("page", pageId);
     state?.getBadgePrice?.min &&
       params.append("budget[from]", state?.getBadgePrice?.min);
@@ -125,6 +132,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     state?.getBadgePrice,
     colorHexCode,
     customerReviews,
+    shoesSize,
     pageId,
   ]);
 
@@ -227,7 +235,12 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
         <UnderwearSizes state={state} setState={setState} filter={filter} />
 
         {/* Shoes sizes */}
-        <ShoesSizesFilter state={state} setState={setState} filter={filter} />
+        <ShoesSizesFilter
+          state={state}
+          setState={setState}
+          filter={filter}
+          handleWearSize={handleWearSize}
+        />
       </section>
       <section className=" mt-8 border-t border-searchBgColor py-5 px-3">
         <button
