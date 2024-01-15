@@ -25,23 +25,19 @@ function OutwearSizesFilter({ state, setState, filter, handleOutwearSizes }) {
   }, [filter]);
 
   function onGetOutwearSizes (size) {
-    console.log(size);
+    // console.log(size);
     handleOutwearSizes({
       outwearSizes: size
     })
   }
 
   function sendSize(outwear) {
-    // console.log(outwear);
     if(outwear?.letter_size){
-      console.log(outwear?.letter_size);
       onGetOutwearSizes(outwear?.letter_size)
     } else if(outwear?.max_wear_size){
-      const minMaxSize = outwear?.min_wear_size + ' - ' + outwear?.max_wear_size
-      console.log(minMaxSize);
+      const minMaxSize = outwear?.min_wear_size + '-' + outwear?.max_wear_size
       onGetOutwearSizes(minMaxSize) 
     } else {
-      console.log(outwear?.min_wear_size);
       onGetOutwearSizes(outwear?.min_wear_size)
     }
   }
@@ -78,11 +74,11 @@ function OutwearSizesFilter({ state, setState, filter, handleOutwearSizes }) {
           </figure>
         </article>
         <article
-          className={` overflow-hidden ${
+          className={`overflow-hidden ${
             state?.ClothingShow ? "duration-300 h-0" : "duration-300 h-fit mt-5"
           } duration-300`}
         >
-          <figure className="w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2">
+          <figure className={`${outwearData?.max_wear_size !== null ? 'text-xs' : 'text-sm'} w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2`}>
             {outwearData?.slice(0, visibleButtons)?.map((outwear) => {
               return (
                 <button
@@ -93,17 +89,16 @@ function OutwearSizesFilter({ state, setState, filter, handleOutwearSizes }) {
                   }}
                   className={`${
                     outwear?.letter_size || outwear?.size ? "flex" : "hidden"
-                  } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg`}
+                  } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium  leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
                   <div className="flex items-center">
                   {outwear?.letter_size ? (
                     <span>{outwear?.letter_size}</span>
                   ) : (
-                    outwear?.max_wear_size ? (
-                      <span>{outwear?.min_wear_size}-{outwear?.max_wear_size}</span>
-                      ) : (
-                      <span>{outwear?.min_wear_size}</span>
-                    )
+                    
+                      
+                      <span>{outwear?.size}</span>
+                    
                   )}
                     <span className="ml-1">({outwear?.amount})</span>
                   </div>

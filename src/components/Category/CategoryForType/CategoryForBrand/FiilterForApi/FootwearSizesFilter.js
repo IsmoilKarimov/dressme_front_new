@@ -9,7 +9,7 @@ function FootwearSizesFilter({ state, setState, filter, handleWearSize }) {
   useEffect(() => {
     async function footwearSizes() {
       const footwear = filter?.wear_sizes?.footwear;
-      console.log(footwear);
+      // console.log(footwear);
       const transformedArray = Object.entries(footwear).map(
         ([size, details]) => ({ size, ...details })
       );

@@ -80,12 +80,10 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
   }
   // Outwear GET Size
   function handleOutwearSizes(childData) {
-    console.log(childData);
     setOutwearSize(childData?.outwearSizes);
   }
   // Underwear GET Size
   function handleUnderwearSizes(childData) {
-    console.log(childData);
     setUnderWearSize(childData?.underwearSizes);
   }
   // Shoes GET Size
@@ -104,8 +102,9 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     categoryId && params.append("category", categoryId);
     customerReviews && params.append("rating", customerReviews);
     footwearSize && params.append("footwear_size", footwearSize);
-
+    
     outwearSize && params.append("outwear_size[letter_size]", outwearSize);
+    console.log(outwearSize,'outwearSize');
     underwearSize && params.append("underwear_size[letter_size]", underwearSize);
 
     pageId && params.append("page", pageId);
