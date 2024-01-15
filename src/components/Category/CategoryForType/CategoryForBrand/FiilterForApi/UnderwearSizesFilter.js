@@ -11,7 +11,7 @@ function UnderwearSizesFilter({ state, setState, filter, handleUnderwearSizes })
   useEffect(() => {
     async function underwearSizes() {
       const underwear = filter?.wear_sizes?.underwear;
-      console.log(underwear);
+      // console.log(underwear);
       const transformedArray = Object.entries(underwear).map(
         ([size, details]) => ({ size, ...details })
       );
@@ -30,14 +30,14 @@ function UnderwearSizesFilter({ state, setState, filter, handleUnderwearSizes })
   function sendSize(underwear) {
     // console.log(outwear);
     if(underwear?.letter_size){
-      console.log(underwear?.letter_size);
+      // console.log(underwear?.letter_size);
       onGetUnderwearSizes(underwear?.letter_size)
     } else if(underwear?.max_wear_size){
       const minMaxSize = underwear?.min_wear_size + ' - ' + underwear?.max_wear_size
-      console.log(minMaxSize);
+      // console.log(minMaxSize);
       onGetUnderwearSizes(minMaxSize) 
     } else {
-      console.log(underwear?.min_wear_size);
+      // console.log(underwear?.min_wear_size);
       onGetUnderwearSizes(underwear?.min_wear_size)
     }
   }
