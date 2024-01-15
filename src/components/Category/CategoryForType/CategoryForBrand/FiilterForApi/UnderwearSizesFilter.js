@@ -11,7 +11,6 @@ function UnderwearSizesFilter({ state, setState, filter, handleUnderwearSizes })
   useEffect(() => {
     async function underwearSizes() {
       const underwear = filter?.wear_sizes?.underwear;
-      // console.log(underwear);
       const transformedArray = Object.entries(underwear).map(
         ([size, details]) => ({ size, ...details })
       );
@@ -20,26 +19,28 @@ function UnderwearSizesFilter({ state, setState, filter, handleUnderwearSizes })
     underwearSizes();
   }, [filter]);
 
-  function onGetUnderwearSizes (size) {
-    console.log(size);
+  function onGetUnderwearSizes (letterSize, minSize, maxSize) {
     handleUnderwearSizes({
-      underwearSizes: size
+      letterSize,
+      minSize,
+      maxSize,
     })
   }
 
   function sendSize(underwear) {
-    // console.log(outwear);
-    if(underwear?.letter_size){
-      // console.log(underwear?.letter_size);
-      onGetUnderwearSizes(underwear?.letter_size)
-    } else if(underwear?.max_wear_size){
-      const minMaxSize = underwear?.min_wear_size + ' - ' + underwear?.max_wear_size
-      // console.log(minMaxSize);
-      onGetUnderwearSizes(minMaxSize) 
-    } else {
-      // console.log(underwear?.min_wear_size);
-      onGetUnderwearSizes(underwear?.min_wear_size)
+    if (
+      underwear?.letter_size 
+    ) {
+      onGetUnderwearSizes(underwear?.letter_size);
     }
+
+    if (!underwear?.letter_size) {
+      onGetUnderwearSizes(null, underwear?.min_wear_size, underwear?.max_wear_size);
+    }
+  }
+
+  function sendClearedData() {
+    handleUnderwearSizes(null);
   }
 
   return (
@@ -80,21 +81,22 @@ function UnderwearSizesFilter({ state, setState, filter, handleUnderwearSizes })
               : "duration-300 h-fit mt-5"
           } duration-300`}
         >
-          <figure className="w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2">
-            {underwearData?.slice(0, visibleButtons)?.map((underwear) => {
-              // console.log(item, "item");
+          <figure className={`${
+              underwearData?.max_wear_size !== null ? "text-xs" : "text-sm"
+            } w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2`}>
+            {underwearData?.slice(0, visibleButtons)?.map((underwear,index) => {
               return (
                 <button
-                  key={underwear?.id}
+                  key={index}
                   onClick={() => {
-                    setChangeClick(true);
+                    setChangeClick(index);
                     sendSize(underwear)
                   }}
                   className={`${
                     underwear?.letter_size || underwear?.size
                       ? "flex"
                       : "hidden"
-                  } h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg`}
+                  } ${changeClick === index ? "bg-fullBlue text-white" : ""} h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
                   <div className="flex items-center">
                   {underwear?.letter_size ? (
@@ -115,6 +117,10 @@ function UnderwearSizesFilter({ state, setState, filter, handleUnderwearSizes })
               <div className="flex w-1/3 justify-start items-center">
                 <button
                   type="button"
+                  onClick={() => {
+                    setChangeClick(false);
+                    sendClearedData();
+                  }}
                   className={`${
                     changeClick ? "flex" : "hidden"
                   } flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}

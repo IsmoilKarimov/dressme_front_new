@@ -20,8 +20,14 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
   const [filter, setFilter] = useState();
   const [colorHexCode, setColorHexCode] = useState([]);
   const [customerReviews, setCustomerReviews] = useState();
-  const [outwearSize, setOutwearSize] = useState();
-  const [underwearSize, setUnderWearSize] = useState();
+  // OUTWEAR
+  const [letterOutwearSize, setLetterOutwearSize] = useState();
+  const [minOutwearSize, setMinOutwearSize] = useState();
+  const [maxOutwearSize, setMaxOutwearSize] = useState();
+  // UNDERWEAR
+  const [letterUnderwearSize, setLetterUnderwearSize] = useState();
+  const [minUnderwearSize, setMinUnderwearSize] = useState();
+  const [maxUnderwearSize, setMaxUnderwearSize] = useState();
   const [footwearSize, setFootwearSize] = useState();
 
   const [state, setState] = useState({
@@ -53,7 +59,6 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
   }
   // Color GetID
   function handleGetColorHexCode(childData) {
-    console.log(childData?.colorFilterHexCode);
     if (colorHexCode?.length == 0) {
       setColorHexCode((colorHexCode) => [
         ...colorHexCode,
@@ -80,12 +85,17 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
   }
   // Outwear GET Size
   function handleOutwearSizes(childData) {
-    setOutwearSize(childData?.outwearSizes);
+    setLetterOutwearSize(childData?.letterSize);
+    setMinOutwearSize(childData?.minSize);
+    setMaxOutwearSize(childData?.maxSize);
   }
   // Underwear GET Size
   function handleUnderwearSizes(childData) {
-    setUnderWearSize(childData?.underwearSizes);
+    setLetterUnderwearSize(childData?.letterSize);
+    setMinUnderwearSize(childData?.minSize);
+    setMaxUnderwearSize(childData?.maxSize);
   }
+
   // Shoes GET Size
   function handleWearSize(childData) {
     setFootwearSize(childData?.wearSize);
@@ -103,9 +113,21 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     customerReviews && params.append("rating", customerReviews);
     footwearSize && params.append("footwear_size", footwearSize);
     
-    outwearSize && params.append("outwear_size[letter_size]", outwearSize);
-    console.log(outwearSize,'outwearSize');
-    underwearSize && params.append("underwear_size[letter_size]", underwearSize);
+    // OUTWEAR SIZES
+    letterOutwearSize &&
+      params.append("outwear_size[letter_size]", letterOutwearSize);
+    minOutwearSize &&
+      params.append("outwear_size[min_wear_size]", minOutwearSize);
+    maxOutwearSize &&
+      params.append("outwear_size[max_wear_size]", maxOutwearSize);
+
+    // UNDERWEAR SIZES
+    letterUnderwearSize &&
+      params.append("outwear_size[letter_size]", letterUnderwearSize);
+    minUnderwearSize &&
+      params.append("outwear_size[min_wear_size]", minUnderwearSize);
+    maxUnderwearSize &&
+      params.append("outwear_size[max_wear_size]", maxUnderwearSize);
 
     pageId && params.append("page", pageId);
 
@@ -113,6 +135,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
       params.append("budget[from]", state?.getBadgePrice?.min);
     state?.getBadgePrice?.max &&
       params.append("budget[to]", state?.getBadgePrice?.max);
+
     colorHexCode?.length &&
       colorHexCode?.forEach((e, index) => {
         params.append("colors[]", colorHexCode[index]);
@@ -125,7 +148,6 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     await fetch(`${apiUrl}?` + params)
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res?.filter, "res-data");
         setFilter(res?.filter);
         setFilterData(res);
       })
@@ -142,8 +164,15 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     state?.getBadgePrice,
     colorHexCode,
     customerReviews,
-    outwearSize,
-    underwearSize,
+    // OUTWEAR
+    letterOutwearSize,
+    minOutwearSize,
+    maxOutwearSize,
+    // UNDERWEAR
+    letterUnderwearSize,
+    minUnderwearSize,
+    maxUnderwearSize,
+
     footwearSize,
     pageId,
   ]);

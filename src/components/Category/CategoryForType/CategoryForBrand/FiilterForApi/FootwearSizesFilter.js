@@ -9,7 +9,6 @@ function FootwearSizesFilter({ state, setState, filter, handleWearSize }) {
   useEffect(() => {
     async function footwearSizes() {
       const footwear = filter?.wear_sizes?.footwear;
-      // console.log(footwear);
       const transformedArray = Object.entries(footwear).map(
         ([size, details]) => ({ size, ...details })
       );
@@ -24,7 +23,7 @@ function FootwearSizesFilter({ state, setState, filter, handleWearSize }) {
     });
   }
 
-  function sendClearedData(size) {
+  function sendClearedData() {
     handleWearSize({
       wearSize: null,
     });
@@ -65,17 +64,17 @@ function FootwearSizesFilter({ state, setState, filter, handleWearSize }) {
           } duration-300`}
         >
           <figure className="w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2">
-            {footwearData?.slice(0, visibleButtons)?.map((footwear) => {
+            {footwearData?.slice(0, visibleButtons)?.map((footwear, index) => {
               return (
                 <button
-                  key={footwear?.id}
+                  key={index}
                   onClick={() => {
-                    setChangeClick(true);
+                    setChangeClick(index);
                     onGetWearSize(footwear?.wear_size);
                   }}
                   className={`${
-                    footwear?.size ? "" : ""
-                  } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue focus:text-white hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
+                    changeClick === index ? "bg-fullBlue text-white" : ""
+                  } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory  hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
                   <div className="flex items-center">
                     <span>{footwear?.size}</span>
