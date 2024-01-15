@@ -101,6 +101,11 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     setFootwearSize(childData?.wearSize);
   }
 
+  // CLEAR ALL DATA
+  function clearAllFilteredData(){
+    // state?.getBadgePrice: {}
+  }
+
   const { id } = useParams();
   const newId = id.replace(":", "");
   const apiUrl = `https://api.dressme.uz/api/main/section/${newId}`;
@@ -123,11 +128,11 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
 
     // UNDERWEAR SIZES
     letterUnderwearSize &&
-      params.append("outwear_size[letter_size]", letterUnderwearSize);
+      params.append("underwear_size[letter_size]", letterUnderwearSize);
     minUnderwearSize &&
-      params.append("outwear_size[min_wear_size]", minUnderwearSize);
+      params.append("underwear_size[min_wear_size]", minUnderwearSize);
     maxUnderwearSize &&
-      params.append("outwear_size[max_wear_size]", maxUnderwearSize);
+      params.append("underwear_size[max_wear_size]", maxUnderwearSize);
 
     pageId && params.append("page", pageId);
 
@@ -292,6 +297,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
       <section className=" mt-8 border-t border-searchBgColor py-5 px-3">
         <button
           type="button"
+          onClick={() =>clearAllFilteredData()}
           className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70"
         >
           Сбросить фильтр
