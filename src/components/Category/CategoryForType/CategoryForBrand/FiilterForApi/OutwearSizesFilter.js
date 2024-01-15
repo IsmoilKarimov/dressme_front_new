@@ -10,7 +10,7 @@ function OutwearSizesFilter({ state, setState, filter, handleOutwearSizes }) {
   // console.log(visibleButtons);
   // console.log(outwearData?.length);
 
-  // console.log(outwearData, "outwearData");
+  console.log(outwearData, "outwearData");
 
   useEffect(() => {
     async function outwearSizes() {
@@ -24,22 +24,29 @@ function OutwearSizesFilter({ state, setState, filter, handleOutwearSizes }) {
     outwearSizes();
   }, [filter]);
 
-  function onGetOutwearSizes (size) {
+  function onGetOutwearSizes(letterSize, minSize, maxSize) {
     // console.log(size);
     handleOutwearSizes({
-      outwearSizes: size
-    })
+      letterSize,
+      minSize,
+      maxSize,
+    });
   }
 
   function sendSize(outwear) {
-    if(outwear?.letter_size){
-      onGetOutwearSizes(outwear?.letter_size)
-    } else if(outwear?.max_wear_size){
-      const minMaxSize = outwear?.min_wear_size + '-' + outwear?.max_wear_size
-      onGetOutwearSizes(minMaxSize) 
-    } else {
-      onGetOutwearSizes(outwear?.min_wear_size)
+    if (
+      outwear?.letter_size 
+    ) {
+      onGetOutwearSizes(outwear?.letter_size);
     }
+
+    if (!outwear?.letter_size) {
+      onGetOutwearSizes(null, outwear?.min_wear_size, outwear?.max_wear_size);
+    }
+  }
+
+  function sendClearedData() {
+    handleOutwearSizes(null);
   }
 
   return (
@@ -78,31 +85,31 @@ function OutwearSizesFilter({ state, setState, filter, handleOutwearSizes }) {
             state?.ClothingShow ? "duration-300 h-0" : "duration-300 h-fit mt-5"
           } duration-300`}
         >
-          <figure className={`${outwearData?.max_wear_size !== null ? 'text-xs' : 'text-sm'} w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2`}>
-            {outwearData?.slice(0, visibleButtons)?.map((outwear) => {
+          <figure
+            className={`${
+              outwearData?.max_wear_size !== null ? "text-xs" : "text-sm"
+            } w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2`}
+          >
+            {outwearData?.slice(0, visibleButtons)?.map((outwear,index) => {
               return (
                 <button
-                  key={outwear.id}
+                  key={index}
                   onClick={() => {
-                    setChangeClick(true);
-                    sendSize(outwear)
+                    setChangeClick(index);
+                    sendSize(outwear);
                   }}
                   className={`${
                     outwear?.letter_size || outwear?.size ? "flex" : "hidden"
-                  } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium  leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg`}
+                  } ${changeClick === index ? "bg-fullBlue text-white" : ""} h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium  leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
                   <div className="flex items-center">
-                  {outwear?.letter_size ? (
-                    <span>{outwear?.letter_size}</span>
-                  ) : (
-                    
-                      
+                    {outwear?.letter_size ? (
+                      <span>{outwear?.letter_size}</span>
+                    ) : (
                       <span>{outwear?.size}</span>
-                    
-                  )}
+                    )}
                     <span className="ml-1">({outwear?.amount})</span>
                   </div>
-
                 </button>
               );
             })}
@@ -111,6 +118,10 @@ function OutwearSizesFilter({ state, setState, filter, handleOutwearSizes }) {
               <div className="flex w-1/3 justify-start items-center">
                 <button
                   type="button"
+                  onClick={() => {
+                    setChangeClick(false);
+                    sendClearedData();
+                  }}
                   className={`${
                     changeClick ? "flex" : "hidden"
                   } flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
