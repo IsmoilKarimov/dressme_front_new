@@ -20,6 +20,8 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
   const [filter, setFilter] = useState();
   const [colorHexCode, setColorHexCode] = useState([]);
   const [customerReviews, setCustomerReviews] = useState();
+  const [outwearSize, setOutwearSize] = useState();
+  const [underwearSize, setUnderWearSize] = useState();
   const [shoesSize, setShoesSize] = useState();
 
   const [state, setState] = useState({
@@ -82,6 +84,16 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     }
   }
 
+  // Outwear GET Size
+  function handleOutwearSizes(childData) {
+    console.log(childData);
+    setOutwearSize(childData?.outwearSizes);
+  }
+  // Underwear GET Size
+  function handleUnderwearSizes(childData) {
+    console.log(childData);
+    setUnderWearSize(childData?.underwearSizes);
+  }
   // Shoes GET Size
   function handleWearSize(childData) {
     setShoesSize(childData?.wearSize);
@@ -98,7 +110,12 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     categoryId && params.append("category", categoryId);
     customerReviews && params.append("rating", customerReviews);
     shoesSize && params.append("footwear_size", shoesSize);
+
+    outwearSize && params.append("outwear_size[letter_size]", outwearSize);
+    underwearSize && params.append("underwear_size[letter_size]", underwearSize);
+
     pageId && params.append("page", pageId);
+
     state?.getBadgePrice?.min &&
       params.append("budget[from]", state?.getBadgePrice?.min);
     state?.getBadgePrice?.max &&
@@ -132,6 +149,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     state?.getBadgePrice,
     colorHexCode,
     customerReviews,
+    outwearSize,
     shoesSize,
     pageId,
   ]);
@@ -224,15 +242,21 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
           handleCustomerReviews={handleCustomerReviews}
         />
 
-        {/* Clothing sizes */}
+        {/* Outwear sizes */}
         <ClothingSizesFilter
           state={state}
           setState={setState}
           filter={filter}
+          handleOutwearSizes={handleOutwearSizes}
         />
 
-        {/* Shoes sizes */}
-        <UnderwearSizes state={state} setState={setState} filter={filter} />
+        {/* Underwear sizes */}
+        <UnderwearSizes
+          state={state}
+          setState={setState}
+          filter={filter}
+          handleUnderwearSizes={handleUnderwearSizes}
+        />
 
         {/* Shoes sizes */}
         <ShoesSizesFilter

@@ -10,12 +10,12 @@ function ClothingSizesFilter({ state, setState, filter, handleOutwearSizes }) {
   // console.log(visibleButtons);
   // console.log(outwearData?.length);
 
-  console.log(outwearData, "outwearData");
+  // console.log(outwearData, "outwearData");
 
   useEffect(() => {
     async function outwearSizes() {
       const outwear = filter?.wear_sizes?.outwear;
-      console.log(outwear);
+      // console.log(outwear);
       const transformedArray = await Object.entries(outwear).map(
         ([size, details]) => ({ size, ...details })
       );
@@ -24,11 +24,26 @@ function ClothingSizesFilter({ state, setState, filter, handleOutwearSizes }) {
     outwearSizes();
   }, [filter]);
 
-  function onGetOutwearSizes (min,max) {
-    console.log(min,max);
+  function onGetOutwearSizes (size) {
+    console.log(size);
     handleOutwearSizes({
-      outwearSizes: min, max
+      outwearSizes: size
     })
+  }
+
+  function sendSize(outwear) {
+    // console.log(outwear);
+    if(outwear?.letter_size){
+      console.log(outwear?.letter_size);
+      onGetOutwearSizes(outwear?.letter_size)
+    } else if(outwear?.max_wear_size){
+      const minMaxSize = outwear?.min_wear_size + ' - ' + outwear?.max_wear_size
+      console.log(minMaxSize);
+      onGetOutwearSizes(minMaxSize) 
+    } else {
+      console.log(outwear?.min_wear_size);
+      onGetOutwearSizes(outwear?.min_wear_size)
+    }
   }
 
   return (
@@ -74,17 +89,7 @@ function ClothingSizesFilter({ state, setState, filter, handleOutwearSizes }) {
                   key={outwear.id}
                   onClick={() => {
                     setChangeClick(true);
-                    
-                    // {outwear?.letter_size ? (
-                    //   onGetOutwearSizes(outwear?.letter_size)
-                    //   ) : (
-                        // outwear?.max_wear_size ? (
-                        //   onGetOutwearSizes(outwear?.min_wear_size, outwear?.max_wear_size)   
-                          // ) : (
-                            // onGetOutwearSizes(outwear?.min_wear_size)   
-                      // )
-                    // )}
-
+                    sendSize(outwear)
                   }}
                   className={`${
                     outwear?.letter_size || outwear?.size ? "flex" : "hidden"

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 
-function UnderwearSizes({ state, setState, filter }) {
+function UnderwearSizes({ state, setState, filter, handleUnderwearSizes }) {
   const [changeClick, setChangeClick] = useState(false);
   const [underwearData, setUnderwearData] = useState(null);
   const [visibleButtons, setVisibleButtons] = useState(12);
 
-  console.log(underwearData, "underwearData");
+  // console.log(underwearData, "underwearData");
 
   useEffect(() => {
     async function underwearSizes() {
@@ -19,6 +19,28 @@ function UnderwearSizes({ state, setState, filter }) {
     }
     underwearSizes();
   }, [filter]);
+
+  function onGetUnderwearSizes (size) {
+    console.log(size);
+    handleUnderwearSizes({
+      underwearSizes: size
+    })
+  }
+
+  function sendSize(underwear) {
+    // console.log(outwear);
+    if(underwear?.letter_size){
+      console.log(underwear?.letter_size);
+      onGetUnderwearSizes(underwear?.letter_size)
+    } else if(underwear?.max_wear_size){
+      const minMaxSize = underwear?.min_wear_size + ' - ' + underwear?.max_wear_size
+      console.log(minMaxSize);
+      onGetUnderwearSizes(minMaxSize) 
+    } else {
+      console.log(underwear?.min_wear_size);
+      onGetUnderwearSizes(underwear?.min_wear_size)
+    }
+  }
 
   return (
     <div
@@ -66,6 +88,7 @@ function UnderwearSizes({ state, setState, filter }) {
                   key={underwear?.id}
                   onClick={() => {
                     setChangeClick(true);
+                    sendSize(underwear)
                   }}
                   className={`${
                     underwear?.letter_size || underwear?.size
