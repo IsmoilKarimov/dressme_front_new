@@ -1,40 +1,56 @@
+/* eslint-disable no-lone-blocks */
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 
-function ShoesSizesFilter({ state, setState, filter, handleWearSize }) {
+function OutwearSizesFilter({ state, setState, filter, handleOutwearSizes }) {
   const [changeClick, setChangeClick] = useState(false);
-  const [footwearData, setFootwearData] = useState(null);
+  const [outwearData, setOutwearData] = useState(null);
   const [visibleButtons, setVisibleButtons] = useState(12);
 
+  // console.log(visibleButtons);
+  // console.log(outwearData?.length);
+
+  // console.log(outwearData, "outwearData");
+
   useEffect(() => {
-    async function footwearSizes() {
-      const footwear = filter?.wear_sizes?.footwear;
-      console.log(footwear);
-      const transformedArray = Object.entries(footwear).map(
+    async function outwearSizes() {
+      const outwear = filter?.wear_sizes?.outwear;
+      // console.log(outwear);
+      const transformedArray = await Object.entries(outwear).map(
         ([size, details]) => ({ size, ...details })
       );
-      setFootwearData(transformedArray);
+      setOutwearData(transformedArray);
     }
-    footwearSizes();
+    outwearSizes();
   }, [filter]);
 
-  function onGetWearSize(size) {
-    handleWearSize({
-      wearSize: size,
-    });
+  function onGetOutwearSizes (size) {
+    console.log(size);
+    handleOutwearSizes({
+      outwearSizes: size
+    })
   }
 
-  function sendClearedData(size) {
-    handleWearSize({
-      wearSize: null,
-    });
+  function sendSize(outwear) {
+    // console.log(outwear);
+    if(outwear?.letter_size){
+      console.log(outwear?.letter_size);
+      onGetOutwearSizes(outwear?.letter_size)
+    } else if(outwear?.max_wear_size){
+      const minMaxSize = outwear?.min_wear_size + ' - ' + outwear?.max_wear_size
+      console.log(minMaxSize);
+      onGetOutwearSizes(minMaxSize) 
+    } else {
+      console.log(outwear?.min_wear_size);
+      onGetOutwearSizes(outwear?.min_wear_size)
+    }
   }
 
   return (
     <div
-      className={`${
-        footwearData?.length > 0 ? "flex" : "hidden"
-      } w-full flex flex-col items-center mb-[38px]`}
+      className={` ${
+        outwearData?.length > 0 ? "flex" : "hidden"
+      } w-full flex-col items-center mb-[38px]`}
     >
       <section className="w-full h-fit mt-[12px] ">
         <article
@@ -44,15 +60,17 @@ function ShoesSizesFilter({ state, setState, filter, handleWearSize }) {
           }}
         >
           <figure
-            onClick={() => setState({ ...state, ShoesShow: !state.ShoesShow })}
+            onClick={() =>
+              setState({ ...state, ClothingShow: !state.ClothingShow })
+            }
             className="flex items-center cursor-pointer select-none"
           >
-            <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-              Размер обуви
-            </p>
+            <figcaption className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+              Размер верхней одежды
+            </figcaption>
             <p
               className={`${
-                state?.ShoesShow ? "rotate-[180deg]" : ""
+                state?.ClothingShow ? "rotate-[180deg]" : ""
               } duration-300 ml-1`}
             >
               <ArrowTopIcons colors={"#000"} />
@@ -61,37 +79,43 @@ function ShoesSizesFilter({ state, setState, filter, handleWearSize }) {
         </article>
         <article
           className={` overflow-hidden ${
-            state?.ShoesShow ? "duration-300 h-0" : "duration-300 h-fit mt-5"
+            state?.ClothingShow ? "duration-300 h-0" : "duration-300 h-fit mt-5"
           } duration-300`}
         >
           <figure className="w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2">
-            {footwearData?.slice(0, visibleButtons)?.map((footwear) => {
+            {outwearData?.slice(0, visibleButtons)?.map((outwear) => {
               return (
                 <button
-                  key={footwear?.id}
+                  key={outwear.id}
                   onClick={() => {
                     setChangeClick(true);
-                    onGetWearSize(footwear?.wear_size);
+                    sendSize(outwear)
                   }}
                   className={`${
-                    footwear?.size ? "" : ""
-                  } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue focus:text-white hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
+                    outwear?.letter_size || outwear?.size ? "flex" : "hidden"
+                  } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
                   <div className="flex items-center">
-                    <span>{footwear?.size}</span>
-                    <span className="ml-1">({footwear?.amount})</span>
+                  {outwear?.letter_size ? (
+                    <span>{outwear?.letter_size}</span>
+                  ) : (
+                    outwear?.max_wear_size ? (
+                      <span>{outwear?.min_wear_size}-{outwear?.max_wear_size}</span>
+                      ) : (
+                      <span>{outwear?.min_wear_size}</span>
+                    )
+                  )}
+                    <span className="ml-1">({outwear?.amount})</span>
                   </div>
+
                 </button>
               );
             })}
+
             <div className="w-full flex items-center justify-between">
               <div className="flex w-1/3 justify-start items-center">
                 <button
                   type="button"
-                  onClick={() => {
-                    setChangeClick(false);
-                    sendClearedData();
-                  }}
                   className={`${
                     changeClick ? "flex" : "hidden"
                   } flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
@@ -101,7 +125,7 @@ function ShoesSizesFilter({ state, setState, filter, handleWearSize }) {
               </div>
               <div
                 className={`${
-                  footwearData?.length > 12 ? "flex" : "hidden"
+                  outwearData?.length > 12 ? "flex" : "hidden"
                 } w-2/3 items-center justify-end`}
               >
                 <button
@@ -121,12 +145,12 @@ function ShoesSizesFilter({ state, setState, filter, handleWearSize }) {
 
                 <button
                   type="button"
-                  disabled={footwearData?.length <= visibleButtons}
+                  disabled={outwearData?.length <= visibleButtons}
                   onClick={() => {
                     setVisibleButtons((prev) => prev + 12);
                   }}
                   className={`${
-                    footwearData?.length <= visibleButtons
+                    outwearData?.length <= visibleButtons
                       ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
                       : ""
                   } w-full flex justify-center text-sm text-borderWinter font-AeonikProRegular mt-2`}
@@ -142,4 +166,4 @@ function ShoesSizesFilter({ state, setState, filter, handleWearSize }) {
   );
 }
 
-export default React.memo(ShoesSizesFilter);
+export default React.memo(OutwearSizesFilter);

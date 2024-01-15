@@ -7,9 +7,9 @@ import CategoriesFilter from "./FiilterForApi/CategoriesFilter";
 import BudgetFilter from "./FiilterForApi/BudgetFilter";
 import ColorsFilter from "./FiilterForApi/ColorsFilter";
 import CustomerReviewsFilter from "./FiilterForApi/CustomerReviewsFilter";
-import ClothingSizesFilter from "./FiilterForApi/ClothingSizesFilter";
-import ShoesSizesFilter from "./FiilterForApi/ShoesSizesFilter";
-import UnderwearSizes from "./FiilterForApi/UnderwearSizes";
+import FootwearSizesFilter from "./FiilterForApi/FootwearSizesFilter";
+import OutwearSizesFilter from "./FiilterForApi/OutwearSizesFilter";
+import UnderwearSizesFilter from "./FiilterForApi/UnderwearSizesFilter";
 
 const CategoryForBrand = ({ setFilterData, pageId }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -22,7 +22,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
   const [customerReviews, setCustomerReviews] = useState();
   const [outwearSize, setOutwearSize] = useState();
   const [underwearSize, setUnderWearSize] = useState();
-  const [shoesSize, setShoesSize] = useState();
+  const [footwearSize, setFootwearSize] = useState();
 
   const [state, setState] = useState({
     budgetShow: screenSize.width <= 768 ? true : false,
@@ -35,27 +35,22 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     getBadgePrice: {},
     colorHexCode: [],
   });
-
   // Gender GetID
   function handleGetId(childData) {
     setGenderId(childData?.genderFilterId);
   }
-
   // Discount GetID
   function handleGetDiscountId(childData) {
     setDiscountId(childData?.discountId);
   }
-
   // Categoty GetID
   function handleGetCategoryId(childData) {
     setCategoryId(childData?.categoryId);
   }
-
   // Budjet GetPrize
   function getMinMaxPrice(childData) {
     setState({ ...state, getBadgePrice: childData });
   }
-
   // Color GetID
   function handleGetColorHexCode(childData) {
     console.log(childData?.colorFilterHexCode);
@@ -83,7 +78,6 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
       );
     }
   }
-
   // Outwear GET Size
   function handleOutwearSizes(childData) {
     console.log(childData);
@@ -96,7 +90,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
   }
   // Shoes GET Size
   function handleWearSize(childData) {
-    setShoesSize(childData?.wearSize);
+    setFootwearSize(childData?.wearSize);
   }
 
   const { id } = useParams();
@@ -109,7 +103,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     discountId && params.append("discount", discountId);
     categoryId && params.append("category", categoryId);
     customerReviews && params.append("rating", customerReviews);
-    shoesSize && params.append("footwear_size", shoesSize);
+    footwearSize && params.append("footwear_size", footwearSize);
 
     outwearSize && params.append("outwear_size[letter_size]", outwearSize);
     underwearSize && params.append("underwear_size[letter_size]", underwearSize);
@@ -150,7 +144,8 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     colorHexCode,
     customerReviews,
     outwearSize,
-    shoesSize,
+    underwearSize,
+    footwearSize,
     pageId,
   ]);
 
@@ -243,7 +238,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
         />
 
         {/* Outwear sizes */}
-        <ClothingSizesFilter
+        <OutwearSizesFilter
           state={state}
           setState={setState}
           filter={filter}
@@ -251,7 +246,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
         />
 
         {/* Underwear sizes */}
-        <UnderwearSizes
+        <UnderwearSizesFilter
           state={state}
           setState={setState}
           filter={filter}
@@ -259,7 +254,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
         />
 
         {/* Shoes sizes */}
-        <ShoesSizesFilter
+        <FootwearSizesFilter
           state={state}
           setState={setState}
           filter={filter}
