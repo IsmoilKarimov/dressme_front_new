@@ -117,6 +117,7 @@ export default function CollectionCards() {
                       handleLeaveMouse={handleLeaveMouse}
                       wishList={wishList}
                       setWishlist={setWishlist}
+                      mainSelectedId={dressInfo?.mainColorId}
                     />
                   );
                 })

@@ -343,7 +343,7 @@ function MainPageSliders() {
                 className="w-[100%] flex xs:justify-between  px-[1px]"
               >
                 {mainData?.shops?.map((data) => {
-                  console.log(data, "shops-data");
+                  // console.log(data, "shops-data");
                   return (
                     <div
                       key={data?.id}

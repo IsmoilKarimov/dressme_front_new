@@ -26,7 +26,6 @@ function BottomHeader() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const [selectedId, setSelectedId] = useState(null);
-  console.log(selectedId, "selectedId");
   const [state, setState] = useState({
     openwear: false,
     openPrice: false,
@@ -74,8 +73,7 @@ function BottomHeader() {
     getRange[0] && params.append("budget[from]", getRange[0]);
     getRange[1] && params.append("budget[to]", getRange[1]);
     state?.genderSelectId && params.append("gender", state?.genderSelectId);
-    colorSelectId?.length &&
-      params.append("color", colorSelectId);
+    colorSelectId?.length && params.append("color", colorSelectId);
     // colorSelectId?.forEach((e, index) => {
     // });
 
@@ -135,7 +133,6 @@ function BottomHeader() {
   };
 
   // const [mainData, setMainData] = useContext(HomeMainDataContext);
-  console.log(state?.getAllCardList, "getAllCardList--bottom");
 
   // ----------------------Price State Management----------------------
   const sendPriceList = () => {
@@ -168,7 +165,7 @@ function BottomHeader() {
               <input
                 className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={values[0]}
-              // onChange={(e) => setMaxPrice(e.target.value)}
+                // onChange={(e) => setMaxPrice(e.target.value)}
               />{" "}
               сум
             </span>
@@ -181,7 +178,7 @@ function BottomHeader() {
               <input
                 className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={values[1]}
-              // onChange={(e) => setMaxPrice(e.target.value)}
+                // onChange={(e) => setMaxPrice(e.target.value)}
               />
               сум
             </span>
@@ -286,21 +283,24 @@ function BottomHeader() {
               return { ...e, action: true };
             } else return { ...e, action: false };
           });
-          console.log(newDataColor, "newDataColor");
+          // console.log(newDataColor, "newDataColor");
           return { ...data, childText: [...newDataColor] };
         } else return data;
       });
     });
   };
-  const newColorArrayId = (id) => {
+  const newColorArrayId = (hex, id) => {
     if (!colorSelectId) {
-      setColorSelectId(id)
+      setColorSelectId(hex);
+      setDressInfo({ ...dressInfo, mainColorId: id });
     }
-    if (colorSelectId == id) {
-      setColorSelectId()
+    if (colorSelectId == hex) {
+      setColorSelectId();
+      setDressInfo({ ...dressInfo, mainColorId: null });
     }
-    if (colorSelectId !== id) {
-      setColorSelectId(id)
+    if (colorSelectId !== hex) {
+      setColorSelectId(hex);
+      setDressInfo({ ...dressInfo, mainColorId: id });
     }
     // if (colorSelectId?) {
     // }
@@ -366,20 +366,21 @@ function BottomHeader() {
 
             <div className="py-4 gap-x-2 gap-y-4 grid gap-4 grid-cols-6">
               {state?.getAllCardList?.colors?.map((data) => {
-                console.log(data.id, data.hex);
+                console.log(data?.id, data?.hex, "55555555555555");
                 return (
                   <div className="flex flex-col items-center justify-center ">
                     <div
                       key={data?.id}
                       onClick={() => {
-                        newColorArrayId(data?.hex);
+                        newColorArrayId(data?.hex, data?.id);
                         setSelectedId(data?.id);
                       }}
                       style={{ backgroundColor: data?.hex }}
-                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${data?.id === selectedId
-                        ? "border border-setTexOpacity flex items-center justify-center"
-                        : "border"
-                        } `}
+                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${
+                        data?.id === selectedId
+                          ? "border border-setTexOpacity flex items-center justify-center"
+                          : "border"
+                      } `}
                     >
                       {/* {selectedId === data?.id ? (
                         <InputCheckedTrueIcons
@@ -523,8 +524,9 @@ function BottomHeader() {
 
           <article className="w-[480px] h-full overflow-hidden flex items-center justify-between">
             <div
-              className={`${state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
-                } px-2 w-full duration-500  h-full flex items-center justify-between  `}
+              className={`${
+                state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
+              } px-2 w-full duration-500  h-full flex items-center justify-between  `}
             >
               {state?.getAllCardList?.colors?.map((data, i) => {
                 if (i > 11) {
@@ -535,11 +537,16 @@ function BottomHeader() {
                       <label
                         key={data?.id}
                         htmlFor={data?.id}
-                        onClick={() => newColorArrayId(data?.hex)}
+                        onClick={() => {
+                          setSelectedId(data?.id);
+                          newColorArrayId(data?.hex, data?.id);
+                          // setDressInfo({});
+                        }}
                         style={{ backgroundColor: data?.hex }}
                         // onClick={() => colorIdPushContext(data?.id)}
-                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${!state?.textToColor && "border"
-                          }  border-borderColorCard	`}
+                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
+                          !state?.textToColor && "border"
+                        }  border-borderColorCard	`}
                       >
                         {/* {colorSelectId.includes(data?.hex) && (
                           <span>
@@ -555,16 +562,15 @@ function BottomHeader() {
                             />
                           </span>
                         )}
-                        {colorSelectId == data?.hex &&
-                          data?.id !== 1 && (
-                            <span>
-                              <BiCheck
-                                size={25}
-                                color={"#000"}
-                                className="flex items-center justify-center"
-                              />
-                            </span>
-                          )}
+                        {colorSelectId == data?.hex && data?.id !== 1 && (
+                          <span>
+                            <BiCheck
+                              size={25}
+                              color={"#000"}
+                              className="flex items-center justify-center"
+                            />
+                          </span>
+                        )}
                       </label>
                       <input
                         type="radio"
@@ -589,8 +595,9 @@ function BottomHeader() {
               </button>
             </div>
             <p
-              className={`${state?.textToColor ? " mr-0" : " mr-[-500px]"
-                } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
+              className={`${
+                state?.textToColor ? " mr-0" : " mr-[-500px]"
+              } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
             >
               Не давай своей гардеробной шкафной жизни стать скучной.
             </p>
@@ -613,10 +620,11 @@ function BottomHeader() {
                         <button
                           key={item?.id}
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${item?.action
-                            ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-lg"
-                            : " bg-btnBgColor text-black h-full"
-                            } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-lg justify-center flex items-center`}
+                          className={`${
+                            item?.action
+                              ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-lg"
+                              : " bg-btnBgColor text-black h-full"
+                          } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-lg justify-center flex items-center`}
                         >
                           <span>{item?.anyIcons}</span>
                           {item?.name && (
