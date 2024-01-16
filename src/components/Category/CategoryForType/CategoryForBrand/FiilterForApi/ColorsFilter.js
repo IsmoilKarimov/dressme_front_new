@@ -9,13 +9,10 @@ function ColorsFilter({
   colorHexCode,
   setColorHexCode,
   handleGetColorHexCode,
+  dataActionColors,
+  setDataActionColors
 }) {
   const [selectedColorId, setSelectedColorId] = useState(null);
-  const [changeClick, setChangeClick] = useState(false);
-  // console.log(changeClick,'change-click');
-
-  // console.log(selectedColorId, "selectedColorId");
-  // console.log(colorHexCode, "colorHexCode");
 
   function onGetColorHexCode(hexCode) {
     handleGetColorHexCode({
@@ -56,11 +53,10 @@ function ColorsFilter({
         <article
           className={`overflow-hidden ${
             state?.ColorsShow ? "duration-300 h-0" : `h-fit duration-300 pt-5 pb-1`
-          }  ${changeClick ? "block" : ""}`}
+          }  ${dataActionColors ? "block" : ""}`}
         >
           <div className="flex items-center justify-start flex-wrap mx-1 gap-x-2 gap-y-2">
             {filter?.colors?.map((colorHex, index) => {
-              // console.log(index + 1, colorHex);
               return (
                 <button
                   type="button"
@@ -68,7 +64,6 @@ function ColorsFilter({
                   style={{ background: colorHex }}
                   onClick={() => {
                     setSelectedColorId(index + 1);
-                    // setChangeClick(true);
                     onGetColorHexCode(colorHex);
                   }}
                   className={`
@@ -95,7 +90,7 @@ function ColorsFilter({
             type="button"
             onClick={() => {
               setColorHexCode([])
-              setChangeClick(false);
+              setDataActionColors(false);
               setSelectedColorId(null);
             }}
             className={`${ colorHexCode?.length ? "flex" : "hidden" } w-full mt-2 flex-start text-sm text-borderWinter font-AeonikProRegular`}

@@ -9,9 +9,10 @@ export default function CategoriesFilter({
   setState,
   handleGetCategoryId,
   newId,
+  dataActionCategory,
+  setDataActionCategory
 }) {
   const [getCategoryId, setGetCategoryId] = useState();
-  const [dataAction, setDataAction] = useState(false);
   const { request } = useHttp();
 
   const [categories, setCategories] = useState([
@@ -40,18 +41,6 @@ export default function CategoriesFilter({
       refetchOnWindowFocus: false,
     }
   );
-
-  function onGetId(id) {
-    handleGetCategoryId({
-      categoryId: id,
-    });
-  }
-
-  function sendClearedData() {
-    handleGetCategoryId({
-      categoryId: null,
-    });
-  }
 
   const handleCategoryCheck = (value) => {
     setCategories((data) => {
@@ -112,7 +101,7 @@ export default function CategoriesFilter({
                   <button
                     key={data?.id}
                     className={`${
-                      dataAction
+                      dataActionCategory
                         ? `${data.action ? "bg-fullBlue text-white" : ""}`
                         : ""
                     } ${
@@ -122,8 +111,9 @@ export default function CategoriesFilter({
                     } w-full h-[44px] rounded-lg justify-center bg-bgCategory flex items-center select-none  text-black`}
                     type="button"
                     onClick={() => {
-                      onGetId(data?.id);
-                      setDataAction(true);
+                      // onGetId(data?.id);
+                      handleGetCategoryId(data?.id)
+                      setDataActionCategory(true);
                       handleCategoryCheck(data?.id);
                     }}
                     disabled={getCategoryId?.category_ids.length == 1}
@@ -139,11 +129,11 @@ export default function CategoriesFilter({
           <button
             type="button"
             onClick={() => {
-              sendClearedData();
-              setDataAction(false);
+              handleGetCategoryId(null);
+              setDataActionCategory(false);
             }}
             className={`${
-              dataAction ? "flex" : "hidden"
+              dataActionCategory ? "flex" : "hidden"
             } w-full flex-start text-sm text-borderWinter font-AeonikProRegular`}
           >
             Сбросить

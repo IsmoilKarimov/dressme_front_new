@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 
-function FootwearSizesFilter({ state, setState, filter, handleWearSize }) {
-  const [changeClick, setChangeClick] = useState(false);
+function FootwearSizesFilter({
+  state,
+  setState,
+  filter,
+  handleFootwearWearSize,
+  dataActionFootwearSizes,
+  setDataActionFootwearSizes,
+}) {
   const [footwearData, setFootwearData] = useState(null);
   const [visibleButtons, setVisibleButtons] = useState(12);
 
@@ -16,18 +22,6 @@ function FootwearSizesFilter({ state, setState, filter, handleWearSize }) {
     }
     footwearSizes();
   }, [filter]);
-
-  function onGetWearSize(size) {
-    handleWearSize({
-      wearSize: size,
-    });
-  }
-
-  function sendClearedData() {
-    handleWearSize({
-      wearSize: null,
-    });
-  }
 
   return (
     <div
@@ -69,11 +63,11 @@ function FootwearSizesFilter({ state, setState, filter, handleWearSize }) {
                 <button
                   key={index}
                   onClick={() => {
-                    setChangeClick(index);
-                    onGetWearSize(footwear?.wear_size);
+                    setDataActionFootwearSizes(index);
+                    handleFootwearWearSize(footwear?.wear_size);
                   }}
                   className={`${
-                    changeClick === index ? "bg-fullBlue text-white" : ""
+                    dataActionFootwearSizes === index ? "bg-fullBlue text-white" : ""
                   } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory  hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
                   <div className="flex items-center">
@@ -88,11 +82,11 @@ function FootwearSizesFilter({ state, setState, filter, handleWearSize }) {
                 <button
                   type="button"
                   onClick={() => {
-                    setChangeClick(false);
-                    sendClearedData();
+                    setDataActionFootwearSizes(false);
+                    handleFootwearWearSize(null);
                   }}
                   className={`${
-                    changeClick ? "flex" : "hidden"
+                    dataActionFootwearSizes ? "flex" : "hidden"
                   } flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
                 >
                   Сбросить
