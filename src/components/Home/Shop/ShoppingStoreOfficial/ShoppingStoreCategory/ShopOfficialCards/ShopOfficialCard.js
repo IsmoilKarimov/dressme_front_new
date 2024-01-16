@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData";
 
-export default function ShopOfficialCard({ filteredData }) {
+export default function ShopOfficialCard({ filteredData, setPageId }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
 
@@ -35,6 +35,10 @@ export default function ShopOfficialCard({ filteredData }) {
     setDressInfo((current) => {
       return { ...current, ProductList: newArray };
     });
+  };
+
+  const setPaginationFunc = (id) => {
+    setPageId(+id)
   };
 
   return (
@@ -205,47 +209,42 @@ export default function ShopOfficialCard({ filteredData }) {
           );
         })}
       </div>
+
       <div className="w-full h-fit md:hidden flex items-center justify-center mt-14">
         <div className="w-[760px] h-[60px] cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-black flex items-center justify-center rounded-lg border border-searchBgColor bg-btnBgColor">
           Показать ещё 30 наборов
         </div>
       </div>{" "}
-      <div className="w-full h-fit hidden md:flex items-center justify-center mt-10 md:mt-[75px] gap-x-3 ll:gap-x-6">
-        <div className="flex items-center justify-center cursor-pointer bg-searchBgColor w-10 ll:w-[44px] md:w-fit  md:px-4 h-10 ll:h-[44px] rounded-lg">
-          <span className="rotate-[-90deg]">
-            <ArrowTopIcons colors={"#007DCA"} />
-          </span>{" "}
-          <span className="hidden md:block not-italic ml-1   font-AeonikProRegular text-lg leading-4 text-fullBlue">
-            Previous
-          </span>
-        </div>
-        <div className="flex items-center">
-          <ul className="flex items-center gap-x-2 ll:gap-x-3">
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-10 ll:w-[44px] h-10 ll:h-[44px] rounded-lg bg-fullBlue text-white flex items-center justify-center cursor-pointer ">
-              1
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-10 ll:w-[44px] h-10 ll:h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-              2
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-10 ll:w-[44px] h-10 ll:h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-              3
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-10 ll:w-[44px] h-10 ll:h-[44px] rounded-lg hover:bg-searchBgColor flex md:flex items-center justify-center cursor-pointer ">
-              4
-            </li>
-            <li className="not-italic font-AeonikProRegular text-lg leading-4 text-center w-10 ll:w-[44px] h-10 ll:h-[44px] rounded-lg hover:bg-searchBgColor flex items-center justify-center cursor-pointer ">
-              ...
-            </li>
+
+      <div className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6">
+        <article className="flex items-center">
+          <ul className="flex items-center">
+            {filteredData?.products?.links?.map((item,index) => {
+              return (
+                <li
+                  key={index}
+                  onClick={() => {
+                    if (item?.url) {
+                      const newPageId = String(item?.url?.substr(-3)?.split('')?.reverse()?.join(''))?.split('')?.filter((item) => !isNaN(item))?.reverse()?.join('')
+                      setPaginationFunc(newPageId);
+                    }
+                  }}
+                  className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${
+                    item?.active
+                      ? "bg-fullBlue text-white"
+                      : "hover:bg-searchBgColor"
+                  } mx-[5px] flex items-center justify-center  ${
+                    item?.url
+                      ? "cursor-pointer"
+                      : "opacity-70 cursor-not-allowed"
+                  }`}
+                >
+                  {item?.label}
+                </li>
+              );
+            })}
           </ul>
-        </div>
-        <div className="flex items-center justify-center cursor-pointer bg-searchBgColor w-10 ll:w-[44px]  md:w-fit md:px-4 h-10 ll:h-[44px] rounded-lg">
-          <span className="hidden md:block not-italic  font-AeonikProRegular mr-1 text-lg leading-4 text-fullBlue">
-            Next
-          </span>
-          <span className="rotate-[90deg]">
-            <ArrowTopIcons colors={"#007DCA"} />
-          </span>
-        </div>
+        </article>
       </div>
     </div>
   );

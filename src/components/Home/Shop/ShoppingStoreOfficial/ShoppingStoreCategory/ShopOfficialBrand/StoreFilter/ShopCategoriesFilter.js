@@ -4,15 +4,15 @@ import { ArrowTopIcons } from "../../../../../../../assets/icons";
 import { useHttp } from "../../../../../../../hook/useHttp";
 import { useQuery } from "@tanstack/react-query";
 
-function ShopCategoriesFilter({
+export default function CategoriesFilter({
   state,
   setState,
   handleGetCategoryId,
-  params,
-  filter,
+  newId,
+  dataActionCategory,
+  setDataActionCategory
 }) {
   const [getCategoryId, setGetCategoryId] = useState();
-  const [dataAction, setDataAction] = useState(false);
   const { request } = useHttp();
 
   const [categories, setCategories] = useState([
@@ -24,37 +24,23 @@ function ShopCategoriesFilter({
   ]);
 
   // ------------GET METHOD CATEGORY-TYPE-----------------
-  // useQuery(
-  //   ["get_shop_category_id"],
-  //   () => {
-  //     return request({ url: `/main/section/${params?.id}`, token: true });
-  //   },
-  //   {
-  //     onSuccess: (res) => {
-  //       // console.log(res, "RES");
-  //       setGetCategoryId(res?.filter);
-  //       setState({ ...state, genderList: res?.genders });
-  //       // setFilterData(res);
-  //     },
-  //     onError: (err) => {
-  //       console.log(err, "err getGenderlist-method");
-  //     },
-  //     keepPreviousData: true,
-  //     refetchOnWindowFocus: false,
-  //   }
-  // );
-
-  function onGetId(id) {
-    handleGetCategoryId({
-      categoryId: id,
-    });
-  }
-
-  function sendClearedData() {
-    handleGetCategoryId({
-      categoryId: null,
-    });
-  }
+  useQuery(
+    ["get_category_id"],
+    () => {
+      return request({ url: `/main/section/${newId}`, token: true });
+    },
+    {
+      onSuccess: (res) => {
+        setGetCategoryId(res?.filter);
+        setState({ ...state, genderList: res?.genders });
+      },
+      onError: (err) => {
+        console.log(err, "err getGenderlist-method");
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+    }
+  );
 
   const handleCategoryCheck = (value) => {
     setCategories((data) => {
@@ -69,12 +55,12 @@ function ShopCategoriesFilter({
   return (
     <div
       className={`${
-        filter?.gender_ids.length ? "flex" : "hidden"
+        getCategoryId?.gender_ids.length ? "flex" : "hidden"
       } w-full flex-col items-center md:mb-[38px]`}
     >
       <section
         className={`${
-          filter?.category_ids ? "block" : "hidden"
+          getCategoryId?.category_ids ? "block" : "hidden"
         }  w-full h-fit mt-[12px] `}
       >
         <article
@@ -109,27 +95,28 @@ function ShopCategoriesFilter({
           } duration-300 flex flex-col gap-y-4`}
         >
           {categories?.map((data) => {
-            return filter?.category_ids?.map((id) => {
+            return getCategoryId?.category_ids?.map((id) => {
               if (id === data.id) {
                 return (
                   <button
                     key={data?.id}
                     className={`${
-                      dataAction
+                      dataActionCategory
                         ? `${data.action ? "bg-fullBlue text-white" : ""}`
                         : ""
                     } ${
-                      filter?.category_ids?.length == 1
+                      getCategoryId?.category_ids?.length == 1
                         ? "w-full cursor-not-allowed hover:bg-bgCategory hover:text-black"
                         : "hover:bg-fullBlue hover:text-white"
                     } w-full h-[44px] rounded-lg justify-center bg-bgCategory flex items-center select-none  text-black`}
                     type="button"
-                    disabled={filter?.gender_ids.length == 1}
                     onClick={() => {
-                      onGetId(data?.id);
-                      setDataAction(true);
+                      // onGetId(data?.id);
+                      handleGetCategoryId(data?.id)
+                      setDataActionCategory(true);
                       handleCategoryCheck(data?.id);
                     }}
+                    disabled={getCategoryId?.category_ids.length == 1}
                   >
                     <p className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
                       {data?.name}
@@ -142,11 +129,11 @@ function ShopCategoriesFilter({
           <button
             type="button"
             onClick={() => {
-              sendClearedData();
-              setDataAction(false);
+              handleGetCategoryId(null);
+              setDataActionCategory(false);
             }}
             className={`${
-              dataAction ? "flex" : "hidden"
+              dataActionCategory ? "flex" : "hidden"
             } w-full flex-start text-sm text-borderWinter font-AeonikProRegular`}
           >
             Сбросить
@@ -156,5 +143,3 @@ function ShopCategoriesFilter({
     </div>
   );
 }
-
-export default React.memo(ShopCategoriesFilter);

@@ -124,6 +124,17 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     };
   }
 
+  useEffect(() => {
+    const updateDimension = () => {
+      setScreenSize(getCurrentDimension());
+    };
+    window.addEventListener("resize", updateDimension);
+    return () => {
+      window.removeEventListener("resize", updateDimension);
+    };
+  }, [screenSize]);
+
+
   // ===========================================================
   // OUTWEAR
   function onGetOutwearSizes(letterSize, minSize, maxSize) {
@@ -281,16 +292,6 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     footwearSize,
     pageId,
   ]);
-
-  useEffect(() => {
-    const updateDimension = () => {
-      setScreenSize(getCurrentDimension());
-    };
-    window.addEventListener("resize", updateDimension);
-    return () => {
-      window.removeEventListener("resize", updateDimension);
-    };
-  }, [screenSize]);
 
   return (
     <main

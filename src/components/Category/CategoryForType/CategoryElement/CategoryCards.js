@@ -48,6 +48,7 @@ export default function CategoryCards({ filterData, setPageId }) {
           Показать ещё 30 наборов
         </p>
       </section>
+      
       <section className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6">
         <article className="flex items-center">
           <ul className="flex items-center">
