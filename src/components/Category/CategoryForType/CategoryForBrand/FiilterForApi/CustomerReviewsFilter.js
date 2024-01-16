@@ -7,9 +7,11 @@ function CustomerReviewsFilter({
   setState,
   filter,
   handleCustomerReviews,
+  dataActionRatings,
+  setDataActionRatings,
+  selectedRating,
+  setSelectedRating
 }) {
-  const [selected, setSelected] = useState(null);
-  const [clickChange, setChangeClick] = useState(false);
   const [totalValue, setTotalValue] = useState(0);
 
   const ratings = filter?.ratings
@@ -32,18 +34,6 @@ function CustomerReviewsFilter({
     const values = await Object.values(ratings);
     const total = values.reduce((acc, curr) => acc + curr, 0);
     setTotalValue(total);
-  }
-
-  function onGetRatingId(id) {
-    handleCustomerReviews({
-      ratingId: id,
-    });
-  }
-
-  function sendClearedData() {
-    handleCustomerReviews({
-      ratingId: null,
-    });
   }
 
   return (
@@ -80,7 +70,7 @@ function CustomerReviewsFilter({
           className={`flex flex-col   gap-y-3 overflow-hidden ${
             state?.customerRreviews
               ? "duration-300 h-0"
-              : `duration-300 ${clickChange ? 'h-[190px]' : 'h-[160px]'} mt-5`
+              : `duration-300 ${dataActionRatings ? 'h-[190px]' : 'h-[160px]'} mt-5`
           } duration-300`}
         >
           {/* Field */}
@@ -90,15 +80,15 @@ function CustomerReviewsFilter({
                 key={index}
                 className="flex items-center cursor-pointer select-none"
                 onClick={() => {
-                  onGetRatingId(index + 1);
-                  setSelected(index);
-                  setChangeClick(true);
+                  handleCustomerReviews(index + 1);
+                  setSelectedRating(index);
+                  setDataActionRatings(true);
                 }}
               >
                 <div
                   className={`w-[22px] h-[22px] flex items-center  mr-[10px] rounded border border-borderColorCard`}
                 >
-                  {selected === index && (
+                  {selectedRating === index && (
                     <span className="bg-blue-600 h-full w-full text-white flex items-center justify-center">
                       <BsCheckLg size={12} />
                     </span>
@@ -158,12 +148,12 @@ function CustomerReviewsFilter({
           <button
             type="button"
             onClick={() => {
-              setSelected(null);
-              setChangeClick(false)
-              sendClearedData();
+              setSelectedRating(null);
+              setDataActionRatings(false)
+              handleCustomerReviews(null);
             }}
             className={`${
-              clickChange ? "flex" : "hidden"
+              dataActionRatings ? "flex" : "hidden"
             } w-full flex-start text-sm text-borderWinter font-AeonikProRegular`}
           >
             Сбросить

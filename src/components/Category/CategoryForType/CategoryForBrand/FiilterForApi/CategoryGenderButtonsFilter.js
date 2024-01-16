@@ -5,8 +5,9 @@ function CategoryGenderButtonsFilter({
   handleGetId,
   handleGetDiscountId,
   filter,
-}) {
-  const [dataAction, setDataAction] = useState(true);
+  dataActionGender,
+  setDataActionGender
+  }) {
   const [openGenderField, setOpenGenderField] = useState(false);
   const [dataActionDiscount, setDataActionDiscount] = useState(false);
   const [genderCategory, setGenderCategory] = useState([
@@ -27,17 +28,6 @@ function CategoryGenderButtonsFilter({
     },
   ]);
 
-  function onGetId(id) {
-    handleGetId({
-      genderFilterId: id,
-    });
-  }
-
-  function onGetDiscontId(id) {
-    handleGetDiscountId({
-      discountId: id,
-    });
-  }
 
   const handleGenderCheck = (value) => {
     setGenderCategory((data) => {
@@ -91,16 +81,17 @@ function CategoryGenderButtonsFilter({
                     <button
                       key={data?.id}
                       onClick={() => {
-                        setDataAction(false);
+                        setDataActionGender(true);
                         handleGenderCheck(data?.id);
-                        onGetId(data?.id);
+                        // onGetId(data?.id);
+                        handleGetId(data?.id)
                       }}
                       disabled={
                         filter?.gender_ids.length == 1 &&
                         filter?.discount === false
                       }
                       className={`${
-                        dataAction
+                        !dataActionGender
                           ? ""
                           : `${
                               data?.action
@@ -124,7 +115,7 @@ function CategoryGenderButtonsFilter({
               <button
                 onClick={() => {
                   setDataActionDiscount(true);
-                  onGetDiscontId(1);
+                  handleGetDiscountId(1);
                 }}
                 className={`${
                   dataActionDiscount
@@ -136,15 +127,15 @@ function CategoryGenderButtonsFilter({
               </button>
             ) : null}
           </div>
-          {filter?.gender_ids.length > 0 && !dataAction ? (
+          {filter?.gender_ids.length > 0 && dataActionGender ? (
             <button
               type="button"
               onClick={() => {
-                onGetId(null)
-                onGetDiscontId(null)
-                setDataAction(true);
+                handleGetId(null)
+                handleGetDiscountId(null)
+                setDataActionGender(false);
               }}
-              className={` w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
+              className={`w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
             >
               Сбросить
             </button>

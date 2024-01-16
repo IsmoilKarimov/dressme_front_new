@@ -2,15 +2,17 @@
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 
-function OutwearSizesFilter({ state, setState, filter, handleOutwearSizes }) {
-  const [changeClick, setChangeClick] = useState(false);
+function OutwearSizesFilter({
+  state,
+  setState,
+  filter,
+  dataActionOutwearSizes,
+  setDataActionOutwearSizes,
+  sendOutwearSize,
+  sendClearedOutwearData,
+}) {
   const [outwearData, setOutwearData] = useState(null);
   const [visibleButtons, setVisibleButtons] = useState(12);
-
-  // console.log(visibleButtons);
-  // console.log(outwearData?.length);
-
-  console.log(outwearData, "outwearData");
 
   useEffect(() => {
     async function outwearSizes() {
@@ -23,31 +25,6 @@ function OutwearSizesFilter({ state, setState, filter, handleOutwearSizes }) {
     }
     outwearSizes();
   }, [filter]);
-
-  function onGetOutwearSizes(letterSize, minSize, maxSize) {
-    // console.log(size);
-    handleOutwearSizes({
-      letterSize,
-      minSize,
-      maxSize,
-    });
-  }
-
-  function sendSize(outwear) {
-    if (
-      outwear?.letter_size 
-    ) {
-      onGetOutwearSizes(outwear?.letter_size);
-    }
-
-    if (!outwear?.letter_size) {
-      onGetOutwearSizes(null, outwear?.min_wear_size, outwear?.max_wear_size);
-    }
-  }
-
-  function sendClearedData() {
-    handleOutwearSizes(null);
-  }
 
   return (
     <div
@@ -90,17 +67,19 @@ function OutwearSizesFilter({ state, setState, filter, handleOutwearSizes }) {
               outwearData?.max_wear_size !== null ? "text-xs" : "text-sm"
             } w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2`}
           >
-            {outwearData?.slice(0, visibleButtons)?.map((outwear,index) => {
+            {outwearData?.slice(0, visibleButtons)?.map((outwear, index) => {
               return (
                 <button
                   key={index}
                   onClick={() => {
-                    setChangeClick(index);
-                    sendSize(outwear);
+                    setDataActionOutwearSizes(index);
+                    sendOutwearSize(outwear);
                   }}
                   className={`${
                     outwear?.letter_size || outwear?.size ? "flex" : "hidden"
-                  } ${changeClick === index ? "bg-fullBlue text-white" : ""} h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium  leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
+                  } ${
+                    dataActionOutwearSizes === index ? "bg-fullBlue text-white" : ""
+                  } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium  leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
                   <div className="flex items-center">
                     {outwear?.letter_size ? (
@@ -119,11 +98,11 @@ function OutwearSizesFilter({ state, setState, filter, handleOutwearSizes }) {
                 <button
                   type="button"
                   onClick={() => {
-                    setChangeClick(false);
-                    sendClearedData();
+                    setDataActionOutwearSizes(false);
+                    sendClearedOutwearData();
                   }}
                   className={`${
-                    changeClick ? "flex" : "hidden"
+                    dataActionOutwearSizes ? "flex" : "hidden"
                   } flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
                 >
                   Сбросить

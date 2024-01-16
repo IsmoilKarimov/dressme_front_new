@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 
-function UnderwearSizesFilter({ state, setState, filter, handleUnderwearSizes }) {
-  const [changeClick, setChangeClick] = useState(false);
+function UnderwearSizesFilter({
+  state,
+  setState,
+  filter,
+  dataActionUnderwearSizes,
+  setDataActionUnderwearSizes,
+  sendUnderwearSize,
+  sendClearedUnderwearData,
+}) {
   const [underwearData, setUnderwearData] = useState(null);
   const [visibleButtons, setVisibleButtons] = useState(12);
-
-  // console.log(underwearData, "underwearData");
 
   useEffect(() => {
     async function underwearSizes() {
@@ -18,30 +23,6 @@ function UnderwearSizesFilter({ state, setState, filter, handleUnderwearSizes })
     }
     underwearSizes();
   }, [filter]);
-
-  function onGetUnderwearSizes (letterSize, minSize, maxSize) {
-    handleUnderwearSizes({
-      letterSize,
-      minSize,
-      maxSize,
-    })
-  }
-
-  function sendSize(underwear) {
-    if (
-      underwear?.letter_size 
-    ) {
-      onGetUnderwearSizes(underwear?.letter_size);
-    }
-
-    if (!underwear?.letter_size) {
-      onGetUnderwearSizes(null, underwear?.min_wear_size, underwear?.max_wear_size);
-    }
-  }
-
-  function sendClearedData() {
-    handleUnderwearSizes(null);
-  }
 
   return (
     <div
@@ -81,48 +62,54 @@ function UnderwearSizesFilter({ state, setState, filter, handleUnderwearSizes })
               : "duration-300 h-fit mt-5"
           } duration-300`}
         >
-          <figure className={`${
+          <figure
+            className={`${
               underwearData?.max_wear_size !== null ? "text-xs" : "text-sm"
-            } w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2`}>
-            {underwearData?.slice(0, visibleButtons)?.map((underwear,index) => {
-              return (
-                <button
-                  key={index}
-                  onClick={() => {
-                    setChangeClick(index);
-                    sendSize(underwear)
-                  }}
-                  className={`${
-                    underwear?.letter_size || underwear?.size
-                      ? "flex"
-                      : "hidden"
-                  } ${changeClick === index ? "bg-fullBlue text-white" : ""} h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
-                >
-                  <div className="flex items-center">
-                  {underwear?.letter_size ? (
-                    <span>{underwear?.letter_size}</span>
-                  ) : (
-                    underwear?.max_wear_size ? (
-                      <span>{underwear?.min_wear_size}-{underwear?.max_wear_size}</span>
+            } w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2`}
+          >
+            {underwearData
+              ?.slice(0, visibleButtons)
+              ?.map((underwear, index) => {
+                return (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setDataActionUnderwearSizes(index);
+                      sendUnderwearSize(underwear);
+                    }}
+                    className={`${
+                      underwear?.letter_size || underwear?.size
+                        ? "flex"
+                        : "hidden"
+                    } ${
+                      dataActionUnderwearSizes === index ? "bg-fullBlue text-white" : ""
+                    } h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
+                  >
+                    <div className="flex items-center">
+                      {underwear?.letter_size ? (
+                        <span>{underwear?.letter_size}</span>
+                      ) : underwear?.max_wear_size ? (
+                        <span>
+                          {underwear?.min_wear_size}-{underwear?.max_wear_size}
+                        </span>
                       ) : (
-                      <span>{underwear?.min_wear_size}</span>
-                    )
-                  )}
-                    <span className="ml-1">({underwear?.amount})</span>
-                  </div>
-                </button>
-              );
-            })}
+                        <span>{underwear?.min_wear_size}</span>
+                      )}
+                      <span className="ml-1">({underwear?.amount})</span>
+                    </div>
+                  </button>
+                );
+              })}
             <div className="w-full flex items-center justify-between">
               <div className="flex w-1/3 justify-start items-center">
                 <button
                   type="button"
                   onClick={() => {
-                    setChangeClick(false);
-                    sendClearedData();
+                    setDataActionUnderwearSizes(false);
+                    sendClearedUnderwearData();
                   }}
                   className={`${
-                    changeClick ? "flex" : "hidden"
+                    dataActionUnderwearSizes ? "flex" : "hidden"
                   } flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
                 >
                   Сбросить

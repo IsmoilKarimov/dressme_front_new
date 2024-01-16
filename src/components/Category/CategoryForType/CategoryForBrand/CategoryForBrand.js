@@ -29,7 +29,6 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
   const [minUnderwearSize, setMinUnderwearSize] = useState();
   const [maxUnderwearSize, setMaxUnderwearSize] = useState();
   const [footwearSize, setFootwearSize] = useState();
-
   const [state, setState] = useState({
     budgetShow: screenSize.width <= 768 ? true : false,
     category: screenSize.width <= 768 ? true : false,
@@ -41,20 +40,35 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     getBadgePrice: {},
     colorHexCode: [],
   });
+
+  const [dataActionGender, setDataActionGender] = useState(false);
+  const [dataActionCategory, setDataActionCategory] = useState(false);
+  const [dataActionColors, setDataActionColors] = useState(false);
+  const [dataActionRatings, setDataActionRatings] = useState(false);
+  const [selectedRating, setSelectedRating] = useState(null);
+  const [dataActionFootwearSizes, setDataActionFootwearSizes] = useState(false);
+  const [dataActionOutwearSizes, setDataActionOutwearSizes] = useState(false);
+  const [dataActionUnderwearSizes, setDataActionUnderwearSizes] = useState(false);
+  const [dataActionPrizes, setDataActionPrizes] = useState(false);
+
+  // =========================================================
+
   // Gender GetID
   function handleGetId(childData) {
-    setGenderId(childData?.genderFilterId);
+    console.log(childData);
+    setGenderId(childData);
   }
   // Discount GetID
   function handleGetDiscountId(childData) {
-    setDiscountId(childData?.discountId);
+    setDiscountId(childData);
   }
   // Categoty GetID
   function handleGetCategoryId(childData) {
-    setCategoryId(childData?.categoryId);
+    setCategoryId(childData);
   }
   // Budjet GetPrize
   function getMinMaxPrice(childData) {
+    console.log(childData);
     setState({ ...state, getBadgePrice: childData });
   }
   // Color GetID
@@ -83,6 +97,10 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
       );
     }
   }
+  // Rating GetID
+  function handleCustomerReviews(childData) {
+    setCustomerReviews(childData);
+  }
   // Outwear GET Size
   function handleOutwearSizes(childData) {
     setLetterOutwearSize(childData?.letterSize);
@@ -95,16 +113,99 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     setMinUnderwearSize(childData?.minSize);
     setMaxUnderwearSize(childData?.maxSize);
   }
-
-  // Shoes GET Size
-  function handleWearSize(childData) {
-    setFootwearSize(childData?.wearSize);
+  // Footwear GET Size
+  function handleFootwearWearSize(childData) {
+    setFootwearSize(childData);
   }
+
+  function getCurrentDimension() {
+    return {
+      width: window.innerWidth,
+    };
+  }
+
+  // ===========================================================
+  // OUTWEAR
+  function onGetOutwearSizes(letterSize, minSize, maxSize) {
+    handleOutwearSizes({
+      letterSize,
+      minSize,
+      maxSize,
+    });
+  }
+  function sendOutwearSize(outwear) {
+    if (outwear?.letter_size) {
+      onGetOutwearSizes(outwear?.letter_size);
+    }
+    if (!outwear?.letter_size) {
+      onGetOutwearSizes(null, outwear?.min_wear_size, outwear?.max_wear_size);
+    }
+  }
+  function sendClearedOutwearData() {
+    handleOutwearSizes(null);
+  }
+  // END OF OUTWEAR 
+
+  // UNDERWEAR
+  function onGetUnderwearSizes(letterSize, minSize, maxSize) {
+    handleUnderwearSizes({
+      letterSize,
+      minSize,
+      maxSize,
+    });
+  }
+  function sendUnderwearSize(underwear) {
+    if (underwear?.letter_size) {
+      onGetUnderwearSizes(underwear?.letter_size);
+    }
+
+    if (!underwear?.letter_size) {
+      onGetUnderwearSizes(
+        null,
+        underwear?.min_wear_size,
+        underwear?.max_wear_size
+      );
+    }
+  }
+  function sendClearedUnderwearData() {
+    handleUnderwearSizes(null);
+  }
+  // END OF UNDERWEAR
+
+
+  // =================================================
 
   // CLEAR ALL DATA
-  function clearAllFilteredData(){
-    // state?.getBadgePrice: {}
+  function clearAllFilteredData() {
+    // GENDER DATA
+    handleGetId(null);
+    handleGetDiscountId(null);
+    setDataActionGender(false);
+    // CATEGORY DATA
+    handleGetCategoryId(null);
+    setDataActionCategory(false);
+    // BUDGET DATA
+    getMinMaxPrice({ min: null, max: null})
+    setDataActionPrizes(false)
+    // COLORS DATA
+    setDataActionColors(false);
+    setColorHexCode([]);
+    // RATINGS DATA
+    handleCustomerReviews(null);
+    setDataActionRatings(false);
+    setSelectedRating(null);
+    // OUTWEAR SIZES DATA
+    setDataActionOutwearSizes(false);
+    sendClearedOutwearData();
+    // UNDERWEAR SIZES
+    setDataActionUnderwearSizes(false)
+    sendClearedUnderwearData()
+    // FOOTWEAR SIZES DATA
+    handleFootwearWearSize(null);
+    setDataActionFootwearSizes(false);
   }
+
+  // =================================================
 
   const { id } = useParams();
   const newId = id.replace(":", "");
@@ -117,7 +218,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     categoryId && params.append("category", categoryId);
     customerReviews && params.append("rating", customerReviews);
     footwearSize && params.append("footwear_size", footwearSize);
-    
+
     // OUTWEAR SIZES
     letterOutwearSize &&
       params.append("outwear_size[letter_size]", letterOutwearSize);
@@ -177,21 +278,9 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     letterUnderwearSize,
     minUnderwearSize,
     maxUnderwearSize,
-
     footwearSize,
     pageId,
   ]);
-
-  // Rating GetID
-  function handleCustomerReviews(childData) {
-    setCustomerReviews(childData?.ratingId);
-  }
-
-  function getCurrentDimension() {
-    return {
-      width: window.innerWidth,
-    };
-  }
 
   useEffect(() => {
     const updateDimension = () => {
@@ -233,6 +322,9 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
           handleGetId={handleGetId}
           handleGetDiscountId={handleGetDiscountId}
           filter={filter}
+          clearAllFilteredData={clearAllFilteredData}
+          dataActionGender={dataActionGender}
+          setDataActionGender={setDataActionGender}
         />
 
         {/* Categories */}
@@ -242,6 +334,8 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
           handleGetCategoryId={handleGetCategoryId}
           newId={newId}
           filter={filter}
+          dataActionCategory={dataActionCategory}
+          setDataActionCategory={setDataActionCategory}
         />
 
         {/* Prizes */}
@@ -250,6 +344,10 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
           setState={setState}
           getMinMaxPrice={getMinMaxPrice}
           filter={filter}
+          dataActionColors={dataActionColors}
+          setDataActionColors={setDataActionColors}
+          dataActionPrizes={dataActionPrizes}
+          setDataActionPrizes={setDataActionPrizes}
         />
 
         {/* Colors */}
@@ -268,6 +366,10 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
           setState={setState}
           filter={filter}
           handleCustomerReviews={handleCustomerReviews}
+          dataActionRatings={dataActionRatings}
+          setDataActionRatings={setDataActionRatings}
+          selectedRating={selectedRating}
+          setSelectedRating={setSelectedRating}
         />
 
         {/* Outwear sizes */}
@@ -275,7 +377,10 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
           state={state}
           setState={setState}
           filter={filter}
-          handleOutwearSizes={handleOutwearSizes}
+          dataActionOutwearSizes={dataActionOutwearSizes}
+          setDataActionOutwearSizes={setDataActionOutwearSizes}
+          sendOutwearSize={sendOutwearSize}
+          sendClearedOutwearData={sendClearedOutwearData}
         />
 
         {/* Underwear sizes */}
@@ -284,6 +389,10 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
           setState={setState}
           filter={filter}
           handleUnderwearSizes={handleUnderwearSizes}
+          dataActionUnderwearSizes={dataActionUnderwearSizes}
+          setDataActionUnderwearSizes={setDataActionUnderwearSizes}
+          sendUnderwearSize={sendUnderwearSize}
+          sendClearedUnderwearData={sendClearedUnderwearData}
         />
 
         {/* Shoes sizes */}
@@ -291,13 +400,15 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
           state={state}
           setState={setState}
           filter={filter}
-          handleWearSize={handleWearSize}
+          handleFootwearWearSize={handleFootwearWearSize}
+          dataActionFootwearSizes={dataActionFootwearSizes}
+          setDataActionFootwearSizes={setDataActionFootwearSizes}
         />
       </section>
       <section className=" mt-8 border-t border-searchBgColor py-5 px-3">
         <button
           type="button"
-          onClick={() =>clearAllFilteredData()}
+          onClick={clearAllFilteredData}
           className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70"
         >
           Сбросить фильтр
