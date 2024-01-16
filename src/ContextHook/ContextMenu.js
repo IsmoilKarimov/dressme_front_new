@@ -3,7 +3,6 @@ import { NoImg } from "../assets/icons";
 export const dressMainData = createContext();
 
 export const DressMenu = ({ children }) => {
-
   const [dressInfo, setDressInfo] = useState({
     type: 5555,
     ClothesBorder: 1,
@@ -43,8 +42,7 @@ export const DressMenu = ({ children }) => {
     mainSearchName: null,
     mainRegionId: 2,
     mainSubRegionId: null,
-
-
+    mainColorId: null,
 
     ProductList: [
       {
