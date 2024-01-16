@@ -2,23 +2,21 @@ import React, { useState } from "react";
 import { ArrowTopIcons } from "../../../../../../../assets/icons";
 import { FaCheck } from "react-icons/fa";
 
-function ShopColorsFilter({
+function ColorsFilter({
   state,
   setState,
   filter,
-  handleGetColorHexCode
+  colorHexCode,
+  setColorHexCode,
+  handleGetColorHexCode,
+  dataActionColors,
+  setDataActionColors
 }) {
   const [selectedColorId, setSelectedColorId] = useState(null);
-  const [changeClick, setChangeClick] = useState(false);
 
   function onGetColorHexCode(hexCode) {
     handleGetColorHexCode({
       colorFilterHexCode: hexCode,
-    });
-  }
-  function sendClearedData() {
-    handleGetColorHexCode({
-      colorFilterHexCode: null,
     });
   }
 
@@ -51,18 +49,13 @@ function ShopColorsFilter({
           </figure>
         </article>
         {/* Colors */}
+
         <article
           className={`overflow-hidden ${
-            state?.ColorsShow
-              ? "duration-300 h-0"
-              : `${
-                  filter?.colors?.length > 5
-                    ? "h-[120px]"
-                    : `${filter?.colors?.length > 10 ? "h-[150px]" : ""}`
-                } ${changeClick ? 'h-[80px]' : 'h-[56px]'} duration-300 pt-5`
-          }`}
+            state?.ColorsShow ? "duration-300 h-0" : `h-fit duration-300 pt-5 pb-1`
+          }  ${dataActionColors ? "block" : ""}`}
         >
-          <div className="flex items-center justify-start mx-1 gap-x-[10px] gap-y-[10px]">
+          <div className="flex items-center justify-start flex-wrap mx-1 gap-x-2 gap-y-2">
             {filter?.colors?.map((colorHex, index) => {
               return (
                 <button
@@ -70,15 +63,15 @@ function ShopColorsFilter({
                   key={index}
                   style={{ background: colorHex }}
                   onClick={() => {
-                    setSelectedColorId(index);
-                    setChangeClick(true);
+                    setSelectedColorId(index + 1);
                     onGetColorHexCode(colorHex);
                   }}
-                  className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 w-8 h-8 cursor-pointer border border-solid border-borderColorCard`}
+                  className={`
+                    } rounded-full flex items-center justify-center hover:scale-110 duration-300 w-6 h-6 cursor-pointer border border-solid border-borderColorCard`}
                   htmlFor={`${colorHex}`}
                 >
-                  {selectedColorId === index ? (
-                    <p className="w-[14px] flex items-center justify-center">
+                  <p className="w-[14px] flex items-center justify-center">
+                    {colorHexCode.includes(colorHex) && (
                       <FaCheck
                         color={
                           colorHex === "#ffffff" || colorHex === "#f5f5dc"
@@ -87,8 +80,8 @@ function ShopColorsFilter({
                         }
                         className="flex items-center justify-center"
                       />
-                    </p>
-                  ) : null}
+                    )}
+                  </p>
                 </button>
               );
             })}
@@ -96,13 +89,11 @@ function ShopColorsFilter({
           <button
             type="button"
             onClick={() => {
-              sendClearedData();
-              setChangeClick(false);
+              setColorHexCode([])
+              setDataActionColors(false);
               setSelectedColorId(null);
             }}
-            className={`${
-              changeClick ? "flex" : "hidden"
-            } w-full mt-2 flex-start text-sm text-borderWinter font-AeonikProRegular`}
+            className={`${ colorHexCode?.length ? "flex" : "hidden" } w-full mt-2 flex-start text-sm text-borderWinter font-AeonikProRegular`}
           >
             Сбросить
           </button>
@@ -112,4 +103,4 @@ function ShopColorsFilter({
   );
 }
 
-export default React.memo(ShopColorsFilter);
+export default React.memo(ColorsFilter);

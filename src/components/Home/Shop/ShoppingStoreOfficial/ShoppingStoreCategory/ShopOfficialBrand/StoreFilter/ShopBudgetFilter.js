@@ -2,35 +2,34 @@ import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../../../assets/icons";
 import Slider from "react-slider";
 
-function ShopBudgetFilter({ state, setState, getMinMaxPrice, filter }) {
-  const [minPrice, setMinPrice] = useState(filter?.budget?.min_price || 10000); 
-  const [maxPrice, setMaxPrice] = useState(filter?.budget?.max_price || 1000000); 
-  const [checkChange, setCheckChange] = useState(false);
+function BudgetFilter({
+  state,
+  setState,
+  getMinMaxPrice,
+  filter,
+  dataActionPrizes,
+  setDataActionPrizes,
+}) {
+  const [minPrice, setMinPrice] = useState(
+    Number(filter?.budget?.min_price) || 10000
+  );
+  const [maxPrice, setMaxPrice] = useState(
+    Number(filter?.budget?.max_price) || 1000000
+  );
+  // const [checkChange, setCheckChange] = useState(false);
   const [values, setValues] = useState([minPrice, maxPrice]);
 
+  console.log(typeof getMinMaxPrice);
+
   useEffect(() => {
-    setMinPrice((filter?.budget?.min_price || 10000));
-    setMaxPrice((filter?.budget?.max_price || 1000000));
+    setMinPrice(Number(filter?.budget?.min_price) || 10000);
+    setMaxPrice(Number(filter?.budget?.max_price) || 1000000);
   }, [filter]);
 
-  function sendPrizeData() {
-    getMinMaxPrice({
-      min: values[0],
-      max: values[1],
-    });
-  }
-  function sendClearedData() {
-    getMinMaxPrice({
-      min: null,
-      max: null,
-    });
-  }
-
   useEffect(() => {
-    if (minPrice !== values[0] || maxPrice !== values[1]) setCheckChange(true);
+    if (minPrice !== values[0] || maxPrice !== values[1])
+      setDataActionPrizes(true);
   }, [values]);
-
-
 
   return (
     <section className="w-full h-fit md:mb-[38px]">
@@ -57,8 +56,10 @@ function ShopBudgetFilter({ state, setState, getMinMaxPrice, filter }) {
         </figure>
       </article>
       <article
-        className={`border-1  overflow-hidden  ${
-          state?.budgetShow ? "duration-300 h-0" : `${checkChange ? 'h-[110px]' : 'h-[80px]'} duration-300 mt-5`
+        className={`border-1 overflow-hidden  ${
+          state?.budgetShow
+            ? "duration-300 h-0"
+            : `${dataActionPrizes ? "h-[110px]" : "h-[80px]"} duration-300 mt-5`
         } duration-300`}
       >
         <div className="flex flex-col rounded-lg  w-full">
@@ -96,19 +97,22 @@ function ShopBudgetFilter({ state, setState, getMinMaxPrice, filter }) {
             className="slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] my-5"
             onChange={setValues}
             value={values}
-            min={minPrice !== undefined ? minPrice : 0}
-            max={maxPrice !== undefined ? maxPrice : 100}
+            min={Number(minPrice)}
+            max={Number(maxPrice)}
           />
           <div
             className={`${
-              checkChange ? "flex" : "hidden"
+              dataActionPrizes ? "flex" : "hidden"
             } w-full items-center justify-between mt-1`}
           >
             <button
               type="button"
               onClick={() => {
-                sendClearedData();
-                setCheckChange(false)
+                getMinMaxPrice({
+                  min: null,
+                  max: null,
+                });
+                setDataActionPrizes(false);
               }}
               className={`flex items-center text-sm text-borderWinter font-AeonikProRegular`}
             >
@@ -116,7 +120,12 @@ function ShopBudgetFilter({ state, setState, getMinMaxPrice, filter }) {
             </button>
             <button
               type="button"
-              onClick={sendPrizeData}
+              onClick={() => {
+                getMinMaxPrice({
+                  min: values[0],
+                  max: values[1],
+                });
+              }}
               className="flex items-center font-AeonikProRegular cursor-pointer text-sm justify-center  text-fullBlue"
             >
               Готово
@@ -127,4 +136,4 @@ function ShopBudgetFilter({ state, setState, getMinMaxPrice, filter }) {
     </section>
   );
 }
-export default React.memo(ShopBudgetFilter);
+export default React.memo(BudgetFilter);
