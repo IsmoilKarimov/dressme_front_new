@@ -40,6 +40,7 @@ function BottomHeader() {
     categorySelectId: null,
     colorSelectId: [],
     genderSelectId: null,
+    clearPrice: false
   });
 
   const [colorSelectId, setColorSelectId] = useState([]);
@@ -58,6 +59,19 @@ function BottomHeader() {
   }, [state?.getAllCardList?.budget]);
 
   const [values, setValues] = useState([minPrice, maxPrice]);
+
+  useEffect(() => {
+    if (minPrice !== values[0] || maxPrice !== values[1]) {
+      setState({ ...state, clearPrice: true })
+    }
+  }, [values])
+
+
+  const clearFunction = () => {
+    setState({ ...state, clearPrice: false, openPrice: false });
+    setValues([Number(state?.getAllCardList?.budget?.min_price), Number(state?.getAllCardList?.budget?.max_price)])
+    setGetRange([])
+  }
   const url = "https://api.dressme.uz/api/main";
   // ------------GET METHOD Main data -----------------
 
@@ -108,24 +122,13 @@ function BottomHeader() {
       }
       setScreenSize(getCurrentDimension());
     };
-
     window.addEventListener("resize", updateDimension);
-
     return () => {
       window.removeEventListener("resize", updateDimension);
     };
   }, [screenSize]);
   // ----------------Wear state management----------------------------
 
-  const handleOpenChangeWear = (newOpen) => {
-    setState({ ...state, openwear: newOpen });
-  };
-  const [selectWear, setselectWear] = useState("По категории");
-
-  const handleWearValue = (value) => {
-    setselectWear(value);
-    setState({ ...state, openwear: false });
-  };
 
   // const [mainData, setMainData] = useContext(HomeMainDataContext);
 
@@ -150,7 +153,8 @@ function BottomHeader() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [scrollPost]);
-  // console.log(scrollPost, "scrollPost");
+
+  // console.log(values, "values");
   const contentPrice = (
     <div className="w-fit h-[170px] m-0 overflow-hidden">
       <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
@@ -211,7 +215,14 @@ function BottomHeader() {
             max={maxPrice}
           />
         </div>
-        <div className="flex items-center justify-end mt-4">
+        <div className={`flex items-center  mt-4 ${state?.clearPrice ? "justify-between" : "justify-end"}`}>
+          {state?.clearPrice &&
+            <span
+              onClick={() => clearFunction()}
+              className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue"
+            >
+              Сбросить
+            </span>}
           <span
             onClick={() => {
               sendPriceList();
