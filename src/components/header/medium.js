@@ -227,6 +227,7 @@ const MediumHeader = () => {
       setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
     }
   };
+  
   return (
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <div
