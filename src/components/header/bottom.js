@@ -500,11 +500,11 @@ function BottomHeader() {
             <DollorIcons colors={"#000"} />
           </span>
           {getRange[0] && getRange[1] ?
-            <p className="w-fit flex justify-between items-center  font-AeonikProMedium ">
-              <span className="text-[13px] font-AeonikProMedium	leading-5	 ">{getRange[0]}</span>
+            <div className="w-fit flex justify-between items-center  ">
+              <p className="text-[13px] not-italic font-AeonikProMedium leading-1 ">{Number(getRange[0]).toLocaleString()}</p>
               <span className="w-[6px] h-[1px] bg-[#a1a1a1] mx-[2px] 	"></span>
-              <span className="text-[13px] font-AeonikProMedium	leading-5	">{getRange[1]}</span>
-            </p>
+              <p className="text-[13px] not-italic font-AeonikProMedium leading-1">{Number(getRange[1]).toLocaleString()}</p>
+            </div>
             :
             <p className="not-italic whitespace-nowrap mt-1 text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
               По бюджету
@@ -629,7 +629,7 @@ function BottomHeader() {
         </div>
 
         <div className="line h-6 border-r-[1px] text-textColor mx-3"></div>
-        <div className="box-border flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-lg bg-btnBgColor">
+        <div className="box-border flex items-center gap-x-2 py-[2px] h-[44px] border border-searchBgColor overflow-hidden rounded-lg bg-btnBgColor">
           {personItems
             ?.filter((value) => value.id === dressInfo?.type)
             .map((data) => {
