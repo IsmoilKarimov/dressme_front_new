@@ -154,7 +154,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
         { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
         { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
-        { id: 3, anyIcons: <SpringBoyIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
       ]
     },
     {
@@ -162,7 +162,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
         { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
         { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
-        { id: 3, anyIcons: <SummerBoyIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
       ]
     },
     {
@@ -170,7 +170,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
         { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
         { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
-        { id: 3, anyIcons: <AutummBoyIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
       ]
     },
     {
