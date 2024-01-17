@@ -48,6 +48,7 @@ const Header = () => {
   useEffect(() => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
+  // console.log(scrollPost, "scrollPost")
   return (
     <header>
       <section>
