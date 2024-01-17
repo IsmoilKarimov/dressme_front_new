@@ -499,9 +499,17 @@ function BottomHeader() {
           <span className=" flex items-center ">
             <DollorIcons colors={"#000"} />
           </span>
-          <p className="not-italic whitespace-nowrap mt-1 text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
-            По бюджету
-          </p>
+          {getRange[0] && getRange[1] ?
+            <p className="w-fit flex justify-between items-center">
+              <span className="text-[14px] font-AeonikProMedium ">{getRange[0]}</span>
+              <span className="w-[8px] h-[1px] bg-[#a1a1a1] mx-[3px] font-AeonikProMedium"></span>
+              <span className="text-[14px] font-AeonikProMedium">{getRange[1]}</span>
+            </p>
+            :
+            <p className="not-italic whitespace-nowrap mt-1 text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
+              По бюджету
+            </p>
+          }
           <span className="font-AeonikProMedium iconArrow">
             <DownArrowAntd />
           </span>
