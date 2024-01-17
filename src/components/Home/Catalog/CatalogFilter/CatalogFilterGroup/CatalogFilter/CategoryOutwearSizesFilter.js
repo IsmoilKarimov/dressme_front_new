@@ -1,8 +1,8 @@
 /* eslint-disable no-lone-blocks */
 import React, { useEffect, useState } from "react";
-import { ArrowTopIcons } from "../../../../../assets/icons";
+import { ArrowTopIcons } from "../../../../../../assets/icons";
 
-function OutwearSizesFilter({
+function CategoryOutwearSizesFilter({
   state,
   setState,
   filter,
@@ -151,4 +151,4 @@ function OutwearSizesFilter({
   );
 }
 
-export default React.memo(OutwearSizesFilter);
+export default React.memo(CategoryOutwearSizesFilter);

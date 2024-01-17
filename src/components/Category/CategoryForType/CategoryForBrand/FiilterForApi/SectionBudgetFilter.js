@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 import Slider from "react-slider";
 
-function BudgetFilter({
+function SectionBudgetFilter({
   state,
   setState,
   getMinMaxPrice,
@@ -136,4 +136,4 @@ function BudgetFilter({
     </section>
   );
 }
-export default React.memo(BudgetFilter);
+export default React.memo(SectionBudgetFilter);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 
-function UnderwearSizesFilter({
+function SectionUnderwearSizesFilter({
   state,
   setState,
   filter,
@@ -157,4 +157,4 @@ function UnderwearSizesFilter({
   );
 }
 
-export default React.memo(UnderwearSizesFilter);
+export default React.memo(SectionUnderwearSizesFilter);

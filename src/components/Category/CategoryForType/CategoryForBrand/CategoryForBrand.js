@@ -2,14 +2,22 @@ import React, { useContext, useEffect, useState } from "react";
 import { MenuCloseIcons } from "../../../../assets/icons";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { useParams } from "react-router-dom";
-import CategoryGenderButtonsFilter from "./FiilterForApi/CategoryGenderButtonsFilter";
-import CategoriesFilter from "./FiilterForApi/CategoriesFilter";
-import BudgetFilter from "./FiilterForApi/BudgetFilter";
-import ColorsFilter from "./FiilterForApi/ColorsFilter";
-import CustomerReviewsFilter from "./FiilterForApi/CustomerReviewsFilter";
-import FootwearSizesFilter from "./FiilterForApi/FootwearSizesFilter";
-import OutwearSizesFilter from "./FiilterForApi/OutwearSizesFilter";
-import UnderwearSizesFilter from "./FiilterForApi/UnderwearSizesFilter";
+import CategoryGenderButtonsFilter from "./FiilterForApi/SectionGenderButtonsFilter";
+import CategoriesFilter from "./FiilterForApi/SectionCategoriesFilter";
+import BudgetFilter from "./FiilterForApi/SectionBudgetFilter";
+import ColorsFilter from "./FiilterForApi/SectionColorsFilter";
+import CustomerReviewsFilter from "./FiilterForApi/SectionCustomerReviewsFilter";
+import FootwearSizesFilter from "./FiilterForApi/SectionFootwearSizesFilter";
+import OutwearSizesFilter from "./FiilterForApi/SectionOutwearSizesFilter";
+import UnderwearSizesFilter from "./FiilterForApi/SectionUnderwearSizesFilter";
+import SectionGenderButtonsFilter from "./FiilterForApi/SectionGenderButtonsFilter";
+import SectionCategoriesFilter from "./FiilterForApi/SectionCategoriesFilter";
+import SectionBudgetFilter from "./FiilterForApi/SectionBudgetFilter";
+import SectionFootwearSizesFilter from "./FiilterForApi/SectionFootwearSizesFilter";
+import SectionUnderwearSizesFilter from "./FiilterForApi/SectionUnderwearSizesFilter";
+import SectionOutwearSizesFilter from "./FiilterForApi/SectionOutwearSizesFilter";
+import SectionCustomerReviewsFilter from "./FiilterForApi/SectionCustomerReviewsFilter";
+import SectionColorsFilter from "./FiilterForApi/SectionColorsFilter";
 
 const CategoryForBrand = ({ setFilterData, pageId }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -49,7 +57,8 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
   const [selectedRating, setSelectedRating] = useState(null);
   const [dataActionFootwearSizes, setDataActionFootwearSizes] = useState(false);
   const [dataActionOutwearSizes, setDataActionOutwearSizes] = useState(false);
-  const [dataActionUnderwearSizes, setDataActionUnderwearSizes] = useState(false);
+  const [dataActionUnderwearSizes, setDataActionUnderwearSizes] =
+    useState(false);
   const [dataActionPrizes, setDataActionPrizes] = useState(false);
 
   // =========================================================
@@ -63,7 +72,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
   function handleGetDiscountId(childData) {
     setDiscountId(childData);
   }
-  // Categoty GetID
+  // Category GetID
   function handleGetCategoryId(childData) {
     setCategoryId(childData);
   }
@@ -135,7 +144,6 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     };
   }, [screenSize]);
 
-
   // ===========================================================
   // OUTWEAR
   function onGetOutwearSizes(letterSize, minSize, maxSize) {
@@ -156,7 +164,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
   function sendClearedOutwearData() {
     handleOutwearSizes(null);
   }
-  // END OF OUTWEAR 
+  // END OF OUTWEAR
 
   // UNDERWEAR
   function onGetUnderwearSizes(letterSize, minSize, maxSize) {
@@ -184,7 +192,6 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
   }
   // END OF UNDERWEAR
 
-
   // =================================================
 
   // CLEAR ALL DATA
@@ -193,13 +200,13 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     handleGetId(null);
     handleGetDiscountId(null);
     setDataActionGender(false);
-    setDataActionDiscount(false)
+    setDataActionDiscount(false);
     // CATEGORY DATA
     handleGetCategoryId(null);
     setDataActionCategory(false);
     // BUDGET DATA
-    getMinMaxPrice({ min: null, max: null})
-    setDataActionPrizes(false)
+    getMinMaxPrice({ min: null, max: null });
+    setDataActionPrizes(false);
     // COLORS DATA
     setDataActionColors(false);
     setColorHexCode([]);
@@ -211,8 +218,8 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
     setDataActionOutwearSizes(false);
     sendClearedOutwearData();
     // UNDERWEAR SIZES
-    setDataActionUnderwearSizes(false)
-    sendClearedUnderwearData()
+    setDataActionUnderwearSizes(false);
+    sendClearedUnderwearData();
     // FOOTWEAR SIZES DATA
     handleFootwearWearSize(null);
     setDataActionFootwearSizes(false);
@@ -321,7 +328,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
         )}
 
         {/* Gender Buttons */}
-        <CategoryGenderButtonsFilter
+        <SectionGenderButtonsFilter
           handleGetId={handleGetId}
           handleGetDiscountId={handleGetDiscountId}
           filter={filter}
@@ -333,7 +340,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
         />
 
         {/* Categories */}
-        <CategoriesFilter
+        <SectionCategoriesFilter
           state={state}
           setState={setState}
           handleGetCategoryId={handleGetCategoryId}
@@ -344,7 +351,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
         />
 
         {/* Prizes */}
-        <BudgetFilter
+        <SectionBudgetFilter
           state={state}
           setState={setState}
           getMinMaxPrice={getMinMaxPrice}
@@ -356,7 +363,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
         />
 
         {/* Colors */}
-        <ColorsFilter
+        <SectionColorsFilter
           state={state}
           setState={setState}
           filter={filter}
@@ -366,7 +373,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
         />
 
         {/* Customer reviews */}
-        <CustomerReviewsFilter
+        <SectionCustomerReviewsFilter
           state={state}
           setState={setState}
           filter={filter}
@@ -378,7 +385,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
         />
 
         {/* Outwear sizes */}
-        <OutwearSizesFilter
+        <SectionOutwearSizesFilter
           state={state}
           setState={setState}
           filter={filter}
@@ -389,7 +396,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
         />
 
         {/* Underwear sizes */}
-        <UnderwearSizesFilter
+        <SectionUnderwearSizesFilter
           state={state}
           setState={setState}
           filter={filter}
@@ -401,7 +408,7 @@ const CategoryForBrand = ({ setFilterData, pageId }) => {
         />
 
         {/* Shoes sizes */}
-        <FootwearSizesFilter
+        <SectionFootwearSizesFilter
           state={state}
           setState={setState}
           filter={filter}

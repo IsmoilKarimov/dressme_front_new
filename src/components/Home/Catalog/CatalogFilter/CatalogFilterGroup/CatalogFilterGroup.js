@@ -1,139 +1,299 @@
 import React, { useContext, useEffect, useState } from "react";
-import { BsCheckLg } from "react-icons/bs";
-import ReactSlider from "react-slider";
-
-import {
-  StarIcons,
-  ArrowTopIcons,
-  InputCheckedTrueIcons,
-  SearchIcons,
-  MenuCloseIcons,
-} from "../../../../../assets/icons";
+import { MenuCloseIcons } from "../../../../../assets/icons";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
+import { useParams } from "react-router-dom";
+import CategoryGenderButtonsFilter from "./CatalogFilter/CategoryGenderButtonsFilter";
+import CategoryCategoriesFilter from "./CatalogFilter/CategoryCategoriesFilter";
+import CategoryBudgetFilter from "./CatalogFilter/CategoryBudgetFilter";
+import CategoryColorsFilter from "./CatalogFilter/CategoryColorsFilter";
+import CategoryCustomerReviewsFilter from "./CatalogFilter/CategoryCustomerReviewsFilter";
+import CategoryOutwearSizesFilter from "./CatalogFilter/CategoryOutwearSizesFilter";
+import CategoryUnderwearSizesFilter from "./CatalogFilter/CategoryUnderwearSizesFilter";
+import CategoryFootwearSizesFilter from "./CatalogFilter/CategoryFootwearSizesFilter";
 
-const CatalogFilterGroup = () => {
+const CategoryForBrand = ({ setFilterData, pageId }) => {
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
+  const [genderId, setGenderId] = useState();
+  const [discountId, setDiscountId] = useState();
+  const [categoryId, setCategoryId] = useState();
+  const [filter, setFilter] = useState();
+  const [colorHexCode, setColorHexCode] = useState([]);
+  const [customerReviews, setCustomerReviews] = useState();
+  // OUTWEAR
+  const [letterOutwearSize, setLetterOutwearSize] = useState();
+  const [minOutwearSize, setMinOutwearSize] = useState();
+  const [maxOutwearSize, setMaxOutwearSize] = useState();
+  // UNDERWEAR
+  const [letterUnderwearSize, setLetterUnderwearSize] = useState();
+  const [minUnderwearSize, setMinUnderwearSize] = useState();
+  const [maxUnderwearSize, setMaxUnderwearSize] = useState();
+  const [footwearSize, setFootwearSize] = useState();
+  const [state, setState] = useState({
+    budgetShow: screenSize.width <= 768 ? true : false,
+    category: screenSize.width <= 768 ? true : false,
+    ColorsShow: screenSize.width <= 768 ? true : false,
+    ClothingShow: screenSize.width <= 768 ? true : false,
+    customerRreviews: screenSize.width <= 768 ? true : false,
+    ShoesShow: screenSize.width <= 768 ? true : false,
+    UnderwearShow: screenSize.width <= 768 ? true : false,
+    getBadgePrice: {},
+    colorHexCode: [],
+  });
+
+  const [dataActionGender, setDataActionGender] = useState(false);
+  const [dataActionDiscount, setDataActionDiscount] = useState(false);
+  const [dataActionCategory, setDataActionCategory] = useState(false);
+  const [dataActionColors, setDataActionColors] = useState(false);
+  const [dataActionRatings, setDataActionRatings] = useState(false);
+  const [selectedRating, setSelectedRating] = useState(null);
+  const [dataActionFootwearSizes, setDataActionFootwearSizes] = useState(false);
+  const [dataActionOutwearSizes, setDataActionOutwearSizes] = useState(false);
+  const [dataActionUnderwearSizes, setDataActionUnderwearSizes] = useState(false);
+  const [dataActionPrizes, setDataActionPrizes] = useState(false);
+
+  // =========================================================
+
+  // Gender GetID
+  function handleGetId(childData) {
+    console.log(childData);
+    setGenderId(childData);
+  }
+  // Discount GetID
+  function handleGetDiscountId(childData) {
+    setDiscountId(childData);
+  }
+  // Categoty GetID
+  function handleGetCategoryId(childData) {
+    setCategoryId(childData);
+  }
+  // Budjet GetPrize
+  function getMinMaxPrice(childData) {
+    console.log(childData);
+    setState({ ...state, getBadgePrice: childData });
+  }
+  // Color GetID
+  function handleGetColorHexCode(childData) {
+    if (colorHexCode?.length == 0) {
+      setColorHexCode((colorHexCode) => [
+        ...colorHexCode,
+        childData?.colorFilterHexCode,
+      ]);
+    }
+    if (
+      colorHexCode?.length > 0 &&
+      !colorHexCode?.includes(childData?.colorFilterHexCode)
+    ) {
+      setColorHexCode((colorHexCode) => [
+        ...colorHexCode,
+        childData?.colorFilterHexCode,
+      ]);
+    }
+    if (
+      colorHexCode?.length > 0 &&
+      colorHexCode?.includes(childData?.colorFilterHexCode)
+    ) {
+      setColorHexCode(
+        colorHexCode?.filter((e) => e !== childData?.colorFilterHexCode)
+      );
+    }
+  }
+  // Rating GetID
+  function handleCustomerReviews(childData) {
+    setCustomerReviews(childData);
+  }
+  // Outwear GET Size
+  function handleOutwearSizes(childData) {
+    setLetterOutwearSize(childData?.letterSize);
+    setMinOutwearSize(childData?.minSize);
+    setMaxOutwearSize(childData?.maxSize);
+  }
+  // Underwear GET Size
+  function handleUnderwearSizes(childData) {
+    setLetterUnderwearSize(childData?.letterSize);
+    setMinUnderwearSize(childData?.minSize);
+    setMaxUnderwearSize(childData?.maxSize);
+  }
+  // Footwear GET Size
+  function handleFootwearWearSize(childData) {
+    setFootwearSize(childData);
+  }
 
   function getCurrentDimension() {
     return {
       width: window.innerWidth,
     };
   }
+
   useEffect(() => {
     const updateDimension = () => {
       setScreenSize(getCurrentDimension());
     };
     window.addEventListener("resize", updateDimension);
-
     return () => {
       window.removeEventListener("resize", updateDimension);
     };
   }, [screenSize]);
 
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [product] = useState({
-    Catolog: [
-      { id: 1, action: false, name: "Головной убор" },
-      { id: 2, action: false, name: "Верхняя одежда" },
-      { id: 3, action: false, name: "Нижняя одежда" },
-      { id: 4, action: false, name: "Обувь" },
-      { id: 5, action: false, name: "Аксессуары" },
-    ],
-    brandWear: [
-      { id: 1, action: true, name: "Adidas", count: 125 },
-      { id: 2, action: false, name: "Reebok", count: 125 },
-      { id: 3, action: false, name: "Nike", count: 125 },
-      { id: 4, action: false, name: "Puma", count: 125 },
-      { id: 5, action: false, name: "ECCO", count: 125 },
-      { id: 6, action: false, name: "New Balance", count: 125 },
-      { id: 7, action: false, name: " Asics", count: 125 },
-      { id: 8, action: false, name: "Columbian", count: 125 },
-      { id: 9, action: false, name: "Under Armour", count: 125 },
-    ],
-    prizes: [
-      { id: 1, action: false, prize: "До 100 000" },
-      { id: 2, action: false, prize: "До 500 000" },
-      { id: 3, action: false, prize: "До 1 000 000" },
-      { id: 4, action: false, prize: "Выше" },
-    ],
-    changeColor: [
-      { id: 1, value: 1, action: false, colors: "bg-black" },
-      { id: 2, value: 2, action: false, colors: "bg-white" },
-      { id: 3, value: 3, action: false, colors: "bg-purple-700" },
-      { id: 4, value: 4, action: false, colors: "bg-gray-500" },
-      { id: 5, value: 5, action: false, colors: "bg-red-700" },
-      { id: 6, value: 6, action: false, colors: "bg-yellow-500" },
-      { id: 7, value: 7, action: false, colors: "bg-green-600" },
-      { id: 8, value: 8, action: false, colors: "bg-sky-500" },
-      { id: 9, value: 9, action: false, colors: "bg-yellow-700" },
-      { id: 10, value: 10, action: false, colors: "bg-rose-900" },
-      { id: 11, value: 11, action: false, colors: "bg-pink-600" },
-      { id: 12, value: 12, action: false, colors: "bg-cyan-900" },
-    ],
-    availability: [
-      { id: 1, action: false, title: "На складе доступен", count: 892 },
-      { id: 2, action: false, title: "Доставка доступна", count: 641 },
-    ],
-    clothingSize: [
-      { id: 1, action: false, size: "XS" },
-      { id: 2, action: false, size: "S" },
-      { id: 3, action: false, size: "M" },
-      { id: 4, action: false, size: "L" },
-      { id: 5, action: false, size: "XL" },
-      { id: 6, action: false, size: "2XL" },
-      { id: 7, action: false, size: "3XL" },
-      { id: 8, action: false, size: "4XL" },
-    ],
-    pantsSize: [
-      { id: 1, action: false, size: "XS" },
-      { id: 2, action: false, size: "S" },
-      { id: 3, action: false, size: "M" },
-      { id: 4, action: false, size: "L" },
-      { id: 5, action: false, size: "XL" },
-      { id: 6, action: false, size: "2XL" },
-      { id: 7, action: false, size: "3XL" },
-      { id: 8, action: false, size: "4XL" },
-    ],
-    shoeSize: [
-      { id: 1, action: false, size: "37" },
-      { id: 2, action: false, size: "38" },
-      { id: 3, action: false, size: "39" },
-      { id: 4, action: false, size: "40" },
-      { id: 5, action: false, size: "41" },
-      { id: 6, action: false, size: "42" },
-      { id: 7, action: false, size: "43" },
-      { id: 8, action: false, size: "44" },
-    ],
-    ArrayRating: [
-      { id: 1, check: false, value: 4, text: "& Больше" },
-      { id: 2, check: false, value: 4, text: "" },
-      { id: 3, check: false, value: 2, text: "" },
-    ],
-  });
-  const Min = "100";
-  const Max = "12 000";
-  const [values] = useState([Min, Max]);
 
-  const [state, setState] = useState({
-    brandShow: screenSize.width <= 768 ? true : false,
-    budgetShow: screenSize.width <= 768 ? true : false,
-    ColorsShow: screenSize.width <= 768 ? true : false,
-    ClothingShow: screenSize.width <= 768 ? true : false,
-    TrouserShow: screenSize.width <= 768 ? true : false,
-    ShoesShow: screenSize.width <= 768 ? true : false,
-    customerRreviews: screenSize.width <= 768 ? true : false,
-    availability: screenSize.width <= 768 ? true : false,
-    catolog: screenSize.width <= 768 ? true : false,
-    //--------------
-    checkBrand: false,
-    checkedPrize: true,
-  });
+  // ===========================================================
+  // OUTWEAR
+  function onGetOutwearSizes(letterSize, minSize, maxSize) {
+    handleOutwearSizes({
+      letterSize,
+      minSize,
+      maxSize,
+    });
+  }
+  function sendOutwearSize(outwear) {
+    if (outwear?.letter_size) {
+      onGetOutwearSizes(outwear?.letter_size);
+    }
+    if (!outwear?.letter_size) {
+      onGetOutwearSizes(null, outwear?.min_wear_size, outwear?.max_wear_size);
+    }
+  }
+  function sendClearedOutwearData() {
+    handleOutwearSizes(null);
+  }
+  // END OF OUTWEAR 
 
-  const HandleBrandFilter = () => {};
+  // UNDERWEAR
+  function onGetUnderwearSizes(letterSize, minSize, maxSize) {
+    handleUnderwearSizes({
+      letterSize,
+      minSize,
+      maxSize,
+    });
+  }
+  function sendUnderwearSize(underwear) {
+    if (underwear?.letter_size) {
+      onGetUnderwearSizes(underwear?.letter_size);
+    }
 
-  const HandleCheckStatus = () => {};
+    if (!underwear?.letter_size) {
+      onGetUnderwearSizes(
+        null,
+        underwear?.min_wear_size,
+        underwear?.max_wear_size
+      );
+    }
+  }
+  function sendClearedUnderwearData() {
+    handleUnderwearSizes(null);
+  }
+  // END OF UNDERWEAR
 
-  const HandleColorCheck = () => {};
+
+  // =================================================
+
+  // CLEAR ALL DATA
+  function clearAllFilteredData() {
+    // GENDER DATA
+    handleGetId(null);
+    handleGetDiscountId(null);
+    setDataActionGender(false);
+    setDataActionDiscount(false)
+    // CATEGORY DATA
+    handleGetCategoryId(null);
+    setDataActionCategory(false);
+    // BUDGET DATA
+    getMinMaxPrice({ min: null, max: null})
+    setDataActionPrizes(false)
+    // COLORS DATA
+    setDataActionColors(false);
+    setColorHexCode([]);
+    // RATINGS DATA
+    handleCustomerReviews(null);
+    setDataActionRatings(false);
+    setSelectedRating(null);
+    // OUTWEAR SIZES DATA
+    setDataActionOutwearSizes(false);
+    sendClearedOutwearData();
+    // UNDERWEAR SIZES
+    setDataActionUnderwearSizes(false)
+    sendClearedUnderwearData()
+    // FOOTWEAR SIZES DATA
+    handleFootwearWearSize(null);
+    setDataActionFootwearSizes(false);
+  }
+
+  // =================================================
+
+  const { id } = useParams();
+  const newId = id.replace(":", "");
+  const apiUrl = `https://api.dressme.uz/api/main/category/${newId}`;
+
+  async function fetchGetAllData() {
+    let params = new URLSearchParams();
+    genderId && params.append("gender", genderId);
+    discountId && params.append("discount", discountId);
+    categoryId && params.append("category", categoryId);
+    customerReviews && params.append("rating", customerReviews);
+    footwearSize && params.append("footwear_size", footwearSize);
+
+    // OUTWEAR SIZES
+    letterOutwearSize &&
+      params.append("outwear_size[letter_size]", letterOutwearSize);
+    minOutwearSize &&
+      params.append("outwear_size[min_wear_size]", minOutwearSize);
+    maxOutwearSize &&
+      params.append("outwear_size[max_wear_size]", maxOutwearSize);
+
+    // UNDERWEAR SIZES
+    letterUnderwearSize &&
+      params.append("underwear_size[letter_size]", letterUnderwearSize);
+    minUnderwearSize &&
+      params.append("underwear_size[min_wear_size]", minUnderwearSize);
+    maxUnderwearSize &&
+      params.append("underwear_size[max_wear_size]", maxUnderwearSize);
+
+    pageId && params.append("page", pageId);
+
+    state?.getBadgePrice?.min &&
+      params.append("budget[from]", state?.getBadgePrice?.min);
+    state?.getBadgePrice?.max &&
+      params.append("budget[to]", state?.getBadgePrice?.max);
+
+    colorHexCode?.length &&
+      colorHexCode?.forEach((e, index) => {
+        params.append("colors[]", colorHexCode[index]);
+      });
+
+    Object.entries(params).forEach((i) => {
+      if (!i[1]) delete params[i[0]];
+    });
+
+    await fetch(`${apiUrl}?` + params)
+      .then((res) => res.json())
+      .then((res) => {
+        setFilter(res?.filter);
+        setFilterData(res);
+      })
+      .catch((err) => console.log(err, "ERRORLIST"));
+  }
+
+  useEffect(() => {
+    fetchGetAllData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    genderId,
+    discountId,
+    categoryId,
+    state?.getBadgePrice,
+    colorHexCode,
+    customerReviews,
+    // OUTWEAR
+    letterOutwearSize,
+    minOutwearSize,
+    maxOutwearSize,
+    // UNDERWEAR
+    letterUnderwearSize,
+    minUnderwearSize,
+    maxUnderwearSize,
+    footwearSize,
+    pageId,
+  ]);
 
   return (
     <main
@@ -144,13 +304,13 @@ const CatalogFilterGroup = () => {
       } py-5 rounded-lg overflow-hidden`}
     >
       <section className="w-full px-3 ">
-        {dressInfo?.openCatalogFilter && (
+        {dressInfo?.openCategoryFilter && (
           <article className="flex items-center justify-end mb-4">
             <button
               onClick={() =>
                 setDressInfo({
                   ...dressInfo,
-                  openCatalogFilter: false,
+                  openCategoryFilter: false,
                 })
               }
               className="w-10 h-10 rounded-lg border border-searchBgColor flex items-center justify-center active:scale-95  active:opacity-70"
@@ -159,564 +319,107 @@ const CatalogFilterGroup = () => {
             </button>
           </article>
         )}
-        <article className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px]">
-          <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg">
-            Женщинам
-          </button>
-          <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg">
-            Мужчинам
-          </button>
-          <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg">
-            Детям
-          </button>
-          <button className="h-[44px] w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center  bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white rounded-lg text-red-600">
-            Скидки
-          </button>
-        </article>
-        {/* Availability */}
-        <section className="w-full h-fit mt-[50px] ">
-          <article
-            className="w-full flex justify-between items-center "
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <figure
-              onClick={() => setState({ ...state, catolog: !state.catolog })}
-              className="flex items-center cursor-pointer select-none"
-            >
-              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Каталоги
-              </p>
-              <p
-                className={`${
-                  state?.catolog ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </p>
-            </figure>
-          </article>
 
-          {/* Field */}
-          <article
-            className={`w-full overflow-hidden ${
-              state?.catolog
-                ? "duration-300 h-0"
-                : "duration-300 h-[300px] mt-5 "
-            } duration-300 flex flex-col gap-y-4`}
-          >
-            {product?.Catolog.map((data) => {
-              return (
-                <figure
-                  key={data?.id}
-                  className="w-full h-[44px] rounded-lg justify-center bg-bgCategory hover:text-white  focus:bg-fullBlue hover:bg-fullBlue focus:text-white flex items-center  cursor-pointer select-none  text-black"
-                  onClick={HandleCheckStatus(data?.id)}
-                >
-                  <p className="not-italic font-AeonikProMedium tracking-[1%] text-sm leading-4">
-                    {data?.name}
-                  </p>
-                </figure>
-              );
-            })}
-          </article>
-        </section>
-        {/* Brands filter */}
-        <section className="w-full h-fit mt-[50px]  ">
-          {/* Controls */}
-          <article
-            className="openBrands w-full flex justify-between items-center"
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <figure
-              onClick={() =>
-                setState({ ...state, brandShow: !state.brandShow })
-              }
-              className="flex items-center cursor-pointer select-none"
-            >
-              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Бренды
-              </p>
-              <p
-                className={`${
-                  state?.brandShow ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </p>
-            </figure>
-            <span className="not-italic font-AeonikProMedium text-sm leading-4 text-fullBlue cursor-pointer">
-              Очистить все
-            </span>
-          </article>
-          <article
-            className={` openedBrands border-0  overflow-hidden  ${
-              state?.brandShow
-                ? "duration-300 h-0"
-                : "duration-300 h-[375px] mt-5"
-            } duration-300`}
-          >
-            {/* Search */}
-            <form className="h-[44px] w-full flex items-center justify-between px-4 border border-searchBgColor rounded-lg ">
-              <input
-                className="w-[85%] h-full text-sm font-AeonikProRegular"
-                type="text"
-                name="search"
-                placeholder="Поиск бренда"
-                autoComplete="off"
-              />
-              <p>
-                <SearchIcons />
-              </p>
-            </form>
+        {/* Gender Buttons */}
+        <CategoryGenderButtonsFilter
+          handleGetId={handleGetId}
+          handleGetDiscountId={handleGetDiscountId}
+          filter={filter}
+          clearAllFilteredData={clearAllFilteredData}
+          dataActionGender={dataActionGender}
+          setDataActionGender={setDataActionGender}
+          dataActionDiscount={dataActionDiscount}
+          setDataActionDiscount={setDataActionDiscount}
+        />
 
-            {/* Field */}
-            <article
-              className={`h-[300px] w-full mt-7 overflow-auto  categoryScroll `}
-            >
-              {product?.brandWear.map((data) => {
-                return (
-                  <figure
-                    key={data?.id}
-                    onClick={() => HandleBrandFilter(data?.id)}
-                    className="flex items-center cursor-pointer select-none mb-4 "
-                  >
-                    <article
-                      className={`w-[22px] h-[22px] p-1 flex items-center ${
-                        data?.action ? "bg-fullBlue " : "bg-white"
-                      }  mr-[10px] rounded border border-borderColorCard`}
-                    >
-                      <p className="text-white">
-                        <BsCheckLg size={12} />
-                      </p>
-                    </article>
-                    <article className="flex items-center not-italic   font-AeonikProRegular text-sm leading-4 text-black">
-                      {data?.name}
-                      <p className=" not-italic ml-2 font-AeonikProRegular text-sm leading-4 text-setTexOpacity">
-                        ({data?.count})
-                      </p>
-                    </article>
-                  </figure>
-                );
-              })}
-            </article>
-          </article>
-        </section>
+        {/* Categories */}
+        <CategoryCategoriesFilter
+          state={state}
+          setState={setState}
+          handleGetCategoryId={handleGetCategoryId}
+          newId={newId}
+          filter={filter}
+          dataActionCategory={dataActionCategory}
+          setDataActionCategory={setDataActionCategory}
+        />
 
         {/* Prizes */}
-        <section className=" mt-[50px]">
-          <article
-            className="w-full flex justify-between items-center "
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <figure
-              onClick={() =>
-                setState({ ...state, budgetShow: !state.budgetShow })
-              }
-              className="flex items-center cursor-pointer select-none"
-            >
-              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Budget
-              </p>
-              <p
-                className={`${
-                  state?.budgetShow ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </p>
-            </figure>
-          </article>
-          <article
-            className={`  border-1 border-green-600  overflow-hidden  ${
-              state?.budgetShow
-                ? "duration-300 h-0"
-                : "duration-300 h-[170px] mt-5"
-            } duration-300`}
-          >
-            <figure className="w-full flex flex-wrap gap-x-1 gap-y-2">
-              {product.prizes.map((item) => (
-                <button
-                  key={item.id}
-                  className="h-11 w-[49%] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory transition ease-linear duration-200 rounded-lg focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white"
-                >
-                  {item.prize}
-                </button>
-              ))}
-            </figure>
-            <figure className="w-full h-12 bg-bgCategory  mt-4 pb-1 px-[2px]">
-              <div className=" w-full flex justify-center items-center gap-x-1">
-                <div className=" h-fit  not-italic font-AeonikProMedium text-base leading-4 text-center text-fullBlue tracking-[1%]">
-                  {values[0]}
-                </div>{" "}
-                <div className=" h-fit pb-2">-</div>
-                <div className=" h-fit not-italic font-AeonikProMedium text-base leading-4 text-center text-fullBlue tracking-[1%]">
-                  {values[1]}
-                </div>
-              </div>{" "}
-              <div className="relative z-10">
-                {" "}
-                <ReactSlider
-                  className="horizontal-slider"
-                  thumbClassName="example-thumb"
-                  trackClassName="example-track"
-                  defaultValue={[0, 100]}
-                  ariaLabel={["Lower thumb", "Upper thumb"]}
-                  pearling
-                  minDistance={10}
-                />
-              </div>
-            </figure>
-          </article>
-        </section>
+        <CategoryBudgetFilter
+          state={state}
+          setState={setState}
+          getMinMaxPrice={getMinMaxPrice}
+          filter={filter}
+          dataActionColors={dataActionColors}
+          setDataActionColors={setDataActionColors}
+          dataActionPrizes={dataActionPrizes}
+          setDataActionPrizes={setDataActionPrizes}
+        />
 
         {/* Colors */}
-        <section className="w-full h-fit mt-[50px] ">
-          {/* Controls */}
-          <article
-            className="openBrands w-full flex justify-between items-center"
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <figure
-              onClick={() =>
-                setState({ ...state, ColorsShow: !state.ColorsShow })
-              }
-              className="flex items-center cursor-pointer select-none"
-            >
-              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Цвет
-              </p>
-              <p
-                className={`${
-                  state?.ColorsShow ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </p>
-            </figure>
-            <span className="not-italic font-AeonikProMedium text-sm leading-4 text-fullBlue cursor-pointer">
-              Очистить все
-            </span>
-          </article>
-          {/* Colors */}
-          <article
-            className={`w-full px-[2px] flex justify-between flex-wrap items-center   bg-white hover:backdrop-brightness-125 hover:bg-white/60 transition ease-out duration-300 gap-x-[10px] gap-y-[10px] border-0  overflow-hidden  ${
-              state?.ColorsShow
-                ? "duration-300 h-0"
-                : "duration-300 h-[80px] mt-5"
-            } duration-300 `}
-          >
-            {product?.changeColor.map((item) => {
-              return (
-                <figure
-                  key={item?.id}
-                  onClick={() => HandleColorCheck(item?.id)}
-                  className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 w-8 h-8 ${item?.colors} cursor-pointer  border border-solid border-borderColorCard`}
-                  htmlFor="Color1"
-                >
-                  {item?.action ? (
-                    <p className="w-[14px]">
-                      <InputCheckedTrueIcons colors={"#fff"} />
-                    </p>
-                  ) : null}
-                </figure>
-              );
-            })}
-          </article>
-        </section>
-
-        {/* Availability */}
-        <section className="w-full h-fit mt-[50px] ">
-          <article
-            className="w-full flex justify-between items-center "
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <figure
-              onClick={() =>
-                setState({ ...state, availability: !state.availability })
-              }
-              className="flex items-center cursor-pointer select-none"
-            >
-              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Доступность
-              </p>
-              <p
-                className={`${
-                  state?.availability ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </p>
-            </figure>
-          </article>
-
-          {/* Field */}
-          <article
-            className={`w-full overflow-hidden ${
-              state?.availability
-                ? "duration-300 h-0"
-                : "duration-300 h-[70px] mt-5"
-            } duration-300 flex flex-col gap-y-4`}
-          >
-            {product?.availability.map((data) => {
-              return (
-                <article
-                  key={data?.id}
-                  className="flex items-center  cursor-pointer select-none "
-                  onClick={HandleCheckStatus(data?.id)}
-                >
-                  <figure
-                    className={`w-[22px] h-[22px] p-1 flex items-center ${
-                      state?.checkBrand ? "bg-fullBlue " : "bg-white"
-                    }  mr-[10px] rounded border border-borderColorCard`}
-                  >
-                    {state?.checkBrand && (
-                      <span className="text-white">
-                        <BsCheckLg size={12} />
-                      </span>
-                    )}
-                  </figure>
-                  <p className="flex items-center not-italic mr-2 font-AeonikProRegular text-sm leading-4 text-black">
-                    {data?.title}
-                  </p>
-                  <p className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-setTexOpacity">
-                    ({data?.count})
-                  </p>
-                </article>
-              );
-            })}
-          </article>
-        </section>
+        <CategoryColorsFilter
+          state={state}
+          setState={setState}
+          filter={filter}
+          colorHexCode={colorHexCode}
+          setColorHexCode={setColorHexCode}
+          handleGetColorHexCode={handleGetColorHexCode}
+        />
 
         {/* Customer reviews */}
-        <section className="w-full h-fit mt-[50px] ">
-          <article
-            className="w-full flex justify-between items-center"
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <figure
-              onClick={() =>
-                setState({
-                  ...state,
-                  customerRreviews: !state.customerRreviews,
-                })
-              }
-              className="flex items-center cursor-pointer select-none"
-            >
-              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Отзывы клиентов
-              </p>
-              <p
-                className={`${
-                  state?.customerRreviews ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </p>
-            </figure>
-          </article>
-          <article
-            className={`flex flex-col   gap-y-3 overflow-hidden ${
-              state?.customerRreviews
-                ? "duration-300 h-0"
-                : "duration-300 h-[110px] mt-5"
-            } duration-300`}
-          >
-            {/* Field */}
-            {product?.ArrayRating.map((data) => {
-              return (
-                <div
-                  key={data?.id}
-                  className="flex items-center cursor-pointer select-none  overflow-auto"
-                >
-                  <div
-                    className={`w-[22px] h-[22px] p-1 flex items-center  mr-[10px] rounded border border-borderColorCard`}
-                  >
-                    {state?.checkBrand && (
-                      <span className="text-white">
-                        <BsCheckLg size={12} />
-                      </span>
-                    )}
-                  </div>
-                  <div className="flex items-center not-italic mr-2 font-AeonikProRegular  text-lg leading-4 text-black">
-                    <StarIcons />
-                    <StarIcons />
-                    <StarIcons />
-                    <StarIcons />
-                    <StarIcons />
-                  </div>
-                  <div className="flex items-endnot-italic font-AeonikProMedium text-base leading-4 text-black mt-[4px]">
-                    {data?.text || null}
-                  </div>
-                </div>
-              );
-            })}
-          </article>
-        </section>
+        <CategoryCustomerReviewsFilter
+          state={state}
+          setState={setState}
+          filter={filter}
+          handleCustomerReviews={handleCustomerReviews}
+          dataActionRatings={dataActionRatings}
+          setDataActionRatings={setDataActionRatings}
+          selectedRating={selectedRating}
+          setSelectedRating={setSelectedRating}
+        />
 
-        {/* Размер одежды */}
-        <section className="w-full h-fit mt-[50px] ">
-          <article
-            className="w-full flex justify-between items-center "
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <figure
-              onClick={() =>
-                setState({ ...state, ClothingShow: !state.ClothingShow })
-              }
-              className="flex items-center cursor-pointer select-none"
-            >
-              <figcaption className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Размер одежды
-              </figcaption>
-              <p
-                className={`${
-                  state?.ClothingShow ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </p>
-            </figure>
-            <p className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
-              3XL
-            </p>
-          </article>
-          <article
-            className={` overflow-hidden ${
-              state?.ClothingShow
-                ? "duration-300 h-0"
-                : "duration-300 h-[90px] mt-5"
-            } duration-300`}
-          >
-            <figure className="w-full flex flex-wrap justify-between  gap-y-2">
-              {product.clothingSize.map((item) => (
-                <button
-                  key={item.id}
-                  className="h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg"
-                >
-                  {item.size}
-                </button>
-              ))}
-            </figure>
-          </article>
-        </section>
+        {/* Outwear sizes */}
+        <CategoryOutwearSizesFilter
+          state={state}
+          setState={setState}
+          filter={filter}
+          dataActionOutwearSizes={dataActionOutwearSizes}
+          setDataActionOutwearSizes={setDataActionOutwearSizes}
+          sendOutwearSize={sendOutwearSize}
+          sendClearedOutwearData={sendClearedOutwearData}
+        />
 
-        {/* Размер брюк */}
-        <section className="w-full h-fit  mt-[50px] ">
-          <article
-            className="w-full flex justify-between items-center "
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <figure
-              onClick={() =>
-                setState({ ...state, TrouserShow: !state.TrouserShow })
-              }
-              className="flex items-center cursor-pointer select-none"
-            >
-              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Размер брюк
-              </p>
-              <p
-                className={`${
-                  state?.TrouserShow ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </p>
-            </figure>
-            <p className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
-              2XL
-            </p>
-          </article>
-          <article
-            className={` overflow-hidden ${
-              state?.TrouserShow
-                ? "duration-300 h-0"
-                : "duration-300 h-[90px] mt-5"
-            } duration-300`}
-          >
-            <figure className="w-full flex flex-wrap justify-between gap-y-2">
-              {product.pantsSize.map((item) => (
-                <button
-                  key={item.id}
-                  className="h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg"
-                >
-                  {item.size}
-                </button>
-              ))}
-            </figure>
-          </article>
-        </section>
+        {/* Underwear sizes */}
+        <CategoryUnderwearSizesFilter
+          state={state}
+          setState={setState}
+          filter={filter}
+          handleUnderwearSizes={handleUnderwearSizes}
+          dataActionUnderwearSizes={dataActionUnderwearSizes}
+          setDataActionUnderwearSizes={setDataActionUnderwearSizes}
+          sendUnderwearSize={sendUnderwearSize}
+          sendClearedUnderwearData={sendClearedUnderwearData}
+        />
 
-        {/* Размер обуви */}
-        <section className="w-full h-fit mt-[50px] ">
-          <article
-            className="w-full flex justify-between items-center "
-            onClick={(event) => {
-              event.target.classList.toggle("open");
-            }}
-          >
-            <figure
-              onClick={() =>
-                setState({ ...state, ShoesShow: !state.ShoesShow })
-              }
-              className="flex items-center cursor-pointer select-none"
-            >
-              <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                Размер обуви
-              </p>
-              <p
-                className={`${
-                  state?.ShoesShow ? "rotate-[180deg]" : ""
-                } duration-300 ml-1`}
-              >
-                <ArrowTopIcons colors={"#000"} />
-              </p>
-            </figure>
-            <p className="not-italic font-AeonikProMedium text-base leading-4 text-fullBlue cursor-pointer">
-              44
-            </p>
-          </article>
-          <article
-            className={` overflow-hidden ${
-              state?.ShoesShow
-                ? "duration-300 h-0"
-                : "duration-300 h-[90px] mt-5"
-            } duration-300`}
-          >
-            <figure className="w-full flex flex-wrap justify-between gap-y-2">
-              {product.shoeSize.map((item) => (
-                <button
-                  key={item.id}
-                  className="h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory focus:bg-fullBlue hover:bg-fullBlue focus:text-white hover:text-white transition ease-linear duration-200 rounded-lg"
-                >
-                  {item.size}
-                </button>
-              ))}
-            </figure>
-          </article>
-        </section>
+        {/* Shoes sizes */}
+        <CategoryFootwearSizesFilter
+          state={state}
+          setState={setState}
+          filter={filter}
+          handleFootwearWearSize={handleFootwearWearSize}
+          dataActionFootwearSizes={dataActionFootwearSizes}
+          setDataActionFootwearSizes={setDataActionFootwearSizes}
+        />
       </section>
       <section className=" mt-8 border-t border-searchBgColor py-5 px-3">
-        <button className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70">
+        <button
+          type="button"
+          onClick={clearAllFilteredData}
+          className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70"
+        >
           Сбросить фильтр
         </button>
       </section>
     </main>
   );
 };
-export { CatalogFilterGroup };
+export default React.memo(CategoryForBrand);

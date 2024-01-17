@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 
-function CategoryGenderButtonsFilter({
+function SectionGenderButtonsFilter({
   handleGetId,
   handleGetDiscountId,
   filter,
@@ -151,4 +151,4 @@ function CategoryGenderButtonsFilter({
     </div>
   );
 }
-export default React.memo(CategoryGenderButtonsFilter);
+export default React.memo(SectionGenderButtonsFilter);

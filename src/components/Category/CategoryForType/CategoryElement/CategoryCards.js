@@ -35,7 +35,6 @@ export default function CategoryCards({ filterData, setPageId }) {
             <CollectionCardItem
               data={data}
               key={data?.id}
-              // setOpenWearType={setOpenWearType}
               handleLeaveMouse={handleLeaveMouse}
               wishList={wishList}
               setWishlist={setWishlist}
