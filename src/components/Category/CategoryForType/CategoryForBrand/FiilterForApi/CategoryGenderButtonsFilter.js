@@ -26,6 +26,11 @@ function CategoryGenderButtonsFilter({
       action: false,
       name: "Детям",
     },
+    {
+      id: 4,
+      action: false,
+      name: "Унисекс",
+    },
   ]);
 
 
@@ -121,7 +126,7 @@ function CategoryGenderButtonsFilter({
                   dataActionDiscount
                     ? "border border-fullBlue bg-bgCategory text-red-500 "
                     : "bg-bgCategory text-red-600"
-                } h-[44px] w-[49%] flex items-center justify-center font-AeonikProMedium text-sm leading-3 text-center active:scale-95 hover:text-red-500 hover:border hover:border-fullBlue rounded-lg duration-300`}
+                } ${filter?.gender_ids.length === 2 || filter?.gender_ids.length === 4 ? 'w-full' : 'w-[49%]'} h-[44px]  flex items-center justify-center font-AeonikProMedium text-sm leading-3 text-center active:scale-95 hover:text-red-500 hover:border hover:border-fullBlue rounded-lg duration-300`}
               >
                 Скидки
               </button>
