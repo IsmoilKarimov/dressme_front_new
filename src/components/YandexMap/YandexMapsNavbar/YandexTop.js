@@ -108,7 +108,7 @@ const YandexTop = ({ onClick }) => {
   const toggleRegionsShow = useCallback(() => setRegionsShow(false), []);
 
   return (
-    <div className="flex justify-between items-center m-auto ">
+    <div className="flex justify-between items-center m-auto py-[2px]">
 
       <div className="left h-full flex items-center  ">
         <div onClick={onClick} className="flex w-fit items-center cursor-pointer">
@@ -136,23 +136,24 @@ const YandexTop = ({ onClick }) => {
           </div>
         </div>
 
-        <div className="w-fit h-full rounded bg-white ml-2 font-AeonikProMedium select-none cursor-pointer">
+        <div className="w-fit h-full rounded bg-white rounded-lg ml-2 font-AeonikProMedium select-none overflow-hidden cursor-pointer">
           {LanguageList.filter((data) => data.id === selectLang).map((data) => {
             return (
               <Popover
                 key={data?.id}
                 open={state?.openLang}
                 onOpenChange={handleOpenChangeWear}
-                className="w-full flex text-[13px] items-center h-[32px] px-3 rounded-lg"
+                className="w-full flex text-[13px] items-center border-searchBgColor border h-[32px] px-3 rounded-lg"
                 trigger="click"
                 options={["Hide"]}
                 placement="bottom"
                 content={contentLang}
               >
-                <p className="mr-[6px] ">
+
+                <span className="mr-[6px] ">
                   <img src={data?.icons} alt="" />
-                </p>
-                <p className="not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black ">
+                </span>
+                <p className="not-italic flex items-center font-AeonikProMedium text-sm text-black ">
                   {data?.type}
                 </p>
               </Popover>

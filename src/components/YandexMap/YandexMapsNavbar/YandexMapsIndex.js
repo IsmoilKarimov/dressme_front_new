@@ -42,7 +42,7 @@ function YandexMapsIndex({ getMapsInfo, getFilterData, getFilterSearchByBrand })
         <div className="">
           <div
             className={`ss:px-3 mt-[1px] md:mt-0 md:px-[40px] md:rounded-b-[16px] ${!dressInfo?.yandexOpenMarket
-              ? "bg-yandexNavbar backdrop-blur-sm"
+              ? "bg-yandexNavbar backdrop-blur-md"
               : "bg-white"
               }	border border-searchBgColor border-t-0`}
           >

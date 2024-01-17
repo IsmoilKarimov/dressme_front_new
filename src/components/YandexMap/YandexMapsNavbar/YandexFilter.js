@@ -292,9 +292,9 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           </span>
           {getRange[0] && getRange[1] ?
             <p className="w-fit flex justify-between items-center  font-AeonikProMedium ">
-              <span className="text-[13px] font-AeonikProMedium	leading-5	 ">{getRange[0]}</span>
+              <span className="text-[13px] font-AeonikProMedium	leading-5	 ">{Number(getRange[0]).toLocaleString()}</span>
               <span className="w-[6px] h-[1px] bg-[#a1a1a1] mx-[2px] 	"></span>
-              <span className="text-[13px] font-AeonikProMedium	leading-5	">{getRange[1]}</span>
+              <span className="text-[13px] font-AeonikProMedium	leading-5	">{Number(getRange[1]).toLocaleString()}</span>
             </p>
             :
             <p className="not-italic whitespace-nowrap mt-1 text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
@@ -363,7 +363,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           </Select>
         </div>
 
-        <div className="box-border	 flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-lg bg-btnBgColor">
+        <div className="box-border	 flex items-center gap-x-2 py-[2px] h-[44px] border border-searchBgColor overflow-hidden rounded-lg bg-btnBgColor">
 
           {personItems
             ?.filter((value) => value.id === dressInfo?.type)
