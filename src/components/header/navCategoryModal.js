@@ -23,8 +23,8 @@ const NavCategoryModal = () => {
 
   const navigate = useNavigate();
   const goCatalogId = (id) => {
-    // const uId = id.toLowerCase();
     navigate(`/catalog/${id}`);
+    window.location.reload();
   };
 
   return (
@@ -37,9 +37,6 @@ const NavCategoryModal = () => {
           <MenuCloseIcons />
         </button>
         <div
-          // onClick={(e) => {
-          //   e.stopPropagation();
-          // }}
           className="ss:w-fit md:w-[650px] h-[210px] m-0 p-2 pb-4 pt-4"
         >
           <div className="w-full flex items-start flex-wrap gap-y-6">
@@ -57,8 +54,6 @@ const NavCategoryModal = () => {
                     className="group cursor-pointer"
                   >
                     <div className="group-hover:border-black transition duration-300 w-[120px] h-[120px] border border-categoryModalBorderColor bg-categoryModalBgColor flex items-center justify-center rounded-xl">
-                      {/* <img src={data?.url_photo} alt="" /> */}
-                      {/* <img src={data?.url_photo} alt="" /> */}
                       <img src={categoryModalArray[i].img} alt="" />
                     </div>
                     <figcaption className="group-hover:text-black transition duration-300 text-center mt-2 text-setTexOpacity text-sm">
