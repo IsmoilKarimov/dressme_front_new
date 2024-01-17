@@ -25,37 +25,37 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
     genderId: null,
     categoryWearId: null,
     categoryBrandId: null,
+    clearPrice: false
   });
 
   // ----------------Wear state management----------------------------
-
-  const handleOpenChangeWear = (newOpen) => {
-    setState({ ...state, openwear: newOpen });
-  };
   const [selectWear, setSelectWear] = useState();
-
-  const handleWearValue = (value, id) => {
-    setSelectWear(value);
-    setState({ ...state, openwear: false, categoryWearId: id });
-    // navigate(`/delivery-points/${UseReplace("by_category", value)}`);
-  };
   const ClearSelectWear = () => {
     setSelectWear();
-    // navigate(`/delivery-points/${UseReplace("by_category", null)}`);
   }
-
   // ----------------------Price State Management----------------------
 
   const [minPrice, setMinPrice] = useState(Number(getMapsInfo?.budget?.min_price) || 10000);
   const [maxPrice, setMaxPrice] = useState(Number(getMapsInfo?.budget?.max_price) || 1000000);
-  const [values, setValues] = useState([minPrice, maxPrice]);
   const [getRange, setGetRange] = useState([]);
   useEffect(() => {
     setMinPrice(Number(getMapsInfo?.budget?.min_price) || 10000)
     setMaxPrice(Number(getMapsInfo?.budget?.max_price) || 1000000)
   }, [getMapsInfo?.budget])
 
+  const [values, setValues] = useState([minPrice, maxPrice]);
+  useEffect(() => {
+    if (minPrice !== values[0] || maxPrice !== values[1]) {
+      setState({ ...state, clearPrice: true })
+    }
+  }, [values])
 
+
+  const clearFunction = () => {
+    setState({ ...state, clearPrice: false, openPrice: false });
+    setValues([Number(getMapsInfo?.budget?.min_price), Number(getMapsInfo?.budget?.max_price)])
+    setGetRange([])
+  }
   // console.log(minPrice, "minPrice");
   // console.log(maxPrice, "maxPrice");
   // console.log(values, "values");
@@ -113,14 +113,21 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             ariaLabel={["Lower thumb", "Upper thumb"]}
             // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
             // renderThumb={() => <div>1</div>}
-            minDistance={0}
+            minDistance={10}
             pearling
             onChange={setValues}
             value={values}
             min={minPrice}
             max={maxPrice} />
         </div>
-        <div className="flex items-center justify-end mt-4">
+        <div className={`flex items-center  mt-4 ${state?.clearPrice ? "justify-between" : "justify-end"}`}>
+          {state?.clearPrice &&
+            <span
+              onClick={() => clearFunction()}
+              className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue"
+            >
+              Сбросить
+            </span>}
           <span
             onClick={() => {
               sendPriceList()
@@ -134,16 +141,8 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
 
   // ----------------------Brend State Management----------------------
 
-  const handleOpenChangeBrand = (newOpen) => {
-    setState({ ...state, openBrand: newOpen });
-  };
+
   const [selectBrand, setSelectBrand] = useState();
-
-  const handleBrandValue = (value, id) => {
-    setSelectBrand(value);
-    setState({ ...state, openBrand: false, categoryBrandId: id });
-  };
-
   const CloseSelectBrand = () => {
     setSelectBrand()
   }
