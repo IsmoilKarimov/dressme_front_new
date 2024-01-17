@@ -363,7 +363,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           </Select>
         </div>
 
-        <div className="box-border	 flex items-center gap-x-2 py-[2px] h-[44px] border border-searchBgColor overflow-hidden rounded-lg bg-btnBgColor">
+        <div className="box-border	 flex items-center gap-x-2  h-[44px] border border-searchBgColor overflow-hidden rounded-lg bg-btnBgColor">
 
           {personItems
             ?.filter((value) => value.id === dressInfo?.type)

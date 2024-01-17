@@ -629,7 +629,7 @@ function BottomHeader() {
         </div>
 
         <div className="line h-6 border-r-[1px] text-textColor mx-3"></div>
-        <div className="box-border flex items-center gap-x-2 py-[2px] h-[44px] border border-searchBgColor overflow-hidden rounded-lg bg-btnBgColor">
+        <div className="box-border flex items-center gap-x-2  h-[44px] border border-searchBgColor overflow-hidden rounded-xl bg-btnBgColor">
           {personItems
             ?.filter((value) => value.id === dressInfo?.type)
             .map((data) => {
@@ -645,9 +645,9 @@ function BottomHeader() {
                           key={item?.id}
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
                           className={`${item?.action
-                            ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-lg"
+                            ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
                             : " bg-btnBgColor text-black h-full"
-                            } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-lg justify-center flex items-center`}
+                            } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
                         >
                           <span>{item?.anyIcons}</span>
                           {item?.name && (
