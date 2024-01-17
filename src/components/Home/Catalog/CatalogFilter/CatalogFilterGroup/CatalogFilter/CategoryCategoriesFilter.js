@@ -1,10 +1,10 @@
 /* eslint-disable array-callback-return */
 import React, { useState } from "react";
-import { ArrowTopIcons } from "../../../../../assets/icons";
-import { useHttp } from "../../../../../hook/useHttp";
+import { ArrowTopIcons } from "../../../../../../assets/icons";
+import { useHttp } from "../../../../../../hook/useHttp";
 import { useQuery } from "@tanstack/react-query";
 
-export default function CategoriesFilter({
+export default function CategoryCategoriesFilter({
   state,
   setState,
   handleGetCategoryId,

@@ -1,11 +1,13 @@
-import { NavLink } from "react-router-dom";
-
-import { MuslimImg } from "../../../../../assets";
-import { ClothesIcons, FilterIcons } from "../../../../../assets/icons";
+import {
+  ClothesIcons,
+  FilterIcons,
+  ItailIcons,
+} from "../../../../../assets/icons";
 import { useContext, useState } from "react";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
+import { NavLink } from "react-router-dom";
 
 const CatalogTopFilter = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -97,9 +99,9 @@ const CatalogTopFilter = () => {
   );
 
   return (
-    <main className="flex flex-col justify-center md:hidden border-b border-searchBgColor items-center md:py-[60px]">
-      <section className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto">
-        <section className="w-[100%] h-fit">
+    <main className="w-full">
+      <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
+        <section className="w-[100%] h-fit flex flex-col md:hidden border-b border-searchBgColor ">
           <article className="w-full flex flex-col">
             <figure className="relative w-full  md:h-[90px]  mt-2 md:mt-0  h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               <div className="w-full md:w-fit flex items-center justify-between md:mr-5  mt-6 md:mt-0">
@@ -127,8 +129,9 @@ const CatalogTopFilter = () => {
                         <BiChevronDown
                           size={22}
                           style={{ color: "#000" }}
-                          className={`${state?.opensports ? "rotate-[-180deg]" : ""
-                            } duration-200`}
+                          className={`${
+                            state?.opensports ? "rotate-[-180deg]" : ""
+                          } duration-200`}
                         />
                       </span>
                     </Popover>
@@ -150,7 +153,6 @@ const CatalogTopFilter = () => {
                 Фильтры
               </p>
             </button>
-
             <Popover
               className="h-[44px] w-[48%] active:scale-95  select-none  active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
               open={state?.openTypesofClothes}
@@ -168,6 +170,35 @@ const CatalogTopFilter = () => {
               </p>
             </Popover>
           </article>
+        </section>
+        
+        <section className="w-full h-full">
+          <div className="md:pt-8 md:pb-16 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 py-3">
+            <section className="max-w-[1280px] w-[100%] h-full flex items-center justify-between m-auto">
+              <nav className="w-[100%] md:w-fit flex items-center p-1">
+                <ul className="h-10 w-[100%] md:w-fit flex items-center overflow-auto HorizantalScroll">
+                  <li className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+                    <NavLink
+                      to="/"
+                      className="flex items-center whitespace-nowrap cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
+                    >
+                      Главная
+                    </NavLink>
+                    <span>
+                      <ItailIcons colors={"#A1A1A1"} />
+                    </span>
+                  </li>
+                  <li className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%]">
+                    <NavLink className="flex 	whitespace-nowrap  items-center cursor-pointer mt-[6px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                      Категории
+                    </NavLink>
+                  </li>
+                </ul>
+              </nav>
+
+              <nav className="hidden md:flex"></nav>
+            </section>
+          </div>
         </section>
       </section>
     </main>

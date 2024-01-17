@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ArrowTopIcons, StarIcons } from "../../../../../assets/icons";
 import { BsCheckLg } from "react-icons/bs";
 
-function CustomerReviewsFilter({
+function SectionCustomerReviewsFilter({
   state,
   setState,
   filter,
@@ -164,4 +164,4 @@ function CustomerReviewsFilter({
   );
 }
 
-export default React.memo(CustomerReviewsFilter);
+export default React.memo(SectionCustomerReviewsFilter);

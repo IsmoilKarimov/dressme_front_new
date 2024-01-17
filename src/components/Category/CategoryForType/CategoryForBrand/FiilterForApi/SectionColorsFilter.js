@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 import { FaCheck } from "react-icons/fa";
 
-function ColorsFilter({
+function SectionColorsFilter({
   state,
   setState,
   filter,
@@ -103,4 +103,4 @@ function ColorsFilter({
   );
 }
 
-export default React.memo(ColorsFilter);
+export default React.memo(SectionColorsFilter);
