@@ -6,10 +6,11 @@ function CategoryGenderButtonsFilter({
   handleGetDiscountId,
   filter,
   dataActionGender,
-  setDataActionGender
+  setDataActionGender,
+  dataActionDiscount,
+  setDataActionDiscount
   }) {
   const [openGenderField, setOpenGenderField] = useState(false);
-  const [dataActionDiscount, setDataActionDiscount] = useState(false);
   const [genderCategory, setGenderCategory] = useState([
     {
       id: 1,
@@ -88,7 +89,6 @@ function CategoryGenderButtonsFilter({
                       onClick={() => {
                         setDataActionGender(true);
                         handleGenderCheck(data?.id);
-                        // onGetId(data?.id);
                         handleGetId(data?.id)
                       }}
                       disabled={
@@ -125,20 +125,21 @@ function CategoryGenderButtonsFilter({
                 className={`${
                   dataActionDiscount
                     ? "border border-fullBlue bg-bgCategory text-red-500 "
-                    : "bg-bgCategory text-red-600"
+                    : "bg-bgCategory text-red-600 border border-transparent"
                 } ${filter?.gender_ids.length === 2 || filter?.gender_ids.length === 4 ? 'w-full' : 'w-[49%]'} h-[44px]  flex items-center justify-center font-AeonikProMedium text-sm leading-3 text-center active:scale-95 hover:text-red-500 hover:border hover:border-fullBlue rounded-lg duration-300`}
               >
                 Скидки
               </button>
             ) : null}
           </div>
-          {filter?.gender_ids.length > 0 && dataActionGender ? (
+          {filter?.gender_ids.length > 0 && dataActionGender || dataActionDiscount ? (
             <button
               type="button"
               onClick={() => {
                 handleGetId(null)
                 handleGetDiscountId(null)
                 setDataActionGender(false);
+                setDataActionDiscount(false);
               }}
               className={`w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
             >

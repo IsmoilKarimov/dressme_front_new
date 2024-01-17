@@ -43,6 +43,7 @@ const ShopOfficialBrand = ({ setFilteredData, pageId }) => {
   });
 
   const [dataActionGender, setDataActionGender] = useState(false);
+  const [dataActionDiscount, setDataActionDiscount] = useState(false);
   const [dataActionCategory, setDataActionCategory] = useState(false);
   const [dataActionColors, setDataActionColors] = useState(false);
   const [dataActionRatings, setDataActionRatings] = useState(false);
@@ -193,6 +194,7 @@ const ShopOfficialBrand = ({ setFilteredData, pageId }) => {
     handleGetId(null);
     handleGetDiscountId(null);
     setDataActionGender(false);
+    setDataActionDiscount(false);
     // CATEGORY DATA
     handleGetCategoryId(null);
     setDataActionCategory(false);
@@ -327,6 +329,8 @@ const ShopOfficialBrand = ({ setFilteredData, pageId }) => {
           clearAllFilteredData={clearAllFilteredData}
           dataActionGender={dataActionGender}
           setDataActionGender={setDataActionGender}
+          dataActionDiscount={dataActionDiscount}
+          setDataActionDiscount={setDataActionDiscount}
         />
 
         {/* Categories */}
