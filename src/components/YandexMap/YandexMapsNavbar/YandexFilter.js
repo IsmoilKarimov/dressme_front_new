@@ -240,7 +240,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           </span>
           <Select
             showSearch
-            className="w-[100%] cursor-pointer !caret-transparent	 h-full !outline-none text-center overflow-hidden  !p-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
+            className="w-[100%] cursor-pointer pl-4 !caret-transparent	 h-full !outline-none text-center overflow-hidden  !py-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
             bordered={false}
             placeholder={<span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide	leading-5">По категории</span>}
             optionFilterProp="children"
@@ -315,7 +315,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           </span>
           <Select
             showSearch
-            className="w-[100%] h-full !caret-transparent !outline-none text-center overflow-hidden  !p-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
+            className="w-[100%] h-full !caret-transparent pl-4 !outline-none text-center overflow-hidden  !py-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
             bordered={false}
             // placeholder="По магазину"
             placeholder={<span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide	leading-5">По магазину</span>}
