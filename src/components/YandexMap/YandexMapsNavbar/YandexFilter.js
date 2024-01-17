@@ -113,7 +113,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             ariaLabel={["Lower thumb", "Upper thumb"]}
             // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
             // renderThumb={() => <div>1</div>}
-            minDistance={100000}
+            minDistance={0}
             pearling
             onChange={setValues}
             value={values}
