@@ -445,7 +445,7 @@ function BottomHeader() {
           </span>
           <Select
             showSearch
-            className="w-[100%] cursor-pointer text-center flex items-center !caret-transparent h-full !outline-none text-center overflow-hidden  !p-0 text-black text-sm font-AeonikProMedium tracking-wide	"
+            className="w-[100%] cursor-pointer  pl-4 text-center flex items-center !caret-transparent h-full !outline-none text-center overflow-hidden  !py-0 text-black text-sm font-AeonikProMedium tracking-wide	"
             bordered={false}
             placeholder={
               <span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide">
