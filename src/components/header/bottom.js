@@ -490,7 +490,7 @@ function BottomHeader() {
         <Popover
           open={state?.openPrice}
           onOpenChange={handleOpenChangePrice}
-          className="w-[190px]  gap-x-2 px-2 h-[44px] rounded-xl bg-btnBgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group ml-2"
+          className="w-[190px]  gap-x-1 px-2 h-[44px] rounded-xl bg-btnBgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group ml-2"
           trigger="click"
           options={["Hide"]}
           placement="bottom"
@@ -500,10 +500,10 @@ function BottomHeader() {
             <DollorIcons colors={"#000"} />
           </span>
           {getRange[0] && getRange[1] ?
-            <p className="w-fit flex justify-between items-center">
-              <span className="text-[14px] font-AeonikProMedium ">{getRange[0]}</span>
-              <span className="w-[8px] h-[1px] bg-[#a1a1a1] mx-[3px] font-AeonikProMedium"></span>
-              <span className="text-[14px] font-AeonikProMedium">{getRange[1]}</span>
+            <p className="w-fit flex justify-between items-center  font-AeonikProMedium ">
+              <span className="text-[13px] font-AeonikProMedium	leading-5	 ">{getRange[0]}</span>
+              <span className="w-[6px] h-[1px] bg-[#a1a1a1] mx-[2px] 	"></span>
+              <span className="text-[13px] font-AeonikProMedium	leading-5	">{getRange[1]}</span>
             </p>
             :
             <p className="not-italic whitespace-nowrap mt-1 text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
