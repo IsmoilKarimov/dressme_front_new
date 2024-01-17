@@ -20,7 +20,7 @@ const ShoppingStoreOfficialBreadCrumb = ({ name }) => {
               </span>
             </action>
             <action className="not-italic font-AeonikProRegular  flex  	 items-center  text-sm leading-4 text-black tracking-[1%]">
-              <NavLink className="flex	whitespace-nowrap  items-center cursor-pointer  px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+              <NavLink to='/stores' className="flex	whitespace-nowrap  items-center cursor-pointer  px-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                 Магазины{" "}
               </NavLink>
               <span>

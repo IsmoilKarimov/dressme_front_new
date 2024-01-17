@@ -14,7 +14,7 @@ function BudgetFilter({
     Number(filter?.budget?.min_price) || 10000
   );
   const [maxPrice, setMaxPrice] = useState(
-    Number(filter?.budget?.max_price) || 1000000
+    Number(filter?.budget?.max_price) || 2000000
   );
   // const [checkChange, setCheckChange] = useState(false);
   const [values, setValues] = useState([minPrice, maxPrice]);
@@ -23,7 +23,7 @@ function BudgetFilter({
 
   useEffect(() => {
     setMinPrice(Number(filter?.budget?.min_price) || 10000);
-    setMaxPrice(Number(filter?.budget?.max_price) || 1000000);
+    setMaxPrice(Number(filter?.budget?.max_price) || 2000000);
   }, [filter]);
 
   useEffect(() => {
