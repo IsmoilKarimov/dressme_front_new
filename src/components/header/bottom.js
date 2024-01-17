@@ -53,12 +53,15 @@ function BottomHeader() {
   );
   const [getRange, setGetRange] = useState([]);
 
+  const [values, setValues] = useState([]);
   useEffect(() => {
     setMinPrice(Number(state?.getAllCardList?.budget?.min_price) || 10000);
     setMaxPrice(Number(state?.getAllCardList?.budget?.max_price) || 1000000);
+    if (!values[0] && !values[1]) {
+      setValues([Number(state?.getAllCardList?.budget?.min_price), Number(state?.getAllCardList?.budget?.max_price)])
+    }
   }, [state?.getAllCardList?.budget]);
 
-  const [values, setValues] = useState([minPrice, maxPrice]);
 
   useEffect(() => {
     if (minPrice !== values[0] || maxPrice !== values[1]) {
@@ -140,19 +143,19 @@ function BottomHeader() {
     setState({ ...state, openPrice: newOpen });
   };
   // ----------------NavBar----------------
-  const [scrollPost, setscrollPost] = useState(0);
-  useEffect(() => {
-    const handleScroll = () => {
-      setscrollPost(document.body.getBoundingClientRect().top);
-    };
-    if (state?.openPrice) {
-      setState({ ...state, openPrice: false })
-    }
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [scrollPost]);
+  // const [scrollPost, setscrollPost] = useState(0);
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setscrollPost(document.body.getBoundingClientRect().top);
+  //   };
+  //   if (state?.openPrice) {
+  //     setState({ ...state, openPrice: false })
+  //   }
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, [scrollPost]);
 
   // console.log(values, "values");
   const contentPrice = (

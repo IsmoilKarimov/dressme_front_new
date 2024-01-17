@@ -38,12 +38,15 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   const [minPrice, setMinPrice] = useState(Number(getMapsInfo?.budget?.min_price) || 10000);
   const [maxPrice, setMaxPrice] = useState(Number(getMapsInfo?.budget?.max_price) || 1000000);
   const [getRange, setGetRange] = useState([]);
+  const [values, setValues] = useState([]);
   useEffect(() => {
     setMinPrice(Number(getMapsInfo?.budget?.min_price) || 10000)
     setMaxPrice(Number(getMapsInfo?.budget?.max_price) || 1000000)
+    if (!values[0] && !values[1]) {
+      setValues([Number(getMapsInfo?.budget?.min_price), Number(getMapsInfo?.budget?.max_price)])
+    }
   }, [getMapsInfo?.budget])
 
-  const [values, setValues] = useState([minPrice, maxPrice]);
   useEffect(() => {
     if (minPrice !== values[0] || maxPrice !== values[1]) {
       setState({ ...state, clearPrice: true })
