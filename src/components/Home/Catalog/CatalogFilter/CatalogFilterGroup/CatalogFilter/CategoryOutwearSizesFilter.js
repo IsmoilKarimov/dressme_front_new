@@ -77,7 +77,7 @@ function CategoryOutwearSizesFilter({
                   className={`${
                     outwear?.letter_size || outwear?.size ? "flex" : "hidden"
                   } ${
-                    dataActionOutwearSizes === index ? "bg-fullBlue text-white text-xs" : "text-sm"
+                    dataActionOutwearSizes === index ? "bg-fullBlue text-white" : ""
                   } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
                   <div className="flex items-center">

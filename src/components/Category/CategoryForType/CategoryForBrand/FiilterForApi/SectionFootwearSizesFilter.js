@@ -68,12 +68,11 @@ function SectionFootwearSizesFilter({
                     handleFootwearWearSize(footwear?.wear_size);
                   }}
                   className={`${
-                    dataActionFootwearSizes === index ? "bg-fullBlue text-white text-xs" : "text-sm"
-                  } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory  hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
+                    dataActionFootwearSizes === index ? "bg-fullBlue text-white" : ""
+                  } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory  hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
                   <div className="flex items-center">
                     <span>{footwear?.size}</span>
-                    <span className={`${dataActionFootwearSizes === index ? 'block' : 'hidden'} ml-1`}>({filterData?.section_products?.total || 0})</span>
                   </div>
                 </button>
               );
