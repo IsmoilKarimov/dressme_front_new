@@ -1,15 +1,18 @@
-
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../../../assets/icons";
 
-function FootwearSizesFilter({
+function SectionFootwearSizesFilter({
   state,
   setState,
   filter,
   handleFootwearWearSize,
   dataActionFootwearSizes,
   setDataActionFootwearSizes,
-  filteredData
+
+  setDataActionOutwearSizes,
+  setDataActionUnderwearSizes,
+  sendClearedUnderwearData,
+  sendClearedOutwearData
 }) {
   const [footwearData, setFootwearData] = useState(null);
   const [visibleButtons, setVisibleButtons] = useState(12);
@@ -63,17 +66,24 @@ function FootwearSizesFilter({
             {footwearData?.slice(0, visibleButtons)?.map((footwear, index) => {
               return (
                 <button
-                  key={index}
+                  key={index+1}
                   onClick={() => {
-                    setDataActionFootwearSizes(index);
+                    setDataActionFootwearSizes(index+1);
+                    setDataActionOutwearSizes(null);
+                    setDataActionUnderwearSizes(null);
                     handleFootwearWearSize(footwear?.wear_size);
+                    sendClearedUnderwearData()
+                    sendClearedOutwearData()
                   }}
                   className={`${
-                    dataActionFootwearSizes === index ? "bg-fullBlue text-white " : ""
-                  } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory  hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
+                    dataActionFootwearSizes === index+1
+                      ? "bg-fullBlue text-white"
+                      : ""
+                  } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory  hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
                   <div className="flex items-center">
                     <span>{footwear?.size}</span>
+                    <span className="ml-1">({footwear?.amount})</span>
                   </div>
                 </button>
               );
@@ -136,4 +146,4 @@ function FootwearSizesFilter({
   );
 }
 
-export default React.memo(FootwearSizesFilter);
+export default React.memo(SectionFootwearSizesFilter);

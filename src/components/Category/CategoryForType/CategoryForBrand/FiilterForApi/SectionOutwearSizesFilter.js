@@ -6,11 +6,15 @@ function SectionOutwearSizesFilter({
   state,
   setState,
   filter,
+  sendClearedOutwearData,
   dataActionOutwearSizes,
   setDataActionOutwearSizes,
   sendOutwearSize,
-  sendClearedOutwearData,
-  filterData,
+
+  setDataActionUnderwearSizes,
+  setDataActionFootwearSizes,
+  sendClearedUnderwearData,
+  handleFootwearWearSize
 }) {
   const [outwearData, setOutwearData] = useState(null);
   const [visibleButtons, setVisibleButtons] = useState(12);
@@ -27,17 +31,9 @@ function SectionOutwearSizesFilter({
     outwearSizes();
   }, [filter]);
 
-  const [countTimer, setCountTimer] = useState(0);
-
-  setTimeout(() => {
-    setCountTimer(filterData?.section_products?.total);
-  }, 5000);
-
-  console.log(countTimer, "result");
-
   return (
     <div
-      className={` ${
+      className={`${
         outwearData?.length > 0 ? "flex" : "hidden"
       } w-full flex-col items-center mb-[38px]`}
     >
@@ -77,18 +73,22 @@ function SectionOutwearSizesFilter({
             {outwearData?.slice(0, visibleButtons)?.map((outwear, index) => {
               return (
                 <button
-                  key={index}
+                  key={index+1}
                   onClick={() => {
-                    setDataActionOutwearSizes(index);
+                    setDataActionOutwearSizes(index+1);
+                    setDataActionUnderwearSizes(null);
+                    setDataActionFootwearSizes(null);
+                    handleFootwearWearSize(null);
+                    sendClearedUnderwearData()
                     sendOutwearSize(outwear);
                   }}
                   className={`${
                     outwear?.letter_size || outwear?.size ? "flex" : "hidden"
                   } ${
-                    dataActionOutwearSizes === index
+                    dataActionOutwearSizes === index+1
                       ? "bg-fullBlue text-white"
                       : ""
-                  } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
+                  } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
                   <div className="flex items-center">
                     {outwear?.letter_size ? (
@@ -96,6 +96,7 @@ function SectionOutwearSizesFilter({
                     ) : (
                       <span>{outwear?.size}</span>
                     )}
+                    <span className="ml-1">({outwear?.amount})</span>
                   </div>
                 </button>
               );

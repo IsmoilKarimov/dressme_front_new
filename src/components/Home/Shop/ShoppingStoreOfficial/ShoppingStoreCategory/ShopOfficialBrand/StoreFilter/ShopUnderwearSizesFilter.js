@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../../../assets/icons";
 
-function UnderwearSizesFilter({
+function SectionUnderwearSizesFilter({
   state,
   setState,
   filter,
+  sendClearedUnderwearData,
   dataActionUnderwearSizes,
   setDataActionUnderwearSizes,
   sendUnderwearSize,
-  sendClearedUnderwearData,
-  filteredData
+
+  setDataActionOutwearSizes,
+  setDataActionFootwearSizes,
+  sendClearedOutwearData,
+  handleFootwearWearSize
 }) {
   const [underwearData, setUnderwearData] = useState(null);
   const [visibleButtons, setVisibleButtons] = useState(12);
+
 
   useEffect(() => {
     async function underwearSizes() {
@@ -71,18 +76,24 @@ function UnderwearSizesFilter({
               ?.map((underwear, index) => {
                 return (
                   <button
-                    key={index}
+                    key={index + 1}
                     onClick={() => {
-                      setDataActionUnderwearSizes(index);
+                      setDataActionUnderwearSizes(index + 1);
+                      setDataActionOutwearSizes(null);
+                      setDataActionFootwearSizes(null);
                       sendUnderwearSize(underwear);
+                      handleFootwearWearSize(null)
+                      sendClearedOutwearData()
                     }}
                     className={`${
                       underwear?.letter_size || underwear?.size
                         ? "flex"
                         : "hidden"
                     } ${
-                      dataActionUnderwearSizes === index ? "bg-fullBlue text-white" : ""
-                    } h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
+                      dataActionUnderwearSizes === index + 1
+                        ? "bg-fullBlue text-white"
+                        : ""
+                    } h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
                   >
                     <div className="flex items-center">
                       {underwear?.letter_size ? (
@@ -94,6 +105,7 @@ function UnderwearSizesFilter({
                       ) : (
                         <span>{underwear?.min_wear_size}</span>
                       )}
+                      <span className="ml-1">({underwear?.amount})</span>
                     </div>
                   </button>
                 );
@@ -155,4 +167,4 @@ function UnderwearSizesFilter({
   );
 }
 
-export default React.memo(UnderwearSizesFilter);
+export default React.memo(SectionUnderwearSizesFilter);
