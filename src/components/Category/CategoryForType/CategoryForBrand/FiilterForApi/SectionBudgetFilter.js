@@ -18,12 +18,14 @@ function SectionBudgetFilter({
   );
   const [values, setValues] = useState([]);
 
-
   useEffect(() => {
     setMinPrice(Number(filter?.budget?.min_price) || 10000);
     setMaxPrice(Number(filter?.budget?.max_price) || 1000000);
     if (!values[0] && !values[1]) {
-      setValues([Number(filter?.budget?.min_price), Number(filter?.budget?.max_price)])
+      setValues([
+        Number(filter?.budget?.min_price),
+        Number(filter?.budget?.max_price),
+      ]);
     }
   }, [filter]);
 
@@ -31,6 +33,13 @@ function SectionBudgetFilter({
     if (minPrice !== values[0] || maxPrice !== values[1])
       setDataActionPrizes(true);
   }, [values]);
+
+  const clearFunction = () => {
+    setValues([
+      Number(filter?.budget?.min_price),
+      Number(filter?.budget?.max_price),
+    ]);
+  };
 
   return (
     <section className="w-full h-fit md:mb-[38px]">
@@ -98,6 +107,7 @@ function SectionBudgetFilter({
             className="slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] my-5"
             onChange={setValues}
             value={values}
+            minDistance={100}
             min={Number(minPrice)}
             max={Number(maxPrice)}
           />
@@ -109,6 +119,7 @@ function SectionBudgetFilter({
             <button
               type="button"
               onClick={() => {
+                clearFunction();
                 getMinMaxPrice({
                   min: null,
                   max: null,
