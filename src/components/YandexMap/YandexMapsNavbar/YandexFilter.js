@@ -54,21 +54,19 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   }, [values])
 
 
+
   const clearFunction = () => {
     setState({ ...state, clearPrice: false, openPrice: false });
     setValues([Number(getMapsInfo?.budget?.min_price), Number(getMapsInfo?.budget?.max_price)])
     setGetRange([])
   }
-  // console.log(minPrice, "minPrice");
-  // console.log(maxPrice, "maxPrice");
-  // console.log(values, "values");
+
   const sendPriceList = () => {
     setGetRange(values)
   };
   const handleOpenChangePrice = (newOpen) => {
     setState({ ...state, openPrice: newOpen });
   };
-  // console.log();
   const contentPrice = (
     <div className="w-fit h-[170px] m-0 overflow-hidden">
       <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
