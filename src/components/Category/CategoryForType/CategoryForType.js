@@ -9,6 +9,8 @@ export default function CategoryForType() {
   const [filterData, setFilterData] = useState([]);
   const [pageId, setPageId] = useState();
 
+  console.log(filterData,'filterData');
+
   useEffect(() => {
     if (dressInfo?.openCategoryFilter) {
       document.body.style.overflow = "hidden";

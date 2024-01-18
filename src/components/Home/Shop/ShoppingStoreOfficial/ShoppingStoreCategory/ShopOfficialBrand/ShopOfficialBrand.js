@@ -338,8 +338,8 @@ const ShopOfficialBrand = ({ setFilteredData, pageId, filteredData }) => {
           state={state}
           setState={setState}
           handleGetCategoryId={handleGetCategoryId}
-          newId={newId}
           filter={filter}
+          filteredData={filteredData}
           dataActionCategory={dataActionCategory}
           setDataActionCategory={setDataActionCategory}
         />

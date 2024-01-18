@@ -2,14 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { MenuCloseIcons } from "../../../../assets/icons";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { useParams } from "react-router-dom";
-import CategoryGenderButtonsFilter from "./FiilterForApi/SectionGenderButtonsFilter";
-import CategoriesFilter from "./FiilterForApi/SectionCategoriesFilter";
-import BudgetFilter from "./FiilterForApi/SectionBudgetFilter";
-import ColorsFilter from "./FiilterForApi/SectionColorsFilter";
-import CustomerReviewsFilter from "./FiilterForApi/SectionCustomerReviewsFilter";
-import FootwearSizesFilter from "./FiilterForApi/SectionFootwearSizesFilter";
-import OutwearSizesFilter from "./FiilterForApi/SectionOutwearSizesFilter";
-import UnderwearSizesFilter from "./FiilterForApi/SectionUnderwearSizesFilter";
 import SectionGenderButtonsFilter from "./FiilterForApi/SectionGenderButtonsFilter";
 import SectionCategoriesFilter from "./FiilterForApi/SectionCategoriesFilter";
 import SectionBudgetFilter from "./FiilterForApi/SectionBudgetFilter";
@@ -346,6 +338,7 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData}) => {
           handleGetCategoryId={handleGetCategoryId}
           newId={newId}
           filter={filter}
+          filterData={filterData}
           dataActionCategory={dataActionCategory}
           setDataActionCategory={setDataActionCategory}
         />
@@ -394,7 +387,6 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData}) => {
           sendOutwearSize={sendOutwearSize}
           sendClearedOutwearData={sendClearedOutwearData}
           filterData={filterData}
-
           setDataActionUnderwearSizes={setDataActionUnderwearSizes}
           setDataActionFootwearSizes={setDataActionFootwearSizes}
           sendClearedUnderwearData={sendClearedUnderwearData}
@@ -412,7 +404,6 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData}) => {
           sendUnderwearSize={sendUnderwearSize}
           sendClearedUnderwearData={sendClearedUnderwearData}
           filterData={filterData}
-
           setDataActionOutwearSizes={setDataActionOutwearSizes}
           setDataActionFootwearSizes={setDataActionFootwearSizes}
           sendClearedOutwearData={sendClearedOutwearData}
@@ -428,7 +419,6 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData}) => {
           dataActionFootwearSizes={dataActionFootwearSizes}
           setDataActionFootwearSizes={setDataActionFootwearSizes}
           filterData={filterData}
-
           setDataActionOutwearSizes={setDataActionOutwearSizes}
           setDataActionUnderwearSizes={setDataActionUnderwearSizes}
           sendClearedOutwearData={sendClearedOutwearData}
