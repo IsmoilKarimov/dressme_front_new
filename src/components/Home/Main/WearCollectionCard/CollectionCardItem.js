@@ -33,11 +33,15 @@ export const CollectionCardItem = ({
   }
 
   useEffect(() => {
-    data?.photos?.forEach((item) => {
-      if (item?.product_color_id === mainSelectedColor?.pivot?.id) {
-        setSelectedPhoto(item);
-      }
-    });
+    if (mainSelectedId) {
+      data?.photos?.forEach((item) => {
+        if (item?.product_color_id === mainSelectedColor?.pivot?.id) {
+          setSelectedPhoto(item);
+        }
+      });
+    } else {
+      setSelectedPhoto(data?.photos[0]);
+    }
   }, [mainSelectedColor]);
 
   // useEffect(() => {
