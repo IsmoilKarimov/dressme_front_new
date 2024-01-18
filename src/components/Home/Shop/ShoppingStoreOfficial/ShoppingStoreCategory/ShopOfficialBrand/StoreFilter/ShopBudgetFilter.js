@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../../../assets/icons";
 import Slider from "react-slider";
 
-function BudgetFilter({
+function SectionBudgetFilter({
   state,
   setState,
   getMinMaxPrice,
@@ -14,18 +14,18 @@ function BudgetFilter({
     Number(filter?.budget?.min_price) || 10000
   );
   const [maxPrice, setMaxPrice] = useState(
-    Number(filter?.budget?.max_price) || 2000000
+    Number(filter?.budget?.max_price) || 1000000
   );
-  // const [checkChange, setCheckChange] = useState(false);
   const [values, setValues] = useState([]);
-
-  console.log(typeof getMinMaxPrice);
 
   useEffect(() => {
     setMinPrice(Number(filter?.budget?.min_price) || 10000);
     setMaxPrice(Number(filter?.budget?.max_price) || 1000000);
     if (!values[0] && !values[1]) {
-      setValues([Number(filter?.budget?.min_price), Number(filter?.budget?.max_price)])
+      setValues([
+        Number(filter?.budget?.min_price),
+        Number(filter?.budget?.max_price),
+      ]);
     }
   }, [filter]);
 
@@ -33,6 +33,13 @@ function BudgetFilter({
     if (minPrice !== values[0] || maxPrice !== values[1])
       setDataActionPrizes(true);
   }, [values]);
+
+  const clearFunction = () => {
+    setValues([
+      Number(filter?.budget?.min_price),
+      Number(filter?.budget?.max_price),
+    ]);
+  };
 
   return (
     <section className="w-full h-fit md:mb-[38px]">
@@ -100,6 +107,7 @@ function BudgetFilter({
             className="slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] my-5"
             onChange={setValues}
             value={values}
+            minDistance={100}
             min={Number(minPrice)}
             max={Number(maxPrice)}
           />
@@ -111,6 +119,7 @@ function BudgetFilter({
             <button
               type="button"
               onClick={() => {
+                clearFunction();
                 getMinMaxPrice({
                   min: null,
                   max: null,
@@ -139,4 +148,4 @@ function BudgetFilter({
     </section>
   );
 }
-export default React.memo(BudgetFilter);
+export default React.memo(SectionBudgetFilter);
