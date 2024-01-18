@@ -214,6 +214,7 @@ export default function CatalogItems() {
           <CatalogFilterGroup
             setFilterData={setFilterData}
             pageId={pageId}
+            filterData={filterData}
           />
         </article>
         <article className="w-full md:w-[78%] h-[full] ss:px-4 md:px-0 ">

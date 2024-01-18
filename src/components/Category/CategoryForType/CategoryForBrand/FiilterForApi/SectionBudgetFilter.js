@@ -19,7 +19,7 @@ function SectionBudgetFilter({
   // const [checkChange, setCheckChange] = useState(false);
   const [values, setValues] = useState([minPrice, maxPrice]);
 
-  console.log(typeof getMinMaxPrice);
+  // console.log(typeof getMinMaxPrice);
 
   useEffect(() => {
     setMinPrice(Number(filter?.budget?.min_price) || 10000);

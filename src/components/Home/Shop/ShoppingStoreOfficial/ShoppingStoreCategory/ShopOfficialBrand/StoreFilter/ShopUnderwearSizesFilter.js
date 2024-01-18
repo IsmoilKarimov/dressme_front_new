@@ -9,6 +9,7 @@ function UnderwearSizesFilter({
   setDataActionUnderwearSizes,
   sendUnderwearSize,
   sendClearedUnderwearData,
+  filteredData
 }) {
   const [underwearData, setUnderwearData] = useState(null);
   const [visibleButtons, setVisibleButtons] = useState(12);
@@ -63,9 +64,7 @@ function UnderwearSizesFilter({
           } duration-300`}
         >
           <figure
-            className={`${
-              underwearData?.max_wear_size !== null ? "text-xs" : "text-sm"
-            } w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2`}
+            className={`w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2`}
           >
             {underwearData
               ?.slice(0, visibleButtons)
@@ -82,7 +81,7 @@ function UnderwearSizesFilter({
                         ? "flex"
                         : "hidden"
                     } ${
-                      dataActionUnderwearSizes === index ? "bg-fullBlue text-white" : ""
+                      dataActionUnderwearSizes === index ? "bg-fullBlue text-white text-xs" : "text-sm"
                     } h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
                   >
                     <div className="flex items-center">
@@ -95,7 +94,7 @@ function UnderwearSizesFilter({
                       ) : (
                         <span>{underwear?.min_wear_size}</span>
                       )}
-                      <span className="ml-1">({underwear?.amount})</span>
+                      <span className={`${dataActionUnderwearSizes === index ? 'block' : 'hidden'} ml-1`}>({filteredData?.products?.total || 0})</span>
                     </div>
                   </button>
                 );

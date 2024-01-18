@@ -11,7 +11,7 @@ const ShoppingStoreOfficial = () => {
   const [openTabLocation, setOpenTabLocation] = useState(false);
   const [filteredData, setFilteredData] = useState()
 
-  console.log(filteredData, 'filteredData');
+  // console.log(filteredData, 'filteredData');
 
   const clickButtons = {
     openTabComment,
@@ -47,7 +47,7 @@ const ShoppingStoreOfficial = () => {
               openTabComment || openTabLocation ? "hidden" : "block"
             } w-full`}
           >
-            <ShoppingStoreCategory filteredData={filteredData} setFilteredData={setFilteredData}  />
+            <ShoppingStoreCategory filteredData={filteredData} setFilteredData={setFilteredData} />
           </article>
 
           {/* Comment Section For Shopping Page */}

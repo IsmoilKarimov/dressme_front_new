@@ -45,15 +45,11 @@ function BottomHeader() {
 
   const [colorSelectId, setColorSelectId] = useState([]);
   // console.log(colorSelectId, "colorSelectId");
-  const [minPrice, setMinPrice] = useState(
-    Number(state?.getAllCardList?.budget?.min_price) || 10000
-  );
-  const [maxPrice, setMaxPrice] = useState(
-    Number(state?.getAllCardList?.budget?.max_price) || 1000000
-  );
+  const [minPrice, setMinPrice] = useState( Number(state?.getAllCardList?.budget?.min_price) || 10000 );
+  const [maxPrice, setMaxPrice] = useState( Number(state?.getAllCardList?.budget?.max_price) || 1000000 );
   const [getRange, setGetRange] = useState([]);
-
   const [values, setValues] = useState([]);
+  
   useEffect(() => {
     setMinPrice(Number(state?.getAllCardList?.budget?.min_price) || 10000);
     setMaxPrice(Number(state?.getAllCardList?.budget?.max_price) || 1000000);
@@ -77,6 +73,7 @@ function BottomHeader() {
     setValues([Number(state?.getAllCardList?.budget?.min_price), Number(state?.getAllCardList?.budget?.max_price)])
     setGetRange([])
   }
+
   const url = "https://api.dressme.uz/api/main";
   // ------------GET METHOD Main data -----------------
 
