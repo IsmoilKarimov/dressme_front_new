@@ -64,8 +64,10 @@ function BottomHeader() {
 
 
   useEffect(() => {
-    if (minPrice !== values[0] || maxPrice !== values[1]) {
-      setState({ ...state, clearPrice: true })
+    if (values && minPrice && maxPrice) {
+      if (minPrice !== values[0] || maxPrice !== values[1]) {
+        setState({ ...state, clearPrice: true })
+      }
     }
   }, [values])
 

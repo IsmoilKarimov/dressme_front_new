@@ -114,7 +114,7 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
     // window.location.href = `tel:${id}`;
     // window.open(`tel:${id}`, '_blank');
   };
-  console.log(imgGallery, "imgGallery");
+  // console.log(imgGallery, "imgGallery");
   return (
     <div className="w-full h-full ">
       {modalInfo?.locations?.filter(e => e?.id === dressInfo?.yandexGetMarketId)?.map(data => {
