@@ -22,35 +22,31 @@ export const CollectionCardItem = ({
 
   const [selectedPhoto, setSelectedPhoto] = useState(data?.photos[0]);
 
-  const [mainSelectedColor, setMainSelectedColor] = useState(null);
+  let mainSelectedColor = null;
 
-  const [selectedFilterColorPhoto, setSelectedFilterColorPhoto] =
-    useState(null);
-
-  useEffect(() => {
+  if (mainSelectedId) {
     data?.colors?.forEach((item) => {
       if (item?.id === mainSelectedId) {
-        setMainSelectedColor(item);
+        mainSelectedColor = item;
       }
     });
-  }, [mainSelectedId]);
+  }
 
   useEffect(() => {
     data?.photos?.forEach((item) => {
       if (item?.product_color_id === mainSelectedColor?.pivot?.id) {
-        console.log(item, "llllllllllllllllll");
         setSelectedPhoto(item);
       }
     });
   }, [mainSelectedColor]);
 
-  useEffect(() => {
-    if (mainSelectedId) {
-      console.log(mainSelectedId);
-    } else {
-      setSelectedPhoto(data?.photos[0]);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (mainSelectedId) {
+  //     console.log(mainSelectedId);
+  //   } else {
+  //     setSelectedPhoto(data?.photos[0]);
+  //   }
+  // }, [data]);
 
   // Remove duplicates and select only first -----
 
