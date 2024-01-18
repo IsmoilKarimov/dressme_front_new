@@ -394,6 +394,11 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData}) => {
           sendOutwearSize={sendOutwearSize}
           sendClearedOutwearData={sendClearedOutwearData}
           filterData={filterData}
+
+          setDataActionUnderwearSizes={setDataActionUnderwearSizes}
+          setDataActionFootwearSizes={setDataActionFootwearSizes}
+          sendClearedUnderwearData={sendClearedUnderwearData}
+          handleFootwearWearSize={handleFootwearWearSize}
         />
 
         {/* Underwear sizes */}
@@ -407,6 +412,11 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData}) => {
           sendUnderwearSize={sendUnderwearSize}
           sendClearedUnderwearData={sendClearedUnderwearData}
           filterData={filterData}
+
+          setDataActionOutwearSizes={setDataActionOutwearSizes}
+          setDataActionFootwearSizes={setDataActionFootwearSizes}
+          sendClearedOutwearData={sendClearedOutwearData}
+          handleFootwearWearSize={handleFootwearWearSize}
         />
 
         {/* Shoes sizes */}
@@ -418,6 +428,11 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData}) => {
           dataActionFootwearSizes={dataActionFootwearSizes}
           setDataActionFootwearSizes={setDataActionFootwearSizes}
           filterData={filterData}
+
+          setDataActionOutwearSizes={setDataActionOutwearSizes}
+          setDataActionUnderwearSizes={setDataActionUnderwearSizes}
+          sendClearedOutwearData={sendClearedOutwearData}
+          sendClearedUnderwearData={sendClearedUnderwearData}
         />
       </section>
       <section className=" mt-8 border-t border-searchBgColor py-5 px-3">
