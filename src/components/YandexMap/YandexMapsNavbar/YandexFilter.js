@@ -35,13 +35,13 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   }
   // ----------------------Price State Management----------------------
 
-  const [minPrice, setMinPrice] = useState(Number(getMapsInfo?.budget?.min_price));
-  const [maxPrice, setMaxPrice] = useState(Number(getMapsInfo?.budget?.max_price));
+  const [minPrice, setMinPrice] = useState(Number(getMapsInfo?.budget?.min_price) || 10000);
+  const [maxPrice, setMaxPrice] = useState(Number(getMapsInfo?.budget?.max_price) || 1000000);
   const [getRange, setGetRange] = useState([]);
   const [values, setValues] = useState([]);
   useEffect(() => {
-    setMinPrice(Number(getMapsInfo?.budget?.min_price))
-    setMaxPrice(Number(getMapsInfo?.budget?.max_price))
+    setMinPrice(Number(getMapsInfo?.budget?.min_price) || 10000)
+    setMaxPrice(Number(getMapsInfo?.budget?.max_price) || 1000000)
     if (!values[0] && !values[1]) {
       setValues([Number(getMapsInfo?.budget?.min_price), Number(getMapsInfo?.budget?.max_price)])
     }
@@ -56,7 +56,9 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
     }
   }, [values])
 
-
+  console.log(values, "state-values");
+  console.log(minPrice, "state-minPrice");
+  console.log(maxPrice, "state-maxPrice");
 
   const clearFunction = () => {
     setState({ ...state, clearPrice: false, openPrice: false });
@@ -87,8 +89,8 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
               от
             </span>
             <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-              <input className='w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
-                value={values[0]}
+              <input className='w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+                value={Number(values[0]).toLocaleString()}
               // onChange={(e) => setMaxPrice(e.target.value)}
               />  сум
             </span>
@@ -99,7 +101,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             </span>
             <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
               <input className='w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
-                value={values[1]}
+                value={Number(values[1]).toLocaleString()}
               // onChange={(e) => setMaxPrice(e.target.value)}
               />
               сум
@@ -118,7 +120,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
             // renderThumb={() => <div>1</div>}
             minDistance={10}
-            pearling
+            // pearling
             onChange={setValues}
             value={values}
             min={minPrice}

@@ -181,8 +181,8 @@ function BottomHeader() {
             </span>
             <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
               <input
-                className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-                value={values[0]}
+                className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                value={Number(values[0]).toLocaleString()}
               // onChange={(e) => setMaxPrice(e.target.value)}
               />{" "}
               сум
@@ -195,7 +195,7 @@ function BottomHeader() {
             <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
               <input
                 className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-                value={values[1]}
+                value={Number(values[1]).toLocaleString()}
               // onChange={(e) => setMaxPrice(e.target.value)}
               />
               сум
@@ -212,8 +212,8 @@ function BottomHeader() {
             ariaLabel={["Lower thumb", "Upper thumb"]}
             // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
             // renderThumb={() => <div>1</div>}
-            minDistance={0}
-            pearling
+            minDistance={10}
+            // pearling
             onChange={setValues}
             value={values}
             min={minPrice}
@@ -224,7 +224,7 @@ function BottomHeader() {
           {state?.clearPrice &&
             <span
               onClick={() => clearFunction()}
-              className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue"
+              className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
             >
               Сбросить
             </span>}
@@ -233,7 +233,7 @@ function BottomHeader() {
               sendPriceList();
               setState({ ...state, openPrice: false });
             }}
-            className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue"
+            className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
           >
             Готово
           </span>
