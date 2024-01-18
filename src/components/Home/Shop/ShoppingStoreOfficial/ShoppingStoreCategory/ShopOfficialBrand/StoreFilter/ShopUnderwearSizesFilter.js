@@ -81,8 +81,8 @@ function UnderwearSizesFilter({
                         ? "flex"
                         : "hidden"
                     } ${
-                      dataActionUnderwearSizes === index ? "bg-fullBlue text-white text-xs" : "text-sm"
-                    } h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
+                      dataActionUnderwearSizes === index ? "bg-fullBlue text-white" : ""
+                    } h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
                   >
                     <div className="flex items-center">
                       {underwear?.letter_size ? (
@@ -94,7 +94,6 @@ function UnderwearSizesFilter({
                       ) : (
                         <span>{underwear?.min_wear_size}</span>
                       )}
-                      <span className={`${dataActionUnderwearSizes === index ? 'block' : 'hidden'} ml-1`}>({filteredData?.products?.total || 0})</span>
                     </div>
                   </button>
                 );

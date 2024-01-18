@@ -10,7 +10,7 @@ function SectionOutwearSizesFilter({
   setDataActionOutwearSizes,
   sendOutwearSize,
   sendClearedOutwearData,
-  filterData
+  filterData,
 }) {
   const [outwearData, setOutwearData] = useState(null);
   const [visibleButtons, setVisibleButtons] = useState(12);
@@ -26,6 +26,14 @@ function SectionOutwearSizesFilter({
     }
     outwearSizes();
   }, [filter]);
+
+  const [countTimer, setCountTimer] = useState(0);
+
+  setTimeout(() => {
+    setCountTimer(filterData?.section_products?.total);
+  }, 5000);
+
+  console.log(countTimer, "result");
 
   return (
     <div
@@ -77,8 +85,10 @@ function SectionOutwearSizesFilter({
                   className={`${
                     outwear?.letter_size || outwear?.size ? "flex" : "hidden"
                   } ${
-                    dataActionOutwearSizes === index ? "bg-fullBlue text-white text-xs" : "text-sm"
-                  } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium  leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
+                    dataActionOutwearSizes === index
+                      ? "bg-fullBlue text-white"
+                      : ""
+                  } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
                   <div className="flex items-center">
                     {outwear?.letter_size ? (
@@ -86,7 +96,6 @@ function SectionOutwearSizesFilter({
                     ) : (
                       <span>{outwear?.size}</span>
                     )}
-                    <span className={`${dataActionOutwearSizes === index ? 'block' : 'hidden'} ml-1`}>({filterData?.section_products?.total || 0})</span>
                   </div>
                 </button>
               );
