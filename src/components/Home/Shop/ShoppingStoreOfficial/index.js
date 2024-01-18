@@ -11,7 +11,7 @@ const ShoppingStoreOfficial = () => {
   const [openTabLocation, setOpenTabLocation] = useState(false);
   const [filteredData, setFilteredData] = useState()
 
-  // console.log(filteredData, 'filteredData');
+  console.log(filteredData, 'filteredData');
 
   const clickButtons = {
     openTabComment,

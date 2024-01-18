@@ -1,19 +1,15 @@
 /* eslint-disable array-callback-return */
 import React, { useState } from "react";
 import { ArrowTopIcons } from "../../../../../../../assets/icons";
-import { useHttp } from "../../../../../../../hook/useHttp";
-import { useQuery } from "@tanstack/react-query";
 
 export default function CategoriesFilter({
   state,
   setState,
   handleGetCategoryId,
-  newId,
+  filteredData,
   dataActionCategory,
   setDataActionCategory
 }) {
-  const [getCategoryId, setGetCategoryId] = useState();
-  const { request } = useHttp();
 
   const [categories, setCategories] = useState([
     { id: "1", action: false, name: "Головной убор" },
@@ -22,25 +18,6 @@ export default function CategoriesFilter({
     { id: "4", action: false, name: "Обувь" },
     { id: "5", action: false, name: "Аксессуары" },
   ]);
-
-  // ------------GET METHOD CATEGORY-TYPE-----------------
-  useQuery(
-    ["get_category_id"],
-    () => {
-      return request({ url: `/main/section/${newId}`, token: true });
-    },
-    {
-      onSuccess: (res) => {
-        setGetCategoryId(res?.filter);
-        setState({ ...state, genderList: res?.genders });
-      },
-      onError: (err) => {
-        console.log(err, "err getGenderlist-method");
-      },
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
-    }
-  );
 
   const handleCategoryCheck = (value) => {
     setCategories((data) => {
@@ -55,12 +32,12 @@ export default function CategoriesFilter({
   return (
     <div
       className={`${
-        getCategoryId?.gender_ids.length ? "flex" : "hidden"
+        filteredData?.filter?.gender_ids.length ? "flex" : "hidden"
       } w-full flex-col items-center md:mb-[38px]`}
     >
       <section
         className={`${
-          getCategoryId?.category_ids ? "block" : "hidden"
+          filteredData?.filter?.category_ids ? "block" : "hidden"
         }  w-full h-fit mt-[12px] `}
       >
         <article
@@ -95,7 +72,7 @@ export default function CategoriesFilter({
           } duration-300 flex flex-col gap-y-4`}
         >
           {categories?.map((data) => {
-            return getCategoryId?.category_ids?.map((id) => {
+            return filteredData?.filter?.category_ids?.map((id) => {
               if (id === data.id) {
                 return (
                   <button
@@ -105,7 +82,7 @@ export default function CategoriesFilter({
                         ? `${data.action ? "bg-fullBlue text-white" : ""}`
                         : ""
                     } ${
-                      getCategoryId?.category_ids?.length == 1
+                      filteredData?.filter?.category_ids?.length == 1
                         ? "w-full cursor-not-allowed hover:bg-bgCategory hover:text-black"
                         : "hover:bg-fullBlue hover:text-white"
                     } w-full h-[44px] rounded-lg justify-center bg-bgCategory flex items-center select-none  text-black`}
@@ -116,7 +93,7 @@ export default function CategoriesFilter({
                       setDataActionCategory(true);
                       handleCategoryCheck(data?.id);
                     }}
-                    disabled={getCategoryId?.category_ids.length == 1}
+                    disabled={filteredData?.filter?.category_ids.length == 1}
                   >
                     <p className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
                       {data?.name}

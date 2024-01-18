@@ -9,6 +9,7 @@ export default function SectionCategoriesFilter({
   setState,
   handleGetCategoryId,
   newId,
+  filterData,
   dataActionCategory,
   setDataActionCategory
 }) {
@@ -60,7 +61,7 @@ export default function SectionCategoriesFilter({
     >
       <section
         className={`${
-          getCategoryId?.category_ids ? "block" : "hidden"
+          filterData?.filter?.category_ids ? "block" : "hidden"
         }  w-full h-fit mt-[12px] `}
       >
         <article
@@ -95,7 +96,7 @@ export default function SectionCategoriesFilter({
           } duration-300 flex flex-col gap-y-4`}
         >
           {categories?.map((data) => {
-            return getCategoryId?.category_ids?.map((id) => {
+            return filterData?.filter?.category_ids?.map((id) => {
               if (id === data.id) {
                 return (
                   <button
@@ -105,7 +106,7 @@ export default function SectionCategoriesFilter({
                         ? `${data.action ? "bg-fullBlue text-white" : ""}`
                         : ""
                     } ${
-                      getCategoryId?.category_ids?.length == 1
+                      filterData?.filter?.category_ids?.length == 1
                         ? "w-full cursor-not-allowed hover:bg-bgCategory hover:text-black"
                         : "hover:bg-fullBlue hover:text-white"
                     } w-full h-[44px] rounded-lg justify-center bg-bgCategory flex items-center select-none  text-black`}
@@ -116,7 +117,7 @@ export default function SectionCategoriesFilter({
                       setDataActionCategory(true);
                       handleCategoryCheck(data?.id);
                     }}
-                    disabled={getCategoryId?.category_ids.length == 1}
+                    disabled={filterData?.filter?.category_ids.length == 1}
                   >
                     <p className="not-italic font-AeonikProMedium tracking-[1%]   text-sm leading-4">
                       {data?.name}

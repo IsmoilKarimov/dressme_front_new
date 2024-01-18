@@ -17,13 +17,16 @@ function CategoryBudgetFilter({
     Number(filter?.budget?.max_price) || 1000000
   );
   // const [checkChange, setCheckChange] = useState(false);
-  const [values, setValues] = useState([minPrice, maxPrice]);
+  const [values, setValues] = useState([]);
 
   console.log(typeof getMinMaxPrice);
 
   useEffect(() => {
     setMinPrice(Number(filter?.budget?.min_price) || 10000);
     setMaxPrice(Number(filter?.budget?.max_price) || 1000000);
+    if (!values[0] && !values[1]) {
+      setValues([Number(filter?.budget?.min_price), Number(filter?.budget?.max_price)])
+    }
   }, [filter]);
 
   useEffect(() => {
