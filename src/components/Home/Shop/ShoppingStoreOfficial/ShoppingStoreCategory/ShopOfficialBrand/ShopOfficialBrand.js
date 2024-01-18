@@ -11,7 +11,7 @@ import ShopOutwearSizesFilter from "./StoreFilter/ShopOutwearSizesFilter";
 import ShopUnderwearSizesFilter from "./StoreFilter/ShopUnderwearSizesFilter";
 import ShopFootwearSizesFilter from "./StoreFilter/ShopFootwearSizesFilter";
 
-const ShopOfficialBrand = ({ setFilteredData, pageId }) => {
+const ShopOfficialBrand = ({ setFilteredData, pageId, filteredData }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [genderId, setGenderId] = useState();
@@ -387,6 +387,7 @@ const ShopOfficialBrand = ({ setFilteredData, pageId }) => {
           setDataActionOutwearSizes={setDataActionOutwearSizes}
           sendOutwearSize={sendOutwearSize}
           sendClearedOutwearData={sendClearedOutwearData}
+          filteredData={filteredData}
         />
 
         {/* Underwear sizes */}
@@ -399,6 +400,7 @@ const ShopOfficialBrand = ({ setFilteredData, pageId }) => {
           setDataActionUnderwearSizes={setDataActionUnderwearSizes}
           sendUnderwearSize={sendUnderwearSize}
           sendClearedUnderwearData={sendClearedUnderwearData}
+          filteredData={filteredData}
         />
 
         {/* Shoes sizes */}
@@ -409,6 +411,7 @@ const ShopOfficialBrand = ({ setFilteredData, pageId }) => {
           handleFootwearWearSize={handleFootwearWearSize}
           dataActionFootwearSizes={dataActionFootwearSizes}
           setDataActionFootwearSizes={setDataActionFootwearSizes}
+          filteredData={filteredData}
         />
       </section>
       <section className="border-t border-searchBgColor py-5 px-3">

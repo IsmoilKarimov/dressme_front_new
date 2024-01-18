@@ -23,6 +23,7 @@ const ShoppingStoreCategory = ({ filteredData, setFilteredData }) => {
             <ShopOfficialBrand
               setFilteredData={setFilteredData}
               pageId={pageId}
+              filteredData={filteredData}
             />
           </action>
           <action

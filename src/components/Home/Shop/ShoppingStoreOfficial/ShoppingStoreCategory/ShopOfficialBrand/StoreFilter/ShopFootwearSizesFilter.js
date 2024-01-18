@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../../../assets/icons";
 
@@ -8,6 +9,7 @@ function FootwearSizesFilter({
   handleFootwearWearSize,
   dataActionFootwearSizes,
   setDataActionFootwearSizes,
+  filteredData
 }) {
   const [footwearData, setFootwearData] = useState(null);
   const [visibleButtons, setVisibleButtons] = useState(12);
@@ -67,12 +69,12 @@ function FootwearSizesFilter({
                     handleFootwearWearSize(footwear?.wear_size);
                   }}
                   className={`${
-                    dataActionFootwearSizes === index ? "bg-fullBlue text-white" : ""
+                    dataActionFootwearSizes === index ? "bg-fullBlue text-white text-xs" : "text-sm"
                   } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory  hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
                 >
                   <div className="flex items-center">
                     <span>{footwear?.size}</span>
-                    <span className="ml-1">({footwear?.amount})</span>
+                    <span className={`${dataActionFootwearSizes === index ? 'block' : 'hidden'} ml-1`}>({filteredData?.products?.total || 0})</span>
                   </div>
                 </button>
               );
