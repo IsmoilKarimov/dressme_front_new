@@ -2,25 +2,21 @@ import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../assets/icons";
 import Slider from "react-slider";
 
-function SectionBudgetFilter({
+const SectionBudgetFilter = ({
   state,
   setState,
   getMinMaxPrice,
   filter,
   dataActionPrizes,
   setDataActionPrizes,
-}) {
-  const [minPrice, setMinPrice] = useState(
-    Number(filter?.budget?.min_price) || 10000
-  );
-  const [maxPrice, setMaxPrice] = useState(
-    Number(filter?.budget?.max_price) || 1000000
-  );
+}) => {
+  const [minPrice, setMinPrice] = useState(Number(filter?.budget?.min_price));
+  const [maxPrice, setMaxPrice] = useState(Number(filter?.budget?.max_price));
   const [values, setValues] = useState([]);
 
   useEffect(() => {
-    setMinPrice(Number(filter?.budget?.min_price) || 10000);
-    setMaxPrice(Number(filter?.budget?.max_price) || 1000000);
+    setMinPrice(Number(filter?.budget?.min_price));
+    setMaxPrice(Number(filter?.budget?.max_price));
     if (!values[0] && !values[1]) {
       setValues([
         Number(filter?.budget?.min_price),
@@ -42,7 +38,11 @@ function SectionBudgetFilter({
   };
 
   return (
-    <section className="w-full h-fit md:mb-[38px]">
+    <section
+      className={`${
+        values?.length ? "block" : "hidden"
+      } ${!Number(values[0]) || !Number(values[1]) ? 'hidden' : 'block' } w-full h-fit md:mb-[38px]`}
+    >
       <article
         className="w-full flex justify-between items-center md:pt-[12px]"
         onClick={(event) => {
@@ -81,10 +81,10 @@ function SectionBudgetFilter({
               <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                 <input
                   className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-                  value={values[0]}
-                  onChange={(e) => {
-                    setMinPrice(e.target.value);
-                  }}
+                  value={
+                    Number(values[0]).toLocaleString() ? Number(values[0]).toLocaleString() : ""
+                  }
+                  onChange={(e) => { setMinPrice(e.target.value) }}
                 />{" "}
               </span>
             </div>
@@ -95,7 +95,9 @@ function SectionBudgetFilter({
               <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                 <input
                   className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
-                  value={values[1]}
+                  value={
+                    Number(values[1]).toLocaleString() ? Number(values[1]).toLocaleString() : ""
+                  }
                   onChange={(e) => {
                     setMaxPrice(e.target.value);
                   }}
@@ -147,5 +149,5 @@ function SectionBudgetFilter({
       </article>
     </section>
   );
-}
+};
 export default React.memo(SectionBudgetFilter);

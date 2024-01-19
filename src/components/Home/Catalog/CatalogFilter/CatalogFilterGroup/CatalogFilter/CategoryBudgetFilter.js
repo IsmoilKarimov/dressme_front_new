@@ -42,7 +42,7 @@ function SectionBudgetFilter({
   };
 
   return (
-    <section className="w-full h-fit md:mb-[38px]">
+    <section className={`${!Number(values[0]) || !Number(values[1]) ? 'hidden' : 'block' } w-full h-fit md:mb-[38px]`}>
       <article
         className="w-full flex justify-between items-center md:pt-[12px]"
         onClick={(event) => {
