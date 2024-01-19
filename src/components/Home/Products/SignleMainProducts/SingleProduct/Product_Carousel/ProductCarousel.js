@@ -15,6 +15,7 @@ const ProductCarousel = ({ show, data }) => {
   const [dressInfo] = useContext(dressMainData);
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
+
   const slider1 = useRef(null);
   const slider2 = useRef(null);
 
@@ -22,9 +23,11 @@ const ProductCarousel = ({ show, data }) => {
     (item) => item?.product_color_id === colorId
   );
 
+  const [sliderState, setSliderState] = useState(0);
+
   useEffect(() => {
-    slider1.current?.slickGoTo(0, true);
-  }, [data]);
+    slider1.current.slickGoTo(sliderState);
+  }, [sliderState]);
 
   const NextArrowModal = (props) => {
     const { onClick } = props;
@@ -146,10 +149,10 @@ const ProductCarousel = ({ show, data }) => {
     { id: 11, size_in_letters: "6XL", size_in_numbers: "36-44" },
   ]);
 
-  useEffect(() => {
-    setNav1(slider1.current);
-    setNav2(slider2.current);
-  }, []);
+  // useEffect(() => {
+  //   setNav1(slider1.current);
+  //   setNav2(slider2.current);
+  // }, []);
 
   const NextArrow = (props) => {
     const { onClick } = props;
@@ -272,7 +275,7 @@ const ProductCarousel = ({ show, data }) => {
                 ? data?.product?.photos?.map((data, i) => {
                     if (data?.product_color_id === colorId) {
                       return (
-                        <article>
+                        <article key={i}>
                           <figure className="relative overflow-hidden h-fit w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center">
                             <img src={data?.url_photo} alt="" />
                             <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
@@ -288,7 +291,7 @@ const ProductCarousel = ({ show, data }) => {
                   })
                 : data?.product?.photos?.map((data, i) => {
                     return (
-                      <article>
+                      <article key={i}>
                         <figure className="relative overflow-hidden h-fit w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center">
                           <img src={data?.url_photo} alt="" />
                           <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
@@ -314,11 +317,70 @@ const ProductCarousel = ({ show, data }) => {
         `}
         >
           <article className="flex w-[93px] flex-col">
-            <Slider
+            {colorId
+              ? filteredForModal?.map((data, i) => {
+                  if (data?.product_color_id === colorId) {
+                    return (
+                      <div
+                        key={i}
+                        onClick={() => {
+                          setSliderState(i);
+                        }}
+                        className="mb-2"
+                      >
+                        <figure
+                          key={data?.id}
+                          style={{
+                            backgroundImage: `url("${data?.url_photo}")`,
+                            backgroundColor: "rgba(0,0,0,0.6)",
+                            backgroundPosition: "center center",
+                            backgroundSize: "cover",
+                            backgroundRepeat: "no-repeat",
+                          }}
+                          className={`${
+                            sliderState === i
+                              ? "border-2 border-[#007DCA]"
+                              : "border border-searchBgColor"
+                          } !w-[90px] cursor-pointer !h-[120px]  bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center`}
+                        ></figure>
+                      </div>
+                    );
+                  }
+                })
+              : data?.product?.photos?.map((data, i) => {
+                  return (
+                    <div
+                      key={i}
+                      onClick={() => {
+                        setSliderState(i);
+                      }}
+                      className="mb-2"
+                    >
+                      <figure
+                        key={data?.id}
+                        style={{
+                          backgroundImage: `url("${data?.url_photo}")`,
+                          backgroundColor: "rgba(0,0,0,0.6)",
+                          backgroundPosition: "center center",
+                          backgroundSize: "cover",
+                          backgroundRepeat: "no-repeat",
+                        }}
+                        className={`${
+                          sliderState === i
+                            ? "border-2 border-[#007DCA]"
+                            : "border border-searchBgColor"
+                        }  !w-[90px] cursor-pointer !h-[120px] bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center`}
+                      ></figure>
+                    </div>
+                  );
+                })}
+
+            {/* <Slider
               asNavFor={nav1}
               ref={slider2}
               afterChange={(current) => {
                 setCurrentSlide(current);
+                setSliderState(current);
               }}
               slidesToShow={
                 colorId
@@ -328,13 +390,14 @@ const ProductCarousel = ({ show, data }) => {
               swipeToSlide={true}
               focusOnSelect={true}
               vertical={true}
+              initialSlide={0}
               className="flex flex-col flex-wrap w-full h-full pt-0 rounded-lg"
             >
               {colorId
                 ? filteredForModal?.map((data, i) => {
                     if (data?.product_color_id === colorId) {
                       return (
-                        <div>
+                        <div key={i}>
                           <figure
                             key={data?.id}
                             style={{
@@ -356,7 +419,7 @@ const ProductCarousel = ({ show, data }) => {
                   })
                 : data?.product?.photos?.map((data, i) => {
                     return (
-                      <div>
+                      <div key={i}>
                         <figure
                           key={data?.id}
                           style={{
@@ -375,7 +438,7 @@ const ProductCarousel = ({ show, data }) => {
                       </div>
                     );
                   })}
-            </Slider>
+            </Slider> */}
           </article>
 
           <article className="group mx-auto md:w-[480px] md:h-[620px]">
@@ -384,13 +447,17 @@ const ProductCarousel = ({ show, data }) => {
               asNavFor={nav2}
               ref={slider1}
               {...settings}
+              initialSlide={0}
+              afterChange={(current) => {
+                setSliderState(current);
+              }}
             >
               {colorId
                 ? filteredForModal?.map((data, i) => {
                     if (data?.product_color_id === colorId) {
                       return (
                         <article
-                          key={data?.id}
+                          key={i}
                           onClick={() => {
                             handleClickCarosuel(i);
                           }}
@@ -434,7 +501,7 @@ const ProductCarousel = ({ show, data }) => {
                 : data?.product?.photos?.map((data, i) => {
                     return (
                       <article
-                        key={data?.id}
+                        key={i}
                         onClick={() => {
                           handleClickCarosuel(i);
                         }}
