@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { InputCheckedTrueIcons, StarIcons } from "../../../../assets/icons";
 import { CalourCard } from "../../../../assets";
+import { SliderPhotosColorContext } from "../../../../ContextHook/SliderPhotosColor";
 
 export const CollectionCardItem = ({
   data,
@@ -17,6 +18,8 @@ export const CollectionCardItem = ({
   const goDetail = (id) => {
     navigate(`/product/${id}`);
   };
+
+  const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
 
   // Selected color ------------------
 
@@ -78,6 +81,7 @@ export const CollectionCardItem = ({
       <figure
         onClick={() => {
           goDetail(data?.id);
+          setcolorId(null);
         }}
         style={{
           backgroundImage: `url("${selectedPhoto?.url_photo}")`,
