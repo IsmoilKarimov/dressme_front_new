@@ -21,7 +21,7 @@ function CategoryColorsFilter({
   }
 
   return (
-    <div className="w-full flex items-center flex-col md:mb-[38px]">
+    <div className={`${filter?.colors ? 'block':'hidden'} w-full flex items-center flex-col md:mb-[38px]`}>
       <section className="w-full h-fit ">
         {/* Controls */}
         <article

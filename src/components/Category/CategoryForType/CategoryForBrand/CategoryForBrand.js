@@ -136,7 +136,7 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData}) => {
     };
   }, [screenSize]);
 
-  // ===========================================================
+  // =================================================
   // OUTWEAR
   function onGetOutwearSizes(letterSize, minSize, maxSize) {
     handleOutwearSizes({
@@ -217,13 +217,13 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData}) => {
     setDataActionFootwearSizes(false);
   }
 
-  // =================================================
+  // ================================================
 
   const { id } = useParams();
   const newId = id.replace(":", "");
   const apiUrl = `https://api.dressme.uz/api/main/section/${newId}`;
 
-  async function fetchGetAllData() {
+  const fetchGetAllData = async () => {
     let params = new URLSearchParams();
     genderId && params.append("gender", genderId);
     discountId && params.append("discount", discountId);

@@ -125,14 +125,14 @@ const TopHeader = () => {
                   {
                     mainData?.regions?.filter(e => e?.id === dressInfo?.mainRegionId)?.map(item => {
                       return (
-                        <>
+                        <div key={item?.id}>
                           <span className="">{item?.name_ru} </span>
                           {item?.sub_regions?.filter(e => e?.id == dressInfo?.mainSubRegionId)?.map(data => {
                             return (
                               <span className="  ">, <span className=" ml-[1px]">{data?.name_ru}</span></span>
                             )
                           })}
-                        </>
+                        </div>
                       )
                     })
                   }
