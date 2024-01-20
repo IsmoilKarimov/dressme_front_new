@@ -387,7 +387,6 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
           sendOutwearSize={sendOutwearSize}
           sendClearedOutwearData={sendClearedOutwearData}
           filterData={filterData}
-
           setDataActionUnderwearSizes={setDataActionUnderwearSizes}
           setDataActionFootwearSizes={setDataActionFootwearSizes}
           sendClearedUnderwearData={sendClearedUnderwearData}
@@ -405,7 +404,6 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
           sendUnderwearSize={sendUnderwearSize}
           sendClearedUnderwearData={sendClearedUnderwearData}
           filterData={filterData}
-
           setDataActionOutwearSizes={setDataActionOutwearSizes}
           setDataActionFootwearSizes={setDataActionFootwearSizes}
           sendClearedOutwearData={sendClearedOutwearData}
@@ -421,7 +419,6 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
           dataActionFootwearSizes={dataActionFootwearSizes}
           setDataActionFootwearSizes={setDataActionFootwearSizes}
           filterData={filterData}
-
           setDataActionOutwearSizes={setDataActionOutwearSizes}
           setDataActionUnderwearSizes={setDataActionUnderwearSizes}
           sendClearedOutwearData={sendClearedOutwearData}

@@ -48,8 +48,8 @@ function SectionColorsFilter({
             </p>
           </figure>
         </article>
+        
         {/* Colors */}
-
         <article
           className={`overflow-hidden ${
             state?.ColorsShow ? "duration-300 h-0" : `h-fit duration-300 pt-5 pb-1`

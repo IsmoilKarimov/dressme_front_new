@@ -13,8 +13,6 @@ export default function CatalogItems() {
   const [filterData, setFilterData] = useState([]);
   const [pageId, setPageId] = useState();
 
-  console.log(filterData,'filter-Data-Category');
-
   const [data, setData] = useState({});
   const [state, setState] = useState({
     opensports: false,
@@ -24,6 +22,9 @@ export default function CatalogItems() {
     value: null,
     id: null,
   });
+
+  console.log(filterData,'filter-Data-Category');
+  // console.log(data,'data');
 
   useEffect(() => {
     if (dressInfo?.openCatalogFilter) {
@@ -73,7 +74,7 @@ export default function CatalogItems() {
 
   const contentCategories = (
     <section className="w-[230px] h-fit max-h-[350px] overflow-y-auto m-0 p-0 VerticelScroll">
-      {data?.categories?.map((data) => {
+      {filterData?.categories?.map((data) => {
         return (
           <p
             key={data?.id}
@@ -109,18 +110,18 @@ export default function CatalogItems() {
     }
   }, [selectedSection]);
 
-  useEffect(() => {
-    fetch(`${url}/api/main/category/${params?.id}`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        //   "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => setData(res))
-      .catch((res) => console.log(res));
-  }, [params]);
+  // useEffect(() => {
+  //   fetch(`${url}/api/main/category/${params?.id}`, {
+  //     method: "GET",
+  //     headers: {
+  //       Accept: "application/json",
+  //       //   "Content-type": "application/json; charset=UTF-8",
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((res) => setData(res))
+  //     .catch((res) => console.log(res));
+  // }, [params]);
 
   return (
     <main className="w-full h-full">
@@ -131,18 +132,18 @@ export default function CatalogItems() {
             <div className="relative w-full md:h-[90px] mt-6 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               {/*  */}
               <div className="w-full md:w-fit flex h-[66px] md:h-fit items-center border md:border-none border-searchBgColor rounded-b-lg">
-                <div className="absolute w-[80px] md:w-[150px] h-[80px] md:h-[150px] left-[38px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center  bg-white">
+                <div className="absolute w-[80px] md:w-[150px] h-[80px] md:h-[150px] overflow-hidden left-[38px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center  bg-white">
                   <img
                     // src={data?.section?.url_photo}
                     alt=""
-                    className="rounded-full"
+                    className="rounded-full object-contain"
                   />
                 </div>
                 <div className="flex items-center ml-[112px] md:ml-[210px]">
                   <div className="text-2xl font-AeonikProMedium">
-                    {data?.category?.name_ru}
+                    {filterData?.category?.name_ru}
                     <span className="text-lg text-setTexOpacity font-AeonikProRegular ml-2">
-                      ({data?.category_products?.total})
+                      ({filterData?.category_products?.total})
                     </span>
                   </div>
                 </div>
@@ -164,7 +165,7 @@ export default function CatalogItems() {
                       content={contentCategories}
                     >
                       <span className="text-[15px] font-AeonikProMedium">
-                        {data?.category?.name_ru}
+                        {filterData?.category?.name_ru}
                       </span>
                       <span>
                         <BiChevronDown
@@ -182,11 +183,11 @@ export default function CatalogItems() {
             </div>
           </article>
         </article>
-        {data?.section?.sub_sections ? (
+        {filterData?.section?.sub_sections ? (
           <article className="w-full border-b border-searchBgColor">
             <article className="w-full hidden md:block mb-10">
               <ul className=" flex flex-row items-center flex-wrap gap-x-[14px] gap-y-[14px]">
-                {data?.section?.sub_sections?.map((catalog, index) => (
+                {filterData?.section?.sub_sections?.map((catalog, index) => (
                   <li key={index} className="text-[15px] font-AeonikProMedium">
                     <button className="focus:bg-borderWinter focus:text-white hover:bg-borderWinter hover:text-white bg-white border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]">
                       {catalog.name_ru}
