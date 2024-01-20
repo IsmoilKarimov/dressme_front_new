@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import CatalogItems from "./CatalogItems";
 import CatalogTopFilter from "./CatalogTop/CatalogTopFilter";
 
 export default function CatalogMain() {
-  const [filterData, setFilterData] = useState([]);
   useEffect(() => {
     window.scrollTo({
       top: 0,

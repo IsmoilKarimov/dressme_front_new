@@ -336,9 +336,8 @@ const MediumHeader = () => {
                       placement="bottomRight"
                       content={contentWear}
                     >
-                      {SeasonTypeArray.filter(
-                        (e) => e.id === dressInfo.type
-                      ).map((data) => {
+                      {SeasonTypeArray.filter( (e) => e.id === dressInfo.type ).map((data) => {
+                        console.log(data,'weather-data');
                         return (
                           <figure
                             key={data?.id}
