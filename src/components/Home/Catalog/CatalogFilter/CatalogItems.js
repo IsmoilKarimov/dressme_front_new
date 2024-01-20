@@ -132,11 +132,11 @@ export default function CatalogItems() {
             <div className="relative w-full md:h-[90px] mt-6 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               {/*  */}
               <div className="w-full md:w-fit flex h-[66px] md:h-fit items-center border md:border-none border-searchBgColor rounded-b-lg">
-                <div className="absolute w-[80px] h-[80px] md:w-[140px] md:h-[170px] overflow-hidden  left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center  bg-white">
+                <div className="absolute w-[80px] h-[80px] md:w-[120px] md:h-[160px] overflow-hidden  left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center  bg-white">
                   <img
                     src={data?.category?.url_photo}
                     alt=""
-                    className="w-full h-full rounded-xl object-cover"
+                    className="w-full h-full rounded-xl object-contain"
                   />
                 </div>
                 <div className="flex items-center ml-[112px] md:ml-[210px]">
