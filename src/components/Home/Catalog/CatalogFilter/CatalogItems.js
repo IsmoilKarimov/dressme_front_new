@@ -45,7 +45,7 @@ export default function CatalogItems() {
           <p
             key={data?.id}
             onClick={() => {
-              handleCategories(data?.name_ru, data?.id);
+              handleCategories(data?.id);
               window.location.reload();
             }}
             className={`${
