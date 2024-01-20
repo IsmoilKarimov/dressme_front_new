@@ -145,7 +145,7 @@ const CategoryTopDetail = ({filterData, setFilterData}) => {
                   <img
                     src={filterData?.section?.url_photo}
                     alt=""
-                    className="w-full h-full rounded-xl object-contain"
+                    className="w-full h-full rounded-xl object-cover"
                   />
                 </div>
                 <div className="flex items-center ml-[112px] md:ml-[210px]">

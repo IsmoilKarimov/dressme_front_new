@@ -12,19 +12,12 @@ export default function CatalogItems() {
 
   const [filterData, setFilterData] = useState([]);
   const [pageId, setPageId] = useState();
-
-  const [data, setData] = useState({});
   const [state, setState] = useState({
     opensports: false,
     openTypesofClothes: false,
   });
-  const [selectedSection, setSelectedSection] = useState({
-    value: null,
-    id: null,
-  });
 
-  console.log(filterData,'filter-Data-Category');
-  // console.log(data,'data');
+  console.log(filterData, "filter-Data-Category");
 
   useEffect(() => {
     if (dressInfo?.openCatalogFilter) {
@@ -40,37 +33,10 @@ export default function CatalogItems() {
   const handleOpenCategories = (newOpen) => {
     setState({ ...state, opensports: newOpen });
   };
-  const handleCategories = (value, id) => {
+  const handleCategories = (id) => {
     setState({ ...state, opensports: false });
-    setSelectedSection({ value, id });
     navigate(`/catalog/${id}`);
   };
-
-  const url = "https://api.dressme.uz";
-
-  useQuery(
-    ["get_catalog_show_data"],
-    () => {
-      return fetch(`${url}/api/main/category/${params?.id}`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          //   "Content-type": "application/json; charset=UTF-8",
-        },
-      }).then((res) => res.json());
-    },
-    {
-      onSuccess: (res) => {
-        setData(res);
-        setSelectedSection({ ...selectedSection, id: res?.section?.id });
-      },
-      onError: (err) => {
-        console.log(err, "err");
-      },
-      keepPreviousData: true,
-      refetchOnWindowFocus: true,
-    }
-  );
 
   const contentCategories = (
     <section className="w-[230px] h-fit max-h-[350px] overflow-y-auto m-0 p-0 VerticelScroll">
@@ -80,6 +46,7 @@ export default function CatalogItems() {
             key={data?.id}
             onClick={() => {
               handleCategories(data?.name_ru, data?.id);
+              window.location.reload();
             }}
             className={`${
               params?.id == data?.id ? "bg-bgColor" : null
@@ -92,37 +59,6 @@ export default function CatalogItems() {
     </section>
   );
 
-  // ----- Category change -----
-
-  useEffect(() => {
-    if (selectedSection?.id) {
-      fetch(`${url}/api/main/category/${selectedSection?.id}`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          //   "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((res) => res.json())
-        .then((res) => setData(res))
-        .catch((res) => console.log(res));
-    } else {
-    }
-  }, [selectedSection]);
-
-  // useEffect(() => {
-  //   fetch(`${url}/api/main/category/${params?.id}`, {
-  //     method: "GET",
-  //     headers: {
-  //       Accept: "application/json",
-  //       //   "Content-type": "application/json; charset=UTF-8",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((res) => setData(res))
-  //     .catch((res) => console.log(res));
-  // }, [params]);
-
   return (
     <main className="w-full h-full">
       {/* TOP DATA */}
@@ -134,7 +70,7 @@ export default function CatalogItems() {
               <div className="w-full md:w-fit flex h-[66px] md:h-fit items-center border md:border-none border-searchBgColor rounded-b-lg">
                 <div className="absolute w-[80px] h-[80px] md:w-[120px] md:h-[160px] overflow-hidden  left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center  bg-white">
                   <img
-                    src={data?.category?.url_photo}
+                    src={filterData?.category?.url_photo}
                     alt=""
                     className="w-full h-full rounded-xl object-contain"
                   />
@@ -219,9 +155,7 @@ export default function CatalogItems() {
           />
         </article>
         <article className="w-full md:w-[78%] h-[full] ss:px-4 md:px-0 ">
-          <CatalogCard 
-            filterData={filterData} 
-            setPageId={setPageId} />
+          <CatalogCard filterData={filterData} setPageId={setPageId} />
         </article>
       </section>
     </main>
