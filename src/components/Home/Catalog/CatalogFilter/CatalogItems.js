@@ -3,7 +3,6 @@ import CatalogCard from "./CatalogElement/CatalogCard";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { Popover } from "antd";
-import { useQuery } from "@tanstack/react-query";
 import { BiChevronDown } from "react-icons/bi";
 import CatalogFilterGroup from "./CatalogFilterGroup/CatalogFilterGroup";
 
@@ -49,7 +48,7 @@ export default function CatalogItems() {
               window.location.reload();
             }}
             className={`${
-              params?.id == data?.id ? "bg-bgColor" : null
+              params?.id === data?.id ? "bg-bgColor" : null
             } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {data?.name_ru}
