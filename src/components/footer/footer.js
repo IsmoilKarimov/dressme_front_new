@@ -84,7 +84,7 @@ const Footer = () => {
 
   const PersonTypeArray = [
     {
-      id: 1111,
+      id: 444,
       man: SpringMale,
       woman: SpringFemale,
       boy: SpringBoy,
@@ -92,7 +92,7 @@ const Footer = () => {
       childs: SpringChild,
     },
     {
-      id: 2222,
+      id: 111,
       man: SummerMale,
       woman: SummerFemale,
       boy: SummerBoy,
@@ -100,7 +100,7 @@ const Footer = () => {
       childs: SummerChild,
     },
     {
-      id: 3333,
+      id: 222,
       man: AutummMale,
       woman: AutummFemale,
       boy: AutummBoy,
@@ -108,7 +108,7 @@ const Footer = () => {
       childs: AutummChild,
     },
     {
-      id: 4444,
+      id: 333,
       man: WinterMale,
       woman: WinterFemale,
       boy: WinterBoy,
