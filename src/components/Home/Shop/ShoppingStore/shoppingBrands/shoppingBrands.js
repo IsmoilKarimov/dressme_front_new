@@ -51,13 +51,15 @@ const ShoppingBrands = ({ getData, setGetData, loading, setLoading }) => {
                       className="w-full h-fit md:h-[100px] flex flex-col md:flex-row items-center border border-searchBgColor rounded-lg mb-[30px] p-[10px] md:pr-10"
                     >
                       <div className="w-full flex items-center pb-[15px] md:pb-0 border-b border-searchBgColor md:border-none">
-                        <figure className="w-[80px] h-[80px] overflow-hidden md:w-[120px] md:h-[120px] md:ml-10 rounded-full border border-searchBgColor flex items-center justify-center bg-white">
-                          <img
-                            src={data?.url_logo_photo}
-                            alt=""
-                            className="w-[80%] h-[70%] object-contain"
-                          />
-                        </figure>
+                        <figure
+                          style={{
+                            backgroundImage: `url(${data?.url_logo_photo})`,
+                            backgroundPosition: "center center",
+                            backgroundSize: "cover",
+                            backgroundRepeat: "no-repeat",
+                          }}
+                          className="w-[80px] h-[80px] overflow-hidden md:w-[120px] md:h-[120px] md:ml-10 rounded-full border border-searchBgColor flex items-center justify-center"
+                        ></figure>
                         <div className="flex flex-col ml-4 md:ml-10">
                           <p className="text-base ll:text-lg md:text-xl font-AeonikProMedium mb-[5px] md:mb-3">
                             {data?.name || null}
