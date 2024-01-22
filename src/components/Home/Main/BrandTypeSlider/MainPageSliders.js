@@ -364,7 +364,7 @@ function MainPageSliders() {
                         style={{
                           backgroundImage: `url(${data?.url_logo_photo})`,
                           backgroundPosition: "center center",
-                          backgroundSize: "cover",
+                          backgroundSize: "contain",
                           backgroundRepeat: "no-repeat",
                         }}
                         className=" h-full w-full flex items-center justify-center rounded-full bg-white"
