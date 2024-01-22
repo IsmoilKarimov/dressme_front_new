@@ -4,9 +4,9 @@ import CategoryCards from "./CategoryElement/CategoryCards";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import CategoryForBrand from "./CategoryForBrand/CategoryForBrand";
 
-export default function CategoryForType() {
+function CategoryForType({filterData, setFilterData}) {
   const [dressInfo] = useContext(dressMainData);
-  const [filterData, setFilterData] = useState([]);
+
   const [pageId, setPageId] = useState();
 
   console.log(filterData,'filterData');
@@ -45,3 +45,5 @@ export default function CategoryForType() {
     </main>
   );
 }
+
+export default React.memo(CategoryForType )

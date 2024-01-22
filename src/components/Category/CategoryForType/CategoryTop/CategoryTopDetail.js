@@ -1,4 +1,4 @@
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   FilterIcons,
   ItailIcons,
@@ -10,12 +10,11 @@ import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 import FilterDropUp from "../CategoryMobileDropUp/FilterDropUp";
 import ClothingTypesDropUp from "../CategoryMobileDropUp/ClothingTypesDropUp";
-import { useQuery } from "@tanstack/react-query";
 
-const CategoryTopDetail = () => {
+const CategoryTopDetail = ({filterData, setFilterData}) => {
   const [clothingTypes, setClothingTypes] = useState(false);
   const [filter, setFilter] = useState(false);
-  const [data, setData] = useState({});
+  // const [data, setData] = useState({});
 
   const toggleFilter = useCallback(() => setFilter(false), []);
   const toggleClothingTypes = useCallback(() => setClothingTypes(false), []);
@@ -29,18 +28,19 @@ const CategoryTopDetail = () => {
     }
   }, [filter, clothingTypes]);
 
-  const { id } = useParams();
-  const newId = id?.replace(":", "");
+  // const { id } = useParams();
+  // const newId = id?.replace(":", "");
 
   const [state, setState] = useState({
     opensports: false,
     openTypesofClothes: false,
   });
 
-  const [selectedSection, setSelectedSection] = useState({
-    value: null,
-    id: null,
-  });
+  // const [selectedSection, setSelectedSection] = useState({
+  //   value: null,
+  //   id: null,
+  // });
+
 
   const navigate = useNavigate();
 
@@ -50,49 +50,22 @@ const CategoryTopDetail = () => {
   };
   const handleCategories = (value, id) => {
     setState({ ...state, opensports: false });
-    setSelectedSection({ value, id });
+    // setSelectedSection({ value, id });
     navigate(`/section/${id}`);
   };
 
-  // --------------------------------------
-
-  const url = "https://api.dressme.uz";
-
-  // ------------GET METHOD Main data -----------------
-  useQuery(
-    ["get_section_show_data"],
-    () => {
-      return fetch(`${url}/api/main/section/${newId}`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-        },
-      }).then((res) => res.json());
-    },
-    {
-      onSuccess: (res) => {
-        setData(res);
-        setSelectedSection({ ...selectedSection, id: res?.section?.id });
-      },
-      onError: (err) => {
-        console.log(err, "err");
-      },
-      keepPreviousData: true,
-      refetchOnWindowFocus: true,
-    }
-  );
-
   const contentCategories = (
     <section className="w-[230px] h-[350px] overflow-y-auto m-0 p-0 VerticelScroll">
-      {data?.sections?.map((data) => {
+      {filterData?.sections?.map((data) => {
         return (
           <p
             key={data?.id}
             onClick={() => {
               handleCategories(data?.name_ru, data?.id);
+              window.location.reload()
             }}
             className={`${
-              selectedSection?.id === data?.id ? "bg-bgColor" : null
+              filterData?.section?.id === data?.id ? "bg-bgColor" : null
             } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {data?.name_ru}
@@ -101,23 +74,6 @@ const CategoryTopDetail = () => {
       })}
     </section>
   );
-
-  // ----- Category change -----
-
-  // useEffect(() => {
-  //   if (selectedSection?.id) {
-  //     fetch(`${url}/api/main/section/${selectedSection?.id}`, {
-  //       method: "GET",
-  //       headers: {
-  //         Accept: "application/json",
-  //         //   "Content-type": "application/json; charset=UTF-8",
-  //       },
-  //     })
-  //       .then((res) => res.json())
-  //       .then((res) => setData(res))
-  //       .catch((res) => console.log(res));
-  //   }
-  // }, [selectedSection]);
 
   return (
     <main className="flex flex-col justify-center border-t border-searchBgColor items-center">
@@ -185,18 +141,18 @@ const CategoryTopDetail = () => {
             <figure className="relative w-full md:h-[90px] mt-6 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               {/*  */}
               <div className="w-full md:w-fit flex h-[66px] md:h-fit items-center border md:border-none border-searchBgColor rounded-b-lg">
-                <div className="absolute w-[80px] md:w-[150px] h-[80px] md:h-[150px] left-[38px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center  bg-white">
+                <div className="absolute w-[80px] h-[80px] md:w-[120px] md:h-[160px] overflow-hidden left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center bg-white columns-1">
                   <img
-                    src={data?.section?.url_photo}
+                    src={filterData?.section?.url_photo}
                     alt=""
-                    className="rounded-full"
+                    className="w-full h-full rounded-xl object-cover"
                   />
                 </div>
                 <div className="flex items-center ml-[112px] md:ml-[210px]">
                   <div className="text-2xl font-AeonikProMedium">
-                    {data?.section?.name_ru}
+                    {filterData?.section?.name_ru}
                     <span className="text-lg text-setTexOpacity font-AeonikProRegular ml-2">
-                      ({data?.section_products?.total})
+                      ({filterData?.section_products?.total})
                     </span>
                   </div>
                 </div>
@@ -219,7 +175,7 @@ const CategoryTopDetail = () => {
                       content={contentCategories}
                     >
                       <span className="text-[15px] font-AeonikProMedium">
-                        {data?.section?.name_ru}
+                        {filterData?.section?.name_ru}
                       </span>
                       <span>
                         <BiChevronDown
@@ -257,11 +213,11 @@ const CategoryTopDetail = () => {
             </button>
           </article>
         </article>
-        {data?.section?.sub_sections ? (
+        {filterData?.section?.sub_sections ? (
           <article className="w-full border-b border-searchBgColor">
             <article className="w-full hidden md:block mb-10">
               <ul className=" flex flex-row items-center flex-wrap gap-x-[14px] gap-y-[14px]">
-                {data?.section?.sub_sections?.map((catalog, index) => (
+                {filterData?.section?.sub_sections?.map((catalog, index) => (
                   <li key={index} className="text-[15px] font-AeonikProMedium">
                     <button className="focus:bg-borderWinter focus:text-white hover:bg-borderWinter hover:text-white bg-white border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]">
                       {catalog.name_ru}

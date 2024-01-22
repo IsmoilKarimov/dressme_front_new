@@ -4,7 +4,7 @@ import { ArrowTopIcons } from "../../../../../assets/icons";
 import { useHttp } from "../../../../../hook/useHttp";
 import { useQuery } from "@tanstack/react-query";
 
-export default function SectionCategoriesFilter({
+ function SectionCategoriesFilter({
   state,
   setState,
   handleGetCategoryId,
@@ -144,3 +144,5 @@ export default function SectionCategoriesFilter({
     </div>
   );
 }
+
+export default React.memo(SectionCategoriesFilter)

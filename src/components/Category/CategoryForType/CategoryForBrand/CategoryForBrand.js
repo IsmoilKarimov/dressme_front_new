@@ -57,7 +57,6 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData}) => {
 
   // Gender GetID
   function handleGetId(childData) {
-    console.log(childData);
     setGenderId(childData);
   }
   // Discount GetID
@@ -274,6 +273,7 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData}) => {
 
   useEffect(() => {
     fetchGetAllData();
+    console.log('test');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     genderId,

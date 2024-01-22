@@ -167,6 +167,8 @@ function MainPageSliders() {
     ],
   };
 
+  console.log(mainData?.sections?.url_photo, "mainData");
+
   const [more, setMore] = useState(false);
 
   const navigate = useNavigate();
@@ -179,8 +181,9 @@ function MainPageSliders() {
         <section className="w-full box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
           {/* MAIN SLIDER */}
           <div
-            className={`w-full ss:h-0 ${more ? "xs:h-0" : "xs:h-auto"
-              } overflow-hidden`}
+            className={`w-full ss:h-0 ${
+              more ? "xs:h-0" : "xs:h-auto"
+            } overflow-hidden`}
           >
             {mainData?.sections?.length > 6 ? (
               <Slider
@@ -189,21 +192,26 @@ function MainPageSliders() {
                 className="w-[100%] flex xs:justify-between flex-wrap  "
               >
                 {mainData?.sections?.map((data) => {
+                  console.log(data, "data-data");
                   return (
                     <NavLink
                       to={`/section/${data?.id}`}
                       key={data?.id}
                       className="!w-[99%] h-[260px] rounded-lg "
                     >
-                      <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px] rounded-lg overflow-hidden">
+                      <div className="w-full h-[230px] border border-green-600 bg-btnBgColor ml-[0.5px] rounded-lg overflow-hidden">
                         <button
                           className={`w-full h-full border border-searchBgColor rounded-lg flex items-center justify-center`}
                         >
-                          <NoImg />
+                          <img
+                            className="w-full h-full rounded-lg object-cover"
+                            src={data?.url_photo}
+                            alt="No-img"
+                          />
                         </button>
                       </div>
                       <article className="h-12.5 flex items-center justify-start">
-                        <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
+                        <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2 ml-2">
                           {data?.name_ru || "type"}
                           <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
                             ({data?.products_count || "0"})
@@ -223,11 +231,15 @@ function MainPageSliders() {
                       key={data?.id}
                       className="max-w-[192px] w-full h-[260px] rounded-lg "
                     >
-                      <div className="w-full h-[230px] bg-btnBgColor p-2 ml-[0.5px] rounded-lg overflow-hidden">
+                      <div className="w-full h-[230px] bg-btnBgColor ml-[0.5px] rounded-lg overflow-hidden">
                         <button
                           className={`w-full h-full border border-searchBgColor rounded-lg flex items-center justify-center`}
                         >
-                          <NoImg />
+                          <img
+                            className="w-full h-full rounded-lg object-cover"
+                            src={data?.url_photo}
+                            alt="No-img"
+                          />
                         </button>
                       </div>
                       <article className="h-12.5 flex items-center justify-start">
@@ -247,8 +259,9 @@ function MainPageSliders() {
 
           {/* CAROUSEL HIDDEN BLOCK */}
           <div
-            className={`${more ? "xs:grid" : "xs:hidden"
-              } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 md:pt-7`}
+            className={`${
+              more ? "xs:grid" : "xs:hidden"
+            } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 md:pt-7`}
           >
             {mainData?.sections?.map((data, i) => {
               if (more) {
@@ -369,4 +382,4 @@ function MainPageSliders() {
     </main>
   );
 }
-export default React.memo(MainPageSliders)
+export default React.memo(MainPageSliders);

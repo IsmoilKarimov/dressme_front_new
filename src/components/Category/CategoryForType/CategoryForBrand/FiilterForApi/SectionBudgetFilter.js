@@ -26,8 +26,11 @@ const SectionBudgetFilter = ({
   }, [filter]);
 
   useEffect(() => {
-    if (minPrice !== values[0] || maxPrice !== values[1])
-      setDataActionPrizes(true);
+    if (values && minPrice && maxPrice) {
+      if (minPrice !== values[0] || maxPrice !== values[1]) {
+        setDataActionPrizes(true);
+      }
+    } 
   }, [values]);
 
   const clearFunction = () => {
@@ -39,9 +42,9 @@ const SectionBudgetFilter = ({
 
   return (
     <section
-      className={`${
-        values?.length ? "block" : "hidden"
-      } ${!Number(values[0]) || !Number(values[1]) ? 'hidden' : 'block' } w-full h-fit md:mb-[38px]`}
+      className={`${values?.length ? "block" : "hidden"} ${
+        !Number(values[0]) || !Number(values[1]) ? "hidden" : "block"
+      } w-full h-fit md:mb-[38px]`}
     >
       <article
         className="w-full flex justify-between items-center md:pt-[12px]"
@@ -82,9 +85,13 @@ const SectionBudgetFilter = ({
                 <input
                   className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                   value={
-                    Number(values[0]).toLocaleString() ? Number(values[0]).toLocaleString() : ""
+                    Number(values[0]).toLocaleString()
+                      ? Number(values[0]).toLocaleString()
+                      : ""
                   }
-                  onChange={(e) => { setMinPrice(e.target.value) }}
+                  onChange={(e) => {
+                    setMinPrice(e.target.value);
+                  }}
                 />{" "}
               </span>
             </div>
@@ -96,7 +103,9 @@ const SectionBudgetFilter = ({
                 <input
                   className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
                   value={
-                    Number(values[1]).toLocaleString() ? Number(values[1]).toLocaleString() : ""
+                    Number(values[1]).toLocaleString()
+                      ? Number(values[1]).toLocaleString()
+                      : ""
                   }
                   onChange={(e) => {
                     setMaxPrice(e.target.value);
@@ -106,45 +115,43 @@ const SectionBudgetFilter = ({
             </div>
           </div>
           <Slider
-            className="slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] my-5"
+            className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] my-5`}
             onChange={setValues}
             value={values}
             minDistance={100}
             min={Number(minPrice)}
             max={Number(maxPrice)}
           />
-          <div
-            className={`${
-              dataActionPrizes ? "flex" : "hidden"
-            } w-full items-center justify-between mt-1`}
-          >
-            <button
-              type="button"
-              onClick={() => {
-                clearFunction();
-                getMinMaxPrice({
-                  min: null,
-                  max: null,
-                });
-                setDataActionPrizes(false);
-              }}
-              className={`flex items-center text-sm text-borderWinter font-AeonikProRegular`}
-            >
-              Сбросить
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                getMinMaxPrice({
-                  min: values[0],
-                  max: values[1],
-                });
-              }}
-              className="flex items-center font-AeonikProRegular cursor-pointer text-sm justify-center  text-fullBlue"
-            >
-              Готово
-            </button>
-          </div>
+          {dataActionPrizes && (
+            <div className={`flex w-full items-center justify-between mt-1`}>
+              <button
+                type="button"
+                onClick={() => {
+                  clearFunction();
+                  getMinMaxPrice({
+                    min: null,
+                    max: null,
+                  });
+                  setDataActionPrizes(false);
+                }}
+                className={`flex items-center text-sm text-borderWinter font-AeonikProRegular`}
+              >
+                Сбросить
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  getMinMaxPrice({
+                    min: values[0],
+                    max: values[1],
+                  });
+                }}
+                className="flex items-center font-AeonikProRegular cursor-pointer text-sm justify-center  text-fullBlue"
+              >
+                Готово
+              </button>
+            </div>
+          )}
         </div>
       </article>
     </section>
