@@ -112,6 +112,7 @@ export default function CollectionCards() {
                 .map((data) => {
                   return (
                     <CollectionCardItem
+                      key={data?.id}
                       data={data}
                       setOpenWearType={setOpenWearType}
                       handleLeaveMouse={handleLeaveMouse}

@@ -25,6 +25,8 @@ export const CollectionCardItem = ({
 
   const [selectedPhoto, setSelectedPhoto] = useState(data?.photos[0]);
 
+  console.log(selectedPhoto, "5555555");
+
   let mainSelectedColor = null;
 
   if (mainSelectedId) {
