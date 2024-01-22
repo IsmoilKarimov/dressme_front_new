@@ -23,9 +23,8 @@ const TopHeader = () => {
   // -----Language Change-------------------
   const [selectLang, setselectLang] = useState(1);
   const LanguageList = [
-    { id: 1, type: "English", icons: EnglishFlag },
-    { id: 2, type: "Русский", icons: RussianFlag },
-    { id: 3, type: "O'zbekcha", icons: UzbekFlag },
+    { id: 1, type: "Русский", icons: RussianFlag },
+    { id: 2, type: "O'zbekcha", icons: UzbekFlag },
   ];
   const [openLang, setOpenLang] = useState(false);
   const handleOpenChangeWear = (newOpen) => {
@@ -169,14 +168,6 @@ const TopHeader = () => {
 
           {/* RIGHT SIDE */}
           <article className="right h-full flex items-center">
-            <NavLink to="#" className={`flex items-center h-fit py-[4px]`}>
-              <span className="mr-2">
-                <CommentIcons colors={"#707070"} />
-              </span>
-              <p className="text-textColor text-[13px] font-AeonikProMedium">
-                Помощь
-              </p>
-            </NavLink>
             <button
               type="button"
               onClick={() =>

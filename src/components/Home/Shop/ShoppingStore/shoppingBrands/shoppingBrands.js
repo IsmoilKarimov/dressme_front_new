@@ -55,7 +55,7 @@ const ShoppingBrands = ({ getData, setGetData, loading, setLoading }) => {
                           style={{
                             backgroundImage: `url(${data?.url_logo_photo})`,
                             backgroundPosition: "center center",
-                            backgroundSize: "cover",
+                            backgroundSize: "contain",
                             backgroundRepeat: "no-repeat",
                           }}
                           className="w-[80px] h-[80px] overflow-hidden md:w-[120px] md:h-[120px] md:ml-10 rounded-full border border-searchBgColor flex items-center justify-center bg-white"
