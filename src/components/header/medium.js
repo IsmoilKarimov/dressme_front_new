@@ -116,25 +116,25 @@ const MediumHeader = ({ seasonsData }) => {
 
   const SeasonTypeArray = [
     { id: 5555, type: "", icons: AllSeasonDesktop },
-    { id: 1111, type: "Лето", icons: summerSeason },
-    { id: 2222, type: "Осень", icons: autummSeason },
-    { id: 3333, type: "Зима", icons: winterSeason },
-    { id: 4444, type: "Весна", icons: springSeason },
+    { id: 111, type: "Лето", icons: summerSeason },
+    { id: 222, type: "Осень", icons: autummSeason },
+    { id: 333, type: "Зима", icons: winterSeason },
+    { id: 444, type: "Весна", icons: springSeason },
   ];
 
   const SeasonTypeArrayMobile = [
     { id: 5555, type: "Все", icons: AllSeason },
-    { id: 2222, type: "Лето", icons: summerSeason },
-    { id: 3333, type: "Осень", icons: autummSeason },
-    { id: 4444, type: "Зима", icons: winterSeason },
-    { id: 1111, type: "Весна", icons: springSeason },
+    { id: 111, type: "Лето", icons: summerSeason },
+    { id: 222, type: "Осень", icons: autummSeason },
+    { id: 333, type: "Зима", icons: winterSeason },
+    { id: 444, type: "Весна", icons: springSeason },
   ];
 
   const BrandTypeArray = [
-    { id: 1111, type: "Весна", icons: BrandSpring },
-    { id: 2222, type: "Лето", icons: BrandSummer },
-    { id: 3333, type: "Осень", icons: BrandAutumm },
-    { id: 4444, type: "Зима", icons: BrandWinter },
+    { id: 444, type: "Весна", icons: BrandSpring },
+    { id: 111, type: "Лето", icons: BrandSummer },
+    { id: 222, type: "Осень", icons: BrandAutumm },
+    { id: 333, type: "Зима", icons: BrandWinter },
     { id: 5555, type: "Все", icons: allBrandDesktop },
   ];
 
@@ -165,7 +165,6 @@ const MediumHeader = ({ seasonsData }) => {
     },
   ]);
 
-
   const handleGenderDataCheck = (value) => {
     setGenderType((data) => {
       return data.map((e) => {
@@ -195,30 +194,24 @@ const MediumHeader = ({ seasonsData }) => {
   const contentWear = (
     <section className="ss:w-fit md:w-[120px] h-fit m-0 p-0  data1">
       {SeasonTypeArray.map((value) => {
-            return (
+        return (
+          <article
+            key={value?.id}
+            className="w-full h-[42px] md:flex items-center hidden  md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
+            onClick={() => handleSeason(value.id)}
+          >
+            <figure className={`${value?.id !== 5555 ? "w-5" : ""} `}>
+              <img src={value?.icons} alt="" className="object-cover w-full" />
+            </figure>
+            {value?.type && (
               <article
-                key={value?.id}
-                className="w-full h-[42px] md:flex items-center hidden  md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
-                onClick={
-                  () => handleSeason(value.id)
-                }
+                className={`ml-2 md:ml-3 flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
               >
-                <figure className={`${value?.id !== 5555 ? "w-5" : ""} `}>
-                  <img
-                    src={value?.icons}
-                    alt=""
-                    className="object-cover w-full"
-                  />
-                </figure>
-                {value?.type && (
-                  <article
-                    className={`ml-2 md:ml-3 flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
-                  >
-                    {value?.type}
-                  </article>
-                )}
+                {value?.type}
               </article>
-            );
+            )}
+          </article>
+        );
       })}
       {SeasonTypeArrayMobile.map((value) => {
         return (

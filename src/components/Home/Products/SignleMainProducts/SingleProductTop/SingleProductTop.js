@@ -19,10 +19,10 @@ const SingleProductTop = () => {
   });
 
   const personItems = [
-    { id: 1111, man: SpringMale },
-    { id: 2222, man: SummerMale },
-    { id: 3333, man: AutummMale },
-    { id: 4444, man: WinterMale },
+    { id: 444, man: SpringMale },
+    { id: 111, man: SummerMale },
+    { id: 222, man: AutummMale },
+    { id: 333, man: WinterMale },
     { id: 5555, man: WinterMale },
   ];
 
