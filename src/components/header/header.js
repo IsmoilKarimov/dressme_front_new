@@ -9,6 +9,9 @@ import { dressMainData } from "../../ContextHook/ContextMenu";
 
 const Header = () => {
   const [dressInfo] = useContext(dressMainData);
+  const [seasonsData, setSeasons] = useState()
+
+  // console.log(seasonsData?.seasons, 'seasons-res');
 
   // ----------------NavBar----------------
   const [show, setShow] = useState(true);
@@ -70,8 +73,8 @@ const Header = () => {
             }
             >
               <TopHeader />
-              <MediumHeader />
-              <div className={`${scrollPost > -530 ? "" : "h-0 overflow-hidden"} visible duration-500`}> <NavbarBottomIndex /></div>
+              <MediumHeader seasonsData={seasonsData} />
+              <div className={`${scrollPost > -530 ? "" : "h-0 overflow-hidden"} visible duration-500`}> <NavbarBottomIndex setSeasons={setSeasons} /></div>
             </article>
 
           </div>

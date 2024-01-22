@@ -167,8 +167,6 @@ function MainPageSliders() {
     ],
   };
 
-  console.log(mainData?.sections?.url_photo, "mainData");
-
   const [more, setMore] = useState(false);
 
   const navigate = useNavigate();
@@ -192,7 +190,6 @@ function MainPageSliders() {
                 className="w-[100%] flex xs:justify-between flex-wrap  "
               >
                 {mainData?.sections?.map((data) => {
-                  console.log(data, "data-data");
                   return (
                     <NavLink
                       to={`/section/${data?.id}`}
