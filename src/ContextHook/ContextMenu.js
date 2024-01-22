@@ -1148,7 +1148,7 @@ export const DressMenu = ({ children }) => {
   });
   const BtnSeasonArray = [
     {
-      id: 1111,
+      id: 444,
       btn: "text-borderSpring bg-btnBgColor border-searchBgColor",
       btnOpacity: "text-borderSpring bg-opacity-10 bg-bgSpring",
       btnFocus:
@@ -1164,7 +1164,7 @@ export const DressMenu = ({ children }) => {
         "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderSpring text-borderSpring",
     },
     {
-      id: 2222,
+      id: 111,
       btn: "text-borderSummer bg-btnBgColor border-searchBgColor",
       btnOpacity: "text-borderSummer bg-opacity-10 bg-bgSummer",
       btnFocus:
@@ -1180,7 +1180,7 @@ export const DressMenu = ({ children }) => {
         "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderSummer text-borderSummer",
     },
     {
-      id: 3333,
+      id: 222,
       btn: "text-borderAutumm bg-btnBgColor border-searchBgColor",
       btnOpacity: "text-borderAutumm bg-opacity-10 bg-bgAutumm",
       btnFocus:
@@ -1196,7 +1196,7 @@ export const DressMenu = ({ children }) => {
         "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderAutumm text-borderAutumm",
     },
     {
-      id: 4444,
+      id: 333,
       btn: "text-borderWinter bg-btnBgColor border-searchBgColor",
       btnOpacity: "text-borderWinter bg-opacity-10 bg-bgWinter",
       btnFocus:
@@ -1205,7 +1205,7 @@ export const DressMenu = ({ children }) => {
       textColor: "text-borderWinter",
       color: "#007DCA",
       btnActiveSeason:
-        "text-borderWinter  bg-bgWinter border border-borderWinter",
+        "text-borderWinter bg-bgWinter border border-borderWinter",
       authenActiveSeason:
         "md:text-borderWinter bg-white bg-bgWinter md:border-borderWinter w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border rounded-lg",
       linkActive:

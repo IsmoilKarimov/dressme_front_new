@@ -39,26 +39,25 @@ export default function NavbarTopOpenMenu() {
   ];
   const SeasonTypeArray = [
     { id: 5555, type: "", icons: AllSeasonDesktop },
-    { id: 1111, type: "Весна", icons: springSeason },
-    { id: 2222, type: "Лето", icons: summerSeason },
-    { id: 3333, type: "Осень", icons: autummSeason },
-    { id: 4444, type: "Зима", icons: winterSeason },
+    { id: 444, type: "Весна", icons: springSeason },
+    { id: 111, type: "Лето", icons: summerSeason },
+    { id: 222, type: "Осень", icons: autummSeason },
+    { id: 333, type: "Зима", icons: winterSeason },
   ];
   const SeasonTypeArrayMobile = [
     { id: 5555, type: "Все", icons: AllSeason },
-    { id: 1111, type: "Весна", icons: springSeason },
-    { id: 2222, type: "Лето", icons: summerSeason },
-    { id: 3333, type: "Осень", icons: autummSeason },
-    { id: 4444, type: "Зима", icons: winterSeason },
+    { id: 444, type: "Весна", icons: springSeason },
+    { id: 111, type: "Лето", icons: summerSeason },
+    { id: 222, type: "Осень", icons: autummSeason },
+    { id: 333, type: "Зима", icons: winterSeason },
   ];
   const BrandTypeArray = [
-    { id: 1111, type: "Весна", icons: BrandSpring },
-    { id: 2222, type: "Лето", icons: BrandSummer },
-    { id: 3333, type: "Осень", icons: BrandAutumm },
-    { id: 4444, type: "Зима", icons: BrandWinter },
+    { id: 444, type: "Весна", icons: BrandSpring },
+    { id: 111, type: "Лето", icons: BrandSummer },
+    { id: 222, type: "Осень", icons: BrandAutumm },
+    { id: 333, type: "Зима", icons: BrandWinter },
     { id: 5555, type: "Все", icons: allBrandDesktop },
   ];
-
 
   // ----------------Wear state management----------------------------
   const [openwear, setOpenwear] = useState(false);
@@ -225,7 +224,6 @@ export default function NavbarTopOpenMenu() {
         </div>
         {/* Weather section */}
         <article className="w-12 h-12 md:w-[120px]  md:h-11 bg-btnBgColor border border-searchBgColor rounded-xl ml-2">
-
           <div className="w-full h-full ">
             <Popover
               className="w-full h-full flex items-center justify-center rounded-lg cursor-pointer  md:px-2 md:gap-x-[5px] "
@@ -236,43 +234,40 @@ export default function NavbarTopOpenMenu() {
               placement="bottom"
               content={contentWear}
             >
-              {SeasonTypeArray.filter(
-                (e) => e.id === dressInfo.type
-              ).map((data) => {
-                return (
-                  <figure
-                    key={data?.id}
-                    className="w-full h-full md:flex hidden items-center select-none cursor-pointer  ">
-                    <img
-                      src={data?.icons}
-                      alt="weather"
-                      className="mr-0 md:mr-[5px] "
-                    />
-                    <figcaption className=" font-AeonikProMedium  flex items-center text-[15px] ">
-                      {data?.type}
-                    </figcaption>
-                  </figure>
-                );
-              })}
-              {SeasonTypeArrayMobile.filter(
-                (e) => e.id === dressInfo.type
-              ).map((data) => {
-                return (
-                  <figure
-                    key={data?.id}
-                    className="w-full h-full md:hidden flex items-center justify-center select-none cursor-pointer  ">
-                    <img
-                      src={data?.icons}
-                      alt="weather"
-                      className="mr-0 "
-                    />
-                  </figure>
-                );
-              })}
+              {SeasonTypeArray.filter((e) => e.id === dressInfo.type).map(
+                (data) => {
+                  return (
+                    <figure
+                      key={data?.id}
+                      className="w-full h-full md:flex hidden items-center select-none cursor-pointer  "
+                    >
+                      <img
+                        src={data?.icons}
+                        alt="weather"
+                        className="mr-0 md:mr-[5px] "
+                      />
+                      <figcaption className=" font-AeonikProMedium  flex items-center text-[15px] ">
+                        {data?.type}
+                      </figcaption>
+                    </figure>
+                  );
+                }
+              )}
+              {SeasonTypeArrayMobile.filter((e) => e.id === dressInfo.type).map(
+                (data) => {
+                  return (
+                    <figure
+                      key={data?.id}
+                      className="w-full h-full md:hidden flex items-center justify-center select-none cursor-pointer  "
+                    >
+                      <img src={data?.icons} alt="weather" className="mr-0 " />
+                    </figure>
+                  );
+                }
+              )}
             </Popover>
           </div>
         </article>
-
       </div>
       <span className="w-[2px] h-[30px] bg-searchBgColor mr-4"></span>
       <div className="w-[69%] h-full px-1">

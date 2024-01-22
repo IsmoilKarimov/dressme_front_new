@@ -1,10 +1,41 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Popover, Select, Space, } from "antd";
-import { AutummBoyIcons, ByBrandIcon, ChildGenIcon, ClothesIcons, DollorIcons, DownArrowAntd, ManGenIcons, ManWomanGen, MenuCloseIcons, SpringBoyIcons, SummerBoyIcons, WinterBoyIcons, WomanGenIcons } from "../../../assets/icons";
+import { Popover, Select, Space } from "antd";
+import {
+  AutummBoyIcons,
+  ByBrandIcon,
+  ChildGenIcon,
+  ClothesIcons,
+  DollorIcons,
+  DownArrowAntd,
+  ManGenIcons,
+  ManWomanGen,
+  MenuCloseIcons,
+  SpringBoyIcons,
+  SummerBoyIcons,
+  WinterBoyIcons,
+  WomanGenIcons,
+} from "../../../assets/icons";
 import { BiChevronDown } from "react-icons/bi";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
-import { AutummChild, AutummFemale, AutummGirl, AutummMale, SpringChild, SpringFemale, SpringGirl, SpringMale, SummerChild, SummerFemale, SummerGirl, SummerMale, WinterChild, WinterFemale, WinterGirl, WinterMale } from "../../../assets";
-import '../yandex.css'
+import {
+  AutummChild,
+  AutummFemale,
+  AutummGirl,
+  AutummMale,
+  SpringChild,
+  SpringFemale,
+  SpringGirl,
+  SpringMale,
+  SummerChild,
+  SummerFemale,
+  SummerGirl,
+  SummerMale,
+  WinterChild,
+  WinterFemale,
+  WinterGirl,
+  WinterMale,
+} from "../../../assets";
+import "../yandex.css";
 import ReactSlider from "react-slider";
 import UseReplace from "../../../ContextHook/useReplace";
 import UseSearch from "../../../ContextHook/useSearch";
@@ -25,36 +56,42 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
     genderId: null,
     categoryWearId: null,
     categoryBrandId: null,
-    clearPrice: false
+    clearPrice: false,
   });
 
   // ----------------Wear state management----------------------------
   const [selectWear, setSelectWear] = useState();
   const ClearSelectWear = () => {
     setSelectWear();
-  }
+  };
   // ----------------------Price State Management----------------------
 
-  const [minPrice, setMinPrice] = useState(Number(getMapsInfo?.budget?.min_price) || 10000);
-  const [maxPrice, setMaxPrice] = useState(Number(getMapsInfo?.budget?.max_price) || 1000000);
+  const [minPrice, setMinPrice] = useState(
+    Number(getMapsInfo?.budget?.min_price) || 10000
+  );
+  const [maxPrice, setMaxPrice] = useState(
+    Number(getMapsInfo?.budget?.max_price) || 1000000
+  );
   const [getRange, setGetRange] = useState([]);
   const [values, setValues] = useState([]);
   useEffect(() => {
-    setMinPrice(Number(getMapsInfo?.budget?.min_price) || 10000)
-    setMaxPrice(Number(getMapsInfo?.budget?.max_price) || 1000000)
+    setMinPrice(Number(getMapsInfo?.budget?.min_price) || 10000);
+    setMaxPrice(Number(getMapsInfo?.budget?.max_price) || 1000000);
     if (!values[0] && !values[1]) {
-      setValues([Number(getMapsInfo?.budget?.min_price), Number(getMapsInfo?.budget?.max_price)])
+      setValues([
+        Number(getMapsInfo?.budget?.min_price),
+        Number(getMapsInfo?.budget?.max_price),
+      ]);
     }
-  }, [getMapsInfo?.budget])
-
+  }, [getMapsInfo?.budget]);
 
   useEffect(() => {
     if (values && minPrice && maxPrice) {
       if (minPrice !== values[0] || maxPrice !== values[1]) {
-        setState({ ...state, clearPrice: true })
+        setState({ ...state, clearPrice: true });
       }
     }
-  }, [values])
+  }, [values]);
 
   console.log(values, "state-values");
   console.log(minPrice, "state-minPrice");
@@ -62,12 +99,15 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
 
   const clearFunction = () => {
     setState({ ...state, clearPrice: false, openPrice: false });
-    setValues([Number(getMapsInfo?.budget?.min_price), Number(getMapsInfo?.budget?.max_price)])
-    setGetRange([])
-  }
+    setValues([
+      Number(getMapsInfo?.budget?.min_price),
+      Number(getMapsInfo?.budget?.max_price),
+    ]);
+    setGetRange([]);
+  };
 
   const sendPriceList = () => {
-    setGetRange(values)
+    setGetRange(values);
   };
   const handleOpenChangePrice = (newOpen) => {
     setState({ ...state, openPrice: newOpen });
@@ -75,10 +115,13 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   const contentPrice = (
     <div className="w-fit h-[170px] m-0 overflow-hidden">
       <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
-        <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">По ценам</span>
+        <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
+          По ценам
+        </span>
         <span
           onClick={() => setState({ ...state, openPrice: false })}
-          className="w-6 h-6 cursor-pointer">
+          className="w-6 h-6 cursor-pointer"
+        >
           <MenuCloseIcons className="w-[24px] h-[24px]" colors={"#000"} />
         </span>
       </div>
@@ -89,10 +132,12 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
               от
             </span>
             <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-              <input className='w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+              <input
+                className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={Number(values[0]).toLocaleString()}
-              // onChange={(e) => setMaxPrice(e.target.value)}
-              />  сум
+                // onChange={(e) => setMaxPrice(e.target.value)}
+              />{" "}
+              сум
             </span>
           </div>
           <div className="flex ">
@@ -100,9 +145,10 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
               до
             </span>
             <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-              <input className='w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+              <input
+                className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={Number(values[1]).toLocaleString()}
-              // onChange={(e) => setMaxPrice(e.target.value)}
+                // onChange={(e) => setMaxPrice(e.target.value)}
               />
               сум
             </span>
@@ -110,7 +156,6 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
         </div>
         <div className="relative z-50 mb-[6px] w-[350px]  marketFilter">
           {" "}
-
           <Slider
             className="horizontal-slider "
             thumbClassName="example-thumb1"
@@ -124,22 +169,31 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             onChange={setValues}
             value={values}
             min={minPrice}
-            max={maxPrice} />
+            max={maxPrice}
+          />
         </div>
-        <div className={`flex items-center  mt-4 ${state?.clearPrice ? "justify-between" : "justify-end"}`}>
-          {state?.clearPrice &&
+        <div
+          className={`flex items-center  mt-4 ${
+            state?.clearPrice ? "justify-between" : "justify-end"
+          }`}
+        >
+          {state?.clearPrice && (
             <span
               onClick={() => clearFunction()}
               className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue"
             >
               Сбросить
-            </span>}
+            </span>
+          )}
           <span
             onClick={() => {
-              sendPriceList()
-              setState({ ...state, openPrice: false })
+              sendPriceList();
+              setState({ ...state, openPrice: false });
             }}
-            className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue">Готово</span>
+            className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue"
+          >
+            Готово
+          </span>
         </div>
       </div>
     </div>
@@ -147,59 +201,63 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
 
   // ----------------------Brend State Management----------------------
 
-
   const [selectBrand, setSelectBrand] = useState();
   const CloseSelectBrand = () => {
-    setSelectBrand()
-  }
+    setSelectBrand();
+  };
 
   const [personItems, setPersonItems] = useState([
     {
-      id: 1111, childText: [
+      id: 444,
+      childText: [
         { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
         { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
         { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
-      ]
+      ],
     },
     {
-      id: 2222, childText: [
+      id: 111,
+      childText: [
         { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
         { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
         { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
-      ]
+      ],
     },
     {
-      id: 3333, childText: [
+      id: 222,
+      childText: [
         { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
         { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
         { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
-      ]
+      ],
     },
     {
-      id: 4444, childText: [
+      id: 333,
+      childText: [
         { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
         { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
         { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
-      ]
+      ],
     },
     {
-      id: 5555, childText: [
+      id: 5555,
+      childText: [
         { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
         { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
         { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
-      ]
-    }
+      ],
+    },
   ]);
   const handleFilterByUser = (fathId, childId) => {
     if (childId === 0) {
-      setState({ ...state, genderId: "" })
+      setState({ ...state, genderId: "" });
     } else if (childId > 0) {
-      setState({ ...state, genderId: childId })
+      setState({ ...state, genderId: childId });
     }
     setPersonItems((current) => {
       return current?.map((data) => {
@@ -213,7 +271,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
         } else return data;
       });
     });
-  }
+  };
   useEffect(() => {
     getYandexFilterData({
       category_wear: state?.categoryWearId,
@@ -221,8 +279,13 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
       minPrice: getRange[0],
       maxPrice: getRange[1],
       genderType: state?.genderId,
-    })
-  }, [state?.categoryWearId, state?.categoryBrandId, getRange, state?.genderId])
+    });
+  }, [
+    state?.categoryWearId,
+    state?.categoryBrandId,
+    getRange,
+    state?.genderId,
+  ]);
   // console.log(state?.categoryWearId, "state?.categoryWearId");
   // console.log(state?.categoryBrandId, "state?.categoryBrandId");
   const onSearch = (value) => {
@@ -230,16 +293,14 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   };
   const handleClear = () => {
     // Custom logic when the clear icon is clicked
-    console.log('Clear icon clicked!');
-    setState({ ...state, categoryWearId: null })
+    console.log("Clear icon clicked!");
+    setState({ ...state, categoryWearId: null });
   };
 
   return (
     <div className="  w-fit px-10 py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex flex-col justify-between items-center m-auto md:border-t">
       <div className="flex items-center justify-center gap-x-2  w-fit   ">
-        <div
-          className="!w-[210px] relative gap-x-1 px-1 h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  "
-        >
+        <div className="!w-[210px] relative gap-x-1 px-1 h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  ">
           <span className="absolute left-2">
             <ClothesIcons colors={"#000"} />
           </span>
@@ -247,7 +308,11 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             showSearch
             className="w-[100%] cursor-pointer pl-4 !caret-transparent	 h-full !outline-none text-center overflow-hidden  !py-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
             bordered={false}
-            placeholder={<span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide	leading-5">По категории</span>}
+            placeholder={
+              <span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide	leading-5">
+                По категории
+              </span>
+            }
             optionFilterProp="children"
             onChange={(e) => setState({ ...state, categoryWearId: e })}
             onSearch={onSearch}
@@ -256,33 +321,28 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             // onClear={handleClear}
             size="large"
             filterOption={(input, option) =>
-              (option?.label ?? "")
-                .toLowerCase()
-                .includes(input.toLowerCase())
+              (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }
-          // options={getMapsInfo?.categories?.map((item) => {
-          //   return {
-          //     value: item?.id,
-          //     label: item?.name_ru,
-          //   };
-          // })}
+            // options={getMapsInfo?.categories?.map((item) => {
+            //   return {
+            //     value: item?.id,
+            //     label: item?.name_ru,
+            //   };
+            // })}
           >
             {getMapsInfo?.categories?.map((item) => {
               return (
-                <Option
-                  key={item.id}
-                  value={item.id}
-                  label={item.name_ru}
-                >
+                <Option key={item.id} value={item.id} label={item.name_ru}>
                   <Space>
-                    <span className="text-black text-sm font-AeonikProMedium tracking-wide	leading-5">{item.name_ru}</span>
+                    <span className="text-black text-sm font-AeonikProMedium tracking-wide	leading-5">
+                      {item.name_ru}
+                    </span>
                   </Space>
                 </Option>
               );
             })}
           </Select>
         </div>
-
 
         <Popover
           open={state?.openPrice}
@@ -296,18 +356,21 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           <span className="font-AeonikProMedium">
             <DollorIcons colors={"#000"} />
           </span>
-          {getRange[0] && getRange[1] ?
+          {getRange[0] && getRange[1] ? (
             <p className="w-fit flex justify-between items-center  font-AeonikProMedium ">
-              <span className="text-[13px] font-AeonikProMedium	leading-5	 ">{Number(getRange[0]).toLocaleString()}</span>
+              <span className="text-[13px] font-AeonikProMedium	leading-5	 ">
+                {Number(getRange[0]).toLocaleString()}
+              </span>
               <span className="w-[6px] h-[1px] bg-[#a1a1a1] mx-[2px] 	"></span>
-              <span className="text-[13px] font-AeonikProMedium	leading-5	">{Number(getRange[1]).toLocaleString()}</span>
+              <span className="text-[13px] font-AeonikProMedium	leading-5	">
+                {Number(getRange[1]).toLocaleString()}
+              </span>
             </p>
-            :
+          ) : (
             <p className="not-italic whitespace-nowrap mt-1 text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
               По бюджету
             </p>
-          }
-
+          )}
 
           <span className="font-AeonikProMedium iconArrow">
             <DownArrowAntd />
@@ -320,9 +383,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             /> */}
           </span>
         </Popover>
-        <div
-          className="!w-[210px] relative gap-x-1 px-1 h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  "
-        >
+        <div className="!w-[210px] relative gap-x-1 px-1 h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  ">
           <span className="absolute left-2">
             <ByBrandIcon />
           </span>
@@ -331,8 +392,11 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             className="w-[100%] h-full !caret-transparent pl-4 !outline-none text-center overflow-hidden  !py-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
             bordered={false}
             // placeholder="По магазину"
-            placeholder={<span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide	leading-5">По магазину</span>}
-
+            placeholder={
+              <span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide	leading-5">
+                По магазину
+              </span>
+            }
             optionFilterProp="children"
             // defaultValue={"По магазину"}
             onChange={(e) => setState({ ...state, categoryBrandId: e })}
@@ -341,27 +405,22 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             // suffixIcon={<></>}
             size="large"
             filterOption={(input, option) =>
-              (option?.label ?? "")
-                .toLowerCase()
-                .includes(input.toLowerCase())
+              (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }
-          // options={getMapsInfo?.shops?.map((item) => {
-          //   return {
-          //     value: item?.id,
-          //     label: item?.name,
-          //   };
-          // })}
+            // options={getMapsInfo?.shops?.map((item) => {
+            //   return {
+            //     value: item?.id,
+            //     label: item?.name,
+            //   };
+            // })}
           >
-
             {getMapsInfo?.shops?.map((item) => {
               return (
-                <Option
-                  key={item.id}
-                  value={item.id}
-                  label={item.name}
-                >
+                <Option key={item.id} value={item.id} label={item.name}>
                   <Space>
-                    <span className="text-black text-sm font-AeonikProMedium tracking-wide	leading-5">{item.name}</span>
+                    <span className="text-black text-sm font-AeonikProMedium tracking-wide	leading-5">
+                      {item.name}
+                    </span>
                   </Space>
                 </Option>
               );
@@ -370,7 +429,6 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
         </div>
 
         <div className="box-border	 flex items-center gap-x-2  h-[44px] border border-searchBgColor overflow-hidden rounded-lg bg-btnBgColor">
-
           {personItems
             ?.filter((value) => value.id === dressInfo?.type)
             .map((data) => {
@@ -379,49 +437,59 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
                   key={data?.id}
                   className="w-fit h-full flex items-center box-border "
                 >
-                  {
-                    data?.childText?.map(item => {
-                      return (
-                        <div className="flex items-center h-full box-border">
-                          <button
-                            key={item?.id}
-                            onClick={() => handleFilterByUser(data?.id, item?.id)}
-                            className={`${item?.action ?
-                              " bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-lg" : " bg-btnBgColor text-black"} px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  h-[44px]  justify-center flex items-center`}
-                          >
-                            {/* <img src={item?.anyIcons} alt="male" /> */}
-                            <span>{item?.anyIcons}</span>
-                            {
-                              item?.name &&
-                              <span className="ml-2 not-italic whitespace-nowrap  text-sm font-AeonikProMedium tracking-wide	leading-5">{item?.name}</span>
-                            }
-                          </button>
-                          {
-                            item?.id !== 3 &&
-                            <span className="w-[2px] mx-1 h-[30px] border-r border-searchBgColor"></span>
-                          }
-                        </div>
-                      )
-                    })
-                  }
-
+                  {data?.childText?.map((item) => {
+                    return (
+                      <div className="flex items-center h-full box-border">
+                        <button
+                          key={item?.id}
+                          onClick={() => handleFilterByUser(data?.id, item?.id)}
+                          className={`${
+                            item?.action
+                              ? " bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-lg"
+                              : " bg-btnBgColor text-black"
+                          } px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  h-[44px]  justify-center flex items-center`}
+                        >
+                          {/* <img src={item?.anyIcons} alt="male" /> */}
+                          <span>{item?.anyIcons}</span>
+                          {item?.name && (
+                            <span className="ml-2 not-italic whitespace-nowrap  text-sm font-AeonikProMedium tracking-wide	leading-5">
+                              {item?.name}
+                            </span>
+                          )}
+                        </button>
+                        {item?.id !== 3 && (
+                          <span className="w-[2px] mx-1 h-[30px] border-r border-searchBgColor"></span>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               );
             })}
         </div>
         {/* </article> */}
-      </div >
+      </div>
       <div className="w-full flex items-center gap-x-2 mt-2 hidden">
         <div className="w-[190px]  flex items-center">
-          {
-            selectWear &&
-            <button type="button" className={`h-[32px] px-2 flex items-center ${dressInfo?.BtnOpacitySeason} rounded-lg gap-x-[6px]`}>
-              <span className="text-sm not-italic font-AeonikProMedium leading-5">{selectWear}</span>
-              <span onClick={() => ClearSelectWear()} className="w-4 h-4 px-[2px] rounded-full flex items-center justify-center bg-white">
-                <MenuCloseIcons colors={dressInfo?.ColorSeason} className="w-full h-full" />
+          {selectWear && (
+            <button
+              type="button"
+              className={`h-[32px] px-2 flex items-center ${dressInfo?.BtnOpacitySeason} rounded-lg gap-x-[6px]`}
+            >
+              <span className="text-sm not-italic font-AeonikProMedium leading-5">
+                {selectWear}
+              </span>
+              <span
+                onClick={() => ClearSelectWear()}
+                className="w-4 h-4 px-[2px] rounded-full flex items-center justify-center bg-white"
+              >
+                <MenuCloseIcons
+                  colors={dressInfo?.ColorSeason}
+                  className="w-full h-full"
+                />
               </span>
             </button>
-          }
+          )}
         </div>
         {/* <div className="w-[190px]   flex items-center">
           {
@@ -435,17 +503,27 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           }
         </div> */}
         <div className="w-[190px]  flex items-center">
-          {
-            selectBrand &&
-            <button type="button" className={`h-[32px] px-2 flex items-center ${dressInfo?.BtnOpacitySeason} rounded-lg gap-x-[6px]`}>
-              <span className="text-sm not-italic font-AeonikProMedium leading-5">{selectBrand}</span>
-              <span onClick={() => CloseSelectBrand()} className="w-4 h-4 px-[2px] rounded-full flex items-center justify-center bg-white">
-                <MenuCloseIcons colors={dressInfo?.ColorSeason} className="w-full h-full" />
+          {selectBrand && (
+            <button
+              type="button"
+              className={`h-[32px] px-2 flex items-center ${dressInfo?.BtnOpacitySeason} rounded-lg gap-x-[6px]`}
+            >
+              <span className="text-sm not-italic font-AeonikProMedium leading-5">
+                {selectBrand}
+              </span>
+              <span
+                onClick={() => CloseSelectBrand()}
+                className="w-4 h-4 px-[2px] rounded-full flex items-center justify-center bg-white"
+              >
+                <MenuCloseIcons
+                  colors={dressInfo?.ColorSeason}
+                  className="w-full h-full"
+                />
               </span>
             </button>
-          }
+          )}
         </div>
       </div>
-    </div >
+    </div>
   );
 }

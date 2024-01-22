@@ -258,7 +258,7 @@ function BottomHeader({ setSeasons }) {
 
   const [personItems, setPersonItems] = useState([
     {
-      id: 1111,
+      id: 444,
       childText: [
         { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
@@ -267,7 +267,7 @@ function BottomHeader({ setSeasons }) {
       ],
     },
     {
-      id: 2222,
+      id: 111,
       childText: [
         { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
@@ -276,7 +276,7 @@ function BottomHeader({ setSeasons }) {
       ],
     },
     {
-      id: 3333,
+      id: 222,
       childText: [
         { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
@@ -285,7 +285,7 @@ function BottomHeader({ setSeasons }) {
       ],
     },
     {
-      id: 4444,
+      id: 333,
       childText: [
         { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },

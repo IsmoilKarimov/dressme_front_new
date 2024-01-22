@@ -29,37 +29,35 @@ import {
 import Cookies from "js-cookie";
 import { MdClose } from "react-icons/md";
 
-
 const YandexMedium = ({ getYandexSearchName }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleMainMenu = () => {
     setDressInfo({ ...dressInfo, openMainMenu: !dressInfo.openMainMenu });
   };
-  const [searchMarketName, setSearchMarketName] = useState()
+  const [searchMarketName, setSearchMarketName] = useState();
 
   const SeasonTypeArray = [
     { id: 5555, type: "", icons: AllSeasonDesktop },
-    { id: 2222, type: "Лето", icons: summerSeason },
-    { id: 3333, type: "Осень", icons: autummSeason },
-    { id: 4444, type: "Зима", icons: winterSeason },
-    { id: 1111, type: "Весна", icons: springSeason },
+    { id: 111, type: "Лето", icons: summerSeason },
+    { id: 222, type: "Осень", icons: autummSeason },
+    { id: 333, type: "Зима", icons: winterSeason },
+    { id: 444, type: "Весна", icons: springSeason },
   ];
   const SeasonTypeArrayMobile = [
     { id: 5555, type: "Все", icons: AllSeason },
-    { id: 2222, type: "Лето", icons: summerSeason },
-    { id: 3333, type: "Осень", icons: autummSeason },
-    { id: 4444, type: "Зима", icons: winterSeason },
-    { id: 1111, type: "Весна", icons: springSeason },
+    { id: 111, type: "Лето", icons: summerSeason },
+    { id: 222, type: "Осень", icons: autummSeason },
+    { id: 333, type: "Зима", icons: winterSeason },
+    { id: 444, type: "Весна", icons: springSeason },
   ];
   const BrandTypeArray = [
-    { id: 1111, type: "Весна", icons: BrandSpring },
-    { id: 2222, type: "Лето", icons: BrandSummer },
-    { id: 3333, type: "Осень", icons: BrandAutumm },
-    { id: 4444, type: "Зима", icons: BrandWinter },
+    { id: 444, type: "Весна", icons: BrandSpring },
+    { id: 111, type: "Лето", icons: BrandSummer },
+    { id: 222, type: "Осень", icons: BrandAutumm },
+    { id: 333, type: "Зима", icons: BrandWinter },
     { id: 5555, type: "Все", icons: allBrandDesktop },
   ];
-
 
   // ----------------Wear state management----------------------------
   const [openwear, setOpenwear] = useState(false);
@@ -114,27 +112,27 @@ const YandexMedium = ({ getYandexSearchName }) => {
   );
   const handleChange = (event) => {
     setSearchMarketName(event.target.value);
-  }
+  };
 
   const handleClear = () => {
     setSearchMarketName("");
     getYandexSearchName({
-      searchMarketName: null
-    })
+      searchMarketName: null,
+    });
   };
   function getSearchClick() {
     getYandexSearchName({
-      searchMarketName: searchMarketName
-    })
+      searchMarketName: searchMarketName,
+    });
   }
   // console.log(searchMarketName, "searchMarketName");
   const _handleKeyDownSearchYandex = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       getYandexSearchName({
-        searchMarketName: searchMarketName
-      })
+        searchMarketName: searchMarketName,
+      });
     }
-  }
+  };
   return (
     <div className=" flex justify-between items-center m-auto ">
       {/* Starting of Full Screen page section */}
@@ -159,7 +157,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
           {/* Logo section */}
           <button
             type="button"
-            onClick={() => navigate('/')}
+            onClick={() => navigate("/")}
             // to="/"
             className="flex justify-center items-center rounded-xl h-[48px] ss:w-[calc(100%-96px)] ss:p-2 ll:p-1  md:p-0 md:w-[155px] ss:ml-2 md:ml-[0px]  ss:bg-btnBgColor md:bg-transparent"
           >
@@ -189,7 +187,6 @@ const YandexMedium = ({ getYandexSearchName }) => {
           {/* Weather seection */}
           {/* Weather section */}
           <article className="w-12 h-12 md:w-[120px]  md:h-11 bg-btnBgColor border border-searchBgColor rounded-xl ml-2">
-
             <div className="w-full h-full ">
               <Popover
                 className="w-full h-full flex items-center justify-center rounded-lg cursor-pointer  md:px-2 md:gap-x-[5px] "
@@ -200,46 +197,38 @@ const YandexMedium = ({ getYandexSearchName }) => {
                 placement="bottom"
                 content={contentWear}
               >
-                {SeasonTypeArray.filter(
-                  (e) => e.id === dressInfo.type
-                ).map((data) => {
-                  return (
-                    <figure
-                      key={data?.id}
-                      className="w-full h-full hidden md:flex  items-center justify-center select-none cursor-pointer   ">
-                      <img
-                        src={data?.icons}
-                        alt="weather"
-                        className=" "
-                      />
-                      {
-                        data?.type &&
-                        <figcaption className=" ml-[10px] font-AeonikProMedium  flex items-center text-[15px] ">
-                          {data?.type}
-                        </figcaption>
-                      }
-                    </figure>
-                  );
-                })}
+                {SeasonTypeArray.filter((e) => e.id === dressInfo.type).map(
+                  (data) => {
+                    return (
+                      <figure
+                        key={data?.id}
+                        className="w-full h-full hidden md:flex  items-center justify-center select-none cursor-pointer   "
+                      >
+                        <img src={data?.icons} alt="weather" className=" " />
+                        {data?.type && (
+                          <figcaption className=" ml-[10px] font-AeonikProMedium  flex items-center text-[15px] ">
+                            {data?.type}
+                          </figcaption>
+                        )}
+                      </figure>
+                    );
+                  }
+                )}
                 {SeasonTypeArrayMobile.filter(
                   (e) => e.id === dressInfo.type
                 ).map((data) => {
                   return (
                     <figure
                       key={data?.id}
-                      className="w-full h-full md:hidden flex items-center justify-center select-none cursor-pointer  ">
-                      <img
-                        src={data?.icons}
-                        alt="weather"
-                        className="mr-0 "
-                      />
+                      className="w-full h-full md:hidden flex items-center justify-center select-none cursor-pointer  "
+                    >
+                      <img src={data?.icons} alt="weather" className="mr-0 " />
                     </figure>
                   );
                 })}
               </Popover>
             </div>
           </article>
-
 
           {/* Searching section */}
           <div className="flex items-center justify-center rounded-xl font-AeonikProMedium h-[44px]  md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
@@ -267,19 +256,23 @@ const YandexMedium = ({ getYandexSearchName }) => {
                 value={searchMarketName}
                 onChange={handleChange}
                 onKeyDown={_handleKeyDownSearchYandex}
-
               />
-              {searchMarketName &&
+              {searchMarketName && (
                 <button
                   onClick={handleClear}
                   className="absolute right-2 "
-                  type="button">
+                  type="button"
+                >
                   <MdClose size={20} color={"#a1a1a1"} />
-                </button>}
-
+                </button>
+              )}
             </div>
 
-            <button type="button" onClick={() => getSearchClick()} className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]">
+            <button
+              type="button"
+              onClick={() => getSearchClick()}
+              className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]"
+            >
               <SearchIcons />
             </button>
           </div>
