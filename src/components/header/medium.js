@@ -43,19 +43,50 @@ import NavCategoryModal from "./navCategoryModal";
 import RegionsList from "../../ContextHook/RegionsList";
 import Cookies from "js-cookie";
 import { MdClose } from "react-icons/md";
+import { useQuery } from "@tanstack/react-query";
 
-const MediumHeader = () => {
+const MediumHeader = ({ seasonsData }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [searchMarketName, setSearchMarketName] = useState();
+  const [regionsList, setRegionsList] = useState(false);
+  const toggleRegionsShow = useCallback(() => setRegionsList(false), []);
+  const [resData, setResData] = useState();
+
+  // console.log(resData?.seasons);
+
   const [state, setState] = useState({
     hamburgerMenu: false,
     toggle: false,
     genderActive: true,
     getAllCardList: null,
   });
-  const [searchMarketName, setSearchMarketName] = useState();
 
-  const [regionsList, setRegionsList] = useState(false);
-  const toggleRegionsShow = useCallback(() => setRegionsList(false), []);
+  const url = "https://api.dressme.uz";
+
+  // ------------GET METHOD Main data -----------------
+  useQuery(
+    ["get_main_data_weather"],
+    () => {
+      return fetch(`${url}/api/main`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          //   "Content-type": "application/json; charset=UTF-8",
+        },
+      }).then((res) => res.json());
+    },
+    {
+      onSuccess: (res) => {
+        // console.log(res, "ressssssss");
+        setResData(res);
+      },
+      onError: (err) => {
+        console.log(err, "err");
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: true,
+    }
+  );
 
   useEffect(() => {
     if (state?.hamburgerMenu || regionsList) {
@@ -85,11 +116,12 @@ const MediumHeader = () => {
 
   const SeasonTypeArray = [
     { id: 5555, type: "", icons: AllSeasonDesktop },
-    { id: 2222, type: "Лето", icons: summerSeason },
-    { id: 3333, type: "Осень", icons: autummSeason },
-    { id: 4444, type: "Зима", icons: winterSeason },
-    { id: 1111, type: "Весна", icons: springSeason },
+    { id: 1111, type: "Лето", icons: summerSeason },
+    { id: 2222, type: "Осень", icons: autummSeason },
+    { id: 3333, type: "Зима", icons: winterSeason },
+    { id: 4444, type: "Весна", icons: springSeason },
   ];
+
   const SeasonTypeArrayMobile = [
     { id: 5555, type: "Все", icons: AllSeason },
     { id: 2222, type: "Лето", icons: summerSeason },
@@ -97,6 +129,7 @@ const MediumHeader = () => {
     { id: 4444, type: "Зима", icons: winterSeason },
     { id: 1111, type: "Весна", icons: springSeason },
   ];
+
   const BrandTypeArray = [
     { id: 1111, type: "Весна", icons: BrandSpring },
     { id: 2222, type: "Лето", icons: BrandSummer },
@@ -132,6 +165,7 @@ const MediumHeader = () => {
     },
   ]);
 
+
   const handleGenderDataCheck = (value) => {
     setGenderType((data) => {
       return data.map((e) => {
@@ -161,24 +195,30 @@ const MediumHeader = () => {
   const contentWear = (
     <section className="ss:w-fit md:w-[120px] h-fit m-0 p-0  data1">
       {SeasonTypeArray.map((value) => {
-        return (
-          <article
-            key={value?.id}
-            className="w-full h-[42px] md:flex items-center hidden  md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
-            onClick={() => handleSeason(value.id)}
-          >
-            <figure className={`${value?.id !== 5555 ? "w-5" : ""} `}>
-              <img src={value?.icons} alt="" className="object-cover w-full" />
-            </figure>
-            {value?.type && (
+            return (
               <article
-                className={`ml-2 md:ml-3 flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
+                key={value?.id}
+                className="w-full h-[42px] md:flex items-center hidden  md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
+                onClick={
+                  () => handleSeason(value.id)
+                }
               >
-                {value?.type}
+                <figure className={`${value?.id !== 5555 ? "w-5" : ""} `}>
+                  <img
+                    src={value?.icons}
+                    alt=""
+                    className="object-cover w-full"
+                  />
+                </figure>
+                {value?.type && (
+                  <article
+                    className={`ml-2 md:ml-3 flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
+                  >
+                    {value?.type}
+                  </article>
+                )}
               </article>
-            )}
-          </article>
-        );
+            );
       })}
       {SeasonTypeArrayMobile.map((value) => {
         return (
@@ -227,7 +267,7 @@ const MediumHeader = () => {
       setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
     }
   };
-  
+
   return (
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <div
@@ -336,8 +376,10 @@ const MediumHeader = () => {
                       placement="bottomRight"
                       content={contentWear}
                     >
-                      {SeasonTypeArray.filter( (e) => e.id === dressInfo.type ).map((data) => {
-                        console.log(data,'weather-data');
+                      {SeasonTypeArray.filter(
+                        (e) => e.id === dressInfo.type
+                      ).map((data) => {
+                        // console.log(data, "weather-data");
                         return (
                           <figure
                             key={data?.id}

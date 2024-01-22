@@ -6,7 +6,6 @@ import Slider from "react-slider";
 
 import style from "./bottom.module.css";
 import {
-  AutummBoyIcons,
   ClothesIcons,
   DollorIcons,
   DownArrowAntd,
@@ -14,15 +13,13 @@ import {
   ManWomanGen,
   MenuCloseIcons,
   PlusAddCectorIcons,
-  SpringBoyIcons,
-  SummerBoyIcons,
   WinterBoyIcons,
   WomanGenIcons,
 } from "../../assets/icons";
 import { GrClose } from "react-icons/gr";
 const { Option } = Select;
 
-function BottomHeader() {
+function BottomHeader({ setSeasons }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const [selectedId, setSelectedId] = useState(null);
@@ -40,42 +37,53 @@ function BottomHeader() {
     categorySelectId: null,
     colorSelectId: [],
     genderSelectId: null,
-    clearPrice: false
+    clearPrice: false,
   });
 
   const [colorSelectId, setColorSelectId] = useState([]);
   // console.log(colorSelectId, "colorSelectId");
-  const [minPrice, setMinPrice] = useState( Number(state?.getAllCardList?.budget?.min_price) || 10000 );
-  const [maxPrice, setMaxPrice] = useState( Number(state?.getAllCardList?.budget?.max_price) || 1000000 );
+  const [minPrice, setMinPrice] = useState(
+    Number(state?.getAllCardList?.budget?.min_price) || 10000
+  );
+  const [maxPrice, setMaxPrice] = useState(
+    Number(state?.getAllCardList?.budget?.max_price) || 1000000
+  );
   const [getRange, setGetRange] = useState([]);
   const [values, setValues] = useState([]);
-  
+
   useEffect(() => {
     setMinPrice(Number(state?.getAllCardList?.budget?.min_price) || 10000);
     setMaxPrice(Number(state?.getAllCardList?.budget?.max_price) || 1000000);
     if (!values[0] && !values[1]) {
-      setValues([Number(state?.getAllCardList?.budget?.min_price), Number(state?.getAllCardList?.budget?.max_price)])
+      setValues([
+        Number(state?.getAllCardList?.budget?.min_price),
+        Number(state?.getAllCardList?.budget?.max_price),
+      ]);
     }
   }, [state?.getAllCardList?.budget]);
-
 
   useEffect(() => {
     if (values && minPrice && maxPrice) {
       if (minPrice !== values[0] || maxPrice !== values[1]) {
-        setState({ ...state, clearPrice: true })
+        setState({ ...state, clearPrice: true });
       }
     }
-  }, [values])
-
+  }, [values]);
 
   const clearFunction = () => {
     setState({ ...state, clearPrice: false, openPrice: false });
-    setValues([Number(state?.getAllCardList?.budget?.min_price), Number(state?.getAllCardList?.budget?.max_price)])
-    setGetRange([])
-  }
+    setValues([
+      Number(state?.getAllCardList?.budget?.min_price),
+      Number(state?.getAllCardList?.budget?.max_price),
+    ]);
+    setGetRange([]);
+  };
 
   const url = "https://api.dressme.uz/api/main";
-  // ------------GET METHOD Main data -----------------
+  // ------------GET METHOD Main data -----------------\
+  const arr = String(dressInfo?.type)?.split("");
+  const seasonId = Number(arr?.shift());
+  console.log(seasonId, "seasonId");
 
   const fetchGetAllData = () => {
     var params = new URLSearchParams();
@@ -91,11 +99,14 @@ function BottomHeader() {
     state?.genderSelectId && params.append("gender", state?.genderSelectId);
     colorSelectId?.length && params.append("color", colorSelectId);
 
+    // seasonId && params.append("season",null)
+    seasonId !== 5 && seasonId && params.append("season", seasonId);
 
     fetch(`${url}?` + params)
       .then((res) => res.json())
       .then((res) => {
         setState({ ...state, getAllCardList: res });
+        setSeasons(res);
         console.log(res, "Medium");
         setDressInfo({ ...dressInfo, mainCardProducts: res });
       })
@@ -130,7 +141,6 @@ function BottomHeader() {
     };
   }, [screenSize]);
   // ----------------Wear state management----------------------------
-
 
   // const [mainData, setMainData] = useContext(HomeMainDataContext);
 
@@ -180,7 +190,7 @@ function BottomHeader() {
               <input
                 className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={Number(values[0]).toLocaleString()}
-              // onChange={(e) => setMaxPrice(e.target.value)}
+                // onChange={(e) => setMaxPrice(e.target.value)}
               />{" "}
               сум
             </span>
@@ -193,7 +203,7 @@ function BottomHeader() {
               <input
                 className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={Number(values[1]).toLocaleString()}
-              // onChange={(e) => setMaxPrice(e.target.value)}
+                // onChange={(e) => setMaxPrice(e.target.value)}
               />
               сум
             </span>
@@ -217,14 +227,19 @@ function BottomHeader() {
             max={maxPrice}
           />
         </div>
-        <div className={`flex items-center  mt-4 ${state?.clearPrice ? "justify-between" : "justify-end"}`}>
-          {state?.clearPrice &&
+        <div
+          className={`flex items-center  mt-4 ${
+            state?.clearPrice ? "justify-between" : "justify-end"
+          }`}
+        >
+          {state?.clearPrice && (
             <span
               onClick={() => clearFunction()}
               className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
             >
               Сбросить
-            </span>}
+            </span>
+          )}
           <span
             onClick={() => {
               sendPriceList();
@@ -347,6 +362,7 @@ function BottomHeader() {
   console.log(colorSelectId, "colorSelectId");
   useEffect(() => {
     fetchGetAllData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     state?.categorySelectId,
     colorSelectId,
@@ -355,9 +371,9 @@ function BottomHeader() {
     dressInfo?.mainSearchName,
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
+    seasonId,
   ]);
-  // mt ss:w-full flex flex-col justify-center md:mt-[6px]
-  // console.log("Renderer");
+
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
       <div
@@ -398,10 +414,11 @@ function BottomHeader() {
                         setSelectedId(data?.id);
                       }}
                       style={{ backgroundColor: data?.hex }}
-                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${data?.id === selectedId
-                        ? "border border-setTexOpacity flex items-center justify-center"
-                        : "border"
-                        } `}
+                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${
+                        data?.id === selectedId
+                          ? "border border-setTexOpacity flex items-center justify-center"
+                          : "border"
+                      } `}
                     >
                       {/* {selectedId === data?.id ? (
                         <InputCheckedTrueIcons
@@ -501,17 +518,21 @@ function BottomHeader() {
           <span className=" flex items-center ">
             <DollorIcons colors={"#000"} />
           </span>
-          {getRange[0] && getRange[1] ?
+          {getRange[0] && getRange[1] ? (
             <div className="w-fit flex justify-between items-center  ">
-              <p className="text-[13px] not-italic font-AeonikProMedium leading-1 ">{Number(getRange[0]).toLocaleString()}</p>
+              <p className="text-[13px] not-italic font-AeonikProMedium leading-1 ">
+                {Number(getRange[0]).toLocaleString()}
+              </p>
               <span className="w-[6px] h-[1px] bg-[#a1a1a1] mx-[2px] 	"></span>
-              <p className="text-[13px] not-italic font-AeonikProMedium leading-1">{Number(getRange[1]).toLocaleString()}</p>
+              <p className="text-[13px] not-italic font-AeonikProMedium leading-1">
+                {Number(getRange[1]).toLocaleString()}
+              </p>
             </div>
-            :
+          ) : (
             <p className="not-italic whitespace-nowrap mt-1 text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
               По бюджету
             </p>
-          }
+          )}
           <span className="font-AeonikProMedium iconArrow">
             <DownArrowAntd />
           </span>
@@ -553,8 +574,9 @@ function BottomHeader() {
 
           <article className="w-[480px] h-full overflow-hidden flex items-center justify-between">
             <div
-              className={`${state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
-                } px-2 w-full duration-500  h-full flex items-center justify-between  `}
+              className={`${
+                state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
+              } px-2 w-full duration-500  h-full flex items-center justify-between  `}
             >
               {state?.getAllCardList?.colors?.map((data, i) => {
                 if (i > 11) {
@@ -572,8 +594,9 @@ function BottomHeader() {
                         }}
                         style={{ backgroundColor: data?.hex }}
                         // onClick={() => colorIdPushContext(data?.id)}
-                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${!state?.textToColor && "border"
-                          }  border-borderColorCard	`}
+                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
+                          !state?.textToColor && "border"
+                        }  border-borderColorCard	`}
                       >
                         {/* {colorSelectId.includes(data?.hex) && (
                           <span>
@@ -622,8 +645,9 @@ function BottomHeader() {
               </button>
             </div>
             <p
-              className={`${state?.textToColor ? " mr-0" : " mr-[-500px]"
-                } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
+              className={`${
+                state?.textToColor ? " mr-0" : " mr-[-500px]"
+              } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
             >
               Не давай своей гардеробной шкафной жизни стать скучной.
             </p>
@@ -646,10 +670,11 @@ function BottomHeader() {
                         <button
                           key={item?.id}
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${item?.action
-                            ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
-                            : " bg-btnBgColor text-black h-full"
-                            } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
+                          className={`${
+                            item?.action
+                              ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
+                              : " bg-btnBgColor text-black h-full"
+                          } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
                         >
                           <span>{item?.anyIcons}</span>
                           {item?.name && (

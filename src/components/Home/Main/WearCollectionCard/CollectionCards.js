@@ -35,6 +35,7 @@ export default function CollectionCards() {
     },
     {
       onSuccess: (res) => {
+        // console.log(res, 'ressssss');
         setData(res);
       },
       onError: (err) => {

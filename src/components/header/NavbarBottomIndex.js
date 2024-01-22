@@ -12,7 +12,7 @@ import {
   PersonPlusIcons,
   SircleNext,
 } from "../../assets/icons";
-function NavbarBottomIndex() {
+function NavbarBottomIndex({setSeasons}) {
   const [dressInfo] = useContext(dressMainData);
 
   const location = useLocation();
@@ -122,7 +122,7 @@ function NavbarBottomIndex() {
             ) : null}
             {locationWindow === "/" ? (
               <span className=" md:my-3">
-                <BottomHeader />
+                <BottomHeader setSeasons={setSeasons}/>
               </span>
             ) : null}
             {locationWindow === "/categoriesType" ? (
