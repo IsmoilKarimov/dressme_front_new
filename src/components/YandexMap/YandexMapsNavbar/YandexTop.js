@@ -116,7 +116,7 @@ const YandexTop = ({ onClick }) => {
             <LocationIcons />
           </span>
           <span className="text-textColor text-[13px] mr-[6px] font-AeonikProMedium">
-            Город:
+            Регион:
           </span>
           <div className="w-full min-w-[90px] font-AeonikProMedium flex items-center text-[13px]">
             {
