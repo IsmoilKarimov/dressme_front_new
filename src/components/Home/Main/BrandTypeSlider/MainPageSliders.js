@@ -361,16 +361,17 @@ function MainPageSliders() {
                     <div
                       key={data?.id}
                       onClick={() => goDetail(data?.id)}
-                      className="!w-[98.88%] h-[100px] cursor-pointer  rounded-lg bg-btnBgColor flex items-center justify-center select-none border border-solid border-searchBgColor"
+                      className="!w-[80px] h-[80px] md:!w-[120px] md:h-[120px] cursor-pointer overflow-hidden rounded-full bg-white flex items-center justify-center select-none border border-solid border-searchBgColor"
                     >
-                      <figure className=" h-full flex items-center justify-center">
-                        {/* <NoImg /> */}
-                        <img
-                          className="h-[95%] w-[80%] object-contain"
-                          src={data?.url_logo_photo}
-                          alt=""
-                        />
-                      </figure>
+                      <figure
+                        style={{
+                          backgroundImage: `url(${data?.url_logo_photo})`,
+                          backgroundPosition: "center center",
+                          backgroundSize: "cover",
+                          backgroundRepeat: "no-repeat",
+                        }}
+                        className=" h-full w-full flex items-center justify-center rounded-full bg-white"
+                      ></figure>
                     </div>
                   );
                 })}
