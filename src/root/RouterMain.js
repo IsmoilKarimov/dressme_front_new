@@ -120,7 +120,8 @@ const RouterMain = () => {
             </Suspense>
           }
         />
-        <Route
+        <Route path="/catalog/:id" element={<CatalogMain />} />
+        {/* <Route
           path="/catalog/:id"
           element={
             <Suspense
@@ -133,7 +134,7 @@ const RouterMain = () => {
               <CatalogMain />
             </Suspense>
           }
-        />
+        /> */}
 
         <Route
           path="/product/:id"
