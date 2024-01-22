@@ -237,17 +237,17 @@ const Footer = () => {
                       </li>
                       <li className="ss:mb-1 md:mr-5">
                         <Link to="#" className="flex items-center">
-                          <HouseStatisticIcons colors={"#000"} />
+                          <MapIcons colors={"#000"} />
                           <span className="font-AeonikProRegular ml-2">
-                            Бизнес
+                            Карта
                           </span>
                         </Link>
                       </li>
                       <li className="ss:mb-1 md:mr-5">
                         <Link to="#" className="flex items-center">
-                          <MapIcons colors={"#000"} />
+                          <HouseStatisticIcons colors={"#000"} />
                           <span className="font-AeonikProRegular ml-2">
-                            Карта
+                            Бизнес
                           </span>
                         </Link>
                       </li>
@@ -261,7 +261,7 @@ const Footer = () => {
                 >
                   <UploadIcons />
                   <p className="text-base font-AeonikProMedium leading-4 ml-[12.5px] mr-[32.37px]">
-                    Форма для обратной связи
+                    Есть вопросы?
                   </p>
                   <span className="rotate-90 ">
                     <ArrowTopIcons colors={"#000"} />
@@ -302,22 +302,20 @@ const Footer = () => {
               {/* footer bottom section */}
               <section className="w-full flex items-center justify-start">
                 <article className="w-full">
-                  <section className="w-full flex flex-col items-center text-sm font-AeonikProMedium">
-                    <article className="flex items-center justify-start">
+                  <section className="w-full flex items-center justify-between text-sm font-AeonikProMedium">
+                    <article className="w-1/2 flex items-center justify-start text-[13px] font-AeonikProMedium">
+                      Created by Dishkan (September 25th, 2022 8:16 PM)
+                    </article>
+                    <article className="w-1/2 flex items-center justify-end">
                       <article className="flex items-center ">
                         <span className="mr-2 mt-[-4px]">
                           <FooterOriginalIcons />
                         </span>
-                        <span className="text-sm">
+                        <span className="text-[13px]">
                           2022 — {dateObj.getFullYear()}.
                         </span>
                       </article>
-                      <span className="md:ml-2">
-                        Все права защищены.
-                      </span>
-                    </article>
-                    <article className="w-fit text-sm font-AeonikProMedium ml-2">
-                      Created by Dishkan (September 25th, 2022 8:16 PM)
+                      <span className="md:ml-2">Все права защищены.</span>
                     </article>
                   </section>
 
