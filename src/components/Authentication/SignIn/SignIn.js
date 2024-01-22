@@ -62,7 +62,7 @@ export default function SignIn() {
               theme: "light",
             });
           } else if (res?.access_token) {
-            setLoading(false)
+            setLoading(false);
             Cookies.set("DressmeUserToken", res?.access_token);
             toast.success(`Успешный вход в систему`, {
               position: "top-right",
@@ -97,11 +97,8 @@ export default function SignIn() {
   };
 
   const handleClick = () => {
-    return(
-      EnterTheSystem(),
-      setLoading(true)
-      )
-  }
+    return EnterTheSystem(), setLoading(true);
+  };
 
   return (
     <div className=" py-8 w-full min-h-[calc(100vh-180px)] flex justify-center ">
@@ -119,11 +116,11 @@ export default function SignIn() {
         theme="colored"
       />
 
-      <div className="max-w-[440px] w-[100%]  h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
+      <div className="max-w-[440px] w-[100%] mt-[80px]  h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
         <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-xl ss:text-start md:text-center leading-5   tracking-[0,16px] text-black">
           Авторизоваться
         </div>
-    
+
         <div className="mt-2 w-full h-fit">
           <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
             Электронная почта
@@ -188,9 +185,7 @@ export default function SignIn() {
             </p>
           )}
         </div>
-        {error?.length ? (
-          <div className={`text-RedColor`}>{error}</div>
-        ) : null}
+        {error?.length ? <div className={`text-RedColor`}>{error}</div> : null}
 
         <div className="my-5 flex items-center justify-between w-full">
           <div className="flex items-center">
