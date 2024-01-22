@@ -48,7 +48,7 @@ export default function SignUp() {
   let data4 = data3.join("");
   let arr3 = state.phoneCode.split("+");
   let data5 = arr3.join("");
-  const sendPhoneNumber = state.phoneNumber?(data5 + data4):"";
+  const sendPhoneNumber = state.phoneNumber ? data5 + data4 : "";
 
   // =========== POST USER REGISTER DATA ==========
   const { mutate } = useMutation(() => {
@@ -130,17 +130,17 @@ export default function SignUp() {
   }, [timerDecrase]);
 
   const handleClick = () => {
-    return(
-      onSubmit()
-      // setLoading(true)
-      )
-  }
+    return onSubmit();
+    // setLoading(true)
+  };
 
   return (
-     <div>
-     {loading ? (
-       <div><LoadingFor /></div>   
-     ) : (
+    <div className="mt-[80px]">
+      {loading ? (
+        <div>
+          <LoadingFor />
+        </div>
+      ) : (
         <div className="w-full h-full">
           <ToastContainer
             position="top-right"
@@ -539,8 +539,7 @@ export default function SignUp() {
             </div>
           )}
         </div>
-     )}
-     
-     </div>
+      )}
+    </div>
   );
 }
