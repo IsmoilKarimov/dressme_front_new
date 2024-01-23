@@ -81,9 +81,11 @@ function BottomHeader({ setSeasons }) {
 
   const url = "https://api.dressme.uz/api/main";
   // ------------GET METHOD Main data -----------------\
-  const arr = String(dressInfo?.type)?.split("");
-  const seasonId = Number(arr?.shift());
-  console.log(seasonId, "seasonId");
+  // const arr = String(dressInfo?.type)?.split("");
+  // const seasonId = Number(arr?.shift());
+  // console.log(dressInfo?.type,'dressInfo?.type');
+  // console.log(arr,'arr');
+  // console.log(seasonId, "seasonId");
 
   const fetchGetAllData = () => {
     var params = new URLSearchParams();
@@ -99,8 +101,7 @@ function BottomHeader({ setSeasons }) {
     state?.genderSelectId && params.append("gender", state?.genderSelectId);
     colorSelectId?.length && params.append("color", colorSelectId);
 
-    // seasonId && params.append("season",null)
-    seasonId !== 5 && seasonId && params.append("season", seasonId);
+    // seasonId && params.append("season", seasonId);
 
     fetch(`${url}?` + params)
       .then((res) => res.json())
@@ -151,22 +152,6 @@ function BottomHeader({ setSeasons }) {
   const handleOpenChangePrice = (newOpen) => {
     setState({ ...state, openPrice: newOpen });
   };
-  // ----------------NavBar----------------
-  // const [scrollPost, setscrollPost] = useState(0);
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     setscrollPost(document.body.getBoundingClientRect().top);
-  //   };
-  //   if (state?.openPrice) {
-  //     setState({ ...state, openPrice: false })
-  //   }
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, [scrollPost]);
-
-  // console.log(values, "values");
   const contentPrice = (
     <div className="w-fit h-[170px] m-0 overflow-hidden">
       <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
@@ -258,7 +243,7 @@ function BottomHeader({ setSeasons }) {
 
   const [personItems, setPersonItems] = useState([
     {
-      id: 444,
+      id: 4444,
       childText: [
         { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
@@ -267,7 +252,7 @@ function BottomHeader({ setSeasons }) {
       ],
     },
     {
-      id: 111,
+      id: 1111,
       childText: [
         { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
@@ -276,7 +261,7 @@ function BottomHeader({ setSeasons }) {
       ],
     },
     {
-      id: 222,
+      id: 2222,
       childText: [
         { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
@@ -285,7 +270,7 @@ function BottomHeader({ setSeasons }) {
       ],
     },
     {
-      id: 333,
+      id: 3333,
       childText: [
         { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
@@ -296,7 +281,7 @@ function BottomHeader({ setSeasons }) {
     {
       id: 5555,
       childText: [
-        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: true },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
         { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
         { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
@@ -339,25 +324,6 @@ function BottomHeader({ setSeasons }) {
       setColorSelectId(hex);
       setDressInfo({ ...dressInfo, mainColorId: id });
     }
-    // if (colorSelectId?) {
-    // }
-    // if (colorSelectId == id) {
-    //   setColorSelectId()
-    // }
-    // if (colorSelectId !== id) {
-    //   setColorSelectId(id)
-    // }
-
-    // console.log(id);
-    // if (colorSelectId?.length == 0) {
-    //   setColorSelectId((colorSelectId) => [...colorSelectId, id]);
-    // }
-    // if (colorSelectId?.length > 0 && !colorSelectId?.includes(id)) {
-    //   setColorSelectId((colorSelectId) => [...colorSelectId, id]);
-    // }
-    // if (colorSelectId?.length > 0 && colorSelectId?.includes(id)) {
-    //   setColorSelectId(colorSelectId?.filter((e) => e !== id));
-    // }
   };
   console.log(colorSelectId, "colorSelectId");
   useEffect(() => {
@@ -371,7 +337,7 @@ function BottomHeader({ setSeasons }) {
     dressInfo?.mainSearchName,
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
-    seasonId,
+    // seasonId,
   ]);
 
   return (

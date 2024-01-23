@@ -121,7 +121,7 @@ function MainPageSliders() {
     prevArrow: <PrevArrow1 />,
     infinite: true,
     speed: 500,
-    slidesToShow: 6,
+    slidesToShow: 8,
     slidesToScroll: 1,
     initialSlide: 0,
     dots: false,
@@ -183,7 +183,7 @@ function MainPageSliders() {
               more ? "xs:h-0" : "xs:h-auto"
             } overflow-hidden`}
           >
-            {mainData?.sections?.length > 6 ? (
+            {mainData?.sections?.length > 8 ? (
               <Slider
                 {...settings}
                 vertical={false}
@@ -347,7 +347,7 @@ function MainPageSliders() {
           ) : null}
 
           <div className="w-full mt-[60px] hidden xs:block">
-            {mainData?.shops ? (
+            {mainData?.shops?.length > 6 ? (
               <Slider
                 {...settings1}
                 className="w-[100%] flex xs:justify-between  px-[1px]"
@@ -373,7 +373,30 @@ function MainPageSliders() {
                   );
                 })}
               </Slider>
-            ) : null}
+            ) : (
+              <section className="w-full box-border flex flex-row justify-start gap-x-8 mt-4 mb-6 md:my-6">
+                {mainData?.shops?.map((data) => {
+                  console.log(data, "shops-data");
+                  return (
+                    <div
+                      key={data?.id}
+                      onClick={() => goDetail(data?.id)}
+                      className="!w-[80px] h-[80px] md:!w-[120px] md:h-[120px] cursor-pointer overflow-hidden rounded-full bg-white flex items-center justify-center select-none border border-solid border-searchBgColor"
+                    >
+                      <figure
+                        style={{
+                          backgroundImage: `url(${data?.url_logo_photo})`,
+                          backgroundPosition: "center center",
+                          backgroundSize: "contain",
+                          backgroundRepeat: "no-repeat",
+                        }}
+                        className=" h-full w-full flex items-center justify-center rounded-full bg-white"
+                      ></figure>
+                    </div>
+                  );
+                })}
+              </section>
+            )}
           </div>
         </section>
       </section>

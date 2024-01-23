@@ -43,16 +43,12 @@ import NavCategoryModal from "./navCategoryModal";
 import RegionsList from "../../ContextHook/RegionsList";
 import Cookies from "js-cookie";
 import { MdClose } from "react-icons/md";
-import { useQuery } from "@tanstack/react-query";
 
-const MediumHeader = ({ seasonsData }) => {
+const MediumHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [searchMarketName, setSearchMarketName] = useState();
   const [regionsList, setRegionsList] = useState(false);
   const toggleRegionsShow = useCallback(() => setRegionsList(false), []);
-  const [resData, setResData] = useState();
-
-  // console.log(resData?.seasons);
 
   const [state, setState] = useState({
     hamburgerMenu: false,
@@ -60,33 +56,6 @@ const MediumHeader = ({ seasonsData }) => {
     genderActive: true,
     getAllCardList: null,
   });
-
-  const url = "https://api.dressme.uz";
-
-  // ------------GET METHOD Main data -----------------
-  useQuery(
-    ["get_main_data_weather"],
-    () => {
-      return fetch(`${url}/api/main`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          //   "Content-type": "application/json; charset=UTF-8",
-        },
-      }).then((res) => res.json());
-    },
-    {
-      onSuccess: (res) => {
-        // console.log(res, "ressssssss");
-        setResData(res);
-      },
-      onError: (err) => {
-        console.log(err, "err");
-      },
-      keepPreviousData: true,
-      refetchOnWindowFocus: true,
-    }
-  );
 
   useEffect(() => {
     if (state?.hamburgerMenu || regionsList) {
@@ -116,26 +85,26 @@ const MediumHeader = ({ seasonsData }) => {
 
   const SeasonTypeArray = [
     { id: 5555, type: "", icons: AllSeasonDesktop },
-    { id: 111, type: "Лето", icons: summerSeason },
-    { id: 222, type: "Осень", icons: autummSeason },
-    { id: 333, type: "Зима", icons: winterSeason },
-    { id: 444, type: "Весна", icons: springSeason },
+    { id: 1111, type: "Лето", icons: summerSeason },
+    { id: 2222, type: "Осень", icons: autummSeason },
+    { id: 3333, type: "Зима", icons: winterSeason },
+    { id: 4444, type: "Весна", icons: springSeason },
   ];
 
   const SeasonTypeArrayMobile = [
     { id: 5555, type: "Все", icons: AllSeason },
-    { id: 111, type: "Лето", icons: summerSeason },
-    { id: 222, type: "Осень", icons: autummSeason },
-    { id: 333, type: "Зима", icons: winterSeason },
-    { id: 444, type: "Весна", icons: springSeason },
+    { id: 1111, type: "Лето", icons: summerSeason },
+    { id: 2222, type: "Осень", icons: autummSeason },
+    { id: 3333, type: "Зима", icons: winterSeason },
+    { id: 4444, type: "Весна", icons: springSeason },
   ];
 
   const BrandTypeArray = [
-    { id: 444, type: "Весна", icons: BrandSpring },
-    { id: 111, type: "Лето", icons: BrandSummer },
-    { id: 222, type: "Осень", icons: BrandAutumm },
-    { id: 333, type: "Зима", icons: BrandWinter },
     { id: 5555, type: "Все", icons: allBrandDesktop },
+    { id: 1111, type: "Лето", icons: BrandSummer },
+    { id: 2222, type: "Осень", icons: BrandAutumm },
+    { id: 3333, type: "Зима", icons: BrandWinter },
+    { id: 4444, type: "Весна", icons: BrandSpring },
   ];
 
   const [genderType, setGenderType] = useState([
@@ -224,7 +193,7 @@ const MediumHeader = ({ seasonsData }) => {
               <img src={value?.icons} alt="" className="object-cover w-full" />
             </figure>
             <article
-              className={`  flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
+              className={`flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
             >
               {value?.type}
             </article>

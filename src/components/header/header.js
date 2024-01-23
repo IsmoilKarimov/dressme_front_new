@@ -51,7 +51,6 @@ const Header = () => {
   useEffect(() => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
-  // console.log(scrollPost, "scrollPost")
   return (
     <header>
       <section>
@@ -93,11 +92,6 @@ const Header = () => {
           : "mt-[0] h-0 overflow-hidden"
           } `}
         >
-          {/* <article className={`${locationWindow !== "/delivery-points" ? "block" : "hidden mt-[0]"
-            } `}
-          >
-            <NavbarBottomIndex />
-          </article> */}
           {!dressInfo?.yandexFullScreen && (
             <article className={`fixed bottom-0 w-full bg-white ${show
               ? "visible duration-500 z-[101]"
