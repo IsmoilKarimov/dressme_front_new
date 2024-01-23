@@ -127,7 +127,7 @@ const Footer = () => {
                     </div>
                     <div>
                       {" "}
-                      2022 — {dateObj.getFullYear()}.{" "}
+                      2022 — {dateObj.getFullYear()}{" "}
                       <span className="md:ml-2">Все права защищены.</span>
                     </div>
                   </article>

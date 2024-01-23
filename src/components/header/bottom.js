@@ -80,12 +80,15 @@ function BottomHeader({ setSeasons }) {
   };
 
   const url = "https://api.dressme.uz/api/main";
+
   // ------------GET METHOD Main data -----------------\
   // const arr = String(dressInfo?.type)?.split("");
   // const seasonId = Number(arr?.shift());
   // console.log(dressInfo?.type,'dressInfo?.type');
   // console.log(arr,'arr');
   // console.log(seasonId, "seasonId");
+
+  const seasonId = dressInfo?.type
 
   const fetchGetAllData = () => {
     var params = new URLSearchParams();
@@ -101,7 +104,7 @@ function BottomHeader({ setSeasons }) {
     state?.genderSelectId && params.append("gender", state?.genderSelectId);
     colorSelectId?.length && params.append("color", colorSelectId);
 
-    // seasonId && params.append("season", seasonId);
+    dressInfo?.type && params.append("season", dressInfo?.type);
 
     fetch(`${url}?` + params)
       .then((res) => res.json())
@@ -109,7 +112,7 @@ function BottomHeader({ setSeasons }) {
         setState({ ...state, getAllCardList: res });
         setSeasons(res);
         console.log(res, "Medium");
-        setDressInfo({ ...dressInfo, mainCardProducts: res });
+        // setDressInfo({ ...dressInfo, mainCardProducts: res });
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
@@ -325,9 +328,10 @@ function BottomHeader({ setSeasons }) {
       setDressInfo({ ...dressInfo, mainColorId: id });
     }
   };
-  console.log(colorSelectId, "colorSelectId");
+
   useEffect(() => {
     fetchGetAllData();
+    console.log(dressInfo?.type,'dressInfo?.type');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     state?.categorySelectId,
@@ -337,7 +341,7 @@ function BottomHeader({ setSeasons }) {
     dressInfo?.mainSearchName,
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
-    // seasonId,
+    dressInfo?.type,
   ]);
 
   return (

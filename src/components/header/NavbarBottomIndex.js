@@ -70,7 +70,7 @@ function NavbarBottomIndex({setSeasons}) {
                   <NavLink
                     to={"/sign_in"}
                     className={
-                      "w-[30%] md:h-[48px] ss:h-[52px] px-4   justify-center flex  items-center  md:bg-btnBgColor md:border   rounded-lg"
+                      "w-[30%] md:h-[48px] ss:h-[52px] px-4 justify-center flex  items-center  md:bg-btnBgColor md:border   rounded-lg"
                     }
                   >
                     <span className="rotate-[180deg]">
