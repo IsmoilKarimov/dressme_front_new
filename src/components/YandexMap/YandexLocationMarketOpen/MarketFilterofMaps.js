@@ -155,7 +155,7 @@ function MarketFilterofMaps({ onClick }) {
   const GenderSelect = () => {
     const [personItems, setPersonItems] = useState([
       {
-        id: 444,
+        id: 4444,
         childText: [
           { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
           { id: 2, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
@@ -169,7 +169,7 @@ function MarketFilterofMaps({ onClick }) {
         ],
       },
       {
-        id: 111,
+        id: 1111,
         childText: [
           { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
           { id: 2, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
@@ -183,7 +183,7 @@ function MarketFilterofMaps({ onClick }) {
         ],
       },
       {
-        id: 222,
+        id: 2222,
         childText: [
           { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
           { id: 2, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
@@ -197,7 +197,7 @@ function MarketFilterofMaps({ onClick }) {
         ],
       },
       {
-        id: 333,
+        id: 3333,
         childText: [
           { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
           { id: 2, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },

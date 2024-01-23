@@ -19,10 +19,10 @@ const CategoryNavbar = () => {
   });
 
   const personItems = [
-    { id: 444, man: SpringMale },
-    { id: 111, man: SummerMale },
-    { id: 222, man: AutummMale },
-    { id: 333, man: WinterMale },
+    { id: 4444, man: SpringMale },
+    { id: 1111, man: SummerMale },
+    { id: 2222, man: AutummMale },
+    { id: 3333, man: WinterMale },
     { id: 5555, man: WinterMale },
   ];
 

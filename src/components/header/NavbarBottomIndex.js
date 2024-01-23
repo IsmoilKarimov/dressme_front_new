@@ -101,13 +101,13 @@ function NavbarBottomIndex({setSeasons}) {
                     className={`text-${dressInfo?.ColorSeason} md:h-[48px] ss:h-[52px] w-[56px] rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center mr-3 `}
                   >
                     <span
-                      className={`flex items-center justify-center  rotate-[180deg] `}
+                      className={`flex items-center justify-center rotate-[180deg] `}
                     >
                       <SircleNext colors={dressInfo?.ColorSeason} />
                     </span>
                   </NavLink>
                   <div
-                    className={`${dressInfo?.BtnActiveSeason} w-fit md:h-[48px] ss:h-[52px] px-4   justify-center flex items-center   mr-2 rounded-lg`}
+                    className={`${dressInfo?.BtnActiveSeason} w-fit md:h-[48px] ss:h-[52px] px-4 justify-center flex items-center   mr-2 rounded-lg`}
                   >
                     <span>
                       {" "}

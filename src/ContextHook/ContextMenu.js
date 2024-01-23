@@ -1148,23 +1148,7 @@ export const DressMenu = ({ children }) => {
   });
   const BtnSeasonArray = [
     {
-      id: 444,
-      btn: "text-borderSpring bg-btnBgColor border-searchBgColor",
-      btnOpacity: "text-borderSpring bg-opacity-10 bg-bgSpring",
-      btnFocus:
-        "focus:text-borderSpring focus:bg-btnBgColor focus:border-searchBgColor",
-      textHover: "hover:text-borderSpring",
-      textColor: "text-borderSpring",
-      color: "#008F0E",
-      btnActiveSeason:
-        "text-borderSpring  bg-bgSpring border border-borderSpring",
-      authenActiveSeason:
-        "md:text-borderSpring bg-white bg-bgSpring md:border-borderSpring w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border   rounded-lg",
-      linkActive:
-        "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderSpring text-borderSpring",
-    },
-    {
-      id: 111,
+      id: 1111,
       btn: "text-borderSummer bg-btnBgColor border-searchBgColor",
       btnOpacity: "text-borderSummer bg-opacity-10 bg-bgSummer",
       btnFocus:
@@ -1180,7 +1164,7 @@ export const DressMenu = ({ children }) => {
         "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderSummer text-borderSummer",
     },
     {
-      id: 222,
+      id: 2222,
       btn: "text-borderAutumm bg-btnBgColor border-searchBgColor",
       btnOpacity: "text-borderAutumm bg-opacity-10 bg-bgAutumm",
       btnFocus:
@@ -1196,7 +1180,7 @@ export const DressMenu = ({ children }) => {
         "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderAutumm text-borderAutumm",
     },
     {
-      id: 333,
+      id: 3333,
       btn: "text-borderWinter bg-btnBgColor border-searchBgColor",
       btnOpacity: "text-borderWinter bg-opacity-10 bg-bgWinter",
       btnFocus:
@@ -1210,6 +1194,22 @@ export const DressMenu = ({ children }) => {
         "md:text-borderWinter bg-white bg-bgWinter md:border-borderWinter w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border rounded-lg",
       linkActive:
         "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderWinter text-borderWinter",
+    },
+    {
+      id: 4444,
+      btn: "text-borderSpring bg-btnBgColor border-searchBgColor",
+      btnOpacity: "text-borderSpring bg-opacity-10 bg-bgSpring",
+      btnFocus:
+        "focus:text-borderSpring focus:bg-btnBgColor focus:border-searchBgColor",
+      textHover: "hover:text-borderSpring",
+      textColor: "text-borderSpring",
+      color: "#008F0E",
+      btnActiveSeason:
+        "text-borderSpring  bg-bgSpring border border-borderSpring",
+      authenActiveSeason:
+        "md:text-borderSpring bg-white bg-bgSpring md:border-borderSpring w-1/2  px-2 md:h-[48px] ss:h-[52px]  justify-center flex items-center bg-btnBgColor ss:border   rounded-lg",
+      linkActive:
+        "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderSpring text-borderSpring",
     },
     {
       id: 5555,
@@ -1227,6 +1227,7 @@ export const DressMenu = ({ children }) => {
       linkActive:
         "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderWinter text-borderWinter",
     },
+    
   ];
 
   useEffect(() => {

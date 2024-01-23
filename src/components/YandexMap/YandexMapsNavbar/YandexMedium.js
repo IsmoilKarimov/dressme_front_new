@@ -39,23 +39,23 @@ const YandexMedium = ({ getYandexSearchName }) => {
 
   const SeasonTypeArray = [
     { id: 5555, type: "", icons: AllSeasonDesktop },
-    { id: 111, type: "Лето", icons: summerSeason },
-    { id: 222, type: "Осень", icons: autummSeason },
-    { id: 333, type: "Зима", icons: winterSeason },
-    { id: 444, type: "Весна", icons: springSeason },
+    { id: 1111, type: "Лето", icons: summerSeason },
+    { id: 2222, type: "Осень", icons: autummSeason },
+    { id: 3333, type: "Зима", icons: winterSeason },
+    { id: 4444, type: "Весна", icons: springSeason },
   ];
   const SeasonTypeArrayMobile = [
     { id: 5555, type: "Все", icons: AllSeason },
-    { id: 111, type: "Лето", icons: summerSeason },
-    { id: 222, type: "Осень", icons: autummSeason },
-    { id: 333, type: "Зима", icons: winterSeason },
-    { id: 444, type: "Весна", icons: springSeason },
+    { id: 1111, type: "Лето", icons: summerSeason },
+    { id: 2222, type: "Осень", icons: autummSeason },
+    { id: 3333, type: "Зима", icons: winterSeason },
+    { id: 4444, type: "Весна", icons: springSeason },
   ];
   const BrandTypeArray = [
-    { id: 444, type: "Весна", icons: BrandSpring },
-    { id: 111, type: "Лето", icons: BrandSummer },
-    { id: 222, type: "Осень", icons: BrandAutumm },
-    { id: 333, type: "Зима", icons: BrandWinter },
+    { id: 4444, type: "Весна", icons: BrandSpring },
+    { id: 1111, type: "Лето", icons: BrandSummer },
+    { id: 2222, type: "Осень", icons: BrandAutumm },
+    { id: 3333, type: "Зима", icons: BrandWinter },
     { id: 5555, type: "Все", icons: allBrandDesktop },
   ];
 
