@@ -31,7 +31,7 @@ function RegionList({ onClick }) {
     });
   }
   const accordionCityList = (id) => {
-
+    console.log(id, "buqanday id");
     if (activeIndex === id) {
       setActiveIndex(0);
     } else {
@@ -115,9 +115,16 @@ function RegionList({ onClick }) {
                   className={`${data.id || data.sub_regions.id ? "" : ""
                     } w-full h-fit `}
                 >
-                  <div className="flex items-center">
-                    <div onClick={() => accordionCityList(data?.id)} className="w-full cursor-pointer flex items-center  border-b border-[#F0F0F0] ">
-                      <label
+                  <div className={`flex items-center ${data?.id == 2 ? "" : "opacity-50"} `}>
+                    <div
+                      onClick={
+                        data?.id == 2 ?
+                          () => { accordionCityList(data?.id) } : null
+
+                      }
+                      className="w-full cursor-pointer flex items-center  border-b border-[#F0F0F0] ">
+
+                      {data?.id == 2 ? <label
                         htmlFor={data?.name_ru}
                         onClick={() => RegId(data?.id)}
                         className="w-fit cursor-pointer flex items-center"
@@ -140,7 +147,17 @@ function RegionList({ onClick }) {
                         <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
                           {data?.name_ru}
                         </span>
-                      </label>
+                      </label> :
+                        <label
+                          className="w-fit cursor-pointer flex items-center"
+                        >
+                          <div
+                            className="w-[20px] h-[20px] border rounded-full cursor-pointer mr-3"
+                          ></div>
+                          <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
+                            {data?.name_ru}
+                          </span>
+                        </label>}
                       <span
                         className={`${activeIndex === data?.id
                           ? "rotate-[-0deg] duration-300"
@@ -220,7 +237,7 @@ function RegionList({ onClick }) {
           </span>
         </div>
       </div>
-    </main>
+    </main >
   );
 }
 export default React.memo(RegionList);
