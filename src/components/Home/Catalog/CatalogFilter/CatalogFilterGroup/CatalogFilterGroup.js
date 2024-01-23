@@ -10,6 +10,8 @@ import CategoryCustomerReviewsFilter from "./CatalogFilter/CategoryCustomerRevie
 import CategoryOutwearSizesFilter from "./CatalogFilter/CategoryOutwearSizesFilter";
 import CategoryUnderwearSizesFilter from "./CatalogFilter/CategoryUnderwearSizesFilter";
 import CategoryFootwearSizesFilter from "./CatalogFilter/CategoryFootwearSizesFilter";
+import { useHttp } from "../../../../../hook/useHttp";
+import { useQuery } from "@tanstack/react-query";
 
 const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -49,7 +51,8 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
   const [selectedRating, setSelectedRating] = useState(null);
   const [dataActionFootwearSizes, setDataActionFootwearSizes] = useState(false);
   const [dataActionOutwearSizes, setDataActionOutwearSizes] = useState(false);
-  const [dataActionUnderwearSizes, setDataActionUnderwearSizes] = useState(false);
+  const [dataActionUnderwearSizes, setDataActionUnderwearSizes] =
+    useState(false);
   const [dataActionPrizes, setDataActionPrizes] = useState(false);
 
   // =========================================================
@@ -135,7 +138,6 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
     };
   }, [screenSize]);
 
-
   // ===========================================================
   // OUTWEAR
   function onGetOutwearSizes(letterSize, minSize, maxSize) {
@@ -156,7 +158,7 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
   function sendClearedOutwearData() {
     handleOutwearSizes(null);
   }
-  // END OF OUTWEAR 
+  // END OF OUTWEAR
 
   // UNDERWEAR
   function onGetUnderwearSizes(letterSize, minSize, maxSize) {
@@ -184,7 +186,6 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
   }
   // END OF UNDERWEAR
 
-
   // =================================================
 
   // CLEAR ALL DATA
@@ -193,13 +194,13 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
     handleGetId(null);
     handleGetDiscountId(null);
     setDataActionGender(false);
-    setDataActionDiscount(false)
+    setDataActionDiscount(false);
     // CATEGORY DATA
     handleGetCategoryId(null);
     setDataActionCategory(false);
     // BUDGET DATA
-    getMinMaxPrice({ min: null, max: null})
-    setDataActionPrizes(false)
+    getMinMaxPrice({ min: null, max: null });
+    setDataActionPrizes(false);
     // COLORS DATA
     setDataActionColors(false);
     setColorHexCode([]);
@@ -211,8 +212,8 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
     setDataActionOutwearSizes(false);
     sendClearedOutwearData();
     // UNDERWEAR SIZES
-    setDataActionUnderwearSizes(false)
-    sendClearedUnderwearData()
+    setDataActionUnderwearSizes(false);
+    sendClearedUnderwearData();
     // FOOTWEAR SIZES DATA
     handleFootwearWearSize(null);
     setDataActionFootwearSizes(false);
@@ -222,6 +223,7 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
 
   const { id } = useParams();
   const newId = id.replace(":", "");
+  const { request } = useHttp();
   const apiUrl = `https://api.dressme.uz/api/main/category/${newId}`;
 
   async function fetchGetAllData() {
@@ -269,8 +271,32 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
       .then((res) => {
         setFilter(res?.filter);
         setFilterData(res);
+      }).then(()=>{
+        // Location: reload()
       })
       .catch((err) => console.log(err, "ERRORLIST"));
+
+    //   const { refetch } = useQuery(
+    //     ["get-categry-infos"],
+    //     async () => {
+    //       return request({
+    //         url: `/main/category/${newId}?${params}`,
+    //         token: true,
+    //       });
+    //     },
+    //     {
+    //       onSuccess: (res) => {
+    //         console.log(res, "SUCCESS, GET USER PROFILE");
+    //         setFilter(res?.filter);
+    //         setFilterData(res);
+    //       },
+    //       onError: (err) => {
+    //         console.log(err, "THERE IS AN ERROR IN GET-USER-PROFILE");
+    //       },
+    //       keepPreviousData: true,
+    //       refetchOnWindowFocus: false,
+    //     }
+    //   );
   }
 
   useEffect(() => {

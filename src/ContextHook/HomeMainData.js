@@ -24,6 +24,7 @@ export const HomeMainDataContextProvider = ({ children }) => {
     Cookies.set("WishList", JSON.stringify(wishList), { expires: 2 });
   }
   const url = "https://api.dressme.uz";
+  
 
   // ------------GET METHOD Main data -----------------
   useQuery(

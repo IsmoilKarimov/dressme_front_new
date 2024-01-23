@@ -90,7 +90,7 @@ const MediumHeader = () => {
     { id: 3333, type: "Зима", icons: winterSeason },
     { id: 4444, type: "Весна", icons: springSeason },
   ];
-
+  // console.log(dressInfo?.type, "dressInfo?.type");
   const SeasonTypeArrayMobile = [
     { id: 5555, type: "Все", icons: AllSeason },
     { id: 1111, type: "Лето", icons: summerSeason },

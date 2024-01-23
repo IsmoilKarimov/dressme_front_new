@@ -24,7 +24,9 @@ const NavCategoryModal = () => {
   const navigate = useNavigate();
   const goCatalogId = (id) => {
     navigate(`/catalog/${id}`);
-    window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+  }, 1000)
   };
 
   return (
