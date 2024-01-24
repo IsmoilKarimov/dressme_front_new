@@ -77,11 +77,15 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   useEffect(() => {
     setMinPrice(Number(getMapsInfo?.budget?.min_price));
     setMaxPrice(Number(getMapsInfo?.budget?.max_price));
-    if (!values[0] && !values[1]) {
-      setValues([
-        Number(getMapsInfo?.budget?.min_price),
-        Number(getMapsInfo?.budget?.max_price),
-      ]);
+    if (getMapsInfo?.budget?.min_price && getMapsInfo?.budget?.max_price) {
+      if (!values[0] && !values[1]) {
+        setValues([
+          Number(getMapsInfo?.budget?.min_price),
+          Number(getMapsInfo?.budget?.max_price),
+        ]);
+      }
+    } else {
+      setValues([0, 0])
     }
   }, [getMapsInfo?.budget]);
 
@@ -105,6 +109,18 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
     ]);
     setGetRange([]);
   };
+
+  useEffect(() => {
+    setState({ ...state, clearPrice: false, });
+    setMinPrice(Number(getMapsInfo?.budget?.min_price));
+    setMaxPrice(Number(getMapsInfo?.budget?.max_price));
+    setValues([
+      Number(getMapsInfo?.budget?.min_price),
+      Number(getMapsInfo?.budget?.max_price),
+    ]);
+    setGetRange([]);
+  }, [dressInfo?.mainRegionId,
+  dressInfo?.mainSubRegionId])
 
   const sendPriceList = () => {
     setGetRange(values);
@@ -276,17 +292,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
       });
     });
   };
-  useEffect(() => {
-    setState({ ...state, clearPrice: false, });
-    setMinPrice(Number(getMapsInfo?.budget?.min_price));
-    setMaxPrice(Number(getMapsInfo?.budget?.max_price));
-    setValues([
-      Number(getMapsInfo?.budget?.min_price),
-      Number(getMapsInfo?.budget?.max_price),
-    ]);
-    setGetRange([]);
-  }, [dressInfo?.mainRegionId,
-  dressInfo?.mainSubRegionId,])
+
 
   useEffect(() => {
     getYandexFilterData({

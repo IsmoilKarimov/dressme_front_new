@@ -74,25 +74,21 @@ function YandexMapsDressMe() {
     setFilterSearchByBrand(childData)
   }
   // -------------Get Request
+  const typeFilter = String(dressInfo?.type)?.split("");
+  const seasonId = Number(typeFilter?.shift());
 
   const fetchGetAllData = (params) => {
-    // for (const property in params) {
-    //   navigate(`/delivery-points/${UseReplace(property, params[property])}`);
-    // }
     Object.entries(params).forEach((i) => {
       if (!i[1]) delete params[i[0]];
     });
-
-    // fetch(`${url}/map/index`)
     fetch(`${url}/map/index?` + new URLSearchParams(params),)
       .then((res) => res.json())
       .then((res) => {
         setGetMapsInfo(res);
-        console.log(res, "BuRes");
+        // console.log(res, "BuRes");
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
-  // const url = "https://api.dressme.uz/api/main";
 
   // ------------GET METHOD Main data -----------------\
 
@@ -118,12 +114,13 @@ function YandexMapsDressMe() {
       category: getAllFilterSearch?.category_wear,
       keywords: FilterSearchByBrand?.searchMarketName,
       region: dressInfo?.mainRegionId,
+      season: seasonId,
       sub_region: dressInfo?.mainSubRegionId,
       "budget[from]": getAllFilterSearch?.minPrice,
       "budget[to]": getAllFilterSearch?.maxPrice
     })
   }, [getAllFilterSearch, FilterSearchByBrand, dressInfo?.mainRegionId,
-    dressInfo?.mainSubRegionId,])
+    dressInfo?.mainSubRegionId, seasonId])
 
   function getCurrentDimension() {
     return {
