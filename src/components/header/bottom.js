@@ -56,13 +56,18 @@ function BottomHeader({ setSeasons }) {
   useEffect(() => {
     setMinPrice(Number(state?.getAllCardList?.budget?.min_price));
     setMaxPrice(Number(state?.getAllCardList?.budget?.max_price));
-    if (!values[0] && !values[1]) {
-      setValues([
-        Number(state?.getAllCardList?.budget?.min_price),
-        Number(state?.getAllCardList?.budget?.max_price),
-      ]);
+    if (state?.getAllCardList?.budget?.min_price && state?.getAllCardList?.budget?.max_price) {
+      if (!values[0] && !values[1]) {
+        setValues([
+          Number(state?.getAllCardList?.budget?.min_price),
+          Number(state?.getAllCardList?.budget?.max_price),
+        ]);
+      }
+    } else {
+      setValues([0, 0])
     }
-  }, [state?.getAllCardList?.budget]);
+
+  }, [state?.getAllCardList?.budget,]);
 
   useEffect(() => {
     if (values && minPrice && maxPrice) {
@@ -84,9 +89,8 @@ function BottomHeader({ setSeasons }) {
   const url = "https://api.dressme.uz/api/main";
 
   // ------------GET METHOD Main data -----------------\
-  const arr = String(dressInfo?.type)?.split("");
-  const seasonId = Number(arr?.shift());
-  console.log(seasonId, "seasonId");
+  const typeFilter = String(dressInfo?.type)?.split("");
+  const seasonId = Number(typeFilter?.shift());
   const fetchGetAllData = () => {
     var params = new URLSearchParams();
     dressInfo?.mainRegionId && params.append("region", dressInfo?.mainRegionId);
@@ -107,7 +111,7 @@ function BottomHeader({ setSeasons }) {
       .then((res) => {
         setState({ ...state, getAllCardList: res });
         setSeasons(res);
-        console.log(res, "Medium");
+        // console.log(res, "Medium");
         setData({ ...data, getMainProductCard: res });
         // setDressInfo({ ...dressInfo, mainCardProducts: res });
 
