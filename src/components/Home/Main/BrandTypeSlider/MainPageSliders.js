@@ -183,7 +183,7 @@ function MainPageSliders() {
               more ? "xs:h-0" : "xs:h-auto"
             } overflow-hidden`}
           >
-            {mainData?.sections?.length > 8 ? (
+            {mainData?.sections?.length > 6 ? (
               <Slider
                 {...settings}
                 vertical={false}
@@ -347,7 +347,7 @@ function MainPageSliders() {
           ) : null}
 
           <div className="w-full mt-[60px] hidden xs:block">
-            {mainData?.shops?.length > 6 ? (
+            {mainData?.shops?.length > 8 ? (
               <Slider
                 {...settings1}
                 className="w-[100%] flex xs:justify-between  px-[1px]"
