@@ -17,10 +17,12 @@ import {
   WomanGenIcons,
 } from "../../assets/icons";
 import { GrClose } from "react-icons/gr";
+import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 const { Option } = Select;
 
 function BottomHeader({ setSeasons }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [data, setData] = useContext(HomeMainDataContext);
 
   const [selectedId, setSelectedId] = useState(null);
   const [state, setState] = useState({
@@ -82,13 +84,9 @@ function BottomHeader({ setSeasons }) {
   const url = "https://api.dressme.uz/api/main";
 
   // ------------GET METHOD Main data -----------------\
-  // const arr = String(dressInfo?.type)?.split("");
-  // const seasonId = Number(arr?.shift());
-  // console.log(dressInfo?.type,'dressInfo?.type');
-  // console.log(arr,'arr');
-  // console.log(seasonId, "seasonId");
-  // const seasonId = dressInfo?.type
-
+  const arr = String(dressInfo?.type)?.split("");
+  const seasonId = Number(arr?.shift());
+  console.log(seasonId, "seasonId");
   const fetchGetAllData = () => {
     var params = new URLSearchParams();
     dressInfo?.mainRegionId && params.append("region", dressInfo?.mainRegionId);
@@ -102,8 +100,7 @@ function BottomHeader({ setSeasons }) {
     getRange[1] && params.append("budget[to]", getRange[1]);
     state?.genderSelectId && params.append("gender", state?.genderSelectId);
     colorSelectId?.length && params.append("color", colorSelectId);
-
-    // seasonId !== 5 && params.append("season", seasonId);
+    seasonId !== 5 && params.append("season", seasonId);
 
     fetch(`${url}?` + params)
       .then((res) => res.json())
@@ -111,7 +108,9 @@ function BottomHeader({ setSeasons }) {
         setState({ ...state, getAllCardList: res });
         setSeasons(res);
         console.log(res, "Medium");
-        setDressInfo({ ...dressInfo, mainCardProducts: res });
+        setData({ ...data, getMainProductCard: res });
+        // setDressInfo({ ...dressInfo, mainCardProducts: res });
+
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
@@ -348,7 +347,7 @@ function BottomHeader({ setSeasons }) {
     dressInfo?.mainSearchName,
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
-    // seasonId
+    seasonId
   ]);
 
   return (
