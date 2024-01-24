@@ -191,16 +191,16 @@ function MainPageSliders() {
                 {data?.getMainProductCard?.sections?.map((data) => {
                   return (
                     <NavLink
-                      to={`/section/${data?.id}`}
+                      to={`/section/:${data?.id}`}
                       key={data?.id}
-                      className="!w-[99%] h-[260px] rounded-lg "
+                      className="!w-[99%] h-[280px] rounded-lg "
                     >
-                      <div className="w-full h-[230px] border border-green-600 bg-btnBgColor ml-[0.5px] rounded-lg overflow-hidden">
+                      <div className="w-full h-[250px] bg-btnBgColor ml-[0.5px] rounded-lg overflow-hidden">
                         <button
                           className={`w-full h-full border border-searchBgColor rounded-lg flex items-center justify-center`}
                         >
                           <img
-                            className="w-full h-full rounded-lg object-cover object-top"
+                            className="w-full h-full rounded-lg object-cover object-top "
                             src={data?.url_photo}
                             alt="No-img"
                           />

@@ -11,7 +11,7 @@ import { BiChevronDown } from "react-icons/bi";
 import FilterDropUp from "../CategoryMobileDropUp/FilterDropUp";
 import ClothingTypesDropUp from "../CategoryMobileDropUp/ClothingTypesDropUp";
 
-const CategoryTopDetail = ({filterData, setFilterData}) => {
+const CategoryTopDetail = ({ filterData, setFilterData }) => {
   const [clothingTypes, setClothingTypes] = useState(false);
   const [filter, setFilter] = useState(false);
   // const [data, setData] = useState({});
@@ -64,9 +64,8 @@ const CategoryTopDetail = ({filterData, setFilterData}) => {
               handleCategories(data?.name_ru, data?.id);
               window.location.reload()
             }}
-            className={`${
-              filterData?.section?.id === data?.id ? "bg-bgColor" : null
-            } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+            className={`${filterData?.section?.id === data?.id ? "bg-bgColor" : null
+              } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {data?.name_ru}
           </p>
@@ -107,14 +106,12 @@ const CategoryTopDetail = ({filterData, setFilterData}) => {
       <div className="tableSizes">
         <section
           onClick={() => setFilter(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-            filter ? "" : "hidden"
-          }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${filter ? "" : "hidden"
+            }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
-            filter ? "bottom-0" : "bottom-[-800px] z-0"
-          }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${filter ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
         >
           <FilterDropUp onClick={toggleFilter} />
         </section>
@@ -122,14 +119,12 @@ const CategoryTopDetail = ({filterData, setFilterData}) => {
       <div className="locations">
         <section
           onClick={() => setClothingTypes(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-            clothingTypes ? "" : "hidden"
-          }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${clothingTypes ? "" : "hidden"
+            }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${
-            clothingTypes ? "bottom-0" : "bottom-[-800px] z-0"
-          }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${clothingTypes ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
         >
           <ClothingTypesDropUp onClick={toggleClothingTypes} />
         </section>
@@ -138,14 +133,14 @@ const CategoryTopDetail = ({filterData, setFilterData}) => {
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
         <article className="w-[100%] h-fit md:mb-16">
           <article className="w-full flex flex-col border-b md:border-none border-searchBgColor">
-            <figure className="relative w-full md:h-[90px] mt-6 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
+            <figure className="relative w-full md:h-[90px] mt-6 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-lg px-4 md:px-0">
               {/*  */}
-              <div className="w-full md:w-fit flex h-[66px] md:h-fit items-center border md:border-none border-searchBgColor rounded-b-lg">
+              <div className="w-full md:w-fit flex h-[66px] md:h-fit items-center border md:border-none border-searchBgColor rounded-lg">
                 <div className="absolute w-[80px] h-[80px] md:w-[120px] md:h-[160px] overflow-hidden left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center bg-white columns-1">
                   <img
                     src={filterData?.section?.url_photo}
                     alt=""
-                    className="w-full h-full rounded-xl object-cover"
+                    className="w-full h-full rounded-xl object-cover object-top"
                   />
                 </div>
                 <div className="flex items-center ml-[112px] md:ml-[210px]">
@@ -181,9 +176,8 @@ const CategoryTopDetail = ({filterData, setFilterData}) => {
                         <BiChevronDown
                           size={22}
                           style={{ color: "#000" }}
-                          className={`${
-                            state?.opensports ? "rotate-[-180deg]" : ""
-                          } duration-200`}
+                          className={`${state?.opensports ? "rotate-[-180deg]" : ""
+                            } duration-200`}
                         />
                       </span>
                     </Popover>

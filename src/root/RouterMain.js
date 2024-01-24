@@ -17,7 +17,7 @@ const SingleMainProduct = React.lazy(() =>
 );
 // const CatalogMain = React.lazy(() =>
 //   import("../components/Home/Catalog/CatalogFilter")
-// );
+// ); section
 const YandexMapDressMe = React.lazy(() => import("../components/YandexMap"));
 const ForgetConfirmPassword = React.lazy(() =>
   import("../components/Authentication/SignInDetail/ForgetConfirmPassword")
