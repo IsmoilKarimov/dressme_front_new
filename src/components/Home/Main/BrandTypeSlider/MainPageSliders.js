@@ -200,7 +200,7 @@ function MainPageSliders() {
                           className={`w-full h-full border border-searchBgColor rounded-lg flex items-center justify-center`}
                         >
                           <img
-                            className="w-full h-full rounded-lg object-cover"
+                            className="w-full h-full rounded-lg object-cover object-top"
                             src={data?.url_photo}
                             alt="No-img"
                           />
