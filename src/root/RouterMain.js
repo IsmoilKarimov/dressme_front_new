@@ -8,6 +8,7 @@ import SignInSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import SignUpSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import MobileAllComments from "../components/Home/Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/MobileComments";
 import { EditProfilePage } from "../components/Authentication/UserProfile/ProfileEditPage/EditPageProfile";
+import CatalogItems from "../components/Home/Catalog/CatalogFilter/CatalogItems";
 
 // -------------------------------------
 const HomeIndex = React.lazy(() => import("../components/Home/Main"));
@@ -31,7 +32,6 @@ const Footer = React.lazy(() => import("../components/footer/footer"));
 const ProfilePage = React.lazy(() =>
   import("../components/Authentication/UserProfile/PorofilePage/ProfilePage")
 );
-const CatalogPage = React.lazy(() => import("../components/Home/Catalog"));
 const ShoppingStoreOfficial = React.lazy(() =>
   import("../components/Home/Shop/ShoppingStoreOfficial")
 );
@@ -60,6 +60,7 @@ const RouterMain = () => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
   return (
+    // catalog
     <Fragment>
       <Header />
       <Routes>
@@ -106,21 +107,8 @@ const RouterMain = () => {
             </Suspense>
           }
         />
-        <Route
-          path="/catalog"
-          element={
-            <Suspense
-              fallback={
-                <div>
-                  <SkeletonHomeIndex />
-                </div>
-              }
-            >
-              <CatalogPage />
-            </Suspense>
-          }
-        />
-        <Route path="/catalog/:id" element={<CatalogMain />} />
+
+        <Route path="/catalog/:id" element={<CatalogItems />} />
         {/* <Route
           path="/catalog/:id"
           element={
@@ -295,19 +283,19 @@ const RouterMain = () => {
       </Routes>
 
       {locationWindow !== "/add_user_private_data" &&
-      locationWindow !== "/add_user_body_data" &&
-      locationWindow !== "/confirm_password" &&
-      locationWindow !== "/set_new_password" &&
-      locationWindow !== "/catalog" &&
-      locationWindow !== "/enter_password_validate" &&
-      locationWindow !== "/forget_password" &&
-      locationWindow !== "/sign_up" &&
-      locationWindow !== "/sign_in" &&
-      locationWindow !== "/src" &&
-      locationWindow !== "/allcomments" &&
-      locationWindow !== "/profile/settings" &&
-      locationWindow !== "/profile/edit" &&
-      locationWindow !== "/delivery-points" ? (
+        locationWindow !== "/add_user_body_data" &&
+        locationWindow !== "/confirm_password" &&
+        locationWindow !== "/set_new_password" &&
+        locationWindow !== "/catalog" &&
+        locationWindow !== "/enter_password_validate" &&
+        locationWindow !== "/forget_password" &&
+        locationWindow !== "/sign_up" &&
+        locationWindow !== "/sign_in" &&
+        locationWindow !== "/src" &&
+        locationWindow !== "/allcomments" &&
+        locationWindow !== "/profile/settings" &&
+        locationWindow !== "/profile/edit" &&
+        locationWindow !== "/delivery-points" ? (
         <Suspense fallback={<>Loading...</>}>
           <Footer />
         </Suspense>

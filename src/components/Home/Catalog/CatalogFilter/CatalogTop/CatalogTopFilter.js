@@ -100,6 +100,7 @@ const CatalogTopFilter = () => {
 
   return (
     <main className="w-full">
+
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
         <section className="w-[100%] h-fit flex flex-col md:hidden border-b border-searchBgColor ">
           <article className="w-full flex flex-col">
@@ -129,9 +130,8 @@ const CatalogTopFilter = () => {
                         <BiChevronDown
                           size={22}
                           style={{ color: "#000" }}
-                          className={`${
-                            state?.opensports ? "rotate-[-180deg]" : ""
-                          } duration-200`}
+                          className={`${state?.opensports ? "rotate-[-180deg]" : ""
+                            } duration-200`}
                         />
                       </span>
                     </Popover>
@@ -171,7 +171,7 @@ const CatalogTopFilter = () => {
             </Popover>
           </article>
         </section>
-        
+
         <section className="w-full h-full">
           <div className="md:pt-8 md:pb-16 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 py-3">
             <section className="max-w-[1280px] w-[100%] h-full flex items-center justify-between m-auto">
