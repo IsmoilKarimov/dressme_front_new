@@ -77,11 +77,23 @@ function YandexMapsDressMe() {
   const typeFilter = String(dressInfo?.type)?.split("");
   const seasonId = Number(typeFilter?.shift());
 
-  const fetchGetAllData = (params) => {
-    Object.entries(params).forEach((i) => {
-      if (!i[1]) delete params[i[0]];
-    });
-    fetch(`${url}/map/index?` + new URLSearchParams(params),)
+  const fetchGetAllData = () => {
+    var params = new URLSearchParams();
+
+    dressInfo?.mainRegionId && params.append("region", dressInfo?.mainRegionId);
+    dressInfo?.mainSubRegionId &&
+      params.append("sub_region", dressInfo?.mainSubRegionId);
+    FilterSearchByBrand?.searchMarketName &&
+      params.append("keywords", FilterSearchByBrand?.searchMarketName);
+    getAllFilterSearch?.category_wear &&
+      params.append("category", getAllFilterSearch?.category_wear);
+    getAllFilterSearch?.minPrice && params.append("budget[from]", getAllFilterSearch?.minPrice);
+    getAllFilterSearch?.maxPrice && params.append("budget[to]", getAllFilterSearch?.maxPrice);
+    getAllFilterSearch?.genderType && params.append("gender", getAllFilterSearch?.genderType);
+    getAllFilterSearch?.category_brand && params.append("shop", getAllFilterSearch?.category_brand);
+    seasonId !== 5 && params.append("season", seasonId);
+
+    fetch(`${url}/map/index?` + params)
       .then((res) => res.json())
       .then((res) => {
         setGetMapsInfo(res);
@@ -108,17 +120,7 @@ function YandexMapsDressMe() {
   );
 
   useEffect(() => {
-    fetchGetAllData({
-      gender: getAllFilterSearch?.genderType,
-      shop: getAllFilterSearch?.category_brand,
-      category: getAllFilterSearch?.category_wear,
-      keywords: FilterSearchByBrand?.searchMarketName,
-      region: dressInfo?.mainRegionId,
-      season: seasonId,
-      sub_region: dressInfo?.mainSubRegionId,
-      "budget[from]": getAllFilterSearch?.minPrice,
-      "budget[to]": getAllFilterSearch?.maxPrice
-    })
+    fetchGetAllData()
   }, [getAllFilterSearch, FilterSearchByBrand, dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId, seasonId])
 
