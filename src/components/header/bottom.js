@@ -87,8 +87,7 @@ function BottomHeader({ setSeasons }) {
   // console.log(dressInfo?.type,'dressInfo?.type');
   // console.log(arr,'arr');
   // console.log(seasonId, "seasonId");
-
-  const seasonId = dressInfo?.type
+  // const seasonId = dressInfo?.type
 
   const fetchGetAllData = () => {
     var params = new URLSearchParams();
@@ -104,7 +103,7 @@ function BottomHeader({ setSeasons }) {
     state?.genderSelectId && params.append("gender", state?.genderSelectId);
     colorSelectId?.length && params.append("color", colorSelectId);
 
-    // dressInfo?.type && params.append("season", dressInfo?.type);
+    // seasonId !== 5 && params.append("season", seasonId);
 
     fetch(`${url}?` + params)
       .then((res) => res.json())
@@ -349,7 +348,7 @@ function BottomHeader({ setSeasons }) {
     dressInfo?.mainSearchName,
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
-    dressInfo?.type,
+    // seasonId
   ]);
 
   return (

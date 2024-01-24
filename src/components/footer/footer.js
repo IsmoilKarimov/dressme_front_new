@@ -119,7 +119,7 @@ const Footer = () => {
               <article className="w-full font-AeonikProMedium">
                 <section className="w-full flex items-center justify-between text-[13px]">
                   <article className="w-1/2">
-                    Created by Dishkan (September 25th, 2022, 8:16 PM)
+                    Created by Dishkan (September 25, 2022, 8:16 PM)
                   </article>
                   <article className="w-1/2 flex items-center justify-end">
                     <div className="mr-2 mt-[-4px]">
