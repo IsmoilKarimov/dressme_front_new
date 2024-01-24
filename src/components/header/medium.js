@@ -44,7 +44,6 @@ import {
   img7,
   img8,
 } from "../../assets";
-import NavCategoryModal from "./navCategoryModal";
 import RegionsList from "../../ContextHook/RegionsList";
 import Cookies from "js-cookie";
 import { MdClose } from "react-icons/md";
