@@ -14,7 +14,7 @@ import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 
 const TopHeader = () => {
   const [dressInfo] = useContext(dressMainData);
-  const [mainData, setMainData] = useContext(HomeMainDataContext);
+  const [data, setData] = useContext(HomeMainDataContext);
 
   const [selectBtn, setSelectBtn] = useState(true);
   const [regionsShow, setRegionsShow] = useState(false);
@@ -122,7 +122,7 @@ const TopHeader = () => {
                 </div>
                 <div className="w-full min-w-[90px] font-AeonikProMedium flex items-center text-[13px]">
                   {
-                    mainData?.regions?.filter(e => e?.id === dressInfo?.mainRegionId)?.map(item => {
+                    data?.getMainProductCard?.regions?.filter(e => e?.id === dressInfo?.mainRegionId)?.map(item => {
                       return (
                         <div key={item?.id}>
                           <span className="">{item?.name_ru} </span>

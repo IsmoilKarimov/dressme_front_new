@@ -19,7 +19,7 @@ function RegionList({ onClick }) {
     // openModalRegions: show,
     uniqueId: null
   });
-  const [mainData, setMainData] = useContext(HomeMainDataContext);
+  const [data, setData] = useContext(HomeMainDataContext);
   // const url = "https://api.dressme.uz/api/seller";
 
 
@@ -107,8 +107,8 @@ function RegionList({ onClick }) {
         </div>
 
         <div className="w-full overflow-auto  flex flex-col gap-y-4 pt-3  overflow-x-hidden mt-3 h-[50vh] md:h-[60vh] VerticelScroll pr-2 ">
-          {mainData?.regions ? (
-            mainData?.regions?.map((data) => {
+          {data?.getMainProductCard?.regions ? (
+            data?.getMainProductCard?.regions?.map((data) => {
               return (
                 <div
                   key={data?.id}

@@ -17,7 +17,7 @@ import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 
 const YandexTop = ({ onClick }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [mainData, setMainData] = useContext(HomeMainDataContext);
+  const [data, setData] = useContext(HomeMainDataContext);
   const [state, setState] = useState({
     openLang: false,
     openRegion: false,
@@ -120,7 +120,7 @@ const YandexTop = ({ onClick }) => {
           </span>
           <div className="w-full min-w-[90px] font-AeonikProMedium flex items-center text-[13px]">
             {
-              mainData?.regions?.filter(e => e?.id == dressInfo?.mainRegionId)?.map(item => {
+              data?.getMainProductCard?.regions?.filter(e => e?.id == dressInfo?.mainRegionId)?.map(item => {
                 return (
                   <>
                     <span className="">{item?.name_ru} </span>

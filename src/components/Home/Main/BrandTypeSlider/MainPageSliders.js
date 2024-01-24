@@ -9,10 +9,10 @@ import { NoImg, ShowMoreBackIcon, SircleNext } from "../../../../assets/icons";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 
 function MainPageSliders() {
-  const [mainData, setMainData] = useContext(HomeMainDataContext);
+  const [data, setData] = useContext(HomeMainDataContext);
 
   const [dressInfo] = useContext(dressMainData);
-
+  // maindata
   const NextArrow = (props) => {
     const { onClick } = props;
     return (
@@ -179,17 +179,16 @@ function MainPageSliders() {
         <section className="w-full box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
           {/* MAIN SLIDER */}
           <div
-            className={`w-full ss:h-0 ${
-              more ? "xs:h-0" : "xs:h-auto"
-            } overflow-hidden`}
+            className={`w-full ss:h-0 ${more ? "xs:h-0" : "xs:h-auto"
+              } overflow-hidden`}
           >
-            {mainData?.sections?.length > 6 ? (
+            {data?.getMainProductCard?.sections?.length > 6 ? (
               <Slider
                 {...settings}
                 vertical={false}
                 className="w-[100%] flex xs:justify-between flex-wrap  "
               >
-                {mainData?.sections?.map((data) => {
+                {data?.getMainProductCard?.sections?.map((data) => {
                   return (
                     <NavLink
                       to={`/section/${data?.id}`}
@@ -221,7 +220,7 @@ function MainPageSliders() {
               </Slider>
             ) : (
               <section className="w-full box-border flex flex-row justify-start gap-x-3 mt-4 mb-6 md:my-6">
-                {mainData?.sections?.map((data) => {
+                {data?.getMainProductCard?.sections?.map((data) => {
                   return (
                     <NavLink
                       to={`/section/${data?.id}`}
@@ -256,11 +255,10 @@ function MainPageSliders() {
 
           {/* CAROUSEL HIDDEN BLOCK */}
           <div
-            className={`${
-              more ? "xs:grid" : "xs:hidden"
-            } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 md:pt-7`}
+            className={`${more ? "xs:grid" : "xs:hidden"
+              } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 md:pt-7`}
           >
-            {mainData?.sections?.map((data, i) => {
+            {data?.getMainProductCard?.sections?.map((data, i) => {
               if (more) {
                 return (
                   <NavLink
@@ -313,7 +311,7 @@ function MainPageSliders() {
             })}
           </div>
 
-          {mainData?.sections?.length > 6 ? (
+          {data?.getMainProductCard?.sections?.length > 6 ? (
             <div className="w-full flex justify-center items-center  mt-10">
               <button
                 className={`w-fit cursor-pointer active:scale-95	active:opacity-70 flex items-center h-[40px] xs:h-[52px] px-4 ll:px-10 rounded-xl border ${dressInfo?.BtnSeason}`}
@@ -347,12 +345,12 @@ function MainPageSliders() {
           ) : null}
 
           <div className="w-full mt-[60px] hidden xs:block">
-            {mainData?.shops?.length > 8 ? (
+            {data?.getMainProductCard?.shops?.length > 8 ? (
               <Slider
                 {...settings1}
                 className="w-[100%] flex xs:justify-between  px-[1px]"
               >
-                {mainData?.shops?.map((data) => {
+                {data?.getMainProductCard?.shops?.map((data) => {
                   // console.log(data, "shops-data");
                   return (
                     <div
@@ -375,8 +373,7 @@ function MainPageSliders() {
               </Slider>
             ) : (
               <section className="w-full box-border flex flex-row justify-start gap-x-8 mt-4 mb-6 md:my-6">
-                {mainData?.shops?.map((data) => {
-                  console.log(data, "shops-data");
+                {data?.getMainProductCard?.shops?.map((data) => {
                   return (
                     <div
                       key={data?.id}

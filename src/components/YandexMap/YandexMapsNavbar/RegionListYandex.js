@@ -20,7 +20,7 @@ function RegionListYandex({ onClick }) {
         // openModalRegions: show,
         uniqueId: null
     });
-    const [mainData, setMainData] = useContext(HomeMainDataContext);
+    const [data, setData] = useContext(HomeMainDataContext);
     // const url = "https://api.dressme.uz/api/seller";
 
 
@@ -81,12 +81,12 @@ function RegionListYandex({ onClick }) {
 
     // }, [state?.regionId])
     // show
-    console.log(dressInfo?.mainRegionId, "filt--dressInfo?.mainRegionId");
-    console.log(dressInfo?.mainSubRegionId, "filt--dressInfo?.mainSubRegionId");
-    console.log(state?.regionId, "filt--state?.regionId");
-    console.log(state?.subRegionId, "filt--state?.subRegionId");
-    console.log(dressInfo?.yandexOpenRegionList, "filt--state?.yandexOpenRegionList");
-    console.log("filt----------------------");
+    // console.log(dressInfo?.mainRegionId, "filt--dressInfo?.mainRegionId");
+    // console.log(dressInfo?.mainSubRegionId, "filt--dressInfo?.mainSubRegionId");
+    // console.log(state?.regionId, "filt--state?.regionId");
+    // console.log(state?.subRegionId, "filt--state?.subRegionId");
+    // console.log(dressInfo?.yandexOpenRegionList, "filt--state?.yandexOpenRegionList");
+    // console.log("filt----------------------");
     return (
         <main className={`w-full  h-fit `}>
             <div
@@ -108,8 +108,8 @@ function RegionListYandex({ onClick }) {
                 </div>
 
                 <div className="w-full overflow-auto  flex flex-col gap-y-4 pt-3  overflow-x-hidden mt-3 h-[50vh] md:h-[60vh] VerticelScroll pr-2 ">
-                    {mainData?.regions ? (
-                        mainData?.regions?.map((data) => {
+                    {data?.getMainProductCard?.regions ? (
+                        data?.getMainProductCard?.regions?.map((data) => {
                             return (
                                 <div
                                     key={data?.id}

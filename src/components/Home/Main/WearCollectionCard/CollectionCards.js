@@ -12,7 +12,7 @@ export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
   const [pagination, setPagination] = useState(30);
-  const [mainData, setData, wishList, setWishlist] =
+  const [data, setData, wishList, setWishlist] =
     useContext(HomeMainDataContext);
 
   // -------------------------------------
@@ -22,29 +22,29 @@ export default function CollectionCards() {
   const url = "https://api.dressme.uz";
 
   // ------------GET METHOD Main data -----------------
-  useQuery(
-    ["get_main_data"],
-    () => {
-      return fetch(`${url}/api/main`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          //   "Content-type": "application/json; charset=UTF-8",
-        },
-      }).then((res) => res.json());
-    },
-    {
-      onSuccess: (res) => {
-        // console.log(res, 'ressssss');
-        setData(res);
-      },
-      onError: (err) => {
-        console.log(err, "err");
-      },
-      keepPreviousData: true,
-      refetchOnWindowFocus: true,
-    }
-  );
+  // useQuery(
+  //   ["get_main_data"],
+  //   () => {
+  //     return fetch(`${url}/api/main`, {
+  //       method: "GET",
+  //       headers: {
+  //         Accept: "application/json",
+  //         //   "Content-type": "application/json; charset=UTF-8",
+  //       },
+  //     }).then((res) => res.json());
+  //   },
+  //   {
+  //     onSuccess: (res) => {
+  //       // console.log(res, 'ressssss');
+  //       setData(res);
+  //     },
+  //     onError: (err) => {
+  //       console.log(err, "err");
+  //     },
+  //     keepPreviousData: true,
+  //     refetchOnWindowFocus: true,
+  //   }
+  // );
   useEffect(() => {
     if (openWearType) {
       document.body.style.overflow = "hidden";
@@ -66,7 +66,7 @@ export default function CollectionCards() {
       return { ...current, ProductList: newArray };
     });
   };
-
+  // console.log(data?.getMainProductCard, "Medium mainData");
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <section className="w-full mt-[50px]">
@@ -74,14 +74,12 @@ export default function CollectionCards() {
       </section>
       <div
         onClick={() => setOpenWearType(false)}
-        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-          openWearType ? "" : "hidden"
-        }`}
+        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openWearType ? "" : "hidden"
+          }`}
       ></div>
       <section
-        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
-          openWearType ? "bottom-0" : "bottom-[-800px] z-0"
-        }`}
+        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openWearType ? "bottom-0" : "bottom-[-800px] z-0"
+          }`}
       >
         <WearType onClick={toggle} />
       </section>
@@ -107,8 +105,8 @@ export default function CollectionCards() {
 
         <div className="w-full flex flex-col box-border ">
           <article className="flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
-            {dressInfo?.mainCardProducts?.products?.length ? (
-              dressInfo?.mainCardProducts?.products
+            {data?.getMainProductCard?.products?.length ? (
+              data?.getMainProductCard?.products
                 ?.slice(0, pagination)
                 .map((data) => {
                   return (
@@ -130,8 +128,8 @@ export default function CollectionCards() {
             )}
           </article>
 
-          {dressInfo?.mainCardProducts?.products?.length < 30 ||
-          dressInfo?.mainCardProducts?.products?.length < pagination ? null : (
+          {data?.getMainProductCard?.products?.length < 30 ||
+            data?.getMainProductCard?.products?.length < pagination ? null : (
             <div className="w-full h-fit flex items-center justify-center mt-14">
               <button
                 type="button"
