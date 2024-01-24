@@ -45,17 +45,17 @@ function BottomHeader({ setSeasons }) {
   const [colorSelectId, setColorSelectId] = useState([]);
   // console.log(colorSelectId, "colorSelectId");
   const [minPrice, setMinPrice] = useState(
-    Number(state?.getAllCardList?.budget?.min_price) || 10000
+    Number(state?.getAllCardList?.budget?.min_price)
   );
   const [maxPrice, setMaxPrice] = useState(
-    Number(state?.getAllCardList?.budget?.max_price) || 1000000
+    Number(state?.getAllCardList?.budget?.max_price)
   );
   const [getRange, setGetRange] = useState([]);
   const [values, setValues] = useState([]);
 
   useEffect(() => {
-    setMinPrice(Number(state?.getAllCardList?.budget?.min_price) || 10000);
-    setMaxPrice(Number(state?.getAllCardList?.budget?.max_price) || 1000000);
+    setMinPrice(Number(state?.getAllCardList?.budget?.min_price));
+    setMaxPrice(Number(state?.getAllCardList?.budget?.max_price));
     if (!values[0] && !values[1]) {
       setValues([
         Number(state?.getAllCardList?.budget?.min_price),
@@ -328,6 +328,8 @@ function BottomHeader({ setSeasons }) {
 
   useEffect(() => {
     setState({ ...state, clearPrice: false, });
+    setMinPrice(Number(state?.getAllCardList?.budget?.min_price));
+    setMaxPrice(Number(state?.getAllCardList?.budget?.max_price));
     setValues([
       Number(state?.getAllCardList?.budget?.min_price),
       Number(state?.getAllCardList?.budget?.max_price),
@@ -335,9 +337,9 @@ function BottomHeader({ setSeasons }) {
     setGetRange([]);
   }, [dressInfo?.mainRegionId,
   dressInfo?.mainSubRegionId,])
+
   useEffect(() => {
     fetchGetAllData();
-    console.log(dressInfo?.type, 'dressInfo?.type');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     state?.categorySelectId,
