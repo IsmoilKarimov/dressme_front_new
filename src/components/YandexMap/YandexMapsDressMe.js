@@ -35,12 +35,16 @@ import { useQuery } from "@tanstack/react-query";
 import UseReplace from "../../ContextHook/useReplace";
 import RegionsList from "../../ContextHook/RegionsList";
 import RegionListYandex from "./YandexMapsNavbar/RegionListYandex";
+import { useHttp } from "../../hook/useHttp";
+import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 // import CarouselModalMarket from "./YandexMapsNavbar/CarouselModalMarket";
 
 
 function YandexMapsDressMe() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [data, setData] = useContext(HomeMainDataContext);
 
+  const { request } = useHttp()
   const url = "https://api.dressme.uz/api/main";
   const navigate = useNavigate();
 
@@ -88,6 +92,24 @@ function YandexMapsDressMe() {
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
+  // const url = "https://api.dressme.uz/api/main";
+
+  // ------------GET METHOD Main data -----------------\
+
+  const { refetch } = useQuery(["getMapsYandexMain"], async () => {
+    return request({ url: '/main', token: true, });
+  },
+    {
+      onSuccess: (res) => {
+        setData({ ...data, getMainProductCard: res });
+      },
+      onError: (err) => {
+        console.log(err, "THERE IS AN ERROR IN GET-USER-PROFILE");
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+    }
+  );
 
   useEffect(() => {
     fetchGetAllData({

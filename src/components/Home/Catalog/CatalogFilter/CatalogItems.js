@@ -16,8 +16,7 @@ export default function CatalogItems() {
     opensports: false,
     openTypesofClothes: false,
   });
-
-  console.log(filterData, "filter-Data-Category");
+  // const { paramId } = useParams()
 
   useEffect(() => {
     if (dressInfo?.openCatalogFilter) {
@@ -28,14 +27,16 @@ export default function CatalogItems() {
   }, [dressInfo?.openCatalogFilter]);
 
   const navigate = useNavigate();
-  const params = useParams();
+  const paramId = useParams();
+  const newId = paramId?.id?.replace(":", "")
+  // console.log(newId, "paramId newIdfilter-Data-Category");
 
   const handleOpenCategories = (newOpen) => {
     setState({ ...state, opensports: newOpen });
   };
   const handleCategories = (id) => {
     setState({ ...state, opensports: false });
-    navigate(`/catalog/${id}`);
+    navigate(`/catalog/:${id}`);
   };
 
   const contentCategories = (
@@ -46,9 +47,9 @@ export default function CatalogItems() {
             key={data?.id}
             onClick={() => {
               handleCategories(data?.id);
-              window.location.reload();
+              // window.location.reload();
             }}
-            className={`${params?.id === data?.id ? "bg-bgColor" : null
+            className={`${newId === data?.id ? "bg-bgColor" : null
               } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {data?.name_ru}
@@ -145,7 +146,7 @@ export default function CatalogItems() {
               className={`w-full h-[100vh] overflow-hidden overflow-y-auto  md:hidden fixed top-0 bottom-0 left-0 right-0 ${dressInfo?.openCatalogFilter ? " ml-[1px] " : " ml-[-1000px]"
                 }   bg-white z-[105] duration-500`}
             >
-              <CatalogFilterGroup />
+              <CatalogFilterGroup paramId={newId} />
             </article>
 
             {/* FOR DESCTOP VERSION */}
@@ -154,6 +155,7 @@ export default function CatalogItems() {
                 setFilterData={setFilterData}
                 pageId={pageId}
                 filterData={filterData}
+                paramId={newId}
               />
             </article>
             <article className="w-full md:w-[78%] h-[full] ss:px-4 md:px-0 ">

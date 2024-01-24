@@ -13,7 +13,7 @@ import CategoryFootwearSizesFilter from "./CatalogFilter/CategoryFootwearSizesFi
 import { useHttp } from "../../../../../hook/useHttp";
 import { useQuery } from "@tanstack/react-query";
 
-const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
+const CategoryForBrand = ({ setFilterData, pageId, filterData, paramId }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [genderId, setGenderId] = useState();
@@ -224,8 +224,8 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
   const { id } = useParams();
   const newId = id.replace(":", "");
   const { request } = useHttp();
-  const apiUrl = `https://api.dressme.uz/api/main/category/${newId}`;
-
+  const apiUrl = `https://api.dressme.uz/api/main/category/${paramId}`;
+  console.log(paramId, "paramId");
   async function fetchGetAllData() {
     let params = new URLSearchParams();
     genderId && params.append("gender", genderId);
@@ -271,7 +271,7 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
       .then((res) => {
         setFilter(res?.filter);
         setFilterData(res);
-      }).then(()=>{
+      }).then(() => {
         // Location: reload()
       })
       .catch((err) => console.log(err, "ERRORLIST"));
@@ -319,15 +319,15 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
     maxUnderwearSize,
     footwearSize,
     pageId,
+    paramId
   ]);
 
   return (
     <main
-      className={`w-full h-fit ${
-        dressInfo?.openShopIdFilter
-          ? " border-0 "
-          : " border border-searchBgColor"
-      } py-5 rounded-lg overflow-hidden`}
+      className={`w-full h-fit ${dressInfo?.openShopIdFilter
+        ? " border-0 "
+        : " border border-searchBgColor"
+        } py-5 rounded-lg overflow-hidden`}
     >
       <section className="w-full px-3 ">
         {dressInfo?.openCategoryFilter && (
