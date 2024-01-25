@@ -66,9 +66,8 @@ const ShoppingBrands = ({ getData, setGetData, loading, setLoading }) => {
                           </p>
                           <div className="flex items-center md:justify-between">
                             <div
-                              className={`${
-                                data?.overall_rating ? "block" : "hidden"
-                              } not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex flex-wrap items-center text-sm`}
+                              className={`${data?.overall_rating ? "block" : "hidden"
+                                } not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex flex-wrap items-center text-sm`}
                             >
                               <div className="flex items-center">
                                 <div className="flex items-center -mt-1 mr-[6px] md:mr-2">
@@ -96,20 +95,18 @@ const ShoppingBrands = ({ getData, setGetData, loading, setLoading }) => {
                         </div>
                         <div className="flex items-center md:ml-[88px] md:mt-0">
                           <div
-                            className={`${
-                              data.gender_id === "2"
-                                ? "hidden"
-                                : "flex w-9 h-9 md:w-12 md:h-12 items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white rounded-lg mr-1"
-                            } `}
+                            className={`${data.gender_id === "2"
+                              ? "hidden"
+                              : "flex w-9 h-9 md:w-12 md:h-12 items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white rounded-lg mr-1"
+                              } `}
                           >
                             <ManGenIcons />
                           </div>
                           <div
-                            className={`${
-                              data.gender_id === "1"
-                                ? "hidden"
-                                : "flex items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white w-9 h-9 md:w-12 md:h-12 rounded-lg"
-                            } `}
+                            className={`${data.gender_id === "1"
+                              ? "hidden"
+                              : "flex items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white w-9 h-9 md:w-12 md:h-12 rounded-lg"
+                              } `}
                           >
                             <WomanGenIcons />
                           </div>
@@ -147,15 +144,13 @@ const ShoppingBrands = ({ getData, setGetData, loading, setLoading }) => {
                             setPaginationFunc(item?.url);
                           }
                         }}
-                        className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${
-                          item?.active
-                            ? "bg-fullBlue text-white"
-                            : "hover:bg-searchBgColor"
-                        } mx-[5px] flex items-center justify-center  ${
-                          item?.url
+                        className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${item?.active
+                          ? "bg-fullBlue text-white"
+                          : "hover:bg-searchBgColor"
+                          } mx-[5px] flex items-center justify-center  ${item?.url
                             ? "cursor-pointer"
                             : "opacity-70 cursor-not-allowed"
-                        }`}
+                          }`}
                       >
                         {item?.label}
                       </li>

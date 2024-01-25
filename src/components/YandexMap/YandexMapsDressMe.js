@@ -66,6 +66,7 @@ function YandexMapsDressMe() {
 
   function getImgGallery(childData) {
     setGetAllImgGallery(childData)
+    console.log(childData, "getAllImgGallery-childData");
   }
   function getFilterData(childData) {
     setGetAllFilterSearch(childData)
@@ -91,7 +92,7 @@ function YandexMapsDressMe() {
     getAllFilterSearch?.maxPrice && params.append("budget[to]", getAllFilterSearch?.maxPrice);
     getAllFilterSearch?.genderType && params.append("gender", getAllFilterSearch?.genderType);
     getAllFilterSearch?.category_brand && params.append("shop", getAllFilterSearch?.category_brand);
-    seasonId !== 5 && params.append("season", seasonId);
+    // seasonId !== 5 && params.append("season", seasonId);
 
     fetch(`${url}/map/index?` + params)
       .then((res) => res.json())
@@ -122,7 +123,7 @@ function YandexMapsDressMe() {
   useEffect(() => {
     fetchGetAllData()
   }, [getAllFilterSearch, FilterSearchByBrand, dressInfo?.mainRegionId,
-    dressInfo?.mainSubRegionId, seasonId])
+    dressInfo?.mainSubRegionId])
 
   function getCurrentDimension() {
     return {

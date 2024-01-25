@@ -11,7 +11,7 @@ import SectionOutwearSizesFilter from "./FiilterForApi/SectionOutwearSizesFilter
 import SectionCustomerReviewsFilter from "./FiilterForApi/SectionCustomerReviewsFilter";
 import SectionColorsFilter from "./FiilterForApi/SectionColorsFilter";
 
-const CategoryForBrand = ({ setFilterData, pageId, filterData}) => {
+const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [genderId, setGenderId] = useState();
@@ -257,10 +257,10 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData}) => {
       colorHexCode?.forEach((e, index) => {
         params.append("colors[]", colorHexCode[index]);
       });
+    dressInfo?.mainRegionId && params.append("region", dressInfo?.mainRegionId);
+    dressInfo?.mainSubRegionId &&
+      params.append("sub_region", dressInfo?.mainSubRegionId);
 
-    Object.entries(params).forEach((i) => {
-      if (!i[1]) delete params[i[0]];
-    });
 
     await fetch(`${apiUrl}?` + params)
       .then((res) => res.json())
@@ -292,15 +292,16 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData}) => {
     maxUnderwearSize,
     footwearSize,
     pageId,
+    dressInfo?.mainRegionId,
+    dressInfo?.mainSubRegionId
   ]);
 
   return (
     <main
-      className={`w-full h-fit ${
-        dressInfo?.openShopIdFilter
-          ? " border-0 "
-          : " border border-searchBgColor"
-      } py-5 rounded-lg overflow-hidden`}
+      className={`w-full h-fit ${dressInfo?.openShopIdFilter
+        ? " border-0 "
+        : " border border-searchBgColor"
+        } py-5 rounded-lg overflow-hidden`}
     >
       <section className="w-full px-3 ">
         {dressInfo?.openCategoryFilter && (
