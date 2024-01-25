@@ -225,7 +225,7 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData, paramId }) => {
   const newId = id.replace(":", "");
   const { request } = useHttp();
   const apiUrl = `https://api.dressme.uz/api/main/category/${paramId}`;
-  console.log(paramId, "paramId");
+
   async function fetchGetAllData() {
     let params = new URLSearchParams();
     genderId && params.append("gender", genderId);
@@ -261,10 +261,10 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData, paramId }) => {
       colorHexCode?.forEach((e, index) => {
         params.append("colors[]", colorHexCode[index]);
       });
+    params.append("region", dressInfo?.mainRegionId);
+    dressInfo?.mainSubRegionId &&
+      params.append("sub_region", dressInfo?.mainSubRegionId);
 
-    Object.entries(params).forEach((i) => {
-      if (!i[1]) delete params[i[0]];
-    });
 
     await fetch(`${apiUrl}?` + params)
       .then((res) => res.json())
@@ -298,7 +298,7 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData, paramId }) => {
     //     }
     //   );
   }
-
+  console.log(dressInfo?.mainRegionId, "dressInfo?.mainRegionId");
   useEffect(() => {
     fetchGetAllData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -319,7 +319,9 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData, paramId }) => {
     maxUnderwearSize,
     footwearSize,
     pageId,
-    paramId
+    paramId,
+    dressInfo?.mainRegionId,
+    dressInfo?.mainSubRegionId
   ]);
 
   return (

@@ -4,7 +4,7 @@ import { ArrowTopIcons } from "../../../../../assets/icons";
 import { useHttp } from "../../../../../hook/useHttp";
 import { useQuery } from "@tanstack/react-query";
 
- function SectionCategoriesFilter({
+function SectionCategoriesFilter({
   state,
   setState,
   handleGetCategoryId,
@@ -55,14 +55,12 @@ import { useQuery } from "@tanstack/react-query";
 
   return (
     <div
-      className={`${
-        getCategoryId?.gender_ids.length ? "flex" : "hidden"
-      } w-full flex-col items-center md:mb-[38px]`}
+      className={`${getCategoryId?.gender_ids.length ? "flex" : "hidden"
+        } w-full flex-col items-center md:mb-[38px]`}
     >
       <section
-        className={`${
-          filterData?.filter?.category_ids ? "block" : "hidden"
-        }  w-full h-fit mt-[12px] `}
+        className={`${filterData?.filter?.category_ids ? "block" : "hidden"
+          }  w-full h-fit mt-[12px] `}
       >
         <article
           className="w-full flex justify-between items-center "
@@ -80,9 +78,8 @@ import { useQuery } from "@tanstack/react-query";
               Категории
             </p>
             <p
-              className={`${
-                state?.category ? "rotate-[180deg]" : ""
-              } duration-300 ml-1`}
+              className={`${state?.category ? "rotate-[180deg]" : ""
+                } duration-300 ml-1`}
             >
               <ArrowTopIcons colors={"#000"} />
             </p>
@@ -91,9 +88,8 @@ import { useQuery } from "@tanstack/react-query";
 
         {/* Field */}
         <article
-          className={`w-full overflow-hidden ${
-            state?.category ? "duration-300 h-0" : "duration-300 h-fit mt-5 "
-          } duration-300 flex flex-col gap-y-4`}
+          className={`w-full overflow-hidden ${state?.category ? "duration-300 h-0" : "duration-300 h-fit mt-5 "
+            } duration-300 flex flex-col gap-y-4`}
         >
           {categories?.map((data) => {
             return filterData?.filter?.category_ids?.map((id) => {
@@ -101,15 +97,13 @@ import { useQuery } from "@tanstack/react-query";
                 return (
                   <button
                     key={data?.id}
-                    className={`${
-                      dataActionCategory
+                    className={`${dataActionCategory
                         ? `${data.action ? "bg-fullBlue text-white" : ""}`
                         : ""
-                    } ${
-                      filterData?.filter?.category_ids?.length == 1
+                      } ${filterData?.filter?.category_ids?.length == 1
                         ? "w-full cursor-not-allowed hover:bg-bgCategory hover:text-black"
                         : "hover:bg-fullBlue hover:text-white"
-                    } w-full h-[44px] rounded-lg justify-center bg-bgCategory flex items-center select-none  text-black`}
+                      } w-full h-[44px] rounded-lg justify-center bg-bgCategory flex items-center select-none  text-black`}
                     type="button"
                     onClick={() => {
                       // onGetId(data?.id);
@@ -133,9 +127,8 @@ import { useQuery } from "@tanstack/react-query";
               handleGetCategoryId(null);
               setDataActionCategory(false);
             }}
-            className={`${
-              dataActionCategory ? "flex" : "hidden"
-            } w-full flex-start text-sm text-borderWinter font-AeonikProRegular`}
+            className={`${dataActionCategory ? "flex" : "hidden"
+              } w-full flex-start text-sm text-borderWinter font-AeonikProRegular`}
           >
             Сбросить
           </button>

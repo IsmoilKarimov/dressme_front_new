@@ -104,7 +104,7 @@ function BottomHeader({ setSeasons }) {
     getRange[1] && params.append("budget[to]", getRange[1]);
     state?.genderSelectId && params.append("gender", state?.genderSelectId);
     colorSelectId?.length && params.append("color", colorSelectId);
-    seasonId !== 5 && params.append("season", seasonId);
+    // seasonId !== 5 && params.append("season", seasonId);
 
     fetch(`${url}?` + params)
       .then((res) => res.json())
@@ -353,7 +353,7 @@ function BottomHeader({ setSeasons }) {
     dressInfo?.mainSearchName,
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
-    seasonId
+    // seasonId
   ]);
 
   return (
