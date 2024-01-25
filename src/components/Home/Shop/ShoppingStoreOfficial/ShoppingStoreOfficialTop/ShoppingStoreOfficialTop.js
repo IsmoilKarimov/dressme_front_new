@@ -6,6 +6,7 @@ import {
   FilterIcons,
   LocationColoursIcons,
   ManGenIcons,
+  NoImg,
   SearchIcons,
   StarIcons,
   WomanGenIcons,
@@ -33,7 +34,7 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons }) => {
   let existRegions = [];
   let existRegionsObj = {};
 
-  filteredData?.shop?.shop_locations?.map((item) => {
+  filteredData?.shop?.approved_shop_locations?.map((item) => {
     existRegions.push(item?.region_id);
     existRegionsObj[item?.region_id] = item?.region?.name_ru;
   });
@@ -47,14 +48,14 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons }) => {
   let checkedData = {};
 
   const [selectedLocation, setSelectedLocation] = useState(
-    filteredData?.shop?.shop_locations[0]
+    filteredData?.shop?.approved_shop_locations[0]
   );
   // console.log(storeData);
 
   checkedData = selectedLocation;
 
   useEffect(() => {
-    setSelectedLocation(filteredData?.shop?.shop_locations[0]);
+    setSelectedLocation(filteredData?.shop?.approved_shop_locations[0]);
   }, [filteredData]);
 
   return (
@@ -62,14 +63,12 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons }) => {
       <div className="filter">
         <section
           onClick={() => setFilter(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-            filter ? "" : "hidden"
-          }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${filter ? "" : "hidden"
+            }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
-            filter ? "bottom-0" : "bottom-[-800px] z-0"
-          }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${filter ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
         >
           <FilterDropUp onClick={toggleFilter} />
         </section>
@@ -79,40 +78,51 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons }) => {
           {/* Top section */}
           <div className="w-full flex flex-col border-[#F0F0F0]">
             <figure className="w-full h-[240px] md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
-              <img
-                className="w-full h-full object-contain"
-                src={filteredData?.shop?.url_background_photo || null}
-                alt=""
-              />
+              {filteredData?.shop?.url_background_photo ?
+                <img
+                  className="w-full h-full object-contain"
+                  src={filteredData?.shop?.url_background_photo}
+                  alt="url_background_photo"
+                /> :
+                <div className="w-full h-full flex items-center justify-center">
+                  <NoImg />
+                </div>
+              }
+
             </figure>
             <div className="w-full md:h-[90px] mt-2 md:mt-0 h-fit flex flex-col md:flex-row items-center border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               {/* 1 */}
               <div className="w-full md:w-[40%] flex h-[80px] md:h-fit items-center md:ml-[40px]">
                 <figure className="w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white overflow-hidden">
-                  <img
-                    src={filteredData?.shop?.url_logo_photo || null}
-                    className="w-full h-full object-contain"
-                    alt=""
-                  />
+
+                  {filteredData?.shop?.url_logo_photo ?
+                    <img
+                      src={filteredData?.shop?.url_logo_photo}
+                      className="w-full h-full object-contain"
+                      alt="url_logo_photo"
+                    /> :
+                    <div className="w-full h-full flex items-center justify-center">
+                      <NoImg />
+                    </div>
+                  }
                 </figure>
                 <div className="flex flex-col ml-8">
                   <p className="text-xl font-AeonikProMedium mb-3">
-                    {filteredData?.shop?.name}
+                    {filteredData?.shop?.name || "name"}
                   </p>
                   <div
-                    className={`${
-                      filteredData?.shop?.overall_rating ? "flex" : "hidden"
-                    } items-center`}
+                    className={`${filteredData?.shop?.overall_rating ? "flex" : "hidden"
+                      } items-center`}
                   >
                     <div className="flex items-center mr-[6px]">
                       <StarIcons />
                     </div>
                     <div className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 md:ml-1 flex items-center text-sm">
                       <p className="font-AeonikProMedium text-black mr-1">
-                        {filteredData?.overall_rating}
+                        {filteredData?.overall_rating || 'rating'}
                       </p>
                       <p className="text-setTexOpacity font-AeonikProRegular">
-                        ({filteredData?.shop?.rated_users_count} votes){" "}
+                        ({filteredData?.shop?.rated_users_count || '0'} votes){" "}
                       </p>
                     </div>
                   </div>
@@ -167,16 +177,14 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons }) => {
                 </div>
                 <div className="flex items-center ml-auto">
                   <button
-                    className={`${
-                      filteredData?.shop?.gender_id === "2" ? "hidden" : "flex"
-                    }  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}
+                    className={`${filteredData?.shop?.gender_id === "2" ? "hidden" : "flex"
+                      }  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}
                   >
                     <ManGenIcons />
                   </button>
                   <button
-                    className={`${
-                      filteredData?.shop?.gender_id === "1" ? "hidden" : "flex"
-                    } flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}
+                    className={`${filteredData?.shop?.gender_id === "1" ? "hidden" : "flex"
+                      } flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}
                   >
                     <WomanGenIcons />
                   </button>
@@ -246,9 +254,9 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons }) => {
                           width: "100%",
                         }}
                         defaultValue={selectedLocation?.id}
-                        // onChange={onChange}
+                      // onChange={onChange}
                       >
-                        {existRegions.map((item) => {
+                        {existRegions?.map((item) => {
                           return (
                             <div key={item?.id}>
                               <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
@@ -256,7 +264,7 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons }) => {
                               </div>
 
                               <div className="w-full">
-                                {filteredData?.shop?.shop_locations.map((data) => {
+                                {filteredData?.shop?.shop_locations?.map((data) => {
                                   if (data?.sub_region?.region_id === item) {
                                     return (
                                       <div
