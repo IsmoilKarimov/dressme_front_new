@@ -5,12 +5,15 @@ import ShoppingStoreOfficialTop from "./ShoppingStoreOfficialTop/ShoppingStoreOf
 import LocationOfYandex from "../../Products/SignleMainProducts/SingleProduct/Product_Detail/LocationOfYandex/LocationOfYandex";
 import ShowPageComment from "./ShowPageComment/ShowPageComment";
 import { GoBackIcon } from "../../../../assets/icons";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { useHttp } from "../../../../hook/useHttp";
 
 const ShoppingStoreOfficial = () => {
   const [openTabComment, setOpenTabComment] = useState(false);
   const [openTabLocation, setOpenTabLocation] = useState(false);
   const [filteredData, setFilteredData] = useState()
-
+  const { request } = useHttp()
   console.log(filteredData, 'filteredData');
 
   const clickButtons = {
@@ -26,26 +29,47 @@ const ShoppingStoreOfficial = () => {
     });
   }, []);
 
+
+  const { id } = useParams();
+  const newId = id.replace(":", "");
+
+  const url = `https://api.dressme.uz/api`;
+
+  function fetchGetAllData() {
+    let params = new URLSearchParams();
+    params.append("location_id", newId);
+
+    fetch(`${url}/main/shops/${newId}?` + params)
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res, "bures");
+        setFilteredData(res)
+      })
+      .catch((err) => console.log(err, "ERRORLIST"));
+  }
+  useEffect(() => {
+    fetchGetAllData()
+  }, [newId])
+
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
-      <section className="w-full border-b border-searchBgColor">
+      <section className="w-full border-b border-searchBgColor border border-black">
         <ShoppingStoreOfficialBreadCrumb name={filteredData?.shop?.name} />
       </section>
 
-      <section className="w-full border-searchBgColor ">
+      <section className="w-full border-searchBgColor border border-red-500">
         <ShoppingStoreOfficialTop
           clickButtons={clickButtons}
           filteredData={filteredData}
         />
       </section>
 
-      <section className="w-full flex items-center justify-center">
+      <section className="w-full flex items-center justify-center border border-green-500">
         <div className="w-full flex flex-col items-center justify-center">
           {/* Products Section */}
           <article
-            className={`${
-              openTabComment || openTabLocation ? "hidden" : "block"
-            } w-full`}
+            className={`${openTabComment || openTabLocation ? "hidden" : "block"
+              } w-full border border-red-500`}
           >
             <ShoppingStoreCategory filteredData={filteredData} setFilteredData={setFilteredData} />
           </article>
@@ -60,9 +84,8 @@ const ShoppingStoreOfficial = () => {
 
           {/* Map Section */}
           <action
-            className={`${
-              openTabLocation ? "block" : "hidden"
-            } w-full text-3xl px-4 pb-10`}
+            className={`${openTabLocation ? "block" : "hidden"
+              } w-full text-3xl px-4 pb-10`}
           >
             <button
               onClick={() => {

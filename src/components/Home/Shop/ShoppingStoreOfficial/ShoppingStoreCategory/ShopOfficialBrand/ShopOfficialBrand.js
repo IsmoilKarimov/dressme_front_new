@@ -10,6 +10,8 @@ import ShopBudgetFilter from "./StoreFilter/ShopBudgetFilter";
 import ShopOutwearSizesFilter from "./StoreFilter/ShopOutwearSizesFilter";
 import ShopUnderwearSizesFilter from "./StoreFilter/ShopUnderwearSizesFilter";
 import ShopFootwearSizesFilter from "./StoreFilter/ShopFootwearSizesFilter";
+import { Avatar, Skeleton, Space } from "antd";
+import SkeletonFilter from "../../SkeletonFilter/SkeletonFilter";
 
 const ShopOfficialBrand = ({ setFilteredData, pageId, filteredData }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -225,7 +227,7 @@ const ShopOfficialBrand = ({ setFilteredData, pageId, filteredData }) => {
   const newId = id.replace(":", "");
   const URL = `https://api.dressme.uz/api/main/shops/${newId}`;
 
-  async function fetchGetAllData() {
+  function fetchGetAllData() {
     let params = new URLSearchParams();
     genderId && params.append("gender", genderId);
     discountId && params.append("discount", discountId);
@@ -265,7 +267,7 @@ const ShopOfficialBrand = ({ setFilteredData, pageId, filteredData }) => {
       if (!i[1]) delete params[i[0]];
     });
 
-    await fetch(`${URL}?` + params)
+    fetch(`${URL}?` + params)
       .then((res) => res.json())
       .then((res) => {
         setFilter(res?.filter);
@@ -275,7 +277,7 @@ const ShopOfficialBrand = ({ setFilteredData, pageId, filteredData }) => {
   }
 
   useEffect(() => {
-    fetchGetAllData();
+    // fetchGetAllData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     genderId,
@@ -295,14 +297,14 @@ const ShopOfficialBrand = ({ setFilteredData, pageId, filteredData }) => {
     footwearSize,
     pageId,
   ]);
+  console.log(filter, "filter");
 
   return (
     <main
-      className={`w-full h-hull ${
-        dressInfo?.openShopIdFilter
-          ? " border-0 "
-          : " border border-searchBgColor"
-      } py-5 rounded-lg overflow-hidden `}
+      className={`w-full h-hull ${dressInfo?.openShopIdFilter
+        ? " border-0 "
+        : " border border-searchBgColor"
+        } py-5 rounded-lg overflow-hidden `}
     >
       <section className="w-full px-3 flex flex-col">
         {dressInfo?.openShopIdFilter && (
@@ -320,124 +322,132 @@ const ShopOfficialBrand = ({ setFilteredData, pageId, filteredData }) => {
             </button>
           </action>
         )}
+        {filteredData?.filter ?
+          <div className="w-full h-full ">
+            {/* Gender Buttons */}
+            <ShopCategoryGenderButtonsFilter
+              handleGetId={handleGetId}
+              handleGetDiscountId={handleGetDiscountId}
+              filter={filteredData?.filter}
+              clearAllFilteredData={clearAllFilteredData}
+              dataActionGender={dataActionGender}
+              setDataActionGender={setDataActionGender}
+              dataActionDiscount={dataActionDiscount}
+              setDataActionDiscount={setDataActionDiscount}
+            />
 
-        {/* Gender Buttons */}
-        <ShopCategoryGenderButtonsFilter
-          handleGetId={handleGetId}
-          handleGetDiscountId={handleGetDiscountId}
-          filter={filter}
-          clearAllFilteredData={clearAllFilteredData}
-          dataActionGender={dataActionGender}
-          setDataActionGender={setDataActionGender}
-          dataActionDiscount={dataActionDiscount}
-          setDataActionDiscount={setDataActionDiscount}
-        />
+            {/* Categories */}
+            <ShopCategoriesFilter
+              state={state}
+              setState={setState}
+              handleGetCategoryId={handleGetCategoryId}
+              filter={filteredData?.filter}
+              filteredData={filteredData}
+              dataActionCategory={dataActionCategory}
+              setDataActionCategory={setDataActionCategory}
+            />
 
-        {/* Categories */}
-        <ShopCategoriesFilter
-          state={state}
-          setState={setState}
-          handleGetCategoryId={handleGetCategoryId}
-          filter={filter}
-          filteredData={filteredData}
-          dataActionCategory={dataActionCategory}
-          setDataActionCategory={setDataActionCategory}
-        />
+            {/* Prizes */}
+            <ShopBudgetFilter
+              state={state}
+              setState={setState}
+              getMinMaxPrice={getMinMaxPrice}
+              filter={filteredData?.filter}
+              dataActionColors={dataActionColors}
+              setDataActionColors={setDataActionColors}
+              dataActionPrizes={dataActionPrizes}
+              setDataActionPrizes={setDataActionPrizes}
+            />
 
-        {/* Prizes */}
-        <ShopBudgetFilter
-          state={state}
-          setState={setState}
-          getMinMaxPrice={getMinMaxPrice}
-          filter={filter}
-          dataActionColors={dataActionColors}
-          setDataActionColors={setDataActionColors}
-          dataActionPrizes={dataActionPrizes}
-          setDataActionPrizes={setDataActionPrizes}
-        />
+            {/* Colors */}
+            <ShopColorsFilter
+              state={state}
+              setState={setState}
+              filter={filteredData?.filter}
+              colorHexCode={colorHexCode}
+              setColorHexCode={setColorHexCode}
+              handleGetColorHexCode={handleGetColorHexCode}
+            />
 
-        {/* Colors */}
-        <ShopColorsFilter
-          state={state}
-          setState={setState}
-          filter={filter}
-          colorHexCode={colorHexCode}
-          setColorHexCode={setColorHexCode}
-          handleGetColorHexCode={handleGetColorHexCode}
-        />
+            {/* Customer reviews */}
+            <ShopCustomerReviewsFilter
+              state={state}
+              setState={setState}
+              filter={filteredData?.filter}
+              handleCustomerReviews={handleCustomerReviews}
+              dataActionRatings={dataActionRatings}
+              setDataActionRatings={setDataActionRatings}
+              selectedRating={selectedRating}
+              setSelectedRating={setSelectedRating}
+            />
 
-        {/* Customer reviews */}
-        <ShopCustomerReviewsFilter
-          state={state}
-          setState={setState}
-          filter={filter}
-          handleCustomerReviews={handleCustomerReviews}
-          dataActionRatings={dataActionRatings}
-          setDataActionRatings={setDataActionRatings}
-          selectedRating={selectedRating}
-          setSelectedRating={setSelectedRating}
-        />
+            {/* Outwear sizes */}
+            <ShopOutwearSizesFilter
+              state={state}
+              setState={setState}
+              filter={filteredData?.filter}
+              dataActionOutwearSizes={dataActionOutwearSizes}
+              setDataActionOutwearSizes={setDataActionOutwearSizes}
+              sendOutwearSize={sendOutwearSize}
+              sendClearedOutwearData={sendClearedOutwearData}
+              filteredData={filteredData}
 
-        {/* Outwear sizes */}
-        <ShopOutwearSizesFilter
-          state={state}
-          setState={setState}
-          filter={filter}
-          dataActionOutwearSizes={dataActionOutwearSizes}
-          setDataActionOutwearSizes={setDataActionOutwearSizes}
-          sendOutwearSize={sendOutwearSize}
-          sendClearedOutwearData={sendClearedOutwearData}
-          filteredData={filteredData}
+              setDataActionUnderwearSizes={setDataActionUnderwearSizes}
+              setDataActionFootwearSizes={setDataActionFootwearSizes}
+              sendClearedUnderwearData={sendClearedUnderwearData}
+              handleFootwearWearSize={handleFootwearWearSize}
+            />
 
-          setDataActionUnderwearSizes={setDataActionUnderwearSizes}
-          setDataActionFootwearSizes={setDataActionFootwearSizes}
-          sendClearedUnderwearData={sendClearedUnderwearData}
-          handleFootwearWearSize={handleFootwearWearSize}
-        />
+            {/* Underwear sizes */}
+            <ShopUnderwearSizesFilter
+              state={state}
+              setState={setState}
+              filter={filteredData?.filter}
+              handleUnderwearSizes={handleUnderwearSizes}
+              dataActionUnderwearSizes={dataActionUnderwearSizes}
+              setDataActionUnderwearSizes={setDataActionUnderwearSizes}
+              sendUnderwearSize={sendUnderwearSize}
+              sendClearedUnderwearData={sendClearedUnderwearData}
+              filteredData={filteredData}
 
-        {/* Underwear sizes */}
-        <ShopUnderwearSizesFilter
-          state={state}
-          setState={setState}
-          filter={filter}
-          handleUnderwearSizes={handleUnderwearSizes}
-          dataActionUnderwearSizes={dataActionUnderwearSizes}
-          setDataActionUnderwearSizes={setDataActionUnderwearSizes}
-          sendUnderwearSize={sendUnderwearSize}
-          sendClearedUnderwearData={sendClearedUnderwearData}
-          filteredData={filteredData}
+              setDataActionOutwearSizes={setDataActionOutwearSizes}
+              setDataActionFootwearSizes={setDataActionFootwearSizes}
+              sendClearedOutwearData={sendClearedOutwearData}
+              handleFootwearWearSize={handleFootwearWearSize}
+            />
 
-          setDataActionOutwearSizes={setDataActionOutwearSizes}
-          setDataActionFootwearSizes={setDataActionFootwearSizes}
-          sendClearedOutwearData={sendClearedOutwearData}
-          handleFootwearWearSize={handleFootwearWearSize}
-        />
+            {/* Shoes sizes */}
+            <ShopFootwearSizesFilter
+              state={state}
+              setState={setState}
+              filter={filteredData?.filter}
+              handleFootwearWearSize={handleFootwearWearSize}
+              dataActionFootwearSizes={dataActionFootwearSizes}
+              setDataActionFootwearSizes={setDataActionFootwearSizes}
+              filteredData={filteredData}
 
-        {/* Shoes sizes */}
-        <ShopFootwearSizesFilter
-          state={state}
-          setState={setState}
-          filter={filter}
-          handleFootwearWearSize={handleFootwearWearSize}
-          dataActionFootwearSizes={dataActionFootwearSizes}
-          setDataActionFootwearSizes={setDataActionFootwearSizes}
-          filteredData={filteredData}
-
-          setDataActionOutwearSizes={setDataActionOutwearSizes}
-          setDataActionUnderwearSizes={setDataActionUnderwearSizes}
-          sendClearedOutwearData={sendClearedOutwearData}
-          sendClearedUnderwearData={sendClearedUnderwearData}
-        />
+              setDataActionOutwearSizes={setDataActionOutwearSizes}
+              setDataActionUnderwearSizes={setDataActionUnderwearSizes}
+              sendClearedOutwearData={sendClearedOutwearData}
+              sendClearedUnderwearData={sendClearedUnderwearData}
+            />
+            <section className="border-t border-searchBgColor py-5 px-3">
+              <button
+                type="button"
+                onClick={clearAllFilteredData}
+                className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70"
+              >
+                Сбросить фильтр
+              </button>
+            </section>
+          </div>
+          :
+          <div className="w-full h-fit">
+            <SkeletonFilter />
+          </div>
+        }
       </section>
-      <section className="border-t border-searchBgColor py-5 px-3">
-        <button
-          type="button"
-          onClick={clearAllFilteredData}
-          className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70"
-        >
-          Сбросить фильтр
-        </button>
-      </section>
+
     </main>
   );
 };
