@@ -211,10 +211,12 @@ export default function ProductComment({ data, refetch }) {
 
   // --------------------
 
-  const showNextComments = data?.product?.ratings.slice(0, visibleComments).map((allComments) => {
+  const showNextComments = data?.product?.ratings
+    .slice(0, visibleComments)
+    .map((allComments, i) => {
       return (
         <article
-          key={allComments?.id}
+          key={i}
           className="w-[45%] h-fit border-b border-borderColor2 pr-5 pb-10 mt-10 "
         >
           <p className="not-italic font-AeonikProMedium text-xl leading-6 text-black">
@@ -224,7 +226,7 @@ export default function ProductComment({ data, refetch }) {
             <p className="flex items-center">
               {Array.from("55555").map((item, i) => {
                 if (i + 1 <= allComments?.score) {
-                  return <StarIcons />;
+                  return <StarIcons key={i} />;
                 }
               })}
             </p>
