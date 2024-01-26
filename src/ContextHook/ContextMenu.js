@@ -24,6 +24,7 @@ export const DressMenu = ({ children }) => {
     openCatalogFilter: false,
     // Shop/:Id
     openShopIdFilter: false,
+    locationIdParams: null,
     // Catolog/:Id
     openCatologId: false,
 
@@ -43,6 +44,7 @@ export const DressMenu = ({ children }) => {
     mainRegionId: 2,
     mainSubRegionId: null,
     mainColorId: null,
+    // ---------
 
     ProductList: [
       {
@@ -1227,7 +1229,7 @@ export const DressMenu = ({ children }) => {
       linkActive:
         "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex border border-borderWinter text-borderWinter",
     },
-    
+
   ];
 
   useEffect(() => {
