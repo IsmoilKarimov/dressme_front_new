@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import ShoppingStoreCategory from "./ShoppingStoreCategory/ShoppingStoreCategory";
+// import ShoppingStoreCategory from "./ShoppingStoreCategory/ShoppingStoreCategory";
 import ShoppingStoreOfficialBreadCrumb from "./ShoppingStoreOfficialBreadcrumb/ShoppingStoreOfficialBreadcrumb";
 import ShoppingStoreOfficialTop from "./ShoppingStoreOfficialTop/ShoppingStoreOfficialTop";
 import LocationOfYandex from "../../Products/SignleMainProducts/SingleProduct/Product_Detail/LocationOfYandex/LocationOfYandex";
@@ -10,17 +10,99 @@ import { useQuery } from "@tanstack/react-query";
 import { useHttp } from "../../../../hook/useHttp";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
+import ShopOfficialCard from "./ShoppingStoreCategory/ShopOfficialCards/ShopOfficialCard";
+import ShopOfficialBrand from "./ShoppingStoreCategory/ShopOfficialBrand/ShopOfficialBrand";
 
 const ShoppingStoreOfficial = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
 
-  const [locationId, setLocationId] = useState(null);
   const [openTabComment, setOpenTabComment] = useState(false);
   const [openTabLocation, setOpenTabLocation] = useState(false);
   const [filteredData, setFilteredData] = useState()
+  const [pageId, setPageId] = useState()
   const { request } = useHttp()
-  console.log(filteredData, 'filteredData');
+  const [state, setState] = useState({
+    genderId: null,
+    disCount: null,
+    category: null,
+    getRange: null,
+    hexColor: null,
+    customReview: null,
+    outWearSize: null,
+    outWearSizeMin: null,
+    outWearSizeMax: null,
+    underWearSize: null,
+    underWearSizeMin: null,
+    underWearSizeMax: null,
+    footWaerSize: null,
+  });
+
+  useEffect(() => {
+    if (dressInfo?.openShopIdFilter) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [dressInfo?.openShopIdFilter]);
+
+  const genderId1 = (childData) => {
+    setState({ ...state, genderId: { childData } || null })
+    // console.log(childData, "genderId1");
+  }
+  const discountId1 = (childData) => {
+    setState({ ...state, disCount: childData })
+    // console.log(childData, "discountId1");
+  }
+  const categoryId1 = (childData) => {
+    setState({ ...state, category: childData })
+    // console.log(childData, "categoryId1");
+  }
+  const getBadgePrice1 = (childData) => {
+    setState({ ...state, getRange: childData })
+    // console.log(childData, "getBadgePrice1");
+  }
+  const colorHexCode1 = (childData) => {
+    setState({ ...state, hexColor: childData })
+    // console.log(childData, "colorHexCode1");
+  }
+  const customerReviews1 = (childData) => {
+    setState({ ...state, customReview: childData })
+    // console.log(childData, "customerReviews1");
+  }
+  const letterOutwearSize1 = (childData) => {
+    setState({ ...state, outWearSize: childData })
+    // console.log(childData, "letterOutwearSize1");
+  }
+  const minOutwearSize1 = (childData) => {
+    setState({ ...state, outWearSizeMin: childData })
+    // console.log(childData, "minOutwearSize1");
+  }
+  const maxOutwearSize1 = (childData) => {
+    setState({ ...state, outWearSizeMax: childData })
+    // console.log(childData, "maxOutwearSize1");
+  }
+  const letterUnderwearSize1 = (childData) => {
+    setState({ ...state, underWearSize: childData })
+    // console.log(childData, "letterUnderwearSize1");
+  }
+  const minUnderwearSize1 = (childData) => {
+    setState({ ...state, underWearSizeMin: childData })
+    // console.log(childData, "minUnderwearSize1");
+  }
+  const maxUnderwearSize1 = (childData) => {
+    setState({ ...state, underWearSizeMax: childData })
+    // console.log(childData, "maxUnderwearSize1");
+  }
+  const footwearSize1 = (childData) => {
+    setState({ ...state, footWaerSize: childData })
+    // console.log(childData, "footwearSize1");
+  }
+  console.log(state, "this state");
+
+  // const onGetHandleValue = (data) => {
+  //   console.log(data, "bures onGetHandleValue");
+  // }
 
   const clickButtons = {
     openTabComment,
@@ -36,26 +118,57 @@ const ShoppingStoreOfficial = () => {
   }, []);
   const { id } = useParams();
   const newId = id.replace(":", "");
-  useEffect(() => {
-    data?.getMainProductCard?.shops?.filter(e => e?.id == newId)?.map(item => {
-      setDressInfo({ ...dressInfo, locationIdParams: item?.approved_shop_locations[0]?.id })
-      setLocationId(item?.approved_shop_locations[0]?.id)
-      console.log(item?.approved_shop_locations[0]?.id, "dressInfo--item?.approved_shop_locations[0]?.id");
-    })
-  }, [id, window.location.pathname])
-
-  console.log(dressInfo?.locationIdParams, "dressInfo?.locationIdParams");
-  console.log(locationId, "dressInfo?.locationId");
-  console.log(newId, "dressInfo?.newId");
-  const pathname = window.location.pathname;
-  let digitalToken = pathname.replace("/shopping_store/:", "")
-  console.log(digitalToken, "dressInfo?.digitalToken");
 
   const url = `https://api.dressme.uz/api`;
-
+  // genderId: null,
+  //   disCount: null,
+  //   category: null,
+  //   getRange: null,
+  //   hexColor: null,
+  //   customReview: null,
+  //   outWearSize: null,
+  //   outWearSizeMin: null,
+  //   outWearSizeMax: null,
+  //   underWearSize: null,
+  //   underWearSizeMin: null,
+  //   underWearSizeMax: null,
+  //   footWaerSize: null,
   function fetchGetAllData() {
     let params = new URLSearchParams();
     params.append("location_id", dressInfo?.locationIdParams);
+    state?.genderId?.childData && params.append("gender", state?.genderId?.childData);
+    state?.disCount && params.append("discount", state?.disCount);
+    state?.category && params.append("category", state?.category);
+    state?.customReview && params.append("rating", state?.customReview);
+    state?.footWaerSize && params.append("footwear_size", state?.footWaerSize);
+
+    // OUTWEAR SIZES
+    state?.outWearSize &&
+      params.append("outwear_size[letter_size]", state?.outWearSize);
+    state?.outWearSizeMin &&
+      params.append("outwear_size[min_wear_size]", state?.outWearSizeMin);
+    state?.outWearSizeMax &&
+      params.append("outwear_size[max_wear_size]", state?.outWearSizeMax);
+
+    // UNDERWEAR SIZES
+    state?.underWearSize &&
+      params.append("underwear_size[letter_size]", state?.underWearSize);
+    state?.underWearSizeMin &&
+      params.append("underwear_size[min_wear_size]", state?.underWearSizeMin);
+    state?.underWearSizeMax &&
+      params.append("underwear_size[max_wear_size]", state?.underWearSizeMax);
+
+    pageId && params.append("page", pageId);
+
+    state?.getRange?.min &&
+      params.append("budget[from]", state?.getRange?.min);
+    state?.getRange?.max &&
+      params.append("budget[to]", state?.getRange?.max);
+
+    // colorHexCode?.length &&
+    //   colorHexCode?.forEach((e, index) => {
+    //   });
+    state?.hexColor && params.append("colors[]", state?.hexColor);
 
     fetch(`${url}/main/shops/${newId}?` + params)
       .then((res) => res.json())
@@ -67,23 +180,18 @@ const ShoppingStoreOfficial = () => {
   }
   useEffect(() => {
     fetchGetAllData()
-    data?.getMainProductCard?.shops?.filter(e => e?.id == newId)?.map(item => {
-      setDressInfo({ ...dressInfo, locationIdParams: item?.approved_shop_locations[0]?.id })
-      setLocationId(item?.approved_shop_locations[0]?.id)
-      console.log(item?.approved_shop_locations[0]?.id, "dressInfo--item?.approved_shop_locations[0]?.id");
-    })
-  }, [newId, dressInfo?.locationIdParams])
+  }, [newId, state, dressInfo?.locationIdParams])
 
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
       <section className="w-full border-b border-searchBgColor border border-black">
-        <ShoppingStoreOfficialBreadCrumb name={filteredData?.shop?.name} />
+        <ShoppingStoreOfficialBreadCrumb name={filteredData?.shop?.name} paramsId={newId} />
       </section>
-
       <section className="w-full border-searchBgColor border border-red-500">
         <ShoppingStoreOfficialTop
           clickButtons={clickButtons}
           filteredData={filteredData}
+        // onGetHandleValue={onGetHandleValue}
         />
       </section>
 
@@ -94,7 +202,47 @@ const ShoppingStoreOfficial = () => {
             className={`${openTabComment || openTabLocation ? "hidden" : "block"
               } w-full border border-red-500`}
           >
-            <ShoppingStoreCategory filteredData={filteredData} />
+            {/* <ShoppingStoreCategory filteredData={filteredData} /> */}
+            <section className="w-[100%] h-fit">
+              <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
+                <action className="hidden md:block md:w-[22%] h-full ss:px-4 md:px-0 border border-red-500">
+                  <ShopOfficialBrand
+                    // setFilteredData={setFilteredData}
+                    // pageId={pageId}
+                    filteredData={filteredData}
+                    // onCallback={handleCallback}
+                    OngenderId1={genderId1}
+                    OndiscountId1={discountId1}
+                    OncategoryId1={categoryId1}
+                    OngetBadgePrice1={getBadgePrice1}
+                    OncolorHexCode1={colorHexCode1}
+                    OncustomerReviews1={customerReviews1}
+                    OnletterOutwearSize1={letterOutwearSize1}
+                    OnminOutwearSize1={minOutwearSize1}
+                    OnmaxOutwearSize1={maxOutwearSize1}
+                    OnletterUnderwearSize1={letterUnderwearSize1}
+                    OnminUnderwearSize1={minUnderwearSize1}
+                    OnmaxUnderwearSize1={maxUnderwearSize1}
+                    OnfootwearSize1={footwearSize1}
+                  />
+                </action>
+                <action
+                  className={`w-full h-[100vh] overflow-hidden overflow-y-auto  md:hidden fixed top-0 bottom-0 left-0 right-0 ${dressInfo?.openShopIdFilter ? " ml-[1px] " : " ml-[-1000px]"
+                    }   bg-white z-[105] duration-500`}
+                >
+                  <ShopOfficialBrand />
+                </action>
+                <action className="md:w-[77%] w-full h-full ss:px-4 md:px-0 border border-red-500">
+                  {filteredData ?
+                    <ShopOfficialCard
+                      filteredData={filteredData}
+                      setPageId={setPageId}
+                    /> : <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[100vh] ">
+                      Ничего не найдено
+                    </div>}
+                </action>
+              </section>
+            </section>
           </article>
 
           {/* Comment Section For Shopping Page */}

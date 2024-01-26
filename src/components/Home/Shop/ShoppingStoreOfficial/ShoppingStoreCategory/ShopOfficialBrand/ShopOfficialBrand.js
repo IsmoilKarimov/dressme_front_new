@@ -13,7 +13,21 @@ import ShopFootwearSizesFilter from "./StoreFilter/ShopFootwearSizesFilter";
 import { Avatar, Skeleton, Space } from "antd";
 import SkeletonFilter from "../../SkeletonFilter/SkeletonFilter";
 
-const ShopOfficialBrand = ({ filteredData, dataUz }) => {
+function ShopOfficialBrand({ filteredData, onCallback,
+  OngenderId1,
+  OndiscountId1,
+  OncategoryId1,
+  OngetBadgePrice1,
+  OncolorHexCode1,
+  OncustomerReviews1,
+  OnletterOutwearSize1,
+  OnminOutwearSize1,
+  OnmaxOutwearSize1,
+  OnletterUnderwearSize1,
+  OnminUnderwearSize1,
+  OnmaxUnderwearSize1,
+  OnfootwearSize1
+}) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [genderId, setGenderId] = useState();
@@ -60,21 +74,26 @@ const ShopOfficialBrand = ({ filteredData, dataUz }) => {
 
   // Gender GetID
   function handleGetId(childData) {
-    console.log(childData);
-    setGenderId(childData);
+    OngenderId1(childData)
   }
+  const clearGender = React.useCallback(() => OngenderId1(null), []);
+
+
   // Discount GetID
   function handleGetDiscountId(childData) {
-    setDiscountId(childData);
+    // setDiscountId(childData);
+    OndiscountId1(childData)
   }
   // Categoty GetID
   function handleGetCategoryId(childData) {
-    setCategoryId(childData);
+    // setCategoryId(childData);
+    OncategoryId1(childData)
   }
   // Budjet GetPrize
   function getMinMaxPrice(childData) {
-    console.log(childData);
-    setState({ ...state, getBadgePrice: childData });
+    // console.log(childData);
+    // setState({ ...state, getBadgePrice: childData });
+    OngetBadgePrice1(childData)
   }
   // Color GetID
   function handleGetColorHexCode(childData) {
@@ -101,26 +120,38 @@ const ShopOfficialBrand = ({ filteredData, dataUz }) => {
         colorHexCode?.filter((e) => e !== childData?.colorFilterHexCode)
       );
     }
+    OncolorHexCode1(colorHexCode)
   }
   // Rating GetID
   function handleCustomerReviews(childData) {
-    setCustomerReviews(childData);
+    // setCustomerReviews(childData);
+    OncustomerReviews1(childData)
+
   }
   // Outwear GET Size
   function handleOutwearSizes(childData) {
-    setLetterOutwearSize(childData?.letterSize);
-    setMinOutwearSize(childData?.minSize);
-    setMaxOutwearSize(childData?.maxSize);
+    // setLetterOutwearSize(childData?.letterSize);
+    // setMinOutwearSize(childData?.minSize);
+    // setMaxOutwearSize(childData?.maxSize);
+    // 
+    OnletterOutwearSize1(childData?.letterSize)
+    OnminOutwearSize1(childData?.minSize)
+    OnmaxOutwearSize1(childData?.maxSize)
   }
   // Underwear GET Size
   function handleUnderwearSizes(childData) {
-    setLetterUnderwearSize(childData?.letterSize);
-    setMinUnderwearSize(childData?.minSize);
-    setMaxUnderwearSize(childData?.maxSize);
+    // setLetterUnderwearSize(childData?.letterSize);
+    // setMinUnderwearSize(childData?.minSize);
+    // setMaxUnderwearSize(childData?.maxSize);
+    // /---
+    OnletterUnderwearSize1(childData?.letterSize)
+    OnminUnderwearSize1(childData?.minSize)
+    OnmaxUnderwearSize1(childData?.maxSize)
   }
   // Footwear GET Size
   function handleFootwearWearSize(childData) {
     setFootwearSize(childData);
+    OnfootwearSize1(childData)
   }
 
   function getCurrentDimension() {
@@ -152,6 +183,9 @@ const ShopOfficialBrand = ({ filteredData, dataUz }) => {
   function sendOutwearSize(outwear) {
     if (outwear?.letter_size) {
       onGetOutwearSizes(outwear?.letter_size);
+      // dataUz({ outwear: outwear?.letter_size })
+
+
     }
     if (!outwear?.letter_size) {
       onGetOutwearSizes(null, outwear?.min_wear_size, outwear?.max_wear_size);
@@ -173,6 +207,7 @@ const ShopOfficialBrand = ({ filteredData, dataUz }) => {
   function sendUnderwearSize(underwear) {
     if (underwear?.letter_size) {
       onGetUnderwearSizes(underwear?.letter_size);
+      // dataUz({ underWear: underwear?.letter_size })
     }
 
     if (!underwear?.letter_size) {
@@ -189,6 +224,7 @@ const ShopOfficialBrand = ({ filteredData, dataUz }) => {
   // END OF UNDERWEAR
 
   // =================================================
+
 
   // CLEAR ALL DATA
   function clearAllFilteredData() {
@@ -219,103 +255,22 @@ const ShopOfficialBrand = ({ filteredData, dataUz }) => {
     // FOOTWEAR SIZES DATA
     handleFootwearWearSize(null);
     setDataActionFootwearSizes(false);
+
+    OngenderId1(null)
+    OndiscountId1(null)
+    OncategoryId1(null)
+    OngetBadgePrice1(null)
+    OncolorHexCode1(null)
+    OncustomerReviews1(null)
+    OnletterOutwearSize1(null)
+    OnminOutwearSize1(null)
+    OnmaxOutwearSize1(null)
+    OnletterUnderwearSize1(null)
+    OnminUnderwearSize1(null)
+    OnmaxUnderwearSize1(null)
+    OnfootwearSize1(null)
+
   }
-
-  // =================================================
-
-  const { id } = useParams();
-  const newId = id.replace(":", "");
-  const URL = `https://api.dressme.uz/api/main/shops/${newId}`;
-
-
-  // function fetchGetAllData() {
-  //   let params = new URLSearchParams();
-  //   genderId && params.append("gender", genderId);
-  //   discountId && params.append("discount", discountId);
-  //   categoryId && params.append("category", categoryId);
-  //   customerReviews && params.append("rating", customerReviews);
-  //   footwearSize && params.append("footwear_size", footwearSize);
-
-  //   // OUTWEAR SIZES
-  //   letterOutwearSize &&
-  //     params.append("outwear_size[letter_size]", letterOutwearSize);
-  //   minOutwearSize &&
-  //     params.append("outwear_size[min_wear_size]", minOutwearSize);
-  //   maxOutwearSize &&
-  //     params.append("outwear_size[max_wear_size]", maxOutwearSize);
-
-  //   // UNDERWEAR SIZES
-  //   letterUnderwearSize &&
-  //     params.append("underwear_size[letter_size]", letterUnderwearSize);
-  //   minUnderwearSize &&
-  //     params.append("underwear_size[min_wear_size]", minUnderwearSize);
-  //   maxUnderwearSize &&
-  //     params.append("underwear_size[max_wear_size]", maxUnderwearSize);
-
-  //   pageId && params.append("page", pageId);
-
-  //   state?.getBadgePrice?.min &&
-  //     params.append("budget[from]", state?.getBadgePrice?.min);
-  //   state?.getBadgePrice?.max &&
-  //     params.append("budget[to]", state?.getBadgePrice?.max);
-
-  //   colorHexCode?.length &&
-  //     colorHexCode?.forEach((e, index) => {
-  //       params.append("colors[]", colorHexCode[index]);
-  //     });
-
-  //   Object.entries(params).forEach((i) => {
-  //     if (!i[1]) delete params[i[0]];
-  //   });
-
-  //   fetch(`${URL}?` + params)
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       setFilter(res?.filter);
-  //       // setFilteredData(res);
-  //     })
-  //     .catch((err) => console.log(err, "ERRORLIST"));
-  // }
-
-  useEffect(() => {
-    // fetchGetAllData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    // dataUz({ data: 1 })
-  }, [
-    genderId,
-    discountId,
-    categoryId,
-    state?.getBadgePrice,
-    colorHexCode,
-    customerReviews,
-    // OUTWEAR
-    letterOutwearSize,
-    minOutwearSize,
-    maxOutwearSize,
-    // UNDERWEAR
-    letterUnderwearSize,
-    minUnderwearSize,
-    maxUnderwearSize,
-    footwearSize,
-    // pageId,
-  ]);
-  // console.log(
-  //   genderId, "genderId",
-  //   discountId, "discountId",
-  //   categoryId, "categoryId",
-  //   state?.getBadgePrice, "state",
-  //   colorHexCode, "colorHexCode",
-  //   customerReviews, "customerReviews",
-  //   // "//",OUTWEAR
-  //   letterOutwearSize, "letterOutwearSize",
-  //   minOutwearSize, "minOutwearSize",
-  //   maxOutwearSize, "maxOutwearSize",
-  //   // "//",UNDERWEAR
-  //   letterUnderwearSize, "letterUnderwearSize",
-  //   minUnderwearSize, "minUnderwearSize",
-  //   maxUnderwearSize, "maxUnderwearSize",
-  //   footwearSize, "footwearSize",
-  //   "filter");
 
   return (
     <main
@@ -345,6 +300,7 @@ const ShopOfficialBrand = ({ filteredData, dataUz }) => {
             {/* Gender Buttons */}
             <ShopCategoryGenderButtonsFilter
               handleGetId={handleGetId}
+              clearGender={clearGender}
               handleGetDiscountId={handleGetDiscountId}
               filter={filteredData?.filter}
               clearAllFilteredData={clearAllFilteredData}

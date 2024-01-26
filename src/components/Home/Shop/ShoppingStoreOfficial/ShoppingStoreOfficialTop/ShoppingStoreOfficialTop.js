@@ -218,10 +218,21 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons }) => {
             </div>
           </div>
           <div className="w-full hidden md:flex items-center justify-between px-[22px] mt-[72px] mb-3">
-            <div className="flex items-center text-base font-AeonikProMedium text-[#2C2C2C] ">
-              <DeliveryIcon />
-              <span className="mx-[5px]">Доставка:</span>
-              <span>{filteredData?.shop?.delivery?.name_ru}</span>
+            <div className="flex items-center gap-x-5">
+
+              <div className="flex items-center text-base font-AeonikProMedium text-[#2C2C2C] ">
+                <DeliveryIcon />
+                <span className="mx-[5px]">Доставка:</span>
+                <span>{filteredData?.shop?.delivery?.name_ru}</span>
+              </div>
+              <div className="w-fit flex items-center ">
+                <button
+                  type="button"
+                  className="h-[44px] border px-5 flex items-center justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70"
+                >
+                  Фильтр
+                </button>
+              </div>
             </div>
             <div className="w-full md:w-fit flex md:items-center justify-end items-center mt-1">
               <div className="w-fit flex gap-x-[30px] items-center ">
