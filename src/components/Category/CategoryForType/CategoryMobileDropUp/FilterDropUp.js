@@ -410,9 +410,11 @@ function FilterDropUp({ onClick }) {
                     >
                       {products?.changeColor.map((item, index) => {
                         return (
-                          <div className="w-[17%] flex items-center justify-center flex-wrap">
+                          <div
+                            key={index}
+                            className="w-[17%] flex items-center justify-center flex-wrap"
+                          >
                             <div
-                              key={index}
                               onClick={() => HandleColorCheck(item?.id)}
                               className={` w-[35px] h-[35px] ${item?.colors} rounded-full flex items-center justify-center hover:scale-110 duration-300 cursor-pointer  border border-solid border-borderColorCard`}
                               htmlFor="Color1"

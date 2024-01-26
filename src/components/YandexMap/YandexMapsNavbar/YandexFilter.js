@@ -85,7 +85,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
         ]);
       }
     } else {
-      setValues([0, 0])
+      setValues([0, 0]);
     }
   }, [getMapsInfo?.budget]);
 
@@ -111,7 +111,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   };
 
   useEffect(() => {
-    setState({ ...state, clearPrice: false, });
+    setState({ ...state, clearPrice: false });
     setMinPrice(Number(getMapsInfo?.budget?.min_price));
     setMaxPrice(Number(getMapsInfo?.budget?.max_price));
     setValues([
@@ -119,8 +119,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
       Number(getMapsInfo?.budget?.max_price),
     ]);
     setGetRange([]);
-  }, [dressInfo?.mainRegionId,
-  dressInfo?.mainSubRegionId])
+  }, [dressInfo?.mainRegionId, dressInfo?.mainSubRegionId]);
 
   const sendPriceList = () => {
     setGetRange(values);
@@ -151,7 +150,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
               <input
                 className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={Number(values[0]).toLocaleString()}
-              // onChange={(e) => setMaxPrice(e.target.value)}
+                // onChange={(e) => setMaxPrice(e.target.value)}
               />{" "}
               сум
             </span>
@@ -164,7 +163,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
               <input
                 className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={Number(values[1]).toLocaleString()}
-              // onChange={(e) => setMaxPrice(e.target.value)}
+                // onChange={(e) => setMaxPrice(e.target.value)}
               />
               сум
             </span>
@@ -189,8 +188,9 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           />
         </div>
         <div
-          className={`flex items-center  mt-4 ${state?.clearPrice ? "justify-between" : "justify-end"
-            }`}
+          className={`flex items-center  mt-4 ${
+            state?.clearPrice ? "justify-between" : "justify-end"
+          }`}
         >
           {state?.clearPrice && (
             <span
@@ -213,12 +213,12 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
       </div>
     </div>
   );
-  console.log(getMapsInfo?.budget, "111-getMapsInfo?.budget",);
-  console.log(minPrice, "111-minPrice",);
-  console.log(maxPrice, "111-maxPrice",);
-  console.log(values, "111-values",);
-  console.log(getRange, "111-getRange",);
-  console.log("111---------------------------------------",);
+  console.log(getMapsInfo?.budget, "111-getMapsInfo?.budget");
+  console.log(minPrice, "111-minPrice");
+  console.log(maxPrice, "111-maxPrice");
+  console.log(values, "111-values");
+  console.log(getRange, "111-getRange");
+  console.log("111---------------------------------------");
   // ----------------------Brend State Management----------------------
 
   const [selectBrand, setSelectBrand] = useState();
@@ -293,7 +293,6 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
     });
   };
 
-
   useEffect(() => {
     getYandexFilterData({
       category_wear: state?.categoryWearId,
@@ -345,12 +344,12 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }
-          // options={getMapsInfo?.categories?.map((item) => {
-          //   return {
-          //     value: item?.id,
-          //     label: item?.name_ru,
-          //   };
-          // })}
+            // options={getMapsInfo?.categories?.map((item) => {
+            //   return {
+            //     value: item?.id,
+            //     label: item?.name_ru,
+            //   };
+            // })}
           >
             {getMapsInfo?.categories?.map((item) => {
               return (
@@ -429,12 +428,12 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }
-          // options={getMapsInfo?.shops?.map((item) => {
-          //   return {
-          //     value: item?.id,
-          //     label: item?.name,
-          //   };
-          // })}
+            // options={getMapsInfo?.shops?.map((item) => {
+            //   return {
+            //     value: item?.id,
+            //     label: item?.name,
+            //   };
+            // })}
           >
             {getMapsInfo?.shops?.map((item) => {
               return (
@@ -461,14 +460,17 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
                 >
                   {data?.childText?.map((item) => {
                     return (
-                      <div className="flex items-center h-full box-border">
+                      <div
+                        key={item?.id}
+                        className="flex items-center h-full box-border"
+                      >
                         <button
-                          key={item?.id}
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${item?.action
-                            ? " bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-lg"
-                            : " bg-btnBgColor text-black"
-                            } px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  h-[44px]  justify-center flex items-center`}
+                          className={`${
+                            item?.action
+                              ? " bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-lg"
+                              : " bg-btnBgColor text-black"
+                          } px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  h-[44px]  justify-center flex items-center`}
                         >
                           {/* <img src={item?.anyIcons} alt="male" /> */}
                           <span>{item?.anyIcons}</span>

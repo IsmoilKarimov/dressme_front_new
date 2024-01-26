@@ -56,7 +56,10 @@ function BottomHeader({ setSeasons }) {
   useEffect(() => {
     setMinPrice(Number(state?.getAllCardList?.budget?.min_price));
     setMaxPrice(Number(state?.getAllCardList?.budget?.max_price));
-    if (state?.getAllCardList?.budget?.min_price && state?.getAllCardList?.budget?.max_price) {
+    if (
+      state?.getAllCardList?.budget?.min_price &&
+      state?.getAllCardList?.budget?.max_price
+    ) {
       if (!values[0] && !values[1]) {
         setValues([
           Number(state?.getAllCardList?.budget?.min_price),
@@ -64,10 +67,9 @@ function BottomHeader({ setSeasons }) {
         ]);
       }
     } else {
-      setValues([0, 0])
+      setValues([0, 0]);
     }
-
-  }, [state?.getAllCardList?.budget,]);
+  }, [state?.getAllCardList?.budget]);
 
   useEffect(() => {
     if (values && minPrice && maxPrice) {
@@ -114,7 +116,6 @@ function BottomHeader({ setSeasons }) {
         // console.log(res, "Medium");
         setData({ ...data, getMainProductCard: res });
         // setDressInfo({ ...dressInfo, mainCardProducts: res });
-
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
@@ -180,7 +181,7 @@ function BottomHeader({ setSeasons }) {
               <input
                 className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={Number(values[0]).toLocaleString()}
-              // onChange={(e) => setMaxPrice(e.target.value)}
+                // onChange={(e) => setMaxPrice(e.target.value)}
               />{" "}
               сум
             </span>
@@ -193,7 +194,7 @@ function BottomHeader({ setSeasons }) {
               <input
                 className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={Number(values[1]).toLocaleString()}
-              // onChange={(e) => setMaxPrice(e.target.value)}
+                // onChange={(e) => setMaxPrice(e.target.value)}
               />
               сум
             </span>
@@ -218,8 +219,9 @@ function BottomHeader({ setSeasons }) {
           />
         </div>
         <div
-          className={`flex items-center  mt-4 ${state?.clearPrice ? "justify-between" : "justify-end"
-            }`}
+          className={`flex items-center  mt-4 ${
+            state?.clearPrice ? "justify-between" : "justify-end"
+          }`}
         >
           {state?.clearPrice && (
             <span
@@ -331,7 +333,7 @@ function BottomHeader({ setSeasons }) {
   };
 
   useEffect(() => {
-    setState({ ...state, clearPrice: false, });
+    setState({ ...state, clearPrice: false });
     setMinPrice(Number(state?.getAllCardList?.budget?.min_price));
     setMaxPrice(Number(state?.getAllCardList?.budget?.max_price));
     setValues([
@@ -339,8 +341,7 @@ function BottomHeader({ setSeasons }) {
       Number(state?.getAllCardList?.budget?.max_price),
     ]);
     setGetRange([]);
-  }, [dressInfo?.mainRegionId,
-  dressInfo?.mainSubRegionId,])
+  }, [dressInfo?.mainRegionId, dressInfo?.mainSubRegionId]);
 
   useEffect(() => {
     fetchGetAllData();
@@ -388,18 +389,21 @@ function BottomHeader({ setSeasons }) {
               {state?.getAllCardList?.colors?.map((data) => {
                 console.log(data?.id, data?.hex, "55555555555555");
                 return (
-                  <div className="flex flex-col items-center justify-center ">
+                  <div
+                    key={data?.id}
+                    className="flex flex-col items-center justify-center "
+                  >
                     <div
-                      key={data?.id}
                       onClick={() => {
                         newColorArrayId(data?.hex, data?.id);
                         setSelectedId(data?.id);
                       }}
                       style={{ backgroundColor: data?.hex }}
-                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${data?.id === selectedId
-                        ? "border border-setTexOpacity flex items-center justify-center"
-                        : "border"
-                        } `}
+                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${
+                        data?.id === selectedId
+                          ? "border border-setTexOpacity flex items-center justify-center"
+                          : "border"
+                      } `}
                     >
                       {/* {selectedId === data?.id ? (
                         <InputCheckedTrueIcons
@@ -555,8 +559,9 @@ function BottomHeader({ setSeasons }) {
 
           <article className="w-[480px] h-full overflow-hidden flex items-center justify-between">
             <div
-              className={`${state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
-                } px-2 w-full duration-500  h-full flex items-center justify-between  `}
+              className={`${
+                state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
+              } px-2 w-full duration-500  h-full flex items-center justify-between  `}
             >
               {state?.getAllCardList?.colors?.map((data, i) => {
                 if (i > 11) {
@@ -574,8 +579,9 @@ function BottomHeader({ setSeasons }) {
                         }}
                         style={{ backgroundColor: data?.hex }}
                         // onClick={() => colorIdPushContext(data?.id)}
-                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${!state?.textToColor && "border"
-                          }  border-borderColorCard	`}
+                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
+                          !state?.textToColor && "border"
+                        }  border-borderColorCard	`}
                       >
                         {/* {colorSelectId.includes(data?.hex) && (
                           <span>
@@ -624,8 +630,9 @@ function BottomHeader({ setSeasons }) {
               </button>
             </div>
             <p
-              className={`${state?.textToColor ? " mr-0" : " mr-[-500px]"
-                } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
+              className={`${
+                state?.textToColor ? " mr-0" : " mr-[-500px]"
+              } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
             >
               Не давай своей гардеробной шкафной жизни стать скучной.
             </p>
@@ -644,14 +651,17 @@ function BottomHeader({ setSeasons }) {
                 >
                   {data?.childText?.map((item) => {
                     return (
-                      <div className="flex items-center h-full box-border">
+                      <div
+                        key={item?.id}
+                        className="flex items-center h-full box-border"
+                      >
                         <button
-                          key={item?.id}
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${item?.action
-                            ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
-                            : " bg-btnBgColor text-black h-full"
-                            } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
+                          className={`${
+                            item?.action
+                              ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
+                              : " bg-btnBgColor text-black h-full"
+                          } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
                         >
                           <span>{item?.anyIcons}</span>
                           {item?.name && (

@@ -158,6 +158,7 @@ const SingleProduct = () => {
                 {sameTypeData?.map((data) => {
                   return (
                     <CollectionCardItem
+                      key={data?.id}
                       data={data}
                       setOpenWearType={setOpenWearType}
                       handleLeaveMouse={handleLeaveMouse}

@@ -390,7 +390,7 @@ const ProductDetails = ({ data }) => {
 
                 {data?.product?.seasons?.map((item) => {
                   return (
-                    <>
+                    <React.Fragment key={item?.id}>
                       <figure className="flex items-center pr-3 mr-3 last:border-none border-r-[2px] border-searchBgColor">
                         <img
                           src={
@@ -411,7 +411,7 @@ const ProductDetails = ({ data }) => {
                           {item?.name_ru}
                         </figcaption>
                       </figure>
-                    </>
+                    </React.Fragment>
                   );
                 })}
               </section>
@@ -472,7 +472,10 @@ const ProductDetails = ({ data }) => {
                   {data?.product?.sections?.map((item, i) => {
                     if (i < 2) {
                       return (
-                        <p className="mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+                        <p
+                          key={i}
+                          className="mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]"
+                        >
                           {item?.name_ru}
                         </p>
                       );
@@ -484,7 +487,10 @@ const ProductDetails = ({ data }) => {
                 {data?.product?.sections?.map((item, i) => {
                   if (i > 1) {
                     return (
-                      <p className="mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
+                      <p
+                        key={i}
+                        className="mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]"
+                      >
                         {item?.name_ru}
                       </p>
                     );
@@ -639,7 +645,7 @@ const ProductDetails = ({ data }) => {
                 >
                   {existRegions.map((item) => {
                     return (
-                      <>
+                      <React.Fragment key={item?.id}>
                         <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
                           {existRegionsObj[item]}
                         </div>
@@ -668,7 +674,7 @@ const ProductDetails = ({ data }) => {
                             }
                           })}
                         </div>
-                      </>
+                      </React.Fragment>
                     );
                   })}
                 </Radio.Group>
@@ -731,6 +737,7 @@ const ProductDetails = ({ data }) => {
               ? uniqueArray?.map((data) => {
                   return (
                     <div
+                      key={data.id}
                       className={`${
                         data?.product_color_id ===
                         selectedSize?.product_color_id
@@ -758,9 +765,8 @@ const ProductDetails = ({ data }) => {
                 })
               : uniqueArray?.map((data) => {
                   return (
-                    <div>
+                    <div key={data.id}>
                       <div
-                        key={data.id}
                         className="!w-[64px] h-[72px] rounded-lg cursor-pointer bg-black"
                         onClick={() => {
                           filterColorsOnSelect(data?.product_color_id);
@@ -823,7 +829,10 @@ const ProductDetails = ({ data }) => {
                   {data?.product?.sizes?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
-                        <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                        <div
+                          key={data?.id}
+                          className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular"
+                        >
                           <li>
                             {data?.min_wear_size}{" "}
                             {data?.max_wear_size
@@ -869,7 +878,10 @@ const ProductDetails = ({ data }) => {
                   {data?.product?.sizes?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
-                        <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                        <div
+                          key={data?.id}
+                          className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular"
+                        >
                           <li>
                             {data?.min_wear_size}{" "}
                             {data?.max_wear_size
@@ -910,7 +922,10 @@ const ProductDetails = ({ data }) => {
                   {data?.product?.sizes?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
-                        <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                        <div
+                          key={data?.id}
+                          className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular"
+                        >
                           <li>{data?.wear_size}</li>
                           <li>
                             {data?.min_foot_length}{" "}
@@ -937,7 +952,10 @@ const ProductDetails = ({ data }) => {
                   {data?.product?.sizes?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
-                        <div className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                        <div
+                          key={data?.id}
+                          className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular"
+                        >
                           <li>{data?.wear_size}</li>
                           <li>{data?.letter_size}</li>
                           <li>{data?.length}</li>
@@ -959,6 +977,7 @@ const ProductDetails = ({ data }) => {
                   if (data?.shop_location_id == selectedLocation?.id) {
                     return (
                       <div
+                        key={data?.id}
                         onClick={() => {
                           setSelectedSize(data);
                         }}
@@ -969,7 +988,6 @@ const ProductDetails = ({ data }) => {
                         }  h-fit w-fit mt-4 rounded-lg border  hover:border-fullBlue`}
                       >
                         <Popover
-                          key={data?.id}
                           trigger={data?.min_head_girth ? "hover" : "false"}
                           content={() => contentSize(data)}
                           className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${
@@ -999,6 +1017,7 @@ const ProductDetails = ({ data }) => {
                   if (data?.shop_location_id == selectedLocation?.id) {
                     return (
                       <div
+                        key={data.id}
                         onClick={() => {
                           setSelectedSize(data);
                         }}
@@ -1009,7 +1028,6 @@ const ProductDetails = ({ data }) => {
                         }  h-fit w-fit mt-4 rounded-lg border   hover:border-fullBlue`}
                       >
                         <Popover
-                          key={data.id}
                           trigger="hover"
                           content={() => contentSize(data)}
                           className={`h-11 w-[80px] md:w-auto ${
@@ -1066,6 +1084,7 @@ const ProductDetails = ({ data }) => {
                   if (data?.shop_location_id == selectedLocation?.id) {
                     return (
                       <div
+                        key={data.id}
                         onClick={() => {
                           setSelectedSize(data);
                         }}
@@ -1076,7 +1095,6 @@ const ProductDetails = ({ data }) => {
                         }  h-fit w-fit mt-4 rounded-lg border   hover:border-fullBlue`}
                       >
                         <Popover
-                          key={data.id}
                           trigger="hover"
                           content={() => contentSize(data)}
                           className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${
@@ -1133,6 +1151,7 @@ const ProductDetails = ({ data }) => {
                   if (data?.shop_location_id == selectedLocation?.id) {
                     return (
                       <div
+                        key={data.id}
                         onClick={() => {
                           setSelectedSize(data);
                         }}
@@ -1143,7 +1162,6 @@ const ProductDetails = ({ data }) => {
                         }  h-fit w-fit mt-4 rounded-lg border   hover:border-fullBlue`}
                       >
                         <Popover
-                          key={data.id}
                           trigger="hover"
                           content={() => contentSize(data)}
                           className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${
