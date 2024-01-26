@@ -381,13 +381,13 @@ function MarketFilterofMaps({ onClick }) {
       <div className="w-full flex items-center justify-between">
         {componentGroup?.map((item) => {
           return (
-            <>
+            <React.Fragment key={item?.id}>
               {item?.isActive && (
                 <span className="text-[#303030] text-start text-xl not-italic font-AeonikProMedium">
                   {item?.text}
                 </span>
               )}
-            </>
+            </React.Fragment>
           );
         })}
         <span className="cursor-pointer w-6 h-6" onClick={onClick}>
@@ -397,10 +397,9 @@ function MarketFilterofMaps({ onClick }) {
       <div className="flex items-center gap-x-2 justify-between border-b border-searchBgColor  py-4">
         {componentGroup?.map((item) => {
           return (
-            <>
+            <React.Fragment key={item?.id}>
               {item?.ActiveIcons && (
                 <button
-                  key={item?.id}
                   onClick={() => handleComponentId(item?.id)}
                   className={`${
                     item?.isActive
@@ -411,7 +410,7 @@ function MarketFilterofMaps({ onClick }) {
                   {item?.isActive ? item?.ActiveIcons : item?.noActiveIcons}
                 </button>
               )}
-            </>
+            </React.Fragment>
           );
         })}
       </div>

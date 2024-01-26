@@ -109,9 +109,11 @@ const YandexTop = ({ onClick }) => {
 
   return (
     <div className="flex justify-between items-center m-auto py-[2px]">
-
       <div className="left h-full flex items-center  ">
-        <div onClick={onClick} className="flex w-fit items-center cursor-pointer">
+        <div
+          onClick={onClick}
+          className="flex w-fit items-center cursor-pointer"
+        >
           <span className="mr-2">
             <LocationIcons />
           </span>
@@ -119,20 +121,24 @@ const YandexTop = ({ onClick }) => {
             Регион:
           </span>
           <div className="w-full min-w-[90px] font-AeonikProMedium flex items-center text-[13px]">
-            {
-              data?.getMainProductCard?.regions?.filter(e => e?.id == dressInfo?.mainRegionId)?.map(item => {
+            {data?.getMainProductCard?.regions
+              ?.filter((e) => e?.id == dressInfo?.mainRegionId)
+              ?.map((item) => {
                 return (
-                  <>
+                  <React.Fragment key={item?.id}>
                     <span className="">{item?.name_ru}</span>
-                    {item?.sub_regions?.filter(e => e?.id == dressInfo?.mainSubRegionId)?.map(data => {
-                      return (
-                        <span className="  ">, <span className=" ml-[1px]">{data?.name_ru}</span></span>
-                      )
-                    })}
-                  </>
-                )
-              })
-            }
+                    {item?.sub_regions
+                      ?.filter((e) => e?.id == dressInfo?.mainSubRegionId)
+                      ?.map((data) => {
+                        return (
+                          <span key={data?.id} className="  ">
+                            , <span className=" ml-[1px]">{data?.name_ru}</span>
+                          </span>
+                        );
+                      })}
+                  </React.Fragment>
+                );
+              })}
           </div>
         </div>
 
@@ -149,7 +155,6 @@ const YandexTop = ({ onClick }) => {
                 placement="bottom"
                 content={contentLang}
               >
-
                 <span className="mr-[6px] ">
                   <img src={data?.icons} alt="" />
                 </span>

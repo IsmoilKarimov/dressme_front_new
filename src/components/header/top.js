@@ -88,10 +88,11 @@ const TopHeader = () => {
       {regionsShow && (
         <div
           className={`max-w-[600px]  w-full fixed duration-500 z-[231]  left-1/2 right-1/2 top-[50%] translate-x-[-50%] translate-y-[-50%]  h-fit flex items-center  justify-center mx-auto
-        ${regionsShow
-              ? " bottom-0 md:flex flex-col"
-              : "bottom-[-1500px] z-[-10]"
-            }
+        ${
+          regionsShow
+            ? " bottom-0 md:flex flex-col"
+            : "bottom-[-1500px] z-[-10]"
+        }
         `}
         >
           <RegionList onClick={toggleRegionsShow} />
@@ -99,10 +100,11 @@ const TopHeader = () => {
       )}
 
       <div
-        className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${locationWindow === "/delivery-points"
-          ? "bg-transparent h-[40px] "
-          : "bg-bgColor h-[36px] "
-          }`}
+        className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${
+          locationWindow === "/delivery-points"
+            ? "bg-transparent h-[40px] "
+            : "bg-bgColor h-[36px] "
+        }`}
       >
         <section className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">
           {/* LEFT SIDE */}
@@ -121,20 +123,27 @@ const TopHeader = () => {
                   Регион:
                 </div>
                 <div className="w-full min-w-[90px] font-AeonikProMedium flex items-center text-[13px]">
-                  {
-                    data?.getMainProductCard?.regions?.filter(e => e?.id === dressInfo?.mainRegionId)?.map(item => {
+                  {data?.getMainProductCard?.regions
+                    ?.filter((e) => e?.id === dressInfo?.mainRegionId)
+                    ?.map((item) => {
                       return (
                         <div key={item?.id}>
                           <span className="">{item?.name_ru}</span>
-                          {item?.sub_regions?.filter(e => e?.id == dressInfo?.mainSubRegionId)?.map(data => {
-                            return (
-                              <span className="  ">, <span className=" ml-[1px]">{data?.name_ru}</span></span>
-                            )
-                          })}
+                          {item?.sub_regions
+                            ?.filter((e) => e?.id == dressInfo?.mainSubRegionId)
+                            ?.map((data) => {
+                              return (
+                                <span key={data?.id} className="  ">
+                                  ,{" "}
+                                  <span className=" ml-[1px]">
+                                    {data?.name_ru}
+                                  </span>
+                                </span>
+                              );
+                            })}
                         </div>
-                      )
-                    })
-                  }
+                      );
+                    })}
                 </div>
               </button>
             </section>

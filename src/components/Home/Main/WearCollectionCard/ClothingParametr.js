@@ -50,7 +50,6 @@ const ClothingParametr = () => {
     state?.selectColorToggleMobile,
   ]);
 
-
   const wearMobileList = [
     { id: 1, type: "Головные уборы" },
     { id: 2, type: "Верхняя одежда" },
@@ -362,7 +361,9 @@ const ClothingParametr = () => {
         </button>
       </section>
       <section className="w-full">
-        <section className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${state?.clothesTypeMobile ? "w-[92%]" : "w-0"
+        <section
+          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
+            state?.clothesTypeMobile ? "w-[92%]" : "w-0"
           }  `}
         >
           {state?.clothesTypeMobile && (
@@ -374,7 +375,9 @@ const ClothingParametr = () => {
               <div className="flex items-center min-h-screen px-4 py-8 ">
                 <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg ">
                   <div className="flex items-center justify-between border-b border-searchBgColor pb-3 ">
-                    <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">По категории</span>
+                    <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
+                      По категории
+                    </span>
                     <button
                       type=""
                       onClick={() =>
@@ -404,7 +407,9 @@ const ClothingParametr = () => {
             </div>
           )}
         </section>
-        <section className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${state?.priceToggleMobile ? "w-[92%]" : "w-0"
+        <section
+          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
+            state?.priceToggleMobile ? "w-[92%]" : "w-0"
           }  `}
         >
           {state?.priceToggleMobile && (
@@ -415,14 +420,21 @@ const ClothingParametr = () => {
               ></div>
               <div className="flex items-center min-h-screen px-4 py-8">
                 <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
-
                   <div className="max-w-[350px] w-full h-[170px] m-0 ">
                     <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
-                      <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">По ценам</span>
+                      <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
+                        По ценам
+                      </span>
                       <span
-                        onClick={() => setState({ ...state, priceToggleMobile: false, })}
-                        className="w-6 h-6 cursor-pointer">
-                        <MenuCloseIcons className="w-[24px] h-[24px]" colors={"#000"} />
+                        onClick={() =>
+                          setState({ ...state, priceToggleMobile: false })
+                        }
+                        className="w-6 h-6 cursor-pointer"
+                      >
+                        <MenuCloseIcons
+                          className="w-[24px] h-[24px]"
+                          colors={"#000"}
+                        />
                       </span>
                     </div>
                     <div className="  flex flex-col rounded-lg  w-full pb-5 pt-10">
@@ -432,10 +444,14 @@ const ClothingParametr = () => {
                             от
                           </span>
                           <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-                            <input className='w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+                            <input
+                              className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                               value={state?.minPrice}
-                              onChange={(e) => setState({ ...state, minPrice: e.target.value })}
-                            />  sum
+                              onChange={(e) =>
+                                setState({ ...state, minPrice: e.target.value })
+                              }
+                            />{" "}
+                            sum
                           </span>
                         </div>
                         <div className="flex ">
@@ -443,9 +459,12 @@ const ClothingParametr = () => {
                             до
                           </span>
                           <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-                            <input className='w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1'
+                            <input
+                              className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                               value={state?.maxPrice}
-                              onChange={(e) => setState({ ...state, maxPrice: e.target.value })}
+                              onChange={(e) =>
+                                setState({ ...state, maxPrice: e.target.value })
+                              }
                             />
                             sum
                           </span>
@@ -467,8 +486,13 @@ const ClothingParametr = () => {
                       </div>
                       <div className="flex items-center justify-end mt-4">
                         <span
-                          onClick={() => setState({ ...state, priceToggleMobile: false })}
-                          className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue">Готово</span>
+                          onClick={() =>
+                            setState({ ...state, priceToggleMobile: false })
+                          }
+                          className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue"
+                        >
+                          Готово
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -477,7 +501,9 @@ const ClothingParametr = () => {
             </div>
           )}
         </section>
-        <section className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
+        <section
+          className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
+            state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
           }`}
         >
           {state?.selectColorToggleMobile && (
@@ -494,7 +520,9 @@ const ClothingParametr = () => {
                     className={`flex items-center justify-between border-b border-searchBgColor pb-3"
                        `}
                   >
-                    <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">По цвету</span>
+                    <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
+                      По цвету
+                    </span>
                     <button
                       className="py-2"
                       type=""
@@ -508,15 +536,19 @@ const ClothingParametr = () => {
                   <div className="py-4 gap-x-2 gap-y-4 grid gap-4 grid-cols-4">
                     {changeColor?.map((data) => {
                       return (
-                        <div className="flex flex-col items-center justify-center ">
+                        <div
+                          key={data?.id}
+                          className="flex flex-col items-center justify-center "
+                        >
                           <div
-                            key={data?.id}
                             onClick={() =>
                               HandleIconsColor(data?.IconsColor, data?.id)
                             }
-                            className={`rounded-full flex items-center justify-center w-[35px] h-[35px] ${data?.colors
-                              } cursor-pointer ${data?.id == 2 ? "border border-setTexOpacity" : ""
-                              } `}
+                            className={`rounded-full flex items-center justify-center w-[35px] h-[35px] ${
+                              data?.colors
+                            } cursor-pointer ${
+                              data?.id == 2 ? "border border-setTexOpacity" : ""
+                            } `}
                           >
                             {data?.action && data?.id === 2 ? (
                               <span>
@@ -528,7 +560,11 @@ const ClothingParametr = () => {
                               <InputCheckedTrueIcons colors={"#fff"} />
                             ) : null}
                           </div>
-                          <span className={`text-black text-center text-xs not-italic font-AeonikProRegular`}>{data?.colorName}</span>
+                          <span
+                            className={`text-black text-center text-xs not-italic font-AeonikProRegular`}
+                          >
+                            {data?.colorName}
+                          </span>
                         </div>
                       );
                     })}
@@ -541,13 +577,16 @@ const ClothingParametr = () => {
                       >
                         Отключить
                       </button>
-                    )}</div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           )}
         </section>
-        <section className={`w-full h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${state?.brandToggleMobile ? "w-[92%]" : "w-0"
+        <section
+          className={`w-full h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${
+            state?.brandToggleMobile ? "w-[92%]" : "w-0"
           }`}
         >
           {state?.brandToggleMobile && (
@@ -562,7 +601,9 @@ const ClothingParametr = () => {
                     className={`flex items-center justify-between border-b border-searchBgColor pb-3"
                        `}
                   >
-                    <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">По бредам и магазинам</span>
+                    <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
+                      По бредам и магазинам
+                    </span>
                     <button
                       className="py-2"
                       type=""

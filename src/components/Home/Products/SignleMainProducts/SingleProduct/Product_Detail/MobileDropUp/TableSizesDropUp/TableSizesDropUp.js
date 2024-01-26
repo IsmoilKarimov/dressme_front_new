@@ -114,11 +114,11 @@ function TableSizesDropUp({ onClick }) {
                   {/* Sizes */}
                   <div className="w-full h-10 flex items-center justify-between">
                     {tableSizes.sizes.map((data) => (
-                      <div className="w-full flex items-center justify-center">
-                        <div
-                          key={data.id}
-                          className="flex items-center justify-center flex-shrink-0"
-                        >
+                      <div
+                        key={data.id}
+                        className="w-full flex items-center justify-center"
+                      >
+                        <div className="flex items-center justify-center flex-shrink-0">
                           {data.numbers}
                         </div>
                       </div>
@@ -127,30 +127,33 @@ function TableSizesDropUp({ onClick }) {
                   {/* Letter Sizes */}
                   <div className="w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] flex items-center justify-between">
                     {tableSizes.letter_sizes.map((data) => (
-                      <div className="w-full flex items-center justify-center ml-[-4px]">
-                        <div key={data.id} className=" flex-shrink-0">
-                          {data.numbers}
-                        </div>
+                      <div
+                        key={data.id}
+                        className="w-full flex items-center justify-center ml-[-4px]"
+                      >
+                        <div className=" flex-shrink-0">{data.numbers}</div>
                       </div>
                     ))}
                   </div>
                   {/* Chest Sizes */}
                   <div className="w-[99%] h-10 flex items-center justify-between">
                     {tableSizes.chest_sizes.map((data) => (
-                      <div className="w-full flex items-center justify-center">
-                        <div key={data.id} className="flex-shrink-0">
-                          {data.numbers}
-                        </div>
+                      <div
+                        key={data.id}
+                        className="w-full flex items-center justify-center"
+                      >
+                        <div className="flex-shrink-0">{data.numbers}</div>
                       </div>
                     ))}
                   </div>
                   {/* Waist Sizes */}
                   <div className="w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] flex items-center justify-between">
                     {tableSizes.waist_sizes.map((data) => (
-                      <div className="w-full flex items-center justify-center ml-[-4px]">
-                        <div key={data.id} className="flex-shrink-0">
-                          {data.numbers}
-                        </div>
+                      <div
+                        key={data.id}
+                        className="w-full flex items-center justify-center ml-[-4px]"
+                      >
+                        <div className="flex-shrink-0">{data.numbers}</div>
                       </div>
                     ))}
                   </div>
@@ -167,10 +170,11 @@ function TableSizesDropUp({ onClick }) {
                   {/* Ages */}
                   <div className="w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] flex items-center justify-between">
                     {tableSizes.age.map((data) => (
-                      <div className="w-full flex items-center justify-center ml-[-4px]">
-                        <div key={data.id} className="flex-shrink-0">
-                          {data.ages}
-                        </div>
+                      <div
+                        key={data.id}
+                        className="w-full flex items-center justify-center ml-[-4px]"
+                      >
+                        <div className="flex-shrink-0">{data.ages}</div>
                       </div>
                     ))}
                   </div>
