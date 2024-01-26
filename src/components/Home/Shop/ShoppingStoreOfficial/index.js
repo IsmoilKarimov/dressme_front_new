@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ShoppingStoreCategory from "./ShoppingStoreCategory/ShoppingStoreCategory";
 import ShoppingStoreOfficialBreadCrumb from "./ShoppingStoreOfficialBreadcrumb/ShoppingStoreOfficialBreadcrumb";
 import ShoppingStoreOfficialTop from "./ShoppingStoreOfficialTop/ShoppingStoreOfficialTop";
@@ -8,8 +8,14 @@ import { GoBackIcon } from "../../../../assets/icons";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useHttp } from "../../../../hook/useHttp";
+import { dressMainData } from "../../../../ContextHook/ContextMenu";
+import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 
 const ShoppingStoreOfficial = () => {
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [data, setData] = useContext(HomeMainDataContext);
+
+  const [locationId, setLocationId] = useState(null);
   const [openTabComment, setOpenTabComment] = useState(false);
   const [openTabLocation, setOpenTabLocation] = useState(false);
   const [filteredData, setFilteredData] = useState()
@@ -28,16 +34,28 @@ const ShoppingStoreOfficial = () => {
       top: 0,
     });
   }, []);
-
-
   const { id } = useParams();
   const newId = id.replace(":", "");
+  useEffect(() => {
+    data?.getMainProductCard?.shops?.filter(e => e?.id == newId)?.map(item => {
+      setDressInfo({ ...dressInfo, locationIdParams: item?.approved_shop_locations[0]?.id })
+      setLocationId(item?.approved_shop_locations[0]?.id)
+      console.log(item?.approved_shop_locations[0]?.id, "dressInfo--item?.approved_shop_locations[0]?.id");
+    })
+  }, [id, window.location.pathname])
+
+  console.log(dressInfo?.locationIdParams, "dressInfo?.locationIdParams");
+  console.log(locationId, "dressInfo?.locationId");
+  console.log(newId, "dressInfo?.newId");
+  const pathname = window.location.pathname;
+  let digitalToken = pathname.replace("/shopping_store/:", "")
+  console.log(digitalToken, "dressInfo?.digitalToken");
 
   const url = `https://api.dressme.uz/api`;
 
   function fetchGetAllData() {
     let params = new URLSearchParams();
-    params.append("location_id", newId);
+    params.append("location_id", dressInfo?.locationIdParams);
 
     fetch(`${url}/main/shops/${newId}?` + params)
       .then((res) => res.json())
@@ -49,7 +67,12 @@ const ShoppingStoreOfficial = () => {
   }
   useEffect(() => {
     fetchGetAllData()
-  }, [newId])
+    data?.getMainProductCard?.shops?.filter(e => e?.id == newId)?.map(item => {
+      setDressInfo({ ...dressInfo, locationIdParams: item?.approved_shop_locations[0]?.id })
+      setLocationId(item?.approved_shop_locations[0]?.id)
+      console.log(item?.approved_shop_locations[0]?.id, "dressInfo--item?.approved_shop_locations[0]?.id");
+    })
+  }, [newId, dressInfo?.locationIdParams])
 
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
@@ -71,7 +94,7 @@ const ShoppingStoreOfficial = () => {
             className={`${openTabComment || openTabLocation ? "hidden" : "block"
               } w-full border border-red-500`}
           >
-            <ShoppingStoreCategory filteredData={filteredData} setFilteredData={setFilteredData} />
+            <ShoppingStoreCategory filteredData={filteredData} />
           </article>
 
           {/* Comment Section For Shopping Page */}

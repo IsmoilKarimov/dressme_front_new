@@ -11,7 +11,7 @@ import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 function MainPageSliders() {
   const [data, setData] = useContext(HomeMainDataContext);
 
-  const [dressInfo] = useContext(dressMainData);
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
   // maindata
   const NextArrow = (props) => {
     const { onClick } = props;
@@ -171,7 +171,12 @@ function MainPageSliders() {
 
   const navigate = useNavigate();
   const goDetail = (id) => {
-    navigate(`/shopping_store/:${id}`);
+    data?.getMainProductCard?.shops?.filter(e => e?.id == id)?.map(item => {
+      item?.approved_shop_locations?.map((data, index) => {
+        setDressInfo({ ...dressInfo, locationIdParams: item?.approved_shop_locations[0]?.id })
+        navigate(`/shopping_store/:${id}`);
+      })
+    })
   };
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
@@ -195,12 +200,12 @@ function MainPageSliders() {
                       key={data?.id}
                       className="!w-[99%] h-[280px] rounded-lg "
                     >
-                      <div className="w-full h-[250px] bg-btnBgColor ml-[0.5px] rounded-lg overflow-hidden">
+                      <div className="w-full h-fit bg-btnBgColor ml-[0.5px] rounded-lg overflow-hidden">
                         <button
-                          className={`w-full h-full border border-searchBgColor rounded-lg flex items-center justify-center`}
+                          className={`w-full h-fit border border-searchBgColor rounded-lg flex items-center justify-center`}
                         >
                           <img
-                            className="w-full h-full rounded-lg object-cover object-top "
+                            className="w-full h-[250px] rounded-lg object-cover object-top "
                             src={data?.url_photo}
                             alt="No-img"
                           />
@@ -225,14 +230,14 @@ function MainPageSliders() {
                     <NavLink
                       to={`/section/${data?.id}`}
                       key={data?.id}
-                      className="max-w-[192px] w-full h-[260px] rounded-lg "
+                      className="max-w-[192px] w-full h-[280px] rounded-lg "
                     >
-                      <div className="w-full h-[230px] bg-btnBgColor ml-[0.5px] rounded-lg overflow-hidden">
+                      <div className="w-full h-fit bg-btnBgColor ml-[0.5px] rounded-lg overflow-hidden">
                         <button
-                          className={`w-full h-full border border-searchBgColor rounded-lg flex items-center justify-center`}
+                          className={`w-full h-fit border border-searchBgColor rounded-lg flex items-center justify-center`}
                         >
                           <img
-                            className="w-full h-full rounded-lg object-cover"
+                            className="w-full h-[250px] rounded-lg object-cover object-top "
                             src={data?.url_photo}
                             alt="No-img"
                           />
