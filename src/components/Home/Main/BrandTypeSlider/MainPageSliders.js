@@ -207,12 +207,12 @@ function MainPageSliders() {
                         </button>
                       </div>
                       <article className="h-12.5 flex items-center justify-start">
-                        <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2 ml-2">
+                        <div className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2 ml-2">
                           {data?.name_ru || "type"}
                           <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
                             ({data?.products_count || "0"})
                           </p>
-                        </p>
+                        </div>
                       </article>
                     </NavLink>
                   );
@@ -239,12 +239,12 @@ function MainPageSliders() {
                         </button>
                       </div>
                       <article className="h-12.5 flex items-center justify-start">
-                        <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
+                        <div className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
                           {data?.name_ru || "type"}
                           <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
                             ({data?.products_count || "0"})
                           </p>
-                        </p>
+                        </div>
                       </article>
                     </NavLink>
                   );
@@ -274,12 +274,12 @@ function MainPageSliders() {
                       </button>
                     </div>
                     <article className="h-12.5 flex items-center justify-start">
-                      <p className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
+                      <div className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
                         {data?.name_ru || "type"}
                         <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
                           ({data?.products_count || "0"})
                         </p>
-                      </p>
+                      </div>
                     </article>
                   </NavLink>
                 );
@@ -297,12 +297,12 @@ function MainPageSliders() {
                         <NoImg />
                       </figure>
                       <article className="w-full py-1 flex items-center">
-                        <p className="not-italic flex items-center font-AeonikProMedium text-sm xs:text-base leading-6 text-black">
+                        <div className="not-italic flex items-center font-AeonikProMedium text-sm xs:text-base leading-6 text-black">
                           {data?.name_ru || "type"}
                           <p className="not-italic lex items-center  font-AeonikProRegular text-xs xs:text-sm leading-4 text-gray-500 ml-1">
                             ({data?.products_count || "0"})
                           </p>
-                        </p>
+                        </div>
                       </article>
                     </NavLink>
                   );
@@ -320,7 +320,7 @@ function MainPageSliders() {
                 <p className="not-italic  font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
                   {more ? "Назад" : "Посмотреть все разделы"}
                 </p>
-                <p className="ml-2 ">
+                <div className="ml-2 ">
                   {more ? (
                     <div>
                       <span className="xs:hidden">
@@ -339,7 +339,7 @@ function MainPageSliders() {
                   ) : (
                     <SircleNext colors={dressInfo?.ColorSeason} />
                   )}
-                </p>
+                </div>
               </button>
             </div>
           ) : null}
