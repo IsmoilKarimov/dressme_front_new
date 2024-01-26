@@ -13,7 +13,7 @@ import ShopFootwearSizesFilter from "./StoreFilter/ShopFootwearSizesFilter";
 import { Avatar, Skeleton, Space } from "antd";
 import SkeletonFilter from "../../SkeletonFilter/SkeletonFilter";
 
-const ShopOfficialBrand = ({ setFilteredData, pageId, filteredData }) => {
+const ShopOfficialBrand = ({ filteredData, dataUz }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [genderId, setGenderId] = useState();
@@ -227,58 +227,60 @@ const ShopOfficialBrand = ({ setFilteredData, pageId, filteredData }) => {
   const newId = id.replace(":", "");
   const URL = `https://api.dressme.uz/api/main/shops/${newId}`;
 
-  function fetchGetAllData() {
-    let params = new URLSearchParams();
-    genderId && params.append("gender", genderId);
-    discountId && params.append("discount", discountId);
-    categoryId && params.append("category", categoryId);
-    customerReviews && params.append("rating", customerReviews);
-    footwearSize && params.append("footwear_size", footwearSize);
 
-    // OUTWEAR SIZES
-    letterOutwearSize &&
-      params.append("outwear_size[letter_size]", letterOutwearSize);
-    minOutwearSize &&
-      params.append("outwear_size[min_wear_size]", minOutwearSize);
-    maxOutwearSize &&
-      params.append("outwear_size[max_wear_size]", maxOutwearSize);
+  // function fetchGetAllData() {
+  //   let params = new URLSearchParams();
+  //   genderId && params.append("gender", genderId);
+  //   discountId && params.append("discount", discountId);
+  //   categoryId && params.append("category", categoryId);
+  //   customerReviews && params.append("rating", customerReviews);
+  //   footwearSize && params.append("footwear_size", footwearSize);
 
-    // UNDERWEAR SIZES
-    letterUnderwearSize &&
-      params.append("underwear_size[letter_size]", letterUnderwearSize);
-    minUnderwearSize &&
-      params.append("underwear_size[min_wear_size]", minUnderwearSize);
-    maxUnderwearSize &&
-      params.append("underwear_size[max_wear_size]", maxUnderwearSize);
+  //   // OUTWEAR SIZES
+  //   letterOutwearSize &&
+  //     params.append("outwear_size[letter_size]", letterOutwearSize);
+  //   minOutwearSize &&
+  //     params.append("outwear_size[min_wear_size]", minOutwearSize);
+  //   maxOutwearSize &&
+  //     params.append("outwear_size[max_wear_size]", maxOutwearSize);
 
-    pageId && params.append("page", pageId);
+  //   // UNDERWEAR SIZES
+  //   letterUnderwearSize &&
+  //     params.append("underwear_size[letter_size]", letterUnderwearSize);
+  //   minUnderwearSize &&
+  //     params.append("underwear_size[min_wear_size]", minUnderwearSize);
+  //   maxUnderwearSize &&
+  //     params.append("underwear_size[max_wear_size]", maxUnderwearSize);
 
-    state?.getBadgePrice?.min &&
-      params.append("budget[from]", state?.getBadgePrice?.min);
-    state?.getBadgePrice?.max &&
-      params.append("budget[to]", state?.getBadgePrice?.max);
+  //   pageId && params.append("page", pageId);
 
-    colorHexCode?.length &&
-      colorHexCode?.forEach((e, index) => {
-        params.append("colors[]", colorHexCode[index]);
-      });
+  //   state?.getBadgePrice?.min &&
+  //     params.append("budget[from]", state?.getBadgePrice?.min);
+  //   state?.getBadgePrice?.max &&
+  //     params.append("budget[to]", state?.getBadgePrice?.max);
 
-    Object.entries(params).forEach((i) => {
-      if (!i[1]) delete params[i[0]];
-    });
+  //   colorHexCode?.length &&
+  //     colorHexCode?.forEach((e, index) => {
+  //       params.append("colors[]", colorHexCode[index]);
+  //     });
 
-    fetch(`${URL}?` + params)
-      .then((res) => res.json())
-      .then((res) => {
-        setFilter(res?.filter);
-        setFilteredData(res);
-      })
-      .catch((err) => console.log(err, "ERRORLIST"));
-  }
+  //   Object.entries(params).forEach((i) => {
+  //     if (!i[1]) delete params[i[0]];
+  //   });
+
+  //   fetch(`${URL}?` + params)
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       setFilter(res?.filter);
+  //       // setFilteredData(res);
+  //     })
+  //     .catch((err) => console.log(err, "ERRORLIST"));
+  // }
 
   useEffect(() => {
     // fetchGetAllData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // dataUz({ data: 1 })
   }, [
     genderId,
     discountId,
@@ -295,9 +297,25 @@ const ShopOfficialBrand = ({ setFilteredData, pageId, filteredData }) => {
     minUnderwearSize,
     maxUnderwearSize,
     footwearSize,
-    pageId,
+    // pageId,
   ]);
-  console.log(filter, "filter");
+  // console.log(
+  //   genderId, "genderId",
+  //   discountId, "discountId",
+  //   categoryId, "categoryId",
+  //   state?.getBadgePrice, "state",
+  //   colorHexCode, "colorHexCode",
+  //   customerReviews, "customerReviews",
+  //   // "//",OUTWEAR
+  //   letterOutwearSize, "letterOutwearSize",
+  //   minOutwearSize, "minOutwearSize",
+  //   maxOutwearSize, "maxOutwearSize",
+  //   // "//",UNDERWEAR
+  //   letterUnderwearSize, "letterUnderwearSize",
+  //   minUnderwearSize, "minUnderwearSize",
+  //   maxUnderwearSize, "maxUnderwearSize",
+  //   footwearSize, "footwearSize",
+  //   "filter");
 
   return (
     <main
