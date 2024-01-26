@@ -246,8 +246,6 @@ const ProductDetails = ({ data }) => {
     (item) => item?.shop_location_id == selectedLocation?.id
   );
 
-  console.log(data?.product?.locations[0], "AASASSA");
-
   checkedData = selectedLocation;
 
   // Selected color ------------------
@@ -390,7 +388,7 @@ const ProductDetails = ({ data }) => {
 
                 {data?.product?.seasons?.map((item) => {
                   return (
-                    <React.Fragment key={item?.id}>
+                    <div key={item?.id}>
                       <figure className="flex items-center pr-3 mr-3 last:border-none border-r-[2px] border-searchBgColor">
                         <img
                           src={
@@ -411,7 +409,7 @@ const ProductDetails = ({ data }) => {
                           {item?.name_ru}
                         </figcaption>
                       </figure>
-                    </React.Fragment>
+                    </div>
                   );
                 })}
               </section>
@@ -643,22 +641,22 @@ const ProductDetails = ({ data }) => {
                   defaultValue={selectedLocation?.id}
                   // onChange={onChange}
                 >
-                  {existRegions.map((item) => {
+                  {existRegions.map((item, i) => {
                     return (
-                      <React.Fragment key={item?.id}>
+                      <div key={i}>
                         <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
                           {existRegionsObj[item]}
                         </div>
 
                         <div className="w-full">
-                          {data?.product?.locations.map((data) => {
+                          {data?.product?.locations.map((data, i) => {
                             if (data?.sub_region?.region_id === item) {
                               return (
                                 <div
                                   onClick={() => {
                                     checkedData = data;
                                   }}
-                                  key={data.id}
+                                  key={i}
                                   className="mb-[8px]"
                                 >
                                   <Radio
@@ -674,7 +672,7 @@ const ProductDetails = ({ data }) => {
                             }
                           })}
                         </div>
-                      </React.Fragment>
+                      </div>
                     );
                   })}
                 </Radio.Group>
@@ -1191,6 +1189,7 @@ const ProductDetails = ({ data }) => {
                   if (data?.shop_location_id == selectedLocation?.id) {
                     return (
                       <div
+                        key={data?.id}
                         onClick={() => {
                           setSelectedSize(data);
                         }}
@@ -1201,7 +1200,6 @@ const ProductDetails = ({ data }) => {
                         }  h-fit w-fit mt-4 rounded-lg border   hover:border-fullBlue`}
                       >
                         <Popover
-                          key={data.id}
                           trigger="hover"
                           content={() => contentSize(data)}
                           className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${

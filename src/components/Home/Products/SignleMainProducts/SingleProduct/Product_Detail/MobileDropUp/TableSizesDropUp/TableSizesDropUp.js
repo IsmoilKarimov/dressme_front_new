@@ -115,7 +115,7 @@ function TableSizesDropUp({ onClick }) {
                   <div className="w-full h-10 flex items-center justify-between">
                     {tableSizes.sizes.map((data) => (
                       <div
-                        key={data.id}
+                        key={data?.id}
                         className="w-full flex items-center justify-center"
                       >
                         <div className="flex items-center justify-center flex-shrink-0">
@@ -128,7 +128,7 @@ function TableSizesDropUp({ onClick }) {
                   <div className="w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] flex items-center justify-between">
                     {tableSizes.letter_sizes.map((data) => (
                       <div
-                        key={data.id}
+                        key={data?.id}
                         className="w-full flex items-center justify-center ml-[-4px]"
                       >
                         <div className=" flex-shrink-0">{data.numbers}</div>
@@ -160,10 +160,11 @@ function TableSizesDropUp({ onClick }) {
                   {/* Hip Sizes */}
                   <div className="w-[99%] h-10 flex items-center justify-between">
                     {tableSizes.hip_sizes.map((data) => (
-                      <div className="w-full flex items-center justify-center">
-                        <div key={data.id} className="flex-shrink-0">
-                          {data.numbers}
-                        </div>
+                      <div
+                        key={data.id}
+                        className="w-full flex items-center justify-center"
+                      >
+                        <div className="flex-shrink-0">{data.numbers}</div>
                       </div>
                     ))}
                   </div>
