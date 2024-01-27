@@ -303,13 +303,13 @@ const ProductDetails = ({ data }) => {
             locations ? "" : "hidden"
           }`}
         ></section>
-        <locations
+        <div
           className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${
             locations ? "bottom-0" : "bottom-[-800px] z-0"
           }`}
         >
           <LocationDropUp onClick={toggleLocations} />
-        </locations>
+        </div>
       </div>
 
       {/* 1 */}
