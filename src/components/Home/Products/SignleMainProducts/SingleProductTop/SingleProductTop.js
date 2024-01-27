@@ -1,39 +1,8 @@
-import React, { useContext, useState } from "react";
-import { dressMainData } from "../../../../../ContextHook/ContextMenu";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Popover } from "antd";
-import { BiChevronDown } from "react-icons/bi";
 import { ItailIcons } from "../../../../../assets/icons";
-import {
-  AutummMale,
-  SpringMale,
-  SummerMale,
-  WinterMale,
-} from "../../../../../assets";
 
 const SingleProductTop = () => {
-  const [dressInfo] = useContext(dressMainData);
-
-  const [state, setState] = useState({
-    openwear: false,
-  });
-
-  const personItems = [
-    { id: 4444, man: SpringMale },
-    { id: 1111, man: SummerMale },
-    { id: 2222, man: AutummMale },
-    { id: 3333, man: WinterMale },
-    { id: 5555, man: WinterMale },
-  ];
-
-  const handleOpenChangeWear = (newOpen) => {
-    setState({ ...state, openwear: newOpen });
-  };
-
-  const handleWearValue = () => {
-    setState({ ...state, openwear: false });
-  };
-
   return (
     <main className="flex flex-col md:min-h-[44px] justify-center items-center m-0 py-3 box-border border-b border-searchBgColor">
       <section className="max-w-[1280px] h-full w-[100%] flex items-center justify-between m-auto">

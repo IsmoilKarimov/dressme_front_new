@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ProductCarousel } from "./Product_Carousel/ProductCarousel";
 import { ProductDetails } from "./Product_Detail/ProductDetails";
 import { SingleProductTop } from "../SingleProductTop/SingleProductTop";
@@ -25,11 +25,6 @@ const SingleProduct = () => {
       LastSeenProduct.push(data);
     }
   });
-
-  const navigate = useNavigate();
-  const goDetail = (id) => {
-    navigate(`/product/:${id}`);
-  };
 
   const [show, setShow] = useState(true);
   const [scrollPost, setscrollPost] = useState(0);
