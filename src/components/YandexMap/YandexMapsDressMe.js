@@ -1,10 +1,28 @@
-import React, { useContext, useState, useEffect } from "react";
-import { YMaps, Map, ZoomControl, GeolocationControl, Placemark, SearchControl } from "react-yandex-maps";
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
+
+import {
+  YMaps,
+  Map,
+  ZoomControl,
+  GeolocationControl,
+  Placemark,
+  Clusterer,
+  SearchControl,
+} from "react-yandex-maps";
+import Slider from "react-slick";
+
 import "./yandex.css";
 import YandexMapsIndex from "./YandexMapsNavbar/YandexMapsIndex";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import NavbarTopOpenMenu from "./YandexMapsNavbar/NavbarTopOpenMenu";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import ScrollFilter from "./YandexMapsNavbar/ScrollFilter";
 import {
   ArrowTopIcons,
   CommentIcons,
@@ -21,34 +39,46 @@ import {
   SearchIcons,
   VolumeIcons,
 } from "../../assets/icons";
-import { UzbekFlag, locationIcons } from "../../assets";
+import { UzbekFlag, locationIcons, markerIcons } from "../../assets";
 import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationMarketOpen";
+import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import CarouselModalMarket from "./YandexLocationMarketOpen/CarouselModalMarket";
 import MarketFilterofMaps from "./YandexLocationMarketOpen/MarketFilterofMaps";
 import Cookies from "js-cookie";
+import { useQuery } from "@tanstack/react-query";
+import UseReplace from "../../ContextHook/useReplace";
+import RegionsList from "../../ContextHook/RegionsList";
+import RegionListYandex from "./YandexMapsNavbar/RegionListYandex";
 import { useHttp } from "../../hook/useHttp";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
-import { useQuery } from "@tanstack/react-query";
-
+// import CarouselModalMarket from "./YandexMapsNavbar/CarouselModalMarket";
 
 function YandexMapsDressMe() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
 
-  const { request } = useHttp()
+  const { request } = useHttp();
   const url = "https://api.dressme.uz/api/main";
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const [ , setOpenCordinateMap] = useState("");
+  const [openCordinateMap, setOpenCordinateMap] = useState("");
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [openCarouselModal, setOpenCarouselModal] = useState(false);
-  // const toggleCarouselModal = React.useCallback(() => setOpenCarouselModal(!openCarouselModal), []);
-  const toggleCarouselModal = React.useCallback(() => { setOpenCarouselModal((prevOpenCarouselModal) => !prevOpenCarouselModal)}, []);
+  const toggleCarouselModal = React.useCallback(
+    () => setOpenCarouselModal(!openCarouselModal),
+    []
+  );
 
   const [marketsFilterMaps, setMarketsFilterMaps] = useState(false);
-  const toggleMarketsFilterMaps = React.useCallback(() => setMarketsFilterMaps(false), []);
-  // const [ , setOpenRegionModal] = useState(false);
-  // const toggleOpenregionModal = React.useCallback(() => setOpenRegionModal(true), []);
+  const toggleMarketsFilterMaps = React.useCallback(
+    () => setMarketsFilterMaps(false),
+    []
+  );
+  const [openRegionModal, setOpenRegionModal] = useState(false);
+  const toggleOpenregionModal = React.useCallback(
+    () => setOpenRegionModal(true),
+    []
+  );
 
   // request get
   const [getMapsInfo, setGetMapsInfo] = useState(null);
@@ -57,14 +87,14 @@ function YandexMapsDressMe() {
   const [getAllImgGallery, setGetAllImgGallery] = useState();
 
   function getImgGallery(childData) {
-    setGetAllImgGallery(childData)
+    setGetAllImgGallery(childData);
     console.log(childData, "getAllImgGallery-childData");
   }
   function getFilterData(childData) {
-    setGetAllFilterSearch(childData)
+    setGetAllFilterSearch(childData);
   }
   function getFilterSearchByBrand(childData) {
-    setFilterSearchByBrand(childData)
+    setFilterSearchByBrand(childData);
   }
   // -------------Get Request
   const typeFilter = String(dressInfo?.type)?.split("");
@@ -80,10 +110,14 @@ function YandexMapsDressMe() {
       params.append("keywords", FilterSearchByBrand?.searchMarketName);
     getAllFilterSearch?.category_wear &&
       params.append("category", getAllFilterSearch?.category_wear);
-    getAllFilterSearch?.minPrice && params.append("budget[from]", getAllFilterSearch?.minPrice);
-    getAllFilterSearch?.maxPrice && params.append("budget[to]", getAllFilterSearch?.maxPrice);
-    getAllFilterSearch?.genderType && params.append("gender", getAllFilterSearch?.genderType);
-    getAllFilterSearch?.category_brand && params.append("shop", getAllFilterSearch?.category_brand);
+    getAllFilterSearch?.minPrice &&
+      params.append("budget[from]", getAllFilterSearch?.minPrice);
+    getAllFilterSearch?.maxPrice &&
+      params.append("budget[to]", getAllFilterSearch?.maxPrice);
+    getAllFilterSearch?.genderType &&
+      params.append("gender", getAllFilterSearch?.genderType);
+    getAllFilterSearch?.category_brand &&
+      params.append("shop", getAllFilterSearch?.category_brand);
     seasonId !== 5 && params.append("season", seasonId);
 
     fetch(`${url}/map/index?` + params)
@@ -97,9 +131,11 @@ function YandexMapsDressMe() {
 
   // ------------GET METHOD Main data -----------------\
 
-  useQuery(["getMapsYandexMain"], async () => {
-    return request({ url: '/main', token: true, });
-  },
+  const { refetch } = useQuery(
+    ["getMapsYandexMain"],
+    async () => {
+      return request({ url: "/main", token: true });
+    },
     {
       onSuccess: (res) => {
         setData({ ...data, getMainProductCard: res });
@@ -113,10 +149,13 @@ function YandexMapsDressMe() {
   );
 
   useEffect(() => {
-    fetchGetAllData()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getAllFilterSearch, FilterSearchByBrand, dressInfo?.mainRegionId,
-    dressInfo?.mainSubRegionId])
+    fetchGetAllData();
+  }, [
+    getAllFilterSearch,
+    FilterSearchByBrand,
+    dressInfo?.mainRegionId,
+    dressInfo?.mainSubRegionId,
+  ]);
 
   function getCurrentDimension() {
     return {
@@ -133,7 +172,6 @@ function YandexMapsDressMe() {
       window.removeEventListener("resize", updateDimension);
     };
   }, [screenSize]);
-
 
   const onMapClick = (e) => {
     if (dressInfo?.yandexOpenMarketLocation) {
@@ -169,7 +207,7 @@ function YandexMapsDressMe() {
 
   // --------------Open Main MenusetDressInfo
   const handlePlaceMark = (value, cordinate) => {
-    setOpenCordinateMap(cordinate)
+    setOpenCordinateMap(cordinate);
     setDressInfo({
       ...dressInfo,
       yandexGetMarketId: value,
@@ -177,15 +215,13 @@ function YandexMapsDressMe() {
     });
   };
 
-
   const mapState = {
-
     center: [41.311151, 69.279737],
     zoom: 12,
   };
 
   const handleError = () => {
-    console.error('Error loading Placemark');
+    console.error("Error loading Placemark");
   };
   // console.log(getAllImgGallery, "getAllImgGallery");
   return (
@@ -194,21 +230,23 @@ function YandexMapsDressMe() {
         onClick={() => {
           setOpenCarouselModal(false);
           setMarketsFilterMaps(false);
-          setDressInfo({ ...dressInfo, yandexOpenRegionList: false })
+          setDressInfo({ ...dressInfo, yandexOpenRegionList: false });
         }}
         className={`fixed inset-0 z-[215] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
-         ${openCarouselModal || marketsFilterMaps ? "" : "hidden"
-          }`}
-      >
-      </div>
+         ${openCarouselModal || marketsFilterMaps ? "" : "hidden"}`}
+      ></div>
 
-      <div className={`w-full sm:w-fit h-fit flex items-center mx-auto justify-center fixed z-[217]   ${openCarouselModal ? "" : "hidden"
-        }`}>
+      <div
+        className={`w-full   sm:w-fit h-fit flex items-center mx-auto justify-center fixed z-[217]   ${
+          openCarouselModal ? "" : "hidden"
+        }`}
+      >
         <button
           onClick={() => {
             setOpenCarouselModal(false);
           }}
-          className="absolute right-3 sm:right-[-20px]  z-[218] top-[-50px] sm:top-[0px] flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px]   rounded-full bg-[#808080]">
+          className="absolute right-3 sm:right-[-20px] z-[218] top-[-50px] sm:top-[0px] flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px]   rounded-full bg-[#808080]"
+        >
           <MenuCloseIcons colors="#fff" />
         </button>
         <div className="relative  z-[218] !w-full sm:w-fit top-0">
@@ -218,55 +256,79 @@ function YandexMapsDressMe() {
       <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden ymapsName">
         {/* Laptop device for */}
         {screenSize.width > 768 && (
-          <div className={`w-full bottom-[0px]   overflow-hidden  md:w-[769px] fixed md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
-          ${dressInfo?.yandexOpenMarketLocation
+          <div
+            className={`w-full bottom-[0px]   overflow-hidden  md:w-[769px] fixed md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
+          ${
+            dressInfo?.yandexOpenMarketLocation
               ? `z-[102] h-[350px]  bottom-[-75px]`
               : " h-0 bottom-[0]  z-[-10]"
-            } ease-linear duration-300`}
+          } ease-linear duration-300`}
           >
-            <YandexLocationMarketOpen onClick={toggleCarouselModal} getImgGallery={getImgGallery} modalInfo={getMapsInfo} />
+            <YandexLocationMarketOpen
+              onClick={toggleCarouselModal}
+              getImgGallery={getImgGallery}
+              modalInfo={getMapsInfo}
+            />
           </div>
         )}
         {screenSize.width <= 768 && (
-          <div className={`fixed w-full bg-white z-[116] left-0 right-0 overflow-hidden  ${dressInfo?.yandexOpenMarketLocation
-            ? "h-[570px] bottom-0 ease-linear duration-300 "
-            : "h-0 bottom-0 ease-linear duration-300 "
+          <div
+            className={`fixed w-full bg-white z-[116] left-0 right-0 overflow-hidden  ${
+              dressInfo?.yandexOpenMarketLocation
+                ? "h-[570px] bottom-0 ease-linear duration-300 "
+                : "h-0 bottom-0 ease-linear duration-300 "
             }  ease-linear duration-300 `}
           >
-            <YandexLocationMarketOpen onClick={toggleCarouselModal} getImgGallery={getImgGallery} modalInfo={getMapsInfo} />
+            <YandexLocationMarketOpen
+              onClick={toggleCarouselModal}
+              getImgGallery={getImgGallery}
+              modalInfo={getMapsInfo}
+            />
           </div>
         )}
         {/* // -----------------MarketFilterofMaps--------------------------- */}
         {screenSize.width <= 768 && (
-          <div className={`fixed max-w-[440px] mx-auto w-full bg-white z-[215] left-0 right-0 overflow-hidden  ${marketsFilterMaps
-            ? "h-[570px] bottom-0 ease-linear duration-300 rounded-t-lg"
-            : "h-0 bottom-0 ease-linear duration-300 "
+          <div
+            className={`fixed max-w-[440px] mx-auto w-full bg-white z-[215] left-0 right-0 overflow-hidden  ${
+              marketsFilterMaps
+                ? "h-[570px] bottom-0 ease-linear duration-300 rounded-t-lg"
+                : "h-0 bottom-0 ease-linear duration-300 "
             }  ease-linear duration-300 `}
           >
             <MarketFilterofMaps onClick={toggleMarketsFilterMaps} />
           </div>
         )}
         {/* Navbaryandex */}
-        <div className={`absolute z-50 hidden md:block ${!dressInfo?.yandexOpenMenu
-          ? "top-0 ease-linear duration-500 "
-          : "top-[-250px] ease-linear duration-500 "
+        <div
+          className={`absolute z-50 hidden md:block ${
+            !dressInfo?.yandexOpenMenu
+              ? "top-0 ease-linear duration-500 "
+              : "top-[-250px] ease-linear duration-500 "
           }  ease-linear duration-500 w-full`}
         >
-          <YandexMapsIndex getMapsInfo={getMapsInfo} getFilterData={getFilterData} getFilterSearchByBrand={getFilterSearchByBrand} />
+          <YandexMapsIndex
+            getMapsInfo={getMapsInfo}
+            getFilterData={getFilterData}
+            getFilterSearchByBrand={getFilterSearchByBrand}
+          />
         </div>
-        <div className={`absolute z-50 right-2 ${dressInfo?.yandexOpenMenu
-          ? "top-2  right-2 ease-linear duration-500 "
-          : "top-[-250px]  right-2 ease-linear duration-500 "
+        <div
+          className={`absolute z-50 right-2 ${
+            dressInfo?.yandexOpenMenu
+              ? "top-2  right-2 ease-linear duration-500 "
+              : "top-[-250px]  right-2 ease-linear duration-500 "
           }  ease-linear duration-500 w-[74%] `}
         >
           <NavbarTopOpenMenu />
         </div>
 
         {/* <YMaps query={{ apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21" }}> */}
-        <YMaps query={{
-          apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21",
-          lang: "ru",
-        }}>
+        <YMaps
+          query={{
+            apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21",
+            lang: "ru",
+          }}
+        >
           <Map
             defaultState={mapState}
             // onBoundsChange={handleBoundsChange}
@@ -281,22 +343,22 @@ function YandexMapsDressMe() {
             height="100%"
             modules={["control.FullscreenControl"]}
 
-          // {...mapOptions}
-          // state={{
-          //   center: forMaps?.center,
-          //   zoom: forMaps?.zoom,
-          // }}
-          // onLoad={setMapConstructor}
-          // onBoundsChange={handleBoundsChange}
-          // instanceRef={mapRef}
-
+            // {...mapOptions}
+            // state={{
+            //   center: forMaps?.center,
+            //   zoom: forMaps?.zoom,
+            // }}
+            // onLoad={setMapConstructor}
+            // onBoundsChange={handleBoundsChange}
+            // instanceRef={mapRef}
           >
             <div
               onClick={handleFullScreen}
-              className={`absolute right-3 ${!dressInfo?.yandexFullScreen
-                ? "bottom-[128px] md:bottom-[87px]"
-                : "bottom-[65px] md:bottom-[87px]"
-                }  cursor-pointer z-[51] w-10 h-10 rounded-lg bg-white ss:flex items-center justify-center block md:hidden`}
+              className={`absolute right-3 ${
+                !dressInfo?.yandexFullScreen
+                  ? "bottom-[128px] md:bottom-[87px]"
+                  : "bottom-[65px] md:bottom-[87px]"
+              }  cursor-pointer z-[51] w-10 h-10 rounded-lg bg-white ss:flex items-center justify-center block md:hidden`}
             >
               {dressInfo?.yandexFullScreen ? (
                 <span>
@@ -335,14 +397,13 @@ function YandexMapsDressMe() {
                   // maxWidth: 400,
                   size: "large",
                 }}
-              // options={{
-              // float: "left",
-              // position: { bottom: 270, left: 10, size: "small" },
-              // size: "small",
-              // }}
+                // options={{
+                // float: "left",
+                // position: { bottom: 270, left: 10, size: "small" },
+                // size: "small",
+                // }}
               />{" "}
             </div>
-
             {/* ---------- */}
             {/* <Clusterer
               className={""}
@@ -357,7 +418,7 @@ function YandexMapsDressMe() {
                 className={"placemarkCLuster cursor-pointer "}
                 key={data?.id}
                 onClick={() => {
-                  handlePlaceMark(data?.id, data?.latitude, data?.longitude)
+                  handlePlaceMark(data?.id, data?.latitude, data?.longitude);
                 }}
                 geometry={[data?.latitude, data?.longitude]}
                 options={{
@@ -371,9 +432,11 @@ function YandexMapsDressMe() {
             ))}
             {/* </Clusterer > */}
             {/* Yandex Main menu */}
-            < div className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${dressInfo?.openMainMenu
-              ? "left-[-500px] md:left-[-5000px] z-[-80] ease-linear duration-500"
-              : "hamburger flex flex-col ease-linear duration-500 overscroll-none z-[105]"
+            <div
+              className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${
+                dressInfo?.openMainMenu
+                  ? "left-[-500px] md:left-[-5000px] z-[-80] ease-linear duration-500"
+                  : "hamburger flex flex-col ease-linear duration-500 overscroll-none z-[105]"
               }`}
             >
               <div className={`w-full h-full `}>
@@ -384,7 +447,8 @@ function YandexMapsDressMe() {
                   </span>
 
                   <input
-                    type="text" placeholder="Искать товары или бренды"
+                    type="text"
+                    placeholder="Искать товары или бренды"
                     className="bg-transparent w-full px-3 h-12 text-[14px] bg-btnBgColor border border-transparent md:border-searchBgColor md:mx-0 md:-ml-[3px] md:px-3 md:h-12
                     placeholder-italic placeholder-AeonikProMedium placeholder-sm leading-4 placeholder-setTexOpacity placeholder-[1px]
                     "
@@ -521,15 +585,16 @@ function YandexMapsDressMe() {
                 </div>
               </div>
             </div>
-
             <div
               className={`absolute block md:hidden ml-[-1000px] duration-1000 overflow-hidden z-[103] rounded-lg shadow-lg left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%]  md:bottom-[120px]
-                ${dressInfo?.yandexFullScreen
-                  ? "bottom-[10px] md:bottom-auto"
-                  : "bottom-[10px] md:bottom-auto"
+                ${
+                  dressInfo?.yandexFullScreen
+                    ? "bottom-[10px] md:bottom-auto"
+                    : "bottom-[10px] md:bottom-auto"
                 }
-                ${dressInfo?.yandexOpenMarket &&
-                "w-[calc(100%-56px)] ml-[0] duration-1000 bg-yandexNavbar backdrop-blur-sm"
+                ${
+                  dressInfo?.yandexOpenMarket &&
+                  "w-[calc(100%-56px)] ml-[0] duration-1000 bg-yandexNavbar backdrop-blur-sm"
                 }
 
                 `}
@@ -582,12 +647,12 @@ function YandexMapsDressMe() {
               onSearchChange={handleSearchChange}
             /> */}
             {/* Yandex Search */}
-            <div className={`absolute hidden  ${!dressInfo?.yandexFullScreen ? "top-[80px]" : "top-[8px]"
+            <div
+              className={`absolute hidden  ${
+                !dressInfo?.yandexFullScreen ? "top-[80px]" : "top-[8px]"
               }  md:top-auto md:bottom-[24px] left-0 right-0 mx-auto  overflow-hidden z-50   h-[48px] w-[97%] ll:w-[94%] md:w-[400px] `}
             >
-              <div
-                className="w-full h-full flex justify-between gap-x-2"
-              >
+              <div className="w-full h-full flex justify-between gap-x-2">
                 <div className="w-[85%] md:w-full h-full flex items-center rounded-lg bg-yandexNavbar backdrop-blur-sm px-2 ll:px-3 overflow-hidden shadow-lg ">
                   <div>
                     <img src={locationIcons} alt="" />
@@ -606,15 +671,16 @@ function YandexMapsDressMe() {
                   <button type="button">
                     <SearchIcons />
                   </button>
-
                 </div>
-                <button onClick={() => setMarketsFilterMaps(!marketsFilterMaps)} type="button" className="md:hidden h-[48px] w-[48px] rounded-lg bg-yandexNavbar backdrop-blur-sm flex items-center justify-center shadow-lg">
+                <button
+                  onClick={() => setMarketsFilterMaps(!marketsFilterMaps)}
+                  type="button"
+                  className="md:hidden h-[48px] w-[48px] rounded-lg bg-yandexNavbar backdrop-blur-sm flex items-center justify-center shadow-lg"
+                >
                   <FilterIcons colors={"#000"} className="w-full h-full" />
                 </button>
               </div>
-              <div
-                className="w-full h-full flex justify-between gap-x-2"
-              >
+              <div className="w-full h-full flex justify-between gap-x-2">
                 <div className="w-[85%] md:w-full h-full flex items-center rounded-lg bg-yandexNavbar backdrop-blur-sm px-2 ll:px-3 overflow-hidden shadow-lg ">
                   <div>
                     <img src={locationIcons} alt="" />
@@ -633,9 +699,12 @@ function YandexMapsDressMe() {
                   <button type="button">
                     <SearchIcons />
                   </button>
-
                 </div>
-                <button onClick={() => setMarketsFilterMaps(!marketsFilterMaps)} type="button" className="md:hidden h-[48px] w-[48px] rounded-lg bg-yandexNavbar backdrop-blur-sm flex items-center justify-center shadow-lg">
+                <button
+                  onClick={() => setMarketsFilterMaps(!marketsFilterMaps)}
+                  type="button"
+                  className="md:hidden h-[48px] w-[48px] rounded-lg bg-yandexNavbar backdrop-blur-sm flex items-center justify-center shadow-lg"
+                >
                   <FilterIcons colors={"#000"} className="w-full h-full" />
                 </button>
               </div>
@@ -643,7 +712,7 @@ function YandexMapsDressMe() {
           </Map>
         </YMaps>
       </div>
-    </div >
+    </div>
   );
 }
 

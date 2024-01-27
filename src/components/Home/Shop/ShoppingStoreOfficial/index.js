@@ -12,7 +12,6 @@ import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import ShopOfficialCard from "./ShoppingStoreCategory/ShopOfficialCards/ShopOfficialCard";
 import ShopOfficialBrand from "./ShoppingStoreCategory/ShopOfficialBrand/ShopOfficialBrand";
-import FilterList from "./ShoppingStoreCategory/FilterList/FilterList";
 
 const ShoppingStoreOfficial = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -37,10 +36,7 @@ const ShoppingStoreOfficial = () => {
     underWearSizeMin: null,
     underWearSizeMax: null,
     footWaerSize: null,
-    filterToggle: false
   });
-  const toggleFilterOpen = React.useCallback(() => setState({ ...state, filterToggle: true }), []);
-  const toggleFilterClose = React.useCallback(() => setState({ ...state, filterToggle: false }), []);
 
   useEffect(() => {
     if (dressInfo?.openShopIdFilter) {
@@ -195,51 +191,48 @@ const ShoppingStoreOfficial = () => {
         <ShoppingStoreOfficialTop
           clickButtons={clickButtons}
           filteredData={filteredData}
-          toggleFilterLeftOpen={toggleFilterOpen}
-          toggleFilterLeftClose={toggleFilterClose}
-          filterLeftAction={state?.filterToggle}
+        // onGetHandleValue={onGetHandleValue}
         />
       </section>
-      <section className="w-full flex items-center justify-center ">
+
+      <section className="w-full flex items-center justify-center border border-green-500">
         <div className="w-full flex flex-col items-center justify-center">
           {/* Products Section */}
           <article
             className={`${openTabComment || openTabLocation ? "hidden" : "block"
-              } w-full `}
+              } w-full border border-red-500`}
           >
             {/* <ShoppingStoreCategory filteredData={filteredData} /> */}
             <section className="w-[100%] h-fit">
               <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
-                {state?.filterToggle &&
-                  <action className="hidden md:block md:w-[22%] h-full ss:px-4 md:px-0 ">
-                    {/* <ShopOfficialBrand
-                      // setFilteredData={setFilteredData}
-                      // pageId={pageId}
-                      filteredData={filteredData}
-                      // onCallback={handleCallback}
-                      OngenderId1={genderId1}
-                      OndiscountId1={discountId1}
-                      OncategoryId1={categoryId1}
-                      OngetBadgePrice1={getBadgePrice1}
-                      OncolorHexCode1={colorHexCode1}
-                      OncustomerReviews1={customerReviews1}
-                      OnletterOutwearSize1={letterOutwearSize1}
-                      OnminOutwearSize1={minOutwearSize1}
-                      OnmaxOutwearSize1={maxOutwearSize1}
-                      OnletterUnderwearSize1={letterUnderwearSize1}
-                      OnminUnderwearSize1={minUnderwearSize1}
-                      OnmaxUnderwearSize1={maxUnderwearSize1}
-                      OnfootwearSize1={footwearSize1}
-                    /> */}
-                    <FilterList paramsId={newId} />
-                  </action>}
+                <action className="hidden md:block md:w-[22%] h-full ss:px-4 md:px-0 border border-red-500">
+                  <ShopOfficialBrand
+                    // setFilteredData={setFilteredData}
+                    // pageId={pageId}
+                    filteredData={filteredData}
+                    // onCallback={handleCallback}
+                    OngenderId1={genderId1}
+                    OndiscountId1={discountId1}
+                    OncategoryId1={categoryId1}
+                    OngetBadgePrice1={getBadgePrice1}
+                    OncolorHexCode1={colorHexCode1}
+                    OncustomerReviews1={customerReviews1}
+                    OnletterOutwearSize1={letterOutwearSize1}
+                    OnminOutwearSize1={minOutwearSize1}
+                    OnmaxOutwearSize1={maxOutwearSize1}
+                    OnletterUnderwearSize1={letterUnderwearSize1}
+                    OnminUnderwearSize1={minUnderwearSize1}
+                    OnmaxUnderwearSize1={maxUnderwearSize1}
+                    OnfootwearSize1={footwearSize1}
+                  />
+                </action>
                 <action
                   className={`w-full h-[100vh] overflow-hidden overflow-y-auto  md:hidden fixed top-0 bottom-0 left-0 right-0 ${dressInfo?.openShopIdFilter ? " ml-[1px] " : " ml-[-1000px]"
                     }   bg-white z-[105] duration-500`}
                 >
-                  <FilterList paramsId={newId} />
+                  <ShopOfficialBrand />
                 </action>
-                <action className={` ${state?.filterToggle ? 'md:w-[77%]' : "md:w-[100%]"} w-full h-full ss:px-4 md:px-0`}>
+                <action className="md:w-[77%] w-full h-full ss:px-4 md:px-0 border border-red-500">
                   {filteredData ?
                     <ShopOfficialCard
                       filteredData={filteredData}
