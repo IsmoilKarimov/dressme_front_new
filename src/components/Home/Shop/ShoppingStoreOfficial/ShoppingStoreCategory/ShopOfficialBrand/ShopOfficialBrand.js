@@ -269,8 +269,9 @@ function ShopOfficialBrand({ filteredData, onCallback,
     OnminUnderwearSize1(null)
     OnmaxUnderwearSize1(null)
     OnfootwearSize1(null)
+
   }
-  // /shops/filter/:id?location_id=1
+
   return (
     <main
       className={`w-full h-hull ${dressInfo?.openShopIdFilter
