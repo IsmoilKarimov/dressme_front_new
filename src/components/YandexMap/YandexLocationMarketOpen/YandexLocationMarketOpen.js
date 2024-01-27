@@ -228,7 +228,7 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
                         </span>
                         <a
                           href={`tel:${phoneNum}`}
-                          className="not-italic hover:text-fullBlue flex items-center flex ml-4 font-AeonikProRegular text-base leading-4 text-black tracking-[1%]"
+                          className="not-italic hover:text-fullBlue flex items-center ml-4 font-AeonikProRegular text-base leading-4 text-black tracking-[1%]"
                         >
                           {phoneNum}
                         </a>

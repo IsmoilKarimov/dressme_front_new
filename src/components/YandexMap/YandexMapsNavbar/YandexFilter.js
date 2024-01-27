@@ -140,8 +140,8 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           <MenuCloseIcons className="w-[24px] h-[24px]" colors={"#000"} />
         </span>
       </div>
-      <div className="w-[350px]  flex flex-col rounded-lg  w-full pb-5 px-4 pt-10 ">
-        <div className=" w-[350px] flex justify-between items-center mb-4 w-full ">
+      <div className=" flex flex-col rounded-lg  w-full pb-5 px-4 pt-10 ">
+        <div className=" flex justify-between items-center mb-4 w-full ">
           <div className="flex ">
             <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
               от
@@ -470,7 +470,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
                             item?.action
                               ? " bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-lg"
                               : " bg-btnBgColor text-black"
-                          } px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  h-[44px]  justify-center flex items-center`}
+                          } px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  justify-center flex items-center`}
                         >
                           {/* <img src={item?.anyIcons} alt="male" /> */}
                           <span>{item?.anyIcons}</span>
