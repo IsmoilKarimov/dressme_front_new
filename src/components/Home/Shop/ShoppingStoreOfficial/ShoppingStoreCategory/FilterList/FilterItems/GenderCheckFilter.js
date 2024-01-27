@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../../../assets/icons";
 
-function GenderCheckFilter() {
+function GenderCheckFilter({ genderList, discount }) {
     const [openGenderField, setOpenGenderField] = useState(false);
+    const [genderNewList, setGenderNewList] = useState([]);
+
     const [genderCategory, setGenderCategory] = useState([
         {
             id: 1,
@@ -26,6 +28,23 @@ function GenderCheckFilter() {
         },
     ]);
 
+    useEffect(() => {
+        genderCategory?.map(item => {
+            genderList?.map(data => {
+                if (item?.id == data) {
+                    if (!genderNewList) {
+                        setGenderNewList(genderNewList => [...genderNewList, item?.name])
+                    }
+                    if (genderNewList && !genderNewList?.includes(item?.name)) {
+                        setGenderNewList(genderNewList => [...genderNewList, item?.name])
+                    }
+                    console.log(item?.name, "item?.name,");
+                }
+            })
+        })
+
+    }, [genderList])
+    console.log(genderNewList, 'item?.name-genderNewList');
 
     const handleGenderCheck = (value) => {
         setGenderCategory((data) => {
@@ -36,16 +55,13 @@ function GenderCheckFilter() {
             });
         });
     };
-
+    console.log(genderList, "genderList");
     return (
         <div
             className={` w-full flex-col items-center md:mb-[38px]`}
         >
             <article
                 className="w-full flex justify-between items-center"
-            // onClick={(event) => {
-            //     event.target.classList.toggle("open");
-            // }}
             >
                 <figure
                     onClick={() => setOpenGenderField(!openGenderField)}

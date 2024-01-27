@@ -8,7 +8,7 @@ function FootwearCheckFilter({ footWear }) {
     const [dataActionUnderwearSizes, setDataActionUnderwearSizes] = useState();
     useEffect(() => {
         function footwearSizes() {
-            const transformedArray = Object.entries(footWear).map(
+            const transformedArray = Object?.entries(footWear).map(
                 ([size, details]) => ({ size, ...details })
             );
             setFootwearData(transformedArray);
