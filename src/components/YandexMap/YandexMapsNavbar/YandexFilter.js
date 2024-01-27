@@ -492,7 +492,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
         </div>
         {/* </article> */}
       </div>
-      <div className="w-full flex items-center gap-x-2 mt-2 hidden">
+      <div className="w-full flex items-center gap-x-2 mt-2">
         <div className="w-[190px]  flex items-center">
           {selectWear && (
             <button

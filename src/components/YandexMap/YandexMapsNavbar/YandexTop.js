@@ -142,7 +142,7 @@ const YandexTop = ({ onClick }) => {
           </div>
         </div>
 
-        <div className="w-fit h-full rounded bg-white rounded-lg ml-2 font-AeonikProMedium select-none overflow-hidden cursor-pointer">
+        <div className="w-fit h-full rounded bg-white ml-2 font-AeonikProMedium select-none overflow-hidden cursor-pointer">
           {LanguageList.filter((data) => data.id === selectLang).map((data) => {
             return (
               <Popover
