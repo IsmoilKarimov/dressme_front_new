@@ -55,7 +55,7 @@ const ProductDetails = ({ data }) => {
   const [locations, setLocations] = useState(false);
 
   // color context---
-  const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
+  const [, setcolorId] = useContext(SliderPhotosColorContext);
 
   const toggleTableSizes = useCallback(() => setTableSizes(false), []);
   const toggleLocations = useCallback(() => setLocations(false), []);
@@ -735,7 +735,7 @@ const ProductDetails = ({ data }) => {
               ? uniqueArray?.map((data) => {
                   return (
                     <div
-                      key={data.id}
+                      key={data?.id}
                       className={`${
                         data?.product_color_id ===
                         selectedSize?.product_color_id
@@ -744,7 +744,7 @@ const ProductDetails = ({ data }) => {
                       } `}
                     >
                       <div
-                        key={data.id}
+                        key={data?.id}
                         className="!w-[64px] h-[72px] rounded-lg cursor-pointer  bg-black"
                         onClick={() => {
                           filterColorsOnSelect(data?.product_color_id);
@@ -763,7 +763,7 @@ const ProductDetails = ({ data }) => {
                 })
               : uniqueArray?.map((data) => {
                   return (
-                    <div key={data.id}>
+                    <div key={data?.id}>
                       <div
                         className="!w-[64px] h-[72px] rounded-lg cursor-pointer bg-black"
                         onClick={() => {
@@ -1015,7 +1015,7 @@ const ProductDetails = ({ data }) => {
                   if (data?.shop_location_id == selectedLocation?.id) {
                     return (
                       <div
-                        key={data.id}
+                        key={data?.id}
                         onClick={() => {
                           setSelectedSize(data);
                         }}
@@ -1082,7 +1082,7 @@ const ProductDetails = ({ data }) => {
                   if (data?.shop_location_id == selectedLocation?.id) {
                     return (
                       <div
-                        key={data.id}
+                        key={data?.id}
                         onClick={() => {
                           setSelectedSize(data);
                         }}
@@ -1149,7 +1149,7 @@ const ProductDetails = ({ data }) => {
                   if (data?.shop_location_id == selectedLocation?.id) {
                     return (
                       <div
-                        key={data.id}
+                        key={data?.id}
                         onClick={() => {
                           setSelectedSize(data);
                         }}
@@ -1240,7 +1240,7 @@ const ProductDetails = ({ data }) => {
         </article>
 
         {/* Mobile Product Infos */}
-        <article className="w-full flex md:hidden flex-col items-center">
+        {/* <article className="w-full flex md:hidden flex-col items-center">
           <div className="w-full text-xl font-AeonikProMedium mb-[18px]">
             Line-Pattern Zipper Sweatshirt (Original High Quality)
           </div>
@@ -1392,7 +1392,7 @@ const ProductDetails = ({ data }) => {
               </article>
             </div>
           </div>
-        </article>
+        </article> */}
 
         {/* Mobile Price */}
         <article
