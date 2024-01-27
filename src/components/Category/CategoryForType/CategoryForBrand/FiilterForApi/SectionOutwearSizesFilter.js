@@ -10,20 +10,18 @@ function SectionOutwearSizesFilter({
   dataActionOutwearSizes,
   setDataActionOutwearSizes,
   sendOutwearSize,
-
   setDataActionUnderwearSizes,
   setDataActionFootwearSizes,
   sendClearedUnderwearData,
   handleFootwearWearSize
 }) {
-  const [outwearData, setOutwearData] = useState(null);
-  const [visibleButtons, setVisibleButtons] = useState(12);
+  let [outwearData, setOutwearData] = useState(null);
+  let [visibleButtons, setVisibleButtons] = useState(12);
 
   useEffect(() => {
     async function outwearSizes() {
-      const outwear = filter?.wear_sizes?.outwear;
-      // console.log(outwear);
-      const transformedArray = await Object.entries(outwear).map(
+      let outwear = filter?.wear_sizes?.outwear;
+      let transformedArray = await Object.entries(outwear).map(
         ([size, details]) => ({ size, ...details })
       );
       setOutwearData(transformedArray);

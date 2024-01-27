@@ -1,4 +1,4 @@
-import React, { useContext, memo, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
   ClockIcons,
   LocationIcons,
@@ -25,10 +25,10 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
   const [copyAddress, setCopyAddress] = useState(null);
   const [phoneNum, setPhoneNum] = useState(null);
   const [imgGallery, setImgGallery] = useState([]);
-  const [imgGallery1, setImgGallery1] = useState();
-  const [imgGallery2, setImgGallery2] = useState();
-  const [imgGallery3, setImgGallery3] = useState();
-  const arrImg = [];
+  const [, setImgGallery1] = useState();
+  const [, setImgGallery2] = useState();
+  const [, setImgGallery3] = useState();
+ 
   useEffect(() => {
     modalInfo?.locations
       ?.filter((e) => e?.id === dressInfo?.yandexGetMarketId)
@@ -105,9 +105,7 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
     getImgGallery(imgGallery);
     onClick();
   };
-  const handleCarouselModal = (UId) => {
-    // setOpenCarouselModal(true)
-  };
+
   // console.log(modalInfo, "modalInfo");
   // console.log(dressInfo?.yandexGetMarketId, "yandexGetMarketId");
   const handlePhoneNumberClick = (id) => {
@@ -120,7 +118,6 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
       {modalInfo?.locations
         ?.filter((e) => e?.id === dressInfo?.yandexGetMarketId)
         ?.map((data) => {
-          // console.log(data, "filter modal");
           return (
             <div
               key={data?.id}
@@ -228,7 +225,7 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
                         </span>
                         <a
                           href={`tel:${phoneNum}`}
-                          className="not-italic hover:text-fullBlue flex items-center flex ml-4 font-AeonikProRegular text-base leading-4 text-black tracking-[1%]"
+                          className="not-italic hover:text-fullBlue flex items-center ml-4 font-AeonikProRegular text-base leading-4 text-black tracking-[1%]"
                         >
                           {phoneNum}
                         </a>
@@ -261,14 +258,14 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
                   </div>
                   <div className="w-full gap-x-2 flex items-center ">
                     {/* <button
-              onClick={clickCordinate}
-              className={` w-full h-[48px]  bg-white border border-fullBlue active:scale-95  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
-            >
-              <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center   text-fullBlue ">
-                Открыть на карте
-              </span>
+                          onClick={clickCordinate}
+                          className={` w-full h-[48px]  bg-white border border-fullBlue active:scale-95  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
+                        >
+                          <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center   text-fullBlue ">
+                            Открыть на карте
+                          </span>
 
-            </button> */}
+                        </button> */}
                     <button
                       onClick={openShoppingChild}
                       className={` w-full h-[48px] bg-fullBlue active:scale-95 mt-4 mb-2 md:mb-0 md:mt-0  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}

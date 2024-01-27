@@ -1,14 +1,10 @@
-import React, { useContext, useState, useEffect, useRef, useCallback } from "react";
-
-import { YMaps, Map, ZoomControl, GeolocationControl, Placemark, Clusterer, SearchControl } from "react-yandex-maps";
-import Slider from "react-slick";
-
+import React, { useContext, useState, useEffect } from "react";
+import { YMaps, Map, ZoomControl, GeolocationControl, Placemark, SearchControl } from "react-yandex-maps";
 import "./yandex.css";
 import YandexMapsIndex from "./YandexMapsNavbar/YandexMapsIndex";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import NavbarTopOpenMenu from "./YandexMapsNavbar/NavbarTopOpenMenu";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import ScrollFilter from "./YandexMapsNavbar/ScrollFilter";
+import { Link, NavLink } from "react-router-dom";
 import {
   ArrowTopIcons,
   CommentIcons,
@@ -25,19 +21,14 @@ import {
   SearchIcons,
   VolumeIcons,
 } from "../../assets/icons";
-import { UzbekFlag, locationIcons, markerIcons } from "../../assets";
+import { UzbekFlag, locationIcons } from "../../assets";
 import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationMarketOpen";
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import CarouselModalMarket from "./YandexLocationMarketOpen/CarouselModalMarket";
 import MarketFilterofMaps from "./YandexLocationMarketOpen/MarketFilterofMaps";
 import Cookies from "js-cookie";
-import { useQuery } from "@tanstack/react-query";
-import UseReplace from "../../ContextHook/useReplace";
-import RegionsList from "../../ContextHook/RegionsList";
-import RegionListYandex from "./YandexMapsNavbar/RegionListYandex";
 import { useHttp } from "../../hook/useHttp";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
-// import CarouselModalMarket from "./YandexMapsNavbar/CarouselModalMarket";
+import { useQuery } from "@tanstack/react-query";
 
 
 function YandexMapsDressMe() {
@@ -46,17 +37,18 @@ function YandexMapsDressMe() {
 
   const { request } = useHttp()
   const url = "https://api.dressme.uz/api/main";
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const [openCordinateMap, setOpenCordinateMap] = useState("");
+  const [ , setOpenCordinateMap] = useState("");
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [openCarouselModal, setOpenCarouselModal] = useState(false);
-  const toggleCarouselModal = React.useCallback(() => setOpenCarouselModal(!openCarouselModal), []);
+  // const toggleCarouselModal = React.useCallback(() => setOpenCarouselModal(!openCarouselModal), []);
+  const toggleCarouselModal = React.useCallback(() => { setOpenCarouselModal((prevOpenCarouselModal) => !prevOpenCarouselModal)}, []);
 
   const [marketsFilterMaps, setMarketsFilterMaps] = useState(false);
   const toggleMarketsFilterMaps = React.useCallback(() => setMarketsFilterMaps(false), []);
-  const [openRegionModal, setOpenRegionModal] = useState(false);
-  const toggleOpenregionModal = React.useCallback(() => setOpenRegionModal(true), []);
+  // const [ , setOpenRegionModal] = useState(false);
+  // const toggleOpenregionModal = React.useCallback(() => setOpenRegionModal(true), []);
 
   // request get
   const [getMapsInfo, setGetMapsInfo] = useState(null);
@@ -105,7 +97,7 @@ function YandexMapsDressMe() {
 
   // ------------GET METHOD Main data -----------------\
 
-  const { refetch } = useQuery(["getMapsYandexMain"], async () => {
+  useQuery(["getMapsYandexMain"], async () => {
     return request({ url: '/main', token: true, });
   },
     {
@@ -122,6 +114,7 @@ function YandexMapsDressMe() {
 
   useEffect(() => {
     fetchGetAllData()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getAllFilterSearch, FilterSearchByBrand, dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId])
 
@@ -209,14 +202,13 @@ function YandexMapsDressMe() {
       >
       </div>
 
-
-      <div className={`w-full   sm:w-fit h-fit flex items-center mx-auto justify-center fixed z-[217]   ${openCarouselModal ? "" : "hidden"
+      <div className={`w-full sm:w-fit h-fit flex items-center mx-auto justify-center fixed z-[217]   ${openCarouselModal ? "" : "hidden"
         }`}>
         <button
           onClick={() => {
             setOpenCarouselModal(false);
           }}
-          className="absolute right-3 sm:right-[-20px] bg-[#f4f4f4] z-[218] top-[-50px] sm:top-[0px] flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px]   rounded-full bg-[#808080]">
+          className="absolute right-3 sm:right-[-20px]  z-[218] top-[-50px] sm:top-[0px] flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px]   rounded-full bg-[#808080]">
           <MenuCloseIcons colors="#fff" />
         </button>
         <div className="relative  z-[218] !w-full sm:w-fit top-0">
@@ -616,7 +608,7 @@ function YandexMapsDressMe() {
                   </button>
 
                 </div>
-                <button onClick={() => setMarketsFilterMaps(!marketsFilterMaps)} type="button" className="md:hidden h-[48px] w-[48px] rounded-lg rounded-lg bg-yandexNavbar backdrop-blur-sm flex items-center justify-center shadow-lg">
+                <button onClick={() => setMarketsFilterMaps(!marketsFilterMaps)} type="button" className="md:hidden h-[48px] w-[48px] rounded-lg bg-yandexNavbar backdrop-blur-sm flex items-center justify-center shadow-lg">
                   <FilterIcons colors={"#000"} className="w-full h-full" />
                 </button>
               </div>
@@ -643,7 +635,7 @@ function YandexMapsDressMe() {
                   </button>
 
                 </div>
-                <button onClick={() => setMarketsFilterMaps(!marketsFilterMaps)} type="button" className="md:hidden h-[48px] w-[48px] rounded-lg rounded-lg bg-yandexNavbar backdrop-blur-sm flex items-center justify-center shadow-lg">
+                <button onClick={() => setMarketsFilterMaps(!marketsFilterMaps)} type="button" className="md:hidden h-[48px] w-[48px] rounded-lg bg-yandexNavbar backdrop-blur-sm flex items-center justify-center shadow-lg">
                   <FilterIcons colors={"#000"} className="w-full h-full" />
                 </button>
               </div>

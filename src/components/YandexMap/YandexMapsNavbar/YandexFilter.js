@@ -1,52 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Popover, Select, Space } from "antd";
 import {
-  AutummBoyIcons,
   ByBrandIcon,
-  ChildGenIcon,
   ClothesIcons,
   DollorIcons,
   DownArrowAntd,
   ManGenIcons,
   ManWomanGen,
   MenuCloseIcons,
-  SpringBoyIcons,
-  SummerBoyIcons,
   WinterBoyIcons,
   WomanGenIcons,
 } from "../../../assets/icons";
-import { BiChevronDown } from "react-icons/bi";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
-import {
-  AutummChild,
-  AutummFemale,
-  AutummGirl,
-  AutummMale,
-  SpringChild,
-  SpringFemale,
-  SpringGirl,
-  SpringMale,
-  SummerChild,
-  SummerFemale,
-  SummerGirl,
-  SummerMale,
-  WinterChild,
-  WinterFemale,
-  WinterGirl,
-  WinterMale,
-} from "../../../assets";
 import "../yandex.css";
-import ReactSlider from "react-slider";
-import UseReplace from "../../../ContextHook/useReplace";
-import UseSearch from "../../../ContextHook/useSearch";
-import { useNavigate } from "react-router-dom";
 import Slider from "react-slider";
 const { Option } = Select;
 
 export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
-  // useReplace
-  const navigate = useNavigate();
+  const [dressInfo] = useContext(dressMainData);
   const [state, setState] = useState({
     openwear: false,
     openPrice: false,
@@ -140,8 +111,8 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           <MenuCloseIcons className="w-[24px] h-[24px]" colors={"#000"} />
         </span>
       </div>
-      <div className="w-[350px]  flex flex-col rounded-lg  w-full pb-5 px-4 pt-10 ">
-        <div className=" w-[350px] flex justify-between items-center mb-4 w-full ">
+      <div className="flex flex-col rounded-lg  w-full pb-5 px-4 pt-10 ">
+        <div className="flex justify-between items-center mb-4 w-full ">
           <div className="flex ">
             <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
               от
@@ -281,9 +252,9 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
     }
     setPersonItems((current) => {
       return current?.map((data) => {
-        if (data?.id == fathId) {
+        if (data?.id === fathId) {
           let newDataColor = data.childText.map((e) => {
-            if (e.id == childId) {
+            if (e.id === childId) {
               return { ...e, action: true };
             } else return { ...e, action: false };
           });
@@ -311,11 +282,6 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   // console.log(state?.categoryBrandId, "state?.categoryBrandId");
   const onSearch = (value) => {
     // console.log("search:", value);
-  };
-  const handleClear = () => {
-    // Custom logic when the clear icon is clicked
-    console.log("Clear icon clicked!");
-    setState({ ...state, categoryWearId: null });
   };
 
   return (
@@ -470,7 +436,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
                             item?.action
                               ? " bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-lg"
                               : " bg-btnBgColor text-black"
-                          } px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  h-[44px]  justify-center flex items-center`}
+                          } px-5 h-full cursor-pointer  font-AeonikProMedium rounded-lg justify-center flex items-center`}
                         >
                           {/* <img src={item?.anyIcons} alt="male" /> */}
                           <span>{item?.anyIcons}</span>
