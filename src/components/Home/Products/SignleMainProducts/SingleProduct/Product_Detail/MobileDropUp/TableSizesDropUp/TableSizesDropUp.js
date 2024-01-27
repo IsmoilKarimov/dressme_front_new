@@ -87,7 +87,7 @@ function TableSizesDropUp({ onClick }) {
           </button>
         </section>
         <section className="w-full h-[280px] pl-4 flex flex-col flex-nowrap">
-          <action className="w-full flex flex-row flex-nowrap gap-y-[10px] gap-x-[12px] mb-4">
+          <div className="w-full flex flex-row flex-nowrap gap-y-[10px] gap-x-[12px] mb-4">
             <div className="w-[42%] h-full flex flex-col">
               <div className="text-base font-AeonikProRegular h-10 flex items-center">
                 Размер
@@ -182,7 +182,7 @@ function TableSizesDropUp({ onClick }) {
                 </div>
               </div>
             </div>
-          </action>
+          </div>
         </section>
       </div>
     </main>

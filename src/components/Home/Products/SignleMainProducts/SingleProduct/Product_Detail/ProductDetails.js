@@ -1667,22 +1667,22 @@ const ProductDetails = ({ data }) => {
       {/* 5 */}
       <div className="w-full">
         <div className={openTab === 1 ? "block" : "hidden"}>
-          <action className=" flex">
+          <div className=" flex">
             <LocationOfYandex locationText={selectedLocation?.address} />
-          </action>
+          </div>
         </div>
         <div className={openTab === 2 ? "block" : "hidden"}>
-          <action className="mt-5 flex-col gap-y-5 flex">
-            <action className="not-italic font-AeonikProRegular text-base">
+          <div className="mt-5 flex-col gap-y-5 flex">
+            <div className="not-italic font-AeonikProRegular text-base">
               Кратко о товаре
-            </action>
+            </div>
             <article className="font-AeonikProRegular text-base">
               {data?.product?.description_ru}
             </article>
-          </action>
+          </div>
         </div>
         <div className={openTab === 3 ? "block" : "hidden"}>
-          <action className="mt-12 md:mt-5 block">
+          <div className="mt-12 md:mt-5 block">
             <ul>
               <li
                 className={
@@ -1693,7 +1693,7 @@ const ProductDetails = ({ data }) => {
                 {data?.product?.composition_ru}
               </li>
             </ul>
-          </action>
+          </div>
         </div>
       </div>
     </main>
