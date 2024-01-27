@@ -11,7 +11,7 @@ function OutwearCheckFilter({ OutWearList }) {
     useEffect(() => {
         function outwearSizes() {
             // const outwear = filter?.wear_sizes?.outwear;
-            const transformedArray = Object.entries(OutWearList).map(
+            const transformedArray = Object?.entries(OutWearList).map(
                 ([size, details]) => ({ size, ...details })
             );
             setOutwearData(transformedArray);

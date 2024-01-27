@@ -139,7 +139,7 @@ const ShoppingStoreOfficial = () => {
   //   footWaerSize: null,
   function fetchGetAllData() {
     let params = new URLSearchParams();
-    params.append("location_id", dressInfo?.locationIdParams);
+    params.append("location_id", 1);
     state?.genderId?.childData && params.append("gender", state?.genderId?.childData);
     state?.disCount && params.append("discount", state?.disCount);
     state?.category && params.append("category", state?.category);
@@ -182,10 +182,12 @@ const ShoppingStoreOfficial = () => {
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   }
+  console.log("run index ishga tushdi");
+
   useEffect(() => {
     fetchGetAllData()
   }, [newId, state, dressInfo?.locationIdParams])
-
+  // <action
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
       <section className="w-full border-b border-searchBgColor ">
@@ -211,7 +213,7 @@ const ShoppingStoreOfficial = () => {
             <section className="w-[100%] h-fit">
               <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
                 {state?.filterToggle &&
-                  <action className="hidden md:block md:w-[22%] h-full ss:px-4 md:px-0 ">
+                  <div className="hidden md:block md:w-[22%] h-full ss:px-4 md:px-0 ">
                     {/* <ShopOfficialBrand
                       // setFilteredData={setFilteredData}
                       // pageId={pageId}
@@ -232,14 +234,14 @@ const ShoppingStoreOfficial = () => {
                       OnfootwearSize1={footwearSize1}
                     /> */}
                     <FilterList paramsId={newId} />
-                  </action>}
-                <action
+                  </div>}
+                {state?.filterToggle && <div
                   className={`w-full h-[100vh] overflow-hidden overflow-y-auto  md:hidden fixed top-0 bottom-0 left-0 right-0 ${dressInfo?.openShopIdFilter ? " ml-[1px] " : " ml-[-1000px]"
                     }   bg-white z-[105] duration-500`}
                 >
                   <FilterList paramsId={newId} />
-                </action>
-                <action className={` ${state?.filterToggle ? 'md:w-[77%]' : "md:w-[100%]"} w-full h-full ss:px-4 md:px-0`}>
+                </div>}
+                <div className={` ${state?.filterToggle ? 'md:w-[77%]' : "md:w-[100%]"} w-full h-full ss:px-4 md:px-0`}>
                   {filteredData ?
                     <ShopOfficialCard
                       filteredData={filteredData}
@@ -247,21 +249,21 @@ const ShoppingStoreOfficial = () => {
                     /> : <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[100vh] ">
                       Ничего не найдено
                     </div>}
-                </action>
+                </div>
               </section>
             </section>
           </article>
 
           {/* Comment Section For Shopping Page */}
-          <action className={`${openTabComment ? "block" : "hidden"} w-full `}>
+          <div className={`${openTabComment ? "block" : "hidden"} w-full `}>
             <ShowPageComment
               filteredData={filteredData}
               setOpenTabComment={setOpenTabComment}
             />
-          </action>
+          </div>
 
           {/* Map Section */}
-          <action
+          <div
             className={`${openTabLocation ? "block" : "hidden"
               } w-full text-3xl px-4 pb-10`}
           >
@@ -274,7 +276,7 @@ const ShoppingStoreOfficial = () => {
               <GoBackIcon />
             </button>
             <LocationOfYandex />
-          </action>
+          </div>
         </div>
       </section>
     </main>

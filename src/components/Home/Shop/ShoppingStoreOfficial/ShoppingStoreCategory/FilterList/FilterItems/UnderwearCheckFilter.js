@@ -7,11 +7,11 @@ function UnderwearCheckFilter({ underWearList }) {
     const [underwearToggle, setUnderwearToggle] = useState(false);
     const [dataActionUnderwearSizes, setDataActionUnderwearSizes] = useState();
 
-
+    console.log(underWearList, "underWearList");
     useEffect(() => {
         function underwearSizes() {
             // const underwear = filter?.wear_sizes?.underwear;
-            const transformedArray = Object.entries(underWearList).map(
+            const transformedArray = Object?.entries(underWearList).map(
                 ([size, details]) => ({ size, ...details })
             );
             setUnderwearData(transformedArray);

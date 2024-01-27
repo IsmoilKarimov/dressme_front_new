@@ -28,19 +28,21 @@ import FootwearCheckFilter from "./FilterItems/FootwearCheckFilter";
 function FilterList({ paramsId }) {
     const { request } = useHttp()
     const [dressInfo, setDressInfo] = useContext(dressMainData);
-
+    const [getFilter, setGetFilter] = useState()
+    console.log("run filterlist ishga tushdi");
     const { id } = useParams()
     const newId = id.replace(":", "");
 
     const { refetch } = useQuery(["get_shop_filter"], () => {
         return request({
-            url: `/main/shops/filter/${paramsId}?location_id=${dressInfo?.locationIdParams}`,
+            url: `/main/shops/filter/${paramsId}?location_id=${1}`,
             token: true,
         });
     },
         {
             onSuccess: (res) => {
-                console.log(res, "get_shop_filter");
+                // console.log(res, "get_shop_filter");
+                setGetFilter(res?.filter)
             },
             onError: (err) => {
                 console.log(err, "get_shop_filter---Error");
@@ -373,36 +375,36 @@ function FilterList({ paramsId }) {
     }
     // /shops/filter/:id?location_id=1
     return (
-        <main
+        <div
             className={`w-full h-hull  py-5 px-3 rounded-lg border border-searchBgColor rounded-lg overflow-hidden `}
         >
             <div className="w-full">
-                <GenderCheckFilter />
+                <GenderCheckFilter genderList={getFilter?.gender_ids} discount={getFilter?.discount} />
             </div>
             <div className="w-full">
-                <CategoryCheckFilter />
+                <CategoryCheckFilter categoryList={getFilter?.category_ids} />
             </div>
             <div className="w-full">
-                <BudgetCheckFilter />
+                <BudgetCheckFilter budgetList={getFilter?.budget} />
             </div>
             <div className="w-full">
-                <ColorCheckFilter />
+                <ColorCheckFilter colorList={getFilter?.colors} />
             </div>
             <div className="w-full">
-                <RatingCheckFilter />
+                <RatingCheckFilter ratingList={getFilter?.ratings} />
+            </div>
+            {/* <div className="w-full">
+                <UnderwearCheckFilter underWearList={getFilter?.wear_sizes?.underwear} />
             </div>
             <div className="w-full">
-                <UnderwearCheckFilter underWearList={wear_sizes?.underwear} />
+                <OutwearCheckFilter OutWearList={getFilter?.wear_sizes?.outwear} />
             </div>
             <div className="w-full">
-                <OutwearCheckFilter OutWearList={wear_sizes?.outwear} />
-            </div>
-            <div className="w-full">
-                <FootwearCheckFilter footWear={wear_sizes?.footwear} />
-            </div>
+                <FootwearCheckFilter footWear={getFilter?.wear_sizes?.footwear} />
+            </div> */}
 
 
-        </main>
+        </div>
     );
 };
 export default React.memo(FilterList);
