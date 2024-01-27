@@ -15,7 +15,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Modal, Radio } from "antd";
 import FilterDropUp from "../../../../Category/CategoryForType/CategoryMobileDropUp/FilterDropUp";
 
-const ShoppingStoreOfficialTop = ({ filteredData, clickButtons }) => {
+const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeftOpen,
+  toggleFilterLeftClose, filterLeftAction }) => {
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [filter, setFilter] = useState(false);
   const toggleFilter = useCallback(() => setFilter(false), []);
@@ -28,7 +29,13 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons }) => {
       document.body.style.overflow = "auto";
     }
   }, [filter]);
-
+  const handleToggle = () => {
+    if (filterLeftAction) {
+      toggleFilterLeftClose()
+    } else {
+      toggleFilterLeftOpen()
+    }
+  };
   // ---- Regions show ----
 
   let existRegions = [];
@@ -220,19 +227,25 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons }) => {
           <div className="w-full hidden md:flex items-center justify-between px-[22px] mt-[72px] mb-3">
             <div className="flex items-center gap-x-5">
 
+              <div className="w-[175px] flex items-center ">
+                <button
+                  onClick={handleToggle}
+                  type="button"
+                  className="w-full gap-x-2 h-[44px] border border-[#F2F2F2] flex items-center justify-center  bg-white rounded-lg active:scale-95	active:opacity-70"
+                >
+                  <span className=""> <FilterIcons /></span>
+                  {filterLeftAction ?
+                    <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black"> Скрыть</p>
+                    :
+                    <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black"> Фильтр</p>}
+                </button>
+              </div>
               <div className="flex items-center text-base font-AeonikProMedium text-[#2C2C2C] ">
                 <DeliveryIcon />
                 <span className="mx-[5px]">Доставка:</span>
                 <span>{filteredData?.shop?.delivery?.name_ru}</span>
               </div>
-              <div className="w-fit flex items-center ">
-                <button
-                  type="button"
-                  className="h-[44px] border px-5 flex items-center justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70"
-                >
-                  Фильтр
-                </button>
-              </div>
+
             </div>
             <div className="w-full md:w-fit flex md:items-center justify-end items-center mt-1">
               <div className="w-fit flex gap-x-[30px] items-center ">
