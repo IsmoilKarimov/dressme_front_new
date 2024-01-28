@@ -1,27 +1,43 @@
 /* eslint-disable array-callback-return */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../../../assets/icons";
 
-export default function CategoryCheckFilter() {
+export default function CategoryCheckFilter({ categoryList, onCategoryGetValue }) {
     const [categoryToggle, setCategoryToggle] = useState(false);
+    const [categoryNewList, setCategoryNewList] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState(null);
 
     const [categories, setCategories] = useState([
-        { id: "1", action: false, name: "Головной убор" },
-        { id: "2", action: false, name: "Верхняя одежда" },
-        { id: "3", action: false, name: "Нижняя одежда" },
-        { id: "4", action: false, name: "Обувь" },
-        { id: "5", action: false, name: "Аксессуары" },
+        { id: 1, name: "Головной убор" },
+        { id: 2, name: "Верхняя одежда" },
+        { id: 3, name: "Нижняя одежда" },
+        { id: 4, name: "Обувь" },
+        { id: 5, name: "Аксессуары" },
     ]);
+    useEffect(() => {
+        categories?.map(item => {
+            categoryList?.map(data => {
+                if (item?.id == data) {
+                    if (!categoryNewList) {
+                        setCategoryNewList(categoryNewList => [...categoryNewList, item])
+                    }
+                    if (categoryNewList && !categoryNewList?.includes(item)) {
+                        setCategoryNewList(categoryNewList => [...categoryNewList, item])
+                    }
+                }
+            })
+        })
+    }, [categoryList])
 
     const handleCategoryCheck = (value) => {
-        setCategories((data) => {
-            return data.map((e) => {
-                if (e.id === value) {
-                    return { ...e, action: true };
-                } else return { ...e, action: false };
-            });
-        });
+        setSelectedCategory(value)
+        onCategoryGetValue(value)
     };
+    function ClearSelected() {
+        setSelectedCategory(null)
+        onCategoryGetValue(null)
+    }
+
 
     return (
         <div
@@ -32,9 +48,6 @@ export default function CategoryCheckFilter() {
             >
                 <article
                     className="w-full flex justify-between items-center "
-                // onClick={(event) => {
-                //     event.target.classList.toggle("open");
-                // }}
                 >
                     <figure
                         onClick={() => setCategoryToggle(!categoryToggle)}
@@ -58,7 +71,7 @@ export default function CategoryCheckFilter() {
                         return (
                             <button
                                 key={data?.id}
-                                className={`hover:bg-fullBlue hover:text-white  w-full h-[44px] rounded-lg justify-center bg-bgCategory flex items-center select-none  text-black`}
+                                className={`${selectedCategory === data?.id ? 'bg-fullBlue text-white' : 'bg-bgCategory text-black'} hover:bg-fullBlue hover:text-white  w-full h-[44px] rounded-lg justify-center  flex items-center select-none  `}
                                 type="button"
                                 onClick={() => handleCategoryCheck(data?.id)}
                             >
@@ -69,6 +82,15 @@ export default function CategoryCheckFilter() {
                         );
                     })}
                 </article>
+                {selectedCategory && <div className="w-full items-center justify-start">
+                    <button
+                        type="button"
+                        onClick={() => ClearSelected()}
+                        className={`w-fit active:scale-95  active:opacity-7  mt-2 flex-start text-sm text-borderWinter font-AeonikProRegular`}
+                    >
+                        Сбросить
+                    </button>
+                </div>}
             </section>
         </div >
     );

@@ -1,31 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../../../assets/icons";
 
-function UnderwearCheckFilter({ underWearList }) {
+function UnderwearCheckFilter({ underWearList, onUnderWearGetValue }) {
     const [underwearData, setUnderwearData] = useState(null);
     const [visibleButtons, setVisibleButtons] = useState(12);
     const [underwearToggle, setUnderwearToggle] = useState(false);
     const [dataActionUnderwearSizes, setDataActionUnderwearSizes] = useState();
 
-    console.log(underWearList, "underWearList");
     useEffect(() => {
-        function underwearSizes() {
-            // const underwear = filter?.wear_sizes?.underwear;
-            const transformedArray = Object?.entries(underWearList).map(
-                ([size, details]) => ({ size, ...details })
-            );
-            setUnderwearData(transformedArray);
-        }
-        underwearSizes();
+        const transformedArray = Object?.entries(underWearList).map(
+            ([size, details]) => ({ size, ...details })
+        );
+        setUnderwearData(transformedArray);
     }, [underWearList]);
-    // underwearData = {
-    //     '3XL': { amount: 1, letter_size: "3XL", max_wear_size: "93", min_wear_size: "31" },
-    //     '1XL': { amount: 1, letter_size: "3XL", max_wear_size: "93", min_wear_size: "31" },
-    //     '2XL': { amount: 1, letter_size: "3XL", max_wear_size: "93", min_wear_size: "31" },
-    //     '3XL': { amount: 1, letter_size: "3XL", max_wear_size: "93", min_wear_size: "31" },
-    //     '4XL': { amount: 1, letter_size: "3XL", max_wear_size: "93", min_wear_size: "31" },
-    //     '3XL': { amount: 1, letter_size: "3XL", max_wear_size: "93", min_wear_size: "31" },
-    // }
+
+    // console.log(underwearData, "underwear-underwearData");
+
+    const onHandleUnderWearList = (select) => {
+        setDataActionUnderwearSizes(select)
+        onUnderWearGetValue(select)
+    }
+    const ClearList = () => {
+        setDataActionUnderwearSizes()
+        onUnderWearGetValue()
+    }
+
     return (
         <div
             className={` w-full flex flex-col items-center mb-[38px]`}
@@ -33,9 +32,6 @@ function UnderwearCheckFilter({ underWearList }) {
             <section className="w-full h-fit mt-[12px] ">
                 <article
                     className="w-full flex justify-between items-center "
-                // onClick={(event) => {
-                //     event.target.classList.toggle("open");
-                // }}
                 >
                     <figure
                         onClick={() =>
@@ -69,20 +65,11 @@ function UnderwearCheckFilter({ underWearList }) {
                                 return (
                                     <button
                                         key={index + 1}
-                                        onClick={() => setDataActionUnderwearSizes(index + 1)}
-
-                                        // setDataActionUnderwearSizes(index + 1);
-                                        //     setDataActionOutwearSizes(null);
-                                        //     setDataActionFootwearSizes(null);
-                                        //     sendUnderwearSize(underwear);
-                                        //     handleFootwearWearSize(null)
-                                        //     sendClearedOutwearData()
-                                        // }}
+                                        onClick={() => onHandleUnderWearList(underwear)}
                                         className={`${underwear?.letter_size || underwear?.size
                                             ? "flex"
                                             : "hidden"
-                                            } ${dataActionUnderwearSizes === index + 1
-                                                ? "bg-fullBlue text-white"
+                                            } ${dataActionUnderwearSizes === underwear ? "bg-fullBlue text-white"
                                                 : ""
                                             } h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`
                                         }
@@ -103,19 +90,15 @@ function UnderwearCheckFilter({ underWearList }) {
                                 );
                             })}
                         <div className="w-full flex items-center justify-between">
-                            {/* <div className="flex w-1/3 justify-start items-center">
+                            {dataActionUnderwearSizes && <div className="flex w-1/3 justify-start items-center">
                                 <button
                                     type="button"
-                                    onClick={() => {
-                                        setDataActionUnderwearSizes(false);
-                                        sendClearedUnderwearData();
-                                    }}
-                                    className={`${dataActionUnderwearSizes ? "flex" : "hidden"
-                                        } flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                                    onClick={() => ClearList()}
+                                    className={` flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
                                 >
                                     Сбросить
                                 </button>
-                            </div> */}
+                            </div>}
                             <div
                                 className={`${underwearData?.length > 8 ? "flex" : "hidden"
                                     } w-2/3 items-center justify-end`}

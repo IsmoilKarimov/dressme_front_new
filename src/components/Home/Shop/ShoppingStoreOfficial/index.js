@@ -50,63 +50,36 @@ const ShoppingStoreOfficial = () => {
     }
   }, [dressInfo?.openShopIdFilter]);
 
-  const genderId1 = (childData) => {
-    setState({ ...state, genderId: { childData } || null })
-    // console.log(childData, "genderId1");
+  const genderId = (childData) => {
+    setState({ ...state, genderId: childData })
+    console.log(childData, "childData-genderId");
   }
-  const discountId1 = (childData) => {
+  const discountId = (childData) => {
     setState({ ...state, disCount: childData })
-    // console.log(childData, "discountId1");
+    console.log(childData, "childData-discountId");
   }
-  const categoryId1 = (childData) => {
-    setState({ ...state, category: childData })
-    // console.log(childData, "categoryId1");
+  const categoryId = (childData) => {
+    console.log(childData, "childData-categoryId");
   }
-  const getBadgePrice1 = (childData) => {
-    setState({ ...state, getRange: childData })
-    // console.log(childData, "getBadgePrice1");
+  const getBadgePrice = (childData) => {
+    console.log(childData, "childData-getBadgePrice");
   }
-  const colorHexCode1 = (childData) => {
-    setState({ ...state, hexColor: childData })
-    // console.log(childData, "colorHexCode1");
+  const colorHexCode = (childData) => {
+    console.log(childData, "childData-colorHexCode");
   }
-  const customerReviews1 = (childData) => {
-    setState({ ...state, customReview: childData })
-    // console.log(childData, "customerReviews1");
+  const ratingList = (childData) => {
+    console.log(childData, "childData-ratingList");
   }
-  const letterOutwearSize1 = (childData) => {
-    setState({ ...state, outWearSize: childData })
-    // console.log(childData, "letterOutwearSize1");
+  const outWearList = (childData) => {
+    console.log(childData, "childData-outWearList");
   }
-  const minOutwearSize1 = (childData) => {
-    setState({ ...state, outWearSizeMin: childData })
-    // console.log(childData, "minOutwearSize1");
+  const underWearList = (childData) => {
+    console.log(childData, "childData-underWearList");
   }
-  const maxOutwearSize1 = (childData) => {
-    setState({ ...state, outWearSizeMax: childData })
-    // console.log(childData, "maxOutwearSize1");
+  const footWearList = (childData) => {
+    console.log(childData, "childData-footWearList");
   }
-  const letterUnderwearSize1 = (childData) => {
-    setState({ ...state, underWearSize: childData })
-    // console.log(childData, "letterUnderwearSize1");
-  }
-  const minUnderwearSize1 = (childData) => {
-    setState({ ...state, underWearSizeMin: childData })
-    // console.log(childData, "minUnderwearSize1");
-  }
-  const maxUnderwearSize1 = (childData) => {
-    setState({ ...state, underWearSizeMax: childData })
-    // console.log(childData, "maxUnderwearSize1");
-  }
-  const footwearSize1 = (childData) => {
-    setState({ ...state, footWaerSize: childData })
-    // console.log(childData, "footwearSize1");
-  }
-  console.log(state, "this state");
-
-  // const onGetHandleValue = (data) => {
-  //   console.log(data, "bures onGetHandleValue");
-  // }
+  console.log(state, "childData--state");
 
   const clickButtons = {
     openTabComment,
@@ -124,19 +97,7 @@ const ShoppingStoreOfficial = () => {
   const newId = id.replace(":", "");
 
   const url = `https://api.dressme.uz/api`;
-  // genderId: null,
-  //   disCount: null,
-  //   category: null,
-  //   getRange: null,
-  //   hexColor: null,
-  //   customReview: null,
-  //   outWearSize: null,
-  //   outWearSizeMin: null,
-  //   outWearSizeMax: null,
-  //   underWearSize: null,
-  //   underWearSizeMin: null,
-  //   underWearSizeMax: null,
-  //   footWaerSize: null,
+
   function fetchGetAllData() {
     let params = new URLSearchParams();
     params.append("location_id", 1);
@@ -214,26 +175,18 @@ const ShoppingStoreOfficial = () => {
               <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
                 {state?.filterToggle &&
                   <div className="hidden md:block md:w-[22%] h-full ss:px-4 md:px-0 ">
-                    {/* <ShopOfficialBrand
-                      // setFilteredData={setFilteredData}
-                      // pageId={pageId}
-                      filteredData={filteredData}
-                      // onCallback={handleCallback}
-                      OngenderId1={genderId1}
-                      OndiscountId1={discountId1}
-                      OncategoryId1={categoryId1}
-                      OngetBadgePrice1={getBadgePrice1}
-                      OncolorHexCode1={colorHexCode1}
-                      OncustomerReviews1={customerReviews1}
-                      OnletterOutwearSize1={letterOutwearSize1}
-                      OnminOutwearSize1={minOutwearSize1}
-                      OnmaxOutwearSize1={maxOutwearSize1}
-                      OnletterUnderwearSize1={letterUnderwearSize1}
-                      OnminUnderwearSize1={minUnderwearSize1}
-                      OnmaxUnderwearSize1={maxUnderwearSize1}
-                      OnfootwearSize1={footwearSize1}
-                    /> */}
-                    <FilterList paramsId={newId} />
+                    <FilterList
+                      paramsId={newId}
+                      genderId={genderId}
+                      discountId={discountId}
+                      categoryId={categoryId}
+                      getBadgePrice={getBadgePrice}
+                      ColorHex={colorHexCode}
+                      ratingList={ratingList}
+                      outWearList={outWearList}
+                      underWearList={underWearList}
+                      footWearList={footWearList}
+                    />
                   </div>}
                 {state?.filterToggle && <div
                   className={`w-full h-[100vh] overflow-hidden overflow-y-auto  md:hidden fixed top-0 bottom-0 left-0 right-0 ${dressInfo?.openShopIdFilter ? " ml-[1px] " : " ml-[-1000px]"
