@@ -93,6 +93,7 @@ export default function CollectionCards() {
             type="text"
             name="name"
             placeholder="Искать товары"
+            autoComplete="name"
             className="bg-transparent w-[90%] h-full text-[14px] border border-transparent px-3"
           />
           <span className="w-[1px] h-full border-r border-searchBgColor"></span>
