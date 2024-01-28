@@ -200,7 +200,7 @@ export default function NavbarTopOpenMenu() {
           to="/"
           className="flex justify-center items-center rounded-lg h-[44px] md:w-[155px] ss:ml-2 md:ml-[0px]  "
         >
-          {BrandTypeArray.filter((data) => data.id == dressInfo.type).map(
+          {BrandTypeArray.filter((data) => data.id === dressInfo.type).map(
             (data) => {
               return (
                 <img

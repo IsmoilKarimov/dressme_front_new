@@ -1,4 +1,5 @@
-import React, { useContext, memo, useState, useEffect } from "react";
+/* eslint-disable array-callback-return */
+import React, { useContext, useState, useEffect } from "react";
 import {
   ClockIcons,
   LocationIcons,
@@ -25,10 +26,10 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
   const [copyAddress, setCopyAddress] = useState(null);
   const [phoneNum, setPhoneNum] = useState(null);
   const [imgGallery, setImgGallery] = useState([]);
-  const [imgGallery1, setImgGallery1] = useState();
-  const [imgGallery2, setImgGallery2] = useState();
-  const [imgGallery3, setImgGallery3] = useState();
-  const arrImg = [];
+  const [, setImgGallery1] = useState();
+  const [, setImgGallery2] = useState();
+  const [, setImgGallery3] = useState();
+  // const arrImg = [];
   useEffect(() => {
     modalInfo?.locations
       ?.filter((e) => e?.id === dressInfo?.yandexGetMarketId)
@@ -105,9 +106,9 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
     getImgGallery(imgGallery);
     onClick();
   };
-  const handleCarouselModal = (UId) => {
-    // setOpenCarouselModal(true)
-  };
+  // const handleCarouselModal = (UId) => {
+  //   // setOpenCarouselModal(true)
+  // };
   // console.log(modalInfo, "modalInfo");
   // console.log(dressInfo?.yandexGetMarketId, "yandexGetMarketId");
   const handlePhoneNumberClick = (id) => {

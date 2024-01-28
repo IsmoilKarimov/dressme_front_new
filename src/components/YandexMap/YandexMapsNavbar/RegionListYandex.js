@@ -1,5 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 import { MenuCloseIcons, ArrowTopIcons } from "../../../assets/icons";
@@ -20,7 +19,7 @@ function RegionListYandex({ onClick }) {
         // openModalRegions: show,
         uniqueId: null
     });
-    const [data, setData] = useContext(HomeMainDataContext);
+    const [data] = useContext(HomeMainDataContext);
     // const url = "https://api.dressme.uz/api/seller";
 
 
@@ -116,16 +115,16 @@ function RegionListYandex({ onClick }) {
                                     className={`${data.id || data.sub_regions.id ? "" : ""
                                         } w-full h-fit `}
                                 >
-                                    <div className={`flex items-center ${data?.id == 2 ? "" : "opacity-50"} `}>
+                                    <div className={`flex items-center ${data?.id === 2 ? "" : "opacity-50"} `}>
                                         <div
                                             onClick={
-                                                data?.id == 2 ?
+                                                data?.id === 2 ?
                                                     () => { accordionCityList(data?.id) } : null
 
                                             }
                                             className="w-full cursor-pointer flex items-center  border-b border-[#F0F0F0] ">
 
-                                            {data?.id == 2 ? <label
+                                            {data?.id === 2 ? <label
                                                 htmlFor={data?.name_ru}
                                                 onClick={() => RegId(data?.id)}
                                                 className="w-fit cursor-pointer flex items-center"
@@ -135,7 +134,7 @@ function RegionListYandex({ onClick }) {
                                                     type="radio"
                                                     name="region"
                                                     value={data?.id}
-                                                    checked={state?.subRegionId ? false : state?.regionId == data?.id}
+                                                    checked={state?.subRegionId ? false : state?.regionId === data?.id}
                                                     className="w-[18px] h-[18px] cursor-pointer mr-3"
                                                     onChange={(e) => {
                                                         setState({
@@ -173,7 +172,7 @@ function RegionListYandex({ onClick }) {
                                     </div>
                                     <div
                                         className={`w-full grid grid-cols-2 xs:grid-cols-3 duration-[400ms]
-                              ${activeIndex == data?.id
+                              ${activeIndex === data?.id
                                                 ? "openAccardion"
                                                 : "CloseAccardion"
                                             } `}
@@ -195,7 +194,7 @@ function RegionListYandex({ onClick }) {
                                                             id={item?.name_ru}
                                                             name="Subregion"
                                                             value={item?.region_id}
-                                                            checked={state?.subRegionId == item?.id}
+                                                            checked={state?.subRegionId === item?.id}
                                                             className="w-4 h-4 border border-borderColor  cursor-pointer  flex items-center justify-center"
                                                             onChange={(e) => {
                                                                 // setDressInfo({ ...dressInfo, mainSubRegionId: item?.id })

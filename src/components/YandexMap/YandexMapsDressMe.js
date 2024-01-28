@@ -2,8 +2,6 @@ import React, {
   useContext,
   useState,
   useEffect,
-  useRef,
-  useCallback,
 } from "react";
 
 import {
@@ -12,17 +10,14 @@ import {
   ZoomControl,
   GeolocationControl,
   Placemark,
-  Clusterer,
   SearchControl,
 } from "react-yandex-maps";
-import Slider from "react-slick";
 
 import "./yandex.css";
 import YandexMapsIndex from "./YandexMapsNavbar/YandexMapsIndex";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import NavbarTopOpenMenu from "./YandexMapsNavbar/NavbarTopOpenMenu";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import ScrollFilter from "./YandexMapsNavbar/ScrollFilter";
+import { Link, NavLink } from "react-router-dom";
 import {
   ArrowTopIcons,
   CommentIcons,
@@ -39,19 +34,14 @@ import {
   SearchIcons,
   VolumeIcons,
 } from "../../assets/icons";
-import { UzbekFlag, locationIcons, markerIcons } from "../../assets";
+import { UzbekFlag, locationIcons } from "../../assets";
 import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationMarketOpen";
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import CarouselModalMarket from "./YandexLocationMarketOpen/CarouselModalMarket";
 import MarketFilterofMaps from "./YandexLocationMarketOpen/MarketFilterofMaps";
 import Cookies from "js-cookie";
 import { useQuery } from "@tanstack/react-query";
-import UseReplace from "../../ContextHook/useReplace";
-import RegionsList from "../../ContextHook/RegionsList";
-import RegionListYandex from "./YandexMapsNavbar/RegionListYandex";
 import { useHttp } from "../../hook/useHttp";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
-// import CarouselModalMarket from "./YandexMapsNavbar/CarouselModalMarket";
 
 function YandexMapsDressMe() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -59,24 +49,18 @@ function YandexMapsDressMe() {
 
   const { request } = useHttp();
   const url = "https://api.dressme.uz/api/main";
-  const navigate = useNavigate();
 
-  const [openCordinateMap, setOpenCordinateMap] = useState("");
+  const [, setOpenCordinateMap] = useState("");
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [openCarouselModal, setOpenCarouselModal] = useState(false);
   const toggleCarouselModal = React.useCallback(
     () => setOpenCarouselModal(!openCarouselModal),
-    []
+    [openCarouselModal]
   );
 
   const [marketsFilterMaps, setMarketsFilterMaps] = useState(false);
   const toggleMarketsFilterMaps = React.useCallback(
     () => setMarketsFilterMaps(false),
-    []
-  );
-  const [openRegionModal, setOpenRegionModal] = useState(false);
-  const toggleOpenregionModal = React.useCallback(
-    () => setOpenRegionModal(true),
     []
   );
 
@@ -131,7 +115,7 @@ function YandexMapsDressMe() {
 
   // ------------GET METHOD Main data -----------------\
 
-  const { refetch } = useQuery(
+  useQuery(
     ["getMapsYandexMain"],
     async () => {
       return request({ url: "/main", token: true });
@@ -150,6 +134,7 @@ function YandexMapsDressMe() {
 
   useEffect(() => {
     fetchGetAllData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     getAllFilterSearch,
     FilterSearchByBrand,

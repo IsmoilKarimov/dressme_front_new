@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import {
   AutummBoyIcons,
-  CheckedStatusIcons,
+  // CheckedStatusIcons,
   CircleSuccessIcons,
   ClothesIcons,
   DollorIcons,
@@ -29,7 +29,7 @@ import {
   zara,
 } from "../../../assets";
 function MarketFilterofMaps({ onClick }) {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
 
   const NoSelect = () => {
     return (
@@ -55,7 +55,7 @@ function MarketFilterofMaps({ onClick }) {
     const handleClothesList = (UId) => {
       setClothesList((current) => {
         return current.map((item) => {
-          if (item?.id == UId) {
+          if (item?.id === UId) {
             return { ...item, isCheck: true };
           } else {
             return { ...item };
@@ -92,9 +92,9 @@ function MarketFilterofMaps({ onClick }) {
     );
   };
   const PriceRange = () => {
-    const Min = "100";
-    const Max = "12 000";
-    const [values] = useState([Min, Max]);
+    // const Min = "100";
+    // const Max = "12 000";
+    // const [values] = useState([Min, Max]);
     const [minPrice, setMinPrice] = useState(60000);
     const [maxPrice, setMaxPrice] = useState(1800000);
 
@@ -228,9 +228,9 @@ function MarketFilterofMaps({ onClick }) {
     const handleFilterByUser = (fathId, childId) => {
       setPersonItems((current) => {
         return current?.map((data) => {
-          if (data?.id == fathId) {
+          if (data?.id === fathId) {
             let newDataColor = data.childText.map((e) => {
-              if (e.id == childId) {
+              if (e.id === childId) {
                 return { ...e, action: true };
               } else return { ...e, action: false };
             });
@@ -368,7 +368,7 @@ function MarketFilterofMaps({ onClick }) {
   const handleComponentId = (UId) => {
     setComponentGroup((current) => {
       return current?.map((e) => {
-        if (e.id == UId) {
+        if (e.id === UId) {
           return { ...e, isActive: true };
         } else {
           return { ...e, isActive: false };
