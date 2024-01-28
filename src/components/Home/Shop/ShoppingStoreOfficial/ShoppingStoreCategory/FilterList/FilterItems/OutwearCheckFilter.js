@@ -2,23 +2,26 @@
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../../../assets/icons";
 
-function OutwearCheckFilter({ OutWearList }) {
+function OutwearCheckFilter({ OutWearList, onOutWearGetValue }) {
     const [outwearData, setOutwearData] = useState(null);
     const [visibleButtons, setVisibleButtons] = useState(12);
     const [outwearToggle, setOutwearToggle] = useState(false);
     const [dataActionUnderwearSizes, setDataActionUnderwearSizes] = useState();
 
     useEffect(() => {
-        function outwearSizes() {
-            // const outwear = filter?.wear_sizes?.outwear;
-            const transformedArray = Object?.entries(OutWearList).map(
-                ([size, details]) => ({ size, ...details })
-            );
-            setOutwearData(transformedArray);
-        }
-        outwearSizes();
+        const transformedArray = Object?.entries(OutWearList).map(
+            ([size, details]) => ({ size, ...details })
+        );
+        setOutwearData(transformedArray);
     }, [OutWearList]);
-
+    const onHandleUnderWearList = (select) => {
+        setDataActionUnderwearSizes(select)
+        onOutWearGetValue(select)
+    }
+    const ClearList = () => {
+        setDataActionUnderwearSizes()
+        onOutWearGetValue()
+    }
     return (
         <div
             className={`w-full flex-col items-center mb-[38px]`}
@@ -26,9 +29,6 @@ function OutwearCheckFilter({ OutWearList }) {
             <section className="w-full h-fit mt-[12px] ">
                 <article
                     className="w-full flex justify-between items-center "
-                // onClick={(event) => {
-                //     event.target.classList.toggle("open");
-                // }}
                 >
                     <figure
                         onClick={() =>
@@ -57,18 +57,10 @@ function OutwearCheckFilter({ OutWearList }) {
                             return (
                                 <button
                                     key={index + 1}
-                                    onClick={() => setDataActionUnderwearSizes(index + 1)}
+                                    onClick={() => onHandleUnderWearList(outwear)}
 
-                                    // onClick={() => {
-                                    //     setDataActionOutwearSizes(index + 1);
-                                    //     setDataActionUnderwearSizes(null);
-                                    //     setDataActionFootwearSizes(null);
-                                    //     handleFootwearWearSize(null);
-                                    //     sendClearedUnderwearData()
-                                    //     sendOutwearSize(outwear);
-                                    // }}
                                     className={`${outwear?.letter_size || outwear?.size ? "flex" : "hidden"
-                                        } ${dataActionUnderwearSizes === index + 1
+                                        } ${dataActionUnderwearSizes === outwear
                                             ? "bg-fullBlue text-white"
                                             : ""
                                         } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
@@ -86,19 +78,16 @@ function OutwearCheckFilter({ OutWearList }) {
                         })}
 
                         <div className="w-full flex items-center justify-between">
-                            {/* <div className="flex w-1/3 justify-start items-center">
-                                <button
-                                    type="button"
-                                    onClick={() => {
-                                        setDataActionOutwearSizes(false);
-                                        sendClearedOutwearData();
-                                    }}
-                                    className={`${dataActionOutwearSizes ? "flex" : "hidden"
-                                        } flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
-                                >
-                                    Сбросить
-                                </button>
-                            </div> */}
+                            {dataActionUnderwearSizes &&
+                                <div className="flex w-1/3 justify-start items-center">
+                                    <button
+                                        type="button"
+                                        onClick={() => ClearList()}
+                                        className={` flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                                    >
+                                        Сбросить
+                                    </button>
+                                </div>}
                             <div
                                 className={`${outwearData?.length > 12 ? "flex" : "hidden"
                                     } w-2/3 items-center justify-end`}

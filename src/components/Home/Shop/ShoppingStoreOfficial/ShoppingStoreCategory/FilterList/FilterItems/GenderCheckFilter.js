@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../../../assets/icons";
 
-function GenderCheckFilter({ genderList, discount }) {
-    const [openGenderField, setOpenGenderField] = useState(false);
+function GenderCheckFilter({ genderList, discount, onGenderGetValue, onDiscountGetValue }) {
+    const [genderToggle, setGenderToggle] = useState(false);
     const [genderNewList, setGenderNewList] = useState([]);
+    const [selectedGender, setSelectedGender] = useState(null);
+    const [selectedDiscount, setSelectedDiscount] = useState(null);
 
     const [genderCategory, setGenderCategory] = useState([
         {
@@ -33,29 +35,32 @@ function GenderCheckFilter({ genderList, discount }) {
             genderList?.map(data => {
                 if (item?.id == data) {
                     if (!genderNewList) {
-                        setGenderNewList(genderNewList => [...genderNewList, item?.name])
+                        setGenderNewList(genderNewList => [...genderNewList, item])
                     }
-                    if (genderNewList && !genderNewList?.includes(item?.name)) {
-                        setGenderNewList(genderNewList => [...genderNewList, item?.name])
+                    if (genderNewList && !genderNewList?.includes(item)) {
+                        setGenderNewList(genderNewList => [...genderNewList, item])
                     }
-                    console.log(item?.name, "item?.name,");
                 }
             })
         })
 
     }, [genderList])
-    console.log(genderNewList, 'item?.name-genderNewList');
 
     const handleGenderCheck = (value) => {
-        setGenderCategory((data) => {
-            return data.map((e) => {
-                if (e.id === value) {
-                    return { ...e, action: true };
-                } else return { ...e, action: false };
-            });
-        });
+        setSelectedGender(value)
+        onGenderGetValue(value)
     };
-    console.log(genderList, "genderList");
+    const handleDiscountCheck = () => {
+        onDiscountGetValue(1)
+        setSelectedDiscount(1)
+    };
+    const ClearList = () => {
+        setSelectedDiscount(null)
+        setSelectedGender(null)
+        onGenderGetValue(null)
+        onDiscountGetValue(null)
+    }
+
     return (
         <div
             className={` w-full flex-col items-center md:mb-[38px]`}
@@ -64,7 +69,7 @@ function GenderCheckFilter({ genderList, discount }) {
                 className="w-full flex justify-between items-center"
             >
                 <figure
-                    onClick={() => setOpenGenderField(!openGenderField)}
+                    onClick={() => setGenderToggle(!genderToggle)}
                     className="flex items-center cursor-pointer select-none"
                 >
                     <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
@@ -72,7 +77,7 @@ function GenderCheckFilter({ genderList, discount }) {
                     </p>
                     <p
                         className={`
-                      ${openGenderField ? "rotate-[180deg]" : ""} duration-300 ml-1`}
+                      ${genderToggle ? "rotate-[180deg]" : ""} duration-300 ml-1`}
                     >
                         <ArrowTopIcons colors={"#000"} />
                     </p>
@@ -80,27 +85,49 @@ function GenderCheckFilter({ genderList, discount }) {
             </article>
             {/* Field */}
             <article
-                className={`w-full overflow-hidden ${openGenderField ? "duration-300 h-0" : "duration-300 h-fit mt-5 "
+                className={`w-full overflow-hidden ${genderToggle ? "duration-300 h-0" : "duration-300 h-fit mt-5 "
                     } duration-300 flex flex-col gap-y-4`}
             >
                 <div className={`w-full flex flex-col items-center`}>
-                    <div className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px]">
-                        {genderCategory?.map((data) => {
+                    <div className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px] ">
+                        {genderNewList?.map((data) => {
                             return (
                                 <button
                                     key={data?.id}
                                     onClick={() => handleGenderCheck(data?.id)}
-                                    className={` hover:bg-fullBlue hover:text-white h-[44px] w-[49%] flex items-center justify-center bg-bgCategory font-AeonikProMedium text-sm leading-3 text-center text-black rounded-lg duration-300`
+                                    className={`${selectedGender === data?.id ? 'bg-fullBlue text-white' : 'bg-bgCategory text-black'} 
+                                    active:scale-95	active:opacity-70 h-[44px] w-[49%] flex items-center justify-center hover:bg-fullBlue hover:text-white font-AeonikProMedium text-sm leading-3 text-center  rounded-lg duration-300`
                                     }
                                 >
                                     {data?.name}
                                 </button>
                             );
                         })}
+                        {discount &&
+                            <button
+                                onClick={() => handleDiscountCheck()}
+                                className={`${selectedDiscount
+                                    ? "border border-fullBlue bg-bgCategory text-red-500 "
+                                    : "bg-bgCategory text-red-600 border border-transparent"
+                                    } ${genderNewList?.length === 2 || genderNewList?.length === 4 ? 'w-full' : 'w-[49%]'} h-[44px]  flex items-center justify-center font-AeonikProMedium text-sm leading-3 text-center active:scale-95 hover:text-red-500 hover:border hover:border-fullBlue rounded-lg duration-300`}
+                            >
+                                Скидки
+                            </button>}
                     </div>
+                    {selectedDiscount || selectedGender ?
+                        <div className="w-full items-center">
+                            <button
+                                type="button"
+                                onClick={() => ClearList()}
+                                className={`w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                            >
+                                Сбросить
+                            </button>
+                        </div> : null}
                 </div>
             </article >
         </div >
     );
+
 }
 export default React.memo(GenderCheckFilter);
