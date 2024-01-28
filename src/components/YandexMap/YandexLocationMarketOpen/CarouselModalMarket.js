@@ -1,5 +1,5 @@
 import React from "react";
-import { MenuCloseIcons } from "../../../assets/icons";
+// import { MenuCloseIcons } from "../../../assets/icons";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Slider from "react-slick";
 

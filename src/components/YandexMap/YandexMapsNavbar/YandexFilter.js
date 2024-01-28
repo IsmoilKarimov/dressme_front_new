@@ -1,52 +1,27 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Popover, Select, Space } from "antd";
 import {
-  AutummBoyIcons,
   ByBrandIcon,
-  ChildGenIcon,
   ClothesIcons,
   DollorIcons,
   DownArrowAntd,
   ManGenIcons,
   ManWomanGen,
   MenuCloseIcons,
-  SpringBoyIcons,
-  SummerBoyIcons,
   WinterBoyIcons,
   WomanGenIcons,
 } from "../../../assets/icons";
-import { BiChevronDown } from "react-icons/bi";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
-import {
-  AutummChild,
-  AutummFemale,
-  AutummGirl,
-  AutummMale,
-  SpringChild,
-  SpringFemale,
-  SpringGirl,
-  SpringMale,
-  SummerChild,
-  SummerFemale,
-  SummerGirl,
-  SummerMale,
-  WinterChild,
-  WinterFemale,
-  WinterGirl,
-  WinterMale,
-} from "../../../assets";
+
 import "../yandex.css";
-import ReactSlider from "react-slider";
-import UseReplace from "../../../ContextHook/useReplace";
-import UseSearch from "../../../ContextHook/useSearch";
-import { useNavigate } from "react-router-dom";
+
 import Slider from "react-slider";
 const { Option } = Select;
 
 export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
   // useReplace
-  const navigate = useNavigate();
+
   const [state, setState] = useState({
     openwear: false,
     openPrice: false,
@@ -213,12 +188,12 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
       </div>
     </div>
   );
-  console.log(getMapsInfo?.budget, "111-getMapsInfo?.budget");
-  console.log(minPrice, "111-minPrice");
-  console.log(maxPrice, "111-maxPrice");
-  console.log(values, "111-values");
-  console.log(getRange, "111-getRange");
-  console.log("111---------------------------------------");
+  // console.log(getMapsInfo?.budget, "111-getMapsInfo?.budget");
+  // console.log(minPrice, "111-minPrice");
+  // console.log(maxPrice, "111-maxPrice");
+  // console.log(values, "111-values");
+  // console.log(getRange, "111-getRange");
+  // console.log("111---------------------------------------");
   // ----------------------Brend State Management----------------------
 
   const [selectBrand, setSelectBrand] = useState();
@@ -281,9 +256,9 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
     }
     setPersonItems((current) => {
       return current?.map((data) => {
-        if (data?.id == fathId) {
+        if (data?.id === fathId) {
           let newDataColor = data.childText.map((e) => {
-            if (e.id == childId) {
+            if (e.id === childId) {
               return { ...e, action: true };
             } else return { ...e, action: false };
           });
@@ -312,11 +287,11 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   const onSearch = (value) => {
     // console.log("search:", value);
   };
-  const handleClear = () => {
-    // Custom logic when the clear icon is clicked
-    console.log("Clear icon clicked!");
-    setState({ ...state, categoryWearId: null });
-  };
+  // const handleClear = () => {
+  //   // Custom logic when the clear icon is clicked
+  //   console.log("Clear icon clicked!");
+  //   setState({ ...state, categoryWearId: null });
+  // };
 
   return (
     <div className="  w-fit px-10 py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex flex-col justify-between items-center m-auto md:border-t">
@@ -428,12 +403,6 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }
-            // options={getMapsInfo?.shops?.map((item) => {
-            //   return {
-            //     value: item?.id,
-            //     label: item?.name,
-            //   };
-            // })}
           >
             {getMapsInfo?.shops?.map((item) => {
               return (

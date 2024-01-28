@@ -197,13 +197,6 @@ body {
   letter-spacing: 0.01em;
 }
 
-
-
-.ymapsName .ymaps-2-1-79-searchbox__normal-layout .ymaps-2-1-79-searchbox-button:hover {
-  /* background: rgba(255, 255, 255, 0.8); */
-  /* backdrop-filter: blur(5px); */
-}
-
 .ymapsName .ymaps-2-1-79-searchbox-list-button {
   display: none !important;
 }
@@ -274,7 +267,6 @@ body {
 /* ---------------------------------------- */
 
 
-.ymapsName .ymaps-2-1-79-search::before {}
 
 .ymapsName .ymaps-2-1-79-search {
   /* border: 1px solid red; */
@@ -419,12 +411,6 @@ body {
 
 .ant-select-selector {
   padding-left: 15px !important;
-}
-
-.ant-select-clear {
-  /* height: 40px !important;
-  width: 40px !important; */
-  /* border: 1px solid red; */
 }
 
 .iconArrow {
