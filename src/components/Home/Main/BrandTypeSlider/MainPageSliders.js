@@ -252,12 +252,17 @@ function MainPageSliders() {
                       <article className="h-12.5 flex items-center justify-start">
                         <div className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3  ml-2">
                           {data?.name_ru || "type"}
+                          {data?.products_count > 999999 ? (
+                            <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
+                              (999 999+)
+                            </p>
+                          ) : (
+                            <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
+                              ({data?.products_count || "0"})
+                            </p>
+                          )}
                         </div>
                       </article>
-
-                      <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
-                        ({data?.products_count || "0"})
-                      </p>
                     </NavLink>
                   );
                 })}
