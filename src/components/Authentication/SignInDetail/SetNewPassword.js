@@ -29,6 +29,7 @@ export default function SetNewPassword() {
           <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
               className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+              name="name"
               type={state?.eyesShow ? "password" : "text"}
               placeholder="Enter your password"
               required
@@ -55,6 +56,7 @@ export default function SetNewPassword() {
           <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
               className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+              name="name"
               type={state?.validateShow ? "password" : "text"}
               placeholder="Enter your password"
               required

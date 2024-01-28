@@ -446,6 +446,7 @@ const ClothingParametr = () => {
                           <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                             <input
                               className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                              name="name"
                               value={state?.minPrice}
                               onChange={(e) =>
                                 setState({ ...state, minPrice: e.target.value })
@@ -461,6 +462,7 @@ const ClothingParametr = () => {
                           <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                             <input
                               className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                              name="name"
                               value={state?.maxPrice}
                               onChange={(e) =>
                                 setState({ ...state, maxPrice: e.target.value })

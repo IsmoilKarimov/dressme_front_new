@@ -41,7 +41,6 @@ const CategoryTopDetail = ({ filterData, setFilterData }) => {
   //   id: null,
   // });
 
-
   const navigate = useNavigate();
 
   // CATEGORIES
@@ -62,10 +61,11 @@ const CategoryTopDetail = ({ filterData, setFilterData }) => {
             key={data?.id}
             onClick={() => {
               handleCategories(data?.name_ru, data?.id);
-              window.location.reload()
+              window.location.reload();
             }}
-            className={`${filterData?.section?.id === data?.id ? "bg-bgColor" : null
-              } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+            className={`${
+              filterData?.section?.id === data?.id ? "bg-bgColor" : null
+            } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {data?.name_ru}
           </p>
@@ -106,12 +106,14 @@ const CategoryTopDetail = ({ filterData, setFilterData }) => {
       <div className="tableSizes">
         <section
           onClick={() => setFilter(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${filter ? "" : "hidden"
-            }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+            filter ? "" : "hidden"
+          }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${filter ? "bottom-0" : "bottom-[-800px] z-0"
-            }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+            filter ? "bottom-0" : "bottom-[-800px] z-0"
+          }`}
         >
           <FilterDropUp onClick={toggleFilter} />
         </section>
@@ -119,12 +121,14 @@ const CategoryTopDetail = ({ filterData, setFilterData }) => {
       <div className="locations">
         <section
           onClick={() => setClothingTypes(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${clothingTypes ? "" : "hidden"
-            }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+            clothingTypes ? "" : "hidden"
+          }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${clothingTypes ? "bottom-0" : "bottom-[-800px] z-0"
-            }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${
+            clothingTypes ? "bottom-0" : "bottom-[-800px] z-0"
+          }`}
         >
           <ClothingTypesDropUp onClick={toggleClothingTypes} />
         </section>
@@ -176,8 +180,9 @@ const CategoryTopDetail = ({ filterData, setFilterData }) => {
                         <BiChevronDown
                           size={22}
                           style={{ color: "#000" }}
-                          className={`${state?.opensports ? "rotate-[-180deg]" : ""
-                            } duration-200`}
+                          className={`${
+                            state?.opensports ? "rotate-[-180deg]" : ""
+                          } duration-200`}
                         />
                       </span>
                     </Popover>
@@ -230,6 +235,7 @@ const CategoryTopDetail = ({ filterData, setFilterData }) => {
           </span>
           <input
             type="text"
+            name="name"
             placeholder="Найти товар"
             className="font-AeonikProRegular bg-transparent w-full px-3 h-12 text-[14px] leading-4"
           />

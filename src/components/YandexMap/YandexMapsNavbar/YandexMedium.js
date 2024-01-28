@@ -251,6 +251,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
             <div className="w-full flex items-center relative">
               <input
                 type="text"
+                name="name"
                 placeholder="Поиск магазинов на карте"
                 className="bg-transparent w-full px-3 h-[44px] text-sm border  md:border-searchBgColor placeholder:font-AeonikProRegular"
                 value={searchMarketName}

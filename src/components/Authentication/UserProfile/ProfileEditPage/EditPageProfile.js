@@ -404,6 +404,7 @@ const EditProfilePage = () => {
                             <input
                               className="w-[40px] bg-btnBgColor h-full select-none not-italic font-AeonikProMedium text-base leading-4 text-black"
                               type="text"
+                              name="name"
                               value={
                                 "+" + state?.userPhoneCode === ""
                                   ? state?.userPhoneCode
@@ -450,6 +451,7 @@ const EditProfilePage = () => {
                               activeEditEmail: true,
                             });
                           }}
+                          name="name"
                           placeholder="Адрес электронной почты"
                           required
                         />

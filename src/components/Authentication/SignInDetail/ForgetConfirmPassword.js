@@ -32,6 +32,7 @@ export default function ForgetConfirmPassword() {
             <input
               className="  w-full h-12 bg-btnBgColor focus:bg-btnBgColor active:bg-btnBgColor placeholder:bg-btnBgColor placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black "
               type="text"
+              name="name"
               placeholder="Phone number"
               required
             />
@@ -54,6 +55,7 @@ export default function ForgetConfirmPassword() {
             className="h-[64px] w-[53px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center not-italic font-AeonikProMedium text-3xl leading-9 text-center text-black"
             type="text"
             value={"-"}
+            name="name"
             required
           />
           <input
@@ -61,6 +63,7 @@ export default function ForgetConfirmPassword() {
             className="h-[64px] w-[53px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center not-italic font-AeonikProMedium text-3xl leading-9 text-center text-black"
             type="text"
             value={"-"}
+            name="name"
             required
           />
           <input
@@ -68,6 +71,7 @@ export default function ForgetConfirmPassword() {
             className="h-[64px] w-[53px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center not-italic font-AeonikProMedium text-3xl leading-9 text-center text-black"
             type="text"
             value={"-"}
+            name="name"
             required
           />
           <input
@@ -75,6 +79,7 @@ export default function ForgetConfirmPassword() {
             className="h-[64px] w-[53px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center not-italic font-AeonikProMedium text-3xl leading-9 text-center text-black"
             type="text"
             value={"-"}
+            name="name"
             required
           />
           <input
@@ -82,12 +87,14 @@ export default function ForgetConfirmPassword() {
             className="h-[64px] w-[53px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center not-italic font-AeonikProMedium text-3xl leading-9 text-center text-black"
             type="text"
             value={"-"}
+            name="name"
             required
           />
           <input
             maxLength={1}
             className="h-[64px] w-[53px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center not-italic font-AeonikProMedium text-3xl leading-9 text-center text-black"
             type="text"
+            name="name"
             value={"-"}
             required
           />

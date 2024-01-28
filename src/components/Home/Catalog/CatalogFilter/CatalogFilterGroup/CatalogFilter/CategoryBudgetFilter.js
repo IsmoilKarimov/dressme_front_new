@@ -30,7 +30,7 @@ const SectionBudgetFilter = ({
       if (minPrice !== values[0] || maxPrice !== values[1]) {
         setDataActionPrizes(true);
       }
-    } 
+    }
   }, [values]);
 
   const clearFunction = () => {
@@ -89,6 +89,7 @@ const SectionBudgetFilter = ({
                       ? Number(values[0]).toLocaleString()
                       : ""
                   }
+                  name="name"
                   onChange={(e) => {
                     setMinPrice(e.target.value);
                   }}
@@ -107,6 +108,7 @@ const SectionBudgetFilter = ({
                       ? Number(values[1]).toLocaleString()
                       : ""
                   }
+                  name="name"
                   onChange={(e) => {
                     setMaxPrice(e.target.value);
                   }}
