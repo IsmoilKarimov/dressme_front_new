@@ -54,11 +54,11 @@ function GenderCheckFilter({ genderList, discount, onGenderGetValue, onDiscountG
         onDiscountGetValue(1)
         setSelectedDiscount(1)
     };
-    const ClearList = () => {
+    function ClearList() {
         setSelectedDiscount(null)
         setSelectedGender(null)
-        onGenderGetValue(null)
-        onDiscountGetValue(null)
+        onDiscountGetValue()
+        onGenderGetValue()
     }
 
     return (

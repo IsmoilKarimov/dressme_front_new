@@ -24,7 +24,7 @@ function ColorCheckFilter({ colorList, onColorGetValue }) {
         onColorGetValue(selectedColorId)
     }, [selectedColorId])
 
-    const ClearList = () => {
+    function ClearList() {
         setSelectedColorId([])
         onColorGetValue([])
     }

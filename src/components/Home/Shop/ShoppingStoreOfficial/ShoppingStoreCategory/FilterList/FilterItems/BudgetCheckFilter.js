@@ -33,7 +33,7 @@ const BudgetCheckFilter = ({ budgetList, onBudgetGetValue }) => {
     }, [values]);
 
     const sendPriceList = () => {
-        onBudgetGetValue(values)
+        onBudgetGetValue({ min: values[0], max: values[1] })
     };
 
     const clearFunction = () => {

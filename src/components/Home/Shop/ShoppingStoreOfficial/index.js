@@ -22,17 +22,20 @@ const ShoppingStoreOfficial = () => {
   const [openTabLocation, setOpenTabLocation] = useState(false);
   const [filteredData, setFilteredData] = useState()
   const [pageId, setPageId] = useState()
+  const [dataColor, setDataColor] = useState([])
   const { request } = useHttp()
   const [state, setState] = useState({
     genderId: null,
     disCount: null,
     category: null,
     getRange: null,
-    hexColor: null,
-    customReview: null,
+    hexColor: [],
+
+    ratingId: null,
     outWearSize: null,
     outWearSizeMin: null,
     outWearSizeMax: null,
+
     underWearSize: null,
     underWearSizeMin: null,
     underWearSizeMax: null,
@@ -52,34 +55,45 @@ const ShoppingStoreOfficial = () => {
 
   const genderId = (childData) => {
     setState({ ...state, genderId: childData })
-    console.log(childData, "childData-genderId");
   }
   const discountId = (childData) => {
     setState({ ...state, disCount: childData })
-    console.log(childData, "childData-discountId");
   }
   const categoryId = (childData) => {
-    console.log(childData, "childData-categoryId");
+    setState({ ...state, category: childData })
   }
   const getBadgePrice = (childData) => {
-    console.log(childData, "childData-getBadgePrice");
+    setState({ ...state, getRange: childData })
   }
-  const colorHexCode = (childData) => {
-    console.log(childData, "childData-colorHexCode");
+  function onColorGetValueParent(childData) {
+    // log(childData)
   }
   const ratingList = (childData) => {
-    console.log(childData, "childData-ratingList");
+    setState({ ...state, ratingId: childData })
   }
   const outWearList = (childData) => {
-    console.log(childData, "childData-outWearList");
+    setState({
+      ...state,
+      outWearSize: childData?.letter_size,
+      outWearSizeMin: childData?.min_wear_size,
+      outWearSizeMax: childData?.max_wear_size,
+    })
   }
   const underWearList = (childData) => {
-    console.log(childData, "childData-underWearList");
+    setState({
+      ...state,
+      underWearSize: childData?.letter_size,
+      underWearSizeMin: childData?.min_wear_size,
+      underWearSizeMax: childData?.max_wear_size,
+    })
   }
   const footWearList = (childData) => {
-    console.log(childData, "childData-footWearList");
+    setState({
+      ...state, footWaerSize: childData?.wear_size
+    })
   }
   console.log(state, "childData--state");
+  console.log(dataColor, "childData--dataColor");
 
   const clickButtons = {
     openTabComment,
@@ -101,10 +115,10 @@ const ShoppingStoreOfficial = () => {
   function fetchGetAllData() {
     let params = new URLSearchParams();
     params.append("location_id", 1);
-    state?.genderId?.childData && params.append("gender", state?.genderId?.childData);
+    state?.genderId && params.append("gender", state?.genderId);
     state?.disCount && params.append("discount", state?.disCount);
     state?.category && params.append("category", state?.category);
-    state?.customReview && params.append("rating", state?.customReview);
+    state?.ratingId && params.append("rating", state?.ratingId);
     state?.footWaerSize && params.append("footwear_size", state?.footWaerSize);
 
     // OUTWEAR SIZES
@@ -130,10 +144,10 @@ const ShoppingStoreOfficial = () => {
     state?.getRange?.max &&
       params.append("budget[to]", state?.getRange?.max);
 
-    // colorHexCode?.length &&
-    //   colorHexCode?.forEach((e, index) => {
+    // state?.hexColor?.length &&
+    //   state?.hexColor?.forEach((e, index) => {
+    //     params.append("colors[]", state?.hexColor[index]);
     //   });
-    state?.hexColor && params.append("colors[]", state?.hexColor);
 
     fetch(`${url}/main/shops/${newId}?` + params)
       .then((res) => res.json())
@@ -148,7 +162,7 @@ const ShoppingStoreOfficial = () => {
   useEffect(() => {
     fetchGetAllData()
   }, [newId, state, dressInfo?.locationIdParams])
-  // <action
+  // <action ColorHex 
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
       <section className="w-full border-b border-searchBgColor ">
@@ -181,7 +195,7 @@ const ShoppingStoreOfficial = () => {
                       discountId={discountId}
                       categoryId={categoryId}
                       getBadgePrice={getBadgePrice}
-                      ColorHex={colorHexCode}
+                      onColorGetValueParent={onColorGetValueParent}
                       ratingList={ratingList}
                       outWearList={outWearList}
                       underWearList={underWearList}
