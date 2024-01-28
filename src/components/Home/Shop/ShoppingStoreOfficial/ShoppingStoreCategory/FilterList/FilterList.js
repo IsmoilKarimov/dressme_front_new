@@ -12,6 +12,7 @@ import UnderwearCheckFilter from "./FilterItems/UnderwearCheckFilter";
 import OutwearCheckFilter from "./FilterItems/OutwearCheckFilter";
 import FootwearCheckFilter from "./FilterItems/FootwearCheckFilter";
 import SkeletonFilter from "../../SkeletonFilter/SkeletonFilter";
+import { getCloseIcon } from "antd/es/notification/PurePanel";
 
 function FilterList({
     paramsId,
@@ -19,7 +20,7 @@ function FilterList({
     discountId,
     categoryId,
     getBadgePrice,
-    ColorHex,
+    onColorGetValueParent,
     outWearList,
     underWearList,
     footWearList,
@@ -28,6 +29,7 @@ function FilterList({
     const { request } = useHttp()
     const [dressInfo, setDressInfo] = useContext(dressMainData);
     const [getFilter, setGetFilter] = useState()
+    const [getColorList, setGetColorList] = useState([])
 
 
     const { refetch } = useQuery(["get_shop_filter"], () => {
@@ -48,16 +50,22 @@ function FilterList({
         }
     );
 
-    // function onGenderGetValue(childData) { genderId(childData) }
+    function onGenderGetValue(childData) { genderId(childData) }
     function onDiscountGetValue(childData) { discountId(childData) }
     function onCategoryGetValue(childData) { categoryId(childData) }
     function onBudgetGetValue(childData) { getBadgePrice(childData) }
-    function onColorGetValue(childData) { }
+    function onColorGetValue(childData) {
+        setGetColorList(childData)
+    }
     function onRatingGetValue(childData) { ratingList(childData) }
     function onUnderWearGetValue(childData) { underWearList(childData) }
     function onOutWearGetValue(childData) { outWearList(childData) }
     function onFootWearGetValue(childData) { footWearList(childData) }
+    // useEffect(() => {
+    //     onColorGetValueParent(getColorList)
+    // }, [getColorList])
 
+    console.log(getColorList, "childData--getColorList");
     return (
         <div
             className={`w-full h-hull  py-5 px-3 rounded-lg border border-searchBgColor rounded-lg overflow-hidden `}
@@ -68,7 +76,7 @@ function FilterList({
                         <GenderCheckFilter
                             genderList={getFilter?.gender_ids}
                             discount={getFilter?.discount}
-                            onGenderGetValue={genderId}
+                            onGenderGetValue={onGenderGetValue}
                             onDiscountGetValue={onDiscountGetValue}
                         />
                     </div>
@@ -97,16 +105,16 @@ function FilterList({
                         />
                     </div>
                     <div className="w-full">
-                        <UnderwearCheckFilter
-                            underWearList={getFilter?.wear_sizes?.underwear}
-                            onUnderWearGetValue={onUnderWearGetValue}
-                        />
-                    </div>
-                    <div className="w-full">
                         <OutwearCheckFilter
                             OutWearList={getFilter?.wear_sizes?.outwear}
                             onOutWearGetValue={onOutWearGetValue}
 
+                        />
+                    </div>
+                    <div className="w-full">
+                        <UnderwearCheckFilter
+                            underWearList={getFilter?.wear_sizes?.underwear}
+                            onUnderWearGetValue={onUnderWearGetValue}
                         />
                     </div>
                     <div className="w-full">

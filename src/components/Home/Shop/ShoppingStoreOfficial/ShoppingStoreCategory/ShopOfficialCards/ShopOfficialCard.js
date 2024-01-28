@@ -17,7 +17,7 @@ export default function ShopOfficialCard({ filteredData, setPageId }) {
   // Main data context -----------------
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
-  const onColorChecked = () => {};
+  const onColorChecked = () => { };
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/product/:${id}`);
@@ -87,9 +87,8 @@ export default function ShopOfficialCard({ filteredData, setPageId }) {
                     </span>
                   </button>
                   <article
-                    className={` ${
-                      data?.l ? "w-full px-1 xs:px-2 md:px-4 my-2" : "w-0 my-2"
-                    } group-hover:w-full group-hover:px-1 group-hover:xs:px-2 group-hover:md:px-4 group-hover:my-2 duration-300 w-0 my-2 absolute overflow-hidden hidden top-0 z-[1] md:flex items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
+                    className={` ${data?.l ? "w-full px-1 xs:px-2 md:px-4 my-2" : "w-0 my-2"
+                      } group-hover:w-full group-hover:px-1 group-hover:xs:px-2 group-hover:md:px-4 group-hover:my-2 duration-300 w-0 my-2 absolute overflow-hidden hidden top-0 z-[1] md:flex items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
                   >
                     {data?.colors?.map((itemValue) => {
                       return (
@@ -182,26 +181,26 @@ export default function ShopOfficialCard({ filteredData, setPageId }) {
                     )}
                   </article>
                   <figure className="flex items-center select-none	absolute right-2 bottom-2">
-                   {/*  {Cookies.get("DressmeUserToken") && ( */}
-                      <button
-                        onClick={() => {
-                          if (wishList?.includes(data?.id)) {
-                            setWishlist(
-                              wishList?.filter((item) => item !== data?.id)
-                            );
-                          } else {
-                            setWishlist([...wishList, data?.id]);
-                          }
-                        }}
-                        className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
-                      >
-                        {wishList.includes(data?.id) ? (
-                          <BsHeartFill color="#d50000" />
-                        ) : (
-                          <BsHeart />
-                        )}
-                      </button>
-                   {/*  )} */}
+                    {/*  {Cookies.get("DressmeUserToken") && ( */}
+                    <button
+                      onClick={() => {
+                        if (wishList?.includes(data?.id)) {
+                          setWishlist(
+                            wishList?.filter((item) => item !== data?.id)
+                          );
+                        } else {
+                          setWishlist([...wishList, data?.id]);
+                        }
+                      }}
+                      className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                    >
+                      {wishList.includes(data?.id) ? (
+                        <BsHeartFill color="#d50000" />
+                      ) : (
+                        <BsHeart />
+                      )}
+                    </button>
+                    {/*  )} */}
                   </figure>
                 </article>
               </section>
@@ -219,7 +218,7 @@ export default function ShopOfficialCard({ filteredData, setPageId }) {
       <div className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6">
         <article className="flex items-center">
           <ul className="flex items-center">
-            {filteredData?.products?.links?.map((item,index) => {
+            {filteredData?.products?.links?.map((item, index) => {
               return (
                 <li
                   key={index}
@@ -229,15 +228,13 @@ export default function ShopOfficialCard({ filteredData, setPageId }) {
                       setPaginationFunc(newPageId);
                     }
                   }}
-                  className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${
-                    item?.active
+                  className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${item?.active
                       ? "bg-fullBlue text-white"
                       : "hover:bg-searchBgColor"
-                  } mx-[5px] flex items-center justify-center  ${
-                    item?.url
+                    } mx-[5px] flex items-center justify-center  ${item?.url
                       ? "cursor-pointer"
                       : "opacity-70 cursor-not-allowed"
-                  }`}
+                    }`}
                 >
                   {item?.label}
                 </li>
