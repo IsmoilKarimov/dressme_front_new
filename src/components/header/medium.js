@@ -464,6 +464,7 @@ const MediumHeader = () => {
                     <input
                       type="text"
                       name="name"
+                      autoComplete="name"
                       placeholder="Поиск продуктов или брендов"
                       className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
                       value={searchMarketName}
