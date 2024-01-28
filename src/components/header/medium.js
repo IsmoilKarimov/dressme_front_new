@@ -463,8 +463,8 @@ const MediumHeader = () => {
                   <div className="w-full flex items-center relative">
                     <input
                       type="text"
-                      name="name"
-                      autoComplete="name"
+                      name="search"
+                      autoComplete="search"
                       placeholder="Поиск продуктов или брендов"
                       className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
                       value={searchMarketName}
