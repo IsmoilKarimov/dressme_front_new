@@ -15,7 +15,7 @@ import Cookies from "js-cookie";
 const UserProfilePage = () => {
   const [phone, setPhone] = useState("");
   const { request } = useHttp();
-  const [profileData, setProfileData] = useState()
+  const [profileData, setProfileData] = useState();
   const [state, setState] = useState({
     firstName: "",
     lastName: "",
@@ -29,26 +29,26 @@ const UserProfilePage = () => {
     Female: false,
   });
 
-    // -------------  GET ALL PRODUCTS LENGTH --------------
-    useQuery(
-      ["profile-data"],
-      () => {
-        return request({ url: "/user/profile", token: true });
+  // -------------  GET ALL PRODUCTS LENGTH --------------
+  useQuery(
+    ["profile-data"],
+    () => {
+      return request({ url: "/user/profile", token: true });
+    },
+    {
+      onSuccess: (res) => {
+        if (res) {
+          console.log(res, "PROFILE");
+          setProfileData(res);
+        }
       },
-      {
-        onSuccess: (res) => {
-          if (res) {
-            console.log(res,"PROFILE");
-            setProfileData(res);
-          }
-        },
-        onError: (err) => {
-          console.log(err, "ERR-PROFILE");
-        },
-        keepPreviousData: true,
-        refetchOnWindowFocus: false,
-      }
-    );
+      onError: (err) => {
+        console.log(err, "ERR-PROFILE");
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+    }
+  );
 
   let data = phone.split("-");
   let arr = data.join("");
@@ -64,7 +64,7 @@ const UserProfilePage = () => {
   const location = useLocation();
   const LogOut = () => {
     Cookies.remove("DressmeUserToken");
-    if (location?.pathname?.includes("profile/settings")) { 
+    if (location?.pathname?.includes("profile/settings")) {
       navigate("/sign_in");
     } else if (location?.pathname?.includes("my-order")) {
       navigate("/sign_in");
@@ -90,6 +90,7 @@ const UserProfilePage = () => {
                 <input
                   className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                   type="text"
+                  name="name"
                   value={profileData?.name}
                   placeholder="Имя"
                   required
@@ -107,6 +108,7 @@ const UserProfilePage = () => {
                 <input
                   className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                   type="text"
+                  name="name"
                   value={profileData?.surname}
                   placeholder="Фамилия"
                   required
@@ -137,6 +139,7 @@ const UserProfilePage = () => {
                 <div className="w-[65%] md:w-[75%] bg-btnBgColor h-12 overflow-hidden">
                   <InputMask
                     mask="(99)999-99-99"
+                    name="name"
                     value={profileData?.phone}
                     onChange={(e) => setPhone(e.target.value)}
                     className={`w-full px-4  h-full not-italic bg-btnBgColor ${
@@ -155,6 +158,7 @@ const UserProfilePage = () => {
                 <input
                   className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                   type="email"
+                  name="name"
                   value={profileData?.email}
                   placeholder="Адрес электронной почты"
                   required
@@ -194,7 +198,6 @@ const UserProfilePage = () => {
         </div>
       </div>
     </div>
-  
   );
 };
 export { UserProfilePage };

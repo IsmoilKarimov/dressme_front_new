@@ -74,12 +74,14 @@ export default function CollectionCards() {
       </section>
       <div
         onClick={() => setOpenWearType(false)}
-        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openWearType ? "" : "hidden"
-          }`}
+        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+          openWearType ? "" : "hidden"
+        }`}
       ></div>
       <section
-        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openWearType ? "bottom-0" : "bottom-[-800px] z-0"
-          }`}
+        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+          openWearType ? "bottom-0" : "bottom-[-800px] z-0"
+        }`}
       >
         <WearType onClick={toggle} />
       </section>
@@ -89,6 +91,7 @@ export default function CollectionCards() {
         <article className="w-full h-12 flex md:hidden items-center justify-between rounded-xl font-AeonikProRegular border border-searchBgColor bg-white mt-4">
           <input
             type="text"
+            name="name"
             placeholder="Искать товары"
             className="bg-transparent w-[90%] h-full text-[14px] border border-transparent px-3"
           />
@@ -129,7 +132,7 @@ export default function CollectionCards() {
           </article>
 
           {data?.getMainProductCard?.products?.length < 30 ||
-            data?.getMainProductCard?.products?.length < pagination ? null : (
+          data?.getMainProductCard?.products?.length < pagination ? null : (
             <div className="w-full h-fit flex items-center justify-center mt-14">
               <button
                 type="button"

@@ -123,6 +123,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             </span>
             <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
               <input
+                name="name"
                 className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={Number(values[0]).toLocaleString()}
                 // onChange={(e) => setMaxPrice(e.target.value)}
@@ -136,6 +137,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             </span>
             <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
               <input
+                name="name"
                 className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={Number(values[1]).toLocaleString()}
                 // onChange={(e) => setMaxPrice(e.target.value)}

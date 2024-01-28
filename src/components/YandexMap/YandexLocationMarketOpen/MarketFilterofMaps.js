@@ -109,6 +109,7 @@ function MarketFilterofMaps({ onClick }) {
                 </span>
                 <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                   <input
+                    name="name"
                     className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                     value={minPrice}
                     onChange={(e) => setMinPrice(e.target.value)}
@@ -124,6 +125,7 @@ function MarketFilterofMaps({ onClick }) {
                   <input
                     className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                     value={maxPrice}
+                    name="name"
                     onChange={(e) => setMaxPrice(e.target.value)}
                   />
                   sum

@@ -22,6 +22,7 @@ export default function ForgetPassword() {
             <input
               className="  w-full h-12 bg-btnBgColor focus:bg-btnBgColor active:bg-btnBgColor placeholder:bg-btnBgColor placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black "
               type="text"
+              name="name"
               placeholder="Phone number"
               required
             />

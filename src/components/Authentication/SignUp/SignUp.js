@@ -177,6 +177,7 @@ export default function SignUp() {
                     <input
                       className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="text"
+                      name="name"
                       placeholder="Имя"
                       value={state?.firstName}
                       onChange={(e) =>
@@ -207,6 +208,7 @@ export default function SignUp() {
                       className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="text"
                       placeholder="Фамилия"
+                      name="name"
                       value={state?.lastName}
                       onChange={(e) =>
                         setState({ ...state, lastName: e.target.value })
@@ -272,6 +274,7 @@ export default function SignUp() {
                     <input
                       className="  w-full h-12 placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="email"
+                      name="name"
                       placeholder="Адрес электронной почты"
                       value={state?.email}
                       onChange={(e) =>
@@ -303,6 +306,7 @@ export default function SignUp() {
                       type={state?.eyesShow ? "password" : "text"}
                       placeholder="Введите пароль"
                       value={state?.password}
+                      name="name"
                       onChange={(e) =>
                         setState({ ...state, password: e.target.value })
                       }
@@ -346,6 +350,7 @@ export default function SignUp() {
                       className="w-full h-12 placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type={state?.eyesShowConfirmation ? "password" : "text"}
                       placeholder="Введите пароль"
+                      name="name"
                       value={state?.password_confirmation}
                       onChange={(e) =>
                         setState({
@@ -455,6 +460,7 @@ export default function SignUp() {
                     <input
                       className="  w-full h-12 bg-btnBgColor focus:bg-btnBgColor active:bg-btnBgColor placeholder:bg-btnBgColor placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black "
                       type="text"
+                      name="name"
                       placeholder="Phone number"
                       required
                     />
@@ -477,6 +483,7 @@ export default function SignUp() {
                     className="h-[64px] w-[53px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center not-italic font-AeonikProMedium text-3xl leading-9 text-center text-black"
                     type="text"
                     value={"-"}
+                    name="name"
                     required
                   />
                   <input
@@ -484,6 +491,7 @@ export default function SignUp() {
                     className="h-[64px] w-[53px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center not-italic font-AeonikProMedium text-3xl leading-9 text-center text-black"
                     type="text"
                     value={"-"}
+                    name="name"
                     required
                   />
                   <input
@@ -491,6 +499,7 @@ export default function SignUp() {
                     className="h-[64px] w-[53px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center not-italic font-AeonikProMedium text-3xl leading-9 text-center text-black"
                     type="text"
                     value={"-"}
+                    name="name"
                     required
                   />
                   <input
@@ -498,6 +507,7 @@ export default function SignUp() {
                     className="h-[64px] w-[53px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center not-italic font-AeonikProMedium text-3xl leading-9 text-center text-black"
                     type="text"
                     value={"-"}
+                    name="name"
                     required
                   />
                   <input
@@ -505,6 +515,7 @@ export default function SignUp() {
                     className="h-[64px] w-[53px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center not-italic font-AeonikProMedium text-3xl leading-9 text-center text-black"
                     type="text"
                     value={"-"}
+                    name="name"
                     required
                   />
                   <input
@@ -512,6 +523,7 @@ export default function SignUp() {
                     className="h-[64px] w-[53px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center not-italic font-AeonikProMedium text-3xl leading-9 text-center text-black"
                     type="text"
                     value={"-"}
+                    name="name"
                     required
                   />
                 </div>

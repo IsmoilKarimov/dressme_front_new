@@ -1,8 +1,4 @@
-import React, {
-  useContext,
-  useState,
-  useEffect,
-} from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import {
   YMaps,
@@ -134,7 +130,7 @@ function YandexMapsDressMe() {
 
   useEffect(() => {
     fetchGetAllData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     getAllFilterSearch,
     FilterSearchByBrand,
@@ -433,6 +429,7 @@ function YandexMapsDressMe() {
 
                   <input
                     type="text"
+                    name="name"
                     placeholder="Искать товары или бренды"
                     className="bg-transparent w-full px-3 h-12 text-[14px] bg-btnBgColor border border-transparent md:border-searchBgColor md:mx-0 md:-ml-[3px] md:px-3 md:h-12
                     placeholder-italic placeholder-AeonikProMedium placeholder-sm leading-4 placeholder-setTexOpacity placeholder-[1px]

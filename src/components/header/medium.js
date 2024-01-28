@@ -245,7 +245,6 @@ const MediumHeader = () => {
 
   const goCatalogId = (id) => {
     navigate(`/catalog/:${id}`);
-
   };
 
   return (
@@ -258,10 +257,11 @@ const MediumHeader = () => {
       {regionsList && (
         <div
           className={`max-w-[600px]    w-full fixed duration-500 z-[231]  h-fit flex items-center  justify-center mx-auto
-        ${regionsList
-              ? " bottom-[64px] md:flex flex-col z-[232]"
-              : "bottom-[-1500px] z-[-10]"
-            }
+        ${
+          regionsList
+            ? " bottom-[64px] md:flex flex-col z-[232]"
+            : "bottom-[-1500px] z-[-10]"
+        }
         `}
         >
           <RegionsList onClick={toggleRegionsShow} />
@@ -274,20 +274,21 @@ const MediumHeader = () => {
         ></div>
       )}
       <article
-        className={`fixed top-[235px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${dressInfo?.openCatologId ? "" : "hidden"
-          }`}
+        className={`fixed top-[235px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${
+          dressInfo?.openCatologId ? "" : "hidden"
+        }`}
       >
         <div className="flex justify-center items-center z-[120]">
           <div className="w-[675px] flex flex-col shadow-modalCategoryShadow bg-white rounded-lg p-2">
             <button
               className="text-xl place-self-end pr-1 pt-1 mb-2"
-              onClick={() => setDressInfo({ ...dressInfo, openCatologId: false })}
+              onClick={() =>
+                setDressInfo({ ...dressInfo, openCatologId: false })
+              }
             >
               <MenuCloseIcons />
             </button>
-            <div
-              className="ss:w-fit md:w-[650px] h-[210px] m-0 p-2 pb-4 pt-4"
-            >
+            <div className="ss:w-fit md:w-[650px] h-[210px] m-0 p-2 pb-4 pt-4">
               <div className="w-full flex items-start flex-wrap gap-y-6">
                 {data?.getMainProductCard?.categories?.map((data, i) => {
                   return (
@@ -462,6 +463,7 @@ const MediumHeader = () => {
                   <div className="w-full flex items-center relative">
                     <input
                       type="text"
+                      name="name"
                       placeholder="Поиск продуктов или брендов"
                       className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
                       value={searchMarketName}
@@ -572,10 +574,11 @@ const MediumHeader = () => {
             </section>
             {/*Starting of Opened Hamburger Menu section */}
             <section
-              className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen pb-[140px] px-3 ${state?.hamburgerMenu
-                ? " flex flex-col ease-linear duration-500 overscroll-none"
-                : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
-                }`}
+              className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen pb-[140px] px-3 ${
+                state?.hamburgerMenu
+                  ? " flex flex-col ease-linear duration-500 overscroll-none"
+                  : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
+              }`}
             >
               <div className={`w-full h-fit flex flex-wrap `}>
                 {/* Gender selection for Mobile */}
@@ -589,11 +592,13 @@ const MediumHeader = () => {
                         <button
                           key={data.id}
                           onClick={() => handleGenderDataCheck(data.id)}
-                          className={`w-full flex items-center justify-center h-12 text-[15px] text-center ${!data.name ? "px-5" : "px-7"
-                            } font-AeonikProRegular ${data.action
+                          className={`w-full flex items-center justify-center h-12 text-[15px] text-center ${
+                            !data.name ? "px-5" : "px-7"
+                          } font-AeonikProRegular ${
+                            data.action
                               ? `{ bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-xl `
                               : ""
-                            } `}
+                          } `}
                         >
                           <span>{data.icon}</span>
                           {data.name ? (
@@ -605,10 +610,11 @@ const MediumHeader = () => {
                           )}
                         </button>
                         <span
-                          className={`${data.id === 4
-                            ? "text-searchBgColor hidden"
-                            : "text-searchBgColor flex items-center"
-                            }`}
+                          className={`${
+                            data.id === 4
+                              ? "text-searchBgColor hidden"
+                              : "text-searchBgColor flex items-center"
+                          }`}
                         >
                           |
                         </span>
