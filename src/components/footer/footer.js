@@ -131,7 +131,7 @@ const Footer = () => {
                     <span className="ml-1">
                       <FooterOriginalIcons />
                     </span>
-                    <span className="md:ml-2">Все права защищены.</span>
+                    <span className="md:ml-3">Все права защищены.</span>
                   </article>
                 </section>
               </article>

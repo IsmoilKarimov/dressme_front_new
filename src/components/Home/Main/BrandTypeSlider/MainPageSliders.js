@@ -171,12 +171,17 @@ function MainPageSliders() {
 
   const navigate = useNavigate();
   const goDetail = (id) => {
-    data?.getMainProductCard?.shops?.filter(e => e?.id == id)?.map(item => {
-      item?.approved_shop_locations?.map((data, index) => {
-        setDressInfo({ ...dressInfo, locationIdParams: item?.approved_shop_locations[0]?.id })
-        navigate(`/shopping_store/:${id}`);
-      })
-    })
+    data?.getMainProductCard?.shops
+      ?.filter((e) => e?.id == id)
+      ?.map((item) => {
+        item?.approved_shop_locations?.map((data, index) => {
+          setDressInfo({
+            ...dressInfo,
+            locationIdParams: item?.approved_shop_locations[0]?.id,
+          });
+          navigate(`/shopping_store/:${id}`);
+        });
+      });
   };
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
@@ -184,8 +189,9 @@ function MainPageSliders() {
         <section className="w-full box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
           {/* MAIN SLIDER */}
           <div
-            className={`w-full ss:h-0 ${more ? "xs:h-0" : "xs:h-auto"
-              } overflow-hidden`}
+            className={`w-full ss:h-0 ${
+              more ? "xs:h-0" : "xs:h-auto"
+            } overflow-hidden`}
           >
             {data?.getMainProductCard?.sections?.length > 6 ? (
               <Slider
@@ -212,7 +218,7 @@ function MainPageSliders() {
                         </button>
                       </div>
                       <article className="h-12.5 flex items-center justify-start">
-                        <div className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2 ml-2">
+                        <div className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-1 ml-2">
                           {data?.name_ru || "type"}
                           <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
                             ({data?.products_count || "0"})
@@ -244,13 +250,14 @@ function MainPageSliders() {
                         </button>
                       </div>
                       <article className="h-12.5 flex items-center justify-start">
-                        <div className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-2   ml-2">
+                        <div className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3  ml-2">
                           {data?.name_ru || "type"}
-                          <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
-                            ({data?.products_count || "0"})
-                          </p>
                         </div>
                       </article>
+
+                      <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
+                        ({data?.products_count || "0"})
+                      </p>
                     </NavLink>
                   );
                 })}
@@ -260,8 +267,9 @@ function MainPageSliders() {
 
           {/* CAROUSEL HIDDEN BLOCK */}
           <div
-            className={`${more ? "xs:grid" : "xs:hidden"
-              } w-full  h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 `}
+            className={`${
+              more ? "xs:grid" : "xs:hidden"
+            } w-full  h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 `}
           >
             {data?.getMainProductCard?.sections?.map((data, i) => {
               if (more) {
@@ -275,10 +283,14 @@ function MainPageSliders() {
                       <button
                         className={`w-full h-fit border border-searchBgColor rounded-lg flex items-center justify-center`}
                       >
-                        {data?.url_photo ?
-                          <img src={data?.url_photo} className="w-full h-[250px] rounded-lg object-cover object-top " />
-                          :
-                          <NoImg />}
+                        {data?.url_photo ? (
+                          <img
+                            src={data?.url_photo}
+                            className="w-full h-[250px] rounded-lg object-cover object-top "
+                          />
+                        ) : (
+                          <NoImg />
+                        )}
                       </button>
                     </div>
                     <article className="h-12.5 flex items-center justify-start">
@@ -303,10 +315,14 @@ function MainPageSliders() {
                     >
                       <figure className="w-[100%] xs:w-[196px] h-[140px] xs:h-fit border border-searchBgColor flex items-center justify-center  bg-btnBgColor 	rounded-xl xs:rounded">
                         {/* <NoImg /> */}
-                        {data?.url_photo ?
-                          <img src={data?.url_photo} className="w-full h-[250px] rounded-lg object-cover object-top " />
-                          :
-                          <NoImg />}
+                        {data?.url_photo ? (
+                          <img
+                            src={data?.url_photo}
+                            className="w-full h-[250px] rounded-lg object-cover object-top "
+                          />
+                        ) : (
+                          <NoImg />
+                        )}
                       </figure>
                       <article className="w-full py-1 flex items-center">
                         <div className="not-italic flex items-center font-AeonikProMedium text-sm xs:text-base leading-6 text-black">
