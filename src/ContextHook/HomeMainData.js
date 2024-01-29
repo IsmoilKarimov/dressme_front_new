@@ -6,13 +6,15 @@ import { dressMainData } from "./ContextMenu";
 export const HomeMainDataContext = createContext();
 
 export const HomeMainDataContextProvider = ({ children }) => {
-  const [data, setData] = useState([
-    {
-      getMainProductCard: [],
-    },
-  ]);
+  const [data, setData] = useState({
+    getMainProductCard: [],
+  });
 
-  console.log(data, 'ddddd');
+  const [products, setProducts] = useState({
+    products: [],
+  });
+
+  console.log(products, "prrrrrrrrrrrrrr");
 
   const [offset, setOffset] = useState(0);
 
@@ -60,7 +62,16 @@ export const HomeMainDataContextProvider = ({ children }) => {
 
   return (
     <HomeMainDataContext.Provider
-      value={[data, setData, wishList, setWishlist, offset, setOffset]}
+      value={[
+        data,
+        setData,
+        wishList,
+        setWishlist,
+        offset,
+        setOffset,
+        products,
+        setProducts,
+      ]}
     >
       {children}
     </HomeMainDataContext.Provider>
