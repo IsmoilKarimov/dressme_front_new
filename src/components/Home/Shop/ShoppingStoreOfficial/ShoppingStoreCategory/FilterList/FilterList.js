@@ -63,16 +63,26 @@ function FilterList({
     function onOutWearGetValue(childData) { outWearList(childData) }
     function onFootWearGetValue(childData) { footWearList(childData) }
 
-    function ClearAll() {
+    const ClearAll = () => {
         setAllClearList('null')
         genderId(null)
         discountId(null)
         categoryId(null)
-        getBadgePrice(null)
+        getBadgePrice([])
         ratingList(null)
         underWearList(null)
         outWearList(null)
         footWearList(null)
+        // 0-----
+        onGenderGetValue(null)
+        onDiscountGetValue(null)
+        onCategoryGetValue(null)
+        onBudgetGetValue(null)
+        onColorGetValue(null)
+        onRatingGetValue(null)
+        onUnderWearGetValue(null)
+        onOutWearGetValue(null)
+        onFootWearGetValue(null)
     }
 
 
@@ -138,7 +148,7 @@ function FilterList({
                     <div className="w-full border-t border-searchBgColor py-5 px-3">
                         <button
                             type="button"
-                            onClick={() => ClearAll()}
+                            onClick={ClearAll}
                             className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70"
                         >
                             Сбросить фильтр
