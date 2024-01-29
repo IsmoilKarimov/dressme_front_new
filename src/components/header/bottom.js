@@ -22,7 +22,8 @@ const { Option } = Select;
 
 function BottomHeader({ setSeasons }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [data, setData] = useContext(HomeMainDataContext);
+  const [data, setData, , , offset, setOffset] =
+    useContext(HomeMainDataContext);
 
   const [selectedId, setSelectedId] = useState(null);
   const [state, setState] = useState({
@@ -95,6 +96,8 @@ function BottomHeader({ setSeasons }) {
   const seasonId = Number(typeFilter?.shift());
   const fetchGetAllData = () => {
     var params = new URLSearchParams();
+    params.append("limit", "30");
+    params.append("offset", offset);
     dressInfo?.mainRegionId && params.append("region", dressInfo?.mainRegionId);
     dressInfo?.mainSubRegionId &&
       params.append("sub_region", dressInfo?.mainSubRegionId);
@@ -111,6 +114,7 @@ function BottomHeader({ setSeasons }) {
     fetch(`${url}?` + params)
       .then((res) => res.json())
       .then((res) => {
+        console.log(res);
         setState({ ...state, getAllCardList: res });
         setSeasons(res);
         // console.log(res, "Medium");
@@ -356,6 +360,7 @@ function BottomHeader({ setSeasons }) {
     dressInfo?.mainSearchName,
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
+    offset,
     // seasonId
   ]);
 

@@ -6,9 +6,15 @@ import { dressMainData } from "./ContextMenu";
 export const HomeMainDataContext = createContext();
 
 export const HomeMainDataContextProvider = ({ children }) => {
-  const [data, setData] = useState([{
-    getMainProductCard: []
-  }]);
+  const [data, setData] = useState([
+    {
+      getMainProductCard: [],
+    },
+  ]);
+
+  console.log(data, 'ddddd');
+
+  const [offset, setOffset] = useState(0);
 
   let WishlistDataFromCookies = Cookies.get("WishList");
 
@@ -26,7 +32,6 @@ export const HomeMainDataContextProvider = ({ children }) => {
     Cookies.set("WishList", JSON.stringify(wishList), { expires: 2 });
   }
   const url = "https://api.dressme.uz";
-
 
   // ------------GET METHOD Main data -----------------
   // useQuery(
@@ -55,7 +60,7 @@ export const HomeMainDataContextProvider = ({ children }) => {
 
   return (
     <HomeMainDataContext.Provider
-      value={[data, setData, wishList, setWishlist]}
+      value={[data, setData, wishList, setWishlist, offset, setOffset]}
     >
       {children}
     </HomeMainDataContext.Provider>
