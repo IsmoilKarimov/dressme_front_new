@@ -12,7 +12,7 @@ export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
   const [pagination, setPagination] = useState(30);
-  const [data, setData, wishList, setWishlist] =
+  const [data, setData, wishList, setWishlist, offset, setOffset] =
     useContext(HomeMainDataContext);
 
   // -------------------------------------
@@ -132,13 +132,14 @@ export default function CollectionCards() {
             )}
           </article>
 
-          {data?.getMainProductCard?.products?.length < 30 ||
+          {/* {data?.getMainProductCard?.products?.length < 30 ||
           data?.getMainProductCard?.products?.length < pagination ? null : (
             <div className="w-full h-fit flex items-center justify-center mt-14">
               <button
                 type="button"
                 onClick={() => {
                   setPagination((prev) => prev + 30);
+                  setOffset((prev) => prev + 30);
                 }}
                 // searchBgColor
                 className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
@@ -146,7 +147,21 @@ export default function CollectionCards() {
                 Показать ещё
               </button>
             </div>
-          )}
+          )} */}
+
+          <div className="w-full h-fit flex items-center justify-center mt-14">
+            <button
+              type="button"
+              onClick={() => {
+                setPagination((prev) => prev + 30);
+                setOffset((prev) => prev + 30);
+              }}
+              // searchBgColor
+              className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
+            >
+              Показать ещё
+            </button>
+          </div>
         </div>
       </section>
     </main>
