@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../../../assets/icons";
 
-export default function CategoryCheckFilter({ categoryList, onCategoryGetValue }) {
+export default function CategoryCheckFilter({ categoryList, onCategoryGetValue, AllClearList }) {
     const [categoryToggle, setCategoryToggle] = useState(false);
     const [categoryNewList, setCategoryNewList] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -37,7 +37,12 @@ export default function CategoryCheckFilter({ categoryList, onCategoryGetValue }
         setSelectedCategory(null)
         onCategoryGetValue(null)
     }
-
+    useEffect(() => {
+        if (AllClearList === 'null') {
+            setSelectedCategory(null)
+            onCategoryGetValue(null)
+        }
+    }, [AllClearList])
 
     return (
         <div
