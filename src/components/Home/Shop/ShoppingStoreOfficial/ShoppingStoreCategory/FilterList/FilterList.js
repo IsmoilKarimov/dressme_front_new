@@ -30,6 +30,7 @@ function FilterList({
     const [dressInfo, setDressInfo] = useContext(dressMainData);
     const [getFilter, setGetFilter] = useState()
     const [getColorList, setGetColorList] = useState([])
+    const [AllClearList, setAllClearList] = useState()
 
 
     const { refetch } = useQuery(["get_shop_filter"], () => {
@@ -61,9 +62,12 @@ function FilterList({
     function onUnderWearGetValue(childData) { underWearList(childData) }
     function onOutWearGetValue(childData) { outWearList(childData) }
     function onFootWearGetValue(childData) { footWearList(childData) }
-    // useEffect(() => {
-    //     onColorGetValueParent(getColorList)
-    // }, [getColorList])
+
+    function ClearAll() {
+        setAllClearList('null')
+        categoryId(null)
+    }
+
 
     console.log(getColorList, "childData--getColorList");
     return (
@@ -84,6 +88,7 @@ function FilterList({
                         <CategoryCheckFilter
                             categoryList={getFilter?.category_ids}
                             onCategoryGetValue={onCategoryGetValue}
+                            AllClearList={AllClearList}
                         />
                     </div>
                     <div className="w-full">
@@ -126,7 +131,7 @@ function FilterList({
                     <div className="w-full border-t border-searchBgColor py-5 px-3">
                         <button
                             type="button"
-                            // onClick={clearAllFilteredData}
+                            onClick={() => ClearAll()}
                             className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70"
                         >
                             Сбросить фильтр

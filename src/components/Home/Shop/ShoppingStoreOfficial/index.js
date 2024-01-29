@@ -161,7 +161,7 @@ const ShoppingStoreOfficial = () => {
 
   useEffect(() => {
     fetchGetAllData()
-  }, [newId, state, dressInfo?.locationIdParams])
+  }, [newId, state, pageId, dressInfo?.locationIdParams])
   // <action ColorHex 
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
