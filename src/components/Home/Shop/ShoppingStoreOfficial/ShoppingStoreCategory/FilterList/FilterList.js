@@ -65,7 +65,14 @@ function FilterList({
 
     function ClearAll() {
         setAllClearList('null')
+        genderId(null)
+        discountId(null)
         categoryId(null)
+        getBadgePrice(null)
+        ratingList(null)
+        underWearList(null)
+        outWearList(null)
+        footWearList(null)
     }
 
 
