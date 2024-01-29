@@ -14,8 +14,6 @@ export const HomeMainDataContextProvider = ({ children }) => {
     products: [],
   });
 
-  console.log(products, "prrrrrrrrrrrrrr");
-
   const [offset, setOffset] = useState(0);
 
   let WishlistDataFromCookies = Cookies.get("WishList");
