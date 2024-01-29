@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../../../assets/icons";
 
-export default function CategoryCheckFilter({ categoryList, onCategoryGetValue, AllClearList }) {
+export default function CategoryCheckFilter({ categoryList, onCategoryGetValue, setCategorySelect,
+    categorySelect }) {
     const [categoryToggle, setCategoryToggle] = useState(false);
     const [categoryNewList, setCategoryNewList] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState(null);
 
     const [categories, setCategories] = useState([
         { id: 1, name: "Головной убор" },
@@ -30,19 +30,13 @@ export default function CategoryCheckFilter({ categoryList, onCategoryGetValue, 
     }, [categoryList])
 
     const handleCategoryCheck = (value) => {
-        setSelectedCategory(value)
+        setCategorySelect(value)
         onCategoryGetValue(value)
     };
     function ClearSelected() {
-        setSelectedCategory(null)
+        setCategorySelect(null)
         onCategoryGetValue(null)
     }
-    useEffect(() => {
-        if (AllClearList === 'null') {
-            setSelectedCategory(null)
-            onCategoryGetValue(null)
-        }
-    }, [AllClearList])
 
     return (
         <div
@@ -76,7 +70,7 @@ export default function CategoryCheckFilter({ categoryList, onCategoryGetValue, 
                         return (
                             <button
                                 key={data?.id}
-                                className={`${selectedCategory === data?.id ? 'bg-fullBlue text-white' : 'bg-bgCategory text-black'} hover:bg-fullBlue hover:text-white  w-full h-[44px] rounded-lg justify-center  flex items-center select-none  `}
+                                className={`${categorySelect === data?.id ? 'bg-fullBlue text-white' : 'bg-bgCategory text-black'} hover:bg-fullBlue hover:text-white  w-full h-[44px] rounded-lg justify-center  flex items-center select-none  `}
                                 type="button"
                                 onClick={() => handleCategoryCheck(data?.id)}
                             >
@@ -87,7 +81,7 @@ export default function CategoryCheckFilter({ categoryList, onCategoryGetValue, 
                         );
                     })}
                 </article>
-                {selectedCategory && <div className="w-full items-center justify-start">
+                {categorySelect && <div className="w-full items-center justify-start">
                     <button
                         type="button"
                         onClick={() => ClearSelected()}

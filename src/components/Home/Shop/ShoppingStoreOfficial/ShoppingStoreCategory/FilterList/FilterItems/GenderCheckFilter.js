@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { ArrowTopIcons } from "../../../../../../../assets/icons";
 
-function GenderCheckFilter({ genderList, discount, onGenderGetValue, onDiscountGetValue }) {
+function GenderCheckFilter({
+    genderList,
+    discount,
+    onGenderGetValue,
+    onDiscountGetValue,
+    setSelectedGender1,
+    selectedGender1,
+    setSelectedDiscount1,
+    selectedDiscount1 }) {
     const [genderToggle, setGenderToggle] = useState(false);
     const [genderNewList, setGenderNewList] = useState([]);
     const [selectedGender, setSelectedGender] = useState(null);
@@ -47,17 +55,17 @@ function GenderCheckFilter({ genderList, discount, onGenderGetValue, onDiscountG
     }, [genderList])
 
     const handleGenderCheck = (value) => {
-        setSelectedGender(value)
+        setSelectedGender1(value)
         onGenderGetValue(value)
     };
     const handleDiscountCheck = () => {
         onDiscountGetValue(1)
-        setSelectedDiscount(1)
+        setSelectedDiscount1(1)
     };
     function ClearList() {
-        setSelectedDiscount(null)
-        setSelectedGender(null)
-        onDiscountGetValue(null)
+        setSelectedDiscount1(null)
+        setSelectedGender1(null)
+        onDiscountGetValue(0)
         onGenderGetValue(null)
     }
 
@@ -95,7 +103,7 @@ function GenderCheckFilter({ genderList, discount, onGenderGetValue, onDiscountG
                                 <button
                                     key={data?.id}
                                     onClick={() => handleGenderCheck(data?.id)}
-                                    className={`${selectedGender === data?.id ? 'bg-fullBlue text-white' : 'bg-bgCategory text-black'} 
+                                    className={`${selectedGender1 === data?.id ? 'bg-fullBlue text-white' : 'bg-bgCategory text-black'} 
                                     active:scale-95	active:opacity-70 h-[44px] w-[49%] flex items-center justify-center hover:bg-fullBlue hover:text-white font-AeonikProMedium text-sm leading-3 text-center  rounded-lg duration-300`
                                     }
                                 >
@@ -114,7 +122,7 @@ function GenderCheckFilter({ genderList, discount, onGenderGetValue, onDiscountG
                                 Скидки
                             </button>}
                     </div>
-                    {selectedDiscount || selectedGender ?
+                    {selectedDiscount || selectedGender1 ?
                         <div className="w-full items-center">
                             <button
                                 type="button"

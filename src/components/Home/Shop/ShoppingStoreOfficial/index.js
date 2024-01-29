@@ -22,7 +22,13 @@ const ShoppingStoreOfficial = () => {
   const [openTabLocation, setOpenTabLocation] = useState(false);
   const [filteredData, setFilteredData] = useState()
   const [pageId, setPageId] = useState()
+
+  const [getGenderId, setGetGenderId] = useState(null)
+  const [getCategory, setGetCategory] = useState(null)
+  const [getRating, setGetRating] = useState(null)
+  const [getRange, setGetRange] = useState(null)
   const [dataColor, setDataColor] = useState([])
+  const [discount, setDiscount] = useState(false)
   const { request } = useHttp()
   const [state, setState] = useState({
     genderId: null,
@@ -54,22 +60,19 @@ const ShoppingStoreOfficial = () => {
   }, [dressInfo?.openShopIdFilter]);
 
   const genderId = (childData) => {
-    setState({ ...state, genderId: childData })
+    setGetGenderId(childData)
   }
-  const discountId = (childData) => {
-    setState({ ...state, disCount: childData })
+  function discountId(childData) {
+    setDiscount(childData)
   }
   const categoryId = (childData) => {
-    setState({ ...state, category: childData })
+    setGetCategory(childData)
   }
   const getBadgePrice = (childData) => {
-    setState({ ...state, getRange: childData })
+    setGetRange(childData)
   }
-  function onColorGetValueParent(childData) {
-    // log(childData)
-  }
-  const ratingList = (childData) => {
-    setState({ ...state, ratingId: childData })
+  const getRatingList = (childData) => {
+    setGetRating(childData)
   }
   const outWearList = (childData) => {
     setState({
@@ -92,8 +95,7 @@ const ShoppingStoreOfficial = () => {
       ...state, footWaerSize: childData?.wear_size
     })
   }
-  console.log(state, "childData--state");
-  console.log(dataColor, "childData--dataColor");
+
 
   const clickButtons = {
     openTabComment,
@@ -115,10 +117,10 @@ const ShoppingStoreOfficial = () => {
   function fetchGetAllData() {
     let params = new URLSearchParams();
     params.append("location_id", 1);
-    state?.genderId && params.append("gender", state?.genderId);
-    state?.disCount && params.append("discount", state?.disCount);
-    state?.category && params.append("category", state?.category);
-    state?.ratingId && params.append("rating", state?.ratingId);
+    getGenderId && params.append("gender", getGenderId);
+    discount && params.append("discount", discount);
+    getCategory && params.append("category", getCategory);
+    getRating && params.append("rating", getRating);
     state?.footWaerSize && params.append("footwear_size", state?.footWaerSize);
 
     // OUTWEAR SIZES
@@ -139,15 +141,15 @@ const ShoppingStoreOfficial = () => {
 
     pageId && params.append("page", pageId);
 
-    state?.getRange?.min &&
-      params.append("budget[from]", state?.getRange?.min);
-    state?.getRange?.max &&
-      params.append("budget[to]", state?.getRange?.max);
+    getRange?.min &&
+      params.append("budget[from]", getRange?.min);
+    getRange?.max &&
+      params.append("budget[to]", getRange?.max);
 
-    // state?.hexColor?.length &&
-    //   state?.hexColor?.forEach((e, index) => {
-    //     params.append("colors[]", state?.hexColor[index]);
-    //   });
+    dataColor?.length > 0 &&
+      dataColor?.forEach((e, index) => {
+        params.append("colors[]", dataColor[index]);
+      });
 
     fetch(`${url}/main/shops/${newId}?` + params)
       .then((res) => res.json())
@@ -161,7 +163,10 @@ const ShoppingStoreOfficial = () => {
 
   useEffect(() => {
     fetchGetAllData()
-  }, [newId, state, pageId, dressInfo?.locationIdParams])
+  }, [newId, state, pageId, discount, dataColor, getGenderId,
+    discount,
+    getCategory,
+    getRating, getRange, dressInfo?.locationIdParams])
   // <action ColorHex 
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
@@ -195,8 +200,9 @@ const ShoppingStoreOfficial = () => {
                       discountId={discountId}
                       categoryId={categoryId}
                       getBadgePrice={getBadgePrice}
-                      onColorGetValueParent={onColorGetValueParent}
-                      ratingList={ratingList}
+                      setDataColor={setDataColor}
+                      dataColor={dataColor}
+                      getRatingList={getRatingList}
                       outWearList={outWearList}
                       underWearList={underWearList}
                       footWearList={footWearList}
