@@ -21,7 +21,7 @@ const ShoppingStoreOfficial = () => {
   const [openTabComment, setOpenTabComment] = useState(false);
   const [openTabLocation, setOpenTabLocation] = useState(false);
   const [filteredData, setFilteredData] = useState()
-  const [pageId, setPageId] = useState()
+  const [pageId, setPageId] = useState(1)
 
   const [getGenderId, setGetGenderId] = useState(null)
   const [getCategory, setGetCategory] = useState(null)
@@ -29,27 +29,13 @@ const ShoppingStoreOfficial = () => {
   const [getRange, setGetRange] = useState(null)
   const [dataColor, setDataColor] = useState([])
   const [discount, setDiscount] = useState(false)
-  const { request } = useHttp()
-  const [state, setState] = useState({
-    genderId: null,
-    disCount: null,
-    category: null,
-    getRange: null,
-    hexColor: [],
+  const [getOutWearList, setGetOutWearList] = useState(null)
+  const [getUnderWearList, setGetUnderWearList] = useState(null)
+  const [getFootWearList, setGetFootWearList] = useState(null)
+  const [filterToggle, setFilterToggle] = useState(false)
 
-    ratingId: null,
-    outWearSize: null,
-    outWearSizeMin: null,
-    outWearSizeMax: null,
-
-    underWearSize: null,
-    underWearSizeMin: null,
-    underWearSizeMax: null,
-    footWaerSize: null,
-    filterToggle: false
-  });
-  const toggleFilterOpen = React.useCallback(() => setState({ ...state, filterToggle: true }), []);
-  const toggleFilterClose = React.useCallback(() => setState({ ...state, filterToggle: false }), []);
+  const toggleFilterOpen = React.useCallback(() => setFilterToggle(true), []);
+  const toggleFilterClose = React.useCallback(() => setFilterToggle(false), []);
 
   useEffect(() => {
     if (dressInfo?.openShopIdFilter) {
@@ -61,42 +47,38 @@ const ShoppingStoreOfficial = () => {
 
   const genderId = (childData) => {
     setGetGenderId(childData)
+    setPageId(1)
   }
   function discountId(childData) {
     setDiscount(childData)
+    setPageId(1)
   }
   const categoryId = (childData) => {
     setGetCategory(childData)
+    setPageId(1)
   }
   const getBadgePrice = (childData) => {
     setGetRange(childData)
+    setPageId(1)
   }
   const getRatingList = (childData) => {
     setGetRating(childData)
+    setPageId(1)
   }
   const outWearList = (childData) => {
-    setState({
-      ...state,
-      outWearSize: childData?.letter_size,
-      outWearSizeMin: childData?.min_wear_size,
-      outWearSizeMax: childData?.max_wear_size,
-    })
+    setGetOutWearList(childData)
+    setPageId(1)
   }
   const underWearList = (childData) => {
-    setState({
-      ...state,
-      underWearSize: childData?.letter_size,
-      underWearSizeMin: childData?.min_wear_size,
-      underWearSizeMax: childData?.max_wear_size,
-    })
+    setGetUnderWearList(childData)
+    setPageId(1)
   }
   const footWearList = (childData) => {
-    setState({
-      ...state, footWaerSize: childData?.wear_size
-    })
+    setGetFootWearList(childData)
+    setPageId(1)
   }
 
-
+  console.log(pageId, "pageId,");
   const clickButtons = {
     openTabComment,
     setOpenTabComment,
@@ -121,23 +103,23 @@ const ShoppingStoreOfficial = () => {
     discount && params.append("discount", discount);
     getCategory && params.append("category", getCategory);
     getRating && params.append("rating", getRating);
-    state?.footWaerSize && params.append("footwear_size", state?.footWaerSize);
+    getFootWearList?.wear_size && params.append("footwear_size", getFootWearList?.wear_size);
 
     // OUTWEAR SIZES
-    state?.outWearSize &&
-      params.append("outwear_size[letter_size]", state?.outWearSize);
-    state?.outWearSizeMin &&
-      params.append("outwear_size[min_wear_size]", state?.outWearSizeMin);
-    state?.outWearSizeMax &&
-      params.append("outwear_size[max_wear_size]", state?.outWearSizeMax);
+    getOutWearList?.letter_size &&
+      params.append("outwear_size[letter_size]", getOutWearList?.letter_size);
+    getOutWearList?.min_wear_size &&
+      params.append("outwear_size[min_wear_size]", getOutWearList?.min_wear_size);
+    getOutWearList?.max_wear_size &&
+      params.append("outwear_size[max_wear_size]", getOutWearList?.max_wear_size);
 
     // UNDERWEAR SIZES
-    state?.underWearSize &&
-      params.append("underwear_size[letter_size]", state?.underWearSize);
-    state?.underWearSizeMin &&
-      params.append("underwear_size[min_wear_size]", state?.underWearSizeMin);
-    state?.underWearSizeMax &&
-      params.append("underwear_size[max_wear_size]", state?.underWearSizeMax);
+    getUnderWearList?.letter_size &&
+      params.append("underwear_size[letter_size]", getUnderWearList?.letter_size);
+    getUnderWearList?.min_wear_size &&
+      params.append("underwear_size[min_wear_size]", getUnderWearList?.min_wear_size);
+    getUnderWearList?.max_wear_size &&
+      params.append("underwear_size[max_wear_size]", getUnderWearList?.max_wear_size);
 
     pageId && params.append("page", pageId);
 
@@ -154,20 +136,25 @@ const ShoppingStoreOfficial = () => {
     fetch(`${url}/main/shops/${newId}?` + params)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res, "bures");
         setFilteredData(res)
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   }
-  console.log("run index ishga tushdi");
 
   useEffect(() => {
     fetchGetAllData()
-  }, [newId, state, pageId, discount, dataColor, getGenderId,
+  }, [
+    newId,
+    pageId,
+    discount,
+    dataColor,
+    getGenderId,
     discount,
     getCategory,
+    getUnderWearList,
+    getOutWearList,
+    getFootWearList,
     getRating, getRange, dressInfo?.locationIdParams])
-  // <action ColorHex 
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
       <section className="w-full border-b border-searchBgColor ">
@@ -179,7 +166,7 @@ const ShoppingStoreOfficial = () => {
           filteredData={filteredData}
           toggleFilterLeftOpen={toggleFilterOpen}
           toggleFilterLeftClose={toggleFilterClose}
-          filterLeftAction={state?.filterToggle}
+          filterLeftAction={filterToggle}
         />
       </section>
       <section className="w-full flex items-center justify-center ">
@@ -192,29 +179,30 @@ const ShoppingStoreOfficial = () => {
             {/* <ShoppingStoreCategory filteredData={filteredData} /> */}
             <section className="w-[100%] h-fit">
               <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
-                {state?.filterToggle &&
-                  <div className="hidden md:block md:w-[22%] h-full ss:px-4 md:px-0 ">
-                    <FilterList
-                      paramsId={newId}
-                      genderId={genderId}
-                      discountId={discountId}
-                      categoryId={categoryId}
-                      getBadgePrice={getBadgePrice}
-                      setDataColor={setDataColor}
-                      dataColor={dataColor}
-                      getRatingList={getRatingList}
-                      outWearList={outWearList}
-                      underWearList={underWearList}
-                      footWearList={footWearList}
-                    />
-                  </div>}
-                {state?.filterToggle && <div
-                  className={`w-full h-[100vh] overflow-hidden overflow-y-auto  md:hidden fixed top-0 bottom-0 left-0 right-0 ${dressInfo?.openShopIdFilter ? " ml-[1px] " : " ml-[-1000px]"
-                    }   bg-white z-[105] duration-500`}
+                <div className={`${filterToggle ? "md:block" : "md:hidden"} hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}>
+                  <FilterList
+                    paramsId={newId}
+                    genderId={genderId}
+                    discountId={discountId}
+                    categoryId={categoryId}
+                    getBadgePrice={getBadgePrice}
+                    setDataColor={setDataColor}
+                    dataColor={dataColor}
+                    getRatingList={getRatingList}
+                    outWearList={outWearList}
+                    underWearList={underWearList}
+                    footWearList={footWearList}
+                  />
+                </div>
+                <div
+                  className={`w-full h-[100vh] overflow-hidden overflow-y-auto md:hidden   fixed top-0 bottom-0 left-0 right-0
+                   ${dressInfo?.openShopIdFilter ? " ml-[1px] " : " ml-[-1000px]"}
+                   ${filterToggle ? "" : "hidden"} 
+                    bg-white z-[105] duration-500`}
                 >
                   <FilterList paramsId={newId} />
-                </div>}
-                <div className={` ${state?.filterToggle ? 'md:w-[77%]' : "md:w-[100%]"} w-full h-full ss:px-4 md:px-0`}>
+                </div>
+                <div className={` ${filterToggle ? 'md:w-[77%]' : "md:w-[100%]"} w-full h-full ss:px-4 md:px-0`}>
                   {filteredData ?
                     <ShopOfficialCard
                       filteredData={filteredData}
