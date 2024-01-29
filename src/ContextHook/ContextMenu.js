@@ -45,6 +45,7 @@ export const DressMenu = ({ children }) => {
     mainSubRegionId: null,
     mainColorId: null,
     // ---------
+    offSet: 0,
 
     ProductList: [
       {

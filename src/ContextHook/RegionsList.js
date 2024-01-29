@@ -29,6 +29,7 @@ function RegionList({ onClick }) {
     setState({
       ...state, regionId: id, subRegionId: null,
     });
+
   }
   const accordionCityList = (id) => {
     console.log(id, "buqanday id");
@@ -46,14 +47,17 @@ function RegionList({ onClick }) {
       uniqueId: subRegId
 
     });
+
   }
   const sendRegions = () => {
     onClick()
     setDressInfo({
       ...dressInfo, mainRegionId: state?.regionId,
       mainSubRegionId: state?.subRegionId,
-      yandexOpenRegionList: false
+      yandexOpenRegionList: false,
+      offSet: 0
     })
+
   }
   const MenuClose = () => {
     setDressInfo({

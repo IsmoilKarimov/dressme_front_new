@@ -65,7 +65,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   }, [getMapsInfo?.budget]);
 
   useEffect(() => {
-    if (values && minPrice && maxPrice) {
+    if (values[0] && values[1] && minPrice && maxPrice) {
       if (minPrice !== values[0] || maxPrice !== values[1]) {
         setState({ ...state, clearPrice: true });
       }
@@ -93,7 +93,9 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
       Number(getMapsInfo?.budget?.min_price),
       Number(getMapsInfo?.budget?.max_price),
     ]);
-    setGetRange([]);
+    if (getRange[0] && getRange[1]) {
+      setGetRange([]);
+    }
   }, [dressInfo?.mainRegionId, dressInfo?.mainSubRegionId]);
 
   const sendPriceList = () => {
@@ -126,7 +128,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
                 name="name"
                 className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={Number(values[0]).toLocaleString()}
-                // onChange={(e) => setMaxPrice(e.target.value)}
+              // onChange={(e) => setMaxPrice(e.target.value)}
               />{" "}
               сум
             </span>
@@ -140,7 +142,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
                 name="name"
                 className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={Number(values[1]).toLocaleString()}
-                // onChange={(e) => setMaxPrice(e.target.value)}
+              // onChange={(e) => setMaxPrice(e.target.value)}
               />
               сум
             </span>
@@ -165,9 +167,8 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           />
         </div>
         <div
-          className={`flex items-center  mt-4 ${
-            state?.clearPrice ? "justify-between" : "justify-end"
-          }`}
+          className={`flex items-center  mt-4 ${state?.clearPrice ? "justify-between" : "justify-end"
+            }`}
         >
           {state?.clearPrice && (
             <span
@@ -321,12 +322,12 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }
-            // options={getMapsInfo?.categories?.map((item) => {
-            //   return {
-            //     value: item?.id,
-            //     label: item?.name_ru,
-            //   };
-            // })}
+          // options={getMapsInfo?.categories?.map((item) => {
+          //   return {
+          //     value: item?.id,
+          //     label: item?.name_ru,
+          //   };
+          // })}
           >
             {getMapsInfo?.categories?.map((item) => {
               return (
@@ -437,11 +438,10 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
                       >
                         <button
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${
-                            item?.action
-                              ? " bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-lg"
-                              : " bg-btnBgColor text-black"
-                          } px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  justify-center flex items-center`}
+                          className={`${item?.action
+                            ? " bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-lg"
+                            : " bg-btnBgColor text-black"
+                            } px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  justify-center flex items-center`}
                         >
                           {/* <img src={item?.anyIcons} alt="male" /> */}
                           <span>{item?.anyIcons}</span>

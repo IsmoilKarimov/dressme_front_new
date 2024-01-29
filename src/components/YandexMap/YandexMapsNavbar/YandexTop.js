@@ -121,26 +121,26 @@ const YandexTop = ({ onClick }) => {
           </span>
           <div className="w-full min-w-[90px] font-AeonikProMedium flex items-center text-[13px]">
             {data?.getMainProductCard?.regions?.filter((e) => e?.id === dressInfo?.mainRegionId)?.map((item) => {
-              console.log(
-                data?.getMainProductCard?.regions,
-                "data?.getMainProductCard?.regions"
+              // console.log(
+              //   data?.getMainProductCard?.regions,
+              //   "data?.getMainProductCard?.regions"
+              // );
+              // console.log(dressInfo?.mainRegionId, "dressInfo?.mainRegionId");
+              return (
+                <React.Fragment key={item?.id}>
+                  <span className="">{item?.name_ru}</span>
+                  {item?.sub_regions
+                    ?.filter((e) => e?.id === dressInfo?.mainSubRegionId)
+                    ?.map((data) => {
+                      return (
+                        <span key={data?.id} className="  ">
+                          , <span className=" ml-[1px]">{data?.name_ru}</span>
+                        </span>
+                      );
+                    })}
+                </React.Fragment>
               );
-              console.log(dressInfo?.mainRegionId, "dressInfo?.mainRegionId");
-                return (
-                  <React.Fragment key={item?.id}>
-                    <span className="">{item?.name_ru}</span>
-                    {item?.sub_regions
-                      ?.filter((e) => e?.id === dressInfo?.mainSubRegionId)
-                      ?.map((data) => {
-                        return (
-                          <span key={data?.id} className="  ">
-                            , <span className=" ml-[1px]">{data?.name_ru}</span>
-                          </span>
-                        );
-                      })}
-                  </React.Fragment>
-                );
-              })}
+            })}
           </div>
         </div>
 

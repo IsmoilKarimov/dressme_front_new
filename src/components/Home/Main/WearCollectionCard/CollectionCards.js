@@ -12,13 +12,12 @@ export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
   const [pagination, setPagination] = useState(30);
-  const [data, setData, wishList, setWishlist, offset, setOffset] =
+  const [data, setData, wishList, setWishlist,] =
     useContext(HomeMainDataContext);
 
   // -------------------------------------
   const toggle = React.useCallback(() => setOpenWearType(false), []);
-  // -------------------------------------
-
+  // ---------------log----------------------
   const url = "https://api.dressme.uz";
 
   // ------------GET METHOD Main data -----------------
@@ -74,14 +73,12 @@ export default function CollectionCards() {
       </section>
       <div
         onClick={() => setOpenWearType(false)}
-        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-          openWearType ? "" : "hidden"
-        }`}
+        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openWearType ? "" : "hidden"
+          }`}
       ></div>
       <section
-        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
-          openWearType ? "bottom-0" : "bottom-[-800px] z-0"
-        }`}
+        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openWearType ? "bottom-0" : "bottom-[-800px] z-0"
+          }`}
       >
         <WearType onClick={toggle} />
       </section>
@@ -136,7 +133,7 @@ export default function CollectionCards() {
           data?.getMainProductCard?.products?.length < pagination ? null : (
             <div className="w-full h-fit flex items-center justify-center mt-14">
               <button
-                type="button"
+                type="button" 
                 onClick={() => {
                   setPagination((prev) => prev + 30);
                   setOffset((prev) => prev + 30);
@@ -154,7 +151,8 @@ export default function CollectionCards() {
               type="button"
               onClick={() => {
                 setPagination((prev) => prev + 30);
-                setOffset((prev) => prev + 30);
+                setDressInfo({ ...dressInfo, offSet: dressInfo?.offSet + 30 })
+                // setOffset((prev) => prev + 30);
               }}
               // searchBgColor
               className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"

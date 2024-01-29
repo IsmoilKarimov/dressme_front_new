@@ -22,8 +22,7 @@ const { Option } = Select;
 
 function BottomHeader({ setSeasons }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [data, setData, , , offset, setOffset] =
-    useContext(HomeMainDataContext);
+  const [data, setData] = useContext(HomeMainDataContext);
 
   const [selectedId, setSelectedId] = useState(null);
   const [state, setState] = useState({
@@ -45,12 +44,8 @@ function BottomHeader({ setSeasons }) {
 
   const [colorSelectId, setColorSelectId] = useState([]);
   // console.log(colorSelectId, "colorSelectId");
-  const [minPrice, setMinPrice] = useState(
-    Number(state?.getAllCardList?.budget?.min_price)
-  );
-  const [maxPrice, setMaxPrice] = useState(
-    Number(state?.getAllCardList?.budget?.max_price)
-  );
+  const [minPrice, setMinPrice] = useState();
+  const [maxPrice, setMaxPrice] = useState();
   const [getRange, setGetRange] = useState([]);
   const [values, setValues] = useState([]);
 
@@ -72,13 +67,15 @@ function BottomHeader({ setSeasons }) {
     }
   }, [state?.getAllCardList?.budget]);
 
+
   useEffect(() => {
-    if (values && minPrice && maxPrice) {
+    if (values[0] && values[1] && minPrice && maxPrice) {
       if (minPrice !== values[0] || maxPrice !== values[1]) {
         setState({ ...state, clearPrice: true });
       }
     }
   }, [values]);
+
 
   const clearFunction = () => {
     setState({ ...state, clearPrice: false, openPrice: false });
@@ -89,6 +86,7 @@ function BottomHeader({ setSeasons }) {
     setGetRange([]);
   };
 
+
   const url = "https://api.dressme.uz/api/main";
 
   // ------------GET METHOD Main data -----------------\
@@ -97,7 +95,7 @@ function BottomHeader({ setSeasons }) {
   const fetchGetAllData = () => {
     var params = new URLSearchParams();
     params.append("limit", "30");
-    params.append("offset", offset);
+    params.append("offset", dressInfo?.offSet);
     dressInfo?.mainRegionId && params.append("region", dressInfo?.mainRegionId);
     dressInfo?.mainSubRegionId &&
       params.append("sub_region", dressInfo?.mainSubRegionId);
@@ -114,7 +112,7 @@ function BottomHeader({ setSeasons }) {
     fetch(`${url}?` + params)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setState({ ...state, getAllCardList: res });
         setSeasons(res);
         // console.log(res, "Medium");
@@ -123,7 +121,20 @@ function BottomHeader({ setSeasons }) {
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
-
+  useEffect(() => {
+    fetchGetAllData();
+    // setDressInfo({ ...dressInfo, offSet: 0 });
+  }, [
+    state?.categorySelectId,
+    colorSelectId,
+    getRange,
+    state?.genderSelectId,
+    dressInfo?.mainSearchName,
+    dressInfo?.mainRegionId,
+    dressInfo?.mainSubRegionId,
+    dressInfo?.offSet,
+    seasonId
+  ]);
   useEffect(() => {
     if (state?.showColour) {
       document.body.style.overflow = "hidden";
@@ -159,6 +170,8 @@ function BottomHeader({ setSeasons }) {
   const sendPriceList = () => {
     setGetRange(values);
   };
+
+
   const handleOpenChangePrice = (newOpen) => {
     setState({ ...state, openPrice: newOpen });
   };
@@ -186,7 +199,7 @@ function BottomHeader({ setSeasons }) {
                 name="name"
                 className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={Number(values[0]).toLocaleString()}
-                // onChange={(e) => setMaxPrice(e.target.value)}
+              // onChange={(e) => setMaxPrice(e.target.value)}
               />{" "}
               сум
             </span>
@@ -200,7 +213,7 @@ function BottomHeader({ setSeasons }) {
                 name="name"
                 className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={Number(values[1]).toLocaleString()}
-                // onChange={(e) => setMaxPrice(e.target.value)}
+              // onChange={(e) => setMaxPrice(e.target.value)}
               />
               сум
             </span>
@@ -225,9 +238,8 @@ function BottomHeader({ setSeasons }) {
           />
         </div>
         <div
-          className={`flex items-center  mt-4 ${
-            state?.clearPrice ? "justify-between" : "justify-end"
-          }`}
+          className={`flex items-center  mt-4 ${state?.clearPrice ? "justify-between" : "justify-end"
+            }`}
         >
           {state?.clearPrice && (
             <span
@@ -304,6 +316,7 @@ function BottomHeader({ setSeasons }) {
     // console.log("search:", value);
   };
   const handleFilterByUser = (fathId, childId) => {
+    setDressInfo({ ...dressInfo, offSet: 0 })
     if (childId === 0) {
       setState({ ...state, genderSelectId: "" });
     } else if (childId > 0) {
@@ -324,6 +337,8 @@ function BottomHeader({ setSeasons }) {
     });
   };
   const newColorArrayId = (hex, id) => {
+    setDressInfo({ ...dressInfo, offSet: 0 })
+
     if (!colorSelectId) {
       setColorSelectId(hex);
       setDressInfo({ ...dressInfo, mainColorId: id });
@@ -346,24 +361,14 @@ function BottomHeader({ setSeasons }) {
       Number(state?.getAllCardList?.budget?.min_price),
       Number(state?.getAllCardList?.budget?.max_price),
     ]);
-    setGetRange([]);
+    if (getRange[0] && getRange[1]) {
+      setGetRange([]);
+    }
   }, [dressInfo?.mainRegionId, dressInfo?.mainSubRegionId]);
 
-  useEffect(() => {
-    fetchGetAllData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    state?.categorySelectId,
-    colorSelectId,
-    getRange,
-    state?.genderSelectId,
-    dressInfo?.mainSearchName,
-    dressInfo?.mainRegionId,
-    dressInfo?.mainSubRegionId,
-    offset,
-    // seasonId
-  ]);
 
+
+  // console.log(dressInfo?.offSet, "dressInfo?.offSet,");
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
       <div
@@ -394,7 +399,7 @@ function BottomHeader({ setSeasons }) {
 
             <div className="py-4 gap-x-2 gap-y-4 grid gap-4 grid-cols-6">
               {state?.getAllCardList?.colors?.map((data) => {
-                console.log(data?.id, data?.hex, "55555555555555");
+                // console.log(data?.id, data?.hex, "55555555555555");
                 return (
                   <div
                     key={data?.id}
@@ -406,11 +411,10 @@ function BottomHeader({ setSeasons }) {
                         setSelectedId(data?.id);
                       }}
                       style={{ backgroundColor: data?.hex }}
-                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${
-                        data?.id === selectedId
-                          ? "border border-setTexOpacity flex items-center justify-center"
-                          : "border"
-                      } `}
+                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${data?.id === selectedId
+                        ? "border border-setTexOpacity flex items-center justify-center"
+                        : "border"
+                        } `}
                     >
                       {/* {selectedId === data?.id ? (
                         <InputCheckedTrueIcons
@@ -475,7 +479,10 @@ function BottomHeader({ setSeasons }) {
               </span>
             }
             optionFilterProp="children"
-            onChange={(e) => setState({ ...state, categorySelectId: e })}
+            onChange={(e) => {
+              setDressInfo({ ...dressInfo, offSet: 0 })
+              setState({ ...state, categorySelectId: e })
+            }}
             onSearch={onSearch}
             // suffixIcon={<></>}
             allowClear
@@ -566,9 +573,8 @@ function BottomHeader({ setSeasons }) {
 
           <article className="w-[480px] h-full overflow-hidden flex items-center justify-between">
             <div
-              className={`${
-                state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
-              } px-2 w-full duration-500  h-full flex items-center justify-between  `}
+              className={`${state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
+                } px-2 w-full duration-500  h-full flex items-center justify-between  `}
             >
               {state?.getAllCardList?.colors?.map((data, i) => {
                 if (i > 11) {
@@ -586,9 +592,8 @@ function BottomHeader({ setSeasons }) {
                         }}
                         style={{ backgroundColor: data?.hex }}
                         // onClick={() => colorIdPushContext(data?.id)}
-                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
-                          !state?.textToColor && "border"
-                        }  border-borderColorCard	`}
+                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${!state?.textToColor && "border"
+                          }  border-borderColorCard	`}
                       >
                         {/* {colorSelectId.includes(data?.hex) && (
                           <span>
@@ -637,9 +642,8 @@ function BottomHeader({ setSeasons }) {
               </button>
             </div>
             <p
-              className={`${
-                state?.textToColor ? " mr-0" : " mr-[-500px]"
-              } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
+              className={`${state?.textToColor ? " mr-0" : " mr-[-500px]"
+                } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
             >
               Не давай своей гардеробной шкафной жизни стать скучной.
             </p>
@@ -664,11 +668,10 @@ function BottomHeader({ setSeasons }) {
                       >
                         <button
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${
-                            item?.action
-                              ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
-                              : " bg-btnBgColor text-black h-full"
-                          } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
+                          className={`${item?.action
+                            ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
+                            : " bg-btnBgColor text-black h-full"
+                            } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
                         >
                           <span>{item?.anyIcons}</span>
                           {item?.name && (
