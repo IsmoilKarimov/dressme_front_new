@@ -57,8 +57,8 @@ function GenderCheckFilter({ genderList, discount, onGenderGetValue, onDiscountG
     function ClearList() {
         setSelectedDiscount(null)
         setSelectedGender(null)
-        onDiscountGetValue()
-        onGenderGetValue()
+        onDiscountGetValue(null)
+        onGenderGetValue(null)
     }
 
     return (
