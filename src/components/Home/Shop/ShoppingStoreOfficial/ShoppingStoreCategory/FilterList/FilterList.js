@@ -3,11 +3,8 @@ import { useHttp } from "../../../../../../hook/useHttp";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
-import UnderwearCheckFilter from "./FilterItems/UnderwearCheckFilter";
-import OutwearCheckFilter from "./FilterItems/OutwearCheckFilter";
-import FootwearCheckFilter from "./FilterItems/FootwearCheckFilter";
+
 import SkeletonFilter from "../../SkeletonFilter/SkeletonFilter";
-import { getCloseIcon } from "antd/es/notification/PurePanel";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { ArrowTopIcons, StarIcons } from "../../../../../../assets/icons";
@@ -27,13 +24,12 @@ function FilterList({
     outWearList,
     underWearList,
     footWearList,
-    getRatingList
+    getRatingList,
 }) {
     const { request } = useHttp()
     const [dressInfo, setDressInfo] = useContext(dressMainData);
     const [getFilter, setGetFilter] = useState()
-    const [getColorList, setGetColorList] = useState([])
-    const [AllClearList, setAllClearList] = useState()
+
     // ------------------------
     const [genderToggle, setGenderToggle] = useState(false);
     const [genderNewList, setGenderNewList] = useState([]);
@@ -55,6 +51,21 @@ function FilterList({
     // ----Ratinf
     const [ratingToggle, setRatingToggle] = useState(false);
     const [selectedRating, setSelectedRating] = useState(null);
+    // ------OutWear
+    const [outwearData, setOutwearData] = useState(null);
+    const [visibleButtons, setVisibleButtons] = useState(12);
+    const [outwearToggle, setOutwearToggle] = useState(false);
+    const [dataActionOutwearSizes, setDataActionOutwearSizes] = useState();
+    // ----UnderWear
+    const [underwearData, setUnderwearData] = useState(null);
+    // const [visibleButtons, setVisibleButtons] = useState(12);
+    const [underwearToggle, setUnderwearToggle] = useState(false);
+    const [dataActionUnderwearSizes, setDataActionUnderwearSizes] = useState();
+    // -----FootWear
+    const [footwearData, setFootwearData] = useState(null);
+    // const [visibleButtons, setVisibleButtons] = useState(12);
+    const [footWearToggle, setFootWearToggle] = useState(false);
+    const [dataActionFootwearSizes, setDataActionFootwearSizes] = useState();
     const url = `https://api.dressme.uz/api/main`;
 
     const fetchData = async (customHeaders) => {
@@ -76,9 +87,10 @@ function FilterList({
         'Content-type': 'application/json; charset=UTF-8',
         "Authorization": `Bearer ${Cookies.get("DressmeUserToken")}`,    // Add other headers as needed
     };
+
     useQuery(['get_shop_filter'], () => fetchData(customHeaders), {
         onSuccess: (data) => {
-            console.log(data, "birinchi");
+            console.log(data, "BU filter status");
             if (data?.status === 200) {
                 setGetFilter(data?.data?.filter)
             }
@@ -95,21 +107,6 @@ function FilterList({
         keepPreviousData: true,
         refetchOnWindowFocus: false,
     });
-
-    // function onGenderGetValue(childData) { genderId(childData) }
-    // function onDiscountGetValue(childData) { discountId(childData) }
-    // function onCategoryGetValue(childData) { categoryId(childData) }
-    // function onBudgetGetValue(childData) { getBadgePrice(childData) }
-
-    // function onRatingGetValue(childData) { getRatingList(childData) }
-
-    function onUnderWearGetValue(childData) { underWearList(childData) }
-    function onOutWearGetValue(childData) { outWearList(childData) }
-    function onFootWearGetValue(childData) { footWearList(childData) }
-
-
-
-
 
     const [genderCategory, setGenderCategory] = useState([
         {
@@ -273,10 +270,88 @@ function FilterList({
         setSelectedRating(null)
         getRatingList(null)
     }
-    const ClearAll = () => {
-        // 0-----
+    // --------OutWear
 
-        // -------
+
+    useEffect(() => {
+        if (getFilter?.wear_sizes?.outwear) {
+            const transformedArray = Object?.entries(getFilter?.wear_sizes?.outwear).map(
+                ([size, details]) => ({ size, ...details })
+            );
+            setOutwearData(transformedArray);
+        }
+    }, [getFilter?.wear_sizes?.outwear]);
+
+    const onHandleOutWearList = (select) => {
+        setDataActionOutwearSizes(select)
+        outWearList(select)
+        // ---UnderWear
+        setDataActionUnderwearSizes()
+        underWearList()
+        // --FootWear
+        setDataActionFootwearSizes()
+        footWearList()
+    }
+    const ClearListOutWear = () => {
+        setDataActionOutwearSizes()
+        outWearList()
+    }
+    // -------UnderWear
+
+    useEffect(() => {
+        if (getFilter?.wear_sizes?.underwear) {
+            const transformedArray = Object?.entries(getFilter?.wear_sizes?.underwear).map(
+                ([size, details]) => ({ size, ...details })
+            );
+            setUnderwearData(transformedArray);
+        }
+    }, [getFilter?.wear_sizes?.underwear]);
+
+
+    const onHandleUnderWearList = (select) => {
+        setDataActionUnderwearSizes(select)
+        underWearList(select)
+        // --OutWear
+        setDataActionOutwearSizes()
+        outWearList()
+        // --FootWear
+        setDataActionFootwearSizes()
+        footWearList()
+
+    }
+    const ClearListUnderWear = () => {
+        setDataActionUnderwearSizes()
+        underWearList()
+    }
+
+    // --------FootWear-------
+
+    useEffect(() => {
+        if (getFilter?.wear_sizes?.footwear) {
+
+            const transformedArray = Object?.entries(getFilter?.wear_sizes?.footwear).map(
+                ([size, details]) => ({ size, ...details })
+            );
+            setFootwearData(transformedArray);
+        }
+    }, [getFilter?.wear_sizes?.footwear]);
+
+    const onHandleFootWearList = (select) => {
+        setDataActionFootwearSizes(select)
+        footWearList(select)
+        //---underWear
+        setDataActionUnderwearSizes()
+        underWearList()
+        // outWear
+        setDataActionOutwearSizes()
+        outWearList()
+    }
+    const ClearListFootWear = () => {
+        setDataActionFootwearSizes()
+        footWearList()
+    }
+
+    const ClearAll = () => {
         discountId(false)
         genderId(null)
         setSelectedDiscount(null)
@@ -300,7 +375,15 @@ function FilterList({
         underWearList(null)
         outWearList(null)
         footWearList(null)
-
+        // ---outWear
+        setDataActionOutwearSizes()
+        outWearList()
+        // ---underWear
+        setDataActionUnderwearSizes()
+        underWearList()
+        // ---OutWear
+        setDataActionFootwearSizes()
+        footWearList()
     }
     return (
         <div
@@ -310,6 +393,7 @@ function FilterList({
                 <div
                     className={` w-full flex-col items-center md:mb-[38px]`}
                 >
+                    {/* ------Пол---- */}
                     <div>
                         <article
                             className="w-full flex justify-between items-center"
@@ -373,7 +457,7 @@ function FilterList({
                             </div>
                         </article >
                     </div>
-
+                    {/* -----Категории---- */}
                     <div
                         className={` w-full flex-col items-center md:mb-[38px]`}
                     >
@@ -427,6 +511,7 @@ function FilterList({
                             </div>}
                         </section>
                     </div >
+                    {/* -----Budget---- */}
                     <div className={`  w-full h-fit md:mb-[10px]`} >
                         <article
                             className="w-full flex justify-between items-center md:pt-[12px]"
@@ -646,26 +731,314 @@ function FilterList({
                             </article>
                         </section>
                     </div >
+                    {/* ----OutWearList---- */}
+                    <div
+                        className={`w-full flex-col items-center mb-[38px]`}
+                    >
+                        <section className="w-full h-fit mt-[12px] ">
+                            <article
+                                className="w-full flex justify-between items-center "
+                            >
+                                <figure
+                                    onClick={() =>
+                                        setOutwearToggle(!outwearToggle)}
+                                    className="flex items-center cursor-pointer select-none"
+                                >
+                                    <figcaption className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+                                        Размер верхней одежды
+                                    </figcaption>
+                                    <p
+                                        className={`${outwearToggle ? "rotate-[180deg]" : ""
+                                            } duration-300 ml-1`}
+                                    >
+                                        <ArrowTopIcons colors={"#000"} />
+                                    </p>
+                                </figure>
+                            </article>
+                            <article
+                                className={`overflow-hidden ${outwearToggle ? "duration-300 h-0" : "duration-300 h-fit mt-5"
+                                    } duration-300`}
+                            >
+                                <figure
+                                    className={`w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2`}
+                                >
+                                    {outwearData?.slice(0, visibleButtons)?.map((outwear, index) => {
+                                        return (
+                                            <button
+                                                key={index + 1}
+                                                onClick={() => onHandleOutWearList(outwear)}
 
-                    <div className="w-full">
-                        <OutwearCheckFilter
-                            OutWearList={getFilter?.wear_sizes?.outwear}
-                            onOutWearGetValue={onOutWearGetValue}
+                                                className={`${outwear?.letter_size || outwear?.size ? "flex" : "hidden"
+                                                    } ${dataActionOutwearSizes === outwear
+                                                        ? "bg-fullBlue text-white"
+                                                        : ""
+                                                    } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
+                                            >
+                                                <div className="flex items-center">
+                                                    {outwear?.letter_size ? (
+                                                        <span>{outwear?.letter_size}</span>
+                                                    ) : (
+                                                        <span>{outwear?.size}</span>
+                                                    )}
+                                                    <span className="ml-1">({outwear?.amount})</span>
+                                                </div>
+                                            </button>
+                                        );
+                                    })}
 
-                        />
+                                    <div className={`w-full flex items-center  ${dataActionOutwearSizes ? "justify-between" : "justify-end"}`}>
+                                        {dataActionOutwearSizes &&
+                                            <div className="flex w-1/3 justify-start items-center">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => ClearListOutWear()}
+                                                    className={` flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                                                >
+                                                    Сбросить
+                                                </button>
+                                            </div>}
+                                        <div
+                                            className={`${outwearData?.length > 12 ? "flex" : "hidden"
+                                                } w-2/3 items-center justify-end`}
+                                        >
+                                            <button
+                                                type="button"
+                                                disabled={visibleButtons === 12}
+                                                onClick={() => {
+                                                    setVisibleButtons((prev) => prev - 12);
+                                                }}
+                                                className={`${visibleButtons === 12
+                                                    ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                                                    : ""
+                                                    } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                                            >
+                                                Меньше
+                                            </button>
+
+                                            <button
+                                                type="button"
+                                                disabled={outwearData?.length <= visibleButtons}
+                                                onClick={() => {
+                                                    setVisibleButtons((prev) => prev + 12);
+                                                }}
+                                                className={`${outwearData?.length <= visibleButtons
+                                                    ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                                                    : ""
+                                                    } w-full flex justify-center text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                                            >
+                                                Больше
+                                            </button>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </article>
+                        </section>
                     </div>
-                    <div className="w-full">
-                        <UnderwearCheckFilter
-                            underWearList={getFilter?.wear_sizes?.underwear}
-                            onUnderWearGetValue={onUnderWearGetValue}
-                        />
+                    {/* ---underWearList--- */}
+                    <div
+                        className={` w-full flex flex-col items-center mb-[38px]`}
+                    >
+                        <section className="w-full h-fit mt-[12px] ">
+                            <article
+                                className="w-full flex justify-between items-center "
+                            >
+                                <figure
+                                    onClick={() =>
+                                        setUnderwearToggle(!underwearToggle)
+                                    }
+                                    className="flex items-center cursor-pointer select-none"
+                                >
+                                    <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+                                        Размер нижней одежды
+                                    </p>
+                                    <p
+                                        className={`${underwearToggle ? "rotate-[180deg]" : ""
+                                            } duration-300 ml-1`}
+                                    >
+                                        <ArrowTopIcons colors={"#000"} />
+                                    </p>
+                                </figure>
+                            </article>
+                            <article
+                                className={` overflow-hidden ${underwearToggle
+                                    ? "duration-300 h-0"
+                                    : "duration-300 h-fit mt-5"
+                                    } duration-300`}
+                            >
+                                <figure
+                                    className={`w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2`}
+                                >
+                                    {underwearData
+                                        ?.slice(0, visibleButtons)
+                                        ?.map((underwear, index) => {
+                                            return (
+                                                <button
+                                                    key={index + 1}
+                                                    onClick={() => onHandleUnderWearList(underwear)}
+                                                    className={`${underwear?.letter_size || underwear?.size
+                                                        ? "flex"
+                                                        : "hidden"
+                                                        } ${dataActionUnderwearSizes === underwear ? "bg-fullBlue text-white"
+                                                            : ""
+                                                        } h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`
+                                                    }
+                                                >
+                                                    <div className="flex items-center">
+                                                        {underwear?.letter_size ? (
+                                                            <span>{underwear?.letter_size}</span>
+                                                        ) : underwear?.max_wear_size ? (
+                                                            <span>
+                                                                {underwear?.min_wear_size}-{underwear?.max_wear_size}
+                                                            </span>
+                                                        ) : (
+                                                            <span>{underwear?.min_wear_size}</span>
+                                                        )}
+                                                        <span className="ml-1">({underwear?.amount})</span>
+                                                    </div>
+                                                </button>
+                                            );
+                                        })}
+                                    <div className={`w-full flex items-center ${dataActionUnderwearSizes ? "justify-between" : "justify-end"}`}>
+                                        {dataActionUnderwearSizes &&
+                                            <div className="flex w-1/3 justify-start items-center">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => ClearListUnderWear()}
+                                                    className={`flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                                                >
+                                                    Сбросить
+                                                </button>
+                                            </div>}
+                                        <div
+                                            className={`${underwearData?.length > 8 ? "flex" : "hidden"
+                                                } w-2/3 items-center justify-end`}
+                                        >
+                                            <button
+                                                type="button"
+                                                disabled={visibleButtons === 12}
+                                                onClick={() => {
+                                                    setVisibleButtons((prev) => prev - 12);
+                                                }}
+                                                className={`${visibleButtons === 12
+                                                    ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                                                    : ""
+                                                    } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                                            >
+                                                Меньше
+                                            </button>
+                                            <button
+                                                type="button"
+                                                disabled={underwearData?.length <= visibleButtons}
+                                                onClick={() => {
+                                                    setVisibleButtons((prev) => prev + 12);
+                                                }}
+                                                className={`${underwearData?.length <= visibleButtons
+                                                    ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                                                    : ""
+                                                    } w-full flex-end justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                                            >
+                                                Больше
+                                            </button>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </article>
+                        </section>
+                    </div >
+
+                    {/* ----footWear--- */}
+                    <div
+                        className={`w-full flex flex-col items-center mb-[38px]`}
+                    >
+                        <section className="w-full h-fit mt-[12px] ">
+                            <article
+                                className="w-full flex justify-between items-center "
+                            >
+                                <figure
+                                    onClick={() => setFootWearToggle(!footWearToggle)}
+                                    className="flex items-center cursor-pointer select-none"
+                                >
+                                    <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+                                        Размер обуви
+                                    </p>
+                                    <p
+                                        className={`${footWearToggle ? "rotate-[180deg]" : ""
+                                            } duration-300 ml-1`}
+                                    >
+                                        <ArrowTopIcons colors={"#000"} />
+                                    </p>
+                                </figure>
+                            </article>
+                            <article
+                                className={` overflow-hidden ${footWearToggle ? "duration-300 h-0" : "duration-300 h-fit mt-5"
+                                    } duration-300`}
+                            >
+                                <figure className="w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2">
+                                    {footwearData?.slice(0, visibleButtons)?.map((footwear, index) => {
+                                        return (
+                                            <button
+                                                key={index + 1}
+                                                onClick={() => onHandleFootWearList(footwear)}
+                                                className={`${dataActionFootwearSizes === footwear
+                                                    ? "bg-fullBlue text-white"
+                                                    : ""
+                                                    } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory  hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
+                                            >
+                                                <div className="flex items-center">
+                                                    <span>{footwear?.size}</span>
+                                                    <span className="ml-1">({footwear?.amount})</span>
+                                                </div>
+                                            </button>
+                                        );
+                                    })}
+                                    <div className={`w-full flex items-center  ${dataActionFootwearSizes ? "justify-between" : "justify-end"}`}>
+                                        {dataActionFootwearSizes && <div className="flex w-1/3 justify-start items-center">
+                                            <button
+                                                type="button"
+                                                onClick={() => ClearListFootWear()}
+                                                className={` flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                                            >
+                                                Сбросить
+                                            </button>
+                                        </div>}
+                                        <div
+                                            className={`${footwearData?.length > 12 ? "flex" : "hidden"
+                                                } w-2/3 items-center justify-end`}
+                                        >
+                                            <button
+                                                type="button"
+                                                disabled={visibleButtons === 12}
+                                                onClick={() => {
+                                                    setVisibleButtons((prev) => prev - 12);
+                                                }}
+                                                className={`${visibleButtons === 12
+                                                    ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                                                    : ""
+                                                    } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                                            >
+                                                Меньше
+                                            </button>
+
+                                            <button
+                                                type="button"
+                                                disabled={footwearData?.length <= visibleButtons}
+                                                onClick={() => {
+                                                    setVisibleButtons((prev) => prev + 12);
+                                                }}
+                                                className={`${footwearData?.length <= visibleButtons
+                                                    ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                                                    : ""
+                                                    } w-full flex justify-center text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                                            >
+                                                Больше
+                                            </button>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </article>
+                        </section>
                     </div>
-                    <div className="w-full">
-                        <FootwearCheckFilter
-                            footWear={getFilter?.wear_sizes?.footwear}
-                            onFootWearGetValue={onFootWearGetValue}
-                        />
-                    </div>
+
                     <div className="w-full border-t border-searchBgColor py-5 px-3">
                         <button
                             type="button"

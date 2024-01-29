@@ -24,6 +24,7 @@ function BottomHeader({ setSeasons }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
 
+
   const [selectedId, setSelectedId] = useState(null);
   const [state, setState] = useState({
     openwear: false,
@@ -112,11 +113,16 @@ function BottomHeader({ setSeasons }) {
     fetch(`${url}?` + params)
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res);
+
         setState({ ...state, getAllCardList: res });
         setSeasons(res);
         // console.log(res, "Medium");
-        setData({ ...data, getMainProductCard: res });
+        setData({ getMainProductCard: res });
+        setProducts(() => {
+          return {
+            products: [...products?.products, ...res?.products],
+          };
+        });
         // setDressInfo({ ...dressInfo, mainCardProducts: res });
       })
       .catch((err) => console.log(err, "ERRORLIST"));

@@ -13,6 +13,7 @@ export default function CollectionCards() {
   const [openWearType, setOpenWearType] = useState(false);
   const [pagination, setPagination] = useState(30);
   const [data, setData, wishList, setWishlist,] =
+
     useContext(HomeMainDataContext);
 
   // -------------------------------------
@@ -106,22 +107,40 @@ export default function CollectionCards() {
 
         <div className="w-full flex flex-col box-border ">
           <article className="flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
-            {data?.getMainProductCard?.products?.length ? (
-              data?.getMainProductCard?.products
-                ?.slice(0, pagination)
-                .map((data) => {
-                  return (
-                    <CollectionCardItem
-                      key={data?.id}
-                      data={data}
-                      setOpenWearType={setOpenWearType}
-                      handleLeaveMouse={handleLeaveMouse}
-                      wishList={wishList}
-                      setWishlist={setWishlist}
-                      mainSelectedId={dressInfo?.mainColorId}
-                    />
-                  );
-                })
+            {/* {products?.products?.length ? (
+              products?.products?.slice(0, pagination).map((data) => {
+                return (
+                  <CollectionCardItem
+                    key={data?.id}
+                    data={data}
+                    setOpenWearType={setOpenWearType}
+                    handleLeaveMouse={handleLeaveMouse}
+                    wishList={wishList}
+                    setWishlist={setWishlist}
+                    mainSelectedId={dressInfo?.mainColorId}
+                  />
+                );
+              })
+            ) : (
+              <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[300px] ">
+                Ничего не найдено
+              </div>
+            )} */}
+
+            {products?.products?.length ? (
+              products?.products?.map((data) => {
+                return (
+                  <CollectionCardItem
+                    key={data?.id}
+                    data={data}
+                    setOpenWearType={setOpenWearType}
+                    handleLeaveMouse={handleLeaveMouse}
+                    wishList={wishList}
+                    setWishlist={setWishlist}
+                    mainSelectedId={dressInfo?.mainColorId}
+                  />
+                );
+              })
             ) : (
               <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[300px] ">
                 Ничего не найдено
