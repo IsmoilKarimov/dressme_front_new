@@ -725,62 +725,63 @@ const ProductDetails = ({ data }) => {
               <GrFormPrevious size={30} />
             ) : null}
           </button>
-          {/* <Slider
+          <Slider
             ref={slider}
             {...settings}
             slidesToShow={uniqueArray?.length}
             className="hidden md:flex md:w-[88%] h-[80px] items-center"
-          > */}
-          {selectedSize
-            ? uniqueArray?.map((data) => {
-                return (
-                  <div
-                    key={data?.id}
-                    className={`${
-                      data?.product_color_id === selectedSize?.product_color_id
-                        ? ""
-                        : "opacity-40"
-                    } `}
-                  >
+          >
+            {selectedSize
+              ? uniqueArray?.map((data) => {
+                  return (
                     <div
                       key={data?.id}
-                      className="!w-[64px] h-[72px] rounded-lg cursor-pointer  bg-black"
-                      onClick={() => {
-                        filterColorsOnSelect(data?.product_color_id);
-                        setcolorId(data?.product_color_id);
-                      }}
-                      style={{
-                        backgroundImage: `url("${data?.url_photo}")`,
-                        backgroundColor: "rgba(0,0,0,0.6)",
-                        backgroundPosition: "center center",
-                        backgroundSize: "cover",
-                        backgroundRepeat: "no-repeat",
-                      }}
-                    ></div>
-                  </div>
-                );
-              })
-            : uniqueArray?.map((data) => {
-                return (
-                  <div key={data?.id}>
-                    <div
-                      className="!w-[64px] h-[72px] rounded-lg cursor-pointer bg-black"
-                      onClick={() => {
-                        filterColorsOnSelect(data?.product_color_id);
-                        setcolorId(data?.product_color_id);
-                      }}
-                      style={{
-                        backgroundImage: `url("${data?.url_photo}")`,
-                        backgroundColor: "rgba(0,0,0,0.6)",
-                        backgroundPosition: "center center",
-                        backgroundSize: "cover",
-                        backgroundRepeat: "no-repeat",
-                      }}
-                    ></div>
-                  </div>
-                );
-              })}
-          {/* </Slider> */}
+                      className={`${
+                        data?.product_color_id ===
+                        selectedSize?.product_color_id
+                          ? ""
+                          : "opacity-40"
+                      } `}
+                    >
+                      <div
+                        key={data?.id}
+                        className="!w-[64px] h-[72px] rounded-lg cursor-pointer  bg-black"
+                        onClick={() => {
+                          filterColorsOnSelect(data?.product_color_id);
+                          setcolorId(data?.product_color_id);
+                        }}
+                        style={{
+                          backgroundImage: `url("${data?.url_photo}")`,
+                          backgroundColor: "rgba(0,0,0,0.6)",
+                          backgroundPosition: "center center",
+                          backgroundSize: "cover",
+                          backgroundRepeat: "no-repeat",
+                        }}
+                      ></div>
+                    </div>
+                  );
+                })
+              : uniqueArray?.map((data) => {
+                  return (
+                    <div key={data?.id}>
+                      <div
+                        className="!w-[64px] h-[72px] rounded-lg cursor-pointer bg-black"
+                        onClick={() => {
+                          filterColorsOnSelect(data?.product_color_id);
+                          setcolorId(data?.product_color_id);
+                        }}
+                        style={{
+                          backgroundImage: `url("${data?.url_photo}")`,
+                          backgroundColor: "rgba(0,0,0,0.6)",
+                          backgroundPosition: "center center",
+                          backgroundSize: "cover",
+                          backgroundRepeat: "no-repeat",
+                        }}
+                      ></div>
+                    </div>
+                  );
+                })}
+          </Slider>
           <button
             className="button mt-[-5px]"
             onClick={() => slider?.current?.slickNext()}
