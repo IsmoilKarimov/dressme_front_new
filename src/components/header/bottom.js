@@ -118,9 +118,9 @@ function BottomHeader({ setSeasons }) {
         setSeasons(res);
         // console.log(res, "Medium");
         setData({ getMainProductCard: res });
-        setProducts((prev) => {
+        setProducts(() => {
           return {
-            products: [...prev?.products, ...res?.products],
+            products: [...products?.products, ...res?.products],
           };
         });
         // setDressInfo({ ...dressInfo, mainCardProducts: res });
