@@ -22,7 +22,7 @@ const { Option } = Select;
 
 function BottomHeader({ setSeasons }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [data, setData, , , offset, setOffset] =
+  const [data, setData, , , offset, setOffset, products, setProducts] =
     useContext(HomeMainDataContext);
 
   const [selectedId, setSelectedId] = useState(null);
@@ -86,7 +86,7 @@ function BottomHeader({ setSeasons }) {
       Number(state?.getAllCardList?.budget?.min_price),
       Number(state?.getAllCardList?.budget?.max_price),
     ]);
-    setGetRange([]);
+    // setGetRange([]);
   };
 
   const url = "https://api.dressme.uz/api/main";
@@ -114,11 +114,16 @@ function BottomHeader({ setSeasons }) {
     fetch(`${url}?` + params)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        console.log(res, "resssssssssss");
         setState({ ...state, getAllCardList: res });
-        setSeasons(res);
+        setSeasons(res, "resssssssss");
         // console.log(res, "Medium");
-        setData({ ...data, getMainProductCard: res });
+        setData({ getMainProductCard: res });
+        setProducts((prev) => {
+          return {
+            products: [...prev?.products, ...res?.products],
+          };
+        });
         // setDressInfo({ ...dressInfo, mainCardProducts: res });
       })
       .catch((err) => console.log(err, "ERRORLIST"));
