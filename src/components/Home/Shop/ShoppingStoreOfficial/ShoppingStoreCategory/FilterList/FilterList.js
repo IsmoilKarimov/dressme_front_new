@@ -25,6 +25,7 @@ function FilterList({
     underWearList,
     footWearList,
     getRatingList,
+    setPageId
 }) {
     const { request } = useHttp()
     const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -164,6 +165,7 @@ function FilterList({
 
 
     function onHandleColorList(hexCode) {
+        setPageId(1)
         if (dataColor?.length === 0) {
             setDataColor(dataColor => [...dataColor, hexCode])
         }
