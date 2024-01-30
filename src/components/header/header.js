@@ -21,20 +21,16 @@ const Header = () => {
   })
 
   function getGender(childData) {
-    console.log(childData, "childData--header");
     setState({ ...state, genderSelectId: childData })
   }
   function getRangeList(childData) {
-    console.log(childData, "childData--getRangeList");
     setState({ ...state, getRangeData: childData })
   }
   function getCategoryList(childData) {
-    console.log(childData, "childData--getCategoryList");
     setState({ ...state, categorySelectId: childData })
   }
   function getColorList(childData) {
     setState({ ...state, colorSelectId: childData })
-    console.log(childData, "childData--getColorList");
   }
 
   // ----------------NavBar----------------
@@ -100,13 +96,14 @@ const Header = () => {
       .then((res) => res.json())
       .then((res) => {
         setState({ ...state, getAllCardList: res });
-        setData({ getMainProductCard: res });
+        setData({ ...data, getMainProductCard: res });
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
-  console.log(state, "childData,---statein header");
+  // console.log(state, "childData,---statein header");
   useEffect(() => {
     fetchGetAllData();
+    // console.log("is run");
   }, [
     state?.categorySelectId,
     state?.colorSelectId,

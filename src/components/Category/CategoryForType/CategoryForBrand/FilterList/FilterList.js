@@ -74,7 +74,6 @@ function FilterList({
             .then((res) => res.json())
             .then((res) => {
                 setGetFilter(res?.filter)
-                console.log("filter section tushdi");
             })
             .catch((err) => console.log(err, "ERRORLIST"));
     }
@@ -408,7 +407,7 @@ function FilterList({
                     className={` w-full flex-col items-center md:mb-[38px]`}
                 >
                     {/* ------Пол---- */}
-                    {getFilter?.gender_ids && <div>
+                    {getFilter?.gender_ids && <div className="md:mb-[38px]">
                         <article
                             className="w-full flex justify-between items-center"
                         >

@@ -41,7 +41,6 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
     genderSelectId: null,
     clearPrice: false,
   });
-  console.log(data?.getMainProductCard, "childData-data?.getMainProductCard-bottom");
   const [colorSelectId, setColorSelectId] = useState([]);
   // console.log(colorSelectId, "colorSelectId");
   const [minPrice, setMinPrice] = useState(
