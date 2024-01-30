@@ -145,15 +145,19 @@ export default function SignUp() {
     );
   };
 
-  const [timerDecrase, setTimerDecrase] = useState(60);
+  // const [timerDecrase, setTimerDecrase] = useState(60);
+
+  let timerDecrase = 60;
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (timerDecrase >= 1) {
-        setTimerDecrase((timerDecrase) => timerDecrase - 1);
+        // setTimerDecrase((timerDecrase) => timerDecrase - 1);
+        timerDecrase -= 1;
       }
     }, 1000);
     return () => clearInterval(interval);
-  }, [timerDecrase]);
+  }, []);
 
   const handleClick = () => {
     onSubmit();
