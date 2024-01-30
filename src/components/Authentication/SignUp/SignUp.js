@@ -110,7 +110,7 @@ export default function SignUp() {
               phoneNumber: "",
               email: "",
               gender_id: 1,
-              birth_date: null,
+              birth_date: "",
               password: "",
               password_confirmation: "",
               errorsGroup: "",
@@ -455,7 +455,7 @@ export default function SignUp() {
                   </div>
                 </div>
 
-                <div className="mb-4 text-[14px] font-AeonikProMedium">
+                <div className="mb-4 text-[14px] font-AeonikProRegular">
                   Дата рождения
                 </div>
 
