@@ -1,17 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-// import ShoppingStoreCategory from "./ShoppingStoreCategory/ShoppingStoreCategory";
 import ShoppingStoreOfficialBreadCrumb from "./ShoppingStoreOfficialBreadcrumb/ShoppingStoreOfficialBreadcrumb";
 import ShoppingStoreOfficialTop from "./ShoppingStoreOfficialTop/ShoppingStoreOfficialTop";
 import LocationOfYandex from "../../Products/SignleMainProducts/SingleProduct/Product_Detail/LocationOfYandex/LocationOfYandex";
 import ShowPageComment from "./ShowPageComment/ShowPageComment";
 import { GoBackIcon } from "../../../../assets/icons";
 import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { useHttp } from "../../../../hook/useHttp";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import ShopOfficialCard from "./ShoppingStoreCategory/ShopOfficialCards/ShopOfficialCard";
-// import ShopOfficialBrand from "./ShoppingStoreCategory/ShopOfficialBrand/ShopOfficialBrand";
 import FilterList from "./ShoppingStoreCategory/FilterList/FilterList";
 
 const ShoppingStoreOfficial = () => {

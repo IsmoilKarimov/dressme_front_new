@@ -74,7 +74,6 @@ function FilterList({
             .then((res) => res.json())
             .then((res) => {
                 setGetFilter(res?.filter)
-                console.log("category section tushdi");
             })
             .catch((err) => console.log(err, "ERRORLIST"));
     }

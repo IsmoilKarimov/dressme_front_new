@@ -2463,13 +2463,13 @@ const SortIcons = ({ colors }) => {
       fill="none"
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M3.04345 2C2.46738 2 2 2.47524 2 3.06027V3.6843C2 4.11765 2.16479 4.53439 2.45957 4.84785L5.69007 8.28288L5.69149 8.28072C6.31514 8.91919 6.66604 9.78228 6.66604 10.6822V13.7301C6.66604 13.9338 6.87913 14.0638 7.056 13.9677L8.8957 12.9653C9.17343 12.8136 9.34675 12.5189 9.34675 12.1989V10.6743C9.34675 9.77939 9.69267 8.91991 10.3106 8.28288L13.5411 4.84785C13.8352 4.53439 14 4.11765 14 3.6843V3.06027C14 2.47524 13.5333 2 12.9573 2H3.04345Z"
         stroke="black"
-        stroke-width="1.5"
+        strokeWidth="1.5"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -2959,7 +2959,7 @@ const SuccessIconsForMailGreen = () => {
     </svg>
   );
 };
-const UserMailIcon = ({}) => {
+const UserMailIcon = ({ }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -3603,7 +3603,7 @@ const HeartIcon = () => {
         stroke="black"
         strokeWidth="1.2"
         stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
