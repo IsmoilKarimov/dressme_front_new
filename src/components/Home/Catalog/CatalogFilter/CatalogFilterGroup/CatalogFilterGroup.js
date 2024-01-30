@@ -275,30 +275,7 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData, paramId }) => {
         // Location: reload()
       })
       .catch((err) => console.log(err, "ERRORLIST"));
-
-    //   const { refetch } = useQuery(
-    //     ["get-categry-infos"],
-    //     async () => {
-    //       return request({
-    //         url: `/main/category/${newId}?${params}`,
-    //         token: true,
-    //       });
-    //     },
-    //     {
-    //       onSuccess: (res) => {
-    //         console.log(res, "SUCCESS, GET USER PROFILE");
-    //         setFilter(res?.filter);
-    //         setFilterData(res);
-    //       },
-    //       onError: (err) => {
-    //         console.log(err, "THERE IS AN ERROR IN GET-USER-PROFILE");
-    //       },
-    //       keepPreviousData: true,
-    //       refetchOnWindowFocus: false,
-    //     }
-    //   );
   }
-  console.log(dressInfo?.mainRegionId, "dressInfo?.mainRegionId");
   useEffect(() => {
     fetchGetAllData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
