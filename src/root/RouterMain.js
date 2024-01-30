@@ -9,6 +9,7 @@ import SignUpSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import MobileAllComments from "../components/Home/Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/MobileComments";
 import { EditProfilePage } from "../components/Authentication/UserProfile/ProfileEditPage/EditPageProfile";
 import CatalogItems from "../components/Home/Catalog/CatalogFilter/CatalogItems";
+import LoadingNetwork from "../components/Loading/LoadingNetwork";
 
 // -------------------------------------
 const HomeIndex = React.lazy(() => import("../components/Home/Main"));
@@ -70,7 +71,7 @@ const RouterMain = () => {
             <Suspense
               fallback={
                 <div>
-                  <SkeletonHomeIndex />
+                  <LoadingNetwork />
                 </div>
               }
             >
@@ -85,7 +86,7 @@ const RouterMain = () => {
             <Suspense
               fallback={
                 <div>
-                  <LoadingFor />
+                  <LoadingNetwork />
                 </div>
               }
             >
@@ -99,7 +100,7 @@ const RouterMain = () => {
             <Suspense
               fallback={
                 <div>
-                  <SkeletonHomeIndex />
+                  <LoadingNetwork />
                 </div>
               }
             >
@@ -143,7 +144,7 @@ const RouterMain = () => {
             <Suspense
               fallback={
                 <div>
-                  <SkeletonHomeIndex />
+                  <LoadingNetwork />
                 </div>
               }
             >
@@ -165,7 +166,7 @@ const RouterMain = () => {
             <Suspense
               fallback={
                 <div>
-                  <SignUpSkeletonIndex />
+                  <LoadingNetwork />
                 </div>
               }
             >
@@ -184,7 +185,7 @@ const RouterMain = () => {
             <Suspense
               fallback={
                 <div>
-                  <SkeletonHomeIndex />
+                  <LoadingNetwork />
                 </div>
               }
             >
@@ -198,7 +199,7 @@ const RouterMain = () => {
             <Suspense
               fallback={
                 <div>
-                  <SkeletonHomeIndex />
+                  <LoadingNetwork />
                 </div>
               }
             >
@@ -212,7 +213,7 @@ const RouterMain = () => {
             <Suspense
               fallback={
                 <div>
-                  <SkeletonHomeIndex />
+                  <LoadingNetwork />
                 </div>
               }
             >
@@ -226,7 +227,7 @@ const RouterMain = () => {
             <Suspense
               fallback={
                 <div>
-                  <SignInSkeletonIndex />
+                  <LoadingNetwork />
                 </div>
               }
             >
@@ -241,7 +242,7 @@ const RouterMain = () => {
             <Suspense
               fallback={
                 <div>
-                  <SignInSkeletonIndex />
+                  <LoadingNetwork />
                 </div>
               }
             >
@@ -255,7 +256,7 @@ const RouterMain = () => {
             <Suspense
               fallback={
                 <div>
-                  <SignInSkeletonIndex />
+                  <LoadingNetwork />
                 </div>
               }
             >
@@ -270,7 +271,7 @@ const RouterMain = () => {
             <Suspense
               fallback={
                 <div>
-                  <SignInSkeletonIndex />
+                  <LoadingNetwork />
                 </div>
               }
             >
@@ -285,7 +286,7 @@ const RouterMain = () => {
             <Suspense
               fallback={
                 <div>
-                  <SignInSkeletonIndex />
+                  <LoadingNetwork />
                 </div>
               }
             >
@@ -296,19 +297,19 @@ const RouterMain = () => {
       </Routes>
 
       {locationWindow !== "/add_user_private_data" &&
-        locationWindow !== "/add_user_body_data" &&
-        locationWindow !== "/confirm_password" &&
-        locationWindow !== "/set_new_password" &&
-        locationWindow !== "/catalog" &&
-        locationWindow !== "/enter_password_validate" &&
-        locationWindow !== "/forget_password" &&
-        locationWindow !== "/sign_up" &&
-        locationWindow !== "/sign_in" &&
-        locationWindow !== "/src" &&
-        locationWindow !== "/allcomments" &&
-        locationWindow !== "/profile/settings" &&
-        locationWindow !== "/profile/edit" &&
-        locationWindow !== "/delivery-points" ? (
+      locationWindow !== "/add_user_body_data" &&
+      locationWindow !== "/confirm_password" &&
+      locationWindow !== "/set_new_password" &&
+      locationWindow !== "/catalog" &&
+      locationWindow !== "/enter_password_validate" &&
+      locationWindow !== "/forget_password" &&
+      locationWindow !== "/sign_up" &&
+      locationWindow !== "/sign_in" &&
+      locationWindow !== "/src" &&
+      locationWindow !== "/allcomments" &&
+      locationWindow !== "/profile/settings" &&
+      locationWindow !== "/profile/edit" &&
+      locationWindow !== "/delivery-points" ? (
         <Suspense fallback={<>Loading...</>}>
           <Footer />
         </Suspense>
