@@ -378,7 +378,7 @@ function FilterList({
                     className={` w-full flex-col items-center md:mb-[38px]`}
                 >
                     {/* ------Пол---- */}
-                    <div className=" md:mb-[38px]">
+                    {getFilter?.gender_ids && <div className=" md:mb-[38px]">
                         <article
                             className="w-full flex justify-between items-center"
                         >
@@ -440,10 +440,9 @@ function FilterList({
                                     </div> : null}
                             </div>
                         </article >
-                    </div>
-
+                    </div>}
                     {/* -----Budget---- */}
-                    <div className={`  w-full h-fit md:mb-[10px]`} >
+                    {getFilter?.budget?.length && <div className={`  w-full h-fit md:mb-[10px]`} >
                         <article
                             className="w-full flex justify-between items-center md:pt-[12px]"
                         >
@@ -522,10 +521,9 @@ function FilterList({
                                 </button>
                             </div>}
                         </article>
-                    </div >
-
+                    </div >}
                     {/* -----Color_------ */}
-                    <div className={`w-full flex items-center flex-col md:mb-[38px]`}>
+                    {getFilter?.colors && <div className={`w-full flex items-center flex-col md:mb-[38px]`}>
                         <section className="w-full h-fit ">
                             {/* Controls */}
                             <article
@@ -590,9 +588,9 @@ function FilterList({
                                     </button>}
                             </article>
                         </section>
-                    </div>
+                    </div>}
                     {/* ------rating------ */}
-                    <div className={` w-full flex-col items-center mb-[38px]`}>
+                    {getFilter?.ratings && <div className={` w-full flex-col items-center mb-[38px]`}>
                         <section className="w-full h-fit mt-[12px]">
                             <article
                                 className="w-full flex justify-between items-center"
@@ -661,7 +659,7 @@ function FilterList({
                                 </button>}
                             </article>
                         </section>
-                    </div >
+                    </div >}
                     {/* ----OutWearList---- */}
                     {getFilter?.wear_sizes?.outwear && <div
                         className={`w-full flex-col items-center mb-[38px]`}
@@ -766,7 +764,7 @@ function FilterList({
                         </section>
                     </div>}
                     {/* ---underWearList--- */}
-                    <div
+                    {getFilter?.wear_sizes?.underwear && <div
                         className={` w-full flex flex-col items-center mb-[38px]`}
                     >
                         <section className="w-full h-fit mt-[12px] ">
@@ -875,10 +873,9 @@ function FilterList({
                                 </figure>
                             </article>
                         </section>
-                    </div >
-
+                    </div >}
                     {/* ----footWear--- */}
-                    <div
+                    {getFilter?.wear_sizes?.footwear && <div
                         className={`w-full flex flex-col items-center mb-[38px]`}
                     >
                         <section className="w-full h-fit mt-[12px] ">
@@ -968,8 +965,7 @@ function FilterList({
                                 </figure>
                             </article>
                         </section>
-                    </div>
-
+                    </div>}
                     <div className="w-full border-t border-searchBgColor py-5 px-3">
                         <button
                             type="button"
