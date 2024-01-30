@@ -25,7 +25,7 @@ function FilterList({
     underWearList,
     footWearList,
     getRatingList,
-    filterToggle
+    filterToggle,
     setPageId
 
 }) {
