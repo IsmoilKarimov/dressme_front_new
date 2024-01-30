@@ -131,7 +131,8 @@ function CategoryForType() {
     getUnderWearList,
     getOutWearList,
     getFootWearList,
-    getRating, getRange,
+    getRating,
+    getRange,
   ])
   return (
     <main className="w-full h-full">
