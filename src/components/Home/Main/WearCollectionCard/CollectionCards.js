@@ -12,7 +12,7 @@ export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
   const [pagination, setPagination] = useState(30);
-  const [data, setData, wishList, setWishlist, offset, setOffset, products] =
+  const [data, setData, wishList, setWishlist] =
     useContext(HomeMainDataContext);
 
   // -------------------------------------
@@ -129,20 +129,22 @@ export default function CollectionCards() {
               </div>
             )} */}
 
-            {products?.products?.length ? (
-              products?.products?.map((data) => {
-                return (
-                  <CollectionCardItem
-                    key={data?.id}
-                    data={data}
-                    setOpenWearType={setOpenWearType}
-                    handleLeaveMouse={handleLeaveMouse}
-                    wishList={wishList}
-                    setWishlist={setWishlist}
-                    mainSelectedId={dressInfo?.mainColorId}
-                  />
-                );
-              })
+            {data?.getMainProductCard?.products?.length ? (
+              data?.getMainProductCard?.products
+                ?.slice(0, pagination)
+                ?.map((data) => {
+                  return (
+                    <CollectionCardItem
+                      key={data?.id}
+                      data={data}
+                      setOpenWearType={setOpenWearType}
+                      handleLeaveMouse={handleLeaveMouse}
+                      wishList={wishList}
+                      setWishlist={setWishlist}
+                      mainSelectedId={dressInfo?.mainColorId}
+                    />
+                  );
+                })
             ) : (
               <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[300px] ">
                 Ничего не найдено
@@ -150,14 +152,14 @@ export default function CollectionCards() {
             )}
           </article>
 
-          {/* {data?.getMainProductCard?.products?.length < 30 ||
+          {data?.getMainProductCard?.products?.length < 30 ||
           data?.getMainProductCard?.products?.length < pagination ? null : (
             <div className="w-full h-fit flex items-center justify-center mt-14">
               <button
                 type="button"
                 onClick={() => {
                   setPagination((prev) => prev + 30);
-                  setOffset((prev) => prev + 30);
+                  // setOffset((prev) => prev + 30);
                 }}
                 // searchBgColor
                 className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
@@ -165,9 +167,9 @@ export default function CollectionCards() {
                 Показать ещё
               </button>
             </div>
-          )} */}
+          )}
 
-          <div className="w-full h-fit flex items-center justify-center mt-14">
+          {/* <div className="w-full h-fit flex items-center justify-center mt-14">
             <button
               type="button"
               onClick={() => {
@@ -179,7 +181,7 @@ export default function CollectionCards() {
             >
               Показать ещё
             </button>
-          </div>
+          </div> */}
         </div>
       </section>
     </main>
