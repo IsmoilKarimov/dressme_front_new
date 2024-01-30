@@ -1,7 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import MainPageSliders from "./BrandTypeSlider/MainPageSliders";
 import CollectionCards from "./WearCollectionCard/CollectionCards";
+import LoadingNetwork from "../../Loading/LoadingNetwork";
+import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
+
 export default function HomeIndex() {
+  const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -9,8 +14,17 @@ export default function HomeIndex() {
   }, []);
   return (
     <main className="w-[100%] h-fit mt-[170px] ">
-      <MainPageSliders />
-      <CollectionCards />
+      {mainData?.loader ? (
+        <div className="w-full flex items-center justify-center">
+          <LoadingNetwork />
+        </div>
+      ) : (
+        <div>
+          <MainPageSliders />
+          <CollectionCards />
+        </div>
+      )}
+
       {/* <TypeSection /> */}
     </main>
   );

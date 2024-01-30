@@ -18,19 +18,19 @@ const Header = () => {
     colorSelectId: null,
     categorySelectId: null,
     getRangeData: [],
-  })
+  });
 
   function getGender(childData) {
-    setState({ ...state, genderSelectId: childData })
+    setState({ ...state, genderSelectId: childData });
   }
   function getRangeList(childData) {
-    setState({ ...state, getRangeData: childData })
+    setState({ ...state, getRangeData: childData });
   }
   function getCategoryList(childData) {
-    setState({ ...state, categorySelectId: childData })
+    setState({ ...state, categorySelectId: childData });
   }
   function getColorList(childData) {
-    setState({ ...state, colorSelectId: childData })
+    setState({ ...state, colorSelectId: childData });
   }
 
   // ----------------NavBar----------------
@@ -87,16 +87,19 @@ const Header = () => {
     state?.categorySelectId &&
       params.append("category", state?.categorySelectId);
     state?.genderSelectId && params.append("gender", state?.genderSelectId);
-    state?.colorSelectId?.length && params.append("color", state?.colorSelectId);
+    state?.colorSelectId?.length &&
+      params.append("color", state?.colorSelectId);
     seasonId !== 5 && params.append("season", seasonId);
-    state?.getRangeData[0] && params.append("budget[from]", state?.getRangeData[0]);
-    state?.getRangeData[1] && params.append("budget[to]", state?.getRangeData[1]);
+    state?.getRangeData[0] &&
+      params.append("budget[from]", state?.getRangeData[0]);
+    state?.getRangeData[1] &&
+      params.append("budget[to]", state?.getRangeData[1]);
 
     fetch(`${url}?` + params)
       .then((res) => res.json())
       .then((res) => {
         setState({ ...state, getAllCardList: res });
-        setData({ ...data, getMainProductCard: res });
+        setData({ ...data, getMainProductCard: res, loader: false });
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
@@ -119,36 +122,45 @@ const Header = () => {
       <section>
         {locationWindow !== "/delivery-points" ? (
           <div className="w-full">
-            <article className={`block md:hidden relative z-[100]
-              ${show
-                ? "visible duration-500 z-[25]"
-                : "visible duration-500 z-[25] translate-y-[-100%]"
+            <article
+              className={`block md:hidden relative z-[100]
+              ${
+                show
+                  ? "visible duration-500 z-[25]"
+                  : "visible duration-500 z-[25] translate-y-[-100%]"
               }`}
             >
               <MediumHeader />
             </article>
-            <article className={`fixed top-0  w-full bg-white block 
-              ${show
-                ? "visible duration-500 z-[25]"
-                : "visible duration-500 z-[25] translate-y-[-100%]"
-              }`
-            }
+            <article
+              className={`fixed top-0  w-full bg-white block
+              ${
+                show
+                  ? "visible duration-500 z-[25]"
+                  : "visible duration-500 z-[25] translate-y-[-100%]"
+              }`}
             >
               <TopHeader />
               <MediumHeader />
-              <div className={`${scrollPost > -530 ? "" : "h-0 overflow-hidden"} visible duration-500`}>
+              <div
+                className={`${
+                  scrollPost > -530 ? "" : "h-0 overflow-hidden"
+                } visible duration-500`}
+              >
                 <NavbarBottomIndex
                   getGender={getGender}
                   getRangeList={getRangeList}
                   getCategoryList={getCategoryList}
                   getColorList={getColorList}
                   getAllCardList={state?.getAllCardList}
-                /></div>
+                />
+              </div>
             </article>
-
           </div>
         ) : (
-          <div className={`fixed top-0 z-[150] w-full block md:hidden bg-transparent`}>
+          <div
+            className={`fixed top-0 z-[150] w-full block md:hidden bg-transparent`}
+          >
             {!dressInfo?.yandexFullScreen && (
               <article className="overflow-hidden">
                 <MediumHeader />
@@ -157,15 +169,19 @@ const Header = () => {
           </div>
         )}
 
-        <div className={`${locationWindow !== "/delivery-points"
-          ? "md:mt-[99px]"
-          : "mt-[0] h-0 overflow-hidden"
+        <div
+          className={`${
+            locationWindow !== "/delivery-points"
+              ? "md:mt-[99px]"
+              : "mt-[0] h-0 overflow-hidden"
           } `}
         >
           {!dressInfo?.yandexFullScreen && (
-            <article className={`fixed bottom-0 w-full bg-white ${show
-              ? "visible duration-500 z-[101]"
-              : "visible duration-500 z-[101] translate-y-[100%]"
+            <article
+              className={`fixed bottom-0 w-full bg-white ${
+                show
+                  ? "visible duration-500 z-[101]"
+                  : "visible duration-500 z-[101] translate-y-[100%]"
               } block md:hidden`}
             >
               <NavMenu />
