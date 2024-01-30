@@ -4,7 +4,6 @@ import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
-import CatalogFilterGroup from "./CatalogFilterGroup/CatalogFilterGroup";
 import CatalogTopFilter from "./CatalogTop/CatalogTopFilter";
 import FilterList from "./CatalogFilterGroup/FilterList/FilterList";
 import { SortIcons } from "../../../../assets/icons";
