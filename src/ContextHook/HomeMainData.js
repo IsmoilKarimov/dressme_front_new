@@ -8,6 +8,7 @@ export const HomeMainDataContext = createContext();
 export const HomeMainDataContextProvider = ({ children }) => {
   const [data, setData] = useState({
     getMainProductCard: [],
+    loader: true,
   });
 
   // const [products, setProducts] = useState({

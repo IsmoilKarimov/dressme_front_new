@@ -65,20 +65,7 @@ const RouterMain = () => {
     <Fragment>
       <Header />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Suspense
-              fallback={
-                <div>
-                  <LoadingNetwork />
-                </div>
-              }
-            >
-              <HomeIndex />
-            </Suspense>
-          }
-        />
+        <Route path="/" element={<HomeIndex />} />
 
         <Route
           path="/delivery-points"
