@@ -20,7 +20,7 @@ import { GrClose } from "react-icons/gr";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 const { Option } = Select;
 
-function BottomHeader({ setSeasons }) {
+function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
 
@@ -34,42 +34,42 @@ function BottomHeader({ setSeasons }) {
     selectPrice: "По бюджету",
     // --------
     showColour: false,
-    getAllCardList: null,
+    // data?.getMainProductCard: null,
 
     categorySelectId: null,
     colorSelectId: [],
     genderSelectId: null,
     clearPrice: false,
   });
-
+  console.log(data?.getMainProductCard, "childData-data?.getMainProductCard-bottom");
   const [colorSelectId, setColorSelectId] = useState([]);
   // console.log(colorSelectId, "colorSelectId");
   const [minPrice, setMinPrice] = useState(
-    Number(state?.getAllCardList?.budget?.min_price)
+    Number(data?.getMainProductCard?.budget?.min_price)
   );
   const [maxPrice, setMaxPrice] = useState(
-    Number(state?.getAllCardList?.budget?.max_price)
+    Number(data?.getMainProductCard?.budget?.max_price)
   );
   const [getRange, setGetRange] = useState([]);
   const [values, setValues] = useState([]);
 
   useEffect(() => {
-    setMinPrice(Number(state?.getAllCardList?.budget?.min_price));
-    setMaxPrice(Number(state?.getAllCardList?.budget?.max_price));
+    setMinPrice(Number(data?.getMainProductCard?.budget?.min_price));
+    setMaxPrice(Number(data?.getMainProductCard?.budget?.max_price));
     if (
-      state?.getAllCardList?.budget?.min_price &&
-      state?.getAllCardList?.budget?.max_price
+      data?.getMainProductCard?.budget?.min_price &&
+      data?.getMainProductCard?.budget?.max_price
     ) {
       if (!values[0] && !values[1]) {
         setValues([
-          Number(state?.getAllCardList?.budget?.min_price),
-          Number(state?.getAllCardList?.budget?.max_price),
+          Number(data?.getMainProductCard?.budget?.min_price),
+          Number(data?.getMainProductCard?.budget?.max_price),
         ]);
       }
     } else {
       setValues([0, 0]);
     }
-  }, [state?.getAllCardList?.budget]);
+  }, [data?.getMainProductCard?.budget]);
 
   useEffect(() => {
     if (values && minPrice && maxPrice) {
@@ -82,50 +82,14 @@ function BottomHeader({ setSeasons }) {
   const clearFunction = () => {
     setState({ ...state, clearPrice: false, openPrice: false });
     setValues([
-      Number(state?.getAllCardList?.budget?.min_price),
-      Number(state?.getAllCardList?.budget?.max_price),
+      Number(data?.getMainProductCard?.budget?.min_price),
+      Number(data?.getMainProductCard?.budget?.max_price),
     ]);
     setGetRange([]);
+    getRangeList([])
   };
 
-  const url = "https://api.dressme.uz/api/main";
 
-  // ------------GET METHOD Main data -----------------\
-  const typeFilter = String(dressInfo?.type)?.split("");
-  const seasonId = Number(typeFilter?.shift());
-  const fetchGetAllData = () => {
-    var params = new URLSearchParams();
-    // params.append("limit", "30");
-    // params.append("offset", offset);
-    dressInfo?.mainRegionId && params.append("region", dressInfo?.mainRegionId);
-    dressInfo?.mainSubRegionId &&
-      params.append("sub_region", dressInfo?.mainSubRegionId);
-    dressInfo?.mainSearchName &&
-      params.append("keywords", dressInfo?.mainSearchName);
-    state?.categorySelectId &&
-      params.append("category", state?.categorySelectId);
-    getRange[0] && params.append("budget[from]", getRange[0]);
-    getRange[1] && params.append("budget[to]", getRange[1]);
-    state?.genderSelectId && params.append("gender", state?.genderSelectId);
-    colorSelectId?.length && params.append("color", colorSelectId);
-    seasonId !== 5 && params.append("season", seasonId);
-
-    fetch(`${url}?` + params)
-      .then((res) => res.json())
-      .then((res) => {
-        setState({ ...state, getAllCardList: res });
-        setSeasons(res);
-        // console.log(res, "Medium");
-        setData({ getMainProductCard: res });
-        // setProducts(() => {
-        //   return {
-        //     products: [...products?.products, ...res?.products],
-        //   };
-        // });
-        // setDressInfo({ ...dressInfo, mainCardProducts: res });
-      })
-      .catch((err) => console.log(err, "ERRORLIST"));
-  };
 
   useEffect(() => {
     if (state?.showColour) {
@@ -161,6 +125,7 @@ function BottomHeader({ setSeasons }) {
   // ----------------------Price State Management----------------------
   const sendPriceList = () => {
     setGetRange(values);
+    getRangeList(values)
   };
   const handleOpenChangePrice = (newOpen) => {
     setState({ ...state, openPrice: newOpen });
@@ -189,7 +154,7 @@ function BottomHeader({ setSeasons }) {
                 name="name"
                 className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={Number(values[0]).toLocaleString()}
-                // onChange={(e) => setMaxPrice(e.target.value)}
+              // onChange={(e) => setMaxPrice(e.target.value)}
               />{" "}
               сум
             </span>
@@ -203,7 +168,7 @@ function BottomHeader({ setSeasons }) {
                 name="name"
                 className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={Number(values[1]).toLocaleString()}
-                // onChange={(e) => setMaxPrice(e.target.value)}
+              // onChange={(e) => setMaxPrice(e.target.value)}
               />
               сум
             </span>
@@ -228,9 +193,8 @@ function BottomHeader({ setSeasons }) {
           />
         </div>
         <div
-          className={`flex items-center  mt-4 ${
-            state?.clearPrice ? "justify-between" : "justify-end"
-          }`}
+          className={`flex items-center  mt-4 ${state?.clearPrice ? "justify-between" : "justify-end"
+            }`}
         >
           {state?.clearPrice && (
             <span
@@ -308,8 +272,10 @@ function BottomHeader({ setSeasons }) {
   };
   const handleFilterByUser = (fathId, childId) => {
     if (childId === 0) {
+      getGender("")
       setState({ ...state, genderSelectId: "" });
     } else if (childId > 0) {
+      getGender(childId)
       setState({ ...state, genderSelectId: childId });
     }
     setPersonItems((current) => {
@@ -328,14 +294,17 @@ function BottomHeader({ setSeasons }) {
   };
   const newColorArrayId = (hex, id) => {
     if (!colorSelectId) {
+      getColorList(hex)
       setColorSelectId(hex);
       setDressInfo({ ...dressInfo, mainColorId: id });
     }
     if (colorSelectId == hex) {
+      getColorList()
       setColorSelectId();
       setDressInfo({ ...dressInfo, mainColorId: null });
     }
     if (colorSelectId !== hex) {
+      getColorList(hex);
       setColorSelectId(hex);
       setDressInfo({ ...dressInfo, mainColorId: id });
     }
@@ -343,31 +312,19 @@ function BottomHeader({ setSeasons }) {
 
   useEffect(() => {
     setState({ ...state, clearPrice: false });
-    setMinPrice(Number(state?.getAllCardList?.budget?.min_price));
-    setMaxPrice(Number(state?.getAllCardList?.budget?.max_price));
+    setMinPrice(Number(data?.getMainProductCard?.budget?.min_price));
+    setMaxPrice(Number(data?.getMainProductCard?.budget?.max_price));
     setValues([
-      Number(state?.getAllCardList?.budget?.min_price),
-      Number(state?.getAllCardList?.budget?.max_price),
+      Number(data?.getMainProductCard?.budget?.min_price),
+      Number(data?.getMainProductCard?.budget?.max_price),
     ]);
     if (getRange[0] && getRange[1]) {
       setGetRange([]);
+      getRange([])
     }
   }, [dressInfo?.mainRegionId, dressInfo?.mainSubRegionId]);
 
-  useEffect(() => {
-    fetchGetAllData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    state?.categorySelectId,
-    colorSelectId,
-    getRange,
-    state?.genderSelectId,
-    dressInfo?.mainSearchName,
-    dressInfo?.mainRegionId,
-    dressInfo?.mainSubRegionId,
-    // offset,
-    seasonId,
-  ]);
+
 
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
@@ -398,7 +355,7 @@ function BottomHeader({ setSeasons }) {
             </div>
 
             <div className="py-4 gap-x-2 gap-y-4 grid gap-4 grid-cols-6">
-              {state?.getAllCardList?.colors?.map((data) => {
+              {data?.getMainProductCard?.colors?.map((data) => {
                 console.log(data?.id, data?.hex, "55555555555555");
                 return (
                   <div
@@ -411,11 +368,10 @@ function BottomHeader({ setSeasons }) {
                         setSelectedId(data?.id);
                       }}
                       style={{ backgroundColor: data?.hex }}
-                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${
-                        data?.id === selectedId
-                          ? "border border-setTexOpacity flex items-center justify-center"
-                          : "border"
-                      } `}
+                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${data?.id === selectedId
+                        ? "border border-setTexOpacity flex items-center justify-center"
+                        : "border"
+                        } `}
                     >
                       {/* {selectedId === data?.id ? (
                         <InputCheckedTrueIcons
@@ -480,7 +436,10 @@ function BottomHeader({ setSeasons }) {
               </span>
             }
             optionFilterProp="children"
-            onChange={(e) => setState({ ...state, categorySelectId: e })}
+            onChange={(e) => {
+              getCategoryList(e)
+              setState({ ...state, categorySelectId: e })
+            }}
             onSearch={onSearch}
             // suffixIcon={<></>}
             allowClear
@@ -489,7 +448,7 @@ function BottomHeader({ setSeasons }) {
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }
           >
-            {state?.getAllCardList?.categories?.map((item) => {
+            {data?.getMainProductCard?.categories?.map((item) => {
               return (
                 <Option key={item.id} value={item.id} label={item.name_ru}>
                   <Space>
@@ -571,11 +530,10 @@ function BottomHeader({ setSeasons }) {
 
           <article className="w-[480px] h-full overflow-hidden flex items-center justify-between">
             <div
-              className={`${
-                state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
-              } px-2 w-full duration-500  h-full flex items-center justify-between  `}
+              className={`${state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
+                } px-2 w-full duration-500  h-full flex items-center justify-between  `}
             >
-              {state?.getAllCardList?.colors?.map((data, i) => {
+              {data?.getMainProductCard?.colors?.map((data, i) => {
                 if (i > 11) {
                   return false;
                 } else {
@@ -591,9 +549,8 @@ function BottomHeader({ setSeasons }) {
                         }}
                         style={{ backgroundColor: data?.hex }}
                         // onClick={() => colorIdPushContext(data?.id)}
-                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
-                          !state?.textToColor && "border"
-                        }  border-borderColorCard	`}
+                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${!state?.textToColor && "border"
+                          }  border-borderColorCard	`}
                       >
                         {/* {colorSelectId.includes(data?.hex) && (
                           <span>
@@ -642,9 +599,8 @@ function BottomHeader({ setSeasons }) {
               </button>
             </div>
             <p
-              className={`${
-                state?.textToColor ? " mr-0" : " mr-[-500px]"
-              } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
+              className={`${state?.textToColor ? " mr-0" : " mr-[-500px]"
+                } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
             >
               Не давай своей гардеробной шкафной жизни стать скучной.
             </p>
@@ -669,11 +625,10 @@ function BottomHeader({ setSeasons }) {
                       >
                         <button
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${
-                            item?.action
-                              ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
-                              : " bg-btnBgColor text-black h-full"
-                          } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
+                          className={`${item?.action
+                            ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
+                            : " bg-btnBgColor text-black h-full"
+                            } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
                         >
                           <span>{item?.anyIcons}</span>
                           {item?.name && (
