@@ -5,7 +5,8 @@ import InputMask from "react-input-mask";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import { DatePicker, Space } from "antd";
+import { DatePicker, Popover, Space } from "antd";
+import { BiChevronUp } from "react-icons/bi";
 
 import {
   EmailIcons,
@@ -59,6 +60,91 @@ export default function SignUp() {
     gender_id: 1,
     birth_date: "",
   });
+
+  const formCalendar = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+    >
+      <path
+        d="M6.66699 1.6665V4.1665"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M13.333 1.6665V4.1665"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M2.91699 7.5752H17.0837"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M17.5 7.08317V14.1665C17.5 16.6665 16.25 18.3332 13.3333 18.3332H6.66667C3.75 18.3332 2.5 16.6665 2.5 14.1665V7.08317C2.5 4.58317 3.75 2.9165 6.66667 2.9165H13.3333C16.25 2.9165 17.5 4.58317 17.5 7.08317Z"
+        stroke="black"
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M13.0791 11.4167H13.0866"
+        stroke="black"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M13.0791 13.9167H13.0866"
+        stroke="black"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M9.99607 11.4167H10.0036"
+        stroke="black"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M9.99607 13.9167H10.0036"
+        stroke="black"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M6.91209 11.4167H6.91957"
+        stroke="black"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M6.91209 13.9167H6.91957"
+        stroke="black"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
 
   let data = state?.phoneNumber.split("-");
   let arr = data.join("");
@@ -163,6 +249,52 @@ export default function SignUp() {
     onSubmit();
     setLoading(true);
   };
+
+  // Date ----------------
+
+  // ----------------Month state management----------------------------
+  const [openMonth, setOpenMonth] = useState(false);
+
+  const handleOpenChangeWear = (newOpen) => {
+    setOpenMonth(newOpen);
+  };
+  const [selectMonth, setselectMonth] = useState("Месяц");
+  const handleMonthValue = (value) => {
+    setselectMonth(value);
+    setOpenMonth(false);
+  };
+
+  const monthList = [
+    { id: 1, type: "Январь" },
+    { id: 2, type: "Февраль" },
+    { id: 3, type: "Март" },
+    { id: 4, type: "Апрель" },
+    { id: 5, type: "Май" },
+    { id: 6, type: "Июнь" },
+    { id: 7, type: "Июль" },
+    { id: 8, type: "Август" },
+    { id: 9, type: "Сентябрь" },
+    { id: 10, type: "Октябрь" },
+    { id: 11, type: "Ноябрь" },
+    { id: 12, type: "Декабрь" },
+  ];
+  const contentMonth = (
+    <div className="w-[125px] h-44 overflow-auto scrollbar dark:scrollbarkdark categoryScroll">
+      {monthList.map((data) => {
+        return (
+          <p
+            key={data?.id}
+            onClick={() => {
+              handleMonthValue(data?.type);
+            }}
+            className={`w-full h-[30px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+          >
+            {data?.type}
+          </p>
+        );
+      })}
+    </div>
+  );
 
   return (
     <div className="mt-[80px] w-full">
@@ -296,25 +428,75 @@ export default function SignUp() {
                   )}
                 </div>
                 {/* Birth Registration Section */}
-                <div className="mb-4 mt-4 text-[14px] font-AeonikProRegular">
-                  Дата рождения
-                </div>
 
-                <div className="flex justify-center">
-                  <Space className="w-full" direction="vertical" size={25}>
-                    <DatePicker
-                      onChange={(d, g) => {
-                        setState({
-                          ...state,
-                          birth_date: g.split("/").join("-"),
-                        });
-                      }}
-                      className="w-full h-[50px]"
-                      defaultValue={dayjs("01-01-2015", dateFormatList[2])}
-                      format={dateFormatList}
-                    />
+                <label
+                  htmlFor="bdate"
+                  className="mb-[6px] font-AeonikProRegular text-sm"
+                >
+                  {" "}
+                  Дата рождения{" "}
+                </label>
+                
+                <div className="flex items-center justify-start border border-solid border-searchBgColor rounded-lg bg-btnBgColor mb-4 w-full">
+                  <span className="h-full w-[15%] py-[14px] border-r border-searchBgColor">
+                    <img src={formCalendar} alt="" className="mx-4" />
+                  </span>
+                  <input
+                    type="number"
+                    name="day"
+                    placeholder="День"
+                    id="day"
+                    className="w-[19%] h-12 flex items-center bg-btnBgColor font-AeonikProRegular text-[15px] px-[14px] border-r border-searchBgColor [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  />
+
+                  <Popover
+                    open={openMonth}
+                    onOpenChange={handleOpenChangeWear}
+                    className="w-[40%] px-[17px] h-12 bg-btnBgColor border-r flex items-center justify-between cursor-pointer select-none group"
+                    trigger="click"
+                    content={contentMonth}
+                  >
+                    <span className="not-italic font-AeonikProMedium text-center mt-1 text-sm leading-4 text-black">
+                      {selectMonth}
+                    </span>
+                    <span>
+                      <BiChevronUp
+                        size={20}
+                        style={{ color: "#c2c2c2" }}
+                        className={`${
+                          openMonth ? "rotate-[180deg]" : ""
+                        } duration-200`}
+                      />{" "}
+                    </span>
+                  </Popover>
+
+                  <Space
+                    className="w-[26%] cursor-pointer"
+                    direction="vertical"
+                    size={12}
+                    options={["Hide"]}
+                  >
+                    <div className="flex items-center">
+                      <span>
+                        <DatePicker
+                          className="font-AeonikProRegular text-base flex items-center"
+                          placeholder="Год"
+                          picker="year"
+                          bordered={false}
+                          suffixIcon
+                        />
+                      </span>
+                      <span>
+                        <BiChevronUp
+                          size={20}
+                          style={{ color: "#c2c2c2" }}
+                          className="mr-2"
+                        />{" "}
+                      </span>
+                    </div>
                   </Space>
                 </div>
+
                 {/* Number Registration Section */}
                 <div className="mt-4 w-full h-fit">
                   <div className="flex items-center font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
