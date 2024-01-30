@@ -97,7 +97,7 @@ const ShoppingStoreOfficial = () => {
   const url = `https://api.dressme.uz/api`;
   function fetchGetAllData() {
     let params = new URLSearchParams();
-    params.append("location_id", 1);
+    params.append("location_id", dressInfo?.locationIdParams);
     getGenderId && params.append("gender", getGenderId);
     discount && params.append("discount", discount);
     getCategory && params.append("category", getCategory);
@@ -191,17 +191,18 @@ const ShoppingStoreOfficial = () => {
                     outWearList={outWearList}
                     underWearList={underWearList}
                     footWearList={footWearList}
+                    filterToggle={filterToggle}
                     setPageId={setPageId}
                   />
                 </div>
-                <div
+                {/* <div
                   className={`w-full h-[100vh] overflow-hidden overflow-y-auto md:hidden   fixed top-0 bottom-0 left-0 right-0
                    ${dressInfo?.openShopIdFilter ? " ml-[1px] " : " ml-[-1000px]"}
                    ${filterToggle ? "" : "hidden"} 
                     bg-white z-[105] duration-500`}
                 >
                   <FilterList paramsId={newId} />
-                </div>
+                </div> */}
                 <div className={` ${filterToggle ? 'md:w-[77%]' : "md:w-[100%]"} w-full h-full ss:px-4 md:px-0`}>
                   {filteredData ?
                     <ShopOfficialCard

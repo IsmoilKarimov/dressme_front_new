@@ -86,20 +86,18 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
         <div className="w-[100%] h-fit flex flex-col">
           {/* Top section */}
           <div className="w-full flex flex-col border-[#F0F0F0]">
-            <figure className="w-full h-[240px] md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
-              {filteredData?.shop?.url_background_photo ?
-                <img
-                  className="w-full h-full object-contain"
-                  src={filteredData?.shop?.url_background_photo}
-                  alt="url_background_photo"
-                /> :
-                <div className="w-full h-full flex items-center justify-center">
-                  <NoImg />
-                </div>
-              }
+            {filteredData?.shop?.url_background_photo && <figure className="w-full h-[240px] md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
 
+              <img
+                className="w-full h-full object-contain"
+                src={filteredData?.shop?.url_background_photo}
+                alt="url_background_photo"
+              />
             </figure>
-            <div className="w-full md:h-[90px] mt-2 md:mt-0 h-fit flex flex-col md:flex-row items-center border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
+            }
+            <div className={`w-full md:h-[90px]   h-fit flex flex-col md:flex-row items-center border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0
+            ${filteredData?.shop?.url_background_photo ? "mt-2 md:mt-0" : "md:mt-10"}
+            `}>
               {/* 1 */}
               <div className="w-full md:w-[40%] flex h-[80px] md:h-fit items-center md:ml-[40px]">
                 <figure className="w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white overflow-hidden">
