@@ -195,6 +195,46 @@ export default function SignUp() {
                   </span>
                   !
                 </div>
+                {/* Gender Registration Section */}
+                <div className="flex gap-4 mb-4">
+                  <div
+                    onClick={() => {
+                      setState({ ...state, gender_id: 1 });
+                    }}
+                    className={`cursor-pointer flex items-center justify-center text-[14px] font-AeonikProMedium w-full h-[80px] rounded-lg border border-[#007DCA] bg-[#E5F2FA] ${
+                      state?.gender_id === 1
+                        ? "border-[#007DCA] text-[#007DCA] bg-[#E5F2FA]"
+                        : "border-[#F2F2F2] bg-[#FCFCFC]"
+                    }`}
+                  >
+                    <div className="flex flex-col items-center">
+                      <div className="w-[32px] h-[32px] flex items-center justify-center mb-2">
+                        <GenderManIcon />
+                      </div>
+                      <div>Мужчина</div>
+                    </div>
+                  </div>
+
+                  <div
+                    onClick={() => {
+                      setState({ ...state, gender_id: 2 });
+                    }}
+                    className={`cursor-pointer flex items-center justify-center text-[14px] font-AeonikProMedium w-full h-[80px] rounded-lg border border-[#007DCA] bg-[#E5F2FA] ${
+                      state?.gender_id === 2
+                        ? "border-[#007DCA]  text-[#007DCA] bg-[#E5F2FA]"
+                        : "border-[#F2F2F2]  bg-[#FCFCFC]"
+                    }`}
+                  >
+                    <div>
+                      <div className="flex flex-col items-center">
+                        <div className="w-[32px] h-[32px] flex items-center justify-center mb-2">
+                          <GenderFemaleIcon />
+                        </div>
+                        <div>Женщина</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 {/* Name Registration Section */}
                 <div className="mt-2 w-full h-fit">
                   <div className="flex items-center font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
@@ -254,6 +294,26 @@ export default function SignUp() {
                       {state?.errorsGroup?.errors?.surname}
                     </p>
                   )}
+                </div>
+                {/* Birth Registration Section */}
+                <div className="mb-4 mt-4 text-[14px] font-AeonikProRegular">
+                  Дата рождения
+                </div>
+
+                <div className="flex justify-center">
+                  <Space className="w-full" direction="vertical" size={25}>
+                    <DatePicker
+                      onChange={(d, g) => {
+                        setState({
+                          ...state,
+                          birth_date: g.split("/").join("-"),
+                        });
+                      }}
+                      className="w-full h-[50px]"
+                      defaultValue={dayjs("01-01-2015", dateFormatList[2])}
+                      format={dateFormatList}
+                    />
+                  </Space>
                 </div>
                 {/* Number Registration Section */}
                 <div className="mt-4 w-full h-fit">
@@ -413,66 +473,6 @@ export default function SignUp() {
                       {state?.errorsGroup?.errors?.password}
                     </p>
                   )}
-                </div>
-
-                <div className="mt-4 flex gap-4 mb-4">
-                  <div
-                    onClick={() => {
-                      setState({ ...state, gender_id: 1 });
-                    }}
-                    className={`cursor-pointer flex items-center justify-center text-[14px] font-AeonikProMedium w-full h-[80px] rounded-lg border border-[#007DCA] bg-[#E5F2FA] ${
-                      state?.gender_id === 1
-                        ? "border-[#007DCA] text-[#007DCA] bg-[#E5F2FA]"
-                        : "border-[#F2F2F2] bg-[#FCFCFC]"
-                    }`}
-                  >
-                    <div className="flex flex-col items-center">
-                      <div className="w-[32px] h-[32px] flex items-center justify-center mb-2">
-                        <GenderManIcon />
-                      </div>
-                      <div>Мужчина</div>
-                    </div>
-                  </div>
-
-                  <div
-                    onClick={() => {
-                      setState({ ...state, gender_id: 2 });
-                    }}
-                    className={`cursor-pointer flex items-center justify-center text-[14px] font-AeonikProMedium w-full h-[80px] rounded-lg border border-[#007DCA] bg-[#E5F2FA] ${
-                      state?.gender_id === 2
-                        ? "border-[#007DCA]  text-[#007DCA] bg-[#E5F2FA]"
-                        : "border-[#F2F2F2]  bg-[#FCFCFC]"
-                    }`}
-                  >
-                    <div>
-                      <div className="flex flex-col items-center">
-                        <div className="w-[32px] h-[32px] flex items-center justify-center mb-2">
-                          <GenderFemaleIcon />
-                        </div>
-                        <div>Женщина</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mb-4 text-[14px] font-AeonikProRegular">
-                  Дата рождения
-                </div>
-
-                <div className="flex justify-center">
-                  <Space className="w-full" direction="vertical" size={25}>
-                    <DatePicker
-                      onChange={(d, g) => {
-                        setState({
-                          ...state,
-                          birth_date: g.split("/").join("-"),
-                        });
-                      }}
-                      className="w-full h-[50px]"
-                      defaultValue={dayjs("01-01-2015", dateFormatList[2])}
-                      format={dateFormatList}
-                    />
-                  </Space>
                 </div>
 
                 {/* ----------- Email Verify Modal Start ----------- */}
