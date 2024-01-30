@@ -78,7 +78,7 @@ const ShoppingStoreOfficial = () => {
     setPageId(1)
   }
 
-  console.log(pageId, "pageId,");
+  // console.log(pageId, "pageId,");
   const clickButtons = {
     openTabComment,
     setOpenTabComment,
@@ -95,7 +95,6 @@ const ShoppingStoreOfficial = () => {
   const newId = id.replace(":", "");
 
   const url = `https://api.dressme.uz/api`;
-
   function fetchGetAllData() {
     let params = new URLSearchParams();
     params.append("location_id", 1);
@@ -108,17 +107,17 @@ const ShoppingStoreOfficial = () => {
     // OUTWEAR SIZES
     getOutWearList?.letter_size &&
       params.append("outwear_size[letter_size]", getOutWearList?.letter_size);
-    getOutWearList?.min_wear_size &&
+    !getOutWearList?.letter_size && getOutWearList?.min_wear_size &&
       params.append("outwear_size[min_wear_size]", getOutWearList?.min_wear_size);
-    getOutWearList?.max_wear_size &&
+    !getOutWearList?.letter_size && getOutWearList?.max_wear_size &&
       params.append("outwear_size[max_wear_size]", getOutWearList?.max_wear_size);
 
     // UNDERWEAR SIZES
     getUnderWearList?.letter_size &&
       params.append("underwear_size[letter_size]", getUnderWearList?.letter_size);
-    getUnderWearList?.min_wear_size &&
+    !getUnderWearList?.letter_size && getUnderWearList?.min_wear_size &&
       params.append("underwear_size[min_wear_size]", getUnderWearList?.min_wear_size);
-    getUnderWearList?.max_wear_size &&
+    !getUnderWearList?.letter_size && getUnderWearList?.max_wear_size &&
       params.append("underwear_size[max_wear_size]", getUnderWearList?.max_wear_size);
 
     pageId && params.append("page", pageId);
@@ -192,6 +191,7 @@ const ShoppingStoreOfficial = () => {
                     outWearList={outWearList}
                     underWearList={underWearList}
                     footWearList={footWearList}
+                    setPageId={setPageId}
                   />
                 </div>
                 <div
