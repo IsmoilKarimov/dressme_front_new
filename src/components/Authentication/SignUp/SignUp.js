@@ -3,6 +3,10 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import InputMask from "react-input-mask";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import { DatePicker, Space } from "antd";
+
 import {
   EmailIcons,
   MenuCloseIcons,
@@ -11,13 +15,29 @@ import {
   SircleNext,
   Star6Icon,
   SuccessIconsForMail,
+  GenderManIcon,
+  GenderFemaleIcon,
 } from "../../../assets/icons";
 import { UzbekFlag } from "../../../assets";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { ToastContainer, toast } from "react-toastify";
 import LoadingFor from "../../Loading/LoadingFor";
+import LoadingNetwork from "../../Loading/LoadingNetwork";
 
 export default function SignUp() {
+  const { RangePicker } = DatePicker;
+  const dateFormat = "DD-MM-YYYY";
+  const weekFormat = "MM/DD";
+  const monthFormat = "YYYY/MM";
+  dayjs.extend(customParseFormat);
+
+  const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY", "DD-MM-YYYY", "DD-MM-YY"];
+  const customFormat = (value) => `custom format: ${value.format(dateFormat)}`;
+  const customWeekStartEndFormat = (value) =>
+    `${dayjs(value).startOf("week").format(weekFormat)} ~ ${dayjs(value)
+      .endOf("week")
+      .format(weekFormat)}`;
+
   // const [phone, setPhone] = useState("");
   const url = "https://api.dressme.uz/api/user/register";
   const [dressInfo] = useContext(dressMainData);
@@ -36,6 +56,8 @@ export default function SignUp() {
     validateConfirm: true,
     requestPerson: true,
     openModalEmailMessage: false,
+    gender_id: 1,
+    birth_date: null,
   });
 
   let data = state?.phoneNumber.split("-");
@@ -63,6 +85,8 @@ export default function SignUp() {
         surname: state?.lastName,
         phone: sendPhoneNumber,
         email: state?.email,
+        gender_id: state?.gender_id,
+        birth_date: state?.birth_date,
         password: state?.password,
         password_confirmation: state?.password_confirmation,
       }),
@@ -85,6 +109,8 @@ export default function SignUp() {
               lastName: "",
               phoneNumber: "",
               email: "",
+              gender_id: 1,
+              birth_date: null,
               password: "",
               password_confirmation: "",
               errorsGroup: "",
@@ -130,15 +156,15 @@ export default function SignUp() {
   }, [timerDecrase]);
 
   const handleClick = () => {
-    return onSubmit();
-    // setLoading(true)
+    onSubmit();
+    setLoading(true);
   };
 
   return (
-    <div className="mt-[80px]">
+    <div className="mt-[80px] w-full">
       {loading ? (
-        <div>
-          <LoadingFor />
+        <div className="w-full flex justify-center">
+          <LoadingNetwork />
         </div>
       ) : (
         <div className="w-full h-full">
@@ -383,6 +409,66 @@ export default function SignUp() {
                       {state?.errorsGroup?.errors?.password}
                     </p>
                   )}
+                </div>
+
+                <div className="mt-4 flex gap-4 mb-4">
+                  <div
+                    onClick={() => {
+                      setState({ ...state, gender_id: 1 });
+                    }}
+                    className={`cursor-pointer flex items-center justify-center text-[14px] font-AeonikProMedium w-full h-[80px] rounded-lg border border-[#007DCA] bg-[#E5F2FA] ${
+                      state?.gender_id === 1
+                        ? "border-[#007DCA] text-[#007DCA] bg-[#E5F2FA]"
+                        : "border-[#F2F2F2] bg-[#FCFCFC]"
+                    }`}
+                  >
+                    <div className="flex flex-col items-center">
+                      <div className="w-[32px] h-[32px] flex items-center justify-center mb-2">
+                        <GenderManIcon />
+                      </div>
+                      <div>Мужчина</div>
+                    </div>
+                  </div>
+
+                  <div
+                    onClick={() => {
+                      setState({ ...state, gender_id: 2 });
+                    }}
+                    className={`cursor-pointer flex items-center justify-center text-[14px] font-AeonikProMedium w-full h-[80px] rounded-lg border border-[#007DCA] bg-[#E5F2FA] ${
+                      state?.gender_id === 2
+                        ? "border-[#007DCA]  text-[#007DCA] bg-[#E5F2FA]"
+                        : "border-[#F2F2F2]  bg-[#FCFCFC]"
+                    }`}
+                  >
+                    <div>
+                      <div className="flex flex-col items-center">
+                        <div className="w-[32px] h-[32px] flex items-center justify-center mb-2">
+                          <GenderFemaleIcon />
+                        </div>
+                        <div>Женщина</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mb-4 text-[14px] font-AeonikProMedium">
+                  Дата рождения
+                </div>
+
+                <div className="flex justify-center">
+                  <Space className="w-full" direction="vertical" size={25}>
+                    <DatePicker
+                      onChange={(d, g) => {
+                        setState({
+                          ...state,
+                          birth_date: g.split("/").join("-"),
+                        });
+                      }}
+                      className="w-full h-[50px]"
+                      defaultValue={dayjs("01-01-2015", dateFormatList[2])}
+                      format={dateFormatList}
+                    />
+                  </Space>
                 </div>
 
                 {/* ----------- Email Verify Modal Start ----------- */}
