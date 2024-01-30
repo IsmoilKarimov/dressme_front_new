@@ -57,7 +57,7 @@ export default function SignUp() {
     requestPerson: true,
     openModalEmailMessage: false,
     gender_id: 1,
-    birth_date: null,
+    birth_date: "",
   });
 
   let data = state?.phoneNumber.split("-");
