@@ -12,7 +12,7 @@ import {
   PersonPlusIcons,
   SircleNext,
 } from "../../assets/icons";
-function NavbarBottomIndex({setSeasons}) {
+function NavbarBottomIndex({ getGender, getRangeList, getCategoryList, getColorList, getAllCardList }) {
   const [dressInfo] = useContext(dressMainData);
 
   const location = useLocation();
@@ -21,6 +21,7 @@ function NavbarBottomIndex({setSeasons}) {
   useEffect(() => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
+
   // ss:w-full flex flex-col justify-center md:mt-[6px]
   return (
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border ">
@@ -122,7 +123,12 @@ function NavbarBottomIndex({setSeasons}) {
             ) : null}
             {locationWindow === "/" ? (
               <span className=" md:my-3">
-                <BottomHeader setSeasons={setSeasons}/>
+                <BottomHeader
+                  getGender={getGender}
+                  getRangeList={getRangeList}
+                  getCategoryList={getCategoryList}
+                  getColorList={getColorList}
+                />
               </span>
             ) : null}
             {locationWindow === "/categoriesType" ? (
