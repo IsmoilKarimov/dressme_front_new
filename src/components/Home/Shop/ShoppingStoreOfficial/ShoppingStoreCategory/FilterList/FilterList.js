@@ -72,11 +72,10 @@ function FilterList({
     const url = `https://api.dressme.uz/api/main`;
 
     function fetchGetAllData() {
-        fetch(`${url}/shops/filter/${paramsId}?location_id=${1}`)
+        fetch(`${url}/shops/filter/${paramsId}?location_id=${dressInfo?.locationIdParams}`)
             .then((res) => res.json())
             .then((res) => {
                 setGetFilter(res?.filter)
-                console.log("ishga tushdi");
             })
             .catch((err) => console.log(err, "ERRORLIST"));
     }
@@ -274,7 +273,7 @@ function FilterList({
         if (originalObject) {
             const transformed = Object.entries(originalObject).map(([key, value]) => ({
                 key: parseInt(key, 10),
-                value: value + 1,
+                value: value + 0,
             }));
             setTransformedArray(transformed)
         }

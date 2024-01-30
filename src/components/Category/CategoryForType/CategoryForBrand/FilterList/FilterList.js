@@ -74,7 +74,6 @@ function FilterList({
             .then((res) => res.json())
             .then((res) => {
                 setGetFilter(res?.filter)
-                console.log("filter section tushdi");
             })
             .catch((err) => console.log(err, "ERRORLIST"));
     }
@@ -270,7 +269,7 @@ function FilterList({
         if (originalObject) {
             const transformed = Object.entries(originalObject).map(([key, value]) => ({
                 key: parseInt(key, 10),
-                value: value + 1,
+                value: value + 0,
             }));
             setTransformedArray(transformed)
         }
@@ -408,7 +407,7 @@ function FilterList({
                     className={` w-full flex-col items-center md:mb-[38px]`}
                 >
                     {/* ------Пол---- */}
-                    {getFilter?.gender_ids && <div>
+                    {getFilter?.gender_ids && <div className="md:mb-[38px]">
                         <article
                             className="w-full flex justify-between items-center"
                         >

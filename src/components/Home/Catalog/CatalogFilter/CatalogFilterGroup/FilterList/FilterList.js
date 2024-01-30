@@ -74,7 +74,6 @@ function FilterList({
             .then((res) => res.json())
             .then((res) => {
                 setGetFilter(res?.filter)
-                console.log("category section tushdi");
             })
             .catch((err) => console.log(err, "ERRORLIST"));
     }
@@ -239,7 +238,7 @@ function FilterList({
         if (originalObject) {
             const transformed = Object.entries(originalObject).map(([key, value]) => ({
                 key: parseInt(key, 10),
-                value: value + 1,
+                value: value + 0,
             }));
             setTransformedArray(transformed)
         }

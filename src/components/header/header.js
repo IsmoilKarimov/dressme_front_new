@@ -6,12 +6,32 @@ import "./header.css";
 import { Outlet, useLocation } from "react-router-dom";
 import NavbarBottomIndex from "./NavbarBottomIndex";
 import { dressMainData } from "../../ContextHook/ContextMenu";
+import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 
 const Header = () => {
   const [dressInfo] = useContext(dressMainData);
-  const [seasonsData, setSeasons] = useState()
+  const [data, setData] = useContext(HomeMainDataContext);
 
-  // console.log(seasonsData?.seasons, 'seasons-res');
+  const [state, setState] = useState({
+    getAllCardList: null,
+    genderSelectId: null,
+    colorSelectId: null,
+    categorySelectId: null,
+    getRangeData: [],
+  })
+
+  function getGender(childData) {
+    setState({ ...state, genderSelectId: childData })
+  }
+  function getRangeList(childData) {
+    setState({ ...state, getRangeData: childData })
+  }
+  function getCategoryList(childData) {
+    setState({ ...state, categorySelectId: childData })
+  }
+  function getColorList(childData) {
+    setState({ ...state, colorSelectId: childData })
+  }
 
   // ----------------NavBar----------------
   const [show, setShow] = useState(true);
@@ -51,6 +71,49 @@ const Header = () => {
   useEffect(() => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
+
+  const url = "https://api.dressme.uz/api/main";
+
+  // ------------GET METHOD Main data -----------------\
+  const typeFilter = String(dressInfo?.type)?.split("");
+  const seasonId = Number(typeFilter?.shift());
+  const fetchGetAllData = () => {
+    var params = new URLSearchParams();
+    dressInfo?.mainRegionId && params.append("region", dressInfo?.mainRegionId);
+    dressInfo?.mainSubRegionId &&
+      params.append("sub_region", dressInfo?.mainSubRegionId);
+    dressInfo?.mainSearchName &&
+      params.append("keywords", dressInfo?.mainSearchName);
+    state?.categorySelectId &&
+      params.append("category", state?.categorySelectId);
+    state?.genderSelectId && params.append("gender", state?.genderSelectId);
+    state?.colorSelectId?.length && params.append("color", state?.colorSelectId);
+    seasonId !== 5 && params.append("season", seasonId);
+    state?.getRangeData[0] && params.append("budget[from]", state?.getRangeData[0]);
+    state?.getRangeData[1] && params.append("budget[to]", state?.getRangeData[1]);
+
+    fetch(`${url}?` + params)
+      .then((res) => res.json())
+      .then((res) => {
+        setState({ ...state, getAllCardList: res });
+        setData({ ...data, getMainProductCard: res });
+      })
+      .catch((err) => console.log(err, "ERRORLIST"));
+  };
+  // console.log(state, "childData,---statein header");
+  useEffect(() => {
+    fetchGetAllData();
+    // console.log("is run");
+  }, [
+    state?.categorySelectId,
+    state?.colorSelectId,
+    state?.getRangeData,
+    state?.genderSelectId,
+    dressInfo?.mainSearchName,
+    dressInfo?.mainRegionId,
+    dressInfo?.mainSubRegionId,
+    seasonId,
+  ]);
   return (
     <header>
       <section>
@@ -72,8 +135,15 @@ const Header = () => {
             }
             >
               <TopHeader />
-              <MediumHeader seasonsData={seasonsData} />
-              <div className={`${scrollPost > -530 ? "" : "h-0 overflow-hidden"} visible duration-500`}> <NavbarBottomIndex setSeasons={setSeasons} /></div>
+              <MediumHeader />
+              <div className={`${scrollPost > -530 ? "" : "h-0 overflow-hidden"} visible duration-500`}>
+                <NavbarBottomIndex
+                  getGender={getGender}
+                  getRangeList={getRangeList}
+                  getCategoryList={getCategoryList}
+                  getColorList={getColorList}
+                  getAllCardList={state?.getAllCardList}
+                /></div>
             </article>
 
           </div>
