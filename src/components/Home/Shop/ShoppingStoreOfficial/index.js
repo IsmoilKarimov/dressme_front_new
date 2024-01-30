@@ -97,7 +97,7 @@ const ShoppingStoreOfficial = () => {
   const url = `https://api.dressme.uz/api`;
   function fetchGetAllData() {
     let params = new URLSearchParams();
-    params.append("location_id", 1);
+    params.append("location_id", dressInfo?.locationIdParams);
     getGenderId && params.append("gender", getGenderId);
     discount && params.append("discount", discount);
     getCategory && params.append("category", getCategory);

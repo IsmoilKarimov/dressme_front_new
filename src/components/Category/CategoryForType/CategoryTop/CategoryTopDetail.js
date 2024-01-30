@@ -59,7 +59,7 @@ const CategoryTopDetail = ({ filterData, toggleFilterLeftOpen,
   const handleCategories = (value, id) => {
     setState({ ...state, opensports: false });
     // setSelectedSection({ value, id });
-    navigate(`/section/${id}`);
+    navigate(`/section/:${id}`);
   };
 
   const contentCategories = (
@@ -70,7 +70,7 @@ const CategoryTopDetail = ({ filterData, toggleFilterLeftOpen,
             key={data?.id}
             onClick={() => {
               handleCategories(data?.name_ru, data?.id);
-              window.location.reload();
+              // window.location.reload();
             }}
             className={`${filterData?.section?.id === data?.id ? "bg-bgColor" : null
               } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
