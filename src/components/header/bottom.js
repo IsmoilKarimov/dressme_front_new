@@ -22,8 +22,7 @@ const { Option } = Select;
 
 function BottomHeader({ setSeasons }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [data, setData, , , offset, setOffset, products, setProducts] =
-    useContext(HomeMainDataContext);
+  const [data, setData] = useContext(HomeMainDataContext);
 
   const [selectedId, setSelectedId] = useState(null);
   const [state, setState] = useState({
@@ -96,8 +95,8 @@ function BottomHeader({ setSeasons }) {
   const seasonId = Number(typeFilter?.shift());
   const fetchGetAllData = () => {
     var params = new URLSearchParams();
-    params.append("limit", "30");
-    params.append("offset", offset);
+    // params.append("limit", "30");
+    // params.append("offset", offset);
     dressInfo?.mainRegionId && params.append("region", dressInfo?.mainRegionId);
     dressInfo?.mainSubRegionId &&
       params.append("sub_region", dressInfo?.mainSubRegionId);
@@ -118,11 +117,11 @@ function BottomHeader({ setSeasons }) {
         setSeasons(res);
         // console.log(res, "Medium");
         setData({ getMainProductCard: res });
-        setProducts(() => {
-          return {
-            products: [...products?.products, ...res?.products],
-          };
-        });
+        // setProducts(() => {
+        //   return {
+        //     products: [...products?.products, ...res?.products],
+        //   };
+        // });
         // setDressInfo({ ...dressInfo, mainCardProducts: res });
       })
       .catch((err) => console.log(err, "ERRORLIST"));
@@ -350,7 +349,9 @@ function BottomHeader({ setSeasons }) {
       Number(state?.getAllCardList?.budget?.min_price),
       Number(state?.getAllCardList?.budget?.max_price),
     ]);
-    setGetRange([]);
+    if (getRange[0] && getRange[1]) {
+      setGetRange([]);
+    }
   }, [dressInfo?.mainRegionId, dressInfo?.mainSubRegionId]);
 
   useEffect(() => {
@@ -364,8 +365,8 @@ function BottomHeader({ setSeasons }) {
     dressInfo?.mainSearchName,
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
-    offset,
-    // seasonId
+    // offset,
+    seasonId,
   ]);
 
   return (
