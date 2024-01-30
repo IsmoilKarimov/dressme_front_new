@@ -1,13 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useHttp } from "../../../../../../hook/useHttp";
+import { useHttp } from "../../../../../hook/useHttp";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
+import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 
 import SkeletonFilter from "../../SkeletonFilter/SkeletonFilter";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { ArrowTopIcons, StarIcons } from "../../../../../../assets/icons";
+import { ArrowTopIcons, StarIcons } from "../../../../../assets/icons";
 import { BiCheck } from "react-icons/bi";
 import { BsCheckLg } from "react-icons/bs";
 
@@ -25,9 +25,7 @@ function FilterList({
     underWearList,
     footWearList,
     getRatingList,
-    filterToggle,
-    setPageId
-
+    filterToggle
 }) {
     const { request } = useHttp()
     const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -72,11 +70,11 @@ function FilterList({
     const url = `https://api.dressme.uz/api/main`;
 
     function fetchGetAllData() {
-        fetch(`${url}/shops/filter/${paramsId}?location_id=${1}`)
+        fetch(`${url}/section-filter/${paramsId}?region=${dressInfo?.mainRegionId}`)
             .then((res) => res.json())
             .then((res) => {
                 setGetFilter(res?.filter)
-                console.log("ishga tushdi");
+                console.log("filter section tushdi");
             })
             .catch((err) => console.log(err, "ERRORLIST"));
     }
@@ -84,7 +82,7 @@ function FilterList({
         if (filterToggle && !getFilter) {
             fetchGetAllData()
         }
-    }, [filterToggle])
+    }, [filterToggle, dressInfo?.mainRegionId])
     // const fetchData = async (customHeaders) => {
     //     try {
     //         const response = await axios.get(`${url}/shops/filter/${paramsId}?location_id=${1}`, {
@@ -161,7 +159,6 @@ function FilterList({
                 }
             })
         })
-
     }, [getFilter?.gender_ids])
 
     const handleGenderCheck = (value) => {
@@ -181,7 +178,6 @@ function FilterList({
 
 
     function onHandleColorList(hexCode) {
-        setPageId(1)
         if (dataColor?.length === 0) {
             setDataColor(dataColor => [...dataColor, hexCode])
         }

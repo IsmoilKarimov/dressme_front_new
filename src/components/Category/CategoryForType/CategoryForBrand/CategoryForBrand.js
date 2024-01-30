@@ -11,7 +11,7 @@ import SectionOutwearSizesFilter from "./FiilterForApi/SectionOutwearSizesFilter
 import SectionCustomerReviewsFilter from "./FiilterForApi/SectionCustomerReviewsFilter";
 import SectionColorsFilter from "./FiilterForApi/SectionColorsFilter";
 
-const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
+const CategoryForBrand = ({ pageId, filterData }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [genderId, setGenderId] = useState();
@@ -266,13 +266,13 @@ const CategoryForBrand = ({ setFilterData, pageId, filterData }) => {
       .then((res) => res.json())
       .then((res) => {
         setFilter(res?.filter);
-        setFilterData(res);
+        // setFilterData(res);
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   }
 
   useEffect(() => {
-    fetchGetAllData();
+    // fetchGetAllData();
     console.log('test');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
