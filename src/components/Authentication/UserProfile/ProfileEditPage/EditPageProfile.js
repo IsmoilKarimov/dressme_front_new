@@ -18,6 +18,7 @@ import { useHttp } from "../../../../hook/useHttp";
 import LoadingFor from "../../../Loading/LoadingFor";
 import EmailSend from "./EmailSend/EmailSend";
 import Cookies from "js-cookie";
+import { Popover, Space } from "antd";
 
 const EditProfilePage = () => {
   const { request } = useHttp();
@@ -34,11 +35,14 @@ const EditProfilePage = () => {
     userFirstnameForEdit: "",
     userPhoneNumberForEdit: "",
     userEmail: "",
+    gender_id: "",
     errorsGroup: null,
     activeEditPassword: false,
     activeEditEmail: false,
     openModalEmailMessage: false,
   });
+
+  console.log(state, "dddddddddd");
 
   // =====================
   const togglePassword = React.useCallback(
@@ -65,6 +69,7 @@ const EditProfilePage = () => {
           userFirstname: res?.name,
           userLastname: res?.surname,
           userEmail: res?.email,
+          gender_id: res?.gender_id,
           userPhoneCode: res?.phone && res?.phone.slice(0, 3),
           userPhoneNumber: res?.phone && res?.phone.slice(3, 12),
           // --------------
@@ -224,6 +229,50 @@ const EditProfilePage = () => {
     });
     document.title = "Pедактировать профиль";
   }, []);
+
+  // ----------------Month state management----------------------------
+  const [openMonth, setOpenMonth] = useState(false);
+
+  const handleOpenChangeWear = (newOpen) => {
+    setOpenMonth(newOpen);
+  };
+  const [selectMonth, setselectMonth] = useState("Месяц");
+  const handleMonthValue = (value) => {
+    setselectMonth(value);
+    setOpenMonth(false);
+  };
+
+  const monthList = [
+    { id: 1, type: "Январь" },
+    { id: 2, type: "Февраль" },
+    { id: 3, type: "Март" },
+    { id: 4, type: "Апрель" },
+    { id: 5, type: "Май" },
+    { id: 6, type: "Июнь" },
+    { id: 7, type: "Июль" },
+    { id: 8, type: "Август" },
+    { id: 9, type: "Сентябрь" },
+    { id: 10, type: "Октябрь" },
+    { id: 11, type: "Ноябрь" },
+    { id: 12, type: "Декабрь" },
+  ];
+  const contentMonth = (
+    <div className="w-[125px] h-44 overflow-auto scrollbar dark:scrollbarkdark categoryScroll">
+      {monthList.map((data) => {
+        return (
+          <p
+            key={data?.id}
+            onClick={() => {
+              handleMonthValue(data?.type);
+            }}
+            className={`w-full h-[30px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+          >
+            {data?.type}
+          </p>
+        );
+      })}
+    </div>
+  );
 
   return (
     <div>
@@ -486,6 +535,106 @@ const EditProfilePage = () => {
                     </button>
                   </div>
                 </div>
+
+                <div className="gap-8 flex md:border-b border-searchBgColor w-full md:px-[40px] md:py-[30px]">
+                  <div className="w-full">
+                    <div className="text-[14px] font-AeonikProRegular mb-[6px]">
+                      Пол
+                    </div>
+                    <div className="flex border rounded-lg overflow-hidden h-[48px]">
+                      <div
+                        onClick={() => {
+                          setState({ ...state, gender_id: "1" });
+                        }}
+                        className={`${
+                          state?.gender_id === "1" ? "text-[#007DCA]" : ""
+                        } cursor-pointer border-r select-none w-full h-full flex items-center justify-center text-[16px] font-AeonikProMedium`}
+                      >
+                        Мужской
+                      </div>
+                      <div
+                        onClick={() => {
+                          setState({ ...state, gender_id: "2" });
+                        }}
+                        className={`${
+                          state?.gender_id === "2" ? "text-[#007DCA]" : ""
+                        } cursor-pointer border-r select-none w-full h-full flex items-center justify-center text-[16px] font-AeonikProMedium`}
+                      >
+                        Женский
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-full">
+                    <label
+                      htmlFor="bdate"
+                      className="mb-[6px] font-AeonikProRegular text-sm"
+                    >
+                      {" "}
+                      Дата рождения{" "}
+                    </label>
+
+                    <div className="flex items-center justify-start border border-solid border-searchBgColor rounded-lg bg-btnBgColor mb-4 w-full">
+                      <span className="h-full w-[15%] py-[14px] border-r border-searchBgColor">
+                        {/* <img src={formCalendar} alt="" className="mx-4" /> */}
+                      </span>
+                      <input
+                        type="number"
+                        name="day"
+                        placeholder="День"
+                        id="day"
+                        className="w-[19%] h-12 flex items-center bg-btnBgColor font-AeonikProRegular text-[15px] px-[14px] border-r border-searchBgColor [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                      />
+
+                      <Popover
+                        open={openMonth}
+                        onOpenChange={handleOpenChangeWear}
+                        className="w-[40%] px-[17px] h-12 bg-btnBgColor border-r flex items-center justify-between cursor-pointer select-none group"
+                        trigger="click"
+                        // content={contentMonth}
+                      >
+                        <span className="not-italic font-AeonikProMedium text-center mt-1 text-sm leading-4 text-black">
+                          {/* {selectMonth} */}
+                        </span>
+                        <span>
+                          {/* <BiChevronUp
+                            size={20}
+                            style={{ color: "#c2c2c2" }}
+                            className={`${
+                              openMonth ? "rotate-[180deg]" : ""
+                            } duration-200`}
+                          />{" "} */}
+                        </span>
+                      </Popover>
+
+                      <Space
+                        className="w-[26%] cursor-pointer"
+                        direction="vertical"
+                        size={12}
+                        options={["Hide"]}
+                      >
+                        <div className="flex items-center">
+                          <span>
+                            {/* <DatePicker
+                              className="font-AeonikProRegular text-base flex items-center"
+                              placeholder="Год"
+                              picker="year"
+                              bordered={false}
+                              suffixIcon
+                            /> */}
+                          </span>
+                          <span>
+                            {/* <BiChevronUp
+                              size={20}
+                              style={{ color: "#c2c2c2" }}
+                              className="mr-2"
+                            />{" "} */}
+                          </span>
+                        </div>
+                      </Space>
+                    </div>
+                  </div>
+                </div>
+
                 {/* SEND BUTTON */}
                 <div className="w-full  mx-auto flex items-center justify-between md:px-[40px] md:py-[30px] mt-6 md:mt-0">
                   <div className="">
