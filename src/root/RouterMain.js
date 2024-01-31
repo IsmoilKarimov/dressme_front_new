@@ -55,12 +55,12 @@ const UserEmailVerification = React.lazy(() =>
 // ------------------ ROUTERS -------------------
 
 const RouterMain = () => {
-  const location = useLocation();
+  // const location = useLocation();
 
-  const [locationWindow, setLocationWindow] = useState("");
-  useEffect(() => {
-    setLocationWindow(location.pathname);
-  }, [location.pathname]);
+  // const [locationWindow, setLocationWindow] = useState("");
+  // useEffect(() => {
+  //   setLocationWindow(location.pathname);
+  // }, [location.pathname]);
   return (
     <Fragment>
       <Header />
@@ -156,7 +156,13 @@ const RouterMain = () => {
         <Route
           path="/sign_in"
           element={
-            <Suspense>
+            <Suspense
+              fallback={
+                <div className="w-full h-full flex items-center justify-center">
+                  <LoadingNetwork />
+                </div>
+              }
+            >
               <SignIn />
             </Suspense>
           }
@@ -176,9 +182,22 @@ const RouterMain = () => {
           }
         />
 
-        <Route index path="/profile/settings" element={<ProfilePage />} />
+        {/* <Route index path="/profile/settings" element={<ProfilePage />} /> */}
 
-        <Route index path="/profile/edit" element={<EditProfilePage />} />
+        <Route
+          path="/profile/edit"
+          element={
+            <Suspense
+              fallback={
+                <div className="w-full h-full flex items-center justify-center">
+                  <LoadingNetwork />
+                </div>
+              }
+            >
+              <EditProfilePage />
+            </Suspense>
+          }
+        />
 
         {/* <Route
           index
@@ -313,24 +332,24 @@ const RouterMain = () => {
         />
       </Routes>
 
-      {locationWindow !== "/add_user_private_data" &&
-        locationWindow !== "/add_user_body_data" &&
-        locationWindow !== "/confirm_password" &&
-        locationWindow !== "/set_new_password" &&
-        locationWindow !== "/catalog" &&
-        locationWindow !== "/enter_password_validate" &&
-        locationWindow !== "/forget_password" &&
-        locationWindow !== "/sign_up" &&
-        locationWindow !== "/sign_in" &&
-        locationWindow !== "/src" &&
-        locationWindow !== "/allcomments" &&
-        locationWindow !== "/profile/settings" &&
-        locationWindow !== "/profile/edit" &&
-        locationWindow !== "/delivery-points" ? (
+      {/* {locationWindow !== "/add_user_private_data" &&
+      locationWindow !== "/add_user_body_data" &&
+      locationWindow !== "/confirm_password" &&
+      locationWindow !== "/set_new_password" &&
+      locationWindow !== "/catalog" &&
+      locationWindow !== "/enter_password_validate" &&
+      locationWindow !== "/forget_password" &&
+      locationWindow !== "/sign_up" &&
+      locationWindow !== "/sign_in" &&
+      locationWindow !== "/src" &&
+      locationWindow !== "/allcomments" &&
+      locationWindow !== "/profile/settings" &&
+      locationWindow !== "/profile/edit" &&
+      locationWindow !== "/delivery-points" ? (
         <Suspense fallback={<>Loading...</>}>
-          <Footer />
         </Suspense>
-      ) : null}
+      ) : null} */}
+      <Footer />
     </Fragment>
   );
 };

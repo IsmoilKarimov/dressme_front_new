@@ -54,9 +54,13 @@ export default function EditPassword({ onClick }) {
               theme: "light",
             });
             window.location.reload(1000);
-            setState({ ...state, new_password: "", current_password: "", errorsGroup: "" });
-          } 
-          else if (res?.access_token) {
+            setState({
+              ...state,
+              new_password: "",
+              current_password: "",
+              errorsGroup: "",
+            });
+          } else if (res?.access_token) {
             Cookies.set("DressmeUserToken", res?.access_token);
             toast.success(`Успешный вход в систему`, {
               position: "top-right",
@@ -68,11 +72,14 @@ export default function EditPassword({ onClick }) {
               progress: undefined,
               theme: "light",
             });
-            setState({ ...state, new_password: "", current_password: "", errorsGroup: "" });
-          } 
-          else if (res?.message && res.errors) {
+            setState({
+              ...state,
+              new_password: "",
+              current_password: "",
+              errorsGroup: "",
+            });
+          } else if (res?.message && res.errors) {
             setState({ ...state, errorsGroup: res });
-           
           }
         },
         onError: (err) => {
@@ -111,7 +118,7 @@ export default function EditPassword({ onClick }) {
           Изменить пароль
         </span>
       </div>
-      <div className="mt-[30px] flex flex-col gap-y-5">
+      <form className="mt-[30px] flex flex-col gap-y-5">
         <div className="w-full  h-fit ">
           <span className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
             Старый пароль
@@ -122,7 +129,7 @@ export default function EditPassword({ onClick }) {
               type={state?.eyesShowOld ? "text" : "password"}
               placeholder="Старый пароль"
               name="password"
-              value={state?.oldPassword || null}
+              value={state?.oldPassword || ""}
               onChange={(e) => {
                 setState({
                   ...state,
@@ -203,7 +210,7 @@ export default function EditPassword({ onClick }) {
               type={state?.eyesShowConfirm ? "text" : "password"}
               placeholder="Ввести старый пароль"
               name="confirm_new_password"
-              value={state?.confirmNewPassword || null}
+              value={state?.confirmNewPassword || ""}
               onChange={(e) => {
                 setState({
                   ...state,
@@ -236,7 +243,7 @@ export default function EditPassword({ onClick }) {
             </p>
           )}
         </div>
-      </div>
+      </form>
       <div className="w-full mt-[50px]">
         <button
           type="button"
