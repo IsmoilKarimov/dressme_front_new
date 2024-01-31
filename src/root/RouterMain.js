@@ -182,7 +182,7 @@ const RouterMain = () => {
           }
         />
 
-        {/* <Route index path="/profile/settings" element={<ProfilePage />} /> */}
+        <Route path="/profile/settings" element={<ProfilePage />} />
 
         <Route path="/profile/edit" element={<EditProfilePage />} />
 

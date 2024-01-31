@@ -327,6 +327,16 @@ const EditProfilePage = () => {
           if (res?.message && !res.errors) {
             if (res?.message === "Unauthenticated.") {
               navigate("/sign_in");
+              toast.error(`${res?.message}`, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
             }
             setLoading(false);
             setState({
@@ -334,16 +344,6 @@ const EditProfilePage = () => {
               errorsGroup: "",
               openModalEmailMessage: true,
               activeEditPassword: false,
-            });
-            toast.success(`${res?.message}`, {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
             });
           } else if (res?.message && res.errors) {
             if (res?.message === "Unauthenticated.") {
