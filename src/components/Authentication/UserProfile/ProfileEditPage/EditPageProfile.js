@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
 import {
   EmailIcons,
   LogOutIcons,
@@ -28,9 +30,23 @@ const EditProfilePage = () => {
   const [sendEmailModal, setSendEmailModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const dayRef = useRef(null);
   const [selectMonth, setselectMonth] = useState({ text: "Месяц", id: false });
   const [selectYear, setSelectYear] = useState(false);
+
+  const monthList = [
+    { id: 1, type: "Январь" },
+    { id: 2, type: "Февраль" },
+    { id: 3, type: "Март" },
+    { id: 4, type: "Апрель" },
+    { id: 5, type: "Май" },
+    { id: 6, type: "Июнь" },
+    { id: 7, type: "Июль" },
+    { id: 8, type: "Август" },
+    { id: 9, type: "Сентябрь" },
+    { id: 10, type: "Октябрь" },
+    { id: 11, type: "Ноябрь" },
+    { id: 12, type: "Декабрь" },
+  ];
 
   const [state, setState] = useState({
     userFirstname: "",
@@ -42,6 +58,7 @@ const EditProfilePage = () => {
     userPhoneNumberForEdit: "",
     userEmail: "",
     gender_id: "",
+    gender_idForEdit: "",
     birth_date: "",
     errorsGroup: null,
     activeEditPassword: false,
@@ -49,7 +66,7 @@ const EditProfilePage = () => {
     openModalEmailMessage: false,
   });
 
-  console.log(state, "dddddddddd");
+  const [dayValue, setDayValue] = useState("");
 
   // =====================
   const togglePassword = React.useCallback(
@@ -70,7 +87,11 @@ const EditProfilePage = () => {
     {
       onSuccess: (res) => {
         console.log(res, "SUCCESS, GET USER PROFILE");
+        let ar = Number(res?.birth_date?.split("-")[1]);
         setProfileData(res);
+        setDayValue(parseInt(res?.birth_date));
+        setselectMonth({ text: monthList[ar - 1].type, id: ar });
+        setSelectYear(res?.birth_date?.split("-")[2]);
         setState({
           ...state,
           userFirstname: res?.name,
@@ -106,9 +127,9 @@ const EditProfilePage = () => {
 
   // =========== POST USER EDIT DATA ==========
   const sendEditedData = () => {
-    let date = `${dayRef?.current?.value}${
-      selectMonth?.id ? "-" + selectMonth?.id : ""
-    }${selectYear ? "-" + selectYear : ""}`;
+    let date = `${dayValue}${selectMonth?.id ? "-" + selectMonth?.id : ""}${
+      selectYear ? "-" + selectYear : ""
+    }`;
 
     let form = new FormData();
     state?.userFirstname !== state?.userFirstnameForEdit &&
@@ -118,7 +139,7 @@ const EditProfilePage = () => {
     data2 !== state?.userPhoneNumberForEdit &&
       form.append("phone", sendMessagePhoneNumber);
     form.append("gender_id", state?.gender_id);
-    // state?.birth_date !== date && form.append("birth_date", date);
+    state?.birth_date !== date && form.append("birth_date", date);
 
     return fetch(`${url}/update-user-info`, {
       method: "POST",
@@ -260,20 +281,6 @@ const EditProfilePage = () => {
     });
   };
 
-  const monthList = [
-    { id: 1, type: "Январь" },
-    { id: 2, type: "Февраль" },
-    { id: 3, type: "Март" },
-    { id: 4, type: "Апрель" },
-    { id: 5, type: "Май" },
-    { id: 6, type: "Июнь" },
-    { id: 7, type: "Июль" },
-    { id: 8, type: "Август" },
-    { id: 9, type: "Сентябрь" },
-    { id: 10, type: "Октябрь" },
-    { id: 11, type: "Ноябрь" },
-    { id: 12, type: "Декабрь" },
-  ];
   const contentMonth = (
     <div className="w-[125px] h-44 overflow-auto scrollbar dark:scrollbarkdark categoryScroll">
       {monthList.map((data) => {
@@ -697,22 +704,16 @@ const EditProfilePage = () => {
                       <input
                         type="number"
                         name="day"
+                        value={dayValue}
                         placeholder="День"
                         id="day"
                         onInput={(e) => {
-                          if (e.currentTarget.value) {
-                            setState({
-                              ...state,
-                              activeEditPassword: true,
-                            });
-                          } else {
-                            setState({
-                              ...state,
-                              activeEditPassword: false,
-                            });
-                          }
+                          setDayValue(e.currentTarget.value);
+                          setState({
+                            ...state,
+                            activeEditPassword: true,
+                          });
                         }}
-                        ref={dayRef}
                         className="w-[19%] h-12 flex items-center bg-btnBgColor font-AeonikProRegular text-[15px] px-[14px] border-r border-searchBgColor [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                       />
 
@@ -751,6 +752,7 @@ const EditProfilePage = () => {
                               picker="year"
                               bordered={false}
                               suffixIcon
+                              defaultValue={dayjs(selectYear, "YYYY")}
                               onChange={(n, s) => {
                                 setState({
                                   ...state,
