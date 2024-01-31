@@ -150,6 +150,9 @@ const EditProfilePage = () => {
       .catch((err) => {
         setLoading(false);
         console.log(err);
+        if (err?.response?.status === 401) {
+          navigate("/sign_in");
+        }
       });
   };
 
@@ -231,7 +234,7 @@ const EditProfilePage = () => {
       .then((res) => res.json())
       .then((res) => {
         if (res?.errors && res?.message) {
-          console.log(res, "Bu-Error");
+          console.log(res, "Bu-Error send postttttt");
           setState({ ...state, errorsGroup: res, activeEditPassword: false });
           setLoading(false);
           toast.error(`${res?.message}`, {
