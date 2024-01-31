@@ -184,20 +184,7 @@ const RouterMain = () => {
 
         {/* <Route index path="/profile/settings" element={<ProfilePage />} /> */}
 
-        <Route
-          path="/profile/edit"
-          element={
-            <Suspense
-              fallback={
-                <div className="w-full h-full flex items-center justify-center">
-                  <LoadingNetwork />
-                </div>
-              }
-            >
-              <EditProfilePage />
-            </Suspense>
-          }
-        />
+        <Route path="/profile/edit" element={<EditProfilePage />} />
 
         {/* <Route
           index
