@@ -65,8 +65,22 @@ const RouterMain = () => {
     <Fragment>
       <Header />
       <Routes>
-        <Route path="/" element={<HomeIndex />} />
+        {/* <Route path="/" element={<HomeIndex />} /> */}
 
+        <Route
+          path="/"
+          element={
+            <Suspense
+              fallback={
+                <div className="w-full h-full flex items-center justify-center">
+                  <LoadingNetwork />
+                </div>
+              }
+            >
+              <HomeIndex />
+            </Suspense>
+          }
+        />
         <Route
           path="/delivery-points"
           element={
@@ -300,19 +314,19 @@ const RouterMain = () => {
       </Routes>
 
       {locationWindow !== "/add_user_private_data" &&
-      locationWindow !== "/add_user_body_data" &&
-      locationWindow !== "/confirm_password" &&
-      locationWindow !== "/set_new_password" &&
-      locationWindow !== "/catalog" &&
-      locationWindow !== "/enter_password_validate" &&
-      locationWindow !== "/forget_password" &&
-      locationWindow !== "/sign_up" &&
-      locationWindow !== "/sign_in" &&
-      locationWindow !== "/src" &&
-      locationWindow !== "/allcomments" &&
-      locationWindow !== "/profile/settings" &&
-      locationWindow !== "/profile/edit" &&
-      locationWindow !== "/delivery-points" ? (
+        locationWindow !== "/add_user_body_data" &&
+        locationWindow !== "/confirm_password" &&
+        locationWindow !== "/set_new_password" &&
+        locationWindow !== "/catalog" &&
+        locationWindow !== "/enter_password_validate" &&
+        locationWindow !== "/forget_password" &&
+        locationWindow !== "/sign_up" &&
+        locationWindow !== "/sign_in" &&
+        locationWindow !== "/src" &&
+        locationWindow !== "/allcomments" &&
+        locationWindow !== "/profile/settings" &&
+        locationWindow !== "/profile/edit" &&
+        locationWindow !== "/delivery-points" ? (
         <Suspense fallback={<>Loading...</>}>
           <Footer />
         </Suspense>

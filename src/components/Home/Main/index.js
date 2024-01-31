@@ -5,7 +5,7 @@ import LoadingNetwork from "../../Loading/LoadingNetwork";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 
 export default function HomeIndex() {
-  const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
+  const [mainData, wishList, setWishlist] = useContext(HomeMainDataContext);
 
   useEffect(() => {
     window.scrollTo({
