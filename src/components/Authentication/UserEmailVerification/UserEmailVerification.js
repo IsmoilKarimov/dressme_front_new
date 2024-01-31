@@ -33,7 +33,7 @@ export default function UserEmailVerification() {
 
   const pathname = window.location.pathname;
   let PathnameToken = pathname.replace("/mail-verify-user/:", "");
-  
+
   const [error, setError] = useState(false);
   const url = "https://api.dressme.uz/api/user";
 
@@ -69,15 +69,13 @@ export default function UserEmailVerification() {
           console.log(res, "RES-AUTH");
           if (res?.message && !res.errors) {
             setState({ ...state, errorsGroup: res });
-          } 
-          else if (res?.message && res?.errors) {
+          } else if (res?.message && res?.errors) {
             setState({
               ...state,
               errorsGroup: res,
               errorMessage: res?.message,
             });
-          } 
-          else if (res?.access_token) {
+          } else if (res?.access_token) {
             Cookies.set("DressmeUserToken", res?.access_token);
             navigate("/profile/edit");
             window.location.reload();
@@ -92,7 +90,7 @@ export default function UserEmailVerification() {
     );
   };
 
-  function handleAuthSystem(){
+  function handleAuthSystem() {
     EnterTheSystem();
     setTimeForNotif();
   }
@@ -108,11 +106,13 @@ export default function UserEmailVerification() {
           <p className="mt-3 not-italic font-AeonikProRegular text-[20px] md:text-[25px] text-center leading-[30px]   tracking-[0,16px] text-black">
             {state?.getVerfyMessage?.message}
           </p>
-          {timer && state?.errorMessage && state?.errorsGroup?.errors === true && (
-            <span className="w-full h-fit text-center text-[20px] text-red-500 mt-2">
-              {state?.errorMessage || null}
-            </span>
-          )}
+          {timer &&
+            state?.errorMessage &&
+            state?.errorsGroup?.errors === true && (
+              <span className="w-full h-fit text-center text-[20px] text-red-500 mt-2">
+                {state?.errorMessage || null}
+              </span>
+            )}
         </div>
         <div className=" w-full pb-[20px] pt-[30px] md:hidden not-italic font-AeonikProMedium text-xl text-center leading-5   tracking-[0,16px] text-black">
           Вход для продавцов
@@ -134,6 +134,7 @@ export default function UserEmailVerification() {
               className="w-full h-[42px] px-2 xs:px-[16px] outline-none	bg-white placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type="email"
               name="email"
+              autoComplete="email"
               value={state.email}
               onChange={({ target: { value } }) => {
                 setError();
@@ -152,7 +153,7 @@ export default function UserEmailVerification() {
             </p>
           )}
         </div>
-        <div className="mt-4 w-full h-fit">
+        <form className="mt-4 w-full h-fit">
           <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px]  ">
             Пароль
           </span>
@@ -161,6 +162,7 @@ export default function UserEmailVerification() {
               className="w-full h-[42px] px-2 xs:px-[16px] outline-none	bg-white placeholder-leading-4 placeholder-tracking-[0,16px] placeholder-not-italic placeholder-font-AeonikProMedium ll:text-[14px] sm:text-[16px] placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type={state?.eyesShow ? "password" : "text"}
               name="password"
+              autoComplete="password"
               placeholder="Enter your password"
               value={state.password}
               onChange={({ target: { value } }) => {
@@ -190,7 +192,7 @@ export default function UserEmailVerification() {
               {state?.errorsGroup?.errors?.password}
             </p>
           )}
-        </div>
+        </form>
 
         <div className="my-5 flex items-center justify-between w-full">
           <div className="flex items-center">

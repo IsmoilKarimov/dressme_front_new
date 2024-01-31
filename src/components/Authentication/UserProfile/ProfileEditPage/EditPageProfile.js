@@ -234,7 +234,7 @@ const EditProfilePage = () => {
       .then((res) => res.json())
       .then((res) => {
         if (res?.errors && res?.message) {
-          console.log(res, "Bu-Error send postttttt");
+          console.log(res, "Bu-Error send edit postttttt");
           setState({ ...state, errorsGroup: res, activeEditPassword: false });
           setLoading(false);
           toast.error(`${res?.message}`, {
@@ -248,8 +248,11 @@ const EditProfilePage = () => {
             theme: "light",
           });
         } else if (res?.message) {
-          console.log(res, "Bu-Success");
-          reFetchFunction();
+          if (res?.message === "Unauthenticated.") {
+            navigate("/sign_in");
+          }
+          console.log(res, "Bu-Success edit posttttt");
+          // reFetchFunction();
           setState({ ...state, errorsGroup: res, activeEditPassword: false });
           setLoading(false);
           toast.success(`${res?.message}`, {
@@ -289,6 +292,9 @@ const EditProfilePage = () => {
         onSuccess: (res) => {
           console.log(res, "USER-EMAIL");
           if (res?.message && !res.errors) {
+            if (res?.message === "Unauthenticated.") {
+              navigate("/sign_in");
+            }
             setLoading(false);
             setState({
               ...state,
@@ -307,6 +313,9 @@ const EditProfilePage = () => {
               theme: "light",
             });
           } else if (res?.message && res.errors) {
+            if (res?.message === "Unauthenticated.") {
+              navigate("/sign_in");
+            }
             setLoading(false);
             setState({ ...state, errorsGroup: res, activeEditPassword: false });
             toast.error(`${res?.message}`, {
@@ -594,7 +603,7 @@ const EditProfilePage = () => {
                   </div>
                   <div className="w-full">
                     <label
-                      htmlFor="bdate"
+                      // htmlFor="bdate"
                       className="mb-[6px] font-AeonikProRegular text-sm"
                     >
                       {" "}
@@ -815,6 +824,8 @@ const EditProfilePage = () => {
                         <input
                           className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                           type="email"
+                          name="email"
+                          autoComplete="email"
                           value={state?.userEmail || ""}
                           onChange={(e) => {
                             setState({
@@ -823,7 +834,6 @@ const EditProfilePage = () => {
                               activeEditEmail: true,
                             });
                           }}
-                          name="name"
                           placeholder="Адрес электронной почты"
                           required
                         />
