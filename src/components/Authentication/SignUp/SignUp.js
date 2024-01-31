@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import InputMask from "react-input-mask";
@@ -42,6 +42,11 @@ export default function SignUp() {
   // const [phone, setPhone] = useState("");
   const url = "https://api.dressme.uz/api/user/register";
   const [dressInfo] = useContext(dressMainData);
+
+  const dayRef = useRef(null);
+  const [selectMonth, setselectMonth] = useState({ text: "Месяц", id: false });
+  const [selectYear, setSelectYear] = useState(false);
+
   const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
     firstName: "",
@@ -61,90 +66,7 @@ export default function SignUp() {
     birth_date: "",
   });
 
-  const formCalendar = (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
-      <path
-        d="M6.66699 1.6665V4.1665"
-        stroke="black"
-        stroke-width="1.5"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M13.333 1.6665V4.1665"
-        stroke="black"
-        stroke-width="1.5"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M2.91699 7.5752H17.0837"
-        stroke="black"
-        stroke-width="1.5"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M17.5 7.08317V14.1665C17.5 16.6665 16.25 18.3332 13.3333 18.3332H6.66667C3.75 18.3332 2.5 16.6665 2.5 14.1665V7.08317C2.5 4.58317 3.75 2.9165 6.66667 2.9165H13.3333C16.25 2.9165 17.5 4.58317 17.5 7.08317Z"
-        stroke="black"
-        stroke-width="1.5"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M13.0791 11.4167H13.0866"
-        stroke="black"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M13.0791 13.9167H13.0866"
-        stroke="black"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M9.99607 11.4167H10.0036"
-        stroke="black"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M9.99607 13.9167H10.0036"
-        stroke="black"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M6.91209 11.4167H6.91957"
-        stroke="black"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M6.91209 13.9167H6.91957"
-        stroke="black"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </svg>
-  );
+  console.log(state);
 
   let data = state?.phoneNumber.split("-");
   let arr = data.join("");
@@ -180,6 +102,13 @@ export default function SignUp() {
   });
 
   const onSubmit = () => {
+    setState({
+      ...state,
+      birth_date: `${dayRef?.current?.value}${
+        selectMonth?.id ? "-" + selectMonth?.id : ""
+      }${selectYear ? "-" + selectYear : ""}`,
+    });
+
     mutate(
       {},
       {
@@ -250,15 +179,13 @@ export default function SignUp() {
     setLoading(true);
   };
 
-  // Date ----------------
-
   // ----------------Month state management----------------------------
   const [openMonth, setOpenMonth] = useState(false);
 
   const handleOpenChangeWear = (newOpen) => {
     setOpenMonth(newOpen);
   };
-  const [selectMonth, setselectMonth] = useState("Месяц");
+
   const handleMonthValue = (value) => {
     setselectMonth(value);
     setOpenMonth(false);
@@ -280,12 +207,12 @@ export default function SignUp() {
   ];
   const contentMonth = (
     <div className="w-[125px] h-44 overflow-auto scrollbar dark:scrollbarkdark categoryScroll">
-      {monthList.map((data) => {
+      {monthList.map((data, i) => {
         return (
           <p
             key={data?.id}
             onClick={() => {
-              handleMonthValue(data?.type);
+              handleMonthValue({ text: data?.type, id: data?.id });
             }}
             className={`w-full h-[30px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
@@ -398,7 +325,7 @@ export default function SignUp() {
                   )}
                 </div>
                 {/* Surname Registration Section */}
-                <div className="mt-4 w-full h-fit">
+                <div className="mt-4 mb-4 w-full h-fit">
                   <div className="flex items-center font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
                     Фамилия{" "}
                     <span className="text-red-600 ml-[2px]">
@@ -431,21 +358,108 @@ export default function SignUp() {
 
                 <label
                   htmlFor="bdate"
-                  className="mb-[6px] font-AeonikProRegular text-sm"
+                  className="mb-[6px] font-AeonikProRegular text-sm flex items-center"
                 >
                   {" "}
                   Дата рождения{" "}
+                  <span className="text-red-600 ml-[2px]">
+                    <Star6Icon />
+                  </span>{" "}
                 </label>
-                
-                <div className="flex items-center justify-start border border-solid border-searchBgColor rounded-lg bg-btnBgColor mb-4 w-full">
+
+                <div className="flex items-center justify-start border border-solid border-searchBgColor rounded-lg bg-btnBgColor w-full">
                   <span className="h-full w-[15%] py-[14px] border-r border-searchBgColor">
-                    <img src={formCalendar} alt="" className="mx-4" />
+                    <div className="mx-4">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                      >
+                        <path
+                          d="M6.66699 1.6665V4.1665"
+                          stroke="black"
+                          stroke-width="1.5"
+                          stroke-miterlimit="10"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M13.333 1.6665V4.1665"
+                          stroke="black"
+                          stroke-width="1.5"
+                          stroke-miterlimit="10"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M2.91699 7.5752H17.0837"
+                          stroke="black"
+                          stroke-width="1.5"
+                          stroke-miterlimit="10"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M17.5 7.08317V14.1665C17.5 16.6665 16.25 18.3332 13.3333 18.3332H6.66667C3.75 18.3332 2.5 16.6665 2.5 14.1665V7.08317C2.5 4.58317 3.75 2.9165 6.66667 2.9165H13.3333C16.25 2.9165 17.5 4.58317 17.5 7.08317Z"
+                          stroke="black"
+                          stroke-width="1.5"
+                          stroke-miterlimit="10"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M13.0791 11.4167H13.0866"
+                          stroke="black"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M13.0791 13.9167H13.0866"
+                          stroke="black"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M9.99607 11.4167H10.0036"
+                          stroke="black"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M9.99607 13.9167H10.0036"
+                          stroke="black"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M6.91209 11.4167H6.91957"
+                          stroke="black"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M6.91209 13.9167H6.91957"
+                          stroke="black"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
                   </span>
                   <input
                     type="number"
                     name="day"
                     placeholder="День"
                     id="day"
+                    ref={dayRef}
                     className="w-[19%] h-12 flex items-center bg-btnBgColor font-AeonikProRegular text-[15px] px-[14px] border-r border-searchBgColor [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
 
@@ -457,7 +471,7 @@ export default function SignUp() {
                     content={contentMonth}
                   >
                     <span className="not-italic font-AeonikProMedium text-center mt-1 text-sm leading-4 text-black">
-                      {selectMonth}
+                      {selectMonth?.text}
                     </span>
                     <span>
                       <BiChevronUp
@@ -484,6 +498,9 @@ export default function SignUp() {
                           picker="year"
                           bordered={false}
                           suffixIcon
+                          onChange={(n, s) => {
+                            setSelectYear(s);
+                          }}
                         />
                       </span>
                       <span>
@@ -496,6 +513,12 @@ export default function SignUp() {
                     </div>
                   </Space>
                 </div>
+
+                {state?.errorsGroup?.errors?.surname && (
+                  <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+                    {state?.errorsGroup?.errors?.birth_date}
+                  </p>
+                )}
 
                 {/* Number Registration Section */}
                 <div className="mt-4 w-full h-fit">
