@@ -117,15 +117,15 @@ const Header = () => {
     dressInfo?.mainSubRegionId,
     seasonId,
   ]);
-  console.log(
-    dressInfo?.mainCategoryId, " dressInfo?.mainCategoryId",
-    dressInfo?.mainColorId, " state?.colorSelectId",
-    dressInfo?.mainRangePrice, " state?.getRangeData",
-    dressInfo?.mainGenderId, " state?.genderSelectId",
-    dressInfo?.mainSearchName, " dressInfo?.mainSearchName",
-    dressInfo?.mainRegionId, " dressInfo?.mainRegionId",
-    dressInfo?.mainSubRegionId, " dressInfo?.mainSubRegionId",
-    seasonId, " seasonId,",);
+  // console.log(
+  //   dressInfo?.mainCategoryId, " dressInfo?.mainCategoryId",
+  //   dressInfo?.mainColorId, " state?.colorSelectId",
+  //   dressInfo?.mainRangePrice, " state?.getRangeData",
+  //   dressInfo?.mainGenderId, " state?.genderSelectId",
+  //   dressInfo?.mainSearchName, " dressInfo?.mainSearchName",
+  //   dressInfo?.mainRegionId, " dressInfo?.mainRegionId",
+  //   dressInfo?.mainSubRegionId, " dressInfo?.mainSubRegionId",
+  //   seasonId, " seasonId,",);
   return (
     <header>
       <section>

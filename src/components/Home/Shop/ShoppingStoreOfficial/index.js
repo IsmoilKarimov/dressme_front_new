@@ -90,6 +90,23 @@ const ShoppingStoreOfficial = () => {
   const { id } = useParams();
   const newId = id.replace(":", "");
 
+  useEffect(() => {
+    console.log("isrun in index shop");
+    data?.getMainProductCard?.shops
+      ?.filter((e) => e?.id === Number(newId))
+      ?.map((item) => {
+        item?.approved_shop_locations?.map((data, index) => {
+          // setLocationIndex(item?.approved_shop_locations[0]?.id)
+          setDressInfo({
+            ...dressInfo,
+            locationIdParams: item?.approved_shop_locations[0]?.id,
+          });
+        });
+      });
+  }, [newId])
+  // console.log(dressInfo?.locationIdParams, "locationIdParams");
+  // console.log(locationIndex, "locationIndex");
+
   const url = `https://api.dressme.uz/api`;
   function fetchGetAllData() {
     let params = new URLSearchParams();
@@ -139,7 +156,7 @@ const ShoppingStoreOfficial = () => {
   useEffect(() => {
     fetchGetAllData()
   }, [
-    newId,
+
     pageId,
     discount,
     dataColor,
