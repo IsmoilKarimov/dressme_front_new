@@ -3,8 +3,6 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import InputMask from "react-input-mask";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
-import dayjs from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
 import { DatePicker, Popover, Space } from "antd";
 import { BiChevronUp } from "react-icons/bi";
 
@@ -26,19 +24,6 @@ import LoadingFor from "../../Loading/LoadingFor";
 import LoadingNetwork from "../../Loading/LoadingNetwork";
 
 export default function SignUp() {
-  const { RangePicker } = DatePicker;
-  const dateFormat = "DD-MM-YYYY";
-  const weekFormat = "MM/DD";
-  const monthFormat = "YYYY/MM";
-  dayjs.extend(customParseFormat);
-
-  const dateFormatList = ["DD/MM/YYYY", "DD/MM/YY", "DD-MM-YYYY", "DD-MM-YY"];
-  const customFormat = (value) => `custom format: ${value.format(dateFormat)}`;
-  const customWeekStartEndFormat = (value) =>
-    `${dayjs(value).startOf("week").format(weekFormat)} ~ ${dayjs(value)
-      .endOf("week")
-      .format(weekFormat)}`;
-
   // const [phone, setPhone] = useState("");
   const url = "https://api.dressme.uz/api/user/register";
   const [dressInfo] = useContext(dressMainData);
@@ -65,8 +50,6 @@ export default function SignUp() {
     gender_id: 1,
     birth_date: "",
   });
-
-  console.log(state);
 
   let data = state?.phoneNumber.split("-");
   let arr = data.join("");

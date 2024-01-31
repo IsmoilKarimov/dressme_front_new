@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import {
   EmailIcons,
@@ -18,7 +18,8 @@ import { useHttp } from "../../../../hook/useHttp";
 import LoadingFor from "../../../Loading/LoadingFor";
 import EmailSend from "./EmailSend/EmailSend";
 import Cookies from "js-cookie";
-import { Popover, Space } from "antd";
+import { DatePicker, Popover, Space } from "antd";
+import { BiChevronUp } from "react-icons/bi";
 
 const EditProfilePage = () => {
   const { request } = useHttp();
@@ -26,6 +27,11 @@ const EditProfilePage = () => {
   const [openEditPasswordModal, setOpenEditPasswordModal] = useState(false);
   const [sendEmailModal, setSendEmailModal] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const dayRef = useRef(null);
+  const [selectMonth, setselectMonth] = useState({ text: "Месяц", id: false });
+  const [selectYear, setSelectYear] = useState(false);
+
   const [state, setState] = useState({
     userFirstname: "",
     userLastname: "",
@@ -36,6 +42,7 @@ const EditProfilePage = () => {
     userPhoneNumberForEdit: "",
     userEmail: "",
     gender_id: "",
+    birth_date: "",
     errorsGroup: null,
     activeEditPassword: false,
     activeEditEmail: false,
@@ -70,6 +77,7 @@ const EditProfilePage = () => {
           userLastname: res?.surname,
           userEmail: res?.email,
           gender_id: res?.gender_id,
+          birth_date: res?.birth_date,
           userPhoneCode: res?.phone && res?.phone.slice(0, 3),
           userPhoneNumber: res?.phone && res?.phone.slice(3, 12),
           // --------------
@@ -98,6 +106,10 @@ const EditProfilePage = () => {
 
   // =========== POST USER EDIT DATA ==========
   const sendEditedData = () => {
+    let date = `${dayRef?.current?.value}${
+      selectMonth?.id ? "-" + selectMonth?.id : ""
+    }${selectYear ? "-" + selectYear : ""}`;
+
     let form = new FormData();
     state?.userFirstname !== state?.userFirstnameForEdit &&
       form.append("name", state?.userFirstname);
@@ -105,6 +117,9 @@ const EditProfilePage = () => {
       form.append("surname", state?.userLastname);
     data2 !== state?.userPhoneNumberForEdit &&
       form.append("phone", sendMessagePhoneNumber);
+    form.append("gender_id", state?.gender_id);
+    // state?.birth_date !== date && form.append("birth_date", date);
+
     return fetch(`${url}/update-user-info`, {
       method: "POST",
       headers: {
@@ -236,10 +251,13 @@ const EditProfilePage = () => {
   const handleOpenChangeWear = (newOpen) => {
     setOpenMonth(newOpen);
   };
-  const [selectMonth, setselectMonth] = useState("Месяц");
   const handleMonthValue = (value) => {
     setselectMonth(value);
     setOpenMonth(false);
+    setState({
+      ...state,
+      activeEditPassword: true,
+    });
   };
 
   const monthList = [
@@ -263,7 +281,7 @@ const EditProfilePage = () => {
           <p
             key={data?.id}
             onClick={() => {
-              handleMonthValue(data?.type);
+              handleMonthValue({ text: data?.type, id: data?.id });
             }}
             className={`w-full h-[30px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
@@ -544,7 +562,15 @@ const EditProfilePage = () => {
                     <div className="flex border rounded-lg overflow-hidden h-[48px]">
                       <div
                         onClick={() => {
-                          setState({ ...state, gender_id: "1" });
+                          if (state?.gender_id === "1") {
+                            return false;
+                          } else {
+                            setState({
+                              ...state,
+                              gender_id: "1",
+                              activeEditPassword: true,
+                            });
+                          }
                         }}
                         className={`${
                           state?.gender_id === "1" ? "text-[#007DCA]" : ""
@@ -554,7 +580,15 @@ const EditProfilePage = () => {
                       </div>
                       <div
                         onClick={() => {
-                          setState({ ...state, gender_id: "2" });
+                          if (state?.gender_id === "2") {
+                            return false;
+                          } else {
+                            setState({
+                              ...state,
+                              gender_id: "2",
+                              activeEditPassword: true,
+                            });
+                          }
                         }}
                         className={`${
                           state?.gender_id === "2" ? "text-[#007DCA]" : ""
@@ -575,13 +609,110 @@ const EditProfilePage = () => {
 
                     <div className="flex items-center justify-start border border-solid border-searchBgColor rounded-lg bg-btnBgColor mb-4 w-full">
                       <span className="h-full w-[15%] py-[14px] border-r border-searchBgColor">
-                        {/* <img src={formCalendar} alt="" className="mx-4" /> */}
+                        <div className="mx-4">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 20 20"
+                            fill="none"
+                          >
+                            <path
+                              d="M6.66699 1.6665V4.1665"
+                              stroke="black"
+                              stroke-width="1.5"
+                              stroke-miterlimit="10"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                            <path
+                              d="M13.333 1.6665V4.1665"
+                              stroke="black"
+                              stroke-width="1.5"
+                              stroke-miterlimit="10"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                            <path
+                              d="M2.91699 7.5752H17.0837"
+                              stroke="black"
+                              stroke-width="1.5"
+                              stroke-miterlimit="10"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                            <path
+                              d="M17.5 7.08317V14.1665C17.5 16.6665 16.25 18.3332 13.3333 18.3332H6.66667C3.75 18.3332 2.5 16.6665 2.5 14.1665V7.08317C2.5 4.58317 3.75 2.9165 6.66667 2.9165H13.3333C16.25 2.9165 17.5 4.58317 17.5 7.08317Z"
+                              stroke="black"
+                              stroke-width="1.5"
+                              stroke-miterlimit="10"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                            <path
+                              d="M13.0791 11.4167H13.0866"
+                              stroke="black"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                            <path
+                              d="M13.0791 13.9167H13.0866"
+                              stroke="black"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                            <path
+                              d="M9.99607 11.4167H10.0036"
+                              stroke="black"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                            <path
+                              d="M9.99607 13.9167H10.0036"
+                              stroke="black"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                            <path
+                              d="M6.91209 11.4167H6.91957"
+                              stroke="black"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                            <path
+                              d="M6.91209 13.9167H6.91957"
+                              stroke="black"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </div>
                       </span>
                       <input
                         type="number"
                         name="day"
                         placeholder="День"
                         id="day"
+                        onInput={(e) => {
+                          if (e.currentTarget.value) {
+                            setState({
+                              ...state,
+                              activeEditPassword: true,
+                            });
+                          } else {
+                            setState({
+                              ...state,
+                              activeEditPassword: false,
+                            });
+                          }
+                        }}
+                        ref={dayRef}
                         className="w-[19%] h-12 flex items-center bg-btnBgColor font-AeonikProRegular text-[15px] px-[14px] border-r border-searchBgColor [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                       />
 
@@ -590,19 +721,19 @@ const EditProfilePage = () => {
                         onOpenChange={handleOpenChangeWear}
                         className="w-[40%] px-[17px] h-12 bg-btnBgColor border-r flex items-center justify-between cursor-pointer select-none group"
                         trigger="click"
-                        // content={contentMonth}
+                        content={contentMonth}
                       >
                         <span className="not-italic font-AeonikProMedium text-center mt-1 text-sm leading-4 text-black">
-                          {/* {selectMonth} */}
+                          {selectMonth?.text}
                         </span>
                         <span>
-                          {/* <BiChevronUp
+                          <BiChevronUp
                             size={20}
                             style={{ color: "#c2c2c2" }}
                             className={`${
                               openMonth ? "rotate-[180deg]" : ""
                             } duration-200`}
-                          />{" "} */}
+                          />{" "}
                         </span>
                       </Popover>
 
@@ -614,20 +745,27 @@ const EditProfilePage = () => {
                       >
                         <div className="flex items-center">
                           <span>
-                            {/* <DatePicker
+                            <DatePicker
                               className="font-AeonikProRegular text-base flex items-center"
                               placeholder="Год"
                               picker="year"
                               bordered={false}
                               suffixIcon
-                            /> */}
+                              onChange={(n, s) => {
+                                setState({
+                                  ...state,
+                                  activeEditPassword: true,
+                                });
+                                setSelectYear(s);
+                              }}
+                            />
                           </span>
                           <span>
-                            {/* <BiChevronUp
+                            <BiChevronUp
                               size={20}
                               style={{ color: "#c2c2c2" }}
                               className="mr-2"
-                            />{" "} */}
+                            />{" "}
                           </span>
                         </div>
                       </Space>
