@@ -443,7 +443,7 @@ export default function SignUp() {
                     placeholder="День"
                     id="day"
                     ref={dayRef}
-                    className="w-[19%] h-12 flex items-center bg-btnBgColor font-AeonikProRegular text-[15px] px-[14px] border-r border-searchBgColor [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    className="w-[19%] h-12 flex items-center bg-btnBgColor text-closeColorBtn font-AeonikProMedium text-[14px] px-[14px] border-r border-searchBgColor [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
 
                   <Popover
@@ -453,7 +453,7 @@ export default function SignUp() {
                     trigger="click"
                     content={contentMonth}
                   >
-                    <span className="not-italic font-AeonikProMedium text-center mt-1 text-sm leading-4 text-black">
+                    <span className="not-italic font-AeonikProMedium text-[15px] text-center mt-1 text-sm leading-4 text-closeColorBtn">
                       {selectMonth?.text}
                     </span>
                     <span>
@@ -476,7 +476,7 @@ export default function SignUp() {
                     <div className="flex items-center">
                       <span>
                         <DatePicker
-                          className="font-AeonikProRegular text-base flex items-center"
+                          className="font-AeonikProMedium text-[15px] flex items-center text-closeColorBtn"
                           placeholder="Год"
                           picker="year"
                           bordered={false}

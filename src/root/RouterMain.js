@@ -72,7 +72,7 @@ const RouterMain = () => {
           element={
             <Suspense
               fallback={
-                <div>
+                <div className="w-full h-full flex items-center justify-center">
                   <LoadingNetwork />
                 </div>
               }
@@ -86,7 +86,7 @@ const RouterMain = () => {
           element={
             <Suspense
               fallback={
-                <div>
+                <div className="w-full h-full flex items-center justify-center">
                   <LoadingNetwork />
                 </div>
               }
@@ -130,7 +130,7 @@ const RouterMain = () => {
           element={
             <Suspense
               fallback={
-                <div>
+                <div className="w-full h-full flex items-center justify-center">
                   <LoadingNetwork />
                 </div>
               }
@@ -152,7 +152,7 @@ const RouterMain = () => {
           element={
             <Suspense
               fallback={
-                <div>
+                <div className="w-full h-full flex items-center justify-center">
                   <LoadingNetwork />
                 </div>
               }
@@ -166,12 +166,28 @@ const RouterMain = () => {
 
         <Route index path="/profile/edit" element={<EditProfilePage />} />
 
+        {/* <Route
+          index
+          path="/profile/edit"
+          element={
+            <Suspense
+              fallback={
+                <div className="w-full h-full flex items-center justify-center">
+                  <LoadingNetwork />
+                </div>
+              }
+            >
+              <EditProfilePage />
+            </Suspense>
+          }
+        /> */}
+
         <Route
           path="/favourites"
           element={
             <Suspense
               fallback={
-                <div>
+                <div className="w-full h-full flex items-center justify-center">
                   <LoadingNetwork />
                 </div>
               }
@@ -185,7 +201,7 @@ const RouterMain = () => {
           element={
             <Suspense
               fallback={
-                <div>
+                <div className="w-full h-full flex items-center justify-center">
                   <LoadingNetwork />
                 </div>
               }
@@ -199,7 +215,7 @@ const RouterMain = () => {
           element={
             <Suspense
               fallback={
-                <div>
+                <div className="w-full h-full flex items-center justify-center">
                   <LoadingNetwork />
                 </div>
               }
@@ -213,7 +229,7 @@ const RouterMain = () => {
           element={
             <Suspense
               fallback={
-                <div>
+                <div className="w-full h-full flex items-center justify-center">
                   <LoadingNetwork />
                 </div>
               }
@@ -228,7 +244,7 @@ const RouterMain = () => {
           element={
             <Suspense
               fallback={
-                <div>
+                <div className="w-full h-full flex items-center justify-center">
                   <LoadingNetwork />
                 </div>
               }
@@ -242,7 +258,7 @@ const RouterMain = () => {
           element={
             <Suspense
               fallback={
-                <div>
+                <div className="w-full h-full flex items-center justify-center">
                   <LoadingNetwork />
                 </div>
               }
@@ -257,7 +273,7 @@ const RouterMain = () => {
           element={
             <Suspense
               fallback={
-                <div>
+                <div className="w-full h-full flex items-center justify-center">
                   <LoadingNetwork />
                 </div>
               }
@@ -272,7 +288,7 @@ const RouterMain = () => {
           element={
             <Suspense
               fallback={
-                <div>
+                <div className="w-full h-full flex items-center justify-center">
                   <LoadingNetwork />
                 </div>
               }
