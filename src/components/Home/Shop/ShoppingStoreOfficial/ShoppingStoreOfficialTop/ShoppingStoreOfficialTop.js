@@ -137,14 +137,21 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
               </div>
               {/* 2 */}
               <div className="w-full md:w-[35%] flex items-center border-t md:border-none border-searchBgColor mt-5 pt-5 md:pt-0 md:mt-0">
-                <NavLink
-                  to="/delivery-points"
-                  className="flex items-center justify-center shrink-0 w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer"
-                >
-                  <span>
-                    <LocationColoursIcons colors={"#007DCA"} />
-                  </span>
-                </NavLink>
+                <div className="w-full gap-x-2 h-fit flex items-center justify-center gap-y-1 cursor-pointer">
+                  <NavLink
+                    to="/delivery-points"
+                    className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer"
+                  >
+                    <span className="flex items-center  ">
+                      <LocationColoursIcons colors={"#007DCA"} />
+                    </span>
+                  </NavLink>
+                  <NavLink to="/delivery-points"
+                    className="w-[200px] text-sm font-AeonikProRegular text-borderWinter cursor-pointer">
+                    {filteredData?.shop?.approved_shop_locations[0]?.address}
+                  </NavLink>
+
+                </div>
                 <button
                   onClick={(e) => {
                     e.preventDefault();
@@ -168,11 +175,15 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                   <div className="w-fit h-fit flex items-center justify-center gap-y-1 cursor-pointer">
                     <NavLink
                       to="/delivery-points"
-                      className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer"
+                      className="w-fit flex items-center gap-x-2"
                     >
-                      <span>
+                      <span className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer">
                         <LocationColoursIcons colors={"#007DCA"} />
                       </span>
+                      <p className="text-sm font-AeonikProRegular text-borderWinter cursor-pointer">
+                        {filteredData?.shop?.approved_shop_locations[0]?.address}
+                      </p>
+
                     </NavLink>
                     <p
                       className={`text-borderWinter border-b border-dashed border-borderWinter ml-3 text-sm md:text-base not-italic font-AeonikProRegular`}

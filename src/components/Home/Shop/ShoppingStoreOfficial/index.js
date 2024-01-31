@@ -167,6 +167,7 @@ const ShoppingStoreOfficial = () => {
     getOutWearList,
     getFootWearList,
     getRating, getRange, dressInfo?.locationIdParams])
+  console.log(filteredData, "filteredData");
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
       <section className="w-full border-b border-searchBgColor ">
