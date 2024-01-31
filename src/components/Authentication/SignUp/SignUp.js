@@ -348,7 +348,7 @@ export default function SignUp() {
                 {/* Birth Registration Section */}
 
                 <label
-                  htmlFor="bdate"
+                  // htmlFor="bdate"
                   className="mb-[6px] font-AeonikProRegular text-sm flex items-center"
                 >
                   {" "}
@@ -363,84 +363,84 @@ export default function SignUp() {
                     <div className="mx-4">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
+                        width={20}
+                        height={20}
                         viewBox="0 0 20 20"
                         fill="none"
                       >
                         <path
                           d="M6.66699 1.6665V4.1665"
                           stroke="black"
-                          stroke-width="1.5"
-                          stroke-miterlimit="10"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeMiterlimit={10}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M13.333 1.6665V4.1665"
                           stroke="black"
-                          stroke-width="1.5"
-                          stroke-miterlimit="10"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeMiterlimit={10}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M2.91699 7.5752H17.0837"
                           stroke="black"
-                          stroke-width="1.5"
-                          stroke-miterlimit="10"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeMiterlimit={10}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M17.5 7.08317V14.1665C17.5 16.6665 16.25 18.3332 13.3333 18.3332H6.66667C3.75 18.3332 2.5 16.6665 2.5 14.1665V7.08317C2.5 4.58317 3.75 2.9165 6.66667 2.9165H13.3333C16.25 2.9165 17.5 4.58317 17.5 7.08317Z"
                           stroke="black"
-                          stroke-width="1.5"
-                          stroke-miterlimit="10"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.5"
+                          strokeMiterlimit={10}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M13.0791 11.4167H13.0866"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth={2}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M13.0791 13.9167H13.0866"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth={2}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M9.99607 11.4167H10.0036"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth={2}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M9.99607 13.9167H10.0036"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth={2}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M6.91209 11.4167H6.91957"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth={2}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M6.91209 13.9167H6.91957"
                           stroke="black"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth={2}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                     </div>
@@ -535,7 +535,8 @@ export default function SignUp() {
                     <input
                       className="  w-full h-12 placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="email"
-                      name="name"
+                      name="email"
+                      autoComplete="email"
                       placeholder="Адрес электронной почты"
                       value={state?.email}
                       onChange={(e) =>
@@ -591,7 +592,7 @@ export default function SignUp() {
                 </div>
 
                 {/* Password Registration Section */}
-                <div className="mt-4 w-full h-fit">
+                <form id="password" className="mt-4 w-full h-fit">
                   <div className="flex items-center font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
                     Пароль
                     <span className="text-red-600 ml-[2px]">
@@ -604,7 +605,8 @@ export default function SignUp() {
                       type={state?.eyesShow ? "password" : "text"}
                       placeholder="Введите пароль"
                       value={state?.password}
-                      name="name"
+                      name="password"
+                      autoComplete="password"
                       onChange={(e) =>
                         setState({ ...state, password: e.target.value })
                       }
@@ -634,9 +636,9 @@ export default function SignUp() {
                       {state?.errorsGroup?.errors?.password}
                     </p>
                   )}
-                </div>
+                </form>
                 {/* Confirmation Password Registration Section */}
-                <div className="mt-4 w-full h-fit">
+                <form id="confirmPassword" className="mt-4 w-full h-fit">
                   <div className="flex items-center font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
                     Повторите пароль
                     <span className="text-red-600 ml-[2px]">
@@ -648,7 +650,8 @@ export default function SignUp() {
                       className="w-full h-12 placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type={state?.eyesShowConfirmation ? "password" : "text"}
                       placeholder="Введите пароль"
-                      name="name"
+                      name="password"
+                      autoComplete="password"
                       value={state?.password_confirmation}
                       onChange={(e) =>
                         setState({
@@ -681,7 +684,7 @@ export default function SignUp() {
                       {state?.errorsGroup?.errors?.password}
                     </p>
                   )}
-                </div>
+                </form>
 
                 {/* ----------- Email Verify Modal Start ----------- */}
                 <div className="w-full md:w-1/2 h-fit ">
@@ -758,7 +761,7 @@ export default function SignUp() {
                     <input
                       className="  w-full h-12 bg-btnBgColor focus:bg-btnBgColor active:bg-btnBgColor placeholder:bg-btnBgColor placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black "
                       type="text"
-                      name="name"
+                      name="phone"
                       placeholder="Phone number"
                       required
                     />

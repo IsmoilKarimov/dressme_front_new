@@ -11,9 +11,9 @@ export default function SignIn() {
   const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
     eyesShow: true,
-    password: null,
-    rememberCheck: null,
-    email: null,
+    password: "",
+    rememberCheck: "",
+    email: "",
     errorsGroup: null,
   });
 
@@ -116,7 +116,7 @@ export default function SignIn() {
         theme="colored"
       />
 
-      <div className="max-w-[440px] w-[100%] mt-[80px]  h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
+      <form className="max-w-[440px] w-[100%] mt-[80px]  h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
         <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-xl ss:text-start md:text-center leading-5   tracking-[0,16px] text-black">
           Авторизоваться
         </div>
@@ -130,6 +130,7 @@ export default function SignIn() {
               className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black focus:bg-white placeholder-bg-white"
               type="email"
               name="email"
+              autoComplete="email"
               value={state.email}
               onChange={({ target: { value } }) => {
                 setError();
@@ -158,6 +159,7 @@ export default function SignIn() {
               type={state?.eyesShow ? "password" : "text"}
               // placeholder="Enter your password"
               name="password"
+              autoComplete="password"
               value={state.password}
               onChange={({ target: { value } }) => {
                 setError();
@@ -235,7 +237,7 @@ export default function SignIn() {
             Создайте Аккаунт
           </span>
         </NavLink>
-      </div>
+      </form>
     </div>
   );
 }
