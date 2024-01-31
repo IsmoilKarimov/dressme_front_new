@@ -14,7 +14,7 @@ const Header = () => {
 
   const [state, setState] = useState({
     getAllCardList: null,
-    genderSelectId: null,
+    genderSelectId: 0,
     colorSelectId: null,
     categorySelectId: null,
     getRangeData: [],
@@ -117,6 +117,15 @@ const Header = () => {
     dressInfo?.mainSubRegionId,
     seasonId,
   ]);
+  console.log(
+    state?.categorySelectId, " state?.categorySelectId",
+    state?.colorSelectId, " state?.colorSelectId",
+    state?.getRangeData, " state?.getRangeData",
+    state?.genderSelectId, " state?.genderSelectId",
+    dressInfo?.mainSearchName, " dressInfo?.mainSearchName",
+    dressInfo?.mainRegionId, " dressInfo?.mainRegionId",
+    dressInfo?.mainSubRegionId, " dressInfo?.mainSubRegionId",
+    seasonId, " seasonId,",);
   return (
     <header>
       <section>
@@ -124,28 +133,25 @@ const Header = () => {
           <div className="w-full">
             <article
               className={`block md:hidden relative z-[100]
-              ${
-                show
+              ${show
                   ? "visible duration-500 z-[25]"
                   : "visible duration-500 z-[25] translate-y-[-100%]"
-              }`}
+                }`}
             >
               <MediumHeader />
             </article>
             <article
               className={`fixed top-0  w-full bg-white block
-              ${
-                show
+              ${show
                   ? "visible duration-500 z-[25]"
                   : "visible duration-500 z-[25] translate-y-[-100%]"
-              }`}
+                }`}
             >
               <TopHeader />
               <MediumHeader />
               <div
-                className={`${
-                  scrollPost > -530 ? "" : "h-0 overflow-hidden"
-                } visible duration-500`}
+                className={`${scrollPost > -530 ? "" : "h-0 overflow-hidden"
+                  } visible duration-500`}
               >
                 <NavbarBottomIndex
                   getGender={getGender}
@@ -153,6 +159,10 @@ const Header = () => {
                   getCategoryList={getCategoryList}
                   getColorList={getColorList}
                   getAllCardList={state?.getAllCardList}
+                  categoryProps={state?.categorySelectId}
+                  colorProps={state?.colorSelectId}
+                  getRangeProps={state?.getRangeData}
+                  genderProps={state?.genderSelectId}
                 />
               </div>
             </article>
@@ -170,19 +180,17 @@ const Header = () => {
         )}
 
         <div
-          className={`${
-            locationWindow !== "/delivery-points"
-              ? "md:mt-[99px]"
-              : "mt-[0] h-0 overflow-hidden"
-          } `}
+          className={`${locationWindow !== "/delivery-points"
+            ? "md:mt-[99px]"
+            : "mt-[0] h-0 overflow-hidden"
+            } `}
         >
           {!dressInfo?.yandexFullScreen && (
             <article
-              className={`fixed bottom-0 w-full bg-white ${
-                show
-                  ? "visible duration-500 z-[101]"
-                  : "visible duration-500 z-[101] translate-y-[100%]"
-              } block md:hidden`}
+              className={`fixed bottom-0 w-full bg-white ${show
+                ? "visible duration-500 z-[101]"
+                : "visible duration-500 z-[101] translate-y-[100%]"
+                } block md:hidden`}
             >
               <NavMenu />
             </article>

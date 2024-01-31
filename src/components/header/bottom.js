@@ -20,53 +20,54 @@ import { GrClose } from "react-icons/gr";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 const { Option } = Select;
 
-function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, }) {
+function BottomHeader({
+  getGender,
+  getRangeList,
+  getCategoryList,
+  getColorList,
+  categoryProps,
+  colorProps,
+  getRangeProps,
+  genderProps }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
 
-  const [selectedId, setSelectedId] = useState(null);
   const [state, setState] = useState({
     openwear: false,
     openPrice: false,
     textToColor: false,
-    minPrice: 60000,
-    maxPrice: 1800000,
-    selectPrice: "По бюджету",
     // --------
     showColour: false,
-    // data?.getMainProductCard: null,
-
     categorySelectId: null,
-    colorSelectId: [],
-    genderSelectId: null,
     clearPrice: false,
   });
-  const [colorSelectId, setColorSelectId] = useState([]);
-  // console.log(colorSelectId, "colorSelectId");
   const [minPrice, setMinPrice] = useState(
     Number(data?.getMainProductCard?.budget?.min_price)
   );
   const [maxPrice, setMaxPrice] = useState(
     Number(data?.getMainProductCard?.budget?.max_price)
   );
-  const [getRange, setGetRange] = useState([]);
-  const [values, setValues] = useState([]);
+  // const [getRange, setGetRange] = useState([getRangeProps[0], getRangeProps[1]]);
+  const [values, setValues] = useState([getRangeProps[0], getRangeProps[1]]);
 
   useEffect(() => {
     setMinPrice(Number(data?.getMainProductCard?.budget?.min_price));
     setMaxPrice(Number(data?.getMainProductCard?.budget?.max_price));
-    if (
-      data?.getMainProductCard?.budget?.min_price &&
-      data?.getMainProductCard?.budget?.max_price
-    ) {
-      if (!values[0] && !values[1]) {
-        setValues([
-          Number(data?.getMainProductCard?.budget?.min_price),
-          Number(data?.getMainProductCard?.budget?.max_price),
-        ]);
+    if (getRangeProps?.length === 0) {
+      console.log("ishladi price1");
+      if (
+        data?.getMainProductCard?.budget?.min_price &&
+        data?.getMainProductCard?.budget?.max_price
+      ) {
+        if (!values[0] && !values[1]) {
+          setValues([
+            Number(data?.getMainProductCard?.budget?.min_price),
+            Number(data?.getMainProductCard?.budget?.max_price),
+          ]);
+        }
+      } else {
+        setValues([0, 0]);
       }
-    } else {
-      setValues([0, 0]);
     }
   }, [data?.getMainProductCard?.budget]);
 
@@ -84,10 +85,14 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
       Number(data?.getMainProductCard?.budget?.min_price),
       Number(data?.getMainProductCard?.budget?.max_price),
     ]);
-    setGetRange([]);
+    // setGetRange([]);
     getRangeList([])
   };
 
+  console.log(getRangeProps, "getRangeProps");
+  console.log(getRangeProps?.length, "getRangeProps");
+  console.log(values, "values");
+  // console.log(getRange, "getRange");
 
 
   useEffect(() => {
@@ -117,13 +122,10 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
       window.removeEventListener("resize", updateDimension);
     };
   }, [screenSize]);
-  // ----------------Wear state management----------------------------
-
-  // const [mainData, setMainData] = useContext(HomeMainDataContext);
 
   // ----------------------Price State Management----------------------
   const sendPriceList = () => {
-    setGetRange(values);
+    // setGetRange(values);
     getRangeList(values)
   };
   const handleOpenChangePrice = (newOpen) => {
@@ -142,7 +144,7 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
           <MenuCloseIcons className="w-[24px] h-[24px]" colors={"#000"} />
         </span>
       </div>
-      <div className=" flex flex-col rounded-lg  w-full pb-5 px-4 pt-10 ">
+      <div className=" flex flex-col rounded-lg  w-full pb-5 px-4 pt-[30px] ">
         <div className=" flex justify-between items-center mb-4 w-full ">
           <div className="flex ">
             <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
@@ -174,21 +176,13 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
           </div>
         </div>
         <div className="relative z-50 mb-[6px] w-[350px]  marketFilter">
-          {" "}
           <Slider
-            className="horizontal-slider "
-            thumbClassName="example-thumb1"
-            trackClassName="example-track1"
-            // defaultValue={[10, 90]}
-            ariaLabel={["Lower thumb", "Upper thumb"]}
-            // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
-            // renderThumb={() => <div>1</div>}
-            minDistance={10}
-            // pearling
+            className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] mt-[10px]`}
             onChange={setValues}
             value={values}
-            min={minPrice}
-            max={maxPrice}
+            minDistance={10}
+            min={Number(minPrice)}
+            max={Number(maxPrice)}
           />
         </div>
         <div
@@ -216,8 +210,6 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
       </div>
     </div>
   );
-
-  const [getRadio, setGetRadio] = useState("");
 
   const [personItems, setPersonItems] = useState([
     {
@@ -272,54 +264,45 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
   const handleFilterByUser = (fathId, childId) => {
     if (childId === 0) {
       getGender("")
-      setState({ ...state, genderSelectId: "" });
     } else if (childId > 0) {
       getGender(childId)
-      setState({ ...state, genderSelectId: childId });
     }
-    setPersonItems((current) => {
-      return current?.map((data) => {
-        if (data?.id == fathId) {
-          let newDataColor = data.childText.map((e) => {
-            if (e.id == childId) {
-              return { ...e, action: true };
-            } else return { ...e, action: false };
-          });
-          // console.log(newDataColor, "newDataColor");
-          return { ...data, childText: [...newDataColor] };
-        } else return data;
-      });
-    });
+
   };
+
+
   const newColorArrayId = (hex, id) => {
-    if (!colorSelectId) {
+    if (!colorProps) {
       getColorList(hex)
-      setColorSelectId(hex);
       setDressInfo({ ...dressInfo, mainColorId: id });
     }
-    if (colorSelectId == hex) {
+    if (colorProps == hex) {
       getColorList()
-      setColorSelectId();
       setDressInfo({ ...dressInfo, mainColorId: null });
     }
-    if (colorSelectId !== hex) {
+    if (colorProps !== hex) {
       getColorList(hex);
-      setColorSelectId(hex);
       setDressInfo({ ...dressInfo, mainColorId: id });
     }
   };
+  const ClearColorId = () => {
+    getColorList()
+    setDressInfo({ ...dressInfo, mainColorId: null });
+  }
 
   useEffect(() => {
     setState({ ...state, clearPrice: false });
     setMinPrice(Number(data?.getMainProductCard?.budget?.min_price));
     setMaxPrice(Number(data?.getMainProductCard?.budget?.max_price));
-    setValues([
-      Number(data?.getMainProductCard?.budget?.min_price),
-      Number(data?.getMainProductCard?.budget?.max_price),
-    ]);
-    if (getRange[0] && getRange[1]) {
-      setGetRange([]);
-      getRange([])
+    if (getRangeProps === 0) {
+      setValues([
+        Number(data?.getMainProductCard?.budget?.min_price),
+        Number(data?.getMainProductCard?.budget?.max_price),
+      ]);
+      if (getRangeProps[0] && getRangeProps[1]) {
+        console.log("ishladi price2");
+        getRangeList([])
+      }
     }
   }, [dressInfo?.mainRegionId, dressInfo?.mainSubRegionId]);
 
@@ -355,7 +338,6 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
 
             <div className="py-4 gap-x-2 gap-y-4 grid gap-4 grid-cols-6">
               {data?.getMainProductCard?.colors?.map((data) => {
-                console.log(data?.id, data?.hex, "55555555555555");
                 return (
                   <div
                     key={data?.id}
@@ -364,10 +346,10 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
                     <div
                       onClick={() => {
                         newColorArrayId(data?.hex, data?.id);
-                        setSelectedId(data?.id);
+                        // setSelectedId(data?.id);
                       }}
                       style={{ backgroundColor: data?.hex }}
-                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${data?.id === selectedId
+                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${data?.hex === colorProps
                         ? "border border-setTexOpacity flex items-center justify-center"
                         : "border"
                         } `}
@@ -377,7 +359,7 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
                           colors={data?.hex === "#000000" ? "#fff" : "#000"}
                         />
                       ) : null} */}
-                      {colorSelectId == data?.hex && data?.id == 1 && (
+                      {colorProps == data?.hex && data?.id == 1 && (
                         <span>
                           <BiCheck
                             size={30}
@@ -386,7 +368,7 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
                           />
                         </span>
                       )}
-                      {colorSelectId == data?.hex && data?.id !== 1 && (
+                      {colorProps == data?.hex && data?.id !== 1 && (
                         <span>
                           <BiCheck
                             size={30}
@@ -407,9 +389,9 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
             </div>
 
             <div className="flex items-center justify-end">
-              {selectedId && (
+              {colorProps && (
                 <button
-                  onClick={() => setSelectedId(null)}
+                  onClick={() => ClearColorId()}
                   className="flex items-center text-fullBlue active:scale-95  active:opacity-70 justify-center  px-4 py-1"
                 >
                   Отключить
@@ -439,8 +421,10 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
               getCategoryList(e)
               setState({ ...state, categorySelectId: e })
             }}
+            value={categoryProps}
             onSearch={onSearch}
             // suffixIcon={<></>}
+            // defaultValue={data?.getMainProductCard?.categories?.map((item) => item?.id === categoryProps ? item?.name_ru : null)}
             allowClear
             size="large"
             filterOption={(input, option) =>
@@ -473,14 +457,14 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
           <span className=" flex items-center ">
             <DollorIcons colors={"#000"} />
           </span>
-          {getRange[0] && getRange[1] ? (
+          {getRangeProps[0] && getRangeProps[1] ? (
             <div className="w-fit flex justify-between items-center  ">
               <p className="text-[13px] not-italic font-AeonikProMedium leading-1 ">
-                {Number(getRange[0]).toLocaleString()}
+                {Number(getRangeProps[0]).toLocaleString()}
               </p>
               <span className="w-[6px] h-[1px] bg-[#a1a1a1] mx-[2px] 	"></span>
               <p className="text-[13px] not-italic font-AeonikProMedium leading-1">
-                {Number(getRange[1]).toLocaleString()}
+                {Number(getRangeProps[1]).toLocaleString()}
               </p>
             </div>
           ) : (
@@ -542,7 +526,7 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
                         key={data?.id}
                         htmlFor={data?.id}
                         onClick={() => {
-                          setSelectedId(data?.id);
+                          // setSelectedId(data?.id);
                           newColorArrayId(data?.hex, data?.id);
                           // setDressInfo({});
                         }}
@@ -556,7 +540,7 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
                             <BiCheck size={25} color={"#000"} className="flex items-center justify-center" />
                           </span>
                         )} */}
-                        {colorSelectId == data?.hex && data?.id == 1 && (
+                        {colorProps == data?.hex && data?.id == 1 && (
                           <span>
                             <BiCheck
                               size={25}
@@ -565,7 +549,7 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
                             />
                           </span>
                         )}
-                        {colorSelectId == data?.hex && data?.id !== 1 && (
+                        {colorProps == data?.hex && data?.id !== 1 && (
                           <span>
                             <BiCheck
                               size={25}
@@ -580,7 +564,7 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
                         id={data?.id}
                         name="checkStatus"
                         value={data?.id}
-                        onChange={(e) => setGetRadio(e.target.value)}
+                        // onChange={(e) => setGetRadio(e.target.value)}
                         className={"hidden  w-full h-full"}
                       />
                     </div>
@@ -624,7 +608,7 @@ function BottomHeader({ getGender, getRangeList, getCategoryList, getColorList, 
                       >
                         <button
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${item?.action
+                          className={`${item?.id === genderProps
                             ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
                             : " bg-btnBgColor text-black h-full"
                             } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
