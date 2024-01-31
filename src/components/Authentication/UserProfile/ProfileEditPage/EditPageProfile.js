@@ -106,6 +106,16 @@ const EditProfilePage = () => {
           console.log(err);
           if (err?.response?.status === 401) {
             navigate("/sign_in");
+            toast.error(`${err?.response?.data?.message}`, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
           }
         });
     }
@@ -152,6 +162,16 @@ const EditProfilePage = () => {
         console.log(err);
         if (err?.response?.status === 401) {
           navigate("/sign_in");
+          toast.error(`${err?.response?.data?.message}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
       });
   };
@@ -249,22 +269,35 @@ const EditProfilePage = () => {
           });
         } else if (res?.message) {
           if (res?.message === "Unauthenticated.") {
+            setProfileContextData(false);
             navigate("/sign_in");
+            toast.error(`${res?.message}`, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            console.log(res, "Bu-error edit posttttt");
+          } else {
+            reFetchFunction();
+            toast.success(`${res?.message}`, {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            console.log(res, "Bu-success edit posttttt");
           }
-          console.log(res, "Bu-Success edit posttttt");
-          // reFetchFunction();
           setState({ ...state, errorsGroup: res, activeEditPassword: false });
           setLoading(false);
-          toast.success(`${res?.message}`, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
         }
       })
       .catch((err) => console.log(err, "errImage"));
