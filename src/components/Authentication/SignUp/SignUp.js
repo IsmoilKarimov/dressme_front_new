@@ -503,6 +503,39 @@ export default function SignUp() {
                   </p>
                 )}
 
+                {/* Email Registration Section */}
+                <div className="mt-4 w-full h-fit">
+                  <div className=" flex items-center justify-between w-full">
+                    <div className="flex items-center font-AeonikProRegular text-sm leading-4 cursor-pointer text-black  tracking-[0,16px]">
+                      Электронная почта
+                      <span className="text-red-600 ml-[2px]">
+                        <Star6Icon />
+                      </span>{" "}
+                    </div>
+                  </div>
+                  <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
+                    <input
+                      className="  w-full h-12 placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                      type="email"
+                      name="name"
+                      placeholder="Адрес электронной почты"
+                      value={state?.email}
+                      onChange={(e) =>
+                        setState({ ...state, email: e.target.value })
+                      }
+                      required
+                    />
+                    <span>
+                      <EmailIcons colors={"#D2D2D2"} />
+                    </span>{" "}
+                  </div>
+                  {state?.errorsGroup?.errors?.email && (
+                    <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
+                      {state?.errorsGroup?.errors?.email}
+                    </p>
+                  )}
+                </div>
+
                 {/* Number Registration Section */}
                 <div className="mt-4 w-full h-fit">
                   <div className="flex items-center font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
@@ -538,38 +571,7 @@ export default function SignUp() {
                     </p>
                   )}
                 </div>
-                {/* Email Registration Section */}
-                <div className="mt-4 w-full h-fit">
-                  <div className=" flex items-center justify-between w-full">
-                    <div className="flex items-center font-AeonikProRegular text-sm leading-4 cursor-pointer text-black  tracking-[0,16px]">
-                      Электронная почта
-                      <span className="text-red-600 ml-[2px]">
-                        <Star6Icon />
-                      </span>{" "}
-                    </div>
-                  </div>
-                  <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
-                    <input
-                      className="  w-full h-12 placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
-                      type="email"
-                      name="name"
-                      placeholder="Адрес электронной почты"
-                      value={state?.email}
-                      onChange={(e) =>
-                        setState({ ...state, email: e.target.value })
-                      }
-                      required
-                    />
-                    <span>
-                      <EmailIcons colors={"#D2D2D2"} />
-                    </span>{" "}
-                  </div>
-                  {state?.errorsGroup?.errors?.email && (
-                    <p className="text-[#D50000]  text-[12px] ll:text-[14px] md:text-base">
-                      {state?.errorsGroup?.errors?.email}
-                    </p>
-                  )}
-                </div>
+
                 {/* Password Registration Section */}
                 <div className="mt-4 w-full h-fit">
                   <div className="flex items-center font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
