@@ -55,13 +55,14 @@ function BottomHeader() {
           Number(data?.getMainProductCard?.budget?.max_price),
         ]);
       }
-    } else {
-      setValues([0, 0]);
     }
+    // else {
+    //   setValues([0, 0]);
+    // }
   }, [data?.getMainProductCard?.budget]);
 
   useEffect(() => {
-    if (values && minPrice && maxPrice) {
+    if (values[1] && values[0] && minPrice && maxPrice) {
       if (minPrice !== values[0] || maxPrice !== values[1]) {
         setState({ ...state, clearPrice: true });
       }
@@ -78,6 +79,23 @@ function BottomHeader() {
     // getRangeList([])
     setDressInfo({ ...dressInfo, mainRangePrice: [] })
   };
+  const sendPriceList = () => {
+    setDressInfo({ ...dressInfo, mainRangePrice: values })
+  };
+
+  useEffect(() => {
+    setState({ ...state, clearPrice: false });
+    setMinPrice(Number(data?.getMainProductCard?.budget?.min_price));
+    setMaxPrice(Number(data?.getMainProductCard?.budget?.max_price));
+    setValues([
+      Number(data?.getMainProductCard?.budget?.min_price),
+      Number(data?.getMainProductCard?.budget?.max_price),
+    ]);
+    if (dressInfo?.mainRangePrice[0] && dressInfo?.mainRangePrice[1]) {
+      console.log("ishga tushdi 1");
+      setDressInfo({ ...dressInfo, mainRangePrice: [] })
+    }
+  }, [dressInfo?.mainRegionId, dressInfo?.mainSubRegionId]);
 
 
 
@@ -110,9 +128,8 @@ function BottomHeader() {
   }, [screenSize]);
 
   // ----------------------Price State Management----------------------
-  const sendPriceList = () => {
-    setDressInfo({ ...dressInfo, mainRangePrice: values })
-  };
+
+
   const handleOpenChangePrice = (newOpen) => {
     setState({ ...state, openPrice: newOpen });
   };
@@ -286,20 +303,6 @@ function BottomHeader() {
   const ClearColorId = () => {
     setDressInfo({ ...dressInfo, mainColorId: null });
   }
-
-  useEffect(() => {
-    setState({ ...state, clearPrice: false });
-    setMinPrice(Number(data?.getMainProductCard?.budget?.min_price));
-    setMaxPrice(Number(data?.getMainProductCard?.budget?.max_price));
-    setValues([
-      Number(data?.getMainProductCard?.budget?.min_price),
-      Number(data?.getMainProductCard?.budget?.max_price),
-    ]);
-    if (dressInfo?.mainRangePrice[0] && dressInfo?.mainRangePrice[1]) {
-      setDressInfo({ ...dressInfo, mainRangePrice: [] })
-
-    }
-  }, [dressInfo?.mainRegionId, dressInfo?.mainSubRegionId]);
 
 
 
