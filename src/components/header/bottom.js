@@ -290,18 +290,18 @@ function BottomHeader() {
 
 
   const newColorArrayId = (hex, id) => {
-    if (!dressInfo?.mainColorId) {
-      setDressInfo({ ...dressInfo, mainColorId: id });
+    if (!dressInfo?.mainColorHex) {
+      setDressInfo({ ...dressInfo, mainColorId: id, mainColorHex: hex });
     }
-    if (dressInfo?.mainColorId == hex) {
-      setDressInfo({ ...dressInfo, mainColorId: null });
+    if (dressInfo?.mainColorHex == hex) {
+      setDressInfo({ ...dressInfo, mainColorId: null, mainColorHex: null });
     }
-    if (dressInfo?.mainColorId !== hex) {
-      setDressInfo({ ...dressInfo, mainColorId: id });
+    if (dressInfo?.mainColorHex !== hex) {
+      setDressInfo({ ...dressInfo, mainColorId: id, mainColorHex: hex });
     }
   };
   const ClearColorId = () => {
-    setDressInfo({ ...dressInfo, mainColorId: null });
+    setDressInfo({ ...dressInfo, mainColorId: null, mainColorHex: null });
   }
 
 
@@ -347,7 +347,7 @@ function BottomHeader() {
                         // setSelectedId(data?.id);
                       }}
                       style={{ backgroundColor: data?.hex }}
-                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${data?.hex === dressInfo?.mainColorId
+                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${data?.hex === dressInfo?.mainColorHex
                         ? "border border-setTexOpacity flex items-center justify-center"
                         : "border"
                         } `}
@@ -357,7 +357,7 @@ function BottomHeader() {
                           colors={data?.hex === "#000000" ? "#fff" : "#000"}
                         />
                       ) : null} */}
-                      {dressInfo?.mainColorId == data?.hex && data?.id == 1 && (
+                      {dressInfo?.mainColorHex == data?.hex && data?.id == 1 && (
                         <span>
                           <BiCheck
                             size={30}
@@ -366,7 +366,7 @@ function BottomHeader() {
                           />
                         </span>
                       )}
-                      {dressInfo?.mainColorId == data?.hex && data?.id !== 1 && (
+                      {dressInfo?.mainColorHex == data?.hex && data?.id !== 1 && (
                         <span>
                           <BiCheck
                             size={30}
@@ -387,7 +387,7 @@ function BottomHeader() {
             </div>
 
             <div className="flex items-center justify-end">
-              {dressInfo?.mainColorId && (
+              {dressInfo?.mainColorHex && (
                 <button
                   onClick={() => ClearColorId()}
                   className="flex items-center text-fullBlue active:scale-95  active:opacity-70 justify-center  px-4 py-1"
@@ -537,7 +537,7 @@ function BottomHeader() {
                             <BiCheck size={25} color={"#000"} className="flex items-center justify-center" />
                           </span>
                         )} */}
-                        {dressInfo?.mainColorId == data?.hex && data?.id == 1 && (
+                        {dressInfo?.mainColorHex == data?.hex && data?.id == 1 && (
                           <span>
                             <BiCheck
                               size={25}
@@ -546,7 +546,7 @@ function BottomHeader() {
                             />
                           </span>
                         )}
-                        {dressInfo?.mainColorId == data?.hex && data?.id !== 1 && (
+                        {dressInfo?.mainColorHex == data?.hex && data?.id !== 1 && (
                           <span>
                             <BiCheck
                               size={25}
