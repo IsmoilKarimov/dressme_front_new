@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
@@ -17,11 +17,13 @@ import { UzbekFlag } from "../../../../assets";
 import { ToastContainer, toast } from "react-toastify";
 import EditPassword from "./EditPassword/EditPassword";
 import { useHttp } from "../../../../hook/useHttp";
-import LoadingFor from "../../../Loading/LoadingFor";
 import EmailSend from "./EmailSend/EmailSend";
 import Cookies from "js-cookie";
 import { DatePicker, Popover, Space } from "antd";
 import { BiChevronUp } from "react-icons/bi";
+import LoadingNetwork from "../../../Loading/LoadingNetwork";
+import { ProfileDataContext } from "../../../../ContextHook/ProfileContext";
+import axios from "axios";
 
 const EditProfilePage = () => {
   const { request } = useHttp();
@@ -32,6 +34,9 @@ const EditProfilePage = () => {
 
   const [selectMonth, setselectMonth] = useState({ text: "Месяц", id: false });
   const [selectYear, setSelectYear] = useState(false);
+
+  const [profileContextData, setProfileContextData] =
+    useContext(ProfileDataContext);
 
   const monthList = [
     { id: 1, type: "Январь" },
@@ -78,42 +83,109 @@ const EditProfilePage = () => {
 
   const url = "https://api.dressme.uz/api/user";
 
+  let token = Cookies.get("DressmeUserToken");
+
   // ----------------GET USER PROFILE-------------
-  const { refetch } = useQuery(
-    ["get-user-profile"],
-    async () => {
-      return request({ url: `/user/profile`, token: true });
-    },
-    {
-      onSuccess: (res) => {
-        console.log(res, "SUCCESS, GET USER PROFILE");
-        let ar = Number(res?.birth_date?.split("-")[1]);
-        setProfileData(res);
-        setDayValue(parseInt(res?.birth_date));
-        setselectMonth({ text: monthList[ar - 1].type, id: ar });
-        setSelectYear(res?.birth_date?.split("-")[2]);
-        setState({
-          ...state,
-          userFirstname: res?.name,
-          userLastname: res?.surname,
-          userEmail: res?.email,
-          gender_id: res?.gender_id,
-          birth_date: res?.birth_date,
-          userPhoneCode: res?.phone && res?.phone.slice(0, 3),
-          userPhoneNumber: res?.phone && res?.phone.slice(3, 12),
-          // --------------
-          userFirstnameForEdit: res?.name,
-          userLastnameForEdit: res?.surname,
-          userPhoneNumberForEdit: res?.phone && res?.phone.slice(3, 12),
+
+  useEffect(() => {
+    if (!profileContextData) {
+      setLoading(true);
+      axios(`${url}/profile`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => {
+          setProfileContextData(res?.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log(err);
         });
-      },
-      onError: (err) => {
-        console.log(err, "THERE IS AN ERROR IN GET-USER-PROFILE");
-      },
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
     }
-  );
+  }, []);
+
+  useEffect(() => {
+    let ar = Number(profileContextData?.birth_date?.split("-")[1]);
+    setProfileData(profileContextData);
+    setDayValue(parseInt(profileContextData?.birth_date));
+    setselectMonth({ text: monthList[ar - 1]?.type, id: ar });
+    setSelectYear(profileContextData?.birth_date?.split("-")[2]);
+    setState({
+      ...state,
+      userFirstname: profileContextData?.name,
+      userLastname: profileContextData?.surname,
+      userEmail: profileContextData?.email,
+      gender_id: profileContextData?.gender_id,
+      birth_date: profileContextData?.birth_date,
+      userPhoneCode:
+        profileContextData?.phone && profileContextData?.phone.slice(0, 3),
+      userPhoneNumber:
+        profileContextData?.phone && profileContextData?.phone.slice(3, 12),
+      // --------------
+      userFirstnameForEdit: profileContextData?.name,
+      userLastnameForEdit: profileContextData?.surname,
+      userPhoneNumberForEdit:
+        profileContextData?.phone && profileContextData?.phone.slice(3, 12),
+    });
+  }, [profileContextData]);
+
+  const reFetchFunction = () => {
+    setLoading(true);
+    axios(`${url}/profile`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        setProfileContextData(res?.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+      });
+  };
+
+  // const { refetch } = useQuery(
+  //   ["get-user-profile"],
+  //   async () => {
+  //     setLoading(true);
+  //     return request({ url: `/user/profile`, token: true });
+  //   },
+  //   {
+  //     onSuccess: (res) => {
+  //       console.log(res, "SUCCESS, GET USER PROFILE");
+  //       let ar = Number(res?.birth_date?.split("-")[1]);
+  //       setProfileData(res);
+  //       setDayValue(parseInt(res?.birth_date));
+  //       setselectMonth({ text: monthList[ar - 1].type, id: ar });
+  //       setSelectYear(res?.birth_date?.split("-")[2]);
+  //       setState({
+  //         ...state,
+  //         userFirstname: res?.name,
+  //         userLastname: res?.surname,
+  //         userEmail: res?.email,
+  //         gender_id: res?.gender_id,
+  //         birth_date: res?.birth_date,
+  //         userPhoneCode: res?.phone && res?.phone.slice(0, 3),
+  //         userPhoneNumber: res?.phone && res?.phone.slice(3, 12),
+  //         // --------------
+  //         userFirstnameForEdit: res?.name,
+  //         userLastnameForEdit: res?.surname,
+  //         userPhoneNumberForEdit: res?.phone && res?.phone.slice(3, 12),
+  //       });
+  //       setLoading(false);
+  //     },
+  //     onError: (err) => {
+  //       setLoading(false);
+  //       console.log(err, "THERE IS AN ERROR IN GET-USER-PROFILE");
+  //     },
+  //     keepPreviousData: true,
+  //     refetchOnWindowFocus: false,
+  //   }
+  // );
 
   let data = state?.userPhoneNumber?.split("-");
   let arr = data?.join("");
@@ -130,6 +202,8 @@ const EditProfilePage = () => {
     let date = `${dayValue}${selectMonth?.id ? "-" + selectMonth?.id : ""}${
       selectYear ? "-" + selectYear : ""
     }`;
+
+    setLoading(true);
 
     let form = new FormData();
     state?.userFirstname !== state?.userFirstnameForEdit &&
@@ -153,7 +227,8 @@ const EditProfilePage = () => {
       .then((res) => {
         if (res?.errors && res?.message) {
           console.log(res, "Bu-Error");
-          setState({ ...state, errorsGroup: res });
+          setState({ ...state, errorsGroup: res, activeEditPassword: false });
+          setLoading(false);
           toast.error(`${res?.message}`, {
             position: "top-right",
             autoClose: 5000,
@@ -166,7 +241,9 @@ const EditProfilePage = () => {
           });
         } else if (res?.message) {
           console.log(res, "Bu-Success");
-          setState({ ...state, errorsGroup: res });
+          reFetchFunction();
+          setState({ ...state, errorsGroup: res, activeEditPassword: false });
+          setLoading(false);
           toast.success(`${res?.message}`, {
             position: "top-right",
             autoClose: 5000,
@@ -209,6 +286,7 @@ const EditProfilePage = () => {
               ...state,
               errorsGroup: "",
               openModalEmailMessage: true,
+              activeEditPassword: false,
             });
             toast.success(`${res?.message}`, {
               position: "top-right",
@@ -222,7 +300,7 @@ const EditProfilePage = () => {
             });
           } else if (res?.message && res.errors) {
             setLoading(false);
-            setState({ ...state, errorsGroup: res });
+            setState({ ...state, errorsGroup: res, activeEditPassword: false });
             toast.error(`${res?.message}`, {
               position: "top-right",
               autoClose: 5000,
@@ -300,10 +378,10 @@ const EditProfilePage = () => {
   );
 
   return (
-    <div>
+    <div className="min-h-[76vh]">
       {loading ? (
         <div>
-          <LoadingFor />
+          <LoadingNetwork />
         </div>
       ) : (
         <div className="w-full flex items-center justify-center mx-auto">
@@ -418,7 +496,7 @@ const EditProfilePage = () => {
                           type="text"
                           name="firstname"
                           autoComplete="name"
-                          value={state?.userFirstname || null}
+                          value={state?.userFirstname || ""}
                           onChange={(e) => {
                             setState({
                               ...state,
@@ -444,7 +522,7 @@ const EditProfilePage = () => {
                           type="text"
                           name="lastName"
                           autoComplete="surname"
-                          value={state?.userLastname || null}
+                          value={state?.userLastname || ""}
                           onChange={(e) => {
                             setState({
                               ...state,
@@ -521,84 +599,84 @@ const EditProfilePage = () => {
                         <div className="mx-4">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="20"
-                            height="20"
+                            width={20}
+                            height={20}
                             viewBox="0 0 20 20"
                             fill="none"
                           >
                             <path
                               d="M6.66699 1.6665V4.1665"
                               stroke="black"
-                              stroke-width="1.5"
-                              stroke-miterlimit="10"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeWidth="1.5"
+                              strokeMiterlimit={10}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                             />
                             <path
                               d="M13.333 1.6665V4.1665"
                               stroke="black"
-                              stroke-width="1.5"
-                              stroke-miterlimit="10"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeWidth="1.5"
+                              strokeMiterlimit={10}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                             />
                             <path
                               d="M2.91699 7.5752H17.0837"
                               stroke="black"
-                              stroke-width="1.5"
-                              stroke-miterlimit="10"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeWidth="1.5"
+                              strokeMiterlimit={10}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                             />
                             <path
                               d="M17.5 7.08317V14.1665C17.5 16.6665 16.25 18.3332 13.3333 18.3332H6.66667C3.75 18.3332 2.5 16.6665 2.5 14.1665V7.08317C2.5 4.58317 3.75 2.9165 6.66667 2.9165H13.3333C16.25 2.9165 17.5 4.58317 17.5 7.08317Z"
                               stroke="black"
-                              stroke-width="1.5"
-                              stroke-miterlimit="10"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeWidth="1.5"
+                              strokeMiterlimit={10}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                             />
                             <path
                               d="M13.0791 11.4167H13.0866"
                               stroke="black"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeWidth={2}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                             />
                             <path
                               d="M13.0791 13.9167H13.0866"
                               stroke="black"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeWidth={2}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                             />
                             <path
                               d="M9.99607 11.4167H10.0036"
                               stroke="black"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeWidth={2}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                             />
                             <path
                               d="M9.99607 13.9167H10.0036"
                               stroke="black"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeWidth={2}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                             />
                             <path
                               d="M6.91209 11.4167H6.91957"
                               stroke="black"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeWidth={2}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                             />
                             <path
                               d="M6.91209 13.9167H6.91957"
                               stroke="black"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeWidth={2}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
                             />
                           </svg>
                         </div>
@@ -704,7 +782,7 @@ const EditProfilePage = () => {
                         <div className="w-[65%] md:w-[75%] bg-btnBgColor h-12 overflow-hidden">
                           <InputMask
                             mask="(99)999-99-99"
-                            value={state?.userPhoneNumber || null}
+                            value={state?.userPhoneNumber || ""}
                             onChange={(e) => {
                               setState({
                                 ...state,
@@ -730,7 +808,7 @@ const EditProfilePage = () => {
                         <input
                           className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                           type="email"
-                          value={state?.userEmail || null}
+                          value={state?.userEmail || ""}
                           onChange={(e) => {
                             setState({
                               ...state,
