@@ -5,6 +5,7 @@ import InputMask from "react-input-mask";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { DatePicker, Popover, Space } from "antd";
 import { BiChevronUp } from "react-icons/bi";
+import dayjs from "dayjs";
 
 import {
   EmailIcons,
@@ -28,9 +29,7 @@ export default function SignUp() {
   const url = "https://api.dressme.uz/api/user/register";
   const [dressInfo] = useContext(dressMainData);
 
-  const dayRef = useRef(null);
   const [selectMonth, setselectMonth] = useState({ text: "Месяц", id: false });
-  const [selectYear, setSelectYear] = useState(false);
 
   const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
@@ -39,6 +38,8 @@ export default function SignUp() {
     phoneCode: "+998",
     phoneNumber: "",
     email: "",
+    day: "",
+    year: "",
     password: "",
     password_confirmation: "",
     errorsGroup: "",
@@ -85,11 +86,13 @@ export default function SignUp() {
   });
 
   const onSubmit = () => {
+    let date = `${state.day}${selectMonth?.id ? "-" + selectMonth?.id : ""}${
+      state.year ? "-" + state.year : ""
+    }`;
+
     setState({
       ...state,
-      birth_date: `${dayRef?.current?.value}${
-        selectMonth?.id ? "-" + selectMonth?.id : ""
-      }${selectYear ? "-" + selectYear : ""}`,
+      birth_date: date?.length > 7 ? date : "",
     });
 
     mutate(
@@ -101,12 +104,15 @@ export default function SignUp() {
             setState({ ...state, errorsGroup: res });
           } else if (res?.message && !res?.errors) {
             setLoading(false);
+            setselectMonth({ text: "Месяц", id: false });
             setState({
               ...state,
               firstName: "",
               lastName: "",
               phoneNumber: "",
               email: "",
+              day: "",
+              year: "",
               gender_id: 1,
               birth_date: "",
               password: "",
@@ -290,6 +296,7 @@ export default function SignUp() {
                       className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="text"
                       name="name"
+                      autoComplete="name"
                       placeholder="Имя"
                       value={state?.firstName}
                       onChange={(e) =>
@@ -320,7 +327,8 @@ export default function SignUp() {
                       className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                       type="text"
                       placeholder="Фамилия"
-                      name="name"
+                      name="surname"
+                      autoComplete="surname"
                       value={state?.lastName}
                       onChange={(e) =>
                         setState({ ...state, lastName: e.target.value })
@@ -442,8 +450,13 @@ export default function SignUp() {
                     name="day"
                     placeholder="День"
                     id="day"
-                    ref={dayRef}
-                    className="w-[19%] h-12 flex items-center bg-btnBgColor text-closeColorBtn font-AeonikProMedium text-[14px] px-[14px] border-r border-searchBgColor [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    onInput={(e) => {
+                      if (e.currentTarget.value < 32) {
+                        setState({ ...state, day: e.currentTarget.value });
+                      }
+                    }}
+                    value={state.day}
+                    className={`text-black text-center w-[19%] h-12 flex items-center bg-btnBgColor  font-AeonikProMedium text-[14px] px-[14px] border-r border-searchBgColor [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none`}
                   />
 
                   <Popover
@@ -453,7 +466,13 @@ export default function SignUp() {
                     trigger="click"
                     content={contentMonth}
                   >
-                    <span className="not-italic font-AeonikProMedium text-[15px] text-center mt-1 text-sm leading-4 text-closeColorBtn">
+                    <span
+                      className={` ${
+                        selectMonth?.text === "Месяц"
+                          ? "text-closeColorBtn"
+                          : "text-black"
+                      } not-italic font-AeonikProMedium text-[15px] text-center mt-1 text-sm leading-4 `}
+                    >
                       {selectMonth?.text}
                     </span>
                     <span>
@@ -473,25 +492,24 @@ export default function SignUp() {
                     size={12}
                     options={["Hide"]}
                   >
-                    <div className="flex items-center">
+                    <div className="flex items-center w-full pl-5">
                       <span>
                         <DatePicker
-                          className="font-AeonikProMedium text-[15px] flex items-center text-closeColorBtn"
+                          className="font-AeonikProMedium text-[15px] flex items-center text-black"
                           placeholder="Год"
+                          allowClear={false}
                           picker="year"
+                          defaultValue={() => {
+                            if (state.year) {
+                              return dayjs(state.year, "YYYY");
+                            }
+                          }}
                           bordered={false}
                           suffixIcon
                           onChange={(n, s) => {
-                            setSelectYear(s);
+                            setState({ ...state, year: s });
                           }}
                         />
-                      </span>
-                      <span>
-                        <BiChevronUp
-                          size={20}
-                          style={{ color: "#c2c2c2" }}
-                          className="mr-2"
-                        />{" "}
                       </span>
                     </div>
                   </Space>
