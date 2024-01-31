@@ -60,7 +60,7 @@ export default function ShopOfficialCard({ filteredData, setPageId }) {
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                 }}
-                className="relative w-full hover:scale-105 duration-300 ease-linear cursor-pointer h-[310px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
+                className="relative w-full duration-300 ease-linear cursor-pointer h-[310px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
               >
                 {/* <div><NoImg /></div> */}
               </figure>
@@ -229,8 +229,8 @@ export default function ShopOfficialCard({ filteredData, setPageId }) {
                     }
                   }}
                   className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${item?.active
-                      ? "bg-fullBlue text-white"
-                      : "hover:bg-searchBgColor"
+                    ? "bg-fullBlue text-white"
+                    : "hover:bg-searchBgColor"
                     } mx-[5px] flex items-center justify-center  ${item?.url
                       ? "cursor-pointer"
                       : "opacity-70 cursor-not-allowed"

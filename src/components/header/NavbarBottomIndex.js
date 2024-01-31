@@ -12,10 +12,7 @@ import {
   PersonPlusIcons,
   SircleNext,
 } from "../../assets/icons";
-function NavbarBottomIndex({ getGender, getRangeList, getCategoryList, getColorList, categoryProps,
-  colorProps,
-  getRangeProps,
-  genderProps }) {
+function NavbarBottomIndex() {
   const [dressInfo] = useContext(dressMainData);
 
   const location = useLocation();
@@ -127,14 +124,14 @@ function NavbarBottomIndex({ getGender, getRangeList, getCategoryList, getColorL
             {locationWindow === "/" ? (
               <span className=" md:my-3">
                 <BottomHeader
-                  getGender={getGender}
-                  getRangeList={getRangeList}
-                  getCategoryList={getCategoryList}
-                  getColorList={getColorList}
-                  categoryProps={categoryProps}
-                  colorProps={colorProps}
-                  getRangeProps={getRangeProps}
-                  genderProps={genderProps}
+                // getGender={getGender}
+                // getRangeList={getRangeList}
+                // getCategoryList={getCategoryList}
+                // getColorList={getColorList}
+                // categoryProps={categoryProps}
+                // colorProps={colorProps}
+                // getRangeProps={getRangeProps}
+                // genderProps={genderProps}
                 />
               </span>
             ) : null}
