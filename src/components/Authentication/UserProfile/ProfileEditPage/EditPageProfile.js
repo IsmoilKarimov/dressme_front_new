@@ -417,6 +417,7 @@ const EditProfilePage = () => {
                           className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                           type="text"
                           name="firstname"
+                          autoComplete="name"
                           value={state?.userFirstname || null}
                           onChange={(e) => {
                             setState({
@@ -442,6 +443,7 @@ const EditProfilePage = () => {
                           className="w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                           type="text"
                           name="lastName"
+                          autoComplete="surname"
                           value={state?.userLastname || null}
                           onChange={(e) => {
                             setState({
@@ -461,106 +463,6 @@ const EditProfilePage = () => {
                   </div>
                 </div>
                 {/* 2 */}
-                <div className="w-full md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
-                  <div className="flex  flex-col md:flex-row justify-between items-center">
-                    <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
-                      <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-                        Номер телефона{" "}
-                      </div>
-                      <div className="flex mt-[6px] items-center justify-center overflow-hidden border border-searchBgColor rounded-lg">
-                        <div className="w-[35%] md:w-[25%] h-12 flex bg-btnBgColor items-center justify-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
-                          <div className="w-full flex items-center justify-center gap-x-1">
-                            <img
-                              src={UzbekFlag}
-                              className="w-fit h-fit"
-                              alt="form-arrow-bottom"
-                            />
-                            <input
-                              className="w-[40px] bg-btnBgColor h-full select-none not-italic font-AeonikProMedium text-base leading-4 text-black"
-                              type="text"
-                              name="name"
-                              value={
-                                "+" + state?.userPhoneCode === ""
-                                  ? state?.userPhoneCode
-                                  : "+998"
-                              }
-                              readOnly
-                            />
-                          </div>
-                        </div>
-                        <div className="w-[65%] md:w-[75%] bg-btnBgColor h-12 overflow-hidden">
-                          <InputMask
-                            mask="(99)999-99-99"
-                            value={state?.userPhoneNumber || null}
-                            onChange={(e) => {
-                              setState({
-                                ...state,
-                                userPhoneNumber: e.target.value,
-                                activeEditPassword: true,
-                              });
-                            }}
-                            className={`w-full px-4  h-full not-italic bg-btnBgColor ${
-                              state?.userPhoneNumber
-                                ? "font-AeonikProMedium"
-                                : null
-                            } text-base leading-4 text-black`}
-                            placeholder={"(77) 777-77-77"}
-                          ></InputMask>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
-                      <div className="flex justify-between mt-[6px]  w-full items-center not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-                        <span>Электронная почта</span>
-                      </div>
-                      <div className="mt-[6px] px-[16px] w-full flex items-center bg-btnBgColor border border-searchBgColor rounded-lg ">
-                        <input
-                          className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
-                          type="email"
-                          value={state?.userEmail || null}
-                          onChange={(e) => {
-                            setState({
-                              ...state,
-                              userEmail: e.target.value,
-                              activeEditEmail: true,
-                            });
-                          }}
-                          name="name"
-                          placeholder="Адрес электронной почты"
-                          required
-                        />
-                        <span>
-                          <EmailIcons colors={"#D2D2D2"} />
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  {/* EditPassword and Send Edited Email */}
-                  <div className="w-full flex items-center xs:justify-start justify-end xs:mt-5 ">
-                    <button
-                      onClick={() => setOpenEditPasswordModal(true)}
-                      type="button"
-                      className={
-                        "w-full text-start text-borderWinter text-base not-italic font-AeonikProRegular hover:underline"
-                      }
-                    >
-                      Изменить пароль
-                    </button>
-                    <button
-                      onClick={() => setSendEmailModal(true)}
-                      type="button"
-                      disabled={state.activeEditEmail ? false : true}
-                      className={`${
-                        state.activeEditEmail
-                          ? "text-borderWinter hover:underline"
-                          : "text-[#e2e2e2] hover:no-underline"
-                      } w-full text-end  text-base not-italic font-AeonikProRegular `}
-                    >
-                      Обновить почту
-                    </button>
-                  </div>
-                </div>
-
                 <div className="gap-8 flex md:border-b border-searchBgColor w-full md:px-[40px] md:py-[30px]">
                   <div className="w-full">
                     <div className="text-[14px] font-AeonikProRegular mb-[6px]">
@@ -599,7 +501,7 @@ const EditProfilePage = () => {
                         }}
                         className={`${
                           state?.gender_id === "2" ? "text-[#007DCA]" : ""
-                        } cursor-pointer border-r select-none w-full h-full flex items-center justify-center text-[16px] font-AeonikProMedium`}
+                        } cursor-pointer select-none w-full h-full flex items-center justify-center text-[16px] font-AeonikProMedium`}
                       >
                         Женский
                       </div>
@@ -714,7 +616,7 @@ const EditProfilePage = () => {
                             activeEditPassword: true,
                           });
                         }}
-                        className="w-[19%] h-12 flex items-center bg-btnBgColor font-AeonikProRegular text-[15px] px-[14px] border-r border-searchBgColor [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                        className="text-center w-[19%] h-12 flex items-center bg-btnBgColor font-AeonikProRegular text-[15px] px-[14px] border-r border-searchBgColor [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                       />
 
                       <Popover
@@ -744,9 +646,10 @@ const EditProfilePage = () => {
                         size={12}
                         options={["Hide"]}
                       >
-                        <div className="flex items-center">
+                        <div className="flex items-center justify-center w-full pl-5">
                           <span>
                             <DatePicker
+                              allowClear={false}
                               className="font-AeonikProRegular text-base flex items-center"
                               placeholder="Год"
                               picker="year"
@@ -762,16 +665,110 @@ const EditProfilePage = () => {
                               }}
                             />
                           </span>
-                          <span>
-                            <BiChevronUp
-                              size={20}
-                              style={{ color: "#c2c2c2" }}
-                              className="mr-2"
-                            />{" "}
-                          </span>
                         </div>
                       </Space>
                     </div>
+                  </div>
+                </div>
+
+                {/* 3 */}
+                <div className="w-full md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
+                  <div className="flex  flex-col md:flex-row justify-between items-center">
+                    <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
+                      <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
+                        Номер телефона{" "}
+                      </div>
+                      <div className="flex mt-[6px] items-center justify-center overflow-hidden border border-searchBgColor rounded-lg">
+                        <div className="w-[35%] md:w-[25%] h-12 flex bg-btnBgColor items-center justify-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
+                          <div className="w-full flex items-center justify-center gap-x-1">
+                            <img
+                              src={UzbekFlag}
+                              className="w-fit h-fit"
+                              alt="form-arrow-bottom"
+                            />
+                            <input
+                              className="w-[40px] bg-btnBgColor h-full select-none not-italic font-AeonikProMedium text-base leading-4 text-black"
+                              type="text"
+                              name="name"
+                              value={
+                                "+" + state?.userPhoneCode === ""
+                                  ? state?.userPhoneCode
+                                  : "+998"
+                              }
+                              readOnly
+                            />
+                          </div>
+                        </div>
+                        <div className="w-[65%] md:w-[75%] bg-btnBgColor h-12 overflow-hidden">
+                          <InputMask
+                            mask="(99)999-99-99"
+                            value={state?.userPhoneNumber || null}
+                            onChange={(e) => {
+                              setState({
+                                ...state,
+                                userPhoneNumber: e.target.value,
+                                activeEditPassword: true,
+                              });
+                            }}
+                            className={`w-full px-4  h-full not-italic bg-btnBgColor ${
+                              state?.userPhoneNumber
+                                ? "font-AeonikProMedium"
+                                : null
+                            } text-base leading-4 text-black`}
+                            placeholder={"(77) 777-77-77"}
+                          ></InputMask>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
+                      <div className="flex justify-between mt-[6px]  w-full items-center not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
+                        <span>Электронная почта</span>
+                      </div>
+                      <div className="mt-[6px] px-[16px] w-full flex items-center bg-btnBgColor border border-searchBgColor rounded-lg ">
+                        <input
+                          className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                          type="email"
+                          value={state?.userEmail || null}
+                          onChange={(e) => {
+                            setState({
+                              ...state,
+                              userEmail: e.target.value,
+                              activeEditEmail: true,
+                            });
+                          }}
+                          name="name"
+                          placeholder="Адрес электронной почты"
+                          required
+                        />
+                        <span>
+                          <EmailIcons colors={"#D2D2D2"} />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  {/* EditPassword and Send Edited Email */}
+                  <div className="w-full flex items-center xs:justify-start justify-end xs:mt-5 ">
+                    <button
+                      onClick={() => setOpenEditPasswordModal(true)}
+                      type="button"
+                      className={
+                        "w-full text-start text-borderWinter text-base not-italic font-AeonikProRegular hover:underline"
+                      }
+                    >
+                      Изменить пароль
+                    </button>
+                    <button
+                      onClick={() => setSendEmailModal(true)}
+                      type="button"
+                      disabled={state.activeEditEmail ? false : true}
+                      className={`${
+                        state.activeEditEmail
+                          ? "text-borderWinter hover:underline"
+                          : "text-[#e2e2e2] hover:no-underline"
+                      } w-full text-end  text-base not-italic font-AeonikProRegular `}
+                    >
+                      Обновить почту
+                    </button>
                   </div>
                 </div>
 
