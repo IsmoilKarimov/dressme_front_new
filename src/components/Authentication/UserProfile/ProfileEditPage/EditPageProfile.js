@@ -32,6 +32,8 @@ const EditProfilePage = () => {
   const [sendEmailModal, setSendEmailModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
+
   const [selectMonth, setselectMonth] = useState({ text: "Месяц", id: false });
   const [selectYear, setSelectYear] = useState(false);
 
@@ -102,6 +104,9 @@ const EditProfilePage = () => {
         .catch((err) => {
           setLoading(false);
           console.log(err);
+          if (err?.response?.status === 401) {
+            navigate("/sign_in");
+          }
         });
     }
   }, []);
@@ -320,7 +325,6 @@ const EditProfilePage = () => {
     );
   };
 
-  const navigate = useNavigate();
   const location = useLocation();
   const LogOut = () => {
     Cookies.remove("DressmeUserToken");
