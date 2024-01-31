@@ -87,8 +87,8 @@ const Header = () => {
     dressInfo?.mainCategoryId &&
       params.append("category", dressInfo?.mainCategoryId);
     dressInfo?.mainGenderId && params.append("gender", dressInfo?.mainGenderId);
-    dressInfo?.mainColorId &&
-      params.append("color", dressInfo?.mainColorId);
+    dressInfo?.mainColorHex &&
+      params.append("color", dressInfo?.mainColorHex);
     seasonId !== 5 && params.append("season", seasonId);
     dressInfo?.mainRangePrice[0] &&
       params.append("budget[from]", dressInfo?.mainRangePrice[0]);
@@ -109,7 +109,7 @@ const Header = () => {
     // console.log("is run");
   }, [
     dressInfo?.mainCategoryId,
-    dressInfo?.mainColorId,
+    dressInfo?.mainColorHex,
     dressInfo?.mainRangePrice,
     dressInfo?.mainGenderId,
     dressInfo?.mainSearchName,
