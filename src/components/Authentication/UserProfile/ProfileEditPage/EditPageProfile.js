@@ -610,7 +610,9 @@ const EditProfilePage = () => {
                         placeholder="День"
                         id="day"
                         onInput={(e) => {
-                          setDayValue(e.currentTarget.value);
+                          if (e.currentTarget.value < 32) {
+                            setDayValue(e.currentTarget.value);
+                          }
                           setState({
                             ...state,
                             activeEditPassword: true,
@@ -626,7 +628,7 @@ const EditProfilePage = () => {
                         trigger="click"
                         content={contentMonth}
                       >
-                        <span className="not-italic font-AeonikProMedium text-center mt-1 text-sm leading-4 text-black">
+                        <span className="not-italic font-AeonikProRegular text-center mt-1 text-base leading-4">
                           {selectMonth?.text}
                         </span>
                         <span>
