@@ -47,27 +47,24 @@ function BottomHeader({
   const [maxPrice, setMaxPrice] = useState(
     Number(data?.getMainProductCard?.budget?.max_price)
   );
-  // const [getRange, setGetRange] = useState([getRangeProps[0], getRangeProps[1]]);
-  const [values, setValues] = useState([getRangeProps[0], getRangeProps[1]]);
+  const [getRange, setGetRange] = useState([]);
+  const [values, setValues] = useState([]);
 
   useEffect(() => {
     setMinPrice(Number(data?.getMainProductCard?.budget?.min_price));
     setMaxPrice(Number(data?.getMainProductCard?.budget?.max_price));
-    if (getRangeProps?.length === 0) {
-      console.log("ishladi price1");
-      if (
-        data?.getMainProductCard?.budget?.min_price &&
-        data?.getMainProductCard?.budget?.max_price
-      ) {
-        if (!values[0] && !values[1]) {
-          setValues([
-            Number(data?.getMainProductCard?.budget?.min_price),
-            Number(data?.getMainProductCard?.budget?.max_price),
-          ]);
-        }
-      } else {
-        setValues([0, 0]);
+    if (
+      data?.getMainProductCard?.budget?.min_price &&
+      data?.getMainProductCard?.budget?.max_price
+    ) {
+      if (!values[0] && !values[1]) {
+        setValues([
+          Number(data?.getMainProductCard?.budget?.min_price),
+          Number(data?.getMainProductCard?.budget?.max_price),
+        ]);
       }
+    } else {
+      setValues([0, 0]);
     }
   }, [data?.getMainProductCard?.budget]);
 
@@ -85,14 +82,10 @@ function BottomHeader({
       Number(data?.getMainProductCard?.budget?.min_price),
       Number(data?.getMainProductCard?.budget?.max_price),
     ]);
-    // setGetRange([]);
+    setGetRange([]);
     getRangeList([])
   };
 
-  console.log(getRangeProps, "getRangeProps");
-  console.log(getRangeProps?.length, "getRangeProps");
-  console.log(values, "values");
-  // console.log(getRange, "getRange");
 
 
   useEffect(() => {
@@ -125,7 +118,7 @@ function BottomHeader({
 
   // ----------------------Price State Management----------------------
   const sendPriceList = () => {
-    // setGetRange(values);
+    setGetRange(values);
     getRangeList(values)
   };
   const handleOpenChangePrice = (newOpen) => {
@@ -176,6 +169,7 @@ function BottomHeader({
           </div>
         </div>
         <div className="relative z-50 mb-[6px] w-[350px]  marketFilter">
+          {" "}
           <Slider
             className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] mt-[10px]`}
             onChange={setValues}
@@ -184,6 +178,21 @@ function BottomHeader({
             min={Number(minPrice)}
             max={Number(maxPrice)}
           />
+          {/* <Slider
+            className="horizontal-slider "
+            thumbClassName="example-thumb1"
+            trackClassName="example-track1"
+            // defaultValue={[10, 90]}
+            ariaLabel={["Lower thumb", "Upper thumb"]}
+            // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
+            // renderThumb={() => <div>1</div>}
+            minDistance={10}
+            // pearling
+            onChange={setValues}
+            value={values}
+            min={minPrice}
+            max={maxPrice}
+          /> */}
         </div>
         <div
           className={`flex items-center  mt-4 ${state?.clearPrice ? "justify-between" : "justify-end"
@@ -294,15 +303,13 @@ function BottomHeader({
     setState({ ...state, clearPrice: false });
     setMinPrice(Number(data?.getMainProductCard?.budget?.min_price));
     setMaxPrice(Number(data?.getMainProductCard?.budget?.max_price));
-    if (getRangeProps === 0) {
-      setValues([
-        Number(data?.getMainProductCard?.budget?.min_price),
-        Number(data?.getMainProductCard?.budget?.max_price),
-      ]);
-      if (getRangeProps[0] && getRangeProps[1]) {
-        console.log("ishladi price2");
-        getRangeList([])
-      }
+    setValues([
+      Number(data?.getMainProductCard?.budget?.min_price),
+      Number(data?.getMainProductCard?.budget?.max_price),
+    ]);
+    if (getRange[0] && getRange[1]) {
+      setGetRange([]);
+      getRange([])
     }
   }, [dressInfo?.mainRegionId, dressInfo?.mainSubRegionId]);
 
@@ -457,14 +464,14 @@ function BottomHeader({
           <span className=" flex items-center ">
             <DollorIcons colors={"#000"} />
           </span>
-          {getRangeProps[0] && getRangeProps[1] ? (
+          {getRange[0] && getRange[1] ? (
             <div className="w-fit flex justify-between items-center  ">
               <p className="text-[13px] not-italic font-AeonikProMedium leading-1 ">
-                {Number(getRangeProps[0]).toLocaleString()}
+                {Number(getRange[0]).toLocaleString()}
               </p>
               <span className="w-[6px] h-[1px] bg-[#a1a1a1] mx-[2px] 	"></span>
               <p className="text-[13px] not-italic font-AeonikProMedium leading-1">
-                {Number(getRangeProps[1]).toLocaleString()}
+                {Number(getRange[1]).toLocaleString()}
               </p>
             </div>
           ) : (
