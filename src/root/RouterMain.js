@@ -11,6 +11,8 @@ import { EditProfilePage } from "../components/Authentication/UserProfile/Profil
 import CatalogItems from "../components/Home/Catalog/CatalogFilter/CatalogItems";
 import LoadingNetwork from "../components/Loading/LoadingNetwork";
 
+import ShoppingStore from "../components/Home/Shop/ShoppingStore";
+
 // -------------------------------------
 const HomeIndex = React.lazy(() => import("../components/Home/Main"));
 const SingleMainProduct = React.lazy(() =>
@@ -38,9 +40,11 @@ const ShoppingStoreOfficial = React.lazy(() =>
   import("../components/Home/Shop/ShoppingStoreOfficial")
 );
 const Favourites = React.lazy(() => import("../components/Home/Favorite"));
-const ShoppingStore = React.lazy(() =>
-  import("../components/Home/Shop/ShoppingStore")
-);
+
+// const ShoppingStore = React.lazy(() =>
+//   import("../components/Home/Shop/ShoppingStore")
+// );
+
 const CategoryMainType = React.lazy(() =>
   import("../components/Category/CategoryForType")
 );
@@ -216,20 +220,7 @@ const RouterMain = () => {
             </Suspense>
           }
         />
-        <Route
-          path="/stores"
-          element={
-            <Suspense
-              fallback={
-                <div className="w-full h-full flex items-center justify-center">
-                  <LoadingNetwork />
-                </div>
-              }
-            >
-              <ShoppingStore />
-            </Suspense>
-          }
-        />
+        <Route path="/stores" element={<ShoppingStore />} />
         <Route
           path="/shopping_store/:id"
           element={
