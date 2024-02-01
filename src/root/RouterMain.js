@@ -260,7 +260,7 @@ const RouterMain = () => {
         />
 
         <Route
-          path="/set_new_password"
+          path="/reset-password-user"
           element={
             <Suspense
               fallback={
