@@ -235,7 +235,7 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
               </div>
             </div>
           </div>
-          <div className="w-full hidden md:flex items-center justify-between px-[22px] mt-[72px] mb-3">
+          <div className="w-full hidden md:flex items-center justify-between  mt-[72px] mb-3">
             <div className="flex items-center gap-x-5">
 
               <div className="w-[175px] flex items-center ">
