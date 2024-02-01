@@ -63,14 +63,15 @@ const SingleProduct = () => {
 
   const url = "https://api.dressme.uz";
 
-  const params = useParams();
+  const { id } = useParams();
+  const newId = id?.replace(":", "")
 
   const [singleData, setSingleData] = useState();
 
   const { refetch } = useQuery(
     ["get_main_detail_data"],
     () => {
-      return fetch(`${url}/api/main/products/${params?.id}`, {
+      return fetch(`${url}/api/main/products/${newId}`, {
         method: "GET",
         headers: {
           Accept: "application/json",

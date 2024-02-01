@@ -16,7 +16,7 @@ export const CollectionCardItem = ({
   const navigate = useNavigate();
 
   const goDetail = (id) => {
-    navigate(`/product/${id}`);
+    navigate(`/product/:${id}`);
   };
 
   const [colorId, setcolorId] = useContext(SliderPhotosColorContext);

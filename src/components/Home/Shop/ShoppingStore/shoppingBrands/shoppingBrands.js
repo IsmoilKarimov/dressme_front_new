@@ -41,7 +41,7 @@ const ShoppingBrands = ({ getData, setGetData, errorData }) => {
 
   return (
     <main className="relative">
-      {loading ? (
+      {!getData?.shops?.data?.length ? (
         <div className="absolute w-full h-fit">
           <LoadingFor />
         </div>
