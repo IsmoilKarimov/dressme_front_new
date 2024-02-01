@@ -6,11 +6,9 @@ import YandexFilter from "./YandexFilter";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import RegionListYandex from "./RegionListYandex";
 
-function YandexMapsIndex({ getMapsInfo, getFilterData, getFilterSearchByBrand }) {
+function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
   const [dressInfo] = useContext(dressMainData);
-  function getYandexFilterData(childData) {
-    getFilterData(childData)
-  }
+
   function getYandexSearchName(childData) {
     getFilterSearchByBrand(childData)
   }
@@ -68,7 +66,7 @@ function YandexMapsIndex({ getMapsInfo, getFilterData, getFilterSearchByBrand })
 
             `}
             >
-              <YandexFilter getMapsInfo={getMapsInfo} getYandexFilterData={getYandexFilterData} />
+              <YandexFilter getMapsInfo={getMapsInfo} />
             </div>
           )}
         </div>

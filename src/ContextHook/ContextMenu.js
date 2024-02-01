@@ -13,6 +13,11 @@ export const DressMenu = ({ children }) => {
     yandexFullScreen: false,
     yandexOpenMarketLocation: false,
     yandexGetMarketId: null,
+    yandexCategoryWear: null,
+    yandexCategoryBrand: null,
+    yandexRangePrice: [],
+    yandexGenderId: 0,
+
     // Cordinate
     yandexPositionX: null,
     yandexPositionY: null,
