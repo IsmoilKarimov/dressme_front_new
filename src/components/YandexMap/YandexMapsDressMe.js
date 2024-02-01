@@ -62,16 +62,13 @@ function YandexMapsDressMe() {
 
   // request get
   const [getMapsInfo, setGetMapsInfo] = useState(null);
-  const [getAllFilterSearch, setGetAllFilterSearch] = useState({});
   const [FilterSearchByBrand, setFilterSearchByBrand] = useState({});
   const [getAllImgGallery, setGetAllImgGallery] = useState();
 
   function getImgGallery(childData) {
     setGetAllImgGallery(childData);
   }
-  function getFilterData(childData) {
-    setGetAllFilterSearch(childData);
-  }
+
   function getFilterSearchByBrand(childData) {
     setFilterSearchByBrand(childData);
   }
@@ -81,22 +78,21 @@ function YandexMapsDressMe() {
 
   const fetchGetAllData = () => {
     var params = new URLSearchParams();
-
     dressInfo?.mainRegionId && params.append("region", dressInfo?.mainRegionId);
     dressInfo?.mainSubRegionId &&
       params.append("sub_region", dressInfo?.mainSubRegionId);
     FilterSearchByBrand?.searchMarketName &&
       params.append("keywords", FilterSearchByBrand?.searchMarketName);
-    getAllFilterSearch?.category_wear &&
-      params.append("category", getAllFilterSearch?.category_wear);
-    getAllFilterSearch?.minPrice &&
-      params.append("budget[from]", getAllFilterSearch?.minPrice);
-    getAllFilterSearch?.maxPrice &&
-      params.append("budget[to]", getAllFilterSearch?.maxPrice);
-    getAllFilterSearch?.genderType &&
-      params.append("gender", getAllFilterSearch?.genderType);
-    getAllFilterSearch?.category_brand &&
-      params.append("shop", getAllFilterSearch?.category_brand);
+    dressInfo?.yandexCategoryWear &&
+      params.append("category", dressInfo?.yandexCategoryWear);
+    dressInfo?.yandexRangePrice[0] &&
+      params.append("budget[from]", dressInfo?.yandexRangePrice[0]);
+    dressInfo?.yandexRangePrice[1] &&
+      params.append("budget[to]", dressInfo?.yandexRangePrice[1]);
+    dressInfo?.yandexGenderId[0] &&
+      params.append("gender", dressInfo?.yandexGenderId[0]);
+    dressInfo?.yandexCategoryBrand &&
+      params.append("shop", dressInfo?.yandexCategoryBrand);
     seasonId !== 5 && params.append("season", seasonId);
 
     fetch(`${url}/map/index?` + params)
@@ -120,13 +116,14 @@ function YandexMapsDressMe() {
       .catch((err) => console.log(err, "ERRORLIST"));
   };
 
-
-
   useEffect(() => {
     fetchGetAllData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    getAllFilterSearch,
+    dressInfo?.yandexCategoryWear,
+    dressInfo?.yandexCategoryBrand,
+    dressInfo?.yandexRangePrice,
+    dressInfo?.yandexGenderId,
     FilterSearchByBrand,
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
@@ -287,7 +284,6 @@ function YandexMapsDressMe() {
         >
           <YandexMapsIndex
             getMapsInfo={getMapsInfo}
-            getFilterData={getFilterData}
             getFilterSearchByBrand={getFilterSearchByBrand}
           />
         </div>
@@ -396,7 +392,7 @@ function YandexMapsDressMe() {
                 className={"placemarkCLuster cursor-pointer "}
                 key={data?.id}
                 onClick={() => {
-                  handlePlaceMark(data?.shop?.id, data?.id, data?.latitude, data?.longitude);
+                  handlePlaceMark(data?.shop_id, data?.id, data?.latitude, data?.longitude);
                 }}
                 geometry={[data?.latitude, data?.longitude]}
                 options={{

@@ -18,9 +18,9 @@ import "../yandex.css";
 import Slider from "react-slider";
 const { Option } = Select;
 
-export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
-  const [dressInfo] = useContext(dressMainData);
+export default function YandexFilter({ getMapsInfo }) {
   // useReplace
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const [state, setState] = useState({
     openwear: false,
@@ -28,7 +28,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
     openBrand: false,
     textToColor: false,
     genderActive: true,
-    genderId: null,
+    genderId: 0,
     categoryWearId: null,
     categoryBrandId: null,
     clearPrice: false,
@@ -47,7 +47,6 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   const [maxPrice, setMaxPrice] = useState(
     Number(getMapsInfo?.budget?.max_price)
   );
-  const [getRange, setGetRange] = useState([]);
   const [values, setValues] = useState([]);
   useEffect(() => {
     setMinPrice(Number(getMapsInfo?.budget?.min_price));
@@ -59,22 +58,20 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           Number(getMapsInfo?.budget?.max_price),
         ]);
       }
-    } else {
+    }
+    if (!getMapsInfo?.budget?.min_price && !getMapsInfo?.budget?.max_price) {
       setValues([0, 0]);
     }
   }, [getMapsInfo?.budget]);
 
   useEffect(() => {
-    if (values && minPrice && maxPrice) {
+    if (values[0] && values[1] && minPrice && maxPrice) {
       if (minPrice !== values[0] || maxPrice !== values[1]) {
         setState({ ...state, clearPrice: true });
       }
     }
   }, [values]);
 
-  // console.log(values, "state-values");
-  // console.log(minPrice, "state-minPrice");
-  // console.log(maxPrice, "state-maxPrice");
 
   const clearFunction = () => {
     setState({ ...state, clearPrice: false, openPrice: false });
@@ -82,7 +79,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
       Number(getMapsInfo?.budget?.min_price),
       Number(getMapsInfo?.budget?.max_price),
     ]);
-    setGetRange([]);
+    setDressInfo({ ...dressInfo, yandexRangePrice: [] })
   };
 
   useEffect(() => {
@@ -93,11 +90,13 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
       Number(getMapsInfo?.budget?.min_price),
       Number(getMapsInfo?.budget?.max_price),
     ]);
-    setGetRange([]);
+    if (dressInfo?.yandexRangePrice[0] && dressInfo?.yandexRangePrice[1]) {
+      setDressInfo({ ...dressInfo, yandexRangePrice: [] })
+    }
   }, [dressInfo?.mainRegionId, dressInfo?.mainSubRegionId]);
 
   const sendPriceList = () => {
-    setGetRange(values);
+    setDressInfo({ ...dressInfo, yandexRangePrice: values })
   };
   const handleOpenChangePrice = (newOpen) => {
     setState({ ...state, openPrice: newOpen });
@@ -115,7 +114,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           <MenuCloseIcons className="w-[24px] h-[24px]" colors={"#000"} />
         </span>
       </div>
-      <div className=" flex flex-col rounded-lg  w-full pb-5 px-4 pt-10 ">
+      <div className=" flex flex-col rounded-lg  w-full pb-5 px-4 pt-[30px] ">
         <div className=" flex justify-between items-center mb-4 w-full ">
           <div className="flex ">
             <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
@@ -126,7 +125,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
                 name="name"
                 className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={Number(values[0]).toLocaleString()}
-                // onChange={(e) => setMaxPrice(e.target.value)}
+              // onChange={(e) => setMaxPrice(e.target.value)}
               />{" "}
               сум
             </span>
@@ -140,15 +139,23 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
                 name="name"
                 className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 value={Number(values[1]).toLocaleString()}
-                // onChange={(e) => setMaxPrice(e.target.value)}
+              // onChange={(e) => setMaxPrice(e.target.value)}
               />
               сум
             </span>
           </div>
         </div>
-        <div className="relative z-50 mb-[6px] w-[350px]  marketFilter">
+        <div className=" z-50 mb-[6px] w-[350px]  ">
           {" "}
           <Slider
+            className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] mt-[10px]`}
+            onChange={setValues}
+            value={values}
+            minDistance={10}
+            min={Number(minPrice)}
+            max={Number(maxPrice)}
+          />
+          {/* <Slider
             className="horizontal-slider "
             thumbClassName="example-thumb1"
             trackClassName="example-track1"
@@ -162,12 +169,11 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
             value={values}
             min={minPrice}
             max={maxPrice}
-          />
+          /> */}
         </div>
         <div
-          className={`flex items-center  mt-4 ${
-            state?.clearPrice ? "justify-between" : "justify-end"
-          }`}
+          className={`flex items-center  mt-4 ${state?.clearPrice ? "justify-between" : "justify-end"
+            }`}
         >
           {state?.clearPrice && (
             <span
@@ -190,12 +196,7 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
       </div>
     </div>
   );
-  // console.log(getMapsInfo?.budget, "111-getMapsInfo?.budget");
-  // console.log(minPrice, "111-minPrice");
-  // console.log(maxPrice, "111-maxPrice");
-  // console.log(values, "111-values");
-  // console.log(getRange, "111-getRange");
-  // console.log("111---------------------------------------");
+
   // ----------------------Brend State Management----------------------
 
   const [selectBrand, setSelectBrand] = useState();
@@ -252,48 +253,15 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
   ]);
   const handleFilterByUser = (fathId, childId) => {
     if (childId === 0) {
-      setState({ ...state, genderId: "" });
+      setDressInfo({ ...dressInfo, yandexGenderId: 0 });
     } else if (childId > 0) {
-      setState({ ...state, genderId: childId });
+      setDressInfo({ ...dressInfo, yandexGenderId: childId });
     }
-    setPersonItems((current) => {
-      return current?.map((data) => {
-        if (data?.id === fathId) {
-          let newDataColor = data.childText.map((e) => {
-            if (e.id === childId) {
-              return { ...e, action: true };
-            } else return { ...e, action: false };
-          });
-          return { ...data, childText: [...newDataColor] };
-        } else return data;
-      });
-    });
   };
 
-  useEffect(() => {
-    getYandexFilterData({
-      category_wear: state?.categoryWearId,
-      category_brand: state?.categoryBrandId,
-      minPrice: getRange[0],
-      maxPrice: getRange[1],
-      genderType: state?.genderId,
-    });
-  }, [
-    state?.categoryWearId,
-    state?.categoryBrandId,
-    getRange,
-    state?.genderId,
-  ]);
-  // console.log(state?.categoryWearId, "state?.categoryWearId");
-  // console.log(state?.categoryBrandId, "state?.categoryBrandId");
   const onSearch = (value) => {
     // console.log("search:", value);
   };
-  // const handleClear = () => {
-  //   // Custom logic when the clear icon is clicked
-  //   console.log("Clear icon clicked!");
-  //   setState({ ...state, categoryWearId: null });
-  // };
 
   return (
     <div className="  w-fit px-10 py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex flex-col justify-between items-center m-auto md:border-t">
@@ -312,21 +280,23 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
               </span>
             }
             optionFilterProp="children"
-            onChange={(e) => setState({ ...state, categoryWearId: e })}
+            onChange={(e) => {
+              setDressInfo({ ...dressInfo, yandexCategoryWear: e })
+            }}
             onSearch={onSearch}
             // suffixIcon={<></>}
             allowClear
-            // onClear={handleClear}
+            value={dressInfo?.yandexCategoryWear}
             size="large"
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }
-            // options={getMapsInfo?.categories?.map((item) => {
-            //   return {
-            //     value: item?.id,
-            //     label: item?.name_ru,
-            //   };
-            // })}
+          // options={getMapsInfo?.categories?.map((item) => {
+          //   return {
+          //     value: item?.id,
+          //     label: item?.name_ru,
+          //   };
+          // })}
           >
             {getMapsInfo?.categories?.map((item) => {
               return (
@@ -354,14 +324,14 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
           <span className="font-AeonikProMedium">
             <DollorIcons colors={"#000"} />
           </span>
-          {getRange[0] && getRange[1] ? (
+          {dressInfo?.yandexRangePrice[0] && dressInfo?.yandexRangePrice[1] ? (
             <p className="w-fit flex justify-between items-center  font-AeonikProMedium ">
               <span className="text-[13px] font-AeonikProMedium	leading-5	 ">
-                {Number(getRange[0]).toLocaleString()}
+                {Number(dressInfo?.yandexRangePrice[0]).toLocaleString()}
               </span>
               <span className="w-[6px] h-[1px] bg-[#a1a1a1] mx-[2px] 	"></span>
               <span className="text-[13px] font-AeonikProMedium	leading-5	">
-                {Number(getRange[1]).toLocaleString()}
+                {Number(dressInfo?.yandexRangePrice[1]).toLocaleString()}
               </span>
             </p>
           ) : (
@@ -396,8 +366,10 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
               </span>
             }
             optionFilterProp="children"
-            // defaultValue={"По магазину"}
-            onChange={(e) => setState({ ...state, categoryBrandId: e })}
+            onChange={(e) => {
+              setDressInfo({ ...dressInfo, yandexCategoryBrand: e })
+            }}
+            value={dressInfo?.yandexCategoryBrand}
             onSearch={onSearch}
             allowClear
             // suffixIcon={<></>}
@@ -437,11 +409,10 @@ export default function YandexFilter({ getMapsInfo, getYandexFilterData }) {
                       >
                         <button
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${
-                            item?.action
-                              ? " bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-lg"
-                              : " bg-btnBgColor text-black"
-                          } px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  justify-center flex items-center`}
+                          className={`${item?.id === dressInfo?.yandexGenderId
+                            ? " bg-white border w-full h-[100%] my-auto mx-auto box-border border-searchBgColor rounded-lg"
+                            : " bg-btnBgColor text-black"
+                            } px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  justify-center flex items-center`}
                         >
                           {/* <img src={item?.anyIcons} alt="male" /> */}
                           <span>{item?.anyIcons}</span>

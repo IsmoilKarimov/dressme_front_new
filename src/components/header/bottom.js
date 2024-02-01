@@ -175,7 +175,7 @@ function BottomHeader() {
             </span>
           </div>
         </div>
-        <div className="relative z-50 mb-[6px] w-[350px]  marketFilter">
+        <div className="relative z-50 mb-[6px] w-[350px]  ">
           {" "}
           <Slider
             className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] mt-[10px]`}
