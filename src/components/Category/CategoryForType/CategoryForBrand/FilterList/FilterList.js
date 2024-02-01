@@ -45,8 +45,8 @@ function FilterList({
     // -------------------Budget---------------
     const [budgetToggle, setBudgetToggle] = useState(false);
 
-    const [minPrice, setMinPrice] = useState();
-    const [maxPrice, setMaxPrice] = useState();
+    const [minPrice, setMinPrice] = useState(Number(getFilter?.budget?.min_price));
+    const [maxPrice, setMaxPrice] = useState(Number(getFilter?.budget?.max_price));
     const [values, setValues] = useState([]);
     const [clearPrice, setClearPrice] = useState(false);
     // ----Ratinf
@@ -234,7 +234,8 @@ function FilterList({
                     Number(getFilter?.budget?.max_price),
                 ]);
             }
-        } else {
+        }
+        if (!getFilter?.budget?.min_price && !getFilter?.budget?.max_price) {
             setValues([0, 0]);
         }
     }, [getFilter?.budget]);
@@ -561,7 +562,8 @@ function FilterList({
                                                 <input
                                                     name="min_price"
                                                     className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-                                                    defaultValue={Number(values[0]).toLocaleString()}
+                                                    value={Number(values[0]).toLocaleString()}
+                                                    readOnly
 
                                                 />{" "}
                                             </span>
@@ -574,7 +576,9 @@ function FilterList({
                                                 <input
                                                     name="max_price"
                                                     className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
-                                                    defaultValue={Number(values[1]).toLocaleString()}
+                                                    value={Number(values[1]).toLocaleString()}
+                                                    readOnly
+
                                                 />
                                             </span>
                                         </div>

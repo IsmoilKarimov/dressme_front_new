@@ -68,7 +68,6 @@ function YandexMapsDressMe() {
 
   function getImgGallery(childData) {
     setGetAllImgGallery(childData);
-    console.log(childData, "getAllImgGallery-childData");
   }
   function getFilterData(childData) {
     setGetAllFilterSearch(childData);
@@ -104,7 +103,6 @@ function YandexMapsDressMe() {
       .then((res) => res.json())
       .then((res) => {
         setGetMapsInfo(res);
-        // console.log(res, "BuRes");
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
@@ -208,7 +206,6 @@ function YandexMapsDressMe() {
   const handleError = () => {
     console.error("Error loading Placemark");
   };
-  // console.log(getAllImgGallery, "getAllImgGallery");
   return (
     <div className="h-fit w-full flex items-center justify-center overflow-hidden overflow-y-hidden">
       <div

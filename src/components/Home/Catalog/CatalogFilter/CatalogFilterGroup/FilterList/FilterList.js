@@ -365,7 +365,6 @@ function FilterList({
         setDataActionFootwearSizes()
         footWearList()
     }
-    console.log(getFilter?.wear_sizes?.outwear, "getFilter?.wear_sizes?.outwear");
     return (
         <div
             className={`w-full h-hull  py-5 px-3 rounded-lg border border-searchBgColor rounded-lg overflow-hidden `}
@@ -476,7 +475,7 @@ function FilterList({
                                                 <input
                                                     name="min_price"
                                                     className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-                                                    defaultValue={Number(values[0]).toLocaleString()}
+                                                    value={Number(values[0]).toLocaleString()}
 
                                                 />{" "}
                                             </span>
@@ -489,7 +488,7 @@ function FilterList({
                                                 <input
                                                     name="max_price"
                                                     className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
-                                                    defaultValue={Number(values[1]).toLocaleString()}
+                                                    value={Number(values[1]).toLocaleString()}
                                                 />
                                             </span>
                                         </div>

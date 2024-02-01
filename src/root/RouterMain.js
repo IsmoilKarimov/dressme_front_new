@@ -10,6 +10,7 @@ import MobileAllComments from "../components/Home/Products/SignleMainProducts/Si
 import { EditProfilePage } from "../components/Authentication/UserProfile/ProfileEditPage/EditPageProfile";
 import CatalogItems from "../components/Home/Catalog/CatalogFilter/CatalogItems";
 import LoadingNetwork from "../components/Loading/LoadingNetwork";
+// import ShoppingStoreOfficialByLocation from "../components/Home/Shop/ShoppingStoreOfficialByLocation";
 
 // -------------------------------------
 const HomeIndex = React.lazy(() => import("../components/Home/Main"));
@@ -36,6 +37,9 @@ const ProfilePage = React.lazy(() =>
 // const CatalogPage = React.lazy(() => import("../components/Home/Catalog"));
 const ShoppingStoreOfficial = React.lazy(() =>
   import("../components/Home/Shop/ShoppingStoreOfficial")
+);
+const ShoppingStoreOfficialByLocation = React.lazy(() =>
+  import("../components/Home/Shop/ShoppingStoreOfficialByLocation")
 );
 const Favourites = React.lazy(() => import("../components/Home/Favorite"));
 const ShoppingStore = React.lazy(() =>
@@ -241,6 +245,20 @@ const RouterMain = () => {
               }
             >
               <ShoppingStoreOfficial />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/shopping-store-location/:id"
+          element={
+            <Suspense
+              fallback={
+                <div className="w-full h-full flex items-center justify-center">
+                  <LoadingNetwork />
+                </div>
+              }
+            >
+              <ShoppingStoreOfficialByLocation />
             </Suspense>
           }
         />

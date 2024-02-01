@@ -21,7 +21,8 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
   const navigate = useNavigate();
   const openShoppingChild = () => {
     // const gotoOfficial = (id) => {
-    navigate(`/shopping_store/:${dressInfo?.yandexGetMarketId}`);
+    navigate(`/shopping-store-location/:${dressInfo?.yandexGetMarketId}`);
+    console.log(dressInfo?.yandexGetMarketId, "dressInfo?.yandexGetMarketId");
   };
   const [copyAddress, setCopyAddress] = useState(null);
   const [phoneNum, setPhoneNum] = useState(null);
