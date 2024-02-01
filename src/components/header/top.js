@@ -98,9 +98,9 @@ const TopHeader = () => {
       )}
 
       <div
-        className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${locationWindow === "/delivery-points"
-            ? "bg-transparent h-[40px] "
-            : "bg-bgColor h-[36px] "
+        className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${locationWindow === "/locations"
+          ? "bg-transparent h-[40px] "
+          : "bg-bgColor h-[36px] "
           }`}
       >
         <section className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">

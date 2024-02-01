@@ -284,7 +284,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
 
           {/* Map section */}
           <NavLink
-            to="/delivery-points"
+            to="/locations"
             className={({ isActive }) =>
               isActive
                 ? dressInfo?.LinkActiveSeason

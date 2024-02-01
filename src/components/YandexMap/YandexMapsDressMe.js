@@ -108,25 +108,21 @@ function YandexMapsDressMe() {
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
+  const fetchGetAllDataMain = () => {
+    var params = new URLSearchParams();
 
-  // ------------GET METHOD Main data -----------------\
-
-  useQuery(
-    ["getMapsYandexMain"],
-    async () => {
-      return request({ url: "/main", token: true });
-    },
-    {
-      onSuccess: (res) => {
+    dressInfo?.mainRegionId && params.append("region", dressInfo?.mainRegionId);
+    dressInfo?.mainSubRegionId &&
+      params.append("sub_region", dressInfo?.mainSubRegionId);
+    fetch(`${url}?` + params)
+      .then((res) => res.json())
+      .then((res) => {
         setData({ ...data, getMainProductCard: res });
-      },
-      onError: (err) => {
-        console.log(err, "THERE IS AN ERROR IN GET-USER-PROFILE");
-      },
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
-    }
-  );
+      })
+      .catch((err) => console.log(err, "ERRORLIST"));
+  };
+
+
 
   useEffect(() => {
     fetchGetAllData();
@@ -137,6 +133,13 @@ function YandexMapsDressMe() {
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
     seasonId
+  ]);
+  useEffect(() => {
+    fetchGetAllDataMain()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    dressInfo?.mainRegionId,
+    dressInfo?.mainSubRegionId,
   ]);
 
   function getCurrentDimension() {
@@ -254,8 +257,8 @@ function YandexMapsDressMe() {
         {screenSize.width <= 768 && (
           <div
             className={`fixed w-full bg-white z-[116] left-0 right-0 overflow-hidden  ${dressInfo?.yandexOpenMarketLocation
-                ? "h-[570px] bottom-0 ease-linear duration-300 "
-                : "h-0 bottom-0 ease-linear duration-300 "
+              ? "h-[570px] bottom-0 ease-linear duration-300 "
+              : "h-0 bottom-0 ease-linear duration-300 "
               }  ease-linear duration-300 `}
           >
             <YandexLocationMarketOpen
@@ -269,8 +272,8 @@ function YandexMapsDressMe() {
         {screenSize.width <= 768 && (
           <div
             className={`fixed max-w-[440px] mx-auto w-full bg-white z-[215] left-0 right-0 overflow-hidden  ${marketsFilterMaps
-                ? "h-[570px] bottom-0 ease-linear duration-300 rounded-t-lg"
-                : "h-0 bottom-0 ease-linear duration-300 "
+              ? "h-[570px] bottom-0 ease-linear duration-300 rounded-t-lg"
+              : "h-0 bottom-0 ease-linear duration-300 "
               }  ease-linear duration-300 `}
           >
             <MarketFilterofMaps onClick={toggleMarketsFilterMaps} />
@@ -279,8 +282,8 @@ function YandexMapsDressMe() {
         {/* Navbaryandex */}
         <div
           className={`absolute z-50 hidden md:block ${!dressInfo?.yandexOpenMenu
-              ? "top-0 ease-linear duration-500 "
-              : "top-[-250px] ease-linear duration-500 "
+            ? "top-0 ease-linear duration-500 "
+            : "top-[-250px] ease-linear duration-500 "
             }  ease-linear duration-500 w-full`}
         >
           <YandexMapsIndex
@@ -291,8 +294,8 @@ function YandexMapsDressMe() {
         </div>
         <div
           className={`absolute z-50 right-2 ${dressInfo?.yandexOpenMenu
-              ? "top-2  right-2 ease-linear duration-500 "
-              : "top-[-250px]  right-2 ease-linear duration-500 "
+            ? "top-2  right-2 ease-linear duration-500 "
+            : "top-[-250px]  right-2 ease-linear duration-500 "
             }  ease-linear duration-500 w-[74%] `}
         >
           <NavbarTopOpenMenu />
@@ -331,8 +334,8 @@ function YandexMapsDressMe() {
             <div
               onClick={handleFullScreen}
               className={`absolute right-3 ${!dressInfo?.yandexFullScreen
-                  ? "bottom-[128px] md:bottom-[87px]"
-                  : "bottom-[65px] md:bottom-[87px]"
+                ? "bottom-[128px] md:bottom-[87px]"
+                : "bottom-[65px] md:bottom-[87px]"
                 }  cursor-pointer z-[51] w-10 h-10 rounded-lg bg-white ss:flex items-center justify-center block md:hidden`}
             >
               {dressInfo?.yandexFullScreen ? (
@@ -409,8 +412,8 @@ function YandexMapsDressMe() {
             {/* Yandex Main menu */}
             <div
               className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${dressInfo?.openMainMenu
-                  ? "left-[-500px] md:left-[-5000px] z-[-80] ease-linear duration-500"
-                  : "hamburger flex flex-col ease-linear duration-500 overscroll-none z-[105]"
+                ? "left-[-500px] md:left-[-5000px] z-[-80] ease-linear duration-500"
+                : "hamburger flex flex-col ease-linear duration-500 overscroll-none z-[105]"
                 }`}
             >
               <div className={`w-full h-full `}>
@@ -438,7 +441,7 @@ function YandexMapsDressMe() {
                     <span className=" ml-[10px]">Музика</span>
                   </button>
                   <NavLink
-                    to="/delivery-points"
+                    to="/locations"
                     className="right  h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium border border-searchBgColor bg-btnBgColor ss:w-[48%]"
                   >
                     <span>

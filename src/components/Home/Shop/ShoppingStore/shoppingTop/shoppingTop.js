@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MenuCloseIcons, SearchIcons } from "../../../../../assets/icons";
 import GenderButtonsStyle from "../GenderButtonsStyle/GenderButtonsStyle";
 // import axios from "axios";
 import Cookies from "js-cookie";
+import axios from "axios";
+import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 
-const ShoppingTop = ({handleData,getAllShops,setGetAllShops,setLoading}) => {
+const ShoppingTop = ({ handleData, getAllShops, setGetAllShops, setLoading, setError }) => {
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [genderId, setGenderId] = useState();
   const [keywords, setKeywords] = useState();
   const [searchInputData, setSearchInputData] = useState();
@@ -20,43 +23,57 @@ const ShoppingTop = ({handleData,getAllShops,setGetAllShops,setLoading}) => {
     Object.entries(params).forEach((i) => {
       if (!i[1]) delete params[i[0]];
     });
-    fetch(`${apiUrl}?` + new URLSearchParams(params), {
+    axios.get(apiUrl, {
       headers: { Authorization: `Token ${Cookies.get("DressmeUserToken")}` },
+      params: params,
     })
-      .then((res) => res.json())
       .then((res) => {
-        handleData(res);
-        setLoading(false)
-      }).then(res => setLoading(false))
-      .catch((err) => console.log(err, "ERRORLIST"));
+        console.log(res, "res-status");
+        handleData(res.data);
+      })
+      .catch((res) => {
+        console.log(res, "res-setError");
+        setError(res.response?.data?.message || 'An unexpected error occurred.');
+      })
+      .finally(() => {
+        console.log("res-finally");
+        setLoading(false);
+      });
+
   };
 
   useEffect(() => {
     fetchGetAllData({
       gender: genderId,
       keywords: searchInputData,
+      region: dressInfo?.mainRegionId,
+      sub_region: dressInfo?.mainSubRegionId
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [genderId, searchInputData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [genderId,
+    searchInputData,
+    dressInfo?.mainRegionId,
+    dressInfo?.mainSubRegionId
+  ]);
 
   const sendSearchInputData = () => {
     setSearchInputData(keywords);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     setChangeInputIcon(false)
-  },[keywords])
+  }, [keywords])
 
   const removeSearchInputData = () => {
     setSearchInputData('');
     setKeywords('')
-    console.log(keywords,"keywords");
+    console.log(keywords, "keywords");
   };
 
   return (
     <main className="flex flex-col min-h-[44px] justify-center items-center mb-5 md:my-4">
       <section className="md:max-w-[1280px] w-[100%] flex flex-col md:flex-row items-center justify-between m-auto">
-        <GenderButtonsStyle handleGetId={handleGetId} getAllShops={getAllShops} setGetAllShops={setGetAllShops}/>
+        <GenderButtonsStyle handleGetId={handleGetId} getAllShops={getAllShops} setGetAllShops={setGetAllShops} />
 
         <article className="w-full flex items-center mt-3 md:mt-0 md:justify-end">
           <article className="w-[400px] h-11 flex flex-row-reverse md:flex-row items-center justify-between bg-btnBgColor md:bg-white rounded-xl border border-searchBgColor font-AeonikProRegular text-base">
@@ -91,7 +108,7 @@ const ShoppingTop = ({handleData,getAllShops,setGetAllShops,setLoading}) => {
                 type="button"
                 className="w-[10%] h-full flex items-center justify-center cursor-pointer"
               >
-                 <SearchIcons colors={"#a1a1a1"} />
+                <SearchIcons colors={"#a1a1a1"} />
               </button>
             )}
           </article>

@@ -7,6 +7,8 @@ export default function ShoppingStore() {
   const [getData, setGetData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [getAllShops, setGetAllShops] = useState(true);
+  const [error, setError] = useState();
+
   function handleData(data) {
     setGetData(data);
   }
@@ -29,6 +31,7 @@ export default function ShoppingStore() {
           handleData={handleData}
           setGetAllShops={setGetAllShops}
           getAllShops={getAllShops}
+          setError={setError}
         />
       </section>
       <section className="w-full">
@@ -38,6 +41,7 @@ export default function ShoppingStore() {
           getData={getData}
           setGetData={setGetData}
           handleData={handleData}
+          errorData={error}
         />
       </section>
     </main>
