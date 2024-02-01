@@ -94,7 +94,7 @@ export default function SetNewPassword() {
               progress: undefined,
               theme: "light",
             });
-            navigate("/profile/edit");
+            navigate("/sign_in");
           }
           if (res?.status === 403) {
             toast.error(`Неверный токен электронной почты!`, {
