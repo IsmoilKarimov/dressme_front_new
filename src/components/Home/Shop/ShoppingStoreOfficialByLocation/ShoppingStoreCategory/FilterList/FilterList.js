@@ -149,8 +149,8 @@ function FilterList({
 
     useEffect(() => {
         genderCategory?.map(item => {
-            getFilter?.gender_ids?.map((data) => {
-                if (item?.id === Number(data)) {
+            getFilter?.gender_ids?.map(data => {
+                if (item?.id == data) {
                     if (!genderNewList) {
                         setGenderNewList(genderNewList => [...genderNewList, item])
                     }
