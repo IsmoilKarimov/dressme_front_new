@@ -11,7 +11,7 @@ export default function SetNewPassword() {
     phoneNumber: "",
   });
   return (
-    <div className=" py-8 w-full min-h-[calc(100vh-180px)] flex justify-center ss:px-4 md:px-0">
+    <div className="mt-[180px] py-8 w-full min-h-[calc(100vh-180px)] flex justify-center ss:px-4 md:px-0">
       <div className="max-w-[440px] w-[100%] h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
         <div className=" w-full mt-1 mb-7 flex flex-col justify-center">
           <span className="not-italic font-AeonikProMedium text-xl ss:text-start md:text-center leading-5   tracking-[0,16px] text-black">
