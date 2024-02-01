@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function ShoppingStore() {
   const [getData, setGetData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [getAllShops, setGetAllShops] = useState(true);
   const [error, setError] = useState();
 

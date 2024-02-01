@@ -20,6 +20,7 @@ const ShoppingTop = ({ handleData, getAllShops, setGetAllShops, setLoading, setE
   }
 
   const fetchGetAllData = (params) => {
+    setLoading(true)
     Object.entries(params).forEach((i) => {
       if (!i[1]) delete params[i[0]];
     });
@@ -28,15 +29,14 @@ const ShoppingTop = ({ handleData, getAllShops, setGetAllShops, setLoading, setE
       params: params,
     })
       .then((res) => {
-        console.log(res, "res-status");
         handleData(res.data);
+        setLoading(false);
       })
       .catch((res) => {
-        console.log(res, "res-setError");
+        setLoading(false);
         setError(res.response?.data?.message || 'An unexpected error occurred.');
       })
       .finally(() => {
-        console.log("res-finally");
         setLoading(false);
       });
 
