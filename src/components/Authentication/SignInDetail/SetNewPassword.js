@@ -1,15 +1,141 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { SircleNext } from "../../../assets/icons";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 export default function SetNewPassword() {
+  const navigate = useNavigate();
+  const url = "https://api.dressme.uz/api/seller";
   const [state, setState] = useState({
+    newPassword: "",
+    newPasswordConfirm: "",
+    newPasswordEye: false,
+    newConfirmPasswordEye: false,
+    btnDisable: false,
+    isLoadingSent: false,
     eyesShow: true,
     validateShow: true,
-    password: "",
-    phoneNumber: "",
   });
+
+  // ------------Password Confirm----------
+  const [confirmError, setConfirmError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  useEffect(() => {
+    if (state?.newPassword?.length >= 1 && state?.newPassword?.length < 8) {
+      setConfirmError(`The password must be at least 8 characters.`);
+      setState({ ...state, btnDisable: false });
+    }
+    if (state?.newPassword?.length >= 8 || state?.newPassword?.length < 1) {
+      setConfirmError(``);
+      setState({ ...state, btnDisable: false });
+    }
+
+    if (
+      state?.newPasswordConfirm?.length >= 1 ||
+      state?.newPassword !== state?.newPasswordConfirm
+    ) {
+      setPasswordError(`The passwords do not match`);
+      setState({ ...state, btnDisable: false });
+    }
+    if (
+      state?.newPassword == state?.newPasswordConfirm ||
+      state?.newPasswordConfirm?.length == 0
+    ) {
+      setPasswordError(``);
+      setState({ ...state, btnDisable: false });
+    }
+    if (
+      state?.newPassword?.length >= 8 &&
+      state?.newPasswordConfirm?.length >= 8 &&
+      state?.newPassword == state?.newPasswordConfirm
+    ) {
+      setState({ ...state, btnDisable: true });
+    }
+  }, [state?.newPasswordConfirm, state?.newPassword]);
+
+  const pathname = window.location.pathname;
+  let digitalToken = pathname.replace("/reset-password-seller/:", "");
+  console.log(digitalToken, "digitalToken");
+  const resetPasswordMutate = useMutation(() => {
+    return fetch(`${url}/reset-password`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        password: state?.newPassword,
+        password_confirmation: state?.newPasswordConfirm,
+        password_token: digitalToken,
+      }),
+    });
+  });
+
+  const onSubmit = () => {
+    setState({ ...state, isLoadingSent: true });
+    if (state?.btnDisable) {
+      resetPasswordMutate.mutate(
+        {},
+        {
+          onSuccess: (res) => {
+            setState({ ...state, isLoadingSent: false });
+
+            if (res?.status === 200) {
+              toast.success(`Ваш пароль был успешно сброшен`, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+              navigate("/login-seller");
+            }
+            if (res?.status === 403) {
+              toast.error(`Неверный токен электронной почты!`, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+            }
+            // console.log(res?.status, "resetpassword");
+          },
+          onError: (err) => {
+            setState({ ...state, isLoadingSent: false });
+
+            // console.log(err, "err");
+            toast.error(`ошибка ${err}`, {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          },
+        }
+      );
+    }
+  };
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+    document.title = "Подтвердите пароль";
+  }, []);
+
   return (
     <div className="mt-[180px] py-8 w-full min-h-[calc(100vh-180px)] flex justify-center ss:px-4 md:px-0">
       <div className="max-w-[440px] w-[100%] h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
@@ -77,17 +203,14 @@ export default function SetNewPassword() {
           </div>
         </div>
 
-        <NavLink
-          to="/"
-          className="mt-8  border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-SignInBgColor select-none rounded-lg active:scale-95	active:opacity-70 "
-        >
+        <button className="mt-8  border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-SignInBgColor select-none rounded-lg active:scale-95	active:opacity-70 ">
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
             Сбросит пароль{" "}
           </span>
           <span>
             <SircleNext colors={"#fff"} />
           </span>{" "}
-        </NavLink>
+        </button>
       </div>
     </div>
   );
