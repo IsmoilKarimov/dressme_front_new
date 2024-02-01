@@ -129,7 +129,7 @@ const Header = () => {
   return (
     <header>
       <section>
-        {locationWindow !== "/delivery-points" ? (
+        {locationWindow !== "/locations" ? (
           <div className="w-full">
             <article
               className={`block md:hidden relative z-[100]
@@ -180,7 +180,7 @@ const Header = () => {
         )}
 
         <div
-          className={`${locationWindow !== "/delivery-points"
+          className={`${locationWindow !== "/locations"
             ? "md:mt-[99px]"
             : "mt-[0] h-0 overflow-hidden"
             } `}

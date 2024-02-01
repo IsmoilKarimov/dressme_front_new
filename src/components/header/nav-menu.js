@@ -16,7 +16,7 @@ import Cookies from "js-cookie";
 
 const NavMenu = () => {
   const [dressInfo] = useContext(dressMainData);
-  
+
   return (
     <nav
       className={`bg-white shadow-navMenuShadov  px-4 w-full rounded-t-xl md:hidden z-[101] h-full overscroll-none overflow-y-hidden`}
@@ -72,7 +72,7 @@ const NavMenu = () => {
         </li>
         <li className="w-[72px] h-[56px] flex justify-center ">
           <NavLink
-            to={"/delivery-points"}
+            to={"/locations"}
             className="w-full h-full flex items-center justify-center text-center  "
           >
             {({ isActive }) =>

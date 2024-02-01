@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import {
   ArrowTopIcons,
@@ -8,15 +9,16 @@ import {
 } from "../../../../../assets/icons";
 import LoadingFor from "../../../../Loading/LoadingFor";
 
-const ShoppingBrands = ({ getData, setGetData, loading, setLoading }) => {
+const ShoppingBrands = ({ getData, setGetData, errorData }) => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
   const goDetail = (id) => {
     navigate(`/shopping_store/:${id}`);
   };
 
-  if (getData?.shops) {
-    setLoading(false);
-  }
+  // if (getData?.shops) {
+  //   setLoading(false);
+  // }
 
   // ------------------
 
@@ -29,8 +31,12 @@ const ShoppingBrands = ({ getData, setGetData, loading, setLoading }) => {
     })
       .then((res) => res.json())
       .then((res) => {
+        setLoading(true)
         setGetData(res);
-      });
+      })
+      .catch(() => {
+        setLoading(false)
+      })
   };
 
   return (
@@ -127,8 +133,13 @@ const ShoppingBrands = ({ getData, setGetData, loading, setLoading }) => {
                   );
                 })
               ) : (
-                <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl md:mt-[100px]">
-                  Ничего не найдено
+                <div className='flex flex-col'>
+                  <span className="w-full flex items-center justify-center font-AeonikProMedium text-2xl md:mt-[100px]">
+                    Ничего не найдено
+                  </span>
+                  <span className="w-full flex items-center justify-center font-AeonikProMedium text-2xl">
+                    {errorData}
+                  </span>
                 </div>
               )}
             </section>
@@ -136,6 +147,7 @@ const ShoppingBrands = ({ getData, setGetData, loading, setLoading }) => {
               <article className="flex items-center">
                 <ul className="flex items-center">
                   {getData?.shops?.links?.map((item) => {
+                    console.log(item, "item");
                     return (
                       <li
                         key={item?.label}

@@ -103,7 +103,7 @@ const Footer = () => {
                         </li>
                         <li className="ss:mb-1 md:mb-0 md:mr-5">
                           <Link
-                            to="/delivery-points"
+                            to="/locations"
                             className="flex items-center"
                           >
                             <MapIcons colors={"#000"} />

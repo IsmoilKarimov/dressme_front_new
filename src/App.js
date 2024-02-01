@@ -13,7 +13,7 @@ export default function App() {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
 
-  if (locationWindow !== "/delivery-points" && dressInfo?.yandexOpenMarketLocation) {
+  if (locationWindow !== "/locations" && dressInfo?.yandexOpenMarketLocation) {
     setDressInfo({
       ...dressInfo,
       yandexOpenMarketLocation: false,

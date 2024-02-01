@@ -56,8 +56,11 @@ function BottomHeader() {
         ]);
       }
     }
+    if (!data?.getMainProductCard?.budget?.min_price &&
+      !data?.getMainProductCard?.budget?.max_price) {
+      setValues([0, 0]);
+    }
     // else {
-    //   setValues([0, 0]);
     // }
   }, [data?.getMainProductCard?.budget]);
 
@@ -92,7 +95,6 @@ function BottomHeader() {
       Number(data?.getMainProductCard?.budget?.max_price),
     ]);
     if (dressInfo?.mainRangePrice[0] && dressInfo?.mainRangePrice[1]) {
-      console.log("ishga tushdi 1");
       setDressInfo({ ...dressInfo, mainRangePrice: [] })
     }
   }, [dressInfo?.mainRegionId, dressInfo?.mainSubRegionId]);

@@ -139,14 +139,14 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
               <div className="w-full md:w-[35%] flex items-center border-t md:border-none border-searchBgColor mt-5 pt-5 md:pt-0 md:mt-0">
                 <div className="w-full gap-x-2 h-fit flex items-center justify-center gap-y-1 cursor-pointer">
                   <NavLink
-                    to="/delivery-points"
+                    to="/locations"
                     className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer"
                   >
                     <span className="flex items-center  ">
                       <LocationColoursIcons colors={"#007DCA"} />
                     </span>
                   </NavLink>
-                  <NavLink to="/delivery-points"
+                  <NavLink to="/locations"
                     className="w-[200px] text-sm font-AeonikProRegular text-borderWinter cursor-pointer">
                     {filteredData?.shop?.approved_shop_locations[0]?.address}
                   </NavLink>
@@ -174,7 +174,7 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                 <div className="md:hidden flex w-fit">
                   <div className="w-fit h-fit flex items-center justify-center gap-y-1 cursor-pointer">
                     <NavLink
-                      to="/delivery-points"
+                      to="/locations"
                       className="w-fit flex items-center gap-x-2"
                     >
                       <span className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer">
