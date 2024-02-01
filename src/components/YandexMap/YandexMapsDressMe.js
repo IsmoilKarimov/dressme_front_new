@@ -189,11 +189,12 @@ function YandexMapsDressMe() {
   };
 
   // --------------Open Main MenusetDressInfo
-  const handlePlaceMark = (value, cordinate) => {
+  const handlePlaceMark = (shopId, value, cordinate) => {
     setOpenCordinateMap(cordinate);
     setDressInfo({
       ...dressInfo,
-      yandexGetMarketId: value,
+      locationIdParams: value,
+      yandexGetMarketId: shopId,
       yandexOpenMarketLocation: true,
     });
   };
@@ -389,12 +390,13 @@ function YandexMapsDressMe() {
               }}
             > */}
             {getMapsInfo?.locations?.map((data, index) => (
+              // console.log(data, "data");
               <Placemark
                 onError={handleError}
                 className={"placemarkCLuster cursor-pointer "}
                 key={data?.id}
                 onClick={() => {
-                  handlePlaceMark(data?.id, data?.latitude, data?.longitude);
+                  handlePlaceMark(data?.shop?.id, data?.id, data?.latitude, data?.longitude);
                 }}
                 geometry={[data?.latitude, data?.longitude]}
                 options={{
