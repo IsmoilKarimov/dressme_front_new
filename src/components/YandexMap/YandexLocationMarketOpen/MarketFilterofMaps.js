@@ -109,10 +109,10 @@ function MarketFilterofMaps({ onClick }) {
                 </span>
                 <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                   <input
-                    name="name"
+                    name="minPrice"
                     className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                     value={minPrice}
-                    onChange={(e) => setMinPrice(e.target.value)}
+                  // onChange={(e) => setMinPrice(e.target.value)}
                   />{" "}
                   sum
                 </span>
@@ -125,8 +125,8 @@ function MarketFilterofMaps({ onClick }) {
                   <input
                     className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                     value={maxPrice}
-                    name="name"
-                    onChange={(e) => setMaxPrice(e.target.value)}
+                    name="maxPrice"
+                  // onChange={(e) => setMaxPrice(e.target.value)}
                   />
                   sum
                 </span>
@@ -258,11 +258,10 @@ function MarketFilterofMaps({ onClick }) {
                         <button
                           key={item?.id}
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${
-                            item?.action
+                          className={`${item?.action
                               ? dressInfo?.BtnActiveSeason
                               : " bg-white text-black border border-searchBgColor"
-                          } pl-[40%] rounded-lg w-full h-[64px]   cursor-pointer  font-AeonikProMedium   flex items-center`}
+                            } pl-[40%] rounded-lg w-full h-[64px]   cursor-pointer  font-AeonikProMedium   flex items-center`}
                         >
                           {/* <img src={item?.anyIcons} alt="male" /> */}
                           <span>{item?.anyIcons}</span>
@@ -403,11 +402,10 @@ function MarketFilterofMaps({ onClick }) {
               {item?.ActiveIcons && (
                 <button
                   onClick={() => handleComponentId(item?.id)}
-                  className={`${
-                    item?.isActive
+                  className={`${item?.isActive
                       ? dressInfo?.BtnActiveSeason
                       : "border border-['#E0E0E0']"
-                  } w-[85px] h-[52px] rounded-lg flex items-center justify-center  `}
+                    } w-[85px] h-[52px] rounded-lg flex items-center justify-center  `}
                 >
                   {item?.isActive ? item?.ActiveIcons : item?.noActiveIcons}
                 </button>

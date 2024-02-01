@@ -14,22 +14,38 @@ import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 import AddCopyCheckedIcon from "../../Home/Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
+import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 
 function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [data] = useContext(HomeMainDataContext);
 
   const navigate = useNavigate();
   const openShoppingChild = () => {
-    // const gotoOfficial = (id) => {
-    navigate(`/shopping-store-location/:${dressInfo?.yandexGetMarketId}`);
-    console.log(dressInfo?.yandexGetMarketId, "dressInfo?.yandexGetMarketId");
+    data?.getMainProductCard?.shops
+      ?.filter((e) => e?.id === Number(dressInfo?.yandexGetMarketId))
+      ?.map((item) => {
+        item?.approved_shop_locations?.map((data, index) => {
+          setDressInfo({
+            ...dressInfo,
+            locationIdParams: dressInfo?.yandexGetMarketId,
+          });
+          // navigate(`/shopping_store/:${id}`);
+          navigate(`/shopping-store-location/:${item?.approved_shop_locations[0]?.id}`);
+          // navigate(`/shopping-store-location/:${dressInfo?.yandexGetMarketId}`);
+        });
+      });
   };
+  // const gotoOfficial = (id) => {
+  console.log(dressInfo?.yandexGetMarketId, "dressInfo?.yandexGetMarketId");
+  console.log(dressInfo?.locationIdParams, "dressInfo?.locationIdParams");
+
   const [copyAddress, setCopyAddress] = useState(null);
   const [phoneNum, setPhoneNum] = useState(null);
   const [imgGallery, setImgGallery] = useState([]);
-  const [, setImgGallery1] = useState();
-  const [, setImgGallery2] = useState();
-  const [, setImgGallery3] = useState();
+  // const [, setImgGallery1] = useState();
+  // const [, setImgGallery2] = useState();
+  // const [, setImgGallery3] = useState();
   // const arrImg = [];
   useEffect(() => {
     modalInfo?.locations
@@ -37,9 +53,9 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
       ?.map((data) => {
         setCopyAddress(data?.address);
         setPhoneNum(data?.assistant_phone);
-        setImgGallery1({ img: data?.url_image_path_one });
-        setImgGallery2({ img: data?.url_image_path_two });
-        setImgGallery3({ img: data?.url_image_path_three });
+        // setImgGallery1({ img: data?.url_image_path_one });
+        // setImgGallery2({ img: data?.url_image_path_two });
+        // setImgGallery3({ img: data?.url_image_path_three });
         setImgGallery([
           { img: data?.url_image_path_one },
           { img: data?.url_image_path_two },
