@@ -22,7 +22,7 @@ const { Option } = Select;
 
 function BottomHeader() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [data, setData] = useContext(HomeMainDataContext);
+  const [data] = useContext(HomeMainDataContext);
 
   const [state, setState] = useState({
     openwear: false,
@@ -39,7 +39,6 @@ function BottomHeader() {
   const [maxPrice, setMaxPrice] = useState(
     Number(data?.getMainProductCard?.budget?.max_price)
   );
-  const [getRange, setGetRange] = useState([]);
   const [values, setValues] = useState([]);
 
   useEffect(() => {
@@ -60,8 +59,7 @@ function BottomHeader() {
       !data?.getMainProductCard?.budget?.max_price) {
       setValues([0, 0]);
     }
-    // else {
-    // }
+
   }, [data?.getMainProductCard?.budget]);
 
   useEffect(() => {
@@ -78,8 +76,6 @@ function BottomHeader() {
       Number(data?.getMainProductCard?.budget?.min_price),
       Number(data?.getMainProductCard?.budget?.max_price),
     ]);
-    // setGetRange([]);
-    // getRangeList([])
     setDressInfo({ ...dressInfo, mainRangePrice: [] })
   };
   const sendPriceList = () => {
@@ -108,7 +104,7 @@ function BottomHeader() {
       document.body.style.overflow = "auto";
     }
   }, [state?.showColour]);
-  const [screenSize, setScreenSize] = useState(getCurrentDimension());
+  const [screenSize, setScreenSize] = useState();
 
   function getCurrentDimension() {
     return {
