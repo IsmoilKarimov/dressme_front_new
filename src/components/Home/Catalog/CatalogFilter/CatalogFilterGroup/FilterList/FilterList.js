@@ -441,86 +441,88 @@ function FilterList({
                         </article >
                     </div>}
                     {/* -----Budget---- */}
-                    {getFilter?.budget?.length && <div className={`  w-full h-fit md:mb-[10px]`} >
-                        <article
-                            className="w-full flex justify-between items-center md:pt-[12px]"
-                        >
-                            <figure
-                                onClick={() => setBudgetToggle(!budgetToggle)}
-                                className="flex items-center cursor-pointer select-none"
+                    {getFilter?.budget?.min_price &&
+                        getFilter?.budget?.max_price &&
+                        <div className={`  w-full h-fit md:mb-[10px]`} >
+                            <article
+                                className="w-full flex justify-between items-center md:pt-[12px]"
                             >
-                                <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                                    Бюджет
-                                </p>
-                                <p
-                                    className={`${budgetToggle ? "rotate-[180deg]" : ""
-                                        } duration-300 ml-1`}
+                                <figure
+                                    onClick={() => setBudgetToggle(!budgetToggle)}
+                                    className="flex items-center cursor-pointer select-none"
                                 >
-                                    <ArrowTopIcons colors={"#000"} />
-                                </p>
-                            </figure>
-                        </article>
-                        <article
-                            className={`border-1 overflow-hidden  ${budgetToggle
-                                ? "duration-300 h-0"
-                                : `h-[120px] duration-300 mt-5`
-                                } duration-300 `}
-                        >
-                            <div className="flex flex-col rounded-lg  w-full">
-                                <div className="flex flex-wrap justify-between items-center mb-3 w-full px-2">
-                                    <div className="flex">
-                                        <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#000] ">
-                                            от
-                                        </span>
-                                        <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-                                            <input
-                                                name="min_price"
-                                                className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-                                                value={Number(values[0]).toLocaleString()}
+                                    <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
+                                        Бюджет
+                                    </p>
+                                    <p
+                                        className={`${budgetToggle ? "rotate-[180deg]" : ""
+                                            } duration-300 ml-1`}
+                                    >
+                                        <ArrowTopIcons colors={"#000"} />
+                                    </p>
+                                </figure>
+                            </article>
+                            <article
+                                className={`border-1 overflow-hidden  ${budgetToggle
+                                    ? "duration-300 h-0"
+                                    : `h-[120px] duration-300 mt-5`
+                                    } duration-300 `}
+                            >
+                                <div className="flex flex-col rounded-lg  w-full">
+                                    <div className="flex flex-wrap justify-between items-center mb-3 w-full px-2">
+                                        <div className="flex">
+                                            <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#000] ">
+                                                от
+                                            </span>
+                                            <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                                                <input
+                                                    name="min_price"
+                                                    className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                                                    value={Number(values[0]).toLocaleString()}
 
-                                            />{" "}
-                                        </span>
+                                                />{" "}
+                                            </span>
+                                        </div>
+                                        <div className="flex ">
+                                            <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
+                                                до
+                                            </span>
+                                            <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                                                <input
+                                                    name="max_price"
+                                                    className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
+                                                    value={Number(values[1]).toLocaleString()}
+                                                />
+                                            </span>
+                                        </div>
                                     </div>
-                                    <div className="flex ">
-                                        <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
-                                            до
-                                        </span>
-                                        <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-                                            <input
-                                                name="max_price"
-                                                className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
-                                                value={Number(values[1]).toLocaleString()}
-                                            />
-                                        </span>
-                                    </div>
+                                    <Slider
+                                        className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] my-5`}
+                                        onChange={setValues}
+                                        value={values}
+                                        minDistance={10}
+                                        min={Number(minPrice)}
+                                        max={Number(maxPrice)}
+                                    />
                                 </div>
-                                <Slider
-                                    className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] my-5`}
-                                    onChange={setValues}
-                                    value={values}
-                                    minDistance={10}
-                                    min={Number(minPrice)}
-                                    max={Number(maxPrice)}
-                                />
-                            </div>
-                            {clearPrice && <div className={`flex w-full items-center justify-between mt-1`}>
-                                <button
-                                    type="button"
-                                    onClick={() => ClearListBadget()}
-                                    className={`flex items-center active:scale-95  active:opacity-70 text-sm text-borderWinter font-AeonikProRegular`}
-                                >
-                                    Сбросить
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => sendPriceList()}
-                                    className="flex items-center active:scale-95  active:opacity-70 font-AeonikProRegular cursor-pointer text-sm justify-center  text-fullBlue"
-                                >
-                                    Готово
-                                </button>
-                            </div>}
-                        </article>
-                    </div >}
+                                {clearPrice && <div className={`flex w-full items-center justify-between mt-1`}>
+                                    <button
+                                        type="button"
+                                        onClick={() => ClearListBadget()}
+                                        className={`flex items-center active:scale-95  active:opacity-70 text-sm text-borderWinter font-AeonikProRegular`}
+                                    >
+                                        Сбросить
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => sendPriceList()}
+                                        className="flex items-center active:scale-95  active:opacity-70 font-AeonikProRegular cursor-pointer text-sm justify-center  text-fullBlue"
+                                    >
+                                        Готово
+                                    </button>
+                                </div>}
+                            </article>
+                        </div >}
                     {/* -----Color_------ */}
                     {getFilter?.colors && <div className={`w-full flex items-center flex-col md:mb-[38px]`}>
                         <section className="w-full h-fit ">

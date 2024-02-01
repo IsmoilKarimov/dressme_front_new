@@ -104,7 +104,7 @@ const ShoppingStoreOfficial = () => {
         });
       });
   }, [newId])
-  // console.log(dressInfo?.locationIdParams, "locationIdParams");
+  console.log(dressInfo?.locationIdParams, "locationIdParams");
   // console.log(locationIndex, "locationIndex");
 
   const url = `https://api.dressme.uz/api`;
