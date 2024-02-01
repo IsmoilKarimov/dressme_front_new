@@ -20,7 +20,7 @@ const ShoppingTop = ({ getAllShops, setGetAllShops, setLoading, setError }) => {
   }
 
   const fetchGetAllData = (params) => {
-    setLoading(false)
+    // setLoading(false)
     Object.entries(params).forEach((i) => {
       if (!i[1]) delete params[i[0]];
     });
@@ -31,14 +31,14 @@ const ShoppingTop = ({ getAllShops, setGetAllShops, setLoading, setError }) => {
       .then((res) => {
         // handleData(res.data);
         setDressInfo({ ...dressInfo, shopsData: res?.data })
-        setLoading(true);
+        // setLoading(true);
       })
       .catch((res) => {
-        setLoading(true);
+        // setLoading(true);
         setError(res.response?.data?.message || 'An unexpected error occurred.');
       })
       .finally(() => {
-        setLoading(true);
+        // setLoading(true);
       });
 
   };

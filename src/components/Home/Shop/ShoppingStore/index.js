@@ -37,11 +37,11 @@ export default function ShoppingStore() {
       </section>
       <section className="w-full">
         <ShoppingBrands
-          loading={loading}
-          setLoading={setLoading}
+          // loading={loading}
+          // setLoading={setLoading}
           getData={getData}
           setGetData={setGetData}
-          handleData={handleData}
+          // handleData={handleData}
           errorData={error}
         />
       </section>

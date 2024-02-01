@@ -10,7 +10,7 @@ import {
 import LoadingFor from "../../../../Loading/LoadingFor";
 import { dressMainData } from '../../../../../ContextHook/ContextMenu';
 
-const ShoppingBrands = ({ getData, setGetData, errorData }) => {
+const ShoppingBrands = ({ setGetData, errorData }) => {
   const navigate = useNavigate();
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 

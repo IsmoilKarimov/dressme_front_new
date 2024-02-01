@@ -95,9 +95,6 @@ const ShoppingStoreOfficial = () => {
   const { id } = useParams();
   const newId = id.replace(":", "");
 
-  console.log(dressInfo?.locationIdParams, "locationIdParams");
-  console.log(data?.getMainProductCard, "getMainProductCard");
-  // console.log(locationIndex, "locationIndex");
   const refreshLocationId = () => {
     data?.getMainProductCard?.shops?.map(item => {
       if (item?.id === Number(newId)) {
@@ -107,21 +104,8 @@ const ShoppingStoreOfficial = () => {
         });
       }
     })
-    // data?.getMainProductCard?.shops
-    //   ?.filter((e) => e?.id === Number(newId))
-    //   ?.map((item) => {
-    //     item?.approved_shop_locations?.map((data, index) => {
-    //       // setLocationIndex(item?.approved_shop_locations[0]?.id)
-    //       console.log("isrun in index shop 2", item?.approved_shop_locations[0]?.id);
-
-    //       setDressInfo({
-    //         ...dressInfo,
-    //         locationIdParams: item?.approved_shop_locations[0]?.id,
-    //       });
-    //     });
-    //   });
-    console.log("run 3");
   }
+
   useEffect(() => {
     refreshLocationId()
   }, [newId])
@@ -129,7 +113,8 @@ const ShoppingStoreOfficial = () => {
   const url = `https://api.dressme.uz/api`;
 
   const fetchGetAllData = () => {
-    setLoading(true)
+    // console.log("is run");
+    // setLoading(true)
     let params = new URLSearchParams();
     params.append("location_id", dressInfo?.locationIdParams);
     getGenderId && params.append("gender", getGenderId);
@@ -137,7 +122,6 @@ const ShoppingStoreOfficial = () => {
     getCategory && params.append("category", getCategory);
     getRating && params.append("rating", getRating);
     getFootWearList?.wear_size && params.append("footwear_size", getFootWearList?.wear_size);
-
     // OUTWEAR SIZES
     getOutWearList?.letter_size &&
       params.append("outwear_size[letter_size]", getOutWearList?.letter_size);
@@ -145,7 +129,6 @@ const ShoppingStoreOfficial = () => {
       params.append("outwear_size[min_wear_size]", getOutWearList?.min_wear_size);
     !getOutWearList?.letter_size && getOutWearList?.max_wear_size &&
       params.append("outwear_size[max_wear_size]", getOutWearList?.max_wear_size);
-
     // UNDERWEAR SIZES
     getUnderWearList?.letter_size &&
       params.append("underwear_size[letter_size]", getUnderWearList?.letter_size);
@@ -153,14 +136,11 @@ const ShoppingStoreOfficial = () => {
       params.append("underwear_size[min_wear_size]", getUnderWearList?.min_wear_size);
     !getUnderWearList?.letter_size && getUnderWearList?.max_wear_size &&
       params.append("underwear_size[max_wear_size]", getUnderWearList?.max_wear_size);
-
     pageId && params.append("page", pageId);
-
     getRange?.min &&
       params.append("budget[from]", getRange?.min);
     getRange?.max &&
       params.append("budget[to]", getRange?.max);
-
     dataColor?.length > 0 &&
       dataColor?.forEach((e, index) => {
         params.append("colors[]", dataColor[index]);
@@ -171,7 +151,7 @@ const ShoppingStoreOfficial = () => {
     })
       .then((res) => {
         if (res?.status >= 200 && res?.status < 300) {
-          setLoading(false)
+          // setLoading(false)
           setFilteredData(res?.data)
         }
       })
@@ -202,9 +182,10 @@ const ShoppingStoreOfficial = () => {
     getFootWearList,
     getRating, getRange, data?.getMainProductCard, dressInfo?.locationIdParams])
   // console.log(filteredData, "filteredData");
+
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
-      {loading ? <LoadingNetwork />
+      {!filteredData ? <LoadingNetwork />
         : <div className="w-full">
           <section className="w-full border-b border-searchBgColor ">
             <ShoppingStoreOfficialBreadCrumb name={filteredData?.shop?.name} paramsId={newId} />
