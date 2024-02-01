@@ -22,39 +22,20 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
 
   const navigate = useNavigate();
   const openShoppingChild = () => {
-    // data?.getMainProductCard?.shops
-    //   ?.filter((e) => e?.id === Number(dressInfo?.yandexGetMarketId))
-    //   ?.map((item) => {
-    //     item?.approved_shop_locations?.map((data, index) => {
-    //       setDressInfo({
-    //         ...dressInfo,
-    //         locationIdParams: dressInfo?.yandexGetMarketId,
-    //       });
-    //       // navigate(`/shopping-store-location/:${dressInfo?.yandexGetMarketId}`);
-    //     });
-    //   });
     navigate(`/shopping-store-location/:${dressInfo?.yandexGetMarketId}`);
   };
-  // const gotoOfficial = (id) => {
-  // console.log(dressInfo?.yandexGetMarketId, "dressInfo?.yandexGetMarketId");
-  // console.log(dressInfo?.locationIdParams, "dressInfo?.locationIdParams");
+
 
   const [copyAddress, setCopyAddress] = useState(null);
   const [phoneNum, setPhoneNum] = useState(null);
   const [imgGallery, setImgGallery] = useState([]);
-  // const [, setImgGallery1] = useState();
-  // const [, setImgGallery2] = useState();
-  // const [, setImgGallery3] = useState();
-  // const arrImg = [];
+
   useEffect(() => {
     modalInfo?.locations
       ?.filter((e) => e?.id === dressInfo?.yandexGetMarketId)
       ?.map((data) => {
         setCopyAddress(data?.address);
         setPhoneNum(data?.assistant_phone);
-        // setImgGallery1({ img: data?.url_image_path_one });
-        // setImgGallery2({ img: data?.url_image_path_two });
-        // setImgGallery3({ img: data?.url_image_path_three });
         setImgGallery([
           { img: data?.url_image_path_one },
           { img: data?.url_image_path_two },
@@ -62,24 +43,14 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
         ]);
       });
   }, [modalInfo, dressInfo?.yandexGetMarketId]);
-  // imgGallery?.map((data, index) => {
-  //   console.log(data, `filter1---${index}--  arrImg`);
-  // })
-  // console.log(
-  //   imgGallery1,
-  //   imgGallery2,
-  //   imgGallery3, "filter  arrImg");
+
   const handleCopyAddress = () => {
     navigator.clipboard.writeText(copyAddress);
   };
   const handleCopyPhone = () => {
     navigator.clipboard.writeText(phoneNum);
   };
-  // const [imgGallery, setImgGallery] = useState([
-  //   // { id: 1, img: "https://i.pinimg.com/736x/9d/d4/a3/9dd4a3906b318cdfd854dd46a72046ba.jpg" },
-  //   // { id: 2, img: "https://img.hechtgroup.com/where_is_the_zara_warehouse.jpg" },
-  //   // { id: 3, img: "https://c8.alamy.com/comp/2HEC9XP/people-queue-outside-a-zara-store-on-boxing-day-in-central-london-as-shoppers-gather-on-oxford-street-2HEC9XP.jpg" },
-  // ])
+
   const NextArrow = (props) => {
     const { onClick } = props;
     return (
@@ -122,22 +93,16 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
     getImgGallery(imgGallery);
     onClick();
   };
-  // const handleCarouselModal = (UId) => {
-  //   // setOpenCarouselModal(true)
-  // };
-  // console.log(modalInfo, "modalInfo");
-  // console.log(dressInfo?.yandexGetMarketId, "yandexGetMarketId");
+
   const handlePhoneNumberClick = (id) => {
     // window.location.href = `tel:${id}`;
     // window.open(`tel:${id}`, '_blank');
   };
-  // console.log(imgGallery, "imgGallery");
   return (
     <div className="w-full h-full ">
       {modalInfo?.locations
         ?.filter((e) => e?.id === dressInfo?.yandexGetMarketId)
         ?.map((data) => {
-          // console.log(data, "filter modal");
           return (
             <div
               key={data?.id}
