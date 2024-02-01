@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import {
   ArrowTopIcons,
@@ -8,9 +8,12 @@ import {
   WomanGenIcons,
 } from "../../../../../assets/icons";
 import LoadingFor from "../../../../Loading/LoadingFor";
+import { dressMainData } from '../../../../../ContextHook/ContextMenu';
 
 const ShoppingBrands = ({ getData, setGetData, errorData }) => {
   const navigate = useNavigate();
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
+
   const [loading, setLoading] = useState(false)
   const goDetail = (id) => {
     navigate(`/shopping_store/:${id}`);
@@ -41,7 +44,7 @@ const ShoppingBrands = ({ getData, setGetData, errorData }) => {
 
   return (
     <main className="relative">
-      {!getData?.shops?.data?.length ? (
+      {!dressInfo?.shopsData?.shops?.data?.length ? (
         <div className="absolute w-full h-fit">
           <LoadingFor />
         </div>
@@ -49,8 +52,8 @@ const ShoppingBrands = ({ getData, setGetData, errorData }) => {
         <div className="flex flex-col min-h-[44px]  justify-center items-center my-3">
           <section className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto md:mt-[50px] mb-20 md:mb-[90px]">
             <section className="w-full">
-              {getData?.shops?.data?.length ? (
-                getData?.shops?.data?.map((data) => {
+              {dressInfo?.shopsData?.shops?.data?.length ? (
+                dressInfo?.shopsData?.shops?.data?.map((data) => {
                   return (
                     <div
                       key={data?.id}
@@ -146,8 +149,7 @@ const ShoppingBrands = ({ getData, setGetData, errorData }) => {
             <section className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6">
               <article className="flex items-center">
                 <ul className="flex items-center">
-                  {getData?.shops?.links?.map((item) => {
-                    console.log(item, "item");
+                  {dressInfo?.shopsData?.shops?.links?.map((item) => {
                     return (
                       <li
                         key={item?.label}
