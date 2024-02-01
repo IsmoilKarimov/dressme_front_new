@@ -561,7 +561,7 @@ function FilterList({
                                                 <input
                                                     name="min_price"
                                                     className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-                                                    value={Number(values[0]).toLocaleString()}
+                                                    defaultValue={Number(values[0]).toLocaleString()}
 
                                                 />{" "}
                                             </span>
@@ -574,7 +574,7 @@ function FilterList({
                                                 <input
                                                     name="max_price"
                                                     className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
-                                                    value={Number(values[1]).toLocaleString()}
+                                                    defaultValue={Number(values[1]).toLocaleString()}
                                                 />
                                             </span>
                                         </div>
