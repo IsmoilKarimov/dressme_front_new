@@ -14,7 +14,6 @@ export default function SetNewPassword() {
     newPasswordConfirm: "",
     newPasswordEye: false,
     newConfirmPasswordEye: false,
-    btnDisable: false,
     isLoadingSent: false,
     eyesShow: true,
     validateShow: true,
@@ -23,39 +22,6 @@ export default function SetNewPassword() {
   // ------------Password Confirm----------
   const [confirmError, setConfirmError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-
-  useEffect(() => {
-    if (state?.newPassword?.length >= 1 && state?.newPassword?.length < 8) {
-      setConfirmError(`The password must be at least 8 characters.`);
-      setState({ ...state, btnDisable: false });
-    }
-    if (state?.newPassword?.length >= 8 || state?.newPassword?.length < 1) {
-      setConfirmError(``);
-      setState({ ...state, btnDisable: false });
-    }
-
-    if (
-      state?.newPasswordConfirm?.length >= 1 ||
-      state?.newPassword !== state?.newPasswordConfirm
-    ) {
-      setPasswordError(`The passwords do not match`);
-      setState({ ...state, btnDisable: false });
-    }
-    if (
-      state?.newPassword == state?.newPasswordConfirm ||
-      state?.newPasswordConfirm?.length == 0
-    ) {
-      setPasswordError(``);
-      setState({ ...state, btnDisable: false });
-    }
-    if (
-      state?.newPassword?.length >= 8 &&
-      state?.newPasswordConfirm?.length >= 8 &&
-      state?.newPassword == state?.newPasswordConfirm
-    ) {
-      setState({ ...state, btnDisable: true });
-    }
-  }, [state?.newPasswordConfirm, state?.newPassword]);
 
   const pathname = window.location.pathname;
   let digitalToken = pathname.replace("/reset-password-user/:", "");
@@ -96,6 +62,20 @@ export default function SetNewPassword() {
             });
             navigate("/sign_in");
           }
+
+          if (res?.status === 422) {
+            toast.error("Значение поля не совпадает с подтверждаемым.", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
+
           if (res?.status === 403) {
             toast.error(`Неверный токен электронной почты!`, {
               position: "top-right",
@@ -113,7 +93,7 @@ export default function SetNewPassword() {
         onError: (err) => {
           setState({ ...state, isLoadingSent: false });
 
-          // console.log(err, "err");
+          console.log(err, "err");
           toast.error(`ошибка ${err}`, {
             position: "top-right",
             autoClose: 3000,
@@ -226,17 +206,8 @@ export default function SetNewPassword() {
           </form>
 
           <button
-            onClick={() => {
-              if (state?.btnDisable) {
-                onSubmit();
-              }
-            }}
-            className={`mt-8 border bg-[#007dca] flex items-center justify-center border-searchBgColor bg-textBlueColor w-full h-12  select-none rounded-lg
-             ${
-               state?.btnDisable
-                 ? " cursor-pointer active:scale-95	active:opacity-50 "
-                 : "opacity-50 cursor-not-allowed"
-             }`}
+            onClick={() => onSubmit()}
+            className={`mt-8 border bg-[#007dca] flex items-center justify-center border-searchBgColor bg-textBlueColor w-full h-12  select-none rounded-lg cursor-pointer active:scale-95	active:opacity-50 }`}
           >
             <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
               Сбросит пароль{" "}

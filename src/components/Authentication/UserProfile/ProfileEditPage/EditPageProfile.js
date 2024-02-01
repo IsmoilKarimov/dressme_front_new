@@ -106,16 +106,16 @@ const EditProfilePage = () => {
           console.log(err);
           if (err?.response?.status === 401) {
             navigate("/sign_in");
-            toast.error(`${err?.response?.data?.message}`, {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
+            // toast.error(`${err?.response?.data?.message}`, {
+            //   position: "top-right",
+            //   autoClose: 5000,
+            //   hideProgressBar: false,
+            //   closeOnClick: true,
+            //   pauseOnHover: true,
+            //   draggable: true,
+            //   progress: undefined,
+            //   theme: "light",
+            // });
           }
         });
     }
@@ -162,16 +162,16 @@ const EditProfilePage = () => {
         console.log(err);
         if (err?.response?.status === 401) {
           navigate("/sign_in");
-          toast.error(`${err?.response?.data?.message}`, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          // toast.error(`${err?.response?.data?.message}`, {
+          //   position: "top-right",
+          //   autoClose: 5000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "light",
+          // });
         }
       });
   };
@@ -271,16 +271,16 @@ const EditProfilePage = () => {
           if (res?.message === "Unauthenticated.") {
             setProfileContextData(false);
             navigate("/sign_in");
-            toast.error(`${res?.message}`, {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
+            // toast.error(`${res?.message}`, {
+            //   position: "top-right",
+            //   autoClose: 5000,
+            //   hideProgressBar: false,
+            //   closeOnClick: true,
+            //   pauseOnHover: true,
+            //   draggable: true,
+            //   progress: undefined,
+            //   theme: "light",
+            // });
             console.log(res, "Bu-error edit posttttt");
           } else {
             reFetchFunction();
@@ -327,16 +327,16 @@ const EditProfilePage = () => {
           if (res?.message && !res.errors) {
             if (res?.message === "Unauthenticated.") {
               navigate("/sign_in");
-              toast.error(`${res?.message}`, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-              });
+              // toast.error(`${res?.message}`, {
+              //   position: "top-right",
+              //   autoClose: 5000,
+              //   hideProgressBar: false,
+              //   closeOnClick: true,
+              //   pauseOnHover: true,
+              //   draggable: true,
+              //   progress: undefined,
+              //   theme: "light",
+              // });
             }
             setLoading(false);
             setState({
@@ -351,16 +351,16 @@ const EditProfilePage = () => {
             }
             setLoading(false);
             setState({ ...state, errorsGroup: res, activeEditPassword: false });
-            toast.error(`${res?.message}`, {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
+            // toast.error(`${res?.message}`, {
+            //   position: "top-right",
+            //   autoClose: 5000,
+            //   hideProgressBar: false,
+            //   closeOnClick: true,
+            //   pauseOnHover: true,
+            //   draggable: true,
+            //   progress: undefined,
+            //   theme: "light",
+            // });
           }
         },
         onError: (err) => {
