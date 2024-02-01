@@ -12,6 +12,7 @@ export default function ForgetPassword() {
     email: "",
     passwordEye: false,
     openModalEmailMessage: false,
+    btnDisable: false,
   });
 
   const [loading, setLoading] = useState(false);
@@ -39,7 +40,12 @@ export default function ForgetPassword() {
           onSuccess: (res) => {
             console.log(res, "forgotPassword");
             if (res?.status == 200 || res?.ok) {
-              setState({ ...state, openModalEmailMessage: true, email: "" });
+              setState({
+                ...state,
+                openModalEmailMessage: true,
+                email: "",
+                btnDisable: true,
+              });
               setLoading(false);
               toast.success(
                 "Мы отправили вам ссылку для сброса пароля. Пожалуйста, проверьте свою электронную почту",
@@ -158,8 +164,17 @@ export default function ForgetPassword() {
           </div>
 
           <button
-            onClick={onSubmit}
-            className="mt-8  border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-SignInBgColor select-none rounded-lg active:scale-95	active:opacity-70 "
+            onClick={() => {
+              if (!state?.btnDisable) {
+                onSubmit();
+              }
+            }}
+            className={`mt-8 border bg-[#007dca] flex items-center justify-center border-searchBgColor bg-textBlueColor w-full h-12  select-none rounded-lg
+             ${
+               !state?.btnDisable
+                 ? " cursor-pointer active:scale-95	active:opacity-50 "
+                 : "opacity-50 cursor-not-allowed"
+             }`}
           >
             <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
               Сбросить пароль{" "}
