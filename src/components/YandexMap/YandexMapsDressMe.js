@@ -206,6 +206,7 @@ function YandexMapsDressMe() {
   const handleError = () => {
     console.error("Error loading Placemark");
   };
+  // dressInfo?.yandexGetMarketId,
   return (
     <div className="h-fit w-full flex items-center justify-center overflow-hidden overflow-y-hidden">
       <div

@@ -97,18 +97,19 @@ const ShoppingStoreOfficialByLocation = () => {
 
   const refreshLocationId = () => {
     data?.getMainProductCard?.shops?.map(item => {
-      if (item?.id === Number(newId)) {
+      if (item?.approved_shop_locations[0]?.id === Number(newId)) {
         setDressInfo({
           ...dressInfo,
-          locationIdParams: item?.approved_shop_locations[0]?.id,
+          locationIdParams: item?.id,
         });
       }
     })
   }
-
+  console.log(dressInfo?.locationIdParams, "locationIdParams");
+  console.log(newId, "newId");
   useEffect(() => {
     refreshLocationId()
-  }, [newId])
+  }, [])
 
   const url = `https://api.dressme.uz/api`;
 
