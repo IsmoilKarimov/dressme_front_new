@@ -4,7 +4,7 @@ import ShoppingStoreOfficialTop from "./ShoppingStoreOfficialTop/ShoppingStoreOf
 import LocationOfYandex from "../../Products/SignleMainProducts/SingleProduct/Product_Detail/LocationOfYandex/LocationOfYandex";
 import ShowPageComment from "./ShowPageComment/ShowPageComment";
 import { GoBackIcon } from "../../../../assets/icons";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import ShopOfficialCard from "./ShoppingStoreCategory/ShopOfficialCards/ShopOfficialCard";
@@ -92,30 +92,15 @@ const ShoppingStoreOfficialByLocation = () => {
       top: 0,
     });
   }, []);
+  const navigate = useNavigate()
   const { id } = useParams();
   const newId = id.replace(":", "");
 
-  const refreshLocationId = () => {
-    // data?.getMainProductCard?.shops?.map(item => {
-    //   if (item?.approved_shop_locations[0]?.id === Number(newId)) {
-    //     setDressInfo({
-    //       ...dressInfo,
-    //       locationIdParams: item?.id,
-    //     });
-    //   }
-    // })
-  }
-  console.log(dressInfo?.locationIdParams, "locationIdParams");
-  console.log(newId, "newId");
-  useEffect(() => {
-    refreshLocationId()
-  }, [])
 
   const url = `https://api.dressme.uz/api`;
 
   const fetchGetAllData = () => {
-    // console.log("is run");
-    // setLoading(true)
+    setLoading(true)
     let params = new URLSearchParams();
     params.append("location_id", dressInfo?.locationIdParams);
     getGenderId && params.append("gender", getGenderId);
@@ -152,14 +137,14 @@ const ShoppingStoreOfficialByLocation = () => {
     })
       .then((res) => {
         if (res?.status >= 200 && res?.status < 300) {
-          // setLoading(false)
+          setLoading(false)
           setFilteredData(res?.data)
         }
       })
       .catch((res) => {
         if (res?.response?.status === 422) {
-          refreshLocationId()
-          // setLoading(false)
+          navigate('/')
+          setLoading(false)
 
         }
         setError(res.response?.data?.message || 'An unexpected error occurred.');
@@ -168,9 +153,7 @@ const ShoppingStoreOfficialByLocation = () => {
 
   };
   useEffect(() => {
-    if (data?.getMainProductCard) {
-      fetchGetAllData()
-    }
+    fetchGetAllData()
   }, [
     pageId,
     discount,
@@ -181,12 +164,12 @@ const ShoppingStoreOfficialByLocation = () => {
     getUnderWearList,
     getOutWearList,
     getFootWearList,
-    getRating, getRange, data?.getMainProductCard, dressInfo?.locationIdParams])
+    getRating, getRange, dressInfo?.locationIdParams])
   // console.log(filteredData, "filteredData");
 
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
-      {!filteredData ? <LoadingNetwork />
+      {loading ? <LoadingNetwork />
         : <div className="w-full">
           <section className="w-full border-b border-searchBgColor ">
             <ShoppingStoreOfficialBreadCrumb name={filteredData?.shop?.name} paramsId={newId} />
