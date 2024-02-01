@@ -29,6 +29,7 @@ export default function ShoppingStore() {
         <ShoppingTop
           setLoading={setLoading}
           handleData={handleData}
+          // getData={getData}
           setGetAllShops={setGetAllShops}
           getAllShops={getAllShops}
           setError={setError}

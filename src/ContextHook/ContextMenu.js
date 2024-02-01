@@ -48,7 +48,10 @@ export const DressMenu = ({ children }) => {
     mainCategoryId: null,
     mainGenderId: 0,
     mainRangePrice: [],
-    // ---------
+    // -------for Shops
+    shopsData: null,
+
+
 
     ProductList: [
       {

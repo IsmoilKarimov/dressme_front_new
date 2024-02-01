@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 
-const ShoppingTop = ({ handleData, getAllShops, setGetAllShops, setLoading, setError }) => {
+const ShoppingTop = ({ getAllShops, setGetAllShops, setLoading, setError }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [genderId, setGenderId] = useState();
   const [keywords, setKeywords] = useState();
@@ -29,7 +29,8 @@ const ShoppingTop = ({ handleData, getAllShops, setGetAllShops, setLoading, setE
       params: params,
     })
       .then((res) => {
-        handleData(res.data);
+        // handleData(res.data);
+        setDressInfo({ ...dressInfo, shopsData: res?.data })
         setLoading(true);
       })
       .catch((res) => {
@@ -41,7 +42,18 @@ const ShoppingTop = ({ handleData, getAllShops, setGetAllShops, setLoading, setE
       });
 
   };
-
+  // console.log(getData, "getData");
+  useEffect(() => {
+    if (!dressInfo?.shopsData) {
+      fetchGetAllData({
+        gender: genderId,
+        keywords: searchInputData,
+        region: dressInfo?.mainRegionId,
+        sub_region: dressInfo?.mainSubRegionId
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     fetchGetAllData({
       gender: genderId,
