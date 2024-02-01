@@ -39,7 +39,7 @@ function FilterList({
     const [selectedGender, setSelectedGender] = useState(null);
     const [selectedDiscount, setSelectedDiscount] = useState(null);
     // ---Category
-    const [categorySelect, setCategorySelect] = useState([]);
+    const [categorySelect, setCategorySelect] = useState();
     const [colorToggle, setColorToggle] = useState(false);
 
     const [categoryToggle, setCategoryToggle] = useState(false);

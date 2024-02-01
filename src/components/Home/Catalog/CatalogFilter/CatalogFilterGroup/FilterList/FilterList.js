@@ -37,11 +37,9 @@ function FilterList({
     const [selectedGender, setSelectedGender] = useState(null);
     const [selectedDiscount, setSelectedDiscount] = useState(null);
     // ---Category
-    const [categorySelect, setCategorySelect] = useState([]);
     const [colorToggle, setColorToggle] = useState(false);
 
-    const [categoryToggle, setCategoryToggle] = useState(false);
-    const [categoryNewList, setCategoryNewList] = useState([]);
+
     // -------------------Budget---------------
     const [budgetToggle, setBudgetToggle] = useState(false);
 
@@ -342,7 +340,7 @@ function FilterList({
         setDataColor([])
         // ---Category
         categoryId(null)
-        setCategorySelect()
+        // setCategorySelect()
         //---Budget
         getBadgePrice([])
         setValues([
