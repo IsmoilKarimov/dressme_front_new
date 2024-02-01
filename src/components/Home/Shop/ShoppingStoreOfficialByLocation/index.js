@@ -96,14 +96,14 @@ const ShoppingStoreOfficialByLocation = () => {
   const newId = id.replace(":", "");
 
   const refreshLocationId = () => {
-    data?.getMainProductCard?.shops?.map(item => {
-      if (item?.approved_shop_locations[0]?.id === Number(newId)) {
-        setDressInfo({
-          ...dressInfo,
-          locationIdParams: item?.id,
-        });
-      }
-    })
+    // data?.getMainProductCard?.shops?.map(item => {
+    //   if (item?.approved_shop_locations[0]?.id === Number(newId)) {
+    //     setDressInfo({
+    //       ...dressInfo,
+    //       locationIdParams: item?.id,
+    //     });
+    //   }
+    // })
   }
   console.log(dressInfo?.locationIdParams, "locationIdParams");
   console.log(newId, "newId");

@@ -22,23 +22,22 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
 
   const navigate = useNavigate();
   const openShoppingChild = () => {
-    data?.getMainProductCard?.shops
-      ?.filter((e) => e?.id === Number(dressInfo?.yandexGetMarketId))
-      ?.map((item) => {
-        item?.approved_shop_locations?.map((data, index) => {
-          setDressInfo({
-            ...dressInfo,
-            locationIdParams: dressInfo?.yandexGetMarketId,
-          });
-          // navigate(`/shopping_store/:${id}`);
-          navigate(`/shopping-store-location/:${item?.approved_shop_locations[0]?.id}`);
-          // navigate(`/shopping-store-location/:${dressInfo?.yandexGetMarketId}`);
-        });
-      });
+    // data?.getMainProductCard?.shops
+    //   ?.filter((e) => e?.id === Number(dressInfo?.yandexGetMarketId))
+    //   ?.map((item) => {
+    //     item?.approved_shop_locations?.map((data, index) => {
+    //       setDressInfo({
+    //         ...dressInfo,
+    //         locationIdParams: dressInfo?.yandexGetMarketId,
+    //       });
+    //       // navigate(`/shopping-store-location/:${dressInfo?.yandexGetMarketId}`);
+    //     });
+    //   });
+    navigate(`/shopping-store-location/:${dressInfo?.yandexGetMarketId}`);
   };
   // const gotoOfficial = (id) => {
-  console.log(dressInfo?.yandexGetMarketId, "dressInfo?.yandexGetMarketId");
-  console.log(dressInfo?.locationIdParams, "dressInfo?.locationIdParams");
+  // console.log(dressInfo?.yandexGetMarketId, "dressInfo?.yandexGetMarketId");
+  // console.log(dressInfo?.locationIdParams, "dressInfo?.locationIdParams");
 
   const [copyAddress, setCopyAddress] = useState(null);
   const [phoneNum, setPhoneNum] = useState(null);
