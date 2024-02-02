@@ -20,8 +20,10 @@ import {
 } from "../../../../assets";
 import { GrClose } from "react-icons/gr";
 import ReactSlider from "react-slider";
+import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 const ClothingParametr = () => {
   const [dressInfo] = useContext(dressMainData);
+  const [data] = useContext(HomeMainDataContext);
 
   const [state, setState] = useState({
     clothesTypeMobile: false,
@@ -297,11 +299,6 @@ const ClothingParametr = () => {
   };
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto px-4 md:px-0">
-      <section className="w-full  hidden md:flex justify-start items-center mb-[24px] md:mb-0 md:px-0">
-        <div className="not-italic font-AeonikProMedium lg:w-fit lg:text-2xl xl:text-3xl flex items-center leading-8 text-black">
-          <p>Коллекция одежд, которые вам подходят</p>
-        </div>
-      </section>
       <section className="w-full md:hidden flex items-center justify-between pb-3 gap-x-2">
         <button
           onClick={() => {

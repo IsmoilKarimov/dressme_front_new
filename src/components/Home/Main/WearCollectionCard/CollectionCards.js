@@ -70,9 +70,11 @@ export default function CollectionCards() {
   // console.log(data?.getMainProductCard, "Medium mainData");
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
-      <section className="w-full mt-[50px]">
+      {/* ------------------------------------------------------ */}
+      {/* <section className="w-full mt-[50px]">
         <ClothingParametr />
-      </section>
+      </section> */}
+      {/* ////////////////////// ----- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\ important */}
       <div
         onClick={() => setOpenWearType(false)}
         className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
@@ -102,6 +104,15 @@ export default function CollectionCards() {
             <SearchIcons />
           </span>
         </article>
+
+        {data?.products?.length ? (
+          <section className="w-full  hidden md:flex justify-start items-center mb-[24px] md:mb-0 md:px-0">
+            <div className="not-italic font-AeonikProMedium lg:w-fit lg:text-2xl xl:text-3xl flex items-center leading-8 text-black">
+              <p>Коллекция одежд</p>
+            </div>
+          </section>
+        ) : null}
+
         <section className="w-full  md:hidden flex justify-start items-center my-5 ">
           <div className="not-italic font-AeonikProMedium lg:w-fit lg:text-2xl xl:text-3xl flex items-center leading-6 text-black">
             <p>Коллекция одежд</p>
