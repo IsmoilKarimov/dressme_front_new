@@ -12,16 +12,19 @@ import {
   StarIcons,
   WomanGenIcons,
 } from "../../../../../assets/icons";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Modal, Radio } from "antd";
 import FilterDropUp from "../../../../Category/CategoryForType/CategoryMobileDropUp/FilterDropUp";
+import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 
 const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeftOpen,
   toggleFilterLeftClose, filterLeftAction }) => {
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [filter, setFilter] = useState(false);
   const toggleFilter = useCallback(() => setFilter(false), []);
-
+  const [locationList, setLocationList] = useState([])
+  const [selectLocation, setSelectLocation] = useState([])
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
   // For DropUp
   useEffect(() => {
     if (filter) {
@@ -47,7 +50,16 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
     existRegions.push(item?.region_id);
     existRegionsObj[item?.region_id] = item?.region?.name_ru;
   });
-
+  useEffect(() => {
+    filteredData?.shop?.approved_shop_locations?.map(item => {
+      if (locationList?.length === 0) {
+        setLocationList(locationList => [...locationList, item])
+      }
+      if (locationList?.length > 0 && !locationList?.includes(item)) {
+        setLocationList(locationList => [...locationList, item])
+      }
+    })
+  }, [filteredData])
   const uniqueRegions = new Set(existRegions);
 
   existRegions = [...uniqueRegions];
@@ -66,6 +78,15 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
   useEffect(() => {
     setSelectedLocation(filteredData?.shop?.approved_shop_locations[0]);
   }, [filteredData]);
+  const onHandleLocation = (e) => {
+    setSelectLocation(e?.target?.value)
+  }
+  const onhandleSelect = () => {
+    setOpenLocationModal(false)
+    if (selectLocation) {
+      setDressInfo({ ...dressInfo, locationIdParams: selectLocation })
+    }
+  }
 
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
@@ -283,55 +304,35 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                     <div className="text-2xl font-AeonikProRegular mb-[30px]">
                       Выберите локацию
                     </div>
+                    <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
+                      {locationList[0]?.region?.name_ru}
+                    </div>
                     <div className="h-[250px] overflow-y-auto mb-[20px] VerticelScroll pr-2">
-                      <Radio.Group
-                        style={{
-                          width: "100%",
-                        }}
-                        defaultValue={selectedLocation?.id}
-                      // onChange={onChange}
-                      >
-                        {existRegions?.map((item) => {
-                          return (
-                            <div key={item?.id}>
-                              <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
-                                {existRegionsObj[item]}
-                              </div>
+                      {locationList?.map((item, index) => {
+                        return (
+                          <div className="mb-[8px] gap-x-3 flex items-center cursor-pointer">
+                            <input
+                              className="w-[20px] h-[20px]"
+                              value={item?.id}
+                              onChange={onHandleLocation}
+                              type="radio"
+                              name={item?.region?.name_ru}
+                              id="checkLocation" />
+                            <label htmlFor={'checkLocation'} className="text-lg cursor-pointer gap-x-1 font-AeonikProRegular">
+                              {item?.region?.name_ru} (
+                              {item?.address})
+                            </label>
+                          </div>
+                        )
+                      })}
 
-                              <div className="w-full">
-                                {filteredData?.shop?.shop_locations?.map((data) => {
-                                  if (data?.sub_region?.region_id === item) {
-                                    return (
-                                      <div
-                                        onClick={() => {
-                                          checkedData = data;
-                                        }}
-                                        key={data.id}
-                                        className="mb-[8px]"
-                                      >
-                                        <Radio
-                                          value={data?.id}
-                                          name="location"
-                                          className="text-lg font-AeonikProRegular"
-                                        >
-                                          {data?.sub_region?.name_ru} (
-                                          {data?.address})
-                                        </Radio>
-                                      </div>
-                                    );
-                                  }
-                                })}
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </Radio.Group>
                     </div>
                     <button
                       type="button"
                       onClick={() => {
-                        setOpenLocationModal(false);
-                        setSelectedLocation(checkedData);
+                        onhandleSelect()
+                        // setOpenLocationModal(false);
+                        // setSelectedLocation(checkedData);
                       }}
                       className="w-full flex justify-end mt-[60px] text-borderWinter text-lg font-AeonikProMedium"
                     >
