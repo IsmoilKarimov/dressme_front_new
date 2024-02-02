@@ -232,7 +232,7 @@ const ProductDetails = ({ data }) => {
 
   existRegions = [...uniqueRegions];
 
-  console.log(existRegions, "ggggggg");
+  // console.log(existRegions, "ggggggg");
   // Location state
 
   let checkedData = {};
@@ -241,9 +241,9 @@ const ProductDetails = ({ data }) => {
     data?.product?.locations[0]
   );
 
-  console.log(selectedLocation, "selllll");
-  console.log(data?.product?.locations);
-  console.log(dressInfo?.mainSubRegionId, "wwwwww");
+  console.log(selectedLocation, "selectedLocation");
+  // console.log(data?.product?.locations);
+  // console.log(dressInfo?.mainSubRegionId, "wwwwww");
 
   let checkTableShow = data?.product?.sizes?.find(
     (item) => item?.shop_location_id == selectedLocation?.id
@@ -251,7 +251,7 @@ const ProductDetails = ({ data }) => {
 
   checkedData = selectedLocation;
 
-  console.log(checkedData, "sllllllrrrr");
+  // console.log(checkedData, "sllllllrrrr");
 
   // Selected color ------------------
 
