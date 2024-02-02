@@ -259,8 +259,8 @@ function MarketFilterofMaps({ onClick }) {
                           key={item?.id}
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
                           className={`${item?.action
-                              ? dressInfo?.BtnActiveSeason
-                              : " bg-white text-black border border-searchBgColor"
+                            ? dressInfo?.BtnActiveSeason
+                            : " bg-white text-black border border-searchBgColor"
                             } pl-[40%] rounded-lg w-full h-[64px]   cursor-pointer  font-AeonikProMedium   flex items-center`}
                         >
                           {/* <img src={item?.anyIcons} alt="male" /> */}
@@ -403,8 +403,8 @@ function MarketFilterofMaps({ onClick }) {
                 <button
                   onClick={() => handleComponentId(item?.id)}
                   className={`${item?.isActive
-                      ? dressInfo?.BtnActiveSeason
-                      : "border border-['#E0E0E0']"
+                    ? dressInfo?.BtnActiveSeason
+                    : "border border-['#E0E0E0']"
                     } w-[85px] h-[52px] rounded-lg flex items-center justify-center  `}
                 >
                   {item?.isActive ? item?.ActiveIcons : item?.noActiveIcons}
