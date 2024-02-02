@@ -92,9 +92,9 @@ function FilterList({
         }
     }, [paramsId, filterToggle])
 
-    console.log(filterToggle, "filterToggle");
-    console.log(paramsId, "paramsId");
-    console.log(getParamsTest, "getParamsTest");
+    // console.log(filterToggle, "filterToggle");
+    // console.log(paramsId, "paramsId");
+    // console.log(getParamsTest, "getParamsTest");
     // const fetchData = async (customHeaders) => {
     //     try {
     //         const response = await axios.get(`${url}/shops/filter/${paramsId}?location_id=${1}`, {

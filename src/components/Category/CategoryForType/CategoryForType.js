@@ -167,6 +167,7 @@ function CategoryForType() {
             underWearList={underWearList}
             footWearList={footWearList}
             filterToggle={filterToggle}
+            setFilterToggle={setFilterToggle}
           />
         </article>
         <article className={`${filterToggle ? 'md:w-[77%]' : "md:w-[100%]"}  w-full  h-full ss:px-4 md:px-0 `}>

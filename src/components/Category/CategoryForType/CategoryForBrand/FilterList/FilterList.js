@@ -25,11 +25,13 @@ function FilterList({
     underWearList,
     footWearList,
     getRatingList,
-    filterToggle
+    filterToggle,
+    setFilterToggle
 }) {
     const { request } = useHttp()
     const [dressInfo, setDressInfo] = useContext(dressMainData);
     const [getFilter, setGetFilter] = useState()
+    const [getParamsTest, setgetParamsTest] = useState(paramsId)
 
     // ------------------------
     const [genderToggle, setGenderToggle] = useState(false);
@@ -82,6 +84,15 @@ function FilterList({
             fetchGetAllData()
         }
     }, [filterToggle, dressInfo?.mainRegionId])
+
+    useEffect(() => {
+        if (getParamsTest !== paramsId) {
+            setgetParamsTest(paramsId)
+            setFilterToggle(false)
+            setGetFilter()
+            fetchGetAllData()
+        }
+    }, [paramsId, filterToggle])
     // const fetchData = async (customHeaders) => {
     //     try {
     //         const response = await axios.get(`${url}/shops/filter/${paramsId}?location_id=${1}`, {
