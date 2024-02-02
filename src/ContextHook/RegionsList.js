@@ -17,19 +17,20 @@ function RegionList({ onClick }) {
     getSellerList: "",
     // -----region Modal ---
     // openModalRegions: show,
-    uniqueId: null
+    uniqueId: null,
   });
-  const [data, setData] = useContext(HomeMainDataContext);
+  const [data, setData, , , offset, setOffset] =
+    useContext(HomeMainDataContext);
   // const url = "https://api.dressme.uz/api/seller";
-
-
 
   const [activeIndex, setActiveIndex] = useState();
   const RegId = (id) => {
     setState({
-      ...state, regionId: id, subRegionId: null,
+      ...state,
+      regionId: id,
+      subRegionId: null,
     });
-  }
+  };
   const accordionCityList = (id) => {
     console.log(id, "buqanday id");
     if (activeIndex === id) {
@@ -43,25 +44,26 @@ function RegionList({ onClick }) {
       ...state,
       regionId: regId,
       subRegionId: subRegId,
-      uniqueId: subRegId
-
+      uniqueId: subRegId,
     });
-  }
+  };
   const sendRegions = () => {
-    onClick()
+    onClick();
     setDressInfo({
-      ...dressInfo, mainRegionId: state?.regionId,
+      ...dressInfo,
+      mainRegionId: state?.regionId,
       mainSubRegionId: state?.subRegionId,
-      yandexOpenRegionList: false
-    })
-  }
+      yandexOpenRegionList: false,
+    });
+    setOffset(0);
+  };
   const MenuClose = () => {
     setDressInfo({
-      ...dressInfo, yandexOpenRegionList: false
-    })
-    onClick()
-
-  }
+      ...dressInfo,
+      yandexOpenRegionList: false,
+    });
+    onClick();
+  };
   // useEffect(() => {
 
   //   if (dressInfo?.mainSubRegionId) {
@@ -84,7 +86,10 @@ function RegionList({ onClick }) {
   console.log(dressInfo?.mainSubRegionId, "filt--dressInfo?.mainSubRegionId");
   console.log(state?.regionId, "filt--state?.regionId");
   console.log(state?.subRegionId, "filt--state?.subRegionId");
-  console.log(dressInfo?.yandexOpenRegionList, "filt--state?.yandexOpenRegionList");
+  console.log(
+    dressInfo?.yandexOpenRegionList,
+    "filt--state?.yandexOpenRegionList"
+  );
   console.log("filt----------------------");
   return (
     <main className={`w-full  h-fit `}>
@@ -95,13 +100,16 @@ function RegionList({ onClick }) {
           <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">
             Выберите регион
           </span>
-          <span className="select-none cursor-pointer" onClick={() => {
-            setDressInfo({
-              ...dressInfo,
-              yandexOpenRegionList: false
-            })
-            MenuClose()
-          }}>
+          <span
+            className="select-none cursor-pointer"
+            onClick={() => {
+              setDressInfo({
+                ...dressInfo,
+                yandexOpenRegionList: false,
+              });
+              MenuClose();
+            }}
+          >
             <MenuCloseIcons colors="#000" />
           </span>
         </div>
@@ -112,70 +120,80 @@ function RegionList({ onClick }) {
               return (
                 <div
                   key={data?.id}
-                  className={`${data.id || data.sub_regions.id ? "" : ""
-                    } w-full h-fit `}
+                  className={`${
+                    data.id || data.sub_regions.id ? "" : ""
+                  } w-full h-fit `}
                 >
-                  <div className={`flex items-center ${data?.id == 2 ? "" : "opacity-50"} `}>
+                  <div
+                    className={`flex items-center ${
+                      data?.id == 2 ? "" : "opacity-50"
+                    } `}
+                  >
                     <div
                       onClick={
-                        data?.id == 2 ?
-                          () => { accordionCityList(data?.id) } : null
-
+                        data?.id == 2
+                          ? () => {
+                              accordionCityList(data?.id);
+                            }
+                          : null
                       }
-                      className="w-full cursor-pointer flex items-center  border-b border-[#F0F0F0] ">
-
-                      {data?.id == 2 ? <label
-                        htmlFor={data?.name_ru}
-                        onClick={() => RegId(data?.id)}
-                        className="w-fit cursor-pointer flex items-center"
-                      >
-                        <input
-                          id={data?.name_ru}
-                          type="radio"
-                          name="region"
-                          value={data?.id}
-                          checked={state?.subRegionId ? false : state?.regionId == data?.id}
-                          className="w-[18px] h-[18px] cursor-pointer mr-3"
-                          onChange={(e) => {
-                            setState({
-                              ...state,
-                              regionId: data?.id,
-                              subRegionId: null
-                            });
-                          }}
-                        />
-                        <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
-                          {data?.name_ru}
-                        </span>
-                      </label> :
+                      className="w-full cursor-pointer flex items-center  border-b border-[#F0F0F0] "
+                    >
+                      {data?.id == 2 ? (
                         <label
+                          htmlFor={data?.name_ru}
+                          onClick={() => RegId(data?.id)}
                           className="w-fit cursor-pointer flex items-center"
                         >
-                          <div
-                            className="w-[20px] h-[20px] border rounded-full cursor-pointer mr-3"
-                          ></div>
+                          <input
+                            id={data?.name_ru}
+                            type="radio"
+                            name="region"
+                            value={data?.id}
+                            checked={
+                              state?.subRegionId
+                                ? false
+                                : state?.regionId == data?.id
+                            }
+                            className="w-[18px] h-[18px] cursor-pointer mr-3"
+                            onChange={(e) => {
+                              setState({
+                                ...state,
+                                regionId: data?.id,
+                                subRegionId: null,
+                              });
+                            }}
+                          />
                           <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
                             {data?.name_ru}
                           </span>
-                        </label>}
+                        </label>
+                      ) : (
+                        <label className="w-fit cursor-pointer flex items-center">
+                          <div className="w-[20px] h-[20px] border rounded-full cursor-pointer mr-3"></div>
+                          <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
+                            {data?.name_ru}
+                          </span>
+                        </label>
+                      )}
                       <span
-                        className={`${activeIndex === data?.id
-                          ? "rotate-[-0deg] duration-300"
-                          : "rotate-[-180deg] duration-300"
-                          } ml-auto`}
+                        className={`${
+                          activeIndex === data?.id
+                            ? "rotate-[-0deg] duration-300"
+                            : "rotate-[-180deg] duration-300"
+                        } ml-auto`}
                       >
                         <ArrowTopIcons colors={"#a1a1a1"} />
                       </span>
                     </div>
-
-
                   </div>
                   <div
                     className={`w-full grid grid-cols-2 xs:grid-cols-3 duration-[400ms]
-                              ${activeIndex == data?.id
-                        ? "openAccardion"
-                        : "CloseAccardion"
-                      } `}
+                              ${
+                                activeIndex == data?.id
+                                  ? "openAccardion"
+                                  : "CloseAccardion"
+                              } `}
                   >
                     {data?.sub_regions?.map((item) => {
                       return (
@@ -186,7 +204,6 @@ function RegionList({ onClick }) {
                           <label
                             htmlFor={item?.name_ru}
                             onClick={() => regSubRegId(data?.id, item?.id)}
-
                             className="flex items-center gap-x-[6px]"
                           >
                             <input
@@ -227,9 +244,9 @@ function RegionList({ onClick }) {
             onClick={() => {
               setDressInfo({
                 ...dressInfo,
-                yandexOpenRegionList: false
-              })
-              sendRegions()
+                yandexOpenRegionList: false,
+              });
+              sendRegions();
             }}
             className="cursor-pointer text-borderWinter text-lg not-italic font-AeonikProMedium"
           >
@@ -237,7 +254,7 @@ function RegionList({ onClick }) {
           </span>
         </div>
       </div>
-    </main >
+    </main>
   );
 }
 export default React.memo(RegionList);
