@@ -72,19 +72,7 @@ function YandexMapsDressMe() {
   function getFilterSearchByBrand(childData) {
     setFilterSearchByBrand(childData);
   }
-  const fetchGetAllDataRegions = () => {
-    fetch(`${url}/regions`)
-      .then((res) => res.json())
-      .then((res) => {
-        setDressInfo({ ...dressInfo, mainRegionsList: res?.regions })
-      })
-      .catch((err) => console.log(err, "ERRORLIST"));
-  };
-  useEffect(() => {
-    if (!dressInfo?.mainRegionsList) {
-      fetchGetAllDataRegions();
-    }
-  }, []);
+
   // -------------Get Request
   const typeFilter = String(dressInfo?.type)?.split("");
   const seasonId = Number(typeFilter?.shift());
