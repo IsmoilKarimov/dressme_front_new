@@ -49,6 +49,7 @@ const ProductDetails = ({ data }) => {
   const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
   const [dressInfo] = useContext(dressMainData);
+
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
   const [tableSizes, setTableSizes] = useState(false);
@@ -207,9 +208,6 @@ const ProductDetails = ({ data }) => {
     }
   };
 
-  const [copyText, setCopyText] = useState("");
-  const [copyCardNumber, setCopyCardNumber] = useState("");
-
   const skuRef = useRef();
   const cardRef = useRef();
 
@@ -234,6 +232,7 @@ const ProductDetails = ({ data }) => {
 
   existRegions = [...uniqueRegions];
 
+  console.log(existRegions, "ggggggg");
   // Location state
 
   let checkedData = {};
@@ -242,20 +241,34 @@ const ProductDetails = ({ data }) => {
     data?.product?.locations[0]
   );
 
+  console.log(selectedLocation, "selllll");
+  console.log(data?.product?.locations);
+  console.log(dressInfo?.mainSubRegionId, "wwwwww");
+
   let checkTableShow = data?.product?.sizes?.find(
     (item) => item?.shop_location_id == selectedLocation?.id
   );
 
   checkedData = selectedLocation;
 
+  console.log(checkedData, "sllllllrrrr");
+
   // Selected color ------------------
 
   const [selectedColor, setSelectedColor] = useState(data?.product?.colors[0]);
 
   useEffect(() => {
-    setSelectedLocation(data?.product?.locations[0]);
-    setSelectedColor(data?.product?.colors[0]);
-  }, [data]);
+    if (dressInfo?.mainSubRegionId) {
+      data?.product?.locations?.forEach((item) => {
+        if (item?.sub_region_id == dressInfo?.mainSubRegionId) {
+          setSelectedLocation(item);
+        }
+      });
+    } else {
+      setSelectedLocation(data?.product?.locations[0]);
+      setSelectedColor(data?.product?.colors[0]);
+    }
+  }, [data, dressInfo]);
 
   const filterColorsOnSelect = (id) => {
     setSelectedColor(
