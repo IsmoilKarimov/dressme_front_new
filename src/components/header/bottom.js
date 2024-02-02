@@ -22,8 +22,7 @@ const { Option } = Select;
 
 function BottomHeader() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [data, setData, , , offset, setOffset] =
-    useContext(HomeMainDataContext);
+  const [data, setData] = useContext(HomeMainDataContext);
 
   const [state, setState] = useState({
     openwear: false,
@@ -81,7 +80,6 @@ function BottomHeader() {
     setDressInfo({ ...dressInfo, mainRangePrice: [] });
   };
   const sendPriceList = () => {
-    setOffset(0);
     setDressInfo({ ...dressInfo, mainRangePrice: values });
   };
 
@@ -279,7 +277,6 @@ function BottomHeader() {
     // console.log("search:", value);
   };
   const handleFilterByUser = (fathId, childId) => {
-    setOffset(0);
     if (childId === 0) {
       setDressInfo({ ...dressInfo, mainGenderId: 0 });
     } else if (childId > 0) {
@@ -288,7 +285,6 @@ function BottomHeader() {
   };
 
   const newColorArrayId = (hex, id) => {
-    setOffset(0);
     if (!dressInfo?.mainColorHex) {
       setDressInfo({ ...dressInfo, mainColorId: id, mainColorHex: hex });
     }
@@ -416,7 +412,6 @@ function BottomHeader() {
             }
             optionFilterProp="children"
             onChange={(e) => {
-              setOffset(0);
               setDressInfo({ ...dressInfo, mainCategoryId: e });
             }}
             value={dressInfo?.mainCategoryId}
