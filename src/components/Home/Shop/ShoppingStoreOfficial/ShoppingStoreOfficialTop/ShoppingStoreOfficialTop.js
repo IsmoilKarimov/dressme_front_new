@@ -13,7 +13,7 @@ import {
   WomanGenIcons,
 } from "../../../../../assets/icons";
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { Modal, Radio } from "antd";
+import { Modal, Radio, Space } from "antd";
 import FilterDropUp from "../../../../Category/CategoryForType/CategoryMobileDropUp/FilterDropUp";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 
@@ -41,15 +41,7 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
     }
   };
   // Посмотреть отзывы
-  // ---- Regions show ----
 
-  let existRegions = [];
-  let existRegionsObj = {};
-
-  filteredData?.shop?.approved_shop_locations?.map((item) => {
-    existRegions.push(item?.region_id);
-    existRegionsObj[item?.region_id] = item?.region?.name_ru;
-  });
   useEffect(() => {
     filteredData?.shop?.approved_shop_locations?.map(item => {
       if (locationList?.length === 0) {
@@ -60,27 +52,10 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
       }
     })
   }, [filteredData])
-  const uniqueRegions = new Set(existRegions);
 
-  existRegions = [...uniqueRegions];
-
-  // ---- Location state ----
-
-  let checkedData = {};
-
-  const [selectedLocation, setSelectedLocation] = useState(
-    filteredData?.shop?.approved_shop_locations[0]
-  );
-  // console.log(storeData);
-
-  checkedData = selectedLocation;
-
-  useEffect(() => {
-    setSelectedLocation(filteredData?.shop?.approved_shop_locations[0]);
-  }, [filteredData]);
-  const onHandleLocation = (e) => {
+  const onChangeSelectLocation = (e) => {
     setSelectLocation(e?.target?.value)
-  }
+  };
   const onhandleSelect = () => {
     setOpenLocationModal(false)
     if (selectLocation) {
@@ -183,9 +158,9 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                   }}
                   className="flex flex-col ml-3 w-[70%] md:w-full"
                 >
-                  {filteredData?.shop?.shop_locations?.length ? (
+                  {filteredData?.shop?.approved_shop_locations?.length > 0 ? (
                     <p className="text-sm font-AeonikProRegular text-borderWinter">
-                      {selectedLocation?.address}
+                      {filteredData?.shop?.approved_shop_locations[dressInfo?.locationIdParams - 1]?.address}
                     </p>
                   ) : null}
                 </button>
@@ -202,7 +177,7 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                         <LocationColoursIcons colors={"#007DCA"} />
                       </span>
                       <p className="text-sm font-AeonikProRegular text-borderWinter cursor-pointer">
-                        {filteredData?.shop?.approved_shop_locations[0]?.address}
+                        {filteredData?.shop?.approved_shop_locations[dressInfo?.locationIdParams - 1]?.address}
                       </p>
 
                     </NavLink>
@@ -308,7 +283,24 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                       {locationList[0]?.region?.name_ru}
                     </div>
                     <div className="h-[250px] overflow-y-auto mb-[20px] VerticelScroll pr-2">
-                      {locationList?.map((item, index) => {
+                      <Radio.Group onChange={onChangeSelectLocation} value={selectLocation}
+                        defaultValue={dressInfo?.locationIdParams}
+
+                      >
+                        {locationList?.map((item, index) => {
+                          return (
+                            <div className="mb-[8px] gap-x-3 flex items-center cursor-pointer">
+                              <Space direction="vertical">
+                                <Radio
+                                  className="text-lg font-AeonikProRegular"
+                                  value={item?.id}> {item?.sub_region?.name_ru} ({item?.address} )</Radio>
+                              </Space>
+                            </div>
+                          )
+                        })}
+
+                      </Radio.Group>
+                      {/* {locationList?.map((item, index) => {
                         return (
                           <div className="mb-[8px] gap-x-3 flex items-center cursor-pointer">
                             <input
@@ -324,7 +316,7 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                             </label>
                           </div>
                         )
-                      })}
+                      })} */}
 
                     </div>
                     <button
