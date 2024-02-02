@@ -12,11 +12,9 @@ import {
 } from "../../../assets/icons";
 import { EnglishFlag, RussianFlag, UzbekFlag } from "../../../assets";
 import Cookies from "js-cookie";
-import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 
 const YandexTop = ({ onClick }) => {
   const [dressInfo] = useContext(dressMainData);
-  const [data] = useContext(HomeMainDataContext);
   const [state, setState] = useState({
     openLang: false,
     openRegion: false,
@@ -66,45 +64,7 @@ const YandexTop = ({ onClick }) => {
   );
 
   // -------City Change -------------
-  // const [, setSelectCity] = useState("Tashkent");
 
-  // const handleOpenChangeCity = (newOpen) => {
-  //   setState({ ...state, openRegion: newOpen });
-  // };
-
-  // const handleCityValue = (value) => {
-  //   setSelectCity(value);
-  //   setState({ ...state, openRegion: false });
-  // };
-
-  // const CityList = [
-  //   { id: 1, type: "Samarqand" },
-  //   { id: 2, type: "Sirdaryo" },
-  //   { id: 3, type: "Jizzax" },
-  //   { id: 4, type: "Andijon" },
-  //   { id: 5, type: "Xorazm" },
-  //   { id: 6, type: "Navoiy" },
-  // ];
-
-  // const contentCity = (
-  //   <div className="w-[100px] h-fit m-0 p-0">
-  //     {CityList.map((data) => {
-  //       return (
-  //         <div
-  //           key={data?.id}
-  //           className={`p-2 not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black  hover:bg-bgColor cursor-pointer ${dressInfo?.TextHoverSeason}`}
-  //           onClick={() => {
-  //             handleCityValue(data?.type);
-  //           }}
-  //         >
-  //           {data?.type}
-  //         </div>
-  //       );
-  //     })}
-  //   </div>
-  // );
-  // const [regionsShow, setRegionsShow] = useState(false);
-  // const toggleRegionsShow = useCallback(() => setRegionsShow(false), []);
 
   return (
     <div className="flex justify-between items-center m-auto py-[2px]">
@@ -120,7 +80,7 @@ const YandexTop = ({ onClick }) => {
             Регион:
           </span>
           <div className="w-full min-w-[90px] font-AeonikProMedium flex items-center text-[13px]">
-            {data?.getMainProductCard?.regions?.filter((e) => e?.id === dressInfo?.mainRegionId)?.map((item) => {
+            {dressInfo?.mainRegionsList?.filter((e) => e?.id === dressInfo?.mainRegionId)?.map((item) => {
 
               return (
                 <React.Fragment key={item?.id}>
