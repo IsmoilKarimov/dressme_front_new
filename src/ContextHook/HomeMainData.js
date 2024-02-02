@@ -8,14 +8,15 @@ export const HomeMainDataContext = createContext();
 export const HomeMainDataContextProvider = ({ children }) => {
   const [data, setData] = useState({
     getMainProductCard: [],
+    products: [],
     loader: true,
   });
 
-  // const [products, setProducts] = useState({
-  //   products: [],
-  // });
+  console.log(data, "rrrrr");
 
-  // const [offset, setOffset] = useState(0);
+  const [offset, setOffset] = useState(0);
+
+  console.log(offset);
 
   let WishlistDataFromCookies = Cookies.get("WishList");
 
@@ -61,16 +62,7 @@ export const HomeMainDataContextProvider = ({ children }) => {
 
   return (
     <HomeMainDataContext.Provider
-      value={[
-        data,
-        setData,
-        wishList,
-        setWishlist,
-        // offset,
-        // setOffset,
-        // products,
-        // setProducts,
-      ]}
+      value={[data, setData, wishList, setWishlist, offset, setOffset]}
     >
       {children}
     </HomeMainDataContext.Provider>

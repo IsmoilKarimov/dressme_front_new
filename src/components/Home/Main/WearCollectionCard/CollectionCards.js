@@ -12,7 +12,7 @@ export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
   const [pagination, setPagination] = useState(30);
-  const [data, setData, wishList, setWishlist] =
+  const [data, setData, wishList, setWishlist, offset, setOffset] =
     useContext(HomeMainDataContext);
 
   // -------------------------------------
@@ -109,8 +109,8 @@ export default function CollectionCards() {
 
         <div className="w-full flex flex-col box-border ">
           <article className="flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
-            {/* {products?.products?.length ? (
-              products?.products?.slice(0, pagination).map((data) => {
+            {data?.products?.length ? (
+              data?.products?.map((data) => {
                 return (
                   <CollectionCardItem
                     key={data?.id}
@@ -127,9 +127,9 @@ export default function CollectionCards() {
               <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[300px] ">
                 Ничего не найдено
               </div>
-            )} */}
+            )}
 
-            {data?.getMainProductCard?.products?.length ? (
+            {/* {data?.getMainProductCard?.products?.length ? (
               data?.getMainProductCard?.products
                 ?.slice(0, pagination)
                 ?.map((data) => {
@@ -149,10 +149,10 @@ export default function CollectionCards() {
               <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[300px] ">
                 Ничего не найдено
               </div>
-            )}
+            )} */}
           </article>
 
-          {data?.getMainProductCard?.products?.length < 30 ||
+          {/* {data?.getMainProductCard?.products?.length < 30 ||
           data?.getMainProductCard?.products?.length < pagination ? null : (
             <div className="w-full h-fit flex items-center justify-center mt-14">
               <button
@@ -167,13 +167,12 @@ export default function CollectionCards() {
                 Показать ещё
               </button>
             </div>
-          )}
+          )} */}
 
-          {/* <div className="w-full h-fit flex items-center justify-center mt-14">
+          <div className="w-full h-fit flex items-center justify-center mt-14">
             <button
               type="button"
               onClick={() => {
-                setPagination((prev) => prev + 30);
                 setOffset((prev) => prev + 30);
               }}
               // searchBgColor
@@ -181,7 +180,7 @@ export default function CollectionCards() {
             >
               Показать ещё
             </button>
-          </div> */}
+          </div>
         </div>
       </section>
     </main>

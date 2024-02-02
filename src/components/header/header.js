@@ -10,7 +10,8 @@ import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 
 const Header = () => {
   const [dressInfo] = useContext(dressMainData);
-  const [data, setData] = useContext(HomeMainDataContext);
+  const [data, setData, , , offset, setOffset] =
+    useContext(HomeMainDataContext);
 
   const [state, setState] = useState({
     getAllCardList: null,
@@ -79,6 +80,8 @@ const Header = () => {
   const seasonId = Number(typeFilter?.shift());
   const fetchGetAllData = () => {
     var params = new URLSearchParams();
+    params.append("limit", "30");
+    params.append("offset", offset);
     dressInfo?.mainRegionId && params.append("region", dressInfo?.mainRegionId);
     dressInfo?.mainSubRegionId &&
       params.append("sub_region", dressInfo?.mainSubRegionId);
@@ -87,8 +90,7 @@ const Header = () => {
     dressInfo?.mainCategoryId &&
       params.append("category", dressInfo?.mainCategoryId);
     dressInfo?.mainGenderId && params.append("gender", dressInfo?.mainGenderId);
-    dressInfo?.mainColorHex &&
-      params.append("color", dressInfo?.mainColorHex);
+    dressInfo?.mainColorHex && params.append("color", dressInfo?.mainColorHex);
     seasonId !== 5 && params.append("season", seasonId);
     dressInfo?.mainRangePrice[0] &&
       params.append("budget[from]", dressInfo?.mainRangePrice[0]);
@@ -99,7 +101,21 @@ const Header = () => {
       .then((res) => res.json())
       .then((res) => {
         setState({ ...state, getAllCardList: res });
-        setData({ ...data, getMainProductCard: res, loader: false });
+        if (offset === 0) {
+          setData({
+            ...data,
+            getMainProductCard: res,
+            products: res?.products,
+            loader: false,
+          });
+        } else {
+          setData({
+            ...data,
+            getMainProductCard: res,
+            products: [...data?.products, ...res?.products],
+            loader: false,
+          });
+        }
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
@@ -116,6 +132,7 @@ const Header = () => {
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
     seasonId,
+    offset,
   ]);
   // console.log(
   //   dressInfo?.mainCategoryId, " dressInfo?.mainCategoryId",
@@ -133,25 +150,28 @@ const Header = () => {
           <div className="w-full">
             <article
               className={`block md:hidden relative z-[100]
-              ${show
+              ${
+                show
                   ? "visible duration-500 z-[25]"
                   : "visible duration-500 z-[25] translate-y-[-100%]"
-                }`}
+              }`}
             >
               <MediumHeader />
             </article>
             <article
               className={`fixed top-0  w-full bg-white block
-              ${show
+              ${
+                show
                   ? "visible duration-500 z-[25]"
                   : "visible duration-500 z-[25] translate-y-[-100%]"
-                }`}
+              }`}
             >
               <TopHeader />
               <MediumHeader />
               <div
-                className={`${scrollPost > -530 ? "" : "h-0 overflow-hidden"
-                  } visible duration-500`}
+                className={`${
+                  scrollPost > -530 ? "" : "h-0 overflow-hidden"
+                } visible duration-500`}
               >
                 <NavbarBottomIndex
                 // getGender={getGender}
@@ -180,17 +200,19 @@ const Header = () => {
         )}
 
         <div
-          className={`${locationWindow !== "/locations"
-            ? "md:mt-[99px]"
-            : "mt-[0] h-0 overflow-hidden"
-            } `}
+          className={`${
+            locationWindow !== "/locations"
+              ? "md:mt-[99px]"
+              : "mt-[0] h-0 overflow-hidden"
+          } `}
         >
           {!dressInfo?.yandexFullScreen && (
             <article
-              className={`fixed bottom-0 w-full bg-white ${show
-                ? "visible duration-500 z-[101]"
-                : "visible duration-500 z-[101] translate-y-[100%]"
-                } block md:hidden`}
+              className={`fixed bottom-0 w-full bg-white ${
+                show
+                  ? "visible duration-500 z-[101]"
+                  : "visible duration-500 z-[101] translate-y-[100%]"
+              } block md:hidden`}
             >
               <NavMenu />
             </article>
