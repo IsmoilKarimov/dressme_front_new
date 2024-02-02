@@ -12,11 +12,7 @@ export const HomeMainDataContextProvider = ({ children }) => {
     loader: true,
   });
 
-  console.log(data, "rrrrr");
-
   const [offset, setOffset] = useState(0);
-
-  console.log(offset);
 
   let WishlistDataFromCookies = Cookies.get("WishList");
 
