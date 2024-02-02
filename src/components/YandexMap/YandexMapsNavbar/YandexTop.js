@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { Popover } from "antd";
@@ -14,7 +14,7 @@ import { EnglishFlag, RussianFlag, UzbekFlag } from "../../../assets";
 import Cookies from "js-cookie";
 
 const YandexTop = ({ onClick }) => {
-  const [dressInfo] = useContext(dressMainData);
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [state, setState] = useState({
     openLang: false,
     openRegion: false,
@@ -64,8 +64,21 @@ const YandexTop = ({ onClick }) => {
   );
 
   // -------City Change -------------
+  const url = "https://api.dressme.uz/api/main";
 
-
+  const fetchGetAllDataRegions = () => {
+    fetch(`${url}/regions`)
+      .then((res) => res.json())
+      .then((res) => {
+        setDressInfo({ ...dressInfo, mainRegionsList: res?.regions })
+      })
+      .catch((err) => console.log(err, "ERRORLIST"));
+  };
+  useEffect(() => {
+    if (!dressInfo?.mainRegionsList) {
+      fetchGetAllDataRegions();
+    }
+  }, []);
   return (
     <div className="flex justify-between items-center m-auto py-[2px]">
       <div className="left h-full flex items-center  ">

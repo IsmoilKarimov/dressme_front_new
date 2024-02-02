@@ -9,10 +9,12 @@ import {
   MarketIcons,
 } from "../../assets/icons";
 import RegionList from "../../ContextHook/RegionsList";
+import { useQuery } from "@tanstack/react-query";
+import { useHttp } from "../../hook/useHttp";
 
 const TopHeader = () => {
-  const [dressInfo] = useContext(dressMainData);
-
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const { request } = useHttp()
   const [selectBtn, setSelectBtn] = useState(true);
   const [regionsShow, setRegionsShow] = useState(false);
   const toggleRegionsShow = useCallback(() => setRegionsShow(false), []);
@@ -72,6 +74,24 @@ const TopHeader = () => {
       document.body.style.overflow = "auto";
     }
   }, [regionsShow]);
+
+  // ----------Get Region List
+
+  useQuery(["getragionAllList"], () => {
+    return request({ url: `/main/regions`, token: true });
+  },
+    {
+      onSuccess: (res) => {
+        setDressInfo({ ...dressInfo, mainRegionsList: res?.regions });
+      },
+      onError: (err) => {
+        console.log(err, "ERR-PROFILE");
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+    }
+  );
+  // console.log(dressInfo?.mainRegionsList, "mainRegionsList");
   // console.log(dressInfo?.mainRegionId, dressInfo?.mainSubRegionId, "mainSubregionId");
   // -----------------------------------------------------
   return (

@@ -84,12 +84,14 @@ function FilterList({
     }, [filterToggle, dressInfo?.mainRegionId])
 
     useEffect(() => {
-        if (filterToggle) {
+        if (getParamsTest !== paramsId) {
+            setgetParamsTest(paramsId)
             setFilterToggle(false)
             setGetFilter()
             fetchGetAllData()
         }
-    }, [paramsId])
+    }, [paramsId, filterToggle])
+
     console.log(filterToggle, "filterToggle");
     console.log(paramsId, "paramsId");
     console.log(getParamsTest, "getParamsTest");
