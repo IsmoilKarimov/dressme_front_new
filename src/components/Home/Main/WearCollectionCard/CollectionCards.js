@@ -136,7 +136,7 @@ export default function CollectionCards() {
                 );
               })
             ) : (
-              <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[300px] ">
+              <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[200px] ">
                 Ничего не найдено
               </div>
             )}
