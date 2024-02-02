@@ -75,7 +75,7 @@ const YandexTop = ({ onClick }) => {
       .catch((err) => console.log(err, "ERRORLIST"));
   };
   useEffect(() => {
-    if (!dressInfo?.mainRegionsList) {
+    if (dressInfo?.mainRegionsList?.length === 0) {
       fetchGetAllDataRegions();
     }
   }, []);
