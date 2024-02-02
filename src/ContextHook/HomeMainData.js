@@ -10,6 +10,7 @@ export const HomeMainDataContextProvider = ({ children }) => {
     getMainProductCard: [],
     products: [],
     loader: true,
+    btnLoader: false,
   });
 
   const [page, setPage] = useState(1);
