@@ -7,6 +7,7 @@ import WearType from "./WearType";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { CollectionCardItem } from "./CollectionCardItem";
 import { useQuery } from "@tanstack/react-query";
+import { ClipLoader } from "react-spinners";
 
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -171,15 +172,29 @@ export default function CollectionCards() {
 
           {data?.getMainProductCard?.products?.next_page_url ? (
             <div className="w-full h-fit flex items-center justify-center mt-14">
-              <button
-                type="button"
-                onClick={() => {
-                  setPage((prev) => prev + 1);
-                }}
-                className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
-              >
-                Показать ещё
-              </button>
+              {data?.btnLoader ? (
+                <button
+                  type="button"
+                  className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
+                >
+                  <ClipLoader
+                    className="h-full py-[2px]"
+                    color={"#007DCA"}
+                    size={30}
+                    loading={true}
+                  />
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPage((prev) => prev + 1);
+                  }}
+                  className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
+                >
+                  Показать ещё{" "}
+                </button>
+              )}
             </div>
           ) : null}
         </div>
