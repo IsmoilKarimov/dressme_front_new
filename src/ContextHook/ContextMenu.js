@@ -1246,7 +1246,7 @@ export const DressMenu = ({ children }) => {
   ];
 
   useEffect(() => {
-    BtnSeasonArray.filter((e) => e.id == dressInfo?.type).map((event) => {
+    BtnSeasonArray.filter((e) => e.id === dressInfo?.type).map((event) => {
       setDressInfo({
         ...dressInfo,
         BtnSeason: event?.btn,
@@ -1261,7 +1261,6 @@ export const DressMenu = ({ children }) => {
       });
     });
   }, [dressInfo.type]);
-
   return (
     <dressMainData.Provider value={[dressInfo, setDressInfo]}>
       {children}

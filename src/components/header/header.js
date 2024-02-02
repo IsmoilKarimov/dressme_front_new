@@ -9,7 +9,7 @@ import { dressMainData } from "../../ContextHook/ContextMenu";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 
 const Header = () => {
-  const [dressInfo] = useContext(dressMainData);
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
 
   const [state, setState] = useState({
@@ -19,19 +19,6 @@ const Header = () => {
     categorySelectId: null,
     getRangeData: [],
   });
-
-  function getGender(childData) {
-    setState({ ...state, genderSelectId: childData });
-  }
-  function getRangeList(childData) {
-    setState({ ...state, getRangeData: childData });
-  }
-  function getCategoryList(childData) {
-    // setState({ ...state, categorySelectId: childData });
-  }
-  function getColorList(childData) {
-    setState({ ...state, colorSelectId: childData });
-  }
 
   // ----------------NavBar----------------
   const [show, setShow] = useState(true);
@@ -73,7 +60,20 @@ const Header = () => {
   }, [location.pathname]);
 
   const url = "https://api.dressme.uz/api/main";
-
+  // ----------Get Region List
+  const fetchGetAllDataRegions = () => {
+    fetch(`${url}/regions`)
+      .then((res) => res.json())
+      .then((res) => {
+        setDressInfo({ ...dressInfo, mainRegionsList: res?.regions })
+      })
+      .catch((err) => console.log(err, "ERRORLIST"));
+  };
+  useEffect(() => {
+    if (!dressInfo?.mainRegionsList) {
+      fetchGetAllDataRegions();
+    }
+  }, []);
   // ------------GET METHOD Main data -----------------\
   const typeFilter = String(dressInfo?.type)?.split("");
   const seasonId = Number(typeFilter?.shift());
@@ -137,28 +137,25 @@ const Header = () => {
           <div className="w-full">
             <article
               className={`block md:hidden relative z-[100]
-              ${
-                show
+              ${show
                   ? "visible duration-500 z-[25]"
                   : "visible duration-500 z-[25] translate-y-[-100%]"
-              }`}
+                }`}
             >
               <MediumHeader />
             </article>
             <article
               className={`fixed top-0  w-full bg-white block
-              ${
-                show
+              ${show
                   ? "visible duration-500 z-[25]"
                   : "visible duration-500 z-[25] translate-y-[-100%]"
-              }`}
+                }`}
             >
               <TopHeader />
               <MediumHeader />
               <div
-                className={`${
-                  scrollPost > -530 ? "" : "h-0 overflow-hidden"
-                } visible duration-500`}
+                className={`${scrollPost > -530 ? "" : "h-0 overflow-hidden"
+                  } visible duration-500`}
               >
                 <NavbarBottomIndex
                 // getGender={getGender}
@@ -187,19 +184,17 @@ const Header = () => {
         )}
 
         <div
-          className={`${
-            locationWindow !== "/locations"
-              ? "md:mt-[99px]"
-              : "mt-[0] h-0 overflow-hidden"
-          } `}
+          className={`${locationWindow !== "/locations"
+            ? "md:mt-[99px]"
+            : "mt-[0] h-0 overflow-hidden"
+            } `}
         >
           {!dressInfo?.yandexFullScreen && (
             <article
-              className={`fixed bottom-0 w-full bg-white ${
-                show
-                  ? "visible duration-500 z-[101]"
-                  : "visible duration-500 z-[101] translate-y-[100%]"
-              } block md:hidden`}
+              className={`fixed bottom-0 w-full bg-white ${show
+                ? "visible duration-500 z-[101]"
+                : "visible duration-500 z-[101] translate-y-[100%]"
+                } block md:hidden`}
             >
               <NavMenu />
             </article>
