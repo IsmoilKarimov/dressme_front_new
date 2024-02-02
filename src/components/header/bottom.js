@@ -587,7 +587,7 @@ function BottomHeader() {
                 state?.textToColor ? " mr-0" : " mr-[-500px]"
               } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
             >
-              Не давай своей гардеробной шкафной жизни стать скучной.
+              Не давай своей гардеробной шкафной жизни стать скучной!
             </p>
           </article>
         </div>
