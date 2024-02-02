@@ -117,7 +117,7 @@ function YandexMapsDressMe() {
     dressInfo?.mainSubRegionId,
     seasonId
   ]);
-  console.log(dressInfo?.yandexGenderId, " dressInfo?.yandexGenderId");
+  // console.log(dressInfo?.yandexGenderId, " dressInfo?.yandexGenderId");
 
   function getCurrentDimension() {
     return {

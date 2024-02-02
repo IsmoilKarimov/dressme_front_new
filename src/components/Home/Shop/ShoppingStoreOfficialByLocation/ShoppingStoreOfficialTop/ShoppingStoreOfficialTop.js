@@ -13,7 +13,7 @@ import {
   WomanGenIcons,
 } from "../../../../../assets/icons";
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { Modal, Radio } from "antd";
+import { Modal, Radio, Space } from "antd";
 import FilterDropUp from "../../../../Category/CategoryForType/CategoryMobileDropUp/FilterDropUp";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 
@@ -41,18 +41,9 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
       toggleFilterLeftOpen()
     }
   };
-  // Посмотреть отзывы
-  // ---- Regions show ----
 
-  let existRegions = [];
-  let existRegionsObj = {};
-
-
-  filteredData?.shop?.approved_shop_locations?.map((item) => {
-    existRegions.push(item?.region_id);
-    existRegionsObj[item?.region_id] = item?.region?.name_ru;
-  });
   useEffect(() => {
+    setLocationList([])
     filteredData?.shop?.approved_shop_locations?.map(item => {
       if (locationList?.length === 0) {
         setLocationList(locationList => [...locationList, item])
@@ -62,36 +53,15 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
       }
     })
   }, [filteredData])
-  // console.log(existRegions, "existRegions--1");
-  // console.log(existRegionsObj, "existRegionsObj--1");
-  const uniqueRegions = new Set(existRegions);
 
-  existRegions = [...uniqueRegions];
-  console.log(locationList, "locationList--2");
-
-  // ---- Location state ----
-
-  let checkedData = {};
-
-  const [selectedLocation, setSelectedLocation] = useState(
-    filteredData?.shop?.approved_shop_locations[0]
-  );
-  // console.log(storeData); Все локации
-
-  checkedData = selectedLocation;
-
-  useEffect(() => {
-    setSelectedLocation(filteredData?.shop?.approved_shop_locations[0]);
-  }, [filteredData]);
-
-  const onHandleLocation = (e) => {
+  const onChangeSelectLocation = (e) => {
     setSelectLocation(e?.target?.value)
-  }
+  };
   const onhandleSelect = () => {
-    setOpenLocationModal(false)
     if (selectLocation) {
       setDressInfo({ ...dressInfo, locationIdParams: selectLocation })
     }
+    setOpenLocationModal(false)
   }
 
   return (
@@ -165,7 +135,7 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
               </div>
               {/* 2 */}
               <div className="w-full md:w-[35%] flex items-center border-t md:border-none border-searchBgColor mt-5 pt-5 md:pt-0 md:mt-0">
-                <div className="w-full gap-x-2 h-fit flex items-center justify-center gap-y-1 cursor-pointer">
+                {/* <div className="w-full gap-x-2 h-fit flex items-center justify-center gap-y-1 cursor-pointer">
                   <NavLink
                     to="/locations"
                     className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer"
@@ -176,10 +146,10 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                   </NavLink>
                   <NavLink to="/locations"
                     className="w-[200px] text-sm font-AeonikProRegular text-borderWinter cursor-pointer">
-                    {filteredData?.shop?.approved_shop_locations[0]?.address}
+                    {filteredData?.shop?.approved_shop_locations[dressInfo?.locationIdParams - 1]?.address}
                   </NavLink>
 
-                </div>
+                </div> */}
                 <button
                   onClick={(e) => {
                     e.preventDefault();
@@ -188,11 +158,15 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                     );
                     clickButtons?.setOpenTabComment(false);
                   }}
-                  className="flex flex-col ml-3 w-[70%] md:w-full"
+                  className="flex gap-x-2 items-center ml-3 w-[65%] md:w-full"
                 >
-                  {filteredData?.shop?.shop_locations?.length ? (
+
+                  <div className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer">
+                    <LocationColoursIcons colors={"#007DCA"} />
+                  </div>
+                  {filteredData?.shop?.approved_shop_locations?.length > 0 ? (
                     <p className="text-sm font-AeonikProRegular text-borderWinter">
-                      {selectedLocation?.address}
+                      {filteredData?.shop?.approved_shop_locations[dressInfo?.locationIdParams - 1]?.address}
                     </p>
                   ) : null}
                 </button>
@@ -209,7 +183,7 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                         <LocationColoursIcons colors={"#007DCA"} />
                       </span>
                       <p className="text-sm font-AeonikProRegular text-borderWinter cursor-pointer">
-                        {filteredData?.shop?.approved_shop_locations[0]?.address}
+                        {filteredData?.shop?.approved_shop_locations[dressInfo?.locationIdParams - 1]?.address}
                       </p>
 
                     </NavLink>
@@ -315,31 +289,29 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                       {locationList[0]?.region?.name_ru}
                     </div>
                     <div className="h-[250px] overflow-y-auto mb-[20px] VerticelScroll pr-2">
-                      {locationList?.map((item, index) => {
-                        return (
-                          <div className="mb-[8px] gap-x-3 flex items-center cursor-pointer">
-                            <input
-                              className="w-[20px] h-[20px]"
-                              value={item?.id}
-                              onChange={onHandleLocation}
-                              type="radio"
-                              name={item?.region?.name_ru}
-                              id="checkLocation" />
-                            <label htmlFor={'checkLocation'} className="text-lg cursor-pointer gap-x-1 font-AeonikProRegular">
-                              {item?.region?.name_ru} (
-                              {item?.address})
-                            </label>
-                          </div>
-                        )
-                      })}
+                      <Radio.Group onChange={onChangeSelectLocation} value={selectLocation}
+                        defaultValue={dressInfo?.locationIdParams}
+
+                      >
+                        {locationList?.map((item, index) => {
+                          return (
+                            <div className="mb-[8px] gap-x-3 flex items-center cursor-pointer">
+                              <Space direction="vertical">
+                                <Radio
+                                  className="text-lg font-AeonikProRegular"
+                                  value={item?.id}> {item?.sub_region?.name_ru} ({item?.address} )</Radio>
+                              </Space>
+                            </div>
+                          )
+                        })}
+
+                      </Radio.Group>
 
                     </div>
                     <button
                       type="button"
                       onClick={() => {
                         onhandleSelect()
-                        // setOpenLocationModal(false);
-                        // setSelectedLocation(checkedData);
                       }}
                       className="w-full flex justify-end mt-[60px] text-borderWinter text-lg font-AeonikProMedium"
                     >

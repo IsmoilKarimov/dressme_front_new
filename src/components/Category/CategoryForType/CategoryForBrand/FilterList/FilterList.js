@@ -90,7 +90,7 @@ function FilterList({
             setgetParamsTest(paramsId)
             setFilterToggle(false)
             setGetFilter()
-            fetchGetAllData()
+            // fetchGetAllData()
         }
     }, [paramsId, filterToggle])
     // const fetchData = async (customHeaders) => {

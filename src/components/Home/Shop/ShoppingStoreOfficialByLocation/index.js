@@ -11,7 +11,8 @@ import ShopOfficialCard from "./ShoppingStoreCategory/ShopOfficialCards/ShopOffi
 import FilterList from "./ShoppingStoreCategory/FilterList/FilterList";
 import axios from "axios";
 import LoadingNetwork from "../../../Loading/LoadingNetwork";
-
+import YandexLocationShop from "./ShoppingStoreCategory/YandexLocationShop/YandexLocationShop";
+// filteredData?.shop?.approved_shop_locations[dressInfo?.locationIdParams - 1]
 const ShoppingStoreOfficialByLocation = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
@@ -207,6 +208,8 @@ const ShoppingStoreOfficialByLocation = () => {
                         underWearList={underWearList}
                         footWearList={footWearList}
                         filterToggle={filterToggle}
+                        setFilterToggle={setFilterToggle}
+
                         setPageId={setPageId}
                       />
                     </div>
@@ -252,7 +255,7 @@ const ShoppingStoreOfficialByLocation = () => {
                 >
                   <GoBackIcon />
                 </button>
-                <LocationOfYandex />
+                <YandexLocationShop filteredData={filteredData} />
               </div>
             </div>
           </section>
