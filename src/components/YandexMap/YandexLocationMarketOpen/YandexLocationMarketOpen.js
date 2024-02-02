@@ -27,20 +27,30 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
   const [copyAddress, setCopyAddress] = useState(null);
   const [phoneNum, setPhoneNum] = useState(null);
   const [imgGallery, setImgGallery] = useState([]);
+  const [newImgList, setNewImgList] = useState([]);
 
   useEffect(() => {
     modalInfo?.locations
-      ?.filter((e) => e?.id === dressInfo?.yandexGetMarketId)
+      ?.filter((e) => e?.id === dressInfo?.locationIdParams)
       ?.map((data) => {
         setCopyAddress(data?.address);
         setPhoneNum(data?.assistant_phone);
         setImgGallery([
-          { img: data?.url_image_path_one },
-          { img: data?.url_image_path_two },
-          { img: data?.url_image_path_three },
+          { id: 1, img: data?.url_image_path_one },
+          { id: 2, img: data?.url_image_path_two },
+          { id: 3, img: data?.url_image_path_three },
         ]);
       });
-  }, [modalInfo, dressInfo?.yandexGetMarketId]);
+  }, [modalInfo, dressInfo?.locationIdParams]);
+  useEffect(() => {
+    setNewImgList([])
+    imgGallery?.forEach(item => {
+      if (item?.img) {
+        setNewImgList(newImgList => [...newImgList, item])
+      }
+    })
+
+  }, [imgGallery])
 
   const handleCopyAddress = () => {
     navigator.clipboard.writeText(copyAddress);
@@ -88,7 +98,7 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
     slidesToScroll: 1,
   };
   const sendImgGallery = () => {
-    getImgGallery(imgGallery);
+    getImgGallery(newImgList);
     onClick();
   };
 
@@ -99,7 +109,7 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
   return (
     <div className="w-full h-full ">
       {modalInfo?.locations
-        ?.filter((e) => e?.id === dressInfo?.yandexGetMarketId)
+        ?.filter((e) => e?.id === dressInfo?.locationIdParams)
         ?.map((data) => {
           return (
             <div
@@ -139,34 +149,39 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
               {/* Second BOlum */}
               <div className="flex flex-col md:flex-row justify-center md:justify-between md:gap-y-0 gap-y-4">
                 {/* Carosuel */}
-                <div className="w-full h-[220px] md:w-[48%] md:h-[250px] mx-auto ">
-                  {/* <img src={'https://i.pinimg.com/736x/9d/d4/a3/9dd4a3906b318cdfd854dd46a72046ba.jpg'} alt={imgGallery} className="w-full h-full object-cover" /> */}
-                  <Slider
-                    {...settings}
-                    className="w-full h-full rounded-lg overflow-hidden flex flex-col justify-center"
-                  >
-                    {imgGallery?.map((data) => {
-                      return (
-                        <React.Fragment key={data?.id}>
-                          {data?.img && (
-                            <div
-                              onClick={() => sendImgGallery()}
-                              className="cursor-pointer flex items-center justify-center"
-                            >
-                              <img
-                                className={
-                                  "mx-auto w-full sm:w-auto flex items-center object-contain	"
-                                }
-                                // src={data?.img}
-                                src={data?.img}
-                                alt="img"
-                              />
-                            </div>
-                          )}
-                        </React.Fragment>
-                      );
-                    })}
-                  </Slider>
+                <div className="w-full cursor-pointer h-[220px] md:w-[48%] md:h-[250px] mx-auto overflow-hidden  rounded-xl">
+                  {newImgList?.length <= 1 ?
+                    <div className="w-full h-full  rounded-xl overflow-hidden">
+                      <img
+                        onClick={() => sendImgGallery()}
+                        src={newImgList[0]?.img} alt={'imgGallery'} className="w-full h-full object-cover " />
+                    </div>
+                    : <Slider
+                      {...settings}
+                      className="w-full h-full rounded-xl overflow-hidden flex flex-col justify-center"
+                    >
+                      {newImgList?.map((data) => {
+                        return (
+                          <div
+                            key={data?.id}>
+                            {data?.img && (
+                              <div
+                                onClick={() => sendImgGallery()}
+                                className="w-full h-full cursor-pointer flex items-center justify-center"
+                              >
+                                <img
+                                  className={
+                                    "mx-auto h-[220px] w-full md:h-[250px] sm:w-auto flex items-center object-cover	"
+                                  }
+                                  src={data?.img}
+                                  alt="img"
+                                />
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </Slider>}
                 </div>
                 {/* Details */}
                 <div className="md:w-[48%]  md:h-[250px] text-justify	 flex flex-wrap md:gap-y-0 gap-y-4 content-between   ">

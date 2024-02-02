@@ -90,8 +90,8 @@ function YandexMapsDressMe() {
       params.append("budget[from]", dressInfo?.yandexRangePrice[0]);
     dressInfo?.yandexRangePrice[1] &&
       params.append("budget[to]", dressInfo?.yandexRangePrice[1]);
-    dressInfo?.yandexGenderId[0] &&
-      params.append("gender", dressInfo?.yandexGenderId[0]);
+    dressInfo?.yandexGenderId &&
+      params.append("gender", dressInfo?.yandexGenderId);
     dressInfo?.yandexCategoryBrand &&
       params.append("shop", dressInfo?.yandexCategoryBrand);
     seasonId !== 5 && params.append("season", seasonId);
@@ -103,9 +103,6 @@ function YandexMapsDressMe() {
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
-
-
-
 
   useEffect(() => {
     fetchGetAllData();
@@ -120,7 +117,7 @@ function YandexMapsDressMe() {
     dressInfo?.mainSubRegionId,
     seasonId
   ]);
-
+  console.log(dressInfo?.yandexGenderId, " dressInfo?.yandexGenderId");
 
   function getCurrentDimension() {
     return {
@@ -172,6 +169,7 @@ function YandexMapsDressMe() {
 
   // --------------Open Main MenusetDressInfo
   const handlePlaceMark = (shopId, value, cordinate) => {
+    console.log();
     setOpenCordinateMap(cordinate);
     setDressInfo({
       ...dressInfo,
@@ -210,7 +208,7 @@ function YandexMapsDressMe() {
           onClick={() => {
             setOpenCarouselModal(false);
           }}
-          className="absolute right-3 sm:right-[-20px] z-[218] top-[-50px] sm:top-[0px] flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px]   rounded-full bg-[#808080]"
+          className="absolute right-3 sm:right-[-20px] z-[219] opacity-70 top-[-50px] sm:top-[0px] flex items-center justify-center w-10 h-10 md:w-[50px] md:h-[50px]   rounded-full bg-bgColor  border  border-searchBgColor"
         >
           <MenuCloseIcons colors="#fff" />
         </button>
