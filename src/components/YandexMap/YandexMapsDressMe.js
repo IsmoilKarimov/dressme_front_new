@@ -72,6 +72,19 @@ function YandexMapsDressMe() {
   function getFilterSearchByBrand(childData) {
     setFilterSearchByBrand(childData);
   }
+  const fetchGetAllDataRegions = () => {
+    fetch(`${url}/regions`)
+      .then((res) => res.json())
+      .then((res) => {
+        setDressInfo({ ...dressInfo, mainRegionsList: res?.regions })
+      })
+      .catch((err) => console.log(err, "ERRORLIST"));
+  };
+  useEffect(() => {
+    if (!dressInfo?.mainRegionsList) {
+      fetchGetAllDataRegions();
+    }
+  }, []);
   // -------------Get Request
   const typeFilter = String(dressInfo?.type)?.split("");
   const seasonId = Number(typeFilter?.shift());
@@ -102,19 +115,9 @@ function YandexMapsDressMe() {
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
-  const fetchGetAllDataMain = () => {
-    var params = new URLSearchParams();
 
-    dressInfo?.mainRegionId && params.append("region", dressInfo?.mainRegionId);
-    dressInfo?.mainSubRegionId &&
-      params.append("sub_region", dressInfo?.mainSubRegionId);
-    fetch(`${url}?` + params)
-      .then((res) => res.json())
-      .then((res) => {
-        setData({ ...data, getMainProductCard: res });
-      })
-      .catch((err) => console.log(err, "ERRORLIST"));
-  };
+
+
 
   useEffect(() => {
     fetchGetAllData();
@@ -129,13 +132,7 @@ function YandexMapsDressMe() {
     dressInfo?.mainSubRegionId,
     seasonId
   ]);
-  useEffect(() => {
-    fetchGetAllDataMain()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    dressInfo?.mainRegionId,
-    dressInfo?.mainSubRegionId,
-  ]);
+
 
   function getCurrentDimension() {
     return {

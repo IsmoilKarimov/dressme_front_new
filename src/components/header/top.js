@@ -9,11 +9,9 @@ import {
   MarketIcons,
 } from "../../assets/icons";
 import RegionList from "../../ContextHook/RegionsList";
-import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 
 const TopHeader = () => {
   const [dressInfo] = useContext(dressMainData);
-  const [data] = useContext(HomeMainDataContext);
 
   const [selectBtn, setSelectBtn] = useState(true);
   const [regionsShow, setRegionsShow] = useState(false);
@@ -76,7 +74,6 @@ const TopHeader = () => {
   }, [regionsShow]);
   // console.log(dressInfo?.mainRegionId, dressInfo?.mainSubRegionId, "mainSubregionId");
   // -----------------------------------------------------
-
   return (
     <nav>
       <div
@@ -120,8 +117,7 @@ const TopHeader = () => {
                   Регион:
                 </div>
                 <div className="w-full min-w-[90px] font-AeonikProMedium flex items-center text-[13px]">
-                  {data?.getMainProductCard?.regions
-                    ?.filter((e) => e?.id === dressInfo?.mainRegionId)
+                  {dressInfo?.mainRegionsList?.filter((e) => e?.id === dressInfo?.mainRegionId)
                     ?.map((item) => {
                       return (
                         <div key={item?.id}>
