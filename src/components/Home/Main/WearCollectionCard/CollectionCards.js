@@ -12,7 +12,7 @@ export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
   const [pagination, setPagination] = useState(30);
-  const [data, setData, wishList, setWishlist, offset, setOffset] =
+  const [data, setData, wishList, setWishlist, page, setPage] =
     useContext(HomeMainDataContext);
 
   // -------------------------------------
@@ -169,18 +169,19 @@ export default function CollectionCards() {
             </div>
           )} */}
 
-          <div className="w-full h-fit flex items-center justify-center mt-14">
-            <button
-              type="button"
-              onClick={() => {
-                setOffset((prev) => prev + 30);
-              }}
-              // searchBgColor
-              className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
-            >
-              Показать ещё
-            </button>
-          </div>
+          {data?.getMainProductCard?.products?.next_page_url ? (
+            <div className="w-full h-fit flex items-center justify-center mt-14">
+              <button
+                type="button"
+                onClick={() => {
+                  setPage((prev) => prev + 1);
+                }}
+                className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
+              >
+                Показать ещё
+              </button>
+            </div>
+          ) : null}
         </div>
       </section>
     </main>
