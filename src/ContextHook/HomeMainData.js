@@ -12,8 +12,6 @@ export const HomeMainDataContextProvider = ({ children }) => {
     loader: true,
   });
 
-  const [offset, setOffset] = useState(0);
-
   let WishlistDataFromCookies = Cookies.get("WishList");
 
   const [wishList, setWishlist] = useState([]);
@@ -58,7 +56,7 @@ export const HomeMainDataContextProvider = ({ children }) => {
 
   return (
     <HomeMainDataContext.Provider
-      value={[data, setData, wishList, setWishlist, offset, setOffset]}
+      value={[data, setData, wishList, setWishlist]}
     >
       {children}
     </HomeMainDataContext.Provider>

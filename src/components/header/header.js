@@ -9,9 +9,8 @@ import { dressMainData } from "../../ContextHook/ContextMenu";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 
 const Header = () => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [data, setData, offset,] =
-    useContext(HomeMainDataContext);
+  const [dressInfo] = useContext(dressMainData);
+  const [data, setData] = useContext(HomeMainDataContext);
 
   const [state, setState] = useState({
     getAllCardList: null,
@@ -21,6 +20,18 @@ const Header = () => {
     getRangeData: [],
   });
 
+  function getGender(childData) {
+    setState({ ...state, genderSelectId: childData });
+  }
+  function getRangeList(childData) {
+    setState({ ...state, getRangeData: childData });
+  }
+  function getCategoryList(childData) {
+    // setState({ ...state, categorySelectId: childData });
+  }
+  function getColorList(childData) {
+    setState({ ...state, colorSelectId: childData });
+  }
 
   // ----------------NavBar----------------
   const [show, setShow] = useState(true);
@@ -61,19 +72,6 @@ const Header = () => {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
 
-  const fetchGetAllDataRegions = () => {
-    fetch(`${url}/regions`)
-      .then((res) => res.json())
-      .then((res) => {
-        setDressInfo({ ...dressInfo, mainRegionsList: res?.regions })
-      })
-      .catch((err) => console.log(err, "ERRORLIST"));
-  };
-  useEffect(() => {
-    if (!dressInfo?.mainRegionsList) {
-      fetchGetAllDataRegions();
-    }
-  }, []);
   const url = "https://api.dressme.uz/api/main";
 
   // ------------GET METHOD Main data -----------------\
@@ -81,8 +79,6 @@ const Header = () => {
   const seasonId = Number(typeFilter?.shift());
   const fetchGetAllData = () => {
     var params = new URLSearchParams();
-    params.append("limit", "30");
-    params.append("offset", offset);
     dressInfo?.mainRegionId && params.append("region", dressInfo?.mainRegionId);
     dressInfo?.mainSubRegionId &&
       params.append("sub_region", dressInfo?.mainSubRegionId);
@@ -102,27 +98,19 @@ const Header = () => {
       .then((res) => res.json())
       .then((res) => {
         setState({ ...state, getAllCardList: res });
-        if (offset === 0) {
-          setData({
-            ...data,
-            getMainProductCard: res,
-            products: res?.products,
-            loader: false,
-          });
-        } else {
-          setData({
-            ...data,
-            getMainProductCard: res,
-            products: [...data?.products, ...res?.products],
-            loader: false,
-          });
-        }
+        setData({
+          ...data,
+          getMainProductCard: res,
+          // products: [...data?.products, ...res?.products],
+          loader: false,
+        });
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
-
+  // console.log(state, "childData,---statein header");
   useEffect(() => {
     fetchGetAllData();
+    // console.log("is run");
   }, [
     dressInfo?.mainCategoryId,
     dressInfo?.mainColorHex,
@@ -132,10 +120,16 @@ const Header = () => {
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
     seasonId,
-    offset,
   ]);
-
-
+  // console.log(
+  //   dressInfo?.mainCategoryId, " dressInfo?.mainCategoryId",
+  //   dressInfo?.mainColorId, " state?.colorSelectId",
+  //   dressInfo?.mainRangePrice, " state?.getRangeData",
+  //   dressInfo?.mainGenderId, " state?.genderSelectId",
+  //   dressInfo?.mainSearchName, " dressInfo?.mainSearchName",
+  //   dressInfo?.mainRegionId, " dressInfo?.mainRegionId",
+  //   dressInfo?.mainSubRegionId, " dressInfo?.mainSubRegionId",
+  //   seasonId, " seasonId,",);
   return (
     <header>
       <section>
@@ -143,25 +137,28 @@ const Header = () => {
           <div className="w-full">
             <article
               className={`block md:hidden relative z-[100]
-              ${show
+              ${
+                show
                   ? "visible duration-500 z-[25]"
                   : "visible duration-500 z-[25] translate-y-[-100%]"
-                }`}
+              }`}
             >
               <MediumHeader />
             </article>
             <article
               className={`fixed top-0  w-full bg-white block
-              ${show
+              ${
+                show
                   ? "visible duration-500 z-[25]"
                   : "visible duration-500 z-[25] translate-y-[-100%]"
-                }`}
+              }`}
             >
               <TopHeader />
               <MediumHeader />
               <div
-                className={`${scrollPost > -530 ? "" : "h-0 overflow-hidden"
-                  } visible duration-500`}
+                className={`${
+                  scrollPost > -530 ? "" : "h-0 overflow-hidden"
+                } visible duration-500`}
               >
                 <NavbarBottomIndex
                 // getGender={getGender}
@@ -190,17 +187,19 @@ const Header = () => {
         )}
 
         <div
-          className={`${locationWindow !== "/locations"
-            ? "md:mt-[99px]"
-            : "mt-[0] h-0 overflow-hidden"
-            } `}
+          className={`${
+            locationWindow !== "/locations"
+              ? "md:mt-[99px]"
+              : "mt-[0] h-0 overflow-hidden"
+          } `}
         >
           {!dressInfo?.yandexFullScreen && (
             <article
-              className={`fixed bottom-0 w-full bg-white ${show
-                ? "visible duration-500 z-[101]"
-                : "visible duration-500 z-[101] translate-y-[100%]"
-                } block md:hidden`}
+              className={`fixed bottom-0 w-full bg-white ${
+                show
+                  ? "visible duration-500 z-[101]"
+                  : "visible duration-500 z-[101] translate-y-[100%]"
+              } block md:hidden`}
             >
               <NavMenu />
             </article>

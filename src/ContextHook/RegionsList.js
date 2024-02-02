@@ -19,8 +19,7 @@ function RegionList({ onClick }) {
     // openModalRegions: show,
     uniqueId: null,
   });
-  const [data, setData, , , offset, setOffset] =
-    useContext(HomeMainDataContext);
+  const [data, setData] = useContext(HomeMainDataContext);
   // const url = "https://api.dressme.uz/api/seller";
 
   const [activeIndex, setActiveIndex] = useState();
@@ -55,7 +54,6 @@ function RegionList({ onClick }) {
       mainSubRegionId: state?.subRegionId,
       yandexOpenRegionList: false,
     });
-    setOffset(0);
   };
   const MenuClose = () => {
     setDressInfo({
