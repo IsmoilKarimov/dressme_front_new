@@ -100,7 +100,7 @@ const ShoppingStoreOfficialByLocation = () => {
   const url = `https://api.dressme.uz/api`;
 
   const fetchGetAllData = () => {
-    setLoading(true)
+    // setLoading(true)
     let params = new URLSearchParams();
     params.append("location_id", dressInfo?.locationIdParams);
     getGenderId && params.append("gender", getGenderId);
@@ -137,21 +137,20 @@ const ShoppingStoreOfficialByLocation = () => {
     })
       .then((res) => {
         if (res?.status >= 200 && res?.status < 300) {
-          setLoading(false)
+          // setLoading(false)
           setFilteredData(res?.data)
         }
       })
       .catch((res) => {
         if (res?.response?.status === 422) {
           navigate('/')
-          setLoading(false)
+          // setLoading(false)
 
         }
         setError(res.response?.data?.message || 'An unexpected error occurred.');
       })
-
-
   };
+  console.log(filteredData?.length, "filteredData");
   useEffect(() => {
     fetchGetAllData()
   }, [
@@ -169,7 +168,8 @@ const ShoppingStoreOfficialByLocation = () => {
 
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
-      {loading ? <LoadingNetwork />
+      {!filteredData ?
+        <LoadingNetwork />
         : <div className="w-full">
           <section className="w-full border-b border-searchBgColor ">
             <ShoppingStoreOfficialBreadCrumb name={filteredData?.shop?.name} paramsId={newId} />
