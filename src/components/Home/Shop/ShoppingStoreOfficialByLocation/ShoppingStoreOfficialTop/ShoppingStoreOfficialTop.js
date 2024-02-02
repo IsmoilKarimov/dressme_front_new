@@ -12,15 +12,19 @@ import {
   StarIcons,
   WomanGenIcons,
 } from "../../../../../assets/icons";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Modal, Radio } from "antd";
 import FilterDropUp from "../../../../Category/CategoryForType/CategoryMobileDropUp/FilterDropUp";
+import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 
 const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeftOpen,
   toggleFilterLeftClose, filterLeftAction }) => {
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [filter, setFilter] = useState(false);
   const toggleFilter = useCallback(() => setFilter(false), []);
+  const [locationList, setLocationList] = useState([])
+  const [selectLocation, setSelectLocation] = useState([])
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   // For DropUp
   useEffect(() => {
@@ -43,14 +47,27 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
   let existRegions = [];
   let existRegionsObj = {};
 
+
   filteredData?.shop?.approved_shop_locations?.map((item) => {
     existRegions.push(item?.region_id);
     existRegionsObj[item?.region_id] = item?.region?.name_ru;
   });
-
+  useEffect(() => {
+    filteredData?.shop?.approved_shop_locations?.map(item => {
+      if (locationList?.length === 0) {
+        setLocationList(locationList => [...locationList, item])
+      }
+      if (locationList?.length > 0 && !locationList?.includes(item)) {
+        setLocationList(locationList => [...locationList, item])
+      }
+    })
+  }, [filteredData])
+  // console.log(existRegions, "existRegions--1");
+  // console.log(existRegionsObj, "existRegionsObj--1");
   const uniqueRegions = new Set(existRegions);
 
   existRegions = [...uniqueRegions];
+  console.log(locationList, "locationList--2");
 
   // ---- Location state ----
 
@@ -59,13 +76,23 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
   const [selectedLocation, setSelectedLocation] = useState(
     filteredData?.shop?.approved_shop_locations[0]
   );
-  // console.log(storeData);
+  // console.log(storeData); Все локации
 
   checkedData = selectedLocation;
 
   useEffect(() => {
     setSelectedLocation(filteredData?.shop?.approved_shop_locations[0]);
   }, [filteredData]);
+
+  const onHandleLocation = (e) => {
+    setSelectLocation(e?.target?.value)
+  }
+  const onhandleSelect = () => {
+    setOpenLocationModal(false)
+    if (selectLocation) {
+      setDressInfo({ ...dressInfo, locationIdParams: selectLocation })
+    }
+  }
 
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
@@ -86,14 +113,15 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
         <div className="w-[100%] h-fit flex flex-col">
           {/* Top section */}
           <div className="w-full flex flex-col border-[#F0F0F0]">
-            {filteredData?.shop?.url_background_photo && <figure className="w-full h-[240px] md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
+            {filteredData?.shop?.url_background_photo &&
+              <figure className="w-full h-[240px] md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
 
-              <img
-                className="w-full h-full object-contain"
-                src={filteredData?.shop?.url_background_photo}
-                alt="url_background_photo"
-              />
-            </figure>
+                <img
+                  className="w-full h-full object-contain"
+                  src={filteredData?.shop?.url_background_photo}
+                  alt="url_background_photo"
+                />
+              </figure>
             }
             <div className={`w-full md:h-[90px]   h-fit flex flex-col md:flex-row items-center border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0
             ${filteredData?.shop?.url_background_photo ? "mt-2 md:mt-0" : "md:mt-10"}
@@ -283,55 +311,35 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                     <div className="text-2xl font-AeonikProRegular mb-[30px]">
                       Выберите локацию
                     </div>
+                    <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
+                      {locationList[0]?.region?.name_ru}
+                    </div>
                     <div className="h-[250px] overflow-y-auto mb-[20px] VerticelScroll pr-2">
-                      <Radio.Group
-                        style={{
-                          width: "100%",
-                        }}
-                        defaultValue={selectedLocation?.id}
-                      // onChange={onChange}
-                      >
-                        {existRegions?.map((item) => {
-                          return (
-                            <div key={item?.id}>
-                              <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
-                                {existRegionsObj[item]}
-                              </div>
+                      {locationList?.map((item, index) => {
+                        return (
+                          <div className="mb-[8px] gap-x-3 flex items-center cursor-pointer">
+                            <input
+                              className="w-[20px] h-[20px]"
+                              value={item?.id}
+                              onChange={onHandleLocation}
+                              type="radio"
+                              name={item?.region?.name_ru}
+                              id="checkLocation" />
+                            <label htmlFor={'checkLocation'} className="text-lg cursor-pointer gap-x-1 font-AeonikProRegular">
+                              {item?.region?.name_ru} (
+                              {item?.address})
+                            </label>
+                          </div>
+                        )
+                      })}
 
-                              <div className="w-full">
-                                {filteredData?.shop?.shop_locations?.map((data) => {
-                                  if (data?.sub_region?.region_id === item) {
-                                    return (
-                                      <div
-                                        onClick={() => {
-                                          checkedData = data;
-                                        }}
-                                        key={data.id}
-                                        className="mb-[8px]"
-                                      >
-                                        <Radio
-                                          value={data?.id}
-                                          name="location"
-                                          className="text-lg font-AeonikProRegular"
-                                        >
-                                          {data?.sub_region?.name_ru} (
-                                          {data?.address})
-                                        </Radio>
-                                      </div>
-                                    );
-                                  }
-                                })}
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </Radio.Group>
                     </div>
                     <button
                       type="button"
                       onClick={() => {
-                        setOpenLocationModal(false);
-                        setSelectedLocation(checkedData);
+                        onhandleSelect()
+                        // setOpenLocationModal(false);
+                        // setSelectedLocation(checkedData);
                       }}
                       className="w-full flex justify-end mt-[60px] text-borderWinter text-lg font-AeonikProMedium"
                     >
@@ -340,8 +348,8 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                   </div>
                 </Modal>
               </div>
-            </div>
-          </div>
+            </div >
+          </div >
           <action
             className={`w-full md:hidden flex items-center justify-between mt-3 mb-3 px-4 gap-x-2`}
           >
@@ -364,9 +372,9 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
               <FilterIcons colors={"#000"} />
             </button>
           </action>
-        </div>
-      </section>
-    </main>
+        </div >
+      </section >
+    </main >
   );
 };
 export default React.memo(ShoppingStoreOfficialTop);
