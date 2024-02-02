@@ -96,7 +96,6 @@ export default function CatalogItems() {
             key={data?.id}
             onClick={() => {
               handleCategories(data?.id);
-              // window.location.reload();
             }}
             className={`${newId === data?.id ? "bg-bgColor" : null
               } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
@@ -171,6 +170,10 @@ export default function CatalogItems() {
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId
   ]);
+
+  // useEffect(() => [
+  //   setFilterToggle(false)
+  // ], [newId])
   return (
     <main className="w-full h-full">
       {/* TOP DATA */}
@@ -216,7 +219,7 @@ export default function CatalogItems() {
                       </NavLink>
                       <div className="md:flex items-center hidden">
                         <Popover
-                          // open={state?.opensports}
+                          open={state?.opensports}
                           onOpenChange={handleOpenCategories}
                           className="w-[260px] px-4 h-[52px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
                           trigger="click"
@@ -302,6 +305,7 @@ export default function CatalogItems() {
                 underWearList={underWearList}
                 footWearList={footWearList}
                 filterToggle={filterToggle}
+                setFilterToggle={setFilterToggle}
               />
             </article>
             <article className={`${filterToggle ? 'md:w-[77%]' : "md:w-[100%]"} w-full h-full ss:px-4 md:px-0`}>
