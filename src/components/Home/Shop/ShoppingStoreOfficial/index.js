@@ -11,6 +11,7 @@ import ShopOfficialCard from "./ShoppingStoreCategory/ShopOfficialCards/ShopOffi
 import FilterList from "./ShoppingStoreCategory/FilterList/FilterList";
 import axios from "axios";
 import LoadingNetwork from "../../../Loading/LoadingNetwork";
+import YandexLocationShop from "../ShoppingStoreOfficialByLocation/ShoppingStoreCategory/YandexLocationShop/YandexLocationShop";
 
 const ShoppingStoreOfficial = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -185,48 +186,50 @@ const ShoppingStoreOfficial = () => {
 
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
-      {!filteredData ? <LoadingNetwork />
-        : <div className="w-full">
-          <section className="w-full border-b border-searchBgColor ">
-            <ShoppingStoreOfficialBreadCrumb name={filteredData?.shop?.name} paramsId={newId} />
-          </section>
-          <section className="w-full border-searchBgColor ">
-            <ShoppingStoreOfficialTop
-              clickButtons={clickButtons}
-              filteredData={filteredData}
-              toggleFilterLeftOpen={toggleFilterOpen}
-              toggleFilterLeftClose={toggleFilterClose}
-              filterLeftAction={filterToggle}
-            />
-          </section>
-          <section className="w-full flex items-center justify-center ">
-            <div className="w-full flex flex-col items-center justify-center">
-              {/* Products Section */}
-              <article
-                className={`${openTabComment || openTabLocation ? "hidden" : "block"
-                  } w-full `}
-              >
-                {/* <ShoppingStoreCategory filteredData={filteredData} /> */}
-                <section className="w-[100%] h-fit">
-                  <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
-                    <div className={`${filterToggle ? "md:block" : "md:hidden"} hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}>
-                      <FilterList
-                        paramsId={newId}
-                        genderId={genderId}
-                        discountId={discountId}
-                        categoryId={categoryId}
-                        getBadgePrice={getBadgePrice}
-                        setDataColor={setDataColor}
-                        dataColor={dataColor}
-                        getRatingList={getRatingList}
-                        outWearList={outWearList}
-                        underWearList={underWearList}
-                        footWearList={footWearList}
-                        filterToggle={filterToggle}
-                        setPageId={setPageId}
-                      />
-                    </div>
-                    {/* <div
+      {/* {!filteredData ? <LoadingNetwork />
+        :  */}
+      <div className="w-full">
+        <section className="w-full border-b border-searchBgColor ">
+          <ShoppingStoreOfficialBreadCrumb name={filteredData?.shop?.name} paramsId={newId} />
+        </section>
+        <section className="w-full border-searchBgColor ">
+          <ShoppingStoreOfficialTop
+            clickButtons={clickButtons}
+            filteredData={filteredData}
+            toggleFilterLeftOpen={toggleFilterOpen}
+            toggleFilterLeftClose={toggleFilterClose}
+            filterLeftAction={filterToggle}
+          />
+        </section>
+        <section className="w-full flex items-center justify-center ">
+          <div className="w-full flex flex-col items-center justify-center">
+            {/* Products Section */}
+            <article
+              className={`${openTabComment || openTabLocation ? "hidden" : "block"
+                } w-full `}
+            >
+              {/* <ShoppingStoreCategory filteredData={filteredData} /> */}
+              <section className="w-[100%] h-fit">
+                <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
+                  <div className={`${filterToggle ? "md:block" : "md:hidden"} hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}>
+                    <FilterList
+                      paramsId={newId}
+                      genderId={genderId}
+                      discountId={discountId}
+                      categoryId={categoryId}
+                      getBadgePrice={getBadgePrice}
+                      setDataColor={setDataColor}
+                      dataColor={dataColor}
+                      getRatingList={getRatingList}
+                      outWearList={outWearList}
+                      underWearList={underWearList}
+                      footWearList={footWearList}
+                      filterToggle={filterToggle}
+                      setFilterToggle={setFilterToggle}
+                      setPageId={setPageId}
+                    />
+                  </div>
+                  {/* <div
                   className={`w-full h-[100vh] overflow-hidden overflow-y-auto md:hidden   fixed top-0 bottom-0 left-0 right-0
                    ${dressInfo?.openShopIdFilter ? " ml-[1px] " : " ml-[-1000px]"}
                    ${filterToggle ? "" : "hidden"} 
@@ -234,45 +237,46 @@ const ShoppingStoreOfficial = () => {
                 >
                   <FilterList paramsId={newId} />
                 </div> */}
-                    <div className={` ${filterToggle ? 'md:w-[77%]' : "md:w-[100%]"} w-full h-full ss:px-4 md:px-0`}>
-                      {filteredData ?
-                        <ShopOfficialCard
-                          filteredData={filteredData}
-                          setPageId={setPageId}
-                        /> : <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[100vh] ">
-                          Ничего не найдено
-                        </div>}
-                    </div>
-                  </section>
+                  <div className={` ${filterToggle ? 'md:w-[77%]' : "md:w-[100%]"} w-full h-full ss:px-4 md:px-0`}>
+                    {filteredData ?
+                      <ShopOfficialCard
+                        filteredData={filteredData}
+                        setPageId={setPageId}
+                      /> : <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[100vh] ">
+                        Ничего не найдено
+                      </div>}
+                  </div>
                 </section>
-              </article>
+              </section>
+            </article>
 
-              {/* Comment Section For Shopping Page */}
-              <div className={`${openTabComment ? "block" : "hidden"} w-full `}>
-                <ShowPageComment
-                  filteredData={filteredData}
-                  setOpenTabComment={setOpenTabComment}
-                />
-              </div>
-
-              {/* Map Section */}
-              <div
-                className={`${openTabLocation ? "block" : "hidden"
-                  } w-full text-3xl px-4 pb-10`}
-              >
-                <button
-                  onClick={() => {
-                    setOpenTabLocation(false);
-                  }}
-                  className={`flex items-center cursor-pointer justify-start md:justify-center md:border border-borderColor2 rounded-lg mr-20 md:mt-4 md:mr-5`}
-                >
-                  <GoBackIcon />
-                </button>
-                <LocationOfYandex />
-              </div>
+            {/* Comment Section For Shopping Page */}
+            <div className={`${openTabComment ? "block" : "hidden"} w-full `}>
+              <ShowPageComment
+                filteredData={filteredData}
+                setOpenTabComment={setOpenTabComment}
+              />
             </div>
-          </section>
-        </div>}
+
+            {/* Map Section */}
+            <div
+              className={`${openTabLocation ? "block" : "hidden"
+                } w-full text-3xl px-4 pb-10`}
+            >
+              <button
+                onClick={() => {
+                  setOpenTabLocation(false);
+                }}
+                className={`flex items-center cursor-pointer justify-start md:justify-center md:border border-borderColor2 rounded-lg mr-20 md:mt-4 md:mr-5`}
+              >
+                <GoBackIcon />
+              </button>
+              {/* <YandexLocationShop /> */}
+              <YandexLocationShop filteredData={filteredData} />
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
   );
 };
