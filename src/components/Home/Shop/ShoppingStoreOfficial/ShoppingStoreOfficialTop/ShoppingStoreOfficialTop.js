@@ -72,7 +72,6 @@ const ShoppingStoreOfficialTop = ({
     if (selectLocation) {
       setDressInfo({ ...dressInfo, locationIdParams: selectLocation });
     }
-
   };
 
   console.log(dressInfo?.locationIdParams, "dressInfo?.locationIdParams");
@@ -132,7 +131,7 @@ const ShoppingStoreOfficialTop = ({
                 </figure>
                 <div className="flex flex-col ml-8">
                   <p className="text-xl font-AeonikProMedium mb-3">
-                    {filteredData?.shop?.name || "name"}
+                    {filteredData?.shop?.name || null}
                   </p>
                   <div
                     className={`${
@@ -183,15 +182,15 @@ const ShoppingStoreOfficialTop = ({
                   <span className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer">
                     <LocationColoursIcons colors={"#007DCA"} />
                   </span>
-                  {
-                    filteredData?.shop?.approved_shop_locations?.filter(e => e?.id === dressInfo?.locationIdParams)?.map(item => {
+                  {filteredData?.shop?.approved_shop_locations
+                    ?.filter((e) => e?.id === dressInfo?.locationIdParams)
+                    ?.map((item) => {
                       return (
                         <p className="text-sm font-AeonikProRegular text-borderWinter">
                           {item?.address}
                         </p>
-                      )
-                    })
-                  }
+                      );
+                    })}
                 </button>
               </div>
               {/* 3 */}
