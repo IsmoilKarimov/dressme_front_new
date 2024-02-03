@@ -12,8 +12,12 @@ import { BiChevronDown } from "react-icons/bi";
 import FilterDropUp from "../CategoryMobileDropUp/FilterDropUp";
 import ClothingTypesDropUp from "../CategoryMobileDropUp/ClothingTypesDropUp";
 
-const CategoryTopDetail = ({ filterData, toggleFilterLeftOpen,
-  toggleFilterLeftClose, filterLeftAction }) => {
+const CategoryTopDetail = ({
+  filterData,
+  toggleFilterLeftOpen,
+  toggleFilterLeftClose,
+  filterLeftAction,
+}) => {
   const [clothingTypes, setClothingTypes] = useState(false);
   const [filter, setFilter] = useState(false);
   // const [data, setData] = useState({});
@@ -23,9 +27,9 @@ const CategoryTopDetail = ({ filterData, toggleFilterLeftOpen,
 
   const handleToggle = () => {
     if (filterLeftAction) {
-      toggleFilterLeftClose()
+      toggleFilterLeftClose();
     } else {
-      toggleFilterLeftOpen()
+      toggleFilterLeftOpen();
     }
   };
   // For DropUp
@@ -72,8 +76,9 @@ const CategoryTopDetail = ({ filterData, toggleFilterLeftOpen,
               handleCategories(data?.name_ru, data?.id);
               // window.location.reload();
             }}
-            className={`${filterData?.section?.id === data?.id ? "bg-bgColor" : null
-              } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+            className={`${
+              filterData?.section?.id === data?.id ? "bg-bgColor" : null
+            } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {data?.name_ru}
           </p>
@@ -84,8 +89,8 @@ const CategoryTopDetail = ({ filterData, toggleFilterLeftOpen,
 
   return (
     <main className="flex flex-col justify-center border-t border-searchBgColor items-center">
-      <div className="md:pt-8  md:pb-16 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 py-3">
-        <section className=" w-[100%] h-full  flex items-center justify-between m-auto">
+      <div className="md:pb-16 flex flex-col  w-full justify-center items-center m-0 ">
+        <section className="border-b md:min-h-[44px] py-3 border-searchBgColor w-[100%] h-full  flex items-center justify-between m-auto">
           <nav className="w-[100%] md:w-fit flex items-center p-1">
             <ul className="h-10 w-[100%] md:w-fit flex items-center overflow-auto HorizantalScroll">
               <li className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
@@ -114,12 +119,14 @@ const CategoryTopDetail = ({ filterData, toggleFilterLeftOpen,
       <div className="tableSizes">
         <section
           onClick={() => setFilter(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${filter ? "" : "hidden"
-            }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+            filter ? "" : "hidden"
+          }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${filter ? "bottom-0" : "bottom-[-800px] z-0"
-            }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+            filter ? "bottom-0" : "bottom-[-800px] z-0"
+          }`}
         >
           <FilterDropUp onClick={toggleFilter} />
         </section>
@@ -127,12 +134,14 @@ const CategoryTopDetail = ({ filterData, toggleFilterLeftOpen,
       <div className="locations">
         <section
           onClick={() => setClothingTypes(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${clothingTypes ? "" : "hidden"
-            }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+            clothingTypes ? "" : "hidden"
+          }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${clothingTypes ? "bottom-0" : "bottom-[-800px] z-0"
-            }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${
+            clothingTypes ? "bottom-0" : "bottom-[-800px] z-0"
+          }`}
         >
           <ClothingTypesDropUp onClick={toggleClothingTypes} />
         </section>
@@ -144,9 +153,7 @@ const CategoryTopDetail = ({ filterData, toggleFilterLeftOpen,
             <figure className="relative w-full md:h-[90px] mt-6 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-lg px-4 md:px-0">
               {/*  */}
               <div className="w-full md:w-fit flex h-[66px] md:h-fit items-center border md:border-none border-searchBgColor rounded-lg">
-                <div
-
-                  className="absolute w-[80px] h-[80px] md:w-[120px] md:h-[160px] overflow-hidden left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center bg-white columns-1">
+                <div className="absolute w-[80px] h-[80px] md:w-[120px] md:h-[160px] overflow-hidden left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center bg-white columns-1">
                   <img
                     src={filterData?.section?.url_photo}
                     alt=""
@@ -186,8 +193,9 @@ const CategoryTopDetail = ({ filterData, toggleFilterLeftOpen,
                         <BiChevronDown
                           size={22}
                           style={{ color: "#000" }}
-                          className={`${state?.opensports ? "rotate-[-180deg]" : ""
-                            } duration-200`}
+                          className={`${
+                            state?.opensports ? "rotate-[-180deg]" : ""
+                          } duration-200`}
                         />
                       </span>
                     </Popover>
@@ -239,11 +247,21 @@ const CategoryTopDetail = ({ filterData, toggleFilterLeftOpen,
           type="button"
           className="w-[175px] gap-x-2 h-[44px] border border-[#F2F2F2] flex items-center justify-center  bg-white rounded-lg active:scale-95	active:opacity-70"
         >
-          <span className=""> <SortIcons /></span>
-          {filterLeftAction ?
-            <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black"> Скрыть</p>
-            :
-            <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black"> Фильтр</p>}
+          <span className="">
+            {" "}
+            <SortIcons />
+          </span>
+          {filterLeftAction ? (
+            <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+              {" "}
+              Скрыть
+            </p>
+          ) : (
+            <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+              {" "}
+              Фильтр
+            </p>
+          )}
         </button>
       </div>
       <section className="w-full px-4 block md:hidden">
