@@ -43,6 +43,7 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
   // Посмотреть отзывы
 
   useEffect(() => {
+    setLocationList([])
     filteredData?.shop?.approved_shop_locations?.map(item => {
       if (locationList?.length === 0) {
         setLocationList(locationList => [...locationList, item])
@@ -62,7 +63,7 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
       setDressInfo({ ...dressInfo, locationIdParams: selectLocation })
     }
   }
-
+  console.log(dressInfo?.locationIdParams, "dressInfo?.locationIdParams");
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
       <div className="filter">
@@ -133,7 +134,7 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
               </div>
               {/* 2 */}
               <div className="w-full md:w-[35%] flex items-center border-t md:border-none border-searchBgColor mt-5 pt-5 md:pt-0 md:mt-0">
-                <div className="w-full gap-x-2 h-fit flex items-center justify-center gap-y-1 cursor-pointer">
+                {/* <div className="w-full gap-x-2 h-fit flex items-center justify-center gap-y-1 cursor-pointer">
                   <NavLink
                     to="/locations"
                     className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer"
@@ -147,7 +148,7 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                     {filteredData?.shop?.approved_shop_locations[0]?.address}
                   </NavLink>
 
-                </div>
+                </div> */}
                 <button
                   onClick={(e) => {
                     e.preventDefault();
@@ -156,11 +157,14 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                     );
                     clickButtons?.setOpenTabComment(false);
                   }}
-                  className="flex flex-col ml-3 w-[70%] md:w-full"
+                  className="flex gap-x-2 items-center ml-3 w-[65%] md:w-full"
                 >
+                  <span className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer">
+                    <LocationColoursIcons colors={"#007DCA"} />
+                  </span>
                   {filteredData?.shop?.approved_shop_locations?.length > 0 ? (
                     <p className="text-sm font-AeonikProRegular text-borderWinter">
-                      {filteredData?.shop?.approved_shop_locations[dressInfo?.locationIdParams - 1]?.address}
+                      {filteredData?.shop?.approved_shop_locations[0]?.address}
                     </p>
                   ) : null}
                 </button>
@@ -177,7 +181,7 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                         <LocationColoursIcons colors={"#007DCA"} />
                       </span>
                       <p className="text-sm font-AeonikProRegular text-borderWinter cursor-pointer">
-                        {filteredData?.shop?.approved_shop_locations[dressInfo?.locationIdParams - 1]?.address}
+                        {filteredData?.shop?.approved_shop_locations[0]?.address}
                       </p>
 
                     </NavLink>

@@ -66,8 +66,8 @@ export default function ShoppingStore() {
     dressInfo?.mainSubRegionId
   ]);
 
-  console.log(getGenderID,
-    getSearchInput);
+  // console.log(getGenderID,
+  //   getSearchInput);
 
   useEffect(() => {
     window.scrollTo({

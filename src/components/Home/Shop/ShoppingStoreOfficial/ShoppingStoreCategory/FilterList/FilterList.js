@@ -26,7 +26,8 @@ function FilterList({
     footWearList,
     getRatingList,
     filterToggle,
-    setPageId
+    setPageId,
+    setFilterToggle
 
 }) {
     const { request } = useHttp()
@@ -84,6 +85,13 @@ function FilterList({
             fetchGetAllData()
         }
     }, [filterToggle])
+    useEffect(() => {
+        if (getFilter) {
+            setFilterToggle(false)
+            setGetFilter()
+            // fetchGetAllData()
+        }
+    }, [dressInfo?.locationIdParams])
     // const fetchData = async (customHeaders) => {
     //     try {
     //         const response = await axios.get(`${url}/shops/filter/${paramsId}?location_id=${1}`, {
