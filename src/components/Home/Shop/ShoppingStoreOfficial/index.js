@@ -106,6 +106,33 @@ const ShoppingStoreOfficial = () => {
       }
     });
   };
+  const [locationNewList, setLocationNewList] = useState([])
+  useEffect(() => {
+    data?.getMainProductCard?.shops?.map((item) => {
+      if (item?.id === Number(newId)) {
+        if (dressInfo?.mainSubRegionId) {
+          setLocationNewList([])
+          item?.approved_shop_locations?.map(data => {
+            if (dressInfo?.mainSubRegionId == data?.sub_region_id) {
+              setLocationNewList((locationNewList) => [...locationNewList, data])
+              setDressInfo({
+                ...dressInfo,
+                locationIdParams: data?.id,
+              });
+            }
+          })
+        }
+        if (!dressInfo?.mainSubRegionId) {
+          setDressInfo({
+            ...dressInfo,
+            locationIdParams: item?.approved_shop_locations[0]?.id,
+          });
+        }
+      }
+    });
+
+
+  }, [dressInfo?.mainSubRegionId])
 
   useEffect(() => {
     refreshLocationId();
@@ -230,17 +257,15 @@ const ShoppingStoreOfficial = () => {
           <div className="w-full flex flex-col items-center justify-center">
             {/* Products Section */}
             <article
-              className={`${
-                openTabComment || openTabLocation ? "hidden" : "block"
-              } w-full `}
+              className={`${openTabComment || openTabLocation ? "hidden" : "block"
+                } w-full `}
             >
               {/* <ShoppingStoreCategory filteredData={filteredData} /> */}
               <section className="w-[100%] h-fit">
                 <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
                   <div
-                    className={`${
-                      filterToggle ? "md:block" : "md:hidden"
-                    } hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}
+                    className={`${filterToggle ? "md:block" : "md:hidden"
+                      } hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}
                   >
                     <FilterList
                       paramsId={newId}
@@ -268,9 +293,8 @@ const ShoppingStoreOfficial = () => {
                   <FilterList paramsId={newId} />
                 </div> */}
                   <div
-                    className={` ${
-                      filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-                    } w-full h-full ss:px-4 md:px-0`}
+                    className={` ${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+                      } w-full h-full ss:px-4 md:px-0`}
                   >
                     {filteredData ? (
                       <ShopOfficialCard
@@ -297,9 +321,8 @@ const ShoppingStoreOfficial = () => {
 
             {/* Map Section */}
             <div
-              className={`${
-                openTabLocation ? "block" : "hidden"
-              } w-full text-3xl px-4 pb-10`}
+              className={`${openTabLocation ? "block" : "hidden"
+                } w-full text-3xl px-4 pb-10`}
             >
               <button
                 onClick={() => {
