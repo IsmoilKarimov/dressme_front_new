@@ -17,20 +17,19 @@ export const HomeMainDataContextProvider = ({ children }) => {
 
   let WishlistDataFromCookies = Cookies.get("WishList");
 
-  const [wishList, setWishlist] = useState([]);
+  let list = [];
 
-  useEffect(() => {
-    if (WishlistDataFromCookies) {
-      setWishlist(JSON.parse(WishlistDataFromCookies));
-    }
-  }, []);
+  if (WishlistDataFromCookies) {
+    list = JSON.parse(WishlistDataFromCookies);
+  }
+
+  const [wishList, setWishlist] = useState(list);
 
   if (Cookies.get("DressmeUserToken")) {
     Cookies.set("WishList", JSON.stringify(wishList), { expires: 99999 });
   } else {
     Cookies.set("WishList", JSON.stringify(wishList), { expires: 2 });
   }
-  const url = "https://api.dressme.uz";
 
   // ------------GET METHOD Main data -----------------
   // useQuery(
