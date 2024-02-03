@@ -76,21 +76,21 @@ const TopHeader = () => {
   }, [regionsShow]);
 
   // ----------Get Region List
+  const url = "https://api.dressme.uz/api/main";
 
-  useQuery(["getragionAllList"], () => {
-    return request({ url: `/main/regions`, token: true });
-  },
-    {
-      onSuccess: (res) => {
-        setDressInfo({ ...dressInfo, mainRegionsList: res?.regions });
-      },
-      onError: (err) => {
-        console.log(err, "ERR-PROFILE");
-      },
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
+  const fetchGetAllDataRegions = () => {
+    fetch(`${url}/regions`)
+      .then((res) => res.json())
+      .then((res) => {
+        setDressInfo({ ...dressInfo, mainRegionsList: res?.regions })
+      })
+      .catch((err) => console.log(err, "ERRORLIST"));
+  };
+  useEffect(() => {
+    if (dressInfo?.mainRegionsList?.length === 0) {
+      fetchGetAllDataRegions();
     }
-  );
+  }, []);
   // console.log(dressInfo?.mainRegionsList, "mainRegionsList");
   // console.log(dressInfo?.mainRegionId, dressInfo?.mainSubRegionId, "mainSubregionId");
   // -----------------------------------------------------

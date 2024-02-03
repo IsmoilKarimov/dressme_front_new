@@ -52,7 +52,7 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
         setLocationList(locationList => [...locationList, item])
       }
     })
-  }, [filteredData])
+  }, [])
 
   const onChangeSelectLocation = (e) => {
     setSelectLocation(e?.target?.value)
