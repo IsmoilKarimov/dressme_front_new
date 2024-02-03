@@ -125,6 +125,8 @@ export default function CollectionCards() {
               data?.products?.map((data) => {
                 return (
                   <CollectionCardItem
+                    setDressInfo={setDressInfo}
+                    dressInfo={dressInfo}
                     key={data?.id}
                     data={data}
                     setOpenWearType={setOpenWearType}

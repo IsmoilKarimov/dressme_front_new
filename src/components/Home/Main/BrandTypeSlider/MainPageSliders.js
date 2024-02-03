@@ -189,8 +189,9 @@ function MainPageSliders() {
         <section className="w-full box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
           {/* MAIN SLIDER */}
           <div
-            className={`w-full ss:h-0 ${more ? "xs:h-0" : "xs:h-auto"
-              } overflow-hidden `}
+            className={`w-full ss:h-0 ${
+              more ? "xs:h-0" : "xs:h-auto"
+            } overflow-hidden `}
           >
             {data?.getMainProductCard?.sections?.length > 6 ? (
               <Slider
@@ -271,8 +272,9 @@ function MainPageSliders() {
 
           {/* CAROUSEL HIDDEN BLOCK */}
           <div
-            className={`${more ? "xs:grid" : "xs:hidden"
-              } w-full  h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 `}
+            className={`${
+              more ? "xs:grid" : "xs:hidden"
+            } w-full  h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 `}
           >
             {data?.getMainProductCard?.sections?.map((data, i) => {
               if (more) {
@@ -386,7 +388,13 @@ function MainPageSliders() {
                   return (
                     <div
                       key={data?.id}
-                      onClick={() => goDetail(data?.id)}
+                      onClick={() => {
+                        goDetail(data?.id);
+                        setDressInfo({
+                          ...dressInfo,
+                          linkedFrom: "mainPageShopsList",
+                        });
+                      }}
                       className="!w-[80px] h-[80px] md:!w-[120px] md:h-[120px] cursor-pointer overflow-hidden rounded-full bg-white flex items-center justify-center select-none border border-solid border-searchBgColor"
                     >
                       <figure
@@ -408,7 +416,13 @@ function MainPageSliders() {
                   return (
                     <div
                       key={data?.id}
-                      onClick={() => goDetail(data?.id)}
+                      onClick={() => {
+                        goDetail(data?.id);
+                        setDressInfo({
+                          ...dressInfo,
+                          linkedFrom: "mainPageShopsList",
+                        });
+                      }}
                       className="!w-[80px] h-[80px] md:!w-[120px] md:h-[120px] cursor-pointer overflow-hidden rounded-full bg-white flex items-center justify-center select-none border border-solid border-searchBgColor"
                     >
                       <figure
