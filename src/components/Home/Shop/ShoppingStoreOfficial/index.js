@@ -22,19 +22,19 @@ const ShoppingStoreOfficial = () => {
   const [getLocationId, setGetLocationId] = useState(false);
   const [openTabComment, setOpenTabComment] = useState(false);
   const [openTabLocation, setOpenTabLocation] = useState(false);
-  const [filteredData, setFilteredData] = useState()
-  const [pageId, setPageId] = useState(1)
+  const [filteredData, setFilteredData] = useState();
+  const [pageId, setPageId] = useState(1);
 
-  const [getGenderId, setGetGenderId] = useState(null)
-  const [getCategory, setGetCategory] = useState(null)
-  const [getRating, setGetRating] = useState(null)
-  const [getRange, setGetRange] = useState(null)
-  const [dataColor, setDataColor] = useState([])
-  const [discount, setDiscount] = useState(false)
-  const [getOutWearList, setGetOutWearList] = useState(null)
-  const [getUnderWearList, setGetUnderWearList] = useState(null)
-  const [getFootWearList, setGetFootWearList] = useState(null)
-  const [filterToggle, setFilterToggle] = useState(false)
+  const [getGenderId, setGetGenderId] = useState(null);
+  const [getCategory, setGetCategory] = useState(null);
+  const [getRating, setGetRating] = useState(null);
+  const [getRange, setGetRange] = useState(null);
+  const [dataColor, setDataColor] = useState([]);
+  const [discount, setDiscount] = useState(false);
+  const [getOutWearList, setGetOutWearList] = useState(null);
+  const [getUnderWearList, setGetUnderWearList] = useState(null);
+  const [getFootWearList, setGetFootWearList] = useState(null);
+  const [filterToggle, setFilterToggle] = useState(false);
 
   const toggleFilterOpen = React.useCallback(() => setFilterToggle(true), []);
   const toggleFilterClose = React.useCallback(() => setFilterToggle(false), []);
@@ -48,37 +48,37 @@ const ShoppingStoreOfficial = () => {
   }, [dressInfo?.openShopIdFilter]);
 
   const genderId = (childData) => {
-    setGetGenderId(childData)
-    setPageId(1)
-  }
+    setGetGenderId(childData);
+    setPageId(1);
+  };
   function discountId(childData) {
-    setDiscount(childData)
-    setPageId(1)
+    setDiscount(childData);
+    setPageId(1);
   }
   const categoryId = (childData) => {
-    setGetCategory(childData)
-    setPageId(1)
-  }
+    setGetCategory(childData);
+    setPageId(1);
+  };
   const getBadgePrice = (childData) => {
-    setGetRange(childData)
-    setPageId(1)
-  }
+    setGetRange(childData);
+    setPageId(1);
+  };
   const getRatingList = (childData) => {
-    setGetRating(childData)
-    setPageId(1)
-  }
+    setGetRating(childData);
+    setPageId(1);
+  };
   const outWearList = (childData) => {
-    setGetOutWearList(childData)
-    setPageId(1)
-  }
+    setGetOutWearList(childData);
+    setPageId(1);
+  };
   const underWearList = (childData) => {
-    setGetUnderWearList(childData)
-    setPageId(1)
-  }
+    setGetUnderWearList(childData);
+    setPageId(1);
+  };
   const footWearList = (childData) => {
-    setGetFootWearList(childData)
-    setPageId(1)
-  }
+    setGetFootWearList(childData);
+    setPageId(1);
+  };
 
   // console.log(pageId, "pageId,");
   const clickButtons = {
@@ -97,19 +97,19 @@ const ShoppingStoreOfficial = () => {
   const newId = id.replace(":", "");
 
   const refreshLocationId = () => {
-    data?.getMainProductCard?.shops?.map(item => {
+    data?.getMainProductCard?.shops?.map((item) => {
       if (item?.id === Number(newId)) {
         setDressInfo({
           ...dressInfo,
           locationIdParams: item?.approved_shop_locations[0]?.id,
         });
       }
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    refreshLocationId()
-  }, [newId])
+    refreshLocationId();
+  }, [newId]);
 
   const url = `https://api.dressme.uz/api`;
 
@@ -122,54 +122,72 @@ const ShoppingStoreOfficial = () => {
     discount && params.append("discount", discount);
     getCategory && params.append("category", getCategory);
     getRating && params.append("rating", getRating);
-    getFootWearList?.wear_size && params.append("footwear_size", getFootWearList?.wear_size);
+    getFootWearList?.wear_size &&
+      params.append("footwear_size", getFootWearList?.wear_size);
     // OUTWEAR SIZES
     getOutWearList?.letter_size &&
       params.append("outwear_size[letter_size]", getOutWearList?.letter_size);
-    !getOutWearList?.letter_size && getOutWearList?.min_wear_size &&
-      params.append("outwear_size[min_wear_size]", getOutWearList?.min_wear_size);
-    !getOutWearList?.letter_size && getOutWearList?.max_wear_size &&
-      params.append("outwear_size[max_wear_size]", getOutWearList?.max_wear_size);
+    !getOutWearList?.letter_size &&
+      getOutWearList?.min_wear_size &&
+      params.append(
+        "outwear_size[min_wear_size]",
+        getOutWearList?.min_wear_size
+      );
+    !getOutWearList?.letter_size &&
+      getOutWearList?.max_wear_size &&
+      params.append(
+        "outwear_size[max_wear_size]",
+        getOutWearList?.max_wear_size
+      );
     // UNDERWEAR SIZES
     getUnderWearList?.letter_size &&
-      params.append("underwear_size[letter_size]", getUnderWearList?.letter_size);
-    !getUnderWearList?.letter_size && getUnderWearList?.min_wear_size &&
-      params.append("underwear_size[min_wear_size]", getUnderWearList?.min_wear_size);
-    !getUnderWearList?.letter_size && getUnderWearList?.max_wear_size &&
-      params.append("underwear_size[max_wear_size]", getUnderWearList?.max_wear_size);
+      params.append(
+        "underwear_size[letter_size]",
+        getUnderWearList?.letter_size
+      );
+    !getUnderWearList?.letter_size &&
+      getUnderWearList?.min_wear_size &&
+      params.append(
+        "underwear_size[min_wear_size]",
+        getUnderWearList?.min_wear_size
+      );
+    !getUnderWearList?.letter_size &&
+      getUnderWearList?.max_wear_size &&
+      params.append(
+        "underwear_size[max_wear_size]",
+        getUnderWearList?.max_wear_size
+      );
     pageId && params.append("page", pageId);
-    getRange?.min &&
-      params.append("budget[from]", getRange?.min);
-    getRange?.max &&
-      params.append("budget[to]", getRange?.max);
+    getRange?.min && params.append("budget[from]", getRange?.min);
+    getRange?.max && params.append("budget[to]", getRange?.max);
     dataColor?.length > 0 &&
       dataColor?.forEach((e, index) => {
         params.append("colors[]", dataColor[index]);
       });
 
-    axios.get(`${url}/main/shops/${newId}?`, {
-      params: params,
-    })
+    axios
+      .get(`${url}/main/shops/${newId}?`, {
+        params: params,
+      })
       .then((res) => {
         if (res?.status >= 200 && res?.status < 300) {
           // setLoading(false)
-          setFilteredData(res?.data)
+          setFilteredData(res?.data);
         }
       })
       .catch((res) => {
         if (res?.response?.status === 422) {
-          refreshLocationId()
+          refreshLocationId();
           // setLoading(false)
-
         }
-        setError(res.response?.data?.message || 'An unexpected error occurred.');
-      })
-
-
+        setError(
+          res.response?.data?.message || "An unexpected error occurred."
+        );
+      });
   };
   useEffect(() => {
     if (data?.getMainProductCard) {
-      fetchGetAllData()
+      fetchGetAllData();
     }
   }, [
     pageId,
@@ -181,7 +199,11 @@ const ShoppingStoreOfficial = () => {
     getUnderWearList,
     getOutWearList,
     getFootWearList,
-    getRating, getRange, data?.getMainProductCard, dressInfo?.locationIdParams])
+    getRating,
+    getRange,
+    data?.getMainProductCard,
+    dressInfo?.locationIdParams,
+  ]);
   // console.log(filteredData, "filteredData");
 
   return (
@@ -190,7 +212,10 @@ const ShoppingStoreOfficial = () => {
         :  */}
       <div className="w-full">
         <section className="w-full border-b border-searchBgColor ">
-          <ShoppingStoreOfficialBreadCrumb name={filteredData?.shop?.name} paramsId={newId} />
+          <ShoppingStoreOfficialBreadCrumb
+            name={filteredData?.shop?.name}
+            paramsId={newId}
+          />
         </section>
         <section className="w-full border-searchBgColor ">
           <ShoppingStoreOfficialTop
@@ -205,13 +230,18 @@ const ShoppingStoreOfficial = () => {
           <div className="w-full flex flex-col items-center justify-center">
             {/* Products Section */}
             <article
-              className={`${openTabComment || openTabLocation ? "hidden" : "block"
-                } w-full `}
+              className={`${
+                openTabComment || openTabLocation ? "hidden" : "block"
+              } w-full `}
             >
               {/* <ShoppingStoreCategory filteredData={filteredData} /> */}
               <section className="w-[100%] h-fit">
                 <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
-                  <div className={`${filterToggle ? "md:block" : "md:hidden"} hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}>
+                  <div
+                    className={`${
+                      filterToggle ? "md:block" : "md:hidden"
+                    } hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}
+                  >
                     <FilterList
                       paramsId={newId}
                       genderId={genderId}
@@ -232,19 +262,26 @@ const ShoppingStoreOfficial = () => {
                   {/* <div
                   className={`w-full h-[100vh] overflow-hidden overflow-y-auto md:hidden   fixed top-0 bottom-0 left-0 right-0
                    ${dressInfo?.openShopIdFilter ? " ml-[1px] " : " ml-[-1000px]"}
-                   ${filterToggle ? "" : "hidden"} 
+                   ${filterToggle ? "" : "hidden"}
                     bg-white z-[105] duration-500`}
                 >
                   <FilterList paramsId={newId} />
                 </div> */}
-                  <div className={` ${filterToggle ? 'md:w-[77%]' : "md:w-[100%]"} w-full h-full ss:px-4 md:px-0`}>
-                    {filteredData ?
+                  <div
+                    className={` ${
+                      filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+                    } w-full h-full ss:px-4 md:px-0`}
+                  >
+                    {filteredData ? (
                       <ShopOfficialCard
                         filteredData={filteredData}
                         setPageId={setPageId}
-                      /> : <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[100vh] ">
+                      />
+                    ) : (
+                      <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[100vh] ">
                         Ничего не найдено
-                      </div>}
+                      </div>
+                    )}
                   </div>
                 </section>
               </section>
@@ -260,8 +297,9 @@ const ShoppingStoreOfficial = () => {
 
             {/* Map Section */}
             <div
-              className={`${openTabLocation ? "block" : "hidden"
-                } w-full text-3xl px-4 pb-10`}
+              className={`${
+                openTabLocation ? "block" : "hidden"
+              } w-full text-3xl px-4 pb-10`}
             >
               <button
                 onClick={() => {

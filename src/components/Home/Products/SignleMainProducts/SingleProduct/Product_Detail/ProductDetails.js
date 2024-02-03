@@ -50,6 +50,10 @@ const ProductDetails = ({ data }) => {
 
   const [dressInfo] = useContext(dressMainData);
 
+  // console.log(dressInfo?.linkedFrom);
+  // console.log(dressInfo?.productShowSelectedLocation);
+  // console.log(dressInfo?.mainSubRegionId);
+
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
   const [tableSizes, setTableSizes] = useState(false);
@@ -241,7 +245,7 @@ const ProductDetails = ({ data }) => {
     data?.product?.locations[0]
   );
 
-  console.log(selectedLocation, "selectedLocation");
+  // console.log(selectedLocation, "selectedLocation");
   // console.log(data?.product?.locations);
   // console.log(dressInfo?.mainSubRegionId, "wwwwww");
 
@@ -258,10 +262,28 @@ const ProductDetails = ({ data }) => {
   const [selectedColor, setSelectedColor] = useState(data?.product?.colors[0]);
 
   useEffect(() => {
-    if (dressInfo?.mainSubRegionId) {
+    if (dressInfo?.linkedFrom === "mainPageShopsList") {
+      data?.product?.locations?.forEach((item) => {
+        if (item?.address == dressInfo?.productShowSelectedLocation?.address) {
+          setSelectedLocation(item);
+          setSelectedColor(data?.product?.colors[0]);
+        }
+      });
+    } else if (dressInfo?.linkedFrom === "shopsFromLocation") {
+      data?.product?.locations?.forEach((item) => {
+        if (item?.address == dressInfo?.productShowSelectedLocation?.address) {
+          setSelectedLocation(item);
+          setSelectedColor(data?.product?.colors[0]);
+        }
+      });
+    } else if (
+      dressInfo?.linkedFrom === "mainPageProductList" &&
+      dressInfo?.mainSubRegionId
+    ) {
       data?.product?.locations?.forEach((item) => {
         if (item?.sub_region_id == dressInfo?.mainSubRegionId) {
           setSelectedLocation(item);
+          setSelectedColor(data?.product?.colors[0]);
         }
       });
     } else {

@@ -23,7 +23,6 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
     navigate(`/shopping-store-location/:${dressInfo?.yandexGetMarketId}`);
   };
 
-
   const [copyAddress, setCopyAddress] = useState(null);
   const [phoneNum, setPhoneNum] = useState(null);
   const [imgGallery, setImgGallery] = useState([]);
@@ -41,16 +40,23 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
           { id: 3, img: data?.url_image_path_three },
         ]);
       });
-  }, [modalInfo, dressInfo?.locationIdParams]);
-  useEffect(() => {
-    setNewImgList([])
-    imgGallery?.forEach(item => {
-      if (item?.img) {
-        setNewImgList(newImgList => [...newImgList, item])
-      }
-    })
 
-  }, [imgGallery])
+    setDressInfo({
+      ...dressInfo,
+      productShowSelectedLocation: modalInfo?.locations?.filter(
+        (e) => e?.id === dressInfo?.locationIdParams
+      )[0],
+    });
+  }, [modalInfo, dressInfo?.locationIdParams]);
+
+  useEffect(() => {
+    setNewImgList([]);
+    imgGallery?.forEach((item) => {
+      if (item?.img) {
+        setNewImgList((newImgList) => [...newImgList, item]);
+      }
+    });
+  }, [imgGallery]);
 
   const handleCopyAddress = () => {
     navigator.clipboard.writeText(copyAddress);
@@ -150,20 +156,23 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
               <div className="flex flex-col md:flex-row justify-center md:justify-between md:gap-y-0 gap-y-4">
                 {/* Carosuel */}
                 <div className="w-full cursor-pointer h-[220px] md:w-[48%] md:h-[250px] mx-auto overflow-hidden  rounded-xl">
-                  {newImgList?.length <= 1 ?
+                  {newImgList?.length <= 1 ? (
                     <div className="w-full h-full  rounded-xl overflow-hidden">
                       <img
                         onClick={() => sendImgGallery()}
-                        src={newImgList[0]?.img} alt={'imgGallery'} className="w-full h-full object-cover " />
+                        src={newImgList[0]?.img}
+                        alt={"imgGallery"}
+                        className="w-full h-full object-cover "
+                      />
                     </div>
-                    : <Slider
+                  ) : (
+                    <Slider
                       {...settings}
                       className="w-full h-full rounded-xl overflow-hidden flex flex-col justify-center"
                     >
                       {newImgList?.map((data) => {
                         return (
-                          <div
-                            key={data?.id}>
+                          <div key={data?.id}>
                             {data?.img && (
                               <div
                                 onClick={() => sendImgGallery()}
@@ -181,7 +190,8 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
                           </div>
                         );
                       })}
-                    </Slider>}
+                    </Slider>
+                  )}
                 </div>
                 {/* Details */}
                 <div className="md:w-[48%]  md:h-[250px] text-justify	 flex flex-wrap md:gap-y-0 gap-y-4 content-between   ">
@@ -265,7 +275,13 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
 
             </button> */}
                     <button
-                      onClick={openShoppingChild}
+                      onClick={() => {
+                        openShoppingChild();
+                        setDressInfo({
+                          ...dressInfo,
+                          linkedFrom: "shopsFromLocation",
+                        });
+                      }}
                       className={` w-full h-[48px] bg-fullBlue active:scale-95 mt-4 mb-2 md:mb-0 md:mt-0  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
                     >
                       <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center   capitalize text-white">

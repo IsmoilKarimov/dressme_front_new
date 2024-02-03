@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { ArrowTopIcons, MenuCloseIcons, SearchIcons } from "../../../assets/icons";
+import {
+  ArrowTopIcons,
+  MenuCloseIcons,
+  SearchIcons,
+} from "../../../assets/icons";
 // import {
 //   ArrowRightIcon,
 //   InputCheck,

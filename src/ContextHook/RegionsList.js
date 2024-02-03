@@ -244,6 +244,7 @@ function RegionList({ onClick }) {
               setDressInfo({
                 ...dressInfo,
                 yandexOpenRegionList: false,
+                linkedFrom: "mainPageProductList",
               });
               sendRegions();
             }}

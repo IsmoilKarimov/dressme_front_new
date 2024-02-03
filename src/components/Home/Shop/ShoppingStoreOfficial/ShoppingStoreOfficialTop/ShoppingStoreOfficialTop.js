@@ -17,13 +17,18 @@ import { Modal, Radio, Space } from "antd";
 import FilterDropUp from "../../../../Category/CategoryForType/CategoryMobileDropUp/FilterDropUp";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 
-const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeftOpen,
-  toggleFilterLeftClose, filterLeftAction }) => {
+const ShoppingStoreOfficialTop = ({
+  filteredData,
+  clickButtons,
+  toggleFilterLeftOpen,
+  toggleFilterLeftClose,
+  filterLeftAction,
+}) => {
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [filter, setFilter] = useState(false);
   const toggleFilter = useCallback(() => setFilter(false), []);
-  const [locationList, setLocationList] = useState([])
-  const [selectLocation, setSelectLocation] = useState([])
+  const [locationList, setLocationList] = useState([]);
+  const [selectLocation, setSelectLocation] = useState([]);
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   // For DropUp
   useEffect(() => {
@@ -35,46 +40,55 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
   }, [filter]);
   const handleToggle = () => {
     if (filterLeftAction) {
-      toggleFilterLeftClose()
+      toggleFilterLeftClose();
     } else {
-      toggleFilterLeftOpen()
+      toggleFilterLeftOpen();
     }
   };
   // Посмотреть отзывы
 
   useEffect(() => {
-    setLocationList([])
-    filteredData?.shop?.approved_shop_locations?.map(item => {
+    setDressInfo({
+      ...dressInfo,
+      productShowSelectedLocation:
+        filteredData?.shop?.approved_shop_locations[0],
+    });
+    setLocationList([]);
+    filteredData?.shop?.approved_shop_locations?.map((item) => {
       if (locationList?.length === 0) {
-        setLocationList(locationList => [...locationList, item])
+        setLocationList((locationList) => [...locationList, item]);
       }
       if (locationList?.length > 0 && !locationList?.includes(item)) {
-        setLocationList(locationList => [...locationList, item])
+        setLocationList((locationList) => [...locationList, item]);
       }
-    })
-  }, [filteredData])
+    });
+  }, [filteredData]);
 
   const onChangeSelectLocation = (e) => {
-    setSelectLocation(e?.target?.value)
+    setSelectLocation(e?.target?.value);
   };
   const onhandleSelect = () => {
-    setOpenLocationModal(false)
+    setOpenLocationModal(false);
     if (selectLocation) {
-      setDressInfo({ ...dressInfo, locationIdParams: selectLocation })
+      setDressInfo({ ...dressInfo, locationIdParams: selectLocation });
     }
-  }
-  // console.log(dressInfo?.locationIdParams, "dressInfo?.locationIdParams ---1");
+
+  };
+
+  console.log(dressInfo?.locationIdParams, "dressInfo?.locationIdParams");
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
       <div className="filter">
         <section
           onClick={() => setFilter(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${filter ? "" : "hidden"
-            }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+            filter ? "" : "hidden"
+          }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${filter ? "bottom-0" : "bottom-[-800px] z-0"
-            }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+            filter ? "bottom-0" : "bottom-[-800px] z-0"
+          }`}
         >
           <FilterDropUp onClick={toggleFilter} />
         </section>
@@ -83,50 +97,57 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
         <div className="w-[100%] h-fit flex flex-col">
           {/* Top section */}
           <div className="w-full flex flex-col border-[#F0F0F0]">
-            {filteredData?.shop?.url_background_photo && <figure className="w-full h-[240px] md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
-
-              <img
-                className="w-full h-full object-contain"
-                src={filteredData?.shop?.url_background_photo}
-                alt="url_background_photo"
-              />
-            </figure>
+            {filteredData?.shop?.url_background_photo && (
+              <figure className="w-full h-[240px] md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
+                <img
+                  className="w-full h-full object-contain"
+                  src={filteredData?.shop?.url_background_photo}
+                  alt="url_background_photo"
+                />
+              </figure>
+            )}
+            <div
+              className={`w-full md:h-[90px]   h-fit flex flex-col md:flex-row items-center border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0
+            ${
+              filteredData?.shop?.url_background_photo
+                ? "mt-2 md:mt-0"
+                : "md:mt-10"
             }
-            <div className={`w-full md:h-[90px]   h-fit flex flex-col md:flex-row items-center border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0
-            ${filteredData?.shop?.url_background_photo ? "mt-2 md:mt-0" : "md:mt-10"}
-            `}>
+            `}
+            >
               {/* 1 */}
               <div className="w-full md:w-[40%] flex h-[80px] md:h-fit items-center md:ml-[40px]">
                 <figure className="w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white overflow-hidden">
-
-                  {filteredData?.shop?.url_logo_photo ?
+                  {filteredData?.shop?.url_logo_photo ? (
                     <img
                       src={filteredData?.shop?.url_logo_photo}
                       className="w-full h-full object-contain"
                       alt="url_logo_photo"
-                    /> :
+                    />
+                  ) : (
                     <div className="w-full h-full flex items-center justify-center">
                       <NoImg />
                     </div>
-                  }
+                  )}
                 </figure>
                 <div className="flex flex-col ml-8">
                   <p className="text-xl font-AeonikProMedium mb-3">
                     {filteredData?.shop?.name || "name"}
                   </p>
                   <div
-                    className={`${filteredData?.shop?.overall_rating ? "flex" : "hidden"
-                      } items-center`}
+                    className={`${
+                      filteredData?.shop?.overall_rating ? "flex" : "hidden"
+                    } items-center`}
                   >
                     <div className="flex items-center mr-[6px]">
                       <StarIcons />
                     </div>
                     <div className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 md:ml-1 flex items-center text-sm">
                       <p className="font-AeonikProMedium text-black mr-1">
-                        {filteredData?.overall_rating || 'rating'}
+                        {filteredData?.overall_rating || "rating"}
                       </p>
                       <p className="text-setTexOpacity font-AeonikProRegular">
-                        ({filteredData?.shop?.rated_users_count || '0'} votes){" "}
+                        ({filteredData?.shop?.rated_users_count || "0"} votes){" "}
                       </p>
                     </div>
                   </div>
@@ -185,9 +206,11 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                         <LocationColoursIcons colors={"#007DCA"} />
                       </span>
                       <p className="text-sm font-AeonikProRegular text-borderWinter cursor-pointer">
-                        {filteredData?.shop?.approved_shop_locations[0]?.address}
+                        {
+                          filteredData?.shop?.approved_shop_locations[0]
+                            ?.address
+                        }
                       </p>
-
                     </NavLink>
                     <p
                       className={`text-borderWinter border-b border-dashed border-borderWinter ml-3 text-sm md:text-base not-italic font-AeonikProRegular`}
@@ -199,14 +222,16 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                 </div>
                 <div className="flex items-center ml-auto">
                   <button
-                    className={`${filteredData?.shop?.gender_id === "2" ? "hidden" : "flex"
-                      }  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}
+                    className={`${
+                      filteredData?.shop?.gender_id === "2" ? "hidden" : "flex"
+                    }  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}
                   >
                     <ManGenIcons />
                   </button>
                   <button
-                    className={`${filteredData?.shop?.gender_id === "1" ? "hidden" : "flex"
-                      } flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}
+                    className={`${
+                      filteredData?.shop?.gender_id === "1" ? "hidden" : "flex"
+                    } flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}
                   >
                     <WomanGenIcons />
                   </button>
@@ -241,18 +266,27 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
           </div>
           <div className="w-full hidden md:flex items-center justify-between  mt-[72px] mb-3">
             <div className="flex items-center gap-x-5">
-
               <div className="w-[175px] flex items-center ">
                 <button
                   onClick={handleToggle}
                   type="button"
                   className="w-full gap-x-2 h-[44px] border border-[#F2F2F2] flex items-center justify-center  bg-white rounded-lg active:scale-95	active:opacity-70"
                 >
-                  <span className=""> <SortIcons /></span>
-                  {filterLeftAction ?
-                    <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black"> Скрыть</p>
-                    :
-                    <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black"> Фильтр</p>}
+                  <span className="">
+                    {" "}
+                    <SortIcons />
+                  </span>
+                  {filterLeftAction ? (
+                    <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                      {" "}
+                      Скрыть
+                    </p>
+                  ) : (
+                    <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                      {" "}
+                      Фильтр
+                    </p>
+                  )}
                 </button>
               </div>
               <div className="flex items-center text-base font-AeonikProMedium text-[#2C2C2C] ">
@@ -260,7 +294,6 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                 <span className="mx-[5px]">Доставка:</span>
                 <span>{filteredData?.shop?.delivery?.name_ru}</span>
               </div>
-
             </div>
             <div className="w-full md:w-fit flex md:items-center justify-end items-center mt-1">
               <div className="w-fit flex gap-x-[30px] items-center ">
@@ -291,9 +324,10 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                       {locationList[0]?.region?.name_ru}
                     </div>
                     <div className="h-[250px] overflow-y-auto mb-[20px] VerticelScroll pr-2">
-                      <Radio.Group onChange={onChangeSelectLocation} value={selectLocation}
+                      <Radio.Group
+                        onChange={onChangeSelectLocation}
+                        value={selectLocation}
                         defaultValue={dressInfo?.locationIdParams}
-
                       >
                         {locationList?.map((item, index) => {
                           return (
@@ -301,12 +335,15 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                               <Space direction="vertical">
                                 <Radio
                                   className="text-lg font-AeonikProRegular"
-                                  value={item?.id}> {item?.sub_region?.name_ru} ({item?.address} )</Radio>
+                                  value={item?.id}
+                                >
+                                  {" "}
+                                  {item?.sub_region?.name_ru} ({item?.address} )
+                                </Radio>
                               </Space>
                             </div>
-                          )
+                          );
                         })}
-
                       </Radio.Group>
                       {/* {locationList?.map((item, index) => {
                         return (
@@ -325,12 +362,11 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                           </div>
                         )
                       })} */}
-
                     </div>
                     <button
                       type="button"
                       onClick={() => {
-                        onhandleSelect()
+                        onhandleSelect();
                         // setOpenLocationModal(false);
                         // setSelectedLocation(checkedData);
                       }}
