@@ -19,7 +19,7 @@ function YandexLocationShop({ filteredData }) {
     //------------------------------------------------------------------------------------------------
     const [logaLocation, setLogaLocation] = useState()
     const [mapState, setMapState] = useState({
-        center: [41.327228, 69.249023],
+        center: [],
         zoom: 12,
     })
     //------------------------------------------------------------------------------------------------
@@ -53,8 +53,15 @@ function YandexLocationShop({ filteredData }) {
                             ref={addresRef}
                             className="text-[#000] not-italic font-AeonikProRegular text-[14px] xs:text-base "
                         >
-                            {filteredData?.shop?.approved_shop_locations[dressInfo?.locationIdParams - 1]?.address}
-
+                            {
+                                filteredData?.shop?.approved_shop_locations?.filter(e => e?.id === dressInfo?.locationIdParams)?.map(item => {
+                                    return (
+                                        <p className="text-sm font-AeonikProRegular text-borderWinter">
+                                            {item?.address}
+                                        </p>
+                                    )
+                                })
+                            }
                         </span>
                         <button
                             type="button"

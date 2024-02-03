@@ -63,7 +63,7 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
       setDressInfo({ ...dressInfo, locationIdParams: selectLocation })
     }
   }
-  console.log(dressInfo?.locationIdParams, "dressInfo?.locationIdParams");
+  // console.log(dressInfo?.locationIdParams, "dressInfo?.locationIdParams ---1");
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
       <div className="filter">
@@ -162,11 +162,15 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                   <span className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer">
                     <LocationColoursIcons colors={"#007DCA"} />
                   </span>
-                  {filteredData?.shop?.approved_shop_locations?.length > 0 ? (
-                    <p className="text-sm font-AeonikProRegular text-borderWinter">
-                      {filteredData?.shop?.approved_shop_locations[0]?.address}
-                    </p>
-                  ) : null}
+                  {
+                    filteredData?.shop?.approved_shop_locations?.filter(e => e?.id === dressInfo?.locationIdParams)?.map(item => {
+                      return (
+                        <p className="text-sm font-AeonikProRegular text-borderWinter">
+                          {item?.address}
+                        </p>
+                      )
+                    })
+                  }
                 </button>
               </div>
               {/* 3 */}
