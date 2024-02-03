@@ -56,6 +56,9 @@ export const DressMenu = ({ children }) => {
     mainRegionsList: [],
     // -------for Shops
     shopsData: null,
+    // --- for Product showPage
+    linkedFrom: "mainPageProductList",
+    productShowSelectedLocation: {},
 
     ProductList: [
       {
