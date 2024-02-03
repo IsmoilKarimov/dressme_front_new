@@ -20,24 +20,25 @@ export default function ShoppingStore() {
   const apiUrl = `https://api.dressme.uz/api/main/shops`;
 
   const fetchGetAllData = (params) => {
-    setLoading(true)
+    setLoading(true);
     Object.entries(params).forEach((i) => {
       if (!i[1]) delete params[i[0]];
     });
-    axios.get(apiUrl, {
-      headers: { Authorization: `Token ${Cookies.get("DressmeUserToken")}` },
-      params: params,
-    })
+    axios
+      .get(apiUrl, {
+        headers: { Authorization: `Token ${Cookies.get("DressmeUserToken")}` },
+        params: params,
+      })
       .then((res) => {
-        setDressInfo({ ...dressInfo, shopsData: res?.data })
+        setDressInfo({ ...dressInfo, shopsData: res?.data });
         setLoading(false);
       })
       .catch((res) => {
+        setError(
+          res.response?.data?.message || "An unexpected error occurred."
+        );
         setLoading(false);
-        setError(res.response?.data?.message || 'An unexpected error occurred.');
-      })
-
-
+      });
   };
   // console.log(getData, "getData");
   useEffect(() => {
@@ -46,7 +47,7 @@ export default function ShoppingStore() {
         gender: getGenderID,
         keywords: getSearchInput,
         region: dressInfo?.mainRegionId,
-        sub_region: dressInfo?.mainSubRegionId
+        sub_region: dressInfo?.mainSubRegionId,
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -56,14 +57,14 @@ export default function ShoppingStore() {
       gender: getGenderID,
       keywords: getSearchInput,
       region: dressInfo?.mainRegionId,
-      sub_region: dressInfo?.mainSubRegionId
+      sub_region: dressInfo?.mainSubRegionId,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     getGenderID,
     getSearchInput,
     dressInfo?.mainRegionId,
-    dressInfo?.mainSubRegionId
+    dressInfo?.mainSubRegionId,
   ]);
 
   // console.log(getGenderID,
@@ -95,7 +96,7 @@ export default function ShoppingStore() {
         <ShoppingBrands
           loading={loading}
           setLoading={setLoading}
-        // setGetData={setGetData}
+          // setGetData={setGetData}
         />
       </section>
     </main>
