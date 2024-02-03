@@ -63,7 +63,9 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
     }
     setOpenLocationModal(false)
   }
-
+  // console.log(locationList, "locationList");
+  // console.log(dressInfo?.locationIdParams, "dressInfo?.locationIdParams");
+  // console.log(filteredData?.shop?.approved_shop_locations, "filteredData?.shop?.approved_shop_locations");
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
       <div className="filter">
@@ -164,11 +166,17 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                   <div className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer">
                     <LocationColoursIcons colors={"#007DCA"} />
                   </div>
-                  {filteredData?.shop?.approved_shop_locations?.length > 0 ? (
-                    <p className="text-sm font-AeonikProRegular text-borderWinter">
-                      {filteredData?.shop?.approved_shop_locations[dressInfo?.locationIdParams - 1]?.address}
-                    </p>
-                  ) : null}
+
+                  {
+                    filteredData?.shop?.approved_shop_locations?.filter(e => e?.id === dressInfo?.locationIdParams)?.map(item => {
+                      return (
+                        <p className="text-sm font-AeonikProRegular text-borderWinter">
+                          {item?.address}
+                        </p>
+                      )
+                    })
+                  }
+
                 </button>
               </div>
               {/* 3 */}
@@ -183,7 +191,7 @@ const ShoppingStoreOfficialTop = ({ filteredData, clickButtons, toggleFilterLeft
                         <LocationColoursIcons colors={"#007DCA"} />
                       </span>
                       <p className="text-sm font-AeonikProRegular text-borderWinter cursor-pointer">
-                        {filteredData?.shop?.approved_shop_locations[dressInfo?.locationIdParams - 1]?.address}
+                        {filteredData?.shop?.approved_shop_locations[dressInfo?.locationIdParams]?.address}
                       </p>
 
                     </NavLink>
