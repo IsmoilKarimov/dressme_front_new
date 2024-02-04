@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HomeMainDataContextProvider } from "./ContextHook/HomeMainData";
 import { SliderPhotosColorContextProvider } from "./ContextHook/SliderPhotosColor";
 import { ProfileDataContextProvider } from "./ContextHook/ProfileContext";
+import { MainPageAudioContextProvider } from "./ContextHook/MainPageAudio";
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -19,7 +20,9 @@ root.render(
         <HomeMainDataContextProvider>
           <SliderPhotosColorContextProvider>
             <ProfileDataContextProvider>
-              <App />
+              <MainPageAudioContextProvider>
+                <App />
+              </MainPageAudioContextProvider>
             </ProfileDataContextProvider>
           </SliderPhotosColorContextProvider>
         </HomeMainDataContextProvider>
