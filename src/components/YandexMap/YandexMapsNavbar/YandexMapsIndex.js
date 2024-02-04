@@ -1,22 +1,80 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import YandexTop from "./YandexTop";
 import YandexMedium from "./YandexMedium";
 import YandexFilter from "./YandexFilter";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import RegionListYandex from "./RegionListYandex";
+import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
+import { MenuCloseIcons } from "../../../assets/icons";
 
 function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
-  const [dressInfo] = useContext(dressMainData);
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
 
+  const [data] = useContext(HomeMainDataContext);
   function getYandexSearchName(childData) {
     getFilterSearchByBrand(childData)
   }
   const [regionsShow, setRegionsShow] = useState(false);
   const toggleRegionsShow = useCallback(() => setRegionsShow(true), []);
   const toggleRegionsHide = useCallback(() => setRegionsShow(false), []);
+  const navigate = useNavigate();
+
+  const goCatalogId = (id) => {
+    navigate(`/catalog/:${id}`);
+  };
   return (
     <div className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ">
+      {dressInfo?.openCatologId && (
+        <div
+          onClick={() => setDressInfo({ ...dressInfo, openCatologId: false })}
+          className="fixed inset-0 z-[250] w-[100%] h-[100vh] scroll-m-0"
+        ></div>
+      )}
+      <article
+        className={`fixed top-[235px] z-[251] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${dressInfo?.openCatologId ? "" : "hidden"
+          }`}
+      >
+        <div className="flex justify-center items-center z-[99999]">
+          <div className="w-[675px] flex flex-col shadow-modalCategoryShadow bg-white rounded-lg p-2">
+            <button
+              className="text-xl place-self-end pr-1 pt-1 mb-2"
+              onClick={() =>
+                setDressInfo({ ...dressInfo, openCatologId: false })
+              }
+            >
+              <MenuCloseIcons />
+            </button>
+            <div className="ss:w-fit md:w-[650px] h-[210px] m-0 p-2 pb-4 pt-4">
+              <div className="w-full flex items-start flex-wrap gap-y-6">
+                {data?.getMainProductCard?.categories?.map((data, i) => {
+                  return (
+                    <article
+                      key={data?.id}
+                      onClick={() =>
+                        setDressInfo({ ...dressInfo, openCatologId: false })
+                      }
+                      className="w-1/5 flex items-center justify-center "
+                    >
+                      <figure
+                        onClick={() => goCatalogId(data?.id)}
+                        className="group cursor-pointer"
+                      >
+                        <div className="group-hover:border-black transition duration-300 w-[120px] h-[120px] border border-categoryModalBorderColor bg-categoryModalBgColor flex items-center justify-center rounded-xl">
+                          <img src={data?.url_photo} alt="url_photo" />
+                        </div>
+                        <figcaption className="group-hover:text-black transition duration-300 text-center mt-2 text-setTexOpacity text-sm">
+                          {data?.name_ru}
+                        </figcaption>
+                      </figure>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
       <div
 
         className={`fixed inset-0 z-[215] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50

@@ -145,22 +145,30 @@ const YandexTop = ({ onClick }) => {
         </div>
       </div>
       <div className="right h-full flex items-center ">
-        <Link to="#" className="flex items-center h-full ">
+        {/* <Link to="#" className="flex items-center h-full ">
           <span className="mr-2">
             <CommentIcons colors={"#707070"} />
           </span>
           <span className="text-textColor text-[13px]   font-AeonikProMedium  ">
             Помощь
           </span>
-        </Link>
-        <Link to="#" className="flex items-center h-full  ml-6 ">
+        </Link> */}
+        <button
+          type="button"
+          onClick={() =>
+            window.open(
+              " https://dressme-dashboard-new.vercel.app",
+              "_blank"
+            )
+          }
+          className="flex items-center h-full  ml-6 ">
           <span className="mr-2">
             <HouseStatisticIcons colors={"#707070"} />
           </span>
           <span className="text-textColor text-[13px]   font-AeonikProMedium  ">
             Бизнес
           </span>
-        </Link>
+        </button>
         <div className="line h-5 border text-textColor ml-6"></div>
         {Cookies.get("DressmeUserToken") && (
           <NavLink to="/my-order" className="flex items-center h-full  ml-6 ">

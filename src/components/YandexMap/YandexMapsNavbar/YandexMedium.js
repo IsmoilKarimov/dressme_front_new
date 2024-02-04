@@ -28,9 +28,12 @@ import {
 } from "../../../assets";
 import Cookies from "js-cookie";
 import { MdClose } from "react-icons/md";
+import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 
 const YandexMedium = ({ getYandexSearchName }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [data] = useContext(HomeMainDataContext);
+
   const navigate = useNavigate();
   const handleMainMenu = () => {
     setDressInfo({ ...dressInfo, openMainMenu: !dressInfo.openMainMenu });
@@ -133,8 +136,12 @@ const YandexMedium = ({ getYandexSearchName }) => {
       });
     }
   };
+  const goCatalogId = (id) => {
+    navigate(`/catalog/:${id}`);
+  };
   return (
     <div className=" flex justify-between items-center m-auto ">
+
       {/* Starting of Full Screen page section */}
       <div className="w-full flex justify-center items-center py-3 overscroll-none overflow-y-hidden">
         <div className=" w-full flex items-center ss:w-full md:w-fit justify-between">
@@ -235,6 +242,12 @@ const YandexMedium = ({ getYandexSearchName }) => {
             {/* Catalog section */}
             <button
               className={`items-center ${dressInfo?.BtnOpacitySeason} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
+              onClick={() =>
+                setDressInfo({
+                  ...dressInfo,
+                  openCatologId: !dressInfo?.openCatologId,
+                })
+              }
             >
               <span>
                 <CotegoryIcons colors={dressInfo?.ColorSeason} />
