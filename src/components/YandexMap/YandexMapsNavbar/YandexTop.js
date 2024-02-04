@@ -13,11 +13,13 @@ import {
 import { EnglishFlag, RussianFlag, UzbekFlag } from "../../../assets";
 import Cookies from "js-cookie";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
+import { useQuery } from "@tanstack/react-query";
+import { useHttp } from "../../../hook/useHttp";
 
 const YandexTop = ({ onClick }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
-
+  const { request } = useHttp()
   const [state, setState] = useState({
     openLang: false,
     openRegion: false,
@@ -67,24 +69,23 @@ const YandexTop = ({ onClick }) => {
   );
 
   // -------City Change -------------
-  const url = "https://api.dressme.uz/api/main";
-
-  const fetchGetAllDataRegions = () => {
-    fetch(`${url}/regions`)
-      .then((res) => res.json())
-      .then((res) => {
-        // setDressInfo({ ...dressInfo, mainRegionsList: res?.regions })
+  useQuery(["region-data"], () => {
+    return request({ url: "/main/regions", token: true });
+  },
+    {
+      onSuccess: (res) => {
         setData({
           ...data, mainRegionsList: res?.regions
         });
-      })
-      .catch((err) => console.log(err, "ERRORLIST"));
-  };
-  useEffect(() => {
-    // if (data?.mainRegionsList?.length === 0) {
-    fetchGetAllDataRegions();
-    // }
-  }, []);
+      },
+      onError: (err) => {
+        console.log(err, "ERR-PROFILE");
+      },
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+    }
+  );
+
   return (
     <div className="flex justify-between items-center m-auto py-[2px]">
       <div className="left h-full flex items-center  ">
