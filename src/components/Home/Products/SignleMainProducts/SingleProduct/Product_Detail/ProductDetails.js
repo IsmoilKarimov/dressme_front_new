@@ -51,7 +51,7 @@ const ProductDetails = ({ data }) => {
   const [dressInfo] = useContext(dressMainData);
 
   // console.log(dressInfo?.linkedFrom);
-  // console.log(dressInfo?.productShowSelectedLocation);
+  // console.log(dressInfo?.productShowSelectedLocation, "from context");
   // console.log(dressInfo?.mainSubRegionId);
 
   const [openLocationModal, setOpenLocationModal] = useState(false);
@@ -246,7 +246,7 @@ const ProductDetails = ({ data }) => {
   );
 
   // console.log(selectedLocation, "selectedLocation");
-  // console.log(data?.product?.locations);
+  // console.log(data?.product?.locations, "locs");
   // console.log(dressInfo?.mainSubRegionId, "wwwwww");
 
   let checkTableShow = data?.product?.sizes?.find(
@@ -751,7 +751,7 @@ const ProductDetails = ({ data }) => {
         </article>
 
         {/* --------------------------- Images Slider ------------------------ */}
-        <article className="w-full hidden md:flex items-center">
+        {/* <article className="w-full hidden md:flex items-center">
           <button
             className="button mt-[-5px]"
             onClick={() => slider?.current?.slickPrev()}
@@ -825,7 +825,7 @@ const ProductDetails = ({ data }) => {
               <GrFormNext size={30} />
             ) : null}
           </button>
-        </article>
+        </article> */}
 
         <article className="w-full hidden md:flex items-center text-sm">
           {checkTableShow ? (

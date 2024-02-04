@@ -75,7 +75,6 @@ export default function SignIn() {
               theme: "light",
             });
             navigate("/profile/edit");
-            window.location.reload();
             setState({ ...state, email: "", password: "", errorsGroup: "" });
           }
         },

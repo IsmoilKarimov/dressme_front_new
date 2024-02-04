@@ -30,10 +30,12 @@ const ShoppingStoreOfficialTop = ({
   const toggleFilter = useCallback(() => setFilter(false), []);
   const [locationList, setLocationList] = useState([]);
   const [locationFilterList, setLocationFilterList] = useState([]);
-  const [selectLocation, setSelectLocation] = useState(dressInfo?.locationIdParams);
+  const [selectLocation, setSelectLocation] = useState(
+    dressInfo?.locationIdParams
+  );
   // For DropUp
   useEffect(() => {
-    setSelectLocation(dressInfo?.locationIdParams)
+    setSelectLocation(dressInfo?.locationIdParams);
   }, [dressInfo?.locationIdParams]);
   useEffect(() => {
     if (filter) {
@@ -51,12 +53,16 @@ const ShoppingStoreOfficialTop = ({
   };
   // Посмотреть отзывы
 
+  const [checkedData, setCheckedData] = useState(false);
+
   useEffect(() => {
-    setDressInfo({
-      ...dressInfo,
-      productShowSelectedLocation:
-        filteredData?.shop?.approved_shop_locations[0],
-    });
+    if (!checkedData) {
+      setDressInfo({
+        ...dressInfo,
+        productShowSelectedLocation:
+          filteredData?.shop?.approved_shop_locations[0],
+      });
+    }
     setLocationList([]);
     filteredData?.shop?.approved_shop_locations?.map((item) => {
       if (locationList?.length == 0) {
@@ -66,16 +72,20 @@ const ShoppingStoreOfficialTop = ({
         setLocationList((locationList) => [...locationList, item]);
       }
     });
-
   }, [filteredData?.shop?.approved_shop_locations]);
 
   const onChangeSelectLocation = (e) => {
     setSelectLocation(e?.target?.value);
   };
+
   const onhandleSelect = () => {
     setOpenLocationModal(false);
     if (selectLocation) {
-      setDressInfo({ ...dressInfo, locationIdParams: selectLocation });
+      setDressInfo({
+        ...dressInfo,
+        locationIdParams: selectLocation,
+        productShowSelectedLocation: checkedData,
+      });
     }
   };
 
@@ -89,12 +99,14 @@ const ShoppingStoreOfficialTop = ({
       <div className="filter">
         <section
           onClick={() => setFilter(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${filter ? "" : "hidden"
-            }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+            filter ? "" : "hidden"
+          }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${filter ? "bottom-0" : "bottom-[-800px] z-0"
-            }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+            filter ? "bottom-0" : "bottom-[-800px] z-0"
+          }`}
         >
           <FilterDropUp onClick={toggleFilter} />
         </section>
@@ -114,10 +126,11 @@ const ShoppingStoreOfficialTop = ({
             )}
             <div
               className={`w-full md:h-[90px]   h-fit flex flex-col md:flex-row items-center border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0
-            ${filteredData?.shop?.url_background_photo
-                  ? "mt-2 md:mt-0"
-                  : "md:mt-10"
-                }
+            ${
+              filteredData?.shop?.url_background_photo
+                ? "mt-2 md:mt-0"
+                : "md:mt-10"
+            }
             `}
             >
               {/* 1 */}
@@ -140,8 +153,9 @@ const ShoppingStoreOfficialTop = ({
                     {filteredData?.shop?.name || null}
                   </p>
                   <div
-                    className={`${filteredData?.shop?.overall_rating ? "flex" : "hidden"
-                      } items-center`}
+                    className={`${
+                      filteredData?.shop?.overall_rating ? "flex" : "hidden"
+                    } items-center`}
                   >
                     <div className="flex items-center mr-[6px]">
                       <StarIcons />
@@ -226,14 +240,16 @@ const ShoppingStoreOfficialTop = ({
                 </div>
                 <div className="flex items-center ml-auto">
                   <button
-                    className={`${filteredData?.shop?.gender_id === "2" ? "hidden" : "flex"
-                      }  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}
+                    className={`${
+                      filteredData?.shop?.gender_id === "2" ? "hidden" : "flex"
+                    }  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}
                   >
                     <ManGenIcons />
                   </button>
                   <button
-                    className={`${filteredData?.shop?.gender_id === "1" ? "hidden" : "flex"
-                      } flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}
+                    className={`${
+                      filteredData?.shop?.gender_id === "1" ? "hidden" : "flex"
+                    } flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}
                   >
                     <WomanGenIcons />
                   </button>
@@ -339,6 +355,9 @@ const ShoppingStoreOfficialTop = ({
                                   className="text-lg font-AeonikProRegular"
                                   value={item?.id}
                                   checked={selectLocation === item?.id}
+                                  onClick={() => {
+                                    setCheckedData(item);
+                                  }}
                                 >
                                   {" "}
                                   {item?.sub_region?.name_ru} ({item?.address} )
