@@ -40,13 +40,6 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
           { id: 3, img: data?.url_image_path_three },
         ]);
       });
-
-    setDressInfo({
-      ...dressInfo,
-      productShowSelectedLocation: modalInfo?.locations?.filter(
-        (e) => e?.id === dressInfo?.locationIdParams
-      )[0],
-    });
   }, [modalInfo, dressInfo?.locationIdParams]);
 
   useEffect(() => {
