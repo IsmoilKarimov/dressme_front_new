@@ -78,7 +78,7 @@ export default function UserEmailVerification() {
           } else if (res?.access_token) {
             Cookies.set("DressmeUserToken", res?.access_token);
             navigate("/profile/edit");
-            window.location.reload();
+            // window.location.reload();
             setState({ ...state, email: "", password: "", errorsGroup: "" });
           }
         },

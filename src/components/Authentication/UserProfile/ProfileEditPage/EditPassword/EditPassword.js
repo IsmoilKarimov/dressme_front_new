@@ -53,7 +53,7 @@ export default function EditPassword({ onClick }) {
               progress: undefined,
               theme: "light",
             });
-            window.location.reload(1000);
+            // window.location.reload(1000);
             setState({
               ...state,
               new_password: "",
