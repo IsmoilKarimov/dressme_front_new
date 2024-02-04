@@ -11,6 +11,7 @@ import {
 import RegionList from "../../ContextHook/RegionsList";
 import { useQuery } from "@tanstack/react-query";
 import { useHttp } from "../../hook/useHttp";
+import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 
 const TopHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -18,6 +19,7 @@ const TopHeader = () => {
   const [selectBtn, setSelectBtn] = useState(true);
   const [regionsShow, setRegionsShow] = useState(false);
   const toggleRegionsShow = useCallback(() => setRegionsShow(false), []);
+  const [data, setData] = useContext(HomeMainDataContext);
 
   // -----Language Change-------------------
   const [selectLang, setselectLang] = useState(1);
@@ -82,16 +84,20 @@ const TopHeader = () => {
     fetch(`${url}/regions`)
       .then((res) => res.json())
       .then((res) => {
-        setDressInfo({ ...dressInfo, mainRegionsList: res?.regions })
+        setData({
+          ...data, mainRegionsList: res?.regions
+        });
+        // setDressInfo({ ...dressInfo, mainRegionsList: res?.regions })
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
   useEffect(() => {
-    if (dressInfo?.mainRegionsList?.length === 0) {
-      fetchGetAllDataRegions();
-    }
+    // if (data?.mainRegionsList?.length === 0) {
+    fetchGetAllDataRegions();
+    // }
   }, []);
-  // console.log(dressInfo?.mainRegionsList, "mainRegionsList");
+  // console.log(data?.mainRegionsList?.length, "mainRegionsList");
+  // console.log(data?.mainRegionsList, "mainRegionsList");
   // console.log(dressInfo?.mainRegionId, dressInfo?.mainSubRegionId, "mainSubregionId");
   // -----------------------------------------------------
   return (
@@ -137,7 +143,7 @@ const TopHeader = () => {
                   Регион:
                 </div>
                 <div className="w-full min-w-[90px] font-AeonikProMedium flex items-center text-[13px]">
-                  {dressInfo?.mainRegionsList?.filter((e) => e?.id === dressInfo?.mainRegionId)
+                  {data?.mainRegionsList?.filter((e) => e?.id === dressInfo?.mainRegionId)
                     ?.map((item) => {
                       return (
                         <div key={item?.id}>

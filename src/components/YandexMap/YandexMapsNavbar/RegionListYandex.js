@@ -107,8 +107,8 @@ function RegionListYandex({ onClick }) {
                 </div>
 
                 <div className="w-full overflow-auto  flex flex-col gap-y-4 pt-3  overflow-x-hidden mt-3 h-[50vh] md:h-[60vh] VerticelScroll pr-2 ">
-                    {dressInfo?.mainRegionsList ? (
-                        dressInfo?.mainRegionsList?.map((data) => {
+                    {data?.mainRegionsList?.length > 0 ? (
+                        data?.mainRegionsList?.map((data) => {
                             return (
                                 <div
                                     key={data?.id}
