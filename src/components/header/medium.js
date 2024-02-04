@@ -55,7 +55,6 @@ import Cookies from "js-cookie";
 import { MdClose } from "react-icons/md";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 
-import MainAudio from "../../audios/dressMeAudio.mp3";
 import { MainPageAudioContext } from "../../ContextHook/MainPageAudio";
 
 const MediumHeader = () => {
@@ -65,24 +64,6 @@ const MediumHeader = () => {
   const [searchMarketName, setSearchMarketName] = useState();
   const [regionsList, setRegionsList] = useState(false);
   const toggleRegionsShow = useCallback(() => setRegionsList(false), []);
-
-  // Audio ----------------------------
-
-  const AudioRef = useRef();
-
-  useEffect(() => {
-    if (audioPlay) {
-      if (AudioRef.current) {
-        AudioRef.current.play();
-      }
-    } else {
-      if (AudioRef.current) {
-        AudioRef.current.pause();
-      }
-    }
-  }, [audioPlay]);
-
-  // Audio ----------------------------
 
   const [state, setState] = useState({
     hamburgerMenu: false,
@@ -406,14 +387,12 @@ const MediumHeader = () => {
                 <div
                   onClick={() => {
                     setAudioPlay(!audioPlay);
-                    console.log("played");
                   }}
                   className={` bg-btnBgColor w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
                 >
                   <span className="w-[22px]">
                     <VolumeIcons colors={dressInfo?.ColorSeason} />
                   </span>
-                  <audio loop ref={AudioRef} src={MainAudio}></audio>
                 </div>
 
                 {/* Weather section */}
