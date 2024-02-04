@@ -15,19 +15,19 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <StrictMode>
   <QueryClientProvider client={queryClient}>
-    <DressMenu>
-      <BrowserRouter>
-        <HomeMainDataContextProvider>
-          <SliderPhotosColorContextProvider>
-            <ProfileDataContextProvider>
-              <MainPageAudioContextProvider>
+    <MainPageAudioContextProvider>
+      <DressMenu>
+        <BrowserRouter>
+          <HomeMainDataContextProvider>
+            <SliderPhotosColorContextProvider>
+              <ProfileDataContextProvider>
                 <App />
-              </MainPageAudioContextProvider>
-            </ProfileDataContextProvider>
-          </SliderPhotosColorContextProvider>
-        </HomeMainDataContextProvider>
-      </BrowserRouter>
-    </DressMenu>
+              </ProfileDataContextProvider>
+            </SliderPhotosColorContextProvider>
+          </HomeMainDataContextProvider>
+        </BrowserRouter>
+      </DressMenu>
+    </MainPageAudioContextProvider>
   </QueryClientProvider>
   // </StrictMode>
 );
