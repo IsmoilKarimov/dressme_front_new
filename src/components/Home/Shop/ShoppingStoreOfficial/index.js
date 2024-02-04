@@ -4,7 +4,7 @@ import ShoppingStoreOfficialTop from "./ShoppingStoreOfficialTop/ShoppingStoreOf
 import LocationOfYandex from "../../Products/SignleMainProducts/SingleProduct/Product_Detail/LocationOfYandex/LocationOfYandex";
 import ShowPageComment from "./ShowPageComment/ShowPageComment";
 import { GoBackIcon } from "../../../../assets/icons";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import ShopOfficialCard from "./ShoppingStoreCategory/ShopOfficialCards/ShopOfficialCard";
@@ -93,6 +93,7 @@ const ShoppingStoreOfficial = () => {
       top: 0,
     });
   }, []);
+  const navigate = useNavigate()
   const { id } = useParams();
   const newId = id.replace(":", "");
 
@@ -112,15 +113,30 @@ const ShoppingStoreOfficial = () => {
       if (item?.id === Number(newId)) {
         if (dressInfo?.mainSubRegionId) {
           setLocationNewList([])
-          item?.approved_shop_locations?.map(data => {
-            if (dressInfo?.mainSubRegionId == data?.sub_region_id) {
-              setLocationNewList((locationNewList) => [...locationNewList, data])
-              setDressInfo({
-                ...dressInfo,
-                locationIdParams: data?.id,
-              });
-            }
-          })
+          let foundElement = item?.approved_shop_locations.find(function (element) {
+            return Number(element.sub_region_id) === dressInfo?.mainSubRegionId;
+          });
+          setDressInfo({
+            ...dressInfo,
+            locationIdParams: foundElement?.id,
+          });
+          let containsSubRegion = item?.approved_shop_locations.some(function (element) {
+            return Number(element.sub_region_id) === dressInfo?.mainSubRegionId;
+          });
+          if (!containsSubRegion) {
+            navigate('/')
+          }
+          console.log(foundElement, "foundElement");
+          // item?.approved_shop_locations?.map(data => {
+
+          // if (dressInfo?.mainSubRegionId == data?.sub_region_id) {
+          //   setLocationNewList((locationNewList) => [...locationNewList, data])
+          //   setDressInfo({
+          //     ...dressInfo,
+          //     locationIdParams: data?.id,
+          //   });
+          // }
+          // })
         }
         if (!dressInfo?.mainSubRegionId) {
           setDressInfo({
