@@ -852,7 +852,7 @@ function FilterList({
                                                 </button>
                                             </div>}
                                         <div
-                                            className={`${underwearData?.length > 8 ? "flex" : "hidden"
+                                            className={`${underwearData?.length > 12 ? "flex" : "hidden"
                                                 } w-2/3 items-center justify-end`}
                                         >
                                             <button
