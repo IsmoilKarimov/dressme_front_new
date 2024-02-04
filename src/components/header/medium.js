@@ -1,4 +1,10 @@
-import React, { useState, useContext, useEffect, useCallback } from "react";
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+  useRef,
+} from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./header.css";
 import { dressMainData } from "../../ContextHook/ContextMenu";
@@ -49,12 +55,35 @@ import Cookies from "js-cookie";
 import { MdClose } from "react-icons/md";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 
+import MainAudio from "../../audios/audio.MP3";
+
 const MediumHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData, , , page, setPage] = useContext(HomeMainDataContext);
   const [searchMarketName, setSearchMarketName] = useState();
   const [regionsList, setRegionsList] = useState(false);
   const toggleRegionsShow = useCallback(() => setRegionsList(false), []);
+
+  // Audio ----------------------------
+
+  const [audioPlay, setAudioPlay] = useState(false);
+
+  const AudioRef = useRef();
+
+  useEffect(() => {
+    if (audioPlay) {
+      if (AudioRef.current) {
+        AudioRef.current.play();
+      }
+    } else {
+      if (AudioRef.current) {
+        AudioRef.current.pause();
+        AudioRef.current.currentTime = 0;
+      }
+    }
+  }, [audioPlay]);
+
+  // Audio ----------------------------
 
   const [state, setState] = useState({
     hamburgerMenu: false,
@@ -378,9 +407,15 @@ const MediumHeader = () => {
                 <div
                   className={` bg-btnBgColor w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
                 >
-                  <span className="w-[22px]">
+                  <span
+                    onClick={() => {
+                      setAudioPlay(!audioPlay);
+                    }}
+                    className="w-[22px]"
+                  >
                     <VolumeIcons colors={dressInfo?.ColorSeason} />
                   </span>
+                  <audio ref={AudioRef} src={MainAudio}></audio>
                 </div>
 
                 {/* Weather section */}
