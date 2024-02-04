@@ -55,7 +55,7 @@ import Cookies from "js-cookie";
 import { MdClose } from "react-icons/md";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 
-import MainAudio from "../../audios/audio.MP3";
+import MainAudio from "../../audios/dressMeAudio.mp3";
 
 const MediumHeader = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -78,7 +78,6 @@ const MediumHeader = () => {
     } else {
       if (AudioRef.current) {
         AudioRef.current.pause();
-        AudioRef.current.currentTime = 0;
       }
     }
   }, [audioPlay]);
@@ -415,7 +414,7 @@ const MediumHeader = () => {
                   >
                     <VolumeIcons colors={dressInfo?.ColorSeason} />
                   </span>
-                  <audio ref={AudioRef} src={MainAudio}></audio>
+                  <audio loop ref={AudioRef} src={MainAudio}></audio>
                 </div>
 
                 {/* Weather section */}
