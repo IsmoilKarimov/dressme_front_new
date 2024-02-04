@@ -98,21 +98,20 @@ const ShoppingStoreOfficial = () => {
   const newId = id.replace(":", "");
 
   const refreshLocationId = () => {
-    data?.getMainProductCard?.shops?.map((item) => {
-      if (item?.id === Number(newId)) {
-        setDressInfo({
-          ...dressInfo,
-          locationIdParams: item?.approved_shop_locations[0]?.id,
-        });
-      }
-    });
+    // data?.getMainProductCard?.shops?.map((item) => {
+    //   if (item?.id === Number(newId)) {
+    //     setDressInfo({
+    //       ...dressInfo,
+    //       locationIdParams: item?.approved_shop_locations[0]?.id,
+    //     });
+    //   }
+    // });
   };
   const [locationNewList, setLocationNewList] = useState([])
   useEffect(() => {
     data?.getMainProductCard?.shops?.map((item) => {
       if (item?.id === Number(newId)) {
         if (dressInfo?.mainSubRegionId) {
-          setLocationNewList([])
           let foundElement = item?.approved_shop_locations.find(function (element) {
             return Number(element.sub_region_id) === dressInfo?.mainSubRegionId;
           });
@@ -120,23 +119,15 @@ const ShoppingStoreOfficial = () => {
             ...dressInfo,
             locationIdParams: foundElement?.id,
           });
-          let containsSubRegion = item?.approved_shop_locations.some(function (element) {
+          // let containsSubRegion = item?.approved_shop_locations.some(function (element) {
+          //   return Number(element.sub_region_id) === dressInfo?.mainSubRegionId;
+          // });
+          let index = item?.approved_shop_locations.findIndex(function (element) {
             return Number(element.sub_region_id) === dressInfo?.mainSubRegionId;
           });
-          if (!containsSubRegion) {
+          if (index === -1) {
             navigate('/')
           }
-          console.log(foundElement, "foundElement");
-          // item?.approved_shop_locations?.map(data => {
-
-          // if (dressInfo?.mainSubRegionId == data?.sub_region_id) {
-          //   setLocationNewList((locationNewList) => [...locationNewList, data])
-          //   setDressInfo({
-          //     ...dressInfo,
-          //     locationIdParams: data?.id,
-          //   });
-          // }
-          // })
         }
         if (!dressInfo?.mainSubRegionId) {
           setDressInfo({

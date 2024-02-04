@@ -80,7 +80,7 @@ const TopHeader = () => {
   // ----------Get Region List
   const url = "https://api.dressme.uz/api/main";
 
-  useQuery(["region-data"], () => {
+  useQuery(["region-data-top"], () => {
     return request({ url: "/main/regions", token: true });
   },
     {
