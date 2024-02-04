@@ -11,6 +11,7 @@ export const HomeMainDataContextProvider = ({ children }) => {
     products: [],
     loader: true,
     btnLoader: false,
+    mainRegionsList: []
   });
 
   const [page, setPage] = useState(1);

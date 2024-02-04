@@ -19,7 +19,7 @@ function RegionList({ onClick }) {
     // openModalRegions: show,
     uniqueId: null,
   });
-  const [, , , , , setPage] = useContext(HomeMainDataContext);
+  const [data, , , , , setPage] = useContext(HomeMainDataContext);
   // const url = "https://api.dressme.uz/api/seller";
 
   const [activeIndex, setActiveIndex] = useState();
@@ -114,26 +114,24 @@ function RegionList({ onClick }) {
         </div>
 
         <div className="w-full overflow-auto  flex flex-col gap-y-4 pt-3  overflow-x-hidden mt-3 h-[50vh] md:h-[60vh] VerticelScroll pr-2 ">
-          {dressInfo?.mainRegionsList?.length > 0 ? (
-            dressInfo?.mainRegionsList?.map((data) => {
+          {data?.mainRegionsList?.length > 0 ? (
+            data?.mainRegionsList?.map((data) => {
               return (
                 <div
                   key={data?.id}
-                  className={`${
-                    data.id || data.sub_regions.id ? "" : ""
-                  } w-full h-fit `}
+                  className={`${data.id || data.sub_regions.id ? "" : ""
+                    } w-full h-fit `}
                 >
                   <div
-                    className={`flex items-center ${
-                      data?.id == 2 ? "" : "opacity-50"
-                    } `}
+                    className={`flex items-center ${data?.id == 2 ? "" : "opacity-50"
+                      } `}
                   >
                     <div
                       onClick={
                         data?.id == 2
                           ? () => {
-                              accordionCityList(data?.id);
-                            }
+                            accordionCityList(data?.id);
+                          }
                           : null
                       }
                       className="w-full cursor-pointer flex items-center  border-b border-[#F0F0F0] "
@@ -176,11 +174,10 @@ function RegionList({ onClick }) {
                         </label>
                       )}
                       <span
-                        className={`${
-                          activeIndex === data?.id
+                        className={`${activeIndex === data?.id
                             ? "rotate-[-0deg] duration-300"
                             : "rotate-[-180deg] duration-300"
-                        } ml-auto`}
+                          } ml-auto`}
                       >
                         <ArrowTopIcons colors={"#a1a1a1"} />
                       </span>
@@ -188,11 +185,10 @@ function RegionList({ onClick }) {
                   </div>
                   <div
                     className={`w-full grid grid-cols-2 xs:grid-cols-3 duration-[400ms]
-                              ${
-                                activeIndex == data?.id
-                                  ? "openAccardion"
-                                  : "CloseAccardion"
-                              } `}
+                              ${activeIndex == data?.id
+                        ? "openAccardion"
+                        : "CloseAccardion"
+                      } `}
                   >
                     {data?.sub_regions?.map((item) => {
                       return (

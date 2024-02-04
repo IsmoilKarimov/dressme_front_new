@@ -12,9 +12,12 @@ import {
 } from "../../../assets/icons";
 import { EnglishFlag, RussianFlag, UzbekFlag } from "../../../assets";
 import Cookies from "js-cookie";
+import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 
 const YandexTop = ({ onClick }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [data, setData] = useContext(HomeMainDataContext);
+
   const [state, setState] = useState({
     openLang: false,
     openRegion: false,
@@ -70,14 +73,17 @@ const YandexTop = ({ onClick }) => {
     fetch(`${url}/regions`)
       .then((res) => res.json())
       .then((res) => {
-        setDressInfo({ ...dressInfo, mainRegionsList: res?.regions })
+        // setDressInfo({ ...dressInfo, mainRegionsList: res?.regions })
+        setData({
+          ...data, mainRegionsList: res?.regions
+        });
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
   useEffect(() => {
-    if (dressInfo?.mainRegionsList?.length === 0) {
-      fetchGetAllDataRegions();
-    }
+    // if (data?.mainRegionsList?.length === 0) {
+    fetchGetAllDataRegions();
+    // }
   }, []);
   return (
     <div className="flex justify-between items-center m-auto py-[2px]">
@@ -93,7 +99,7 @@ const YandexTop = ({ onClick }) => {
             Регион:
           </span>
           <div className="w-full min-w-[90px] font-AeonikProMedium flex items-center text-[13px]">
-            {dressInfo?.mainRegionsList?.filter((e) => e?.id === dressInfo?.mainRegionId)?.map((item) => {
+            {data?.mainRegionsList?.filter((e) => e?.id === dressInfo?.mainRegionId)?.map((item) => {
 
               return (
                 <React.Fragment key={item?.id}>
