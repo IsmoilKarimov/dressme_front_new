@@ -79,7 +79,9 @@ function YandexMapsDressMe() {
 
   const fetchGetAllData = () => {
     var params = new URLSearchParams();
-    dressInfo?.mainRegionId && params.append("region", dressInfo?.mainRegionId);
+    dressInfo?.mainRegionId &&
+      !dressInfo?.mainSubRegionId &&
+      params.append("region", dressInfo?.mainRegionId);
     dressInfo?.mainSubRegionId &&
       params.append("sub_region", dressInfo?.mainSubRegionId);
     FilterSearchByBrand?.searchMarketName &&
