@@ -69,6 +69,9 @@ const RouterMain = () => {
   // useEffect(() => {
   //   setLocationWindow(location.pathname);
   // }, [location.pathname]);
+
+  let pathName = window?.location?.pathname;
+
   return (
     <Fragment>
       <Header />
@@ -345,7 +348,8 @@ const RouterMain = () => {
         <Suspense fallback={<>Loading...</>}>
         </Suspense>
       ) : null} */}
-      <Footer />
+
+      {pathName?.includes("locations") ? null : <Footer />}
     </Fragment>
   );
 };

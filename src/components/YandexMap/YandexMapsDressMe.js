@@ -189,11 +189,11 @@ function YandexMapsDressMe() {
     console.error("Error loading Placemark");
   };
 
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-    });
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: 0,
+  //   });
+  // }, []);
 
   const [carouselIndex, setCarouselIndex] = useState(0);
 
