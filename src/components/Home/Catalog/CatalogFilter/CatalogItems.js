@@ -18,56 +18,56 @@ export default function CatalogItems() {
     openTypesofClothes: false,
   });
 
-  const [getGenderId, setGetGenderId] = useState(null)
-  const [getCategory, setGetCategory] = useState(null)
-  const [getRating, setGetRating] = useState(null)
-  const [getRange, setGetRange] = useState(null)
-  const [dataColor, setDataColor] = useState([])
-  const [discount, setDiscount] = useState(false)
-  const [getOutWearList, setGetOutWearList] = useState(null)
-  const [getUnderWearList, setGetUnderWearList] = useState(null)
-  const [getFootWearList, setGetFootWearList] = useState(null)
-  const [filterToggle, setFilterToggle] = useState(false)
+  const [getGenderId, setGetGenderId] = useState(null);
+  const [getCategory, setGetCategory] = useState(null);
+  const [getRating, setGetRating] = useState(null);
+  const [getRange, setGetRange] = useState(null);
+  const [dataColor, setDataColor] = useState([]);
+  const [discount, setDiscount] = useState(false);
+  const [getOutWearList, setGetOutWearList] = useState(null);
+  const [getUnderWearList, setGetUnderWearList] = useState(null);
+  const [getFootWearList, setGetFootWearList] = useState(null);
+  const [filterToggle, setFilterToggle] = useState(false);
 
   const handleToggle = () => {
     if (filterToggle) {
-      setFilterToggle(false)
+      setFilterToggle(false);
     } else {
-      setFilterToggle(true)
+      setFilterToggle(true);
     }
   };
   const genderId = (childData) => {
-    setGetGenderId(childData)
-    setPageId(1)
-  }
+    setGetGenderId(childData);
+    setPageId(1);
+  };
   function discountId(childData) {
-    setDiscount(childData)
-    setPageId(1)
+    setDiscount(childData);
+    setPageId(1);
   }
   const categoryId = (childData) => {
-    setGetCategory(childData)
-    setPageId(1)
-  }
+    setGetCategory(childData);
+    setPageId(1);
+  };
   const getBadgePrice = (childData) => {
-    setGetRange(childData)
-    setPageId(1)
-  }
+    setGetRange(childData);
+    setPageId(1);
+  };
   const getRatingList = (childData) => {
-    setGetRating(childData)
-    setPageId(1)
-  }
+    setGetRating(childData);
+    setPageId(1);
+  };
   const outWearList = (childData) => {
-    setGetOutWearList(childData)
-    setPageId(1)
-  }
+    setGetOutWearList(childData);
+    setPageId(1);
+  };
   const underWearList = (childData) => {
-    setGetUnderWearList(childData)
-    setPageId(1)
-  }
+    setGetUnderWearList(childData);
+    setPageId(1);
+  };
   const footWearList = (childData) => {
-    setGetFootWearList(childData)
-    setPageId(1)
-  }
+    setGetFootWearList(childData);
+    setPageId(1);
+  };
 
   useEffect(() => {
     if (dressInfo?.openCatalogFilter) {
@@ -79,7 +79,10 @@ export default function CatalogItems() {
 
   const navigate = useNavigate();
   const paramId = useParams();
-  const newId = paramId?.id?.replace(":", "")
+
+  console.log(paramId?.id, " id");
+
+  const newId = paramId?.id?.replace(":", "");
 
   const handleOpenCategories = (newOpen) => {
     setState({ ...state, opensports: newOpen });
@@ -97,8 +100,9 @@ export default function CatalogItems() {
             onClick={() => {
               handleCategories(data?.id);
             }}
-            className={`${newId === data?.id ? "bg-bgColor" : null
-              } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+            className={`${
+              Number(paramId?.id) === data?.id ? "bg-bgColor" : null
+            } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {data?.name_ru}
           </p>
@@ -118,29 +122,47 @@ export default function CatalogItems() {
     discount && params.append("discount", discount);
     getCategory && params.append("category", getCategory);
     getRating && params.append("rating", getRating);
-    getFootWearList?.wear_size && params.append("footwear_size", getFootWearList?.wear_size);
+    getFootWearList?.wear_size &&
+      params.append("footwear_size", getFootWearList?.wear_size);
     // OUTWEAR SIZES
     getOutWearList?.letter_size &&
       params.append("outwear_size[letter_size]", getOutWearList?.letter_size);
-    !getOutWearList?.letter_size && getOutWearList?.min_wear_size &&
-      params.append("outwear_size[min_wear_size]", getOutWearList?.min_wear_size);
-    !getOutWearList?.letter_size && getOutWearList?.max_wear_size &&
-      params.append("outwear_size[max_wear_size]", getOutWearList?.max_wear_size);
+    !getOutWearList?.letter_size &&
+      getOutWearList?.min_wear_size &&
+      params.append(
+        "outwear_size[min_wear_size]",
+        getOutWearList?.min_wear_size
+      );
+    !getOutWearList?.letter_size &&
+      getOutWearList?.max_wear_size &&
+      params.append(
+        "outwear_size[max_wear_size]",
+        getOutWearList?.max_wear_size
+      );
 
     // UNDERWEAR SIZES
     getUnderWearList?.letter_size &&
-      params.append("underwear_size[letter_size]", getUnderWearList?.letter_size);
-    !getUnderWearList?.letter_size && getUnderWearList?.min_wear_size &&
-      params.append("underwear_size[min_wear_size]", getUnderWearList?.min_wear_size);
-    !getUnderWearList?.letter_size && getUnderWearList?.max_wear_size &&
-      params.append("underwear_size[max_wear_size]", getUnderWearList?.max_wear_size);
+      params.append(
+        "underwear_size[letter_size]",
+        getUnderWearList?.letter_size
+      );
+    !getUnderWearList?.letter_size &&
+      getUnderWearList?.min_wear_size &&
+      params.append(
+        "underwear_size[min_wear_size]",
+        getUnderWearList?.min_wear_size
+      );
+    !getUnderWearList?.letter_size &&
+      getUnderWearList?.max_wear_size &&
+      params.append(
+        "underwear_size[max_wear_size]",
+        getUnderWearList?.max_wear_size
+      );
 
     pageId && params.append("page", pageId);
 
-    getRange?.min &&
-      params.append("budget[from]", getRange?.min);
-    getRange?.max &&
-      params.append("budget[to]", getRange?.max);
+    getRange?.min && params.append("budget[from]", getRange?.min);
+    getRange?.max && params.append("budget[to]", getRange?.max);
     dataColor?.length > 0 &&
       dataColor?.forEach((e, index) => {
         params.append("colors[]", dataColor[index]);
@@ -168,7 +190,7 @@ export default function CatalogItems() {
     getUnderWearList,
     getFootWearList,
     dressInfo?.mainRegionId,
-    dressInfo?.mainSubRegionId
+    dressInfo?.mainSubRegionId,
   ]);
 
   // useEffect(() => [
@@ -195,7 +217,8 @@ export default function CatalogItems() {
                         backgroundSize: "contain",
                         backgroundRepeat: "no-repeat",
                       }}
-                      className="absolute w-[80px] h-[80px] md:w-[120px] md:h-[160px] overflow-hidden  left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center  bg-white">
+                      className="absolute w-[80px] h-[80px] md:w-[120px] md:h-[160px] overflow-hidden  left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center  bg-white"
+                    >
                       {/* <img
                         src={filterData?.category?.url_photo}
                         alt="url_photo"
@@ -234,8 +257,9 @@ export default function CatalogItems() {
                             <BiChevronDown
                               size={22}
                               style={{ color: "#000" }}
-                              className={`${state?.opensports ? "rotate-[-180deg]" : ""
-                                } duration-200`}
+                              className={`${
+                                state?.opensports ? "rotate-[-180deg]" : ""
+                              } duration-200`}
                             />
                           </span>
                         </Popover>
@@ -249,13 +273,18 @@ export default function CatalogItems() {
               <article className="w-full border-b border-searchBgColor">
                 <article className="w-full hidden md:block mb-10">
                   <ul className=" flex flex-row items-center flex-wrap gap-x-[14px] gap-y-[14px]">
-                    {filterData?.section?.sub_sections?.map((catalog, index) => (
-                      <li key={index} className="text-[15px] font-AeonikProMedium">
-                        <button className="focus:bg-borderWinter focus:text-white hover:bg-borderWinter hover:text-white bg-white border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]">
-                          {catalog.name_ru}
-                        </button>
-                      </li>
-                    ))}
+                    {filterData?.section?.sub_sections?.map(
+                      (catalog, index) => (
+                        <li
+                          key={index}
+                          className="text-[15px] font-AeonikProMedium"
+                        >
+                          <button className="focus:bg-borderWinter focus:text-white hover:bg-borderWinter hover:text-white bg-white border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]">
+                            {catalog.name_ru}
+                          </button>
+                        </li>
+                      )
+                    )}
                   </ul>
                 </article>
               </article>
@@ -267,25 +296,40 @@ export default function CatalogItems() {
               type="button"
               className="w-[175px] gap-x-2 h-[44px] border border-[#F2F2F2] flex items-center justify-center  bg-white rounded-lg active:scale-95	active:opacity-70"
             >
-              <span className=""> <SortIcons /></span>
-              {filterToggle ?
-                <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black"> Скрыть</p>
-                :
-                <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black"> Фильтр</p>}
+              <span className="">
+                {" "}
+                <SortIcons />
+              </span>
+              {filterToggle ? (
+                <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                  {" "}
+                  Скрыть
+                </p>
+              ) : (
+                <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                  {" "}
+                  Фильтр
+                </p>
+              )}
             </button>
           </div>
 
           <section className="flex justify-between mb-10 ">
             {/* FOR MOBILE VERSION */}
             <article
-              className={`w-full h-[100vh] overflow-hidden overflow-y-auto  md:hidden fixed top-0 bottom-0 left-0 right-0 ${dressInfo?.openCatalogFilter ? " ml-[1px] " : " ml-[-1000px]"
-                }   bg-white z-[105] duration-500 `}
+              className={`w-full h-[100vh] overflow-hidden overflow-y-auto  md:hidden fixed top-0 bottom-0 left-0 right-0 ${
+                dressInfo?.openCatalogFilter ? " ml-[1px] " : " ml-[-1000px]"
+              }   bg-white z-[105] duration-500 `}
             >
               {/* <CatalogFilterGroup paramId={newId} /> */}
             </article>
 
             {/* FOR DESCTOP VERSION */}
-            <article className={`${filterToggle ? "md:block" : "md:hidden"} hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0`}>
+            <article
+              className={`${
+                filterToggle ? "md:block" : "md:hidden"
+              } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0`}
+            >
               {/* <CatalogFilterGroup
                 setFilterData={setFilterData}
                 pageId={pageId}
@@ -308,12 +352,16 @@ export default function CatalogItems() {
                 setFilterToggle={setFilterToggle}
               />
             </article>
-            <article className={`${filterToggle ? 'md:w-[77%]' : "md:w-[100%]"} w-full h-full ss:px-4 md:px-0`}>
+            <article
+              className={`${
+                filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+              } w-full h-full ss:px-4 md:px-0`}
+            >
               <CatalogCard filterData={filterData} setPageId={setPageId} />
             </article>
           </section>
         </article>
       </section>
-    </main >
+    </main>
   );
 }

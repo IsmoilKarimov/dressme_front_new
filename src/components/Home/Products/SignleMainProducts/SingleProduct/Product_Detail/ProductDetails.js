@@ -770,7 +770,7 @@ const ProductDetails = ({ data }) => {
         </article>
 
         {/* --------------------------- Images Slider ------------------------ */}
-        {/* <article className="w-full hidden md:flex items-center">
+        <article className="w-full hidden md:flex items-center">
           <button
             className="button mt-[-5px]"
             onClick={() => slider?.current?.slickPrev()}
@@ -844,7 +844,7 @@ const ProductDetails = ({ data }) => {
               <GrFormNext size={30} />
             ) : null}
           </button>
-        </article> */}
+        </article>
 
         <article className="w-full hidden md:flex items-center text-sm">
           {checkTableShow ? (
