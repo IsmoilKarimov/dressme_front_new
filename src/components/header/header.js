@@ -68,7 +68,9 @@ const Header = () => {
     setData({ ...data, btnLoader: true });
     var params = new URLSearchParams();
     params.append("page", page);
-    dressInfo?.mainRegionId && params.append("region", dressInfo?.mainRegionId);
+    dressInfo?.mainRegionId &&
+      !dressInfo?.mainSubRegionId &&
+      params.append("region", dressInfo?.mainRegionId);
     dressInfo?.mainSubRegionId &&
       params.append("sub_region", dressInfo?.mainSubRegionId);
     dressInfo?.mainSearchName &&
