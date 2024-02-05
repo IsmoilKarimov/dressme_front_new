@@ -29,10 +29,12 @@ import {
 import Cookies from "js-cookie";
 import { MdClose } from "react-icons/md";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
+import { MainPageAudioContext } from "../../../ContextHook/MainPageAudio";
 
 const YandexMedium = ({ getYandexSearchName }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data] = useContext(HomeMainDataContext);
+  const [audioPlay, setAudioPlay] = useContext(MainPageAudioContext);
 
   const navigate = useNavigate();
   const handleMainMenu = () => {
@@ -141,7 +143,6 @@ const YandexMedium = ({ getYandexSearchName }) => {
   };
   return (
     <div className=" flex justify-between items-center m-auto ">
-
       {/* Starting of Full Screen page section */}
       <div className="w-full flex justify-center items-center py-3 overscroll-none overflow-y-hidden">
         <div className=" w-full flex items-center ss:w-full md:w-fit justify-between">
@@ -184,6 +185,9 @@ const YandexMedium = ({ getYandexSearchName }) => {
 
           {/* Voice section */}
           <div
+            onClick={() => {
+              setAudioPlay(!audioPlay);
+            }}
             className={`bg-white w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
           >
             <span>
