@@ -52,7 +52,7 @@ const ProductDetails = ({ data }) => {
 
   // console.log(dressInfo?.linkedFrom);
   // console.log(dressInfo?.productShowSelectedLocation, "from context");
-  // console.log(dressInfo?.mainSubRegionId);
+  // console.log(dressInfo?.locationIdParams, "iddd");
 
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
@@ -241,9 +241,18 @@ const ProductDetails = ({ data }) => {
 
   let checkedData = {};
 
-  const [selectedLocation, setSelectedLocation] = useState(
-    data?.product?.locations[0]
-  );
+  const [selectedLocation, setSelectedLocation] = useState();
+
+  useEffect(() => {
+    if (!selectedLocation) {
+      let n =
+        data?.product?.locations?.filter(
+          (v) => v?.id === dressInfo?.locationIdParams
+        ) || [];
+
+      setSelectedLocation(n[0]);
+    }
+  }, [data]);
 
   // console.log(selectedLocation, "selectedLocation");
   // console.log(data?.product?.locations, "locs");
@@ -697,6 +706,7 @@ const ProductDetails = ({ data }) => {
                                   <Radio
                                     value={data?.id}
                                     name="location"
+                                    checked={selectedLocation?.id === item?.id}
                                     className="text-lg font-AeonikProRegular"
                                   >
                                     {data?.sub_region?.name_ru} ({data?.address}

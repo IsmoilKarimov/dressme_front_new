@@ -33,6 +33,7 @@ const ShoppingStoreOfficialTop = ({
   const [selectLocation, setSelectLocation] = useState(
     dressInfo?.locationIdParams
   );
+
   // For DropUp
   useEffect(() => {
     setSelectLocation(dressInfo?.locationIdParams);
@@ -57,10 +58,13 @@ const ShoppingStoreOfficialTop = ({
 
   useEffect(() => {
     if (!checkedData) {
+      let n = locationList?.find((v) => {
+        return v.id == selectLocation;
+      });
+
       setDressInfo({
         ...dressInfo,
-        productShowSelectedLocation:
-          filteredData?.shop?.approved_shop_locations[0],
+        productShowSelectedLocation: n,
       });
     }
     setLocationList([]);

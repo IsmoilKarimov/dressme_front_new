@@ -55,13 +55,16 @@ const ShoppingStoreOfficialTop = ({
 
   const [checkedData, setCheckedData] = useState(false);
   useEffect(() => {
-    if (!checkedData) {
-      setDressInfo({
-        ...dressInfo,
-        productShowSelectedLocation:
-          filteredData?.shop?.approved_shop_locations[0],
-      });
-    }
+    // if (!checkedData) {
+    //   let n = locationList?.find((v) => {
+    //     return v.id == selectLocation;
+    //   });
+
+    //   setDressInfo({
+    //     ...dressInfo,
+    //     productShowSelectedLocation: n,
+    //   });
+    // }
 
     setLocationList([]);
     filteredData?.shop?.approved_shop_locations?.map((item) => {
@@ -72,7 +75,7 @@ const ShoppingStoreOfficialTop = ({
         setLocationList((locationList) => [...locationList, item]);
       }
     });
-  }, []);
+  }, [filteredData?.shop?.approved_shop_locations]);
 
   const onChangeSelectLocation = (e) => {
     setSelectLocation(e?.target?.value);
