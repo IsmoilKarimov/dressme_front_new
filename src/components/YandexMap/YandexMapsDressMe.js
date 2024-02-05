@@ -171,7 +171,6 @@ function YandexMapsDressMe() {
 
   // --------------Open Main MenusetDressInfo
   const handlePlaceMark = (shopId, value, cordinate) => {
-    console.log();
     setOpenCordinateMap(cordinate);
     setDressInfo({
       ...dressInfo,
@@ -195,6 +194,8 @@ function YandexMapsDressMe() {
       top: 0,
     });
   }, []);
+
+  const [carouselIndex, setCarouselIndex] = useState(0);
 
   // dressInfo?.yandexGetMarketId,
   return (
@@ -241,6 +242,8 @@ function YandexMapsDressMe() {
               onClick={toggleCarouselModal}
               getImgGallery={getImgGallery}
               modalInfo={getMapsInfo}
+              carouselIndex={carouselIndex}
+              setCarouselIndex={setCarouselIndex}
             />
           </div>
         )}
@@ -397,6 +400,7 @@ function YandexMapsDressMe() {
                     data?.latitude,
                     data?.longitude
                   );
+                  setCarouselIndex(0);
                 }}
                 geometry={[data?.latitude, data?.longitude]}
                 options={{

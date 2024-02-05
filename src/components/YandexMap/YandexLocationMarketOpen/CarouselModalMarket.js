@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 // import { MenuCloseIcons } from "../../../assets/icons";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Slider from "react-slick";
@@ -51,6 +51,13 @@ function CarouselModalMarket({ getAllImgGallery }) {
     dots: false,
     speed: 500,
   };
+
+  const sliderRef = useRef();
+
+  useEffect(() => {
+    sliderRef?.current?.slickGoTo(getAllImgGallery?.index);
+  }, [getAllImgGallery?.index]);
+
   return (
     <section
       className={` rounded-lg w-full sm:w-fit h-fit  cursor-pointer flex flex-col items-center justify-center
@@ -58,11 +65,12 @@ function CarouselModalMarket({ getAllImgGallery }) {
     >
       <div className="w-full h-full ">
         <Slider
+          ref={sliderRef}
           className="relative !w-full  xs:!w-[580px]  !overflow-visible  md:!w-[780px] sm:!h-[550px] md:!h-[700px]   md:rounded-lg sm:px-[50px]"
           {...settingsModal}
         >
-          {getAllImgGallery?.length &&
-            getAllImgGallery?.map((data) => {
+          {getAllImgGallery?.newImgList?.length &&
+            getAllImgGallery?.newImgList?.map((data) => {
               return (
                 <React.Fragment key={data?.id}>
                   {data?.img && (
