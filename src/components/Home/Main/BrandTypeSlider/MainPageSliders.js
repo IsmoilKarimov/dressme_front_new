@@ -186,12 +186,15 @@ function MainPageSliders() {
       ?.filter((e) => e?.id == id)
       ?.map((item) => {
         if (dressInfo?.mainSubRegionId) {
-          let foundElement = item?.approved_shop_locations.find(function (element) {
+          let foundElement = item?.approved_shop_locations.find(function (
+            element
+          ) {
             return Number(element.sub_region_id) === dressInfo?.mainSubRegionId;
           });
           setDressInfo({
             ...dressInfo,
             locationIdParams: foundElement?.id,
+            productShowSelectedLocation: foundElement,
           });
           navigate(`/shopping_store/:${id}`);
           // console.log(foundElement, "foundElement-main");
@@ -200,11 +203,11 @@ function MainPageSliders() {
           setDressInfo({
             ...dressInfo,
             locationIdParams: item?.approved_shop_locations[0]?.id,
+            productShowSelectedLocation: item?.approved_shop_locations[0],
           });
           navigate(`/shopping_store/:${id}`);
-
         }
-      })
+      });
   };
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
@@ -212,8 +215,9 @@ function MainPageSliders() {
         <section className="w-full box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
           {/* MAIN SLIDER */}
           <div
-            className={`w-full ss:h-0 ${more ? "xs:h-0" : "xs:h-auto"
-              } overflow-hidden `}
+            className={`w-full ss:h-0 ${
+              more ? "xs:h-0" : "xs:h-auto"
+            } overflow-hidden `}
           >
             {data?.getMainProductCard?.sections?.length > 6 ? (
               <Slider
@@ -294,8 +298,9 @@ function MainPageSliders() {
 
           {/* CAROUSEL HIDDEN BLOCK */}
           <div
-            className={`${more ? "xs:grid" : "xs:hidden"
-              } w-full  h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 `}
+            className={`${
+              more ? "xs:grid" : "xs:hidden"
+            } w-full  h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 `}
           >
             {data?.getMainProductCard?.sections?.map((data, i) => {
               if (more) {
