@@ -14,13 +14,17 @@ import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 import AddCopyCheckedIcon from "../../Home/Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
+import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 
 function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [data, setData] = useContext(HomeMainDataContext);
 
   const navigate = useNavigate();
   const openShoppingChild = () => {
     navigate(`/shopping-store-location/:${dressInfo?.yandexGetMarketId}`);
+    setData({ ...data, selectedLoc: "" });
+
   };
 
   const [copyAddress, setCopyAddress] = useState(null);
