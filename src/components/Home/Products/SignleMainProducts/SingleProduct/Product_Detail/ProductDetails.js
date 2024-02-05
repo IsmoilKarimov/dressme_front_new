@@ -48,7 +48,7 @@ import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData"
 const ProductDetails = ({ data }) => {
   const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
-  const [dressInfo] = useContext(dressMainData);
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   // console.log(dressInfo?.linkedFrom);
   // console.log(dressInfo?.productShowSelectedLocation, "from context");
@@ -231,6 +231,15 @@ const ProductDetails = ({ data }) => {
     existRegions.push(item?.region_id);
     existRegionsObj[item?.region_id] = item?.region?.name_ru;
   });
+
+  // useEffect(() => {
+  //   if (
+  //     dressInfo?.linkedFrom === "shopsFromLocation" ||
+  //     dressInfo?.linkedFrom === "mainPageShopsList"
+  //   ) {
+  //     setDressInfo({ ...dressInfo, linkedFrom: "mainPageProductList" });
+  //   }
+  // }, [dressInfo?.mainSubRegionId]);
 
   const uniqueRegions = new Set(existRegions);
 
