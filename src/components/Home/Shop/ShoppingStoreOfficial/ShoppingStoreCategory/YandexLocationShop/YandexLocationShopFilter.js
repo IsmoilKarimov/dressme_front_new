@@ -12,9 +12,9 @@ import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 
 function YandexLocationShopFilter({ filteredData }) {
     const [dressInfo] = useContext(dressMainData);
-    console.log(filteredData, "filteredData");
     //------------------------------------------------------------------------------------------------
     const [logaLocation, setLogaLocation] = useState()
+    const [placeMarkLocation, setPlaceMarkLocation] = useState([])
     const [mapState, setMapState] = useState({
         center: [41.2893580, 69.253175],
         zoom: 12,
@@ -23,15 +23,14 @@ function YandexLocationShopFilter({ filteredData }) {
     useEffect(() => {
         filteredData?.shop?.approved_shop_locations?.map(item => {
             if (item?.id === dressInfo?.locationIdParams) {
-                console.log(item, "item");
-                setMapState({ ...mapState, zoom: 12, center: [item?.latitude, item?.longitude] })
+                setPlaceMarkLocation([item?.latitude, item?.longitude])
+                // setMapState({ ...mapState, zoom: 12, center: [item?.latitude, item?.longitude] })
             }
         })
         setLogaLocation(filteredData?.shop?.url_logo_photo)
-
     }, [filteredData, dressInfo?.locationIdParams])
     const addresRef = useRef();
-    console.log(mapState, 'mapState');
+    // console.log(mapState, 'mapState');
     const handleCopyText = () => {
         navigator.clipboard.writeText(addresRef.current.innerText);
     };
@@ -41,6 +40,8 @@ function YandexLocationShopFilter({ filteredData }) {
             top: 0,
         });
     }, []);
+    // const zoom = 12;
+
     return (
         <div className={`w-full `}>
             <div className={`w-full flex items-center mb-3 mt-4`}>
@@ -80,14 +81,17 @@ function YandexLocationShopFilter({ filteredData }) {
                 >
                     <Map
                         className={` overflow-hidden w-full h-[350px] md:h-[400px] rounded-lg productDetailsMaps`}
-                        defaultState={mapState}
+                        state={{
+                            center: placeMarkLocation,
+                            zoom: 12,
+                        }}
                         modules={["control.FullscreenControl"]}
                     >
                         <Placemark
                             className={" cursor-pointer"}
                             // key={index}
                             // onClick={() => handlePlaceMark(data?.marketId, data?.cordinate)}
-                            geometry={mapState?.center}
+                            geometry={placeMarkLocation}
                             options={{
                                 iconLayout: "default#image",
                                 // iconImageHref: markerIcons,
