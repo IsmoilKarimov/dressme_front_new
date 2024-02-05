@@ -89,7 +89,7 @@ export default function CatalogItems() {
   };
   const handleCategories = (id) => {
     setState({ ...state, opensports: false });
-    navigate(`/catalog/:${id}`);
+    navigate(`/catalog/${id}`);
   };
   const contentCategories = (
     <section className="w-[230px] h-fit max-h-[350px] overflow-y-auto m-0 p-0 VerticelScroll">
