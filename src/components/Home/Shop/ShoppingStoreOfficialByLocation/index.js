@@ -97,6 +97,44 @@ const ShoppingStoreOfficialByLocation = () => {
   const { id } = useParams();
   const newId = id.replace(":", "");
 
+  const refreshLocationId = () => {
+
+    data?.getMainProductCard?.shops?.map((item) => {
+      if (item?.id === Number(newId)) {
+        if (dressInfo?.mainSubRegionId) {
+          let foundElement = item?.approved_shop_locations.find(function (
+            element
+          ) {
+            return Number(element.sub_region_id) === dressInfo?.mainSubRegionId;
+          });
+          setDressInfo({
+            ...dressInfo,
+            locationIdParams: foundElement?.id,
+          });
+          let index = item?.approved_shop_locations.findIndex(function (
+            element
+          ) {
+            return Number(element.sub_region_id) === dressInfo?.mainSubRegionId;
+          });
+          if (index === -1) {
+            navigate("/");
+          }
+        }
+        if (!dressInfo?.mainSubRegionId) {
+          setDressInfo({
+            ...dressInfo,
+            locationIdParams: item?.approved_shop_locations[0]?.id,
+          });
+        }
+      }
+    });
+  };
+
+  useEffect(() => {
+    refreshLocationId()
+  }, [newId, dressInfo?.mainSubRegionId]);
+
+
 
   const url = `https://api.dressme.uz/api`;
 
@@ -144,7 +182,7 @@ const ShoppingStoreOfficialByLocation = () => {
       })
       .catch((res) => {
         if (res?.response?.status === 422) {
-          navigate('/')
+          refreshLocationId()
           // setLoading(false)
 
         }

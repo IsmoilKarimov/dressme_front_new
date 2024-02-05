@@ -94,19 +94,14 @@ const ShoppingStoreOfficial = () => {
   const newId = id.replace(":", "");
 
   const refreshLocationId = () => {
-    data?.getMainProductCard?.shops?.map((item) => {
-      if (item?.id === Number(newId)) {
-        setDressInfo({
-          ...dressInfo,
-          locationIdParams: item?.approved_shop_locations[0]?.id,
-        });
-      }
-    });
-  };
-  useEffect(() => {
-    refreshLocationId();
-  }, [newId]);
-  useEffect(() => {
+    // data?.getMainProductCard?.shops?.map((item) => {
+    //   if (item?.id === Number(newId)) {
+    //     setDressInfo({
+    //       ...dressInfo,
+    //       locationIdParams: item?.approved_shop_locations[0]?.id,
+    //     });
+    //   }
+    // });
     data?.getMainProductCard?.shops?.map((item) => {
       if (item?.id === Number(newId)) {
         if (dressInfo?.mainSubRegionId) {
@@ -119,9 +114,6 @@ const ShoppingStoreOfficial = () => {
             ...dressInfo,
             locationIdParams: foundElement?.id,
           });
-          // let containsSubRegion = item?.approved_shop_locations.some(function (element) {
-          //   return Number(element.sub_region_id) === dressInfo?.mainSubRegionId;
-          // });
           let index = item?.approved_shop_locations.findIndex(function (
             element
           ) {
@@ -139,7 +131,11 @@ const ShoppingStoreOfficial = () => {
         }
       }
     });
-  }, [dressInfo?.mainSubRegionId]);
+  };
+
+  useEffect(() => {
+    refreshLocationId()
+  }, [newId, dressInfo?.mainSubRegionId]);
 
 
 
