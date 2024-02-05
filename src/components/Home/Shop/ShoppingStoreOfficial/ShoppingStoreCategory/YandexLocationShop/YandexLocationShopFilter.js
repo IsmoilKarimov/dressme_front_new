@@ -7,33 +7,31 @@ import {
     Placemark,
 } from "react-yandex-maps";
 import "./LocationOfYandex.css";
-// import { markerIcons } from "../../../../../../../assets";
 import AddCopyCheckedIcon from "../../../../Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
-import { markerIcons } from "../../../../../../assets";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
-// import AddCopyCheckedIcon from "../AddCopyCheckedIcon/AddCopyCheckedIcon";
 
-function YandexLocationShop({ filteredData }) {
-    const [dressInfo, setDressInfo] = useContext(dressMainData);
-
+function YandexLocationShopFilter({ filteredData }) {
+    const [dressInfo] = useContext(dressMainData);
+    console.log(filteredData, "filteredData");
     //------------------------------------------------------------------------------------------------
     const [logaLocation, setLogaLocation] = useState()
     const [mapState, setMapState] = useState({
-        center: [],
+        center: [41.2893580, 69.253175],
         zoom: 12,
     })
     //------------------------------------------------------------------------------------------------
     useEffect(() => {
         filteredData?.shop?.approved_shop_locations?.map(item => {
             if (item?.id === dressInfo?.locationIdParams) {
-                setMapState({ ...mapState, center: [item?.latitude, item?.longitude] })
+                console.log(item, "item");
+                setMapState({ ...mapState, zoom: 12, center: [item?.latitude, item?.longitude] })
             }
         })
         setLogaLocation(filteredData?.shop?.url_logo_photo)
 
-    }, [filteredData])
+    }, [filteredData, dressInfo?.locationIdParams])
     const addresRef = useRef();
-
+    console.log(mapState, 'mapState');
     const handleCopyText = () => {
         navigator.clipboard.writeText(addresRef.current.innerText);
     };
@@ -128,4 +126,4 @@ function YandexLocationShop({ filteredData }) {
         </div>
     );
 }
-export default React.memo(YandexLocationShop);
+export default React.memo(YandexLocationShopFilter);

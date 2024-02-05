@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import ShoppingStoreOfficialBreadCrumb from "./ShoppingStoreOfficialBreadcrumb/ShoppingStoreOfficialBreadcrumb";
 import ShoppingStoreOfficialTop from "./ShoppingStoreOfficialTop/ShoppingStoreOfficialTop";
-import LocationOfYandex from "../../Products/SignleMainProducts/SingleProduct/Product_Detail/LocationOfYandex/LocationOfYandex";
 import ShowPageComment from "./ShowPageComment/ShowPageComment";
 import { GoBackIcon } from "../../../../assets/icons";
 import { useNavigate, useParams } from "react-router-dom";
@@ -10,16 +9,13 @@ import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import ShopOfficialCard from "./ShoppingStoreCategory/ShopOfficialCards/ShopOfficialCard";
 import FilterList from "./ShoppingStoreCategory/FilterList/FilterList";
 import axios from "axios";
-import LoadingNetwork from "../../../Loading/LoadingNetwork";
-import YandexLocationShop from "../ShoppingStoreOfficialByLocation/ShoppingStoreCategory/YandexLocationShop/YandexLocationShop";
+import YandexLocationShopFilter from "./ShoppingStoreCategory/YandexLocationShop/YandexLocationShopFilter";
 
 const ShoppingStoreOfficial = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
 
   const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [getLocationId, setGetLocationId] = useState(false);
   const [openTabComment, setOpenTabComment] = useState(false);
   const [openTabLocation, setOpenTabLocation] = useState(false);
   const [filteredData, setFilteredData] = useState();
@@ -98,16 +94,18 @@ const ShoppingStoreOfficial = () => {
   const newId = id.replace(":", "");
 
   const refreshLocationId = () => {
-    // data?.getMainProductCard?.shops?.map((item) => {
-    //   if (item?.id === Number(newId)) {
-    //     setDressInfo({
-    //       ...dressInfo,
-    //       locationIdParams: item?.approved_shop_locations[0]?.id,
-    //     });
-    //   }
-    // });
+    data?.getMainProductCard?.shops?.map((item) => {
+      if (item?.id === Number(newId)) {
+        setDressInfo({
+          ...dressInfo,
+          locationIdParams: item?.approved_shop_locations[0]?.id,
+        });
+      }
+    });
   };
-  const [locationNewList, setLocationNewList] = useState([]);
+  useEffect(() => {
+    refreshLocationId();
+  }, [newId]);
   useEffect(() => {
     data?.getMainProductCard?.shops?.map((item) => {
       if (item?.id === Number(newId)) {
@@ -143,15 +141,12 @@ const ShoppingStoreOfficial = () => {
     });
   }, [dressInfo?.mainSubRegionId]);
 
-  useEffect(() => {
-    refreshLocationId();
-  }, [newId]);
+
 
   const url = `https://api.dressme.uz/api`;
 
   const fetchGetAllData = () => {
-    // console.log("is run");
-    // setLoading(true)
+
     let params = new URLSearchParams();
     params.append("location_id", dressInfo?.locationIdParams);
     getGenderId && params.append("gender", getGenderId);
@@ -266,17 +261,15 @@ const ShoppingStoreOfficial = () => {
           <div className="w-full flex flex-col items-center justify-center">
             {/* Products Section */}
             <article
-              className={`${
-                openTabComment || openTabLocation ? "hidden" : "block"
-              } w-full `}
+              className={`${openTabComment || openTabLocation ? "hidden" : "block"
+                } w-full `}
             >
               {/* <ShoppingStoreCategory filteredData={filteredData} /> */}
               <section className="w-[100%] h-fit">
                 <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
                   <div
-                    className={`${
-                      filterToggle ? "md:block" : "md:hidden"
-                    } hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}
+                    className={`${filterToggle ? "md:block" : "md:hidden"
+                      } hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}
                   >
                     <FilterList
                       paramsId={newId}
@@ -304,9 +297,8 @@ const ShoppingStoreOfficial = () => {
                   <FilterList paramsId={newId} />
                 </div> */}
                   <div
-                    className={` ${
-                      filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-                    } w-full h-full ss:px-4 md:px-0`}
+                    className={` ${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+                      } w-full h-full ss:px-4 md:px-0`}
                   >
                     {filteredData ? (
                       <ShopOfficialCard
@@ -333,9 +325,8 @@ const ShoppingStoreOfficial = () => {
 
             {/* Map Section */}
             <div
-              className={`${
-                openTabLocation ? "block" : "hidden"
-              } w-full text-3xl px-4 pb-10`}
+              className={`${openTabLocation ? "block" : "hidden"
+                } w-full text-3xl px-4 pb-10`}
             >
               <button
                 onClick={() => {
@@ -346,7 +337,7 @@ const ShoppingStoreOfficial = () => {
                 <GoBackIcon />
               </button>
               {/* <YandexLocationShop /> */}
-              <YandexLocationShop filteredData={filteredData} />
+              <YandexLocationShopFilter filteredData={filteredData} />
             </div>
           </div>
         </section>
