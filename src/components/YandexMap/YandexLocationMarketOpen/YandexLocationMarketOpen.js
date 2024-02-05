@@ -16,7 +16,13 @@ import { useNavigate } from "react-router-dom";
 import AddCopyCheckedIcon from "../../Home/Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 
-function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
+function YandexLocationMarketOpen({
+  getImgGallery,
+  onClick,
+  modalInfo,
+  carouselIndex,
+  setCarouselIndex,
+}) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
 
@@ -100,8 +106,9 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
   const sendImgGallery = () => {
-    getImgGallery(newImgList);
+    getImgGallery({ newImgList: newImgList, index: carouselIndex });
     onClick();
   };
 
@@ -156,7 +163,7 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
                   {newImgList?.length <= 1 ? (
                     <div className="w-full h-full  rounded-xl overflow-hidden">
                       <img
-                        onClick={() => sendImgGallery()}
+                        onClick={() => sendImgGallery(0)}
                         src={newImgList[0]?.img}
                         alt={"imgGallery"}
                         className="w-full h-full object-cover "
@@ -165,14 +172,20 @@ function YandexLocationMarketOpen({ getImgGallery, onClick, modalInfo }) {
                   ) : (
                     <Slider
                       {...settings}
+                      afterChange={(c) => {
+                        setCarouselIndex(c);
+                      }}
+                      s
                       className="w-full h-full rounded-xl overflow-hidden flex flex-col justify-center"
                     >
-                      {newImgList?.map((data) => {
+                      {newImgList?.map((data, i) => {
                         return (
                           <div key={data?.id}>
                             {data?.img && (
                               <div
-                                onClick={() => sendImgGallery()}
+                                onClick={() => {
+                                  sendImgGallery();
+                                }}
                                 className="w-full h-full cursor-pointer flex items-center justify-center"
                               >
                                 <img
