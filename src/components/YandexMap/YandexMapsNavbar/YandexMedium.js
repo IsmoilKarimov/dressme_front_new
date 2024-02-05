@@ -139,7 +139,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
     }
   };
   const goCatalogId = (id) => {
-    navigate(`/catalog/:${id}`);
+    navigate(`/catalog/${id}`);
   };
   return (
     <div className=" flex justify-between items-center m-auto ">

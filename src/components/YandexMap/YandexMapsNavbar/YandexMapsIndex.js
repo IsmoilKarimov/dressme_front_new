@@ -13,7 +13,7 @@ function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
 
   const [data] = useContext(HomeMainDataContext);
   function getYandexSearchName(childData) {
-    getFilterSearchByBrand(childData)
+    getFilterSearchByBrand(childData);
   }
   const [regionsShow, setRegionsShow] = useState(false);
   const toggleRegionsShow = useCallback(() => setRegionsShow(true), []);
@@ -21,7 +21,7 @@ function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
   const navigate = useNavigate();
 
   const goCatalogId = (id) => {
-    navigate(`/catalog/:${id}`);
+    navigate(`/catalog/${id}`);
   };
   return (
     <div className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ">
@@ -32,8 +32,9 @@ function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
         ></div>
       )}
       <article
-        className={`fixed top-[235px] z-[251] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${dressInfo?.openCatologId ? "" : "hidden"
-          }`}
+        className={`fixed top-[235px] z-[251] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${
+          dressInfo?.openCatologId ? "" : "hidden"
+        }`}
       >
         <div className="flex justify-center items-center z-[99999]">
           <div className="w-[675px] flex flex-col shadow-modalCategoryShadow bg-white rounded-lg p-2">
@@ -76,19 +77,17 @@ function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
         </div>
       </article>
       <div
-
         className={`fixed inset-0 z-[215] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
-         ${regionsShow ? "" : "hidden"
-          }`}
-      >
-      </div>
+         ${regionsShow ? "" : "hidden"}`}
+      ></div>
       {regionsShow && (
         <div
           className={`max-w-[600px]  w-full fixed duration-500 z-[231]  left-1/2 right-1/2 top-[50%] translate-x-[-50%] translate-y-[-50%]  h-fit flex items-center  justify-center mx-auto
-        ${regionsShow
-              ? " bottom-0 md:flex flex-col"
-              : "bottom-[-1500px] z-[-10]"
-            }
+        ${
+          regionsShow
+            ? " bottom-0 md:flex flex-col"
+            : "bottom-[-1500px] z-[-10]"
+        }
         `}
         >
           <RegionListYandex onClick={toggleRegionsHide} />
@@ -97,10 +96,11 @@ function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
       <div className="max-w-[1320px] w-[100%] ss:block md:flex  md:py-0 justify-center items-center m-auto">
         <div className="">
           <div
-            className={`ss:px-3 mt-[1px] md:mt-0 md:px-[40px] md:rounded-b-[16px] ${!dressInfo?.yandexOpenMarket
-              ? "bg-yandexNavbar backdrop-blur-md"
-              : "bg-white"
-              }	border border-searchBgColor border-t-0`}
+            className={`ss:px-3 mt-[1px] md:mt-0 md:px-[40px] md:rounded-b-[16px] ${
+              !dressInfo?.yandexOpenMarket
+                ? "bg-yandexNavbar backdrop-blur-md"
+                : "bg-white"
+            }	border border-searchBgColor border-t-0`}
           >
             <div className="hidden md:block">
               {" "}
@@ -114,11 +114,12 @@ function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
           </div>
           {!dressInfo?.yandexOpenMarket && (
             <div
-              className={`flex flex-col justify-center  fixed left-0 right-0 z-55 ss:top-auto ${!dressInfo?.yandexFullScreen
-                ? "ss:bottom-[63px] "
-                : "ss:bottom-[0]"
-                } 
-              
+              className={`flex flex-col justify-center  fixed left-0 right-0 z-55 ss:top-auto ${
+                !dressInfo?.yandexFullScreen
+                  ? "ss:bottom-[63px] "
+                  : "ss:bottom-[0]"
+              }
+
                md:bottom-auto
               duration-500
 
@@ -133,4 +134,4 @@ function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
     </div>
   );
 }
-export default React.memo(YandexMapsIndex)
+export default React.memo(YandexMapsIndex);
