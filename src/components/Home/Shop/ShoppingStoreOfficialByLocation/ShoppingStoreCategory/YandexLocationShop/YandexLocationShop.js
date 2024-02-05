@@ -18,15 +18,13 @@ function YandexLocationShop({ filteredData }) {
 
     //------------------------------------------------------------------------------------------------
     const [logaLocation, setLogaLocation] = useState()
-    const [mapState, setMapState] = useState({
-        center: [],
-        zoom: 12,
-    })
+    const [placeMarkLocation, setPlaceMarkLocation] = useState([])
+
     //------------------------------------------------------------------------------------------------
     useEffect(() => {
         filteredData?.shop?.approved_shop_locations?.map(item => {
             if (item?.id === dressInfo?.locationIdParams) {
-                setMapState({ ...mapState, center: [item?.latitude, item?.longitude] })
+                setPlaceMarkLocation([item?.latitude, item?.longitude])
             }
         })
         setLogaLocation(filteredData?.shop?.url_logo_photo)
@@ -82,14 +80,17 @@ function YandexLocationShop({ filteredData }) {
                 >
                     <Map
                         className={` overflow-hidden w-full h-[350px] md:h-[400px] rounded-lg productDetailsMaps`}
-                        defaultState={mapState}
+                        state={{
+                            center: placeMarkLocation,
+                            zoom: 12,
+                        }}
                         modules={["control.FullscreenControl"]}
                     >
                         <Placemark
                             className={" cursor-pointer"}
                             // key={index}
                             // onClick={() => handlePlaceMark(data?.marketId, data?.cordinate)}
-                            geometry={mapState?.center}
+                            geometry={placeMarkLocation}
                             options={{
                                 iconLayout: "default#image",
                                 // iconImageHref: markerIcons,
