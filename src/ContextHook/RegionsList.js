@@ -119,19 +119,28 @@ function RegionList({ onClick }) {
               return (
                 <div
                   key={data?.id}
-                  className={`${data.id || data.sub_regions.id ? "" : ""
-                    } w-full h-fit `}
+                  onClick={() => {
+                    setDressInfo({
+                      ...dressInfo,
+                      yandexOpenRegionList: false,
+                      linkedFrom: "mainPageProductList",
+                    });
+                  }}
+                  className={`${
+                    data.id || data.sub_regions.id ? "" : ""
+                  } w-full h-fit `}
                 >
                   <div
-                    className={`flex items-center ${data?.id == 2 ? "" : "opacity-50"
-                      } `}
+                    className={`flex items-center ${
+                      data?.id == 2 ? "" : "opacity-50"
+                    } `}
                   >
                     <div
                       onClick={
                         data?.id == 2
                           ? () => {
-                            accordionCityList(data?.id);
-                          }
+                              accordionCityList(data?.id);
+                            }
                           : null
                       }
                       className="w-full cursor-pointer flex items-center  border-b border-[#F0F0F0] "
@@ -174,10 +183,11 @@ function RegionList({ onClick }) {
                         </label>
                       )}
                       <span
-                        className={`${activeIndex === data?.id
+                        className={`${
+                          activeIndex === data?.id
                             ? "rotate-[-0deg] duration-300"
                             : "rotate-[-180deg] duration-300"
-                          } ml-auto`}
+                        } ml-auto`}
                       >
                         <ArrowTopIcons colors={"#a1a1a1"} />
                       </span>
@@ -185,14 +195,22 @@ function RegionList({ onClick }) {
                   </div>
                   <div
                     className={`w-full grid grid-cols-2 xs:grid-cols-3 duration-[400ms]
-                              ${activeIndex == data?.id
-                        ? "openAccardion"
-                        : "CloseAccardion"
-                      } `}
+                              ${
+                                activeIndex == data?.id
+                                  ? "openAccardion"
+                                  : "CloseAccardion"
+                              } `}
                   >
                     {data?.sub_regions?.map((item) => {
                       return (
                         <div
+                          onClick={() => {
+                            setDressInfo({
+                              ...dressInfo,
+                              yandexOpenRegionList: false,
+                              linkedFrom: "mainPageProductList",
+                            });
+                          }}
                           key={item?.id}
                           className="flex items-center px-[2px] gap-x-[4px] cursor-pointer"
                         >
@@ -237,11 +255,11 @@ function RegionList({ onClick }) {
         <div className="w-full flex items-center justify-end  mt-2">
           <span
             onClick={() => {
-              setDressInfo({
-                ...dressInfo,
-                yandexOpenRegionList: false,
-                linkedFrom: "mainPageProductList",
-              });
+              // setDressInfo({
+              //   ...dressInfo,
+              //   yandexOpenRegionList: false,
+              //   linkedFrom: "mainPageProductList",
+              // });
               sendRegions();
             }}
             className="cursor-pointer text-borderWinter text-lg not-italic font-AeonikProMedium"
