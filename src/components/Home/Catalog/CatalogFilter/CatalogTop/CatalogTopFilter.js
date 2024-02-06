@@ -165,22 +165,22 @@ const CatalogTopFilter = () => {
               <p>
                 <ClothesIcons colors={"#000"} />
               </p>
-              <p className="ml-2  not-italic font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+              <p className="ml-2  not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%] cursor-pointer">
                 Тип одеждый
               </p>
             </Popover>
           </article>
         </section>
-        
+
         <section className="w-full h-full">
           <div className="md:pt-8 md:pb-16 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 py-3">
             <section className="max-w-[1280px] w-[100%] h-full flex items-center justify-between m-auto">
               <nav className="w-[100%] md:w-fit flex items-center p-1">
                 <ul className="h-10 w-[100%] md:w-fit flex items-center overflow-auto HorizantalScroll">
-                  <li className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+                  <li className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-black tracking-[1%] mr-[10px]">
                     <NavLink
                       to="/"
-                      className="flex items-center whitespace-nowrap cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
+                      className="flex items-center whitespace-nowrap cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm text-black tracking-[1%]"
                     >
                       Главная
                     </NavLink>
@@ -188,10 +188,10 @@ const CatalogTopFilter = () => {
                       <ItailIcons colors={"#A1A1A1"} />
                     </span>
                   </li>
-                  <li className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%]">
-                    <NavLink className="flex 	whitespace-nowrap  items-center cursor-pointer mt-[6px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
+                  <li className="not-italic font-AeonikProRegular flex items-center text-black tracking-[1%]">
+                    <div className="flex	whitespace-nowrap items-center pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm text-setTexOpacity tracking-[1%]">
                       Категории
-                    </NavLink>
+                    </div>
                   </li>
                 </ul>
               </nav>

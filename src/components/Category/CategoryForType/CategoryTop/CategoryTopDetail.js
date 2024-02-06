@@ -74,7 +74,6 @@ const CategoryTopDetail = ({
             key={data?.id}
             onClick={() => {
               handleCategories(data?.name_ru, data?.id);
-              // window.location.reload();
             }}
             className={`${
               filterData?.section?.id === data?.id ? "bg-bgColor" : null
@@ -93,10 +92,10 @@ const CategoryTopDetail = ({
         <section className="border-b md:min-h-[44px] py-3 border-searchBgColor w-[100%] h-full  flex items-center justify-between m-auto">
           <nav className="w-[100%] md:w-fit flex items-center p-1">
             <ul className="h-10 w-[100%] md:w-fit flex items-center overflow-auto HorizantalScroll">
-              <li className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+              <li className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-black mr-[10px]">
                 <NavLink
                   to="/"
-                  className="flex items-center whitespace-nowrap cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
+                  className="flex items-center whitespace-nowrap cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm text-black"
                 >
                   Главная
                 </NavLink>
@@ -104,10 +103,10 @@ const CategoryTopDetail = ({
                   <ItailIcons colors={"#A1A1A1"} />
                 </span>
               </li>
-              <li className="not-italic font-AeonikProRegular flex  	 items-center  text-sm leading-4 text-black tracking-[1%]">
-                <NavLink className="flex 	whitespace-nowrap  items-center cursor-pointer mt-[6px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
-                  Категории
-                </NavLink>
+              <li className="not-italic font-AeonikProRegular flex items-center text-black">
+                <div className="flex whitespace-nowrap text-setTexOpacity items-center pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm">
+                  Разделы
+                </div>
               </li>
             </ul>
           </nav>

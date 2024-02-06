@@ -7,10 +7,10 @@ const FavoutireBreadCrumbs = () => {
       <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto px-4 md:px-0">
         <div className="w-full flex justify-between flex-col md:flex-row ">
           <section className="flex items-center mb-5 md:mb-0">
-            <article className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
+            <article className="not-italic font-AeonikProRegular flex items-center text-black tracking-[1%] mr-[10px]">
               <NavLink
                 to="/"
-                className="flex items-center cursor-pointer pr-[10px] not-italic font-AeonikProRegular md:font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]"
+                className="flex items-center cursor-pointer  pt-[4px] pr-[10px] not-italic font-AeonikProRegular md:font-AeonikProMedium text-sm text-black tracking-[1%]"
               >
                 Главная
               </NavLink>
@@ -18,13 +18,12 @@ const FavoutireBreadCrumbs = () => {
                 <ItailIcons colors={"#000"} />
               </span>
             </article>
-            <article className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-              <NavLink
-                to="/"
-                className="flex items-center cursor-pointer not-italic font-AeonikProRegular md:font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]"
+            <article className="not-italic font-AeonikProRegular flex items-center text-black tracking-[1%] mr-[10px]">
+              <div
+                className="flex items-center not-italic pt-[4px] font-AeonikProRegular md:font-AeonikProMedium text-sm text-setTexOpacity tracking-[1%]"
               >
                 Избранное
-              </NavLink>
+              </div>
             </article>
             <article className="block md:hidden ml-auto">
               <span className="text-sm font-AeonikProMedium">82 товара</span>
