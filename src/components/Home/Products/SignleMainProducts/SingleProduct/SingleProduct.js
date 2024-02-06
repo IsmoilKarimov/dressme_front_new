@@ -122,10 +122,12 @@ const SingleProduct = () => {
     )
     ?.slice(0, 6);
 
+    console.log(singleData, "data");
+
   return (
     <main className="flex flex-col m-0 p-0 box-border">
       <section>
-        <SingleProductTop />
+        <SingleProductTop data={singleData} />
       </section>
       <section className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto border-box mb-20 md:mb-[0px]">
         <section className="w-[100%] h-fit mt-6 flex justify-between flex-col md:flex-row">
