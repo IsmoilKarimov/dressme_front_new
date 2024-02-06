@@ -19,12 +19,11 @@ const ShoppingStoreBreadCrumb = () => {
             </span>
           </article>
           <article className="not-italic font-AeonikProRegular flex items-center  text-sm leading-4 text-black tracking-[1%] mr-[10px]">
-            <NavLink
-              to="/"
-              className="flex items-center cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]"
+            <div
+              className="flex disabled items-center pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm leading-4 text-setTexOpacity tracking-[1%]"
             >
               Магазины
-            </NavLink>
+            </div>
           </article>
         </article>
 
