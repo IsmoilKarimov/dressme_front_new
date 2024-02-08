@@ -45,7 +45,6 @@ const ShoppingBrands = ({ loading, setLoading }) => {
 
   return (
     <main className="relative">
-      (
       <div className="flex flex-col min-h-[44px]  justify-center items-center my-3">
         <section className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto md:mt-[50px] mb-20 md:mb-[90px]">
           <section className="w-full">
@@ -180,7 +179,6 @@ const ShoppingBrands = ({ loading, setLoading }) => {
           )}
         </section>
       </div>
-      )
     </main>
   );
 };
