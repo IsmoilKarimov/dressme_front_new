@@ -4,6 +4,8 @@ import "./Breadcrumbs.css";
 export default function Breadcrumbs() {
   const location = useLocation();
 
+  console.log(location, 'location');
+
   let currentLink = "";
 
   const crumbs = location.pathname
@@ -23,9 +25,30 @@ export default function Breadcrumbs() {
             Главная <span className="mx-[10px]">/</span>{" "}
           </NavLink>
           <NavLink to={currentLink}>{crumb}</NavLink>
+          <NavLink to="/">
+            {" "}
+            Главная <span className="mx-[10px]">/</span>{" "}
+          </NavLink>
+          <NavLink to={currentLink}>{crumb}</NavLink>
+          <NavLink to="/">
+            {" "}
+            Главная <span className="mx-[10px]">/</span>{" "}
+          </NavLink>
+          <NavLink to={currentLink}>{crumb}</NavLink>
+          <NavLink to="/">
+            {" "}
+            Главная <span className="mx-[10px]">/</span>{" "}
+          </NavLink>
+          <NavLink to={currentLink}>{crumb}</NavLink>
+          <NavLink to="/">
+            {" "}
+            Главная <span className="mx-[10px]">/</span>{" "}
+          </NavLink>
+          <NavLink to={currentLink}>{crumb}</NavLink>
         </div>
       );
     });
+    
   return (
     <div className="flex justify-center items-center ">
       <div className="max-w-[1280px] w-[100%] min-h-[44px] mt-[26px]">
