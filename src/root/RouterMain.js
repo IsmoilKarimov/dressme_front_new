@@ -13,6 +13,9 @@ import LoadingNetwork from "../components/Loading/LoadingNetwork";
 // import ShoppingStoreOfficialByLocation from "../components/Home/Shop/ShoppingStoreOfficialByLocation";
 
 import ShoppingStore from "../components/Home/Shop/ShoppingStore";
+import Breadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
+import BreadcrumbRoad from "../components/Breadcrumbs/BreadcrumbRoad";
+import { Breadcrumb } from "antd";
 
 // -------------------------------------
 const HomeIndex = React.lazy(() => import("../components/Home/Main"));
@@ -75,6 +78,9 @@ const RouterMain = () => {
   return (
     <Fragment>
       <Header />
+
+      {/* <Breadcrumbs /> */}
+      {/* <BreadcrumbRoad /> */}
       <Routes>
         {/* <Route path="/" element={<HomeIndex />} /> */}
 

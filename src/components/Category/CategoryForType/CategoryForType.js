@@ -66,8 +66,8 @@ function CategoryForType() {
     }
   }, [dressInfo?.openCategoryFilter]);
 
-  const { id } = useParams();
-  const newId = id.replace(":", "");
+  const paramsId = useParams();
+  const newId = paramsId?.id.replace(":", "");
 
   const url = `https://api.dressme.uz/api`;
 
