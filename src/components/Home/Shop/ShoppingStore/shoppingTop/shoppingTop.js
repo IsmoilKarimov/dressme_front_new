@@ -1,75 +1,19 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { MenuCloseIcons, SearchIcons } from "../../../../../assets/icons";
 import GenderButtonsStyle from "../GenderButtonsStyle/GenderButtonsStyle";
-// import axios from "axios";
-import Cookies from "js-cookie";
-import axios from "axios";
-import { dressMainData } from "../../../../../ContextHook/ContextMenu";
-
 const ShoppingTop = ({
   getAllShops,
   setGetAllShops,
   setGetGenderId,
   setgetSearchInput }) => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [genderId, setGenderId] = useState();
   const [keywords, setKeywords] = useState();
-  const [searchInputData, setSearchInputData] = useState();
+  const [, setSearchInputData] = useState();
   const [changeInputIcon, setChangeInputIcon] = useState(true);
-
-  // const apiUrl = `https://api.dressme.uz/api/main/shops`;
 
   function handleGetId(childData) {
     // setGenderId(childData?.genderFilterId);
     setGetGenderId(childData?.genderFilterId)
   }
-
-  // const fetchGetAllData = (params) => {
-  //   setLoading(true)
-  //   Object.entries(params).forEach((i) => {
-  //     if (!i[1]) delete params[i[0]];
-  //   });
-  //   axios.get(apiUrl, {
-  //     headers: { Authorization: `Token ${Cookies.get("DressmeUserToken")}` },
-  //     params: params,
-  //   })
-  //     .then((res) => {
-  //       // handleData(res.data);
-  //       setDressInfo({ ...dressInfo, shopsData: res?.data })
-  //       setLoading(false);
-  //     })
-  //     .catch((res) => {
-  //       setLoading(false);
-  //       setError(res.response?.data?.message || 'An unexpected error occurred.');
-  //     })
-
-
-  // };
-  // // console.log(getData, "getData");
-  // useEffect(() => {
-  //   if (!dressInfo?.shopsData) {
-  //     fetchGetAllData({
-  //       gender: genderId,
-  //       keywords: searchInputData,
-  //       region: dressInfo?.mainRegionId,
-  //       sub_region: dressInfo?.mainSubRegionId
-  //     });
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-  // useEffect(() => {
-  //   fetchGetAllData({
-  //     gender: genderId,
-  //     keywords: searchInputData,
-  //     region: dressInfo?.mainRegionId,
-  //     sub_region: dressInfo?.mainSubRegionId
-  //   });
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [genderId,
-  //   searchInputData,
-  //   dressInfo?.mainRegionId,
-  //   dressInfo?.mainSubRegionId
-  // ]);
 
   const sendSearchInputData = () => {
     setSearchInputData(keywords);

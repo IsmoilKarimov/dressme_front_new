@@ -29,7 +29,6 @@ const ShoppingStoreOfficialTop = ({
   const [filter, setFilter] = useState(false);
   const toggleFilter = useCallback(() => setFilter(false), []);
   const [locationList, setLocationList] = useState([]);
-  const [locationFilterList, setLocationFilterList] = useState([]);
   const [selectLocation, setSelectLocation] = useState(
     dressInfo?.locationIdParams
   );
