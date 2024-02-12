@@ -76,7 +76,7 @@ export const CollectionCardItem = ({
   return (
     <article
       key={data?.id}
-      className={`ss:w-[49%] md:w-[24%] lg:w-[240px] xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
+      className={`w-[49%] md:w-[24%] lg:w-[240px] h-[325px] ls:h-[350px] ll:h-[365px] xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
     >
       <figure
         onClick={() => {
@@ -93,11 +93,11 @@ export const CollectionCardItem = ({
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
-        className="relative w-full cursor-pointer h-[310px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
+        className="relative w-full cursor-pointer h-[200px] ls:h-[225px] ll:h-[240px] md:h-[310px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
       ></figure>
-      <section className="relative w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[130px] md:h-[136px] ">
+      <section className="relative w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[100px] md:h-[136px]">
         {/* 1 */}
-        <div className="group hover:w-full h-[36px] cursor-pointer">
+        <div className="w-full group hover:w-full h-[36px] cursor-pointer mb-2 md:mb-0">
           <button className="group-hover:hidden w-12 h-7 border border-searchBgColor rounded-lg hidden md:flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 ">
             <figure className="w-6 h-6 flex items-center justify-center">
               <img src={CalourCard} alt="" className="h-full" />
@@ -108,7 +108,7 @@ export const CollectionCardItem = ({
           </button>
           <button
             onClick={() => setOpenWearType(true)}
-            className="w-12 h-7 md:hidden border border-searchBgColor rounded-lg flex items-center cursor-pointer select-none my-[6px] mx-2 justify-center gap-x-1 "
+            className="w-12 h-7 md:hidden border border-searchBgColor rounded-lg flex items-center cursor-pointer select-none mt-[6px] mx-2 justify-center gap-x-1 "
           >
             <figure className="w-6 h-6 flex items-center justify-center">
               <img src={CalourCard} alt="" className="h-full" />
@@ -145,7 +145,9 @@ export const CollectionCardItem = ({
         <article
           onMouseEnter={() => handleLeaveMouse(data?.id)}
           onClick={() => goDetail(data?.id)}
-          className="w-full px-2 xs:px-3 xs:mt-1"
+          className={`w-full px-2 xs:px-3 xs:mt-1 ${
+            data?.cost?.discount_price ? "mb-0" : "mb-3"
+          } md:mb-0`}
         >
           <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-1 md:mb-0  cursor-pointer">
             <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
@@ -174,12 +176,12 @@ export const CollectionCardItem = ({
         {/* 3 */}
         <article
           onMouseEnter={() => handleLeaveMouse(data?.id)}
-          className="w-full flex items-end mb-2 justify-between  pl-3 pr-[5px]"
+          className="w-full h-fit flex items-end justify-between pl-3 pr-[5px]"
         >
           <article className="flex items-center">
             {data?.cost?.discount_price ? (
               <figure className="flex flex-wrap flex-col-reverse	text-start items-start ">
-                <p className="w-full text-start m-0 p-0  not-italic font-AeonikProMedium text-[15px] md:text-[15px] leading-1 text-red-700 xs:text-[15px] xs:leading-0 mr-2">
+                <p className="w-full text-start m-0 p-0 not-italic font-AeonikProMedium text-[15px] md:text-[15px] leading-1 text-red-700 xs:text-[15px] xs:leading-0 mr-2">
                   {parseInt(data?.cost?.discount_price)
                     ?.toLocaleString()
                     ?.split(",")
@@ -187,7 +189,7 @@ export const CollectionCardItem = ({
                   {"  "}
                   сум
                 </p>
-                <p className="w-full text-start m-0 p-0 text-[10px] mb-[4px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
+                <p className="w-full text-start m-0 p-0 text-[12px] mb-[4px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
                   {parseInt(data?.cost?.price)
                     ?.toLocaleString()
                     ?.split(",")
@@ -198,7 +200,9 @@ export const CollectionCardItem = ({
               </figure>
             ) : (
               <p
-                className="not-italic font-AeonikProMedium text-[15px] leading-4"
+                className={`not-italic font-AeonikProMedium text-[15px] leading-4 ${
+                  data?.cost?.discount_price ? "" : ""
+                }`}
                 style={{ color: "black" }}
               >
                 {parseInt(data?.cost?.price)
@@ -210,7 +214,13 @@ export const CollectionCardItem = ({
               </p>
             )}
           </article>
-          <figure className="flex items-center select-none	absolute right-2 bottom-2">
+          <figure
+            className={`flex items-center select-none absolute right-2 ${
+              data?.cost?.discount_price
+                ? "bottom-[7px] ls:bottom-[-17px]"
+                : " bottom-[8px] ls:bottom-[-17px]"
+            } md:bottom-2`}
+          >
             <button
               onClick={() => {
                 if (wishList?.includes(data?.id)) {
@@ -219,7 +229,7 @@ export const CollectionCardItem = ({
                   setWishlist([...wishList, data?.id]);
                 }
               }}
-              className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+              className="w-[32px] h-[32px] active:scale-95 active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
             >
               {wishList?.includes(data?.id) ? (
                 <BsHeartFill width={18} height={18} color="#d50000" />

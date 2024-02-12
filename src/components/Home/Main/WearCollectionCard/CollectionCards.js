@@ -20,8 +20,7 @@ export default function CollectionCards() {
   const toggle = React.useCallback(() => setOpenWearType(false), []);
   // -------------------------------------
 
-  const url = "https://api.dressme.uz";
-
+  // const url = "https://api.dressme.uz";
   // ------------GET METHOD Main data -----------------
   // useQuery(
   //   ["get_main_data"],
@@ -46,6 +45,7 @@ export default function CollectionCards() {
   //     refetchOnWindowFocus: true,
   //   }
   // );
+
   useEffect(() => {
     if (openWearType) {
       document.body.style.overflow = "hidden";
@@ -66,8 +66,8 @@ export default function CollectionCards() {
     setDressInfo((current) => {
       return { ...current, ProductList: newArray };
     });
-  };
-  // console.log(data?.getMainProductCard, "Medium mainData");
+  }; 
+
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       {/* ------------------------------------------------------ */}
@@ -89,9 +89,9 @@ export default function CollectionCards() {
         <WearType onClick={toggle} />
       </section>
 
-      <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex flex-col justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
+      <section className="max-w-[1280px] w-[100%] px-[10px] md:px-0 flex flex-col justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
         {/* Searching section */}
-        <article className="w-full h-12 flex md:hidden items-center justify-between rounded-xl font-AeonikProRegular border border-searchBgColor bg-white mt-4">
+        <article className="w-full h-11 flex md:hidden items-center justify-between rounded-xl font-AeonikProRegular border border-searchBgColor bg-white mt-4">
           <input
             type="text"
             name="name"
@@ -120,7 +120,7 @@ export default function CollectionCards() {
         </section>
 
         <div className="w-full flex flex-col box-border ">
-          <article className="flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
+          <article className="flex flex-wrap justify-between md:justify-start md:mx-0 md:mt-[50px] gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
             {data?.products?.length ? (
               data?.products?.map((data) => {
                 return (
@@ -142,46 +142,7 @@ export default function CollectionCards() {
                 Ничего не найдено
               </div>
             )}
-
-            {/* {data?.getMainProductCard?.products?.length ? (
-              data?.getMainProductCard?.products
-                ?.slice(0, pagination)
-                ?.map((data) => {
-                  return (
-                    <CollectionCardItem
-                      key={data?.id}
-                      data={data}
-                      setOpenWearType={setOpenWearType}
-                      handleLeaveMouse={handleLeaveMouse}
-                      wishList={wishList}
-                      setWishlist={setWishlist}
-                      mainSelectedId={dressInfo?.mainColorId}
-                    />
-                  );
-                })
-            ) : (
-              <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[300px] ">
-                Ничего не найдено
-              </div>
-            )} */}
           </article>
-
-          {/* {data?.getMainProductCard?.products?.length < 30 ||
-          data?.getMainProductCard?.products?.length < pagination ? null : (
-            <div className="w-full h-fit flex items-center justify-center mt-14">
-              <button
-                type="button"
-                onClick={() => {
-                  setPagination((prev) => prev + 30);
-                  // setOffset((prev) => prev + 30);
-                }}
-                // searchBgColor
-                className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
-              >
-                Показать ещё
-              </button>
-            </div>
-          )} */}
 
           {data?.getMainProductCard?.products?.next_page_url ? (
             <div className="w-full h-fit flex items-center justify-center mt-14">
