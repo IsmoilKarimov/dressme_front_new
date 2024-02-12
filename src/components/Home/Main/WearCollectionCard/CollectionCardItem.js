@@ -76,7 +76,7 @@ export const CollectionCardItem = ({
   return (
     <article
       key={data?.id}
-      className={`w-[49%] md:w-[24%] lg:w-[240px] h-[325px] ls:h-[350px] ll:h-[365px] xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl`}
+      className={`w-[49%] md:w-[24%] lg:w-[240px] h-[325px] ls:h-[350px] ll:h-[365px] xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-lg md:rounded-xl`}
     >
       <figure
         onClick={() => {

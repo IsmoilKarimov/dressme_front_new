@@ -17,8 +17,8 @@ const Footer = () => {
 
   return (
     <footer>
-      <section className="flex flex-col h-fit justify-center items-center m-0 p-0 ss:px-4 md:px-0 box-border border-t border-searchBgColor  md:mt-[60px] mb-[40px] md:mb-[60px] bg-btnBgColor md:bg-white md:border-t-0">
-        <article className="">
+      <section className="flex flex-col h-fit justify-center items-center m-0 p-0 ss:px-4 md:px-0 box-border border-t border-searchBgColor md:mt-[60px] my-[40px] md:mb-[60px] bg-btnBgColor md:bg-white md:border-t-0">
+        <article>
           <ScrollToTop
             smooth
             top="600"
@@ -64,35 +64,23 @@ const Footer = () => {
                     <ArrowTopIcons colors={"#000"} />
                   </span>
                 </Link>
-
-                <Link
-                  to="#"
-                  className="w-1/3 flex items-center justify-center ml-auto md:hidden"
-                >
-                  <HouseStatisticIcons colors={"#000"} />
-                  <span className="ml-2 font-AeonikProMedium text-sm">
-                    Дашборд
-                  </span>
-                </Link>
               </article>
             </section>
 
-            <div className="w-full border-b md:hidden ss:block border-gray-200"></div>
-
-            <section className="mt-[30px]">
+            <section className="mt-[10px]">
               {/* footer bottom section */}
               <article className="w-full font-AeonikProMedium">
-                <section className="w-full flex items-end justify-between text-[13px]">
-                  <article className="">
+                <section className="w-full flex-col md:flex-row flex items-end justify-between text-[13px]">
+                  <div className="w-full md:w-fit text-center md:text-start my-3 md:mb-0">
                     Created by Dishkan (September 25, 2022, 8:16 PM)
-                  </article>
+                  </div>
                   {/* --------------------- Menu ------------------- */}
-                  <section className="">
+                  <div className="w-full md:w-fit hidden md:flex items-center flex-col">
                     <h4 className="font-AeonikProMedium w-full text-center cursor-pointer text-base ss:mb-2 md:mb-[10px]">
                       Меню
                     </h4>
                     <ul className="flex flex-row text-sm">
-                      <article className="flex flex-row basis-1/3">
+                      <article className="flex flex-row basis-1/3 gap-x-4 md:gap-x-0">
                         <li className="ss:mb-1 md:mb-0 md:mr-5">
                           <Link to="/stores" className="flex items-center">
                             <MarketIcons colors={"#000"} />
@@ -102,10 +90,7 @@ const Footer = () => {
                           </Link>
                         </li>
                         <li className="ss:mb-1 md:mb-0 md:mr-5">
-                          <Link
-                            to="/locations"
-                            className="flex items-center"
-                          >
+                          <Link to="/locations" className="flex items-center">
                             <MapIcons colors={"#000"} />
                             <span className="font-AeonikProRegular ml-2">
                               Карта
@@ -125,8 +110,8 @@ const Footer = () => {
                         </li>
                       </article>
                     </ul>
-                  </section>
-                  <article className=" flex items-center justify-end">
+                  </div>
+                  <article className="w-full md:w-fit flex items-center justify-center md:justify-end">
                     {dateObj.getFullYear()}
                     <span className="ml-1">
                       <FooterOriginalIcons />
