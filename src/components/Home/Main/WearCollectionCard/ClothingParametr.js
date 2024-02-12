@@ -298,7 +298,7 @@ const ClothingParametr = () => {
     setIconsColor("black");
   };
   return (
-    <main className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto px-4 md:px-0">
+    <main className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto md:px-0">
       <section className="w-full md:hidden flex items-center justify-between pb-3 gap-x-2">
         <button
           onClick={() => {
@@ -307,7 +307,7 @@ const ClothingParametr = () => {
               clothesTypeMobile: !state.clothesTypeMobile,
             });
           }}
-          className="w-[25%] active:scale-80 active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[52px]"
+          className="w-[25%] active:scale-80 active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[48px]"
         >
           <p>
             {" "}
@@ -321,7 +321,7 @@ const ClothingParametr = () => {
               priceToggleMobile: !state.priceToggleMobile,
             })
           }
-          className="w-[25%] active:scale-95  active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[52px] "
+          className="w-[25%] active:scale-95  active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[48px] "
         >
           <span>
             {" "}
@@ -335,7 +335,7 @@ const ClothingParametr = () => {
               selectColorToggleMobile: !state.selectColorToggleMobile,
             })
           }
-          className="w-[25%] active:scale-95  active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[52px]"
+          className="w-[25%] active:scale-95  active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[48px]"
         >
           <span>
             {" "}
@@ -349,7 +349,7 @@ const ClothingParametr = () => {
               brandToggleMobile: !state.brandToggleMobile,
             })
           }
-          className="w-[25%] active:scale-95  active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[52px]"
+          className="w-[25%] active:scale-95  active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[48px]"
         >
           <span>
             {" "}

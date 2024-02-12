@@ -70,10 +70,6 @@ export default function CollectionCards() {
 
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
-      {/* ------------------------------------------------------ */}
-      <section className="w-full">
-        <ClothingParametr />
-      </section>
       <div
         onClick={() => setOpenWearType(false)}
         className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
@@ -89,8 +85,12 @@ export default function CollectionCards() {
       </section>
 
       <section className="max-w-[1280px] w-[100%] px-[10px] md:px-0 flex flex-col justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
+        <section className="w-full mt-4">
+          <ClothingParametr />
+        </section>
+
         {/* Searching section */}
-        <article className="w-full h-11 flex md:hidden items-center justify-between rounded-xl font-AeonikProRegular border border-searchBgColor bg-white mt-4">
+        <section className="w-full h-12 flex md:hidden items-center justify-between rounded-xl font-AeonikProRegular border border-searchBgColor bg-white">
           <input
             type="text"
             name="name"
@@ -102,7 +102,7 @@ export default function CollectionCards() {
           <span className="w-[15%] rounded-r-xl flex h-full bg-[#fafafa] items-center justify-center">
             <SearchIcons />
           </span>
-        </article>
+        </section>
 
         {data?.products?.length ? (
           <section className="w-full  hidden md:flex justify-start items-center mb-[24px] md:mb-0 md:px-0">
