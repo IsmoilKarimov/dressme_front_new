@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import {
   BrushColorIcons,
+  ChildGenIcon,
   ClothesIcons,
+  CotegoryMenuIcons,
   DollorIcons,
   InputCheckedTrueIcons,
+  ManGenIcons,
   MenuCloseIcons,
   TopBrandsIcon,
+  WomanGenIcons,
 } from "../../../../assets/icons";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import {
@@ -28,7 +32,7 @@ const ClothingParametr = () => {
   const [state, setState] = useState({
     clothesTypeMobile: false,
     priceToggleMobile: false,
-    brandToggleMobile: false,
+    genderMobile: false,
     selectColorToggleMobile: false,
     minPrice: 60000,
     maxPrice: 1800000,
@@ -38,7 +42,7 @@ const ClothingParametr = () => {
     if (
       state?.clothesTypeMobile ||
       state?.priceToggleMobile ||
-      state?.brandToggleMobile ||
+      state?.genderMobile ||
       state?.selectColorToggleMobile
     ) {
       document.body.style.overflow = "hidden";
@@ -48,7 +52,7 @@ const ClothingParametr = () => {
   }, [
     state?.clothesTypeMobile,
     state?.priceToggleMobile,
-    state?.brandToggleMobile,
+    state?.genderMobile,
     state?.selectColorToggleMobile,
   ]);
 
@@ -59,107 +63,7 @@ const ClothingParametr = () => {
     { id: 4, type: "Аксессуары" },
     { id: 5, type: "Обувь" },
   ];
-  // Mobile Price Brand Type
 
-  // Mobile Change color Type
-  // const [changeColor, setChangeColor] = useState([
-  //   {
-  //     id: 1,
-  //     name: "purple",
-  //     value: 1,
-  //     action: false,
-  //     IconsColor: "#7E22CE",
-  //     colors: "bg-purple-700",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "green",
-  //     value: 2,
-  //     action: false,
-  //     IconsColor: "#16A34A",
-  //     colors: "bg-green-600",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "red",
-  //     value: 3,
-  //     action: false,
-  //     IconsColor: "#B91C1C",
-  //     colors: "bg-red-700",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "yellow",
-  //     value: 4,
-  //     action: false,
-  //     IconsColor: "#EAB308",
-  //     colors: "bg-yellow-500",
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "black",
-  //     value: 5,
-  //     action: false,
-  //     IconsColor: "black",
-  //     colors: "bg-black",
-  //   },
-  //   {
-  //     id: 6,
-  //     name: "white",
-  //     value: 6,
-  //     action: false,
-  //     IconsColor: "white",
-  //     colors: "bg-white",
-  //   },
-  //   {
-  //     id: 7,
-  //     name: "blue",
-  //     value: 7,
-  //     action: false,
-  //     IconsColor: "#3B82F6",
-  //     colors: "bg-blue-500",
-  //   },
-  //   {
-  //     id: 8,
-  //     name: "orange",
-  //     value: 8,
-  //     action: false,
-  //     IconsColor: "#EA580C",
-  //     colors: "bg-orange-600",
-  //   },
-  //   {
-  //     id: 9,
-  //     name: "purple",
-  //     value: 9,
-  //     action: false,
-  //     IconsColor: "#C084FC",
-  //     colors: "bg-purple-400",
-  //   },
-  //   {
-  //     id: 10,
-  //     name: "blue",
-  //     value: 10,
-  //     action: false,
-  //     IconsColor: "#1E3A8A",
-  //     colors: "bg-blue-900",
-  //   },
-  //   {
-  //     id: 11,
-  //     name: "yellow",
-  //     value: 11,
-  //     action: false,
-  //     IconsColor: "#713F12",
-  //     colors: "bg-yellow-900",
-  //   },
-  //   {
-  //     id: 12,
-  //     name: "gray",
-  //     value: 12,
-  //     IconsColor: "#4B5563",
-  //     action: false,
-  //     colors: "bg-gray-600",
-  //   },
-  // ]);
   const [changeColor, setChangeColor] = useState([
     {
       colorName: "Black",
@@ -258,6 +162,7 @@ const ClothingParametr = () => {
       colors: "bg-yellow-900 ",
     },
   ]);
+
   // Mobile top Branding Data Lists
   const campany = [
     { id: 1, imgFull: adidas },
@@ -297,6 +202,44 @@ const ClothingParametr = () => {
     });
     setIconsColor("black");
   };
+
+  const [genderType, setGenderType] = useState([
+    {
+      id: 1,
+      action: true,
+      name: "Все",
+      icon: <CotegoryMenuIcons />,
+    },
+    {
+      id: 2,
+      action: false,
+      name: "",
+      icon: <ManGenIcons />,
+    },
+    {
+      id: 3,
+      action: false,
+      name: "",
+      icon: <WomanGenIcons />,
+    },
+    {
+      id: 4,
+      action: false,
+      name: "",
+      icon: <ChildGenIcon />,
+    },
+  ]);
+
+  const handleGenderDataCheck = (value) => {
+    setGenderType((data) => {
+      return data.map((e) => {
+        if (e.id == value) {
+          return { ...e, action: true };
+        } else return { ...e, action: false };
+      });
+    });
+  };
+
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto md:px-0">
       <section className="w-full md:hidden flex items-center justify-between pb-3 gap-x-2">
@@ -307,7 +250,7 @@ const ClothingParametr = () => {
               clothesTypeMobile: !state.clothesTypeMobile,
             });
           }}
-          className="w-[25%] active:scale-80 active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[48px]"
+          className="w-[25%] active:scale-8 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[48px]"
         >
           <p>
             {" "}
@@ -321,7 +264,7 @@ const ClothingParametr = () => {
               priceToggleMobile: !state.priceToggleMobile,
             })
           }
-          className="w-[25%] active:scale-95  active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[48px] "
+          className="w-[25%] active:scale-95 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[48px] "
         >
           <span>
             {" "}
@@ -335,7 +278,7 @@ const ClothingParametr = () => {
               selectColorToggleMobile: !state.selectColorToggleMobile,
             })
           }
-          className="w-[25%] active:scale-95  active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[48px]"
+          className="w-[25%] active:scale-95 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[48px]"
         >
           <span>
             {" "}
@@ -346,10 +289,10 @@ const ClothingParametr = () => {
           onClick={() =>
             setState({
               ...state,
-              brandToggleMobile: !state.brandToggleMobile,
+              genderMobile: !state.genderMobile,
             })
           }
-          className="w-[25%] active:scale-95  active:opacity-70 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[48px]"
+          className="w-[25%] active:scale-95 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[48px]"
         >
           <span>
             {" "}
@@ -585,14 +528,14 @@ const ClothingParametr = () => {
         </section>
         <section
           className={`w-full h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${
-            state?.brandToggleMobile ? "w-[92%]" : "w-0"
+            state?.genderMobile ? "w-[92%]" : "w-0"
           }`}
         >
-          {state?.brandToggleMobile && (
+          {state?.genderMobile && (
             <div className="fixed inset-0 z-10 ">
               <div
                 className="fixed inset-0 w-full h-full bg-black opacity-40"
-                onClick={() => setState({ ...state, brandToggleMobile: false })}
+                onClick={() => setState({ ...state, genderMobile: false })}
               ></div>
               <div className="flex items-center min-h-screen px-4 py-8">
                 <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
@@ -601,34 +544,62 @@ const ClothingParametr = () => {
                        `}
                   >
                     <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
-                      По бредам и магазинам
+                      По полу
                     </span>
                     <button
                       className="py-2"
                       type=""
                       onClick={() =>
-                        setState({ ...state, brandToggleMobile: false })
+                        setState({ ...state, genderMobile: false })
                       }
                     >
                       <GrClose size={22} />
                     </button>
                   </div>
-                  <div className="w-full flex-row flex justify-between flex-wrap py-4 gap-y-5">
-                    {campany?.map((data) => {
+                  {/* Gender selection for Mobile */}
+                  <section className="w-full flex items-center border border-searchBgColor rounded-xl my-3 bg-btnBgColor md:mt-0">
+                    {genderType.map((data) => {
                       return (
                         <div
-                          key={data?.imgFull}
-                          className="w-[23%] h-20 rounded-lg bg-bgColor  border border-solid border-borderColorCard"
+                          key={data.id}
+                          className="w-full flex justify-center items-center h-12 rounded-xl"
                         >
-                          <img
-                            className="h-full w-full p-2"
-                            src={data?.imgFull}
-                            alt="img"
-                          />
+                          <button
+                            key={data.id}
+                            onClick={() => {
+                              handleGenderDataCheck(data.id);
+                              setState({ ...state, genderMobile: false });
+                            }}
+                            className={`w-full flex items-center justify-center h-12 text-[15px] text-center ${
+                              !data.name ? "px-5" : "px-7"
+                            } font-AeonikProRegular ${
+                              data.action
+                                ? `{ bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-xl `
+                                : ""
+                            } `}
+                          >
+                            <span>{data.icon}</span>
+                            {data.name ? (
+                              <p className="pl-2 text-borderWinter">
+                                {data.name}
+                              </p>
+                            ) : (
+                              ""
+                            )}
+                          </button>
+                          <span
+                            className={`${
+                              data.id === 4
+                                ? "text-searchBgColor hidden"
+                                : "text-searchBgColor flex items-center"
+                            }`}
+                          >
+                            |
+                          </span>
                         </div>
                       );
                     })}
-                  </div>
+                  </section>
                 </div>
               </div>
             </div>
