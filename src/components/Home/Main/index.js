@@ -13,7 +13,7 @@ export default function HomeIndex() {
     });
   }, []);
   return (
-    <main className="w-[100%] h-fit mt-[170px] ">
+    <main className="w-[100%] h-fit md:mt-[170px]">
       {mainData?.loader ? (
         <div className="w-full flex items-center justify-center">
           <LoadingNetwork />
