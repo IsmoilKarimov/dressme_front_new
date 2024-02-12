@@ -13,38 +13,11 @@ export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
   const [pagination, setPagination] = useState(30);
-  const [data, setData, wishList, setWishlist, page, setPage] =
-    useContext(HomeMainDataContext);
+  const [data, setData, wishList, setWishlist, page, setPage] = useContext(HomeMainDataContext);
 
   // -------------------------------------
   const toggle = React.useCallback(() => setOpenWearType(false), []);
   // -------------------------------------
-
-  // const url = "https://api.dressme.uz";
-  // ------------GET METHOD Main data -----------------
-  // useQuery(
-  //   ["get_main_data"],
-  //   () => {
-  //     return fetch(`${url}/api/main`, {
-  //       method: "GET",
-  //       headers: {
-  //         Accept: "application/json",
-  //         //   "Content-type": "application/json; charset=UTF-8",
-  //       },
-  //     }).then((res) => res.json());
-  //   },
-  //   {
-  //     onSuccess: (res) => {
-  //       // console.log(res, 'ressssss');
-  //       setData(res);
-  //     },
-  //     onError: (err) => {
-  //       console.log(err, "err");
-  //     },
-  //     keepPreviousData: true,
-  //     refetchOnWindowFocus: true,
-  //   }
-  // );
 
   useEffect(() => {
     if (openWearType) {

@@ -12,6 +12,8 @@ import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 function MainPageSliders() {
   const [data, setData] = useContext(HomeMainDataContext);
 
+  console.log(data, "data");
+
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   // maindata
   const NextArrow = (props) => {
