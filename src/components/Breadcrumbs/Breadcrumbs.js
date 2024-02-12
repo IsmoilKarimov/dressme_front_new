@@ -16,7 +16,7 @@ export default function Breadcrumbs() {
         key={crumb}
         className="w-full crumb not-italic font-AeonikProMedium text-[14px] text-black tracking-[1%] mr-[10px]"
       >
-        <NavLink to={currentLink.join('')}>{crumb}</NavLink>
+        <NavLink to={currentLink.join('').toLocaleUpperCase()}>{crumb}</NavLink>
       </div>
     );
   });
@@ -27,7 +27,7 @@ export default function Breadcrumbs() {
     <div className="flex justify-center items-center ">
       <div className="max-w-[1280px] w-full min-h-[44px] mt-[26px]">
         <div className="w-fit breadcrumbs flex justify-start">
-          <NavLink to="/" className="font-AeonikProMedium flex text-[14px] items-center">
+          <NavLink to="/" className="font-AeonikProMedium flex md:hidden text-[14px] items-center">
             Главная <span className="mx-[10px]">/</span>
           </NavLink>
           {crumbs}
