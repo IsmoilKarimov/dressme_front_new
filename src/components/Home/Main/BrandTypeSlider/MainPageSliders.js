@@ -219,7 +219,7 @@ function MainPageSliders() {
                 {data?.getMainProductCard?.sections?.map((data) => {
                   return (
                     <NavLink
-                      to={`/section/:${data?.id}`}
+                      to={`/section/${data?.id}`}
                       key={data?.id}
                       className="!w-[99%] h-[280px] rounded-lg"
                     >
@@ -297,7 +297,7 @@ function MainPageSliders() {
               if (more) {
                 return (
                   <NavLink
-                    to={`/section/:${data?.id}`}
+                    to={`/section/${data?.id}`}
                     key={data?.id}
                     className="w-full md:!w-[99%] h-[170px] md:h-[280px] rounded-lg "
                   >
@@ -331,7 +331,7 @@ function MainPageSliders() {
                 } else {
                   return (
                     <NavLink
-                      to={`/${data?.id}`}
+                      to={`/section/${data?.id}`}
                       key={data?.id}
                       className="w-[100%] h-[170px]"
                     >
@@ -362,13 +362,45 @@ function MainPageSliders() {
           </div>
 
           {data?.getMainProductCard?.sections?.length > 6 ? (
-            <div className="w-full flex justify-center items-center mt-10">
+            <div className="w-full hidden md:flex justify-center items-center mt-10">
               <button
                 className={`w-fit cursor-pointer active:scale-95 active:opacity-70 flex items-center h-[40px] xs:h-[52px] px-4 ll:px-10 rounded-xl border ${dressInfo?.BtnSeason}`}
                 onClick={() => setMore(!more)}
               >
-                <p className="not-italic  font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
-                  {more ? "Назад" : "Посмотреть все разделы"}
+                <p className="not-italic font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
+                  {more ? "Свернуть" : "Посмотреть все разделы"}
+                </p>
+                <div className="ml-2 ">
+                  {more ? (
+                    <div>
+                      <span className="xs:hidden">
+                        <ShowMoreBackIcon
+                          colors={dressInfo?.ColorSeason}
+                          width={18}
+                        />
+                      </span>
+                      <span className="hidden xs:block">
+                        <ShowMoreBackIcon
+                          colors={dressInfo?.ColorSeason}
+                          width={24}
+                        />
+                      </span>
+                    </div>
+                  ) : (
+                    <SircleNext colors={dressInfo?.ColorSeason} />
+                  )}
+                </div>
+              </button>
+            </div>
+          ) : null}
+          {data?.getMainProductCard?.sections?.length > 9 ? (
+            <div className="w-full flex md:hidden justify-center items-center mt-10">
+              <button
+                className={`w-fit cursor-pointer active:scale-95 active:opacity-70 flex items-center h-[40px] xs:h-[52px] px-4 ll:px-10 rounded-xl border ${dressInfo?.BtnSeason}`}
+                onClick={() => setMore(!more)}
+              >
+                <p className="not-italic font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
+                  {more ? "Свернуть" : "Посмотреть все разделы"}
                 </p>
                 <div className="ml-2 ">
                   {more ? (
