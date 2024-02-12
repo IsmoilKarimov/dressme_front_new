@@ -1,11 +1,7 @@
-import React, { useEffect, Suspense, useState, Fragment } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import React, { Suspense, Fragment } from "react";
+import { Route, Routes} from "react-router-dom";
 import "../index.css";
 import Header from "../components/header/header";
-import LoadingFor from "../components/Loading/LoadingFor";
-import SkeletonHomeIndex from "../components/Home/Main/Skeleton/SkeletonHomeIndex";
-import SignInSkeletonIndex from "../components/Authentication/SignUpSkeleton";
-import SignUpSkeletonIndex from "../components/Authentication/SignUpSkeleton";
 import MobileAllComments from "../components/Home/Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/MobileComments";
 import { EditProfilePage } from "../components/Authentication/UserProfile/ProfileEditPage/EditPageProfile";
 import CatalogItems from "../components/Home/Catalog/CatalogFilter/CatalogItems";
@@ -13,9 +9,6 @@ import LoadingNetwork from "../components/Loading/LoadingNetwork";
 // import ShoppingStoreOfficialByLocation from "../components/Home/Shop/ShoppingStoreOfficialByLocation";
 
 import ShoppingStore from "../components/Home/Shop/ShoppingStore";
-import Breadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
-import BreadcrumbRoad from "../components/Breadcrumbs/BreadcrumbRoad";
-import { Breadcrumb } from "antd";
 
 // -------------------------------------
 const HomeIndex = React.lazy(() => import("../components/Home/Main"));
