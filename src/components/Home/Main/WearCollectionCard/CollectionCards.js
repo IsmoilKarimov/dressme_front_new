@@ -71,9 +71,9 @@ export default function CollectionCards() {
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       {/* ------------------------------------------------------ */}
-      {/* <section className="w-full mt-[50px]">
+      <section className="w-full mt-[50px]">
         <ClothingParametr />
-      </section> */}
+      </section>
       {/* ////////////////////// ----- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\ important */}
       <div
         onClick={() => setOpenWearType(false)}
@@ -120,7 +120,7 @@ export default function CollectionCards() {
         </section>
 
         <div className="w-full flex flex-col box-border ">
-          <article className="flex flex-wrap justify-between md:justify-start md:mx-0 md:mt-[50px] gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
+          <article className="flex flex-wrap justify-between md:justify-start md:mx-0 md:mt-[50px] mb-[20px] md:mb-0 gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
             {data?.products?.length ? (
               data?.products?.map((data) => {
                 return (
