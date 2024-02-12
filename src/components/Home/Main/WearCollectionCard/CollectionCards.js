@@ -71,10 +71,9 @@ export default function CollectionCards() {
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       {/* ------------------------------------------------------ */}
-      <section className="w-full mt-[50px]">
+      <section className="w-full">
         <ClothingParametr />
       </section>
-      {/* ////////////////////// ----- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\ important */}
       <div
         onClick={() => setOpenWearType(false)}
         className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
