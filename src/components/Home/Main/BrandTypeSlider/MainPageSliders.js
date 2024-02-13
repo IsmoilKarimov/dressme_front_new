@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
@@ -201,6 +201,12 @@ function MainPageSliders() {
         }
       });
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
 
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
