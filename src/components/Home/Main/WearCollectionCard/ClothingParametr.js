@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import {
   BrushColorIcons,
-  ChildGenIcon,
   ClothesIcons,
   CotegoryMenuIcons,
   DollorIcons,
@@ -9,6 +8,7 @@ import {
   ManGenIcons,
   MenuCloseIcons,
   TopBrandsIcon,
+  WinterBoyIcons,
   WomanGenIcons,
 } from "../../../../assets/icons";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
@@ -48,170 +48,55 @@ const ClothingParametr = () => {
     state?.selectColorToggleMobile,
   ]);
 
-  const [changeColor, setChangeColor] = useState([
-    {
-      colorName: "Black",
-      id: 1,
-      value: 1,
-      action: false,
-      IconsColor: "#4B5563",
-      colors: "bg-black",
-    },
-    {
-      colorName: "Белый",
-      id: 2,
-      value: 2,
-      action: false,
-      IconsColor: "#4B5563",
-      colors: "bg-white",
-    },
-    {
-      id: 3,
-      value: 3,
-      colorName: "Серый",
-      action: false,
-      IconsColor: "#4B5563",
-      colors: "bg-zinc-500",
-    },
-    {
-      id: 4,
-      value: 4,
-      colorName: "Фиолетовый",
-      action: false,
-      IconsColor: "#4B5563",
-      colors: "bg-purple-500",
-    },
-    {
-      id: 5,
-      value: 5,
-      colorName: "Голубой",
-      action: false,
-      IconsColor: "#4B5563",
-      colors: "bg-sky-600",
-    },
-    {
-      id: 6,
-      value: 6,
-      colorName: "Желтый",
-      action: false,
-      IconsColor: "#4B5563",
-      colors: "bg-amber-400 ",
-    },
-    {
-      id: 7,
-      value: 7,
-      colorName: "Зеленый",
-      action: false,
-      IconsColor: "#4B5563",
-      colors: "bg-green-700 ",
-    },
-    {
-      id: 8,
-      value: 8,
-      colorName: "Amber",
-      action: false,
-      IconsColor: "#4B5563",
-      colors: "bg-amber-600 ",
-    },
-    {
-      id: 9,
-      value: 9,
-      colorName: "Красный",
-      action: false,
-      IconsColor: "#4B5563",
-      colors: "bg-red-700  ",
-    },
-    {
-      id: 10,
-      value: 10,
-      colorName: "Фиолетовый",
-      action: false,
-      IconsColor: "#4B5563",
-      colors: "bg-purple-800 ",
-    },
-    {
-      id: 11,
-      value: 11,
-      colorName: "Blue",
-      action: false,
-      IconsColor: "#4B5563",
-      colors: "bg-blue-900 ",
-    },
-    {
-      id: 12,
-      value: 12,
-      colorName: "Brown",
-      action: false,
-      IconsColor: "#4B5563",
-      colors: "bg-yellow-900 ",
-    },
-  ]);
-
-  const [iconsColor, setIconsColor] = useState("black");
-  const HandleIconsColor = (color, id) => {
-    setIconsColor(color);
-    setChangeColor((current) => {
-      return current.map((data) => {
-        if (data?.id == id) {
-          return { ...data, action: true };
-        } else {
-          return { ...data, action: false };
-        }
-      });
-    });
-  };
-
-  // Checks whether an element is even
-  const even = (element) => element.action == true;
-  let toggleAction = changeColor.some(even);
-
-  const unCheckedAll = () => {
-    setState({ ...state, selectColorToggleMobile: false });
-
-    setChangeColor((current) => {
-      return current.map((data) => {
-        return { ...data, action: false };
-      });
-    });
-    setIconsColor("black");
-  };
+  const [iconsColor] = useState("black");
 
   const [genderType, setGenderType] = useState([
     {
-      id: 1,
-      action: true,
-      name: "Все",
-      icon: <CotegoryMenuIcons />,
+      id: 1111,
+      childText: [
+        { id: 0, anyIcons: <CotegoryMenuIcons />, name: "Все", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
+      ],
     },
     {
-      id: 2,
-      action: false,
-      name: "",
-      icon: <ManGenIcons />,
+      id: 2222,
+      childText: [
+        { id: 0, anyIcons: <CotegoryMenuIcons />, name: "Все", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
+      ],
     },
     {
-      id: 3,
-      action: false,
-      name: "",
-      icon: <WomanGenIcons />,
+      id: 3333,
+      childText: [
+        { id: 0, anyIcons: <CotegoryMenuIcons />, name: "Все", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
+      ],
     },
     {
-      id: 4,
-      action: false,
-      name: "",
-      icon: <ChildGenIcon />,
+      id: 4444,
+      childText: [
+        { id: 0, anyIcons: <CotegoryMenuIcons />, name: "Все", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
+      ],
+    },
+    {
+      id: 5555,
+      childText: [
+        { id: 0, anyIcons: <CotegoryMenuIcons />, name: "Все", action: true },
+        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
+        { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
+      ],
     },
   ]);
-
-  const handleGenderDataCheck = (value) => {
-    setGenderType((data) => {
-      return data.map((e) => {
-        if (e.id == value) {
-          return { ...e, action: true };
-        } else return { ...e, action: false };
-      });
-    });
-  };
 
   const onFilterCategory = (value) => {
     setDressInfo({ ...dressInfo, mainCategoryId: value });
@@ -272,6 +157,30 @@ const ClothingParametr = () => {
       Number(data?.getMainProductCard?.budget?.max_price),
     ]);
     setDressInfo({ ...dressInfo, mainRangePrice: [] });
+  };
+
+  const newColorArrayId = (hex, id) => {
+    setPage(1);
+    if (!dressInfo?.mainColorHex) {
+      setDressInfo({ ...dressInfo, mainColorId: id, mainColorHex: hex });
+    }
+    if (dressInfo?.mainColorHex === hex) {
+      setDressInfo({ ...dressInfo, mainColorId: null, mainColorHex: null });
+    }
+    if (dressInfo?.mainColorHex !== hex) {
+      setDressInfo({ ...dressInfo, mainColorId: id, mainColorHex: hex });
+    }
+  };
+  const ClearColorId = () => {
+    setDressInfo({ ...dressInfo, mainColorId: null, mainColorHex: null });
+  };
+
+  const handleFilterByUser = (fathId, childId) => {
+    if (childId === 0) {
+      setDressInfo({ ...dressInfo, mainGenderId: 0 });
+    } else if (childId > 0) {
+      setDressInfo({ ...dressInfo, mainGenderId: childId });
+    }
   };
 
   useEffect(() => {
@@ -342,6 +251,7 @@ const ClothingParametr = () => {
       </section>
 
       <section className="w-full">
+        {/* Cateories */}
         <section
           className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
             state?.clothesTypeMobile ? "w-[92%]" : "w-0"
@@ -414,6 +324,7 @@ const ClothingParametr = () => {
           )}
         </section>
 
+        {/* Prizes */}
         <section
           className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
             state?.priceToggleMobile ? "w-[92%]" : "w-0"
@@ -506,10 +417,9 @@ const ClothingParametr = () => {
                         {state?.clearPrice && (
                           <span
                             onClick={() => {
-                              clearPriceValue()
+                              clearPriceValue();
                               setState({ ...state, priceToggleMobile: false });
                             }}
-                            
                             className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
                           >
                             Сбросить
@@ -533,6 +443,7 @@ const ClothingParametr = () => {
           )}
         </section>
 
+        {/* Colors */}
         <section
           className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
             state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
@@ -565,47 +476,50 @@ const ClothingParametr = () => {
                       <GrClose size={22} />
                     </button>
                   </div>
-                  <div className="py-4 gap-x-2 gap-y-4 grid gap-4 grid-cols-4">
-                    {changeColor?.map((data) => {
+                  <div className="w-full py-4 gap-x-2 gap-y-2 grid gap-4 grid-cols-4">
+                    {data?.getMainProductCard?.colors?.map((data) => {
                       return (
                         <div
                           key={data?.id}
                           className="flex flex-col items-center justify-center "
                         >
                           <div
-                            onClick={() =>
-                              HandleIconsColor(data?.IconsColor, data?.id)
-                            }
+                            onClick={() => {
+                              newColorArrayId(data?.hex, data?.id);
+                            }}
+                            style={{ backgroundColor: data?.hex }}
                             className={`rounded-full flex items-center justify-center w-[35px] h-[35px] ${
-                              data?.colors
-                            } cursor-pointer ${
-                              data?.id == 2 ? "border border-setTexOpacity" : ""
-                            } `}
+                              data?.hex === dressInfo?.mainColorHex
+                                ? "border border-setTexOpacity flex items-center justify-center"
+                                : "border"
+                            }  `}
                           >
-                            {data?.action && data?.id === 2 ? (
-                              <span>
-                                <InputCheckedTrueIcons colors={"#000"} />
-                              </span>
-                            ) : null}
+                            {dressInfo?.mainColorHex === data?.hex &&
+                              data?.id !== 1 && (
+                                <span>
+                                  <InputCheckedTrueIcons colors={"#000"} />
+                                </span>
+                              )}
 
-                            {data?.action && data?.id !== 2 ? (
-                              <InputCheckedTrueIcons colors={"#fff"} />
-                            ) : null}
+                            {dressInfo?.mainColorHex === data?.hex &&
+                              data?.id === 1 && (
+                                <InputCheckedTrueIcons colors={"#fff"} />
+                              )}
                           </div>
                           <span
                             className={`text-black text-center text-xs not-italic font-AeonikProRegular`}
                           >
-                            {data?.colorName}
+                            {data?.name_ru}
                           </span>
                         </div>
                       );
                     })}
                   </div>
-                  <div className="flex items-center justify-end">
-                    {toggleAction && (
+                  <div className="w-full flex items-center justify-end">
+                    {dressInfo?.mainColorHex && (
                       <button
-                        onClick={unCheckedAll}
-                        className="flex items-center text-fullBlue active:scale-95  active:opacity-70 justify-center  px-4 py-1"
+                        onClick={() => ClearColorId()}
+                        className="flex items-center text-fullBlue active:scale-95  active:opacity-70 justify-center  px-4"
                       >
                         Отключить
                       </button>
@@ -616,6 +530,8 @@ const ClothingParametr = () => {
             </div>
           )}
         </section>
+
+        {/* Gender BUTTONS */}
         <section
           className={`w-full h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${
             state?.genderMobile ? "w-[92%]" : "w-0"
@@ -628,7 +544,7 @@ const ClothingParametr = () => {
                 onClick={() => setState({ ...state, genderMobile: false })}
               ></div>
               <div className="flex items-center min-h-screen px-4 py-8">
-                <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
+                <div className="relative max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
                   <div
                     className={`flex items-center justify-between border-b border-searchBgColor pb-3"
                        `}
@@ -646,50 +562,50 @@ const ClothingParametr = () => {
                       <GrClose size={22} />
                     </button>
                   </div>
+
                   {/* Gender selection for Mobile */}
-                  <section className="w-full flex items-center border border-searchBgColor rounded-xl my-3 bg-btnBgColor md:mt-0">
-                    {genderType.map((data) => {
-                      return (
-                        <div
-                          key={data.id}
-                          className="w-full flex justify-center items-center h-12 rounded-xl"
-                        >
-                          <button
-                            key={data.id}
-                            onClick={() => {
-                              handleGenderDataCheck(data.id);
-                              setState({ ...state, genderMobile: false });
-                            }}
-                            className={`w-full flex items-center justify-center h-12 text-[15px] text-center ${
-                              !data.name ? "px-5" : "px-7"
-                            } font-AeonikProRegular ${
-                              data.action
-                                ? `{ bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-xl `
-                                : ""
-                            } `}
+                  <div className="box-border flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-xl bg-btnBgColor mt-5 mb-2">
+                    {genderType
+                      ?.filter((value) => value.id === dressInfo?.type)
+                      .map((data) => {
+                        return (
+                          <div
+                            key={data?.id}
+                            className="w-full h-full flex items-center"
                           >
-                            <span>{data.icon}</span>
-                            {data.name ? (
-                              <p className="pl-2 text-borderWinter">
-                                {data.name}
-                              </p>
-                            ) : (
-                              ""
-                            )}
-                          </button>
-                          <span
-                            className={`${
-                              data.id === 4
-                                ? "text-searchBgColor hidden"
-                                : "text-searchBgColor flex items-center"
-                            }`}
-                          >
-                            |
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </section>
+                            {data?.childText?.map((item) => {
+                              return (
+                                <div
+                                  key={item?.id}
+                                  className="w-fit flex items-center h-full box-border"
+                                >
+                                  <button
+                                    onClick={() =>
+                                      handleFilterByUser(data?.id, item?.id)
+                                    }
+                                    className={`${
+                                      item?.id == dressInfo?.mainGenderId
+                                        ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
+                                        : " bg-btnBgColor text-black h-full"
+                                    } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
+                                  >
+                                    <span>{item?.anyIcons}</span>
+                                    {item?.name && (
+                                      <span className="ml-2 not-italic whitespace-nowrap text-sm font-AeonikProMedium tracking-wide	leading-5">
+                                        {item?.name}
+                                      </span>
+                                    )}
+                                  </button>
+                                  {item?.id !== 3 && (
+                                    <span className="w-[2px] h-[30px] mx-[1px] border-r border-searchBgColor"></span>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        );
+                      })}
+                  </div>
                 </div>
               </div>
             </div>

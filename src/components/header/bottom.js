@@ -298,8 +298,7 @@ function BottomHeader() {
         <div className="max-w-[576px] w-full fixed z-[221]  left-1/2 right-1/2 top-[50%] translate-x-[-50%] translate-y-[-50%]  h-fit flex items-center  justify-center mx-auto ">
           <div className="relative z-[223]  top-0 w-full h-fit p-4 mx-auto bg-white rounded-md shadow-lg">
             <div
-              className={`flex items-center justify-between border-b border-searchBgColor pb-3"
-                       `}
+              className={`flex items-center justify-between border-b border-searchBgColor pb-3"`}
             >
               <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
                 Выберите цвет
@@ -332,11 +331,6 @@ function BottomHeader() {
                           : "border"
                       } `}
                     >
-                      {/* {selectedId === data?.id ? (
-                        <InputCheckedTrueIcons
-                          colors={data?.hex === "#000000" ? "#fff" : "#000"}
-                        />
-                      ) : null} */}
                       {dressInfo?.mainColorHex == data?.hex &&
                         data?.id == 1 && (
                           <span>
@@ -564,9 +558,7 @@ function BottomHeader() {
 
         <div className="line h-6 border-r-[1px] text-textColor mx-3"></div>
         <div className="box-border flex items-center gap-x-2  h-[44px] border border-searchBgColor overflow-hidden rounded-xl bg-btnBgColor">
-          {personItems
-            ?.filter((value) => value.id === dressInfo?.type)
-            .map((data) => {
+          {personItems?.filter((value) => value.id === dressInfo?.type).map((data) => {
               return (
                 <div
                   key={data?.id}
