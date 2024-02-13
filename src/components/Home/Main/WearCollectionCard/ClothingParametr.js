@@ -356,7 +356,7 @@ const ClothingParametr = () => {
                             data?.id === dressInfo?.mainCategoryId
                               ? "bg-[#F6F6F6]"
                               : ""
-                          }  w-full flex items-center h-10 xs:h-12`}
+                          } w-full hover:bg-[#F6F6F6] flex items-center h-10 xs:h-12`}
                         >
                           <div
                             key={data?.id}
@@ -365,11 +365,11 @@ const ClothingParametr = () => {
                             }}
                             className={`${
                               data?.id === dressInfo?.mainCategoryId
-                                ? "text-borderWinter bg-[#F6F6F6]"
+                                ? "text-borderWinter"
                                 : ""
                             }  ${
                               dressInfo?.TextHoverSeason
-                            } relative bg-bgCard text-base text-[#303030] font-AeonikProMedium hover:bg-[#F6F6F6] w-[85%] xs:h-12 h-10 cursor-pointer  flex items-center justify-center hover:duration-300 hover:ease-linear pl-12`}
+                            } relative bg-bgCard text-base text-[#303030] font-AeonikProMedium hover:bg-[#F6F6F6] w-[90%] xs:h-12 h-10 cursor-pointer flex items-center justify-center hover:duration-300 hover:ease-linear pl-9`}
                           >
                             {data.name_ru}
                           </div>
@@ -380,7 +380,7 @@ const ClothingParametr = () => {
                               data?.id === dressInfo?.mainCategoryId
                                 ? "block"
                                 : "hidden"
-                            } text-black absolute right-3 flex items-center justify-center w-[15%] h-10 xs:h-12`}
+                            } text-black absolute right-3 flex items-center justify-center w-[10%] h-10 xs:h-12`}
                           >
                             <GrClose size={12} />
                           </button>
