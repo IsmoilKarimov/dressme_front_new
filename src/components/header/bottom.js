@@ -555,7 +555,7 @@ function BottomHeader() {
         </div>
 
         <div className="line h-6 border-r-[1px] text-textColor mx-3"></div>
-        <div className="box-border flex items-center gap-x-2  h-[44px] border border-searchBgColor overflow-hidden rounded-xl bg-btnBgColor">
+        <div className="box-border flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-xl bg-btnBgColor">
           {personItems?.filter((value) => value.id === dressInfo?.type).map((data) => {
               return (
                 <div

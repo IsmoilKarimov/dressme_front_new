@@ -174,7 +174,7 @@ const ClothingParametr = () => {
     setDressInfo({ ...dressInfo, mainColorId: null, mainColorHex: null });
   };
 
-  const handleFilterByUser = (childId) => {
+  const handleFilterByUser = (fathId, childId) => {
     if (childId === 0) {
       setDressInfo({ ...dressInfo, mainGenderId: 0 });
     } else if (childId > 0) {
@@ -520,7 +520,7 @@ const ClothingParametr = () => {
 
         {/* Gender BUTTONS */}
         <section
-          className={`w-full h-fit top-30  left-[16px] fixed  bg-white shadow-lg duration-200 z-50 ${
+          className={`w-full h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
             state?.genderMobile ? "w-[92%]" : "w-0"
           }`}
         >
@@ -530,8 +530,8 @@ const ClothingParametr = () => {
                 className="fixed inset-0 w-full h-full bg-black opacity-40"
                 onClick={() => setState({ ...state, genderMobile: false })}
               ></div>
-              <div className="flex items-center min-h-screen px-4 py-8">
-                <div className="relative max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
+              <div className="w-full mx-auto flex items-center min-h-screen px-4 py-8">
+                <div className="relative w-full left-0 right-0 max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
                   <div
                     className={`flex items-center justify-between border-b border-searchBgColor pb-3"
                        `}
@@ -551,16 +551,22 @@ const ClothingParametr = () => {
                   </div>
 
                   {/* Gender selection for Mobile */}
-                  <div className="box-border flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-xl bg-btnBgColor mt-5 mb-2">
+                  <div className="w-fit mx-auto box-border flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-xl bg-btnBgColor mt-5 mb-2">
                     {personItems
-                      ?.filter((value) => value?.id === dressInfo?.type)
-                      .map((data) => {
+                      ?.filter((value) => value?.id === dressInfo?.type)?.map((data) => {
+                        console.log(data,'data');
+                        console.log(dressInfo?.type, "dressInfo?.type");
+                        console.log(
+                          dressInfo?.mainGenderId,
+                          "dressInfo?.mainGenderId"
+                        );
                         return (
                           <div
                             key={data?.id}
                             className="w-fit h-full flex items-center  "
                           >
                             {data?.childText?.map((item) => {
+                              console.log(item, "data?.childText");
                               return (
                                 <div
                                   key={item?.id}
