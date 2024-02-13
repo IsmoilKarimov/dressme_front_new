@@ -27,6 +27,7 @@ import {
   PersonIcons,
   PhoneIcons,
   SearchIcons,
+  UploadIcons,
   VolumeIcons,
   WomanGenIcons,
 } from "../../assets/icons";
@@ -49,6 +50,7 @@ import {
   img6,
   img7,
   img8,
+  EnglishFlag,
 } from "../../assets";
 import RegionsList from "../../ContextHook/RegionsList";
 import Cookies from "js-cookie";
@@ -588,64 +590,22 @@ const MediumHeader = () => {
               }`}
             >
               <div className={`w-full h-fit flex flex-wrap `}>
-                {/* Gender selection for Mobile */}
-                <section className="w-full flex items-center border border-searchBgColor rounded-xl my-3 bg-btnBgColor md:mt-0">
-                  {genderType.map((data) => {
-                    return (
-                      <div
-                        key={data.id}
-                        className="w-full flex justify-center items-center h-12 rounded-xl"
-                      >
-                        <button
-                          key={data.id}
-                          onClick={() => handleGenderDataCheck(data.id)}
-                          className={`w-full flex items-center justify-center h-12 text-[15px] text-center ${
-                            !data.name ? "px-5" : "px-7"
-                          } font-AeonikProRegular ${
-                            data.action
-                              ? `{ bg-white border w-full h-[98%] my-auto mx-auto border-searchBgColor rounded-xl `
-                              : ""
-                          } `}
-                        >
-                          <span>{data.icon}</span>
-                          {data.name ? (
-                            <p className="pl-2 text-borderWinter">
-                              {data.name}
-                            </p>
-                          ) : (
-                            ""
-                          )}
-                        </button>
-                        <span
-                          className={`${
-                            data.id === 4
-                              ? "text-searchBgColor hidden"
-                              : "text-searchBgColor flex items-center"
-                          }`}
-                        >
-                          |
-                        </span>
-                      </div>
-                    );
-                  })}
-                </section>
                 {/* Categories */}
                 <ul className="flex flex-col w-full">
-                  {/* Categories */}
-
                   <li>
                     <NavLink
-                      onClick={() =>
-                        setState({ ...state, hamburgerMenu: false })
-                      }
+                      // onClick={() =>
+                      //   setState({ ...state, hamburgerMenu: false })
+                      // }
+                      onClick={() => setRegionsList(true)}
                       to="/signup-seller"
-                      className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[48px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
+                      className="flex items-center bg-btnBgColor mt-3 font-AeonikProMedium h-[48px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
                     >
                       <div className="flex items-center">
                         <span className=" py-3 pr-3">
                           <HouseStatisticIcons colors={"#000"} />
                         </span>
-                        <span className="ml-[11.67px]">Бизнес</span>
+                        <span className="ml-[11.67px]">Ташкент</span>
                       </div>
                       <span className="arrowRotate ml-auto rotate-[90deg]">
                         <ArrowTopIcons colors={"#000"} />
@@ -673,17 +633,37 @@ const MediumHeader = () => {
                   </li>
                   <li>
                     <NavLink
+                      to="https://t.me/Dishkan_Kh"
+                      target="_blank"
                       onClick={() =>
                         setState({ ...state, hamburgerMenu: false })
                       }
-                      to="#"
                       className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
                     >
                       <div className="flex items-center">
+                        <UploadIcons />
+                        <p className="text-base font-AeonikProMedium leading-4 ml-[12.5px] mr-[32.37px]">
+                          Есть вопросы?
+                        </p>
+                      </div>
+                      <span className="arrowRotate ml-auto rotate-[90deg]">
+                        <ArrowTopIcons colors={"#000"} />
+                      </span>
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      onClick={() =>
+                        setState({ ...state, hamburgerMenu: false })
+                      }
+                      to="/signup-seller"
+                      className="flex items-center bg-btnBgColor font-AeonikProMedium h-[48px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
+                    >
+                      <div className="flex items-center">
                         <span className=" py-3 pr-3">
-                          <CommentIcons colors={"#000"} />
+                          <HouseStatisticIcons colors={"#000"} />
                         </span>
-                        <span className="ml-[11.67px]">Помощь</span>
+                        <span className="ml-[11.67px]">Бизнес</span>
                       </div>
                       <span className="arrowRotate ml-auto rotate-[90deg]">
                         <ArrowTopIcons colors={"#000"} />
@@ -700,9 +680,9 @@ const MediumHeader = () => {
                     >
                       <div className="flex items-center">
                         <span className=" py-3 pr-3">
-                          <PhoneIcons colors={"#000"} />
+                          <img src={EnglishFlag} alt="Language" />
                         </span>
-                        <span className="ml-[11.67px]">Контакты</span>
+                        <span className="ml-[11.67px]">Английский</span>
                       </div>
                       <span className="arrowRotate ml-auto rotate-[90deg]">
                         <ArrowTopIcons colors={"#000"} />
@@ -710,12 +690,12 @@ const MediumHeader = () => {
                     </NavLink>
                   </li>
                 </ul>
+
                 <article className="w-full flex flex-col">
                   {/* Line */}
-                  <div className="line border-b w-full border-searchBgColor mb-3 ls:w-full"></div>
-
+                  {/* <div className="line border-b w-full border-searchBgColor mb-3 ls:w-full"></div> */}
                   {/* Location and Language */}
-                  <div className="flex items-center justify-between h-fit mb-3">
+                  {/* <div className="flex items-center justify-between h-fit mb-3">
                     <button
                       onClick={() => setRegionsList(true)}
                       className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
@@ -732,13 +712,12 @@ const MediumHeader = () => {
                       to="#"
                       className="left h-[48px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
                     >
-                      <img src={UzbekFlag} alt="." />
                       <span className="ml-[10px] mr-5">English</span>
                       <span className="rotate-180">
                         <ArrowTopIcons colors={"#000"} />
                       </span>
                     </Link>
-                  </div>
+                  </div> */}
                 </article>
               </div>
             </section>
