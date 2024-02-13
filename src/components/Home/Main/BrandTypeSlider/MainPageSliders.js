@@ -12,8 +12,6 @@ import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 function MainPageSliders() {
   const [data, setData] = useContext(HomeMainDataContext);
 
-  console.log(data, "data");
-
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   // maindata
   const NextArrow = (props) => {
@@ -201,12 +199,6 @@ function MainPageSliders() {
         }
       });
   };
-
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-    });
-  }, []);
 
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">

@@ -283,8 +283,6 @@ function BottomHeader() {
     setDressInfo({ ...dressInfo, mainColorId: null, mainColorHex: null });
   };
 
-  console.log(dressInfo, "dressInfo");
-
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
       <div
