@@ -6,6 +6,7 @@ import {
   DollorIcons,
   InputCheckedTrueIcons,
   ManGenIcons,
+  ManWomanGen,
   MenuCloseIcons,
   TopBrandsIcon,
   WinterBoyIcons,
@@ -28,8 +29,6 @@ const ClothingParametr = () => {
     maxPrice: 1800000,
   });
 
-  console.log(data, "data");
-
   useEffect(() => {
     if (
       state?.clothesTypeMobile ||
@@ -50,7 +49,7 @@ const ClothingParametr = () => {
 
   const [iconsColor] = useState("black");
 
-  const [genderType] = useState([
+  const [personItems, setPersonItems] = useState([
     {
       id: 1111,
       childText: [
@@ -88,7 +87,7 @@ const ClothingParametr = () => {
       ],
     },
     {
-      id: 5555,
+      id:5555,
       childText: [
         { id: 0, anyIcons: <CotegoryMenuIcons />, name: "Все", action: true },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
@@ -275,9 +274,7 @@ const ClothingParametr = () => {
                   <div className="pt-2 flex flex-col">
                     {data?.getMainProductCard?.categories?.map((data) => {
                       return (
-                        <div
-                          className={` w-full flex items-center rounded-lg`}
-                        >
+                        <div className={` w-full flex items-center rounded-lg`}>
                           <div
                             key={data?.id}
                             onClick={() => {
@@ -555,26 +552,26 @@ const ClothingParametr = () => {
 
                   {/* Gender selection for Mobile */}
                   <div className="box-border flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-xl bg-btnBgColor mt-5 mb-2">
-                    {genderType
-                      ?.filter((value) => console.log(value))
+                    {personItems
+                      ?.filter((value) => value?.id === dressInfo?.type)
                       .map((data) => {
                         return (
                           <div
                             key={data?.id}
-                            className="w-full h-full flex items-center"
+                            className="w-fit h-full flex items-center  "
                           >
                             {data?.childText?.map((item) => {
                               return (
                                 <div
                                   key={item?.id}
-                                  className="w-fit flex items-center h-full box-border"
+                                  className="flex items-center h-full box-border"
                                 >
                                   <button
                                     onClick={() =>
                                       handleFilterByUser(data?.id, item?.id)
                                     }
                                     className={`${
-                                      item?.id === dressInfo?.mainGenderId
+                                      item?.id == dressInfo?.mainGenderId
                                         ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
                                         : " bg-btnBgColor text-black h-full"
                                     } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
