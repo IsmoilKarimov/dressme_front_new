@@ -13,11 +13,11 @@ import {
 } from "../../../../assets/icons";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { GrClose } from "react-icons/gr";
-import ReactSlider from "react-slider";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
+import Slider from "react-slick";
 const ClothingParametr = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-    const [data, setData, , , page, setPage] = useContext(HomeMainDataContext);
+  const [data, setData, , , page, setPage] = useContext(HomeMainDataContext);
 
   const [state, setState] = useState({
     clothesTypeMobile: false,
@@ -216,7 +216,50 @@ const ClothingParametr = () => {
   const onFilterCategory = (value) => {
     setDressInfo({ ...dressInfo, mainCategoryId: value });
     setState({ ...state, clothesTypeMobile: false });
-  }
+  };
+
+  const onClearFilterCategoryId = () => {
+    setDressInfo({ ...dressInfo, mainCategoryId: null});
+  };
+
+  const [minPrice, setMinPrice] = useState(
+    Number(data?.getMainProductCard?.budget?.min_price)
+  );
+  const [maxPrice, setMaxPrice] = useState(
+    Number(data?.getMainProductCard?.budget?.max_price)
+  );
+
+  const [values, setValues] = useState([]);
+
+  useEffect(() => {
+    setMinPrice(Number(data?.getMainProductCard?.budget?.min_price));
+    setMaxPrice(Number(data?.getMainProductCard?.budget?.max_price));
+    if (
+      data?.getMainProductCard?.budget?.min_price &&
+      data?.getMainProductCard?.budget?.max_price
+    ) {
+      if (!values[0] && !values[1]) {
+        setValues([
+          Number(data?.getMainProductCard?.budget?.min_price),
+          Number(data?.getMainProductCard?.budget?.max_price),
+        ]);
+      }
+    }
+    if (
+      !data?.getMainProductCard?.budget?.min_price &&
+      !data?.getMainProductCard?.budget?.max_price
+    ) {
+      setValues([0, 0]);
+    }
+  }, [data?.getMainProductCard?.budget]);
+
+  useEffect(() => {
+    if (values[1] && values[0] && minPrice && maxPrice) {
+      if (minPrice !== values[0] || maxPrice !== values[1]) {
+        setState({ ...state, clearPrice: true });
+      }
+    }
+  }, [values]);
 
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto md:px-0">
@@ -285,7 +328,7 @@ const ClothingParametr = () => {
           }  `}
         >
           {state?.clothesTypeMobile && (
-            <div className="fixed inset-0 z-10 ">
+            <div className="fixed inset-0 z-10">
               <div
                 className="fixed inset-0 w-full h-full bg-black opacity-40"
                 onClick={() => setState({ ...state, clothesTypeMobile: false })}
@@ -309,13 +352,38 @@ const ClothingParametr = () => {
                     {data?.getMainProductCard?.categories?.map((data) => {
                       return (
                         <div
-                          key={data?.id}
-                          onClick={() => {
-                            onFilterCategory(data?.id);
-                          }}
-                          className={`${dressInfo?.TextHoverSeason} text-base text-[#303030] font-AeonikProMedium hover:bg-[#F6F6F6] w-full xs:h-12 h-10 cursor-pointer  flex items-center justify-center`}
+                          className={`${
+                            data?.id === dressInfo?.mainCategoryId
+                              ? "bg-[#F6F6F6]"
+                              : ""
+                          }  w-full flex items-center h-10 xs:h-12`}
                         >
-                          {data.name_ru}
+                          <div
+                            key={data?.id}
+                            onClick={() => {
+                              onFilterCategory(data?.id);
+                            }}
+                            className={`${
+                              data?.id === dressInfo?.mainCategoryId
+                                ? "text-borderWinter bg-[#F6F6F6]"
+                                : ""
+                            }  ${
+                              dressInfo?.TextHoverSeason
+                            } relative bg-bgCard text-base text-[#303030] font-AeonikProMedium hover:bg-[#F6F6F6] w-[85%] xs:h-12 h-10 cursor-pointer  flex items-center justify-center hover:duration-300 hover:ease-linear pl-12`}
+                          >
+                            {data.name_ru}
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => onClearFilterCategoryId()}
+                            className={`${
+                              data?.id === dressInfo?.mainCategoryId
+                                ? "block"
+                                : "hidden"
+                            } text-black absolute right-3 flex items-center justify-center w-[15%] h-10 xs:h-12`}
+                          >
+                            <GrClose size={12} />
+                          </button>
                         </div>
                       );
                     })}
@@ -365,12 +433,15 @@ const ClothingParametr = () => {
                             <input
                               className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                               name="name"
-                              value={state?.minPrice}
-                              onChange={(e) =>
-                                setState({ ...state, minPrice: e.target.value })
-                              }
+                              // value={state?.minPrice}
+                              defaultValue={Number(
+                                data?.getMainProductCard?.budget?.min_price
+                              ).toLocaleString()}
+                              // onChange={(e) =>
+                              //   setState({ ...state, minPrice: e.target.value })
+                              // }
                             />{" "}
-                            sum
+                            сум
                           </span>
                         </div>
                         <div className="flex ">
@@ -381,27 +452,27 @@ const ClothingParametr = () => {
                             <input
                               className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                               name="name"
-                              value={state?.maxPrice}
-                              onChange={(e) =>
-                                setState({ ...state, maxPrice: e.target.value })
-                              }
+                              // value={state?.maxPrice}
+                              defaultValue={Number(
+                                data?.getMainProductCard?.budget?.max_price
+                              ).toLocaleString()}
+                              // onChange={(e) =>
+                              //   setState({ ...state, maxPrice: e.target.value })
+                              // }
                             />
-                            sum
+                            сум
                           </span>
                         </div>
                       </div>
                       <div className="relative z-50 mb-[6px] w-full  marketFilter">
                         {" "}
-                        <ReactSlider
-                          className="horizontal-slider"
-                          thumbClassName="example-thumb1"
-                          trackClassName="example-track1"
-                          defaultValue={[10, 90]}
-                          ariaLabel={["Lower thumb", "Upper thumb"]}
-                          // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
-                          // renderThumb={() => <div>1</div>}
-                          pearling
+                        <Slider
+                          className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] mt-[10px]`}
+                          onChange={setValues}
+                          value={values}
                           minDistance={10}
+                          min={Number(minPrice)}
+                          max={Number(maxPrice)}
                         />
                       </div>
                       <div className="flex items-center justify-end mt-4">

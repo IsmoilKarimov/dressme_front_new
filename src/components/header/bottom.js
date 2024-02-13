@@ -257,9 +257,7 @@ function BottomHeader() {
       ],
     },
   ]);
-  const onSearch = (value) => {
-    // console.log("search:", value);
-  };
+
   const handleFilterByUser = (fathId, childId) => {
     setPage(1);
     if (childId === 0) {
@@ -408,19 +406,8 @@ function BottomHeader() {
               setPage(1);
               setDressInfo({ ...dressInfo, mainCategoryId: e });
             }}
-            // value={dressInfo?.mainCategoryId}
-            // onSearch={onSearch}
             allowClear
             size="large"
-            // filterOption={(input, option) =>
-            //   console
-            //     .log(
-            //       option?.label,
-            //       "option?.label"
-            //     )(option?.label ?? "")
-            //     .toLowerCase()
-            //     .includes(input.toLowerCase())
-            // }
           >
             {data?.getMainProductCard?.categories?.map((item) => {
               return (
@@ -523,16 +510,10 @@ function BottomHeader() {
                           // setDressInfo({});
                         }}
                         style={{ backgroundColor: data?.hex }}
-                        // onClick={() => colorIdPushContext(data?.id)}
                         className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
                           !state?.textToColor && "border"
                         }  border-borderColorCard	`}
                       >
-                        {/* {colorSelectId.includes(data?.hex) && (
-                          <span>
-                            <BiCheck size={25} color={"#000"} className="flex items-center justify-center" />
-                          </span>
-                        )} */}
                         {dressInfo?.mainColorHex == data?.hex &&
                           data?.id == 1 && (
                             <span>
