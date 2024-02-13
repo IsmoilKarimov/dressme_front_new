@@ -12,22 +12,12 @@ import {
   WomanGenIcons,
 } from "../../../../assets/icons";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
-import {
-  adidas,
-  chanel,
-  hm,
-  lacoste,
-  nike,
-  puma,
-  tommy,
-  zara,
-} from "../../../../assets";
 import { GrClose } from "react-icons/gr";
 import ReactSlider from "react-slider";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 const ClothingParametr = () => {
-  const [dressInfo] = useContext(dressMainData);
-  const [data] = useContext(HomeMainDataContext);
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
+    const [data, setData, , , page, setPage] = useContext(HomeMainDataContext);
 
   const [state, setState] = useState({
     clothesTypeMobile: false,
@@ -37,6 +27,8 @@ const ClothingParametr = () => {
     minPrice: 60000,
     maxPrice: 1800000,
   });
+
+  console.log(data, "data");
 
   useEffect(() => {
     if (
@@ -55,14 +47,6 @@ const ClothingParametr = () => {
     state?.genderMobile,
     state?.selectColorToggleMobile,
   ]);
-
-  const wearMobileList = [
-    { id: 1, type: "Головные уборы" },
-    { id: 2, type: "Верхняя одежда" },
-    { id: 3, type: "Нижняя одежда" },
-    { id: 4, type: "Аксессуары" },
-    { id: 5, type: "Обувь" },
-  ];
 
   const [changeColor, setChangeColor] = useState([
     {
@@ -163,17 +147,6 @@ const ClothingParametr = () => {
     },
   ]);
 
-  // Mobile top Branding Data Lists
-  const campany = [
-    { id: 1, imgFull: adidas },
-    { id: 2, imgFull: chanel },
-    { id: 3, imgFull: hm },
-    { id: 4, imgFull: lacoste },
-    { id: 5, imgFull: nike },
-    { id: 6, imgFull: puma },
-    { id: 7, imgFull: tommy },
-    { id: 8, imgFull: zara },
-  ];
   const [iconsColor, setIconsColor] = useState("black");
   const HandleIconsColor = (color, id) => {
     setIconsColor(color);
@@ -240,6 +213,11 @@ const ClothingParametr = () => {
     });
   };
 
+  const onFilterCategory = (value) => {
+    setDressInfo({ ...dressInfo, mainCategoryId: value });
+    setState({ ...state, clothesTypeMobile: false });
+  }
+
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto md:px-0">
       <section className="w-full md:hidden flex items-center justify-between pb-3 gap-x-2">
@@ -250,7 +228,7 @@ const ClothingParametr = () => {
               clothesTypeMobile: !state.clothesTypeMobile,
             });
           }}
-          className="w-[25%] active:scale-8 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[48px]"
+          className="w-[25%] active:scale-95 rounded-[12px] bg-btnBgColor border border-searchBgColor flex items-center justify-center px-4 h-[48px]"
         >
           <p>
             {" "}
@@ -328,16 +306,16 @@ const ClothingParametr = () => {
                     </button>
                   </div>
                   <div className="pt-5 flex flex-col">
-                    {wearMobileList?.map((data) => {
+                    {data?.getMainProductCard?.categories?.map((data) => {
                       return (
                         <div
                           key={data?.id}
                           onClick={() => {
-                            setState({ ...state, clothesTypeMobile: false });
+                            onFilterCategory(data?.id);
                           }}
                           className={`${dressInfo?.TextHoverSeason} text-base text-[#303030] font-AeonikProMedium hover:bg-[#F6F6F6] w-full xs:h-12 h-10 cursor-pointer  flex items-center justify-center`}
                         >
-                          {data?.type}
+                          {data.name_ru}
                         </div>
                       );
                     })}
