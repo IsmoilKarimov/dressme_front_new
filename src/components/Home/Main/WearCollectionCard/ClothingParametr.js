@@ -14,7 +14,7 @@ import {
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { GrClose } from "react-icons/gr";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
-import Slider from "react-slick";
+import Slider from "react-slider";
 const ClothingParametr = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData, , , page, setPage] = useContext(HomeMainDataContext);
@@ -219,7 +219,7 @@ const ClothingParametr = () => {
   };
 
   const onClearFilterCategoryId = () => {
-    setDressInfo({ ...dressInfo, mainCategoryId: null});
+    setDressInfo({ ...dressInfo, mainCategoryId: null });
   };
 
   const [minPrice, setMinPrice] = useState(
@@ -260,6 +260,25 @@ const ClothingParametr = () => {
       }
     }
   }, [values]);
+
+  const sendPriceList = () => {
+    setDressInfo({ ...dressInfo, mainRangePrice: values });
+  };
+
+  const clearPriceValue = () => {
+    setState({ ...state, clearPrice: false, openPrice: false });
+    setValues([
+      Number(data?.getMainProductCard?.budget?.min_price),
+      Number(data?.getMainProductCard?.budget?.max_price),
+    ]);
+    setDressInfo({ ...dressInfo, mainRangePrice: [] });
+  };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
 
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto md:px-0">
@@ -321,6 +340,7 @@ const ClothingParametr = () => {
           </span>
         </button>
       </section>
+
       <section className="w-full">
         <section
           className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
@@ -393,6 +413,7 @@ const ClothingParametr = () => {
             </div>
           )}
         </section>
+
         <section
           className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
             state?.priceToggleMobile ? "w-[92%]" : "w-0"
@@ -406,7 +427,7 @@ const ClothingParametr = () => {
               ></div>
               <div className="flex items-center min-h-screen px-4 py-8">
                 <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
-                  <div className="max-w-[350px] w-full h-[170px] m-0 ">
+                  <div className="max-w-[350px] w-full h-[180px] m-0 ">
                     <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
                       <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
                         По ценам
@@ -438,7 +459,9 @@ const ClothingParametr = () => {
                                 data?.getMainProductCard?.budget?.min_price
                               ).toLocaleString()}
                               // onChange={(e) =>
-                              //   setState({ ...state, minPrice: e.target.value })
+                              //   setData(
+                              //     data?.getMainProductCard?.budget?.min_price
+                              //   )
                               // }
                             />{" "}
                             сум
@@ -475,12 +498,29 @@ const ClothingParametr = () => {
                           max={Number(maxPrice)}
                         />
                       </div>
-                      <div className="flex items-center justify-end mt-4">
+                      <div
+                        className={`flex items-center  mt-4 ${
+                          state?.clearPrice ? "justify-between" : "justify-end"
+                        }`}
+                      >
+                        {state?.clearPrice && (
+                          <span
+                            onClick={() => {
+                              clearPriceValue()
+                              setState({ ...state, priceToggleMobile: false });
+                            }}
+                            
+                            className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
+                          >
+                            Сбросить
+                          </span>
+                        )}
                         <span
-                          onClick={() =>
-                            setState({ ...state, priceToggleMobile: false })
-                          }
-                          className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue"
+                          onClick={() => {
+                            sendPriceList();
+                            setState({ ...state, priceToggleMobile: false });
+                          }}
+                          className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
                         >
                           Готово
                         </span>
@@ -492,6 +532,7 @@ const ClothingParametr = () => {
             </div>
           )}
         </section>
+
         <section
           className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
             state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
