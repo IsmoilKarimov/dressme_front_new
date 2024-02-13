@@ -6,14 +6,16 @@ import { ClothingParametr } from "./ClothingParametr";
 import WearType from "./WearType";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { CollectionCardItem } from "./CollectionCardItem";
-import { useQuery } from "@tanstack/react-query";
 import { ClipLoader } from "react-spinners";
+import { MdClose } from "react-icons/md";
 
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
   const [pagination, setPagination] = useState(30);
-  const [data, setData, wishList, setWishlist, page, setPage] = useContext(HomeMainDataContext);
+  const [data, setData, wishList, setWishlist, page, setPage] =
+    useContext(HomeMainDataContext);
+  const [searchMarketName, setSearchMarketName] = useState();
 
   // -------------------------------------
   const toggle = React.useCallback(() => setOpenWearType(false), []);
@@ -26,6 +28,25 @@ export default function CollectionCards() {
       document.body.style.overflow = "auto";
     }
   }, [openWearType]);
+
+  const handleChange = (event) => {
+    setSearchMarketName(event.target.value);
+  };
+
+  const _handleKeyDownSearch = (event) => {
+    if (event.key === "Enter") {
+      setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
+    }
+  };
+
+  const handleClear = () => {
+    setSearchMarketName("");
+    setDressInfo({ ...dressInfo, mainSearchName: null });
+  };
+
+   function getSearchClick() {
+     setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
+   }
 
   const handleLeaveMouse = (eId) => {
     const elementsIndex = dressInfo.ProductList.findIndex(
@@ -60,17 +81,34 @@ export default function CollectionCards() {
       <section className="max-w-[1280px] w-[100%] px-[10px] md:px-0 flex flex-col justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
         {/* Searching section */}
         <section className="w-full h-12 flex md:hidden items-center justify-between rounded-xl font-AeonikProRegular border border-searchBgColor bg-white mt-4">
-          <input
-            type="text"
-            name="name"
-            placeholder="Искать товары"
-            autoComplete="name"
-            className="bg-transparent w-[90%] h-full text-[14px] border border-transparent px-3"
-          />
-          <span className="w-[1px] h-full border-r border-searchBgColor"></span>
-          <span className="w-[15%] rounded-r-xl flex h-full bg-[#fafafa] items-center justify-center">
+          <div className="w-full relative flex items-center h-full border-r border-searchBgColor">
+            <input
+              type="text"
+              name="name"
+              value={searchMarketName}
+              onChange={handleChange}
+              onKeyDown={_handleKeyDownSearch}
+              placeholder="Искать товары"
+              autoComplete="name"
+              className="bg-transparent w-[90%] h-full text-[14px] border border-transparent px-3"
+            />
+            {searchMarketName && (
+              <button
+                onClick={handleClear}
+                className="absolute right-2 cursor-pointer"
+                type="button"
+              >
+                <MdClose size={20} color={"#a1a1a1"} />
+              </button>
+            )}
+          </div>
+          <button
+            type="button"
+            onClick={() => getSearchClick()}
+            className="w-[15%] active:scale-95 rounded-r-xl flex h-full bg-[#fafafa] items-center justify-center cursor-pointer"
+          >
             <SearchIcons />
-          </span>
+          </button>
         </section>
 
         <section className="w-full mt-4">

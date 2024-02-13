@@ -245,19 +245,11 @@ const MediumHeader = () => {
       setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
     }
   };
-  const categoryModalArray = [
-    { id: 0, img: img4, type: "Головные уборы" },
-    { id: 1, img: img5, type: "Верхняя одежда" },
-    { id: 2, img: img6, type: "Нижняя одежда" },
-    { id: 3, img: img7, type: "Обувь" },
-    { id: 4, img: img8, type: "Аксессуары" },
-  ];
 
   const goCatalogId = (id) => {
     navigate(`/catalog/${id}`);
   };
-  // console.log(dressInfo?.BtnOpacitySeason, "dressInfo?.BtnOpacitySeason");
-  // console.log(dressInfo?.type, "dressInfo?.type");
+  
   return (
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <div
@@ -498,7 +490,7 @@ const MediumHeader = () => {
                   <button
                     type="button"
                     onClick={() => getSearchClick()}
-                    className="bg-searchBgColor border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]"
+                    className="bg-searchBgColor active:scale-95 border border-searchBgColor w-[100px]  h-[44px] items-center justify-center rounded-r-xl  hidden md:flex -ml-[2px]"
                   >
                     <span>
                       <SearchIcons />
