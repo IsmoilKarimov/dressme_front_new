@@ -50,7 +50,7 @@ const ClothingParametr = () => {
 
   const [iconsColor] = useState("black");
 
-  const [genderType, setGenderType] = useState([
+  const [genderType] = useState([
     {
       id: 1111,
       childText: [
@@ -100,11 +100,11 @@ const ClothingParametr = () => {
 
   const onFilterCategory = (value) => {
     setDressInfo({ ...dressInfo, mainCategoryId: value });
-    setState({ ...state, clothesTypeMobile: false });
   };
 
   const onClearFilterCategoryId = () => {
     setDressInfo({ ...dressInfo, mainCategoryId: null });
+    // setState({ ...state, clothesTypeMobile: false });
   };
 
   const [minPrice, setMinPrice] = useState(
@@ -175,19 +175,13 @@ const ClothingParametr = () => {
     setDressInfo({ ...dressInfo, mainColorId: null, mainColorHex: null });
   };
 
-  const handleFilterByUser = (fathId, childId) => {
+  const handleFilterByUser = (childId) => {
     if (childId === 0) {
       setDressInfo({ ...dressInfo, mainGenderId: 0 });
     } else if (childId > 0) {
       setDressInfo({ ...dressInfo, mainGenderId: childId });
     }
   };
-
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-    });
-  }, []);
 
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto md:px-0">
@@ -264,7 +258,7 @@ const ClothingParametr = () => {
                 onClick={() => setState({ ...state, clothesTypeMobile: false })}
               ></div>
               <div className="flex items-center min-h-screen px-4 py-8 ">
-                <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg ">
+                <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
                   <div className="flex items-center justify-between border-b border-searchBgColor pb-3 ">
                     <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
                       По категории
@@ -278,15 +272,11 @@ const ClothingParametr = () => {
                       <GrClose size={22} />
                     </button>
                   </div>
-                  <div className="pt-5 flex flex-col">
+                  <div className="pt-2 flex flex-col">
                     {data?.getMainProductCard?.categories?.map((data) => {
                       return (
                         <div
-                          className={`${
-                            data?.id === dressInfo?.mainCategoryId
-                              ? "bg-[#F6F6F6]"
-                              : ""
-                          } w-full hover:bg-[#F6F6F6] flex items-center h-10 xs:h-12`}
+                          className={` w-full flex items-center rounded-lg`}
                         >
                           <div
                             key={data?.id}
@@ -295,28 +285,28 @@ const ClothingParametr = () => {
                             }}
                             className={`${
                               data?.id === dressInfo?.mainCategoryId
-                                ? "text-borderWinter"
+                                ? "text-borderWinter bg-[#F6F6F6]"
                                 : ""
                             }  ${
                               dressInfo?.TextHoverSeason
-                            } relative bg-bgCard text-base text-[#303030] font-AeonikProMedium hover:bg-[#F6F6F6] w-[90%] xs:h-12 h-10 cursor-pointer flex items-center justify-center hover:duration-300 hover:ease-linear pl-9`}
+                            } relative bg-bgCard text-base text-[#303030] font-AeonikProMedium hover:bg-[#F6F6F6] w-[100%] h-10 xs:h-12 rounded-lg cursor-pointer flex items-center justify-center hover:duration-300 hover:ease-linear `}
                           >
                             {data.name_ru}
                           </div>
-                          <button
-                            type="button"
-                            onClick={() => onClearFilterCategoryId()}
-                            className={`${
-                              data?.id === dressInfo?.mainCategoryId
-                                ? "block"
-                                : "hidden"
-                            } text-black absolute right-3 flex items-center justify-center w-[10%] h-10 xs:h-12`}
-                          >
-                            <GrClose size={12} />
-                          </button>
                         </div>
                       );
                     })}
+
+                    <div className="w-full flex items-center justify-end">
+                      {dressInfo?.mainCategoryId && (
+                        <button
+                          onClick={() => onClearFilterCategoryId()}
+                          className="flex items-center text-fullBlue active:scale-95  active:opacity-70 justify-center px-2 pt-1"
+                        >
+                          Отключить
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -566,7 +556,7 @@ const ClothingParametr = () => {
                   {/* Gender selection for Mobile */}
                   <div className="box-border flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-xl bg-btnBgColor mt-5 mb-2">
                     {genderType
-                      ?.filter((value) => value.id === dressInfo?.type)
+                      ?.filter((value) => console.log(value))
                       .map((data) => {
                         return (
                           <div
@@ -584,7 +574,7 @@ const ClothingParametr = () => {
                                       handleFilterByUser(data?.id, item?.id)
                                     }
                                     className={`${
-                                      item?.id == dressInfo?.mainGenderId
+                                      item?.id === dressInfo?.mainGenderId
                                         ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
                                         : " bg-btnBgColor text-black h-full"
                                     } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
