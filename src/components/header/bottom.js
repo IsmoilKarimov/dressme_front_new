@@ -154,7 +154,6 @@ function BottomHeader() {
                 name="name"
                 className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 defaultValue={Number(values[0]).toLocaleString()}
-                // onChange={(e) => setMaxPrice(e.target.value)}
               />{" "}
               сум
             </span>
@@ -168,7 +167,6 @@ function BottomHeader() {
                 name="name"
                 className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                 defaultValue={Number(values[1]).toLocaleString()}
-                // onChange={(e) => setMaxPrice(e.target.value)}
               />
               сум
             </span>
@@ -184,21 +182,6 @@ function BottomHeader() {
             min={Number(minPrice)}
             max={Number(maxPrice)}
           />
-          {/* <Slider
-            className="horizontal-slider "
-            thumbClassName="example-thumb1"
-            trackClassName="example-track1"
-            // defaultValue={[10, 90]}
-            ariaLabel={["Lower thumb", "Upper thumb"]}
-            // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
-            // renderThumb={() => <div>1</div>}
-            minDistance={10}
-            // pearling
-            onChange={setValues}
-            value={values}
-            min={minPrice}
-            max={maxPrice}
-          /> */}
         </div>
         <div
           className={`flex items-center  mt-4 ${
@@ -301,6 +284,13 @@ function BottomHeader() {
   const ClearColorId = () => {
     setDressInfo({ ...dressInfo, mainColorId: null, mainColorHex: null });
   };
+
+  console.log(
+    data?.getMainProductCard?.categories,
+    "data?.getMainProductCard?.categories"
+  );
+  console.log(dressInfo, "dressInfo");
+  console.log(dressInfo?.mainCategoryId, "dressInfo?.mainCategoryId");
 
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
@@ -418,15 +408,19 @@ function BottomHeader() {
               setPage(1);
               setDressInfo({ ...dressInfo, mainCategoryId: e });
             }}
-            value={dressInfo?.mainCategoryId}
-            onSearch={onSearch}
-            // suffixIcon={<></>}
-            // defaultValue={data?.getMainProductCard?.categories?.map((item) => item?.id === categoryProps ? item?.name_ru : null)}
+            // value={dressInfo?.mainCategoryId}
+            // onSearch={onSearch}
             allowClear
             size="large"
-            filterOption={(input, option) =>
-              (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-            }
+            // filterOption={(input, option) =>
+            //   console
+            //     .log(
+            //       option?.label,
+            //       "option?.label"
+            //     )(option?.label ?? "")
+            //     .toLowerCase()
+            //     .includes(input.toLowerCase())
+            // }
           >
             {data?.getMainProductCard?.categories?.map((item) => {
               return (
