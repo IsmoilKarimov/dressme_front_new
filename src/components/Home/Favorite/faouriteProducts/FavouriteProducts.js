@@ -53,8 +53,12 @@ export default function FavouriteProducts() {
       >
         <WearType onClick={toggle} />
       </section>
-      <div className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto mb-[90px] ss:px-4 md:px-0">
-        <section className="w-full flex flex-col">
+      <div
+        className={`max-w-[1280px] w-[100%] flex flex-col items-center justify-between ${
+          wishList?.length > 4 ? "mb-10" : "mb-[80px]"
+        } m-auto ss:px-4 md:px-0`}
+      >
+        <section className="w-full flex items-center justify-center flex-col">
           {wishList?.length ? (
             Cookies.get("DressmeUserToken") ? (
               <article className="flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-3 lg:gap-y-3">
@@ -420,12 +424,12 @@ export default function FavouriteProducts() {
               </article>
             )
           ) : (
-            <article className="md:my-[50px] mx-auto">
-              <div className="w-[800px] text-center p-8 flex flex-col items-center justify-center">
+            <article className="mt-20 md:mt-0 md:my-[50px] mx-auto">
+              <div className="w-full md:w-[800px] text-center p-8 flex flex-col items-center justify-center">
                 <figure className="w-16 h-16 flex justify-center items-center mb-3">
-                  <img src={HeartImg} alt="" className="w-[50px]" />
+                  <img src={HeartImg} alt="" className="w-8 md:w-[50px]" />
                 </figure>
-                <p className="text-3xl font-AeonikProMedium mb-3">
+                <p className="text-xl md:text-3xl font-AeonikProMedium mb-3">
                   Добавьте то, что понравилось
                 </p>
               </div>
@@ -433,7 +437,11 @@ export default function FavouriteProducts() {
           )}
         </section>
 
-        <section className="w-full h-fit flex items-center justify-center mt-14 md:hidden">
+        <section
+          className={`${
+            wishList?.length > 15 ? "flex" : "hidden"
+          } w-full h-fit flex items-center justify-center mt-14 md:hidden`}
+        >
           <p className="w-[760px] h-[60px] cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-black flex items-center justify-center rounded-lg border border-searchBgColor bg-btnBgColor">
             Показать ещё 30 наборов
           </p>
