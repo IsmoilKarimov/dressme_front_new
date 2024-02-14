@@ -78,8 +78,8 @@ module.exports = {
         TextTitle: "#212121",
       },
       fontFamily: {
-        AeonikProMedium: ["AeonikPro-Medium"], // 500
-        AeonikProRegular: ["AeonikPro-Regular"], // 400
+        // AeonikProMedium: ["AeonikPro-Medium"], // 500
+        // AeonikProRegular: ["AeonikPro-Regular"], // 400
       },
 
       boxShadow: {

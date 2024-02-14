@@ -603,7 +603,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                     >
                       <div className="flex items-center">
                         <span className=" py-3 pr-3">
-                          <HouseStatisticIcons colors={"#000"} />
+                          <LocationIcons colors={"#000"} />
                         </span>
                         <span className="ml-[11.67px]">Ташкент</span>
                       </div>
@@ -658,7 +658,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                               key={data?.id}
                               open={openLang}
                               onOpenChange={handleOpenLangList}
-                              className="w-full languageMobile flex text-[13px] items-center h-full pl-3 "
+                              className="w-full languageMobile flex text-[13px] items-center h-full"
                               trigger="click"
                               options={["Hide"]}
                               placement="bottom"
@@ -698,13 +698,13 @@ const MediumHeader = ({ stateData, setStateData }) => {
                     to="#"
                     className="w-1/2 flex items-center bg-btnBgColor font-AeonikProMedium h-[48px] border rounded-xl border-searchBgColor px-5"
                   >
-                    <div className="flex items-center">
+                    <div className="flex items-center text-center">
                       <span className=" py-3 pr-3">
                         <HouseStatisticIcons colors={"#000"} />
                       </span>
-                      <span className="ml-[11.67px] text-sm">Бизнес</span>
+                      <span className="h-full ml-[11.67px] text-[14px] text-center">Бизнес</span>
                     </div>
-                    <span className="arrowRotate ml-auto leading-4 rotate-[90deg]">
+                    <span className="arrowRotate ml-auto rotate-[90deg]">
                       <ArrowTopIcons colors={"#000"} />
                     </span>
                   </NavLink>
@@ -712,7 +712,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                     to="https://t.me/Dishkan_Kh"
                     target="_blank"
                     // onClick={() => setStateData({ ...stateData, hamburgerMenu: false })}
-                    className="w-1/2 h-[52px] flex items-center bg-btnBgColor font-AeonikProMedium border rounded-xl border-searchBgColor px-5"
+                    className="w-1/2 h-[48px] flex items-center bg-btnBgColor font-AeonikProMedium border rounded-xl border-searchBgColor px-5"
                   >
                     <div className="flex items-center">
                       <UploadIcons />

@@ -28,7 +28,7 @@ export default function CategoryCards({ filterData, setPageId }) {
   };
 
   return (
-    <main className="flex flex-col box-border mt-2">
+    <main className="flex flex-col box-border mt-2 mb-12 md:mb-0">
       <section className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 mt-1 md:mt-8">
         {filterData?.section_products?.data.map((data) => {
           return (
@@ -42,22 +42,30 @@ export default function CategoryCards({ filterData, setPageId }) {
           );
         })}
       </section>
-      <section className="w-full h-fit md:hidden flex items-center justify-center mt-14">
+      <section
+        className={` w-full h-fit hidden items-center justify-center mt-14`}
+      >
         <p className="w-[760px] h-[60px] cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-black flex items-center justify-center rounded-lg border border-searchBgColor bg-btnBgColor">
           Показать ещё 30 наборов
         </p>
       </section>
-      
+
       <section className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6">
         <article className="flex items-center">
           <ul className="flex items-center">
-            {filterData?.section_products?.links?.map((item,index) => {
+            {filterData?.section_products?.links?.map((item, index) => {
               return (
                 <li
                   key={index}
                   onClick={() => {
                     if (item?.url) {
-                      const newPageId = String(item?.url?.substr(-3)?.split('')?.reverse()?.join(''))?.split('')?.filter((item) => !isNaN(item))?.reverse()?.join('')
+                      const newPageId = String(
+                        item?.url?.substr(-3)?.split("")?.reverse()?.join("")
+                      )
+                        ?.split("")
+                        ?.filter((item) => !isNaN(item))
+                        ?.reverse()
+                        ?.join("");
                       setPaginationFunc(newPageId);
                     }
                   }}
