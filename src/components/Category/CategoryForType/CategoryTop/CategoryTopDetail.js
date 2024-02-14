@@ -90,7 +90,7 @@ const CategoryTopDetail = ({
     <main className="flex flex-col justify-center border-t border-searchBgColor items-center">
       <div className="md:pb-16 flex flex-col  w-full justify-center items-center m-0 ">
         <section className="border-b md:min-h-[44px] py-3 border-searchBgColor w-[100%] h-full  flex items-center justify-between m-auto">
-          <nav className="w-[100%] md:w-fit flex items-center p-1">
+          <nav className="w-[100%] md:w-fit flex items-center px-4">
             <ul className="h-10 w-[100%] md:w-fit flex items-center overflow-auto HorizantalScroll">
               <li className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-black mr-[10px]">
                 <NavLink
@@ -130,6 +130,7 @@ const CategoryTopDetail = ({
           <FilterDropUp onClick={toggleFilter} />
         </section>
       </div>
+
       <div className="locations">
         <section
           onClick={() => setClothingTypes(false)}
@@ -149,10 +150,10 @@ const CategoryTopDetail = ({
       <section className=" w-[100%] flex flex-col items-center justify-between m-auto">
         <article className="w-[100%] h-fit md:mb-16">
           <article className="w-full flex flex-col border-b md:border-none border-searchBgColor">
-            <figure className="relative w-full md:h-[90px] mt-6 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-lg px-4 md:px-0">
+            <figure className="relative w-full md:h-[90px] my-10 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-lg px-4 md:px-0">
               {/*  */}
               <div className="w-full md:w-fit flex h-[66px] md:h-fit items-center border md:border-none border-searchBgColor rounded-lg">
-                <div className="absolute w-[80px] h-[80px] md:w-[120px] md:h-[160px] overflow-hidden left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center bg-white columns-1">
+                <div className="absolute w-[80px] h-[120px] md:w-[120px] md:h-[160px] overflow-hidden left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center bg-white columns-1">
                   <img
                     src={filterData?.section?.url_photo}
                     alt=""
@@ -160,9 +161,9 @@ const CategoryTopDetail = ({
                   />
                 </div>
                 <div className="flex items-center ml-[112px] md:ml-[210px]">
-                  <div className="text-2xl font-AeonikProMedium">
+                  <div className="text-xl font-AeonikProMedium">
                     {filterData?.section?.name_ru}
-                    <span className="text-lg text-setTexOpacity font-AeonikProRegular ml-2">
+                    <span className="text-xl text-setTexOpacity font-AeonikProRegular ml-2">
                       ({filterData?.section_products?.total})
                     </span>
                   </div>
@@ -170,7 +171,7 @@ const CategoryTopDetail = ({
               </div>
 
               {/*  */}
-              <div className="w-full md:w-fit flex items-center justify-between md:mr-5  mt-6 md:mt-0">
+              <div className="w-full md:w-fit flex items-center justify-between md:mr-5">
                 <div className="flex items-center">
                   <NavLink className="hidden md:flex items-center text-[15px] font-AeonikProMedium mr-[22px]">
                     По разделу
@@ -208,9 +209,9 @@ const CategoryTopDetail = ({
               onClick={() => setFilter(true)}
               className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
             >
-              <FilterIcons colors={"#000"} />
+              <SortIcons />
               <p className="ml-2 not-italic  font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
-                Фильтры
+                Фильтр
               </p>
             </button>
             <button
@@ -240,7 +241,8 @@ const CategoryTopDetail = ({
           </article>
         ) : null}
       </section>
-      <div className="w-full flex items-center ">
+
+      <div className="w-full hidden md:flex items-center ">
         <button
           onClick={handleToggle}
           type="button"
@@ -263,17 +265,18 @@ const CategoryTopDetail = ({
           )}
         </button>
       </div>
+
       <section className="w-full px-4 block md:hidden">
         <article className="w-full search flex items-center bg-white justify-between rounded-xl font-AeonikProMedium h-11 mt-3 mb-3 border border-searchBgColor ss:mt-3">
-          <span className=" flex ss:pl-[11.65px]">
-            <SearchIcons />
-          </span>
           <input
             type="text"
             name="name"
             placeholder="Найти товар"
-            className="font-AeonikProRegular bg-transparent w-full px-3 h-12 text-[14px] leading-4"
+            className="font-AeonikProRegular bg-transparent w-[87%] px-3 h-full text-[14px] leading-4 border-r border-searchBgColor"
           />
+          <span className="w-[13%] h-full bg-btnBgColor rounded-r-xl active:scale-95 flex items-center justify-center ">
+            <SearchIcons />
+          </span>
         </article>
       </section>
     </main>

@@ -202,8 +202,6 @@ function FilterList({
     const ClearListColor = () => {
         setDataColor([])
     }
-
-
     const [categories, setCategories] = useState([
         { id: 1, name: "Головной убор" },
         { id: 2, name: "Верхняя одежда" },
@@ -411,7 +409,7 @@ function FilterList({
     }
     return (
         <div
-            className={`w-full h-hull  py-5 px-3 rounded-lg border border-searchBgColor rounded-lg overflow-hidden `}
+            className={`w-full h-hull  py-5 px-3 border border-searchBgColor rounded-lg overflow-hidden `}
         >
             {getFilter ?
                 <div

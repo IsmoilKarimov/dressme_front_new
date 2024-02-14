@@ -172,7 +172,7 @@ const CatalogTopFilter = () => {
           </article>
         </section>
 
-        <section className="w-full h-full">
+        <section className="w-full h-full ">
           <div className="md:pt-8 md:pb-16 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 py-3">
             <section className="max-w-[1280px] w-[100%] h-full flex items-center justify-between m-auto">
               <nav className="w-[100%] md:w-fit flex items-center p-1">
