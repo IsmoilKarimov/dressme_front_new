@@ -14,7 +14,7 @@ import { HeartImg } from "../../assets";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import Cookies from "js-cookie";
 
-const NavMenu = () => {
+const NavMenu = ({ stateData, setStateData }) => {
   const [dressInfo] = useContext(dressMainData);
 
   return (
@@ -25,6 +25,7 @@ const NavMenu = () => {
         <li className="w-[72px] h-[56px]">
           <NavLink
             to={"/"}
+            onClick={() => setStateData({ ...stateData, hamburgerMenu: false })}
             className="w-full h-full flex items-center justify-center text-center"
           >
             {({ isActive }) =>
@@ -49,6 +50,7 @@ const NavMenu = () => {
         <li className="w-[72px] h-[56px] ">
           <NavLink
             to={"/catalog"}
+            onClick={() => setStateData({ ...stateData, hamburgerMenu: false })}
             className="w-full h-full flex items-center justify-center text-center"
           >
             {({ isActive }) =>
@@ -73,6 +75,7 @@ const NavMenu = () => {
         <li className="w-[72px] h-[56px] flex justify-center ">
           <NavLink
             to={"/locations"}
+            onClick={() => setStateData({ ...stateData, hamburgerMenu: false })}
             className="w-full h-full flex items-center justify-center text-center  "
           >
             {({ isActive }) =>
@@ -97,6 +100,7 @@ const NavMenu = () => {
         <li className="w-[72px] h-[56px] flex justify-center ">
           <NavLink
             to={"/favourites"}
+            onClick={() => setStateData({ ...stateData, hamburgerMenu: false })}
             className="w-full h-full flex items-center justify-center text-center  "
           >
             {({ isActive }) =>
@@ -135,10 +139,9 @@ const NavMenu = () => {
         <li className="w-[72px] h-[56px]">
           <NavLink
             to={
-              Cookies.get("DressmeUserToken")
-                ? "/profile/settings"
-                : "/sign_in"
+              Cookies.get("DressmeUserToken") ? "/profile/settings" : "/sign_in"
             }
+            onClick={() => setStateData({ ...stateData, hamburgerMenu: false })}
             className="w-full h-full flex items-center justify-center text-center "
           >
             {({ isActive }) =>
