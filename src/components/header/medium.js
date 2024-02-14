@@ -40,17 +40,12 @@ import {
   summerSeason,
   winterSeason,
   autummSeason,
-  UzbekFlag,
   HeartImg,
   AllSeason,
   AllSeasonDesktop,
   allBrandDesktop,
-  img4,
-  img5,
-  img6,
-  img7,
-  img8,
-  EnglishFlag,
+  RussianFlag,
+  UzbekFlag,
 } from "../../assets";
 import RegionsList from "../../ContextHook/RegionsList";
 import Cookies from "js-cookie";
@@ -59,7 +54,7 @@ import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 
 import { MainPageAudioContext } from "../../ContextHook/MainPageAudio";
 
-const MediumHeader = () => {
+const MediumHeader = ({ stateData, setStateData }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData, , , page, setPage] = useContext(HomeMainDataContext);
   const [audioPlay, setAudioPlay] = useContext(MainPageAudioContext);
@@ -68,19 +63,19 @@ const MediumHeader = () => {
   const toggleRegionsShow = useCallback(() => setRegionsList(false), []);
 
   const [state, setState] = useState({
-    hamburgerMenu: false,
+    // hamburgerMenu: false,
     toggle: false,
     genderActive: true,
     getAllCardList: null,
   });
 
   useEffect(() => {
-    if (state?.hamburgerMenu || regionsList) {
+    if (stateData?.hamburgerMenu || regionsList) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [state?.hamburgerMenu || regionsList]);
+  }, [stateData?.hamburgerMenu || regionsList]);
 
   // -----------------------------------------------------
   const [scrollPost, setscrollPost] = useState(0);
@@ -124,46 +119,9 @@ const MediumHeader = () => {
     { id: 4444, type: "Весна", icons: BrandSpring },
   ];
 
-  const [genderType, setGenderType] = useState([
-    {
-      id: 1,
-      action: true,
-      name: "Все",
-      icon: <CotegoryMenuIcons />,
-    },
-    {
-      id: 2,
-      action: false,
-      name: "",
-      icon: <ManGenIcons />,
-    },
-    {
-      id: 3,
-      action: false,
-      name: "",
-      icon: <WomanGenIcons />,
-    },
-    {
-      id: 4,
-      action: false,
-      name: "",
-      icon: <ChildGenIcon />,
-    },
-  ]);
-
-  const handleGenderDataCheck = (value) => {
-    setGenderType((data) => {
-      return data.map((e) => {
-        if (e.id == value) {
-          return { ...e, action: true };
-        } else return { ...e, action: false };
-      });
-    });
-  };
-
   //------------------------------------------------------------------------------------------------
   const toggleHamburger = () => {
-    setState({ ...state, hamburgerMenu: !state.hamburgerMenu });
+    setStateData({ ...stateData, hamburgerMenu: !stateData.hamburgerMenu });
   };
 
   // ----------------Wear state management----------------------------
@@ -220,6 +178,48 @@ const MediumHeader = () => {
     </section>
   );
 
+  const [selectLang, setselectLang] = useState(1);
+  const [openLang, setOpenLang] = useState(false);
+
+  const LanguageList = [
+    { id: 1, type: "Русский", icons: RussianFlag },
+    { id: 2, type: "O'zbekcha", icons: UzbekFlag },
+  ];
+
+  const handleOpenLangList = (newOpen) => {
+    setOpenLang(newOpen);
+  };
+
+  const handleLangValue = (value) => {
+    setselectLang(value);
+    setOpenLang(false);
+  };
+
+  const contentLang = (
+    <section className="w-[180px] h-fit m-0 p-0">
+      {LanguageList.map((data) => {
+        return (
+          <article
+            key={data?.id}
+            className={`p-2 text-sm cursor-pointer hover:bg-bgColor flex items-center justify-start  ${dressInfo?.ColorSeason}`}
+            onClick={() => {
+              handleLangValue(data?.id);
+            }}
+          >
+            <figure className="w-5 h-5 mr-3">
+              <img className="w-full h-full" src={data?.icons} alt="" />
+            </figure>
+            <article
+              className={`not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black  ${dressInfo?.ColorSeason}`}
+            >
+              {data?.type}
+            </article>
+          </article>
+        );
+      })}
+    </section>
+  );
+
   // Location pathname
   const location = useLocation();
   const navigate = useNavigate();
@@ -251,7 +251,7 @@ const MediumHeader = () => {
   const goCatalogId = (id) => {
     navigate(`/catalog/${id}`);
   };
-  
+
   return (
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <div
@@ -335,7 +335,7 @@ const MediumHeader = () => {
                     onClick={toggleHamburger}
                     className={`flex items-center justify-center bg-btnBgColor border border-searchBgColor w-12 h-12 cursor-pointer md:hidden rounded-xl`}
                   >
-                    {state?.hamburgerMenu ? (
+                    {stateData?.hamburgerMenu ? (
                       <figure>
                         <MenuCloseIcons colors={"#000"} />
                       </figure>
@@ -583,19 +583,19 @@ const MediumHeader = () => {
             </section>
             {/*Starting of Opened Hamburger Menu section */}
             <section
-              className={`max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen pb-[140px] px-3 ${
-                state?.hamburgerMenu
+              className={`flex md:hidden max-w-[440px] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 h-screen pb-[140px] px-3 ${
+                stateData?.hamburgerMenu
                   ? " flex flex-col ease-linear duration-500 overscroll-none"
                   : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
               }`}
             >
-              <div className={`w-full h-fit flex flex-wrap `}>
+              <div className={`w-full h-full flex flex-wrap `}>
                 {/* Categories */}
                 <ul className="flex flex-col w-full">
                   <li>
                     <NavLink
                       // onClick={() =>
-                      //   setState({ ...state, hamburgerMenu: false })
+                      //   setState({ ...stateData, hamburgerMenu: false })
                       // }
                       onClick={() => setRegionsList(true)}
                       to="/signup-seller"
@@ -615,7 +615,7 @@ const MediumHeader = () => {
                   <li>
                     <NavLink
                       onClick={() =>
-                        setState({ ...state, hamburgerMenu: false })
+                        setStateData({ ...stateData, hamburgerMenu: false })
                       }
                       to="/stores"
                       className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
@@ -631,94 +631,100 @@ const MediumHeader = () => {
                       </span>
                     </NavLink>
                   </li>
-                  <li>
-                    <NavLink
-                      to="https://t.me/Dishkan_Kh"
-                      target="_blank"
-                      onClick={() =>
-                        setState({ ...state, hamburgerMenu: false })
-                      }
-                      className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
-                    >
-                      <div className="flex items-center">
-                        <UploadIcons />
-                        <p className="text-base font-AeonikProMedium leading-4 ml-[12.5px] mr-[32.37px]">
-                          Есть вопросы?
-                        </p>
-                      </div>
-                      <span className="arrowRotate ml-auto rotate-[90deg]">
-                        <ArrowTopIcons colors={"#000"} />
-                      </span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      onClick={() =>
-                        setState({ ...state, hamburgerMenu: false })
-                      }
-                      to="/signup-seller"
-                      className="flex items-center bg-btnBgColor font-AeonikProMedium h-[48px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
-                    >
-                      <div className="flex items-center">
+                  <li className="line border-b w-full border-searchBgColor ls:w-full mb-3"></li>
+                  <li className="flex items-center gap-x-3">
+                    <div className="w-1/2 h-[52px] flex items-center bg-btnBgColor font-AeonikProMedium border rounded-xl border-searchBgColor px-5">
+                      <div
+                        onClick={() => {
+                          setAudioPlay(!audioPlay);
+                        }}
+                        className="w-full flex items-center justify-center"
+                      >
                         <span className=" py-3 pr-3">
-                          <HouseStatisticIcons colors={"#000"} />
+                          <VolumeIcons colors={"#007DCA"} />
                         </span>
-                        <span className="ml-[11.67px]">Бизнес</span>
-                      </div>
-                      <span className="arrowRotate ml-auto rotate-[90deg]">
-                        <ArrowTopIcons colors={"#000"} />
-                      </span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      onClick={() =>
-                        setState({ ...state, hamburgerMenu: false })
-                      }
-                      to="#"
-                      className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
-                    >
-                      <div className="flex items-center">
-                        <span className=" py-3 pr-3">
-                          <img src={EnglishFlag} alt="Language" />
+                        <span className="w-full items-center justify-center ml-[10px] text-base">
+                          Музыка
                         </span>
-                        <span className="ml-[11.67px]">Английский</span>
                       </div>
-                      <span className="arrowRotate ml-auto rotate-[90deg]">
-                        <ArrowTopIcons colors={"#000"} />
-                      </span>
-                    </NavLink>
+                    </div>
+                    <div className="w-1/2 h-[52px] flex items-center bg-btnBgColor font-AeonikProMedium border rounded-xl border-searchBgColor px-5">
+                      {LanguageList.filter(
+                        (data) => data.id === selectLang
+                      ).map((data) => {
+                        return (
+                          <div className="w-full flex items-center justify-between">
+                            <Popover
+                              key={data?.id}
+                              open={openLang}
+                              onOpenChange={handleOpenLangList}
+                              className="w-full languageMobile flex text-[13px] items-center h-full pl-3 "
+                              trigger="click"
+                              options={["Hide"]}
+                              placement="bottom"
+                              content={contentLang}
+                            >
+                              <span>
+                                {" "}
+                                <img
+                                  src={data?.icons}
+                                  width={"20px"}
+                                  alt=""
+                                />{" "}
+                              </span>
+                              <p className="ml-3 not-italic flex items-center font-AeonikProMedium text-base text-black ">
+                                {data?.type}
+                              </p>
+                              <span className="arrowRotate ml-auto rotate-[180deg]">
+                                <ArrowTopIcons colors={"#000"} />
+                              </span>
+                            </Popover>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </li>
                 </ul>
 
-                <article className="w-full flex flex-col">
-                  {/* Line */}
-                  {/* <div className="line border-b w-full border-searchBgColor mb-3 ls:w-full"></div> */}
-                  {/* Location and Language */}
-                  {/* <div className="flex items-center justify-between h-fit mb-3">
-                    <button
-                      onClick={() => setRegionsList(true)}
-                      className="left h-[52px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
-                    >
-                      <span>
-                        <LocationIcons />
+                {/* Line */}
+
+                {/* Location and Language */}
+                <div className="w-full gap-x-3 mt-auto mb-2 flex items-center justify-between">
+                  <NavLink
+                    onClick={() =>
+                      setStateData({ ...stateData, hamburgerMenu: false })
+                    }
+                    // to="/signup-seller"
+                    to="#"
+                    className="w-1/2 flex items-center bg-btnBgColor font-AeonikProMedium h-[48px] border rounded-xl border-searchBgColor px-5"
+                  >
+                    <div className="flex items-center">
+                      <span className=" py-3 pr-3">
+                        <HouseStatisticIcons colors={"#000"} />
                       </span>
-                      <span className="ml-[10px] mr-5">Tashkent</span>
-                      <span className="rotate-180">
-                        <ArrowTopIcons colors={"#000"} />
-                      </span>{" "}
-                    </button>
-                    <Link
-                      to="#"
-                      className="left h-[48px] rounded-xl flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]"
-                    >
-                      <span className="ml-[10px] mr-5">English</span>
-                      <span className="rotate-180">
-                        <ArrowTopIcons colors={"#000"} />
-                      </span>
-                    </Link>
-                  </div> */}
-                </article>
+                      <span className="ml-[11.67px] text-sm">Бизнес</span>
+                    </div>
+                    <span className="arrowRotate ml-auto leading-4 rotate-[90deg]">
+                      <ArrowTopIcons colors={"#000"} />
+                    </span>
+                  </NavLink>
+                  <NavLink
+                    to="https://t.me/Dishkan_Kh"
+                    target="_blank"
+                    // onClick={() => setStateData({ ...stateData, hamburgerMenu: false })}
+                    className="w-1/2 h-[52px] flex items-center bg-btnBgColor font-AeonikProMedium border rounded-xl border-searchBgColor px-5"
+                  >
+                    <div className="flex items-center">
+                      <UploadIcons />
+                      <p className="text-sm font-AeonikProMedium leading-4 ml-[12.5px]">
+                        Вопросы?
+                      </p>
+                    </div>
+                    <span className="arrowRotate ml-auto rotate-[90deg]">
+                      <ArrowTopIcons colors={"#000"} />
+                    </span>
+                  </NavLink>
+                </div>
               </div>
             </section>
           </div>

@@ -185,7 +185,7 @@ const ClothingParametr = () => {
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto md:px-0">
       <section className="w-full md:hidden flex items-center justify-between pb-3 gap-x-2">
-        <button
+        <div
           onClick={() => {
             setState({
               ...state,
@@ -198,8 +198,8 @@ const ClothingParametr = () => {
             {" "}
             <ClothesIcons colors={"#000"} />
           </p>
-        </button>
-        <button
+        </div>
+        <div
           onClick={() =>
             setState({
               ...state,
@@ -212,8 +212,8 @@ const ClothingParametr = () => {
             {" "}
             <DollorIcons colors={"#000"} />
           </span>
-        </button>
-        <button
+        </div>
+        <div
           onClick={() =>
             setState({
               ...state,
@@ -226,8 +226,8 @@ const ClothingParametr = () => {
             {" "}
             <BrushColorIcons colors={iconsColor} />
           </span>
-        </button>
-        <button
+        </div>
+        <div
           onClick={() =>
             setState({
               ...state,
@@ -240,7 +240,7 @@ const ClothingParametr = () => {
             {" "}
             <TopBrandsIcon colors={"#000"} />
           </span>
-        </button>
+        </div>
       </section>
 
       <section className="w-full">

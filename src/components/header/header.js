@@ -18,6 +18,7 @@ const Header = () => {
     colorSelectId: null,
     categorySelectId: null,
     getRangeData: [],
+    hamburgerMenu: false
   });
 
   // ----------------NavBar----------------
@@ -157,7 +158,7 @@ const Header = () => {
               }`}
             >
               <TopHeader />
-              <MediumHeader />
+              <MediumHeader stateData={state} setStateData={setState} />
               <div
                 className={`${
                   scrollPost > -530 ? "" : "h-0 overflow-hidden"
@@ -204,7 +205,7 @@ const Header = () => {
                   : "visible duration-500 z-[101] translate-y-[100%]"
               } block md:hidden`}
             >
-              <NavMenu />
+              <NavMenu stateData={state} setStateData={setState} />
             </article>
           )}
         </div>
