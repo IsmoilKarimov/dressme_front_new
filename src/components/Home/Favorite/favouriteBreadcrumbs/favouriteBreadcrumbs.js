@@ -6,7 +6,7 @@ const FavoutireBreadCrumbs = () => {
     <main className="flex flex-col min-h-[44px]  justify-center items-center my-3 ">
       <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto px-4 md:px-0">
         <div className="w-full flex justify-between flex-col md:flex-row ">
-          <section className="flex items-center mb-5 md:mb-0">
+          <section className="flex items-center md:mb-0">
             <article className="not-italic font-AeonikProRegular flex items-center text-black tracking-[1%] mr-[10px]">
               <NavLink
                 to="/"
@@ -25,9 +25,9 @@ const FavoutireBreadCrumbs = () => {
                 Избранное
               </div>
             </article>
-            <article className="block md:hidden ml-auto">
+            {/* <article className="block md:hidden ml-auto">
               <span className="text-sm font-AeonikProMedium">82 товара</span>
-            </article>
+            </article> */}
           </section>
         </div>
       </div>

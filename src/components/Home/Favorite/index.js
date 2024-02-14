@@ -15,7 +15,7 @@ export default function Favourites() {
         <FavoutireBreadCrumbs />
       </section>
 
-      <section className="w-full ">
+      <section className="w-full h-full">
         <FavouriteProducts />
       </section>
     </main>
