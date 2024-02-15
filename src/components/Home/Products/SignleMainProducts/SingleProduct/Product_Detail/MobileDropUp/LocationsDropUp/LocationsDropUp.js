@@ -3,20 +3,22 @@ import {
   MenuCloseIcons,
   SearchIcons,
 } from "../../../../../../../../assets/icons";
+import { Radio } from "antd";
 
-function LocationDropUp({ onClick }) {
-  const LocationsList = [
-    { id: 1, region: "Yunusobod" },
-    { id: 2, region: "Mirzo Ulugbek" },
-    { id: 3, region: "Mirobod" },
-    { id: 4, region: "Mirobod" },
-    { id: 5, region: "Mirzo Ulugbek" },
-    { id: 6, region: "Mirzo Ulugbek" },
-    { id: 7, region: "Mirzo Ulugbek" },
-    { id: 8, region: "Mirzo Ulugbek" },
-    { id: 9, region: "Mirzo Ulugbek" },
-    { id: 10, region: "Mirzo Ulugbek" },
-  ];
+function LocationDropUp({
+  onClick,
+  data,
+  selectedLocation,
+  checkedData,
+  setOpenLocationModal,
+  setSelectedLocation,
+  setSelectedSize,
+  existRegions,
+  existRegionsObj
+}) {
+
+  console.log(data, "data");
+  console.log(existRegions, "existRegions");
 
   return (
     <main>
@@ -28,30 +30,68 @@ function LocationDropUp({ onClick }) {
           </button>
         </section>
         <section className="w-full h-[380px] px-4 flex flex-col items-center">
-          <div className="w-full h-fit flex items-center justify-center flex-wrap gap-x-7 mb-[28px]">
-            <form className="w-full flex flex-col items-center">
-              <div className="w-full h-[290px] overflow-auto VerticelScroll">
-                {LocationsList.map((data) => {
-                  return (
-                    <div
-                      key={data.id}
-                      className="w-full  flex items-center justify-start border-b border-searchBgColor text-[#303030] pb-[10px] mb-4 text-base font-AeonikProRegular"
-                    >
-                      {data.region}
+          <div className="w-full h-fit flex items-center justify-center overflow-auto VerticelScroll flex-wrap gap-x-7 mb-[28px]">
+            <Radio.Group
+              style={{
+                width: "100%",
+              }}
+              defaultValue={selectedLocation?.id}
+              // onChange={onChange}
+            >
+              {existRegions.map((item, i) => {
+                return (
+                  <div key={i}>
+                    <div className="font-AeonikProRegular text-base border-b border-[#f0f0f0] mb-[15px]">
+                      {existRegionsObj[item]}
                     </div>
-                  );
-                })}
-              </div>
-            </form>
+                    <div className="w-full">
+                      {data?.product?.locations.map((data, i) => {
+                        if (data?.sub_region?.region_id === item) {
+                          console.log(selectedLocation?.id,'selectedLocation?.id');
+                          console.log(item?.id, "item?.id");
+                          return (
+                            <div
+                              onClick={() => {
+                                checkedData = data;
+                              }}
+                              key={i}
+                              className="mb-[8px]"
+                            >
+                              <Radio
+                                value={data?.id}
+                                name="location"
+                                checked={selectedLocation?.id === item?.id}
+                                className="text-sm font-AeonikProRegular"
+                              >
+                                {data?.sub_region?.name_ru} ({data?.address})
+                              </Radio>
+                            </div>
+                          );
+                        }
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+            </Radio.Group>
           </div>
-          <div className="w-full flex items-center justify-between gap-x-3 mb-10">
+          <div className="w-full mt-auto flex items-center justify-between gap-x-3 mb-10">
             <button
               onClick={onClick}
               className="w-[45%] h-[38px] text-base font-AeonikProMedium bg-white text-borderWinter border border-borderWinter rounded-md active:scale-95"
             >
               Закрыт
             </button>
-            <button className="w-[55%] h-[38px] text-base font-AeonikProMedium bg-borderWinter text-white border border-borderWinter rounded-md active:scale-95">
+            <button
+              type="button"
+              onClick={() => {
+                setOpenLocationModal(false);
+                setSelectedLocation(checkedData);
+                setSelectedSize(null);
+                onClick()
+              }}
+              className="w-[55%] h-[38px] text-base font-AeonikProMedium bg-borderWinter text-white border border-borderWinter rounded-md active:scale-95"
+            >
               Готово
             </button>
           </div>
