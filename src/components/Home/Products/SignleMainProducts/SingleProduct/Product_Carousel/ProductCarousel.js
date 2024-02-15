@@ -522,7 +522,7 @@ const ProductCarousel = ({ show, data }) => {
               </span>
             </div>
 
-            <article className="flex w-[93px] flex-row gap-x-2">
+            <article className="flex w-[93px] flex-row gap-x-1">
               {colorId
                 ? filteredForModal?.map((data, i) => {
                     if (data?.product_color_id === colorId) {
@@ -560,7 +560,6 @@ const ProductCarousel = ({ show, data }) => {
                         onClick={() => {
                           setSliderState(i);
                         }}
-                        className="mb-2"
                       >
                         <figure
                           key={data?.id}
@@ -584,7 +583,7 @@ const ProductCarousel = ({ show, data }) => {
           </article>
 
           {/* 4 */}
-          {/* <article className="w-full flex flex-col mt-4">
+          <article className="w-full flex flex-col mt-4">
             <Slider
               // asNavFor={nav1}
               {...settings2}
@@ -608,7 +607,7 @@ const ProductCarousel = ({ show, data }) => {
                 );
               })}
             </Slider>
-          </article> */}
+          </article>
         </section>
       )}
     </main>

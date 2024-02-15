@@ -347,7 +347,7 @@ const ProductDetails = ({ data }) => {
             tableSizes ? "bottom-0" : "bottom-[-800px] z-0"
           }`}
         >
-          <TableSizesDropUp onClick={toggleTableSizes} />
+          <TableSizesDropUp data={data} onClick={toggleTableSizes} />
         </section>
       </div>
       <div className="locations">
@@ -362,7 +362,17 @@ const ProductDetails = ({ data }) => {
             locations ? "bottom-0" : "bottom-[-800px] z-0"
           }`}
         >
-          <LocationDropUp onClick={toggleLocations} />
+          <LocationDropUp
+            selectedLocation={selectedLocation}
+            checkedData={checkedData}
+            setOpenLocationModal={setOpenLocationModal}
+            setSelectedLocation={setSelectedLocation}
+            setSelectedSize={setSelectedSize}
+            existRegions={existRegions}
+            existRegionsObj={existRegionsObj}
+            data={data}
+            onClick={toggleLocations}
+          />
         </div>
       </div>
 
@@ -626,12 +636,14 @@ const ProductDetails = ({ data }) => {
       {/* 2 */}
       <section className="w-full md:border-t md:border-y md:border-searchBgColor md:py-[25px] ">
         <article className="w-full block md:hidden">
-          <button
-            onClick={() => setTableSizes(true)}
-            className="text-[13px] font-AeonikProMedium text-borderWinter border-b border-dashed border-borderWinter mb-5"
-          >
-            Таблица размеров
-          </button>
+          {checkTableShow ? (
+            <button
+              onClick={() => setTableSizes(true)}
+              className="text-[13px] font-AeonikProMedium text-borderWinter border-b border-dashed border-borderWinter mb-5"
+            >
+              Таблица размеров
+            </button>
+          ) : null}
         </article>
         <article className="w-full flex items-center justify-between bg-[#fdfdfd] md:bg-white border-y md:border-none mb-4 text-sm font-AeonikProMedium">
           <div className="hidden md:flex items-center">
@@ -705,6 +717,11 @@ const ProductDetails = ({ data }) => {
                         <div className="w-full">
                           {data?.product?.locations.map((data, i) => {
                             if (data?.sub_region?.region_id === item) {
+                              console.log(item?.id, "item?.id");
+                              console.log(
+                                selectedLocation?.id,
+                                "selectedLocation?.id"
+                              );
                               return (
                                 <div
                                   onClick={() => {
@@ -1323,7 +1340,7 @@ const ProductDetails = ({ data }) => {
                 <DeliveryIcons />
                 <span className="ml-[6px]">Метод доставки:</span>
               </div>
-              <div className="text-sm font-AeonikProRegular ml-[6px] text-[#666]">
+              <div className="text-sm font-AeonikProRegular ml-[6px] text-[#a1a1a1]">
                 {data?.product?.shop?.delivery?.name_ru}
               </div>
             </div>
@@ -1352,7 +1369,7 @@ const ProductDetails = ({ data }) => {
                           }
                           alt=""
                         />
-                        <figcaption className="not-italic  ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
+                        <figcaption className="not-italic  ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-[#a1a1a1] tracking-[1%]">
                           {item?.name_ru}
                         </figcaption>
                       </figure>
@@ -1369,7 +1386,7 @@ const ProductDetails = ({ data }) => {
                 </div>
               </article>
               <article className="ml-2">
-                <p className="not-italic font-AeonikProRegular text-[14px]  text-black">
+                <p className="not-italic font-AeonikProRegular text-[14px]  text-[#a1a1a1]">
                   {data?.product?.shop?.name}
                 </p>
               </article>
@@ -1402,7 +1419,7 @@ const ProductDetails = ({ data }) => {
                 </div>
               </article>
               <article className="w-fit ml-[6px]">
-                <p className="not-italic font-AeonikProRegular text-[14px]  text-[#666] ">
+                <p className="not-italic font-AeonikProRegular text-[14px]  text-[#a1a1a1] ">
                   {data?.product?.min_age_category} -{" "}
                   {data?.product?.max_age_category}
                 </p>
@@ -1416,7 +1433,7 @@ const ProductDetails = ({ data }) => {
                 </div>
               </article>
               <article className="w-fit ml-[6px]">
-                <p className="not-italic font-AeonikProRegular text-[14px]  text-[#666] ">
+                <p className="not-italic font-AeonikProRegular text-[14px]  text-[#a1a1a1] ">
                   {data?.product?.quality_ru}
                 </p>
               </article>
@@ -1429,7 +1446,7 @@ const ProductDetails = ({ data }) => {
                 </div>
               </article>
               <article className="w-fit ml-[6px]">
-                <p className="not-italic font-AeonikProRegular text-[14px]  text-[#666] ">
+                <p className="not-italic font-AeonikProRegular text-[14px]  text-[#a1a1a1] ">
                   Узбекистан
                 </p>
               </article>
@@ -1447,7 +1464,7 @@ const ProductDetails = ({ data }) => {
                     return (
                       <p
                         key={i}
-                        className="mr-[5px] not-italic font-AeonikProRegular text-[14px] text-black "
+                        className="mr-[5px] not-italic font-AeonikProRegular text-[14px] text-[#a1a1a1] "
                       >
                         {item?.name_ru}
                       </p>

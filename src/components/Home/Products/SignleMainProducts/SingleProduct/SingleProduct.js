@@ -122,7 +122,7 @@ const SingleProduct = () => {
     )
     ?.slice(0, 6);
 
-    console.log(singleData, "data");
+    // console.log(singleData, "data");
 
   return (
     <main className="flex flex-col m-0 p-0 box-border">

@@ -387,15 +387,15 @@ export default function ProductComment({ data, refetch }) {
                 <StarIcons />
                 <StarIcons />
                 <span className="ml-[10px] font-AeonikProMedium text-base">
-                  4.7
+                  {data?.product?.overall_rating}
                 </span>
               </div>
               <div className="text-sm font-AeonikProRegular text-closeColorBtn mt-1">
-                265 голосов
+                {data?.product?.rated_users_count} голосов
               </div>
             </div>
             <button
-              onClick={() => goDetail(allComments)}
+              onClick={() => goDetail("/allcomments")}
               className="w-full py-4 px-4 flex items-center justify-center border-t border-searchBgColor"
             >
               <span className="ml-8">

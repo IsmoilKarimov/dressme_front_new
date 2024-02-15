@@ -1,7 +1,7 @@
 import React from "react";
 import { MenuCloseIcons } from "../../../../../../../../assets/icons";
 
-function TableSizesDropUp({ onClick }) {
+function TableSizesDropUp({ onClick, data }) {
   const tableSizes = {
     sizes: [
       { id: 1, numbers: "45-52" },
@@ -76,6 +76,8 @@ function TableSizesDropUp({ onClick }) {
       { id: 60, ages: "66-90" },
     ],
   };
+
+  console.log(data, "data-table");
 
   return (
     <main>
