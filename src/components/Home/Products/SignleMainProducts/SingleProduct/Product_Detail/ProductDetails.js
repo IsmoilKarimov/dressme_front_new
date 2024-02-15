@@ -1314,72 +1314,78 @@ const ProductDetails = ({ data }) => {
 
         {/* Mobile Product Infos */}
         <article className="w-full flex md:hidden flex-col items-center">
-          {/* <div className="w-full text-xl font-AeonikProMedium mb-[18px]">
-            Line-Pattern Zipper Sweatshirt (Original High Quality)
+          <div className="w-full text-xl font-AeonikProMedium mb-[18px]">
+            {data?.product?.name_ru}
           </div>
           <div className="w-full flex flex-col items-center border border-[#f0f0f0] p-[15px] bg-categoryModalBgColor rounded-xl">
             <div className="w-full flex items-center mb-4">
-              <div className="flex items-center text-base font-AeonikProRegular">
+              <div className="flex items-center text-sm font-AeonikProRegular">
                 <DeliveryIcons />
                 <span className="ml-[6px]">Метод доставки:</span>
               </div>
               <div className="text-sm font-AeonikProRegular ml-[6px] text-[#666]">
-                Собственная доставка
+                {data?.product?.shop?.delivery?.name_ru}
               </div>
             </div>
             <div className="w-full flex items-center mb-4">
-              <section className="w-fit flex items-center h-fit text-base">
-                <div className="flex items-center font-AeonikProRegular leading-4 tracking-[1%]">
+              <section className="w-fit flex items-center h-fit text-sm">
+                <div className="flex items-center font-AeonikProRegular leading-4 ">
                   <CalendarIcons colors={"#000"} />
-                  <span className="ml-[6px]">Сезон:</span>
+                  <span className="mx-[6px]">Сезон:</span>
                 </div>
-                <figure className="flex items-center ml-[6px]">
-                  <img src={winterSeason} alt="" />
-                  <figcaption className="font-AeonikProRegular leading-4 tracking-[1%]">
-                    Зима
-                  </figcaption>
-                </figure>
-                <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
-                <figure className="flex items-center">
-                  <img src={summerSeason} alt="" />
-                  <figcaption className="not-italic ml-1 font-AeonikProRegular leading-4 text-black tracking-[1%]">
-                    Весна
-                  </figcaption>
-                </figure>
-                <div className="w-[1px] border h-3 border-searchBgColor mx-3"></div>
-                <figure className="flex items-center">
-                  <img src={autummSeason} alt="" />
-                  <figcaption className="ml-1 font-AeonikProRegular text-base leading-4 text-black tracking-[1%]">
-                    Осень
-                  </figcaption>
-                </figure>
+
+                {data?.product?.seasons?.map((item) => {
+                  return (
+                    <div key={item?.id}>
+                      <figure className="flex items-center pr-3 mr-3 last:border-none border-r-[2px] border-searchBgColor">
+                        <img
+                          src={
+                            item?.name_ru === "Весна"
+                              ? springSeason
+                              : item?.name_ru === "Лето"
+                              ? summerSeason
+                              : item?.name_ru === "Осень"
+                              ? autummSeason
+                              : item?.name_ru === "Зима"
+                              ? winterSeason
+                              : null
+                          }
+                          alt=""
+                        />
+                        <figcaption className="not-italic  ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
+                          {item?.name_ru}
+                        </figcaption>
+                      </figure>
+                    </div>
+                  );
+                })}
               </section>
             </div>
             <div className="w-full flex items-center mb-4">
               <article className="flex items-center">
                 <MarketIcons colors={"#000"} />
-                <div className="not-italic flex items-center font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%] ml-[6px]">
+                <div className="not-italic flex items-center font-AeonikProRegular text-[14px]  text-black ml-[6px]">
                   Магазин:
                 </div>
               </article>
               <article className="ml-2">
-                <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                  Nike Store Official Dealer
+                <p className="not-italic font-AeonikProRegular text-[14px]  text-black">
+                  {data?.product?.shop?.name}
                 </p>
               </article>
             </div>
             <div className="w-full flex items-center mb-4">
               <ProductArticleIcons />
-              <span className="text-base font-AeonikProRegular leading-4 tracking-[1%] ml-[6px]">
-                Артикль:
+              <span className="text-sm font-AeonikProRegular ml-[6px]">
+                Артикул:
               </span>
-              <input
-                type="text"
-                readOnly
-                // value={copyText}
-                // onChange={(e) => setCopyText(e.target.value)}
-                className="text-sm bg-transparent w-[68px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]"
-              />
+              <div className="text-sm bg-transparent w-fit font-AeonikProRegular ml-[6px] text-[#a1a1a1]" />
+              <div
+                ref={skuRef}
+                className="w-fit text-sm font-AeonikProRegular text-[#a1a1a1]"
+              >
+                {data?.product?.sku}
+              </div>
               <button
                 type="button"
                 onClick={handleCopyText}
@@ -1391,38 +1397,39 @@ const ProductDetails = ({ data }) => {
             <div className="w-full flex items-center mb-4">
               <article className="w-fit flex items-center">
                 <CategoryUsersIcon colors={"#000"} />
-                <div className="not-italic flex items-center font-AeonikProRegular text-base leading-4 text-black tracking-[1%] ml-[6px]">
+                <div className="not-italic flex items-center font-AeonikProRegular text-sm  text-black ml-[6px]">
                   Возрастная категория:
                 </div>
               </article>
               <article className="w-fit ml-[6px]">
-                <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-[#666] tracking-[1%]">
-                  36-44
+                <p className="not-italic font-AeonikProRegular text-[14px]  text-[#666] ">
+                  {data?.product?.min_age_category} -{" "}
+                  {data?.product?.max_age_category}
                 </p>
               </article>
             </div>
             <div className="w-full flex items-center mb-4">
               <article className="w-fit flex items-center">
                 <QualityIcon colors={"#000"} />
-                <div className="not-italic flex items-center font-AeonikProRegular text-base leading-4 text-black tracking-[1%] ml-[6px]">
+                <div className="not-italic flex items-center font-AeonikProRegular text-sm  text-black  ml-[6px]">
                   Качество:
                 </div>
               </article>
               <article className="w-fit ml-[6px]">
-                <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-[#666] tracking-[1%]">
-                  Оригинал
+                <p className="not-italic font-AeonikProRegular text-[14px]  text-[#666] ">
+                  {data?.product?.quality_ru}
                 </p>
               </article>
             </div>
             <div className="w-full flex items-center mb-4">
               <article className="w-fit flex items-center">
                 <SettingsIcon colors={"#000"} />
-                <div className="not-italic flex items-center font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%] ml-[6px]">
+                <div className="not-italic flex items-center font-AeonikProRegular text-[14px]  text-black  ml-[6px]">
                   Производитель:
                 </div>
               </article>
               <article className="w-fit ml-[6px]">
-                <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-[#666] tracking-[1%]">
+                <p className="not-italic font-AeonikProRegular text-[14px]  text-[#666] ">
                   Узбекистан
                 </p>
               </article>
@@ -1430,31 +1437,40 @@ const ProductDetails = ({ data }) => {
             <div className="w-full flex items-center mb-4">
               <article className="w-fit flex items-center">
                 <ChapterIcon colors={"#000"} />
-                <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-[6px]">
+                <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] text-black  ml-[6px]">
                   Раздел:
                 </div>
               </article>
               <article className="w-fit ml-[6px]">
-                <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-[#666] tracking-[1%]">
-                  Спортивный (Тренировка)
-                </p>
+                {data?.product?.sections?.map((item, i) => {
+                  if (i < 2) {
+                    return (
+                      <p
+                        key={i}
+                        className="mr-[5px] not-italic font-AeonikProRegular text-[14px] text-black "
+                      >
+                        {item?.name_ru}
+                      </p>
+                    );
+                  }
+                })}
               </article>
             </div>
             <div className="w-full flex items-center">
               <article className="w-fit flex items-center">
                 <PaymeSystemIcons colors={"#000"} />
-                <div className="not-italic flex items-center font-AeonikProRegular text-base leading-4 text-black tracking-[1%] ml-[6px]">
+                <div className="not-italic flex items-center font-AeonikProRegular text-sm  text-black ml-[6px]">
                   Номер карты:
                 </div>
               </article>
               <article className="w-fit flex items-center ml-[6px]">
-                <input
-                  className="text-sm bg-transparent w-[138px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]"
-                  // value={copyCardNumber}
-                  // onChange={(e) => setCopyCardNumber(e.target.value)}
-                  readOnly
-                  type="text"
-                />
+                <div className="text-sm w-fit bg-transparent font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]" />
+                <div
+                  ref={cardRef}
+                  className="w-fit text-sm font-AeonikProRegular text-[#a1a1a1]"
+                >
+                  {data?.product?.seller?.card_number}
+                </div>
                 <button
                   type="button"
                   onClick={handleCopyCardNumber}
@@ -1464,7 +1480,7 @@ const ProductDetails = ({ data }) => {
                 </button>
               </article>
             </div>
-          </div> */}
+          </div>
         </article>
 
         {/* Mobile Connection */}
@@ -1479,7 +1495,7 @@ const ProductDetails = ({ data }) => {
                     href={`${"tel:" + selectedLocation?.assistant_phone}`}
                   >
                     <PhoneIcons colors={"#fff"} />
-                    <p className="text-base ">
+                    <p className="text-sm ">
                       {selectedLocation?.assistant_name}
                     </p>
                   </a>
@@ -1497,7 +1513,7 @@ const ProductDetails = ({ data }) => {
                     <p className="w-7 h-7  bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
                       <FaTelegramPlane size={16} />
                     </p>{" "}
-                    <p className="text-base block">
+                    <p className="text-sm block">
                       {selectedLocation?.assistant_messenger}
                     </p>{" "}
                   </a>
@@ -1518,7 +1534,7 @@ const ProductDetails = ({ data }) => {
                     }`}
                   >
                     <PhoneIcons colors={"#fff"} />
-                    <p className="text-base ">
+                    <p className="text-sm ">
                       {selectedLocation?.second_assistant_name}
                     </p>
                   </a>
@@ -1536,7 +1552,7 @@ const ProductDetails = ({ data }) => {
                     <p className="w-7 h-7  bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
                       <FaTelegramPlane size={16} />
                     </p>{" "}
-                    <p className="text-base block">
+                    <p className="text-sm block">
                       {selectedLocation?.second_assistant_messenger}
                     </p>{" "}
                   </a>
@@ -1742,16 +1758,14 @@ const ProductDetails = ({ data }) => {
       </section>
 
       {/* 4  Buttons */}
-      <article
-        className=" w-full h-11 flex justify-between items-center rounded-lg bg-[#fafafa] border border-solid mt-6 md:mt-[15px] md:h-12 md:w-full"
-      >
+      <article className=" w-full h-11 flex justify-between items-center rounded-lg bg-[#fafafa] border border-solid mt-6 md:mt-[15px] md:h-12 md:w-full">
         <button
           onClick={(e) => {
             e.preventDefault();
             setOpenTab(1);
           }}
           className={` ${
-            !data?.product?.composition_ru  && !data?.product?.description_ru
+            !data?.product?.composition_ru && !data?.product?.description_ru
               ? "w-full"
               : "w-[28%]"
           } md:w-full md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
