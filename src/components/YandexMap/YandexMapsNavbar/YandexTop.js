@@ -29,9 +29,8 @@ const YandexTop = ({ onClick }) => {
   const [selectLang, setselectLang] = useState(1);
 
   const LanguageList = [
-    { id: 1, type: "English", icons: EnglishFlag },
-    { id: 2, type: "Русский", icons: RussianFlag },
-    { id: 3, type: "O'zbekcha", icons: UzbekFlag },
+    { id: 1, type: "Русский", icons: RussianFlag },
+    { id: 2, type: "O'zbekcha", icons: UzbekFlag },
   ];
 
   const handleOpenChangeWear = (newOpen) => {
