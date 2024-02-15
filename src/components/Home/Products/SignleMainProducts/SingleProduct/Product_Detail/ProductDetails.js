@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React, {
   useCallback,
   useContext,
@@ -747,25 +748,43 @@ const ProductDetails = ({ data }) => {
         </article>
 
         <article className="h-fit flex items-center justify-between mb-4 md:mb-0">
-          <article className="flex md:hidden items-center justify-start ">
-            <p className="w-fit flex items-center gap-x-[1px]">
-              <StarIcons />
-            </p>
-            <article className="flex items-center w-fit ml-2 text-base md:text-[14px]">
-              <p className="not-italic font-AeonikProMedium mt-1 leading-4 text-black tracking-[1%]">
-                4.7
+          {data?.product?.overall_rating ? (
+            <article className="flex md:hidden items-center justify-start ">
+              <p className="w-fit flex items-center gap-x-[1px]">
+                <StarIcons />
               </p>
-              <p className=" pl-1 not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
-                (265)
-              </p>
-              <div className="text-setTexOpacity mx-[10px]">|</div>
-              <p className=" not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
-                678 заказов
-              </p>
+              <article className="flex items-center w-fit ml-2 text-base md:text-[14px]">
+                <p className="not-italic font-AeonikProMedium mt-1 leading-4 text-black tracking-[1%]">
+                  {data?.product?.overall_rating}
+                </p>
+                <p className=" pl-1 not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
+                  ({data?.product?.rated_users_count} голоса)
+                </p>
+                {/* <div className="text-setTexOpacity mx-[10px]">|</div>
+                <p className=" not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
+                  678 заказов
+                </p> */}
+              </article>
             </article>
-          </article>
-          <button className="w-10 h-10 flex md:hidden items-center justify-center rounded-xl active:scale-95 border border-searchBgColor bg-btnBgColor">
-            <img src={HeartImg} alt="" className="w-5 h-5" />
+          ) : null}
+
+          <button
+            onClick={() => {
+              if (wishList?.includes(data?.product?.id)) {
+                setWishlist(
+                  wishList?.filter((item) => item !== data?.product?.id)
+                );
+              } else {
+                setWishlist([...wishList, data?.product?.id]);
+              }
+            }}
+            className="w-10 h-10 flex md:hidden items-center justify-center rounded-xl active:scale-95 border border-searchBgColor bg-btnBgColor"
+          >
+            {wishList?.includes(data?.product?.id) ? (
+              <BsHeartFill color="#d50000" />
+            ) : (
+              <BsHeart />
+            )}
           </button>
         </article>
 
@@ -1294,8 +1313,8 @@ const ProductDetails = ({ data }) => {
         </article>
 
         {/* Mobile Product Infos */}
-        {/* <article className="w-full flex md:hidden flex-col items-center">
-          <div className="w-full text-xl font-AeonikProMedium mb-[18px]">
+        <article className="w-full flex md:hidden flex-col items-center">
+          {/* <div className="w-full text-xl font-AeonikProMedium mb-[18px]">
             Line-Pattern Zipper Sweatshirt (Original High Quality)
           </div>
           <div className="w-full flex flex-col items-center border border-[#f0f0f0] p-[15px] bg-categoryModalBgColor rounded-xl">
@@ -1357,8 +1376,8 @@ const ProductDetails = ({ data }) => {
               <input
                 type="text"
                 readOnly
-                value={copyText}
-                onChange={(e) => setCopyText(e.target.value)}
+                // value={copyText}
+                // onChange={(e) => setCopyText(e.target.value)}
                 className="text-sm bg-transparent w-[68px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]"
               />
               <button
@@ -1431,8 +1450,8 @@ const ProductDetails = ({ data }) => {
               <article className="w-fit flex items-center ml-[6px]">
                 <input
                   className="text-sm bg-transparent w-[138px] font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]"
-                  value={copyCardNumber}
-                  onChange={(e) => setCopyCardNumber(e.target.value)}
+                  // value={copyCardNumber}
+                  // onChange={(e) => setCopyCardNumber(e.target.value)}
                   readOnly
                   type="text"
                 />
@@ -1445,39 +1464,90 @@ const ProductDetails = ({ data }) => {
                 </button>
               </article>
             </div>
-          </div>
-        </article> */}
-
-        {/* Mobile Price */}
-        <article
-          className={`w-full h-fit mt-[34px] pb-6 md:pb-0 border-b md:border-none md:hidden`}
-        >
-          <article className="h-fit w-full flex items-center justify-between mb-2 gap-x-2">
-            <address className="max-w-1/2 md:max-w-[70%] w-full">
-              <a
-                className=" w-full bg-fullBlue active:scale-95  active:opacity-70 text-white rounded-lg h-[44px] flex gap-x-1 ll:gap-x-2 items-center justify-center"
-                href="tel:+998 (97) 720-30-40"
-              >
-                <PhoneIcons colors={"#fff"} />
-                <p className="text-base ">Samandar</p>
-              </a>
-            </address>
-            <address className=" max-w-1/2 md:max-w-[35%] w-full">
-              <a
-                className={` w-full h-[44px] active:scale-95  active:opacity-70 px-5 flex gap-x-1 ll:gap-x-2 items-center justify-center  rounded-lg  text-fullBlue border border-fullBlue`}
-                href="https://t.me/itpark_uz"
-              >
-                <p className="w-7 h-7  bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
-                  <FaTelegramPlane size={16} />
-                </p>{" "}
-                <p className="text-base block">@itpark_uz</p>{" "}
-              </a>
-            </address>
-          </article>
+          </div> */}
         </article>
+
+        {/* Mobile Connection */}
+        <div className="w-full flex md:hidden flex-col mt-4 border-b md:border-none pb-6 md:pb-0">
+          {/* BUTTON CONNECTION 1 */}
+          <article className={`w-full h-fit md:hidden`}>
+            <article className="h-fit w-full flex items-center justify-between mb-2 gap-x-2">
+              {selectedLocation?.assistant_phone ? (
+                <address className="max-w-1/2 md:max-w-[70%] w-full">
+                  <a
+                    className=" w-full bg-fullBlue active:scale-95  active:opacity-70 text-white rounded-lg h-[44px] flex gap-x-1 ll:gap-x-2 items-center justify-center"
+                    href={`${"tel:" + selectedLocation?.assistant_phone}`}
+                  >
+                    <PhoneIcons colors={"#fff"} />
+                    <p className="text-base ">
+                      {selectedLocation?.assistant_name}
+                    </p>
+                  </a>
+                </address>
+              ) : null}
+              {selectedLocation?.assistant_messenger ? (
+                <address className=" max-w-1/2 md:max-w-[35%] w-full">
+                  <a
+                    className={` w-full h-[44px] active:scale-95  active:opacity-70 px-5 flex gap-x-1 ll:gap-x-2 items-center justify-center  rounded-lg  text-fullBlue border border-fullBlue`}
+                    href={`https://t.me/${selectedLocation?.assistant_messenger?.slice(
+                      1
+                    )}`}
+                    // target="_blank"
+                  >
+                    <p className="w-7 h-7  bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
+                      <FaTelegramPlane size={16} />
+                    </p>{" "}
+                    <p className="text-base block">
+                      {selectedLocation?.assistant_messenger}
+                    </p>{" "}
+                  </a>
+                </address>
+              ) : null}
+            </article>
+          </article>
+
+          {/* BUTTON CONNECTION 2 */}
+          <article className={`w-full h-fit`}>
+            <article className="h-fit w-full flex items-center justify-between mb-2 gap-x-2">
+              {selectedLocation?.second_assistant_phone ? (
+                <address className="max-w-1/2 md:max-w-[70%] w-full">
+                  <a
+                    className=" w-full bg-fullBlue active:scale-95  active:opacity-70 text-white rounded-lg h-[44px] flex gap-x-1 ll:gap-x-2 items-center justify-center"
+                    href={`${
+                      "tel:" + selectedLocation?.second_assistant_phone
+                    }`}
+                  >
+                    <PhoneIcons colors={"#fff"} />
+                    <p className="text-base ">
+                      {selectedLocation?.second_assistant_name}
+                    </p>
+                  </a>
+                </address>
+              ) : null}
+              {selectedLocation?.second_assistant_messenger ? (
+                <address className=" max-w-1/2 md:max-w-[35%] w-full">
+                  <a
+                    className={` w-full h-[44px] active:scale-95  active:opacity-70 px-5 flex gap-x-1 ll:gap-x-2 items-center justify-center  rounded-lg  text-fullBlue border border-fullBlue`}
+                    href={`https://t.me/${selectedLocation?.second_assistant_messenger?.slice(
+                      1
+                    )}`}
+                    // target="_blank"
+                  >
+                    <p className="w-7 h-7  bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
+                      <FaTelegramPlane size={16} />
+                    </p>{" "}
+                    <p className="text-base block">
+                      {selectedLocation?.second_assistant_messenger}
+                    </p>{" "}
+                  </a>
+                </address>
+              ) : null}
+            </article>
+          </article>
+        </div>
       </section>
 
-      {/* 3 This Section For Desctop Version*/}
+      {/* 3 This Section For Desktop Version*/}
       <section className=" w-full hidden md:block md:pb-[35px] pt-[25px] md:border-b border-searchBgColor mb-12 md:mb-0">
         <article className="w-full flex items-center mb-[14px] md:mb-0">
           {selectedSize ? (
@@ -1635,6 +1705,7 @@ const ProductDetails = ({ data }) => {
             </button>
           </article>
         </article>
+
         {/* Social btns 2 */}
         <article className="w-full flex items-center justify-between gap-x-3 md:gap-x-0 md:mt-6">
           <article className="w-full flex items-center">
@@ -1671,13 +1742,19 @@ const ProductDetails = ({ data }) => {
       </section>
 
       {/* 4  Buttons */}
-      <article className="w-full h-11 flex justify-between items-center rounded-lg bg-[#fafafa] border border-solid mt-6 md:mt-[15px] md:h-12 md:w-full">
+      <article
+        className=" w-full h-11 flex justify-between items-center rounded-lg bg-[#fafafa] border border-solid mt-6 md:mt-[15px] md:h-12 md:w-full"
+      >
         <button
           onClick={(e) => {
             e.preventDefault();
             setOpenTab(1);
           }}
-          className={`w-[28%] md:w-full md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
+          className={` ${
+            !data?.product?.composition_ru  && !data?.product?.description_ru
+              ? "w-full"
+              : "w-[28%]"
+          } md:w-full md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
             openTab === 1
               ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
               : ""

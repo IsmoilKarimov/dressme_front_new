@@ -10,18 +10,12 @@ import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { SliderPhotosColorContext } from "../../../../../../ContextHook/SliderPhotosColor";
 
 const ProductCarousel = ({ show, data }) => {
-  const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
+  const [colorId] = useContext(SliderPhotosColorContext);
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [dressInfo] = useContext(dressMainData);
-  const [nav1, setNav1] = useState();
-  const [nav2, setNav2] = useState();
+  const [nav2] = useState();
 
   const slider1 = useRef(null);
-  const slider2 = useRef(null);
-
-  // let countOfSelectedColors = data?.product?.photos?.filter(
-  //   (item) => item?.product_color_id === colorId
-  // );
 
   const [sliderState, setSliderState] = useState(0);
 
@@ -97,44 +91,6 @@ const ProductCarousel = ({ show, data }) => {
     };
   }, [screenSize]);
 
-  const [imgGroup] = useState([
-    {
-      id: 1,
-      action: true,
-      img: "",
-    },
-    {
-      id: 2,
-      action: true,
-      img: "",
-    },
-    {
-      id: 3,
-      action: true,
-      img: "",
-    },
-    {
-      id: 4,
-      action: true,
-      img: "",
-    },
-    {
-      id: 5,
-      action: true,
-      img: "",
-    },
-    {
-      id: 6,
-      action: true,
-      img: "",
-    },
-    {
-      id: 7,
-      action: true,
-      img: "",
-    },
-  ]);
-
   const [SizeBtnList] = useState([
     { id: 1, size_in_letters: "XXS", size_in_numbers: "11-23" },
     { id: 2, size_in_letters: "XS", size_in_numbers: "11-23" },
@@ -183,46 +139,7 @@ const ProductCarousel = ({ show, data }) => {
     dots: false,
     speed: 500,
   };
-  let settings1 = {
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 560,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-        },
-      },
 
-      {
-        breakpoint: 390,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
   let settings2 = {
     dots: false,
     infinite: true,
@@ -236,12 +153,7 @@ const ProductCarousel = ({ show, data }) => {
     (item) => item?.product_color_id === colorId
   );
 
-  // current Slide ----
-
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  console.log(data?.product, "data?.product");
-  console.log(filteredForModal, "filteredForModal");
+  console.log(data, "data");
 
   return (
     <main className="w-full md:w-fit h-full ">
@@ -278,8 +190,8 @@ const ProductCarousel = ({ show, data }) => {
                             <img src={data?.url_photo} alt="" />
                             <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                               <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
-                                <p>{data.id}</p>
-                                <p>{data?.product?.photos?.length}</p>
+                                {/* <p>{data.id}</p>
+                                <p>{data?.product?.photos?.length}</p> */}
                               </span>
                             </figcaption>
                           </figure>
@@ -294,8 +206,8 @@ const ProductCarousel = ({ show, data }) => {
                           <img src={data?.url_photo} alt="" />
                           <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                             <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
-                              <p>{data.id}</p>
-                              <p>{data?.product?.photos?.length}</p>
+                              {/* <p>{data.id}</p>
+                              <p>{data?.product?.photos?.length}</p> */}
                             </span>
                           </figcaption>
                         </figure>
@@ -477,11 +389,11 @@ const ProductCarousel = ({ show, data }) => {
           </article>
         </section>
       ) : (
-        <section className="w-full h-fit flex flex-col">
+        <section className="w-full h-ffull flex flex-col">
           {/* 1 */}
           <article className="w-full h-full widthInherit mx-auto">
             <Slider
-              className="w-full h-full rounded-lg"
+              className="w-full h-[482px] rounded-lg"
               ref={slider1}
               {...settings}
             >
@@ -495,9 +407,9 @@ const ProductCarousel = ({ show, data }) => {
                             handleClickCarosuel(i);
                           }}
                         >
-                          <figure className="relative w-full h-fit overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
+                          <figure className="relative w-full h-[482px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
                             <img
-                              className="w-full h-fit"
+                              className="w-full h-full object-cover"
                               src={data?.url_photo}
                               alt=""
                             />
@@ -529,9 +441,9 @@ const ProductCarousel = ({ show, data }) => {
                           handleClickCarosuel(i);
                         }}
                       >
-                        <figure className="relative w-full h-fit overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
+                        <figure className="relative w-full h-[482px] object-cover overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
                           <img
-                            className="w-full h-fit"
+                            className="w-full h-full object-cover"
                             src={data?.url_photo}
                             alt=""
                           />
@@ -563,19 +475,39 @@ const ProductCarousel = ({ show, data }) => {
               <span className="text-base font-AeonikProMedium mr-[5px]">
                 от
               </span>
-              <p className="block font-AeonikProMedium text-[24px] text-black mr-[5px]">
-                452 000
+              <p className="flex font-AeonikProMedium text-[24px] text-black mx-[5px]">
+                {data?.product?.cost?.discount_price
+                  ? parseInt(data?.product?.cost?.discount_price)
+                      ?.toLocaleString()
+                      ?.split(",")
+                      .join(" ")
+                  : parseInt(data?.product?.cost?.price)
+                      ?.toLocaleString()
+                      ?.split(",")
+                      .join(" ")}{" "}
+                <span
+                  className={`${
+                    data?.product?.cost?.discount_price ? "hidden" : "flex ml-2"
+                  }`}
+                >
+                  сум
+                </span>
               </p>
-              <p className="font-AeonikProRegular line-through text-[16px] text-setTexOpacity">
-                652 000
-              </p>
+              {data?.product?.cost?.discount_price ? (
+                <p className="font-AeonikProRegular line-through text-[16px] text-setTexOpacity">
+                  {parseInt(data?.product?.cost?.price)
+                    ?.toLocaleString()
+                    ?.split(",")
+                    .join(" ")}{" "}
+                </p>
+              ) : null}
             </section>
             <section
               className={`w-fit ${dressInfo?.TextColorSeason} items-center text-sm flex ml-8`}
             >
               <p className="font-AeonikProRegular text-right">В наличии:</p>
               <p className="ml-2 font-AeonikProMedium text-base text-right">
-                28
+                {data?.product?.sizes_sum_amount}
               </p>
             </section>
           </article>
@@ -585,63 +517,15 @@ const ProductCarousel = ({ show, data }) => {
             <div className="w-full flex items-center mb-4 text-base">
               <BrushColorIcons colors={"#000"} />
               <p className="font-AeonikProRegular mr-2 ml-[6px]">Цвет:</p>
-              <span className="font-AeonikProMedium">Синий</span>
+              <span className="font-AeonikProMedium">
+                {data?.product?.colors[0]?.name_ru}
+              </span>
             </div>
-            {/* <Slider
-              // asNavFor={nav1}
-              // focusOnSelect={true}
-              ref={slider2}
-              swipeToSlide={true}
-              vertical={false}
-              {...settings1}
-              className="flex flex-row flex-wrap pt-0 rounded-lg"
-            > */}
-              {/* {imgGroup?.map((data) => {
-                return (
-                  <figure
-                    key={data?.id}
-                    className="!w-[72px] cursor-pointer !h-[96px] border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center"
-                  >
-                    <img
-                      className="w-full h-full rounded-lg"
-                      src={data?.img}
-                      alt=""
-                    />
-                  </figure>
-                );
-              })} */}
-              <article className="flex w-[93px] flex-row gap-x-2">
-                {colorId
-                  ? filteredForModal?.map((data, i) => {
-                      if (data?.product_color_id === colorId) {
-                        return (
-                          <div
-                            key={i}
-                            onClick={() => {
-                              setSliderState(i);
-                            }}
-                            className="mb-2"
-                          >
-                            <figure
-                              key={data?.id}
-                              style={{
-                                backgroundImage: `url("${data?.url_photo}")`,
-                                backgroundColor: "rgba(0,0,0,0.6)",
-                                backgroundPosition: "center center",
-                                backgroundSize: "cover",
-                                backgroundRepeat: "no-repeat",
-                              }}
-                              className={`${
-                                sliderState === i
-                                  ? "border-2 border-[#007DCA]"
-                                  : "border border-searchBgColor"
-                              } !w-[72px] cursor-pointer !h-[96px] bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center`}
-                            ></figure>
-                          </div>
-                        );
-                      }
-                    })
-                  : data?.product?.photos?.map((data, i) => {
+
+            <article className="flex w-[93px] flex-row gap-x-2">
+              {colorId
+                ? filteredForModal?.map((data, i) => {
+                    if (data?.product_color_id === colorId) {
                       return (
                         <div
                           key={i}
@@ -663,19 +547,44 @@ const ProductCarousel = ({ show, data }) => {
                               sliderState === i
                                 ? "border-2 border-[#007DCA]"
                                 : "border border-searchBgColor"
-                            }  !w-[72px] cursor-pointer !h-[96px] bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center`}
+                            } !w-[72px] cursor-pointer !h-[96px] bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center`}
                           ></figure>
                         </div>
                       );
-                    })}
-
-              </article>
-
-            {/* </Slider> */}
+                    }
+                  })
+                : data?.product?.photos?.map((data, i) => {
+                    return (
+                      <div
+                        key={i}
+                        onClick={() => {
+                          setSliderState(i);
+                        }}
+                        className="mb-2"
+                      >
+                        <figure
+                          key={data?.id}
+                          style={{
+                            backgroundImage: `url("${data?.url_photo}")`,
+                            backgroundColor: "rgba(0,0,0,0.6)",
+                            backgroundPosition: "center center",
+                            backgroundSize: "cover",
+                            backgroundRepeat: "no-repeat",
+                          }}
+                          className={`${
+                            sliderState === i
+                              ? "border-2 border-[#007DCA]"
+                              : "border border-searchBgColor"
+                          }  !w-[72px] cursor-pointer !h-[96px] bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center`}
+                        ></figure>
+                      </div>
+                    );
+                  })}
+            </article>
           </article>
 
           {/* 4 */}
-          <article className="w-full flex flex-col mt-4">
+          {/* <article className="w-full flex flex-col mt-4">
             <Slider
               // asNavFor={nav1}
               {...settings2}
@@ -699,7 +608,7 @@ const ProductCarousel = ({ show, data }) => {
                 );
               })}
             </Slider>
-          </article>
+          </article> */}
         </section>
       )}
     </main>
