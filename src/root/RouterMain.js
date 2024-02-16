@@ -300,7 +300,7 @@ const RouterMain = () => {
         />
 
         <Route
-          path="/allcomments"
+          path="/product/:id/allcomments"
           element={
             <Suspense
               fallback={
