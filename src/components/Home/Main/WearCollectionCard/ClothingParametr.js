@@ -11,6 +11,7 @@ import {
   TopBrandsIcon,
   WinterBoyIcons,
   WomanGenIcons,
+  XbtnForMobile,
 } from "../../../../assets/icons";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { GrClose } from "react-icons/gr";
@@ -47,6 +48,14 @@ const ClothingParametr = () => {
     state?.selectColorToggleMobile,
   ]);
 
+  const [selectedFilters, setSelectedFilters] = useState({
+    category: null,
+    price: null,
+    gender: null,
+    color: null,
+    gender: null,
+  });
+
   const [iconsColor] = useState("black");
 
   const [personItems, setPersonItems] = useState([
@@ -54,55 +63,57 @@ const ClothingParametr = () => {
       id: 1111,
       childText: [
         { id: 0, anyIcons: <CotegoryMenuIcons />, name: "Все", action: false },
-        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
-        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
-        { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "Женщинам", action: false },
+        { id: 3, anyIcons: <WinterBoyIcons />, name: "Детям", action: false },
       ],
     },
     {
       id: 2222,
       childText: [
         { id: 0, anyIcons: <CotegoryMenuIcons />, name: "Все", action: false },
-        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
-        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
-        { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "Женщинам", action: false },
+        { id: 3, anyIcons: <WinterBoyIcons />, name: "Детям", action: false },
       ],
     },
     {
       id: 3333,
       childText: [
         { id: 0, anyIcons: <CotegoryMenuIcons />, name: "Все", action: false },
-        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
-        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
-        { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "Женщинам", action: false },
+        { id: 3, anyIcons: <WinterBoyIcons />, name: "Детям", action: false },
       ],
     },
     {
       id: 4444,
       childText: [
         { id: 0, anyIcons: <CotegoryMenuIcons />, name: "Все", action: false },
-        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
-        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
-        { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "Женщинам", action: false },
+        { id: 3, anyIcons: <WinterBoyIcons />, name: "Детям", action: false },
       ],
     },
     {
-      id:5555,
+      id: 5555,
       childText: [
         { id: 0, anyIcons: <CotegoryMenuIcons />, name: "Все", action: true },
-        { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
-        { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
-        { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
+        { id: 1, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
+        { id: 2, anyIcons: <WomanGenIcons />, name: "Женщинам", action: false },
+        { id: 3, anyIcons: <WinterBoyIcons />, name: "Детям", action: false },
       ],
     },
   ]);
 
-  const onFilterCategory = (value) => {
+  const onFilterCategory = (value, name) => {
     setDressInfo({ ...dressInfo, mainCategoryId: value });
+    setSelectedFilters({ ...selectedFilters, category: name });
   };
 
   const onClearFilterCategoryId = () => {
     setDressInfo({ ...dressInfo, mainCategoryId: null });
+    setSelectedFilters({ ...selectedFilters, category: null });
     // setState({ ...state, clothesTypeMobile: false });
   };
 
@@ -147,6 +158,15 @@ const ClothingParametr = () => {
 
   const sendPriceList = () => {
     setDressInfo({ ...dressInfo, mainRangePrice: values });
+    setSelectedFilters({
+      ...selectedFilters,
+      price:
+        values[0]?.toLocaleString()?.split(",").join(" ") +
+        " сум" +
+        " - " +
+        values[1]?.toLocaleString()?.split(",").join(" ") +
+        " сум",
+    });
   };
 
   const clearPriceValue = () => {
@@ -156,6 +176,7 @@ const ClothingParametr = () => {
       Number(data?.getMainProductCard?.budget?.max_price),
     ]);
     setDressInfo({ ...dressInfo, mainRangePrice: [] });
+    setSelectedFilters({ ...selectedFilters, price: null });
   };
 
   const newColorArrayId = (hex, id) => {
@@ -172,14 +193,19 @@ const ClothingParametr = () => {
   };
   const ClearColorId = () => {
     setDressInfo({ ...dressInfo, mainColorId: null, mainColorHex: null });
+    setSelectedFilters({
+      ...selectedFilters,
+      color: null,
+    });
   };
 
-  const handleFilterByUser = (fathId, childId) => {
+  const handleFilterByUser = (fathId, childId, name) => {
     if (childId === 0) {
       setDressInfo({ ...dressInfo, mainGenderId: 0 });
     } else if (childId > 0) {
       setDressInfo({ ...dressInfo, mainGenderId: childId });
     }
+    setSelectedFilters({ ...selectedFilters, gender: name });
   };
 
   return (
@@ -278,7 +304,7 @@ const ClothingParametr = () => {
                           <div
                             key={data?.id}
                             onClick={() => {
-                              onFilterCategory(data?.id);
+                              onFilterCategory(data?.id, data?.name_ru);
                             }}
                             className={`${
                               data?.id === dressInfo?.mainCategoryId
@@ -473,6 +499,10 @@ const ClothingParametr = () => {
                           <div
                             onClick={() => {
                               newColorArrayId(data?.hex, data?.id);
+                              setSelectedFilters({
+                                ...selectedFilters,
+                                color: data?.name_ru,
+                              });
                             }}
                             style={{ backgroundColor: data?.hex }}
                             className={`rounded-full flex items-center justify-center w-[35px] h-[35px] ${
@@ -553,8 +583,9 @@ const ClothingParametr = () => {
                   {/* Gender selection for Mobile */}
                   <div className="w-fit mx-auto box-border flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-xl bg-btnBgColor mt-5 mb-2">
                     {personItems
-                      ?.filter((value) => value?.id === dressInfo?.type)?.map((data) => {
-                        console.log(data,'data');
+                      ?.filter((value) => value?.id === dressInfo?.type)
+                      ?.map((data) => {
+                        console.log(data, "data");
                         console.log(dressInfo?.type, "dressInfo?.type");
                         console.log(
                           dressInfo?.mainGenderId,
@@ -574,7 +605,11 @@ const ClothingParametr = () => {
                                 >
                                   <button
                                     onClick={() =>
-                                      handleFilterByUser(data?.id, item?.id)
+                                      handleFilterByUser(
+                                        data?.id,
+                                        item?.id,
+                                        item.name
+                                      )
                                     }
                                     className={`${
                                       item?.id == dressInfo?.mainGenderId
@@ -583,11 +618,11 @@ const ClothingParametr = () => {
                                     } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
                                   >
                                     <span>{item?.anyIcons}</span>
-                                    {item?.name && (
+                                    {/* {item?.name && (
                                       <span className="ml-2 not-italic whitespace-nowrap text-sm font-AeonikProMedium tracking-wide	leading-5">
                                         {item?.name}
                                       </span>
-                                    )}
+                                    )} */}
                                   </button>
                                   {item?.id !== 3 && (
                                     <span className="w-[2px] h-[30px] mx-[1px] border-r border-searchBgColor"></span>
@@ -605,6 +640,58 @@ const ClothingParametr = () => {
           )}
         </section>
       </section>
+      <div className="flex w-full items-center gap-3 flex-wrap md:hidden">
+        {/* category */}
+        {selectedFilters.category ? (
+          <div className="text-[#007DCA] text-[13px] leading-none font-medium rounded-[20px] px-[9px] py-[9px] bg-[#007DCA1A] flex items-center">
+            {selectedFilters.category}
+            <div
+              onClick={() => onClearFilterCategoryId()}
+              className="ml-[6px] cursor-pointer active:translate-y-[2px] w-[16px] h-[16px] bg-white rounded-full flex items-center justify-center"
+            >
+              <XbtnForMobile />
+            </div>
+          </div>
+        ) : null}
+        {/* price */}
+        {selectedFilters.price ? (
+          <div className="text-[#007DCA] text-[13px] font-medium rounded-[20px] px-[9px] py-[9px] bg-[#007DCA1A] flex items-center">
+            {selectedFilters.price}
+            <div
+              onClick={() => {
+                clearPriceValue();
+              }}
+              className="ml-[6px] cursor-pointer active:translate-y-[2px] w-[16px] h-[16px] bg-white rounded-full flex items-center justify-center"
+            >
+              <XbtnForMobile />
+            </div>
+          </div>
+        ) : null}
+        {/* color */}
+        {selectedFilters.color ? (
+          <div className="text-[#007DCA] text-[13px] font-medium rounded-[20px] px-[9px] py-[9px] bg-[#007DCA1A] flex items-center">
+            {selectedFilters.color}
+            <div
+              onClick={() => ClearColorId()}
+              className="ml-[6px] cursor-pointer active:translate-y-[2px] w-[16px] h-[16px] bg-white rounded-full flex items-center justify-center"
+            >
+              <XbtnForMobile />
+            </div>
+          </div>
+        ) : null}
+        {/* gender */}
+        {selectedFilters.gender && selectedFilters.gender !== "Все" ? (
+          <div className="text-[#007DCA] text-[13px] font-medium rounded-[20px] px-[9px] py-[9px] bg-[#007DCA1A] flex items-center">
+            {selectedFilters.gender}
+            <div
+              onClick={() => handleFilterByUser(0, 0)}
+              className="ml-[6px] cursor-pointer active:translate-y-[2px] w-[16px] h-[16px] bg-white rounded-full flex items-center justify-center"
+            >
+              <XbtnForMobile />
+            </div>
+          </div>
+        ) : null}
+      </div>
     </main>
   );
 };
