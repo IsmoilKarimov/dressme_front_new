@@ -47,8 +47,8 @@ function LocationDropUp({
                     <div className="w-full">
                       {data?.product?.locations.map((data, i) => {
                         if (data?.sub_region?.region_id === item) {
-                          console.log(selectedLocation?.id,'selectedLocation?.id');
-                          console.log(item?.id, "item?.id");
+                          // console.log(selectedLocation?.id,'selectedLocation?.id');
+                          // console.log(item?.id, "item?.id");
                           return (
                             <div
                               onClick={() => {
