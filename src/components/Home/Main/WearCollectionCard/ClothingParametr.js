@@ -54,6 +54,12 @@ const ClothingParametr = () => {
     gender: null,
     color: null,
     gender: null,
+    categoryOrder: 0,
+    priceOrder: 0,
+    genderOrder: 0,
+    colorOrder: 0,
+    genderOrder: 0,
+    index: 0,
   });
 
   const [iconsColor] = useState("black");
@@ -106,9 +112,8 @@ const ClothingParametr = () => {
     },
   ]);
 
-  const onFilterCategory = (value, name) => {
+  const onFilterCategory = (value) => {
     setDressInfo({ ...dressInfo, mainCategoryId: value });
-    setSelectedFilters({ ...selectedFilters, category: name });
   };
 
   const onClearFilterCategoryId = () => {
@@ -158,15 +163,6 @@ const ClothingParametr = () => {
 
   const sendPriceList = () => {
     setDressInfo({ ...dressInfo, mainRangePrice: values });
-    setSelectedFilters({
-      ...selectedFilters,
-      price:
-        values[0]?.toLocaleString()?.split(",").join(" ") +
-        " сум" +
-        " - " +
-        values[1]?.toLocaleString()?.split(",").join(" ") +
-        " сум",
-    });
   };
 
   const clearPriceValue = () => {
@@ -199,13 +195,12 @@ const ClothingParametr = () => {
     });
   };
 
-  const handleFilterByUser = (fathId, childId, name) => {
+  const handleFilterByUser = (fathId, childId) => {
     if (childId === 0) {
       setDressInfo({ ...dressInfo, mainGenderId: 0 });
     } else if (childId > 0) {
       setDressInfo({ ...dressInfo, mainGenderId: childId });
     }
-    setSelectedFilters({ ...selectedFilters, gender: name });
   };
 
   return (
@@ -304,7 +299,15 @@ const ClothingParametr = () => {
                           <div
                             key={data?.id}
                             onClick={() => {
-                              onFilterCategory(data?.id, data?.name_ru);
+                              onFilterCategory(data?.id);
+                              setSelectedFilters((prev) => {
+                                return {
+                                  ...prev,
+                                  category: data?.name_ru,
+                                  categoryOrder: prev.index + 5,
+                                  index: prev.index + 5,
+                                };
+                              });
                             }}
                             className={`${
                               data?.id === dressInfo?.mainCategoryId
@@ -442,6 +445,25 @@ const ClothingParametr = () => {
                           onClick={() => {
                             sendPriceList();
                             setState({ ...state, priceToggleMobile: false });
+                            setSelectedFilters((prev) => {
+                              return {
+                                ...prev,
+                                price:
+                                  values[0]
+                                    ?.toLocaleString()
+                                    ?.split(",")
+                                    .join(" ") +
+                                  " сум" +
+                                  " - " +
+                                  values[1]
+                                    ?.toLocaleString()
+                                    ?.split(",")
+                                    .join(" ") +
+                                  " сум",
+                                priceOrder: prev.index + 5,
+                                index: prev.index + 5,
+                              };
+                            });
                           }}
                           className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
                         >
@@ -499,9 +521,13 @@ const ClothingParametr = () => {
                           <div
                             onClick={() => {
                               newColorArrayId(data?.hex, data?.id);
-                              setSelectedFilters({
-                                ...selectedFilters,
-                                color: data?.name_ru,
+                              setSelectedFilters((prev) => {
+                                return {
+                                  ...prev,
+                                  color: data?.name_ru,
+                                  colorOrder: prev.index + 5,
+                                  index: prev.index + 5,
+                                };
                               });
                             }}
                             style={{ backgroundColor: data?.hex }}
@@ -604,13 +630,17 @@ const ClothingParametr = () => {
                                   className="flex items-center h-full box-border"
                                 >
                                   <button
-                                    onClick={() =>
-                                      handleFilterByUser(
-                                        data?.id,
-                                        item?.id,
-                                        item.name
-                                      )
-                                    }
+                                    onClick={() => {
+                                      handleFilterByUser(data?.id, item?.id);
+                                      setSelectedFilters((prev) => {
+                                        return {
+                                          ...prev,
+                                          gender: item.name,
+                                          genderOrder: prev.index + 5,
+                                          index: prev.index + 5,
+                                        };
+                                      });
+                                    }}
                                     className={`${
                                       item?.id == dressInfo?.mainGenderId
                                         ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
@@ -643,7 +673,10 @@ const ClothingParametr = () => {
       <div className="flex w-full items-center gap-3 flex-wrap md:hidden">
         {/* category */}
         {selectedFilters.category ? (
-          <div className="text-[#007DCA] text-[13px] leading-none font-medium rounded-[20px] px-[9px] py-[9px] bg-[#007DCA1A] flex items-center">
+          <div
+            style={{ order: selectedFilters.categoryOrder }}
+            className={`text-[#007DCA] text-[13px] font-medium rounded-[20px] px-[9px] py-[9px] bg-[#007DCA1A] flex items-center`}
+          >
             {selectedFilters.category}
             <div
               onClick={() => onClearFilterCategoryId()}
@@ -655,7 +688,10 @@ const ClothingParametr = () => {
         ) : null}
         {/* price */}
         {selectedFilters.price ? (
-          <div className="text-[#007DCA] text-[13px] font-medium rounded-[20px] px-[9px] py-[9px] bg-[#007DCA1A] flex items-center">
+          <div
+            style={{ order: selectedFilters.priceOrder }}
+            className={`text-[#007DCA] text-[13px] font-medium rounded-[20px] px-[9px] py-[9px] bg-[#007DCA1A] flex items-center`}
+          >
             {selectedFilters.price}
             <div
               onClick={() => {
@@ -669,7 +705,10 @@ const ClothingParametr = () => {
         ) : null}
         {/* color */}
         {selectedFilters.color ? (
-          <div className="text-[#007DCA] text-[13px] font-medium rounded-[20px] px-[9px] py-[9px] bg-[#007DCA1A] flex items-center">
+          <div
+            style={{ order: selectedFilters.colorOrder }}
+            className={`text-[#007DCA] text-[13px] font-medium rounded-[20px] px-[9px] py-[9px] bg-[#007DCA1A] flex items-center`}
+          >
             {selectedFilters.color}
             <div
               onClick={() => ClearColorId()}
@@ -681,7 +720,10 @@ const ClothingParametr = () => {
         ) : null}
         {/* gender */}
         {selectedFilters.gender && selectedFilters.gender !== "Все" ? (
-          <div className="text-[#007DCA] text-[13px] font-medium rounded-[20px] px-[9px] py-[9px] bg-[#007DCA1A] flex items-center">
+          <div
+            style={{ order: selectedFilters.genderOrder }}
+            className={`text-[#007DCA] text-[13px] font-medium rounded-[20px] px-[9px] py-[9px] bg-[#007DCA1A] flex items-center`}
+          >
             {selectedFilters.gender}
             <div
               onClick={() => handleFilterByUser(0, 0)}
