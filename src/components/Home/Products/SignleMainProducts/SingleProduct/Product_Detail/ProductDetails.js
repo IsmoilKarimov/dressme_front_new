@@ -246,9 +246,6 @@ const ProductDetails = ({ data }) => {
 
   existRegions = [...uniqueRegions];
 
-  // console.log(existRegions, "ggggggg");
-  // Location state
-
   let checkedData = {};
 
   const [selectedLocation, setSelectedLocation] = useState();
@@ -264,17 +261,11 @@ const ProductDetails = ({ data }) => {
     }
   }, [data]);
 
-  // console.log(selectedLocation, "selectedLocation");
-  // console.log(data?.product?.locations, "locs");
-  // console.log(dressInfo?.mainSubRegionId, "wwwwww");
-
   let checkTableShow = data?.product?.sizes?.find(
     (item) => item?.shop_location_id == selectedLocation?.id
   );
 
   checkedData = selectedLocation;
-
-  // console.log(checkedData, "sllllllrrrr");
 
   // Selected color ------------------
 
@@ -333,6 +324,8 @@ const ProductDetails = ({ data }) => {
 
   const [selectedSize, setSelectedSize] = useState(null);
 
+  console.log(data?.product?.sizes, "data?.product?.sizes");
+
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
       <div className="tableSizes">
@@ -347,7 +340,11 @@ const ProductDetails = ({ data }) => {
             tableSizes ? "bottom-0" : "bottom-[-800px] z-0"
           }`}
         >
-          <TableSizesDropUp data={data} onClick={toggleTableSizes} />
+          <TableSizesDropUp
+            data={data}
+            onClick={toggleTableSizes}
+            selectedLocation={selectedLocation}
+          />
         </section>
       </div>
       <div className="locations">
@@ -717,11 +714,6 @@ const ProductDetails = ({ data }) => {
                         <div className="w-full">
                           {data?.product?.locations.map((data, i) => {
                             if (data?.sub_region?.region_id === item) {
-                              console.log(item?.id, "item?.id");
-                              console.log(
-                                selectedLocation?.id,
-                                "selectedLocation?.id"
-                              );
                               return (
                                 <div
                                   onClick={() => {
@@ -953,6 +945,7 @@ const ProductDetails = ({ data }) => {
                 </div>
               </ul>
             ) : null}
+
             {data?.product?.category_id === "3" ? (
               <ul className="w-full px-[25px] pb-[30px] pt-[60px]">
                 <div className="flex items-center justify-between bg-[#F4F6FB] px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">

@@ -17,8 +17,8 @@ function LocationDropUp({
   existRegionsObj
 }) {
 
-  console.log(data, "data");
-  console.log(existRegions, "existRegions");
+  // console.log(data, "data");
+  // console.log(existRegions, "existRegions");
 
   return (
     <main>

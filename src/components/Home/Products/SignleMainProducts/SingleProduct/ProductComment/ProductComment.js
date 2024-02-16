@@ -138,7 +138,7 @@ export default function ProductComment({ data, refetch }) {
 
   const navigate = useNavigate();
   const goDetail = () => {
-    navigate(`/allcomments`);
+    navigate(`/product/${data?.product?.shop_id}/allcomments`);
   };
 
   // useEffect(() => {
@@ -181,18 +181,6 @@ export default function ProductComment({ data, refetch }) {
           if (!res?.errors) {
             toast.success(res?.message);
           }
-          // if (!res?.errors) {
-          //   toast.success(res?.message, {
-          //     position: "top-right",
-          //     autoClose: 5000,
-          //     hideProgressBar: false,
-          //     closeOnClick: true,
-          //     pauseOnHover: true,
-          //     draggable: true,
-          //     progress: undefined,
-          //     theme: "colored",
-          //   });
-          // }
           if (res.errors) {
             console.log(res?.message);
             toast.error(res?.message);
@@ -395,7 +383,9 @@ export default function ProductComment({ data, refetch }) {
               </div>
             </div>
             <button
-              onClick={() => goDetail("/allcomments")}
+              onClick={() =>
+                goDetail(`/product/${data?.product?.shop_id}/allcomments`)
+              }
               className="w-full py-4 px-4 flex items-center justify-center border-t border-searchBgColor"
             >
               <span className="ml-8">

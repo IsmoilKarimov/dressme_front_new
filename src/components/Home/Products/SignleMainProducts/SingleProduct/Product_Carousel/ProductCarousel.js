@@ -153,7 +153,7 @@ const ProductCarousel = ({ show, data }) => {
     (item) => item?.product_color_id === colorId
   );
 
-  console.log(data, "data");
+  // console.log(data, "data");
 
   return (
     <main className="w-full md:w-fit h-full ">
