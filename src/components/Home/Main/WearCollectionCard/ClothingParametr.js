@@ -726,7 +726,15 @@ const ClothingParametr = () => {
           >
             {selectedFilters.gender}
             <div
-              onClick={() => handleFilterByUser(0, 0)}
+              onClick={() => {
+                handleFilterByUser(0, 0);
+                setSelectedFilters((prev) => {
+                  return {
+                    ...prev,
+                    gender: "Все",
+                  };
+                });
+              }}
               className="ml-[6px] cursor-pointer active:translate-y-[2px] w-[16px] h-[16px] bg-white rounded-full flex items-center justify-center"
             >
               <XbtnForMobile />
