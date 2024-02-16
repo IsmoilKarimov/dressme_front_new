@@ -324,8 +324,6 @@ const ProductDetails = ({ data }) => {
 
   const [selectedSize, setSelectedSize] = useState(null);
 
-  console.log(data?.product?.sizes, "data?.product?.sizes");
-
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
       <div className="tableSizes">
@@ -1316,7 +1314,11 @@ const ProductDetails = ({ data }) => {
                 })
               : null}
 
-            <p className="w-[80px] h-11 flex md:hidden items-center justify-center rounded-lg border border-searchBgColor">
+            <p className="w-[80px] h-11 flex md:hidden items-center justify-center rounded-lg border bo
+            
+            
+            
+            rder-searchBgColor">
               <CircleWarningIcons colors={"#000"} />
             </p>
           </section>

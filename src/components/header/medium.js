@@ -653,7 +653,10 @@ const MediumHeader = ({ stateData, setStateData }) => {
                         (data) => data.id === selectLang
                       ).map((data) => {
                         return (
-                          <div className="w-full flex items-center justify-between">
+                          <div
+                            key={data?.id}
+                            className="w-full flex items-center justify-between"
+                          >
                             <Popover
                               key={data?.id}
                               open={openLang}

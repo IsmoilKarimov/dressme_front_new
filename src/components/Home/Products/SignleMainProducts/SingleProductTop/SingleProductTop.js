@@ -4,7 +4,7 @@ import { ItailIcons } from "../../../../../assets/icons";
 
 const SingleProductTop = ({data}) => {
   return (
-    <main className="flex flex-col md:min-h-[44px] justify-center items-center m-0 py-3 box-border border-b border-searchBgColor">
+    <main className="flex flex-col md:min-h-[44px] justify-center items-center m-0 md:py-3 box-border border-b border-searchBgColor">
       <section className="max-w-[1280px] h-full w-[100%] flex items-center justify-between m-auto">
         <nav className="w-[100%] md:w-fit flex items-center p-1">
           <ul className="h-10 w-[100%] md:w-fit flex items-center overflow-auto HorizantalScroll">
