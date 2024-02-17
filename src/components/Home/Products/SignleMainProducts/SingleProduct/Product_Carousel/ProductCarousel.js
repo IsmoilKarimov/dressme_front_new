@@ -8,6 +8,7 @@ import {
 } from "../../../../../../assets/icons";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { SliderPhotosColorContext } from "../../../../../../ContextHook/SliderPhotosColor";
+import { Popover } from "antd";
 
 const ProductCarousel = ({ show, data }) => {
   const [colorId] = useContext(SliderPhotosColorContext);
@@ -154,6 +155,135 @@ const ProductCarousel = ({ show, data }) => {
   );
 
   // console.log(data, "data");
+
+  const [selectedLocation, setSelectedLocation] = useState();
+  const [selectedSize, setSelectedSize] = useState(null);
+
+  const contentSize = (data) => {
+    if (data?.category_id === "1") {
+      return (
+        <section className="w-[220px] h-fit p-[5px] ">
+          <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              Размер в числах:
+              <span className="ml-auto">
+                {data?.min_head_girth}{" "}
+                {data?.max_head_girth ? "- " + data?.max_head_girth : null}
+              </span>
+            </div>
+          </article>
+        </section>
+      );
+    } else if (data?.category_id === "2") {
+      return (
+        <section className="w-[220px] h-[135px] p-[5px] ">
+          <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              Размер в числах:
+              <span className="ml-auto">
+                {data?.min_wear_size}{" "}
+                {data?.max_wear_size ? "- " + data?.max_wear_size : null}
+              </span>
+            </div>
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              Обхват груди, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">
+                {data?.min_chest_girth}{" "}
+                {data?.max_chest_girth ? "- " + data?.max_chest_girth : null}
+              </span>
+            </div>
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
+              Обхват талии, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">
+                {data?.min_waist_girth}{" "}
+                {data?.max_waist_girth ? "- " + data?.max_waist_girth : null}
+              </span>
+            </div>
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular">
+              Обхват бедер, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">
+                {data?.min_hip_girth}{" "}
+                {data?.max_hip_girth ? "- " + data?.max_hip_girth : null}
+              </span>
+            </div>
+          </article>
+        </section>
+      );
+    } else if (data?.category_id === "3") {
+      return (
+        <section className="w-[220px] h-fit p-[5px] ">
+          <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              Размер в числах:
+              <span className="ml-auto">
+                {data?.min_wear_size}{" "}
+                {data?.max_wear_size ? "- " + data?.max_wear_size : null}
+              </span>
+            </div>
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
+              Обхват талии, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">
+                {data?.min_waist_girth}{" "}
+                {data?.max_waist_girth ? "- " + data?.max_waist_girth : null}
+              </span>
+            </div>
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
+              Обхват бедер, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">
+                {data?.min_hip_girth}{" "}
+                {data?.max_hip_girth ? "- " + data?.max_hip_girth : null}
+              </span>
+            </div>
+
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              Рост, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">
+                {data?.min_height}{" "}
+                {data?.max_height ? "- " + data?.max_height : null}
+              </span>
+            </div>
+          </article>
+        </section>
+      );
+    } else if (data?.category_id === "4") {
+      return (
+        <section className="w-[220px] h-fit p-[5px] ">
+          <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
+              Размер в числах, <span className="text-[#a5a5a5] ml-1">в см</span>
+              :<span className="ml-auto">{data?.wear_size}</span>
+            </div>
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular">
+              Длина стопы, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">
+                {data?.min_foot_length}{" "}
+                {data?.max_foot_length ? "- " + data?.max_foot_length : null}
+              </span>
+            </div>
+          </article>
+        </section>
+      );
+    } else if (data?.category_id === "5") {
+      return (
+        <section className="w-[220px] h-fit p-[5px] ">
+          <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
+              Размер в числах, <span className="text-[#a5a5a5] ml-1">в см</span>
+              :<span className="ml-auto">{data?.wear_size}</span>
+            </div>
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
+              Длина, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">{data?.length}</span>
+            </div>
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              Ширина, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              <span className="ml-auto">{data?.width}</span>
+            </div>
+          </article>
+        </section>
+      );
+    }
+  };
 
   return (
     <main className="w-full md:w-fit h-full ">
@@ -584,7 +714,7 @@ const ProductCarousel = ({ show, data }) => {
 
           {/* 4 */}
           <article className="w-full flex flex-col mt-4">
-            <Slider
+            {/* <Slider
               // asNavFor={nav1}
               {...settings2}
               className="w-full flex flex-row flex-wrap rounded-lg"
@@ -606,7 +736,74 @@ const ProductCarousel = ({ show, data }) => {
                   </article>
                 );
               })}
-            </Slider>
+            </Slider> */}
+
+            {data?.product?.category_id === "2"
+              ? data?.product?.sizes?.map((data) => {
+                  if (data?.shop_location_id == selectedLocation?.id) {
+                    return (
+                      <div
+                        key={data?.id}
+                        onClick={() => {
+                          setSelectedSize(data);
+                        }}
+                        className={`${
+                          data?.id === selectedSize?.id
+                            ? "border-fullBlue"
+                            : "border-[#dadada]"
+                        }  h-fit w-fit mt-4 rounded-lg border   hover:border-fullBlue`}
+                      >
+                        <Popover
+                          trigger="hover"
+                          content={() => contentSize(data)}
+                          className={`h-11 w-[80px] md:w-auto ${
+                            data?.amount === "0"
+                              ? "bg-[#f6f6f9] text-[#d3d4dd]"
+                              : ""
+                          }  cursor-pointer rounded-lg  px-4 flex flex-col items-center justify-center`}
+                        >
+                          <p
+                            className={`font-AeonikProMedium text-sm uppercase text-center ${
+                              data?.amount === "0"
+                                ? "text-[#d3d4dd]"
+                                : "text-black"
+                            } `}
+                          >
+                            {data?.letter_size}
+                          </p>
+                          {data?.letter_size ? (
+                            <span
+                              className={`text-[10px] font-AeonikProRegular ${
+                                data?.amount === "0"
+                                  ? "text-[#d3d4dd]"
+                                  : "text-[#757575]"
+                              } `}
+                            >
+                              {data?.min_wear_size}{" "}
+                              {data?.max_wear_size
+                                ? "- " + data?.max_wear_size
+                                : null}
+                            </span>
+                          ) : (
+                            <p
+                              className={`font-AeonikProMedium text-sm uppercase text-center ${
+                                data?.amount === "0"
+                                  ? "text-[#d3d4dd]"
+                                  : "text-black"
+                              }`}
+                            >
+                              {data?.min_wear_size}{" "}
+                              {data?.max_wear_size
+                                ? "- " + data?.max_wear_size
+                                : null}
+                            </p>
+                          )}
+                        </Popover>
+                      </div>
+                    );
+                  }
+                })
+              : null}
           </article>
         </section>
       )}
