@@ -97,7 +97,7 @@ export const CollectionCardItem = ({
       ></figure>
       <section className="relative w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[100px] md:h-[136px]">
         {/* 1 */}
-        <div className="w-full group hover:w-full h-[36px] cursor-pointer mb-2 md:mb-0">
+        <div className="group hover:w-full h-[36px] cursor-pointer mb-2 md:mb-0">
           <button className="group-hover:hidden w-12 h-7 border border-searchBgColor rounded-lg hidden md:flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 ">
             <figure className="w-6 h-6 flex items-center justify-center">
               <img src={CalourCard} alt="" className="h-full" />
@@ -176,7 +176,7 @@ export const CollectionCardItem = ({
         {/* 3 */}
         <article
           onMouseEnter={() => handleLeaveMouse(data?.id)}
-          className="w-full h-fit flex items-end justify-between pl-3 pr-[5px]"
+          className="w-full h-fit md:h-[31px] flex items-end justify-between pl-3 pr-[5px]"
         >
           <article className="flex items-center">
             {data?.cost?.discount_price ? (

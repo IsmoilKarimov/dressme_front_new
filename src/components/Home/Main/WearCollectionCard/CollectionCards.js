@@ -44,9 +44,9 @@ export default function CollectionCards() {
     setDressInfo({ ...dressInfo, mainSearchName: null });
   };
 
-   function getSearchClick() {
-     setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
-   }
+  function getSearchClick() {
+    setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
+  }
 
   const handleLeaveMouse = (eId) => {
     const elementsIndex = dressInfo.ProductList.findIndex(
@@ -159,7 +159,7 @@ export default function CollectionCards() {
           </article>
 
           {data?.getMainProductCard?.products?.next_page_url ? (
-            <div className="w-full h-fit flex items-center justify-center mt-14">
+            <div className="w-full h-fit flex items-center justify-center mb-5 md:mb-0 md:mt-14">
               {data?.btnLoader ? (
                 <button
                   type="button"
