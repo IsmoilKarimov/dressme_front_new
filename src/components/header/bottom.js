@@ -389,6 +389,7 @@ function BottomHeader() {
               </span>
             }
             optionFilterProp="children"
+            defaultValue={dressInfo?.mainCategoryId}
             onChange={(e) => {
               setPage(1);
               setDressInfo({ ...dressInfo, mainCategoryId: e });
@@ -556,7 +557,9 @@ function BottomHeader() {
 
         <div className="line h-6 border-r-[1px] text-textColor mx-3"></div>
         <div className="box-border flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-xl bg-btnBgColor">
-          {personItems?.filter((value) => value.id === dressInfo?.type).map((data) => {
+          {personItems
+            ?.filter((value) => value.id === dressInfo?.type)
+            .map((data) => {
               return (
                 <div
                   key={data?.id}
