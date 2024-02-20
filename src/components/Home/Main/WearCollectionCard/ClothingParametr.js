@@ -17,6 +17,7 @@ import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { GrClose } from "react-icons/gr";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import Slider from "react-slider";
+import { HomeFilterContext } from "../../../../ContextHook/HomeFilterContext";
 const ClothingParametr = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData, , , page, setPage] = useContext(HomeMainDataContext);
@@ -48,19 +49,7 @@ const ClothingParametr = () => {
     state?.selectColorToggleMobile,
   ]);
 
-  const [selectedFilters, setSelectedFilters] = useState({
-    category: null,
-    price: null,
-    gender: null,
-    color: null,
-    gender: null,
-    categoryOrder: 0,
-    priceOrder: 0,
-    genderOrder: 0,
-    colorOrder: 0,
-    genderOrder: 0,
-    index: 0,
-  });
+  const [selectedFilters, setSelectedFilters] = useContext(HomeFilterContext);
 
   const [iconsColor] = useState("black");
 
