@@ -10,11 +10,13 @@ import { FaTelegramPlane } from "react-icons/fa";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { BsCircleFill, BsHeart, BsHeartFill } from "react-icons/bs";
 import {
+  ArrowTopIcons,
   CalendarIcons,
   CategoryIcon,
   CategoryUsersIcon,
   ChapterIcon,
   CircleWarningIcons,
+  CommentIcons,
   DeliveryIcons,
   DiscountShapeIcons,
   DollorIcons,
@@ -33,7 +35,6 @@ import {
   summerSeason,
   autummSeason,
   winterSeason,
-  HeartImg,
   springSeason,
 } from "../../../../../../assets";
 import Slider from "react-slick";
@@ -45,6 +46,7 @@ import TableSizesDropUp from "./MobileDropUp/TableSizesDropUp/TableSizesDropUp";
 import LocationDropUp from "./MobileDropUp/LocationsDropUp/LocationsDropUp";
 import { SliderPhotosColorContext } from "../../../../../../ContextHook/SliderPhotosColor";
 import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData";
+import { useNavigate } from "react-router-dom";
 
 const ProductDetails = ({ data }) => {
   const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
@@ -323,6 +325,11 @@ const ProductDetails = ({ data }) => {
   // Selected size --------
 
   const [selectedSize, setSelectedSize] = useState(null);
+
+  const navigate = useNavigate();
+  const goDetail = () => {
+    navigate(`/product/${data?.product?.shop_id}/allcomments`);
+  };
 
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
@@ -774,25 +781,6 @@ const ProductDetails = ({ data }) => {
               </article>
             </article>
           ) : null}
-
-          <button
-            onClick={() => {
-              if (wishList?.includes(data?.product?.id)) {
-                setWishlist(
-                  wishList?.filter((item) => item !== data?.product?.id)
-                );
-              } else {
-                setWishlist([...wishList, data?.product?.id]);
-              }
-            }}
-            className="w-10 h-10 flex md:hidden items-center justify-center rounded-xl active:scale-95 border border-searchBgColor bg-btnBgColor"
-          >
-            {wishList?.includes(data?.product?.id) ? (
-              <BsHeartFill color="#d50000" />
-            ) : (
-              <BsHeart />
-            )}
-          </button>
         </article>
 
         {/* --------------------------- Images Slider ------------------------ */}
@@ -1314,11 +1302,7 @@ const ProductDetails = ({ data }) => {
                 })
               : null}
 
-            <p className="w-[80px] h-11 flex md:hidden items-center justify-center rounded-lg border bo
-            
-            
-            
-            rder-searchBgColor">
+            <p className="w-[80px] h-11 flex md:hidden items-center justify-center rounded-lg border border-searchBgColor">
               <CircleWarningIcons colors={"#000"} />
             </p>
           </section>
@@ -1574,6 +1558,46 @@ const ProductDetails = ({ data }) => {
           </article>
         </div>
       </section>
+
+      {/* Mobile version of comment */}
+      {data?.product?.ratings?.length ? (
+        <article className="w-full block md:hidden mt-5">
+          <div className="text-base font-AeonikProMedium mb-2">Отзывы</div>
+          <div className="w-full border border-searchBgColor rounded-lg mb-[34px]">
+            <div className="flex items-center justify-between p-4">
+              <div className="flex items-center">
+                <StarIcons />
+                <StarIcons />
+                <StarIcons />
+                <StarIcons />
+                <StarIcons />
+                <span className="ml-[10px] font-AeonikProMedium text-base">
+                  {data?.product?.overall_rating}
+                </span>
+              </div>
+              <div className="text-sm font-AeonikProRegular text-closeColorBtn mt-1">
+                {data?.product?.rated_users_count} голосов
+              </div>
+            </div>
+            <button
+              onClick={() =>
+                goDetail(`/product/${data?.product?.shop_id}/allcomments`)
+              }
+              className="w-full py-4 px-4 flex items-center justify-center border-t border-searchBgColor"
+            >
+              <span className="ml-8">
+                <CommentIcons colors={"#000"} />
+              </span>
+              <div className="ml-2 font-AeonikProRegular text-sm">
+                Посмотреть комментарии или оставить отзыв
+              </div>
+              <span className="rotate-[90deg] ml-12">
+                <ArrowTopIcons colors={"#000"} />
+              </span>
+            </button>
+          </div>
+        </article>
+      ) : null }
 
       {/* 3 This Section For Desktop Version*/}
       <section className=" w-full hidden md:block md:pb-[35px] pt-[25px] md:border-b border-searchBgColor mb-12 md:mb-0">
@@ -1839,7 +1863,7 @@ const ProductDetails = ({ data }) => {
           </div>
         </div>
         <div className={openTab === 3 ? "block" : "hidden"}>
-          <div className="mt-12 md:mt-5 block">
+          <div className="mt-5 block">
             <ul>
               <li
                 className={
