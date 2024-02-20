@@ -159,10 +159,6 @@ const MobileAllComments = () => {
       <div className="w-full flex items-center justify-between rounded-t border border-borderColor2 px-4 py-[14px] mb-[18px]">
         <div className="flex items-center">
           <StarIcons />
-          <StarIcons />
-          <StarIcons />
-          <StarIcons />
-          <StarIcons />
           <span className="ml-[10px] font-AeonikProMedium text-base">
             {data?.overall_rating}
           </span>

@@ -1310,7 +1310,7 @@ const ProductDetails = ({ data }) => {
 
         {/* Mobile Product Infos */}
         <article className="w-full flex md:hidden flex-col items-center">
-          <div className="w-full text-xl font-AeonikProMedium mb-[18px]">
+          <div className="w-full text-xl text-pretty break-all font-AeonikProMedium mb-[18px]">
             {data?.product?.name_ru}
           </div>
           <div className="w-full flex flex-col items-center border border-[#f0f0f0] p-[15px] bg-categoryModalBgColor rounded-xl">
@@ -1567,10 +1567,6 @@ const ProductDetails = ({ data }) => {
             <div className="flex items-center justify-between p-4">
               <div className="flex items-center">
                 <StarIcons />
-                <StarIcons />
-                <StarIcons />
-                <StarIcons />
-                <StarIcons />
                 <span className="ml-[10px] font-AeonikProMedium text-base">
                   {data?.product?.overall_rating}
                 </span>
@@ -1597,7 +1593,7 @@ const ProductDetails = ({ data }) => {
             </button>
           </div>
         </article>
-      ) : null }
+      ) : null}
 
       {/* 3 This Section For Desktop Version*/}
       <section className=" w-full hidden md:block md:pb-[35px] pt-[25px] md:border-b border-searchBgColor mb-12 md:mb-0">
