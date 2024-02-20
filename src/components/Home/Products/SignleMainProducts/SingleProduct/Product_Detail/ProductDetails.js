@@ -92,7 +92,7 @@ const ProductDetails = ({ data }) => {
   const contentSize = (data) => {
     if (data?.category_id === "1") {
       return (
-        <section className="w-[220px] h-fit p-[5px] ">
+        <section className="w-[200px] h-fit p-[5px] ">
           <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
               Размер в числах:
@@ -106,7 +106,7 @@ const ProductDetails = ({ data }) => {
       );
     } else if (data?.category_id === "2") {
       return (
-        <section className="w-[220px] h-[135px] p-[5px] ">
+        <section className="w-[210px] h-[135px] p-[5px] ">
           <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
               Размер в числах:
@@ -141,7 +141,7 @@ const ProductDetails = ({ data }) => {
       );
     } else if (data?.category_id === "3") {
       return (
-        <section className="w-[220px] h-fit p-[5px] ">
+        <section className="w-[210px] h-fit p-[5px] ">
           <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
               Размер в числах:
@@ -177,7 +177,7 @@ const ProductDetails = ({ data }) => {
       );
     } else if (data?.category_id === "4") {
       return (
-        <section className="w-[220px] h-fit p-[5px] ">
+        <section className="w-[200px] h-fit p-[5px] ">
           <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
               Размер в числах, <span className="text-[#a5a5a5] ml-1">в см</span>
@@ -195,7 +195,7 @@ const ProductDetails = ({ data }) => {
       );
     } else if (data?.category_id === "5") {
       return (
-        <section className="w-[220px] h-fit p-[5px] ">
+        <section className="w-[200px] h-fit p-[5px] ">
           <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
               Размер в числах, <span className="text-[#a5a5a5] ml-1">в см</span>
@@ -234,15 +234,6 @@ const ProductDetails = ({ data }) => {
     existRegions.push(item?.region_id);
     existRegionsObj[item?.region_id] = item?.region?.name_ru;
   });
-
-  // useEffect(() => {
-  //   if (
-  //     dressInfo?.linkedFrom === "shopsFromLocation" ||
-  //     dressInfo?.linkedFrom === "mainPageShopsList"
-  //   ) {
-  //     setDressInfo({ ...dressInfo, linkedFrom: "mainPageProductList" });
-  //   }
-  // }, [dressInfo?.mainSubRegionId]);
 
   const uniqueRegions = new Set(existRegions);
 
