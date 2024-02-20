@@ -9,6 +9,8 @@ import {
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { SliderPhotosColorContext } from "../../../../../../ContextHook/SliderPhotosColor";
 import { Popover } from "antd";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
+import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData";
 
 const ProductCarousel = ({ show, data }) => {
   const [colorId] = useContext(SliderPhotosColorContext);
@@ -16,6 +18,7 @@ const ProductCarousel = ({ show, data }) => {
   const [dressInfo] = useContext(dressMainData);
   const [nav2] = useState();
 
+    const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
   const slider1 = useRef(null);
 
   const [sliderState, setSliderState] = useState(0);
@@ -91,21 +94,7 @@ const ProductCarousel = ({ show, data }) => {
       window.removeEventListener("resize", updateDimension);
     };
   }, [screenSize]);
-
-  const [SizeBtnList] = useState([
-    { id: 1, size_in_letters: "XXS", size_in_numbers: "11-23" },
-    { id: 2, size_in_letters: "XS", size_in_numbers: "11-23" },
-    { id: 3, size_in_letters: "S", size_in_numbers: "25-36" },
-    { id: 4, size_in_letters: "M", size_in_numbers: "25-36" },
-    { id: 5, size_in_letters: "L", size_in_numbers: "36-44" },
-    { id: 6, size_in_letters: "XL", size_in_numbers: "36-44" },
-    { id: 7, size_in_letters: "XXL", size_in_numbers: "36-44" },
-    { id: 8, size_in_letters: "3XL", size_in_numbers: "36-44" },
-    { id: 9, size_in_letters: "4XL", size_in_numbers: "36-44" },
-    { id: 10, size_in_letters: "5XL", size_in_numbers: "36-44" },
-    { id: 11, size_in_letters: "6XL", size_in_numbers: "36-44" },
-  ]);
-
+  
   const NextArrow = (props) => {
     const { onClick } = props;
     return (
@@ -141,12 +130,27 @@ const ProductCarousel = ({ show, data }) => {
     speed: 500,
   };
 
-  let settings2 = {
-    dots: false,
-    infinite: true,
-    swipeToSlide: true,
-    speed: 500,
-  };
+  // const [SizeBtnList] = useState([
+  //   { id: 1, size_in_letters: "XXS", size_in_numbers: "11-23" },
+  //   { id: 2, size_in_letters: "XS", size_in_numbers: "11-23" },
+  //   { id: 3, size_in_letters: "S", size_in_numbers: "25-36" },
+  //   { id: 4, size_in_letters: "M", size_in_numbers: "25-36" },
+  //   { id: 5, size_in_letters: "L", size_in_numbers: "36-44" },
+  //   { id: 6, size_in_letters: "XL", size_in_numbers: "36-44" },
+  //   { id: 7, size_in_letters: "XXL", size_in_numbers: "36-44" },
+  //   { id: 8, size_in_letters: "3XL", size_in_numbers: "36-44" },
+  //   { id: 9, size_in_letters: "4XL", size_in_numbers: "36-44" },
+  //   { id: 10, size_in_letters: "5XL", size_in_numbers: "36-44" },
+  //   { id: 11, size_in_letters: "6XL", size_in_numbers: "36-44" },
+  // ]);
+
+  // let settings2 = {
+  //   dots: false,
+  //   infinite: true,
+  //   swipeToSlide: true,
+  //   speed: 500,
+  // };
+
 
   // filtered for modal
 
@@ -537,27 +541,12 @@ const ProductCarousel = ({ show, data }) => {
                             handleClickCarosuel(i);
                           }}
                         >
-                          <figure className="relative w-full h-[482px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
+                          <figure className="relative w-full h-[478px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
                             <img
                               className="w-full h-full object-cover"
                               src={data?.url_photo}
                               alt=""
                             />
-
-                            {/* <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
-                              <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
-                                <p> {data.id}</p>
-                                <p>{data?.product?.photos?.length}</p>
-                              </span>
-                              <span className="w-fit flex items-center p-2 gap-x-2 rounded-lg bg-bgCard border border-searchBgColor">
-                                <p className="flex items-center ">
-                                  <VideoStoreIcons />
-                                </p>
-                                <p className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-black">
-                                  Видео
-                                </p>
-                              </span>
-                            </figcaption> */}
                           </figure>
                         </article>
                       );
@@ -571,27 +560,12 @@ const ProductCarousel = ({ show, data }) => {
                           handleClickCarosuel(i);
                         }}
                       >
-                        <figure className="relative w-full h-[482px] object-cover overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
+                        <figure className="relative w-full h-[478px] object-cover overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
                           <img
                             className="w-full h-full object-cover"
                             src={data?.url_photo}
                             alt=""
                           />
-
-                          {/* <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
-                            <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
-                              <p> {data.id}</p>
-                              <p>{data?.product?.photos?.length}</p>
-                            </span>
-                            <span className="w-fit flex items-center p-2 gap-x-2 rounded-lg bg-bgCard border border-searchBgColor">
-                              <p className="flex items-center ">
-                                <VideoStoreIcons />
-                              </p>
-                              <p className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-black">
-                                Видео
-                              </p>
-                            </span>
-                          </figcaption> */}
                         </figure>
                       </article>
                     );
@@ -644,12 +618,32 @@ const ProductCarousel = ({ show, data }) => {
 
           {/* 3 */}
           <article className="w-full flex flex-col">
-            <div className="w-full flex items-center mb-4 text-base">
-              <BrushColorIcons colors={"#000"} />
-              <p className="font-AeonikProRegular mr-2 ml-[6px]">Цвет:</p>
-              <span className="font-AeonikProMedium">
-                {data?.product?.colors[0]?.name_ru}
-              </span>
+            <div className="w-full flex items-center justify-between mb-4 text-base">
+              <div className="w-fit flex items-center">
+                <BrushColorIcons colors={"#000"} />
+                <p className="font-AeonikProRegular mr-2 ml-[6px]">Цвет:</p>
+                <span className="font-AeonikProMedium">
+                  {data?.product?.colors[0]?.name_ru}
+                </span>
+              </div>
+              <button
+                onClick={() => {
+                  if (wishList?.includes(data?.product?.id)) {
+                    setWishlist(
+                      wishList?.filter((item) => item !== data?.product?.id)
+                    );
+                  } else {
+                    setWishlist([...wishList, data?.product?.id]);
+                  }
+                }}
+                className="w-10 h-10 flex md:hidden items-center justify-center rounded-xl active:scale-95 border border-searchBgColor bg-btnBgColor"
+              >
+                {wishList?.includes(data?.product?.id) ? (
+                  <BsHeartFill color="#d50000" />
+                ) : (
+                  <BsHeart />
+                )}
+              </button>
             </div>
 
             <article className="flex w-[93px] flex-row gap-x-1">

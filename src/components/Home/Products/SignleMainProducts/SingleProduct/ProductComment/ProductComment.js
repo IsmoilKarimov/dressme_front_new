@@ -1,13 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import {
-  CommentIcons,
   GoBackIcon,
   ReviewIcon,
   StarIcons,
 } from "../../../../../../assets/icons";
-import { ArrowTopIcons } from "../../../../../../assets/icons";
 import { Modal, Rate } from "antd";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { ToastContainer, toast } from "react-toastify";
@@ -16,130 +14,6 @@ export default function ProductComment({ data, refetch }) {
   const [openComment, setOpenComment] = useState(false);
   const params = useParams();
   const [visibleComments, setVisibleCommnets] = useState(4);
-  const [allComments] = useState([
-    {
-      id: 1,
-      Name: "Umar",
-      sendDate: "19 февраля 2023 г.",
-      SendText:
-        "Качество среднее но стоит своих денег точно мне понравилась классный оверсайз",
-      replyDate: "19 февраля 2023 г.",
-      replyText: "Спасибо за заказ! Будем ждать вас снова)",
-    },
-    {
-      id: 2,
-      Name: "Firdavsbek",
-      sendDate: "19 февраля 2023 г.",
-      SendText:
-        "sifatiga gap yoo. raxmat tez yetkazib berishdi . razmeri ham tochni",
-      replyDate: "19 февраля 2023 г.",
-      replyText: "Спасибо вам за оценку!",
-    },
-    {
-      id: 3,
-      Name: "Shohjahon",
-      sendDate: "19 февраля 2023 г.",
-      SendText:
-        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
-      replyDate: "19 февраля 2023 г.",
-      replyText: "Спасибо за оценку, скоро появятся в продаже",
-    },
-    {
-      id: 4,
-      Name: "Shohjahon",
-      sendDate: "19 февраля 2023 г.",
-      SendText:
-        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
-      replyDate: "19 февраля 2023 г.",
-      replyText: "Спасибо за оценку, скоро появятся в продаже",
-    },
-    {
-      id: 5,
-      Name: "Shohjahon",
-      sendDate: "19 февраля 2023 г.",
-      SendText:
-        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
-      replyDate: "19 февраля 2023 г.",
-      replyText: "Спасибо за оценку, скоро появятся в продаже",
-    },
-    {
-      id: 6,
-      Name: "Ali",
-      sendDate: "21 февраля 2023 г.",
-      SendText:
-        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
-      replyDate: "19 февраля 2023 г.",
-      replyText: "Спасибо за оценку, скоро появятся в продаже",
-    },
-    {
-      id: 7,
-      Name: "Vali",
-      sendDate: "19 февраля 2023 г.",
-      SendText:
-        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
-      replyDate: "19 февраля 2023 г.",
-      replyText: "Спасибо за оценку, скоро появятся в продаже",
-    },
-    {
-      id: 8,
-      Name: "G'ani",
-      sendDate: "31 февраля 2023 г.",
-      SendText:
-        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
-      replyDate: "31 февраля 2023 г.",
-      replyText: "Спасибо за оценку, скоро появятся в продаже",
-    },
-    {
-      id: 9,
-      Name: "G'ani",
-      sendDate: "31 февраля 2023 г.",
-      SendText:
-        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
-      replyDate: "31 февраля 2023 г.",
-      replyText: "Спасибо за оценку, скоро появятся в продаже",
-    },
-    {
-      id: 10,
-      Name: "G'ani",
-      sendDate: "31 февраля 2023 г.",
-      SendText:
-        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
-      replyDate: "31 февраля 2023 г.",
-      replyText: "Спасибо за оценку, скоро появятся в продаже",
-    },
-    {
-      id: 11,
-      Name: "G'ani",
-      sendDate: "31 февраля 2023 г.",
-      SendText:
-        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
-      replyDate: "31 февраля 2023 г.",
-      replyText: "Спасибо за оценку, скоро появятся в продаже",
-    },
-    {
-      id: 12,
-      Name: "G'ani",
-      sendDate: "31 февраля 2023 г.",
-      SendText:
-        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
-      replyDate: "31 февраля 2023 г.",
-      replyText: "Спасибо за оценку, скоро появятся в продаже",
-    },
-    {
-      id: 13,
-      Name: "G'ani",
-      sendDate: "31 февраля 2023 г.",
-      SendText:
-        "Tovarni sifati va dizayniga gap yoʻq. Tavsiya bergan bolardim, doʻkonga moviy rangli modellardan koʻproq qoʻshganingizda bundanda zoʻr boʻlardi.",
-      replyDate: "31 февраля 2023 г.",
-      replyText: "Спасибо за оценку, скоро появятся в продаже",
-    },
-  ]);
-
-  const navigate = useNavigate();
-  const goDetail = () => {
-    navigate(`/product/${data?.product?.shop_id}/allcomments`);
-  };
 
   // useEffect(() => {
   //   window.scrollTo({
@@ -246,7 +120,7 @@ export default function ProductComment({ data, refetch }) {
     });
 
   return (
-    <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box md:mb-[0px]">
+    <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto border-box md:mb-[0px]">
       <ToastContainer />
       <section className="relative w-[100%] h-fit md:mt-6 flex justify-between">
         {/* Desktop version of comment*/}
@@ -361,44 +235,6 @@ export default function ProductComment({ data, refetch }) {
               )}
             </section>
           )}
-        </article>
-
-        {/* Mobile version of comment */}
-        <article className="w-full block md:hidden mt-5">
-          <div className="text-base font-AeonikProMedium mb-2">Отзывы</div>
-          <div className="w-full border border-searchBgColor rounded-lg mb-[34px]">
-            <div className="flex items-center justify-between p-4">
-              <div className="flex items-center">
-                <StarIcons />
-                <StarIcons />
-                <StarIcons />
-                <StarIcons />
-                <StarIcons />
-                <span className="ml-[10px] font-AeonikProMedium text-base">
-                  {data?.product?.overall_rating}
-                </span>
-              </div>
-              <div className="text-sm font-AeonikProRegular text-closeColorBtn mt-1">
-                {data?.product?.rated_users_count} голосов
-              </div>
-            </div>
-            <button
-              onClick={() =>
-                goDetail(`/product/${data?.product?.shop_id}/allcomments`)
-              }
-              className="w-full py-4 px-4 flex items-center justify-center border-t border-searchBgColor"
-            >
-              <span className="ml-8">
-                <CommentIcons colors={"#000"} />
-              </span>
-              <div className="ml-2 font-AeonikProRegular text-sm">
-                Посмотреть комментарии или оставить отзыв
-              </div>
-              <span className="rotate-[90deg] ml-12">
-                <ArrowTopIcons colors={"#000"} />
-              </span>
-            </button>
-          </div>
         </article>
       </section>
     </main>

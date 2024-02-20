@@ -39,7 +39,7 @@ export default function FavouriteProducts() {
   };
 
   return (
-    <main className="flex flex-col min-h-[44px] justify-center items-center mt-8">
+    <main className="md:w-full flex flex-col min-h-[44px] justify-center items-center mt-4 md:mt-8">
       <div
         onClick={() => setOpenWearType(false)}
         className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
@@ -61,7 +61,7 @@ export default function FavouriteProducts() {
         <section className="w-full flex items-center justify-center flex-col">
           {wishList?.length ? (
             Cookies.get("DressmeUserToken") ? (
-              <article className="flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-3 lg:gap-y-3">
+              <article className="w-full flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-3 lg:gap-y-3">
                 {mainData?.products?.map((data) => {
                   if (wishList?.includes(data?.id)) {
                     return (
@@ -243,7 +243,7 @@ export default function FavouriteProducts() {
                 })}
               </article>
             ) : (
-              <article className="flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-3 lg:gap-y-3">
+              <article className="w-full flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-3 lg:gap-y-3">
                 {mainData?.products?.map((data) => {
                   if (wishList?.includes(data?.id)) {
                     return (
