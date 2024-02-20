@@ -130,7 +130,6 @@ const ProductCarousel = ({ show, data }) => {
     speed: 500,
   };
 
-
   // filtered for modal
 
   let filteredForModal = data?.product?.photos?.filter(
@@ -178,15 +177,14 @@ const ProductCarousel = ({ show, data }) => {
     }
   }, [data, dressInfo]);
 
-
   const [selectedSize, setSelectedSize] = useState(null);
 
   const contentSize = (data) => {
     if (data?.category_id === "1") {
       return (
-        <section className="w-[190px] h-fit p-[5px] ">
+        <section className="w-[200px] h-fit p-[5px] ">
           <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
-            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+            <div className="w-full flex items-center justify-start text-sm font-AeonikProRegular mb-[10px]">
               Размер в числах:
               <span className="ml-auto">
                 {data?.min_head_girth}{" "}
@@ -198,31 +196,31 @@ const ProductCarousel = ({ show, data }) => {
       );
     } else if (data?.category_id === "2") {
       return (
-        <section className="w-[190px] h-[135px] p-[5px] ">
+        <section className="w-[200px] h-[135px] p-[5px] ">
           <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
-            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+            <div className="w-full flex items-center justify-start text-sm font-AeonikProRegular mb-[10px]">
               Размер в числах:
               <span className="ml-auto">
                 {data?.min_wear_size}{" "}
                 {data?.max_wear_size ? "- " + data?.max_wear_size : null}
               </span>
             </div>
-            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
-              Обхват груди, <span className="text-[#a5a5a5] ml-1">в см</span>:
+            <div className="w-full flex items-center justify-start text-sm font-AeonikProRegular mb-[10px]">
+              <div>Обхват груди, <span className="text-[#a5a5a5] ml-1">в см</span>:</div>
               <span className="ml-auto">
                 {data?.min_chest_girth}{" "}
                 {data?.max_chest_girth ? "- " + data?.max_chest_girth : null}
               </span>
             </div>
-            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
-              Обхват талии, <span className="text-[#a5a5a5] ml-1">в см</span>:
+            <div className="w-full flex items-center justify-between text-sm font-AeonikProRegular mb-[10px]">
+              <div>Обхват талии, <span className="text-[#a5a5a5] ml-1">в см</span>:</div>
               <span className="ml-auto">
                 {data?.min_waist_girth}{" "}
                 {data?.max_waist_girth ? "- " + data?.max_waist_girth : null}
               </span>
             </div>
-            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular">
-              Обхват бедер, <span className="text-[#a5a5a5] ml-1">в см</span>:
+            <div className="w-full flex items-center justify-between text-sm font-AeonikProRegular">
+              <div>Обхват бедер, <span className="text-[#a5a5a5] ml-1">в см</span>:</div>
               <span className="ml-auto">
                 {data?.min_hip_girth}{" "}
                 {data?.max_hip_girth ? "- " + data?.max_hip_girth : null}
@@ -233,33 +231,40 @@ const ProductCarousel = ({ show, data }) => {
       );
     } else if (data?.category_id === "3") {
       return (
-        <section className="w-[190px] h-fit p-[5px] ">
+        <section className="w-[200px] h-fit p-[5px] ">
           <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
-            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+            <div className="w-full flex items-center justify-start text-sm font-AeonikProRegular mb-[10px]">
               Размер в числах:
               <span className="ml-auto">
                 {data?.min_wear_size}{" "}
                 {data?.max_wear_size ? "- " + data?.max_wear_size : null}
               </span>
             </div>
-            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
-              Обхват талии, <span className="text-[#a5a5a5] ml-1">в см</span>:
+            <div className="w-full flex items-center justify-between text-sm font-AeonikProRegular mb-[10px]">
+              <div>
+                Обхват талии, 
+                <span className="text-[#a5a5a5] ml-1">в см</span>:
+              </div>
               <span className="ml-auto">
                 {data?.min_waist_girth}{" "}
                 {data?.max_waist_girth ? "- " + data?.max_waist_girth : null}
               </span>
             </div>
-            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
-              Обхват бедер, <span className="text-[#a5a5a5] ml-1">в см</span>:
+            <div className="w-full flex items-center justify-between text-sm font-AeonikProRegular mb-[10px]">
+              <div>
+                Обхват бедер, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              </div>
               <span className="ml-auto">
                 {data?.min_hip_girth}{" "}
                 {data?.max_hip_girth ? "- " + data?.max_hip_girth : null}
               </span>
             </div>
 
-            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
-              Рост, <span className="text-[#a5a5a5] ml-1">в см</span>:
-              <span className="ml-auto">
+            <div className="w-full flex items-center justify-start text-sm font-AeonikProRegular mb-[10px]">
+              <div>
+                Рост, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              </div>
+              <span className="ml-auto ">
                 {data?.min_height}{" "}
                 {data?.max_height ? "- " + data?.max_height : null}
               </span>
@@ -269,7 +274,7 @@ const ProductCarousel = ({ show, data }) => {
       );
     } else if (data?.category_id === "4") {
       return (
-        <section className="w-[190px] h-fit p-[5px] ">
+        <section className="w-[200px] h-fit p-[5px] ">
           <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
               Размер в числах, <span className="text-[#a5a5a5] ml-1">в см</span>
@@ -287,7 +292,7 @@ const ProductCarousel = ({ show, data }) => {
       );
     } else if (data?.category_id === "5") {
       return (
-        <section className="w-[190px] h-fit p-[5px] ">
+        <section className="w-[200px] h-fit p-[5px] ">
           <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
               Размер в числах, <span className="text-[#a5a5a5] ml-1">в см</span>
@@ -329,7 +334,7 @@ const ProductCarousel = ({ show, data }) => {
           </button>
           <div className="w-full h-full">
             <Slider
-              className="relative w-full h-[500px] overflow-hidden md:!w-[750px] md:h-[100vh] showpageSlider bg-white md:rounded-lg"
+              className="relative w-full h-[482px] overflow-hidden md:!w-[750px] md:h-[100vh] showpageSlider bg-white md:rounded-lg"
               {...settingsModal}
               ref={sliderRef}
             >
@@ -352,7 +357,7 @@ const ProductCarousel = ({ show, data }) => {
                             <img
                               src={data?.url_photo}
                               alt=""
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-contain"
                             />
                             <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                               <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
@@ -773,14 +778,14 @@ const ProductCarousel = ({ show, data }) => {
                           <Popover
                             trigger={data?.min_head_girth ? "hover" : "false"}
                             content={() => contentSize(data)}
-                            className={`w-[62px] !h-[39px] cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${
+                            className={`w-[62px] !h-[39px] cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"
                                 : ""
                             }`}
                           >
                             <p
-                              className={`font-AeonikProMedium text-sm uppercase text-center ${
+                              className={`w-full font-AeonikProMedium text-sm uppercase text-center ${
                                 data?.amount === "0"
                                   ? "text-[#d3d4dd]"
                                   : "text-black"
@@ -817,10 +822,10 @@ const ProductCarousel = ({ show, data }) => {
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"
                                 : ""
-                            }  cursor-pointer rounded-lg  px-4 flex flex-col items-center justify-center`}
+                            }  cursor-pointer rounded-lg flex flex-col items-center justify-center`}
                           >
                             <p
-                              className={`font-AeonikProMedium text-sm uppercase text-center ${
+                              className={`wfull font-AeonikProMedium text-sm uppercase text-center ${
                                 data?.amount === "0"
                                   ? "text-[#d3d4dd]"
                                   : "text-black"
@@ -830,7 +835,7 @@ const ProductCarousel = ({ show, data }) => {
                             </p>
                             {data?.letter_size ? (
                               <span
-                                className={`text-[10px] font-AeonikProRegular ${
+                                className={`w-full text-center text-[10px] font-AeonikProRegular ${
                                   data?.amount === "0"
                                     ? "text-[#d3d4dd]"
                                     : "text-[#757575]"
@@ -843,7 +848,7 @@ const ProductCarousel = ({ show, data }) => {
                               </span>
                             ) : (
                               <p
-                                className={`font-AeonikProMedium text-sm uppercase text-center ${
+                                className={`w-full font-AeonikProMedium text-sm uppercase text-center ${
                                   data?.amount === "0"
                                     ? "text-[#d3d4dd]"
                                     : "text-black"
@@ -875,19 +880,19 @@ const ProductCarousel = ({ show, data }) => {
                             data?.id === selectedSize?.id
                               ? "border-fullBlue"
                               : "border-[#dadada]"
-                          }  h-fit w-fit mt-4 rounded-lg border   hover:border-fullBlue`}
+                          }  h-fit w-fit mt-4 rounded-lg border hover:border-fullBlue`}
                         >
                           <Popover
                             trigger="hover"
                             content={() => contentSize(data)}
-                            className={`w-[62px] !h-[39px] cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${
+                            className={`w-[62px] !h-[39px] cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"
                                 : ""
                             }`}
                           >
                             <p
-                              className={`font-AeonikProMedium text-sm uppercase text-center ${
+                              className={`w-full font-AeonikProMedium text-sm uppercase text-center ${
                                 data?.amount === "0"
                                   ? "text-[#d3d4dd]"
                                   : "text-black"
@@ -897,7 +902,7 @@ const ProductCarousel = ({ show, data }) => {
                             </p>
                             {data?.letter_size ? (
                               <span
-                                className={`text-[10px] font-AeonikProRegular ${
+                                className={`w-full text-center text-[10px] font-AeonikProRegular ${
                                   data?.amount === "0"
                                     ? "text-[#d3d4dd]"
                                     : "text-[#757575]"
@@ -910,7 +915,7 @@ const ProductCarousel = ({ show, data }) => {
                               </span>
                             ) : (
                               <p
-                                className={`font-AeonikProMedium text-sm uppercase text-center ${
+                                className={`w-full font-AeonikProMedium text-sm uppercase text-center ${
                                   data?.amount === "0"
                                     ? "text-[#d3d4dd]"
                                     : "text-black"
@@ -947,14 +952,14 @@ const ProductCarousel = ({ show, data }) => {
                           <Popover
                             trigger="hover"
                             content={() => contentSize(data)}
-                            className={`w-[62px] !h-[39px] cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${
+                            className={`w-[62px] !h-[39px] cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"
                                 : ""
                             }`}
                           >
                             <p
-                              className={`font-AeonikProMedium text-sm uppercase text-center ${
+                              className={`w-full font-AeonikProMedium text-sm uppercase text-center ${
                                 data?.amount === "0"
                                   ? "text-[#d3d4dd]"
                                   : "text-black"
@@ -987,14 +992,14 @@ const ProductCarousel = ({ show, data }) => {
                           <Popover
                             trigger="hover"
                             content={() => contentSize(data)}
-                            className={`w-[62px] !h-[39px] cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${
+                            className={`w-[62px] !h-[39px] cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"
                                 : ""
                             }`}
                           >
                             <p
-                              className={`font-AeonikProMedium text-sm uppercase text-center ${
+                              className={`w-full font-AeonikProMedium text-sm uppercase text-center ${
                                 data?.amount === "0"
                                   ? "text-[#d3d4dd]"
                                   : "text-black"
@@ -1003,7 +1008,7 @@ const ProductCarousel = ({ show, data }) => {
                               {data?.letter_size}
                             </p>
                             <span
-                              className={`text-[10px] font-AeonikProRegular ${
+                              className={`w-full text-center text-[10px] font-AeonikProRegular ${
                                 data?.amount === "0"
                                   ? "text-[#d3d4dd]"
                                   : "text-[#757575]"
