@@ -129,9 +129,23 @@ const NavMenu = ({ stateData, setStateData }) => {
                     <div
                       className={` ${
                         wishList?.length > 0 ? "flex" : "hidden"
-                      } w-[12px] h-[12px] items-center justify-center pl-[1px] rounded-full border border-red-600 bg-white text-black text-[9px] text-center absolute -top-[2px] -right-[6px] font-AeonikProMedium`}
+                      } ${
+                        wishList?.length > 9
+                          ? "w-[14px] h-[14px] text-[8px] -top-[5px] -right-[9px]"
+                          : wishList?.length > 99
+                          ? "w-[18px] h-[18px] text-[8px] -top-[8px] -right-[13px]"
+                          : wishList?.length > 999
+                          ? "w-[20px] h-[20px] text-[8px] -top-[10px] -right-[14px]"
+                          : "w-[12px] h-[12px] -top-[4px] -right-[6px]"
+                      } items-center justify-center pl-[1px] rounded-full border border-red-600 bg-white text-black text-[8px] text-center absolute  font-AeonikProMedium`}
                     >
-                      {wishList?.length || 0}
+                      {wishList?.length > 999 ? (
+                        <div className="flex items-center">
+                          {wishList?.length} <span>+</span>{" "}
+                        </div>
+                      ) : (
+                        <div>{wishList?.length}</div>
+                      )}
                     </div>
                   </div>
                   <figcaption className="mt-2">
@@ -145,9 +159,23 @@ const NavMenu = ({ stateData, setStateData }) => {
                     <div
                       className={` ${
                         wishList?.length > 0 ? "flex" : "hidden"
-                      } w-[12px] h-[12px] pl-[1px] items-center justify-center rounded-full border border-red-600 bg-red-600 text-white text-[9px] text-center absolute -top-[2px] -right-[6px] font-AeonikProMedium`}
+                      } ${
+                        wishList?.length > 9
+                          ? "w-[14px] h-[14px] text-[8px] -top-[5px] -right-[9px]"
+                          : wishList?.length > 99
+                          ? "w-[18px] h-[18px] text-[8px] -top-[8px] -right-[13px]"
+                          : wishList?.length > 999
+                          ? "w-[20px] h-[20px] text-[8px] -top-[10px] -right-[14px]"
+                          : "w-[12px] h-[12px] -top-[4px] -right-[6px]"
+                      } items-center justify-center pl-[1px] rounded-full border border-red-600 bg-white text-black text-[8px] text-center absolute  font-AeonikProMedium`}
                     >
-                      {wishList?.length || 0}
+                      {wishList?.length > 999 ? (
+                        <div className="flex items-center">
+                          {wishList?.length} <span>+</span>{" "}
+                        </div>
+                      ) : (
+                        <div>{wishList?.length}</div>
+                      )}
                     </div>
                   </div>
                   <figcaption className="mt-2">
