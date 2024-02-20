@@ -352,19 +352,13 @@ const ProductCarousel = ({ show, data }) => {
                               backgroundSize: "cover",
                               backgroundRepeat: "no-repeat",
                             }}
-                            className="relative overflow-hidden h-full w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                            className="relative overflow-hidden !h-full w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                           >
                             <img
                               src={data?.url_photo}
                               alt=""
-                              className="w-full h-full object-contain"
+                              className="w-full !h-full object-contain"
                             />
-                            <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
-                              <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
-                                {/* <p>{data.id}</p>
-                                <p>{data?.product?.photos?.length}</p> */}
-                              </span>
-                            </figcaption>
                           </figure>
                         </article>
                       );
@@ -382,19 +376,13 @@ const ProductCarousel = ({ show, data }) => {
                             backgroundSize: "cover",
                             backgroundRepeat: "no-repeat",
                           }}
-                          className="relative overflow-hidden h-full w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                          className="relative overflow-hidden !h-full w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                         >
                           <img
                             src={data?.url_photo}
                             alt=""
-                            className="w-full h-full object-contain"
+                            className="w-full !h-full object-contain"
                           />
-                          <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
-                            <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
-                              {/* <p>{data.id}</p>
-                              <p>{data?.product?.photos?.length}</p> */}
-                            </span>
-                          </figcaption>
                         </figure>
                       </article>
                     );

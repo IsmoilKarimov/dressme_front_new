@@ -133,7 +133,7 @@ export default function CollectionCards() {
           <article
             className={`flex flex-wrap justify-between md:justify-start ${
               data?.products?.length > 2 ? "mb-[30px]" : "mb-[80px]"
-            } md:mx-0 md:mt-[50px] md:mb-0 gap-y-2 lg:gap-x-5 lg:gap-y-5 `}
+            } md:mx-0 md:mt-[50px] md:mb-0 gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 `}
           >
             {data?.products?.length ? (
               data?.products?.map((data) => {

@@ -97,7 +97,7 @@ export const CollectionCardItem = ({
       ></figure>
       <section className="relative w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[100px] md:h-[136px]">
         {/* 1 */}
-        <div className="group hover:w-full h-[36px] cursor-pointer mb-2 md:mb-0">
+        <div className="group hover:w-full h-[36px] cursor-pointer">
           <button className="group-hover:hidden w-12 h-7 border border-searchBgColor rounded-lg hidden md:flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 ">
             <figure className="w-6 h-6 flex items-center justify-center">
               <img src={CalourCard} alt="" className="h-full" />
@@ -149,11 +149,11 @@ export const CollectionCardItem = ({
             data?.cost?.discount_price ? "mb-0" : "mb-3"
           } md:mb-0`}
         >
-          <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-1 md:mb-0  cursor-pointer">
+          <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-[6px] md:mb-0  cursor-pointer">
             <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
             {data?.name_ru || "NoData"}
           </figure>
-          <figure className="w-full h-[16px] flex justify-between items-center xs:mt-1">
+          <figure className="w-full h-[16px] flex justify-between items-center my-1">
             {data?.overall_rating ? (
               <section className="flex items-center justify-between">
                 <article>
