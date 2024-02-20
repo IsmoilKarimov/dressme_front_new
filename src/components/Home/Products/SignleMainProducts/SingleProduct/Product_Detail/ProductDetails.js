@@ -384,7 +384,7 @@ const ProductDetails = ({ data }) => {
                     {data?.product?.overall_rating}
                   </p>
                   <p className=" pl-1 not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
-                    ({data?.product?.rated_users_count} votes)
+                    (голосов: {data?.product?.rated_users_count})
                   </p>
                 </article>
               </>
@@ -755,18 +755,18 @@ const ProductDetails = ({ data }) => {
         <article className="h-fit flex items-center justify-between mb-4 md:mb-0">
           {data?.product?.overall_rating ? (
             <article className="flex md:hidden items-center justify-start ">
-              <p className="w-fit flex items-center gap-x-[1px]">
+              <p className="w-fit flex items-center justify-center">
                 <StarIcons />
               </p>
-              <article className="flex items-center w-fit ml-2 text-base md:text-[14px]">
-                <p className="not-italic font-AeonikProMedium mt-1 leading-4 text-black tracking-[1%]">
+              <article className="flex items-center w-fit mx-1 text-base md:text-[14px]">
+                <p className="flex items-center font-AeonikProMedium text-black">
                   {data?.product?.overall_rating}
                 </p>
-                <p className=" pl-1 not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
-                  ({data?.product?.rated_users_count} голоса)
+                <p className=" pl-1 not-italic font-AeonikProRegular text-setTexOpacity">
+                  (голосов: {data?.product?.rated_users_count})
                 </p>
                 {/* <div className="text-setTexOpacity mx-[10px]">|</div>
-                <p className=" not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
+                <p className=" not-italic font-AeonikProRegular mt- text-setTexOpacity">
                   678 заказов
                 </p> */}
               </article>
