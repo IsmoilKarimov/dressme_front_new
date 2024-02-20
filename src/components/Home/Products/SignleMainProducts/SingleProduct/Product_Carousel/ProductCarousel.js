@@ -773,12 +773,12 @@ const ProductCarousel = ({ show, data }) => {
                             data?.id === selectedSize?.id
                               ? "border-fullBlue"
                               : "border-[#dadada]"
-                          }  h-fit w-fit mt-4 rounded-lg border  hover:border-fullBlue`}
+                          }  w-[62px] !h-[39px] mt-4 rounded-lg border  hover:border-fullBlue`}
                         >
                           <Popover
                             trigger={data?.min_head_girth ? "hover" : "false"}
                             content={() => contentSize(data)}
-                            className={`w-[62px] !h-[39px] cursor-pointer rounded-lg flex flex-col items-center justify-center ${
+                            className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"
                                 : ""
@@ -813,19 +813,19 @@ const ProductCarousel = ({ show, data }) => {
                             data?.id === selectedSize?.id
                               ? "border-fullBlue"
                               : "border-[#dadada]"
-                          }  h-fit w-fit mt-4 rounded-lg border hover:border-fullBlue`}
+                          } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
                         >
                           <Popover
                             trigger="hover"
                             content={() => contentSize(data)}
-                            className={`w-[62px] !h-[39px] ${
+                            className={`w-full !h-full ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"
                                 : ""
                             }  cursor-pointer rounded-lg flex flex-col items-center justify-center`}
                           >
                             <p
-                              className={`wfull font-AeonikProMedium text-sm uppercase text-center ${
+                              className={`w-full font-AeonikProMedium text-sm uppercase text-center ${
                                 data?.amount === "0"
                                   ? "text-[#d3d4dd]"
                                   : "text-black"
@@ -880,12 +880,12 @@ const ProductCarousel = ({ show, data }) => {
                             data?.id === selectedSize?.id
                               ? "border-fullBlue"
                               : "border-[#dadada]"
-                          }  h-fit w-fit mt-4 rounded-lg border hover:border-fullBlue`}
+                          } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
                         >
                           <Popover
                             trigger="hover"
                             content={() => contentSize(data)}
-                            className={`w-[62px] !h-[39px] cursor-pointer rounded-lg flex flex-col items-center justify-center ${
+                            className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"
                                 : ""
@@ -947,12 +947,12 @@ const ProductCarousel = ({ show, data }) => {
                             data?.id === selectedSize?.id
                               ? "border-fullBlue"
                               : "border-[#dadada]"
-                          }  h-fit w-fit mt-4 rounded-lg border hover:border-fullBlue`}
+                          } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
                         >
                           <Popover
                             trigger="hover"
                             content={() => contentSize(data)}
-                            className={`w-[62px] !h-[39px] cursor-pointer rounded-lg flex flex-col items-center justify-center ${
+                            className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"
                                 : ""
@@ -987,12 +987,12 @@ const ProductCarousel = ({ show, data }) => {
                             data?.id === selectedSize?.id
                               ? "border-fullBlue"
                               : "border-[#dadada]"
-                          }  h-fit w-fit mt-4 rounded-lg border hover:border-fullBlue`}
+                          } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
                         >
                           <Popover
                             trigger="hover"
                             content={() => contentSize(data)}
-                            className={`w-[62px] !h-[39px] cursor-pointer rounded-lg flex flex-col items-center justify-center ${
+                            className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"
                                 : ""
