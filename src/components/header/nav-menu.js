@@ -126,7 +126,11 @@ const NavMenu = ({ stateData, setStateData }) => {
                         strokeLinejoin="round"
                       />
                     </svg>{" "}
-                    <div className="w-[12px] h-[12px] pl-[1px] rounded-full border border-red-600 bg-white text-black text-[9px] text-center absolute -top-[2px] -right-[6px] font-AeonikProMedium">
+                    <div
+                      className={` ${
+                        wishList?.length > 0 ? "flex" : "hidden"
+                      } w-[12px] h-[12px] items-center justify-center pl-[1px] rounded-full border border-red-600 bg-white text-black text-[9px] text-center absolute -top-[2px] -right-[6px] font-AeonikProMedium`}
+                    >
                       {wishList?.length || 0}
                     </div>
                   </div>
@@ -138,7 +142,11 @@ const NavMenu = ({ stateData, setStateData }) => {
                 <figure className=" flex flex-col items-center justify-center mt-1 ">
                   <div className="relative">
                     <img src={HeartImg} className={"w-5 h-5"} alt="heart" />
-                    <div className="w-[12px] h-[12px] pl-[1px] rounded-full border border-red-600 bg-red-600 text-white text-[9px] text-center absolute -top-[2px] -right-[6px] font-AeonikProMedium">
+                    <div
+                      className={` ${
+                        wishList?.length > 0 ? "flex" : "hidden"
+                      } w-[12px] h-[12px] pl-[1px] items-center justify-center rounded-full border border-red-600 bg-red-600 text-white text-[9px] text-center absolute -top-[2px] -right-[6px] font-AeonikProMedium`}
+                    >
                       {wishList?.length || 0}
                     </div>
                   </div>
