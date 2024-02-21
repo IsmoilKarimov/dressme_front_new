@@ -131,20 +131,22 @@ const NavMenu = ({ stateData, setStateData }) => {
                         wishList?.length > 0 ? "flex" : "hidden"
                       } ${
                         wishList?.length > 9
-                          ? "w-[14px] h-[14px] text-[8px] -top-[5px] -right-[9px]"
+                          ? "w-[16px] h-[16px] text-[10px] -top-[5px] -right-[9px] "
                           : wishList?.length > 99
                           ? "w-[18px] h-[18px] text-[8px] -top-[8px] -right-[13px]"
                           : wishList?.length > 999
                           ? "w-[20px] h-[20px] text-[8px] -top-[10px] -right-[14px]"
-                          : "w-[12px] h-[12px] -top-[4px] -right-[6px]"
-                      } items-center justify-center pl-[1px] rounded-full border border-red-600 bg-white text-black text-[8px] text-center absolute  font-AeonikProMedium`}
+                          : "w-[12px] h-[12px] text-[10px] -top-[4px] -right-[6px]"
+                      } items-center justify-center pl-[1px] rounded-full border border-red-600 bg-white text-black text-center absolute  font-AeonikProMedium`}
                     >
                       {wishList?.length > 999 ? (
-                        <div className="flex items-center">
+                        <div className="w-full h-full flex items-center justify-center">
                           {wishList?.length} <span>+</span>{" "}
                         </div>
                       ) : (
-                        <div>{wishList?.length}</div>
+                        <div className="w-full h-full flex items-center justify-center mt-[2px]">
+                          {wishList?.length}
+                        </div>
                       )}
                     </div>
                   </div>
@@ -161,20 +163,22 @@ const NavMenu = ({ stateData, setStateData }) => {
                         wishList?.length > 0 ? "flex" : "hidden"
                       } ${
                         wishList?.length > 9
-                          ? "w-[14px] h-[14px] text-[8px] -top-[5px] -right-[9px]"
+                          ? "w-[16px] h-[16px] text-[10px] -top-[5px] -right-[9px] "
                           : wishList?.length > 99
                           ? "w-[18px] h-[18px] text-[8px] -top-[8px] -right-[13px]"
                           : wishList?.length > 999
                           ? "w-[20px] h-[20px] text-[8px] -top-[10px] -right-[14px]"
-                          : "w-[12px] h-[12px] -top-[4px] -right-[6px]"
-                      } items-center justify-center pl-[1px] rounded-full border border-red-600 bg-white text-black text-[8px] text-center absolute  font-AeonikProMedium`}
+                          : "w-[12px] h-[12px] text-[10px] -top-[4px] -right-[6px]"
+                      } items-center justify-center pl-[1px] rounded-full border border-red-600 bg-white text-black text-center absolute  font-AeonikProMedium`}
                     >
                       {wishList?.length > 999 ? (
-                        <div className="flex items-center">
+                        <div className="w-full h-full flex items-center justify-center">
                           {wishList?.length} <span>+</span>{" "}
                         </div>
                       ) : (
-                        <div>{wishList?.length}</div>
+                        <div className="w-full h-full flex items-center justify-center mt-[2px]">
+                          {wishList?.length}
+                        </div>
                       )}
                     </div>
                   </div>
