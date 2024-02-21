@@ -232,9 +232,9 @@ export default function SignUp() {
             theme="colored"
           />
           {state?.validateConfirm ? (
-            <div className="pb-8 md:py-8 w-full mb-10 flex justify-center">
+            <div className="pb-10 md:py-8 w-full mb-10 flex justify-center">
               <div className="max-w-[440px] w-[100%] h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
-                <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-xl  leading-5 ss:text-start md:text-center  tracking-[0,16px] text-black">
+                <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-[17px] ls:text-[19px] ll:text-[20px] leading-5 ss:text-start md:text-center  tracking-[0,16px] text-black">
                   Добро пожаловать в{" "}
                   <span className={`${dressInfo?.TextColorSeason}`}>
                     Dressme
