@@ -14,7 +14,6 @@ import {
 } from "../../../../../assets/icons";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Modal, Radio, Space } from "antd";
-import FilterDropUp from "../../../../Category/CategoryForType/CategoryMobileDropUp/FilterDropUp";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 
 const ShoppingStoreOfficialTop = ({
@@ -23,11 +22,11 @@ const ShoppingStoreOfficialTop = ({
   toggleFilterLeftOpen,
   toggleFilterLeftClose,
   filterLeftAction,
+  setOpenMobileFilter
 }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openLocationModal, setOpenLocationModal] = useState(false);
-  const [filter, setFilter] = useState(false);
-  const toggleFilter = useCallback(() => setFilter(false), []);
+
   const [locationList, setLocationList] = useState([]);
   const [selectLocation, setSelectLocation] = useState(
     dressInfo?.locationIdParams
@@ -37,13 +36,7 @@ const ShoppingStoreOfficialTop = ({
   useEffect(() => {
     setSelectLocation(dressInfo?.locationIdParams);
   }, [dressInfo?.locationIdParams]);
-  useEffect(() => {
-    if (filter) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [filter]);
+
   const handleToggle = () => {
     if (filterLeftAction) {
       toggleFilterLeftClose();
@@ -99,21 +92,19 @@ const ShoppingStoreOfficialTop = ({
   // console.log('---------');
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
-      <div className="filter">
+      {/* <div className="filter">
         <section
           onClick={() => setFilter(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-            filter ? "" : "hidden"
-          }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${filter ? "" : "hidden"
+            }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
-            filter ? "bottom-0" : "bottom-[-800px] z-0"
-          }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${filter ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
         >
           <FilterDropUp onClick={toggleFilter} />
         </section>
-      </div>
+      </div> */}
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
         <div className="w-[100%] h-fit flex flex-col">
           {/* Top section */}
@@ -129,11 +120,10 @@ const ShoppingStoreOfficialTop = ({
             )}
             <div
               className={`w-full md:h-[90px]   h-fit flex flex-col md:flex-row items-center border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0
-            ${
-              filteredData?.shop?.url_background_photo
-                ? "mt-2 md:mt-0"
-                : "md:mt-10"
-            }
+            ${filteredData?.shop?.url_background_photo
+                  ? "mt-2 md:mt-0"
+                  : "md:mt-10"
+                }
             `}
             >
               {/* 1 */}
@@ -156,9 +146,8 @@ const ShoppingStoreOfficialTop = ({
                     {filteredData?.shop?.name || null}
                   </p>
                   <div
-                    className={`${
-                      filteredData?.shop?.overall_rating ? "flex" : "hidden"
-                    } items-center`}
+                    className={`${filteredData?.shop?.overall_rating ? "flex" : "hidden"
+                      } items-center`}
                   >
                     <div className="flex items-center mr-[6px]">
                       <StarIcons />
@@ -175,22 +164,8 @@ const ShoppingStoreOfficialTop = ({
                 </div>
               </div>
               {/* 2 */}
-              <div className="w-full md:w-[35%] flex items-center border-t md:border-none border-searchBgColor mt-5 pt-5 md:pt-0 md:mt-0">
-                {/* <div className="w-full gap-x-2 h-fit flex items-center justify-center gap-y-1 cursor-pointer">
-                  <NavLink
-                    to="/locations"
-                    className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer"
-                  >
-                    <span className="flex items-center  ">
-                      <LocationColoursIcons colors={"#007DCA"} />
-                    </span>
-                  </NavLink>
-                  <NavLink to="/locations"
-                    className="w-[200px] text-sm font-AeonikProRegular text-borderWinter cursor-pointer">
-                    {filteredData?.shop?.approved_shop_locations[0]?.address}
-                  </NavLink>
+              <div className="w-full md:w-[35%] hidden md:flex items-center border-t md:border-none border-searchBgColor mt-5 pt-5 md:pt-0 md:mt-0">
 
-                </div> */}
                 <button
                   onClick={(e) => {
                     e.preventDefault();
@@ -219,40 +194,52 @@ const ShoppingStoreOfficialTop = ({
               <div className="w-full md:w-[25%] flex items-center md:justify-end pb-5 md:pb-0 border-b border-[#F0F0F0] md:border-none md:mr-5 mt-5 md:mt-0">
                 <div className="md:hidden flex w-fit">
                   <div className="w-fit h-fit flex items-center justify-center gap-y-1 cursor-pointer">
-                    <NavLink
-                      to="/locations"
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        clickButtons?.setOpenTabLocation(
+                          !clickButtons?.openTabLocation
+                        );
+                        clickButtons?.setOpenTabComment(false);
+                      }}
                       className="w-fit flex items-center gap-x-2"
                     >
                       <span className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer">
                         <LocationColoursIcons colors={"#007DCA"} />
                       </span>
-                      <p className="text-sm font-AeonikProRegular text-borderWinter cursor-pointer">
-                        {
-                          filteredData?.shop?.approved_shop_locations[0]
-                            ?.address
-                        }
-                      </p>
-                    </NavLink>
-                    <p
-                      className={`text-borderWinter border-b border-dashed border-borderWinter ml-3 text-sm md:text-base not-italic font-AeonikProRegular`}
+                      {filteredData?.shop?.approved_shop_locations
+                        ?.filter((e) => e?.id === dressInfo?.locationIdParams)
+                        ?.map((item) => {
+                          return (
+                            <p className="text-sm font-AeonikProRegular text-borderWinter">
+                              {item?.address}
+                            </p>
+                          );
+                        })}
+                    </button>
+
+                    <button
+                      type="primary"
+                      onClick={() => setOpenLocationModal(true)}
+                      className={`text-borderWinter flex items-center border-b border-dashed border-borderWinter ml-3 text-sm md:text-base not-italic font-AeonikProRegular`}
                     >
-                      {" "}
+                      <p className="mr-[6px]">
+                        <LocationColoursIcons colors={"#0077B6"} />
+                      </p>
                       Все локации
-                    </p>
+                    </button>
                   </div>
                 </div>
                 <div className="flex items-center ml-auto">
                   <button
-                    className={`${
-                      filteredData?.shop?.gender_id === "2" ? "hidden" : "flex"
-                    }  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}
+                    className={`${filteredData?.shop?.gender_id === "2" ? "hidden" : "flex"
+                      }  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}
                   >
                     <ManGenIcons />
                   </button>
                   <button
-                    className={`${
-                      filteredData?.shop?.gender_id === "1" ? "hidden" : "flex"
-                    } flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}
+                    className={`${filteredData?.shop?.gender_id === "1" ? "hidden" : "flex"
+                      } flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}
                   >
                     <WomanGenIcons />
                   </button>
@@ -370,23 +357,7 @@ const ShoppingStoreOfficialTop = ({
                           );
                         })}
                       </Radio.Group>
-                      {/* {locationList?.map((item, index) => {
-                        return (
-                          <div className="mb-[8px] gap-x-3 flex items-center cursor-pointer">
-                            <input
-                              className="w-[20px] h-[20px]"
-                              value={item?.id}
-                              onChange={onHandleLocation}
-                              type="radio"
-                              name={item?.region?.name_ru}
-                              id="checkLocation" />
-                            <label htmlFor={'checkLocation'} className="text-lg cursor-pointer gap-x-1 font-AeonikProRegular">
-                              {item?.region?.name_ru} (
-                              {item?.address})
-                            </label>
-                          </div>
-                        )
-                      })} */}
+
                     </div>
                     <button
                       type="button"
@@ -420,7 +391,7 @@ const ShoppingStoreOfficialTop = ({
               />
             </div>
             <button
-              onClick={() => setFilter(true)}
+              onClick={() => setOpenMobileFilter(true)}
               className="w-12 h-12 shrink-0 rounded-xl select-none border border-searchBgColor flex items-center justify-center"
             >
               <FilterIcons colors={"#000"} />

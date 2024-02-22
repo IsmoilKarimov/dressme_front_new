@@ -27,7 +27,8 @@ function FilterList({
     getRatingList,
     filterToggle,
     setPageId,
-    setFilterToggle
+    setFilterToggle,
+    openMobileFilter
 
 }) {
     const { request } = useHttp()
@@ -81,15 +82,15 @@ function FilterList({
             .catch((err) => console.log(err, "ERRORLIST"));
     }
     useEffect(() => {
-        if (filterToggle && !getFilter) {
+        if ((filterToggle || openMobileFilter) && (!getFilter)) {
             fetchGetAllData()
         }
-    }, [filterToggle])
+    }, [filterToggle, openMobileFilter])
+
     useEffect(() => {
         if (getFilter) {
             setFilterToggle(false)
             setGetFilter()
-            // fetchGetAllData()
         }
     }, [dressInfo?.locationIdParams])
 

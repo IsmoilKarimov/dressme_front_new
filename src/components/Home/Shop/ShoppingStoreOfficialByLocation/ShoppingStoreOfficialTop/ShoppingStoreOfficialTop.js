@@ -23,6 +23,7 @@ const ShoppingStoreOfficialTop = ({
   toggleFilterLeftOpen,
   toggleFilterLeftClose,
   filterLeftAction,
+  setOpenMobileFilter
 }) => {
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [filter, setFilter] = useState(false);
@@ -38,13 +39,7 @@ const ShoppingStoreOfficialTop = ({
   }, [dressInfo?.locationIdParams]);
 
   // For DropUp
-  useEffect(() => {
-    if (filter) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [filter]);
+
   const handleToggle = () => {
     if (filterLeftAction) {
       toggleFilterLeftClose();
@@ -95,7 +90,7 @@ const ShoppingStoreOfficialTop = ({
   // console.log(filteredData?.shop?.approved_shop_locations, "filteredData?.shop?.approved_shop_locations");
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
-      <div className="filter">
+      {/* <div className="filter">
         <section
           onClick={() => setFilter(false)}
           className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
@@ -109,7 +104,7 @@ const ShoppingStoreOfficialTop = ({
         >
           <FilterDropUp onClick={toggleFilter} />
         </section>
-      </div>
+      </div> */}
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
         <div className="w-[100%] h-fit flex flex-col">
           {/* Top section */}
@@ -125,11 +120,10 @@ const ShoppingStoreOfficialTop = ({
             )}
             <div
               className={`w-full md:h-[90px]   h-fit flex flex-col md:flex-row items-center border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0
-            ${
-              filteredData?.shop?.url_background_photo
-                ? "mt-2 md:mt-0"
-                : "md:mt-10"
-            }
+            ${filteredData?.shop?.url_background_photo
+                  ? "mt-2 md:mt-0"
+                  : "md:mt-10"
+                }
             `}
             >
               {/* 1 */}
@@ -152,9 +146,8 @@ const ShoppingStoreOfficialTop = ({
                     {filteredData?.shop?.name || "name"}
                   </p>
                   <div
-                    className={`${
-                      filteredData?.shop?.overall_rating ? "flex" : "hidden"
-                    } items-center`}
+                    className={`${filteredData?.shop?.overall_rating ? "flex" : "hidden"
+                      } items-center`}
                   >
                     <div className="flex items-center mr-[6px]">
                       <StarIcons />
@@ -241,16 +234,14 @@ const ShoppingStoreOfficialTop = ({
                 </div>
                 <div className="flex items-center ml-auto">
                   <button
-                    className={`${
-                      filteredData?.shop?.gender_id === "2" ? "hidden" : "flex"
-                    }  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}
+                    className={`${filteredData?.shop?.gender_id === "2" ? "hidden" : "flex"
+                      }  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}
                   >
                     <ManGenIcons />
                   </button>
                   <button
-                    className={`${
-                      filteredData?.shop?.gender_id === "1" ? "hidden" : "flex"
-                    } flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}
+                    className={`${filteredData?.shop?.gender_id === "1" ? "hidden" : "flex"
+                      } flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}
                   >
                     <WomanGenIcons />
                   </button>
@@ -399,7 +390,7 @@ const ShoppingStoreOfficialTop = ({
               />
             </div>
             <button
-              onClick={() => setFilter(true)}
+              onClick={() => setOpenMobileFilter(true)}
               className="w-12 h-12 shrink-0 rounded-xl select-none border border-searchBgColor flex items-center justify-center"
             >
               <FilterIcons colors={"#000"} />

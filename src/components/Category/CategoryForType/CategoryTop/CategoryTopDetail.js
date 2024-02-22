@@ -18,7 +18,8 @@ const CategoryTopDetail = ({
   toggleFilterLeftOpen,
   toggleFilterLeftClose,
   filterLeftAction,
-  setOpenMobileFilter
+  setOpenMobileFilter,
+  setOpenMobileCategory
 }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
@@ -213,7 +214,7 @@ const CategoryTopDetail = ({
               </p>
             </button>
             <button
-              onClick={() => setClothingTypes(true)}
+              onClick={() => setOpenMobileCategory(true)}
               className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
             >
               <UnderSection />
