@@ -326,7 +326,6 @@ const MediumHeader = ({ stateData, setStateData }) => {
       <div className="max-w-[1280px] w-[100%] block md:flex px-3 md:px-0 md:py-0 justify-center  bg-yandexNavbar backdrop-blur-sm items-center m-auto ">
         {locationWindow !== "/allcomments" ? (
           <div className="relative">
-            
             {/* Starting of Full Screen page section */}
             <section className="w-full justify-center items-center py-3 overscroll-none overflow-y-hidden ">
               <div className=" w-full flex items-center ss:w-full md:w-fit justify-between ">
@@ -582,16 +581,16 @@ const MediumHeader = ({ stateData, setStateData }) => {
                 </NavLink>
               </div>
             </section>
-            
+
             {/*Starting of Opened Hamburger Menu section */}
             <section
-              className={`flex md:hidden max-w-[440px] h-[90vh] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0 pb-[94px] ls:pb-[70px] px-3 ${
+              className={`flex md:hidden max-w-[440px] h-[90vh] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0  px-3 ${
                 stateData?.hamburgerMenu
                   ? " flex flex-col ease-linear duration-500 overscroll-none"
                   : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
               }`}
             >
-              <div className={`w-full h-full flex flex-wrap `}>
+              <div className={`w-full h-[calc(100vh-140px)] flex flex-wrap `}>
                 {/* Categories */}
                 <ul className="flex flex-col w-full">
                   <li>
@@ -707,7 +706,9 @@ const MediumHeader = ({ stateData, setStateData }) => {
                       <span className=" py-3 pr-3">
                         <HouseStatisticIcons colors={"#000"} />
                       </span>
-                      <span className="h-full ml-[11.67px] text-[14px] text-center">Бизнес</span>
+                      <span className="h-full ml-[11.67px] text-[14px] text-center">
+                        Бизнес
+                      </span>
                     </div>
                     <span className="arrowRotate ml-auto rotate-[90deg]">
                       <ArrowTopIcons colors={"#000"} />
