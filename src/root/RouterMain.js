@@ -1,5 +1,5 @@
-import React, { Suspense, Fragment } from "react";
-import { Route, Routes} from "react-router-dom";
+import React, { Suspense, Fragment, useState, useEffect } from "react";
+import { Route, Routes, useLocation} from "react-router-dom";
 import "../index.css";
 import Header from "../components/header/header";
 import MobileAllComments from "../components/Home/Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/MobileComments";
@@ -59,14 +59,14 @@ const UserEmailVerification = React.lazy(() =>
 // ------------------ ROUTERS -------------------
 
 const RouterMain = () => {
-  // const location = useLocation();
+  const location = useLocation();
 
-  // const [locationWindow, setLocationWindow] = useState("");
-  // useEffect(() => {
-  //   setLocationWindow(location.pathname);
-  // }, [location.pathname]);
+  const [locationWindow, setLocationWindow] = useState("");
+  useEffect(() => {
+    setLocationWindow(location.pathname);
+  }, [location.pathname]);
 
-  let pathName = window?.location?.pathname;
+  // let pathName = window?.location?.pathname;
 
   return (
     <Fragment>
@@ -119,20 +119,20 @@ const RouterMain = () => {
             </Suspense>
           }
         />
-        {/* <Route
+        <Route
           path="/catalog"
           element={
             <Suspense
               fallback={
                 <div>
-                  <SkeletonHomeIndex />
+                  {/* <SkeletonHomeIndex /> */}
                 </div>
               }
             >
-              <CatalogPage />
+              {/* <CatalogPage /> */}
             </Suspense>
           }
-        /> */}
+        />
         <Route path="/catalog/:id" element={<CatalogItems />} />
         {/* <Route
           path="/catalog/:id"
@@ -330,7 +330,7 @@ const RouterMain = () => {
         />
       </Routes>
 
-      {/* {locationWindow !== "/add_user_private_data" &&
+      {locationWindow !== "/add_user_private_data" &&
       locationWindow !== "/add_user_body_data" &&
       locationWindow !== "/confirm_password" &&
       locationWindow !== "/set_new_password" &&
@@ -345,10 +345,11 @@ const RouterMain = () => {
       locationWindow !== "/profile/edit" &&
       locationWindow !== "/locations" ? (
         <Suspense fallback={<>Loading...</>}>
+          <Footer />
         </Suspense>
-      ) : null} */}
+      ) : null}
 
-      {pathName?.includes("locations") ? null : <Footer />}
+      {/* {pathName?.includes("locations") ? null : <Footer />} */}
     </Fragment>
   );
 };

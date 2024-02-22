@@ -1,12 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useHttp } from "../../../../../../hook/useHttp";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 
 import SkeletonFilter from "../../SkeletonFilter/SkeletonFilter";
-import axios from "axios";
-import Cookies from "js-cookie";
 import { ArrowTopIcons, StarIcons } from "../../../../../../assets/icons";
 import { BiCheck } from "react-icons/bi";
 import { BsCheckLg } from "react-icons/bs";
@@ -28,7 +23,6 @@ function FilterList({
     filterToggle,
     setFilterToggle
 }) {
-    const { request } = useHttp()
     const [dressInfo, setDressInfo] = useContext(dressMainData);
     const [getFilter, setGetFilter] = useState()
     const [getParamsTest, setgetParamsTest] = useState(paramsId)

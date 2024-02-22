@@ -56,18 +56,18 @@ export default function FavouriteProducts() {
       <div
         className={`max-w-[1280px] w-[100%] flex flex-col items-center justify-between ${
           wishList?.length > 4 ? "mb-10" : "mb-[80px]"
-        } m-auto ss:px-4 md:px-0`}
+        } m-auto px-[10px] md:px-0`}
       >
         <section className="w-full flex items-center justify-center flex-col">
           {wishList?.length ? (
             Cookies.get("DressmeUserToken") ? (
-              <article className="w-full flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-3 lg:gap-y-3">
+              <article className="w-full flex flex-wrap justify-between md:justify-start md:mx-0 md:mt-[50px] gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 ">
                 {mainData?.products?.map((data) => {
                   if (wishList?.includes(data?.id)) {
                     return (
                       <article
                         key={data?.id}
-                        className={`ss:w-[49%] md:w-[24%] lg:w-[19.09%] xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl box-content`}
+                        className={`w-[49%] md:w-[24%] lg:w-[240px] h-[325px] ls:h-[350px] ll:h-[365px] xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-lg md:rounded-xl`}
                       >
                         <figure
                           onClick={() => {
@@ -80,13 +80,11 @@ export default function FavouriteProducts() {
                             backgroundSize: "cover",
                             backgroundRepeat: "no-repeat",
                           }}
-                          className="relative w-full cursor-pointer h-[310px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
-                        >
-                          {/* <div><NoImg /></div> */}
-                        </figure>
-                        <section className="relative w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[130px] md:h-[136px] ">
+                          className="relative w-full cursor-pointer h-[200px] ls:h-[225px] ll:h-[240px] md:h-[310px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
+                        ></figure>
+                        <section className="relative w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[100px] md:h-[136px]">
                           {/* 1 */}
-                          <div className="group hover:w-full hover:h-[36px] cursor-pointer">
+                          <div className="group hover:w-full h-[36px] cursor-pointer mb-2 md:mb-0">
                             <button className="group-hover:hidden w-12 h-7 border border-searchBgColor rounded-lg hidden md:flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 ">
                               <figure className="w-6 h-6 flex items-center justify-center">
                                 <img
@@ -146,7 +144,9 @@ export default function FavouriteProducts() {
                           <article
                             onMouseEnter={() => handleLeaveMouse(data?.id)}
                             onClick={() => goDetail(data?.id)}
-                            className="w-full px-2 xs:px-3 xs:mt-1"
+                            className={`w-full px-2 xs:px-3 xs:mt-1 ${
+                              data?.cost?.discount_price ? "mb-0" : "mb-3"
+                            } md:mb-0`}
                           >
                             <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-1 md:mb-0  cursor-pointer">
                               <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
@@ -175,12 +175,12 @@ export default function FavouriteProducts() {
                           {/* 3 */}
                           <article
                             onMouseEnter={() => handleLeaveMouse(data?.id)}
-                            className="w-full flex items-end mb-2 justify-between  pl-3 pr-[5px]"
+                            className="w-full h-fit md:h-[31px] flex items-end justify-between pl-3 pr-[5px]"
                           >
                             <article className="flex items-center">
                               {data?.cost?.discount_price ? (
                                 <figure className="flex flex-wrap flex-col-reverse	text-start items-start ">
-                                  <p className="w-full text-start m-0 p-0  not-italic font-AeonikProMedium text-[15px] md:text-[15px] leading-1 text-red-700 xs:text-[15px] xs:leading-0 mr-2">
+                                  <p className="w-full text-start m-0 p-0 not-italic font-AeonikProMedium text-[15px] md:text-[15px] leading-1 text-red-700 xs:text-[15px] xs:leading-0 mr-2">
                                     {parseInt(data?.cost?.discount_price)
                                       ?.toLocaleString()
                                       ?.split(",")
@@ -188,7 +188,7 @@ export default function FavouriteProducts() {
                                     {"  "}
                                     сум
                                   </p>
-                                  <p className="w-full text-start m-0 p-0 text-[10px] mb-[4px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
+                                  <p className="w-full text-start m-0 p-0 text-[12px] mb-[4px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
                                     {parseInt(data?.cost?.price)
                                       ?.toLocaleString()
                                       ?.split(",")
@@ -211,7 +211,13 @@ export default function FavouriteProducts() {
                                 </p>
                               )}
                             </article>
-                            <figure className="flex items-center select-none	absolute right-2 bottom-2">
+                            <figure
+                              className={`flex items-center select-none absolute right-2 ${
+                                data?.cost?.discount_price
+                                  ? "bottom-[7px] ls:bottom-[-17px]"
+                                  : " bottom-[8px] ls:bottom-[-17px]"
+                              } md:bottom-2`}
+                            >
                               {Cookies.get("DressmeUserToken") && (
                                 <button
                                   onClick={() => {
@@ -225,7 +231,7 @@ export default function FavouriteProducts() {
                                       setWishlist([...wishList, data?.id]);
                                     }
                                   }}
-                                  className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                                  className="w-[32px] h-[32px] active:scale-95 active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                                 >
                                   {wishList.includes(data?.id) ? (
                                     <BsHeartFill color="#d50000" />
@@ -249,7 +255,7 @@ export default function FavouriteProducts() {
                     return (
                       <article
                         key={data?.id}
-                        className={`ss:w-[49%] md:w-[24%] lg:w-[19.09%] xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-xl box-content`}
+                        className={`w-[49%] md:w-[24%] lg:w-[240px] h-[325px] ls:h-[350px] ll:h-[365px] xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-lg md:rounded-xl`}
                       >
                         <figure
                           onClick={() => {
@@ -262,13 +268,11 @@ export default function FavouriteProducts() {
                             backgroundSize: "cover",
                             backgroundRepeat: "no-repeat",
                           }}
-                          className="relative w-full cursor-pointer h-[310px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
-                        >
-                          {/* <div><NoImg /></div> */}
-                        </figure>
-                        <section className="relative w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[130px] md:h-[136px] ">
+                          className="relative w-full cursor-pointer h-[200px] ls:h-[225px] ll:h-[240px] md:h-[310px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
+                        ></figure>
+                        <section className="relative w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[100px] md:h-[136px]">
                           {/* 1 */}
-                          <div className="group hover:w-full hover:h-[36px] cursor-pointer">
+                          <div className="group hover:w-full h-[36px] cursor-pointer mb-1 md:mb-0">
                             <button className="group-hover:hidden w-12 h-7 border border-searchBgColor rounded-lg hidden md:flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 ">
                               <figure className="w-6 h-6 flex items-center justify-center">
                                 <img
@@ -328,13 +332,15 @@ export default function FavouriteProducts() {
                           <article
                             onMouseEnter={() => handleLeaveMouse(data?.id)}
                             onClick={() => goDetail(data?.id)}
-                            className="w-full px-2 xs:px-3 xs:mt-1"
+                            className={`w-full px-2 xs:px-3 xs:mt-1 ${
+                              data?.cost?.discount_price ? "mb-0" : "mb-3"
+                            } md:mb-0`}
                           >
-                            <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-1 md:mb-0  cursor-pointer">
+                            <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-[6px mb-1 md:mb-0] md:mb-0  cursor-pointer">
                               <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
                               {data?.name_ru || "NoData"}
                             </figure>
-                            <figure className="w-full h-[16px] flex justify-between items-center xs:mt-1">
+                            <figure className="w-full h-[16px] flex justify-between items-center my-1">
                               {data?.overall_rating ? (
                                 <section className="flex items-center justify-between">
                                   <article>
@@ -357,12 +363,12 @@ export default function FavouriteProducts() {
                           {/* 3 */}
                           <article
                             onMouseEnter={() => handleLeaveMouse(data?.id)}
-                            className="w-full flex items-end mb-2 justify-between  pl-3 pr-[5px]"
+                            className="w-full h-fit md:h-[31px] flex items-end justify-between pl-3 pr-[5px]"
                           >
                             <article className="flex items-center">
                               {data?.cost?.discount_price ? (
                                 <figure className="flex flex-wrap flex-col-reverse	text-start items-start ">
-                                  <p className="w-full text-start m-0 p-0  not-italic font-AeonikProMedium text-[15px] md:text-[15px] leading-1 text-red-700 xs:text-[15px] xs:leading-0 mr-2">
+                                  <p className="w-full text-start m-0 p-0 not-italic font-AeonikProMedium text-[15px] md:text-[15px] leading-1 text-red-700 xs:text-[15px] xs:leading-0 mr-2">
                                     {parseInt(data?.cost?.discount_price)
                                       ?.toLocaleString()
                                       ?.split(",")
@@ -370,7 +376,7 @@ export default function FavouriteProducts() {
                                     {"  "}
                                     сум
                                   </p>
-                                  <p className="w-full text-start m-0 p-0 text-[10px] mb-[4px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
+                                  <p className="w-full text-start m-0 p-0 text-[12px] mb-[4px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
                                     {parseInt(data?.cost?.price)
                                       ?.toLocaleString()
                                       ?.split(",")
@@ -393,7 +399,13 @@ export default function FavouriteProducts() {
                                 </p>
                               )}
                             </article>
-                            <figure className="flex items-center select-none	absolute right-2 bottom-2">
+                            <figure
+                              className={`flex items-center select-none absolute right-2 ${
+                                data?.cost?.discount_price
+                                  ? "bottom-[7px] ls:bottom-[-17px]"
+                                  : " bottom-[8px] ls:bottom-[-17px]"
+                              } md:bottom-2`}
+                            >
                               <button
                                 onClick={() => {
                                   if (wishList?.includes(data?.id)) {
@@ -406,7 +418,7 @@ export default function FavouriteProducts() {
                                     setWishlist([...wishList, data?.id]);
                                   }
                                 }}
-                                className="w-[32px] h-[32px] active:scale-95  active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                                className="w-[32px] h-[32px] active:scale-95 active:opacity-70 rounded-lg overflow-hidden border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                               >
                                 {wishList.includes(data?.id) ? (
                                   <BsHeartFill color="#d50000" />

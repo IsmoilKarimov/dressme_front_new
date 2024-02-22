@@ -1,6 +1,5 @@
-import React, { useContext, useRef, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
 import InputMask from "react-input-mask";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { DatePicker, Popover, Space } from "antd";
@@ -19,9 +18,8 @@ import {
   GenderFemaleIcon,
 } from "../../../assets/icons";
 import { UzbekFlag } from "../../../assets";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { ToastContainer, toast } from "react-toastify";
-import LoadingFor from "../../Loading/LoadingFor";
 import LoadingNetwork from "../../Loading/LoadingNetwork";
 
 export default function SignUp() {
@@ -234,9 +232,9 @@ export default function SignUp() {
             theme="colored"
           />
           {state?.validateConfirm ? (
-            <div className=" py-8 w-full  min-h-[calc(100vh-180px)] mb-10 flex justify-center">
+            <div className="pb-10 md:py-8 w-full mb-10 flex justify-center">
               <div className="max-w-[440px] w-[100%] h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
-                <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-xl  leading-5 ss:text-start md:text-center  tracking-[0,16px] text-black">
+                <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-[17px] ls:text-[19px] ll:text-[20px] leading-5 ss:text-start md:text-center  tracking-[0,16px] text-black">
                   Добро пожаловать в{" "}
                   <span className={`${dressInfo?.TextColorSeason}`}>
                     Dressme

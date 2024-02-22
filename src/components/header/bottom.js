@@ -153,7 +153,8 @@ function BottomHeader() {
               <input
                 name="name"
                 className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-                defaultValue={Number(values[0]).toLocaleString()}
+                // defaultValue={Number(values[0]).toLocaleString()}
+                value={Number(values[0]).toLocaleString()}
               />{" "}
               сум
             </span>
@@ -166,7 +167,8 @@ function BottomHeader() {
               <input
                 name="name"
                 className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-                defaultValue={Number(values[1]).toLocaleString()}
+                // defaultValue={Number(values[1]).toLocaleString()}
+                value={Number(values[1]).toLocaleString()}
               />
               сум
             </span>
