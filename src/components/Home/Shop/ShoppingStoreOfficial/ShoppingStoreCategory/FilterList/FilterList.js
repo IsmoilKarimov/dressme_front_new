@@ -92,45 +92,7 @@ function FilterList({
             // fetchGetAllData()
         }
     }, [dressInfo?.locationIdParams])
-    // const fetchData = async (customHeaders) => {
-    //     try {
-    //         const response = await axios.get(`${url}/shops/filter/${paramsId}?location_id=${1}`, {
-    //             headers: customHeaders,
-    //         });
-    //         const status = response.status;
-    //         const data = response.data;
 
-    //         return { data, status };
-    //     } catch (error) {
-    //         const status = error.response ? error.response.status : null;
-    //         return { error, status };
-    //     }
-    // };
-
-    // const customHeaders = {
-    //     'Content-type': 'application/json; charset=UTF-8',
-    //     "Authorization": `Bearer ${Cookies.get("DressmeUserToken")}`,    // Add other headers as needed
-    // };
-
-    // useQuery(['get_shop_filter'], () => fetchData(customHeaders), {
-    //     onSuccess: (data) => {
-    //         console.log(data, "BU filter status");
-    //         if (data?.status === 200) {
-    //             setGetFilter(data?.data?.filter)
-    //         }
-    //         if (data?.status === 401) {
-    //             // postDataWithHeaders();
-    //         }
-    //     },
-    //     onError: (error) => {
-    //         if (error?.response?.status === 401) {
-    //             // setStatusUser(error?.response?.status);
-    //             // postDataWithHeaders();
-    //         }
-    //     },
-    //     keepPreviousData: true,
-    //     refetchOnWindowFocus: false,
-    // });
 
     const [genderCategory, setGenderCategory] = useState([
         {
@@ -296,8 +258,6 @@ function FilterList({
         getRatingList(null)
     }
     // --------OutWear
-
-
     useEffect(() => {
         if (getFilter?.wear_sizes?.outwear) {
             const transformedArray = Object?.entries(getFilter?.wear_sizes?.outwear).map(
@@ -331,7 +291,6 @@ function FilterList({
             setUnderwearData(transformedArray);
         }
     }, [getFilter?.wear_sizes?.underwear]);
-
 
     const onHandleUnderWearList = (select) => {
         setDataActionUnderwearSizes(select)

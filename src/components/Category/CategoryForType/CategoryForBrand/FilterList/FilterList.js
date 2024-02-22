@@ -26,7 +26,8 @@ function FilterList({
     footWearList,
     getRatingList,
     filterToggle,
-    setFilterToggle
+    setFilterToggle,
+    openMobileFilter
 }) {
     const { request } = useHttp()
     const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -71,6 +72,7 @@ function FilterList({
     const [dataActionFootwearSizes, setDataActionFootwearSizes] = useState();
     const url = `https://api.dressme.uz/api/main`;
 
+
     function fetchGetAllData() {
         fetch(`${url}/section-filter/${paramsId}?region=${dressInfo?.mainRegionId}`)
             .then((res) => res.json())
@@ -80,58 +82,46 @@ function FilterList({
             .catch((err) => console.log(err, "ERRORLIST"));
     }
     useEffect(() => {
-        if (filterToggle && !getFilter) {
+        if ((filterToggle || openMobileFilter) && !getFilter) {
             fetchGetAllData()
         }
-    }, [filterToggle, dressInfo?.mainRegionId])
+    }, [filterToggle, openMobileFilter, dressInfo?.mainRegionId])
+
+    useEffect(() => {
+        discountId(false)
+        genderId(null)
+        setSelectedDiscount(null)
+        setSelectedGender(0)
+        setDataColor([])
+        // dataColor(null)
+        setCategorySelect(null)
+        categoryId(null)
+
+        setClearPrice(false)
+        setValues([
+            Number(getFilter?.budget?.min_price),
+            Number(getFilter?.budget?.max_price),
+        ]);
+        getBadgePrice([])
+        setSelectedRating(null)
+        getRatingList(null)
+        setDataActionUnderwearSizes()
+        underWearList()
+        setDataActionFootwearSizes()
+        footWearList()
+        setDataActionOutwearSizes()
+        outWearList()
+        setFilterToggle(false)
+
+    }, [paramsId])
 
     useEffect(() => {
         if (getParamsTest !== paramsId) {
             setgetParamsTest(paramsId)
             setFilterToggle(false)
-            setGetFilter()
-            // fetchGetAllData()
         }
-    }, [paramsId, filterToggle])
-    // const fetchData = async (customHeaders) => {
-    //     try {
-    //         const response = await axios.get(`${url}/shops/filter/${paramsId}?location_id=${1}`, {
-    //             headers: customHeaders,
-    //         });
-    //         const status = response.status;
-    //         const data = response.data;
+    }, [filterToggle])
 
-    //         return { data, status };
-    //     } catch (error) {
-    //         const status = error.response ? error.response.status : null;
-    //         return { error, status };
-    //     }
-    // };
-
-    // const customHeaders = {
-    //     'Content-type': 'application/json; charset=UTF-8',
-    //     "Authorization": `Bearer ${Cookies.get("DressmeUserToken")}`,    // Add other headers as needed
-    // };
-
-    // useQuery(['get_shop_filter'], () => fetchData(customHeaders), {
-    //     onSuccess: (data) => {
-    //         console.log(data, "BU filter status");
-    //         if (data?.status === 200) {
-    //             setGetFilter(data?.data?.filter)
-    //         }
-    //         if (data?.status === 401) {
-    //             // postDataWithHeaders();
-    //         }
-    //     },
-    //     onError: (error) => {
-    //         if (error?.response?.status === 401) {
-    //             // setStatusUser(error?.response?.status);
-    //             // postDataWithHeaders();
-    //         }
-    //     },
-    //     keepPreviousData: true,
-    //     refetchOnWindowFocus: false,
-    // });
 
     const [genderCategory, setGenderCategory] = useState([
         {
