@@ -7,7 +7,7 @@ import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import SkeletonFilter from "../../SkeletonFilter/SkeletonFilter";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { ArrowTopIcons, StarIcons } from "../../../../../assets/icons";
+import { ArrowTopIcons, MenuCloseIcons, StarIcons } from "../../../../../assets/icons";
 import { BiCheck } from "react-icons/bi";
 import { BsCheckLg } from "react-icons/bs";
 
@@ -27,7 +27,8 @@ function FilterList({
     getRatingList,
     filterToggle,
     setFilterToggle,
-    openMobileFilter
+    openMobileFilter,
+    setOpenMobileFilter
 }) {
     const { request } = useHttp()
     const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -405,6 +406,15 @@ function FilterList({
                 <div
                     className={` w-full flex-col items-center md:mb-[38px]`}
                 >
+                    <section className="h-fit  md:hidden w-full bg-btnBgColor flex items-center  justify-between md:mb-0 mb-4 ">
+                        <p className="text-lg font-AeonikProMedium">Фильтры</p>
+                        <button
+                            type="button"
+                            onClick={() => setOpenMobileFilter(false)}
+                        >
+                            <MenuCloseIcons colors={"#b5b5b5"} />
+                        </button>
+                    </section>
                     {/* ------Пол---- */}
                     {getFilter?.gender_ids && <div className="md:mb-[38px]">
                         <article

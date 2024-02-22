@@ -195,7 +195,13 @@ export default function CatalogItems() {
     dressInfo?.mainSubRegionId,
   ]);
 
-
+  useEffect(() => {
+    if (openMobileFilter) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [openMobileFilter]);
   return (
     <main className="w-full h-full">
       {/* TOP DATA */}
@@ -365,6 +371,7 @@ export default function CatalogItems() {
                   filterToggle={filterToggle}
                   setFilterToggle={setFilterToggle}
                   openMobileFilter={openMobileFilter}
+                  setOpenMobileFilter={setOpenMobileFilter}
 
                 />
               </div>

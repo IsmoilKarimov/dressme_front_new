@@ -7,7 +7,7 @@ import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import SkeletonFilter from "../../SkeletonFilter/SkeletonFilter";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { ArrowTopIcons, StarIcons } from "../../../../../../assets/icons";
+import { ArrowTopIcons, MenuCloseIcons, StarIcons } from "../../../../../../assets/icons";
 import { BiCheck } from "react-icons/bi";
 import { BsCheckLg } from "react-icons/bs";
 
@@ -28,7 +28,8 @@ function FilterList({
     filterToggle,
     setPageId,
     setFilterToggle,
-    openMobileFilter
+    openMobileFilter,
+    setOpenMobileFilter
 
 }) {
     const { request } = useHttp()
@@ -95,45 +96,7 @@ function FilterList({
             setGetFilter()
         }
     }, [dressInfo?.locationIdParams])
-    // const fetchData = async (customHeaders) => {
-    //     try {
-    //         const response = await axios.get(`${url}/shops/filter/${paramsId}?location_id=${1}`, {
-    //             headers: customHeaders,
-    //         });
-    //         const status = response.status;
-    //         const data = response.data;
 
-    //         return { data, status };
-    //     } catch (error) {
-    //         const status = error.response ? error.response.status : null;
-    //         return { error, status };
-    //     }
-    // };
-
-    // const customHeaders = {
-    //     'Content-type': 'application/json; charset=UTF-8',
-    //     "Authorization": `Bearer ${Cookies.get("DressmeUserToken")}`,    // Add other headers as needed
-    // };
-
-    // useQuery(['get_shop_filter'], () => fetchData(customHeaders), {
-    //     onSuccess: (data) => {
-    //         console.log(data, "BU filter status");
-    //         if (data?.status === 200) {
-    //             setGetFilter(data?.data?.filter)
-    //         }
-    //         if (data?.status === 401) {
-    //             // postDataWithHeaders();
-    //         }
-    //     },
-    //     onError: (error) => {
-    //         if (error?.response?.status === 401) {
-    //             // setStatusUser(error?.response?.status);
-    //             // postDataWithHeaders();
-    //         }
-    //     },
-    //     keepPreviousData: true,
-    //     refetchOnWindowFocus: false,
-    // });
 
     const [genderCategory, setGenderCategory] = useState([
         {
@@ -421,6 +384,15 @@ function FilterList({
                 <div
                     className={` w-full flex-col items-center md:mb-[38px]`}
                 >
+                    <section className="h-fit  md:hidden w-full bg-btnBgColor flex items-center  justify-between md:mb-0 mb-4 ">
+                        <p className="text-lg font-AeonikProMedium">Фильтры</p>
+                        <button
+                            type="button"
+                            onClick={() => setOpenMobileFilter(false)}
+                        >
+                            <MenuCloseIcons colors={"#b5b5b5"} />
+                        </button>
+                    </section>
                     {/* ------Пол---- */}
                     {getFilter?.gender_ids &&
                         <div className="md:mb-[38px]">
