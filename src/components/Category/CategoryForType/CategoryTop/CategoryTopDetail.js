@@ -9,9 +9,7 @@ import {
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
-import FilterDropUp from "../CategoryMobileDropUp/FilterDropUp";
-import ClothingTypesDropUp from "../CategoryMobileDropUp/ClothingTypesDropUp";
-import { dressMainData } from "../../../../ContextHook/ContextMenu";
+
 
 const CategoryTopDetail = ({
   filterData,
@@ -21,14 +19,7 @@ const CategoryTopDetail = ({
   setOpenMobileFilter,
   setOpenMobileCategory
 }) => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
 
-  const [clothingTypes, setClothingTypes] = useState(false);
-  const [filter, setFilter] = useState(false);
-  // const [data, setData] = useState({});
-
-  const toggleFilter = useCallback(() => setFilter(false), []);
-  const toggleClothingTypes = useCallback(() => setClothingTypes(false), []);
 
   const handleToggle = () => {
     if (filterLeftAction) {
@@ -38,13 +29,7 @@ const CategoryTopDetail = ({
     }
   };
   // For DropUp
-  useEffect(() => {
-    if (filter || clothingTypes) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [filter, clothingTypes]);
+
 
   // const { id } = useParams();
   // const newId = id?.replace(":", "");
@@ -118,33 +103,6 @@ const CategoryTopDetail = ({
         </section>
       </div>
 
-      <div className="tableSizes">
-        <section
-          onClick={() => setFilter(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${filter ? "" : "hidden"
-            }`}
-        ></section>
-        <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${filter ? "bottom-0" : "bottom-[-800px] z-0"
-            }`}
-        >
-          {/* <FilterDropUp onClick={toggleFilter} /> */}
-        </section>
-      </div>
-
-      <div className="locations">
-        <section
-          onClick={() => setClothingTypes(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${clothingTypes ? "" : "hidden"
-            }`}
-        ></section>
-        <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${clothingTypes ? "bottom-0" : "bottom-[-800px] z-0"
-            }`}
-        >
-          <ClothingTypesDropUp onClick={toggleClothingTypes} />
-        </section>
-      </div>
 
       <section className=" w-[100%] flex flex-col items-center justify-between m-auto">
         <article className="w-[100%] h-fit md:mb-16">
@@ -205,7 +163,6 @@ const CategoryTopDetail = ({
           <article className="w-full md:hidden flex items-center justify-between mt-6 mb-3 px-4">
             <button
               onClick={() => setOpenMobileFilter(true)}
-              // onClick={() => setFilter(true)}
               className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
             >
               <SortIcons />

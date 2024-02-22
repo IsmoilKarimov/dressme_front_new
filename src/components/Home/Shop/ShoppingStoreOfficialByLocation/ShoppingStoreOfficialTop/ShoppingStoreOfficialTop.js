@@ -14,7 +14,6 @@ import {
 } from "../../../../../assets/icons";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Modal, Radio, Space } from "antd";
-import FilterDropUp from "../../../../Category/CategoryForType/CategoryMobileDropUp/FilterDropUp";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 
 const ShoppingStoreOfficialTop = ({
@@ -26,8 +25,7 @@ const ShoppingStoreOfficialTop = ({
   setOpenMobileFilter
 }) => {
   const [openLocationModal, setOpenLocationModal] = useState(false);
-  const [filter, setFilter] = useState(false);
-  const toggleFilter = useCallback(() => setFilter(false), []);
+
   const [locationList, setLocationList] = useState([]);
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [selectLocation, setSelectLocation] = useState(
@@ -90,21 +88,7 @@ const ShoppingStoreOfficialTop = ({
   // console.log(filteredData?.shop?.approved_shop_locations, "filteredData?.shop?.approved_shop_locations");
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
-      {/* <div className="filter">
-        <section
-          onClick={() => setFilter(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-            filter ? "" : "hidden"
-          }`}
-        ></section>
-        <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
-            filter ? "bottom-0" : "bottom-[-800px] z-0"
-          }`}
-        >
-          <FilterDropUp onClick={toggleFilter} />
-        </section>
-      </div> */}
+
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
         <div className="w-[100%] h-fit flex flex-col">
           {/* Top section */}

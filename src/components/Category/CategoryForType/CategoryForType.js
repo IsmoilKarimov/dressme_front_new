@@ -142,6 +142,13 @@ function CategoryForType() {
   const handleCategories = (value, id) => {
     navigate(`/section/:${id}`);
   };
+  useEffect(() => {
+    if (openMobileFilter || openMobileCategory) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [openMobileFilter, openMobileCategory]);
   return (
     <main className="w-full h-full">
       <section className="w-full ">
@@ -207,10 +214,10 @@ function CategoryForType() {
           </action>
         </section>
         <section
-          className={` fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+          className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
             }`}
         >
-          <div className="max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
+          <div className="w-full h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
             <FilterList
               paramsId={newId}
               genderId={genderId}
@@ -226,6 +233,7 @@ function CategoryForType() {
               filterToggle={filterToggle}
               setFilterToggle={setFilterToggle}
               openMobileFilter={openMobileFilter}
+              setOpenMobileFilter={setOpenMobileFilter}
             />
           </div>
         </section>
