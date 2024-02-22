@@ -389,9 +389,6 @@ export default function CatalogItems() {
                         handleCategories(data?.id);
                       }}
                       className={`${Number(paramId?.id) === data?.id ? "bg-bgColor" : null} h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
-
-                    // className={`${Number(paramId?.id) === data?.id ? "bg-bgColor" : null
-                    //   } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
                     >
                       {data?.name_ru}
                     </p>

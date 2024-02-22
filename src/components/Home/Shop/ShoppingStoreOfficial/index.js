@@ -31,6 +31,7 @@ const ShoppingStoreOfficial = () => {
   const [getUnderWearList, setGetUnderWearList] = useState(null);
   const [getFootWearList, setGetFootWearList] = useState(null);
   const [filterToggle, setFilterToggle] = useState(false);
+  const [openMobileFilter, setOpenMobileFilter] = useState(false);
 
   const toggleFilterOpen = React.useCallback(() => setFilterToggle(true), []);
   const toggleFilterClose = React.useCallback(() => setFilterToggle(false), []);
@@ -231,8 +232,14 @@ const ShoppingStoreOfficial = () => {
     data?.getMainProductCard,
     dressInfo?.locationIdParams,
   ]);
-  // console.log(filteredData, "filteredData");
 
+  useEffect(() => {
+    if (openMobileFilter) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [openMobileFilter]);
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
       {/* {!filteredData ? <LoadingNetwork />
@@ -251,7 +258,41 @@ const ShoppingStoreOfficial = () => {
             toggleFilterLeftOpen={toggleFilterOpen}
             toggleFilterLeftClose={toggleFilterClose}
             filterLeftAction={filterToggle}
+            setOpenMobileFilter={setOpenMobileFilter}
           />
+        </section>
+        {/* FOR MOBILE VERSION */}
+        <section
+          onClick={() => {
+            setOpenMobileFilter(false)
+          }}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter ? "" : "hidden"
+            }`}
+        ></section>
+        <section
+          className={` fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
+        >
+          <div className="max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
+            <FilterList
+              paramsId={newId}
+              genderId={genderId}
+              discountId={discountId}
+              categoryId={categoryId}
+              getBadgePrice={getBadgePrice}
+              setDataColor={setDataColor}
+              dataColor={dataColor}
+              getRatingList={getRatingList}
+              outWearList={outWearList}
+              underWearList={underWearList}
+              footWearList={footWearList}
+              filterToggle={filterToggle}
+              setFilterToggle={setFilterToggle}
+              setPageId={setPageId}
+              openMobileFilter={openMobileFilter}
+
+            />
+          </div>
         </section>
         <section className="w-full flex items-center justify-center ">
           <div className="w-full flex flex-col items-center justify-center">
@@ -260,7 +301,6 @@ const ShoppingStoreOfficial = () => {
               className={`${openTabComment || openTabLocation ? "hidden" : "block"
                 } w-full `}
             >
-              {/* <ShoppingStoreCategory filteredData={filteredData} /> */}
               <section className="w-[100%] h-fit">
                 <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
                   <div

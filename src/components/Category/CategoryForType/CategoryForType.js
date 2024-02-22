@@ -3,8 +3,9 @@ import "../category.css";
 import CategoryCards from "./CategoryElement/CategoryCards";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import CategoryTopDetail from "./CategoryTop/CategoryTopDetail";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import FilterList from "./CategoryForBrand/FilterList/FilterList";
+import { MenuCloseIcons } from "../../../assets/icons";
 
 function CategoryForType() {
   const [dressInfo] = useContext(dressMainData);
@@ -22,6 +23,7 @@ function CategoryForType() {
   const [getFootWearList, setGetFootWearList] = useState(null)
   const [filterToggle, setFilterToggle] = useState(false)
   const [openMobileFilter, setOpenMobileFilter] = useState(false)
+  const [openMobileCategory, setOpenMobileCategory] = useState(false)
   console.log(openMobileFilter, "openMobileFilter")
   const toggleFilterOpen = React.useCallback(() => setFilterToggle(true), []);
   const toggleFilterClose = React.useCallback(() => setFilterToggle(false), []);
@@ -135,6 +137,11 @@ function CategoryForType() {
     getRating,
     getRange,
   ])
+  const navigate = useNavigate();
+
+  const handleCategories = (value, id) => {
+    navigate(`/section/:${id}`);
+  };
   return (
     <main className="w-full h-full">
       <section className="w-full ">
@@ -143,15 +150,62 @@ function CategoryForType() {
           toggleFilterLeftClose={toggleFilterClose}
           filterLeftAction={filterToggle}
           setOpenMobileFilter={setOpenMobileFilter}
+          setOpenMobileCategory={setOpenMobileCategory}
         />
       </section>
       <section className="flex justify-between mb-10">
         <section
-          onClick={() => setOpenMobileFilter(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter ? "" : "hidden"
+          onClick={() => {
+            setOpenMobileCategory(false)
+            setOpenMobileFilter(false)
+          }}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter || openMobileCategory ? "" : "hidden"
             }`}
         ></section>
         {/* For Mobile Versions */}
+        <section
+          className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
+        >
+          <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between  mb-1 ">
+            <p className="text-xl font-AeonikProMedium">Под разделу</p>
+            <button onClick={() => setOpenMobileCategory(false)
+            }>
+              <MenuCloseIcons colors={"#000"} />
+            </button>
+          </section>
+          <div className="max-w-[440px]  w-[100%] h-[320px] z-[114]  border-y  overflow-y-auto overflow-hidden ">
+
+            {filterData?.sections?.map((data) => {
+              return (
+                <p
+                  key={data?.id}
+                  onClick={() => {
+                    handleCategories(data?.name_ru, data?.id);
+                  }}
+                  className={`${filterData?.section?.id === data?.id ? "bg-bgColor" : null} h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
+                >
+                  {data?.name_ru}
+                </p>
+              );
+            })}
+          </div>
+          <action className="w-full flex items-center justify-between gap-x-3 mb-4 mt-5">
+            <button
+              type="button"
+              onClick={() => setOpenMobileCategory(false)}
+              className="w-[45%] h-[38px] text-base font-AeonikProMedium bg-white text-borderWinter border border-borderWinter rounded-md active:scale-95"
+            >
+              Закрыт
+            </button>
+            <button
+              type="button"
+              onClick={() => setOpenMobileCategory(false)}
+              className="w-[45%] h-[38px] text-base font-AeonikProMedium bg-borderWinter text-white border border-borderWinter rounded-md active:scale-95">
+              Выбрать
+            </button>
+          </action>
+        </section>
         <section
           className={` fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
             }`}
@@ -178,7 +232,6 @@ function CategoryForType() {
 
         {/* For Desktop Version */}
         <article className={`${filterToggle ? "md:block" : "md:hidden"} hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0 `}>
-          {/* <CategoryForBrand pageId={pageId} filterData={filterData} /> */}
           <FilterList
             paramsId={newId}
             genderId={genderId}
