@@ -1,6 +1,4 @@
 import React from "react";
-import styles from "./forLoading.module.css";
-import PuffLoader from "react-spinners/PuffLoader";
 import WiFiLoader from "../../assets/backTop/wifi_loader.gif";
 export default function LoadingNetwork() {
   return (
@@ -14,7 +12,7 @@ export default function LoadingNetwork() {
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center center",
             }}
-            className="w-[100px] h-[100px]"
+            className="md:w-[100px] w-[60px] md:h-[100px] h-[60px]"
           ></div>
         </div>
       </div>
