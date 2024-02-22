@@ -102,7 +102,7 @@ const CatalogTopFilter = () => {
     <main className="w-full">
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
         
-        <section className="w-[100%] h-fit flex-col hidden border-b border-searchBgColor ">
+        <section className="w-[100%] h-fit flex-col hidden border-b border-searchBgColor">
           <article className="w-full flex flex-col">
             <figure className="relative w-full  md:h-[90px]  mt-2 md:mt-0  h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               <div className="w-full md:w-fit flex items-center justify-between md:mr-5  mt-6 md:mt-0">

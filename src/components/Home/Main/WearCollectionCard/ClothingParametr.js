@@ -370,15 +370,10 @@ const ClothingParametr = () => {
                             <input
                               className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                               name="name"
-                              // value={state?.minPrice}
-                              defaultValue={Number(
-                                data?.getMainProductCard?.budget?.min_price
-                              ).toLocaleString()}
-                              // onChange={(e) =>
-                              //   setData(
-                              //     data?.getMainProductCard?.budget?.min_price
-                              //   )
-                              // }
+                              value={Number(values[0]).toLocaleString()}
+                              // defaultValue={Number(
+                              //   data?.getMainProductCard?.budget?.min_price
+                              // ).toLocaleString()}
                             />{" "}
                             сум
                           </span>
@@ -391,13 +386,10 @@ const ClothingParametr = () => {
                             <input
                               className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                               name="name"
-                              // value={state?.maxPrice}
-                              defaultValue={Number(
-                                data?.getMainProductCard?.budget?.max_price
-                              ).toLocaleString()}
-                              // onChange={(e) =>
-                              //   setState({ ...state, maxPrice: e.target.value })
-                              // }
+                              value={Number(values[1]).toLocaleString()}
+                              // defaultValue={Number(
+                              //   data?.getMainProductCard?.budget?.max_price
+                              // ).toLocaleString()}
                             />
                             сум
                           </span>

@@ -42,7 +42,7 @@ const CatalogMobile = () => {
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <CatalogTopFilter />
       <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
-        <article className="w-full h-full pt-6 pb-20 flex flex-wrap ll:gap-x-2 gap-y-4 justify-between">
+        <article className="w-full h-full pt-6 pb-20 flex flex-wrap ll:gap-x-2 gap-y-4 justify-between xs:justify-start xs:gap-x-4">
           {wearArray?.map((item) => {
             return (
               <figure
@@ -68,7 +68,7 @@ const CatalogMobile = () => {
         </article>
       </section>
       <section
-        className={`w-full md:hidden h-screen ${
+        className={`w-full hidden h-screen ${
           openCatalog
             ? "flex flex-col ease-linear duration-500 overscroll-none"
             : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
