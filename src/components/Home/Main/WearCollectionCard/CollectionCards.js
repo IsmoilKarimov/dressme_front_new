@@ -161,10 +161,10 @@ export default function CollectionCards() {
           {data?.getMainProductCard?.products?.next_page_url ? (
             <div className="w-full h-fit flex items-center justify-center mb-5 md:mb-0 md:mt-14">
               {data?.btnLoader ? (
-                <div className="w-full flex">
+                <div className="w-full flex justify-center">
                   <button
                     type="button"
-                    className="hidden md:flex w-[760px] h-[40px] md:h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-[14px] md:text-base leading-4 text-center text-borderWinter items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
+                    className="hidden md:flex w-[50%] md:w-[760px] h-[45px] md:h-[60px] cursor-pointer not-italic font-AeonikProMedium text-[14px] md:text-base leading-4 text-center text-borderWinter items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
                   >
                     <ClipLoader
                       className="h-full py-[2px]"
@@ -175,7 +175,7 @@ export default function CollectionCards() {
                   </button>
                   <button
                     type="button"
-                    className="md:hidden w-[760px] h-[40px] md:h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-[14px] md:text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
+                    className="md:hidden w-[50%] md:w-[760px] h-[45px] md:h-[60px] cursor-pointer not-italic font-AeonikProMedium text-[14px] md:text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
                   >
                     <ClipLoader
                       className="h-full py-[2px]"
@@ -191,7 +191,7 @@ export default function CollectionCards() {
                   onClick={() => {
                     setPage((prev) => prev + 1);
                   }}
-                  className="w-[760px] h-[40px] md:h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-[14px] md:text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
+                  className="w-[50%] md:w-[760px] h-[45px] md:h-[60px] active:opacity-80 md:active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-[14px] md:text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
                 >
                   Показать ещё{" "}
                 </button>
