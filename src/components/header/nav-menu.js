@@ -19,8 +19,6 @@ const NavMenu = ({ stateData, setStateData }) => {
   const [dressInfo] = useContext(dressMainData);
     const [, , wishList,] = useContext(HomeMainDataContext);
 
-    console.log(wishList, "wishList");
-
   return (
     <nav
       className={`bg-white shadow-navMenuShadov  px-4 w-full rounded-t-xl md:hidden z-[101] h-full overscroll-none overflow-y-hidden`}

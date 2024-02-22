@@ -119,20 +119,20 @@ const RouterMain = () => {
             </Suspense>
           }
         />
-        {/* <Route
+        <Route
           path="/catalog"
           element={
             <Suspense
               fallback={
                 <div>
-                  <SkeletonHomeIndex />
+                  {/* <SkeletonHomeIndex /> */}
                 </div>
               }
             >
-              <CatalogPage />
+              {/* <CatalogPage /> */}
             </Suspense>
           }
-        /> */}
+        />
         <Route path="/catalog/:id" element={<CatalogItems />} />
         {/* <Route
           path="/catalog/:id"
