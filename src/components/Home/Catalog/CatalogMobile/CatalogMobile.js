@@ -3,6 +3,7 @@ import { img4, img5, img6, img7, img8 } from "../../../../assets";
 import { MenuCloseIcons } from "../../../../assets/icons";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { useNavigate } from "react-router-dom";
+import CatalogTopFilter from "../CatalogFilter/CatalogTop/CatalogTopFilter";
 
 const CatalogMobile = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -39,11 +40,15 @@ const CatalogMobile = () => {
 
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
+      <CatalogTopFilter />
       <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
         <article className="w-full h-full pt-6 pb-20 flex flex-wrap ll:gap-x-2 gap-y-4 justify-between">
           {wearArray?.map((item) => {
             return (
-              <figure key={item?.id} className="w-[140px] ls:w-[150px] ll:w-[175px] h-fit flex flex-wrap gap-y-2 ">
+              <figure
+                key={item?.id}
+                className="w-[140px] ls:w-[150px] ll:w-[175px] h-fit flex flex-wrap gap-y-2 "
+              >
                 <div
                   onClick={() => goCatalogId(item?.id)}
                   className="w-full h-[145px] ls:h-[155px] ll:h-[180px] flex items-center overflow-hidden justify-center border border-skeltonColor bg-categoryModalBgColor rounded-[12px]"
@@ -86,7 +91,7 @@ const CatalogMobile = () => {
                 console.log();
                 return (
                   <li
-                  key={e?.id}
+                    key={e?.id}
                     onClick={() => {
                       goCatalogId(e?.id);
                       setOpenCatalog(false);

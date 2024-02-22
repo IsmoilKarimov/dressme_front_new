@@ -225,7 +225,7 @@ export default function CatalogItems() {
                       /> */}
                     </div>
                     <div className="flex items-center ml-[112px] md:ml-[210px]">
-                      <div className="text-2xl font-AeonikProMedium">
+                      <div className="text-lg md:text-2xl font-AeonikProMedium">
                         {filterData?.category?.name_ru}
                         <span className="text-lg text-setTexOpacity font-AeonikProRegular ml-2">
                           ({filterData?.category_products?.total})
