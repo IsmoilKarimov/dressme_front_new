@@ -161,24 +161,37 @@ export default function CollectionCards() {
           {data?.getMainProductCard?.products?.next_page_url ? (
             <div className="w-full h-fit flex items-center justify-center mb-5 md:mb-0 md:mt-14">
               {data?.btnLoader ? (
-                <button
-                  type="button"
-                  className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
-                >
-                  <ClipLoader
-                    className="h-full py-[2px]"
-                    color={"#007DCA"}
-                    size={30}
-                    loading={true}
-                  />
-                </button>
+                <div className="w-full flex">
+                  <button
+                    type="button"
+                    className="hidden md:flex w-[760px] h-[40px] md:h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-[14px] md:text-base leading-4 text-center text-borderWinter items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
+                  >
+                    <ClipLoader
+                      className="h-full py-[2px]"
+                      color={"#007DCA"}
+                      size={30}
+                      loading={true}
+                    />
+                  </button>
+                  <button
+                    type="button"
+                    className="md:hidden w-[760px] h-[40px] md:h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-[14px] md:text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
+                  >
+                    <ClipLoader
+                      className="h-full py-[2px]"
+                      color={"#007DCA"}
+                      size={20}
+                      loading={true}
+                    />
+                  </button>
+                </div>
               ) : (
                 <button
                   type="button"
                   onClick={() => {
                     setPage((prev) => prev + 1);
                   }}
-                  className="w-[760px] h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
+                  className="w-[760px] h-[40px] md:h-[60px] active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-[14px] md:text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
                 >
                   Показать ещё{" "}
                 </button>
