@@ -357,8 +357,8 @@ export default function SignUp() {
                 </label>
 
                 <div className="flex items-center justify-start border border-solid border-searchBgColor rounded-lg bg-btnBgColor w-full">
-                  <span className="h-full w-[15%] py-[14px] border-r border-searchBgColor">
-                    <div className="mx-4">
+                  <span className="h-full w-[15%] py-[14px] border-r border-searchBgColor flex">
+                    <div className="mx-auto">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width={20}
@@ -454,7 +454,7 @@ export default function SignUp() {
                       }
                     }}
                     value={state.day}
-                    className={`text-black text-center w-[19%] h-12 flex items-center bg-btnBgColor  font-AeonikProMedium text-[14px] px-[14px] border-r border-searchBgColor [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none`}
+                    className={`text-black text-center w-[19%] h-12 flex items-center bg-btnBgColor  font-AeonikProMedium text-[14px] md:px-[14px] border-r border-searchBgColor [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none`}
                   />
 
                   <Popover
@@ -490,7 +490,7 @@ export default function SignUp() {
                     size={12}
                     options={["Hide"]}
                   >
-                    <div className="flex items-center w-full pl-5">
+                    <div className="flex items-center w-full pl-1 md:pl-5">
                       <span>
                         <DatePicker
                           className="font-AeonikProMedium text-[15px] flex items-center text-black"
@@ -575,7 +575,7 @@ export default function SignUp() {
                         onChange={(e) =>
                           setState({ ...state, phoneNumber: e.target.value })
                         }
-                        className={`w-full px-4 h-full  flex items-center justify-center ${
+                        className={`w-full px-4 h-full  flex items-center font-AeonikProMedium justify-center ${
                           state?.phoneNumber ? "font-AeonikProMedium" : null
                         } text-base leading-4 text-black`}
                         placeholder={"(97) 123-45-67"}
