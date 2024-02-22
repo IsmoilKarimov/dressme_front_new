@@ -132,7 +132,9 @@ export default function CollectionCards() {
         <div className="w-full flex flex-col box-border ">
           <article
             className={`flex flex-wrap justify-between md:justify-start ${
-              data?.products?.length > 2 ? "mb-[30px]" : "mb-[80px]"
+              data?.products?.length > 2
+                ? "mb-[20px] md:mb-[30px]"
+                : "mb-[80px]"
             } md:mx-0 md:mt-[50px] md:mb-0 gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 `}
           >
             {data?.products?.length ? (
@@ -164,7 +166,7 @@ export default function CollectionCards() {
                 <div className="w-full flex justify-center">
                   <button
                     type="button"
-                    className="hidden md:flex w-[50%] md:w-[760px] h-[45px] md:h-[60px] cursor-pointer not-italic font-AeonikProMedium text-[14px] md:text-base leading-4 text-center text-borderWinter items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
+                    className="hidden md:flex w-[60%] md:w-[760px] h-[45px] md:h-[60px] cursor-pointer not-italic font-AeonikProMedium text-[14px] md:text-base leading-4 text-center text-borderWinter items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
                   >
                     <ClipLoader
                       className="h-full py-[2px]"
@@ -175,7 +177,7 @@ export default function CollectionCards() {
                   </button>
                   <button
                     type="button"
-                    className="md:hidden w-[50%] md:w-[760px] h-[45px] md:h-[60px] cursor-pointer not-italic font-AeonikProMedium text-[14px] md:text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
+                    className="md:hidden w-[60%] md:w-[760px] h-[45px] md:h-[60px] cursor-pointer not-italic font-AeonikProMedium text-[14px] md:text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
                   >
                     <ClipLoader
                       className="h-full py-[2px]"
@@ -191,7 +193,7 @@ export default function CollectionCards() {
                   onClick={() => {
                     setPage((prev) => prev + 1);
                   }}
-                  className="w-[50%] md:w-[760px] h-[45px] md:h-[60px] active:opacity-80 md:active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-[14px] md:text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
+                  className="w-[60%] md:w-[760px] h-[45px] md:h-[60px] active:opacity-80 md:active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-[14px] md:text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
                 >
                   Показать ещё{" "}
                 </button>
