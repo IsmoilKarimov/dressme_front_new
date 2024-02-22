@@ -9,6 +9,7 @@ import LoadingNetwork from "../components/Loading/LoadingNetwork";
 // import ShoppingStoreOfficialByLocation from "../components/Home/Shop/ShoppingStoreOfficialByLocation";
 
 import ShoppingStore from "../components/Home/Shop/ShoppingStore";
+import { CatalogMobile } from "../components/Home/Catalog/CatalogMobile/CatalogMobile";
 
 // -------------------------------------
 const HomeIndex = React.lazy(() => import("../components/Home/Main"));
@@ -129,7 +130,7 @@ const RouterMain = () => {
                 </div>
               }
             >
-              {/* <CatalogPage /> */}
+              <CatalogMobile />
             </Suspense>
           }
         />
