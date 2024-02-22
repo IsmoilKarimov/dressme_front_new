@@ -6,7 +6,7 @@ import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 import CatalogTopFilter from "./CatalogTop/CatalogTopFilter";
 import FilterList from "./CatalogFilterGroup/FilterList/FilterList";
-import { SortIcons } from "../../../../assets/icons";
+import { MenuCloseIcons, SortIcons, UnderSection } from "../../../../assets/icons";
 
 export default function CatalogItems() {
   const [dressInfo] = useContext(dressMainData);
@@ -28,6 +28,8 @@ export default function CatalogItems() {
   const [getUnderWearList, setGetUnderWearList] = useState(null);
   const [getFootWearList, setGetFootWearList] = useState(null);
   const [filterToggle, setFilterToggle] = useState(false);
+  const [openMobileFilter, setOpenMobileFilter] = useState(false);
+  const [openMobileCategory, setOpenMobileCategory] = useState(false);
 
   const handleToggle = () => {
     if (filterToggle) {
@@ -100,9 +102,8 @@ export default function CatalogItems() {
             onClick={() => {
               handleCategories(data?.id);
             }}
-            className={`${
-              Number(paramId?.id) === data?.id ? "bg-bgColor" : null
-            } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+            className={`${Number(paramId?.id) === data?.id ? "bg-bgColor" : null
+              } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {data?.name_ru}
           </p>
@@ -177,7 +178,7 @@ export default function CatalogItems() {
   }
   useEffect(() => {
     fetchGetAllData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     newId,
     pageId,
@@ -256,9 +257,8 @@ export default function CatalogItems() {
                             <BiChevronDown
                               size={22}
                               style={{ color: "#000" }}
-                              className={`${
-                                state?.opensports ? "rotate-[-180deg]" : ""
-                              } duration-200`}
+                              className={`${state?.opensports ? "rotate-[-180deg]" : ""
+                                } duration-200`}
                             />
                           </span>
                         </Popover>
@@ -288,8 +288,30 @@ export default function CatalogItems() {
                 </article>
               </article>
             ) : null}
+            <div className="w-full md:hidden ">
+              <article className="w-full md:hidden flex items-center justify-between mt-6 mb-3 px-4">
+                <button
+                  onClick={() => setOpenMobileFilter(true)}
+                  className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                >
+                  <SortIcons />
+                  <p className="ml-2 not-italic  font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+                    Фильтр
+                  </p>
+                </button>
+                <button
+                  onClick={() => setOpenMobileCategory(true)}
+                  className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                >
+                  <UnderSection />
+                  <p className="ml-2 not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+                    По категории
+                  </p>
+                </button>
+              </article>
+            </div>
           </section>
-          <div className="w-full flex items-center ">
+          <div className="w-full hidden md:flex items-center ">
             <button
               onClick={handleToggle}
               type="button"
@@ -315,26 +337,88 @@ export default function CatalogItems() {
 
           <section className="flex justify-between mb-10 ">
             {/* FOR MOBILE VERSION */}
-            <article
-              className={`w-full h-[100vh] overflow-hidden overflow-y-auto  md:hidden fixed top-0 bottom-0 left-0 right-0 ${
-                dressInfo?.openCatalogFilter ? " ml-[1px] " : " ml-[-1000px]"
-              }   bg-white z-[105] duration-500 `}
+            <section
+              onClick={() => {
+                setOpenMobileCategory(false)
+                setOpenMobileFilter(false)
+              }}
+              className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter || openMobileCategory ? "" : "hidden"
+                }`}
+            ></section>
+            <section
+              className={` fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+                }`}
             >
-              {/* <CatalogFilterGroup paramId={newId} /> */}
-            </article>
+              <div className="max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
+                <FilterList
+                  paramsId={newId}
+                  genderId={genderId}
+                  discountId={discountId}
+                  categoryId={categoryId}
+                  getBadgePrice={getBadgePrice}
+                  setDataColor={setDataColor}
+                  dataColor={dataColor}
+                  getRatingList={getRatingList}
+                  outWearList={outWearList}
+                  underWearList={underWearList}
+                  footWearList={footWearList}
+                  filterToggle={filterToggle}
+                  setFilterToggle={setFilterToggle}
+                  openMobileFilter={openMobileFilter}
+
+                />
+              </div>
+            </section>
+            <section
+              className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
+                }`}
+            >
+              <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between  mb-1 ">
+                <p className="text-xl font-AeonikProMedium"> По категории</p>
+                <button onClick={() => setOpenMobileCategory(false)
+                }>
+                  <MenuCloseIcons colors={"#000"} />
+                </button>
+              </section>
+              <div className="max-w-[440px] w-[100%] h-[380px] z-[114]  overflow-y-auto mx-auto bg-white  overflow-hidden ">
+                {filterData?.categories?.map((data) => {
+                  return (
+                    <p
+                      key={data?.id}
+                      onClick={() => {
+                        handleCategories(data?.id);
+                      }}
+                      className={`${Number(paramId?.id) === data?.id ? "bg-bgColor" : null} h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
+
+                    // className={`${Number(paramId?.id) === data?.id ? "bg-bgColor" : null
+                    //   } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+                    >
+                      {data?.name_ru}
+                    </p>
+                  );
+                })}
+              </div>
+              <action className="w-full flex items-center justify-between gap-x-3 mb-4">
+                <button
+                  onClick={() => setOpenMobileCategory(false)}
+                  className="w-[45%] h-[38px] text-base font-AeonikProMedium bg-white text-borderWinter border border-borderWinter rounded-md active:scale-95"
+                >
+                  Закрыт
+                </button>
+                <button
+                  type="button"
+                  className="w-[45%] h-[38px] text-base font-AeonikProMedium bg-borderWinter text-white border border-borderWinter rounded-md active:scale-95">
+                  Выбрать
+                </button>
+              </action>
+            </section>
 
             {/* FOR DESCTOP VERSION */}
             <article
-              className={`${
-                filterToggle ? "md:block" : "md:hidden"
-              } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0`}
+              className={`${filterToggle ? "md:block" : "md:hidden"
+                } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0`}
             >
-              {/* <CatalogFilterGroup
-                setFilterData={setFilterData}
-                pageId={pageId}
-                filterData={filterData}
-                paramId={newId}
-              /> */}
+
               <FilterList
                 paramsId={newId}
                 genderId={genderId}
@@ -352,9 +436,8 @@ export default function CatalogItems() {
               />
             </article>
             <article
-              className={`${
-                filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-              } w-full h-full ss:px-4 md:px-0`}
+              className={`${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+                } w-full h-full ss:px-4 md:px-0`}
             >
               <CatalogCard filterData={filterData} setPageId={setPageId} />
             </article>
