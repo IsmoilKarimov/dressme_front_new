@@ -17,26 +17,25 @@ const Footer = () => {
 
   return (
     <footer>
+      <article>
+        <ScrollToTop
+          smooth
+          top="600"
+          color="#000"
+          component={<MySVG />}
+          style={{
+            borderRadius: "50%",
+            bottom: 70,
+            right: 25,
+            width: "48px",
+            height: "48px",
+            border: "1px solid #c1c1c1",
+            backgroundColor: "#fafafa",
+          }}
+          className="bg-bgColor rounded-full mt-[-100px] !z-[11] flex items-center opacity-70 justify-center ss:bottom-[75px] ss:right-[15px] md:bottom-10 md:right-10"
+        />
+      </article>
       <section className="hidden md:flex flex-col h-fit justify-center items-center m-0 p-0 ss:px-4 md:px-0 box-border border-t border-searchBgColor md:mt-[60px] my-[40px] md:mb-[60px] bg-btnBgColor md:bg-white md:border-t-0">
-        <article>
-          <ScrollToTop
-            smooth
-            top="600"
-            color="#000"
-            component={<MySVG />}
-            style={{
-              borderRadius: "50%",
-              bottom: 70,
-              right: 25,
-              width: "48px",
-              height: "48px",
-              border: "1px solid #c1c1c1",
-              backgroundColor: "#fafafa",
-            }}
-            className="bg-bgColor rounded-full mt-[-100px] !z-[11] flex items-center opacity-70 justify-center ss:bottom-[75px] ss:right-[15px] md:bottom-10 md:right-10"
-          />
-        </article>
-
         <article className="max-w-[1280px] w-[100%]  flex justify-center items-center m-auto">
           <div className="w-[100%] h-fit ss:p-0 md:p-[30px] md:border md:border-searchBgColor border-solid rounded-lg">
             <section>
