@@ -6,18 +6,22 @@ import {
   SortIcons,
   UnderSection,
 } from "../../../../assets/icons";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 import FilterDropUp from "../CategoryMobileDropUp/FilterDropUp";
 import ClothingTypesDropUp from "../CategoryMobileDropUp/ClothingTypesDropUp";
+import { dressMainData } from "../../../../ContextHook/ContextMenu";
 
 const CategoryTopDetail = ({
   filterData,
   toggleFilterLeftOpen,
   toggleFilterLeftClose,
   filterLeftAction,
+  setOpenMobileFilter
 }) => {
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
+
   const [clothingTypes, setClothingTypes] = useState(false);
   const [filter, setFilter] = useState(false);
   // const [data, setData] = useState({});
@@ -62,7 +66,6 @@ const CategoryTopDetail = ({
   };
   const handleCategories = (value, id) => {
     setState({ ...state, opensports: false });
-    // setSelectedSection({ value, id });
     navigate(`/section/:${id}`);
   };
 
@@ -75,9 +78,8 @@ const CategoryTopDetail = ({
             onClick={() => {
               handleCategories(data?.name_ru, data?.id);
             }}
-            className={`${
-              filterData?.section?.id === data?.id ? "bg-bgColor" : null
-            } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+            className={`${filterData?.section?.id === data?.id ? "bg-bgColor" : null
+              } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {data?.name_ru}
           </p>
@@ -118,30 +120,26 @@ const CategoryTopDetail = ({
       <div className="tableSizes">
         <section
           onClick={() => setFilter(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-            filter ? "" : "hidden"
-          }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${filter ? "" : "hidden"
+            }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
-            filter ? "bottom-0" : "bottom-[-800px] z-0"
-          }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${filter ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
         >
-          <FilterDropUp onClick={toggleFilter} />
+          {/* <FilterDropUp onClick={toggleFilter} /> */}
         </section>
       </div>
 
       <div className="locations">
         <section
           onClick={() => setClothingTypes(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-            clothingTypes ? "" : "hidden"
-          }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${clothingTypes ? "" : "hidden"
+            }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${
-            clothingTypes ? "bottom-0" : "bottom-[-800px] z-0"
-          }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${clothingTypes ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
         >
           <ClothingTypesDropUp onClick={toggleClothingTypes} />
         </section>
@@ -193,9 +191,8 @@ const CategoryTopDetail = ({
                         <BiChevronDown
                           size={22}
                           style={{ color: "#000" }}
-                          className={`${
-                            state?.opensports ? "rotate-[-180deg]" : ""
-                          } duration-200`}
+                          className={`${state?.opensports ? "rotate-[-180deg]" : ""
+                            } duration-200`}
                         />
                       </span>
                     </Popover>
@@ -206,7 +203,8 @@ const CategoryTopDetail = ({
           </article>
           <article className="w-full md:hidden flex items-center justify-between mt-6 mb-3 px-4">
             <button
-              onClick={() => setFilter(true)}
+              onClick={() => setOpenMobileFilter(true)}
+              // onClick={() => setFilter(true)}
               className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
             >
               <SortIcons />
