@@ -120,20 +120,16 @@ const RouterMain = () => {
             </Suspense>
           }
         />
+
         <Route
           path="/catalog"
           element={
-            <Suspense
-              fallback={
-                <div>
-                  {/* <SkeletonHomeIndex /> */}
-                </div>
-              }
-            >
-              <CatalogMobile />
+            <Suspense fallback={<div>{/* <SkeletonHomeIndex /> */}</div>}>
+              {window.navigator.userAgentData.mobile ? <CatalogMobile /> : null} 
             </Suspense>
           }
         />
+
         <Route path="/catalog/:id" element={<CatalogItems />} />
         {/* <Route
           path="/catalog/:id"
