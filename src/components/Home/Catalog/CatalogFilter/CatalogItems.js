@@ -6,7 +6,7 @@ import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 import CatalogTopFilter from "./CatalogTop/CatalogTopFilter";
 import FilterList from "./CatalogFilterGroup/FilterList/FilterList";
-import { MenuCloseIcons, SortIcons, UnderSection } from "../../../../assets/icons";
+import { MenuCloseIcons, SearchIcons, SortIcons, UnderSection } from "../../../../assets/icons";
 
 export default function CatalogItems() {
   const [dressInfo] = useContext(dressMainData);
@@ -294,8 +294,8 @@ export default function CatalogItems() {
                 </article>
               </article>
             ) : null}
-            <div className="w-full md:hidden ">
-              <article className="w-full md:hidden flex items-center justify-between mt-6 mb-3 px-4">
+            <div className="w-full md:hidden  border-b border-searchBgColor">
+              <article className="w-full md:hidden flex items-center justify-between mt-3 mb-3 px-4">
                 <button
                   onClick={() => setOpenMobileFilter(true)}
                   className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
@@ -316,6 +316,19 @@ export default function CatalogItems() {
                 </button>
               </article>
             </div>
+          </section>
+          <section className="w-full px-4 flex my-3 md:hidden">
+            <article className="w-full search flex items-center bg-white justify-between rounded-xl font-AeonikProMedium h-11  border border-searchBgColor ss:mt-3">
+              <input
+                type="text"
+                name="name"
+                placeholder="Найти товар"
+                className="font-AeonikProRegular bg-transparent w-[87%] px-3 h-full text-[14px] leading-4 border-r border-searchBgColor"
+              />
+              <span className="w-[13%] h-full bg-btnBgColor rounded-r-xl active:scale-95 flex items-center justify-center ">
+                <SearchIcons />
+              </span>
+            </article>
           </section>
           <div className="w-full hidden md:flex items-center ">
             <button
