@@ -209,7 +209,7 @@ function BottomHeader() {
     targetModal.classList.remove("hidden");
   };
 
-  const closeDivModal = () => {
+  const closeDivModal = (e) => {
     targetModal.classList.add("hidden");
   };
 
@@ -369,22 +369,27 @@ function BottomHeader() {
 
         <div
           id="defaultModal"
+          // onClick={(e) => {
+          //   closeDivModal();
+          // }}
           // tabIndex="-1"
           // aria-hidden="true"
           className={`overflow-y-auto overflow-x-hidden hidden md:fixed top-0right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full`}
         >
-          <div className="relative p-4 w-fit h-fit md:h-auto left-[440px] top-[160px]">
+          <div className="relative p-4 w-fit h-fit md:h-auto left-[calc(50%-550px)] top-[160px]">
             {/* Modal content  */}
             <div className="relative bg-white rounded-lg shadow-modalCategoryShadow">
               {/* Modal header */}
-              <div className="flex justify-between items-start px-4 py-2 rounded-t border-b dark:border-gray-600">
+              <div className="flex justify-between items-start mx-4 py-2 border-b rounded-t border-searchBgColor ">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                   По ценам
                 </h3>
                 <button
-                  onClick={closeDivModal}
+                  onClick={() => {
+                    closeDivModal();
+                  }}
                   type="button"
-                  className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="text-gray-400 bg-white hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                   data-modal-toggle="defaultModal"
                 >
                   <svg
