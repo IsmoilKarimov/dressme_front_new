@@ -109,4 +109,4 @@ const CatalogMobile = () => {
     </main>
   );
 };
-export { CatalogMobile };
+export default CatalogMobile ;

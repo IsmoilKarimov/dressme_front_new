@@ -18,11 +18,14 @@ import {
 } from "../../assets/icons";
 import { GrClose } from "react-icons/gr";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
+
 const { Option } = Select;
 
 function BottomHeader() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData, , , page, setPage] = useContext(HomeMainDataContext);
+
+  const [modalOpen, setModalOpen] = useState(false);
 
   const [state, setState] = useState({
     openwear: false,
@@ -127,91 +130,6 @@ function BottomHeader() {
 
   // ----------------------Price State Management----------------------
 
-  const handleOpenChangePrice = (newOpen) => {
-    setState({ ...state, openPrice: newOpen });
-  };
-  const contentPrice = (
-    <div className="w-fit h-[170px] m-0 overflow-hidden">
-      <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
-        <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
-          По ценам
-        </span>
-        <span
-          onClick={() => setState({ ...state, openPrice: false })}
-          className="w-6 h-6 cursor-pointer"
-        >
-          <MenuCloseIcons className="w-[24px] h-[24px]" colors={"#000"} />
-        </span>
-      </div>
-      <div className=" flex flex-col rounded-lg  w-full pb-5 px-4 pt-[30px] ">
-        <div className=" flex justify-between items-center mb-4 w-full ">
-          <div className="flex ">
-            <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
-              от
-            </span>
-            <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-              <input
-                name="name"
-                className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-                // defaultValue={Number(values[0]).toLocaleString()}
-                value={Number(values[0]).toLocaleString()}
-              />{" "}
-              сум
-            </span>
-          </div>
-          <div className="flex ">
-            <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
-              до
-            </span>
-            <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-              <input
-                name="name"
-                className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-                // defaultValue={Number(values[1]).toLocaleString()}
-                value={Number(values[1]).toLocaleString()}
-              />
-              сум
-            </span>
-          </div>
-        </div>
-        <div className="relative z-50 mb-[6px] w-[350px]  ">
-          {" "}
-          <Slider
-            className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] mt-[10px]`}
-            onChange={setValues}
-            value={values}
-            minDistance={10}
-            min={Number(minPrice)}
-            max={Number(maxPrice)}
-          />
-        </div>
-        <div
-          className={`flex items-center  mt-4 ${
-            state?.clearPrice ? "justify-between" : "justify-end"
-          }`}
-        >
-          {state?.clearPrice && (
-            <span
-              onClick={() => clearFunction()}
-              className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
-            >
-              Сбросить
-            </span>
-          )}
-          <span
-            onClick={() => {
-              sendPriceList();
-              setState({ ...state, openPrice: false });
-            }}
-            className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
-          >
-            Готово
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-
   const [personItems, setPersonItems] = useState([
     {
       id: 4444,
@@ -285,6 +203,16 @@ function BottomHeader() {
     setDressInfo({ ...dressInfo, mainColorId: null, mainColorHex: null });
   };
 
+  const targetDivEl = document.getElementById("defaultModalDiv");
+
+  const openDivModal = () => {
+    targetDivEl.classList.remove("hidden");
+  };
+
+  const closeDivModal = () => {
+    targetDivEl.classList.add("hidden");
+  };
+
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
       <div
@@ -322,7 +250,6 @@ function BottomHeader() {
                     <div
                       onClick={() => {
                         newColorArrayId(data?.hex, data?.id);
-                        // setSelectedId(data?.id);
                       }}
                       style={{ backgroundColor: data?.hex }}
                       className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${
@@ -413,14 +340,9 @@ function BottomHeader() {
           </Select>
         </div>
 
-        <Popover
-          open={state?.openPrice}
-          onOpenChange={handleOpenChangePrice}
-          className="w-[190px]  gap-x-1 px-2 h-[44px] rounded-xl bg-btnBgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group ml-2"
-          trigger="click"
-          options={["Hide"]}
-          placement="bottom"
-          content={contentPrice}
+        <button
+          className="w-[190px] gap-x-1 px-2 h-[44px] rounded-xl bg-btnBgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group ml-2"
+          onClick={openDivModal}
         >
           <span className=" flex items-center ">
             <DollorIcons colors={"#000"} />
@@ -443,7 +365,116 @@ function BottomHeader() {
           <span className="font-AeonikProMedium iconArrow">
             <DownArrowAntd />
           </span>
-        </Popover>
+        </button>
+
+        <div
+          id="defaultModalDiv"
+          tabIndex="-1"
+          aria-hidden="true"
+          className={`overflow-y-auto overflow-x-hidden hidden md:fixed top-0right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full`}
+        >
+          <div className="relative p-4 w-fit h-fit md:h-auto left-[440px] top-[160px]">
+            {/* Modal content  */}
+            <div className="relative bg-white rounded-lg dark:bg-gray-700 shadow-modalCategoryShadow">
+              {/* Modal header */}
+              <div className="flex justify-between items-start px-4 py-2 rounded-t border-b dark:border-gray-600">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  По ценам
+                </h3>
+                <button
+                  onClick={closeDivModal}
+                  type="button"
+                  className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                  data-modal-toggle="defaultModalDiv"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="w-5 h-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="sr-only">Close modal</span>
+                </button>
+              </div>
+              {/*  Modal body  */}
+              <div className="px-6 py-3 space-y-6">
+                <div className=" flex justify-between items-center mb-4 w-full ">
+                  <div className="flex ">
+                    <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
+                      от
+                    </span>
+                    <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                      <input
+                        name="name"
+                        className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                        // defaultValue={Number(values[0]).toLocaleString()}
+                        value={Number(values[0]).toLocaleString()}
+                      />{" "}
+                      сум
+                    </span>
+                  </div>
+                  <div className="flex ">
+                    <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
+                      до
+                    </span>
+                    <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                      <input
+                        name="name"
+                        className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                        // defaultValue={Number(values[1]).toLocaleString()}
+                        value={Number(values[1]).toLocaleString()}
+                      />
+                      сум
+                    </span>
+                  </div>
+                </div>
+                <div className="relative z-50 mb-[6px] w-[350px] ">
+                  {" "}
+                  <Slider
+                    className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] mt-[10px]`}
+                    onChange={setValues}
+                    value={values}
+                    minDistance={10}
+                    min={Number(minPrice)}
+                    max={Number(maxPrice)}
+                  />
+                </div>
+              </div>
+              {/* <!-- Modal footer --> */}
+              <div
+                className={` flex items-center ${
+                  state?.clearPrice ? "justify-between" : "justify-end"
+                } px-6 py-3 space-x-2 rounded-b `}
+              >
+                {state?.clearPrice && (
+                  <span
+                    onClick={() => clearFunction()}
+                    className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
+                  >
+                    Сбросить
+                  </span>
+                )}
+                <span
+                  onClick={() => {
+                    sendPriceList();
+                    setState({ ...state, openPrice: false });
+                    closeDivModal();
+                  }}
+                  className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
+                >
+                  Готово
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="flex items-center w-[536px] justify-start bg-btnBgColor overflow-hidden rounded-xl border-searchBgColor border h-[44px] ml-2">
           <article
@@ -495,9 +526,7 @@ function BottomHeader() {
                         key={data?.id}
                         htmlFor={data?.id}
                         onClick={() => {
-                          // setSelectedId(data?.id);
                           newColorArrayId(data?.hex, data?.id);
-                          // setDressInfo({});
                         }}
                         style={{ backgroundColor: data?.hex }}
                         className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
@@ -530,7 +559,6 @@ function BottomHeader() {
                         id={data?.id}
                         name="checkStatus"
                         value={data?.id}
-                        // onChange={(e) => setGetRadio(e.target.value)}
                         className={"hidden  w-full h-full"}
                       />
                     </div>

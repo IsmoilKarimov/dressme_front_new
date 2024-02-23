@@ -945,4 +945,4 @@ const EditProfilePage = () => {
     </div>
   );
 };
-export { EditProfilePage };
+export default EditProfilePage;
