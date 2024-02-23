@@ -390,7 +390,7 @@ function FilterList({
                     </section>
                     {/* ------Пол---- */}
                     {getFilter?.gender_ids &&
-                        <div className="md:mb-[38px]">
+                        <div className=" mb-[20px] md:mb-[38px]">
                             <article
                                 className="w-full flex justify-between items-center"
                             >
@@ -456,7 +456,7 @@ function FilterList({
                     {/* -----Категории---- */}
                     {categoryNewList?.length > 0 &&
                         <div
-                            className={` w-full flex-col items-center md:mb-[38px]`}
+                            className={` w-full flex-col items-center mb-[20px] md:mb-[38px]`}
                         >
                             <section
                                 className={` w-full h-fit mt-[12px] `}
@@ -510,7 +510,7 @@ function FilterList({
                         </div >}
                     {/* -----Budget---- */}
                     {getFilter?.budget?.min_price && getFilter?.budget?.min_price &&
-                        <div className={`  w-full h-fit md:mb-[10px]`} >
+                        <div className={`  w-full h-fit mb-[20px] md:mb-[10px]`} >
                             <article
                                 className="w-full flex justify-between items-center md:pt-[12px]"
                             >
@@ -592,7 +592,7 @@ function FilterList({
                         </div >}
                     {/* -----Color_------ */}
                     {getFilter?.colors &&
-                        <div className={`w-full flex items-center flex-col md:mb-[38px]`}>
+                        <div className={`w-full flex items-center flex-col mb-[20px] md:mb-[38px]`}>
                             <section className="w-full h-fit ">
                                 {/* Controls */}
                                 <article
@@ -660,7 +660,7 @@ function FilterList({
                         </div>}
                     {/* ------rating------ */}
                     {getFilter?.ratings &&
-                        <div className={` w-full flex-col items-center mb-[38px]`}>
+                        <div className={` w-full flex-col items-center mb-[20px] md:mb-[38px]`}>
                             <section className="w-full h-fit mt-[12px]">
                                 <article
                                     className="w-full flex justify-between items-center"
@@ -733,7 +733,7 @@ function FilterList({
                     {/* ----OutWearList---- */}
                     {getFilter?.wear_sizes?.outwear &&
                         <div
-                            className={`w-full flex-col items-center mb-[38px]`}
+                            className={`w-full flex-col items-center mb-[20px] md:mb-[38px]`}
                         >
                             <section className="w-full h-fit mt-[12px] ">
                                 <article
@@ -837,7 +837,7 @@ function FilterList({
                     {/* ---underWearList--- */}
                     {getFilter?.wear_sizes?.underwear &&
                         <div
-                            className={` w-full flex flex-col items-center mb-[38px]`}
+                            className={` w-full flex flex-col items-center mb-[20px] md:mb-[38px]`}
                         >
                             <section className="w-full h-fit mt-[12px] ">
                                 <article
@@ -949,7 +949,7 @@ function FilterList({
                     {/* ----footWear--- */}
                     {getFilter?.wear_sizes?.footwear &&
                         <div
-                            className={`w-full flex flex-col items-center mb-[38px]`}
+                            className={`w-full flex flex-col items-center mb-[20px] md:mb-[38px]`}
                         >
                             <section className="w-full h-fit mt-[12px] ">
                                 <article
