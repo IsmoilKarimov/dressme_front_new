@@ -204,8 +204,6 @@ function BottomHeader() {
   };
 
   const targetModal = document.getElementById("defaultModal");
-  const innerModalPrice = document.getElementById("innerModalPrice");
-  const priceModalClose = document.getElementById("priceModalClose");
 
   const openDivModal = () => {
     targetModal.classList.remove("hidden");
@@ -214,19 +212,6 @@ function BottomHeader() {
   const closeDivModal = (e) => {
     targetModal.classList.add("hidden");
   };
-
-  targetModal.addEventListener("click", (e) => {
-    closeDivModal();
-  });
-
-  innerModalPrice.addEventListener("click", (e) => {
-    e.stopPropagation();
-  });
-
-  priceModalClose.addEventListener("click", (e) => {
-    e.stopPropagation();
-    closeDivModal();
-  });
 
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
@@ -384,12 +369,17 @@ function BottomHeader() {
 
         <div
           id="defaultModal"
+          onClick={() => {
+            closeDivModal();
+          }}
           // tabIndex="-1"
           // aria-hidden="true"
           className={`overflow-y-auto overflow-x-hidden hidden md:fixed top-0right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full`}
         >
           <div
-            id="innerModalPrice"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
             className="relative p-4 w-fit h-fit md:h-auto left-[calc(50%-550px)] top-[160px]"
           >
             {/* Modal content  */}
@@ -400,10 +390,10 @@ function BottomHeader() {
                   По ценам
                 </h3>
                 <button
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     closeDivModal();
                   }}
-                  id="priceModalClose"
                   type="button"
                   className="text-gray-400 bg-white hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                   data-modal-toggle="defaultModal"
@@ -475,7 +465,8 @@ function BottomHeader() {
               >
                 {state?.clearPrice && (
                   <span
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       closeDivModal();
                       clearFunction();
                     }}
@@ -485,7 +476,8 @@ function BottomHeader() {
                   </span>
                 )}
                 <span
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     sendPriceList();
                     setState({ ...state, openPrice: false });
                     closeDivModal();
