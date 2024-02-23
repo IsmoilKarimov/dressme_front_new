@@ -34,14 +34,9 @@ import Slider from "react-slider";
 import { GrClose } from "react-icons/gr";
 
 function MarketFilterofMaps({ onClick, getMapsInfo }) {
-  const [dressInfo] = useContext(dressMainData);
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [selectFilterType, setSelectFilterType] = useState('category')
-  const [categorySelectId, setCategorySelectId] = useState(null)
-  const [genderSelectId, setGenderSelectId] = useState(0)
-  const [brandSelectId, setBrandSelectId] = useState([])
 
-  console.log(categorySelectId, "categorySelectId")
-  console.log(getMapsInfo, "getMapsInfo")
   const NoSelect = () => {
     return (
       <div className="w-full flex items-center  justify-center h-[350px]  bg-white">
@@ -129,7 +124,6 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
   const [minPrice, setMinPrice] = useState(Number(getMapsInfo?.budget?.min_price));
   const [maxPrice, setMaxPrice] = useState(Number(getMapsInfo?.budget?.max_price));
   const [values, setValues] = useState([]);
-  const [getRange, setGetRange] = useState([]);
   const [clearPrice, setClearPrice] = useState(false);
   useEffect(() => {
     setMinPrice(Number(getMapsInfo?.budget?.min_price));
@@ -156,7 +150,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
   }, [values]);
 
   const sendPriceList = () => {
-    setGetRange([values[0], values[1]])
+    setDressInfo({ ...dressInfo, yandexRangePrice: values })
   };
 
   const ClearListBadget = () => {
@@ -165,40 +159,36 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
       Number(getMapsInfo?.budget?.min_price),
       Number(getMapsInfo?.budget?.max_price),
     ]);
-    // getBadgePrice([])
+    setDressInfo({ ...dressInfo, yandexRangePrice: [] })
   };
 
-  const onHandleSelectBrand = (id) => {
-    if (!brandSelectId?.includes(id)) {
-      setBrandSelectId(brandSelectId => [...brandSelectId, id])
-    }
-    if (brandSelectId.includes(id)) {
-      setBrandSelectId(brandSelectId?.filter(e => e !== (id)))
-    }
-  }
 
+  const handleFilterByUser = (fathId, childId) => {
+    if (childId === 0) {
+      setDressInfo({ ...dressInfo, yandexGenderId: 0 });
+    } else if (childId > 0) {
+      setDressInfo({ ...dressInfo, yandexGenderId: childId });
+    }
+  };
   const clearCategorySelect = () => {
-    setCategorySelectId(null)
+    setDressInfo({ ...dressInfo, yandexCategoryWear: null })
   }
   const clearGenderSelect = () => {
-    setGenderSelectId(0)
+    setDressInfo({ ...dressInfo, yandexGenderId: 0 });
   }
   const clearSelectBrand = (id) => {
-    if (!brandSelectId?.includes(id)) {
-      setBrandSelectId(brandSelectId => [...brandSelectId, id])
-    }
-    if (brandSelectId.includes(id)) {
-      setBrandSelectId(brandSelectId?.filter(e => e !== (id)))
-    }
+    setDressInfo({ ...dressInfo, yandexCategoryBrand: null })
+
   }
   const clearGetRange = () => {
-    setGetRange([])
+    setDressInfo({ ...dressInfo, yandexRangePrice: values })
     setClearPrice(false)
     setValues([
       Number(getMapsInfo?.budget?.min_price),
       Number(getMapsInfo?.budget?.max_price),
     ]);
   }
+
   return (
     <div className="w-full h-full flex flex-col  py-5 px-4 gap-y-3">
       <div className="flex items-center justify-between">
@@ -254,7 +244,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
       </div>
       {/* selected list */}
       <div className="w-full flex items-center flex-wrap gap-2">
-        {categorySelectId && getMapsInfo?.categories?.filter(e => e?.id === categorySelectId)?.map((item) => {
+        {dressInfo?.yandexCategoryWear && getMapsInfo?.categories?.filter(e => e?.id === dressInfo?.yandexCategoryWear)?.map((item) => {
           return (
             <div
               key={item?.id}
@@ -267,15 +257,15 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
             </div>
           );
         })}
-        {getRange?.length > 0 && <div
+        {dressInfo?.yandexRangePrice?.length > 0 && <div
           className={`bg-bgWinter w-fit h-fit gap-x-[6px] rounded-[20px] p-[6px] flex items-center justify-between cursor-pointer `}
         >
           <span className="text-fullBlue flex text-[13px] not-italic font-AeonikProRegular">
-            {Number(getRange[0])?.toLocaleString()}-{Number(getRange[1])?.toLocaleString()}
+            {Number(dressInfo?.yandexRangePrice[0])?.toLocaleString()}-{Number(dressInfo?.yandexRangePrice[1])?.toLocaleString()}
           </span>
           <button onClick={() => clearGetRange()} className="rounded-full  bg-white h-5 w-5 flex items-center justify-center"><GrClose size={10} colors={"#007DCA"} /></button>
         </div>}
-        {genderSelectId > 0 && personItems
+        {dressInfo?.yandexGenderId > 0 && personItems
           ?.filter((value) => value?.id === dressInfo?.type)
           .map((data) => {
             return (
@@ -283,7 +273,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                 key={data?.id}
                 className="w-fit   "
               >
-                {data?.childText?.filter(e => e?.id === genderSelectId)?.map((item) => {
+                {data?.childText?.filter(e => e?.id === dressInfo?.yandexGenderId)?.map((item) => {
                   return (
                     <button
                       key={item?.id}
@@ -300,7 +290,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
               </div>
             );
           })}
-        {brandSelectId?.length > 0 && getMapsInfo?.shops?.filter(e => brandSelectId?.includes(e?.id))?.map((data) => {
+        {dressInfo?.yandexCategoryBrand && getMapsInfo?.shops?.filter(e => dressInfo?.yandexCategoryBrand == (e?.id))?.map((data) => {
           return (
             <div
               key={data?.id}
@@ -309,7 +299,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
               <span className="text-fullBlue text-[13px] not-italic font-AeonikProRegular">
                 {data?.name}
               </span>
-              <button onClick={() => clearSelectBrand(data?.id)} className="rounded-full bg-white h-5 w-5 flex items-center justify-center"><GrClose size={10} colors={"#007DCA"} /></button>
+              <button onClick={() => clearSelectBrand()} className="rounded-full bg-white h-5 w-5 flex items-center justify-center"><GrClose size={10} colors={"#007DCA"} /></button>
 
             </div>
           );
@@ -322,14 +312,15 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
             {getMapsInfo?.categories?.map((item) => {
               return (
                 <div
-                  onClick={() => setCategorySelectId(item?.id)}
+                  onClick={() => setDressInfo({ ...dressInfo, yandexCategoryWear: item?.id })
+                  }
                   key={item?.id}
-                  className={`${item?.id == categorySelectId ? 'bg-bgWinter' : ''} w-full h-[44px] flex items-center justify-between cursor-pointer  border-b border-searchBgColor`}
+                  className={`${item?.id == dressInfo?.yandexCategoryWear ? 'bg-bgWinter' : ''} w-full h-[44px] flex items-center justify-between cursor-pointer  border-b border-searchBgColor`}
                 >
                   <span className="text-black text-base not-italic font-AeonikProRegular">
                     {item?.name_ru}
                   </span>
-                  {item?.id == categorySelectId && (
+                  {item?.id == dressInfo?.yandexCategoryWear && (
                     <span className="mr-1">
                       <CircleSuccessIcons colors={"#007DCA"} />
                     </span>
@@ -338,12 +329,12 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
               );
             })}
           </div>
-          <button className="w-full mt-5 h-[48px] rounded-lg flex items-center justify-center bg-fullBlue text-white">
+          <button onClick={onClick} className="w-full mt-5 h-[48px] rounded-lg flex items-center justify-center bg-fullBlue text-white">
             Готово
           </button>
         </div>}
         {selectFilterType === 'price' && <div>
-          <div className="w-full h-[300px] overflow-auto VerticelScroll flex flex-col  bg-white">
+          <div className="w-full h-[300px] overflow-auto VerticelScroll flex flex-col items-center bg-white">
             {getMapsInfo?.budget?.min_price &&
               getMapsInfo?.budget?.max_price &&
               <div className={`  w-full h-fit md:mb-[10px]`} >
@@ -421,7 +412,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                 </article>
               </div >}
           </div>
-          <button className="w-full mt-5 h-[48px] rounded-lg flex items-center justify-center bg-fullBlue text-white">
+          <button onClick={onClick} className="w-full mt-5 h-[48px] rounded-lg flex items-center justify-center bg-fullBlue text-white">
             Готово
           </button>
         </div>}
@@ -440,8 +431,8 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                         return (
                           <button
                             key={item?.id}
-                            onClick={() => setGenderSelectId(item?.id)}
-                            className={`${item?.id === genderSelectId
+                            onClick={() => handleFilterByUser(data?.id, item?.id)}
+                            className={`${item?.id === dressInfo?.yandexGenderId
                               ? dressInfo?.BtnActiveSeason
                               : " bg-white text-black border border-searchBgColor"
                               } pl-[40%] rounded-lg w-full h-[64px]   cursor-pointer  font-AeonikProMedium   flex items-center`}
@@ -459,22 +450,22 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                 })}
             </div>
           </div>
-          <button className="w-full mt-5 h-[48px] rounded-lg flex items-center justify-center bg-fullBlue text-white">
+          <button onClick={onClick} className="w-full mt-5 h-[48px] rounded-lg flex items-center justify-center bg-fullBlue text-white">
             Готово
           </button>
         </div>}
         {selectFilterType === 'brand' && <div>
           <div className="w-full h-[300px] overflow-auto VerticelScroll flex flex-col  bg-white">
-            <div className="w-full grid grid-cols-4 gap-4 py-4 gap-y-5">
+            <div className="w-full grid grid-cols-4 gap-2 py-4 gap-y-5">
               {getMapsInfo?.shops?.map((data) => {
                 return (
                   <div
-                    onClick={() => onHandleSelectBrand(data?.id)}
+                    onClick={() => setDressInfo({ ...dressInfo, yandexCategoryBrand: data?.id })}
                     key={data?.url_logo_photo}
-                    className={`w-full h-20 cursor-pointer rounded-lg bg-bgColor border ${brandSelectId?.includes(data?.id) ? '   border-fullBlue' : 'border-borderColorCard '}`}
+                    className={`w-[80px] h-20 cursor-pointer overflow-hidden  rounded-full bg-bgColor border ${dressInfo?.yandexCategoryBrand == (data?.id) ? '   border-fullBlue' : 'border-borderColorCard '}`}
                   >
                     <img
-                      className="h-full w-full p-2 object contain"
+                      className="h-full w-full object-contain"
                       src={data?.url_logo_photo}
                       alt="img"
                     />
@@ -483,12 +474,12 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
               })}
             </div>
           </div>
-          <button className="w-full mt-5 h-[48px] rounded-lg flex items-center justify-center bg-fullBlue text-white">
+          <button onClick={onClick} className="w-full mt-5 h-[48px] rounded-lg flex items-center justify-center bg-fullBlue text-white">
             Готово
           </button>
         </div>}
       </div>
-    </div>
+    </div >
   );
 }
 export default React.memo(MarketFilterofMaps);

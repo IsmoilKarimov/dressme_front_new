@@ -197,7 +197,6 @@ function YandexMapsDressMe() {
 
   const [carouselIndex, setCarouselIndex] = useState(0);
 
-  // dressInfo?.yandexGetMarketId,
   return (
     <div className="h-fit w-full flex items-center justify-center overflow-hidden overflow-y-hidden">
       <div
@@ -263,7 +262,7 @@ function YandexMapsDressMe() {
         {screenSize.width <= 768 && (
           <div
             className={`fixed max-w-[440px] mx-auto w-full bg-white z-[215] left-0 right-0 overflow-hidden  ${marketsFilterMaps
-              ? "h-[570px] bottom-0 ease-linear duration-300 rounded-t-lg"
+              ? "h-[600px] bottom-0 ease-linear duration-300 rounded-t-lg"
               : "h-0 bottom-0 ease-linear duration-300 "
               }  ease-linear duration-300 `}
           >
@@ -355,7 +354,7 @@ function YandexMapsDressMe() {
             />{" "}
             <div className="YSearch">
               {/* <div className="absolute ">
-                <img src={locationIcons} alt="" />
+                <img src={locationIcons} alt="" /> 
               </div> */}
               <SearchControl
                 options={{
@@ -623,10 +622,10 @@ function YandexMapsDressMe() {
             /> */}
             {/* Yandex Search */}
             <div
-              className={`absolute   ${!dressInfo?.yandexFullScreen ? "top-[80px]" : "top-[8px]"
+              className={`absolute  md:hidden ${!dressInfo?.yandexFullScreen ? "top-[80px]" : "top-[8px]"
                 }  md:top-auto md:bottom-[24px] left-0 right-0 mx-auto  overflow-hidden z-50   h-[48px] w-[97%] ll:w-[94%] md:w-[400px] `}
             >
-              <div className="w-full h-full flex justify-between gap-x-2 border border-red-500">
+              <div className="w-full h-full flex justify-between gap-x-2 ">
                 <div className="w-[85%] md:w-full h-full flex items-center rounded-lg bg-yandexNavbar backdrop-blur-sm px-2 ll:px-3 overflow-hidden shadow-lg ">
                   <div>
                     <img src={locationIcons} alt="" />
