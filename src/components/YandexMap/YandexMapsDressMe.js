@@ -620,7 +620,7 @@ function YandexMapsDressMe() {
               <button
                 onClick={() => setMarketsFilterMaps(!marketsFilterMaps)}
                 type="button"
-                className="md:hidden h-[40px] w-[40px] rounded-lg bg-yandexNavbar bg-white flex items-center justify-center shadow-lg"
+                className="md:hidden h-[40px] w-[40px] rounded-lg  bg-white flex items-center justify-center "
               >
                 <FilterIcons colors={"#000"} className="w-full h-full" />
               </button>

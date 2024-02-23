@@ -11,31 +11,23 @@ import {
   ManWomGenBlack,
   ManWomanGen,
   MenuCloseIcons,
+  SearchIcons,
   SpringBoyIcons,
   SummerBoyIcons,
   TopBrandsIcon,
   WinterBoyIcons,
   WomanGenIcons,
 } from "../../../assets/icons";
-import ReactSlider from "react-slider";
 import "../yandex.css";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
-import {
-  adidas,
-  chanel,
-  hm,
-  lacoste,
-  nike,
-  puma,
-  tommy,
-  zara,
-} from "../../../assets";
+
 import Slider from "react-slider";
 import { GrClose } from "react-icons/gr";
 
 function MarketFilterofMaps({ onClick, getMapsInfo }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [selectFilterType, setSelectFilterType] = useState('category')
+  const [searchBrandName, setSearchBrandName] = useState()
 
   const NoSelect = () => {
     return (
@@ -181,7 +173,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
 
   }
   const clearGetRange = () => {
-    setDressInfo({ ...dressInfo, yandexRangePrice: values })
+    setDressInfo({ ...dressInfo, yandexRangePrice: [] })
     setClearPrice(false)
     setValues([
       Number(getMapsInfo?.budget?.min_price),
@@ -306,9 +298,9 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
         })}
 
       </div>
-      <div className="w-full h-fit ">
+      <div className="w-full h-full ">
         {selectFilterType === 'category' && <div>
-          <div className="w-full h-[300px] overflow-auto VerticelScroll flex flex-col  bg-white">
+          <div className="w-full h-full overflow-auto VerticelScroll flex flex-col  bg-white">
             {getMapsInfo?.categories?.map((item) => {
               return (
                 <div
@@ -333,8 +325,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
         </div>}
         {selectFilterType === 'price' && <div>
           <div className="w-full h-[300px] overflow-auto VerticelScroll flex flex-col items-center bg-white">
-            {getMapsInfo?.budget?.min_price &&
-              getMapsInfo?.budget?.max_price &&
+            {
               <div className={`  w-full h-fit md:mb-[10px]`} >
                 <article
                   className="w-full flex justify-between items-center md:pt-[12px]"
@@ -412,7 +403,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
 
         </div>}
         {selectFilterType === 'gender' && <div>
-          <div className="w-full h-[300px] overflow-auto VerticelScroll flex flex-col  bg-white">
+          <div className="w-full h-full overflow-auto VerticelScroll flex flex-col  bg-white">
             <div className=" box-border	w-full flex flex-col items-center  h-full ">
               {personItems
                 ?.filter((value) => value.id === dressInfo?.type)
@@ -448,9 +439,29 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
 
         </div>}
         {selectFilterType === 'brand' && <div>
-          <div className="w-full h-[300px] overflow-auto VerticelScroll flex flex-col  bg-white">
-            <div className="w-full grid grid-cols-4 gap-2 py-4 gap-y-5">
-              {getMapsInfo?.shops?.map((data) => {
+          <div className="w-full flex h-10 items-center border border-searchColor bg-btnBgColor rounded-lg overflow-hidden">
+            <span
+              className="w-[10%] h-full flex items-center justify-center cursor-pointer"
+            >
+              <SearchIcons colors={"#a1a1a1"} />
+            </span>
+            <input
+              type="text"
+              name="keywords"
+              value={searchBrandName}
+              onChange={(e) => {
+                setSearchBrandName(e.target.value);
+              }}
+              className="w-[90%] h-full text-sm md:text-base bg-transparent"
+              placeholder="Искать магазины"
+            />
+          </div>
+          <div className="w-full h-full overflow-auto VerticelScroll flex flex-col  bg-white ">
+            <div className="w-full h-full grid grid-cols-4 gap-2 py-4 gap-y-5">
+              {getMapsInfo?.shops?.filter(e =>
+                searchBrandName ?
+                  (e?.name?.toLowerCase()?.includes(searchBrandName?.toLowerCase())) : e
+              )?.map((data) => {
                 return (
                   <div
                     onClick={() => setDressInfo({ ...dressInfo, yandexCategoryBrand: data?.id })}

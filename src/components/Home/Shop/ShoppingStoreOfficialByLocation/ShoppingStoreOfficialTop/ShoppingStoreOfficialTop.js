@@ -111,7 +111,7 @@ const ShoppingStoreOfficialTop = ({
             `}
             >
               {/* 1 */}
-              <div className="w-full md:w-[40%] flex h-[80px] md:h-fit items-center md:ml-[40px]">
+              <div className="w-full md:w-[40%] flex h-[80px] md:h-fit items-center md:ml-[40px] mt-3 md:mt-0 ">
                 <figure className="w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white overflow-hidden">
                   {filteredData?.shop?.url_logo_photo ? (
                     <img
@@ -148,22 +148,8 @@ const ShoppingStoreOfficialTop = ({
                 </div>
               </div>
               {/* 2 */}
-              <div className="w-full md:w-[35%] flex items-center border-t md:border-none border-searchBgColor mt-5 pt-5 md:pt-0 md:mt-0">
-                {/* <div className="w-full gap-x-2 h-fit flex items-center justify-center gap-y-1 cursor-pointer">
-                  <NavLink
-                    to="/locations"
-                    className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer"
-                  >
-                    <span className="flex items-center  ">
-                      <LocationColoursIcons colors={"#007DCA"} />
-                    </span>
-                  </NavLink>
-                  <NavLink to="/locations"
-                    className="w-[200px] text-sm font-AeonikProRegular text-borderWinter cursor-pointer">
-                    {filteredData?.shop?.approved_shop_locations[dressInfo?.locationIdParams - 1]?.address}
-                  </NavLink>
+              <div className="w-full md:w-[35%] hidden md:flex items-center border-t md:border-none border-searchBgColor mt-5 pt-5 md:pt-0 md:mt-0">
 
-                </div> */}
                 <button
                   onClick={(e) => {
                     e.preventDefault();
@@ -190,30 +176,20 @@ const ShoppingStoreOfficialTop = ({
                 </button>
               </div>
               {/* 3 */}
-              <div className="w-full md:w-[25%] flex items-center md:justify-end pb-5 md:pb-0 border-b border-[#F0F0F0] md:border-none md:mr-5 mt-5 md:mt-0">
+              <div className="w-full md:w-[25%] flex items-center md:justify-end  md:mr-5 mt-5 md:mt-0">
                 <div className="md:hidden flex w-fit">
                   <div className="w-fit h-fit flex items-center justify-center gap-y-1 cursor-pointer">
-                    <NavLink
-                      to="/locations"
-                      className="w-fit flex items-center gap-x-2"
+
+                    <button
+                      type="primary"
+                      onClick={() => setOpenLocationModal(true)}
+                      className={`text-borderWinter flex items-center border-b border-dashed border-borderWinter ml-3 text-sm md:text-base not-italic font-AeonikProRegular`}
                     >
-                      <span className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer">
-                        <LocationColoursIcons colors={"#007DCA"} />
-                      </span>
-                      <p className="text-sm font-AeonikProRegular text-borderWinter cursor-pointer">
-                        {
-                          filteredData?.shop?.approved_shop_locations[
-                            dressInfo?.locationIdParams
-                          ]?.address
-                        }
+                      <p className="mr-[6px]">
+                        <LocationColoursIcons colors={"#0077B6"} />
                       </p>
-                    </NavLink>
-                    <p
-                      className={`text-borderWinter border-b border-dashed border-borderWinter ml-3 text-sm md:text-base not-italic font-AeonikProRegular`}
-                    >
-                      {" "}
                       Все локации
-                    </p>
+                    </button>
                   </div>
                 </div>
                 <div className="flex items-center ml-auto">
@@ -255,6 +231,32 @@ const ShoppingStoreOfficialTop = ({
                     </button>
                   </div>
                 </div>
+              </div>
+              <div className="w-full md:hidden flex items-center border-b md:border-none border-searchBgColor py-3">
+
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    clickButtons?.setOpenTabLocation(
+                      !clickButtons?.openTabLocation
+                    );
+                    clickButtons?.setOpenTabComment(false);
+                  }}
+                  className="flex gap-x-2 items-center w-[100%] md:w-full"
+                >
+                  <div className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer">
+                    <LocationColoursIcons colors={"#007DCA"} />
+                  </div>
+                  {filteredData?.shop?.approved_shop_locations
+                    ?.filter((e) => e?.id === dressInfo?.locationIdParams)
+                    ?.map((item) => {
+                      return (
+                        <p className="text-sm font-AeonikProRegular text-borderWinter">
+                          {item?.address}
+                        </p>
+                      );
+                    })}
+                </button>
               </div>
             </div>
           </div>

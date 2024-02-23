@@ -115,7 +115,7 @@ const ShoppingStoreOfficialTop = ({
             `}
             >
               {/* 1 */}
-              <div className="w-full md:w-[40%] flex h-[80px] md:h-fit items-center md:ml-[40px]">
+              <div className="w-full md:w-[40%] flex h-[80px] md:h-fit items-center md:ml-[40px] mt-3 md:mt-0 ">
                 <figure className="w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white overflow-hidden">
                   {filteredData?.shop?.url_logo_photo ? (
                     <img
@@ -179,33 +179,9 @@ const ShoppingStoreOfficialTop = ({
                 </button>
               </div>
               {/* 3 */}
-              <div className="w-full md:w-[25%] flex items-center md:justify-end pb-5 md:pb-0 border-b border-[#F0F0F0] md:border-none md:mr-5 mt-5 md:mt-0">
-                <div className="md:hidden flex w-fit">
+              <div className="w-full md:w-[25%] flex items-center justify-between md:justify-end  md:pb-0  md:mr-5 mt-5 md:mt-0">
+                <div className="md:hidden flex flex-col w-full ">
                   <div className="w-fit h-fit flex items-center justify-center gap-y-1 cursor-pointer">
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        clickButtons?.setOpenTabLocation(
-                          !clickButtons?.openTabLocation
-                        );
-                        clickButtons?.setOpenTabComment(false);
-                      }}
-                      className="w-fit flex items-center gap-x-2"
-                    >
-                      <span className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer">
-                        <LocationColoursIcons colors={"#007DCA"} />
-                      </span>
-                      {filteredData?.shop?.approved_shop_locations
-                        ?.filter((e) => e?.id === dressInfo?.locationIdParams)
-                        ?.map((item) => {
-                          return (
-                            <p className="text-sm font-AeonikProRegular text-borderWinter">
-                              {item?.address}
-                            </p>
-                          );
-                        })}
-                    </button>
-
                     <button
                       type="primary"
                       onClick={() => setOpenLocationModal(true)}
@@ -257,6 +233,31 @@ const ShoppingStoreOfficialTop = ({
                     </button>
                   </div>
                 </div>
+              </div>
+              <div className="w-full md:hidden flex items-center border-b md:border-none border-searchBgColor py-3">
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    clickButtons?.setOpenTabLocation(
+                      !clickButtons?.openTabLocation
+                    );
+                    clickButtons?.setOpenTabComment(false);
+                  }}
+                  className="flex gap-x-2 items-center  w-[100%] "
+                >
+                  <span className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer">
+                    <LocationColoursIcons colors={"#007DCA"} />
+                  </span>
+                  {filteredData?.shop?.approved_shop_locations
+                    ?.filter((e) => e?.id === dressInfo?.locationIdParams)
+                    ?.map((item) => {
+                      return (
+                        <p className="text-sm font-AeonikProRegular text-borderWinter">
+                          {item?.address}
+                        </p>
+                      );
+                    })}
+                </button>
               </div>
             </div>
           </div>
