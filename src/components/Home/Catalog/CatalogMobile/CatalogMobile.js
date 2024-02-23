@@ -35,7 +35,7 @@ const CatalogMobile = () => {
 
   const navigate = useNavigate();
   const goCatalogId = (id) => {
-    navigate(`/catalog/${id}`);
+    navigate(`/categories/${id}`);
   };
 
   return (

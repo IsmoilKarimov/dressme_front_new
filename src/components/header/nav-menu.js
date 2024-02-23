@@ -51,7 +51,7 @@ const NavMenu = ({ stateData, setStateData }) => {
         </li>
         <li className="w-[72px] h-[56px] ">
           <NavLink
-            to={"/catalog"}
+            to={"/categories"}
             onClick={() => setStateData({ ...stateData, hamburgerMenu: false })}
             className="w-full h-full flex items-center justify-center text-center"
           >

@@ -249,7 +249,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
   };
 
   const goCatalogId = (id) => {
-    navigate(`/catalog/${id}`);
+    navigate(`/categories/${id}`);
   };
 
   return (

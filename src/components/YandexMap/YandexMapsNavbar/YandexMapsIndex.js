@@ -21,7 +21,7 @@ function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
   const navigate = useNavigate();
 
   const goCatalogId = (id) => {
-    navigate(`/catalog/${id}`);
+    navigate(`/categories/${id}`);
   };
   return (
     <div className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ">
