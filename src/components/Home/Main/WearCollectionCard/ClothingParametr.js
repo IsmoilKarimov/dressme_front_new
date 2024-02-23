@@ -257,8 +257,9 @@ const ClothingParametr = () => {
       <section className="w-full">
         {/* Cateories */}
         <section
-          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${state?.clothesTypeMobile ? "w-[92%]" : "w-0"
-            }  `}
+          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
+            state?.clothesTypeMobile ? "w-[92%]" : "w-0"
+          }  `}
         >
           {state?.clothesTypeMobile && (
             <div className="fixed inset-0 z-10">
@@ -298,11 +299,13 @@ const ClothingParametr = () => {
                                 };
                               });
                             }}
-                            className={`${data?.id === dressInfo?.mainCategoryId
-                              ? "text-borderWinter bg-[#F6F6F6]"
-                              : ""
-                              }  ${dressInfo?.TextHoverSeason
-                              } relative bg-bgCard text-base text-[#303030] font-AeonikProMedium hover:bg-[#F6F6F6] w-[100%] h-10 xs:h-12 rounded-lg cursor-pointer flex items-center justify-center hover:duration-300 hover:ease-linear `}
+                            className={`${
+                              data?.id === dressInfo?.mainCategoryId
+                                ? "text-borderWinter bg-[#F6F6F6]"
+                                : ""
+                            }  ${
+                              dressInfo?.TextHoverSeason
+                            } relative bg-bgCard text-base text-[#303030] font-AeonikProMedium hover:bg-[#F6F6F6] w-[100%] h-10 xs:h-12 rounded-lg cursor-pointer flex items-center justify-center hover:duration-300 hover:ease-linear `}
                           >
                             {data.name_ru}
                           </div>
@@ -329,8 +332,9 @@ const ClothingParametr = () => {
 
         {/* Prizes */}
         <section
-          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${state?.priceToggleMobile ? "w-[92%]" : "w-0"
-            }  `}
+          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
+            state?.priceToggleMobile ? "w-[100%]" : "w-0"
+          }  `}
         >
           {state?.priceToggleMobile && (
             <div className="fixed inset-0 z-10 ">
@@ -340,10 +344,10 @@ const ClothingParametr = () => {
               ></div>
               <div className="flex items-center min-h-screen px-4 py-8">
                 <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
-                  <div className="max-w-[350px] w-full h-[180px] m-0 ">
+                  <div className=" w-full h-[180px] m-0 ">
                     <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
                       <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
-                        По ценам
+                        По бюджету
                       </span>
                       <span
                         onClick={() =>
@@ -357,7 +361,7 @@ const ClothingParametr = () => {
                         />
                       </span>
                     </div>
-                    <div className="  flex flex-col rounded-lg  w-full pb-5 pt-10">
+                    <div className="  flex flex-col rounded-lg  w-full pb-5 pt-6">
                       <div className="flex justify-between items-center mb-6 w-full px-2">
                         <div className="flex ">
                           <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
@@ -368,9 +372,9 @@ const ClothingParametr = () => {
                               className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                               name="name"
                               value={Number(values[0]).toLocaleString()}
-                            // defaultValue={Number(
-                            //   data?.getMainProductCard?.budget?.min_price
-                            // ).toLocaleString()}
+                              // defaultValue={Number(
+                              //   data?.getMainProductCard?.budget?.min_price
+                              // ).toLocaleString()}
                             />{" "}
                             сум
                           </span>
@@ -384,9 +388,9 @@ const ClothingParametr = () => {
                               className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                               name="name"
                               value={Number(values[1]).toLocaleString()}
-                            // defaultValue={Number(
-                            //   data?.getMainProductCard?.budget?.max_price
-                            // ).toLocaleString()}
+                              // defaultValue={Number(
+                              //   data?.getMainProductCard?.budget?.max_price
+                              // ).toLocaleString()}
                             />
                             сум
                           </span>
@@ -404,8 +408,9 @@ const ClothingParametr = () => {
                         />
                       </div>
                       <div
-                        className={`flex items-center  mt-4 ${state?.clearPrice ? "justify-between" : "justify-end"
-                          }`}
+                        className={`flex items-center  mt-4 ${
+                          state?.clearPrice ? "justify-between" : "justify-end"
+                        }`}
                       >
                         {state?.clearPrice && (
                           <span
@@ -457,8 +462,9 @@ const ClothingParametr = () => {
 
         {/* Colors */}
         <section
-          className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
-            }`}
+          className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
+            state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
+          }`}
         >
           {state?.selectColorToggleMobile && (
             <div className="fixed inset-0 z-10 ">
@@ -507,10 +513,11 @@ const ClothingParametr = () => {
                               });
                             }}
                             style={{ backgroundColor: data?.hex }}
-                            className={`rounded-full flex items-center justify-center w-[35px] h-[35px] ${data?.hex === dressInfo?.mainColorHex
-                              ? "border border-setTexOpacity flex items-center justify-center"
-                              : "border"
-                              }  `}
+                            className={`rounded-full flex items-center justify-center w-[35px] h-[35px] ${
+                              data?.hex === dressInfo?.mainColorHex
+                                ? "border border-setTexOpacity flex items-center justify-center"
+                                : "border"
+                            }  `}
                           >
                             {dressInfo?.mainColorHex === data?.hex &&
                               data?.id !== 1 && (
@@ -551,8 +558,9 @@ const ClothingParametr = () => {
 
         {/* Gender BUTTONS */}
         <section
-          className={`w-full h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${state?.genderMobile ? "w-[92%]" : "w-0"
-            }`}
+          className={`w-full h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
+            state?.genderMobile ? "w-[92%]" : "w-0"
+          }`}
         >
           {state?.genderMobile && (
             <div className="fixed inset-0 z-10 ">
@@ -615,10 +623,11 @@ const ClothingParametr = () => {
                                         };
                                       });
                                     }}
-                                    className={`${item?.id == dressInfo?.mainGenderId
-                                      ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
-                                      : " bg-btnBgColor text-black h-full"
-                                      } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
+                                    className={`${
+                                      item?.id == dressInfo?.mainGenderId
+                                        ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
+                                        : " bg-btnBgColor text-black h-full"
+                                    } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
                                   >
                                     <span>{item?.anyIcons}</span>
                                     {item?.id === 0 && (
