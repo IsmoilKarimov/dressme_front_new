@@ -380,7 +380,7 @@ function BottomHeader() {
             {/* Modal content  */}
             <div className="relative bg-white rounded-lg shadow-modalCategoryShadow">
               {/* Modal header */}
-              <div className="flex justify-between items-start px-4 py-2 rounded-t dark:border-gray-600">
+              <div className="flex justify-between items-start mx-4 py-2 border-b rounded-t border-searchBgColor ">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                   По ценам
                 </h3>
