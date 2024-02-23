@@ -329,9 +329,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
               );
             })}
           </div>
-          <button onClick={onClick} className="w-full mt-5 h-[48px] rounded-lg flex items-center justify-center bg-fullBlue text-white">
-            Готово
-          </button>
+
         </div>}
         {selectFilterType === 'price' && <div>
           <div className="w-full h-[300px] overflow-auto VerticelScroll flex flex-col items-center bg-white">
@@ -347,7 +345,6 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                     <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
                       Бюджет
                     </p>
-
                   </figure>
                 </article>
                 <article
@@ -412,9 +409,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                 </article>
               </div >}
           </div>
-          <button onClick={onClick} className="w-full mt-5 h-[48px] rounded-lg flex items-center justify-center bg-fullBlue text-white">
-            Готово
-          </button>
+
         </div>}
         {selectFilterType === 'gender' && <div>
           <div className="w-full h-[300px] overflow-auto VerticelScroll flex flex-col  bg-white">
@@ -450,9 +445,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                 })}
             </div>
           </div>
-          <button onClick={onClick} className="w-full mt-5 h-[48px] rounded-lg flex items-center justify-center bg-fullBlue text-white">
-            Готово
-          </button>
+
         </div>}
         {selectFilterType === 'brand' && <div>
           <div className="w-full h-[300px] overflow-auto VerticelScroll flex flex-col  bg-white">
@@ -474,9 +467,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
               })}
             </div>
           </div>
-          <button onClick={onClick} className="w-full mt-5 h-[48px] rounded-lg flex items-center justify-center bg-fullBlue text-white">
-            Готово
-          </button>
+
         </div>}
       </div>
     </div >
