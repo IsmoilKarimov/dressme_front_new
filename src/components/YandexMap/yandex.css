@@ -318,6 +318,19 @@ body {
   }
 }
 
+@media (max-width: 767px) {
+  .YSearch {
+    display: none !important;
+  }
+
+  .ymapsName .ymaps-2-1-79-search.ymaps-2-1-79-search_layout_normal.ymaps-2-1-79-searchbox__normal-layout {
+    display: none !important;
+    top: 10px;
+
+    border: 1px solid red
+  }
+}
+
 /* @media (max-height: 390px) {
     .ymaps-2-1-79-controls__control {
         inset: auto 10px 340px auto !important;
@@ -395,6 +408,7 @@ body {
   display: flex;
 }
 
+/* YSearch */
 
 
 .ymaps-2-1-79-image {

@@ -6,6 +6,7 @@ import {
   DollorIcons,
   InputCheckedTrueIcons,
   ManGenIcons,
+  ManWomGenBlack,
   ManWomanGen,
   MenuCloseIcons,
   TopBrandsIcon,
@@ -248,7 +249,7 @@ const ClothingParametr = () => {
         >
           <span>
             {" "}
-            <TopBrandsIcon colors={"#000"} />
+            <ManWomGenBlack colors={"#000"} />
           </span>
         </div>
       </section>
@@ -256,9 +257,8 @@ const ClothingParametr = () => {
       <section className="w-full">
         {/* Cateories */}
         <section
-          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
-            state?.clothesTypeMobile ? "w-[92%]" : "w-0"
-          }  `}
+          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${state?.clothesTypeMobile ? "w-[92%]" : "w-0"
+            }  `}
         >
           {state?.clothesTypeMobile && (
             <div className="fixed inset-0 z-10">
@@ -298,13 +298,11 @@ const ClothingParametr = () => {
                                 };
                               });
                             }}
-                            className={`${
-                              data?.id === dressInfo?.mainCategoryId
-                                ? "text-borderWinter bg-[#F6F6F6]"
-                                : ""
-                            }  ${
-                              dressInfo?.TextHoverSeason
-                            } relative bg-bgCard text-base text-[#303030] font-AeonikProMedium hover:bg-[#F6F6F6] w-[100%] h-10 xs:h-12 rounded-lg cursor-pointer flex items-center justify-center hover:duration-300 hover:ease-linear `}
+                            className={`${data?.id === dressInfo?.mainCategoryId
+                              ? "text-borderWinter bg-[#F6F6F6]"
+                              : ""
+                              }  ${dressInfo?.TextHoverSeason
+                              } relative bg-bgCard text-base text-[#303030] font-AeonikProMedium hover:bg-[#F6F6F6] w-[100%] h-10 xs:h-12 rounded-lg cursor-pointer flex items-center justify-center hover:duration-300 hover:ease-linear `}
                           >
                             {data.name_ru}
                           </div>
@@ -331,9 +329,8 @@ const ClothingParametr = () => {
 
         {/* Prizes */}
         <section
-          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
-            state?.priceToggleMobile ? "w-[92%]" : "w-0"
-          }  `}
+          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${state?.priceToggleMobile ? "w-[92%]" : "w-0"
+            }  `}
         >
           {state?.priceToggleMobile && (
             <div className="fixed inset-0 z-10 ">
@@ -371,9 +368,9 @@ const ClothingParametr = () => {
                               className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                               name="name"
                               value={Number(values[0]).toLocaleString()}
-                              // defaultValue={Number(
-                              //   data?.getMainProductCard?.budget?.min_price
-                              // ).toLocaleString()}
+                            // defaultValue={Number(
+                            //   data?.getMainProductCard?.budget?.min_price
+                            // ).toLocaleString()}
                             />{" "}
                             сум
                           </span>
@@ -387,9 +384,9 @@ const ClothingParametr = () => {
                               className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                               name="name"
                               value={Number(values[1]).toLocaleString()}
-                              // defaultValue={Number(
-                              //   data?.getMainProductCard?.budget?.max_price
-                              // ).toLocaleString()}
+                            // defaultValue={Number(
+                            //   data?.getMainProductCard?.budget?.max_price
+                            // ).toLocaleString()}
                             />
                             сум
                           </span>
@@ -407,9 +404,8 @@ const ClothingParametr = () => {
                         />
                       </div>
                       <div
-                        className={`flex items-center  mt-4 ${
-                          state?.clearPrice ? "justify-between" : "justify-end"
-                        }`}
+                        className={`flex items-center  mt-4 ${state?.clearPrice ? "justify-between" : "justify-end"
+                          }`}
                       >
                         {state?.clearPrice && (
                           <span
@@ -461,9 +457,8 @@ const ClothingParametr = () => {
 
         {/* Colors */}
         <section
-          className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
-            state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
-          }`}
+          className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
+            }`}
         >
           {state?.selectColorToggleMobile && (
             <div className="fixed inset-0 z-10 ">
@@ -512,11 +507,10 @@ const ClothingParametr = () => {
                               });
                             }}
                             style={{ backgroundColor: data?.hex }}
-                            className={`rounded-full flex items-center justify-center w-[35px] h-[35px] ${
-                              data?.hex === dressInfo?.mainColorHex
-                                ? "border border-setTexOpacity flex items-center justify-center"
-                                : "border"
-                            }  `}
+                            className={`rounded-full flex items-center justify-center w-[35px] h-[35px] ${data?.hex === dressInfo?.mainColorHex
+                              ? "border border-setTexOpacity flex items-center justify-center"
+                              : "border"
+                              }  `}
                           >
                             {dressInfo?.mainColorHex === data?.hex &&
                               data?.id !== 1 && (
@@ -557,9 +551,8 @@ const ClothingParametr = () => {
 
         {/* Gender BUTTONS */}
         <section
-          className={`w-full h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
-            state?.genderMobile ? "w-[92%]" : "w-0"
-          }`}
+          className={`w-full h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${state?.genderMobile ? "w-[92%]" : "w-0"
+            }`}
         >
           {state?.genderMobile && (
             <div className="fixed inset-0 z-10 ">
@@ -592,19 +585,19 @@ const ClothingParametr = () => {
                     {personItems
                       ?.filter((value) => value?.id === dressInfo?.type)
                       ?.map((data) => {
-                        console.log(data, "data");
-                        console.log(dressInfo?.type, "dressInfo?.type");
-                        console.log(
-                          dressInfo?.mainGenderId,
-                          "dressInfo?.mainGenderId"
-                        );
+                        // console.log(data, "data");
+                        // console.log(dressInfo?.type, "dressInfo?.type");
+                        // console.log(
+                        //   dressInfo?.mainGenderId,
+                        //   "dressInfo?.mainGenderId"
+                        // );
                         return (
                           <div
                             key={data?.id}
                             className="w-fit h-full flex items-center  "
                           >
                             {data?.childText?.map((item) => {
-                              console.log(item, "data?.childText");
+                              // console.log(item, "data?.childText");
                               return (
                                 <div
                                   key={item?.id}
@@ -622,18 +615,17 @@ const ClothingParametr = () => {
                                         };
                                       });
                                     }}
-                                    className={`${
-                                      item?.id == dressInfo?.mainGenderId
-                                        ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
-                                        : " bg-btnBgColor text-black h-full"
-                                    } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
+                                    className={`${item?.id == dressInfo?.mainGenderId
+                                      ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
+                                      : " bg-btnBgColor text-black h-full"
+                                      } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
                                   >
                                     <span>{item?.anyIcons}</span>
-                                    {/* {item?.name && (
+                                    {item?.id === 0 && (
                                       <span className="ml-2 not-italic whitespace-nowrap text-sm font-AeonikProMedium tracking-wide	leading-5">
                                         {item?.name}
                                       </span>
-                                    )} */}
+                                    )}
                                   </button>
                                   {item?.id !== 3 && (
                                     <span className="w-[2px] h-[30px] mx-[1px] border-r border-searchBgColor"></span>
