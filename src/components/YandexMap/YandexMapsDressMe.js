@@ -225,7 +225,7 @@ function YandexMapsDressMe() {
           <CarouselModalMarket getAllImgGallery={getAllImgGallery} />
         </div>
       </div>
-      <div className="w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden ymapsName">
+      <div className={`w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden ymapsName ${dressInfo?.yandexFullScreen ? ' ymapsNameFullScreen' : ' '} `}>
         {/* Laptop device for */}
         {screenSize.width > 768 && (
           <div
@@ -262,7 +262,7 @@ function YandexMapsDressMe() {
         {screenSize.width <= 768 && (
           <div
             className={`fixed max-w-[440px] mx-auto w-full bg-white z-[215] left-0 right-0 overflow-hidden  ${marketsFilterMaps
-              ? "h-[600px] bottom-0 ease-linear duration-300 rounded-t-lg"
+              ? "h-[570px] bottom-0 ease-linear duration-300 rounded-t-lg"
               : "h-0 bottom-0 ease-linear duration-300 "
               }  ease-linear duration-300 `}
           >
@@ -325,8 +325,8 @@ function YandexMapsDressMe() {
             <div
               onClick={handleFullScreen}
               className={`absolute right-3 ${!dressInfo?.yandexFullScreen
-                ? "bottom-[128px] md:bottom-[87px]"
-                : "bottom-[65px] md:bottom-[87px]"
+                ? "bottom-[75px] md:bottom-[87px]"
+                : "bottom-[8px] md:bottom-[87px]"
                 }  cursor-pointer z-[51] w-10 h-10 rounded-lg bg-white ss:flex items-center justify-center block md:hidden`}
             >
               {dressInfo?.yandexFullScreen ? (
@@ -353,9 +353,6 @@ function YandexMapsDressMe() {
               }}
             />{" "}
             <div className="YSearch">
-              {/* <div className="absolute ">
-                <img src={locationIcons} alt="" /> 
-              </div> */}
               <SearchControl
                 options={{
                   float: "left",
@@ -366,12 +363,7 @@ function YandexMapsDressMe() {
                   // maxWidth: 400,
                   size: "large",
                 }}
-              // options={{
-              // float: "left",
-              // position: { bottom: 270, left: 10, size: "small" },
-              // size: "small",
-              // }}
-              />{" "}
+              />
             </div>
             {/* ---------- */}
             {/* <Clusterer
@@ -622,65 +614,16 @@ function YandexMapsDressMe() {
             /> */}
             {/* Yandex Search */}
             <div
-              className={`absolute  md:hidden ${!dressInfo?.yandexFullScreen ? "top-[80px]" : "top-[8px]"
-                }  md:top-auto md:bottom-[24px] left-0 right-0 mx-auto  overflow-hidden z-50   h-[48px] w-[97%] ll:w-[94%] md:w-[400px] `}
+              className={` absolute md:hidden ${!dressInfo?.yandexFullScreen ? "bottom-[128px]" : "bottom-[65px]"
+                } left-auto  right-3  overflow-hidden z-50   h-[40px] w-fit `}
             >
-              <div className="w-full h-full flex justify-between gap-x-2 ">
-                <div className="w-[85%] md:w-full h-full flex items-center rounded-lg bg-yandexNavbar backdrop-blur-sm px-2 ll:px-3 overflow-hidden shadow-lg ">
-                  <div>
-                    <img src={locationIcons} alt="" />
-                  </div>
-                  <div className="h-full flex items-center w-full mx-3">
-                    <input
-                      // ref={searchRef}
-                      // type="text"
-                      name="search"
-                      type="search"
-                      className="h-full outline-none w-full bg-transparent"
-                      placeholder="Поиск мест и адресов2"
-                      autoComplete="off"
-                    />
-                  </div>
-                  <button type="button">
-                    <SearchIcons />
-                  </button>
-                </div>
-                <button
-                  onClick={() => setMarketsFilterMaps(!marketsFilterMaps)}
-                  type="button"
-                  className="md:hidden h-[48px] w-[48px] rounded-lg bg-yandexNavbar backdrop-blur-sm flex items-center justify-center shadow-lg"
-                >
-                  <FilterIcons colors={"#000"} className="w-full h-full" />
-                </button>
-              </div>
-              <div className="w-full h-full flex justify-between gap-x-2 hidden  ">
-                <div className="w-[85%] md:w-full h-full flex items-center rounded-lg bg-yandexNavbar backdrop-blur-sm px-2 ll:px-3 overflow-hidden shadow-lg ">
-                  <div>
-                    <img src={locationIcons} alt="" />
-                  </div>
-                  <div className="h-full flex items-center w-full mx-3">
-                    <input
-                      // ref={searchRef}
-                      // type="text"
-                      name="search"
-                      type="search"
-                      className="h-full outline-none w-full bg-transparent"
-                      placeholder="Поиск мест и адресов1"
-                      autoComplete="off"
-                    />
-                  </div>
-                  <button type="button">
-                    <SearchIcons />
-                  </button>
-                </div>
-                <button
-                  onClick={() => setMarketsFilterMaps(!marketsFilterMaps)}
-                  type="button"
-                  className="md:hidden h-[48px] w-[48px] rounded-lg bg-yandexNavbar backdrop-blur-sm flex items-center justify-center shadow-lg"
-                >
-                  <FilterIcons colors={"#000"} className="w-full h-full" />
-                </button>
-              </div>
+              <button
+                onClick={() => setMarketsFilterMaps(!marketsFilterMaps)}
+                type="button"
+                className="md:hidden h-[40px] w-[40px] rounded-lg bg-yandexNavbar bg-white flex items-center justify-center shadow-lg"
+              >
+                <FilterIcons colors={"#000"} className="w-full h-full" />
+              </button>
             </div>
           </Map>
         </YMaps>

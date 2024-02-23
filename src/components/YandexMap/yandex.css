@@ -324,10 +324,17 @@ body {
   }
 
   .ymapsName .ymaps-2-1-79-search.ymaps-2-1-79-search_layout_normal.ymaps-2-1-79-searchbox__normal-layout {
-    display: none !important;
-    top: 10px;
+    width: 85% !important;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 80px;
+  }
 
-    border: 1px solid red
+  .ymapsNameFullScreen .ymaps-2-1-79-search.ymaps-2-1-79-search_layout_normal.ymaps-2-1-79-searchbox__normal-layout {
+    width: 90% !important;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10px;
   }
 }
 
