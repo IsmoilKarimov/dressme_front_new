@@ -203,14 +203,14 @@ function BottomHeader() {
     setDressInfo({ ...dressInfo, mainColorId: null, mainColorHex: null });
   };
 
-  const targetDivEl = document.getElementById("defaultModalDiv");
+  const targetModal = document.getElementById("defaultModal");
 
   const openDivModal = () => {
-    targetDivEl.classList.remove("hidden");
+    targetModal.classList.remove("hidden");
   };
 
   const closeDivModal = () => {
-    targetDivEl.classList.add("hidden");
+    targetModal.classList.add("hidden");
   };
 
   return (
@@ -368,14 +368,14 @@ function BottomHeader() {
         </button>
 
         <div
-          id="defaultModalDiv"
-          tabIndex="-1"
-          aria-hidden="true"
+          id="defaultModal"
+          // tabIndex="-1"
+          // aria-hidden="true"
           className={`overflow-y-auto overflow-x-hidden hidden md:fixed top-0right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full`}
         >
           <div className="relative p-4 w-fit h-fit md:h-auto left-[440px] top-[160px]">
             {/* Modal content  */}
-            <div className="relative bg-white rounded-lg dark:bg-gray-700 shadow-modalCategoryShadow">
+            <div className="relative bg-white rounded-lg shadow-modalCategoryShadow">
               {/* Modal header */}
               <div className="flex justify-between items-start px-4 py-2 rounded-t border-b dark:border-gray-600">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
@@ -385,7 +385,7 @@ function BottomHeader() {
                   onClick={closeDivModal}
                   type="button"
                   className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                  data-modal-toggle="defaultModalDiv"
+                  data-modal-toggle="defaultModal"
                 >
                   <svg
                     aria-hidden="true"
@@ -400,7 +400,6 @@ function BottomHeader() {
                       clipRule="evenodd"
                     ></path>
                   </svg>
-                  <span className="sr-only">Close modal</span>
                 </button>
               </div>
               {/*  Modal body  */}
@@ -447,7 +446,7 @@ function BottomHeader() {
                   />
                 </div>
               </div>
-              {/* <!-- Modal footer --> */}
+              {/* Modal footer */}
               <div
                 className={` flex items-center ${
                   state?.clearPrice ? "justify-between" : "justify-end"
@@ -455,7 +454,10 @@ function BottomHeader() {
               >
                 {state?.clearPrice && (
                   <span
-                    onClick={() => clearFunction()}
+                    onClick={() => {
+                      closeDivModal();
+                      clearFunction();
+                    }}
                     className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
                   >
                     Сбросить
