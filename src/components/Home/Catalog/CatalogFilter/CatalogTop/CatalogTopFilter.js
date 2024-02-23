@@ -104,7 +104,7 @@ const CatalogTopFilter = () => {
         
         <section className="w-[100%] h-fit flex-col hidden border-b border-searchBgColor">
           <article className="w-full flex flex-col">
-            <figure className="relative w-full  md:h-[90px]  mt-2 md:mt-0  h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
+            <figure className="relative w-full  md:h-[90px]  mt-2 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
               <div className="w-full md:w-fit flex items-center justify-between md:mr-5  mt-6 md:mt-0">
                 <div className="w-full md:w-fit flex items-center justify-between ">
                   <p className="flex items-center text-black text-xl not-italic font-AeonikProMedium tracking-[0.2px">
@@ -174,7 +174,7 @@ const CatalogTopFilter = () => {
         </section>
         
         <section className="w-full h-full px-3 md:px-0">
-          <div className="md:pt-8 md:pb-16 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 md:py-3">
+          <div className="md:pt-8 md:pb-8 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 md:py-3">
             <section className="max-w-[1280px] w-[100%] h-full flex items-center justify-between m-auto">
               <nav className="w-[100%] md:w-fit flex items-center p-1">
                 <ul className="h-10 w-[100%] md:w-fit flex items-center overflow-auto HorizantalScroll">

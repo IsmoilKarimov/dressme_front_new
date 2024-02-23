@@ -41,8 +41,8 @@ const CatalogMobile = () => {
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <CatalogTopFilter />
-      <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
-        <article className="w-full h-full pt-6 pb-20 flex flex-wrap ll:gap-x-2 gap-y-4 justify-between xs:justify-start xs:gap-x-4">
+      <section className="max-w-[1280px] w-[100%] md:h-[40vh] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
+        <article className="w-full h-full pt-6 pb-20 md:py-0 flex flex-wrap ll:gap-x-2 gap-y-4 justify-between xs:justify-start xs:gap-x-4">
           {wearArray?.map((item) => {
             return (
               <figure
@@ -51,7 +51,7 @@ const CatalogMobile = () => {
               >
                 <div
                   onClick={() => goCatalogId(item?.id)}
-                  className="w-full h-[145px] ls:h-[155px] ll:h-[180px] flex items-center overflow-hidden justify-center border border-skeltonColor bg-categoryModalBgColor rounded-[12px]"
+                  className="w-full h-[145px] ls:h-[155px] ll:h-[180px] flex items-center overflow-hidden justify-center border border-skeltonColor bg-categoryModalBgColor rounded-[12px] cursor-pointer"
                 >
                   <img src={item?.img} alt="" className=" h-full	" />
                 </div>

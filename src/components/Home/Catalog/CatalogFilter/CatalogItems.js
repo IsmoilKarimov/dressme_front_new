@@ -211,7 +211,7 @@ export default function CatalogItems() {
       <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto">
         <article className="w-[100%] h-fit ">
           <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
-            <article className="w-[100%]  h-fit md:mb-12">
+            <article className="w-[100%] h-fit md:mb-12 md:mt-8">
               <article className="w-full flex flex-col border-b md:border-none border-searchBgColor">
                 <div className="relative w-full md:h-[90px] mt-6 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
                   {/*  */}
