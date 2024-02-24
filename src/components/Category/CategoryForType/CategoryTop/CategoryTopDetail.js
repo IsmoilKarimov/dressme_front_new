@@ -9,6 +9,8 @@ import {
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
+import { dressMainData } from "../../../../ContextHook/ContextMenu";
+import { MdClose } from "react-icons/md";
 
 
 const CategoryTopDetail = ({
@@ -19,6 +21,8 @@ const CategoryTopDetail = ({
   setOpenMobileFilter,
   setOpenMobileCategory
 }) => {
+  const [searchMarketName, setSearchMarketName] = useState();
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
 
 
   const handleToggle = () => {
@@ -73,7 +77,16 @@ const CategoryTopDetail = ({
       })}
     </section>
   );
-
+  function getSearchClick() {
+    setDressInfo({ ...dressInfo, mainSearchNameCategory: searchMarketName });
+  }
+  const handleChange = (event) => {
+    setSearchMarketName(event.target.value);
+  };
+  const handleClear = () => {
+    setSearchMarketName("");
+    setDressInfo({ ...dressInfo, mainSearchNameCategory: null });
+  };
   return (
     <main className="flex flex-col justify-center border-t border-searchBgColor items-center">
       <div className="md:pb-16 flex flex-col  w-full justify-center items-center m-0 ">
@@ -176,7 +189,7 @@ const CategoryTopDetail = ({
             >
               <UnderSection />
               <p className="ml-2 not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%] cursor-pointer">
-                Под разделу
+                По разделу
               </p>
             </button>
           </article>
@@ -224,13 +237,28 @@ const CategoryTopDetail = ({
 
       <section className="w-full px-4 block md:hidden">
         <article className="w-full search flex items-center bg-white justify-between rounded-xl font-AeonikProMedium h-11 mt-3 mb-3 border border-searchBgColor ss:mt-3">
-          <input
-            type="text"
-            name="name"
-            placeholder="Найти товар"
-            className="font-AeonikProRegular bg-transparent w-[87%] px-3 h-full text-[14px] leading-4 border-r border-searchBgColor"
-          />
-          <span className="w-[13%] h-full bg-btnBgColor rounded-r-xl active:scale-95 flex items-center justify-center ">
+          <div className="w-[87%] flex items-center justify-between">
+            <input
+              type="text"
+              name="name"
+              placeholder="Найти товар"
+              value={searchMarketName}
+              onChange={handleChange}
+              className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[14px] leading-4 border-r border-searchBgColor"
+            />
+            {searchMarketName && (
+              <button
+                onClick={handleClear}
+                className="  "
+                type="button"
+              >
+                <MdClose size={20} color={"#a1a1a1"} />
+              </button>
+            )}
+          </div>
+          <span
+            onClick={() => getSearchClick()}
+            className="w-[13%] h-full bg-btnBgColor rounded-r-xl active:scale-95 flex items-center justify-center ">
             <SearchIcons />
           </span>
         </article>

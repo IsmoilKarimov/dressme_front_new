@@ -76,6 +76,8 @@ function CategoryForType() {
 
   function fetchGetAllData() {
     let params = new URLSearchParams();
+    dressInfo?.mainSearchNameCategory &&
+      params.append("keywords", dressInfo?.mainSearchNameCategory);
     getGenderId && params.append("gender", getGenderId);
     discount && params.append("discount", discount);
     getCategory && params.append("category", getCategory);
@@ -136,6 +138,7 @@ function CategoryForType() {
     getFootWearList,
     getRating,
     getRange,
+    dressInfo?.mainSearchNameCategory
   ])
   const navigate = useNavigate();
 
@@ -171,11 +174,11 @@ function CategoryForType() {
         ></section>
         {/* For Mobile Versions */}
         <section
-          className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
+          className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
             }`}
         >
           <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between  mb-1 ">
-            <p className="text-xl font-AeonikProMedium">Под разделу</p>
+            <p className="text-[16px] font-AeonikProMedium">Под разделу</p>
             <button onClick={() => setOpenMobileCategory(false)
             }>
               <MenuCloseIcons colors={"#000"} />
@@ -197,21 +200,7 @@ function CategoryForType() {
               );
             })}
           </div>
-          <action className="w-full flex items-center justify-between gap-x-3 mb-4 mt-5">
-            <button
-              type="button"
-              onClick={() => setOpenMobileCategory(false)}
-              className="w-[45%] h-[38px] text-base font-AeonikProMedium bg-white text-borderWinter border border-borderWinter rounded-md active:scale-95"
-            >
-              Закрыт
-            </button>
-            <button
-              type="button"
-              onClick={() => setOpenMobileCategory(false)}
-              className="w-[45%] h-[38px] text-base font-AeonikProMedium bg-borderWinter text-white border border-borderWinter rounded-md active:scale-95">
-              Выбрать
-            </button>
-          </action>
+         
         </section>
         <section
           className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"

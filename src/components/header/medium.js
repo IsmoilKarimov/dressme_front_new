@@ -225,9 +225,15 @@ const MediumHeader = ({ stateData, setStateData }) => {
   const navigate = useNavigate();
 
   const [locationWindow, setLocationWindow] = useState("");
+  const [searchForLocation, setSearchForLocation] = useState([]);
   useEffect(() => {
     setLocationWindow(location.pathname);
+    setSearchForLocation(location?.pathname?.split('/'))
   }, [location.pathname]);
+
+  // console.log(locationWindow, "locationWindow");
+  // console.log(searchForLocation, "searchForLocation");
+  // console.log(searchForLocation?.length, "4444searchForLocation");
 
   const handleChange = (event) => {
     setSearchMarketName(event.target.value);
@@ -235,16 +241,32 @@ const MediumHeader = ({ stateData, setStateData }) => {
 
   const handleClear = () => {
     setSearchMarketName("");
-    setDressInfo({ ...dressInfo, mainSearchName: null });
+    setDressInfo({ ...dressInfo, mainSearchName: null, mainSearchNameCategory: null, mainSearchNameCatalog: null });
   };
 
   function getSearchClick() {
     setPage(1);
-    setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
+    if (searchForLocation?.includes('section')) {
+      setDressInfo({ ...dressInfo, mainSearchNameCategory: searchMarketName });
+    }
+    if (searchForLocation?.includes('categories')) {
+      setDressInfo({ ...dressInfo, mainSearchNameCatalog: searchMarketName });
+    }
+    if (searchForLocation?.length <= 2) {
+      setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
+    }
   }
   const _handleKeyDownSearch = (event) => {
     if (event.key === "Enter") {
-      setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
+      if (searchForLocation?.includes('section')) {
+        setDressInfo({ ...dressInfo, mainSearchNameCategory: searchMarketName });
+      }
+      if (searchForLocation?.includes('categories')) {
+        setDressInfo({ ...dressInfo, mainSearchNameCatalog: searchMarketName });
+      }
+      if (searchForLocation?.length <= 2) {
+        setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
+      }
     }
   };
 
@@ -262,11 +284,10 @@ const MediumHeader = ({ stateData, setStateData }) => {
       {regionsList && (
         <div
           className={`max-w-[600px]    w-full fixed duration-500 z-[231]  h-fit flex items-center  justify-center mx-auto
-        ${
-          regionsList
-            ? " bottom-[64px] md:flex flex-col z-[232]"
-            : "bottom-[-1500px] z-[-10]"
-        }
+        ${regionsList
+              ? " bottom-[64px] md:flex flex-col z-[232]"
+              : "bottom-[-1500px] z-[-10]"
+            }
         `}
         >
           <RegionsList onClick={toggleRegionsShow} />
@@ -279,9 +300,8 @@ const MediumHeader = ({ stateData, setStateData }) => {
         ></div>
       )}
       <article
-        className={`fixed top-[235px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${
-          dressInfo?.openCatologId ? "" : "hidden"
-        }`}
+        className={`fixed top-[235px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${dressInfo?.openCatologId ? "" : "hidden"
+          }`}
       >
         <div className="flex justify-center items-center z-[120]">
           <div className="w-[675px] flex flex-col shadow-modalCategoryShadow bg-white rounded-lg p-2">
@@ -584,11 +604,10 @@ const MediumHeader = ({ stateData, setStateData }) => {
 
             {/*Starting of Opened Hamburger Menu section */}
             <section
-              className={`flex md:hidden max-w-[440px] h-[90vh] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0  px-3 ${
-                stateData?.hamburgerMenu
-                  ? " flex flex-col ease-linear duration-500 overscroll-none"
-                  : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
-              }`}
+              className={`flex md:hidden max-w-[440px] h-[90vh] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0  px-3 ${stateData?.hamburgerMenu
+                ? " flex flex-col ease-linear duration-500 overscroll-none"
+                : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
+                }`}
             >
               <div className={`w-full h-[calc(100vh-140px)] flex flex-wrap `}>
                 {/* Categories */}
