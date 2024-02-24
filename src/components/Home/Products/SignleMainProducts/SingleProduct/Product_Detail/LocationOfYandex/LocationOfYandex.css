@@ -72,7 +72,16 @@
 .mapRoot .ymaps-2-1-79-zoom__scale {
   display: none !important;
 }
-
+.mapRoot .ymaps-2-1-79-image {
+  background-color: white;
+  object-fit: contain;
+  border-radius: 50%;
+  overflow: hidden;
+  background-position: center center !important;
+  background-repeat: no-repeat;
+  background-size: 100% !important;
+  border: 2px solid #007dca;
+}
 .mapRoot .ymaps-2-1-79-zoom {
   height: 125px !important;
   width: 36px !important;

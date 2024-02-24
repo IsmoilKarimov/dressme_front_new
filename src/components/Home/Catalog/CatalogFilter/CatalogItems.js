@@ -113,10 +113,13 @@ export default function CatalogItems() {
   );
 
   const apiUrl = `https://api.dressme.uz/api/main/category/${newId}`;
+  // setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
 
   function fetchGetAllData() {
     let params = new URLSearchParams();
     params.append("region", dressInfo?.mainRegionId);
+    // dressInfo?.mainSearchName &&
+    //   params.append("keywords", dressInfo?.mainSearchName);
     dressInfo?.mainSubRegionId &&
       params.append("sub_region", dressInfo?.mainSubRegionId);
     getGenderId && params.append("gender", getGenderId);
@@ -193,6 +196,7 @@ export default function CatalogItems() {
     getFootWearList,
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
+    dressInfo?.mainSearchName
   ]);
 
   useEffect(() => {
