@@ -14,6 +14,7 @@ import {
 } from "../../../../assets/icons";
 import { MdClose } from "react-icons/md";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
+import LoadingNetwork from "../../../Loading/LoadingNetwork";
 
 export default function CatalogItems() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -183,6 +184,76 @@ export default function CatalogItems() {
         params.append("colors[]", dataColor[index]);
       });
 
+    setLoader(true);
+    fetch(`${apiUrl}?` + params)
+      .then((res) => res.json())
+      .then((res) => {
+        setFilterData(res);
+        setLoader(false);
+      })
+      .catch((err) => {
+        setLoader(false);
+        console.log(err, "ERRORLIST");
+      });
+  }
+
+  function fetchGetAllDataForFilter() {
+    let params = new URLSearchParams();
+    params.append("region", dressInfo?.mainRegionId);
+    dressInfo?.mainSearchNameCatalog &&
+      params.append("keywords", dressInfo?.mainSearchNameCatalog);
+    dressInfo?.mainSubRegionId &&
+      params.append("sub_region", dressInfo?.mainSubRegionId);
+    getGenderId && params.append("gender", getGenderId);
+    discount && params.append("discount", discount);
+    getCategory && params.append("category", getCategory);
+    getRating && params.append("rating", getRating);
+    getFootWearList?.wear_size &&
+      params.append("footwear_size", getFootWearList?.wear_size);
+    // OUTWEAR SIZES
+    getOutWearList?.letter_size &&
+      params.append("outwear_size[letter_size]", getOutWearList?.letter_size);
+    !getOutWearList?.letter_size &&
+      getOutWearList?.min_wear_size &&
+      params.append(
+        "outwear_size[min_wear_size]",
+        getOutWearList?.min_wear_size
+      );
+    !getOutWearList?.letter_size &&
+      getOutWearList?.max_wear_size &&
+      params.append(
+        "outwear_size[max_wear_size]",
+        getOutWearList?.max_wear_size
+      );
+
+    // UNDERWEAR SIZES
+    getUnderWearList?.letter_size &&
+      params.append(
+        "underwear_size[letter_size]",
+        getUnderWearList?.letter_size
+      );
+    !getUnderWearList?.letter_size &&
+      getUnderWearList?.min_wear_size &&
+      params.append(
+        "underwear_size[min_wear_size]",
+        getUnderWearList?.min_wear_size
+      );
+    !getUnderWearList?.letter_size &&
+      getUnderWearList?.max_wear_size &&
+      params.append(
+        "underwear_size[max_wear_size]",
+        getUnderWearList?.max_wear_size
+      );
+
+    pageId && params.append("page", pageId);
+
+    getRange?.min && params.append("budget[from]", getRange?.min);
+    getRange?.max && params.append("budget[to]", getRange?.max);
+    dataColor?.length > 0 &&
+      dataColor?.forEach((e, index) => {
+        params.append("colors[]", dataColor[index]);
+      });
+
     // setLoader(true);
     fetch(`${apiUrl}?` + params)
       .then((res) => res.json())
@@ -200,6 +271,25 @@ export default function CatalogItems() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     newId,
+    // pageId,
+    // getGenderId,
+    // getCategory,
+    // getRating,
+    // getRange,
+    // dataColor,
+    // discount,
+    // getOutWearList,
+    // getUnderWearList,
+    // getFootWearList,
+    // dressInfo?.mainRegionId,
+    // dressInfo?.mainSubRegionId,
+    // dressInfo?.mainSearchNameCatalog,
+  ]);
+  useEffect(() => {
+    fetchGetAllDataForFilter();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    // newId,
     pageId,
     getGenderId,
     getCategory,
@@ -245,7 +335,7 @@ export default function CatalogItems() {
       </section>
 
       {loader ? (
-        ""
+        <LoadingNetwork />
       ) : (
         <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto">
           <article className="w-[100%] h-fit ">
@@ -454,6 +544,7 @@ export default function CatalogItems() {
                         key={data?.id}
                         onClick={() => {
                           handleCategories(data?.id);
+                          setOpenMobileCategory(false);
                         }}
                         className={`${
                           Number(paramId?.id) === data?.id ? "bg-bgColor" : null
@@ -464,20 +555,6 @@ export default function CatalogItems() {
                     );
                   })}
                 </div>
-                <action className="w-full flex items-center justify-between gap-x-3 mb-4">
-                  <button
-                    onClick={() => setOpenMobileCategory(false)}
-                    className="w-[45%] h-[38px] text-base font-AeonikProMedium bg-white text-borderWinter border border-borderWinter rounded-md active:scale-95"
-                  >
-                    Закрыт
-                  </button>
-                  <button
-                    type="button"
-                    className="w-[45%] h-[38px] text-base font-AeonikProMedium bg-borderWinter text-white border border-borderWinter rounded-md active:scale-95"
-                  >
-                    Выбрать
-                  </button>
-                </action>
               </section>
 
               {/* FOR DESCTOP VERSION */}
