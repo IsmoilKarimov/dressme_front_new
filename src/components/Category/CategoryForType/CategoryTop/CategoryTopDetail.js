@@ -1,12 +1,11 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import {
-  FilterIcons,
   ItailIcons,
   SearchIcons,
   SortIcons,
   UnderSection,
 } from "../../../../assets/icons";
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
@@ -34,19 +33,10 @@ const CategoryTopDetail = ({
   };
   // For DropUp
 
-
-  // const { id } = useParams();
-  // const newId = id?.replace(":", "");
-
   const [state, setState] = useState({
     opensports: false,
     openTypesofClothes: false,
   });
-
-  // const [selectedSection, setSelectedSection] = useState({
-  //   value: null,
-  //   id: null,
-  // });
 
   const navigate = useNavigate();
 
@@ -87,6 +77,7 @@ const CategoryTopDetail = ({
     setSearchMarketName("");
     setDressInfo({ ...dressInfo, mainSearchNameCategory: null });
   };
+
   return (
     <main className="flex flex-col justify-center border-t border-searchBgColor items-center">
       <div className="md:pb-16 flex flex-col  w-full justify-center items-center m-0 ">
@@ -111,7 +102,6 @@ const CategoryTopDetail = ({
               </li>
             </ul>
           </nav>
-
           <nav className="hidden md:flex"></nav>
         </section>
       </div>
@@ -194,6 +184,7 @@ const CategoryTopDetail = ({
             </button>
           </article>
         </article>
+        
         {filterData?.section?.sub_sections ? (
           <article className="w-full border-b border-searchBgColor">
             <article className="w-full hidden md:block mb-10">
