@@ -13,23 +13,17 @@ import {
   ActivePersonIcons,
   ArrowPrevousNext,
   ArrowTopIcons,
-  ChildGenIcon,
-  CommentIcons,
   CotegoryIcons,
-  CotegoryMenuIcons,
   HouseStatisticIcons,
   LocationIcons,
-  ManGenIcons,
   MapIcons,
   MarketIcons,
   MenuCloseIcons,
   MenuOpenIcons,
   PersonIcons,
-  PhoneIcons,
   SearchIcons,
   UploadIcons,
   VolumeIcons,
-  WomanGenIcons,
 } from "../../assets/icons";
 import {
   BrandAutumm,
@@ -59,15 +53,19 @@ const MediumHeader = ({ stateData, setStateData }) => {
   const [data, setData, , , page, setPage] = useContext(HomeMainDataContext);
   const [audioPlay, setAudioPlay] = useContext(MainPageAudioContext);
   const [searchMarketName, setSearchMarketName] = useState();
-  const [regionsList, setRegionsList] = useState(false);
-  const toggleRegionsShow = useCallback(() => setRegionsList(false), []);
 
-  const [state, setState] = useState({
-    // hamburgerMenu: false,
-    toggle: false,
-    genderActive: true,
-    getAllCardList: null,
-  });
+  const [regionsList, setRegionsList] = useState(false);
+  const [scrollPost, setscrollPost] = useState(0);
+  const toggleRegionsShow = useCallback(() => setRegionsList(false), []);
+  const toggleHamburger = () => {
+    setStateData({ ...stateData, hamburgerMenu: !stateData.hamburgerMenu });
+  };
+
+  const handleScroll = () => {
+    setscrollPost(document.body.getBoundingClientRect().top);
+  };
+
+  // useEffect
 
   useEffect(() => {
     if (stateData?.hamburgerMenu || regionsList) {
@@ -75,13 +73,8 @@ const MediumHeader = ({ stateData, setStateData }) => {
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [stateData?.hamburgerMenu || regionsList]);
+  }, [stateData?.hamburgerMenu, regionsList]);
 
-  // -----------------------------------------------------
-  const [scrollPost, setscrollPost] = useState(0);
-  const handleScroll = () => {
-    setscrollPost(document.body.getBoundingClientRect().top);
-  };
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -120,9 +113,6 @@ const MediumHeader = ({ stateData, setStateData }) => {
   ];
 
   //------------------------------------------------------------------------------------------------
-  const toggleHamburger = () => {
-    setStateData({ ...stateData, hamburgerMenu: !stateData.hamburgerMenu });
-  };
 
   // ----------------Wear state management----------------------------
   const [openwear, setOpenwear] = useState(false);
@@ -301,22 +291,22 @@ const MediumHeader = ({ stateData, setStateData }) => {
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <div
         onClick={() => setRegionsList(false)}
-        className={`fixed inset-0 z-[230] cursor-pointer duration-200 w-full h-[100vh] bg-black opacity-50
-         ${regionsList ? "" : "hidden"}`}
-      ></div>
-      {regionsList && (
-        <div
-          className={`max-w-[600px]    w-full fixed duration-500 z-[231]  h-fit flex items-center  justify-center mx-auto
-        ${
-          regionsList
-            ? " bottom-[64px] md:flex flex-col z-[232]"
-            : "bottom-[-1500px] z-[-10]"
-        }
+        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50
+          ${regionsList ? "" : "hidden"}
         `}
-        >
-          <RegionsList onClick={toggleRegionsShow} />
-        </div>
-      )}
+      ></div>
+
+      <div
+        className={`max-w-[440px] rounded-t-[12px] mx-auto w-full fixed duration-300 z-[114] h-fit flex items-center justify-center 
+          ${
+            regionsList
+              ? "bottom-[64px] md:flex flex-col z-[232]"
+              : "bottom-[-1500px] z-[-10]"
+          }`}
+      >
+        {regionsList && <RegionsList onClick={toggleRegionsShow} />}
+      </div>
+
       {dressInfo?.openCatologId && (
         <div
           onClick={() => setDressInfo({ ...dressInfo, openCatologId: false })}
@@ -635,16 +625,13 @@ const MediumHeader = ({ stateData, setStateData }) => {
                   : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
               }`}
             >
-              <div className={`w-full h-full flex flex-wrap relative`}>
+              <div className={`w-full h-full flex flex-col mb-[80px] flex-wrap relative`}>
                 {/* Categories */}
                 <ul className="flex flex-col w-full">
                   <li>
                     <NavLink
-                      // onClick={() =>
-                      //   setState({ ...stateData, hamburgerMenu: false })
-                      // }
                       onClick={() => setRegionsList(true)}
-                      to="/signup-seller"
+                      // to="/signup-seller"
                       className="flex items-center bg-btnBgColor mt-3 font-AeonikProMedium h-[48px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
                     >
                       <div className="flex items-center">
@@ -735,10 +722,8 @@ const MediumHeader = ({ stateData, setStateData }) => {
                   </li>
                 </ul>
 
-                {/* Line */}
-
                 {/* Location and Language */}
-                <div className="w-full gap-x-3 absolute bottom-[105px] flex items-center justify-between">
+                <div className="w-full gap-x-3 mt-auto flex items-center justify-between">
                   <NavLink
                     onClick={() =>
                       setStateData({ ...stateData, hamburgerMenu: false })

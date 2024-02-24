@@ -63,39 +63,14 @@ function RegionList({ onClick }) {
     });
     onClick();
   };
-  // useEffect(() => {
 
-  //   if (dressInfo?.mainSubRegionId) {
-  //     mainData?.regions?.filter(e => e?.id == dressInfo?.mainRegionId)?.map(item => {
-  //       item?.sub_regions?.map(data => {
-  //         if (item?.id === dressInfo?.mainRegionId) {
-  //           if (dressInfo?.mainSubRegionId !== data?.id) {
-  //             setDressInfo({
-  //               ...dressInfo, mainSubRegionId: null,
-  //             })
-  //           }
-  //         }
-  //       })
-  //     })
-  //   }
 
-  // }, [state?.regionId])
-  // show
-  // console.log(dressInfo?.mainRegionId, "filt--dressInfo?.mainRegionId");
-  // console.log(dressInfo?.mainSubRegionId, "filt--dressInfo?.mainSubRegionId");
-  // console.log(state?.regionId, "filt--state?.regionId");
-  // console.log(state?.subRegionId, "filt--state?.subRegionId");
-  // console.log(
-  //   dressInfo?.yandexOpenRegionList,
-  //   "filt--state?.yandexOpenRegionList"
-  // );
-  // console.log("filt----------------------");
   return (
-    <main className={`w-full  h-fit `}>
+    <main className={`w-full h-fit`}>
       <div
-        className={`max-w-[600px] h-fit     px-3 md:px-6  py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg	 rounded-t-lg  `}
+        className={`max-w-[600px] h-fit px-3 md:px-6 py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg rounded-t-lg`}
       >
-        <div className="w-full flex items-center justify-between ">
+        <div className="w-full flex items-center justify-between my-3 md:my-0">
           <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">
             Выберите регион
           </span>
