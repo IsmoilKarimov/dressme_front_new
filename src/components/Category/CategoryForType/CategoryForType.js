@@ -145,6 +145,7 @@ function CategoryForType() {
   const handleCategories = (value, id) => {
     navigate(`/section/:${id}`);
   };
+  
   useEffect(() => {
     if (openMobileFilter || openMobileCategory) {
       document.body.style.overflow = "hidden";
@@ -152,9 +153,11 @@ function CategoryForType() {
       document.body.style.overflow = "auto";
     }
   }, [openMobileFilter, openMobileCategory]);
+
+
   return (
     <main className="w-full h-full">
-      <section className="w-full ">
+      <section className="w-full">
         <CategoryTopDetail filterData={filterData} setFilterData={setFilterData}
           toggleFilterLeftOpen={toggleFilterOpen}
           toggleFilterLeftClose={toggleFilterClose}
@@ -163,7 +166,10 @@ function CategoryForType() {
           setOpenMobileCategory={setOpenMobileCategory}
         />
       </section>
+
+
       <section className="flex justify-between mb-10">
+               
         <section
           onClick={() => {
             setOpenMobileCategory(false)
@@ -172,9 +178,14 @@ function CategoryForType() {
           className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter || openMobileCategory ? "" : "hidden"
             }`}
         ></section>
+
         {/* For Mobile Versions */}
         <section
-          className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
+          className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 
+          ${
+            openMobileCategory 
+            ? "bottom-0" 
+            : "bottom-[-800px] z-0"
             }`}
         >
           <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between  mb-1 ">
@@ -200,10 +211,13 @@ function CategoryForType() {
               );
             })}
           </div>
-         
         </section>
-        <section
-          className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+
+
+
+
+        
+        <section className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
             }`}
         >
           <div className="w-full h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
