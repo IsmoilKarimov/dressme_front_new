@@ -9,6 +9,8 @@ import ProductComment from "./ProductComment/ProductComment";
 import { useQuery } from "@tanstack/react-query";
 import { HomeMainDataContext } from "../../../../../ContextHook/HomeMainData";
 import { CollectionCardItem } from "../../../Main/WearCollectionCard/CollectionCardItem";
+import LoadingNetwork from "../../../../Loading/LoadingNetwork";
+import axios from "axios";
 
 const SingleProduct = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -64,31 +66,59 @@ const SingleProduct = () => {
   const url = "https://api.dressme.uz";
 
   const { id } = useParams();
-  const newId = id?.replace(":", "")
+  const newId = id?.replace(":", "");
 
   const [singleData, setSingleData] = useState();
 
-  const { refetch } = useQuery(
-    ["get_main_detail_data"],
-    () => {
-      return fetch(`${url}/api/main/products/${newId}`, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-        },
-      }).then((res) => res.json());
-    },
-    {
-      onSuccess: (res) => {
-        setSingleData(res);
+  // const { refetch, isLoading, data } = useQuery(
+  //   ["get_main_detail_data"],
+  //   () => {
+  //     return fetch(`${url}/api/main/products/${newId}`, {
+  //       method: "GET",
+  //       headers: {
+  //         Accept: "application/json",
+  //       },
+  //     }).then((res) => res.json());
+  //   },
+  //   {
+  //     onSuccess: (res) => {
+  //       setSingleData(res);
+  //     },
+  //     onError: (err) => {
+  //       console.log(err, "err");
+  //     },
+  //     keepPreviousData: false,
+  //     refetchOnWindowFocus: false,
+  //   }
+  // );
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    axios(`${url}/api/main/products/${newId}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
       },
-      onError: (err) => {
-        console.log(err, "err");
+    }).then((res) => {
+      setSingleData(res.data);
+      setLoading(false);
+    });
+  }, []);
+
+  const refetch = () => {
+    setLoading(true);
+    axios(`${url}/api/main/products/${newId}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
       },
-      keepPreviousData: true,
-      refetchOnWindowFocus: true,
-    }
-  );
+    }).then((res) => {
+      setSingleData(res.data);
+      setLoading(false);
+    });
+  };
 
   // ---------------------------
 
@@ -122,54 +152,60 @@ const SingleProduct = () => {
     )
     ?.slice(0, 6);
 
-    // console.log(singleData, "data");
+  // console.log(singleData, "data");
 
   return (
     <main className="flex flex-col m-0 p-0 box-border">
-      <section>
-        <SingleProductTop data={singleData} />
-      </section>
-      <section className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto border-box mb-10 md:mb-[0px]">
-        <section className="w-[100%] h-fit mt-4 md:mt-6 flex justify-between flex-col md:flex-row">
-          <section className={`md:w-1/2`}>
-            <ProductCarousel show={show} data={singleData} />
+      {loading ? (
+        <LoadingNetwork />
+      ) : (
+        <div className="w-full">
+          <section>
+            <SingleProductTop data={singleData} />
           </section>
-          <section className="w-full md:w-1/2 h-full ">
-            <ProductDetails data={singleData} />
-          </section>
-        </section>
-        {/* Products Comment */}
-        {singleData?.product?.ratings?.length ? (
-          <section className="md:mt-20 w-full">
-            <ProductComment data={singleData} refetch={refetch} />
-          </section>
-        ) : null}
-        {sameTypeData?.length ? (
-          <section className="w-full h-fit">
-            <article className="w-full mt-[34px] md:mt-[60px] md:mb-[60px]">
-              <div className="md:mb-4">
-                <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black mb-3 md:mb-0">
-                  Похожие продукты
-                </p>
-              </div>
-              <article className="flex flex-wrap justify-between md:justify-start md:mx-0  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
-                {sameTypeData?.map((data) => {
-                  return (
-                    <CollectionCardItem
-                      key={data?.id}
-                      data={data}
-                      setOpenWearType={setOpenWearType}
-                      handleLeaveMouse={handleLeaveMouse}
-                      wishList={wishList}
-                      setWishlist={setWishlist}
-                    />
-                  );
-                })}
-              </article>
-            </article>
-          </section>
-        ) : null}
-      </section>
+          <section className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto border-box mb-10 md:mb-[0px]">
+            <section className="w-[100%] h-fit mt-4 md:mt-6 flex justify-between flex-col md:flex-row">
+              <section className={`md:w-1/2`}>
+                <ProductCarousel show={show} data={singleData} />
+              </section>
+              <section className="w-full md:w-1/2 h-full ">
+                <ProductDetails data={singleData} />
+              </section>
+            </section>
+            {/* Products Comment */}
+            {singleData?.product?.ratings?.length ? (
+              <section className="md:mt-20 w-full">
+                <ProductComment data={singleData} refetch={refetch} />
+              </section>
+            ) : null}
+            {sameTypeData?.length ? (
+              <section className="w-full h-fit">
+                <article className="w-full mt-[34px] md:mt-[60px] md:mb-[60px]">
+                  <div className="md:mb-4">
+                    <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black mb-3 md:mb-0">
+                      Похожие продукты
+                    </p>
+                  </div>
+                  <article className="flex flex-wrap justify-between md:justify-start md:mx-0  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
+                    {sameTypeData?.map((data) => {
+                      return (
+                        <CollectionCardItem
+                          key={data?.id}
+                          data={data}
+                          setOpenWearType={setOpenWearType}
+                          handleLeaveMouse={handleLeaveMouse}
+                          wishList={wishList}
+                          setWishlist={setWishlist}
+                        />
+                      );
+                    })}
+                  </article>
+                </article>
+              </section>
+            ) : null}
+          </section>{" "}
+        </div>
+      )}
     </main>
   );
 };
