@@ -270,7 +270,7 @@ const ShoppingStoreOfficial = () => {
             }`}
         ></section>
         <section
-          className={` fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+          className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
             }`}
         >
           <div className="max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
@@ -291,7 +291,6 @@ const ShoppingStoreOfficial = () => {
               setPageId={setPageId}
               openMobileFilter={openMobileFilter}
               setOpenMobileFilter={setOpenMobileFilter}
-
             />
           </div>
         </section>
@@ -328,7 +327,7 @@ const ShoppingStoreOfficial = () => {
 
                   <div
                     className={` ${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-                      } w-full h-full ss:px-4 md:px-0`}
+                      } w-full h-full px-[10px] md:px-0`}
                   >
                     {filteredData ? (
                       <ShopOfficialCard

@@ -78,7 +78,7 @@ export const CollectionCardItem = ({
       key={data?.id}
       className={`w-[49%] md:w-[24%] lg:w-[240px] h-[325px] ls:h-[350px] ll:h-[365px] xs:h-[456px] lg:h-fit border border-solid borderColorCard overflow-hidden rounded-lg md:rounded-xl`}
     >
-      <figure
+      <div
         onClick={() => {
           goDetail(data?.id);
           setcolorId(null);
@@ -94,7 +94,7 @@ export const CollectionCardItem = ({
           backgroundRepeat: "no-repeat",
         }}
         className="relative w-full cursor-pointer h-[200px] ls:h-[225px] ll:h-[240px] md:h-[310px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
-      ></figure>
+      ></div>
       <section className="relative w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[100px] md:h-[136px]">
         {/* 1 */}
         <div className="group hover:w-full h-[36px] cursor-pointer">
@@ -131,7 +131,7 @@ export const CollectionCardItem = ({
                     onColorChecked(itemValue?.pivot?.id);
                   }}
                   className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 ls:w-[22px] ls:h-[22px] w-5 h-5 lg:w-6 lg:h-6 cursor-pointer  border border-solid border-borderColorCard mr-[5px]`}
-                  htmlFor="Color1"
+                  // htmlFor="Color1"
                 >
                   {itemValue?.action ? (
                     <InputCheckedTrueIcons colors={"#fff"} />
@@ -149,11 +149,11 @@ export const CollectionCardItem = ({
             data?.cost?.discount_price ? "mb-0" : "mb-3"
           } md:mb-0`}
         >
-          <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-[6px] md:mb-0  cursor-pointer">
+          <div className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-[6px] md:mb-0  cursor-pointer">
             <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
             {data?.name_ru || "NoData"}
-          </figure>
-          <figure className="w-full h-[16px] flex justify-between items-center my-1">
+          </div>
+          <div className="w-full h-[16px] flex justify-between items-center my-1">
             {data?.overall_rating ? (
               <section className="flex items-center justify-between">
                 <article>
@@ -171,7 +171,7 @@ export const CollectionCardItem = ({
                 </article>
               </section>
             ) : null}
-          </figure>
+          </div>
         </article>
         {/* 3 */}
         <article
@@ -180,7 +180,7 @@ export const CollectionCardItem = ({
         >
           <article className="flex items-center">
             {data?.cost?.discount_price ? (
-              <figure className="flex flex-wrap flex-col-reverse	text-start items-start ">
+              <div className="flex flex-wrap flex-col-reverse	text-start items-start ">
                 <p className="w-full text-start m-0 p-0 not-italic font-AeonikProMedium text-[15px] md:text-[15px] leading-1 text-red-700 xs:text-[15px] xs:leading-0 mr-2">
                   {parseInt(data?.cost?.discount_price)
                     ?.toLocaleString()
@@ -197,7 +197,7 @@ export const CollectionCardItem = ({
                   {"  "}
                   сум
                 </p>
-              </figure>
+              </div>
             ) : (
               <p
                 className={`not-italic font-AeonikProMedium text-[15px] leading-4 ${
@@ -214,7 +214,7 @@ export const CollectionCardItem = ({
               </p>
             )}
           </article>
-          <figure
+          <div
             className={`flex items-center select-none absolute right-2 ${
               data?.cost?.discount_price
                 ? "bottom-[7px] ls:bottom-[-17px]"
@@ -237,7 +237,7 @@ export const CollectionCardItem = ({
                 <BsHeart />
               )}
             </button>
-          </figure>
+          </div>
         </article>
       </section>
     </article>
