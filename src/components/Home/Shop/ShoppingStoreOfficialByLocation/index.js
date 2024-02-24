@@ -148,6 +148,8 @@ const ShoppingStoreOfficialByLocation = () => {
     // setLoading(true)
     let params = new URLSearchParams();
     params.append("location_id", dressInfo?.locationIdParams);
+    dressInfo?.mainSearchNameCatalog &&
+      params.append("keywords", dressInfo?.mainSearchNameCatalog);
     getGenderId && params.append("gender", getGenderId);
     discount && params.append("discount", discount);
     getCategory && params.append("category", getCategory);
@@ -215,7 +217,7 @@ const ShoppingStoreOfficialByLocation = () => {
         );
       });
   };
-  console.log(filteredData?.length, "filteredData");
+  // console.log(filteredData?.length, "filteredData");
   useEffect(() => {
     fetchGetAllData();
   }, [
@@ -231,6 +233,7 @@ const ShoppingStoreOfficialByLocation = () => {
     getRating,
     getRange,
     dressInfo?.locationIdParams,
+    dressInfo?.mainSearchNameCatalog 
   ]);
   // console.log(filteredData, "filteredData");
   useEffect(() => {

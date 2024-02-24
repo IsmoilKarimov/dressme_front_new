@@ -33,6 +33,7 @@ export const DressMenu = ({ children }) => {
     openShopIdFilter: false,
     locationIdParams: null,
     mainSearchNameshop:null,
+    mainSearchNameshopLocation:null,
     
     // Catolog/:Id
     openCatologId: false,
