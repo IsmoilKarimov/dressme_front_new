@@ -7,9 +7,10 @@ import { BiChevronDown } from "react-icons/bi";
 import CatalogTopFilter from "./CatalogTop/CatalogTopFilter";
 import FilterList from "./CatalogFilterGroup/FilterList/FilterList";
 import { MenuCloseIcons, SearchIcons, SortIcons, UnderSection } from "../../../../assets/icons";
+import { MdClose } from "react-icons/md";
 
 export default function CatalogItems() {
-  const [dressInfo] = useContext(dressMainData);
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const [filterData, setFilterData] = useState([]);
   const [pageId, setPageId] = useState();
@@ -17,6 +18,7 @@ export default function CatalogItems() {
     opensports: false,
     openTypesofClothes: false,
   });
+  const [searchMarketName, setSearchMarketName] = useState();
 
   const [getGenderId, setGetGenderId] = useState(null);
   const [getCategory, setGetCategory] = useState(null);
@@ -118,8 +120,8 @@ export default function CatalogItems() {
   function fetchGetAllData() {
     let params = new URLSearchParams();
     params.append("region", dressInfo?.mainRegionId);
-    // dressInfo?.mainSearchName &&
-    //   params.append("keywords", dressInfo?.mainSearchName);
+    dressInfo?.mainSearchNameCatalog &&
+      params.append("keywords", dressInfo?.mainSearchNameCatalog);
     dressInfo?.mainSubRegionId &&
       params.append("sub_region", dressInfo?.mainSubRegionId);
     getGenderId && params.append("gender", getGenderId);
@@ -196,7 +198,7 @@ export default function CatalogItems() {
     getFootWearList,
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
-    dressInfo?.mainSearchName
+    dressInfo?.mainSearchNameCatalog
   ]);
 
   useEffect(() => {
@@ -206,6 +208,16 @@ export default function CatalogItems() {
       document.body.style.overflow = "auto";
     }
   }, [openMobileFilter]);
+  function getSearchClick() {
+    setDressInfo({ ...dressInfo, mainSearchNameCatalog: searchMarketName });
+  }
+  const handleChange = (event) => {
+    setSearchMarketName(event.target.value);
+  };
+  const handleClear = () => {
+    setSearchMarketName("");
+    setDressInfo({ ...dressInfo, mainSearchName: null, mainSearchNameCategory: null, mainSearchNameCatalog: null });
+  };
   return (
     <main className="w-full h-full">
       {/* TOP DATA */}
@@ -323,13 +335,28 @@ export default function CatalogItems() {
           </section>
           <section className="w-full px-4 flex my-3 md:hidden">
             <article className="w-full search flex items-center bg-white justify-between rounded-xl font-AeonikProMedium h-11  border border-searchBgColor ss:mt-3">
-              <input
-                type="text"
-                name="name"
-                placeholder="Найти товар"
-                className="font-AeonikProRegular bg-transparent w-[87%] px-3 h-full text-[14px] leading-4 border-r border-searchBgColor"
-              />
-              <span className="w-[13%] h-full bg-btnBgColor rounded-r-xl active:scale-95 flex items-center justify-center ">
+              <div className="w-[87%] flex items-center justify-between">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Найти товар"
+                  value={searchMarketName}
+                  onChange={handleChange}
+                  className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[14px] leading-4 border-r border-searchBgColor"
+                />
+                {searchMarketName && (
+                  <button
+                    onClick={handleClear}
+                    className="  "
+                    type="button"
+                  >
+                    <MdClose size={20} color={"#a1a1a1"} />
+                  </button>
+                )}
+              </div>
+              <span
+                onClick={() => getSearchClick()}
+                className="w-[13%] h-full bg-btnBgColor rounded-r-xl active:scale-95 flex items-center justify-center ">
                 <SearchIcons />
               </span>
             </article>

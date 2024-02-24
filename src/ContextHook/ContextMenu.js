@@ -25,11 +25,15 @@ export const DressMenu = ({ children }) => {
 
     // Category
     openCategoryFilter: false,
+    mainSearchNameCategory:null,
     // Catalog
     openCatalogFilter: false,
+    mainSearchNameCatalog:null,
     // Shop/:Id
     openShopIdFilter: false,
     locationIdParams: null,
+    mainSearchNameshop:null,
+    
     // Catolog/:Id
     openCatologId: false,
 
