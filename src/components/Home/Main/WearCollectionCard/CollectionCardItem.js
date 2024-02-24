@@ -118,7 +118,7 @@ export const CollectionCardItem = ({
             </span>
           </button>
           <article
-            className={` ${
+            className={`${
               data?.l ? "w-full px-1 xs:px-2 md:px-4 my-2" : "w-0 my-2"
             } group-hover:w-full group-hover:px-1 group-hover:xs:px-2 group-hover:md:px-4 group-hover:my-2 duration-300 w-0 my-2 absolute overflow-hidden hidden top-0 z-[1] md:flex items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
           >
@@ -131,7 +131,6 @@ export const CollectionCardItem = ({
                     onColorChecked(itemValue?.pivot?.id);
                   }}
                   className={`rounded-full flex items-center justify-center hover:scale-110 duration-300 ls:w-[22px] ls:h-[22px] w-5 h-5 lg:w-6 lg:h-6 cursor-pointer  border border-solid border-borderColorCard mr-[5px]`}
-                  // htmlFor="Color1"
                 >
                   {itemValue?.action ? (
                     <InputCheckedTrueIcons colors={"#fff"} />

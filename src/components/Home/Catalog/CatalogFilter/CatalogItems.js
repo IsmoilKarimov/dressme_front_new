@@ -241,11 +241,6 @@ export default function CatalogItems() {
                       }}
                       className="absolute w-[80px] h-[80px] md:w-[120px] md:h-[160px] overflow-hidden  left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center  bg-white"
                     >
-                      {/* <img
-                        src={filterData?.category?.url_photo}
-                        alt="url_photo"
-                        className="w-full h-full rounded-xl object-contain"
-                      /> */}
                     </div>
                     <div className="flex items-center ml-[112px] md:ml-[210px]">
                       <div className="text-lg md:text-2xl font-AeonikProMedium">
@@ -396,7 +391,7 @@ export default function CatalogItems() {
                 }`}
             ></section>
             <section
-              className={` fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+              className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
                 }`}
             >
               <div className="max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
@@ -421,7 +416,7 @@ export default function CatalogItems() {
               </div>
             </section>
             <section
-              className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
+              className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
                 }`}
             >
               <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between  mb-1 ">
@@ -484,8 +479,7 @@ export default function CatalogItems() {
               />
             </article>
             <article
-              className={`${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-                } w-full h-full ss:px-4 md:px-0`}
+              className={`${filterToggle ? "md:w-[77%]" : "md:w-[100%]"} w-full h-full px-[10px] md:px-0`}
             >
               <CatalogCard filterData={filterData} setPageId={setPageId} />
             </article>

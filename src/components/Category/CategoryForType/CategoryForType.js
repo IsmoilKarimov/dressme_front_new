@@ -174,7 +174,7 @@ function CategoryForType() {
         ></section>
         {/* For Mobile Versions */}
         <section
-          className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
+          className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
             }`}
         >
           <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between  mb-1 ">
@@ -203,7 +203,7 @@ function CategoryForType() {
          
         </section>
         <section
-          className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+          className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
             }`}
         >
           <div className="w-full h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
@@ -245,7 +245,7 @@ function CategoryForType() {
             setFilterToggle={setFilterToggle}
           />
         </article>
-        <article className={`${filterToggle ? 'md:w-[77%]' : "md:w-[100%]"}  w-full  h-full ss:px-4 md:px-0 `}>
+        <article className={`${filterToggle ? 'md:w-[77%]' : "md:w-[100%]"} w-full h-full px-[10px] md:px-0 `}>
           <CategoryCards
             filterData={filterData}
             setPageId={setPageId}
