@@ -738,7 +738,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                 {/* Line */}
 
                 {/* Location and Language */}
-                <div className="w-full gap-x-3 absolute bottom-[80px] flex items-center justify-between">
+                <div className="w-full gap-x-3 absolute bottom-[105px] flex items-center justify-between">
                   <NavLink
                     onClick={() =>
                       setStateData({ ...stateData, hamburgerMenu: false })
