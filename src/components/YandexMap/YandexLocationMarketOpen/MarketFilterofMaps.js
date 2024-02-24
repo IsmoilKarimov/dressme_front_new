@@ -453,7 +453,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                 setSearchBrandName(e.target.value);
               }}
               className="w-[90%] h-full text-sm md:text-base bg-transparent"
-              placeholder="Искать магазины"
+              placeholder="Найти магазин"
             />
           </div>
           <div className="w-full h-full overflow-auto VerticelScroll flex flex-col  bg-white ">

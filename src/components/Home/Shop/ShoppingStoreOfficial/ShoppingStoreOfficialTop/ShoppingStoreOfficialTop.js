@@ -313,14 +313,14 @@ const ShoppingStoreOfficialTop = ({
                   footer={null}
                   className="w-full p-6"
                 >
-                  <div className="w-full px-[25px] pb-[30px] pt-[20px]">
-                    <div className="text-2xl font-AeonikProRegular mb-[30px]">
+                  <div className="w-full px-4 md:px-[25px] pb-[15px] md:pb-[30px] pt-[10px] md:pt-[20px]">
+                    <p className="text-[16px] md:text-2xl font-AeonikProRegular mb-[15px] md:mb-[30px]">
                       Выберите локацию
-                    </div>
-                    <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
+                    </p>
+                    <div className="font-AeonikProRegular text-[14px] md:text-lg border-b border-[#f0f0f0] mb-[15px]">
                       {locationList[0]?.region?.name_ru}
                     </div>
-                    <div className="h-[250px] overflow-y-auto mb-[20px] VerticelScroll pr-2">
+                    <div className="h-[200px] md:h-[250px] overflow-y-auto mb-[20px] VerticelScroll pr-2">
                       <Radio.Group
                         onChange={onChangeSelectLocation}
                         value={selectLocation}
@@ -339,7 +339,8 @@ const ShoppingStoreOfficialTop = ({
                                   }}
                                 >
                                   {" "}
-                                  {item?.sub_region?.name_ru} ({item?.address} )
+                                  <span className="text-[14px] md:text-lg font-AeonikProRegular">{item?.sub_region?.name_ru}</span>
+                                   <span className="text-[14px] md:text-lg font-AeonikProRegular">({item?.address} )</span>
                                 </Radio>
                               </Space>
                             </div>
