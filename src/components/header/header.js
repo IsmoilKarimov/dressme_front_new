@@ -18,7 +18,7 @@ const Header = () => {
     colorSelectId: null,
     categorySelectId: null,
     getRangeData: [],
-    hamburgerMenu: false
+    hamburgerMenu: false,
   });
 
   // ----------------NavBar----------------
@@ -108,7 +108,14 @@ const Header = () => {
           });
         }
       })
-      .catch((err) => console.log(err, "ERRORLIST"));
+      .catch((err) => {
+        setData({
+          ...data,
+          loader: false,
+          btnLoader: false,
+        });
+        console.log(err, "ERRORLIST");
+      });
   };
   // console.log(state, "childData,---statein header");
   useEffect(() => {
