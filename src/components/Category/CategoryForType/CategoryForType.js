@@ -332,7 +332,7 @@ function CategoryForType() {
                 openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
               }`}
             >
-              <div className="w-full h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
+              <div className="w-full h-[70vh] z-[114] overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
                 <FilterList
                   paramsId={newId}
                   genderId={genderId}
