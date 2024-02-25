@@ -30,17 +30,23 @@ export default function CategoryCards({ filterData, setPageId }) {
   return (
     <main className="flex flex-col box-border mt-2 mb-12 md:mb-0">
       <section className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 mt-1 md:mt-8">
-        {filterData?.section_products?.data.map((data) => {
-          return (
-            <CollectionCardItem
-              data={data}
-              key={data?.id}
-              handleLeaveMouse={handleLeaveMouse}
-              wishList={wishList}
-              setWishlist={setWishlist}
-            />
-          );
-        })}
+        {filterData?.section_products?.data?.length ? (
+          filterData?.section_products?.data.map((data) => {
+            return (
+              <CollectionCardItem
+                data={data}
+                key={data?.id}
+                handleLeaveMouse={handleLeaveMouse}
+                wishList={wishList}
+                setWishlist={setWishlist}
+              />
+            );
+          })
+        ) : (
+          <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[200px] ">
+            Ничего не найдено
+          </div>
+        )}
       </section>
       <section
         className={` w-full h-fit hidden items-center justify-center mt-14`}
