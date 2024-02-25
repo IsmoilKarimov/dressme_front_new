@@ -73,7 +73,7 @@ function CategoryForType() {
   const paramsId = useParams();
   const newId = paramsId?.id.replace(":", "");
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const url = `https://api.dressme.uz/api`;
 
@@ -258,6 +258,7 @@ function CategoryForType() {
   const navigate = useNavigate();
 
   const handleCategories = (value, id) => {
+    setOpenMobileCategory(false);
     navigate(`/section/:${id}`);
   };
   useEffect(() => {
