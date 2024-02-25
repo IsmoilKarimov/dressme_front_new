@@ -101,10 +101,15 @@ const SingleProduct = () => {
       headers: {
         Accept: "application/json",
       },
-    }).then((res) => {
-      setSingleData(res.data);
-      setLoading(false);
-    });
+    })
+      .then((res) => {
+        setSingleData(res.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+      });
   }, []);
 
   const refetch = () => {
@@ -114,10 +119,15 @@ const SingleProduct = () => {
       headers: {
         Accept: "application/json",
       },
-    }).then((res) => {
-      setSingleData(res.data);
-      setLoading(false);
-    });
+    })
+      .then((res) => {
+        setSingleData(res.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+      });
   };
 
   // ---------------------------
