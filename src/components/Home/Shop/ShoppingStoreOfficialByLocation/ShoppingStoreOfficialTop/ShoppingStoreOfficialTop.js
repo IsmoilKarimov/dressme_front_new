@@ -15,6 +15,7 @@ import {
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Modal, Radio, Space } from "antd";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
+import { MdClose } from "react-icons/md";
 
 const ShoppingStoreOfficialTop = ({
   filteredData,
@@ -86,6 +87,17 @@ const ShoppingStoreOfficialTop = ({
   // console.log(locationList, "locationList");
   // console.log(dressInfo?.locationIdParams, "dressInfo?.locationIdParams");
   // console.log(filteredData?.shop?.approved_shop_locations, "filteredData?.shop?.approved_shop_locations");
+  const [searchMarketName, setSearchMarketName] = useState();
+  function getSearchClick() {
+    setDressInfo({ ...dressInfo, mainSearchNameCatalog: searchMarketName });
+  }
+  const handleChange = (event) => {
+    setSearchMarketName(event.target.value);
+  };
+  const handleClear = () => {
+    setSearchMarketName("");
+    setDressInfo({ ...dressInfo, mainSearchNameCatalog: null });
+  };
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
 
@@ -364,7 +376,31 @@ const ShoppingStoreOfficialTop = ({
             className={`w-full md:hidden flex items-center justify-between mt-3 mb-3 px-4 gap-x-2`}
           >
             <div className="search flex items-center bg-btnBgColor justify-between rounded-xl font-AeonikProMedium h-12 my-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
-              <span className=" flex ss:pl-[11.65px] md:hidden">
+            <div className="w-[87%] flex items-center justify-between">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Найти товар"
+                  value={searchMarketName}
+                  onChange={handleChange}
+                  className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[14px] leading-4 border-r border-searchBgColor"
+                />
+                {searchMarketName && (
+                  <button
+                    onClick={handleClear}
+                    className=" "
+                    type="button"
+                  >
+                    <MdClose size={20} color={"#a1a1a1"} />
+                  </button>
+                )}
+              </div>
+              <span
+                onClick={() => getSearchClick()}
+                className="w-[13%] h-full bg-btnBgColor rounded-r-xl active:scale-95 flex items-center justify-center ">
+                <SearchIcons />
+              </span>
+              {/* <span className=" flex ss:pl-[11.65px] md:hidden">
                 <SearchIcons />
               </span>
               <input
@@ -373,7 +409,7 @@ const ShoppingStoreOfficialTop = ({
                 className="bg-transparent w-full px-3 h-12 text-[14px] bg-btnBgColor border border-transparent md:border-searchBgColor md:mx-0 md:-ml-[3px] md:px-3 md:h-12
               placeholder-italic placeholder-AeonikProMedium placeholder-sm leading-4 placeholder-setTexOpacity placeholder-[1px]
               "
-              />
+              /> */}
             </div>
             <button
               onClick={() => setOpenMobileFilter(true)}

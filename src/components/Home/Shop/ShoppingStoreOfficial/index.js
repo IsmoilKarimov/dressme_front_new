@@ -143,8 +143,10 @@ const ShoppingStoreOfficial = () => {
   const url = `https://api.dressme.uz/api`;
 
   const fetchGetAllData = () => {
-
+    
     let params = new URLSearchParams();
+    dressInfo?.mainSearchNameshop &&
+    params.append("keywords", dressInfo?.mainSearchNameshop);
     params.append("location_id", dressInfo?.locationIdParams);
     getGenderId && params.append("gender", getGenderId);
     discount && params.append("discount", discount);
@@ -231,6 +233,7 @@ const ShoppingStoreOfficial = () => {
     getRange,
     data?.getMainProductCard,
     dressInfo?.locationIdParams,
+    dressInfo?.mainSearchNameshop
   ]);
 
   useEffect(() => {

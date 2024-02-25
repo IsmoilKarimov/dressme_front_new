@@ -231,9 +231,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
     setSearchForLocation(location?.pathname?.split('/'))
   }, [location.pathname]);
 
-  // console.log(locationWindow, "locationWindow");
-  // console.log(searchForLocation, "searchForLocation");
-  // console.log(searchForLocation?.length, "4444searchForLocation");
+
 
   const handleChange = (event) => {
     setSearchMarketName(event.target.value);
@@ -241,11 +239,17 @@ const MediumHeader = ({ stateData, setStateData }) => {
 
   const handleClear = () => {
     setSearchMarketName("");
-    setDressInfo({ ...dressInfo, mainSearchName: null, mainSearchNameCategory: null, mainSearchNameCatalog: null });
+    setDressInfo({ ...dressInfo, mainSearchName: null, mainSearchNameCategory: null, mainSearchNameCatalog: null,mainSearchNameshop:null });
   };
 
   function getSearchClick() {
     setPage(1);
+    if (searchForLocation?.includes('shopping_store')) {
+      setDressInfo({ ...dressInfo, mainSearchNameshop: searchMarketName });
+    }
+    if (searchForLocation?.includes('shopping-store-location')) {
+      setDressInfo({ ...dressInfo, mainSearchNameshopLocation: searchMarketName });
+    }
     if (searchForLocation?.includes('section')) {
       setDressInfo({ ...dressInfo, mainSearchNameCategory: searchMarketName });
     }
@@ -258,6 +262,12 @@ const MediumHeader = ({ stateData, setStateData }) => {
   }
   const _handleKeyDownSearch = (event) => {
     if (event.key === "Enter") {
+      if (searchForLocation?.includes('shopping_store')) {
+        setDressInfo({ ...dressInfo, mainSearchNameshop: searchMarketName });
+      }
+      if (searchForLocation?.includes('shopping-store-location')) {
+        setDressInfo({ ...dressInfo, mainSearchNameshopLocation: searchMarketName });
+      }
       if (searchForLocation?.includes('section')) {
         setDressInfo({ ...dressInfo, mainSearchNameCategory: searchMarketName });
       }
