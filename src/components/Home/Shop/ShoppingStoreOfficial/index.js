@@ -139,7 +139,7 @@ const ShoppingStoreOfficial = () => {
     refreshLocationId();
   }, [newId, dressInfo?.mainSubRegionId]);
 
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoader] = useState(true);
 
   const url = `https://api.dressme.uz/api`;
 

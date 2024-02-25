@@ -40,7 +40,7 @@ export default function CatalogItems() {
   const [openMobileFilter, setOpenMobileFilter] = useState(false);
   const [openMobileCategory, setOpenMobileCategory] = useState(false);
 
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoader] = useState(true);
 
   const handleToggle = () => {
     if (filterToggle) {
