@@ -361,7 +361,7 @@ const ProductCarousel = ({ show, data }) => {
                             <img
                               src={data?.url_photo}
                               alt=""
-                              className="w-full h-[482px] md:h-[100vh] object-cover overflow-hidden"
+                              className="w-full h-[482px] md:h-[100vh] object-contain overflow-hidden"
                             />
                             <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
                               <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
@@ -397,7 +397,7 @@ const ProductCarousel = ({ show, data }) => {
                           <img
                             src={data?.url_photo}
                             alt=""
-                            className="w-full h-[482px] md:h-[100vh] object-cover overflow-hidden"
+                            className={`w-full h-[482px] md:h-[100vh] object-contain overflow-hidden`}
                           />
                           <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
                             <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
@@ -451,7 +451,7 @@ const ProductCarousel = ({ show, data }) => {
                             sliderState === i
                               ? "border-2 border-[#007DCA]"
                               : "border border-searchBgColor"
-                          } !w-[90px] cursor-pointer !h-[120px]  bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center`}
+                          } !w-[90px] cursor-pointer !h-[120px] bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center`}
                         ></figure>
                       </div>
                     );
