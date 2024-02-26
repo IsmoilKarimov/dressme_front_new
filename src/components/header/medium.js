@@ -726,7 +726,8 @@ const MediumHeader = ({ stateData, setStateData }) => {
 
                 {/* Location and Language */}
                 <div className="w-full gap-x-3 mt-3 flex items-center justify-between">
-                  <NavLink
+                  <button
+                    type="button"
                     onClick={() =>{
                       setStateData({ ...stateData, hamburgerMenu: false })
                       window.open(
@@ -734,26 +735,20 @@ const MediumHeader = ({ stateData, setStateData }) => {
                         "_blank"
                       )
                     }}
-                    // onClick={() =>
-                    //   window.open(
-                    //     " https://dressme-dashboard-new.vercel.app",
-                    //     "_blank"
-                    //   )
-                    // }
                     className="w-1/2 flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5"
                   >
                     <div className="flex items-center text-center">
                       <span className=" py-3 pr-3">
                         <HouseStatisticIcons colors={"#000"} />
                       </span>
-                      <span className="h-full ml-[11.67px] text-[14px] text-center">
+                      <span className="h-full ml-[11.67px] text-[16pxpx] text-center">
                         Бизнес
                       </span>
                     </div>
                     <span className="arrowRotate ml-auto rotate-[90deg]">
                       <ArrowTopIcons colors={"#000"} />
                     </span>
-                  </NavLink>
+                  </button>
                   <NavLink
                     to="https://t.me/Dishkan_Kh"
                     target="_blank"
@@ -762,7 +757,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                   >
                     <div className="flex items-center">
                       <UploadIcons />
-                      <p className="text-sm font-AeonikProMedium leading-4 ml-[12.5px]">
+                      <p className="text-[16px] font-AeonikProMedium leading-4 ml-[12.5px]">
                         Вопросы?
                       </p>
                     </div>
