@@ -221,11 +221,11 @@ function YandexMapsDressMe() {
         >
           <MenuCloseIcons colors="#fff" />
         </button>
-        <div className="relative  z-[218] !w-full sm:w-fit top-0">
+        <div className="relative  z-[218] !w-full sm:w-fit top-0 rounded-lg overflow-hidden">
           <CarouselModalMarket getAllImgGallery={getAllImgGallery} />
         </div>
       </div>
-      <div className={`w-[100%] h-[100vh] border-b border-searchBgColor overflow-hidden ymapsName ${dressInfo?.yandexFullScreen ? ' ymapsNameFullScreen' : ' '} `}>
+      <div className={`w-[100%] h-[100vh] border-b  border-searchBgColor overflow-hidden ymapsName ${dressInfo?.yandexFullScreen ? ' ymapsNameFullScreen' : ' '} `}>
         {/* Laptop device for */}
         {screenSize.width > 768 && (
           <div
@@ -255,6 +255,8 @@ function YandexMapsDressMe() {
               onClick={toggleCarouselModal}
               getImgGallery={getImgGallery}
               modalInfo={getMapsInfo}
+              carouselIndex={carouselIndex}
+              setCarouselIndex={setCarouselIndex}
             />
           </div>
         )}
