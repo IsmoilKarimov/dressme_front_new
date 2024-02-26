@@ -80,7 +80,9 @@ function FilterList({
             .then((res) => {
                 setGetFilter(res?.filter)
             })
-            .catch((err) => console.log(err, "ERRORLIST"));
+            .catch((err) => {
+                throw new Error(err || "something wrong");
+            });
     }
     useEffect(() => {
         if ((filterToggle || openMobileFilter) && !getFilter) {
@@ -88,40 +90,15 @@ function FilterList({
         }
     }, [filterToggle, openMobileFilter, dressInfo?.mainRegionId])
 
-    useEffect(() => {
-        discountId(false)
-        genderId(null)
-        setSelectedDiscount(null)
-        setSelectedGender(0)
-        setDataColor([])
-        // dataColor(null)
-        setCategorySelect(null)
-        categoryId(null)
 
-        setClearPrice(false)
-        setValues([
-            Number(getFilter?.budget?.min_price),
-            Number(getFilter?.budget?.max_price),
-        ]);
-        getBadgePrice([])
-        setSelectedRating(null)
-        getRatingList(null)
-        setDataActionUnderwearSizes()
-        underWearList()
-        setDataActionFootwearSizes()
-        footWearList()
-        setDataActionOutwearSizes()
-        outWearList()
-        setFilterToggle(false)
 
-    }, [paramsId])
 
-    useEffect(() => {
-        if (getParamsTest !== paramsId) {
-            setgetParamsTest(paramsId)
-            setFilterToggle(false)
-        }
-    }, [filterToggle])
+    // useEffect(() => {
+    //     if (getParamsTest !== paramsId) {
+    //         setgetParamsTest(paramsId)
+    //         setFilterToggle(false)
+    //     }
+    // }, [filterToggle])
 
 
     const [genderCategory, setGenderCategory] = useState([
@@ -398,6 +375,12 @@ function FilterList({
         setDataActionFootwearSizes()
         footWearList()
     }
+    useEffect(() => {
+        if (paramsId) {
+            ClearAll()
+            setFilterToggle(false)
+        }
+    }, [paramsId])
     return (
         <div
             className={`w-full h-hull  py-5 px-3 border border-searchBgColor rounded-lg overflow-hidden `}

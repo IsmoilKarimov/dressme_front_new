@@ -16,7 +16,7 @@ const ShoppingStoreOfficialByLocation = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
 
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
   const [openTabComment, setOpenTabComment] = useState(false);
   const [openTabLocation, setOpenTabLocation] = useState(false);
   const [filteredData, setFilteredData] = useState();
@@ -80,7 +80,7 @@ const ShoppingStoreOfficialByLocation = () => {
 
   const clickButtons = {
     openTabComment,
-    setOpenTabComment,
+    setOpenTabComment, 
     openTabLocation,
     setOpenTabLocation,
   };
@@ -208,9 +208,11 @@ const ShoppingStoreOfficialByLocation = () => {
           refreshLocationId();
           // setLoading(false)
         }
-        setError(
-          res.response?.data?.message || "An unexpected error occurred."
-        );
+        throw new Error(res || "something wrong");
+
+        // setError(
+        //   res.response?.data?.message || "An unexpected error occurred."
+        // );
       });
   };
 
@@ -228,7 +230,7 @@ const ShoppingStoreOfficialByLocation = () => {
     getFootWearList,
     getRating,
     getRange,
-    dressInfo?.locationIdParams,
+    // dressInfo?.locationIdParams,
     dressInfo?.mainSearchNameCatalog 
   ]);
 

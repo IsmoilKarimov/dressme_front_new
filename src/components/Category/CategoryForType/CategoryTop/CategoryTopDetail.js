@@ -18,7 +18,8 @@ const CategoryTopDetail = ({
   toggleFilterLeftClose,
   filterLeftAction,
   setOpenMobileFilter,
-  setOpenMobileCategory
+  setOpenMobileCategory,
+  setFilterToggle
 }) => {
   const [searchMarketName, setSearchMarketName] = useState();
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -26,9 +27,11 @@ const CategoryTopDetail = ({
 
   const handleToggle = () => {
     if (filterLeftAction) {
-      toggleFilterLeftClose();
+      // toggleFilterLeftClose();
+      setFilterToggle(false)
     } else {
-      toggleFilterLeftOpen();
+      setFilterToggle(true)
+      // toggleFilterLeftOpen();
     }
   };
   // For DropUp
@@ -184,7 +187,7 @@ const CategoryTopDetail = ({
             </button>
           </article>
         </article>
-        
+
         {filterData?.section?.sub_sections ? (
           <article className="w-full border-b border-searchBgColor">
             <article className="w-full hidden md:block mb-10">
