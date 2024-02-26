@@ -28,7 +28,7 @@ function YandexLocationMarketOpen({
 
   const navigate = useNavigate();
   const openShoppingChild = () => {
-    navigate(`/shopping-store-location/${dressInfo?.yandexGetMarketId}`);
+    navigate(`/shops-bylocation/${dressInfo?.yandexGetMarketId}`);
     setData({ ...data, selectedLoc: "" });
   };
 
