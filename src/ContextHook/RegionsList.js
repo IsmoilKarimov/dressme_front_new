@@ -64,8 +64,7 @@ function RegionList({ onClick }) {
     onClick();
   };
 
-  console.log(dressInfo?.mainSubRegionId, 'mainSubRegionId');
-  console.log(dressInfo?.mainRegionId, 'mainRegionId');
+
   return (
     <main className={`w-full h-fit`}>
       <div
@@ -294,8 +293,7 @@ function RegionList({ onClick }) {
                     >
                       {data?.id == 2 ? (
                         <label
-                          htmlFor={data?.name_ru}
-                          // onClick={() => RegId(data?.id)}
+                          htmlFor={data?.name_uz}
                           onClick={() => {
                             setDressInfo({
                               ...dressInfo,
@@ -307,14 +305,14 @@ function RegionList({ onClick }) {
                           className="w-fit cursor-pointer flex items-center"
                         >
                           <input
-                            id={data?.name_ru}
+                            id={data?.name_uz}
                             type="radio"
                             name="region"
                             value={data?.id}
                             checked={
-                              state?.subRegionId
+                              dressInfo?.mainSubRegionId
                                 ? false
-                                : state?.regionId == data?.id
+                                : dressInfo?.mainRegionId === data?.id
                             }
                             className="w-[18px] h-[18px] cursor-pointer mr-3"
                             onChange={(e) => {
