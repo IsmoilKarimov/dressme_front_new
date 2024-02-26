@@ -150,11 +150,11 @@ const ShoppingStoreOfficialTop = ({
                     </div>
                     <div className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 md:ml-1 flex items-center text-sm">
                       <p className="font-AeonikProMedium text-black mr-1">
-                        {filteredData?.shop?.overall_rating || "rating"}
+                        {filteredData?.shop?.overall_rating}
                       </p>
-                      <p className="text-setTexOpacity font-AeonikProRegular">
-                        ({filteredData?.shop?.rated_users_count || "0"} votes){" "}
-                      </p>
+                      {filteredData?.shop?.rated_users_count && <p className="flex items-center text-setTexOpacity font-AeonikProRegular">
+                        ( <span className="flex gap-x-1">{filteredData?.shop?.rated_users_count} <span className="md:flex hidden"> голосов</span></span> ){" "}
+                      </p>}
                     </div>
                   </div>
                 </div>
@@ -376,7 +376,7 @@ const ShoppingStoreOfficialTop = ({
             className={`w-full md:hidden flex items-center justify-between mt-3 mb-3 px-4 gap-x-2`}
           >
             <div className="search flex items-center bg-btnBgColor justify-between rounded-xl font-AeonikProMedium h-12 my-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
-            <div className="w-[87%] flex items-center justify-between">
+              <div className="w-[87%] flex items-center justify-between">
                 <input
                   type="text"
                   name="name"
