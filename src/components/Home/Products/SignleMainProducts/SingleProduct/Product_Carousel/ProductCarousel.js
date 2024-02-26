@@ -22,6 +22,7 @@ const ProductCarousel = ({ show, data }) => {
   const slider1 = useRef(null);
 
   const [sliderState, setSliderState] = useState(0);
+  let photos_length = data?.product?.photos?.length;
 
   useEffect(() => {
     slider1.current.slickGoTo(sliderState);
@@ -55,8 +56,8 @@ const ProductCarousel = ({ show, data }) => {
   };
 
   let settingsModal = {
-    nextArrow: <NextArrowModal />,
-    prevArrow: <PrevArrowModal />,
+    // nextArrow: <NextArrowModal />,
+    // prevArrow: <PrevArrowModal />,
     infinite: true,
     dots: false,
     speed: 500,
@@ -123,8 +124,8 @@ const ProductCarousel = ({ show, data }) => {
   };
 
   let settings = {
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    // nextArrow: <NextArrow />,
+    // prevArrow: <PrevArrow />,
     infinite: true,
     dots: false,
     speed: 500,
@@ -136,7 +137,7 @@ const ProductCarousel = ({ show, data }) => {
     (item) => item?.product_color_id === colorId
   );
 
-  console.log(data, "data");
+  console.log(data?.product?.photos?.length, "data");
 
   const [selectedLocation, setSelectedLocation] = useState();
   useEffect(() => {
@@ -334,7 +335,7 @@ const ProductCarousel = ({ show, data }) => {
           </button>
           <div className="w-full h-full">
             <Slider
-              className="relative w-full h-[482px] overflow-hidden md:!w-[750px] md:h-[100vh] showpageSlider bg-white md:rounded-lg"
+              className="w-full h-[482px] overflow-hidden md:!w-[750px] md:h-[100vh] showpageSlider bg-white md:rounded-lg"
               {...settingsModal}
               ref={sliderRef}
             >
@@ -342,7 +343,10 @@ const ProductCarousel = ({ show, data }) => {
                 ? filteredForModal?.map((data, i) => {
                     if (data?.product_color_id === colorId) {
                       return (
-                        <article key={i}>
+                        <article
+                          key={i}
+                          className="relative w-full h-full overflow-hidden"
+                        >
                           <figure
                             key={data?.id}
                             style={{
@@ -352,13 +356,25 @@ const ProductCarousel = ({ show, data }) => {
                               backgroundSize: "cover",
                               backgroundRepeat: "no-repeat",
                             }}
-                            className="relative overflow-hidden !h-full w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                            className="overflow-hidden !h-full w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                           >
                             <img
                               src={data?.url_photo}
                               alt=""
-                              className="w-full !h-full object-contain"
+                              className="w-full h-[482px] md:h-[100vh] object-cover overflow-hidden"
                             />
+                            <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
+                              <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
+                                <p className="h-full w-full text-center pt-[4px]">
+                                  {" "}
+                                  {i + 1}
+                                </p>
+                                <span className="text-center pt-[2px]">/</span>
+                                <p className="h-full w-full text-center pt-[4px]">
+                                  {photos_length}
+                                </p>
+                              </span>
+                            </div>
                           </figure>
                         </article>
                       );
@@ -366,7 +382,7 @@ const ProductCarousel = ({ show, data }) => {
                   })
                 : data?.product?.photos?.map((data, i) => {
                     return (
-                      <article key={i}>
+                      <article key={i} className="relative w-full h-full overflow-hidden">
                         <figure
                           key={data?.id}
                           style={{
@@ -376,13 +392,25 @@ const ProductCarousel = ({ show, data }) => {
                             backgroundSize: "cover",
                             backgroundRepeat: "no-repeat",
                           }}
-                          className="relative overflow-hidden !h-full w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                          className="overflow-hidden !h-full w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                         >
                           <img
                             src={data?.url_photo}
                             alt=""
-                            className="w-full !h-full object-contain"
+                            className="w-full h-[482px] md:h-[100vh] object-cover overflow-hidden"
                           />
+                          <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
+                            <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
+                              <p className="h-full w-full text-center pt-[4px]">
+                                {" "}
+                                {i + 1}
+                              </p>
+                              <span className="text-center pt-[2px]">/</span>
+                              <p className="h-full w-full text-center pt-[4px]">
+                                {photos_length}
+                              </p>
+                            </span>
+                          </div>
                         </figure>
                       </article>
                     );
@@ -587,6 +615,21 @@ const ProductCarousel = ({ show, data }) => {
                               alt=""
                             />
                           </figure>
+
+                          <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
+                            <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center">
+                              <p> {data.id}</p>
+                              <p>{data?.product?.photos?.length}</p>
+                            </span>
+                            <span className="w-fit flex items-center p-2 gap-x-2 rounded-lg bg-bgCard border border-searchBgColor">
+                              <p className="flex items-center ">
+                                <VideoStoreIcons />
+                              </p>
+                              <p className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-black">
+                                Видео
+                              </p>
+                            </span>
+                          </figcaption>
                         </article>
                       );
                     }
