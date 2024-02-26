@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { InputCheckedTrueIcons, StarIcons } from "../../../../assets/icons";
 import { CalourCard } from "../../../../assets";
 import { SliderPhotosColorContext } from "../../../../ContextHook/SliderPhotosColor";
+import { MobileSelectedDataContext } from "../../../../ContextHook/mobileSelectedData";
 
 export const CollectionCardItem = ({
   data,
@@ -22,6 +23,8 @@ export const CollectionCardItem = ({
   };
 
   const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
+
+  const [selectedData, setSelectedData] = useContext(MobileSelectedDataContext);
   // Selected color ------------------
   const [selectedPhoto, setSelectedPhoto] = useState(data?.photos[0]);
 
@@ -107,7 +110,10 @@ export const CollectionCardItem = ({
             </span>
           </button>
           <button
-            onClick={() => setOpenWearType(true)}
+            onClick={() => {
+              setSelectedData(data);
+              setOpenWearType(true);
+            }}
             className="w-12 h-7 md:hidden border border-searchBgColor rounded-lg flex items-center cursor-pointer select-none mt-[6px] mx-2 justify-center gap-x-1 "
           >
             <figure className="w-6 h-6 flex items-center justify-center">

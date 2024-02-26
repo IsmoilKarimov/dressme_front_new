@@ -10,6 +10,7 @@ import { SliderPhotosColorContextProvider } from "./ContextHook/SliderPhotosColo
 import { ProfileDataContextProvider } from "./ContextHook/ProfileContext";
 import { MainPageAudioContextProvider } from "./ContextHook/MainPageAudio";
 import { HomeFilterContextProvider } from "./ContextHook/HomeFilterContext";
+import { MobileSelectedDataContextProvider } from "./ContextHook/mobileSelectedData";
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -23,7 +24,9 @@ root.render(
             <SliderPhotosColorContextProvider>
               <ProfileDataContextProvider>
                 <HomeFilterContextProvider>
-                  <App />
+                  <MobileSelectedDataContextProvider>
+                    <App />
+                  </MobileSelectedDataContextProvider>
                 </HomeFilterContextProvider>
               </ProfileDataContextProvider>
             </SliderPhotosColorContextProvider>
