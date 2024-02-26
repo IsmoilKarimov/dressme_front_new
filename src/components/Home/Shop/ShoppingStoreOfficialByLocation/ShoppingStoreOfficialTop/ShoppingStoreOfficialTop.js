@@ -150,7 +150,7 @@ const ShoppingStoreOfficialTop = ({
                     </div>
                     <div className="not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 md:ml-1 flex items-center text-sm">
                       <p className="font-AeonikProMedium text-black mr-1">
-                        {filteredData?.overall_rating || "rating"}
+                        {filteredData?.shop?.overall_rating || "rating"}
                       </p>
                       <p className="text-setTexOpacity font-AeonikProRegular">
                         ({filteredData?.shop?.rated_users_count || "0"} votes){" "}
