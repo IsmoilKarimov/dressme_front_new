@@ -625,7 +625,9 @@ const MediumHeader = ({ stateData, setStateData }) => {
                   : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
               }`}
             >
-              <div className={`w-full h-full flex flex-col mb-[80px] flex-wrap relative`}>
+              <div
+                className={`w-full h-full flex flex-col mb-[80px] flex-wrap relative`}
+              >
                 {/* Categories */}
                 <ul className="flex flex-col w-full">
                   <li>
@@ -725,11 +727,19 @@ const MediumHeader = ({ stateData, setStateData }) => {
                 {/* Location and Language */}
                 <div className="w-full gap-x-3 mt-3 flex items-center justify-between">
                   <NavLink
-                    onClick={() =>
+                    onClick={() =>{
                       setStateData({ ...stateData, hamburgerMenu: false })
-                    }
-                    // to="/signup-seller"
-                    to="#"
+                      window.open(
+                        " https://dressme-dashboard-new.vercel.app",
+                        "_blank"
+                      )
+                    }}
+                    // onClick={() =>
+                    //   window.open(
+                    //     " https://dressme-dashboard-new.vercel.app",
+                    //     "_blank"
+                    //   )
+                    // }
                     className="w-1/2 flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5"
                   >
                     <div className="flex items-center text-center">
