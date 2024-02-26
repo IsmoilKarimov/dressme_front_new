@@ -235,7 +235,7 @@ const ShoppingStoreOfficial = () => {
     getFootWearList,
     getRating,
     getRange,
-    data?.getMainProductCard,
+    // data?.getMainProductCard,
     // dressInfo?.locationIdParams,
     dressInfo?.mainSearchNameshop,
   ]);
@@ -248,7 +248,23 @@ const ShoppingStoreOfficial = () => {
       document.body.style.overflow = "auto";
     }
   }, [openMobileFilter]);
+  const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
+  function getCurrentDimension() {
+    return {
+      width: window.innerWidth,
+    };
+  }
+  useEffect(() => {
+    const updateDimension = () => {
+      setScreenSize(getCurrentDimension());
+    };
+    window.addEventListener("resize", updateDimension);
+
+    return () => {
+      window.removeEventListener("resize", updateDimension);
+    };
+  }, [screenSize]);
   return (
     <div className="w-full">
       {/* {loader ? (
@@ -282,7 +298,7 @@ const ShoppingStoreOfficial = () => {
             className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter ? "" : "hidden"
               }`}
           ></section>
-          <section
+          {screenSize.width < 768 &&   <section
             className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
               }`}
           >
@@ -306,7 +322,7 @@ const ShoppingStoreOfficial = () => {
                 setOpenMobileFilter={setOpenMobileFilter}
               />
             </div>
-          </section>
+          </section>}
           <section className="w-full flex items-center justify-center ">
             <div className="w-full flex flex-col items-center justify-center">
               {/* Products Section */}
@@ -316,7 +332,7 @@ const ShoppingStoreOfficial = () => {
               >
                 <section className="w-[100%] h-fit">
                   <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
-                    <div
+                  {screenSize.width >= 768 &&   <div
                       className={`${filterToggle ? "md:block" : "md:hidden"
                         } hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}
                     >
@@ -336,7 +352,7 @@ const ShoppingStoreOfficial = () => {
                         setFilterToggle={setFilterToggle}
                         setPageId={setPageId}
                       />
-                    </div>
+                    </div>}
 
                     <div
                       className={` ${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
