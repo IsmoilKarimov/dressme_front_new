@@ -28,7 +28,8 @@ function FilterList({
     filterToggle,
     setFilterToggle,
     openMobileFilter,
-    setOpenMobileFilter
+    setOpenMobileFilter,
+    setLoading
 }) {
     const { request } = useHttp()
     const [dressInfo, setDressInfo] = useContext(dressMainData);
