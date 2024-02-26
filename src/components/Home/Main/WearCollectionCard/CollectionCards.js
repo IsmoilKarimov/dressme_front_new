@@ -12,7 +12,7 @@ import { MdClose } from "react-icons/md";
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
-  const [pagination, setPagination] = useState(30);
+  // const [pagination, setPagination] = useState(30);
   const [data, setData, wishList, setWishlist, page, setPage] =
     useContext(HomeMainDataContext);
   const [searchMarketName, setSearchMarketName] = useState();

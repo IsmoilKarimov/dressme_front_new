@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import ShoppingStoreOfficialBreadCrumb from "./ShoppingStoreOfficialBreadcrumb/ShoppingStoreOfficialBreadcrumb";
 import ShoppingStoreOfficialTop from "./ShoppingStoreOfficialTop/ShoppingStoreOfficialTop";
-import LocationOfYandex from "../../Products/SignleMainProducts/SingleProduct/Product_Detail/LocationOfYandex/LocationOfYandex";
 import ShowPageComment from "./ShowPageComment/ShowPageComment";
 import { GoBackIcon } from "../../../../assets/icons";
 import { useNavigate, useParams } from "react-router-dom";
@@ -18,8 +17,6 @@ const ShoppingStoreOfficialByLocation = () => {
   const [data, setData] = useContext(HomeMainDataContext);
 
   const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [getLocationId, setGetLocationId] = useState(false);
   const [openTabComment, setOpenTabComment] = useState(false);
   const [openTabLocation, setOpenTabLocation] = useState(false);
   const [filteredData, setFilteredData] = useState();
@@ -81,7 +78,6 @@ const ShoppingStoreOfficialByLocation = () => {
     setPageId(1);
   };
 
-  // console.log(pageId, "pageId,");
   const clickButtons = {
     openTabComment,
     setOpenTabComment,
@@ -217,7 +213,7 @@ const ShoppingStoreOfficialByLocation = () => {
         );
       });
   };
-  // console.log(filteredData?.length, "filteredData");
+
   useEffect(() => {
     fetchGetAllData();
   }, [
@@ -235,7 +231,7 @@ const ShoppingStoreOfficialByLocation = () => {
     dressInfo?.locationIdParams,
     dressInfo?.mainSearchNameCatalog 
   ]);
-  // console.log(filteredData, "filteredData");
+
   useEffect(() => {
     if (openMobileFilter) {
       document.body.style.overflow = "hidden";
@@ -274,7 +270,7 @@ const ShoppingStoreOfficialByLocation = () => {
               }`}
           ></section>
           <section
-            className={`max-w-[440px] w-[100%]  mx-auto fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+            className={`max-w-[440px] w-[100%]  mx-auto fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
               }`}
           >
             <div className="h-[70vh] z-[114] w-full  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
@@ -333,7 +329,7 @@ const ShoppingStoreOfficialByLocation = () => {
 
                     <div
                       className={` ${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-                        } w-full h-full ss:px-4 md:px-0`}
+                        } w-full h-full px-[10px] md:px-0`}
                     >
                       {filteredData ? (
                         <ShopOfficialCard

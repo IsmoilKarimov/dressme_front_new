@@ -163,7 +163,7 @@ export const CollectionCardItem = ({
                     {data?.overall_rating || 0}
                   </p>
                   (
-                  <p className="ss:hidden lg:block md:mr-1 md:text-[11px]">
+                  <p className="hidden lg:block md:mr-1 md:text-[11px]">
                     голосов:
                   </p>
                   {data?.rated_users_count || 0})
@@ -199,7 +199,7 @@ export const CollectionCardItem = ({
               </div>
             ) : (
               <p
-                className={`not-italic font-AeonikProMedium text-[15px] leading-4 ${
+                className={`not-italic font-AeonikProMedium text-[15px] ${
                   data?.cost?.discount_price ? "" : ""
                 }`}
                 style={{ color: "black" }}
