@@ -186,7 +186,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
   };
 
   const contentLang = (
-    <section className="w-[180px] h-fit m-0 p-0">
+    <section className="w-[155px] h-fit m-0 p-0">
       {LanguageList.map((data) => {
         return (
           <article
@@ -723,14 +723,14 @@ const MediumHeader = ({ stateData, setStateData }) => {
                 </ul>
 
                 {/* Location and Language */}
-                <div className="w-full gap-x-3 mt-auto flex items-center justify-between">
+                <div className="w-full gap-x-3 mt-3 flex items-center justify-between">
                   <NavLink
                     onClick={() =>
                       setStateData({ ...stateData, hamburgerMenu: false })
                     }
                     // to="/signup-seller"
                     to="#"
-                    className="w-1/2 flex items-center bg-btnBgColor font-AeonikProMedium h-[48px] border rounded-xl border-searchBgColor px-5"
+                    className="w-1/2 flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5"
                   >
                     <div className="flex items-center text-center">
                       <span className=" py-3 pr-3">
@@ -748,7 +748,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                     to="https://t.me/Dishkan_Kh"
                     target="_blank"
                     // onClick={() => setStateData({ ...stateData, hamburgerMenu: false })}
-                    className="w-1/2 h-[48px] flex items-center bg-btnBgColor font-AeonikProMedium border rounded-xl border-searchBgColor px-5"
+                    className="w-1/2 h-[52px] flex items-center bg-btnBgColor font-AeonikProMedium border rounded-xl border-searchBgColor px-5"
                   >
                     <div className="flex items-center">
                       <UploadIcons />
