@@ -84,9 +84,7 @@ const ShoppingStoreOfficialTop = ({
     }
     setOpenLocationModal(false);
   };
-  // console.log(locationList, "locationList");
-  // console.log(dressInfo?.locationIdParams, "dressInfo?.locationIdParams");
-  // console.log(filteredData?.shop?.approved_shop_locations, "filteredData?.shop?.approved_shop_locations");
+  
   const [searchMarketName, setSearchMarketName] = useState();
   function getSearchClick() {
     setDressInfo({ ...dressInfo, mainSearchNameCatalog: searchMarketName });
