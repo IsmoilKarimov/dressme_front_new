@@ -13,10 +13,32 @@ import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData";
 
 const ProductCarousel = ({ show, data }) => {
-  const [colorId] = useContext(SliderPhotosColorContext);
+  const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [dressInfo] = useContext(dressMainData);
   const [nav2] = useState();
+
+  const slider = useRef(null);
+
+  const [selectedColor, setSelectedColor] = useState(data?.product?.colors[0]);
+
+  const filterColorsOnSelect = (id) => {
+    setSelectedColor(
+      data?.product?.colors?.find((item) => item?.pivot?.id === id)
+    );
+  };
+
+  // Remove duplicates and select only first -----
+
+  let idMap = new Map();
+  let uniqueArray = [];
+
+  data?.product?.photos?.forEach((obj) => {
+    if (!idMap.has(obj.product_color_id)) {
+      idMap.set(obj.product_color_id, obj);
+      uniqueArray.push(obj);
+    }
+  });
 
   const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
   const slider1 = useRef(null);
@@ -207,21 +229,27 @@ const ProductCarousel = ({ show, data }) => {
               </span>
             </div>
             <div className="w-full flex items-center justify-start text-sm font-AeonikProRegular mb-[10px]">
-              <div>Обхват груди, <span className="text-[#a5a5a5] ml-1">в см</span>:</div>
+              <div>
+                Обхват груди, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              </div>
               <span className="ml-auto">
                 {data?.min_chest_girth}{" "}
                 {data?.max_chest_girth ? "- " + data?.max_chest_girth : null}
               </span>
             </div>
             <div className="w-full flex items-center justify-between text-sm font-AeonikProRegular mb-[10px]">
-              <div>Обхват талии, <span className="text-[#a5a5a5] ml-1">в см</span>:</div>
+              <div>
+                Обхват талии, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              </div>
               <span className="ml-auto">
                 {data?.min_waist_girth}{" "}
                 {data?.max_waist_girth ? "- " + data?.max_waist_girth : null}
               </span>
             </div>
             <div className="w-full flex items-center justify-between text-sm font-AeonikProRegular">
-              <div>Обхват бедер, <span className="text-[#a5a5a5] ml-1">в см</span>:</div>
+              <div>
+                Обхват бедер, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              </div>
               <span className="ml-auto">
                 {data?.min_hip_girth}{" "}
                 {data?.max_hip_girth ? "- " + data?.max_hip_girth : null}
@@ -243,7 +271,7 @@ const ProductCarousel = ({ show, data }) => {
             </div>
             <div className="w-full flex items-center justify-between text-sm font-AeonikProRegular mb-[10px]">
               <div>
-                Обхват талии, 
+                Обхват талии,
                 <span className="text-[#a5a5a5] ml-1">в см</span>:
               </div>
               <span className="ml-auto">
@@ -382,7 +410,10 @@ const ProductCarousel = ({ show, data }) => {
                   })
                 : data?.product?.photos?.map((data, i) => {
                     return (
-                      <article key={i} className="relative w-full h-full overflow-hidden">
+                      <article
+                        key={i}
+                        className="relative w-full h-full overflow-hidden"
+                      >
                         <figure
                           key={data?.id}
                           style={{
@@ -705,7 +736,7 @@ const ProductCarousel = ({ show, data }) => {
                 <BrushColorIcons colors={"#000"} />
                 <p className="font-AeonikProRegular mr-2 ml-[6px]">Цвет:</p>
                 <span className="font-AeonikProMedium">
-                  {data?.product?.colors[0]?.name_ru}
+                  {selectedColor?.name_ru}
                 </span>
               </div>
               <button
@@ -728,20 +759,31 @@ const ProductCarousel = ({ show, data }) => {
               </button>
             </div>
 
-            <article className="flex w-[93px] flex-row gap-x-1">
-              {colorId
-                ? filteredForModal?.map((data, i) => {
+            <article className="flex flex-row gap-x-1">
+              {selectedSize
+                ? uniqueArray?.map((data, i) => {
                     if (data?.product_color_id === colorId) {
                       return (
                         <div
-                          key={i}
-                          onClick={() => {
-                            setSliderState(i);
-                          }}
-                          className="mb-2"
+                          key={data?.id}
+                          className={`${
+                            data?.product_color_id ===
+                            selectedSize?.product_color_id
+                              ? ""
+                              : "opacity-40"
+                          } `}
                         >
-                          <figure
+                          <div
                             key={data?.id}
+                            className={`${
+                              colorId === data?.product_color_id
+                                ? "border-2 border-[#007DCA]"
+                                : "border border-searchBgColor"
+                            }  !w-[72px] cursor-pointer !h-[96px] bg-btnBgColor rounded-lg flex items-center justify-center`}
+                            onClick={() => {
+                              filterColorsOnSelect(data?.product_color_id);
+                              setcolorId(data?.product_color_id);
+                            }}
                             style={{
                               backgroundImage: `url("${data?.url_photo}")`,
                               backgroundColor: "rgba(0,0,0,0.6)",
@@ -749,26 +791,24 @@ const ProductCarousel = ({ show, data }) => {
                               backgroundSize: "cover",
                               backgroundRepeat: "no-repeat",
                             }}
-                            className={`${
-                              sliderState === i
-                                ? "border-2 border-[#007DCA]"
-                                : "border border-searchBgColor"
-                            } !w-[72px] cursor-pointer !h-[96px] bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center`}
-                          ></figure>
+                          ></div>
                         </div>
                       );
                     }
                   })
-                : data?.product?.photos?.map((data, i) => {
+                : uniqueArray?.map((data, i) => {
                     return (
-                      <div
-                        key={i}
-                        onClick={() => {
-                          setSliderState(i);
-                        }}
-                      >
-                        <figure
-                          key={data?.id}
+                      <div key={data?.id}>
+                        <div
+                          className={`${
+                            colorId === data?.product_color_id
+                              ? "border-2 border-[#007DCA]"
+                              : "border border-searchBgColor"
+                          }  !w-[72px] cursor-pointer !h-[96px] bg-btnBgColor rounded-lg flex items-center justify-center`}
+                          onClick={() => {
+                            filterColorsOnSelect(data?.product_color_id);
+                            setcolorId(data?.product_color_id);
+                          }}
                           style={{
                             backgroundImage: `url("${data?.url_photo}")`,
                             backgroundColor: "rgba(0,0,0,0.6)",
@@ -776,12 +816,7 @@ const ProductCarousel = ({ show, data }) => {
                             backgroundSize: "cover",
                             backgroundRepeat: "no-repeat",
                           }}
-                          className={`${
-                            sliderState === i
-                              ? "border-2 border-[#007DCA]"
-                              : "border border-searchBgColor"
-                          }  !w-[72px] cursor-pointer !h-[96px] bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center`}
-                        ></figure>
+                        ></div>
                       </div>
                     );
                   })}

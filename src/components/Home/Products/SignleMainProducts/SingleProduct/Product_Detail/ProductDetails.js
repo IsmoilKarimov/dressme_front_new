@@ -63,7 +63,9 @@ const ProductDetails = ({ data }) => {
   const [locations, setLocations] = useState(false);
 
   // color context---
-  const [, setcolorId] = useContext(SliderPhotosColorContext);
+  const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
+
+  console.log(colorId, "colorIddd");
 
   const toggleTableSizes = useCallback(() => setTableSizes(false), []);
   const toggleLocations = useCallback(() => setLocations(false), []);
