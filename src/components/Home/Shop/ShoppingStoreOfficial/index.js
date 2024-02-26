@@ -24,12 +24,12 @@ const ShoppingStoreOfficial = () => {
   const [getGenderId, setGetGenderId] = useState(null);
   const [getCategory, setGetCategory] = useState(null);
   const [getRating, setGetRating] = useState(null);
-  const [getRange, setGetRange] = useState(null);
+  const [getRange, setGetRange] = useState([]);
   const [dataColor, setDataColor] = useState([]);
   const [discount, setDiscount] = useState(false);
-  const [getOutWearList, setGetOutWearList] = useState(null);
-  const [getUnderWearList, setGetUnderWearList] = useState(null);
-  const [getFootWearList, setGetFootWearList] = useState(null);
+  const [getOutWearList, setGetOutWearList] = useState();
+  const [getUnderWearList, setGetUnderWearList] = useState();
+  const [getFootWearList, setGetFootWearList] = useState();
   const [filterToggle, setFilterToggle] = useState(false);
   const [openMobileFilter, setOpenMobileFilter] = useState(false);
 
@@ -65,15 +65,22 @@ const ShoppingStoreOfficial = () => {
     setPageId(1);
   };
   const outWearList = (childData) => {
-    setGetOutWearList(childData);
+    if (childData !== undefined) {
+      setGetOutWearList(childData);
+    }
     setPageId(1);
   };
   const underWearList = (childData) => {
-    setGetUnderWearList(childData);
+    if (childData !== undefined) {
+      setGetUnderWearList(childData);
+    }
     setPageId(1);
   };
   const footWearList = (childData) => {
-    setGetFootWearList(childData);
+    console.log(childData, "footWearList");
+    if (childData !== undefined) {
+      setGetFootWearList(childData);
+    }
     setPageId(1);
   };
 
@@ -138,7 +145,7 @@ const ShoppingStoreOfficial = () => {
     refreshLocationId();
   }, [newId, dressInfo?.mainSubRegionId]);
 
-  const [loader, setLoader] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const url = `https://api.dressme.uz/api`;
 
@@ -194,8 +201,7 @@ const ShoppingStoreOfficial = () => {
         params.append("colors[]", dataColor[index]);
       });
 
-    // setLoader(true);
-
+    setLoading(true);
     axios
       .get(`${url}/main/shops/${newId}?`, {
         params: params,
@@ -203,14 +209,14 @@ const ShoppingStoreOfficial = () => {
       .then((res) => {
         if (res?.status >= 200 && res?.status < 300) {
           setFilteredData(res?.data);
-          // setLoader(false);
+          setLoading(false);
         }
       })
       .catch((res) => {
         if (res?.response?.status === 422) {
           refreshLocationId();
-          // setLoader(false);
         }
+        setLoading(false);
         throw new Error(res.response?.data?.message || "something wrong");
 
         // setError(
@@ -235,11 +241,8 @@ const ShoppingStoreOfficial = () => {
     getFootWearList,
     getRating,
     getRange,
-    // data?.getMainProductCard,
-    // dressInfo?.locationIdParams,
     dressInfo?.mainSearchNameshop,
   ]);
-
 
   useEffect(() => {
     if (openMobileFilter) {
@@ -267,9 +270,7 @@ const ShoppingStoreOfficial = () => {
   }, [screenSize]);
   return (
     <div className="w-full">
-      {/* {loader ? (
-        <LoadingNetwork />
-      ) : ( */}
+
       <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
         {/* {!filteredData ? <LoadingNetwork />
         :  */}
@@ -298,7 +299,7 @@ const ShoppingStoreOfficial = () => {
             className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter ? "" : "hidden"
               }`}
           ></section>
-          {screenSize.width < 768 &&   <section
+          {screenSize.width < 768 && <section
             className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
               }`}
           >
@@ -332,7 +333,7 @@ const ShoppingStoreOfficial = () => {
               >
                 <section className="w-[100%] h-fit">
                   <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
-                  {screenSize.width >= 768 &&   <div
+                    {screenSize.width >= 768 && <div
                       className={`${filterToggle ? "md:block" : "md:hidden"
                         } hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}
                     >
@@ -358,16 +359,22 @@ const ShoppingStoreOfficial = () => {
                       className={` ${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
                         } w-full h-full px-[10px] md:px-0`}
                     >
-                      {filteredData ? (
-                        <ShopOfficialCard
-                          filteredData={filteredData}
-                          setPageId={setPageId}
-                        />
-                      ) : (
-                        <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[100vh] ">
-                          Ничего не найдено
+                      {loading ? (
+                        <div className="flex items-center justify-center w-full h-full ">
+                          <LoadingNetwork />
                         </div>
-                      )}
+                      ) :
+                        filteredData ? (
+                          <ShopOfficialCard
+                            filteredData={filteredData}
+                            setPageId={setPageId}
+                          />
+                        ) : (
+                          <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[100vh] ">
+                            Ничего не найдено
+                          </div>
+                        )
+                      }
                     </div>
                   </section>
                 </section>

@@ -19,9 +19,9 @@ function CategoryForType() {
   const [getRange, setGetRange] = useState(null);
   const [dataColor, setDataColor] = useState([]);
   const [discount, setDiscount] = useState(false);
-  const [getOutWearList, setGetOutWearList] = useState(null);
-  const [getUnderWearList, setGetUnderWearList] = useState(null);
-  const [getFootWearList, setGetFootWearList] = useState(null);
+  const [getOutWearList, setGetOutWearList] = useState();
+  const [getUnderWearList, setGetUnderWearList] = useState();
+  const [getFootWearList, setGetFootWearList] = useState();
   const [filterToggle, setFilterToggle] = useState(false);
   const [openMobileFilter, setOpenMobileFilter] = useState(false);
   const [openMobileCategory, setOpenMobileCategory] = useState(false);
@@ -73,7 +73,7 @@ function CategoryForType() {
   const paramsId = useParams();
   const newId = paramsId?.id.replace(":", "");
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const url = `https://api.dressme.uz/api`;
 
@@ -134,16 +134,16 @@ function CategoryForType() {
     dressInfo?.mainSubRegionId &&
       params.append("sub_region", dressInfo?.mainSubRegionId);
 
-    // setLoading(true);
+    setLoading(true);
 
     fetch(`${url}/main/section/${newId}?` + params)
       .then((res) => res.json())
       .then((res) => {
         setFilterData(res);
-        // setLoading(false);
+        setLoading(false);
       })
       .catch((err) => {
-        // setLoading(false);
+        setLoading(false);
         throw new Error(err || "something wrong");
       });
   }
@@ -202,9 +202,7 @@ function CategoryForType() {
 
   return (
     <div className="w-full">
-      {/* {loading ? (
-        <LoadingNetwork />
-      ) : ( */}
+
       <main className="w-full h-full">
         <section className="w-full ">
           <CategoryTopDetail
@@ -308,11 +306,16 @@ function CategoryForType() {
             className={`${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
               } w-full h-full px-[10px] md:px-0 `}
           >
-            <CategoryCards filterData={filterData} setPageId={setPageId} />
+            {loading ? (
+              <div className="flex items-center justify-center w-full h-full ">
+                <LoadingNetwork />
+              </div>
+            ) : (
+              <CategoryCards filterData={filterData} setPageId={setPageId} />
+            )}
           </article>
         </section>
       </main>
-      {/* )} */}
     </div>
   );
 }
