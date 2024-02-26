@@ -14,8 +14,6 @@ import { MdClose } from "react-icons/md";
 
 const CategoryTopDetail = ({
   filterData,
-  toggleFilterLeftOpen,
-  toggleFilterLeftClose,
   filterLeftAction,
   setOpenMobileFilter,
   setOpenMobileCategory,
