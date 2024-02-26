@@ -151,7 +151,7 @@ function YandexLocationMarketOpen({
                       yandexOpenMarketLocation: false,
                     })
                   }
-                  className="w-10 h-10 rounded-lg border border-searchBgColor flex items-center justify-center active:scale-95  active:opacity-70"
+                  className="md:w-10 md:h-10 rounded-lg md:border border-searchBgColor flex items-center justify-center active:scale-95  active:opacity-70"
                 >
                   <MenuCloseIcons colors={"#000"} />
                 </button>
@@ -175,7 +175,7 @@ function YandexLocationMarketOpen({
                       afterChange={(c) => {
                         setCarouselIndex(c);
                       }}
-                      s
+                      
                       className="w-full h-full rounded-xl overflow-hidden flex flex-col justify-center"
                     >
                       {newImgList?.map((data, i) => {

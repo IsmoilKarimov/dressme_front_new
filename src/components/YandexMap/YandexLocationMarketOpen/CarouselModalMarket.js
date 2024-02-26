@@ -4,20 +4,7 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Slider from "react-slick";
 
 function CarouselModalMarket({ getAllImgGallery }) {
-  const imgGallery = [
-    {
-      id: 1,
-      img: "https://i.pinimg.com/736x/9d/d4/a3/9dd4a3906b318cdfd854dd46a72046ba.jpg",
-    },
-    {
-      id: 2,
-      img: "https://img.hechtgroup.com/where_is_the_zara_warehouse.jpg",
-    },
-    {
-      id: 3,
-      img: "https://c8.alamy.com/comp/2HEC9XP/people-queue-outside-a-zara-store-on-boxing-day-in-central-london-as-shoppers-gather-on-oxford-street-2HEC9XP.jpg",
-    },
-  ];
+ 
   const NextArrowModal = (props) => {
     const { onClick } = props;
     return (
@@ -82,7 +69,7 @@ function CarouselModalMarket({ getAllImgGallery }) {
                       />
                       <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
                         <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
-                          <p> {data.id}</p>/<p>{imgGallery.length}</p>
+                          <p> {data.id}</p>/<p>{getAllImgGallery?.newImgList?.length}</p>
                         </span>
                       </figcaption>
                     </figure>
