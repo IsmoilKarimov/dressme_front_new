@@ -183,7 +183,7 @@ const RouterMain = () => {
           }
         />
         <Route
-          path="/shopping-store-location/:id"
+          path="/shops-bylocation/:id"
           element={
             <Suspense
               fallback={
