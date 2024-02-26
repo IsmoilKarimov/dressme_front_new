@@ -167,9 +167,9 @@ const RouterMain = () => {
             </Suspense>
           }
         />
-        <Route path="/stores" element={<ShoppingStore />} />
+        <Route path="/shops" element={<ShoppingStore />} />
         <Route
-          path="/shopping_store/:id"
+          path="/shops/:id"
           element={
             <Suspense
               fallback={

@@ -16,7 +16,7 @@ const ShoppingBrands = ({ loading, setLoading }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const goDetail = (id) => {
-    navigate(`/shopping_store/:${id}`);
+    navigate(`/shops/${id}`);
   };
 
   // if (getData?.shops) {

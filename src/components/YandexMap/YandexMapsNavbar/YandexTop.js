@@ -180,7 +180,7 @@ const YandexTop = ({ onClick }) => {
           </NavLink>
         )}
         <NavLink
-          to="/stores"
+          to="/shops"
           className="flex items-center bg-white rounded cursor-pointer h-full  ml-6 px-3 py-[2px]"
         >
           <span className="mr-2">

@@ -493,7 +493,7 @@ function YandexMapsDressMe() {
                   </li>
                   <li>
                     <NavLink
-                      to="/stores"
+                      to="/shops"
                       className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 w-full"
                     >
                       <div className="flex items-center">

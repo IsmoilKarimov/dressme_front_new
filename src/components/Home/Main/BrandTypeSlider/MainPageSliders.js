@@ -186,7 +186,7 @@ function MainPageSliders() {
             locationIdParams: foundElement?.id,
             productShowSelectedLocation: foundElement,
           });
-          navigate(`/shopping_store/:${id}`);
+          navigate(`/shops/${id}`);
           // console.log(foundElement, "foundElement-main");
         }
         if (!dressInfo?.mainSubRegionId) {
@@ -195,7 +195,7 @@ function MainPageSliders() {
             locationIdParams: item?.approved_shop_locations[0]?.id,
             productShowSelectedLocation: item?.approved_shop_locations[0],
           });
-          navigate(`/shopping_store/:${id}`);
+          navigate(`/shops/${id}`);
         }
       });
   };
