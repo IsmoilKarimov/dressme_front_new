@@ -30,7 +30,7 @@ export default function CatalogItems() {
   const [getGenderId, setGetGenderId] = useState(null);
   const [getCategory, setGetCategory] = useState(null);
   const [getRating, setGetRating] = useState(null);
-  const [getRange, setGetRange] = useState(null);
+  const [getRange, setGetRange] = useState([]);
   const [dataColor, setDataColor] = useState([]);
   const [discount, setDiscount] = useState(false);
   const [getOutWearList, setGetOutWearList] = useState(null);
@@ -94,7 +94,15 @@ export default function CatalogItems() {
   const paramId = useParams();
 
   // console.log(paramId?.id, " id");
-
+  console.log(getGenderId,
+    getCategory,
+    getRating,
+    getRange,
+    dataColor,
+    discount,
+    getOutWearList,
+    getUnderWearList,
+    getFootWearList,);
   const newId = paramId?.id?.replace(":", "");
 
   const handleOpenCategories = (newOpen) => {
@@ -203,8 +211,8 @@ export default function CatalogItems() {
     getGenderId,
     getCategory,
     getRating,
-    getRange,
-    dataColor,
+    getRange?.length,
+    dataColor?.length,
     discount,
     getOutWearList,
     getUnderWearList,

@@ -27,9 +27,9 @@ const ShoppingStoreOfficial = () => {
   const [getRange, setGetRange] = useState([]);
   const [dataColor, setDataColor] = useState([]);
   const [discount, setDiscount] = useState(false);
-  const [getOutWearList, setGetOutWearList] = useState();
-  const [getUnderWearList, setGetUnderWearList] = useState();
-  const [getFootWearList, setGetFootWearList] = useState();
+  const [getOutWearList, setGetOutWearList] = useState(null);
+  const [getUnderWearList, setGetUnderWearList] = useState(null);
+  const [getFootWearList, setGetFootWearList] = useState(null);
   const [filterToggle, setFilterToggle] = useState(false);
   const [openMobileFilter, setOpenMobileFilter] = useState(false);
 
@@ -77,11 +77,8 @@ const ShoppingStoreOfficial = () => {
     setPageId(1);
   };
   const footWearList = (childData) => {
-    console.log(childData, "footWearList");
-    if (childData !== undefined) {
       setGetFootWearList(childData);
-    }
-    setPageId(1);
+        setPageId(1);
   };
 
   // console.log(pageId, "pageId,");
@@ -228,11 +225,12 @@ const ShoppingStoreOfficial = () => {
   useEffect(() => {
     if (data?.getMainProductCard && dressInfo?.locationIdParams) {
       fetchGetAllData();
+    // console.log('is run');
     }
   }, [
     pageId,
     discount,
-    dataColor,
+    dataColor?.length,
     getGenderId,
     discount,
     getCategory,
@@ -240,10 +238,12 @@ const ShoppingStoreOfficial = () => {
     getOutWearList,
     getFootWearList,
     getRating,
-    getRange,
+    getRange?.length,
+    data?.getMainProductCard,
     dressInfo?.mainSearchNameshop,
   ]);
-
+  // console.log(dataColor, ' dataColor,');
+  // console.log(getRange, ' getRange,');
   useEffect(() => {
     if (openMobileFilter) {
       document.body.style.overflow = "hidden";

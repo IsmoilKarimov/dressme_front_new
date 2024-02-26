@@ -16,12 +16,12 @@ function CategoryForType() {
   const [getGenderId, setGetGenderId] = useState(null);
   const [getCategory, setGetCategory] = useState(null);
   const [getRating, setGetRating] = useState(null);
-  const [getRange, setGetRange] = useState(null);
+  const [getRange, setGetRange] = useState([]);
   const [dataColor, setDataColor] = useState([]);
   const [discount, setDiscount] = useState(false);
-  const [getOutWearList, setGetOutWearList] = useState();
-  const [getUnderWearList, setGetUnderWearList] = useState();
-  const [getFootWearList, setGetFootWearList] = useState();
+  const [getOutWearList, setGetOutWearList] = useState(null);
+  const [getUnderWearList, setGetUnderWearList] = useState(null);
+  const [getFootWearList, setGetFootWearList] = useState(null);
   const [filterToggle, setFilterToggle] = useState(false);
   const [openMobileFilter, setOpenMobileFilter] = useState(false);
   const [openMobileCategory, setOpenMobileCategory] = useState(false);
@@ -163,7 +163,7 @@ function CategoryForType() {
     getOutWearList,
     getFootWearList,
     getRating,
-    getRange,
+    getRange?.length,
     dressInfo?.mainSearchNameCategory,
   ]);
 

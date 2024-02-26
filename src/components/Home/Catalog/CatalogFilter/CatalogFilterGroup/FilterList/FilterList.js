@@ -233,15 +233,15 @@ function FilterList({
         setDataActionOutwearSizes(select)
         outWearList(select)
         // ---UnderWear
-        setDataActionUnderwearSizes()
-        underWearList()
+        setDataActionUnderwearSizes(null)
+        underWearList(null)
         // --FootWear
-        setDataActionFootwearSizes()
-        footWearList()
+        setDataActionFootwearSizes(null)
+        footWearList(null)
     }
     const ClearListOutWear = () => {
-        setDataActionOutwearSizes()
-        outWearList()
+        setDataActionOutwearSizes(null)
+        outWearList(null)
     }
     // -------UnderWear
 
@@ -259,16 +259,16 @@ function FilterList({
         setDataActionUnderwearSizes(select)
         underWearList(select)
         // --OutWear
-        setDataActionOutwearSizes()
-        outWearList()
+        setDataActionOutwearSizes(null)
+        outWearList(null)
         // --FootWear
-        setDataActionFootwearSizes()
-        footWearList()
+        setDataActionFootwearSizes(null)
+        footWearList(null)
 
     }
     const ClearListUnderWear = () => {
-        setDataActionUnderwearSizes()
-        underWearList()
+        setDataActionUnderwearSizes(null)
+        underWearList(null)
     }
 
     // --------FootWear-------
@@ -287,15 +287,15 @@ function FilterList({
         setDataActionFootwearSizes(select)
         footWearList(select)
         //---underWear
-        setDataActionUnderwearSizes()
-        underWearList()
+        setDataActionUnderwearSizes(null)
+        underWearList(null)
         // outWear
-        setDataActionOutwearSizes()
-        outWearList()
+        setDataActionOutwearSizes(null)
+        outWearList(null)
     }
     const ClearListFootWear = () => {
-        setDataActionFootwearSizes()
-        footWearList()
+        setDataActionFootwearSizes(null)
+        footWearList(null)
     }
 
     const ClearAll = () => {
@@ -323,14 +323,14 @@ function FilterList({
         outWearList(null)
         footWearList(null)
         // ---outWear
-        setDataActionOutwearSizes()
-        outWearList()
+        setDataActionOutwearSizes(null)
+        outWearList(null)
         // ---underWear
-        setDataActionUnderwearSizes()
-        underWearList()
+        setDataActionUnderwearSizes(null)
+        underWearList(null)
         // ---OutWear
-        setDataActionFootwearSizes()
-        footWearList()
+        setDataActionFootwearSizes(null)
+        footWearList(null)
     }
     useEffect(() => {
         if (paramsId) {
@@ -632,7 +632,7 @@ function FilterList({
 
                                 {selectedRating && <button
                                     type="button"
-                                    onClick={() => ClearList()}
+                                    onClick={() => ClearList(null)}
                                     className={`w-fit flex-start text-sm text-borderWinter font-AeonikProRegular`}
                                 >
                                     Сбросить
