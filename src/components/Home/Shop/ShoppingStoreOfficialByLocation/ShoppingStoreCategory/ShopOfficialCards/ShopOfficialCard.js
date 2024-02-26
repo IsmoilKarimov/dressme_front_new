@@ -20,7 +20,7 @@ export default function ShopOfficialCard({ filteredData, setPageId }) {
   const onColorChecked = () => { };
   const navigate = useNavigate();
   const goDetail = (id) => {
-    navigate(`/product/:${id}`);
+    navigate(`/product/${id}`);
   };
 
   const handleLeaveMouse = (eId) => {

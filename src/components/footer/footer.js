@@ -81,7 +81,7 @@ const Footer = () => {
                     <ul className="flex flex-row text-sm">
                       <article className="flex flex-row basis-1/3 gap-x-4 md:gap-x-0">
                         <li className="ss:mb-1 md:mb-0 md:mr-5">
-                          <Link to="/stores" className="flex items-center">
+                          <Link to="/shops" className="flex items-center">
                             <MarketIcons colors={"#000"} />
                             <span className="font-AeonikProRegular ml-2">
                               Магазины

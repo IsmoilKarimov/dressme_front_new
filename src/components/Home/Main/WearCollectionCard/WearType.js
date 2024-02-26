@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const WearType = ({ onClick, title }) => {
   const navigate = useNavigate();
   const goDetail = (id) => {
-    navigate(`/product/:${id}`);
+    navigate(`/product/${id}`);
   };
   const imgList = [
     {

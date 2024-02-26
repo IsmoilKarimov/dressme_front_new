@@ -259,7 +259,7 @@ function CategoryForType() {
 
   const handleCategories = (value, id) => {
     setOpenMobileCategory(false);
-    navigate(`/section/:${id}`);
+    navigate(`/section/${id}`);
   };
   useEffect(() => {
     if (openMobileFilter || openMobileCategory) {

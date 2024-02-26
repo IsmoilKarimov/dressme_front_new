@@ -219,7 +219,7 @@ const TopHeader = () => {
             </button>
             <article className="line h-5 border text-textColor mx-6"></article>
             <NavLink
-              to="/stores"
+              to="/shops"
               onClick={() => setSelectBtn(true)}
               className={`flex items-center  cursor-pointer h-fit
                 ${selectBtn ? "py-[4px] px-3 bg-white rounded" : ""}

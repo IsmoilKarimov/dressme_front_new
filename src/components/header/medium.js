@@ -650,7 +650,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                       onClick={() =>
                         setStateData({ ...stateData, hamburgerMenu: false })
                       }
-                      to="/stores"
+                      to="/shops"
                       className="flex items-center bg-btnBgColor  font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5 mb-3 w-full"
                     >
                       <div className="flex items-center">
