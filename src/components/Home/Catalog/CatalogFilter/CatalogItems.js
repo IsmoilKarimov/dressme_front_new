@@ -94,16 +94,6 @@ export default function CatalogItems() {
   const navigate = useNavigate();
   const paramId = useParams();
 
-  // console.log(paramId?.id, " id");
-  // console.log(getGenderId,
-  //   getCategory,
-  //   getRating,
-  //   getRange,
-  //   dataColor,
-  //   discount,
-  //   getOutWearList,
-  //   getUnderWearList,
-  //   getFootWearList,);
   const newId = paramId?.id?.replace(":", "");
 
   const handleOpenCategories = (newOpen) => {

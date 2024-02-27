@@ -24,8 +24,6 @@ export default function HomeIndex() {
           <CollectionCards />
         </div>
       )}
-
-      {/* <TypeSection /> */}
     </main>
   );
 }

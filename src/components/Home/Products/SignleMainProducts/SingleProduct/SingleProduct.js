@@ -6,7 +6,6 @@ import { SingleProductTop } from "../SingleProductTop/SingleProductTop";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 
 import ProductComment from "./ProductComment/ProductComment";
-import { useQuery } from "@tanstack/react-query";
 import { HomeMainDataContext } from "../../../../../ContextHook/HomeMainData";
 import { CollectionCardItem } from "../../../Main/WearCollectionCard/CollectionCardItem";
 import LoadingNetwork from "../../../../Loading/LoadingNetwork";
