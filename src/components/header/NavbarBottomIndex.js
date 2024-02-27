@@ -12,7 +12,7 @@ import {
   PersonPlusIcons,
   SircleNext,
 } from "../../assets/icons";
-function NavbarBottomIndex() {
+function NavbarBottomIndex({scrollPost}) {
   const [dressInfo] = useContext(dressMainData);
 
   const location = useLocation();
@@ -119,7 +119,7 @@ function NavbarBottomIndex() {
                     </span>
                   </div>{" "}
                 </div>
-              </div>
+              </div> 
             ) : null}
             {locationWindow === "/" ? (
               <span className=" md:my-3">

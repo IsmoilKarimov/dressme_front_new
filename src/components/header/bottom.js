@@ -51,12 +51,12 @@ function BottomHeader() {
       data?.getMainProductCard?.budget?.min_price &&
       data?.getMainProductCard?.budget?.max_price
     ) {
-      if (!values[0] && !values[1]) {
-        setValues([
-          Number(data?.getMainProductCard?.budget?.min_price),
-          Number(data?.getMainProductCard?.budget?.max_price),
-        ]);
-      }
+      // if (!values[0] && !values[1]) {
+      setValues([
+        Number(data?.getMainProductCard?.budget?.min_price),
+        Number(data?.getMainProductCard?.budget?.max_price),
+      ]);
+      // }
     }
     if (
       !data?.getMainProductCard?.budget?.min_price &&
@@ -64,7 +64,7 @@ function BottomHeader() {
     ) {
       setValues([0, 0]);
     }
-  }, [data?.getMainProductCard?.budget]);
+  }, [data?.getMainProductCard]);
 
   useEffect(() => {
     if (values[1] && values[0] && minPrice && maxPrice) {
@@ -98,8 +98,14 @@ function BottomHeader() {
     if (dressInfo?.mainRangePrice[0] && dressInfo?.mainRangePrice[1]) {
       setDressInfo({ ...dressInfo, mainRangePrice: [] });
     }
-  }, [dressInfo?.mainRegionId, dressInfo?.mainSubRegionId]);
-
+  }, [
+    dressInfo?.mainRegionId,
+    dressInfo?.mainSubRegionId,
+    dressInfo?.mainColorHex,
+    dressInfo?.mainCategoryId,
+    dressInfo?.mainGenderId
+  ]);
+  console.log(data?.getMainProductCard, 'data?.getMainProductCard');
   useEffect(() => {
     if (state?.showColour) {
       document.body.style.overflow = "hidden";
@@ -213,6 +219,22 @@ function BottomHeader() {
     targetModal.classList.add("hidden");
   };
 
+  // ----------------NavBar----------------
+  const [selectOpen, setSelectOpen] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (selectOpen) {
+        setSelectOpen(false); // Close the select dropdown if it's open
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [selectOpen]);
+
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
       <div
@@ -252,11 +274,10 @@ function BottomHeader() {
                         newColorArrayId(data?.hex, data?.id);
                       }}
                       style={{ backgroundColor: data?.hex }}
-                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${
-                        data?.hex === dressInfo?.mainColorHex
-                          ? "border border-setTexOpacity flex items-center justify-center"
-                          : "border"
-                      } `}
+                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${data?.hex === dressInfo?.mainColorHex
+                        ? "border border-setTexOpacity flex items-center justify-center"
+                        : "border"
+                        } `}
                     >
                       {dressInfo?.mainColorHex == data?.hex &&
                         data?.id == 1 && (
@@ -309,8 +330,8 @@ function BottomHeader() {
             <ClothesIcons colors={"#000"} />
           </span>
           <Select
-            showSearch
-            className="w-[100%] cursor-pointer   flex items-center !caret-transparent h-full !outline-none text-center overflow-hidden  !py-0 text-black text-sm font-AeonikProMedium tracking-wide "
+            // showSearch
+            className="w-[100%] cursor-pointer  flex items-center !caret-transparent h-full !outline-none text-center overflow-hidden  !py-0 text-black text-sm font-AeonikProMedium tracking-wide "
             bordered={false}
             placeholder={
               <span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide">
@@ -323,12 +344,14 @@ function BottomHeader() {
               setPage(1);
               setDressInfo({ ...dressInfo, mainCategoryId: e });
             }}
+            open={selectOpen}
+            onDropdownVisibleChange={setSelectOpen}
             allowClear
             size="large"
           >
             {data?.getMainProductCard?.categories?.map((item) => {
               return (
-                <Option key={item.id} value={item.id} label={item.name_ru}>
+                <Option className="" key={item.id} value={item.id} label={item.name_ru}>
                   <Space>
                     <span className="text-black  text-[13px] font-AeonikProMedium tracking-wide ">
                       {item.name_ru}
@@ -362,9 +385,30 @@ function BottomHeader() {
               По бюджету
             </p>
           )}
-          <span className="font-AeonikProMedium iconArrow">
-            <DownArrowAntd />
-          </span>
+          {dressInfo?.mainRangePrice[0] && dressInfo?.mainRangePrice[1] ?
+            <span
+              onClick={(e) => {
+                e.stopPropagation();
+                closeDivModal();
+                clearFunction();
+              }}
+
+              role="img" aria-label="close-circle" className="anticon anticon-close-circle">
+              <svg viewBox="64 64 896 896"
+                focusable="false"
+                data-icon="close-circle"
+                width="12px"
+                height="12px"
+                fill="#b5b5b5"
+                aria-hidden="true">
+                <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z"></path>
+              </svg>
+            </span>
+            :
+            <span className="font-AeonikProMedium iconArrow">
+              <DownArrowAntd />
+            </span>
+          }
         </button>
 
         <div
@@ -386,9 +430,9 @@ function BottomHeader() {
             <div className="relative bg-white rounded-lg shadow-modalCategoryShadow">
               {/* Modal header */}
               <div className="flex justify-between items-start mx-4 py-2 border-b rounded-t border-searchBgColor ">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                <p className="text-xl font-AeonikProMedium text-gray-900 dark:text-white">
                   По ценам
-                </h3>
+                </p>
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -459,9 +503,8 @@ function BottomHeader() {
               </div>
               {/* Modal footer */}
               <div
-                className={` flex items-center ${
-                  state?.clearPrice ? "justify-between" : "justify-end"
-                } px-6 py-3 space-x-2 rounded-b `}
+                className={` flex items-center ${state?.clearPrice ? "justify-between" : "justify-end"
+                  } px-6 py-3 space-x-2 rounded-b `}
               >
                 {state?.clearPrice && (
                   <span
@@ -527,9 +570,8 @@ function BottomHeader() {
 
           <article className="w-[480px] h-full overflow-hidden flex items-center justify-between">
             <div
-              className={`${
-                state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
-              } px-2 w-full duration-500  h-full flex items-center justify-between  `}
+              className={`${state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
+                } px-2 w-full duration-500  h-full flex items-center justify-between  `}
             >
               {data?.getMainProductCard?.colors?.map((data, i) => {
                 if (i > 11) {
@@ -544,9 +586,8 @@ function BottomHeader() {
                           newColorArrayId(data?.hex, data?.id);
                         }}
                         style={{ backgroundColor: data?.hex }}
-                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
-                          !state?.textToColor && "border"
-                        }  border-borderColorCard `}
+                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${!state?.textToColor && "border"
+                          }  border-borderColorCard `}
                       >
                         {dressInfo?.mainColorHex == data?.hex &&
                           data?.id == 1 && (
@@ -591,9 +632,8 @@ function BottomHeader() {
               </button>
             </div>
             <p
-              className={`${
-                state?.textToColor ? " mr-0" : " mr-[-500px]"
-              } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
+              className={`${state?.textToColor ? " mr-0" : " mr-[-500px]"
+                } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
             >
               Не давай своей гардеробной шкафной жизни стать скучной!
             </p>
@@ -618,11 +658,10 @@ function BottomHeader() {
                       >
                         <button
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${
-                            item?.id == dressInfo?.mainGenderId
-                              ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
-                              : " bg-btnBgColor text-black h-full"
-                          } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
+                          className={`${item?.id == dressInfo?.mainGenderId
+                            ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
+                            : " bg-btnBgColor text-black h-full"
+                            } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
                         >
                           <span>{item?.anyIcons}</span>
                           {item?.name && (
@@ -642,7 +681,7 @@ function BottomHeader() {
             })}
         </div>
       </section>
-    </nav>
+    </nav >
   );
 }
 

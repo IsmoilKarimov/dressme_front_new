@@ -14,8 +14,8 @@ export default function ShoppingStore() {
   const [getAllShops, setGetAllShops] = useState(true);
   const [error, setError] = useState();
 
-  const [getGenderID, setGetGenderId] = useState();
-  const [getSearchInput, setgetSearchInput] = useState();
+  const [getGenderID, setGetGenderId] = useState(null);
+  const [getSearchInput, setgetSearchInput] = useState(null);
 
   const apiUrl = `https://api.dressme.uz/api/main/shops`;
 
@@ -41,24 +41,26 @@ export default function ShoppingStore() {
       });
   };
   // console.log(getData, "getData");
+  // useEffect(() => {
+  //   if (!dressInfo?.shopsData) {
+  //     fetchGetAllData({
+  //       gender: getGenderID,
+  //       keywords: getSearchInput,
+  //       region: dressInfo?.mainRegionId,
+  //       sub_region: dressInfo?.mainSubRegionId,
+  //     });
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
   useEffect(() => {
-    if (!dressInfo?.shopsData) {
+    // if (dressInfo?.shopsData) {
       fetchGetAllData({
         gender: getGenderID,
         keywords: getSearchInput,
         region: dressInfo?.mainRegionId,
         sub_region: dressInfo?.mainSubRegionId,
       });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  useEffect(() => {
-    fetchGetAllData({
-      gender: getGenderID,
-      keywords: getSearchInput,
-      region: dressInfo?.mainRegionId,
-      sub_region: dressInfo?.mainSubRegionId,
-    });
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     getGenderID,
@@ -66,9 +68,7 @@ export default function ShoppingStore() {
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
   ]);
-
-  // console.log(getGenderID,
-  //   getSearchInput);
+  
 
   useEffect(() => {
     window.scrollTo({
@@ -96,7 +96,7 @@ export default function ShoppingStore() {
         <ShoppingBrands
           loading={loading}
           setLoading={setLoading}
-          // setGetData={setGetData}
+        // setGetData={setGetData}
         />
       </section>
     </main>
