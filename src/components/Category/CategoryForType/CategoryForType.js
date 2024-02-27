@@ -72,7 +72,7 @@ function CategoryForType() {
   const paramsId = useParams();
   const newId = paramsId?.id.replace(":", "");
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const url = `https://api.dressme.uz/api`;
 
@@ -219,8 +219,6 @@ function CategoryForType() {
             <CategoryTopDetail
               filterData={filterData}
               setFilterData={setFilterData}
-              // toggleFilterLeftOpen={toggleFilterOpen}
-              // toggleFilterLeftClose={toggleFilterClose}
               setFilterToggle={setFilterToggle}
               filterLeftAction={filterToggle}
               setOpenMobileFilter={setOpenMobileFilter}
