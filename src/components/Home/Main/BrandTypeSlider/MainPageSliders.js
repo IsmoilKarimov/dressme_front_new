@@ -172,6 +172,7 @@ function MainPageSliders() {
 
   const navigate = useNavigate();
   const goDetail = (id) => {
+    // console.log(id,"locationIdParams");
     data?.getMainProductCard?.shops
       ?.filter((e) => e?.id == id)
       ?.map((item) => {
@@ -185,6 +186,7 @@ function MainPageSliders() {
             ...dressInfo,
             locationIdParams: foundElement?.id,
             productShowSelectedLocation: foundElement,
+            linkedFrom: "mainPageShopsList",
           });
           navigate(`/shops/${id}`);
           // console.log(foundElement, "foundElement-main");
@@ -194,12 +196,15 @@ function MainPageSliders() {
             ...dressInfo,
             locationIdParams: item?.approved_shop_locations[0]?.id,
             productShowSelectedLocation: item?.approved_shop_locations[0],
+            linkedFrom: "mainPageShopsList",
           });
           navigate(`/shops/${id}`);
         }
       });
   };
-
+// console.log(data?.getMainProductCard?.shops,"locationIdParams");
+// console.log(dressInfo?.locationIdParams,"locationIdParams");
+// console.log(dressInfo?.mainSubRegionId,"locationIdParams-mainSubRegionId");
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
@@ -439,10 +444,10 @@ function MainPageSliders() {
                       key={data?.id}
                       onClick={() => {
                         goDetail(data?.id);
-                        setDressInfo({
-                          ...dressInfo,
-                          linkedFrom: "mainPageShopsList",
-                        });
+                        // setDressInfo({
+                        //   ...dressInfo,
+                        //   linkedFrom: "mainPageShopsList",
+                        // });
                       }}
                       className="!w-[80px] h-[80px] md:!w-[120px] md:h-[120px] cursor-pointer overflow-hidden rounded-full bg-white flex items-center justify-center select-none border border-solid border-searchBgColor"
                     >
@@ -467,10 +472,10 @@ function MainPageSliders() {
                       key={data?.id}
                       onClick={() => {
                         goDetail(data?.id);
-                        setDressInfo({
-                          ...dressInfo,
-                          linkedFrom: "mainPageShopsList",
-                        });
+                        // setDressInfo({
+                        //   ...dressInfo,
+                        //   linkedFrom: "mainPageShopsList",
+                        // });
                       }}
                       className="!w-[80px] h-[80px] md:!w-[120px] md:h-[120px] cursor-pointer overflow-hidden rounded-full bg-white flex items-center justify-center select-none border border-solid border-searchBgColor"
                     >

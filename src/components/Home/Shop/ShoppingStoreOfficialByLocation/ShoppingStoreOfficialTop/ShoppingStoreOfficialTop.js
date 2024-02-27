@@ -151,7 +151,7 @@ const ShoppingStoreOfficialTop = ({
                         {filteredData?.shop?.overall_rating}
                       </p>
                       {filteredData?.shop?.rated_users_count && <p className="flex items-center text-setTexOpacity font-AeonikProRegular">
-                        ( <span className="flex gap-x-1">{filteredData?.shop?.rated_users_count} <span className="md:flex hidden"> голосов</span></span> ){" "}
+                        ( <span className="flex gap-x-1"><span className="md:flex hidden">голосов:</span>{filteredData?.shop?.rated_users_count} </span> ){" "}
                       </p>}
                     </div>
                   </div>

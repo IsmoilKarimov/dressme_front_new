@@ -25,7 +25,7 @@ const ShoppingStoreOfficialByLocation = () => {
   const [getGenderId, setGetGenderId] = useState(null);
   const [getCategory, setGetCategory] = useState(null);
   const [getRating, setGetRating] = useState(null);
-  const [getRange, setGetRange] = useState(null);
+  const [getRange, setGetRange] = useState([]);
   const [dataColor, setDataColor] = useState([]);
   const [discount, setDiscount] = useState(false);
   const [getOutWearList, setGetOutWearList] = useState(null);
@@ -222,7 +222,7 @@ const ShoppingStoreOfficialByLocation = () => {
   }, [
     pageId,
     discount,
-    dataColor,
+    dataColor?.length,
     getGenderId,
     discount,
     getCategory,
@@ -230,7 +230,7 @@ const ShoppingStoreOfficialByLocation = () => {
     getOutWearList,
     getFootWearList,
     getRating,
-    getRange,
+    getRange?.length,
     // dressInfo?.locationIdParams,
     dressInfo?.mainSearchNameCatalog 
   ]);

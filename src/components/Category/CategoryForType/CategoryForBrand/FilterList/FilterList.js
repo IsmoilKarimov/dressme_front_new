@@ -265,15 +265,15 @@ function FilterList({
         setDataActionOutwearSizes(select)
         outWearList(select)
         // ---UnderWear
-        setDataActionUnderwearSizes()
-        underWearList()
+        setDataActionUnderwearSizes(null)
+        underWearList(null)
         // --FootWear
-        setDataActionFootwearSizes()
-        footWearList()
+        setDataActionFootwearSizes(null)
+        footWearList(null)
     }
     const ClearListOutWear = () => {
-        setDataActionOutwearSizes()
-        outWearList()
+        setDataActionOutwearSizes(null)
+        outWearList(null)
     }
     // -------UnderWear
 
@@ -286,21 +286,20 @@ function FilterList({
         }
     }, [getFilter?.wear_sizes?.underwear]);
 
-
     const onHandleUnderWearList = (select) => {
         setDataActionUnderwearSizes(select)
         underWearList(select)
         // --OutWear
-        setDataActionOutwearSizes()
-        outWearList()
+        setDataActionOutwearSizes(null)
+        outWearList(null)
         // --FootWear
-        setDataActionFootwearSizes()
-        footWearList()
+        setDataActionFootwearSizes(null)
+        footWearList(null)
 
     }
     const ClearListUnderWear = () => {
-        setDataActionUnderwearSizes()
-        underWearList()
+        setDataActionUnderwearSizes(null)
+        underWearList(null)
     }
 
     // --------FootWear-------
@@ -319,15 +318,15 @@ function FilterList({
         setDataActionFootwearSizes(select)
         footWearList(select)
         //---underWear
-        setDataActionUnderwearSizes()
-        underWearList()
+        setDataActionUnderwearSizes(null)
+        underWearList(null)
         // outWear
-        setDataActionOutwearSizes()
-        outWearList()
+        setDataActionOutwearSizes(null)
+        outWearList(null)
     }
     const ClearListFootWear = () => {
-        setDataActionFootwearSizes()
-        footWearList()
+        setDataActionFootwearSizes(null)
+        footWearList(null)
     }
 
     const ClearAll = () => {
@@ -349,20 +348,20 @@ function FilterList({
         setClearPrice(false)
         // ---ratingList
         setSelectedRating(null)
-        getRatingList(null)
+        getRatingList()
         // ---Sizes
         underWearList(null)
         outWearList(null)
         footWearList(null)
         // ---outWear
-        setDataActionOutwearSizes()
-        outWearList()
+        setDataActionOutwearSizes(null)
+        outWearList(null)
         // ---underWear
-        setDataActionUnderwearSizes()
-        underWearList()
+        setDataActionUnderwearSizes(null)
+        underWearList(null)
         // ---OutWear
-        setDataActionFootwearSizes()
-        footWearList()
+        setDataActionFootwearSizes(null)
+        footWearList(null)
     }
     useEffect(() => {
         if (paramsId) {
