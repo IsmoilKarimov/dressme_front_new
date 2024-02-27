@@ -107,6 +107,15 @@ function YandexLocationMarketOpen({
     slidesToScroll: 1,
   };
 
+  const settingsForMobile = {
+    dots: true,
+    fade: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   const sendImgGallery = () => {
     getImgGallery({ newImgList: newImgList, index: carouselIndex });
     onClick();
@@ -170,37 +179,82 @@ function YandexLocationMarketOpen({
                       />
                     </div>
                   ) : (
-                    <Slider
-                      {...settings}
-                      afterChange={(c) => {
-                        setCarouselIndex(c);
-                      }}
-                      
-                      className="w-full h-full rounded-xl overflow-hidden flex flex-col justify-center"
-                    >
-                      {newImgList?.map((data, i) => {
-                        return (
-                          <div key={data?.id}>
-                            {data?.img && (
-                              <div
-                                onClick={() => {
-                                  sendImgGallery();
-                                }}
-                                className="w-full h-full cursor-pointer flex items-center justify-center"
-                              >
-                                <img
-                                  className={
-                                    "mx-auto h-[220px] w-full md:h-[250px] sm:w-auto flex items-center object-cover	"
-                                  }
-                                  src={data?.img}
-                                  alt="img"
-                                />
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </Slider>
+                    <>
+                      <Slider
+                        {...settings}
+                        afterChange={(c) => {
+                          setCarouselIndex(c);
+                        }}
+                        className="hidden w-full h-full rounded-xl overflow-hidden md:flex flex-col justify-center"
+                      >
+                        {newImgList?.map((data, i) => {
+                          return (
+                            <div key={data?.id}>
+                              {data?.img && (
+                                <div
+                                  onClick={() => {
+                                    sendImgGallery();
+                                  }}
+                                  className="w-full h-full cursor-pointer flex items-center justify-center"
+                                >
+                                  <img
+                                    className={
+                                      "mx-auto h-[220px] w-full md:h-[250px] sm:w-auto flex items-center object-cover	"
+                                    }
+                                    src={data?.img}
+                                    alt="img"
+                                  />
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </Slider>
+                      <Slider
+                        {...settingsForMobile}
+                        afterChange={(c) => {
+                          setCarouselIndex(c);
+                        }}
+                        className="md:hidden w-full h-full rounded-xl overflow-hidden flex flex-col justify-center"
+                      >
+                        {newImgList?.map((data, i) => {
+                          return (
+                            <div key={data?.id}>
+                              {data?.img && (
+                                <div
+                                  onClick={() => {
+                                    sendImgGallery();
+                                  }}
+                                  className="w-full h-full cursor-pointer flex items-center justify-center"
+                                >
+                                  <img
+                                    className={
+                                      "mx-auto h-[220px] w-full md:h-[250px] sm:w-auto flex items-center object-cover	"
+                                    }
+                                    src={data?.img}
+                                    alt="img"
+                                  />
+                                  <div className="flex w-full absolute items-center justify-between px-5 text-sm font-AeonikProMedium left-0 right-0 bottom-3 md:bottom-6">
+                                    <span className="bg-white gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
+                                      <p className="h-full w-full text-center pt-[4px]">
+                                        {" "}
+                                        {i + 1}
+                                      </p>
+                                      <span className="text-center pt-[2px]">
+                                        /
+                                      </span>
+                                      <p className="h-full w-full text-center pt-[4px]">
+                                        {newImgList?.length}
+                                      </p>
+                                    </span>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </Slider>
+                    </>
                   )}
                 </div>
                 {/* Details */}
