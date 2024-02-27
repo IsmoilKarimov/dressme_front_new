@@ -12,9 +12,9 @@ export const HomeMainDataContextProvider = ({ children }) => {
     loader: true,
     btnLoader: false,
     mainRegionsList: [],
-    selectedLoc: "",
+    selectedLoc: "changed",
   });
-
+// console.log(data?.selectedLoc,"selectedLoc------");
   const [page, setPage] = useState(1);
 
   let WishlistDataFromCookies = Cookies.get("WishList");

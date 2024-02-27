@@ -81,7 +81,7 @@ const ShoppingStoreOfficialByLocation = () => {
 
   const clickButtons = {
     openTabComment,
-    setOpenTabComment, 
+    setOpenTabComment,
     openTabLocation,
     setOpenTabLocation,
   };
@@ -97,6 +97,7 @@ const ShoppingStoreOfficialByLocation = () => {
 
   const refreshLocationId = () => {
     if (data?.selectedLoc === "changed") {
+      // console.log('run it');
       data?.getMainProductCard?.shops?.map((item) => {
         if (item?.id === Number(newId)) {
           if (dressInfo?.mainSubRegionId) {
@@ -132,18 +133,20 @@ const ShoppingStoreOfficialByLocation = () => {
       });
     }
   };
-
+  // console.log(data?.selectedLoc, 'data?.selectedLoc');
+  // console.log(data?.selectedLoc?.length, 'data?.selectedLoc');
   useEffect(() => {
+    // if (data?.selectedLoc?.length === 0) {
+    //   setData({ ...data, selectedLoc: "changed" });
+    // }
     refreshLocationId();
-
-    setData({ ...data, selectedLoc: "changed" });
   }, [newId, dressInfo?.mainSubRegionId]);
+
 
   const url = `https://api.dressme.uz/api`;
   const [loading, setLoading] = useState(false);
 
   const fetchGetAllData = () => {
-    setLoading(true)
     let params = new URLSearchParams();
     params.append("location_id", dressInfo?.locationIdParams);
     dressInfo?.mainSearchNameCatalog &&
@@ -221,12 +224,17 @@ const ShoppingStoreOfficialByLocation = () => {
   useEffect(() => {
     if (initalParamsId && initalParamsId !== dressInfo?.locationIdParams && !getGenderId && !getCategory && !getRating && !getRange?.length && !dataColor?.length && !discount && !getOutWearList && !getUnderWearList && !getFootWearList) {
       fetchGetAllData();
+      setLoading(true)
+
     }
     setInitalParamsId(dressInfo?.locationIdParams)
   }, [dressInfo?.locationIdParams]);
 
   useEffect(() => {
     fetchGetAllData();
+    if (!filteredData) {
+      setLoading(true)
+    }
   }, [
     pageId,
     discount,
@@ -240,7 +248,7 @@ const ShoppingStoreOfficialByLocation = () => {
     getRating,
     getRange?.length,
     // dressInfo?.locationIdParams,
-    dressInfo?.mainSearchNameCatalog 
+    dressInfo?.mainSearchNameCatalog
   ]);
 
   useEffect(() => {
@@ -269,9 +277,11 @@ const ShoppingStoreOfficialByLocation = () => {
   }, [screenSize]);
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
-      {!filteredData ? (
-        <LoadingNetwork />
-      ) : (
+      {loading ? (
+        <div className="flex items-center justify-center w-full h-full ">
+          <LoadingNetwork />
+        </div>
+      ) :
         <div className="w-full">
           <section className="w-full border-b border-searchBgColor ">
             <ShoppingStoreOfficialBreadCrumb
@@ -297,7 +307,7 @@ const ShoppingStoreOfficialByLocation = () => {
             className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter ? "" : "hidden"
               }`}
           ></section>
-        {screenSize.width < 768 &&   <section
+          {screenSize.width < 768 && <section
             className={`max-w-[440px] w-[100%]  mx-auto fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
               }`}
           >
@@ -333,7 +343,7 @@ const ShoppingStoreOfficialByLocation = () => {
                 {/* <ShoppingStoreCategory filteredData={filteredData} /> */}
                 <section className="w-[100%] h-fit">
                   <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
-                  {screenSize.width >= 768 &&    <div
+                    {screenSize.width >= 768 && <div
                       className={`${filterToggle ? "md:block" : "md:hidden"
                         } hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}
                     >
@@ -359,11 +369,7 @@ const ShoppingStoreOfficialByLocation = () => {
                       className={` ${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
                         } w-full h-full px-[10px] md:px-0`}
                     >
-                        {loading ? (
-                        <div className="flex items-center justify-center w-full h-full ">
-                          <LoadingNetwork />
-                        </div>
-                      ) :
+                      {
                         filteredData ? (
                           <ShopOfficialCard
                             filteredData={filteredData}
@@ -375,7 +381,7 @@ const ShoppingStoreOfficialByLocation = () => {
                           </div>
                         )
                       }
-                     
+
                     </div>
                   </section>
                 </section>
@@ -407,7 +413,7 @@ const ShoppingStoreOfficialByLocation = () => {
             </div>
           </section>
         </div>
-      )}
+      }
     </main>
   );
 };
