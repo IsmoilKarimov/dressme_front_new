@@ -139,9 +139,10 @@ const ShoppingStoreOfficialByLocation = () => {
   }, [newId, dressInfo?.mainSubRegionId]);
 
   const url = `https://api.dressme.uz/api`;
+  const [loading, setLoading] = useState(false);
 
   const fetchGetAllData = () => {
-    // setLoading(true)
+    setLoading(true)
     let params = new URLSearchParams();
     params.append("location_id", dressInfo?.locationIdParams);
     dressInfo?.mainSearchNameCatalog &&
@@ -199,14 +200,14 @@ const ShoppingStoreOfficialByLocation = () => {
       })
       .then((res) => {
         if (res?.status >= 200 && res?.status < 300) {
-          // setLoading(false)
+          setLoading(false)
           setFilteredData(res?.data);
         }
       })
       .catch((res) => {
         if (res?.response?.status === 422) {
           refreshLocationId();
-          // setLoading(false)
+          setLoading(false)
         }
         throw new Error(res || "something wrong");
 
@@ -350,16 +351,23 @@ const ShoppingStoreOfficialByLocation = () => {
                       className={` ${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
                         } w-full h-full px-[10px] md:px-0`}
                     >
-                      {filteredData ? (
-                        <ShopOfficialCard
-                          filteredData={filteredData}
-                          setPageId={setPageId}
-                        />
-                      ) : (
-                        <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[100vh] ">
-                          Ничего не найдено
+                        {loading ? (
+                        <div className="flex items-center justify-center w-full h-full ">
+                          <LoadingNetwork />
                         </div>
-                      )}
+                      ) :
+                        filteredData ? (
+                          <ShopOfficialCard
+                            filteredData={filteredData}
+                            setPageId={setPageId}
+                          />
+                        ) : (
+                          <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[100vh] ">
+                            Ничего не найдено
+                          </div>
+                        )
+                      }
+                     
                     </div>
                   </section>
                 </section>

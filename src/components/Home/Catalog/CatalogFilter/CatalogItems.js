@@ -40,7 +40,7 @@ export default function CatalogItems() {
   const [openMobileFilter, setOpenMobileFilter] = useState(false);
   const [openMobileCategory, setOpenMobileCategory] = useState(false);
 
-  const [loader, setLoader] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const handleToggle = () => {
     if (filterToggle) {
@@ -181,15 +181,15 @@ export default function CatalogItems() {
         params.append("colors[]", dataColor[index]);
       });
 
-    // setLoader(true);
+    setLoading(true);
     fetch(`${apiUrl}?` + params)
       .then((res) => res.json())
       .then((res) => {
         setFilterData(res);
-        // setLoader(false);
+        setLoading(false);
       })
       .catch((err) => {
-        // setLoader(false);
+        setLoading(false);
         throw new Error(err || "something wrong");
       });
   }
@@ -261,9 +261,7 @@ export default function CatalogItems() {
         <CatalogTopFilter />
       </section>
 
-      {/* {loader ? (
-        <LoadingNetwork />
-      ) : ( */}
+
       <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto">
         <article className="w-[100%] h-fit ">
           <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
@@ -504,12 +502,17 @@ export default function CatalogItems() {
               className={`${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
                 } w-full h-full px-[10px] md:px-0`}
             >
-              <CatalogCard filterData={filterData} setPageId={setPageId} />
+              {loading ? (
+                <div className="flex items-center justify-center w-full h-full ">
+                  <LoadingNetwork />
+                </div>
+              ) : (
+                <CatalogCard filterData={filterData} setPageId={setPageId} />
+              )}
             </article>
           </section>
         </article>
       </section>
-      {/* )} */}
     </main>
   );
 }
