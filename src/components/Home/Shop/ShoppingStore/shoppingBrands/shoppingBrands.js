@@ -1,13 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  ArrowTopIcons,
   DeliveryStoreIcon,
   ManGenIcons,
   StarIcons,
   WomanGenIcons,
 } from "../../../../../assets/icons";
-import LoadingFor from "../../../../Loading/LoadingFor";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import LoadingNetwork from "../../../../Loading/LoadingNetwork";
 
@@ -16,15 +14,25 @@ const ShoppingBrands = ({ loading, setLoading }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const goDetail = (id) => {
-    navigate(`/shops/${id}`);
+    dressInfo?.shopsData?.shops?.data
+      ?.filter((e) => e?.id == id)
+      ?.map((item) => {
+        if (dressInfo?.mainSubRegionId) {
+          let foundElement = item?.approved_shop_locations.find(function (
+            element
+          ) {
+            return Number(element.sub_region_id) === dressInfo?.mainSubRegionId;
+          });
+          setDressInfo({ ...dressInfo, locationIdParams: foundElement?.id, });
+          navigate(`/shops/${id}`);
+        }
+        if (!dressInfo?.mainSubRegionId) {
+          setDressInfo({ ...dressInfo, locationIdParams: item?.approved_shop_locations[0]?.id, });
+          navigate(`/shops/${id}`);
+        }
+      });
   };
-
-  // if (getData?.shops) {
-  //   setLoading(false);
-  // }
-
   // ------------------
-
   const setPaginationFunc = (url) => {
     setLoading(true);
     fetch(url, {
