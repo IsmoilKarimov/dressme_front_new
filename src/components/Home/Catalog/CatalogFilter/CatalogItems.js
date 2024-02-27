@@ -39,6 +39,7 @@ export default function CatalogItems() {
   const [filterToggle, setFilterToggle] = useState(false);
   const [openMobileFilter, setOpenMobileFilter] = useState(false);
   const [openMobileCategory, setOpenMobileCategory] = useState(false);
+  const [initalParamsId, setInitalParamsId] = useState(null);
 
   const [loading, setLoading] = useState(false);
 
@@ -94,15 +95,15 @@ export default function CatalogItems() {
   const paramId = useParams();
 
   // console.log(paramId?.id, " id");
-  console.log(getGenderId,
-    getCategory,
-    getRating,
-    getRange,
-    dataColor,
-    discount,
-    getOutWearList,
-    getUnderWearList,
-    getFootWearList,);
+  // console.log(getGenderId,
+  //   getCategory,
+  //   getRating,
+  //   getRange,
+  //   dataColor,
+  //   discount,
+  //   getOutWearList,
+  //   getUnderWearList,
+  //   getFootWearList,);
   const newId = paramId?.id?.replace(":", "");
 
   const handleOpenCategories = (newOpen) => {
@@ -201,6 +202,12 @@ export default function CatalogItems() {
         throw new Error(err || "something wrong");
       });
   }
+  useEffect(() => {
+    if (initalParamsId && initalParamsId !== newId && !getGenderId && !getCategory && !getRating && !getRange?.length && !dataColor?.length && !discount && !getOutWearList && !getUnderWearList && !getFootWearList) {
+      fetchGetAllData();
+    }
+    setInitalParamsId(newId)
+  }, [newId]);
 
   useEffect(() => {
     fetchGetAllData();
@@ -221,7 +228,6 @@ export default function CatalogItems() {
     dressInfo?.mainSubRegionId,
     dressInfo?.mainSearchNameCatalog,
   ]);
-
 
   useEffect(() => {
     if (openMobileFilter) {

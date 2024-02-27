@@ -28,6 +28,7 @@ function CategoryForType() {
   // console.log(openMobileFilter, "openMobileFilter");
   // const toggleFilterOpen = React.useCallback(() => setFilterToggle(true), []);
   // const toggleFilterClose = React.useCallback(() => setFilterToggle(false), []);
+  const [initalParamsId, setInitalParamsId] = useState(null);
 
   const genderId = (childData) => {
     setGetGenderId(childData);
@@ -147,6 +148,12 @@ function CategoryForType() {
         throw new Error(err || "something wrong");
       });
   }
+  useEffect(() => {
+    if (initalParamsId && initalParamsId !== newId && !getGenderId && !getCategory && !getRating && !getRange?.length && !dataColor?.length && !discount && !getOutWearList && !getUnderWearList && !getFootWearList) {
+      fetchGetAllData();
+    }
+    setInitalParamsId(newId)
+  }, [newId]);
 
   useEffect(() => {
     fetchGetAllData();

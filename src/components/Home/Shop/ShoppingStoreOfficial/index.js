@@ -32,6 +32,7 @@ const ShoppingStoreOfficial = () => {
   const [getFootWearList, setGetFootWearList] = useState(null);
   const [filterToggle, setFilterToggle] = useState(false);
   const [openMobileFilter, setOpenMobileFilter] = useState(false);
+  const [initalParamsId, setInitalParamsId] = useState(null);
 
   const toggleFilterOpen = React.useCallback(() => setFilterToggle(true), []);
   const toggleFilterClose = React.useCallback(() => setFilterToggle(false), []);
@@ -77,8 +78,8 @@ const ShoppingStoreOfficial = () => {
     setPageId(1);
   };
   const footWearList = (childData) => {
-      setGetFootWearList(childData);
-        setPageId(1);
+    setGetFootWearList(childData);
+    setPageId(1);
   };
 
   // console.log(pageId, "pageId,");
@@ -221,11 +222,16 @@ const ShoppingStoreOfficial = () => {
         // );
       });
   };
-  // console.log(dressInfo?.locationIdParams, " shop-1 dressInfo?.locationIdParams");
+
+  useEffect(() => {
+    if (initalParamsId && initalParamsId !== dressInfo?.locationIdParams && !getGenderId && !getCategory && !getRating && !getRange?.length && !dataColor?.length && !discount && !getOutWearList && !getUnderWearList && !getFootWearList) {
+      fetchGetAllData();
+    }
+    setInitalParamsId(dressInfo?.locationIdParams)
+  }, [dressInfo?.locationIdParams]);
   useEffect(() => {
     if (data?.getMainProductCard && dressInfo?.locationIdParams) {
       fetchGetAllData();
-    // console.log('is run');
     }
   }, [
     pageId,

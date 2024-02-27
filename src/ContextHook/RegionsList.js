@@ -64,10 +64,26 @@ function RegionList({ onClick }) {
     onClick();
   };
 
+  const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
+  function getCurrentDimension() {
+    return {
+      width: window.innerWidth,
+    };
+  }
+  useEffect(() => {
+    const updateDimension = () => {
+      setScreenSize(getCurrentDimension());
+    };
+    window.addEventListener("resize", updateDimension);
+
+    return () => {
+      window.removeEventListener("resize", updateDimension);
+    };
+  }, [screenSize]);
   return (
     <main className={`w-full h-fit`}>
-      <div
+      {screenSize.width >= 768 && <div
         className={`hidden md:flex flex-col max-w-[600px] h-fit px-3 md:px-6 py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg rounded-t-lg`}
       >
         <div className="w-full flex items-center justify-between my-3 md:my-0">
@@ -238,9 +254,9 @@ function RegionList({ onClick }) {
             Готово
           </span>
         </div>
-      </div>
+      </div>}
       {/* ------for mobile device--------- */}
-      <div
+      {screenSize.width < 768 && <div
         className={`flex flex-col md:hidden max-w-[600px] h-fit px-3 md:px-6 py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg rounded-t-lg`}
       >
         <div className="w-full flex items-center justify-between my-3 md:my-0">
@@ -415,7 +431,7 @@ function RegionList({ onClick }) {
           )}
         </div>
 
-      </div>
+      </div>}
     </main>
   );
 }
