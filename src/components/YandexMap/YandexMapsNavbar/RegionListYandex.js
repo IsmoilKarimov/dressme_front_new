@@ -50,7 +50,8 @@ function RegionListYandex({ onClick }) {
     const sendRegions = () => {
         onClick()
         setDressInfo({
-            ...dressInfo, mainRegionId: state?.regionId,
+            ...dressInfo,
+            mainRegionId: state?.regionId,
             mainSubRegionId: state?.subRegionId,
             yandexOpenRegionList: false
         })
@@ -62,30 +63,7 @@ function RegionListYandex({ onClick }) {
         onClick()
 
     }
-    // useEffect(() => {
-
-    //   if (dressInfo?.mainSubRegionId) {
-    //     mainData?.regions?.filter(e => e?.id == dressInfo?.mainRegionId)?.map(item => {
-    //       item?.sub_regions?.map(data => {
-    //         if (item?.id === dressInfo?.mainRegionId) {
-    //           if (dressInfo?.mainSubRegionId !== data?.id) {
-    //             setDressInfo({
-    //               ...dressInfo, mainSubRegionId: null,
-    //             })
-    //           }
-    //         }
-    //       })
-    //     })
-    //   }
-
-    // }, [state?.regionId])
-    // show
-    // console.log(dressInfo?.mainRegionId, "filt--dressInfo?.mainRegionId");
-    // console.log(dressInfo?.mainSubRegionId, "filt--dressInfo?.mainSubRegionId");
-    // console.log(state?.regionId, "filt--state?.regionId");
-    // console.log(state?.subRegionId, "filt--state?.subRegionId");
-    // console.log(dressInfo?.yandexOpenRegionList, "filt--state?.yandexOpenRegionList");
-    // console.log("filt----------------------");
+  
     return (
         <main className={`w-full  h-fit `}>
             <div
@@ -124,31 +102,42 @@ function RegionListYandex({ onClick }) {
                                             }
                                             className="w-full cursor-pointer flex items-center  border-b border-[#F0F0F0] ">
 
-                                            {data?.id === 2 ? <label
-                                                htmlFor={data?.name_ru}
-                                                onClick={() => RegId(data?.id)}
-                                                className="w-fit cursor-pointer flex items-center"
-                                            >
-                                                <input
-                                                    id={data?.name_ru}
-                                                    type="radio"
-                                                    name="region"
-                                                    value={data?.id}
-                                                    checked={state?.subRegionId ? false : state?.regionId === data?.id}
-                                                    className="w-[18px] h-[18px] cursor-pointer mr-3"
-                                                    onChange={(e) => {
-                                                        setState({
-                                                            ...state,
-                                                            regionId: data?.id,
-                                                            subRegionId: null
+                                            {data?.id === 2 ?
+                                                <label
+                                                    htmlFor={data?.name_uz}
+                                                    onClick={() => {
+                                                        setDressInfo({
+                                                            ...dressInfo,
+                                                            mainRegionId: data?.id,
+                                                            mainSubRegionId: null,
                                                         });
                                                     }}
-                                                />
-                                                <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
-                                                    {data?.name_ru}
-                                                </span>
-                                            </label> :
-                                                <label
+                                                    className="w-fit cursor-pointer flex items-center"
+                                                >
+                                                    <input
+                                                        id={data?.name_uz}
+                                                        type="radio"
+                                                        name="region"
+                                                        value={data?.id}
+                                                        checked={
+                                                            dressInfo?.mainSubRegionId
+                                                                ? false
+                                                                : dressInfo?.mainRegionId === data?.id
+                                                        }
+                                                        className="w-[18px] h-[18px] cursor-pointer mr-3"
+                                                        onChange={(e) => {
+                                                            setDressInfo({
+                                                                ...dressInfo,
+                                                                mainRegionId: data?.id,
+                                                                mainSubRegionId: null,
+                                                            });
+                                                        }}
+                                                    />
+                                                    <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
+                                                        {data?.name_ru}
+                                                    </span>
+                                                </label> :
+                                                <div
                                                     className="w-fit cursor-pointer flex items-center"
                                                 >
                                                     <div
@@ -157,7 +146,7 @@ function RegionListYandex({ onClick }) {
                                                     <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
                                                         {data?.name_ru}
                                                     </span>
-                                                </label>}
+                                                </div>}
                                             <span
                                                 className={`${activeIndex === data?.id
                                                     ? "rotate-[-0deg] duration-300"
@@ -185,8 +174,14 @@ function RegionListYandex({ onClick }) {
                                                 >
                                                     <label
                                                         htmlFor={item?.name_ru}
-                                                        onClick={() => regSubRegId(data?.id, item?.id)}
-
+                                                        onClick={() => {
+                                                            setDressInfo({
+                                                                ...dressInfo,
+                                                                mainRegionId: data?.id,
+                                                                mainSubRegionId: item?.id,
+                                                            });
+                                                        }
+                                                        }
                                                         className="flex items-center gap-x-[6px]"
                                                     >
                                                         <input
@@ -194,15 +189,15 @@ function RegionListYandex({ onClick }) {
                                                             id={item?.name_ru}
                                                             name="Subregion"
                                                             value={item?.region_id}
-                                                            checked={state?.subRegionId === item?.id}
+                                                            checked={dressInfo?.mainSubRegionId == item?.id}
                                                             className="w-4 h-4 border border-borderColor  cursor-pointer  flex items-center justify-center"
                                                             onChange={(e) => {
-                                                                // setDressInfo({ ...dressInfo, mainSubRegionId: item?.id })
-                                                                // setState({
-                                                                //   ...state,
-                                                                //   regionId: data?.id,
-                                                                //   subRegionId: item?.id,
-                                                                // });
+                                                                setDressInfo({
+                                                                    ...dressInfo,
+                                                                    mainRegionId: data?.id,
+                                                                    mainSubRegionId: item?.id,
+                                                                    yandexOpenRegionList: false,
+                                                                });
                                                             }}
                                                         />
                                                         <span className="text-[#303030]  cursor-pointer text-[15px] not-italic font-AeonikProRegular">
@@ -222,7 +217,7 @@ function RegionListYandex({ onClick }) {
                         </p>
                     )}
                 </div>
-                <div className="w-full flex items-center justify-end  mt-2">
+                {/* <div className="w-full flex items-center justify-end  mt-2">
                     <span
                         onClick={() => {
                             setDressInfo({
@@ -235,7 +230,7 @@ function RegionListYandex({ onClick }) {
                     >
                         Готово
                     </span>
-                </div>
+                </div> */}
             </div>
         </main>
     );

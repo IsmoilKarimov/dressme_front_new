@@ -46,7 +46,6 @@ function YandexMapsDressMe() {
   const { request } = useHttp();
   const url = "https://api.dressme.uz/api/main";
 
-  const [, setOpenCordinateMap] = useState("");
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [openCarouselModal, setOpenCarouselModal] = useState(false);
   const toggleCarouselModal = React.useCallback(
@@ -171,7 +170,7 @@ function YandexMapsDressMe() {
 
   // --------------Open Main MenusetDressInfo
   const handlePlaceMark = (shopId, value, cordinate) => {
-    setOpenCordinateMap(cordinate);
+    // setOpenCordinateMap(cordinate);
     setDressInfo({
       ...dressInfo,
       locationIdParams: value,

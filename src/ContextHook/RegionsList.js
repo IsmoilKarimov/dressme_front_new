@@ -81,6 +81,7 @@ function RegionList({ onClick }) {
       window.removeEventListener("resize", updateDimension);
     };
   }, [screenSize]);
+  
   return (
     <main className={`w-full h-fit`}>
       {screenSize.width >= 768 && <div
@@ -136,33 +137,42 @@ function RegionList({ onClick }) {
                     >
                       {data?.id == 2 ? (
                         <label
-                          htmlFor={data?.name_ru}
-                          onClick={() => RegId(data?.id)}
-                          className="w-fit cursor-pointer flex items-center"
-                        >
-                          <input
-                            id={data?.name_ru}
-                            type="radio"
-                            name="region"
-                            value={data?.id}
-                            checked={
-                              state?.subRegionId
-                                ? false
-                                : state?.regionId == data?.id
-                            }
-                            className="w-[18px] h-[18px] cursor-pointer mr-3"
-                            onChange={(e) => {
-                              setState({
-                                ...state,
-                                regionId: data?.id,
-                                subRegionId: null,
-                              });
-                            }}
-                          />
-                          <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
-                            {data?.name_ru}
-                          </span>
-                        </label>
+                        htmlFor={data?.name_uz}
+                        onClick={() => {
+                          setDressInfo({
+                            ...dressInfo,
+                            mainRegionId: data?.id,
+                            mainSubRegionId: null,
+                          });
+                          setPage(1)
+                        }}
+                        className="w-fit cursor-pointer flex items-center"
+                      >
+                        <input
+                          id={data?.name_uz}
+                          type="radio"
+                          name="region"
+                          value={data?.id}
+                          checked={
+                            dressInfo?.mainSubRegionId
+                              ? false
+                              : dressInfo?.mainRegionId === data?.id
+                          }
+                          className="w-[18px] h-[18px] cursor-pointer mr-3"
+                          onChange={(e) => {
+
+                            setDressInfo({
+                              ...dressInfo,
+                              mainRegionId: data?.id,
+                              mainSubRegionId: null,
+                            });
+                            setPage(1)
+                          }}
+                        />
+                        <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
+                          {data?.name_ru}
+                        </span>
+                      </label>
                       ) : (
                         <label className="w-fit cursor-pointer flex items-center">
                           <div className="w-[20px] h-[20px] border rounded-full cursor-pointer mr-3"></div>
@@ -188,7 +198,7 @@ function RegionList({ onClick }) {
                         : "CloseAccardion"
                       } `}
                   >
-                    {data?.sub_regions?.map((item) => {
+                    {data?.sub_regions?.map((item, index) => {
                       return (
                         <div
                           onClick={() => {
@@ -203,7 +213,15 @@ function RegionList({ onClick }) {
                         >
                           <label
                             htmlFor={item?.name_ru}
-                            onClick={() => regSubRegId(data?.id, item?.id)}
+                            onClick={() => {
+                              setDressInfo({
+                                ...dressInfo,
+                                mainRegionId: data?.id,
+                                mainSubRegionId: item?.id,
+                              });
+                              setPage(1)
+                            }
+                            }
                             className="flex items-center gap-x-[6px]"
                           >
                             <input
@@ -211,15 +229,16 @@ function RegionList({ onClick }) {
                               id={item?.name_ru}
                               name="Subregion"
                               value={item?.region_id}
-                              checked={state?.subRegionId == item?.id}
+                              checked={dressInfo?.mainSubRegionId == item?.id}
                               className="w-4 h-4 border border-borderColor  cursor-pointer  flex items-center justify-center"
                               onChange={(e) => {
-                                // setDressInfo({ ...dressInfo, mainSubRegionId: item?.id })
-                                // setState({
-                                //   ...state,
-                                //   regionId: data?.id,
-                                //   subRegionId: item?.id,
-                                // });
+                                setDressInfo({
+                                  ...dressInfo,
+                                  mainRegionId: data?.id,
+                                  mainSubRegionId: item?.id,
+                                  yandexOpenRegionList: false,
+                                });
+                                setPage(1)
                               }}
                             />
                             <span className="text-[#303030]  cursor-pointer text-[15px] not-italic font-AeonikProRegular">
@@ -239,7 +258,7 @@ function RegionList({ onClick }) {
             </p>
           )}
         </div>
-        <div className="w-full flex items-center justify-end  mt-2">
+        {/* <div className="w-full flex items-center justify-end  mt-2">
           <span
             onClick={() => {
               // setDressInfo({
@@ -253,7 +272,7 @@ function RegionList({ onClick }) {
           >
             Готово
           </span>
-        </div>
+        </div> */}
       </div>}
       {/* ------for mobile device--------- */}
       {screenSize.width < 768 && <div
