@@ -65,8 +65,6 @@ const ProductDetails = ({ data }) => {
   // color context---
   const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
 
-  console.log(data, "data---------------");
-
   const toggleTableSizes = useCallback(() => setTableSizes(false), []);
   const toggleLocations = useCallback(() => setLocations(false), []);
 
@@ -266,8 +264,6 @@ const ProductDetails = ({ data }) => {
 
   const [selectedColor, setSelectedColor] = useState(data?.product?.colors[0]);
 
-  console.log(selectedColor, "selectedColor-----");
-
   useEffect(() => {
     if (dressInfo?.linkedFrom === "mainPageShopsList") {
       data?.product?.locations?.forEach((item) => {
@@ -331,6 +327,16 @@ const ProductDetails = ({ data }) => {
   // Selected size --------
 
   const [selectedSize, setSelectedSize] = useState(null);
+
+  // useEffect(() => {
+  //   if (colorId) {
+  //     setSelectedSize(
+  //       data?.product?.sizes?.find((x) => x.product_color_id === colorId)
+  //     );
+  //   } else {
+  //     setSelectedSize(data?.product?.sizes[0]);
+  //   }
+  // }, []);
 
   const navigate = useNavigate();
   const goDetail = () => {
@@ -1047,7 +1053,10 @@ const ProductDetails = ({ data }) => {
           <section className="flex flex-wrap items-center gap-x-3 gap-y-3">
             {data?.product?.category_id === "1"
               ? data?.product?.sizes?.map((data) => {
-                  if (data?.shop_location_id == selectedLocation?.id) {
+                  if (
+                    data?.shop_location_id == selectedLocation?.id &&
+                    selectedColor?.pivot?.id === data?.product_color_id
+                  ) {
                     return (
                       <div
                         key={data?.id}
@@ -1087,7 +1096,10 @@ const ProductDetails = ({ data }) => {
 
             {data?.product?.category_id === "2"
               ? data?.product?.sizes?.map((data) => {
-                  if (data?.shop_location_id == selectedLocation?.id) {
+                  if (
+                    data?.shop_location_id == selectedLocation?.id &&
+                    selectedColor?.pivot?.id === data?.product_color_id
+                  ) {
                     return (
                       <div
                         key={data?.id}
@@ -1154,7 +1166,10 @@ const ProductDetails = ({ data }) => {
 
             {data?.product?.category_id === "3"
               ? data?.product?.sizes?.map((data) => {
-                  if (data?.shop_location_id == selectedLocation?.id) {
+                  if (
+                    data?.shop_location_id == selectedLocation?.id &&
+                    selectedColor?.pivot?.id === data?.product_color_id
+                  ) {
                     return (
                       <div
                         key={data?.id}
@@ -1221,7 +1236,10 @@ const ProductDetails = ({ data }) => {
 
             {data?.product?.category_id === "4"
               ? data?.product?.sizes?.map((data) => {
-                  if (data?.shop_location_id == selectedLocation?.id) {
+                  if (
+                    data?.shop_location_id == selectedLocation?.id &&
+                    selectedColor?.pivot?.id === data?.product_color_id
+                  ) {
                     return (
                       <div
                         key={data?.id}
@@ -1261,7 +1279,10 @@ const ProductDetails = ({ data }) => {
 
             {data?.product?.category_id === "5"
               ? data?.product?.sizes?.map((data) => {
-                  if (data?.shop_location_id == selectedLocation?.id) {
+                  if (
+                    data?.shop_location_id == selectedLocation?.id &&
+                    selectedColor?.pivot?.id === data?.product_color_id
+                  ) {
                     return (
                       <div
                         key={data?.id}
@@ -1612,7 +1633,7 @@ const ProductDetails = ({ data }) => {
                   Цена:
                 </p>
               </article>
-              <span className="text-base font-AeonikProMedium mr-3">от</span>
+              {/* <span className="text-base font-AeonikProMedium mr-3">от</span> */}
               <p className="hidden md:block font-AeonikProMedium text-[20px] text-black">
                 {selectedSize?.discount_price
                   ? parseInt(selectedSize?.discount_price)
@@ -1643,7 +1664,7 @@ const ProductDetails = ({ data }) => {
                   Цена:
                 </p>
               </article>
-              <span className="text-base font-AeonikProMedium mr-3">от</span>
+              {/* <span className="text-base font-AeonikProMedium mr-3">от</span> */}
               <p className="hidden md:block font-AeonikProMedium text-[20px] text-black">
                 {data?.product?.cost?.discount_price
                   ? parseInt(data?.product?.cost?.discount_price)

@@ -44,6 +44,11 @@ const ProductCarousel = ({ show, data }) => {
   const slider1 = useRef(null);
 
   const [sliderState, setSliderState] = useState(0);
+
+  useEffect(() => {
+    setSliderState(0);
+  }, [colorId]);
+
   let photos_length = data?.product?.photos?.length;
 
   useEffect(() => {
@@ -159,8 +164,6 @@ const ProductCarousel = ({ show, data }) => {
     (item) => item?.product_color_id === colorId
   );
 
-  console.log(data?.product?.photos?.length, "data");
-
   const [selectedLocation, setSelectedLocation] = useState();
   useEffect(() => {
     if (!selectedLocation) {
@@ -201,6 +204,17 @@ const ProductCarousel = ({ show, data }) => {
   }, [data, dressInfo]);
 
   const [selectedSize, setSelectedSize] = useState(null);
+
+  useEffect(() => {
+    if (colorId) {
+      setSelectedSize(
+        data?.product?.sizes?.find((x) => x.product_color_id === colorId)
+      );
+      setSelectedColor(
+        data?.product?.colors?.find((item) => item?.pivot?.id === colorId)
+      );
+    }
+  }, [colorId]);
 
   const contentSize = (data) => {
     if (data?.category_id === "1") {
@@ -341,6 +355,9 @@ const ProductCarousel = ({ show, data }) => {
     }
   };
 
+  let indexPage = 0;
+  let indexPageSelected = 0;
+
   return (
     <main className="w-full md:w-fit h-full ">
       <div className="w-full">
@@ -370,6 +387,7 @@ const ProductCarousel = ({ show, data }) => {
               {colorId
                 ? filteredForModal?.map((data, i) => {
                     if (data?.product_color_id === colorId) {
+                      indexPage += 1;
                       return (
                         <article
                           key={i}
@@ -395,11 +413,11 @@ const ProductCarousel = ({ show, data }) => {
                               <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
                                 <p className="h-full w-full text-center pt-[4px]">
                                   {" "}
-                                  {i + 1}
+                                  {indexPage}
                                 </p>
                                 <span className="text-center pt-[2px]">/</span>
                                 <p className="h-full w-full text-center pt-[4px]">
-                                  {photos_length}
+                                  {filteredForModal?.length}
                                 </p>
                               </span>
                             </div>
@@ -632,6 +650,7 @@ const ProductCarousel = ({ show, data }) => {
               {colorId
                 ? filteredForModal?.map((data, i) => {
                     if (data?.product_color_id === colorId) {
+                      indexPageSelected += 1;
                       return (
                         <article
                           key={i}
@@ -645,22 +664,19 @@ const ProductCarousel = ({ show, data }) => {
                               src={data?.url_photo}
                               alt=""
                             />
+                            <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
+                              <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
+                                <p className="h-full w-full text-center pt-[4px]">
+                                  {" "}
+                                  {indexPageSelected}
+                                </p>
+                                <span className="text-center pt-[2px]">/</span>
+                                <p className="h-full w-full text-center pt-[4px]">
+                                  {filteredForModal?.length}
+                                </p>
+                              </span>
+                            </div>
                           </figure>
-
-                          <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
-                            <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center">
-                              <p> {data.id}</p>
-                              <p>{data?.product?.photos?.length}</p>
-                            </span>
-                            <span className="w-fit flex items-center p-2 gap-x-2 rounded-lg bg-bgCard border border-searchBgColor">
-                              <p className="flex items-center ">
-                                <VideoStoreIcons />
-                              </p>
-                              <p className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-black">
-                                Видео
-                              </p>
-                            </span>
-                          </figcaption>
                         </article>
                       );
                     }
@@ -679,6 +695,18 @@ const ProductCarousel = ({ show, data }) => {
                             src={data?.url_photo}
                             alt=""
                           />
+                          <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
+                            <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
+                              <p className="h-full w-full text-center pt-[4px]">
+                                {" "}
+                                {i + 1}
+                              </p>
+                              <span className="text-center pt-[2px]">/</span>
+                              <p className="h-full w-full text-center pt-[4px]">
+                                {photos_length}
+                              </p>
+                            </span>
+                          </div>
                         </figure>
                       </article>
                     );
@@ -689,42 +717,79 @@ const ProductCarousel = ({ show, data }) => {
           {/* 2 */}
           <article className="w-full flex md:hidden items-center justify-between mb-6 mt-4">
             <section className="w-fit flex items-center">
-              <span className="text-base font-AeonikProMedium mr-[5px]">
+              {/* <span className="text-base font-AeonikProMedium mr-[5px]">
                 от
-              </span>
-              <p className="flex font-AeonikProMedium text-[24px] text-black mx-[5px]">
-                {data?.product?.cost?.discount_price
-                  ? parseInt(data?.product?.cost?.discount_price)
-                      ?.toLocaleString()
-                      ?.split(",")
-                      .join(" ")
-                  : parseInt(data?.product?.cost?.price)
-                      ?.toLocaleString()
-                      ?.split(",")
-                      .join(" ")}{" "}
-                <span
-                  className={`${
-                    data?.product?.cost?.discount_price ? "hidden" : "flex ml-2"
-                  }`}
-                >
-                  сум
-                </span>
-              </p>
-              {data?.product?.cost?.discount_price ? (
-                <p className="font-AeonikProRegular line-through text-[16px] text-setTexOpacity">
-                  {parseInt(data?.product?.cost?.price)
-                    ?.toLocaleString()
-                    ?.split(",")
-                    .join(" ")}{" "}
-                </p>
-              ) : null}
+              </span> */}
+              {selectedSize ? (
+                <>
+                  <p className="flex font-AeonikProMedium text-[24px] text-black mx-[5px]">
+                    {selectedSize?.discount_price
+                      ? parseInt(selectedSize?.discount_price)
+                          ?.toLocaleString()
+                          ?.split(",")
+                          .join(" ")
+                      : parseInt(selectedSize?.price)
+                          ?.toLocaleString()
+                          ?.split(",")
+                          .join(" ")}{" "}
+                    <span
+                      className={`${
+                        selectedSize?.discount_price ? "hidden" : "flex ml-2"
+                      }`}
+                    >
+                      сум
+                    </span>
+                  </p>
+                  {selectedSize?.discount_price ? (
+                    <p className="font-AeonikProRegular line-through text-[16px] text-setTexOpacity">
+                      {parseInt(selectedSize?.price)
+                        ?.toLocaleString()
+                        ?.split(",")
+                        .join(" ")}{" "}
+                    </p>
+                  ) : null}
+                </>
+              ) : (
+                <>
+                  <p className="flex font-AeonikProMedium text-[24px] text-black mx-[5px]">
+                    {data?.product?.sizes[0]?.discount_price
+                      ? parseInt(data?.product?.sizes[0]?.discount_price)
+                          ?.toLocaleString()
+                          ?.split(",")
+                          .join(" ")
+                      : parseInt(data?.product?.sizes[0]?.price)
+                          ?.toLocaleString()
+                          ?.split(",")
+                          .join(" ")}{" "}
+                    <span
+                      className={`${
+                        data?.product?.sizes[0]?.discount_price
+                          ? "hidden"
+                          : "flex ml-2"
+                      }`}
+                    >
+                      сум
+                    </span>
+                  </p>
+                  {data?.product?.sizes[0]?.discount_price ? (
+                    <p className="font-AeonikProRegular line-through text-[16px] text-setTexOpacity">
+                      {parseInt(data?.product?.sizes[0]?.price)
+                        ?.toLocaleString()
+                        ?.split(",")
+                        .join(" ")}{" "}
+                    </p>
+                  ) : null}
+                </>
+              )}
             </section>
             <section
               className={`w-fit ${dressInfo?.TextColorSeason} items-center text-sm flex ml-8`}
             >
               <p className="font-AeonikProRegular text-right">В наличии:</p>
               <p className="ml-2 font-AeonikProMedium text-base text-right">
-                {data?.product?.sizes_sum_amount}
+                {selectedSize
+                  ? selectedSize?.amount
+                  : data?.product?.sizes[0]?.amount}{" "}
               </p>
             </section>
           </article>
@@ -762,39 +827,39 @@ const ProductCarousel = ({ show, data }) => {
             <article className="flex flex-row gap-x-1">
               {selectedSize
                 ? uniqueArray?.map((data, i) => {
-                    if (data?.product_color_id === colorId) {
-                      return (
+                    return (
+                      <div
+                        key={data?.id}
+                        className={`${
+                          data?.product_color_id ===
+                          selectedSize?.product_color_id
+                            ? ""
+                            : "opacity-40"
+                        } `}
+                      >
                         <div
                           key={data?.id}
                           className={`${
-                            data?.product_color_id ===
-                            selectedSize?.product_color_id
-                              ? ""
-                              : "opacity-40"
-                          } `}
-                        >
-                          <div
-                            key={data?.id}
-                            className={`${
-                              colorId === data?.product_color_id
-                                ? "border-2 border-[#007DCA]"
-                                : "border border-searchBgColor"
-                            }  !w-[72px] cursor-pointer !h-[96px] bg-btnBgColor rounded-lg flex items-center justify-center`}
-                            onClick={() => {
-                              filterColorsOnSelect(data?.product_color_id);
-                              setcolorId(data?.product_color_id);
-                            }}
-                            style={{
-                              backgroundImage: `url("${data?.url_photo}")`,
-                              backgroundColor: "rgba(0,0,0,0.6)",
-                              backgroundPosition: "center center",
-                              backgroundSize: "cover",
-                              backgroundRepeat: "no-repeat",
-                            }}
-                          ></div>
-                        </div>
-                      );
-                    }
+                            colorId === data?.product_color_id
+                              ? "border-2 border-[#007DCA]"
+                              : "border border-searchBgColor"
+                          }  !w-[72px] cursor-pointer !h-[96px] bg-btnBgColor rounded-lg flex items-center justify-center`}
+                          onClick={() => {
+                            filterColorsOnSelect(data?.product_color_id);
+                            setcolorId(data?.product_color_id);
+                            setSelectedSize(null);
+                            setSliderState(0);
+                          }}
+                          style={{
+                            backgroundImage: `url("${data?.url_photo}")`,
+                            backgroundColor: "rgba(0,0,0,0.6)",
+                            backgroundPosition: "center center",
+                            backgroundSize: "cover",
+                            backgroundRepeat: "no-repeat",
+                          }}
+                        ></div>
+                      </div>
+                    );
                   })
                 : uniqueArray?.map((data, i) => {
                     return (
@@ -808,6 +873,7 @@ const ProductCarousel = ({ show, data }) => {
                           onClick={() => {
                             filterColorsOnSelect(data?.product_color_id);
                             setcolorId(data?.product_color_id);
+                            setSliderState(0);
                           }}
                           style={{
                             backgroundImage: `url("${data?.url_photo}")`,
@@ -828,7 +894,10 @@ const ProductCarousel = ({ show, data }) => {
             <section className="w-full h-fit flex flex-wrap items-center gap-x-3 gap-y-3">
               {data?.product?.category_id === "1"
                 ? data?.product?.sizes?.map((data) => {
-                    if (data?.shop_location_id == selectedLocation?.id) {
+                    if (
+                      data?.shop_location_id == selectedLocation?.id &&
+                      selectedColor?.pivot?.id === data?.product_color_id
+                    ) {
                       return (
                         <div
                           key={data?.id}
@@ -842,8 +911,8 @@ const ProductCarousel = ({ show, data }) => {
                           }  w-[62px] !h-[39px] mt-4 rounded-lg border  hover:border-fullBlue`}
                         >
                           <Popover
-                            trigger={data?.min_head_girth ? "hover" : "false"}
-                            content={() => contentSize(data)}
+                            trigger={"false"}
+                            // content={() => contentSize(data)}
                             className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"
@@ -868,7 +937,10 @@ const ProductCarousel = ({ show, data }) => {
 
               {data?.product?.category_id === "2"
                 ? data?.product?.sizes?.map((data) => {
-                    if (data?.shop_location_id == selectedLocation?.id) {
+                    if (
+                      data?.shop_location_id == selectedLocation?.id &&
+                      selectedColor?.pivot?.id === data?.product_color_id
+                    ) {
                       return (
                         <div
                           key={data?.id}
@@ -882,8 +954,8 @@ const ProductCarousel = ({ show, data }) => {
                           } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
                         >
                           <Popover
-                            trigger="hover"
-                            content={() => contentSize(data)}
+                            trigger="false"
+                            // content={() => contentSize(data)}
                             className={`w-full !h-full ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"
@@ -935,7 +1007,10 @@ const ProductCarousel = ({ show, data }) => {
 
               {data?.product?.category_id === "3"
                 ? data?.product?.sizes?.map((data) => {
-                    if (data?.shop_location_id == selectedLocation?.id) {
+                    if (
+                      data?.shop_location_id == selectedLocation?.id &&
+                      selectedColor?.pivot?.id === data?.product_color_id
+                    ) {
                       return (
                         <div
                           key={data?.id}
@@ -949,8 +1024,8 @@ const ProductCarousel = ({ show, data }) => {
                           } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
                         >
                           <Popover
-                            trigger="hover"
-                            content={() => contentSize(data)}
+                            trigger="false"
+                            // content={() => contentSize(data)}
                             className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"
@@ -1002,7 +1077,10 @@ const ProductCarousel = ({ show, data }) => {
 
               {data?.product?.category_id === "4"
                 ? data?.product?.sizes?.map((data) => {
-                    if (data?.shop_location_id == selectedLocation?.id) {
+                    if (
+                      data?.shop_location_id == selectedLocation?.id &&
+                      selectedColor?.pivot?.id === data?.product_color_id
+                    ) {
                       return (
                         <div
                           key={data?.id}
@@ -1016,8 +1094,8 @@ const ProductCarousel = ({ show, data }) => {
                           } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
                         >
                           <Popover
-                            trigger="hover"
-                            content={() => contentSize(data)}
+                            trigger="false"
+                            // content={() => contentSize(data)}
                             className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"
@@ -1042,7 +1120,10 @@ const ProductCarousel = ({ show, data }) => {
 
               {data?.product?.category_id === "5"
                 ? data?.product?.sizes?.map((data) => {
-                    if (data?.shop_location_id == selectedLocation?.id) {
+                    if (
+                      data?.shop_location_id == selectedLocation?.id &&
+                      selectedColor?.pivot?.id === data?.product_color_id
+                    ) {
                       return (
                         <div
                           key={data?.id}
@@ -1056,8 +1137,8 @@ const ProductCarousel = ({ show, data }) => {
                           } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
                         >
                           <Popover
-                            trigger="hover"
-                            content={() => contentSize(data)}
+                            trigger="false"
+                            // content={() => contentSize(data)}
                             className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"

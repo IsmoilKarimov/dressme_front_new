@@ -17,8 +17,6 @@ const WearType = ({ onClick, title }) => {
     }
   });
 
-  console.log(uniqueArray, "oooooooooooo");
-
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/product/${id}`);
