@@ -81,19 +81,33 @@ function FilterList({
             .then((res) => {
                 setGetFilter(res?.filter)
             })
-            .catch((err) => console.log(err, "ERRORLIST"));
+            .catch((err) => {
+                throw new Error(err || "something wrong");
+            });
     }
+    // useEffect(() => {
+    //     if ((filterToggle || openMobileFilter) && !getFilter) {
+    //         fetchGetAllData()
+    //     }
+    // }, [filterToggle, openMobileFilter])
     useEffect(() => {
-        if ((filterToggle || openMobileFilter) && !getFilter) {
-            fetchGetAllData()
+        if (!getFilter) {
+            if (filterToggle) {
+                fetchGetAllData()
+                // console.log('shop-1 run-1');
+            }
+            if (openMobileFilter) {
+                fetchGetAllData()
+                // console.log('shop-1 run-1-1');
+            }
         }
     }, [filterToggle, openMobileFilter])
 
     useEffect(() => {
         if (getFilter) {
-            setgetParamsTest(dressInfo?.locationIdParams)
+            // setgetParamsTest(dressInfo?.locationIdParams)
             setFilterToggle(false)
-            setGetFilter()
+            // setGetFilter()
         }
     }, [dressInfo?.locationIdParams])
 
@@ -376,6 +390,12 @@ function FilterList({
         setDataActionFootwearSizes()
         footWearList()
     }
+    
+    useEffect(() => {
+        if (dressInfo?.locationIdParams) {
+            ClearAll()
+        }
+    }, [dressInfo?.locationIdParams])
     return (
         <div
             className={`w-full h-hull  py-5 px-3 rounded-lg border border-searchBgColor rounded-lg overflow-hidden `}
