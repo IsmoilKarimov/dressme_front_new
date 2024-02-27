@@ -349,7 +349,7 @@ function FilterList({
         setClearPrice(false)
         // ---ratingList
         setSelectedRating(null)
-        getRatingList()
+        getRatingList(null)
         // ---Sizes
         underWearList(null)
         outWearList(null)
