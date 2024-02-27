@@ -65,7 +65,7 @@ const ProductDetails = ({ data }) => {
   // color context---
   const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
 
-  console.log(colorId, "colorIddd");
+  console.log(data, "data---------------");
 
   const toggleTableSizes = useCallback(() => setTableSizes(false), []);
   const toggleLocations = useCallback(() => setLocations(false), []);
@@ -266,6 +266,8 @@ const ProductDetails = ({ data }) => {
 
   const [selectedColor, setSelectedColor] = useState(data?.product?.colors[0]);
 
+  console.log(selectedColor, "selectedColor-----");
+
   useEffect(() => {
     if (dressInfo?.linkedFrom === "mainPageShopsList") {
       data?.product?.locations?.forEach((item) => {
@@ -302,6 +304,17 @@ const ProductDetails = ({ data }) => {
       data?.product?.colors?.find((item) => item?.pivot?.id === id)
     );
   };
+
+  // useEffect(() => {
+  //   if (colorId) {
+  //     setcolorId(data?.product?.colors[0].id);
+  //     filterColorsOnSelect(data?.product?.colors[0].id);
+  //     console.log("gooooo");
+  //   }
+  // }, []);
+
+  // console.log(colorId, "555555555555555");
+  // console.log(selectedColor, "555555555555555");
 
   // Remove duplicates and select only first -----
 
