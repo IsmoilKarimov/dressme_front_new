@@ -297,7 +297,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
       ></div>
 
       <div
-        className={`max-w-[440px] rounded-t-[12px] mx-auto w-full fixed duration-300 z-[114] h-fit flex items-center justify-center 
+        className={`max-w-[440px] rounded-t-[12px] mx-auto w-full fixed duration-300 z-[114] h-fit flex items-center justify-center
           ${
             regionsList
               ? "bottom-[64px] md:flex flex-col z-[232]"
@@ -508,7 +508,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                       type="text"
                       name="search"
                       autoComplete="search"
-                      placeholder="Поиск продуктов или брендов"
+                      placeholder="Искать товары"
                       className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
                       value={searchMarketName}
                       onChange={handleChange}
