@@ -272,7 +272,7 @@ export default function YandexFilter({ getMapsInfo }) {
           </span>
           <Select
             showSearch
-            className="w-[100%] cursor-pointer pl-4 !caret-transparent	 h-full !outline-none text-center overflow-hidden  !py-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
+            className="w-[100%] cursor-pointer !caret-transparent	 h-full !outline-none text-center overflow-hidden  !py-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
             bordered={false}
             placeholder={
               <span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide	leading-5">

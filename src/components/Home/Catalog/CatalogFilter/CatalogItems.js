@@ -233,12 +233,12 @@ export default function CatalogItems() {
   ]);
 
   useEffect(() => {
-    if (openMobileFilter) {
+    if (openMobileFilter || openMobileCategory) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [openMobileFilter]);
+  }, [openMobileFilter, openMobileCategory]);
   function getSearchClick() {
     setDressInfo({ ...dressInfo, mainSearchNameCatalog: searchMarketName });
   }
@@ -471,7 +471,7 @@ export default function CatalogItems() {
                 </div>
               </section>}
               <section
-                className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
+                className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[40vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
                   }`}
               >
                 <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between  mb-1 ">

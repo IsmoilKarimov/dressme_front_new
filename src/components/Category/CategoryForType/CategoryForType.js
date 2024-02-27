@@ -174,20 +174,6 @@ function CategoryForType() {
     getRange?.length,
     dressInfo?.mainSearchNameCategory,
   ]);
-console.log( dressInfo?.mainRegionId,
-  dressInfo?.mainSubRegionId,
-  pageId,
-  discount,
-  dataColor?.length,
-  getGenderId,
-  getCategory,
-  getUnderWearList,
-  getOutWearList,
-  getFootWearList,
-  getRating,
-  getRange?.length,
-  dressInfo?.mainSearchNameCategory,);
-
 
   const navigate = useNavigate();
 
