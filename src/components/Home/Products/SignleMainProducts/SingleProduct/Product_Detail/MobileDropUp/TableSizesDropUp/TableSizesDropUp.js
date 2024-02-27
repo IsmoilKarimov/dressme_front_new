@@ -2,8 +2,7 @@ import React from "react";
 import { MenuCloseIcons } from "../../../../../../../../assets/icons";
 
 function TableSizesDropUp({ onClick, data, selectedLocation }) {
-
-  console.log(data, "data-table-data");
+  // console.log(data, "data-table-data");
 
   return (
     <main>
@@ -156,7 +155,7 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
                 <div className="w-full overflow-x-scroll flex items-center justify-center">
                   {data?.product?.sizes?.map((data) => {
-                    console.log(data,'data-table');
+                    // console.log(data, "data-table");
                     if (data?.shop_location_id === selectedLocation?.id) {
                       return (
                         <ul

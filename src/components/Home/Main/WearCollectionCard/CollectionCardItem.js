@@ -19,7 +19,7 @@ export const CollectionCardItem = ({
   const navigate = useNavigate();
 
   const goDetail = (id) => {
-    navigate(`/product/:${id}`);
+    navigate(`/product/${id}`);
   };
 
   const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
@@ -98,7 +98,7 @@ export const CollectionCardItem = ({
         }}
         className="relative w-full cursor-pointer h-[200px] ls:h-[225px] ll:h-[240px] md:h-[310px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
       ></div>
-      <section className="relative w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[100px] md:h-[136px]">
+      <section className="relative w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[100px] md:h-[130px]">
         {/* 1 */}
         <div className="group hover:w-full h-[36px] cursor-pointer">
           <button className="group-hover:hidden w-12 h-7 border border-searchBgColor rounded-lg hidden md:flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 ">
@@ -150,7 +150,7 @@ export const CollectionCardItem = ({
         <article
           onMouseEnter={() => handleLeaveMouse(data?.id)}
           onClick={() => goDetail(data?.id)}
-          className={`w-full px-2 xs:px-3 xs:mt-1 ${
+          className={`w-full px-2 xs:px-3 ${
             data?.cost?.discount_price ? "mb-0" : "mb-3"
           } md:mb-0`}
         >
@@ -158,7 +158,7 @@ export const CollectionCardItem = ({
             <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
             {data?.name_ru || "NoData"}
           </div>
-          <div className="w-full h-[16px] flex justify-between items-center my-1">
+          <div className="w-full h-[10px] flex justify-between items-center mt-1">
             {data?.overall_rating ? (
               <section className="flex items-center justify-between">
                 <article>
@@ -186,7 +186,7 @@ export const CollectionCardItem = ({
           <article className="flex items-center">
             {data?.cost?.discount_price ? (
               <div className="flex flex-wrap flex-col-reverse	text-start items-start ">
-                <p className="w-full text-start m-0 p-0 not-italic font-AeonikProMedium text-[15px] md:text-[15px] leading-1 text-red-700 xs:text-[15px] xs:leading-0 mr-2">
+                <p className="w-full text-start m-0 p-0 not-italic font-AeonikProMedium text-[15px] md:text-[15px] leading-0 text-red-700 xs:text-[15px] xs:leading-0 mr-2">
                   {parseInt(data?.cost?.discount_price)
                     ?.toLocaleString()
                     ?.split(",")
@@ -194,7 +194,7 @@ export const CollectionCardItem = ({
                   {"  "}
                   сум
                 </p>
-                <p className="w-full text-start m-0 p-0 text-[12px] mb-[4px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
+                <p className="w-full text-start m-0 p-0 text-[12px] mb-[4px] line-through not-italic font-AeonikProRegular leading-0 text-[#8b8e99] ss:leading-1 md:text-[12px]">
                   {parseInt(data?.cost?.price)
                     ?.toLocaleString()
                     ?.split(",")
