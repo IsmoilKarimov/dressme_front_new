@@ -18,7 +18,7 @@ export const DressMenu = ({ children }) => {
     yandexRangePrice: [],
     yandexGenderId: 0,
 
-    // Cordinate
+    // Cordinate 
     yandexPositionX: null,
     yandexPositionY: null,
     yandexOpenRegionList: false,
