@@ -30,12 +30,11 @@ import {
   SearchIcons,
   VolumeIcons,
 } from "../../assets/icons";
-import { UzbekFlag, locationIcons } from "../../assets";
+import { UzbekFlag } from "../../assets";
 import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationMarketOpen";
 import CarouselModalMarket from "./YandexLocationMarketOpen/CarouselModalMarket";
 import MarketFilterofMaps from "./YandexLocationMarketOpen/MarketFilterofMaps";
 import Cookies from "js-cookie";
-import { useQuery } from "@tanstack/react-query";
 import { useHttp } from "../../hook/useHttp";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 

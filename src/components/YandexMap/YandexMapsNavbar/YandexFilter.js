@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Popover, Select, Space } from "antd";
+import { Select, Space } from "antd";
 import {
   ByBrandIcon,
   ClothesIcons,
@@ -21,6 +21,8 @@ const { Option } = Select;
 export default function YandexFilter({ getMapsInfo }) {
   // useReplace
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+
+  console.log(dressInfo, "getMapsInfo");
 
   const [state, setState] = useState({
     openwear: false,
@@ -52,11 +54,12 @@ export default function YandexFilter({ getMapsInfo }) {
     setMinPrice(Number(getMapsInfo?.budget?.min_price));
     setMaxPrice(Number(getMapsInfo?.budget?.max_price));
     if (getMapsInfo?.budget?.min_price && getMapsInfo?.budget?.max_price) {
-      setValues([
-        Number(getMapsInfo?.budget?.min_price),
-        Number(getMapsInfo?.budget?.max_price),
-      ]);
-
+      if (!values[0] && !values[1]) {
+        setValues([
+          Number(getMapsInfo?.budget?.min_price),
+          Number(getMapsInfo?.budget?.max_price),
+        ]);
+      }
     }
     if (!getMapsInfo?.budget?.min_price && !getMapsInfo?.budget?.max_price) {
       setValues([0, 0]);
@@ -71,14 +74,13 @@ export default function YandexFilter({ getMapsInfo }) {
     }
   }, [values]);
 
-
   const clearFunction = () => {
     setState({ ...state, clearPrice: false, openPrice: false });
     setValues([
       Number(getMapsInfo?.budget?.min_price),
       Number(getMapsInfo?.budget?.max_price),
     ]);
-    setDressInfo({ ...dressInfo, yandexRangePrice: [] })
+    setDressInfo({ ...dressInfo, yandexRangePrice: [] });
   };
 
   useEffect(() => {
@@ -90,116 +92,19 @@ export default function YandexFilter({ getMapsInfo }) {
       Number(getMapsInfo?.budget?.max_price),
     ]);
     if (dressInfo?.yandexRangePrice[0] && dressInfo?.yandexRangePrice[1]) {
-      setDressInfo({ ...dressInfo, yandexRangePrice: [] })
+      setDressInfo({ ...dressInfo, yandexRangePrice: [] });
     }
   }, [
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
     dressInfo?.yandexGenderId,
     dressInfo?.yandexCategoryWear,
-    dressInfo?.yandexCategoryBrand]);
+    dressInfo?.yandexCategoryBrand,
+  ]);
 
   const sendPriceList = () => {
-    setDressInfo({ ...dressInfo, yandexRangePrice: values })
+    setDressInfo({ ...dressInfo, yandexRangePrice: values });
   };
-  const handleOpenChangePrice = (newOpen) => {
-    setState({ ...state, openPrice: newOpen });
-  };
-  const contentPrice = (
-    <div className="w-fit h-[170px] m-0 overflow-hidden">
-      <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
-        <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
-          По ценам
-        </span>
-        <span
-          onClick={() => setState({ ...state, openPrice: false })}
-          className="w-6 h-6 cursor-pointer"
-        >
-          <MenuCloseIcons className="w-[24px] h-[24px]" colors={"#000"} />
-        </span>
-      </div>
-      <div className=" flex flex-col rounded-lg  w-full pb-5 px-4 pt-[30px] ">
-        <div className=" flex justify-between items-center mb-4 w-full ">
-          <div className="flex ">
-            <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
-              от
-            </span>
-            <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-              <input
-                name="name"
-                className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-                value={Number(values[0]).toLocaleString()}
-              // onChange={(e) => setMaxPrice(e.target.value)}
-              />{" "}
-              сум
-            </span>
-          </div>
-          <div className="flex ">
-            <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
-              до
-            </span>
-            <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-              <input
-                name="name"
-                className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-                value={Number(values[1]).toLocaleString()}
-              // onChange={(e) => setMaxPrice(e.target.value)}
-              />
-              сум
-            </span>
-          </div>
-        </div>
-        <div className=" z-50 mb-[6px] w-[350px]  ">
-          {" "}
-          <Slider
-            className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] mt-[10px]`}
-            onChange={setValues}
-            value={values}
-            minDistance={10}
-            min={Number(minPrice)}
-            max={Number(maxPrice)}
-          />
-          {/* <Slider
-            className="horizontal-slider "
-            thumbClassName="example-thumb1"
-            trackClassName="example-track1"
-            // defaultValue={[10, 90]}
-            ariaLabel={["Lower thumb", "Upper thumb"]}
-            // ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
-            // renderThumb={() => <div>1</div>}
-            minDistance={10}
-            // pearling
-            onChange={setValues}
-            value={values}
-            min={minPrice}
-            max={maxPrice}
-          /> */}
-        </div>
-        <div
-          className={`flex items-center  mt-4 ${state?.clearPrice ? "justify-between" : "justify-end"
-            }`}
-        >
-          {state?.clearPrice && (
-            <span
-              onClick={() => clearFunction()}
-              className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue"
-            >
-              Сбросить
-            </span>
-          )}
-          <span
-            onClick={() => {
-              sendPriceList();
-              setState({ ...state, openPrice: false });
-            }}
-            className="flex items-center cursor-pointer text-sm justify-center  text-fullBlue"
-          >
-            Готово
-          </span>
-        </div>
-      </div>
-    </div>
-  );
 
   // ----------------------Brend State Management----------------------
 
@@ -267,8 +172,18 @@ export default function YandexFilter({ getMapsInfo }) {
     // console.log("search:", value);
   };
 
+  const targetModal = document.getElementById("defaultModal");
+
+  const openPrizeModal = () => {
+    targetModal.classList.remove("hidden");
+  };
+
+  const closePrizeModal = (e) => {
+    targetModal.classList.add("hidden");
+  };
+
   return (
-    <div className="  w-fit px-10 py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex flex-col justify-between items-center m-auto md:border-t">
+    <div className="w-fit px-10 py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex flex-col justify-between items-center m-auto md:border-t">
       <div className="flex items-center justify-center gap-x-2  w-fit   ">
         <div className="!w-[210px] relative gap-x-1 px-1 h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  ">
           <span className="absolute left-2">
@@ -285,7 +200,7 @@ export default function YandexFilter({ getMapsInfo }) {
             }
             optionFilterProp="children"
             onChange={(e) => {
-              setDressInfo({ ...dressInfo, yandexCategoryWear: e })
+              setDressInfo({ ...dressInfo, yandexCategoryWear: e });
             }}
             onSearch={onSearch}
             // suffixIcon={<></>}
@@ -295,12 +210,12 @@ export default function YandexFilter({ getMapsInfo }) {
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }
-          // options={getMapsInfo?.categories?.map((item) => {
-          //   return {
-          //     value: item?.id,
-          //     label: item?.name_ru,
-          //   };
-          // })}
+            // options={getMapsInfo?.categories?.map((item) => {
+            //   return {
+            //     value: item?.id,
+            //     label: item?.name_ru,
+            //   };
+            // })}
           >
             {getMapsInfo?.categories?.map((item) => {
               return (
@@ -316,59 +231,181 @@ export default function YandexFilter({ getMapsInfo }) {
           </Select>
         </div>
 
-        <Popover
-          open={state?.openPrice}
-          onOpenChange={handleOpenChangePrice}
-          className="!w-[210px] gap-x-2 px-2 h-[44px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
-          trigger="click"
-          options={["Hide"]}
-          placement="bottom"
-          content={contentPrice}
+        <button
+          className="w-[190px] gap-x-1 px-2 h-[44px] rounded-xl bg-btnBgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group ml-2"
+          onClick={openPrizeModal}
         >
-          <span className="font-AeonikProMedium">
+          <span className=" flex items-center ">
             <DollorIcons colors={"#000"} />
           </span>
           {dressInfo?.yandexRangePrice[0] && dressInfo?.yandexRangePrice[1] ? (
-            <p className="w-fit flex justify-between items-center  font-AeonikProMedium ">
-              <span className="text-[13px] font-AeonikProMedium	leading-5	 ">
+            <div className="w-fit flex justify-between items-center  ">
+              <p className="text-[13px] not-italic font-AeonikProMedium leading-1 ">
                 {Number(dressInfo?.yandexRangePrice[0]).toLocaleString()}
-              </span>
-              <span className="w-[6px] h-[1px] bg-[#a1a1a1] mx-[2px] 	"></span>
-              <span className="text-[13px] font-AeonikProMedium	leading-5	">
+              </p>
+              <span className="w-[6px] h-[1px] bg-[#a1a1a1] mx-[2px]  "></span>
+              <p className="text-[13px] not-italic font-AeonikProMedium leading-1">
                 {Number(dressInfo?.yandexRangePrice[1]).toLocaleString()}
-              </span>
-            </p>
+              </p>
+            </div>
           ) : (
-            <p className="not-italic whitespace-nowrap mt-1 text-black text-sm font-AeonikProMedium tracking-wide	leading-5	">
+            <p className="not-italic whitespace-nowrap mt-1 text-black text-sm font-AeonikProMedium tracking-wide leading-5 ">
               По бюджету
             </p>
           )}
-
-          {dressInfo?.yandexRangePrice[0] && dressInfo?.yandexRangePrice[1] ?
+          {dressInfo?.yandexRangePrice[0] && dressInfo?.yandexRangePrice[1] ? (
             <span
               onClick={(e) => {
                 e.stopPropagation();
-                // closeDivModal();
+                closePrizeModal();
                 clearFunction();
               }}
-
-              role="img" aria-label="close-circle" className="anticon anticon-close-circle">
-              <svg viewBox="64 64 896 896"
+              role="img"
+              aria-label="close-circle"
+              className="anticon anticon-close-circle"
+            >
+              <svg
+                viewBox="64 64 896 896"
                 focusable="false"
                 data-icon="close-circle"
                 width="12px"
                 height="12px"
                 fill="#b5b5b5"
-                aria-hidden="true">
+                aria-hidden="true"
+              >
                 <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z"></path>
               </svg>
             </span>
-            :
+          ) : (
             <span className="font-AeonikProMedium iconArrow">
               <DownArrowAntd />
             </span>
-          }
-        </Popover>
+          )}
+        </button>
+
+        {/* Modal Prize */}
+        <div
+          id="defaultModal"
+          onClick={() => {
+            closePrizeModal();
+          }}
+          className={`overflow-y-auto overflow-x-hidden hidden md:fixed top-0right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full`}
+        >
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            className="fixed p-4 w-fit h-fit md:h-auto left-[calc(50%-275px)] top-[45px]"
+          >
+            {/* Modal content  */}
+            <div className="relative bg-white rounded-lg shadow-modalCategoryShadow">
+              {/* Modal header */}
+              <div className="flex justify-between items-start mx-4 py-2 border-b rounded-t border-searchBgColor ">
+                <p className="text-xl font-AeonikProMedium text-gray-900 dark:text-white">
+                  По ценам
+                </p>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    closePrizeModal();
+                  }}
+                  type="button"
+                  className="text-gray-400 bg-white hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                  data-modal-toggle="defaultModal"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="w-5 h-5"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+              {/*  Modal body  */}
+              <div className="px-6 py-3 space-y-6">
+                <div className=" flex justify-between items-center mb-4 w-full ">
+                  <div className="flex ">
+                    <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
+                      от
+                    </span>
+                    <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                      <input
+                        name="name"
+                        className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                        // defaultValue={Number(values[0]).toLocaleString()}
+                        value={Number(values[0]).toLocaleString()}
+                      />{" "}
+                      сум
+                    </span>
+                  </div>
+                  <div className="flex ">
+                    <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
+                      до
+                    </span>
+                    <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                      <input
+                        name="name"
+                        className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                        // defaultValue={Number(values[1]).toLocaleString()}
+                        value={Number(values[1]).toLocaleString()}
+                      />
+                      сум
+                    </span>
+                  </div>
+                </div>
+                <div className="relative z-50 mb-[6px] w-[350px] ">
+                  {" "}
+                  <Slider
+                    className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] mt-[10px]`}
+                    onChange={setValues}
+                    value={values}
+                    minDistance={10}
+                    min={Number(minPrice)}
+                    max={Number(maxPrice)}
+                  />
+                </div>
+              </div>
+              {/* Modal footer */}
+              <div
+                className={` flex items-center ${
+                  state?.clearPrice ? "justify-between" : "justify-end"
+                } px-6 py-3 space-x-2 rounded-b `}
+              >
+                {state?.clearPrice && (
+                  <span
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closePrizeModal();
+                      clearFunction();
+                    }}
+                    className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
+                  >
+                    Сбросить
+                  </span>
+                )}
+                <span
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    sendPriceList();
+                    setState({ ...state, openPrice: false });
+                    closePrizeModal();
+                  }}
+                  className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
+                >
+                  Готово
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="!w-[210px] relative gap-x-1 px-1 h-[44px] border-searchBgColor border  rounded-lg bg-btnBgColor  overflow-hidden flex items-center justify-between cursor-pointer select-none group  ">
           <span className="absolute left-2">
             <ByBrandIcon />
@@ -385,7 +422,7 @@ export default function YandexFilter({ getMapsInfo }) {
             }
             optionFilterProp="children"
             onChange={(e) => {
-              setDressInfo({ ...dressInfo, yandexCategoryBrand: e })
+              setDressInfo({ ...dressInfo, yandexCategoryBrand: e });
             }}
             value={dressInfo?.yandexCategoryBrand}
             onSearch={onSearch}
@@ -410,7 +447,7 @@ export default function YandexFilter({ getMapsInfo }) {
           </Select>
         </div>
 
-        <div className="box-border	 flex items-center gap-x-2  h-[44px] border border-searchBgColor overflow-hidden rounded-lg bg-btnBgColor">
+        <div className="box-border flex items-center gap-x-2  h-[44px] border border-searchBgColor overflow-hidden rounded-lg bg-btnBgColor">
           {personItems
             ?.filter((value) => value.id === dressInfo?.type)
             .map((data) => {
@@ -427,10 +464,11 @@ export default function YandexFilter({ getMapsInfo }) {
                       >
                         <button
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${item?.id === dressInfo?.yandexGenderId
-                            ? " bg-white border w-full h-[100%] my-auto mx-auto box-border border-searchBgColor rounded-lg"
-                            : " bg-btnBgColor text-black"
-                            } px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  justify-center flex items-center`}
+                          className={`${
+                            item?.id === dressInfo?.yandexGenderId
+                              ? " bg-white border w-full h-[100%] my-auto mx-auto box-border border-searchBgColor rounded-lg"
+                              : " bg-btnBgColor text-black"
+                          } px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  justify-center flex items-center`}
                         >
                           {/* <img src={item?.anyIcons} alt="male" /> */}
                           <span>{item?.anyIcons}</span>
@@ -450,7 +488,6 @@ export default function YandexFilter({ getMapsInfo }) {
               );
             })}
         </div>
-        {/* </article> */}
       </div>
       <div className="w-full flex items-center gap-x-2 mt-2">
         <div className="w-[190px]  flex items-center">
@@ -474,17 +511,7 @@ export default function YandexFilter({ getMapsInfo }) {
             </button>
           )}
         </div>
-        {/* <div className="w-[190px]   flex items-center">
-          {
-            selectPrice &&
-            <button type="button" className={`h-[32px] px-2 flex items-center ${dressInfo?.BtnOpacitySeason} rounded-lg gap-x-[6px]`}>
-              <span className="text-sm not-italic font-AeonikProMedium leading-5">{selectPrice}</span>
-              <span onClick={() => setSelectPrice("")} className="w-4 h-4 px-[2px] rounded-full flex items-center justify-center bg-white">
-                <MenuCloseIcons colors={dressInfo?.ColorSeason} className="w-full h-full" />
-              </span>
-            </button>
-          }
-        </div> */}
+
         <div className="w-[190px]  flex items-center">
           {selectBrand && (
             <button
