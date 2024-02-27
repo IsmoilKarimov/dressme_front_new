@@ -206,15 +206,7 @@ function BottomHeader() {
     setDressInfo({ ...dressInfo, mainColorId: null, mainColorHex: null });
   };
 
-  const targetModal = document.getElementById("defaultModal");
-
-  const openPrizeModal = () => {
-    targetModal.classList.remove("hidden");
-  };
-
-  const closePrizeModal = (e) => {
-    targetModal.classList.add("hidden");
-  };
+  const [priceModalOpen, setPriceModalOpen] = useState(false);
 
   // ----------------NavBar----------------
   const [selectOpen, setSelectOpen] = useState(false);
@@ -222,9 +214,9 @@ function BottomHeader() {
     const handleScroll = () => {
       if (selectOpen) {
         setSelectOpen(false); // Close the select dropdown if it's open
-        closePrizeModal();
+        setPriceModalOpen(false);
       } else {
-        closePrizeModal();
+        setPriceModalOpen(false);
       }
     };
 
@@ -371,7 +363,10 @@ function BottomHeader() {
 
         <button
           className="w-[190px] gap-x-1 px-2 h-[44px] rounded-xl bg-btnBgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group ml-2"
-          onClick={openPrizeModal}
+          // onClick={openPrizeModal}
+          onClick={() => {
+            setPriceModalOpen(true);
+          }}
         >
           <span className=" flex items-center ">
             <DollorIcons colors={"#000"} />
@@ -395,7 +390,7 @@ function BottomHeader() {
             <span
               onClick={(e) => {
                 e.stopPropagation();
-                closePrizeModal();
+                setPriceModalOpen(false);
                 clearFunction();
               }}
               role="img"
@@ -425,9 +420,11 @@ function BottomHeader() {
         <div
           id="defaultModal"
           onClick={() => {
-            closePrizeModal();
+            setPriceModalOpen(false);
           }}
-          className={`overflow-y-auto overflow-x-hidden hidden md:fixed top-0right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full`}
+          className={`${
+            priceModalOpen ? "" : "hidden"
+          } overflow-y-auto overflow-x-hidden md:fixed top-0right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full`}
         >
           <div
             onClick={(e) => {
@@ -445,7 +442,7 @@ function BottomHeader() {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    closePrizeModal();
+                    setPriceModalOpen(false);
                   }}
                   type="button"
                   className="text-gray-400 bg-white hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -520,7 +517,7 @@ function BottomHeader() {
                   <span
                     onClick={(e) => {
                       e.stopPropagation();
-                      closePrizeModal();
+                      setPriceModalOpen(false);
                       clearFunction();
                     }}
                     className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
@@ -533,7 +530,7 @@ function BottomHeader() {
                     e.stopPropagation();
                     sendPriceList();
                     setState({ ...state, openPrice: false });
-                    closePrizeModal();
+                    setPriceModalOpen(false);
                   }}
                   className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
                 >
