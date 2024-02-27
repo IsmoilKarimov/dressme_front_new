@@ -90,17 +90,6 @@ function FilterList({
         }
     }, [filterToggle, openMobileFilter, dressInfo?.mainRegionId])
 
-
-
-
-    // useEffect(() => {
-    //     if (getParamsTest !== paramsId) {
-    //         setgetParamsTest(paramsId)
-    //         setFilterToggle(false)
-    //     }
-    // }, [filterToggle])
-
-
     const [genderCategory, setGenderCategory] = useState([
         {
             id: 1,

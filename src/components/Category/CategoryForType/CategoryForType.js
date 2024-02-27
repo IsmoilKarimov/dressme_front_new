@@ -182,7 +182,23 @@ function CategoryForType() {
       document.body.style.overflow = "auto";
     }
   }, [openMobileFilter, openMobileCategory]);
+  const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
+  function getCurrentDimension() {
+    return {
+      width: window.innerWidth,
+    };
+  }
+  useEffect(() => {
+    const updateDimension = () => {
+      setScreenSize(getCurrentDimension());
+    };
+    window.addEventListener("resize", updateDimension);
+
+    return () => {
+      window.removeEventListener("resize", updateDimension);
+    };
+  }, [screenSize]);
 
   return (
     <div className="w-full">
@@ -231,8 +247,8 @@ function CategoryForType() {
                       handleCategories(data?.name_ru, data?.id);
                     }}
                     className={`${filterData?.section?.id === data?.id
-                        ? "bg-bgColor"
-                        : null
+                      ? "bg-bgColor"
+                      : null
                       } h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
                   >
                     {data?.name_ru}
@@ -241,7 +257,7 @@ function CategoryForType() {
               })}
             </div>
           </section>
-          <section
+          {screenSize.width < 768 && <section
             className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
               }`}
           >
@@ -264,29 +280,30 @@ function CategoryForType() {
                 setOpenMobileFilter={setOpenMobileFilter}
               />
             </div>
-          </section>
+          </section>}
 
           {/* For Desktop Version */}
-          <article
-            className={`${filterToggle ? "md:block" : "md:hidden"
-              } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0 `}
-          >
-            <FilterList
-              paramsId={newId}
-              genderId={genderId}
-              discountId={discountId}
-              categoryId={categoryId}
-              getBadgePrice={getBadgePrice}
-              setDataColor={setDataColor}
-              dataColor={dataColor}
-              getRatingList={getRatingList}
-              outWearList={outWearList}
-              underWearList={underWearList}
-              footWearList={footWearList}
-              filterToggle={filterToggle}
-              setFilterToggle={setFilterToggle}
-            />
-          </article>
+          {screenSize.width >= 768 &&
+            <article
+              className={`${filterToggle ? "md:block" : "md:hidden"
+                } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0 `}
+            >
+              <FilterList
+                paramsId={newId}
+                genderId={genderId}
+                discountId={discountId}
+                categoryId={categoryId}
+                getBadgePrice={getBadgePrice}
+                setDataColor={setDataColor}
+                dataColor={dataColor}
+                getRatingList={getRatingList}
+                outWearList={outWearList}
+                underWearList={underWearList}
+                footWearList={footWearList}
+                filterToggle={filterToggle}
+                setFilterToggle={setFilterToggle}
+              />
+            </article>}
           <article
             className={`${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
               } w-full h-full px-[10px] md:px-0 `}
