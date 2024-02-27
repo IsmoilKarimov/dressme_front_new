@@ -234,8 +234,8 @@ function YandexLocationMarketOpen({
                                     src={data?.img}
                                     alt="img"
                                   />
-                                  <div className="flex w-full absolute items-center justify-between px-5 text-sm font-AeonikProMedium left-0 right-0 bottom-3 md:bottom-6">
-                                    <span className="bg-white gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
+                                  <div className="flex w-full opacity-80 absolute items-center justify-between px-5 text-sm font-AeonikProMedium left-0 right-0 bottom-3 md:bottom-6">
+                                    <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
                                       <p className="h-full w-full text-center pt-[4px]">
                                         {" "}
                                         {i + 1}
