@@ -301,8 +301,8 @@ export default function YandexFilter({ getMapsInfo }) {
             <div className="relative bg-white rounded-lg shadow-modalCategoryShadow">
               {/* Modal header */}
               <div className="flex justify-between items-start mx-4 py-2 border-b rounded-t border-searchBgColor ">
-                <p className="text-xl font-AeonikProMedium text-gray-900 dark:text-white">
-                  По ценам
+                <p className="text-base font-AeonikProMedium text-gray-900">
+                  По бюджету
                 </p>
                 <button
                   onClick={(e) => {
