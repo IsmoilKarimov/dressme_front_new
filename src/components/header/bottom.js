@@ -105,7 +105,7 @@ function BottomHeader() {
     dressInfo?.mainCategoryId,
     dressInfo?.mainGenderId
   ]);
-  console.log(data?.getMainProductCard, 'data?.getMainProductCard');
+  // console.log(data?.getMainProductCard, 'data?.getMainProductCard');
   useEffect(() => {
     if (state?.showColour) {
       document.body.style.overflow = "hidden";

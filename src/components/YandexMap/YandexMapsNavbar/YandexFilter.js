@@ -275,7 +275,7 @@ export default function YandexFilter({ getMapsInfo }) {
             <ClothesIcons colors={"#000"} />
           </span>
           <Select
-            showSearch
+            // showSearch
             className="w-[100%] cursor-pointer !caret-transparent	 h-full !outline-none text-center overflow-hidden  !py-0 text-black text-sm font-AeonikProMedium tracking-wide	leading-5"
             bordered={false}
             placeholder={
