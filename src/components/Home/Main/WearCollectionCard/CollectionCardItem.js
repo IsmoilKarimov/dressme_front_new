@@ -98,7 +98,7 @@ export const CollectionCardItem = ({
         }}
         className="relative w-full cursor-pointer h-[200px] ls:h-[225px] ll:h-[240px] md:h-[310px] bg-btnBgColor flex justify-center content-between items-center overflow-hidden border-b border-solid flex-nowrap"
       ></div>
-      <section className="relative w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[100px] md:h-[130px]">
+      <section className="relative w-full rounded-b-xl bg-white flex flex-wrap h-[125px] ls:h-[115px] md:h-[130px]">
         {/* 1 */}
         <div className="group hover:w-full h-[36px] cursor-pointer">
           <button className="group-hover:hidden w-12 h-7 border border-searchBgColor rounded-lg hidden md:flex items-center cursor-pointer select-none mt-2 mx-2 justify-center gap-x-1 ">
@@ -151,7 +151,7 @@ export const CollectionCardItem = ({
           onMouseEnter={() => handleLeaveMouse(data?.id)}
           onClick={() => goDetail(data?.id)}
           className={`w-full px-2 xs:px-3 ${
-            data?.cost?.discount_price ? "mb-0" : "mb-3"
+            data?.cost?.discount_price ? "mb-3" : "mb-3"
           } md:mb-0`}
         >
           <div className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-[6px] md:mb-0  cursor-pointer">
@@ -222,8 +222,8 @@ export const CollectionCardItem = ({
           <div
             className={`flex items-center select-none absolute right-2 ${
               data?.cost?.discount_price
-                ? "bottom-[7px] ls:bottom-[-17px]"
-                : " bottom-[8px] ls:bottom-[-17px]"
+                ? "bottom-[7px] ls:bottom-[-2px]"
+                : " bottom-[8px] ls:bottom-[-2px]"
             } md:bottom-2`}
           >
             <button

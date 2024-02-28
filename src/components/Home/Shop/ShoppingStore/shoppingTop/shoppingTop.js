@@ -70,7 +70,7 @@ const ShoppingTop = ({
                 sendSearchInputData();
               }}
               type="button"
-              className="w-[15%] md:w-[12%] bg-btnBgColor h-full flex items-center justify-center cursor-pointer border-l border-searchBgColor"
+              className="w-[15%] md:w-[12%] bg-btnBgColor h-full flex items-center justify-center active:scale-95 cursor-pointer border-l border-searchBgColor"
             >
               <SearchIcons colors={"#a1a1a1"} />
             </button>
