@@ -9,7 +9,6 @@ import { dressMainData } from "../../../../ContextHook/ContextMenu";
 export default function ShoppingStore() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
-  const [getData, setGetData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [getAllShops, setGetAllShops] = useState(true);
   const [error, setError] = useState();
@@ -40,27 +39,14 @@ export default function ShoppingStore() {
         setLoading(false);
       });
   };
-  // console.log(getData, "getData");
-  // useEffect(() => {
-  //   if (!dressInfo?.shopsData) {
-  //     fetchGetAllData({
-  //       gender: getGenderID,
-  //       keywords: getSearchInput,
-  //       region: dressInfo?.mainRegionId,
-  //       sub_region: dressInfo?.mainSubRegionId,
-  //     });
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+
   useEffect(() => {
-    // if (dressInfo?.shopsData) {
       fetchGetAllData({
         gender: getGenderID,
         keywords: getSearchInput,
         region: dressInfo?.mainRegionId,
         sub_region: dressInfo?.mainSubRegionId,
       });
-    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     getGenderID,
