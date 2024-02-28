@@ -55,41 +55,6 @@ const ProductCarousel = ({ show, data }) => {
     slider1.current.slickGoTo(sliderState);
   }, [sliderState]);
 
-  const NextArrowModal = (props) => {
-    const { onClick } = props;
-    return (
-      <main
-        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] hidden md:flex items-center justify-center top-[50%] z-10 right-[15px] md:right-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
-        onClick={onClick}
-      >
-        <button className="next">
-          <GrFormNext size={20} />
-        </button>
-      </main>
-    );
-  };
-  const PrevArrowModal = (props) => {
-    const { onClick } = props;
-    return (
-      <main
-        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] hidden md:flex items-center justify-center top-[50%] z-10 left-[15px] md:left-[-70px] rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
-        onClick={onClick}
-      >
-        <button className="prev">
-          <GrFormPrevious size={20} />
-        </button>
-      </main>
-    );
-  };
-
-  let settingsModal = {
-    // nextArrow: <NextArrowModal />,
-    // prevArrow: <PrevArrowModal />,
-    infinite: true,
-    dots: false,
-    speed: 500,
-  };
-
   const [modalOfCarsouel, setModalOfCarsouel] = useState(false);
 
   const sliderRef = useRef();
@@ -127,7 +92,7 @@ const ProductCarousel = ({ show, data }) => {
     const { onClick } = props;
     return (
       <main
-        className={`md:hidden absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex flex items-center justify-center top-[50%] z-10 right-[20px] rounded-lg md:rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
+        className={`hidden md:flex absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex items-center justify-center top-[48%] z-10 right-[20px] rounded-lg md:rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
         onClick={onClick}
       >
         <button className="next">
@@ -140,7 +105,34 @@ const ProductCarousel = ({ show, data }) => {
     const { onClick } = props;
     return (
       <main
-        className={`md:hidden absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex flex items-center justify-center top-[50%] z-10 left-[20px] rounded-lg md:rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
+        className={`hidden md:flex absolute text-center cursor-pointer no-underline opacity-50 w-8 h-8 group-hover:flex items-center justify-center top-[48%] z-10 left-[20px] rounded-lg md:rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
+        onClick={onClick}
+      >
+        <button className="prev">
+          <GrFormPrevious size={20} />
+        </button>
+      </main>
+    );
+  };
+
+  const NextArrowModal = (props) => {
+    const { onClick } = props;
+    return (
+      <main
+        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] hidden md:flex items-center justify-center top-[47%] z-10 right-[15px] md:right-[30px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        onClick={onClick}
+      >
+        <button className="next">
+          <GrFormNext size={20} />
+        </button>
+      </main>
+    );
+  };
+  const PrevArrowModal = (props) => {
+    const { onClick } = props;
+    return (
+      <main
+        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] hidden md:flex items-center justify-center top-[47%] z-10 left-[15px] md:left-[30px] rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
         onClick={onClick}
       >
         <button className="prev">
@@ -151,8 +143,16 @@ const ProductCarousel = ({ show, data }) => {
   };
 
   let settings = {
-    // nextArrow: <NextArrow />,
-    // prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    infinite: true,
+    dots: false,
+    speed: 500,
+  };
+
+  let settingsModal = {
+    nextArrow: <NextArrowModal />,
+    prevArrow: <PrevArrowModal />,
     infinite: true,
     dots: false,
     speed: 500,
@@ -402,12 +402,12 @@ const ProductCarousel = ({ show, data }) => {
                               backgroundSize: "cover",
                               backgroundRepeat: "no-repeat",
                             }}
-                            className="overflow-hidden !h-full w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                            className="relative overflow-hidden h-full w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                           >
                             <img
                               src={data?.url_photo}
                               alt=""
-                              className="w-full h-[482px] md:h-[100vh] object-contain overflow-hidden"
+                              className="w-full h-[482px] md:h-full object-contain md:object-cover overflow-hidden"
                             />
                             <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
                               <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
@@ -430,7 +430,7 @@ const ProductCarousel = ({ show, data }) => {
                     return (
                       <article
                         key={i}
-                        className="relative w-full h-full overflow-hidden"
+                        className="relative w-full h-full overflow-hidden border border-red-700"
                       >
                         <figure
                           key={data?.id}
@@ -441,14 +441,14 @@ const ProductCarousel = ({ show, data }) => {
                             backgroundSize: "cover",
                             backgroundRepeat: "no-repeat",
                           }}
-                          className="overflow-hidden !h-full w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                          className="relative overflow-hidden h-full w-full md:h-[100vh] md:rounded-lg border md:border-green-700 border-searchBgColor bg-btnBgColor flex items-center justify-center "
                         >
                           <img
                             src={data?.url_photo}
                             alt=""
-                            className={`w-full h-[482px] md:h-[100vh] object-contain overflow-hidden`}
+                            className={`w-full h-[482px] md:h-fit object-contain border border-sky-700 overflow-hidden`}
                           />
-                          <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
+                          <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-8">
                             <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
                               <p className="h-full w-full text-center pt-[4px]">
                                 {" "}
@@ -639,7 +639,7 @@ const ProductCarousel = ({ show, data }) => {
           </article>
         </section>
       ) : (
-        <section className="w-full h-ffull flex flex-col">
+        <section className="w-full h-full flex flex-col">
           {/* 1 */}
           <article className="w-full h-full widthInherit mx-auto">
             <Slider
