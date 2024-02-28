@@ -167,7 +167,7 @@ const CategoryTopDetail = ({
           <article className="w-full md:hidden flex items-center justify-between mt-6 mb-3 px-4">
             <button
               onClick={() => setOpenMobileFilter(true)}
-              className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+              className="h-[48px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
             >
               <SortIcons />
               <p className="ml-2 not-italic  font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
@@ -176,7 +176,7 @@ const CategoryTopDetail = ({
             </button>
             <button
               onClick={() => setOpenMobileCategory(true)}
-              className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+              className="h-[48px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
             >
               <UnderSection />
               <p className="ml-2 not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%] cursor-pointer">
@@ -207,7 +207,7 @@ const CategoryTopDetail = ({
         <button
           onClick={handleToggle}
           type="button"
-          className="w-[175px] gap-x-2 h-[44px] border border-[#F2F2F2] flex items-center justify-center  bg-white rounded-lg active:scale-95	active:opacity-70"
+          className="w-[175px] gap-x-2 h-[44px] border border-[#F2F2F2] flex items-center justify-center  bg-white rounded-xl active:scale-95	active:opacity-70"
         >
           <span className="">
             {" "}
@@ -228,8 +228,8 @@ const CategoryTopDetail = ({
       </div>
 
       <section className="w-full px-4 block md:hidden">
-        <article className="w-full search flex items-center bg-white justify-between rounded-xl font-AeonikProMedium h-11 mt-3 mb-3 border border-searchBgColor ss:mt-3">
-          <div className="w-[87%] flex items-center justify-between">
+        <article className="w-full search flex items-center bg-white justify-between rounded-xl font-AeonikProMedium h-12 mt-3 mb-3 border border-searchBgColor ss:mt-3">
+          <div className="w-[90%] h-full flex items-center justify-between">
             <input
               type="text"
               name="name"
@@ -250,7 +250,7 @@ const CategoryTopDetail = ({
           </div>
           <span
             onClick={() => getSearchClick()}
-            className="w-[13%] h-full bg-btnBgColor rounded-r-xl active:scale-95 flex items-center justify-center ">
+            className="w-[15%] h-full bg-btnBgColor rounded-r-xl active:scale-95 flex items-center justify-center ">
             <SearchIcons />
           </span>
         </article>

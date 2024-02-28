@@ -13,7 +13,6 @@ import {
   UnderSection,
 } from "../../../../assets/icons";
 import { MdClose } from "react-icons/md";
-import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import LoadingNetwork from "../../../Loading/LoadingNetwork";
 
 export default function CatalogItems() {
@@ -354,11 +353,11 @@ export default function CatalogItems() {
                   </article>
                 </article>
               ) : null}
-              <div className="w-full md:hidden  border-b border-searchBgColor">
-                <article className="w-full md:hidden flex items-center justify-between mt-3 mb-3 px-4">
+              <div className="w-full md:hidden border-b border-searchBgColor">
+                <article className="w-full md:hidden flex items-center justify-between mt-3 mb-3 px-3">
                   <button
                     onClick={() => setOpenMobileFilter(true)}
-                    className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                    className="h-[48px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                   >
                     <SortIcons />
                     <p className="ml-2 not-italic  font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
@@ -367,7 +366,7 @@ export default function CatalogItems() {
                   </button>
                   <button
                     onClick={() => setOpenMobileCategory(true)}
-                    className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                    className="h-[48px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                   >
                     <UnderSection />
                     <p className="ml-2 not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%] cursor-pointer">
@@ -377,9 +376,9 @@ export default function CatalogItems() {
                 </article>
               </div>
             </section>
-            <section className="w-full px-4 flex my-3 md:hidden">
-              <article className="w-full search flex items-center bg-white justify-between rounded-xl font-AeonikProMedium h-11  border border-searchBgColor ss:mt-3">
-                <div className="w-[87%] flex items-center justify-between">
+            <section className="w-full px-3 flex my-3 md:hidden">
+              <article className="w-full search flex items-center bg-white justify-between rounded-xl font-AeonikProMedium h-12  border border-searchBgColor ss:mt-3">
+                <div className="w-[87%] h-full flex items-center justify-between">
                   <input
                     type="text"
                     name="name"
@@ -437,8 +436,7 @@ export default function CatalogItems() {
                   }`}
               ></section>
               {screenSize.width < 768 && <section
-                className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
-                  }`}
+                className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"}`}
               >
                 <div className="max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
                   <FilterList
