@@ -15,11 +15,13 @@ export const CollectionCardItem = ({
   mainSelectedId,
   setDressInfo,
   dressInfo,
+  onHandleCardId
 }) => {
   const navigate = useNavigate();
 
   const goDetail = (id) => {
-    navigate(`/product/${id}`);
+    // navigate(`/product/${id}`);
+    onHandleCardId(id)
   };
 
   const [colorId, setcolorId] = useContext(SliderPhotosColorContext);

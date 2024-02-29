@@ -372,6 +372,8 @@ const ShoppingStoreOfficialByLocation = () => {
                       {
                         filteredData ? (
                           <ShopOfficialCard
+                            paramsId={newId}
+
                             filteredData={filteredData}
                             setPageId={setPageId}
                           />

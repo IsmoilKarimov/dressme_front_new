@@ -377,6 +377,7 @@ const ShoppingStoreOfficial = () => {
                           <ShopOfficialCard
                             filteredData={filteredData}
                             setPageId={setPageId}
+                            paramsId={newId}
                           />
                         ) : (
                           <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[100vh] ">

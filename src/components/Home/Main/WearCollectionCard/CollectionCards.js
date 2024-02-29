@@ -8,6 +8,7 @@ import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { CollectionCardItem } from "./CollectionCardItem";
 import { ClipLoader } from "react-spinners";
 import { MdClose } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -61,7 +62,10 @@ export default function CollectionCards() {
       return { ...current, ProductList: newArray };
     });
   };
-
+  const navigate = useNavigate()
+  function onHandleCardId(child) {
+    navigate(`/product/${child}`);
+  }
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <div
@@ -150,6 +154,7 @@ export default function CollectionCards() {
                     wishList={wishList}
                     setWishlist={setWishlist}
                     mainSelectedId={dressInfo?.mainColorId}
+                    onHandleCardId={onHandleCardId}
                   />
                 );
               })

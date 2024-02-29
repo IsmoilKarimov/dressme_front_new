@@ -317,7 +317,7 @@ function CategoryForType() {
                 } w-full h-full px-[10px] md:px-0 `}
             >
 
-              <CategoryCards filterData={filterData} setPageId={setPageId} />
+              <CategoryCards paramsId={newId} filterData={filterData} setPageId={setPageId} />
             </article>
           </section>
         </main>

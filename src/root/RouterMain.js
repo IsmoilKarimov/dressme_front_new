@@ -9,6 +9,8 @@ import LoadingNetwork from "../components/Loading/LoadingNetwork";
 
 import ShoppingStore from "../components/Home/Shop/ShoppingStore";
 import { CatalogMobile } from "../components/Home/Catalog/CatalogMobile/CatalogMobile";
+import CatalogByIdProduct from "../components/Home/Catalog/CatalogFilter/CatalogByIdProduct/CatalogByIdProduct";
+// import ShopStoreByLocationProduct from "../components/Home/Shop/ShoppingStoreOfficialByLocation/ShopStoreByLocationProduct/ShopStoreByLocationProduct";
 
 const HomeIndex = React.lazy(() => import("../components/Home/Main"));
 const SingleMainProduct = React.lazy(() =>
@@ -31,13 +33,22 @@ const ProfilePage = React.lazy(() =>
 const ShoppingStoreOfficial = React.lazy(() =>
   import("../components/Home/Shop/ShoppingStoreOfficial")
 );
+const ShopStoreByIdProduct = React.lazy(() =>
+  import("../components/Home/Shop/ShoppingStoreOfficial/ShopStoreByIdProduct/ShopStoreByIdProduct")
+);
 const ShoppingStoreOfficialByLocation = React.lazy(() =>
   import("../components/Home/Shop/ShoppingStoreOfficialByLocation")
+);
+const ShopStoreByLocationProduct = React.lazy(() =>
+  import("../components/Home/Shop/ShoppingStoreOfficialByLocation/ShopStoreByLocationProduct/ShopStoreByLocationProduct")
 );
 const Favourites = React.lazy(() => import("../components/Home/Favorite"));
 
 const CategoryMainType = React.lazy(() =>
   import("../components/Category/CategoryForType")
+);
+const CategoryByIdProduct = React.lazy(() =>
+  import("../components/Category/CategoryForType/CategoryByIdProduct/CategoryByIdProduct")
 );
 const SignUp = React.lazy(() => import("../components/Authentication/SignUp"));
 const SignIn = React.lazy(() => import("../components/Authentication/SignIn"));
@@ -103,9 +114,24 @@ const RouterMain = () => {
             </Suspense>
           }
         />
+        <Route
+          path="/section/:id/:product"
+          element={
+            <Suspense
+              fallback={
+                <div className="w-full h-full flex items-center justify-center">
+                  <LoadingNetwork />
+                </div>
+              }
+            >
+              <CategoryByIdProduct />
+            </Suspense>
+          }
+        />
 
         <Route path="/categories" element={<CatalogMobile />} />
         <Route path="/categories/:id" element={<CatalogItems />} />
+        <Route path="/categories/:id/:id" element={<CatalogByIdProduct />} />
 
         <Route
           path="/product/:id"
@@ -183,6 +209,20 @@ const RouterMain = () => {
           }
         />
         <Route
+          path="/shops/:id/:id"
+          element={
+            <Suspense
+              fallback={
+                <div className="w-full h-full flex items-center justify-center">
+                  <LoadingNetwork />
+                </div>
+              }
+            >
+              <ShopStoreByIdProduct />
+            </Suspense>
+          }
+        />
+        <Route
           path="/shops-bylocation/:id"
           element={
             <Suspense
@@ -193,6 +233,20 @@ const RouterMain = () => {
               }
             >
               <ShoppingStoreOfficialByLocation />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/shops-bylocation/:id/:id"
+          element={
+            <Suspense
+              fallback={
+                <div className="w-full h-full flex items-center justify-center">
+                  <LoadingNetwork />
+                </div>
+              }
+            >
+              <ShopStoreByLocationProduct />
             </Suspense>
           }
         />

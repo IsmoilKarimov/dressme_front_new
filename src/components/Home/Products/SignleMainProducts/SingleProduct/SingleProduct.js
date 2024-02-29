@@ -11,11 +11,11 @@ import { CollectionCardItem } from "../../../Main/WearCollectionCard/CollectionC
 import LoadingNetwork from "../../../../Loading/LoadingNetwork";
 import axios from "axios";
 
-const SingleProduct = () => {
+const SingleProduct = ({ breadShops }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
   const [openWearType, setOpenWearType] = useState(false);
-
+  console.log(breadShops, 'breadShops');
   let LikeProduct = [];
   let LastSeenProduct = [];
   dressInfo.ProductList.forEach((data) => {
