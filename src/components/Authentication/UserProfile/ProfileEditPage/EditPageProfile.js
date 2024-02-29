@@ -169,8 +169,9 @@ const EditProfilePage = () => {
         setLoading(false);
         console.log(err);
         if (err?.response?.status === 401 || err?.response?.status === 403) {
-          reFreshTokenFunc();
-          // navigate("/sign_in");
+          // reFreshTokenFunc();
+          console.log("401");
+
           // toast.error(`${err?.response?.data?.message}`, {
           //   position: "top-right",
           //   autoClose: 5000,
@@ -264,7 +265,9 @@ const EditProfilePage = () => {
       },
       body: form,
     })
-      .then((res) => res.json())
+      .then((res) => {
+        return res.json();
+      })
       .then((res) => {
         if (res?.errors && res?.message) {
           console.log(res, "Bu-Error send edit postttttt");
@@ -283,13 +286,11 @@ const EditProfilePage = () => {
         } else if (res?.message) {
           if (res?.message === "Unauthenticated.") {
             setProfileContextData(false);
-            Cookies.remove("DressmeUserToken");
-            Cookies.remove("DressmeUserRefreshToken");
-            navigate("/sign_in");
-
+            reFreshTokenFunc();
+            sendEditedData();
+            reFetchFunction();
             console.log(res, "Bu-error edit posttttt");
           } else {
-            reFetchFunction();
             toast.success(`${res?.message}`, {
               position: "top-right",
               autoClose: 5000,
@@ -332,11 +333,14 @@ const EditProfilePage = () => {
         email: state?.userEmail,
       }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        console.log(res.status, "ffffffffffffffffff");
+        return res.json();
+      })
       .catch((err) => {
         setLoading(false);
         console.log(err);
-        if (err?.response?.status === 401 || err?.response?.status === 403) {
+        if (err?.status === 401 || err?.status === 403) {
           reFreshTokenFunc();
         } else {
           Cookies.remove("DressmeUserToken");
@@ -354,7 +358,9 @@ const EditProfilePage = () => {
           console.log(res, "USER-EMAIL");
           if (res?.message && !res.errors) {
             if (res?.message === "Unauthenticated.") {
-              navigate("/sign_in");
+              reFreshTokenFunc();
+              sendEditedEmailData()
+              // navigate("/sign_in");
               // toast.error(`${res?.message}`, {
               //   position: "top-right",
               //   autoClose: 5000,
@@ -375,7 +381,9 @@ const EditProfilePage = () => {
             });
           } else if (res?.message && res.errors) {
             if (res?.message === "Unauthenticated.") {
-              navigate("/sign_in");
+              reFreshTokenFunc();
+              sendEditedEmailData()
+              // navigate("/sign_in");
             }
             setLoading(false);
             setState({ ...state, errorsGroup: res, activeEditPassword: false });

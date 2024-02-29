@@ -5,13 +5,21 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
+import { UserRefreshTokenContext } from "../../../../ContextHook/UserRefreshToken";
+import { useNavigate } from "react-router-dom";
 
 export default function ShoppingStore() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
+  const [reFreshTokenFunc, setUserLogedIn] = useContext(
+    UserRefreshTokenContext
+  );
+
   const [loading, setLoading] = useState(false);
   const [getAllShops, setGetAllShops] = useState(true);
   const [error, setError] = useState();
+
+  const navigate = useNavigate();
 
   const [getGenderID, setGetGenderId] = useState(null);
   const [getSearchInput, setgetSearchInput] = useState(null);
@@ -32,21 +40,29 @@ export default function ShoppingStore() {
         setDressInfo({ ...dressInfo, shopsData: res?.data });
         setLoading(false);
       })
-      .catch((res) => {
+      .catch((err) => {
+        if (err?.response?.status === 401 || err?.response?.status === 403) {
+          reFreshTokenFunc();
+          fetchGetAllData();
+        } else {
+          Cookies.remove("DressmeUserToken");
+          Cookies.remove("DressmeUserRefreshToken");
+          navigate("/sign_in");
+        }
         setError(
-          res.response?.data?.message || "An unexpected error occurred."
+          err.response?.data?.message || "An unexpected error occurred."
         );
         setLoading(false);
       });
   };
 
   useEffect(() => {
-      fetchGetAllData({
-        gender: getGenderID,
-        keywords: getSearchInput,
-        region: dressInfo?.mainRegionId,
-        sub_region: dressInfo?.mainSubRegionId,
-      });
+    fetchGetAllData({
+      gender: getGenderID,
+      keywords: getSearchInput,
+      region: dressInfo?.mainRegionId,
+      sub_region: dressInfo?.mainSubRegionId,
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     getGenderID,
@@ -54,7 +70,6 @@ export default function ShoppingStore() {
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
   ]);
-  
 
   useEffect(() => {
     window.scrollTo({
@@ -82,7 +97,7 @@ export default function ShoppingStore() {
         <ShoppingBrands
           loading={loading}
           setLoading={setLoading}
-        // setGetData={setGetData}
+          // setGetData={setGetData}
         />
       </section>
     </main>
