@@ -3,9 +3,8 @@ import React, {
   useContext,
   useEffect,
   useCallback,
-  useRef,
 } from "react";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./header.css";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { Popover } from "antd";
@@ -233,6 +232,8 @@ const MediumHeader = ({ stateData, setStateData }) => {
       mainSearchNameCategory: null,
       mainSearchNameCatalog: null,
       mainSearchNameshop: null,
+      mainSearchNameshopMarket: null,
+      mainSearchNameshopLocation: null,
     });
   };
   function getSearchClick() {
@@ -261,7 +262,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
       }
     }
   }
-  // console.log(searchForLocation?.length);
+
   const _handleKeyDownSearch = (event) => {
     if (event.key === "Enter") {
       if (searchForLocation?.includes("shops")) {

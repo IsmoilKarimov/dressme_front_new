@@ -3,46 +3,52 @@ import { SearchIcons } from "../../../../../assets/icons";
 import GenderButtonsStyle from "../GenderButtonsStyle/GenderButtonsStyle";
 import { MdClose } from "react-icons/md";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
+import { useLocation } from "react-router-dom";
 const ShoppingTop = ({
   getAllShops,
   setGetAllShops,
   setGetGenderId,
   setgetSearchInput,
 }) => {
-  const [keywords, setKeywords] = useState();
-  const [, setSearchInputData] = useState();
-  const [changeInputIcon, setChangeInputIcon] = useState(true);
+
   const [searchMarketName, setSearchMarketName] = useState(null);
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [searchForLocation, setSearchForLocation] = useState([]);
+  let location = useLocation();
+
 
   function handleGetId(childData) {
-    // setGenderId(childData?.genderFilterId);
     setGetGenderId(childData?.genderFilterId);
   }
 
-  const sendSearchInputData = () => {
-    setSearchInputData(keywords);
-    setgetSearchInput(keywords);
-  };
-
-  useEffect(() => {
-    setChangeInputIcon(false);
-  }, [keywords]);
-
-  const removeSearchInputData = () => {
-    setgetSearchInput("");
-    setSearchInputData("");
-    setKeywords("");
-  };
   const handleChange = (event) => {
     setSearchMarketName(event.target.value);
   };
+
+  function getSearchClick() {
+    if (searchForLocation?.includes("shops")) {
+      setDressInfo({
+        ...dressInfo,
+        mainSearchNameshopMarket: searchMarketName,
+      });
+    }
+  }
+
+  useEffect(() => {
+    setSearchForLocation(location?.pathname?.split("/"));
+  }, [location.pathname]);
+
   const _handleKeyDownSearch = (event) => {
     if (event.key === "Enter") {
-      setDressInfo({ ...dressInfo, mainSearchNameshopMarket: searchMarketName });
+      setDressInfo({
+        ...dressInfo,
+        mainSearchNameshopMarket: searchMarketName,
+      });
     }
   };
+
   const handleClear = () => {
+    setgetSearchInput("");
     setSearchMarketName("");
     setDressInfo({
       ...dressInfo,
@@ -50,8 +56,11 @@ const ShoppingTop = ({
       mainSearchNameCategory: null,
       mainSearchNameCatalog: null,
       mainSearchNameshop: null,
+      mainSearchNameshopMarket: null,
+      mainSearchNameshopLocation: null,
     });
   };
+
   return (
     <main className="flex flex-col min-h-[44px] justify-center items-center mb-5 md:my-4">
       <section className="md:max-w-[1280px] w-[100%] flex flex-col md:flex-row items-center justify-between m-auto">
@@ -74,19 +83,14 @@ const ShoppingTop = ({
                 placeholder="Искать магазины"
               />
               {searchMarketName && (
-                <button
-                  onClick={handleClear}
-                  className=" mr-1"
-                  type="button"
-                >
+                <button onClick={handleClear} className=" mr-1" type="button">
                   <MdClose size={20} color={"#a1a1a1"} />
                 </button>
               )}
             </div>
             <button
               onClick={() => {
-                setChangeInputIcon(true);
-                sendSearchInputData();
+                getSearchClick();
               }}
               type="button"
               className="w-[15%] md:w-[12%] bg-btnBgColor h-full flex items-center justify-center active:scale-95 cursor-pointer border-l border-searchBgColor"
