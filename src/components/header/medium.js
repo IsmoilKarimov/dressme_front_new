@@ -283,8 +283,13 @@ const MediumHeader = ({ stateData, setStateData }) => {
     }
   };
 
-  const goCatalogId = (id) => {
-    navigate(`/categories/${id}`);
+  const goCatalogId = (id, name) => {
+    if (id !== 5) {
+      navigate(`/categories/${name?.split(' ')?.join('-')?.toLowerCase()}`);
+    }
+    if (id === 5){
+      navigate(`/categories/${name?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+    }
   };
 
   return (
@@ -298,10 +303,9 @@ const MediumHeader = ({ stateData, setStateData }) => {
 
       <div
         className={`max-w-[440px] rounded-t-[12px] mx-auto w-full fixed duration-300 z-[114] h-fit flex items-center justify-center
-          ${
-            regionsList
-              ? "bottom-[64px] md:flex flex-col z-[232]"
-              : "bottom-[-1500px] z-[-10]"
+          ${regionsList
+            ? "bottom-[64px] md:flex flex-col z-[232]"
+            : "bottom-[-1500px] z-[-10]"
           }`}
       >
         {regionsList && <RegionsList onClick={toggleRegionsShow} />}
@@ -314,9 +318,8 @@ const MediumHeader = ({ stateData, setStateData }) => {
         ></div>
       )}
       <article
-        className={`fixed top-[235px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${
-          dressInfo?.openCatologId ? "" : "hidden"
-        }`}
+        className={`fixed top-[235px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${dressInfo?.openCatologId ? "" : "hidden"
+          }`}
       >
         <div className="flex justify-center items-center z-[120]">
           <div className="w-[675px] flex flex-col shadow-modalCategoryShadow bg-white rounded-lg p-2">
@@ -340,7 +343,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                       className="w-1/5 flex items-center justify-center "
                     >
                       <figure
-                        onClick={() => goCatalogId(data?.id)}
+                        onClick={() => goCatalogId(data?.id, data?.name_ru)}
                         className="group cursor-pointer"
                       >
                         <div className="group-hover:border-black transition duration-300 w-[120px] h-[120px] border border-categoryModalBorderColor bg-categoryModalBgColor flex items-center justify-center rounded-xl">
@@ -619,11 +622,10 @@ const MediumHeader = ({ stateData, setStateData }) => {
 
             {/*Starting of Opened Hamburger Menu section */}
             <section
-              className={`flex md:hidden max-w-[440px] h-[90vh] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0  px-3 ${
-                stateData?.hamburgerMenu
-                  ? " flex flex-col ease-linear duration-500 overscroll-none"
-                  : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
-              }`}
+              className={`flex md:hidden max-w-[440px] h-[90vh] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0  px-3 ${stateData?.hamburgerMenu
+                ? " flex flex-col ease-linear duration-500 overscroll-none"
+                : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
+                }`}
             >
               <div
                 className={`w-full h-full flex flex-col mb-[80px] flex-wrap relative`}
@@ -728,7 +730,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                 <div className="w-full gap-x-3 mt-3 flex items-center justify-between">
                   <button
                     type="button"
-                    onClick={() =>{
+                    onClick={() => {
                       setStateData({ ...stateData, hamburgerMenu: false })
                       window.open(
                         " https://dressme-dashboard-new.vercel.app",

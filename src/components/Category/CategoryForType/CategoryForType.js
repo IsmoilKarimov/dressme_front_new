@@ -91,7 +91,7 @@ function CategoryForType() {
   // }, [paramsId?.id])
   useLayoutEffect(() => {
     data?.getMainProductCard?.sections?.map(item => {
-      if (newId?.includes(item?.name_ru?.toLowerCase())) {
+      if (newId?.includes(item?.name_ru?.split(' ')?.join('-')?.toLowerCase())) {
         setNewFilterParamasId(item?.id)
         if(!newFilterParamasIdCopy){
           setNewFilterParamasIdCopy(item?.id)

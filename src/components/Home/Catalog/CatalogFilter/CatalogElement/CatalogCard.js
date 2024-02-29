@@ -21,13 +21,13 @@ export default function CatalogCard({ filterData, setPageId, paramsId }) {
       return { ...current, ProductList: newArray };
     });
   };
-
+  console.log(paramsId, 'paramsId');
   const setPaginationFunc = (id) => {
     setPageId(+id);
   };
   const navigate = useNavigate()
-  function onHandleCardId(child) {
-    navigate(`/section/${paramsId}/${child}`);
+  function onHandleCardId(child, name) {
+    navigate(`/categories/${paramsId}/${name?.split(' ')?.join('-')?.toLowerCase()} `);
   }
   return (
     <main className="flex flex-col box-border mt-2 mb-12 md:mb-0">
@@ -71,13 +71,15 @@ export default function CatalogCard({ filterData, setPageId, paramsId }) {
                       setPaginationFunc(newPageId);
                     }
                   }}
-                  className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${item?.active
-                      ? "bg-fullBlue text-white"
-                      : "hover:bg-searchBgColor"
-                    } mx-[5px] flex items-center justify-center  ${item?.url
-                      ? "cursor-pointer"
-                      : "opacity-70 cursor-not-allowed"
-                    }`}
+                  className={`not - italic font - AeonikProRegular text - sm leading - 4 text - center px - 2 min - w - [45px] border h - [45px] rounded - lg  ${
+    item?.active
+    ? "bg-fullBlue text-white"
+    : "hover:bg-searchBgColor"
+  } mx - [5px] flex items - center justify - center  ${
+    item?.url
+    ? "cursor-pointer"
+    : "opacity-70 cursor-not-allowed"
+  } `}
                 >
                   {item?.label}
                 </li>

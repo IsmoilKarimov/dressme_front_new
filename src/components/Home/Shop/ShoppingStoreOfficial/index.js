@@ -142,9 +142,10 @@ const ShoppingStoreOfficial = () => {
   useEffect(() => {
     refreshLocationId();
   }, [newFilterParamasId, dressInfo?.mainSubRegionId]);
-  console.log(dressInfo?.shopsData?.shops?.data, 'dressInfo?.shopsData?.shops?.data');
-  useLayoutEffect(() => {
-    dressInfo?.shopsData?.shops?.data?.map(item => {
+  console.log(dressInfo?.shopsData?.shops, 'dressInfo?.shopsData?.shops?.data');
+  useEffect(() => {
+    data?.getMainProductCard?.shops?.map(item => {
+      console.log(item?.name,'name');
       if (newId?.split('-')?.join(' ')?.includes(item?.name?.toLowerCase())) {
         setNewFilterParamasId(item?.id)
         if (!newFilterParamasIdCopy) {
@@ -152,7 +153,7 @@ const ShoppingStoreOfficial = () => {
         }
       }
     })
-  }, [params?.id]);
+  }, []);
   console.log(newFilterParamasId, 'newFilterParamasId');
   console.log(newFilterParamasIdCopy, 'newFilterParamasIdCopy');
   const [loading, setLoading] = useState(false);

@@ -76,7 +76,7 @@ function FilterList({
     const url = `https://api.dressme.uz/api/main`;
 
     function fetchGetAllData() {
-        fetch(`${url}/shops/filter/${paramsId}?location_id=${dressInfo?.locationIdParams}`)
+        fetch(`${url}/shops/filter/${dressInfo?.yandexGetMarketId}?location_id=${dressInfo?.locationIdParams}`)
             .then((res) => res.json())
             .then((res) => {
                 setGetFilter(res?.filter)

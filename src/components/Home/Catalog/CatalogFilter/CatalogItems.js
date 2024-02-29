@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import CatalogCard from "./CatalogElement/CatalogCard";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
@@ -14,9 +14,11 @@ import {
 } from "../../../../assets/icons";
 import { MdClose } from "react-icons/md";
 import LoadingNetwork from "../../../Loading/LoadingNetwork";
+import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 
 export default function CatalogItems() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [data] = useContext(HomeMainDataContext);
 
   const [filterData, setFilterData] = useState([]);
   const [pageId, setPageId] = useState(1);
@@ -39,7 +41,8 @@ export default function CatalogItems() {
   const [openMobileFilter, setOpenMobileFilter] = useState(false);
   const [openMobileCategory, setOpenMobileCategory] = useState(false);
   const [initalParamsId, setInitalParamsId] = useState(null);
-
+  const [newFilterParamasId, setNewFilterParamasId] = useState();
+  const [newFilterParamasIdCopy, setNewFilterParamasIdCopy] = useState();
   const [loading, setLoading] = useState(true);
 
   const handleToggle = () => {
@@ -94,13 +97,37 @@ export default function CatalogItems() {
   const paramId = useParams();
 
   const newId = paramId?.id?.replace(":", "");
+  console.log(newId, 'newId');
+  useLayoutEffect(() => {
+    if (newId == 'украшения-аксессуары') {
+      setNewFilterParamasId(5)
+      setNewFilterParamasIdCopy(newFilterParamasIdCopy)
 
+    } else {
+      data?.getMainProductCard?.categories?.map(item => {
+        if (newId?.includes(item?.name_ru?.split(' ')?.join('-')?.toLowerCase())) {
+          setNewFilterParamasId(item?.id)
+          if (!newFilterParamasIdCopy) {
+            setNewFilterParamasIdCopy(item?.id)
+          }
+        }
+      })
+    }
+  }, [paramId?.id]);
+
+  console.log(newFilterParamasId, 'newFilterParamasId');
+  console.log(newFilterParamasIdCopy, 'newFilterParamasIdCopy');
   const handleOpenCategories = (newOpen) => {
     setState({ ...state, opensports: newOpen });
   };
-  const handleCategories = (id) => {
+  const handleCategories = (id, name) => {
     setState({ ...state, opensports: false });
-    navigate(`/categories/${id}`);
+    if (id !== 5) {
+      navigate(`/categories/${name?.split(' ')?.join('-')?.toLowerCase()}`);
+    }
+    if (id === 5) {
+      navigate(`/categories/${name?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+    }
   };
   const contentCategories = (
     <section className="w-[230px] h-fit max-h-[350px] overflow-y-auto m-0 p-0 VerticelScroll">
@@ -109,7 +136,7 @@ export default function CatalogItems() {
           <p
             key={data?.id}
             onClick={() => {
-              handleCategories(data?.id);
+              handleCategories(data?.id, data?.name_ru);
             }}
             className={`${Number(paramId?.id) === data?.id ? "bg-bgColor" : null
               } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
@@ -121,7 +148,7 @@ export default function CatalogItems() {
     </section>
   );
 
-  const apiUrl = `https://api.dressme.uz/api/main/category/${newId}`;
+  const apiUrl = `https://api.dressme.uz/api/main/category/${newFilterParamasId}`;
   // setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
 
   function fetchGetAllData() {
@@ -191,21 +218,23 @@ export default function CatalogItems() {
       });
   }
   useEffect(() => {
-    if (initalParamsId && initalParamsId !== newId && !getGenderId && !getCategory && !getRating && !getRange?.length && !dataColor?.length && !discount && !getOutWearList && !getUnderWearList && !getFootWearList) {
+    if (initalParamsId && initalParamsId !== newFilterParamasId && !getGenderId && !getCategory && !getRating && !getRange?.length && !dataColor?.length && !discount && !getOutWearList && !getUnderWearList && !getFootWearList) {
       fetchGetAllData();
       setLoading(true);
     }
-    setInitalParamsId(newId)
-  }, [newId]);
+    setInitalParamsId(newFilterParamasId)
+  }, [newFilterParamasId]);
 
   useEffect(() => {
-    fetchGetAllData();
+    if (newFilterParamasIdCopy) {
+      fetchGetAllData();
+    }
     if (!filterData) {
       setLoading(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    // newId,
+    newFilterParamasIdCopy,
     pageId,
     getGenderId,
     getCategory,
@@ -440,7 +469,7 @@ export default function CatalogItems() {
               >
                 <div className="max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
                   <FilterList
-                    paramsId={newId}
+                    paramsId={newFilterParamasId}
                     genderId={genderId}
                     discountId={discountId}
                     categoryId={categoryId}
@@ -493,7 +522,7 @@ export default function CatalogItems() {
                   } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0`}
               >
                 <FilterList
-                  paramsId={newId}
+                  paramsId={newFilterParamasId}
                   genderId={genderId}
                   discountId={discountId}
                   categoryId={categoryId}

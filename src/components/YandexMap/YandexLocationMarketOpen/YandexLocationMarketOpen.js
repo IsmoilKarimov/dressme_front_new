@@ -28,7 +28,12 @@ function YandexLocationMarketOpen({
 
   const navigate = useNavigate();
   const openShoppingChild = () => {
-    navigate(`/shops-bylocation/${dressInfo?.yandexGetMarketId}`);
+    modalInfo?.locations?.map(item => {
+      if (item?.shop_id == dressInfo?.yandexGetMarketId) {
+        console.log(item?.shop?.name);
+        navigate(`/shops-bylocation/${item?.shop?.name?.split(' ')?.join('-')?.toLowerCase()}`);
+      }
+    })
     setData({ ...data, selectedLoc: "" });
   };
 
@@ -259,14 +264,6 @@ function YandexLocationMarketOpen({
                 </div>
                 {/* Details */}
                 <div className="md:w-[48%]  md:h-[250px] flex flex-wrap md:gap-y-0 gap-y-4 content-between   ">
-                  {/* text */}
-                  <div className="w-full h-fit hidden">
-                    <span className="not-italic font-AeonikProRegular text-base leading-4 text-black tracking-[1%]">
-                      Бу магазинда сиз болажонларингиз учун (0-15 ёш) сифатли
-                      кийимчаларни АРЗОН ВА КУЛАЙ нархларда харид қилишингиз
-                      мумкин
-                    </span>
-                  </div>
                   {/* Detail */}
                   <div className="w-full  flex flex-col gap-y-3">
                     <div className="flex items-center ">

@@ -20,8 +20,13 @@ function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
   const toggleRegionsHide = useCallback(() => setRegionsShow(false), []);
   const navigate = useNavigate();
 
-  const goCatalogId = (id) => {
-    navigate(`/categories/${id}`);
+  const goCatalogId = (id, name) => {
+    if (id !== 5) {
+      navigate(`/categories/${name?.split(' ')?.join('-')?.toLowerCase()}`);
+    }
+    if (id === 5) {
+      navigate(`/categories/${name?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+    }
   };
   return (
     <div className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ">
@@ -57,7 +62,7 @@ function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
                       className="w-1/5 flex items-center justify-center "
                     >
                       <figure
-                        onClick={() => goCatalogId(data?.id)}
+                        onClick={() => goCatalogId(data?.id, data?.name_ru)}
                         className="group cursor-pointer"
                       >
                         <div className="group-hover:border-black transition duration-300 w-[120px] h-[120px] border border-categoryModalBorderColor bg-categoryModalBgColor flex items-center justify-center rounded-xl">
