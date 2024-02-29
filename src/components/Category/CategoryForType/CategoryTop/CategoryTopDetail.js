@@ -6,10 +6,11 @@ import {
   UnderSection,
 } from "../../../../assets/icons";
 import React, { useContext, useState } from "react";
-import { Popover } from "antd";
+import { Breadcrumb, Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { MdClose } from "react-icons/md";
+import Breadcrumbs from "../../../Breadcrumbs/Breadcrumbs";
 
 
 const CategoryTopDetail = ({
@@ -18,7 +19,7 @@ const CategoryTopDetail = ({
   setOpenMobileFilter,
   setOpenMobileCategory,
   setFilterToggle,
-  
+
 }) => {
   const [searchMarketName, setSearchMarketName] = useState();
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -58,7 +59,7 @@ const CategoryTopDetail = ({
           <p
             key={data?.id}
             onClick={() => {
-              handleCategories(data?.name_ru, data?.id);
+              handleCategories(data?.name_uz, data?.id);
             }}
             className={`${filterData?.section?.id === data?.id ? "bg-bgColor" : null
               } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
@@ -85,7 +86,7 @@ const CategoryTopDetail = ({
       <div className="md:pb-16 flex flex-col  w-full justify-center items-center m-0 ">
         <section className="border-b md:min-h-[44px] py-3 border-searchBgColor w-[100%] h-full  flex items-center justify-between m-auto">
           <nav className="w-[100%] md:w-fit flex items-center px-4">
-            <ul className="h-10 w-[100%] md:w-fit flex items-center overflow-auto HorizantalScroll">
+            {/* <ul className="h-10 w-[100%] md:w-fit flex items-center overflow-auto HorizantalScroll">
               <li className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-black mr-[10px]">
                 <NavLink
                   to="/"
@@ -102,8 +103,8 @@ const CategoryTopDetail = ({
                   Разделы
                 </div>
               </li>
-            </ul>
-          </nav>
+            </ul> */}
+            <Breadcrumbs />          </nav>
           <nav className="hidden md:flex"></nav>
         </section>
       </div>

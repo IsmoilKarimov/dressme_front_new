@@ -32,7 +32,7 @@ function YandexLocationMarketOpen({
       if (item?.shop_id == dressInfo?.yandexGetMarketId) {
         console.log(item?.shop?.name);
         navigate(
-          `/shops-bylocation/${item?.shop?.name
+          `/shops_location/${item?.shop?.name
             ?.split(" ")
             ?.join("-")
             ?.toLowerCase()}`

@@ -1,5 +1,5 @@
 import React, { Suspense, Fragment, useState, useEffect } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import "../index.css";
 import Header from "../components/header/header";
 import MobileAllComments from "../components/Home/Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/MobileComments";
@@ -223,7 +223,7 @@ const RouterMain = () => {
           }
         />
         <Route
-          path="/shops-bylocation/:id"
+          path="/shops_location/:id"
           element={
             <Suspense
               fallback={
@@ -237,7 +237,7 @@ const RouterMain = () => {
           }
         />
         <Route
-          path="/shops-bylocation/:id/:product"
+          path="/shops_location/:id/:product"
           element={
             <Suspense
               fallback={
@@ -320,22 +320,23 @@ const RouterMain = () => {
             </Suspense>
           }
         />
+      <Route path="*" element={<Navigate to={"/"} />} />
       </Routes>
 
       {locationWindow !== "/add_user_private_data" &&
-      locationWindow !== "/add_user_body_data" &&
-      locationWindow !== "/confirm_password" &&
-      locationWindow !== "/set_new_password" &&
-      locationWindow !== "/categories" &&
-      locationWindow !== "/enter_password_validate" &&
-      locationWindow !== "/forget_password" &&
-      locationWindow !== "/sign_up" &&
-      locationWindow !== "/sign_in" &&
-      locationWindow !== "/src" &&
-      locationWindow !== "/allcomments" &&
-      locationWindow !== "/profile/settings" &&
-      locationWindow !== "/profile/edit" &&
-      locationWindow !== "/locations" ? (
+        locationWindow !== "/add_user_body_data" &&
+        locationWindow !== "/confirm_password" &&
+        locationWindow !== "/set_new_password" &&
+        locationWindow !== "/categories" &&
+        locationWindow !== "/enter_password_validate" &&
+        locationWindow !== "/forget_password" &&
+        locationWindow !== "/sign_up" &&
+        locationWindow !== "/sign_in" &&
+        locationWindow !== "/src" &&
+        locationWindow !== "/allcomments" &&
+        locationWindow !== "/profile/settings" &&
+        locationWindow !== "/profile/edit" &&
+        locationWindow !== "/locations" ? (
         <Suspense fallback={<>Loading...</>}>
           <Footer />
         </Suspense>

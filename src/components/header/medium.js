@@ -244,7 +244,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
     if (searchForLocation?.includes("shops/:id")) {
       setDressInfo({ ...dressInfo, mainSearchNameshop: searchMarketName });
     }
-    if (searchForLocation?.includes("shops-bylocation/:id")) {
+    if (searchForLocation?.includes("shops_location/:id")) {
       setDressInfo({
         ...dressInfo,
         mainSearchNameshopLocation: searchMarketName,
@@ -271,7 +271,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
       if (searchForLocation?.includes("shops/:id")) {
         setDressInfo({ ...dressInfo, mainSearchNameshop: searchMarketName });
       }
-      if (searchForLocation?.includes("shops-bylocation/:id")) {
+      if (searchForLocation?.includes("shops_location/:id")) {
         setDressInfo({
           ...dressInfo,
           mainSearchNameshopLocation: searchMarketName,
@@ -354,7 +354,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                       className="w-1/5 flex items-center justify-center "
                     >
                       <figure
-                        onClick={() => goCatalogId(data?.id, data?.name_ru)}
+                        onClick={() => goCatalogId(data?.id, data?.name_uz)}
                         className="group cursor-pointer"
                       >
                         <div className="group-hover:border-black transition duration-300 w-[120px] h-[120px] border border-categoryModalBorderColor bg-categoryModalBgColor flex items-center justify-center rounded-xl">

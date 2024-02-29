@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { UserRefreshTokenContext } from "../../../../ContextHook/UserRefreshToken";
 import { useNavigate } from "react-router-dom";
+import Breadcrumbs from "../../../Breadcrumbs/Breadcrumbs";
 
 export default function ShoppingStore() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -76,10 +77,16 @@ export default function ShoppingStore() {
       top: 0,
     });
   }, []);
+  const breadcrumbItems = [
+    { label: 'Home', url: '/' },
+    { label: 'Products', url: '/products' },
+    { label: 'Electronics', url: '/products/electronics' },
+    { label: 'Smartphones', url: '/products/electronics/smartphones' }
+  ];
   return (
     <main className="w-full flex flex-col items-center px-4 md:px-0">
       <section className="w-full md:border-b md:border-searchBgColor">
-        <ShoppingStoreBreadCrumb />
+        <Breadcrumbs />
       </section>
       <section className="w-full md:border-b md:border-searchBgColor">
         <ShoppingTop
