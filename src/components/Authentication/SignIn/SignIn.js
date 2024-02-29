@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { NavLink, useNavigate } from "react-router-dom";
 import { EmailIcons, SircleNext } from "../../../assets/icons";
@@ -7,7 +7,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { useMutation } from "@tanstack/react-query";
 import LoadingFor from "../../Loading/LoadingFor";
 import Cookies from "js-cookie";
+import axios from "axios";
+import { UserRefreshTokenContext } from "../../../ContextHook/UserRefreshToken";
+
 export default function SignIn() {
+  const [reFreshTokenFunc, setUserLogedIn] = useContext(
+    UserRefreshTokenContext
+  );
+
   const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
     eyesShow: true,
@@ -64,6 +71,7 @@ export default function SignIn() {
           } else if (res?.access_token) {
             setLoading(false);
             Cookies.set("DressmeUserToken", res?.access_token);
+            Cookies.set("DressmeUserRefreshToken", res?.refresh_token);
             toast.success(`Успешный вход в систему`, {
               position: "top-right",
               autoClose: 5000,
@@ -76,6 +84,7 @@ export default function SignIn() {
             });
             navigate("/profile/edit");
             setState({ ...state, email: "", password: "", errorsGroup: "" });
+            setUserLogedIn(true);
           }
         },
         onError: (err) => {
