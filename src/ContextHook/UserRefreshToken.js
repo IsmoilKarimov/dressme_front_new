@@ -49,17 +49,6 @@ export const UserRefreshTokenContextProvider = ({ children }) => {
     }
   };
 
-  // useEffect(() => {
-  //   if (userLogedIn) {
-  //     const intervalId = setInterval(() => {
-  //       reFreshTokenFunc();
-  //     }, 58 * 1000);
-  //     return () => {
-  //       clearInterval(intervalId);
-  //     };
-  //   }
-  // }, [userLogedIn]);
-
   useEffect(() => {
     if (userLogedIn) {
       const intervalId = setInterval(() => {

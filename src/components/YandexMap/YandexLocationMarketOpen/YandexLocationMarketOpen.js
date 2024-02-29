@@ -28,12 +28,17 @@ function YandexLocationMarketOpen({
 
   const navigate = useNavigate();
   const openShoppingChild = () => {
-    modalInfo?.locations?.map(item => {
+    modalInfo?.locations?.map((item) => {
       if (item?.shop_id == dressInfo?.yandexGetMarketId) {
         console.log(item?.shop?.name);
-        navigate(`/shops-bylocation/${item?.shop?.name?.split(' ')?.join('-')?.toLowerCase()}`);
+        navigate(
+          `/shops-bylocation/${item?.shop?.name
+            ?.split(" ")
+            ?.join("-")
+            ?.toLowerCase()}`
+        );
       }
-    })
+    });
     setData({ ...data, selectedLoc: "" });
   };
 
@@ -209,6 +214,20 @@ function YandexLocationMarketOpen({
                                     src={data?.img}
                                     alt="img"
                                   />
+                                  <div className="flex w-full opacity-80 absolute items-center justify-between px-5 text-sm font-AeonikProMedium left-0 right-0 bottom-3 md:bottom-6">
+                                    <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
+                                      <p className="h-full w-full text-center pt-[4px]">
+                                        {" "}
+                                        {i + 1}
+                                      </p>
+                                      <span className="text-center pt-[2px]">
+                                        /
+                                      </span>
+                                      <p className="h-full w-full text-center pt-[4px]">
+                                        {newImgList?.length}
+                                      </p>
+                                    </span>
+                                  </div>
                                 </div>
                               )}
                             </div>
