@@ -46,17 +46,17 @@ function CarouselModalMarket({ getAllImgGallery }) {
 
   return (
     <section
-      className={` rounded-lg w-full sm:w-fit h-fit  cursor-pointer flex flex-col items-center justify-center
+      className={` rounded-lg w-full sm:w-fit h-fit cursor-pointer flex flex-col items-center justify-center
                 `}
     >
       <div className="w-full h-full ">
         <Slider
           ref={sliderRef}
-          className="relative !w-full  xs:!w-[580px]  !overflow-visible  md:!w-[780px] sm:!h-[550px] md:!h-[700px]   md:rounded-lg sm:px-[50px]"
+          className="relative !w-full xs:!w-[580px] !overflow-visible md:!w-[780px] sm:!h-[550px] md:!h-[700px] md:rounded-lg sm:px-[50px]"
           {...settingsModal}
         >
           {getAllImgGallery?.newImgList?.length &&
-            getAllImgGallery?.newImgList?.map((data) => {
+            getAllImgGallery?.newImgList?.map((data, index) => {
               return (
                 <React.Fragment key={data?.id}>
                   {data?.img && (
@@ -66,9 +66,15 @@ function CarouselModalMarket({ getAllImgGallery }) {
                         src={data?.img}
                         alt=""
                       />
-                      <figcaption className="flex w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
+                      <figcaption
+                        className={`${
+                          getAllImgGallery?.newImgList?.length > 1
+                            ? "flex"
+                            : "hidden"
+                        } w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 `}
+                      >
                         <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
-                          <p> {data.id}</p>/
+                          <p> {index + 1}</p>/
                           <p>{getAllImgGallery?.newImgList?.length}</p>
                         </span>
                       </figcaption>
