@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import {
   FreeStar,
@@ -11,18 +11,22 @@ import Cookies from "js-cookie";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { UserRefreshTokenContext } from "../../../../../../../ContextHook/UserRefreshToken";
 
 const MobileAllComments = () => {
   const [addComment, setAddComment] = useState(false);
   const toggleAddComment = useCallback(() => setAddComment(false), []);
   const [data, setData] = useState();
 
+  const [reFreshTokenFunc, setUserLogedIn] = useContext(
+    UserRefreshTokenContext
+  );
+
   const url = "https://api.dressme.uz";
 
-  const params= useParams();
+  const params = useParams();
   const newId = params?.id?.replace(":", "");
   console.log(newId);
-
 
   const { refetch } = useQuery(
     ["get_mobile_comment"],
@@ -73,6 +77,10 @@ const MobileAllComments = () => {
       {
         onSuccess: (res) => {
           console.log(res, "RES");
+          if (res.status === 401 || res.status === 403) {
+            reFreshTokenFunc();
+            sendFunc();
+          }
           refetch();
           if (!res?.errors) {
             toast.success(res?.message);

@@ -40,6 +40,9 @@ export const StoreListDataContextProvider = ({ children }) => {
     },
     {
       onSuccess: (res) => {
+        if (res.status === 401 || res.status === 403) {
+          reFreshTokenFunc();
+        }
         setData(res);
       },
       onError: (err) => {

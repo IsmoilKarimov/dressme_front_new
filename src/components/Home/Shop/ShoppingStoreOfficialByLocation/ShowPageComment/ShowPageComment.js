@@ -1,18 +1,26 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { GoBackIcon, ReviewIcon, StarIcons } from "../../../../../assets/icons";
 import { Modal, Rate } from "antd";
 import CommentDropUp from "../../../Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/CommentDropUp";
 import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { ToastContainer, toast } from "react-toastify";
+import { UserRefreshTokenContext } from "../../../../../ContextHook/UserRefreshToken";
 
-function ShowPageComment({
-  filteredData,
-  setOpenTabComment,
-}) {
+function ShowPageComment({ filteredData, setOpenTabComment }) {
   const [addComment, setAddComment] = useState(false);
   const toggleAddComment = useCallback(() => setAddComment(false), []);
   const [openComment, setOpenComment] = useState(false);
+
+  const [reFreshTokenFunc, setUserLogedIn] = useContext(
+    UserRefreshTokenContext
+  );
 
   // For DropUp
   useEffect(() => {
@@ -28,7 +36,7 @@ function ShowPageComment({
   const textRef = useRef();
   const rateRef = useRef();
 
-  console.log(filteredData?.shop?.id, 'storedata');
+  console.log(filteredData?.shop?.id, "storedata");
 
   const commentMutate = useMutation(() => {
     return fetch(`${url}/user-main/ratings/store-rating`, {
@@ -55,6 +63,10 @@ function ShowPageComment({
         onSuccess: (res) => {
           // console.log(res, "RES");
           // refetch();
+          if (res.status === 401 || res.status === 403) {
+            reFreshTokenFunc();
+            sendFunc();
+          }
           if (!res?.errors) {
             toast.success(res?.message);
           }
@@ -274,4 +286,4 @@ function ShowPageComment({
   );
 }
 
-export default React.memo(ShowPageComment)
+export default React.memo(ShowPageComment);

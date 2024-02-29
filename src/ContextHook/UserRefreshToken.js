@@ -26,6 +26,7 @@ export const UserRefreshTokenContextProvider = ({ children }) => {
           Cookies.remove("DressmeUserRefreshToken");
           navigate("/sign_in");
           console.log("Logged out");
+          window.location.reload();
         }
       } catch (error) {
         if (
@@ -36,11 +37,13 @@ export const UserRefreshTokenContextProvider = ({ children }) => {
           Cookies.remove("DressmeUserRefreshToken");
           navigate("/sign_in");
           console.log("Logged out");
+          window.location.reload();
         } else {
           Cookies.remove("DressmeUserToken");
           Cookies.remove("DressmeUserRefreshToken");
           navigate("/sign_in");
           console.log("Logged out");
+          window.location.reload();
         }
       }
     }

@@ -46,6 +46,10 @@ export default function EditPassword({ onClick }) {
       {
         onSuccess: (res) => {
           console.log(res, "RES");
+          if (res.status === 401 || res.status === 403) {
+            reFreshTokenFunc();
+            SendNewPassword();
+          }
           if (res?.message && !res.errors) {
             setState({ ...state, errorsGroup: res });
             toast.success(`${res?.message}`, {
