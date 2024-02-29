@@ -35,14 +35,10 @@ import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationM
 import CarouselModalMarket from "./YandexLocationMarketOpen/CarouselModalMarket";
 import MarketFilterofMaps from "./YandexLocationMarketOpen/MarketFilterofMaps";
 import Cookies from "js-cookie";
-import { useHttp } from "../../hook/useHttp";
-import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 
 function YandexMapsDressMe() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [data, setData] = useContext(HomeMainDataContext);
 
-  const { request } = useHttp();
   const url = "https://api.dressme.uz/api/main";
 
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
@@ -208,7 +204,7 @@ function YandexMapsDressMe() {
       ></div>
 
       <div
-        className={`w-full   sm:w-fit h-fit flex items-center mx-auto justify-center fixed z-[217]   ${
+        className={`w-full sm:w-fit h-fit flex items-center mx-auto justify-center fixed z-[217]   ${
           openCarouselModal ? "" : "hidden"
         }`}
       >
@@ -220,7 +216,7 @@ function YandexMapsDressMe() {
         >
           <MenuCloseIcons colors="#fff" />
         </button>
-        <div className="relative  z-[218] !w-full sm:w-fit top-0 rounded-lg overflow-hidden">
+        <div className="relative z-[218] !w-full sm:w-fit top-0 rounded-lg overflow-hidden">
           <CarouselModalMarket getAllImgGallery={getAllImgGallery} />
         </div>
       </div>
@@ -232,7 +228,7 @@ function YandexMapsDressMe() {
         {/* Laptop device for */}
         {screenSize.width > 768 && (
           <div
-            className={`w-full bottom-[0px]   overflow-hidden  md:w-[769px] fixed md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
+            className={`w-full bottom-[0px] overflow-hidden md:w-[769px] fixed md:left-1/2 md:right-1/2 md:translate-x-[-50%] md:translate-y-[-50%]
           ${
             dressInfo?.yandexOpenMarketLocation
               ? `z-[102] h-[350px]  bottom-[-75px]`
@@ -248,6 +244,7 @@ function YandexMapsDressMe() {
             />
           </div>
         )}
+
         {screenSize.width <= 768 && (
           <div
             className={`fixed w-full bg-white rounded-t-[12px] z-[116] left-0 right-0 overflow-hidden  ${

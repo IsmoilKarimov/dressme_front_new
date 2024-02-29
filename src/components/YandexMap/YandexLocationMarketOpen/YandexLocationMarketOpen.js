@@ -157,7 +157,7 @@ function YandexLocationMarketOpen({
                       <span className="font-AeonikProMedium">
                         <StarIcons />
                       </span>
-                      <span className="not-italic font-AeonikProMedium  text-base leading-4 text-black">
+                      <span className="not-italic font-AeonikProMedium text-[16px] ml-[2px] text-black">
                         {data?.shop?.overall_rating}
                       </span>
                     </div>
@@ -175,7 +175,7 @@ function YandexLocationMarketOpen({
                   <MenuCloseIcons colors={"#000"} />
                 </button>
               </div>
-              {/* Second BOlum */}
+              {/* Second Section */}
               <div className="flex flex-col md:flex-row justify-center md:justify-between md:gap-y-0 gap-y-4">
                 {/* Carosuel */}
                 <div className="w-full cursor-pointer h-[220px] md:w-[48%] md:h-[250px] mx-auto overflow-hidden  rounded-xl">
@@ -214,7 +214,9 @@ function YandexLocationMarketOpen({
                                     src={data?.img}
                                     alt="img"
                                   />
-                                  <div className="flex w-full opacity-80 absolute items-center justify-between px-5 text-sm font-AeonikProMedium left-0 right-0 bottom-3 md:bottom-6">
+                                  <div
+                                    className={`${newImgList?.length > 1 ? 'flex' : 'hidden'} w-full opacity-80 absolute items-center justify-between px-5 text-sm font-AeonikProMedium left-0 right-0 bottom-3 md:bottom-6`}
+                                  >
                                     <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
                                       <p className="h-full w-full text-center pt-[4px]">
                                         {" "}
@@ -259,7 +261,13 @@ function YandexLocationMarketOpen({
                                     alt="img"
                                   />
                                   <div className="flex w-full opacity-80 absolute items-center justify-between px-5 text-sm font-AeonikProMedium left-0 right-0 bottom-3 md:bottom-6">
-                                    <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
+                                    <span
+                                      className={`${
+                                        newImgList?.length > 1
+                                          ? "flex"
+                                          : "hidden"
+                                      } bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 items-center justify-center text-center`}
+                                    >
                                       <p className="h-full w-full text-center pt-[4px]">
                                         {" "}
                                         {i + 1}
@@ -345,15 +353,6 @@ function YandexLocationMarketOpen({
                     </div>
                   </div>
                   <div className="w-full gap-x-2 flex items-center ">
-                    {/* <button
-              onClick={clickCordinate}
-              className={` w-full h-[48px]  bg-white border border-fullBlue active:scale-95  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
-            >
-              <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center   text-fullBlue ">
-                Открыть на карте
-              </span>
-
-            </button> */}
                     <button
                       onClick={() => {
                         openShoppingChild();
