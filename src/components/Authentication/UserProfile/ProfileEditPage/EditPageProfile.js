@@ -24,8 +24,13 @@ import { BiChevronUp } from "react-icons/bi";
 import LoadingNetwork from "../../../Loading/LoadingNetwork";
 import { ProfileDataContext } from "../../../../ContextHook/ProfileContext";
 import axios from "axios";
+import { UserRefreshTokenContext } from "../../../../ContextHook/UserRefreshToken";
 
 const EditProfilePage = () => {
+  const [reFreshTokenFunc, setUserLogedIn] = useContext(
+    UserRefreshTokenContext
+  );
+
   const { request } = useHttp();
   const [profileData, setProfileData] = useState("");
   const [openEditPasswordModal, setOpenEditPasswordModal] = useState(false);
@@ -85,8 +90,6 @@ const EditProfilePage = () => {
 
   const url = "https://api.dressme.uz/api/user";
 
-  let token = Cookies.get("DressmeUserToken");
-
   // ----------------GET USER PROFILE-------------
 
   useEffect(() => {
@@ -94,7 +97,7 @@ const EditProfilePage = () => {
       setLoading(true);
       axios(`${url}/profile`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
         },
       })
         .then((res) => {
@@ -104,8 +107,9 @@ const EditProfilePage = () => {
         .catch((err) => {
           setLoading(false);
           console.log(err);
-          if (err?.response?.status === 401) {
-            navigate("/sign_in");
+          if (err?.response?.status === 401 || err?.response?.status === 403) {
+            reFreshTokenFunc();
+            // navigate("/sign_in");
             // toast.error(`${err?.response?.data?.message}`, {
             //   position: "top-right",
             //   autoClose: 5000,
@@ -116,6 +120,10 @@ const EditProfilePage = () => {
             //   progress: undefined,
             //   theme: "light",
             // });
+          } else {
+            Cookies.remove("DressmeUserToken");
+            Cookies.remove("DressmeUserRefreshToken");
+            navigate("/sign_in");
           }
         });
     }
@@ -150,7 +158,7 @@ const EditProfilePage = () => {
     setLoading(true);
     axios(`${url}/profile`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
       },
     })
       .then((res) => {
@@ -160,8 +168,9 @@ const EditProfilePage = () => {
       .catch((err) => {
         setLoading(false);
         console.log(err);
-        if (err?.response?.status === 401) {
-          navigate("/sign_in");
+        if (err?.response?.status === 401 || err?.response?.status === 403) {
+          reFreshTokenFunc();
+          // navigate("/sign_in");
           // toast.error(`${err?.response?.data?.message}`, {
           //   position: "top-right",
           //   autoClose: 5000,
@@ -172,6 +181,10 @@ const EditProfilePage = () => {
           //   progress: undefined,
           //   theme: "light",
           // });
+        } else {
+          Cookies.remove("DressmeUserToken");
+          Cookies.remove("DressmeUserRefreshToken");
+          navigate("/sign_in");
         }
       });
   };
@@ -270,17 +283,10 @@ const EditProfilePage = () => {
         } else if (res?.message) {
           if (res?.message === "Unauthenticated.") {
             setProfileContextData(false);
+            Cookies.remove("DressmeUserToken");
+            Cookies.remove("DressmeUserRefreshToken");
             navigate("/sign_in");
-            // toast.error(`${res?.message}`, {
-            //   position: "top-right",
-            //   autoClose: 5000,
-            //   hideProgressBar: false,
-            //   closeOnClick: true,
-            //   pauseOnHover: true,
-            //   draggable: true,
-            //   progress: undefined,
-            //   theme: "light",
-            // });
+
             console.log(res, "Bu-error edit posttttt");
           } else {
             reFetchFunction();
@@ -300,7 +306,17 @@ const EditProfilePage = () => {
           setLoading(false);
         }
       })
-      .catch((err) => console.log(err, "errImage"));
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+        if (err?.status === 401 || err?.status === 403) {
+          reFreshTokenFunc();
+        } else {
+          Cookies.remove("DressmeUserToken");
+          Cookies.remove("DressmeUserRefreshToken");
+          navigate("/sign_in");
+        }
+      });
   };
 
   // =========== POST EDIT USER EMAIL ==========
@@ -315,7 +331,19 @@ const EditProfilePage = () => {
       body: JSON.stringify({
         email: state?.userEmail,
       }),
-    }).then((res) => res.json());
+    })
+      .then((res) => res.json())
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+        if (err?.response?.status === 401 || err?.response?.status === 403) {
+          reFreshTokenFunc();
+        } else {
+          Cookies.remove("DressmeUserToken");
+          Cookies.remove("DressmeUserRefreshToken");
+          navigate("/sign_in");
+        }
+      });
   });
 
   const sendEditedEmailData = () => {
@@ -373,6 +401,8 @@ const EditProfilePage = () => {
   const location = useLocation();
   const LogOut = () => {
     Cookies.remove("DressmeUserToken");
+    Cookies.remove("DressmeUserRefreshToken");
+    setUserLogedIn(false);
     if (location?.pathname?.includes("profile/edit")) {
       navigate("/sign_in");
     } else if (location?.pathname?.includes("my-order")) {

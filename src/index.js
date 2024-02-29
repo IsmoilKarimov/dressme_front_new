@@ -11,6 +11,7 @@ import { ProfileDataContextProvider } from "./ContextHook/ProfileContext";
 import { MainPageAudioContextProvider } from "./ContextHook/MainPageAudio";
 import { HomeFilterContextProvider } from "./ContextHook/HomeFilterContext";
 import { MobileSelectedDataContextProvider } from "./ContextHook/mobileSelectedData";
+import { UserRefreshTokenContextProvider } from "./ContextHook/UserRefreshToken";
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -20,17 +21,19 @@ root.render(
     <MainPageAudioContextProvider>
       <DressMenu>
         <BrowserRouter>
-          <HomeMainDataContextProvider>
-            <SliderPhotosColorContextProvider>
-              <ProfileDataContextProvider>
-                <HomeFilterContextProvider>
-                  <MobileSelectedDataContextProvider>
-                    <App />
-                  </MobileSelectedDataContextProvider>
-                </HomeFilterContextProvider>
-              </ProfileDataContextProvider>
-            </SliderPhotosColorContextProvider>
-          </HomeMainDataContextProvider>
+          <UserRefreshTokenContextProvider>
+            <HomeMainDataContextProvider>
+              <SliderPhotosColorContextProvider>
+                <ProfileDataContextProvider>
+                  <HomeFilterContextProvider>
+                    <MobileSelectedDataContextProvider>
+                      <App />
+                    </MobileSelectedDataContextProvider>
+                  </HomeFilterContextProvider>
+                </ProfileDataContextProvider>
+              </SliderPhotosColorContextProvider>
+            </HomeMainDataContextProvider>
+          </UserRefreshTokenContextProvider>
         </BrowserRouter>
       </DressMenu>
     </MainPageAudioContextProvider>

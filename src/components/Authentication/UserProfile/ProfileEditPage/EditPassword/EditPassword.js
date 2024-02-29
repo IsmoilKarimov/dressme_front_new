@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { MenuCloseIcons } from "../../../../../assets/icons";
 import { useMutation } from "@tanstack/react-query";
 import { ToastContainer, toast } from "react-toastify";
 import Cookies from "js-cookie";
+import { UserRefreshTokenContext } from "../../../../../ContextHook/UserRefreshToken";
 
 export default function EditPassword({ onClick }) {
+  const [reFreshTokenFunc, setUserLogedIn] = useContext(
+    UserRefreshTokenContext
+  );
+
   const [state, setState] = useState({
     oldPassword: "",
     newPassword: "",
