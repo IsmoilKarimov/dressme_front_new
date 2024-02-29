@@ -59,14 +59,14 @@ export default function ShoppingStore() {
   useEffect(() => {
     fetchGetAllData({
       gender: getGenderID,
-      keywords: getSearchInput,
+      keywords: dressInfo?.mainSearchNameshopMarket,
       region: dressInfo?.mainRegionId,
       sub_region: dressInfo?.mainSubRegionId,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     getGenderID,
-    getSearchInput,
+    dressInfo?.mainSearchNameshopMarket,
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
   ]);

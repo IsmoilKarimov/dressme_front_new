@@ -63,21 +63,19 @@ export default function CollectionCards() {
     });
   };
   const navigate = useNavigate()
-  function onHandleCardId(child) {
-    navigate(`/product/${child}`);
+  function onHandleCardId(child, name) {
+    navigate(`/product/${name?.split(' ')?.join('-')?.toLowerCase()}`);
   }
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <div
         onClick={() => setOpenWearType(false)}
-        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-          openWearType ? "" : "hidden"
-        }`}
+        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openWearType ? "" : "hidden"
+          }`}
       ></div>
       <section
-        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
-          openWearType ? "bottom-0" : "bottom-[-800px] z-0"
-        }`}
+        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openWearType ? "bottom-0" : "bottom-[-800px] z-0"
+          }`}
       >
         <WearType onClick={toggle} />
       </section>
@@ -135,11 +133,10 @@ export default function CollectionCards() {
 
         <div className="w-full flex flex-col box-border ">
           <article
-            className={`flex flex-wrap justify-between md:justify-start ${
-              data?.products?.length > 2
+            className={`flex flex-wrap justify-between md:justify-start ${data?.products?.length > 2
                 ? "mb-[20px] md:mb-[30px]"
                 : "mb-[80px]"
-            } md:mx-0 md:mt-[50px] md:mb-0 gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 `}
+              } md:mx-0 md:mt-[50px] md:mb-0 gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 `}
           >
             {data?.products?.length ? (
               data?.products?.map((data) => {

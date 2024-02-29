@@ -17,7 +17,7 @@ const ProductCarousel = ({ show, data }) => {
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [dressInfo] = useContext(dressMainData);
   const [nav2] = useState();
-
+console.log(show, data ,'show, data ');
   const slider = useRef(null);
 
   const [selectedColor, setSelectedColor] = useState(data?.product?.colors[0]);

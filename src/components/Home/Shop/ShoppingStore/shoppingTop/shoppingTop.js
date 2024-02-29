@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SearchIcons } from "../../../../../assets/icons";
 import GenderButtonsStyle from "../GenderButtonsStyle/GenderButtonsStyle";
 import { MdClose } from "react-icons/md";
+import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 const ShoppingTop = ({
   getAllShops,
   setGetAllShops,
@@ -11,6 +12,8 @@ const ShoppingTop = ({
   const [keywords, setKeywords] = useState();
   const [, setSearchInputData] = useState();
   const [changeInputIcon, setChangeInputIcon] = useState(true);
+  const [searchMarketName, setSearchMarketName] = useState(null);
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   function handleGetId(childData) {
     // setGenderId(childData?.genderFilterId);
@@ -31,7 +34,24 @@ const ShoppingTop = ({
     setSearchInputData("");
     setKeywords("");
   };
-
+  const handleChange = (event) => {
+    setSearchMarketName(event.target.value);
+  };
+  const _handleKeyDownSearch = (event) => {
+    if (event.key === "Enter") {
+      setDressInfo({ ...dressInfo, mainSearchNameshopMarket: searchMarketName });
+    }
+  };
+  const handleClear = () => {
+    setSearchMarketName("");
+    setDressInfo({
+      ...dressInfo,
+      mainSearchName: null,
+      mainSearchNameCategory: null,
+      mainSearchNameCatalog: null,
+      mainSearchNameshop: null,
+    });
+  };
   return (
     <main className="flex flex-col min-h-[44px] justify-center items-center mb-5 md:my-4">
       <section className="md:max-w-[1280px] w-[100%] flex flex-col md:flex-row items-center justify-between m-auto">
@@ -47,16 +67,15 @@ const ShoppingTop = ({
               <input
                 type="text"
                 name="keywords"
-                value={keywords}
-                onChange={(e) => {
-                  setKeywords(e.target.value);
-                }}
+                value={searchMarketName}
+                onChange={handleChange}
+                onKeyDown={_handleKeyDownSearch}
                 className="w-full h-full px-3 text-sm md:text-base  bg-white"
                 placeholder="Искать магазины"
               />
-              {keywords && (
+              {searchMarketName && (
                 <button
-                  onClick={removeSearchInputData}
+                  onClick={handleClear}
                   className=" mr-1"
                   type="button"
                 >

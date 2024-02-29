@@ -235,13 +235,15 @@ const MediumHeader = ({ stateData, setStateData }) => {
       mainSearchNameshop: null,
     });
   };
-
   function getSearchClick() {
     setPage(1);
-    if (searchForLocation?.includes("shopping_store")) {
+    if (searchForLocation?.includes("shops")) {
+      setDressInfo({ ...dressInfo, mainSearchNameshopMarket: searchMarketName });
+    }
+    if (searchForLocation?.includes("shops/:id")) {
       setDressInfo({ ...dressInfo, mainSearchNameshop: searchMarketName });
     }
-    if (searchForLocation?.includes("shopping-store-location")) {
+    if (searchForLocation?.includes("shops-bylocation/:id")) {
       setDressInfo({
         ...dressInfo,
         mainSearchNameshopLocation: searchMarketName,
@@ -253,16 +255,22 @@ const MediumHeader = ({ stateData, setStateData }) => {
     if (searchForLocation?.includes("categories")) {
       setDressInfo({ ...dressInfo, mainSearchNameCatalog: searchMarketName });
     }
-    if (searchForLocation?.length <= 2) {
-      setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
+    if (!searchForLocation?.some(item => item?.length > 0)) {
+      if (searchForLocation?.length <= 2) {
+        setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
+      }
     }
   }
+  // console.log(searchForLocation?.length);
   const _handleKeyDownSearch = (event) => {
     if (event.key === "Enter") {
-      if (searchForLocation?.includes("shopping_store")) {
+      if (searchForLocation?.includes("shops")) {
+        setDressInfo({ ...dressInfo, mainSearchNameshopMarket: searchMarketName });
+      }
+      if (searchForLocation?.includes("shops/:id")) {
         setDressInfo({ ...dressInfo, mainSearchNameshop: searchMarketName });
       }
-      if (searchForLocation?.includes("shopping-store-location")) {
+      if (searchForLocation?.includes("shops-bylocation/:id")) {
         setDressInfo({
           ...dressInfo,
           mainSearchNameshopLocation: searchMarketName,
@@ -277,8 +285,10 @@ const MediumHeader = ({ stateData, setStateData }) => {
       if (searchForLocation?.includes("categories")) {
         setDressInfo({ ...dressInfo, mainSearchNameCatalog: searchMarketName });
       }
-      if (searchForLocation?.length <= 2) {
-        setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
+      if (!searchForLocation?.some(item => item?.length > 0)) {
+        if (searchForLocation?.length <= 2) {
+          setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
+        }
       }
     }
   };
@@ -287,7 +297,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
     if (id !== 5) {
       navigate(`/categories/${name?.split(' ')?.join('-')?.toLowerCase()}`);
     }
-    if (id === 5){
+    if (id === 5) {
       navigate(`/categories/${name?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
     }
   };
