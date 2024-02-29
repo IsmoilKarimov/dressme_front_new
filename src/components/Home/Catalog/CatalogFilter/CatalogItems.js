@@ -513,7 +513,7 @@ export default function CatalogItems() {
                   } w-full h-full px-[10px] md:px-0`}
               >
 
-                <CatalogCard filterData={filterData} setPageId={setPageId} />
+                <CatalogCard paramsId={newId} filterData={filterData} setPageId={setPageId} />
               </article>
             </section>
           </article>
