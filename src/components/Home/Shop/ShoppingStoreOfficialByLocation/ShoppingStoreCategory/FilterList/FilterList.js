@@ -394,6 +394,7 @@ function FilterList({
     useEffect(() => {
         if (dressInfo?.locationIdParams) {
             ClearAll()
+            setGetFilter()
         }
     }, [dressInfo?.locationIdParams])
     return (
