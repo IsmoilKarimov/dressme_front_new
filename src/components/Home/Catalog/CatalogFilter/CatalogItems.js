@@ -502,7 +502,7 @@ export default function CatalogItems() {
                       <p
                         key={data?.id}
                         onClick={() => {
-                          handleCategories(data?.id);
+                          handleCategories(data?.id,data?.name_uz);
                           setOpenMobileCategory(false);
                         }}
                         className={`${Number(paramId?.id) === data?.id ? "bg-bgColor" : null

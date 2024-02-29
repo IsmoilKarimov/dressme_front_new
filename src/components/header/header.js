@@ -117,6 +117,7 @@ const Header = () => {
         console.log(err, "ERRORLIST");
       });
   };
+  console.log(data?.getMainProductCard);
   // console.log(state, "childData,---statein header");
   useEffect(() => {
     fetchGetAllData();

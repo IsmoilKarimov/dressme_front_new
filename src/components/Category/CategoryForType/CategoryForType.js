@@ -210,7 +210,7 @@ function CategoryForType() {
 
   const handleCategories = (value, id) => {
     setOpenMobileCategory(false);
-    navigate(`/section/${value?.toLowerCase()}`);
+    navigate(`/section/${value?.split(' ')?.join('-')?.toLowerCase()}`);
   };
   useEffect(() => {
     if (openMobileFilter || openMobileCategory) {
@@ -283,7 +283,7 @@ function CategoryForType() {
                     <p
                       key={data?.id}
                       onClick={() => {
-                        handleCategories(data?.name_ru, data?.id);
+                        handleCategories(data?.name_uz, data?.id);
                       }}
                       className={`${filterData?.section?.id === data?.id
                         ? "bg-bgColor"
