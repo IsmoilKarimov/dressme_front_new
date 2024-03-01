@@ -249,7 +249,8 @@ const ShoppingStoreOfficialByLocation = () => {
     getOutWearList,
     getFootWearList,
     getRating,
-    getRange?.length,
+    getRange?.min,
+    getRange?.max,
     // dressInfo?.locationIdParams,
     dressInfo?.mainSearchNameCatalog
   ]);

@@ -261,7 +261,8 @@ const ShoppingStoreOfficial = () => {
     getOutWearList,
     getFootWearList,
     getRating,
-    getRange?.length,
+    getRange?.min,
+    getRange?.max,
     data?.getMainProductCard,
     dressInfo?.mainSearchNameshop,
   ]);
