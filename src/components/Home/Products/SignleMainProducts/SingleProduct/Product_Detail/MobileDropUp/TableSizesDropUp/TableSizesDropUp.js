@@ -34,91 +34,41 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
                 </div>
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
-                <div className="w-[250%] flex items-center justify-center">
+                <div className="w-[180%] flex items-center justify-center px-[4px]">
                   {data?.product?.sizes?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
                         <ul
                           key={data?.id}
-                          className="w-full flex items-center flex-col text-[13px] font-AeonikProRegular "
+                          className="w-full flex items-center justify-center flex-col text-[13px] font-AeonikProRegular "
                         >
                           {/* Sizes */}
-                          <li className="w-full h-10 flex items-center justify-between">
-                            {/* {tableSizes.sizes.map((data) => (
-                                <div
-                                  key={data?.id}
-                                  className="w-full flex items-center justify-center"
-                                >
-                                  <div className="flex items-center justify-center flex-shrink-0">
-                                    {data.numbers}
-                                  </div>
-                                </div>
-                              ))} */}
+                          <li className="w-full h-10 flex items-center justify-center">
                             {data?.min_wear_size}{" "}
                             {data?.max_wear_size
                               ? "- " + data?.max_wear_size
                               : null}
                           </li>
                           {/* Letter Sizes */}
-                          <li className="w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] flex items-center justify-between">
-                            {/* {tableSizes.letter_sizes.map((data) => (
-                              <div
-                                key={data?.id}
-                                className="w-full flex items-center justify-center ml-[-4px]"
-                              >
-                                <div className=" flex-shrink-0">
-                                  {data.numbers}
-                                </div>
-                              </div>
-                            ))} */}
+                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] flex items-center justify-center">
                             <li>{data?.letter_size}</li>
                           </li>
                           {/* Chest Sizes */}
-                          <li className="w-[99%] h-10 flex items-center justify-between">
-                            {/* {tableSizes.chest_sizes.map((data) => (
-                              <div
-                                key={data.id}
-                                className="w-full flex items-center justify-center"
-                              >
-                                <div className="flex-shrink-0">
-                                  {data.numbers}
-                                </div>
-                              </div>
-                            ))} */}
+                          <li className="w-full h-10 flex items-center justify-center">
                             {data?.min_chest_girth}{" "}
                             {data?.max_chest_girth
                               ? "- " + data?.max_chest_girth
                               : null}
                           </li>
                           {/* Waist Sizes */}
-                          <li className="w-[99%] bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] flex items-center justify-between">
-                            {/* {tableSizes.waist_sizes.map((data) => (
-                              <div
-                                key={data.id}
-                                className="w-full flex items-center justify-center ml-[-4px]"
-                              >
-                                <div className="flex-shrink-0">
-                                  {data.numbers}
-                                </div>
-                              </div>
-                            ))} */}
+                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] flex items-center justify-center">
                             {data?.min_waist_girth}{" "}
                             {data?.max_waist_girth
                               ? "- " + data?.max_waist_girth
                               : null}
                           </li>
                           {/* Hip Sizes */}
-                          <li className="w-[99%] h-10 flex items-center justify-between">
-                            {/* {tableSizes.hip_sizes.map((data) => (
-                              <div
-                                key={data.id}
-                                className="w-full flex items-center justify-center"
-                              >
-                                <div className="flex-shrink-0">
-                                  {data.numbers}
-                                </div>
-                              </div>
-                            ))} */}
+                          <li className="w-full h-10 flex items-center justify-center">
                             {data?.min_hip_girth}{" "}
                             {data?.max_hip_girth
                               ? "- " + data?.max_hip_girth
@@ -153,40 +103,39 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
                 </div>
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
-                <div className="w-full overflow-x-scroll flex items-center justify-center">
+                <div className="w-[180%] overflow-x-scroll flex items-center justify-center">
                   {data?.product?.sizes?.map((data) => {
-                    // console.log(data, "data-table");
-                    if (data?.shop_location_id === selectedLocation?.id) {
+                    if (data?.shop_location_id == selectedLocation?.id) {
                       return (
                         <ul
                           key={data?.id}
-                          className="w-full  flex items-center flex-col text-[13px] font-AeonikProRegular "
+                          className="w-full flex items-center justify-center flex-col text-[13px] font-AeonikProRegular "
                         >
                           {/* Sizes */}
-                          <li className="w-full h-10 flex items-center justify-between px-3">
+                          <li className="w-full h-10 flex items-center justify-center px-3">
                             {data?.min_wear_size}{" "}
                             {data?.max_wear_size
                               ? "- " + data?.max_wear_size
                               : null}
                           </li>
                           {/* Letter Sizes */}
-                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 flex items-center justify-between px-3">
+                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 flex items-center justify-center px-3">
                             {data?.letter_size}
                           </li>
                           {/* Chest Sizes */}
-                          <li className="w-full h-10 flex items-center justify-between px-3">
+                          <li className="w-full h-10 flex items-center justify-center px-3">
                             {data?.min_height}{" "}
                             {data?.max_height ? "- " + data?.max_height : null}
                           </li>
                           {/* Waist Sizes */}
-                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 flex items-center justify-between px-3">
+                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 flex items-center justify-center px-3">
                             {data?.min_waist_girth}{" "}
                             {data?.max_waist_girth
                               ? "- " + data?.max_waist_girth
                               : null}
                           </li>
                           {/* Hip Sizes */}
-                          <li className="w-full h-10 flex items-center justify-between px-3">
+                          <li className="w-full h-10 flex items-center justify-center px-3">
                             {data?.min_hip_girth}{" "}
                             {data?.max_hip_girth
                               ? "- " + data?.max_hip_girth
@@ -212,7 +161,7 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
                 </li>
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
-                <div className="w-full overflow-x-scroll flex items-center justify-center">
+                <div className="w-[180%] overflow-x-scroll flex items-center justify-center">
                   {data?.product?.sizes?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
@@ -220,10 +169,10 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
                           key={data?.id}
                           className="w-full flex items-center flex-col text-[13px] font-AeonikProRegular "
                         >
-                          <li className="w-full h-10 flex items-center justify-between px-3">
+                          <li className="w-full h-10 flex items-center justify-center px-3">
                             {data?.wear_size}
                           </li>
-                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 flex items-center justify-between px-3">
+                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 flex items-center justify-center px-3">
                             {" "}
                             {data?.min_foot_length}{" "}
                             {data?.max_foot_length
@@ -256,7 +205,7 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
                 </li>
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
-                <div className="w-full overflow-x-scroll flex items-center justify-center">
+                <div className="w-[180%] overflow-x-scroll flex items-center justify-center">
                   {data?.product?.sizes?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
@@ -264,16 +213,16 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
                           key={data?.id}
                           className="w-full  flex items-center flex-col text-[13px] font-AeonikProRegular "
                         >
-                          <li className="w-full h-10 flex items-center justify-between px-3">
+                          <li className="w-full h-10 flex items-center justify-center px-3">
                             {data?.wear_size}
                           </li>
-                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 px-3 flex items-center justify-between">
+                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 px-3 flex items-center justify-center">
                             {data?.letter_size}
                           </li>
-                          <li className="w-full h-10 flex items-center justify-between px-3">
+                          <li className="w-full h-10 flex items-center justify-center px-3">
                             {data?.length}
                           </li>
-                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 px-3 flex items-center justify-between">
+                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 px-3 flex items-center justify-center">
                             {data?.width}
                           </li>
                         </ul>

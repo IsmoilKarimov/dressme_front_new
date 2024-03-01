@@ -13,11 +13,12 @@ import axios from "axios";
 
 const SingleProduct = ({ breadShops }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [data, mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
+  const [data, mainData, , wishList, setWishlist] =
+    useContext(HomeMainDataContext);
   const [openWearType, setOpenWearType] = useState(false);
   const [newFilterParamasId, setNewFilterParamasId] = useState();
 
-  console.log(breadShops, 'breadShops');
+  console.log(breadShops, "breadShops");
   let LikeProduct = [];
   let LastSeenProduct = [];
   dressInfo.ProductList.forEach((data) => {
@@ -67,39 +68,19 @@ const SingleProduct = ({ breadShops }) => {
   const url = "https://api.dressme.uz";
 
   const paramsId = useParams();
-  // const newId = paramsId?.id?.replace(":", "");
-  // console.log(paramsId?.product, "paramsId");
   const [singleData, setSingleData] = useState();
 
   useEffect(() => {
-    data?.products?.map(item => {
-      if (paramsId?.product?.includes(item?.name_ru?.split(' ')?.join('-')?.toLowerCase())) {
-        setNewFilterParamasId(item?.id)
+    data?.products?.map((item) => {
+      if (
+        paramsId?.product?.includes(
+          item?.name_ru?.split(" ")?.join("-")?.toLowerCase()
+        )
+      ) {
+        setNewFilterParamasId(item?.id);
       }
-    })
-
-  }, [paramsId?.product])
-  // const { refetch, isLoading, data } = useQuery(
-  //   ["get_main_detail_data"],
-  //   () => {
-  //     return fetch(`${url}/api/main/products/${newId}`, {
-  //       method: "GET",
-  //       headers: {
-  //         Accept: "application/json",
-  //       },
-  //     }).then((res) => res.json());
-  //   },
-  //   {
-  //     onSuccess: (res) => {
-  //       setSingleData(res);
-  //     },
-  //     onError: (err) => {
-  //       console.log(err, "err");
-  //     },
-  //     keepPreviousData: false,
-  //     refetchOnWindowFocus: false,
-  //   }
-  // );
+    });
+  }, [paramsId?.product]);
 
   const [loading, setLoading] = useState(true);
 
@@ -173,7 +154,7 @@ const SingleProduct = ({ breadShops }) => {
     )
     ?.slice(0, 6);
 
-  // console.log(singleData, "data");
+  console.log(singleData, "singledata");
 
   return (
     <main className="flex flex-col m-0 p-0 box-border">
