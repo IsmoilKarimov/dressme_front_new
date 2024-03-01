@@ -202,10 +202,12 @@ function CategoryForType() {
     getOutWearList,
     getFootWearList,
     getRating,
-    getRange?.length,
+    getRange?.min,
+    getRange?.max,
     dressInfo?.mainSearchNameCategory,
   ]);
-
+// console.log(getRange?.min,'getRange');
+// console.log(getRange?.max,'getRange');
   const navigate = useNavigate();
 
   const handleCategories = (value, id) => {
