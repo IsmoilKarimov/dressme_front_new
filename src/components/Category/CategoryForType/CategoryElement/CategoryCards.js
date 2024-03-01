@@ -28,9 +28,8 @@ export default function CategoryCards({ filterData, setPageId, paramsId }) {
     setPageId(+id)
   };
   const navigate = useNavigate();
-
-  function onHandleCardId(child) {
-    navigate(`/section/${paramsId}/${child}`);
+  function onHandleCardId(child, name) {
+    navigate(`/section/${paramsId}/${name?.toLowerCase()}`);
   }
   return (
     <main className="flex flex-col box-border mt-2 mb-12 md:mb-0">

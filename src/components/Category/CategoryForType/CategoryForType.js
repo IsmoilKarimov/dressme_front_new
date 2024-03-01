@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import "../category.css";
 import CategoryCards from "./CategoryElement/CategoryCards";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
@@ -7,11 +7,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import FilterList from "./CategoryForBrand/FilterList/FilterList";
 import { MenuCloseIcons } from "../../../assets/icons";
 import LoadingNetwork from "../../Loading/LoadingNetwork";
+import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 
 function CategoryForType() {
   const [dressInfo] = useContext(dressMainData);
   const [filterData, setFilterData] = useState([]);
   const [pageId, setPageId] = useState(1);
+  const [newFilterParamasId, setNewFilterParamasId] = useState();
+  const [newFilterParamasIdCopy, setNewFilterParamasIdCopy] = useState();
+  const [data, setData] = useContext(HomeMainDataContext);
+
   // ---
   const [getGenderId, setGetGenderId] = useState(null);
   const [getCategory, setGetCategory] = useState(null);
@@ -60,7 +65,8 @@ function CategoryForType() {
     setGetFootWearList(childData);
     setPageId(1);
   };
-
+  // console.log(data?.getMainProductCard?.sections?.map((data) => {);
+  console.log(data?.getMainProductCard?.sections, "data?.getMainProductCard?.sections");
   useEffect(() => {
     if (dressInfo?.openCategoryFilter) {
       document.body.style.overflow = "hidden";
@@ -71,7 +77,30 @@ function CategoryForType() {
 
   const paramsId = useParams();
   const newId = paramsId?.id.replace(":", "");
+  // console.log(paramsId, 'paramsId');
+  // console.log(newId, 'newId');
+  // useEffect(() => {
+  //   // setNewFilterParamasId(null)
+  //   console.log('run');
+  //   data?.getMainProductCard?.sections?.map(item => {
+  //     if (newId?.includes(item?.name_ru?.toLowerCase())) {
+  //       console.log(item?.name_ru, item?.id, 'item?.name_ru');
+  //       setNewFilterParamasId(item?.id)
+  //     }
+  //   })
+  // }, [paramsId?.id])
+  useLayoutEffect(() => {
+    data?.getMainProductCard?.sections?.map(item => {
+      if (newId?.includes(item?.name_ru?.toLowerCase())) {
+        setNewFilterParamasId(item?.id)
+        if(!newFilterParamasIdCopy){
+          setNewFilterParamasIdCopy(item?.id)
+        }
+      }
+    })
+  }, [paramsId?.id]);
 
+  // console.log(newFilterParamasId, 'newFilterParamasId');
   const [loading, setLoading] = useState(true);
 
   const url = `https://api.dressme.uz/api`;
@@ -134,7 +163,7 @@ function CategoryForType() {
       params.append("sub_region", dressInfo?.mainSubRegionId);
 
 
-    fetch(`${url}/main/section/${newId}?` + params)
+    fetch(`${url}/main/section/${newFilterParamasId}?` + params)
       .then((res) => res.json())
       .then((res) => {
         setFilterData(res);
@@ -146,20 +175,22 @@ function CategoryForType() {
       });
   }
   useEffect(() => {
-    if (initalParamsId && initalParamsId !== newId && !getGenderId && !getCategory && !getRating && !getRange?.length && !dataColor?.length && !discount && !getOutWearList && !getUnderWearList && !getFootWearList) {
+    if (initalParamsId && initalParamsId !== newFilterParamasId && !getGenderId && !getCategory && !getRating && !getRange?.length && !dataColor?.length && !discount && !getOutWearList && !getUnderWearList && !getFootWearList) {
       fetchGetAllData();
       setLoading(true);
     }
-    setInitalParamsId(newId)
-  }, [newId]);
+    setInitalParamsId(newFilterParamasId)
+  }, [newFilterParamasId]);
 
   useEffect(() => {
-    fetchGetAllData();
-    if(!filterData){
+    if (newFilterParamasIdCopy ) {
+      fetchGetAllData();
+    }
+    if (!filterData) {
       setLoading(true);
     }
   }, [
-    // newId,
+    newFilterParamasIdCopy,
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
     pageId,
@@ -179,7 +210,7 @@ function CategoryForType() {
 
   const handleCategories = (value, id) => {
     setOpenMobileCategory(false);
-    navigate(`/section/${id}`);
+    navigate(`/section/${value?.toLowerCase()}`);
   };
   useEffect(() => {
     if (openMobileFilter || openMobileCategory) {
@@ -217,6 +248,7 @@ function CategoryForType() {
         <main className="w-full h-full">
           <section className="w-full ">
             <CategoryTopDetail
+              paramsId={newId}
               filterData={filterData}
               setFilterData={setFilterData}
               setFilterToggle={setFilterToggle}
@@ -270,7 +302,7 @@ function CategoryForType() {
             >
               <div className="w-full h-[70vh] z-[114] overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
                 <FilterList
-                  paramsId={newId}
+                  paramsId={newFilterParamasId}
                   genderId={genderId}
                   discountId={discountId}
                   categoryId={categoryId}
@@ -296,7 +328,7 @@ function CategoryForType() {
                   } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0 `}
               >
                 <FilterList
-                  paramsId={newId}
+                  paramsId={newFilterParamasId}
                   genderId={genderId}
                   discountId={discountId}
                   categoryId={categoryId}

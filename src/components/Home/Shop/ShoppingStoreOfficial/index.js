@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import ShoppingStoreOfficialBreadCrumb from "./ShoppingStoreOfficialBreadcrumb/ShoppingStoreOfficialBreadcrumb";
 import ShoppingStoreOfficialTop from "./ShoppingStoreOfficialTop/ShoppingStoreOfficialTop";
 import ShowPageComment from "./ShowPageComment/ShowPageComment";
@@ -33,7 +33,8 @@ const ShoppingStoreOfficial = () => {
   const [filterToggle, setFilterToggle] = useState(false);
   const [openMobileFilter, setOpenMobileFilter] = useState(false);
   const [initalParamsId, setInitalParamsId] = useState(null);
-
+  const [newFilterParamasId, setNewFilterParamasId] = useState();
+  const [newFilterParamasIdCopy, setNewFilterParamasIdCopy] = useState();
   const toggleFilterOpen = React.useCallback(() => setFilterToggle(true), []);
   const toggleFilterClose = React.useCallback(() => setFilterToggle(false), []);
 
@@ -96,9 +97,9 @@ const ShoppingStoreOfficial = () => {
     });
   }, []);
   const navigate = useNavigate();
-  const { id } = useParams();
-  const newId = id.replace(":", "");
-
+  const params = useParams();
+  const newId = params?.id?.replace(":", "");
+  console.log(newId?.split('-')?.join(' '), 'newId');
   const refreshLocationId = () => {
     // data?.getMainProductCard?.shops?.map((item) => {
     //   if (item?.id === Number(newId)) {
@@ -109,7 +110,7 @@ const ShoppingStoreOfficial = () => {
     //   }
     // });
     data?.getMainProductCard?.shops?.map((item) => {
-      if (item?.id === Number(newId)) {
+      if (item?.id === Number(newFilterParamasId)) {
         if (dressInfo?.mainSubRegionId) {
           let foundElement = item?.approved_shop_locations.find(function (
             element
@@ -138,11 +139,22 @@ const ShoppingStoreOfficial = () => {
       }
     });
   };
-
   useEffect(() => {
     refreshLocationId();
-  }, [newId, dressInfo?.mainSubRegionId]);
-
+  }, [newFilterParamasId, dressInfo?.mainSubRegionId]);
+  console.log(dressInfo?.shopsData?.shops?.data, 'dressInfo?.shopsData?.shops?.data');
+  useLayoutEffect(() => {
+    dressInfo?.shopsData?.shops?.data?.map(item => {
+      if (newId?.split('-')?.join(' ')?.includes(item?.name?.toLowerCase())) {
+        setNewFilterParamasId(item?.id)
+        if (!newFilterParamasIdCopy) {
+          setNewFilterParamasIdCopy(item?.id)
+        }
+      }
+    })
+  }, [params?.id]);
+  console.log(newFilterParamasId, 'newFilterParamasId');
+  console.log(newFilterParamasIdCopy, 'newFilterParamasIdCopy');
   const [loading, setLoading] = useState(false);
 
   const url = `https://api.dressme.uz/api`;
@@ -199,7 +211,7 @@ const ShoppingStoreOfficial = () => {
         params.append("colors[]", dataColor[index]);
       });
     axios
-      .get(`${url}/main/shops/${newId}?`, {
+      .get(`${url}/main/shops/${newFilterParamasId}?`, {
         params: params,
       })
       .then((res) => {
@@ -229,13 +241,14 @@ const ShoppingStoreOfficial = () => {
     setInitalParamsId(dressInfo?.locationIdParams)
   }, [dressInfo?.locationIdParams]);
   useEffect(() => {
-    if (data?.getMainProductCard && dressInfo?.locationIdParams) {
+    if (data?.getMainProductCard && dressInfo?.locationIdParams && newFilterParamasIdCopy) {
       fetchGetAllData();
       if (!filteredData) {
         setLoading(true)
       }
     }
   }, [
+    newFilterParamasIdCopy,
     pageId,
     discount,
     dataColor?.length,
@@ -318,7 +331,7 @@ const ShoppingStoreOfficial = () => {
             >
               <div className="max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
                 <FilterList
-                  paramsId={newId}
+                  paramsId={newFilterParamasId}
                   genderId={genderId}
                   discountId={discountId}
                   categoryId={categoryId}
@@ -351,7 +364,7 @@ const ShoppingStoreOfficial = () => {
                           } hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}
                       >
                         <FilterList
-                          paramsId={newId}
+                          paramsId={newFilterParamasId}
                           genderId={genderId}
                           discountId={discountId}
                           categoryId={categoryId}

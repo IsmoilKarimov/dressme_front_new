@@ -171,8 +171,7 @@ function MainPageSliders() {
   const [more, setMore] = useState(false);
 
   const navigate = useNavigate();
-  const goDetail = (id) => {
-    // console.log(id,"locationIdParams");
+  const goDetail = (id, name) => {
     data?.getMainProductCard?.shops
       ?.filter((e) => e?.id == id)
       ?.map((item) => {
@@ -188,8 +187,7 @@ function MainPageSliders() {
             productShowSelectedLocation: foundElement,
             linkedFrom: "mainPageShopsList",
           });
-          navigate(`/shops/${id}`);
-          // console.log(foundElement, "foundElement-main");
+          navigate(`/shops/${name?.split(' ')?.join('-')?.toLowerCase()}`);
         }
         if (!dressInfo?.mainSubRegionId) {
           setDressInfo({
@@ -198,7 +196,7 @@ function MainPageSliders() {
             productShowSelectedLocation: item?.approved_shop_locations[0],
             linkedFrom: "mainPageShopsList",
           });
-          navigate(`/shops/${id}`);
+          navigate(`/shops/${name?.split(' ')?.join('-')?.toLowerCase()}`);
         }
       });
   };
@@ -209,9 +207,8 @@ function MainPageSliders() {
         <section className="w-full box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
           {/* MAIN SLIDER */}
           <div
-            className={`w-full ss:h-0 ${
-              more ? "xs:h-0" : "xs:h-auto"
-            } overflow-hidden `}
+            className={`w-full ss:h-0 ${more ? "xs:h-0" : "xs:h-auto"
+              } overflow-hidden `}
           >
             {data?.getMainProductCard?.sections?.length > 6 ? (
               <Slider
@@ -222,7 +219,7 @@ function MainPageSliders() {
                 {data?.getMainProductCard?.sections?.map((data) => {
                   return (
                     <NavLink
-                      to={`/section/${data?.id}`}
+                      to={`/section/${data?.name_ru?.toLowerCase()}`}
                       key={data?.id}
                       className="!w-[99%] h-[280px] rounded-lg"
                     >
@@ -254,7 +251,7 @@ function MainPageSliders() {
                 {data?.getMainProductCard?.sections?.map((data) => {
                   return (
                     <NavLink
-                      to={`/section/${data?.id}`}
+                      to={`/section/${data?.name_ru?.toLowerCase()}`}
                       key={data?.id}
                       className="max-w-[192px] w-full h-[280px] rounded-lg "
                     >
@@ -292,9 +289,8 @@ function MainPageSliders() {
 
           {/* CAROUSEL HIDDEN BLOCK */}
           <div
-            className={`${
-              more ? "xs:grid" : "xs:hidden"
-            } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 `}
+            className={`${more ? "xs:grid" : "xs:hidden"
+              } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 `}
           >
             {data?.getMainProductCard?.sections?.map((data, i) => {
               if (more) {
@@ -441,7 +437,7 @@ function MainPageSliders() {
                     <div
                       key={data?.id}
                       onClick={() => {
-                        goDetail(data?.id);
+                        goDetail(data?.id, data?.name);
                         // setDressInfo({
                         //   ...dressInfo,
                         //   linkedFrom: "mainPageShopsList",
@@ -469,7 +465,7 @@ function MainPageSliders() {
                     <div
                       key={data?.id}
                       onClick={() => {
-                        goDetail(data?.id);
+                        goDetail(data?.id,data?.name);
                         // setDressInfo({
                         //   ...dressInfo,
                         //   linkedFrom: "mainPageShopsList",

@@ -13,7 +13,9 @@ const ShoppingBrands = ({ loading, setLoading }) => {
   const navigate = useNavigate();
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
-  const goDetail = (id) => {
+  const goDetail = (id, name) => {
+    // console.log(name?.split(' ')?.join('-'), "name");
+
     dressInfo?.shopsData?.shops?.data
       ?.filter((e) => e?.id == id)
       ?.map((item) => {
@@ -24,11 +26,11 @@ const ShoppingBrands = ({ loading, setLoading }) => {
             return Number(element.sub_region_id) === dressInfo?.mainSubRegionId;
           });
           setDressInfo({ ...dressInfo, locationIdParams: foundElement?.id, });
-          navigate(`/shops/${id}`);
+          navigate(`/shops/${name?.split(' ')?.join('-')?.toLowerCase()}`);
         }
         if (!dressInfo?.mainSubRegionId) {
           setDressInfo({ ...dressInfo, locationIdParams: item?.approved_shop_locations[0]?.id, });
-          navigate(`/shops/${id}`);
+          navigate(`/shops/${name?.split(' ')?.join('-')?.toLowerCase()}`);
         }
       });
   };
@@ -129,7 +131,7 @@ const ShoppingBrands = ({ loading, setLoading }) => {
                     <button
                       type="button"
                       onClick={() => {
-                        goDetail(data?.id);
+                        goDetail(data?.id, data?.name);
                       }}
                       className={
                         "w-full md:w-fit flex items-center justify-center font-AeonikProMedium text-base text-SignInBgColor border border-searchBgColor md:border-SignInBgColor bg-[#E8F5FD] md:bg-white mt-6 md:mt-0 md:ml-[117px] py-2 md:py-1 md:px-3 md:hover:bg-SignInBgColor duration-300 ease-out md:hover:text-white rounded-lg"

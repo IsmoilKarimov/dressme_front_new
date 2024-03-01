@@ -18,9 +18,9 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
 
   const onColorChecked = () => { };
   const navigate = useNavigate();
-  const goDetail = (id) => {
+  const goDetail = (id, name) => {
     // navigate(`/product/${id}`);
-    navigate(`/shops/${paramsId}/${id}`);
+    navigate(`/shops/${paramsId}/${name?.toLowerCase()}`);
   };
 
   const handleLeaveMouse = (eId) => {
@@ -52,7 +52,7 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
             >
               <figure
                 onClick={() => {
-                  goDetail(data?.id);
+                  goDetail(data?.id, data?.name_ru);
                 }}
                 style={{
                   backgroundImage: `url("${data?.photos[0]?.url_photo}")`,
@@ -114,7 +114,7 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
                 {/* 2 */}
                 <article
                   onMouseEnter={() => handleLeaveMouse(data?.id)}
-                  onClick={() => goDetail(data?.id)}
+                  onClick={() => goDetail(data?.id, data?.name_ru)}
                   className={`w-full px-2 xs:px-3 xs:mt-1 ${data?.cost?.discount_price ? "mb-0" : "mb-3"
                     } md:mb-0`}
                 >

@@ -17,7 +17,8 @@ const CategoryTopDetail = ({
   filterLeftAction,
   setOpenMobileFilter,
   setOpenMobileCategory,
-  setFilterToggle
+  setFilterToggle,
+  
 }) => {
   const [searchMarketName, setSearchMarketName] = useState();
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -47,7 +48,7 @@ const CategoryTopDetail = ({
   };
   const handleCategories = (value, id) => {
     setState({ ...state, opensports: false });
-    navigate(`/section/${id}`);
+    navigate(`/section/${value?.toLowerCase()}`);
   };
 
   const contentCategories = (
