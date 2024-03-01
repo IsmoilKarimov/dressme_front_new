@@ -54,8 +54,8 @@ export default function CatalogCard({ filterData, setPageId, paramsId }) {
       </section>
 
       <section className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6">
-        <article className="flex items-center">
-          <ul className="flex items-center">
+        <article className="flex items-center ">
+          <ul className="flex items-center ">
             {filterData?.category_products?.links?.map((item, index) => {
               return (
                 <li
@@ -72,15 +72,13 @@ export default function CatalogCard({ filterData, setPageId, paramsId }) {
                       setPaginationFunc(newPageId);
                     }
                   }}
-                  className={`not - italic font - AeonikProRegular text - sm leading - 4 text - center px - 2 min - w - [45px] border h - [45px] rounded - lg  ${
-    item?.active
-    ? "bg-fullBlue text-white"
-    : "hover:bg-searchBgColor"
-  } mx - [5px] flex items - center justify - center  ${
-    item?.url
-    ? "cursor-pointer"
-    : "opacity-70 cursor-not-allowed"
-  } `}
+                  className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${item?.active
+                      ? "bg-fullBlue text-white"
+                      : "hover:bg-searchBgColor"
+                    } mx - [5px] flex items-center justify-center  ${item?.url
+                      ? "cursor-pointer"
+                      : "opacity-70 cursor-not-allowed"
+                    } `}
                 >
                   {item?.label}
                 </li>

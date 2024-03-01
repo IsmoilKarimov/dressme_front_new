@@ -90,6 +90,7 @@ function CategoryForType() {
   //   })
   // }, [paramsId?.id])
   useLayoutEffect(() => {
+    
     data?.getMainProductCard?.sections?.map(item => {
       if (newId?.includes(item?.name_uz?.split(' ')?.join('-')?.toLowerCase())) {
         setNewFilterParamasId(item?.id)
@@ -98,9 +99,25 @@ function CategoryForType() {
         }
       }
     })
-  }, [paramsId?.id]);
+    console.log('run--111');
 
-  // console.log(newFilterParamasId, 'newFilterParamasId');
+  }, [paramsId?.id,data?.getMainProductCard?.sections]);
+  // useLayoutEffect(() => {
+  //   if (!newFilterParamasIdCopy && !newFilterParamasIdCopy&&data?.getMainProductCard?.sections) {
+  //     data?.getMainProductCard?.sections?.map(item => {
+  //       if (newId?.includes(item?.name_uz?.split(' ')?.join('-')?.toLowerCase())) {
+  //         setNewFilterParamasId(item?.id)
+  //         if (!newFilterParamasIdCopy) {
+  //           setNewFilterParamasIdCopy(item?.id)
+  //         }
+  //       }
+  //     })
+  //     console.log('run--222');
+  //   }
+  // }, []);
+
+  console.log(newFilterParamasId, 'newFilterParamasId');
+  console.log(newFilterParamasIdCopy, 'setNewFilterParamasIdCopy');
   const [loading, setLoading] = useState(true);
 
   const url = `https://api.dressme.uz/api`;
@@ -206,8 +223,8 @@ function CategoryForType() {
     getRange?.max,
     dressInfo?.mainSearchNameCategory,
   ]);
-// console.log(getRange?.min,'getRange');
-// console.log(getRange?.max,'getRange');
+  // console.log(getRange?.min,'getRange');
+  // console.log(getRange?.max,'getRange');
   const navigate = useNavigate();
 
   const handleCategories = (value, id) => {
