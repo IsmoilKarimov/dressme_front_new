@@ -5,7 +5,7 @@ export default function CategoryByIdProduct() {
     const breadShops = ['home', 'section', 'productName']
 
     return (
-        <div>
+        <div className='px-4 md:px-0'>
             <SingleProduct breadShops={breadShops}/>
         </div>
     )

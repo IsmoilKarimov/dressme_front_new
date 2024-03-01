@@ -307,7 +307,7 @@ const ShoppingStoreOfficial = () => {
           {/* {!filteredData ? <LoadingNetwork />
         :  */}
           <div className="w-full">
-            <section className="w-full border-b border-searchBgColor ">
+            <section className="w-full border-b border-searchBgColor px-4 md:px-0">
               {/* <ShoppingStoreOfficialBreadCrumb
                 name={filteredData?.shop?.name}
                 paramsId={newId}

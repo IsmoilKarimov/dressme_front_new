@@ -49,7 +49,7 @@ const CategoryTopDetail = ({
   };
   const handleCategories = (value, id) => {
     setState({ ...state, opensports: false });
-    navigate(`/section/${value?.toLowerCase()}`);
+    navigate(`/section/${value?.split(' ')?.join('-')?.toLowerCase()}`);
   };
 
   const contentCategories = (
