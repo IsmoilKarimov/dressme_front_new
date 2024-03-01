@@ -368,6 +368,7 @@ function FilterList({
         if (paramsId) {
             ClearAll()
             setFilterToggle(false)
+            setGetFilter()
         }
     }, [paramsId])
     return (

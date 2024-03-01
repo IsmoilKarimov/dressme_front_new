@@ -93,7 +93,7 @@ function CategoryForType() {
     data?.getMainProductCard?.sections?.map(item => {
       if (newId?.includes(item?.name_uz?.split(' ')?.join('-')?.toLowerCase())) {
         setNewFilterParamasId(item?.id)
-        if(!newFilterParamasIdCopy){
+        if (!newFilterParamasIdCopy) {
           setNewFilterParamasIdCopy(item?.id)
         }
       }
@@ -158,7 +158,7 @@ function CategoryForType() {
       dataColor?.forEach((e, index) => {
         params.append("colors[]", dataColor[index]);
       });
-    dressInfo?.mainRegionId && params.append("region", dressInfo?.mainRegionId);
+    dressInfo?.mainRegionId && !dressInfo?.mainSubRegionId && params.append("region", dressInfo?.mainRegionId);
     dressInfo?.mainSubRegionId &&
       params.append("sub_region", dressInfo?.mainSubRegionId);
 
@@ -183,7 +183,7 @@ function CategoryForType() {
   }, [newFilterParamasId]);
 
   useEffect(() => {
-    if (newFilterParamasIdCopy ) {
+    if (newFilterParamasIdCopy) {
       fetchGetAllData();
     }
     if (!filterData) {

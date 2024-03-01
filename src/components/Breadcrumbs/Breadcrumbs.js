@@ -4,7 +4,7 @@ import "./Breadcrumbs.css";
 export default function Breadcrumbs() {
   const location = useLocation();
 
-  console.log(location, 'location');
+  // console.log(location, 'location');
 
   let currentLink = [];
   console.log(location?.pathname);
@@ -24,8 +24,8 @@ export default function Breadcrumbs() {
       </div>
     );
   });
-  console.log(crumbs, 'crumbs');
-  console.log(currentLink, "currentLink");
+  // console.log(crumbs, 'crumbs');
+  // console.log(currentLink, "currentLink");
 
   return (
     <div className="flex justify-center items-center ">

@@ -32,7 +32,7 @@ export default function ShoppingStore() {
     Object.entries(params).forEach((i) => {
       if (!i[1]) delete params[i[0]];
     });
-    axios
+    axios 
       .get(apiUrl, {
         headers: { Authorization: `Token ${Cookies.get("DressmeUserToken")}` },
         params: params,

@@ -97,7 +97,7 @@ export default function CatalogItems() {
   const paramId = useParams();
 
   const newId = paramId?.id?.replace(":", "");
-  console.log(newId, 'newId');
+  // console.log(newId, 'newId');
   useLayoutEffect(() => {
     if (newId == 'taqinchoqlar-aksessuarlar') {
       setNewFilterParamasId(5)
@@ -152,7 +152,7 @@ export default function CatalogItems() {
 
   function fetchGetAllData() {
     let params = new URLSearchParams();
-    params.append("region", dressInfo?.mainRegionId);
+    dressInfo?.mainRegionId && !dressInfo?.mainSubRegionId && params.append("region", dressInfo?.mainRegionId);
     dressInfo?.mainSearchNameCatalog &&
       params.append("keywords", dressInfo?.mainSearchNameCatalog);
     dressInfo?.mainSubRegionId &&
