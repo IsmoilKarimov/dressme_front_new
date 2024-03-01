@@ -11,6 +11,7 @@ import FilterList from "./ShoppingStoreCategory/FilterList/FilterList";
 import axios from "axios";
 import LoadingNetwork from "../../../Loading/LoadingNetwork";
 import YandexLocationShop from "./ShoppingStoreCategory/YandexLocationShop/YandexLocationShop";
+import Breadcrumbs from "../../../Breadcrumbs/Breadcrumbs";
 // filteredData?.shop?.approved_shop_locations[dressInfo?.locationIdParams - 1]
 const ShoppingStoreOfficialByLocation = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -95,8 +96,8 @@ const ShoppingStoreOfficialByLocation = () => {
   const { id } = useParams();
   const newId = id.replace(":", "");
   // dressInfo?.yandexGetMarketId
-  console.log(dressInfo?.yandexGetMarketId,'dressInfo?.yandexGetMarketId');
-  console.log(newId,'newId');
+  console.log(dressInfo?.yandexGetMarketId, 'dressInfo?.yandexGetMarketId');
+  console.log(newId, 'newId');
   const refreshLocationId = () => {
     if (data?.selectedLoc === "changed") {
       // console.log('run it');
@@ -286,10 +287,12 @@ const ShoppingStoreOfficialByLocation = () => {
       ) :
         <div className="w-full">
           <section className="w-full border-b border-searchBgColor ">
-            <ShoppingStoreOfficialBreadCrumb
+            {/* <ShoppingStoreOfficialBreadCrumb
               name={filteredData?.shop?.name}
               paramsId={newId}
-            />
+            /> */}
+            <Breadcrumbs />
+
           </section>
           <section className="w-full border-searchBgColor ">
             <ShoppingStoreOfficialTop

@@ -219,7 +219,7 @@ function MainPageSliders() {
                 {data?.getMainProductCard?.sections?.map((data) => {
                   return (
                     <NavLink
-                      to={`/section/${data?.name_ru?.toLowerCase()}`}
+                      to={`/section/${data?.name_uz?.toLowerCase()}`}
                       key={data?.id}
                       className="!w-[99%] h-[280px] rounded-lg"
                     >
@@ -251,7 +251,7 @@ function MainPageSliders() {
                 {data?.getMainProductCard?.sections?.map((data) => {
                   return (
                     <NavLink
-                      to={`/section/${data?.name_ru?.toLowerCase()}`}
+                      to={`/section/${data?.name_uz?.toLowerCase()}`}
                       key={data?.id}
                       className="max-w-[192px] w-full h-[280px] rounded-lg "
                     >
@@ -296,7 +296,7 @@ function MainPageSliders() {
               if (more) {
                 return (
                   <NavLink
-                    to={`/section/${data?.id}`}
+                    to={`/section/${data?.name_uz?.toLowerCase()}`}
                     key={data?.id}
                     className="w-full md:!w-[99%] h-[170px] md:h-[280px] rounded-lg "
                   >
@@ -330,7 +330,7 @@ function MainPageSliders() {
                 } else {
                   return (
                     <NavLink
-                      to={`/section/${data?.id}`}
+                      to={`/section/${data?.name_uz?.toLowerCase()}`}
                       key={data?.id}
                       className="w-[100%] h-[170px]"
                     >

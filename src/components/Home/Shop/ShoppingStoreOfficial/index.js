@@ -3,7 +3,7 @@ import ShoppingStoreOfficialBreadCrumb from "./ShoppingStoreOfficialBreadcrumb/S
 import ShoppingStoreOfficialTop from "./ShoppingStoreOfficialTop/ShoppingStoreOfficialTop";
 import ShowPageComment from "./ShowPageComment/ShowPageComment";
 import { GoBackIcon } from "../../../../assets/icons";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import ShopOfficialCard from "./ShoppingStoreCategory/ShopOfficialCards/ShopOfficialCard";
@@ -11,6 +11,7 @@ import FilterList from "./ShoppingStoreCategory/FilterList/FilterList";
 import axios from "axios";
 import YandexLocationShopFilter from "./ShoppingStoreCategory/YandexLocationShop/YandexLocationShopFilter";
 import LoadingNetwork from "../../../Loading/LoadingNetwork";
+import Breadcrumbs from "../../../Breadcrumbs/Breadcrumbs";
 
 const ShoppingStoreOfficial = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -290,6 +291,10 @@ const ShoppingStoreOfficial = () => {
       window.removeEventListener("resize", updateDimension);
     };
   }, [screenSize]);
+
+
+
+
   return (
     <div className="w-full">
 
@@ -303,10 +308,11 @@ const ShoppingStoreOfficial = () => {
         :  */}
           <div className="w-full">
             <section className="w-full border-b border-searchBgColor ">
-              <ShoppingStoreOfficialBreadCrumb
+              {/* <ShoppingStoreOfficialBreadCrumb
                 name={filteredData?.shop?.name}
                 paramsId={newId}
-              />
+              /> */}
+              <Breadcrumbs />
             </section>
             <section className="w-full border-searchBgColor ">
               <ShoppingStoreOfficialTop

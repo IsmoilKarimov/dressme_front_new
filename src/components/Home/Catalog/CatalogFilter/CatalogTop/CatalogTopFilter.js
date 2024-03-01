@@ -8,6 +8,7 @@ import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { NavLink } from "react-router-dom";
+import Breadcrumbs from "../../../../Breadcrumbs/Breadcrumbs";
 
 const CatalogTopFilter = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -101,7 +102,7 @@ const CatalogTopFilter = () => {
   return (
     <main className="w-full">
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
-        
+
         <section className="w-[100%] h-fit flex-col hidden border-b border-searchBgColor">
           <article className="w-full flex flex-col">
             <figure className="relative w-full  md:h-[90px]  mt-2 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
@@ -130,9 +131,8 @@ const CatalogTopFilter = () => {
                         <BiChevronDown
                           size={22}
                           style={{ color: "#000" }}
-                          className={`${
-                            state?.opensports ? "rotate-[-180deg]" : ""
-                          } duration-200`}
+                          className={`${state?.opensports ? "rotate-[-180deg]" : ""
+                            } duration-200`}
                         />
                       </span>
                     </Popover>
@@ -172,12 +172,13 @@ const CatalogTopFilter = () => {
             </Popover>
           </article>
         </section>
-        
+
         <section className="w-full h-full px-3 md:px-0">
           <div className="md:pt-8 md:pb-8 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 md:py-3">
             <section className="max-w-[1280px] w-[100%] h-full flex items-center justify-between m-auto">
               <nav className="w-[100%] md:w-fit flex items-center p-1">
-                <ul className="h-10 w-[100%] md:w-fit flex items-center overflow-auto HorizantalScroll">
+                <Breadcrumbs />
+                {/* <ul className="h-10 w-[100%] md:w-fit flex items-center overflow-auto HorizantalScroll">
                   <li className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-black tracking-[1%] mr-[10px]">
                     <NavLink
                       to="/"
@@ -194,7 +195,7 @@ const CatalogTopFilter = () => {
                       Категории
                     </div>
                   </li>
-                </ul>
+                </ul> */}
               </nav>
 
               <nav className="hidden md:flex"></nav>

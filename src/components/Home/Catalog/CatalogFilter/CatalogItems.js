@@ -99,13 +99,12 @@ export default function CatalogItems() {
   const newId = paramId?.id?.replace(":", "");
   console.log(newId, 'newId');
   useLayoutEffect(() => {
-    if (newId == 'украшения-аксессуары') {
+    if (newId == 'taqinchoqlar-aksessuarlar') {
       setNewFilterParamasId(5)
       setNewFilterParamasIdCopy(newFilterParamasIdCopy)
-
     } else {
       data?.getMainProductCard?.categories?.map(item => {
-        if (newId?.includes(item?.name_ru?.split(' ')?.join('-')?.toLowerCase())) {
+        if (newId?.includes(item?.name_uz?.split(' ')?.join('-')?.toLowerCase())) {
           setNewFilterParamasId(item?.id)
           if (!newFilterParamasIdCopy) {
             setNewFilterParamasIdCopy(item?.id)
@@ -136,7 +135,7 @@ export default function CatalogItems() {
           <p
             key={data?.id}
             onClick={() => {
-              handleCategories(data?.id, data?.name_ru);
+              handleCategories(data?.id, data?.name_uz);
             }}
             className={`${Number(paramId?.id) === data?.id ? "bg-bgColor" : null
               } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
