@@ -19,8 +19,8 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
   const onColorChecked = () => { };
   const navigate = useNavigate();
   const goDetail = (id, name) => {
-    // navigate(`/shops_location/${paramsId}/${id} `);
-    navigate(`/shops_location/${paramsId}/${name?.split(' ')?.join('-')?.toLowerCase()}`);
+    navigate(`/shops_location/${paramsId}/${id} `);
+    // navigate(`/shops_location/${paramsId}/${name?.split(' ')?.join('-')?.toLowerCase()}`);
 
   };
 

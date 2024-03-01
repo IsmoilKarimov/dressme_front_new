@@ -236,15 +236,16 @@ const MediumHeader = ({ stateData, setStateData }) => {
       mainSearchNameshopLocation: null,
     });
   };
+  console.log(searchForLocation, 'searchForLocation');
   function getSearchClick() {
     setPage(1);
-    if (searchForLocation?.includes("shops")) {
+    if (searchForLocation?.includes("shops") && searchForLocation?.length == 2) {
       setDressInfo({ ...dressInfo, mainSearchNameshopMarket: searchMarketName });
     }
-    if (searchForLocation?.includes("shops/:id")) {
+    if (searchForLocation?.includes("shops") && searchForLocation?.length >= 3) {
       setDressInfo({ ...dressInfo, mainSearchNameshop: searchMarketName });
     }
-    if (searchForLocation?.includes("shops_location/:id")) {
+    if (searchForLocation?.includes("shops_location") && searchForLocation?.length >= 3) {
       setDressInfo({
         ...dressInfo,
         mainSearchNameshopLocation: searchMarketName,
@@ -265,13 +266,13 @@ const MediumHeader = ({ stateData, setStateData }) => {
 
   const _handleKeyDownSearch = (event) => {
     if (event.key === "Enter") {
-      if (searchForLocation?.includes("shops")) {
+      if (searchForLocation?.includes("shops") && searchForLocation?.length == 2) {
         setDressInfo({ ...dressInfo, mainSearchNameshopMarket: searchMarketName });
       }
-      if (searchForLocation?.includes("shops/:id")) {
+      if (searchForLocation?.includes("shops") && searchForLocation?.length >= 3) {
         setDressInfo({ ...dressInfo, mainSearchNameshop: searchMarketName });
       }
-      if (searchForLocation?.includes("shops_location/:id")) {
+      if (searchForLocation?.includes("shops_location") && searchForLocation?.length >= 3) {
         setDressInfo({
           ...dressInfo,
           mainSearchNameshopLocation: searchMarketName,
@@ -522,7 +523,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                       type="text"
                       name="search"
                       autoComplete="search"
-                      placeholder="Искать товары"
+                      placeholder={`${searchForLocation?.includes("shops") && searchForLocation?.length == 2 ? 'Искать магазины' : 'Искать товары'} `}
                       className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
                       value={searchMarketName}
                       onChange={handleChange}

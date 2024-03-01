@@ -112,7 +112,7 @@ export default function CatalogItems() {
         }
       })
     }
-  }, [paramId?.id]);
+  }, [paramId?.id,data?.getMainProductCard?.shops]);
 
   // console.log(newFilterParamasId, 'newFilterParamasId');
   // console.log(newFilterParamasIdCopy, 'newFilterParamasIdCopy');

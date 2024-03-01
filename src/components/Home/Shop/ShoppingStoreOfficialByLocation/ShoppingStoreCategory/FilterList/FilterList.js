@@ -107,7 +107,7 @@ function FilterList({
         if (getFilter) {
             // setgetParamsTest(dressInfo?.locationIdParams)
             setFilterToggle(false)
-            // setGetFilter()
+            setGetFilter()
         }
     }, [dressInfo?.locationIdParams])
 
@@ -136,6 +136,7 @@ function FilterList({
     ]);
 
     useEffect(() => {
+        setGenderNewList([])
         genderCategory?.map(item => {
             getFilter?.gender_ids?.map(data => {
                 if (item?.id == data) {
@@ -149,7 +150,7 @@ function FilterList({
             })
         })
 
-    }, [getFilter?.gender_ids])
+    }, [getFilter])
 
     const handleGenderCheck = (value) => {
         genderId(value)
@@ -193,6 +194,7 @@ function FilterList({
         { id: 5, name: "Аксессуары" },
     ]);
     useEffect(() => {
+        setCategoryNewList([])
         categories?.map(item => {
             getFilter?.category_ids?.map(data => {
                 if (item?.id === Number(data)) {
@@ -205,7 +207,7 @@ function FilterList({
                 }
             })
         })
-    }, [getFilter?.category_ids])
+    }, [getFilter])
 
     const handleCategoryCheck = (value) => {
         setCategorySelect(value)
@@ -230,7 +232,7 @@ function FilterList({
         } else {
             setValues([0, 0]);
         }
-    }, [getFilter?.budget]);
+    }, [getFilter]);
 
     useEffect(() => {
         if (values[0] && values[1] && minPrice && maxPrice) {
@@ -265,7 +267,7 @@ function FilterList({
             }));
             setTransformedArray(transformed)
         }
-    }, [getFilter?.ratings])
+    }, [getFilter])
 
     const onHandleRating = (id) => {
         setSelectedRating(id)
@@ -285,7 +287,7 @@ function FilterList({
             );
             setOutwearData(transformedArray);
         }
-    }, [getFilter?.wear_sizes?.outwear]);
+    }, [getFilter]);
 
     const onHandleOutWearList = (select) => {
         setDataActionOutwearSizes(select)
@@ -310,7 +312,7 @@ function FilterList({
             );
             setUnderwearData(transformedArray);
         }
-    }, [getFilter?.wear_sizes?.underwear]);
+    }, [getFilter]);
 
 
     const onHandleUnderWearList = (select) => {
@@ -339,7 +341,7 @@ function FilterList({
             );
             setFootwearData(transformedArray);
         }
-    }, [getFilter?.wear_sizes?.footwear]);
+    }, [getFilter]);
 
     const onHandleFootWearList = (select) => {
         setDataActionFootwearSizes(select)

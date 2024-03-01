@@ -35,7 +35,9 @@ const ShoppingStoreOfficialByLocation = () => {
   const [filterToggle, setFilterToggle] = useState(false);
   const [openMobileFilter, setOpenMobileFilter] = useState(false);
   const [initalParamsId, setInitalParamsId] = useState(null);
+  const [newFilterParamasId, setNewFilterParamasId] = useState();
 
+  const [newFilterParamasIdCopy, setNewFilterParamasIdCopy] = useState();
   const toggleFilterOpen = React.useCallback(() => setFilterToggle(true), []);
   const toggleFilterClose = React.useCallback(() => setFilterToggle(false), []);
 
@@ -97,12 +99,11 @@ const ShoppingStoreOfficialByLocation = () => {
   const newId = id.replace(":", "");
   // dressInfo?.yandexGetMarketId
   console.log(dressInfo?.yandexGetMarketId, 'dressInfo?.yandexGetMarketId');
-  console.log(newId, 'newId');
+  console.log(newId, 'newId---');
   const refreshLocationId = () => {
     if (data?.selectedLoc === "changed") {
-      // console.log('run it');
       data?.getMainProductCard?.shops?.map((item) => {
-        if (item?.id === Number(newId)) {
+        if (item?.id === Number(newFilterParamasId)) {
           if (dressInfo?.mainSubRegionId) {
             let foundElement = item?.approved_shop_locations.find(function (
               element
@@ -136,14 +137,27 @@ const ShoppingStoreOfficialByLocation = () => {
       });
     }
   };
+  useEffect(() => {
+    data?.getMainProductCard?.shops?.map(item => {
+      if (newId?.split('-')?.join(' ')?.includes(item?.name?.toLowerCase())) {
+        setDressInfo({
+          ...dressInfo,
+          yandexGetMarketId: item?.id,
+        });
+        setNewFilterParamasId(item?.id)
+        if (!newFilterParamasIdCopy) {
+          setNewFilterParamasIdCopy(item?.id)
+        }
+      }
+    })
+  }, [data?.getMainProductCard?.shops]);
+  // dressInfo?.yandexGetMarketId
   // console.log(data?.selectedLoc, 'data?.selectedLoc');
   // console.log(data?.selectedLoc?.length, 'data?.selectedLoc');
   useEffect(() => {
-    // if (data?.selectedLoc?.length === 0) {
-    //   setData({ ...data, selectedLoc: "changed" });
-    // }
-    refreshLocationId();
-  }, [newId, dressInfo?.mainSubRegionId]);
+
+    if (data?.getMainProductCard?.shops) refreshLocationId();
+  }, [ newFilterParamasId, dressInfo?.mainSubRegionId, dressInfo?.mainRegionId, ]);
 
 
   const url = `https://api.dressme.uz/api`;
@@ -152,8 +166,8 @@ const ShoppingStoreOfficialByLocation = () => {
   const fetchGetAllData = () => {
     let params = new URLSearchParams();
     params.append("location_id", dressInfo?.locationIdParams);
-    dressInfo?.mainSearchNameCatalog &&
-      params.append("keywords", dressInfo?.mainSearchNameCatalog);
+    dressInfo?.mainSearchNameshopLocation &&
+      params.append("keywords", dressInfo?.mainSearchNameshopLocation);
     getGenderId && params.append("gender", getGenderId);
     discount && params.append("discount", discount);
     getCategory && params.append("category", getCategory);
@@ -228,15 +242,17 @@ const ShoppingStoreOfficialByLocation = () => {
     if (initalParamsId && initalParamsId !== dressInfo?.locationIdParams && !getGenderId && !getCategory && !getRating && !getRange?.length && !dataColor?.length && !discount && !getOutWearList && !getUnderWearList && !getFootWearList) {
       fetchGetAllData();
       setLoading(true)
-
     }
+
     setInitalParamsId(dressInfo?.locationIdParams)
   }, [dressInfo?.locationIdParams]);
 
   useEffect(() => {
-    fetchGetAllData();
-    if (!filteredData) {
-      setLoading(true)
+    if (data?.getMainProductCard?.shops && dressInfo?.locationIdParams) {
+      fetchGetAllData();
+      if (!filteredData) {
+        setLoading(true)
+      }
     }
   }, [
     pageId,
@@ -252,9 +268,10 @@ const ShoppingStoreOfficialByLocation = () => {
     getRange?.min,
     getRange?.max,
     // dressInfo?.locationIdParams,
-    dressInfo?.mainSearchNameCatalog
+    dressInfo?.mainSearchNameshopLocation,
+    // data?.getMainProductCard?.shops
   ]);
-
+  console.log(dressInfo?.locationIdParams, 'run-- dressInfo?.locationIdParams');
   useEffect(() => {
     if (openMobileFilter) {
       document.body.style.overflow = "hidden";
