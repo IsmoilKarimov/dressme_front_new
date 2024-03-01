@@ -55,7 +55,7 @@ export default function FavouriteProducts() {
       </section>
       <div
         className={`max-w-[1280px] w-[100%] flex flex-col items-center justify-between ${
-          wishList?.length > 4 ? "mb-10" : "mb-[80px]"
+          wishList?.length > 4 ? "mb-10" : "mb-[120px]"
         } m-auto px-[10px] md:px-0`}
       >
         <section className="w-full flex items-center justify-center flex-col">
