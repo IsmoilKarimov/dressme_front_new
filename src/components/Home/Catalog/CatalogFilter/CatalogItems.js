@@ -319,9 +319,9 @@ export default function CatalogItems() {
                         className="absolute w-[80px] h-[80px] md:w-[120px] md:h-[160px] overflow-hidden  left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center  bg-white"
                       ></div>
                       <div className="flex items-center ml-[112px] md:ml-[210px]">
-                        <div className="text-lg md:text-2xl font-AeonikProMedium">
+                        <div className="text-[16px] md:text-2xl font-AeonikProMedium">
                           {filterData?.category?.name_ru}
-                          <span className="text-lg text-setTexOpacity font-AeonikProRegular ml-2">
+                          <span className="text-[16px] text-setTexOpacity font-AeonikProRegular ml-2 pr-3 md:pr-0">
                             ({filterData?.category_products?.total})
                           </span>
                         </div>
