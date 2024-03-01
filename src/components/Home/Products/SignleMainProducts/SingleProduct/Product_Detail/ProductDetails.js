@@ -53,10 +53,6 @@ const ProductDetails = ({ data }) => {
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
-  // console.log(dressInfo?.linkedFrom);
-  // console.log(dressInfo?.productShowSelectedLocation, "from context");
-  // console.log(dressInfo?.locationIdParams, "iddd");
-
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
   const [tableSizes, setTableSizes] = useState(false);
@@ -308,9 +304,6 @@ const ProductDetails = ({ data }) => {
   //     console.log("gooooo");
   //   }
   // }, []);
-
-  // console.log(colorId, "555555555555555");
-  // console.log(selectedColor, "555555555555555");
 
   // Remove duplicates and select only first -----
 
@@ -896,12 +889,12 @@ const ProductDetails = ({ data }) => {
           >
             {data?.product?.category_id === "2" ? (
               <ul className="w-full px-[25px] pb-[30px] pt-[60px]">
-                <div className="flex items-center justify-between bg-[#F4F6FB] px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
-                  <li>Размер в числах</li>
-                  <li>Буквенный Размер</li>
-                  <li>Обхват груди, в см</li>
-                  <li>Обхват талии, в см</li>
-                  <li>Обхват бедер, в см</li>
+                <div className="w-full flex items-center justify-between bg-[#F4F6FB] px-[10px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                  <li className="w-full flex items-center justify-center">Размер в числах</li>
+                  <li className="w-full flex items-center justify-center">Буквенный Размер</li>
+                  <li className="w-full flex items-center justify-center">Обхват груди, в см</li>
+                  <li className="w-full flex items-center justify-center">Обхват талии, в см</li>
+                  <li className="w-full flex items-center justify-center">Обхват бедер, в см</li>
                 </div>
                 <div className="w-full">
                   {data?.product?.sizes?.map((data) => {
@@ -909,28 +902,28 @@ const ProductDetails = ({ data }) => {
                       return (
                         <div
                           key={data?.id}
-                          className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular"
+                          className="w-full flex items-center justify-between px-[10px] py-[15px] rounded-lg text-base font-AeonikProRegular"
                         >
-                          <li>
+                          <li className="w-full flex items-center justify-center">
                             {data?.min_wear_size}{" "}
                             {data?.max_wear_size
                               ? "- " + data?.max_wear_size
                               : null}
                           </li>
-                          <li>{data?.letter_size}</li>
-                          <li>
+                          <li className="w-full flex items-center justify-center">{data?.letter_size}</li>
+                          <li className="w-full flex items-center justify-center">
                             {data?.min_chest_girth}{" "}
                             {data?.max_chest_girth
                               ? "- " + data?.max_chest_girth
                               : null}
                           </li>
-                          <li>
+                          <li className="w-full flex items-center justify-center">
                             {data?.min_waist_girth}{" "}
                             {data?.max_waist_girth
                               ? "- " + data?.max_waist_girth
                               : null}
                           </li>
-                          <li>
+                          <li className="w-full flex items-center justify-center">
                             {data?.min_hip_girth}{" "}
                             {data?.max_hip_girth
                               ? "- " + data?.max_hip_girth
@@ -946,12 +939,12 @@ const ProductDetails = ({ data }) => {
 
             {data?.product?.category_id === "3" ? (
               <ul className="w-full px-[25px] pb-[30px] pt-[60px]">
-                <div className="flex items-center justify-between bg-[#F4F6FB] px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
-                  <li>Размер в числах</li>
-                  <li>Буквенный Размер</li>
-                  <li>Рост, в см</li>
-                  <li>Обхват талии, в см</li>
-                  <li>Обхват бедер, в см</li>
+                <div className="w-full flex items-center justify-between bg-[#F4F6FB] px-[10px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                  <li className="w-full flex items-center justify-center">Размер в числах</li>
+                  <li className="w-full flex items-center justify-center">Буквенный Размер</li>
+                  <li className="w-full flex items-center justify-center">Рост, в см</li>
+                  <li className="w-full flex items-center justify-center">Обхват талии, в см</li>
+                  <li className="w-full flex items-center justify-center">Обхват бедер, в см</li>
                 </div>
                 <div className="w-full">
                   {data?.product?.sizes?.map((data) => {
@@ -959,26 +952,26 @@ const ProductDetails = ({ data }) => {
                       return (
                         <div
                           key={data?.id}
-                          className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular"
+                          className="w-full flex items-center justify-between px-[10px] py-[15px] rounded-lg text-base font-AeonikProRegular"
                         >
-                          <li>
+                          <li className="w-full flex items-center justify-center">
                             {data?.min_wear_size}{" "}
                             {data?.max_wear_size
                               ? "- " + data?.max_wear_size
                               : null}
                           </li>
-                          <li>{data?.letter_size}</li>
-                          <li>
+                          <li className="w-full flex items-center justify-center">{data?.letter_size}</li>
+                          <li className="w-full flex items-center justify-center">
                             {data?.min_height}{" "}
                             {data?.max_height ? "- " + data?.max_height : null}
                           </li>
-                          <li>
+                          <li className="w-full flex items-center justify-center">
                             {data?.min_waist_girth}{" "}
                             {data?.max_waist_girth
                               ? "- " + data?.max_waist_girth
                               : null}
                           </li>
-                          <li>
+                          <li className="w-full flex items-center justify-center">
                             {data?.min_hip_girth}{" "}
                             {data?.max_hip_girth
                               ? "- " + data?.max_hip_girth
@@ -993,9 +986,9 @@ const ProductDetails = ({ data }) => {
             ) : null}
             {data?.product?.category_id === "4" ? (
               <ul className="w-full px-[25px] pb-[30px] pt-[60px]">
-                <div className="flex items-center justify-between bg-[#F4F6FB] px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
-                  <li>Размер в числах, в см</li>
-                  <li>Длина стопы, в см</li>
+                <div className="w-full flex items-center justify-between bg-[#F4F6FB] px-[10px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                  <li className="w-full flex items-center justify-center">Размер в числах, в см</li>
+                  <li className="w-full flex items-center justify-center">Длина стопы, в см</li>
                 </div>
                 <div className="w-full">
                   {data?.product?.sizes?.map((data) => {
@@ -1003,10 +996,10 @@ const ProductDetails = ({ data }) => {
                       return (
                         <div
                           key={data?.id}
-                          className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular"
+                          className="w-full flex items-center justify-between px-[10px] py-[15px] rounded-lg text-base font-AeonikProRegular"
                         >
-                          <li>{data?.wear_size}</li>
-                          <li>
+                          <li className="w-full flex items-center justify-center">{data?.wear_size}</li>
+                          <li className="w-full flex items-center justify-center">
                             {data?.min_foot_length}{" "}
                             {data?.max_foot_length
                               ? "- " + data?.max_foot_length
@@ -1021,11 +1014,11 @@ const ProductDetails = ({ data }) => {
             ) : null}
             {data?.product?.category_id === "5" ? (
               <ul className="w-full px-[25px] pb-[30px] pt-[60px]">
-                <div className="flex items-center justify-between bg-[#F4F6FB] px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular">
-                  <li>Размер в числах, в см</li>
-                  <li>Буквенный Размер</li>
-                  <li>Длина, в см</li>
-                  <li>Ширина, в см</li>
+                <div className="w-full flex items-center justify-between bg-[#F4F6FB] px-[10px] py-[15px] rounded-lg text-base font-AeonikProRegular">
+                  <li className="w-full flex items-center justify-center">Размер в числах, в см</li>
+                  <li className="w-full flex items-center justify-center">Буквенный Размер</li>
+                  <li className="w-full flex items-center justify-center">Длина, в см</li>
+                  <li className="w-full flex items-center justify-center">Ширина, в см</li>
                 </div>
                 <div className="w-full">
                   {data?.product?.sizes?.map((data) => {
@@ -1033,7 +1026,7 @@ const ProductDetails = ({ data }) => {
                       return (
                         <div
                           key={data?.id}
-                          className="flex items-center justify-between px-[25px] py-[15px] rounded-lg text-base font-AeonikProRegular"
+                          className="flex items-center justify-between px-[10px] py-[15px] rounded-lg text-base font-AeonikProRegular"
                         >
                           <li>{data?.wear_size}</li>
                           <li>{data?.letter_size}</li>
