@@ -64,7 +64,8 @@ export default function CollectionCards() {
   };
   const navigate = useNavigate()
   function onHandleCardId(child, name) {
-    navigate(`/product/${name?.split(' ')?.join('-')?.toLowerCase()}`);
+    navigate(`/product/${child}`);
+    // navigate(`/product/${name?.split(' ')?.join('-')?.toLowerCase()}`);
   }
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">

@@ -29,7 +29,8 @@ export default function CategoryCards({ filterData, setPageId, paramsId }) {
   };
   const navigate = useNavigate();
   function onHandleCardId(child, name) {
-    navigate(`/section/${paramsId}/${name?.split(' ')?.join('-')?.toLowerCase()}`);
+    navigate(`/section/${paramsId}/${child}`);
+    // navigate(`/section/${paramsId}/${name?.split(' ')?.join('-')?.toLowerCase()}`);
   }
   return (
     <main className="flex flex-col box-border mt-2 mb-12 md:mb-0">

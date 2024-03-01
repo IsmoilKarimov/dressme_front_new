@@ -68,26 +68,27 @@ const SingleProduct = ({ breadShops }) => {
   const url = "https://api.dressme.uz";
 
   const paramsId = useParams();
+console.log(paramsId,'paramsId');
   const [singleData, setSingleData] = useState();
 
-  useEffect(() => {
-    data?.products?.map((item) => {
-      if (
-        paramsId?.product?.includes(
-          item?.name_ru?.split(" ")?.join("-")?.toLowerCase()
-        )
-      ) {
-        setNewFilterParamasId(item?.id);
-      }
-    });
-  }, [paramsId?.product]);
+  // useEffect(() => {
+  //   data?.products?.map((item) => {
+  //     if (
+  //       paramsId?.product?.includes(
+  //         item?.name_ru?.split(" ")?.join("-")?.toLowerCase()
+  //       )
+  //     ) {
+  //       setNewFilterParamasId(item?.id);
+  //     }
+  //   });
+  // }, [paramsId?.product]);
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
-    if (newFilterParamasId) {
-      axios(`${url}/api/main/products/${newFilterParamasId}`, {
+    if (paramsId?.product) {
+      axios(`${url}/api/main/products/${paramsId?.product}`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -102,11 +103,11 @@ const SingleProduct = ({ breadShops }) => {
           console.log(error);
         });
     }
-  }, [newFilterParamasId]);
+  }, [paramsId?.product]);
 
   const refetch = () => {
     setLoading(true);
-    axios(`${url}/api/main/products/${newFilterParamasId}`, {
+    axios(`${url}/api/main/products/${paramsId?.product}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -154,7 +155,7 @@ const SingleProduct = ({ breadShops }) => {
     )
     ?.slice(0, 6);
 
-  console.log(singleData, "singledata");
+  // console.log(singleData, "singledata");
 
   return (
     <main className="flex flex-col m-0 p-0 box-border">
