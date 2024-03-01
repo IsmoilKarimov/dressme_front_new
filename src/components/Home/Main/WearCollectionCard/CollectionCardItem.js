@@ -19,11 +19,10 @@ export const CollectionCardItem = ({
 }) => {
   const navigate = useNavigate();
 
-  const goDetail = (id,name) => {
+  const goDetail = (id, name) => { 
     // navigate(`/product/${id}`);
-    onHandleCardId(id,name)
+    onHandleCardId(id, name)
   };
-
   const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
 
   const [selectedData, setSelectedData] = useContext(MobileSelectedDataContext);
@@ -220,8 +219,8 @@ export const CollectionCardItem = ({
           </article>
           <div
             className={`flex items-center select-none absolute right-2 ${data?.cost?.discount_price
-                ? "bottom-[7px] ls:bottom-[-2px]"
-                : " bottom-[8px] ls:bottom-[-2px]"
+              ? "bottom-[7px] ls:bottom-[-2px]"
+              : " bottom-[8px] ls:bottom-[-2px]"
               } md:bottom-2`}
           >
             <button

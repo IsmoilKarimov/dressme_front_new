@@ -115,8 +115,8 @@ export default function CatalogItems() {
     }
   }, [paramId?.id]);
 
-  console.log(newFilterParamasId, 'newFilterParamasId');
-  console.log(newFilterParamasIdCopy, 'newFilterParamasIdCopy');
+  // console.log(newFilterParamasId, 'newFilterParamasId');
+  // console.log(newFilterParamasIdCopy, 'newFilterParamasIdCopy');
   const handleOpenCategories = (newOpen) => {
     setState({ ...state, opensports: newOpen });
   };

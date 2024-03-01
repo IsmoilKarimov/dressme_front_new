@@ -131,10 +131,10 @@ const RouterMain = () => {
 
         <Route path="/categories" element={<CatalogMobile />} />
         <Route path="/categories/:id" element={<CatalogItems />} />
-        <Route path="/categories/:id/:id" element={<CatalogByIdProduct />} />
+        <Route path="/categories/:id/:product" element={<CatalogByIdProduct />} />
 
         <Route
-          path="/product/:id"
+          path="/product/:product"
           element={
             <Suspense
               fallback={
@@ -209,7 +209,7 @@ const RouterMain = () => {
           }
         />
         <Route
-          path="/shops/:id/:id"
+          path="/shops/:id/:product"
           element={
             <Suspense
               fallback={
@@ -237,7 +237,7 @@ const RouterMain = () => {
           }
         />
         <Route
-          path="/shops-bylocation/:id/:id"
+          path="/shops-bylocation/:id/:product"
           element={
             <Suspense
               fallback={

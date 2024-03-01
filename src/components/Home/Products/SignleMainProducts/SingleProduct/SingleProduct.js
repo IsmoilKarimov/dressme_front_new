@@ -13,8 +13,10 @@ import axios from "axios";
 
 const SingleProduct = ({ breadShops }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
+  const [data, mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
   const [openWearType, setOpenWearType] = useState(false);
+  const [newFilterParamasId, setNewFilterParamasId] = useState();
+
   console.log(breadShops, 'breadShops');
   let LikeProduct = [];
   let LastSeenProduct = [];
@@ -64,11 +66,19 @@ const SingleProduct = ({ breadShops }) => {
 
   const url = "https://api.dressme.uz";
 
-  const { id } = useParams();
-  const newId = id?.replace(":", "");
-
+  const paramsId = useParams();
+  // const newId = paramsId?.id?.replace(":", "");
+  // console.log(paramsId?.product, "paramsId");
   const [singleData, setSingleData] = useState();
 
+  useEffect(() => {
+    data?.products?.map(item => {
+      if (paramsId?.product?.includes(item?.name_ru?.split(' ')?.join('-')?.toLowerCase())) {
+        setNewFilterParamasId(item?.id)
+      }
+    })
+
+  }, [paramsId?.product])
   // const { refetch, isLoading, data } = useQuery(
   //   ["get_main_detail_data"],
   //   () => {
@@ -95,25 +105,27 @@ const SingleProduct = ({ breadShops }) => {
 
   useEffect(() => {
     setLoading(true);
-    axios(`${url}/api/main/products/${newId}`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-      },
-    })
-      .then((res) => {
-        setSingleData(res.data);
-        setLoading(false);
+    if (newFilterParamasId) {
+      axios(`${url}/api/main/products/${newFilterParamasId}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
       })
-      .catch((error) => {
-        setLoading(false);
-        console.log(error);
-      });
-  }, []);
+        .then((res) => {
+          setSingleData(res.data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          setLoading(false);
+          console.log(error);
+        });
+    }
+  }, [newFilterParamasId]);
 
   const refetch = () => {
     setLoading(true);
-    axios(`${url}/api/main/products/${newId}`, {
+    axios(`${url}/api/main/products/${newFilterParamasId}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
