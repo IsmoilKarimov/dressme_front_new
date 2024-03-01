@@ -27,12 +27,19 @@ export default function ShoppingStore() {
 
   const apiUrl = `https://api.dressme.uz/api/main/shops`;
 
-  const fetchGetAllData = (params) => {
+  const fetchGetAllData = () => {
     setLoading(true);
-    Object.entries(params).forEach((i) => {
-      if (!i[1]) delete params[i[0]];
-    });
-    axios 
+    let params = new URLSearchParams();
+    getGenderID &&
+      params.append("gender", getGenderID);
+    dressInfo?.mainSearchNameshopMarket &&
+      params.append("keywords", dressInfo?.mainSearchNameshopMarket);
+    dressInfo?.mainRegionId && !dressInfo?.mainSubRegionId &&
+      params.append("region", dressInfo?.mainRegionId);
+    dressInfo?.mainSubRegionId &&
+      params.append("sub_region", dressInfo?.mainSubRegionId);
+
+    axios
       .get(apiUrl, {
         headers: { Authorization: `Token ${Cookies.get("DressmeUserToken")}` },
         params: params,
@@ -58,12 +65,7 @@ export default function ShoppingStore() {
   };
 
   useEffect(() => {
-    fetchGetAllData({
-      gender: getGenderID,
-      keywords: dressInfo?.mainSearchNameshopMarket,
-      region: dressInfo?.mainRegionId,
-      sub_region: dressInfo?.mainSubRegionId,
-    });
+    fetchGetAllData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     getGenderID,
@@ -104,7 +106,7 @@ export default function ShoppingStore() {
         <ShoppingBrands
           loading={loading}
           setLoading={setLoading}
-          // setGetData={setGetData}
+        // setGetData={setGetData}
         />
       </section>
     </main>
