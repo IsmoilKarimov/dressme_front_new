@@ -87,14 +87,14 @@ const ShoppingStoreOfficialTop = ({
   
   const [searchMarketName, setSearchMarketName] = useState();
   function getSearchClick() {
-    setDressInfo({ ...dressInfo, mainSearchNameCatalog: searchMarketName });
+    setDressInfo({ ...dressInfo, mainSearchNameshopLocation: searchMarketName });
   }
   const handleChange = (event) => {
     setSearchMarketName(event.target.value);
   };
   const handleClear = () => {
     setSearchMarketName("");
-    setDressInfo({ ...dressInfo, mainSearchNameCatalog: null });
+    setDressInfo({ ...dressInfo, mainSearchNameshopLocation: null });
   };
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">

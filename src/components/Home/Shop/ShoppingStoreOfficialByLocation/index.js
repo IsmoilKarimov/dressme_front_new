@@ -152,8 +152,8 @@ const ShoppingStoreOfficialByLocation = () => {
   const fetchGetAllData = () => {
     let params = new URLSearchParams();
     params.append("location_id", dressInfo?.locationIdParams);
-    dressInfo?.mainSearchNameCatalog &&
-      params.append("keywords", dressInfo?.mainSearchNameCatalog);
+    dressInfo?.mainSearchNameshopLocation &&
+      params.append("keywords", dressInfo?.mainSearchNameshopLocation);
     getGenderId && params.append("gender", getGenderId);
     discount && params.append("discount", discount);
     getCategory && params.append("category", getCategory);
@@ -252,7 +252,7 @@ const ShoppingStoreOfficialByLocation = () => {
     getRange?.min,
     getRange?.max,
     // dressInfo?.locationIdParams,
-    dressInfo?.mainSearchNameCatalog
+    dressInfo?.mainSearchNameshopLocation
   ]);
 
   useEffect(() => {
