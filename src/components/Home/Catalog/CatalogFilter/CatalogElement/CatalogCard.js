@@ -27,7 +27,8 @@ export default function CatalogCard({ filterData, setPageId, paramsId }) {
   };
   const navigate = useNavigate()
   function onHandleCardId(child, name) {
-    navigate(`/categories/${paramsId}/${name?.split(' ')?.join('-')?.toLowerCase()} `);
+    navigate(`/categories/${paramsId}/${child} `);
+    // navigate(`/categories/${paramsId}/${name?.split(' ')?.join('-')?.toLowerCase()} `);
   }
   return (
     <main className="flex flex-col box-border mt-2 mb-12 md:mb-0">
