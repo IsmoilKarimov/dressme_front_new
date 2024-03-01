@@ -19,6 +19,7 @@ const SingleProduct = ({ breadShops }) => {
   const [newFilterParamasId, setNewFilterParamasId] = useState();
 
   console.log(breadShops, "breadShops");
+
   let LikeProduct = [];
   let LastSeenProduct = [];
   dressInfo.ProductList.forEach((data) => {
@@ -68,9 +69,12 @@ const SingleProduct = ({ breadShops }) => {
   const url = "https://api.dressme.uz";
 
   const paramsId = useParams();
-console.log(paramsId,'paramsId');
+  // console.log(paramsId,'paramsId');
   const [singleData, setSingleData] = useState();
 
+  useEffect(() => {
+    // breadShop
+  }, [paramsId?.product]);
   // useEffect(() => {
   //   data?.products?.map((item) => {
   //     if (
@@ -155,8 +159,6 @@ console.log(paramsId,'paramsId');
     )
     ?.slice(0, 6);
 
-  // console.log(singleData, "singledata");
-
   return (
     <main className="flex flex-col m-0 p-0 box-border">
       {loading ? (
@@ -164,7 +166,7 @@ console.log(paramsId,'paramsId');
       ) : (
         <div className="w-full">
           <section>
-            <SingleProductTop data={singleData} />
+            <SingleProductTop data={singleData} breadShops={breadShops}/>
           </section>
           <section className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto border-box mb-10 md:mb-[0px]">
             <section className="w-[100%] h-fit mt-4 md:mt-6 flex justify-between flex-col md:flex-row">

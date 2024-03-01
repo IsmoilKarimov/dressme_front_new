@@ -96,7 +96,7 @@ const ShoppingStoreOfficialTop = ({
     setSearchMarketName("");
     setDressInfo({ ...dressInfo, mainSearchNameshop: null });
   };
-  console.log(filteredData, 'filteredData');
+ 
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">

@@ -8,6 +8,7 @@ import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { UserRefreshTokenContext } from "../../../../ContextHook/UserRefreshToken";
 import { useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../../Breadcrumbs/Breadcrumbs";
+import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
 
 export default function ShoppingStore() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -79,16 +80,17 @@ export default function ShoppingStore() {
       top: 0,
     });
   }, []);
+
   const breadcrumbItems = [
-    { label: 'Home', url: '/' },
-    { label: 'Products', url: '/products' },
-    { label: 'Electronics', url: '/products/electronics' },
-    { label: 'Smartphones', url: '/products/electronics/smartphones' }
+    { label_uz: 'Home', label_ru: 'Главная', url: '/' },
+    { label_uz: 'section', label_ru: 'Магазины', url: '/shops' },
   ];
+
   return (
     <main className="w-full flex flex-col items-center px-4 md:px-0">
-      <section className="w-full md:border-b md:border-searchBgColor">
-        <Breadcrumbs />
+      <section className="w-full md:border-b md:border-searchBgColor max-w-[1280px]  flex items-center md:mt-5">
+        {/* <Breadcrumbs /> */}
+        <NewBreadCrump items={breadcrumbItems} />
       </section>
       <section className="w-full md:border-b md:border-searchBgColor">
         <ShoppingTop

@@ -12,6 +12,7 @@ import axios from "axios";
 import YandexLocationShopFilter from "./ShoppingStoreCategory/YandexLocationShop/YandexLocationShopFilter";
 import LoadingNetwork from "../../../Loading/LoadingNetwork";
 import Breadcrumbs from "../../../Breadcrumbs/Breadcrumbs";
+import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
 
 const ShoppingStoreOfficial = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -100,6 +101,7 @@ const ShoppingStoreOfficial = () => {
   const navigate = useNavigate();
   const params = useParams();
   const newId = params?.id?.replace(":", "");
+
   const refreshLocationId = () => {
     data?.getMainProductCard?.shops?.map((item) => {
       if (item?.id === Number(newFilterParamasId)) {
@@ -135,6 +137,7 @@ const ShoppingStoreOfficial = () => {
   useEffect(() => {
     refreshLocationId();
   }, [newFilterParamasId, dressInfo?.mainSubRegionId, dressInfo?.mainRegionId]);
+
   // console.log(dressInfo?.shopsData?.shops, 'dressInfo?.shopsData?.shops?.data');
   useEffect(() => {
     data?.getMainProductCard?.shops?.map(item => {
@@ -163,6 +166,7 @@ const ShoppingStoreOfficial = () => {
   console.log(newFilterParamasId, 'newFilterParamasId');
   console.log(newFilterParamasIdCopy, 'newFilterParamasIdCopy');
   console.log(dressInfo?.locationIdParams, 'dressInfo?.locationIdParams');
+
   const [loading, setLoading] = useState(false);
 
   const url = `https://api.dressme.uz/api`;
@@ -303,8 +307,12 @@ const ShoppingStoreOfficial = () => {
   }, [screenSize]);
 
 
-
-
+  // console.log(params, 'params');
+  const breadcrumbItems = [
+    { label_uz: 'Home', label_ru: 'Главная', url: '/' },
+    { label_uz: 'section', label_ru: 'Магазины', url: '/shops' },
+    { label_uz: params?.id, label_ru: params?.id, url: '/shops/:id' },
+  ];
   return (
     <div className="w-full">
 
@@ -317,12 +325,13 @@ const ShoppingStoreOfficial = () => {
           {/* {!filteredData ? <LoadingNetwork />
         :  */}
           <div className="w-full">
-            <section className="w-full border-b border-searchBgColor px-4 md:px-0">
+            <section className="w-full border-b border-searchBgColor px-4 md:px-0  md:mt-5">
               {/* <ShoppingStoreOfficialBreadCrumb
                 name={filteredData?.shop?.name}
                 paramsId={newId}
               /> */}
-              <Breadcrumbs />
+              {/* <Breadcrumbs /> */}
+              <NewBreadCrump items={breadcrumbItems} />
             </section>
             <section className="w-full border-searchBgColor ">
               <ShoppingStoreOfficialTop

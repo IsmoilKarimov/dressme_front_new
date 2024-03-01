@@ -9,8 +9,9 @@ import { BiChevronDown } from "react-icons/bi";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { NavLink } from "react-router-dom";
 import Breadcrumbs from "../../../../Breadcrumbs/Breadcrumbs";
+import NewBreadCrump from "../../../../Breadcrumbs/NewBreadCrump";
 
-const CatalogTopFilter = () => {
+const CatalogTopFilter = ({paramId}) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const handleFilter = () => {
     setDressInfo({
@@ -98,7 +99,11 @@ const CatalogTopFilter = () => {
       })}
     </section>
   );
-
+  const breadcrumbItems = [
+    { label_uz: 'Home', label_ru: 'Главная', url: '/' },
+    { label_uz: 'category', label_ru: 'категории', url: '/categories' },
+    { label_uz: paramId?.id, label_ru: paramId?.id, url: '/categories/:id' },
+  ];
   return (
     <main className="w-full">
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
@@ -174,10 +179,11 @@ const CatalogTopFilter = () => {
         </section>
 
         <section className="w-full h-full px-3 md:px-0">
-          <div className="md:pt-8 md:pb-8 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 md:py-3">
+          <div className="md:pt-5 md:pb-4 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 md:py-3">
             <section className="max-w-[1280px] w-[100%] h-full flex items-center justify-between m-auto">
-              <nav className="w-[100%] md:w-fit flex items-center p-1">
-                <Breadcrumbs />
+              <nav className="w-[100%] md:w-fit flex items-center p-1 md:p-0">
+                {/* <Breadcrumbs /> */}
+                <NewBreadCrump items={breadcrumbItems} />
                 {/* <ul className="h-10 w-[100%] md:w-fit flex items-center overflow-auto HorizantalScroll">
                   <li className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-black tracking-[1%] mr-[10px]">
                     <NavLink

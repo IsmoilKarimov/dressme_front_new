@@ -97,9 +97,9 @@ export default function CatalogItems() {
   const paramId = useParams();
 
   const newId = paramId?.id?.replace(":", "");
-  // console.log(newId, 'newId');
+  console.log(newId, 'newId');
   useLayoutEffect(() => {
-    if (newId == 'taqinchoqlar-aksessuarlar') {
+    if (newId === 'taqinchoqlar-aksessuarlar') {
       setNewFilterParamasId(5)
       setNewFilterParamasIdCopy(newFilterParamasIdCopy)
     } else {
@@ -113,6 +113,7 @@ export default function CatalogItems() {
       })
     }
   }, [paramId?.id,data?.getMainProductCard?.shops]);
+
 
   // console.log(newFilterParamasId, 'newFilterParamasId');
   // console.log(newFilterParamasIdCopy, 'newFilterParamasIdCopy');
@@ -293,7 +294,7 @@ export default function CatalogItems() {
     <main className="w-full h-full">
       {/* TOP DATA */}
       <section className="w-full h-full ">
-        <CatalogTopFilter />
+        <CatalogTopFilter paramId={paramId} />
       </section>
 
 
