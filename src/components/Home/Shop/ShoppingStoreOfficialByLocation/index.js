@@ -94,7 +94,9 @@ const ShoppingStoreOfficialByLocation = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const newId = id.replace(":", "");
-
+  // dressInfo?.yandexGetMarketId
+  console.log(dressInfo?.yandexGetMarketId,'dressInfo?.yandexGetMarketId');
+  console.log(newId,'newId');
   const refreshLocationId = () => {
     if (data?.selectedLoc === "changed") {
       // console.log('run it');
@@ -199,7 +201,7 @@ const ShoppingStoreOfficialByLocation = () => {
       });
 
     axios
-      .get(`${url}/main/shops/${newId}?`, {
+      .get(`${url}/main/shops/${dressInfo?.yandexGetMarketId}?`, {
         params: params,
       })
       .then((res) => {

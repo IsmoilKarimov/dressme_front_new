@@ -19,8 +19,7 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
   const onColorChecked = () => { };
   const navigate = useNavigate();
   const goDetail = (id, name) => {
-    // navigate(`/product/${id}`);
-    navigate(`/shops/${paramsId}/${name?.toLowerCase()}`);
+    navigate(`/shops/${paramsId}/${name?.split(' ')?.join('-')?.toLowerCase()}`);
   };
 
   const handleLeaveMouse = (eId) => {
