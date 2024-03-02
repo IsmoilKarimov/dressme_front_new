@@ -70,7 +70,7 @@ const ShoppingTop = ({
           setGetAllShops={setGetAllShops}
         />
 
-        <article className="w-full  flex items-center mt-3 md:mt-0 md:justify-end">
+        <article className="w-full  md:hidden flex items-center mt-3 md:mt-0 md:justify-end">
           <article className="w-[400px] h-12 flex items-center justify-between bg-btnBgColor md:bg-white rounded-xl overflow-hidden border border-searchBgColor font-AeonikProRegular text-base">
             <div className="w-[90%] h-full flex items-center justify-between">
               <input
