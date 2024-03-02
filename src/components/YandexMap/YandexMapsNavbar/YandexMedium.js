@@ -138,9 +138,9 @@ const YandexMedium = ({ getYandexSearchName }) => {
       });
     }
   };
-  const goCatalogId = (id) => {
-    navigate(`/categories/${id}`);
-  };
+  // const goCatalogId = (id) => {
+  //   navigate(`/categories/${id}`);
+  // };
   return (
     <div className=" flex justify-between items-center m-auto ">
       {/* Starting of Full Screen page section */}

@@ -10,7 +10,7 @@ import LoadingNetwork from "../../Loading/LoadingNetwork";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 
 function CategoryForType() {
-  const [dressInfo] = useContext(dressMainData);
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [filterData, setFilterData] = useState([]);
   const [pageId, setPageId] = useState(1);
   const [newFilterParamasId, setNewFilterParamasId] = useState();
@@ -66,7 +66,7 @@ function CategoryForType() {
     setPageId(1);
   };
   // console.log(data?.getMainProductCard?.sections?.map((data) => {);
-  console.log(data?.getMainProductCard?.sections, "data?.getMainProductCard?.sections");
+  // console.log(data?.getMainProductCard?.sections, "data?.getMainProductCard?.sections");
   useEffect(() => {
     if (dressInfo?.openCategoryFilter) {
       document.body.style.overflow = "hidden";
@@ -90,18 +90,17 @@ function CategoryForType() {
   //   })
   // }, [paramsId?.id])
   useLayoutEffect(() => {
-    
+
     data?.getMainProductCard?.sections?.map(item => {
-      if (newId?.includes(item?.name_uz?.split(' ')?.join('-')?.toLowerCase())) {
+      if (newId?.includes(item?.name_ru?.split(' ')?.join('-')?.toLowerCase())) {
         setNewFilterParamasId(item?.id)
         if (!newFilterParamasIdCopy) {
           setNewFilterParamasIdCopy(item?.id)
         }
       }
     })
-    console.log('run--111');
 
-  }, [paramsId?.id,data?.getMainProductCard?.sections]);
+  }, [paramsId?.id, data?.getMainProductCard?.sections]);
   // useLayoutEffect(() => {
   //   if (!newFilterParamasIdCopy && !newFilterParamasIdCopy&&data?.getMainProductCard?.sections) {
   //     data?.getMainProductCard?.sections?.map(item => {
@@ -116,12 +115,8 @@ function CategoryForType() {
   //   }
   // }, []);
 
-  console.log(newFilterParamasId, 'newFilterParamasId');
-  console.log(newFilterParamasIdCopy, 'setNewFilterParamasIdCopy');
   const [loading, setLoading] = useState(true);
-
   const url = `https://api.dressme.uz/api`;
-
   function fetchGetAllData() {
     let params = new URLSearchParams();
     dressInfo?.mainSearchNameCategory &&
@@ -184,6 +179,7 @@ function CategoryForType() {
       .then((res) => res.json())
       .then((res) => {
         setFilterData(res);
+        setDressInfo({ ...dressInfo, filterDataProductList: res })
         setLoading(false);
       })
       .catch((err) => {

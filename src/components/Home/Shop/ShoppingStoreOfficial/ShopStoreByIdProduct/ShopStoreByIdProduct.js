@@ -1,21 +1,21 @@
 import React, { useContext, useLayoutEffect, useState } from 'react'
 import { SingleProduct } from '../../../Products/SignleMainProducts/SingleProduct/SingleProduct'
 import { useParams } from 'react-router-dom';
-import { HomeMainDataContext } from '../../../../../ContextHook/HomeMainData';
+import { dressMainData } from '../../../../../ContextHook/ContextMenu';
 
 export default function ShopStoreByIdProduct() {
-  const [data] = useContext(HomeMainDataContext);
-    const [getproductName, setGetproductName] = useState(null);
-    const params = useParams();
-    useLayoutEffect(() => {
-        if (data?.getMainProductCard?.products) {
-            data?.getMainProductCard?.products?.data?.map(item => {
-                if (params?.product == item?.id) {
-                    setGetproductName(item?.name_ru)
-                }
-            })
+  const [dressInfo] = useContext(dressMainData);
+  const [getproductName, setGetproductName] = useState(null);
+  const params = useParams();
+  useLayoutEffect(() => {
+    if (dressInfo?.filterDataProductList?.products) {
+      dressInfo?.filterDataProductList?.products?.data?.map(item => {
+        if (params?.product == item?.id) {
+          setGetproductName(item?.name_ru)
         }
-    }, []);
+      })
+    }
+  }, []);
   const breadcrumbItems = [
     { label_uz: 'Home', label_ru: 'Главная', url: '/' },
     { label_uz: 'shops', label_ru: 'Магазины', url: '/shops' },

@@ -1,15 +1,16 @@
 import React, { useContext, useLayoutEffect, useState } from 'react'
 import { SingleProduct } from '../../../Home/Products/SignleMainProducts/SingleProduct/SingleProduct'
 import { useParams } from 'react-router-dom';
-import { HomeMainDataContext } from '../../../../ContextHook/HomeMainData';
+import { dressMainData } from '../../../../ContextHook/ContextMenu';
 
 export default function CategoryByIdProduct() {
-    const [data] = useContext(HomeMainDataContext);
+    const [dressInfo, setDressInfo] = useContext(dressMainData);
     const [getproductName, setGetproductName] = useState(null);
     const paramsId = useParams();
+    console.log(dressInfo?.filterDataProductList?.section_products?.data,'dressInfo?.filterDataProductList?.section_products?.data');
     useLayoutEffect(() => {
-        if (data?.getMainProductCard?.products) {
-            data?.getMainProductCard?.products?.data?.map(item => {
+        if (dressInfo?.filterDataProductList?.section_products?.data) {
+            dressInfo?.filterDataProductList?.section_products?.data?.map(item => {
                 if (paramsId?.product == item?.id) {
                     setGetproductName(item?.name_ru)
                 }

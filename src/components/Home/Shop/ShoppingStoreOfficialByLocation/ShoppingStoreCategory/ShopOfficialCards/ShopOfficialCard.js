@@ -41,7 +41,7 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
   const setPaginationFunc = (id) => {
     setPageId(+id)
   };
-console.log(filteredData?.products?.data,'filteredData?.products?.data');
+// console.log(filteredData?.products?.data,'filteredData?.products?.data');
   return (
     <div className="flex flex-col box-border">
       {filteredData?.products?.data?.length > 0 ? (

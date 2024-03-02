@@ -64,14 +64,14 @@ const CatalogMobile = () => {
                 className="w-[140px] ls:w-[150px] ll:w-[175px] h-fit flex flex-wrap gap-y-2 "
               >
                 <div
-                  onClick={() => goCatalogId(item?.id, item?.name_uz)}
+                  onClick={() => goCatalogId(item?.id, item?.name_ru)}
                   className="w-full h-[145px] ls:h-[155px] ll:h-[180px] flex items-center overflow-hidden justify-center border border-skeltonColor bg-categoryModalBgColor rounded-[12px] cursor-pointer"
                 >
                   <img src={item?.url_photo} alt="" className=" h-full	" />
                 </div>
                 <button
                   //   onClick={() => setOpenCatalog(true)}
-                  onClick={() => goCatalogId(item?.id)}
+                  onClick={() => goCatalogId(item?.id, item?.name_ru)}
                   className="w-full h-8 text-catalogText leading-normal text-[12px] ll:text-[13px] not-italic font-AeonikProRegular flex items-center justify-center active:scale-95  active:opacity-70 border border-skeltonColor  rounded-[12px]"
                 >
                   {item?.name_ru}

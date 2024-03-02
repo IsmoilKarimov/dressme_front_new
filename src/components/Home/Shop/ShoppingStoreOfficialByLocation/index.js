@@ -224,6 +224,8 @@ const ShoppingStoreOfficialByLocation = () => {
         if (res?.status >= 200 && res?.status < 300) {
           setLoading(false)
           setFilteredData(res?.data);
+          setDressInfo({ ...dressInfo, filterDataProductList: res?.data })
+
         }
       })
       .catch((res) => {
