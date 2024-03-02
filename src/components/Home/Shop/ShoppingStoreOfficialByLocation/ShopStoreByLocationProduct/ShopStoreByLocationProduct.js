@@ -23,9 +23,14 @@ export default function ShopStoreByLocationProduct() {
         { label_uz: params?.id, label_ru: params?.id, url: `/shops_location/${params?.id}` },
         { label_uz: getproductName, label_ru: getproductName, url: `/shops_location/${params?.id}/${params?.product}` },
     ];
+    function oncallProductName(child) {
+        if (!getproductName) {
+            setGetproductName(child)
+        }
+    }
     return (
         <div>
-            <SingleProduct breadShops={breadcrumbItems} />
+            <SingleProduct breadShops={breadcrumbItems} oncallProductName={oncallProductName} />
         </div>
     )
 }

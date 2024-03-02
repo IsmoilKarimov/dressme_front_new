@@ -24,13 +24,17 @@ export default function SingleMainProducts() {
 
   const breadcrumbItems = [
     { label_uz: 'Home', label_ru: 'Главная', url: '/' },
-    { label_uz: 'product', label_ru: 'продукт', url: '/product' },
+    { label_uz: 'product', label_ru: 'Продукты', url: '/product' },
     { label_uz: getproductName, label_ru: getproductName, url: `/product/${paramId?.product}` },
   ];
-  
+  function oncallProductName(child) {
+    if (!getproductName) {
+      setGetproductName(child)
+    }
+  }
   return (
     <main className="w-full ">
-      <SingleProduct breadShops={breadcrumbItems} />
+      <SingleProduct breadShops={breadcrumbItems} oncallProductName={oncallProductName} />
     </main>
   );
 }
