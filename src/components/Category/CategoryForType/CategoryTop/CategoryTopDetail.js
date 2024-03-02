@@ -11,6 +11,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { MdClose } from "react-icons/md";
 import Breadcrumbs from "../../../Breadcrumbs/Breadcrumbs";
+import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
 
 
 const CategoryTopDetail = ({
@@ -19,7 +20,7 @@ const CategoryTopDetail = ({
   setOpenMobileFilter,
   setOpenMobileCategory,
   setFilterToggle,
-
+  paramsId
 }) => {
   const [searchMarketName, setSearchMarketName] = useState();
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -81,6 +82,12 @@ const CategoryTopDetail = ({
     setDressInfo({ ...dressInfo, mainSearchNameCategory: null });
   };
 
+  const breadcrumbItems = [
+    { label_uz: 'Home', label_ru: 'Главная', url: '/' },
+    { label_uz: 'section', label_ru: 'раздел', url: '/section' },
+    { label_uz: paramsId, label_ru: paramsId, url: '/section/:id' },
+  ];
+  
   return (
     <main className="flex flex-col justify-center border-t border-searchBgColor items-center">
       <div className="md:pb-16 flex flex-col  w-full justify-center items-center m-0 ">
@@ -104,7 +111,9 @@ const CategoryTopDetail = ({
                 </div>
               </li>
             </ul> */}
-            <Breadcrumbs />          </nav>
+            {/* <Breadcrumbs /> */}
+            <NewBreadCrump items={breadcrumbItems} />
+          </nav>
           <nav className="hidden md:flex"></nav>
         </section>
       </div>
