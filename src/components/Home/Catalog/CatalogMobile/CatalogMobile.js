@@ -4,6 +4,7 @@ import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { useNavigate } from "react-router-dom";
 import CatalogTopFilter from "../CatalogFilter/CatalogTop/CatalogTopFilter";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
+import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
 
 const CatalogMobile = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -38,12 +39,22 @@ const CatalogMobile = () => {
       navigate(`/categories/${name?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
     }
   };
-
-console.log(data?.getMainProductCard);
+  const breadcrumbItems = [
+    { label_uz: 'Home', label_ru: 'Главная', url: '/' },
+    { label_uz: 'category', label_ru: 'категории', url: '/categories' },
+  ];
 
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
-      <CatalogTopFilter />
+      <main className="w-full">
+        <div className="md:pt-5 md:pb-4 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 md:py-3">
+          <section className="max-w-[1280px] w-[100%] flex flex-col items-center">
+            <nav className="w-[100%]  flex items-center p-1 md:p-0">
+              <NewBreadCrump items={breadcrumbItems} />
+            </nav>
+          </section>
+        </div>
+      </main>
       <section className="max-w-[1280px] w-[100%] md:h-[40vh] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
         <article className="w-full h-full pt-6 pb-20 md:py-0 flex flex-wrap ll:gap-x-2 gap-y-4 justify-between xs:justify-start xs:gap-x-4">
           {data?.getMainProductCard?.categories?.map((item) => {
@@ -53,7 +64,7 @@ console.log(data?.getMainProductCard);
                 className="w-[140px] ls:w-[150px] ll:w-[175px] h-fit flex flex-wrap gap-y-2 "
               >
                 <div
-                  onClick={() => goCatalogId(item?.id,item?.name_uz)}
+                  onClick={() => goCatalogId(item?.id, item?.name_uz)}
                   className="w-full h-[145px] ls:h-[155px] ll:h-[180px] flex items-center overflow-hidden justify-center border border-skeltonColor bg-categoryModalBgColor rounded-[12px] cursor-pointer"
                 >
                   <img src={item?.url_photo} alt="" className=" h-full	" />
@@ -72,8 +83,8 @@ console.log(data?.getMainProductCard);
       </section>
       <section
         className={`w-full hidden h-screen ${openCatalog
-            ? "flex flex-col ease-linear duration-500 overscroll-none"
-            : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
+          ? "flex flex-col ease-linear duration-500 overscroll-none"
+          : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
           }	bg-white fixed z-[110] top-0 left-0 `}
       >
         <div className="w-full flex flex-col p-4">

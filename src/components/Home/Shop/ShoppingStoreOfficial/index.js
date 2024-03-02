@@ -133,7 +133,7 @@ const ShoppingStoreOfficial = () => {
       }
     });
   };
-  
+
   useEffect(() => {
     refreshLocationId();
   }, [newFilterParamasId, dressInfo?.mainSubRegionId, dressInfo?.mainRegionId]);
@@ -325,15 +325,10 @@ const ShoppingStoreOfficial = () => {
           {/* {!filteredData ? <LoadingNetwork />
         :  */}
           <div className="w-full">
-            <section className="w-full border-b border-searchBgColor px-4 md:px-0  md:mt-5">
-              {/* <ShoppingStoreOfficialBreadCrumb
-                name={filteredData?.shop?.name}
-                paramsId={newId}
-              /> */}
-              {/* <Breadcrumbs /> */}
+            <section className="w-full border-b border-searchBgColor md:mt-5  ">
               <NewBreadCrump items={breadcrumbItems} />
             </section>
-            <section className="w-full border-searchBgColor ">
+            <section className="w-full border-searchBgColor">
               <ShoppingStoreOfficialTop
                 clickButtons={clickButtons}
                 filteredData={filteredData}
