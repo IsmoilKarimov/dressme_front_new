@@ -41,7 +41,6 @@ function YandexLocationShopFilter({ filteredData }) {
         });
     }, []);
     // const zoom = 12;
-
     return (
         <div className={`w-full `}>
             <div className={`w-full flex items-center mb-3 mt-4`}>

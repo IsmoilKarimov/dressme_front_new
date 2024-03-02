@@ -18,7 +18,6 @@ const SingleProduct = ({ breadShops }) => {
   const [openWearType, setOpenWearType] = useState(false);
   const [newFilterParamasId, setNewFilterParamasId] = useState();
 
-  console.log(breadShops, "breadShops");
 
   let LikeProduct = [];
   let LastSeenProduct = [];
@@ -158,7 +157,7 @@ const SingleProduct = ({ breadShops }) => {
         item?.id !== singleData?.product?.id
     )
     ?.slice(0, 6);
-
+console.log(singleData,'singleData');
   return (
     <main className="flex flex-col m-0 p-0 box-border">
       {loading ? (

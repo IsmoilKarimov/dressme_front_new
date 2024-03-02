@@ -65,7 +65,6 @@ const ProductDetails = ({ data }) => {
   const toggleLocations = useCallback(() => setLocations(false), []);
 
   const slider = useRef(null);
-
   // For DropUp
   useEffect(() => {
     if (tableSizes || locations || openLocationModal || openSizeList) {
@@ -306,7 +305,6 @@ const ProductDetails = ({ data }) => {
   // }, []);
 
   // Remove duplicates and select only first -----
-
   let idMap = new Map();
   let uniqueArray = [];
 
@@ -335,7 +333,7 @@ const ProductDetails = ({ data }) => {
   const goDetail = () => {
     navigate(`/product/${data?.product?.shop_id}/allcomments`);
   };
-
+// console.log(selectedLocation,'selectedLocation----selectedLocation');
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
       <div className="tableSizes">
@@ -1865,7 +1863,7 @@ const ProductDetails = ({ data }) => {
       <div className="w-full">
         <div className={openTab === 1 ? "block" : "hidden"}>
           <div className=" flex">
-            <LocationOfYandex locationText={selectedLocation?.address} />
+            <LocationOfYandex locationText={selectedLocation} data={data} />
           </div>
         </div>
         <div className={openTab === 2 ? "block" : "hidden"}>
