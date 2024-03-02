@@ -64,7 +64,12 @@ function FilterList({
     const url = `https://api.dressme.uz/api/main`;
 
     function fetchGetAllData() {
-        fetch(`${url}/category-filter/${paramsId}?region=${dressInfo?.mainRegionId}`)
+        let params = new URLSearchParams();
+        dressInfo?.mainRegionId && !dressInfo?.mainSubRegionId &&
+            params.append("region", dressInfo?.mainRegionId);
+        dressInfo?.mainSubRegionId &&
+            params.append("sub_region", dressInfo?.mainSubRegionId);
+        fetch(`${url}/category-filter/${paramsId}?` + params)
             .then((res) => res.json())
             .then((res) => {
                 setGetFilter(res?.filter)
@@ -77,7 +82,7 @@ function FilterList({
         if ((filterToggle || openMobileFilter) && !getFilter) {
             fetchGetAllData()
         }
-    }, [filterToggle, openMobileFilter, dressInfo?.mainRegionId])
+    }, [filterToggle, openMobileFilter, dressInfo?.mainRegionId,dressInfo?.mainSubRegionId])
 
     // useEffect(() => {
     //     if (getParamsTest !== paramsId) {

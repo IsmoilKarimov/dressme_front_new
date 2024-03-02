@@ -12,7 +12,7 @@ export default function Favourites() {
   return (
     <main className="w-full flex flex-col items-center ">
       <section className="w-full border-b border-searchBgColor">
-        <FavoutireBreadCrumbs />
+        <FavoutireBreadCrumbs /> 
       </section>
 
       <section className="w-full h-full">
