@@ -148,7 +148,7 @@ const Header = () => {
               <MediumHeader />
             </article>
             <article
-              className={`fixed top-0  w-full bg-white block  border border-green-600
+              className={`fixed top-0  w-full bg-white block  
               ${
                 show
                   ? "visible duration-500 z-[25]"
