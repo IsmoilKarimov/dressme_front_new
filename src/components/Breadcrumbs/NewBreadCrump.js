@@ -10,11 +10,11 @@ const NewBreadCrump = ({ items }) => {
                 {items.map((item, index) => (
                     <li className="breadcrumb-item" key={index}>
                         {index === items.length - 1 ? (
-                            <span className="breadcrumb-item--active">{item.label_ru}</span>
+                            <span className="breadcrumb-item--active text-setTexOpacity">{item.label_ru}</span>
                         ) : (
                             <>
-                                <NavLink className='font-AeonikProMedium capitalize  text-[14px] items-center no-underline hover:text-fullBlue tracking-[1px]' to={item?.url}>{item.label_ru}</NavLink>
-                                <span className='px-3'>/</span>
+                                <NavLink className='font-AeonikProMedium capitalize  text-[14px] md:text-[15px] items-center no-underline hover:text-fullBlue tracking-[1px]' to={item?.url}>{item.label_ru}</NavLink>
+                                <span className='px-3 text-setTexOpacity'>/</span>
                             </>
                         )}
                     </li>

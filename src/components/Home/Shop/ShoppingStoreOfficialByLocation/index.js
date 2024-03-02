@@ -12,6 +12,7 @@ import axios from "axios";
 import LoadingNetwork from "../../../Loading/LoadingNetwork";
 import YandexLocationShop from "./ShoppingStoreCategory/YandexLocationShop/YandexLocationShop";
 import Breadcrumbs from "../../../Breadcrumbs/Breadcrumbs";
+import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
 // filteredData?.shop?.approved_shop_locations[dressInfo?.locationIdParams - 1]
 const ShoppingStoreOfficialByLocation = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -95,8 +96,8 @@ const ShoppingStoreOfficialByLocation = () => {
     });
   }, []);
   const navigate = useNavigate();
-  const { id } = useParams();
-  const newId = id.replace(":", "");
+  const paramsIDS = useParams();
+  const newId = paramsIDS?.id.replace(":", "");
   // dressInfo?.yandexGetMarketId
   console.log(dressInfo?.yandexGetMarketId, 'dressInfo?.yandexGetMarketId');
   console.log(newId, 'newId---');
@@ -157,7 +158,7 @@ const ShoppingStoreOfficialByLocation = () => {
   useEffect(() => {
 
     if (data?.getMainProductCard?.shops) refreshLocationId();
-  }, [ newFilterParamasId, dressInfo?.mainSubRegionId, dressInfo?.mainRegionId, ]);
+  }, [newFilterParamasId, dressInfo?.mainSubRegionId, dressInfo?.mainRegionId,]);
 
 
   const url = `https://api.dressme.uz/api`;
@@ -296,6 +297,12 @@ const ShoppingStoreOfficialByLocation = () => {
       window.removeEventListener("resize", updateDimension);
     };
   }, [screenSize]);
+  
+  const breadcrumbItems = [
+    { label_uz: 'Home', label_ru: 'Главная', url: '/' },
+    { label_uz: 'Location', label_ru: 'Карта', url: '/locations' },
+    { label_uz: paramsIDS?.id, label_ru: paramsIDS?.id, url: '/shops_location/:id' },
+  ];
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
       {loading ? (
@@ -309,7 +316,8 @@ const ShoppingStoreOfficialByLocation = () => {
               name={filteredData?.shop?.name}
               paramsId={newId}
             /> */}
-            <Breadcrumbs />
+            {/* <Breadcrumbs /> */}
+            <NewBreadCrump items={breadcrumbItems} />
 
           </section>
           <section className="w-full border-searchBgColor ">

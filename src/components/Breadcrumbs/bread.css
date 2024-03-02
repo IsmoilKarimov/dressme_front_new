@@ -12,7 +12,7 @@
   }
   
   .breadcrumb-item:last-child {
-    color: #6c757d;
+    color: #A1A1A1;
   }
   
   .breadcrumb-item a {
@@ -25,5 +25,5 @@
   }
   
   .breadcrumb-item--active {
-    color: #6c757d;
+    color: #A1A1A1;
   }
