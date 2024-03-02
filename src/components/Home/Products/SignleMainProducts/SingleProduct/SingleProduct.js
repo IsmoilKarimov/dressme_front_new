@@ -169,7 +169,7 @@ const SingleProduct = ({ breadShops }) => {
             <SingleProductTop data={singleData} breadShops={breadShops}/>
           </section>
           <section className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto border-box mb-10 md:mb-[0px]">
-            <section className="w-[100%] h-fit mt-4 md:mt-6 flex justify-between flex-col md:flex-row">
+            <section className="w-[100%] h-fit mt-4 md:mt-6 flex justify-between flex-col md:flex-row px-[12px] md:px-0">
               <section className={`md:w-1/2`}>
                 <ProductCarousel show={show} data={singleData} />
               </section>

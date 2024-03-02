@@ -2,7 +2,7 @@ import React from "react";
 import { MenuCloseIcons } from "../../../../../../../../assets/icons";
 
 function TableSizesDropUp({ onClick, data, selectedLocation }) {
-  // console.log(data, "data-table-data");
+  console.log(data, "data-table-data");
 
   return (
     <main>
@@ -34,7 +34,7 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
                 </div>
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
-                <div className="w-[180%] flex items-center justify-center px-[4px]">
+                <div className="w-full overflow-x-scroll flex items-center justify-center px-[4px]">
                   {data?.product?.sizes?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
@@ -103,7 +103,7 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
                 </div>
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
-                <div className="w-[180%] overflow-x-scroll flex items-center justify-center">
+                <div className="w-full overflow-x-scroll flex items-center justify-center">
                   {data?.product?.sizes?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
@@ -161,18 +161,26 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
                 </li>
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
-                <div className="w-[180%] overflow-x-scroll flex items-center justify-center">
+                <div className="w-[100%] overflow-x-scroll flex items-center justify-start">
                   {data?.product?.sizes?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
                         <ul
                           key={data?.id}
-                          className="w-full flex items-center flex-col text-[13px] font-AeonikProRegular "
+                          className={` ${
+                            !data?.wear_size &&
+                            !data?.min_foot_length &&
+                            !data?.max_foot_length
+                              ? "hidden"
+                              : "flex"
+                          } w-fit items-center flex-col text-[13px] font-AeonikProRegular `}
                         >
-                          <li className="w-full h-10 flex items-center justify-center px-3">
+                          <li
+                            className={`w-[70px] h-10 flex items-center justify-center px-3`}
+                          >
                             {data?.wear_size}
                           </li>
-                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 flex items-center justify-center px-3">
+                          <li className="w-[70px] bg-categoryModalBgColor rounded-l-lg h-10 flex items-center justify-center px-3">
                             {" "}
                             {data?.min_foot_length}{" "}
                             {data?.max_foot_length
@@ -205,7 +213,7 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
                 </li>
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
-                <div className="w-[180%] overflow-x-scroll flex items-center justify-center">
+                <div className="w-full overflow-x-scroll flex items-center justify-center">
                   {data?.product?.sizes?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
