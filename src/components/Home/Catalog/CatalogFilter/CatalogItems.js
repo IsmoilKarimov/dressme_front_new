@@ -97,14 +97,14 @@ export default function CatalogItems() {
   const paramId = useParams();
 
   const newId = paramId?.id?.replace(":", "");
-  console.log(newId, 'newId');
+  // console.log(newId, 'newId');
   useLayoutEffect(() => {
-    if (newId === 'taqinchoqlar-aksessuarlar') {
+    if (newId === 'украшения-аксессуары') {
       setNewFilterParamasId(5)
       setNewFilterParamasIdCopy(newFilterParamasIdCopy)
     } else {
       data?.getMainProductCard?.categories?.map(item => {
-        if (newId?.includes(item?.name_uz?.split(' ')?.join('-')?.toLowerCase())) {
+        if (newId?.includes(item?.name_ru?.split(' ')?.join('-')?.toLowerCase())) {
           setNewFilterParamasId(item?.id)
           if (!newFilterParamasIdCopy) {
             setNewFilterParamasIdCopy(item?.id)
@@ -136,7 +136,7 @@ export default function CatalogItems() {
           <p
             key={data?.id}
             onClick={() => {
-              handleCategories(data?.id, data?.name_uz);
+              handleCategories(data?.id, data?.name_ru);
             }}
             className={`${Number(paramId?.id) === data?.id ? "bg-bgColor" : null
               } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
@@ -210,6 +210,8 @@ export default function CatalogItems() {
       .then((res) => res.json())
       .then((res) => {
         setFilterData(res);
+        setDressInfo({ ...dressInfo, filterDataProductList: res })
+
         setLoading(false);
       })
       .catch((err) => {

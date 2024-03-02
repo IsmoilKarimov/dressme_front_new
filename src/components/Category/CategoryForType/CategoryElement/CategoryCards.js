@@ -20,7 +20,7 @@ export default function CategoryCards({ filterData, setPageId, paramsId }) {
     setDressInfo((current) => {
       return { ...current, ProductList: newArray };
     });
-  };
+  }; 
 
   // ------------------
 

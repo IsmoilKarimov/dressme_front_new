@@ -163,9 +163,9 @@ const ShoppingStoreOfficial = () => {
   //     })
   // }, [data?.getMainProductCard?.sections]);
 
-  console.log(newFilterParamasId, 'newFilterParamasId');
-  console.log(newFilterParamasIdCopy, 'newFilterParamasIdCopy');
-  console.log(dressInfo?.locationIdParams, 'dressInfo?.locationIdParams');
+  // console.log(newFilterParamasId, 'newFilterParamasId');
+  // console.log(newFilterParamasIdCopy, 'newFilterParamasIdCopy');
+  // console.log(dressInfo?.locationIdParams, 'dressInfo?.locationIdParams');
 
   const [loading, setLoading] = useState(false);
 
@@ -229,6 +229,8 @@ const ShoppingStoreOfficial = () => {
       .then((res) => {
         if (res?.status >= 200 && res?.status < 300) {
           setFilteredData(res?.data);
+          setDressInfo({ ...dressInfo, filterDataProductList: res?.data })
+
           setLoading(false);
         }
       })
