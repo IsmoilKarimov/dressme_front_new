@@ -236,7 +236,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
       mainSearchNameshopLocation: null,
     });
   };
-  console.log(searchForLocation, 'searchForLocation');
+
   function getSearchClick() {
     setPage(1);
     if (searchForLocation?.includes("shops") && searchForLocation?.length == 2) {
@@ -454,7 +454,6 @@ const MediumHeader = ({ stateData, setStateData }) => {
                       {SeasonTypeArray.filter(
                         (e) => e.id === dressInfo.type
                       ).map((data) => {
-                        // console.log(data, "weather-data");
                         return (
                           <figure
                             key={data?.id}

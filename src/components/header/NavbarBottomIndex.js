@@ -22,7 +22,6 @@ function NavbarBottomIndex({scrollPost}) {
     setLocationWindow(location.pathname);
   }, [location.pathname]);
 
-  // ss:w-full flex flex-col justify-center md:mt-[6px]
   return (
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border ">
       <div className="max-w-[1280px] w-[100%] flex justify-center  items-center m-auto">
