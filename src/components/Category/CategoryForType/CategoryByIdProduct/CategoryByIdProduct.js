@@ -7,7 +7,7 @@ export default function CategoryByIdProduct() {
     const [dressInfo, setDressInfo] = useContext(dressMainData);
     const [getproductName, setGetproductName] = useState(null);
     const paramsId = useParams();
-    console.log(dressInfo?.filterDataProductList?.section_products?.data,'dressInfo?.filterDataProductList?.section_products?.data');
+    console.log(dressInfo?.filterDataProductList?.section_products?.data, 'dressInfo?.filterDataProductList?.section_products?.data');
     useLayoutEffect(() => {
         if (dressInfo?.filterDataProductList?.section_products?.data) {
             dressInfo?.filterDataProductList?.section_products?.data?.map(item => {
@@ -23,9 +23,14 @@ export default function CategoryByIdProduct() {
         { label_uz: paramsId?.id, label_ru: paramsId?.id, url: `/section/${paramsId?.id}` },
         { label_uz: getproductName, label_ru: getproductName, url: `/section/:${paramsId?.id}/${paramsId?.product}` },
     ];
+    function oncallProductName(child) {
+        if (!getproductName) {
+            setGetproductName(child)
+        }
+    }
     return (
         <div className='px-4 md:px-0'>
-            <SingleProduct breadShops={breadcrumbItems} />
+            <SingleProduct breadShops={breadcrumbItems} oncallProductName={oncallProductName} />
         </div>
     )
 }

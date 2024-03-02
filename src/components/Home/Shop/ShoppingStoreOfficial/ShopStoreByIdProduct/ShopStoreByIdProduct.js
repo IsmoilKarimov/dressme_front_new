@@ -22,9 +22,14 @@ export default function ShopStoreByIdProduct() {
     { label_uz: params?.id, label_ru: params?.id, url: `/shops/${params?.id}` },
     { label_uz: getproductName, label_ru: getproductName, url: `/shops/${params?.id}/${params?.product}` },
   ];
+  function oncallProductName(child) {
+    if (!getproductName) {
+      setGetproductName(child)
+    }
+  }
   return (
     <div className='px-4 md:px-0'>
-      <SingleProduct breadShops={breadcrumbItems} />
+      <SingleProduct breadShops={breadcrumbItems} oncallProductName={oncallProductName} />
     </div>
   )
 }

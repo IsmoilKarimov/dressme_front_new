@@ -22,10 +22,14 @@ export default function CatalogByIdProduct() {
         { label_uz: paramId?.id, label_ru: paramId?.id, url: `/categories/${paramId?.id}` },
         { label_uz: getproductName, label_ru: getproductName, url: `/categories/${paramId?.id}/${paramId?.product}` },
     ];
-
+    function oncallProductName(child) {
+        if (!getproductName) {
+            setGetproductName(child)
+        }
+    }
     return (
         <div className='px-4 md:px-0'>
-            <SingleProduct breadShops={breadcrumbItems} />
+            <SingleProduct breadShops={breadcrumbItems} oncallProductName={oncallProductName} />
         </div>
     )
 }

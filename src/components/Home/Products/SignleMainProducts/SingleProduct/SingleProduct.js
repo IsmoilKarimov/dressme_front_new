@@ -11,7 +11,7 @@ import { CollectionCardItem } from "../../../Main/WearCollectionCard/CollectionC
 import LoadingNetwork from "../../../../Loading/LoadingNetwork";
 import axios from "axios";
 
-const SingleProduct = ({ breadShops }) => {
+const SingleProduct = ({ breadShops, oncallProductName }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, mainData, , wishList, setWishlist] =
     useContext(HomeMainDataContext);
@@ -70,10 +70,10 @@ const SingleProduct = ({ breadShops }) => {
   const paramsId = useParams();
   // console.log(paramsId,'paramsId');
   const [singleData, setSingleData] = useState();
-
+  console.log(singleData?.product?.name_ru, 'singleData');
   useEffect(() => {
-    // breadShop
-  }, [paramsId?.product]);
+    oncallProductName(singleData?.product?.name_ru)
+  }, [singleData?.product]);
   // useEffect(() => {
   //   data?.products?.map((item) => {
   //     if (
@@ -157,7 +157,6 @@ const SingleProduct = ({ breadShops }) => {
         item?.id !== singleData?.product?.id
     )
     ?.slice(0, 6);
-console.log(singleData,'singleData');
   return (
     <main className="flex flex-col m-0 p-0 box-border">
       {loading ? (
@@ -165,7 +164,7 @@ console.log(singleData,'singleData');
       ) : (
         <div className="w-full">
           <section>
-            <SingleProductTop data={singleData} breadShops={breadShops}/>
+            <SingleProductTop data={singleData} breadShops={breadShops} />
           </section>
           <section className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto border-box mb-10 md:mb-[0px]">
             <section className="w-[100%] h-fit mt-4 md:mt-6 flex justify-between flex-col md:flex-row px-[12px] md:px-0">
