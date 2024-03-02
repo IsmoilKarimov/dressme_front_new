@@ -10,15 +10,21 @@ import "./LocationOfYandex.css";
 import { markerIcons } from "../../../../../../../assets";
 import AddCopyCheckedIcon from "../AddCopyCheckedIcon/AddCopyCheckedIcon";
 
-function LocationOfYandex({ locationText }) {
+function LocationOfYandex({ locationText, data }) {
+  const [logaLocation, setLogaLocation] = useState()
+  const [placeMarkLocation, setPlaceMarkLocation] = useState([])
+
   //------------------------------------------------------------------------------------------------
   const mapState = {
     center: [41.327228, 69.249023],
     zoom: 14,
   };
   //------------------------------------------------------------------------------------------------
+  useEffect(() => {
+    setLogaLocation(data?.product?.shop?.url_logo_photo)
+    setPlaceMarkLocation([locationText?.latitude, locationText?.longitude])
 
-  // const handleOpenYandex = () => {
+  }, [data, locationText])  // const handleOpenYandex = () => {
   //   window.open(`https://yandex.uz/maps/10335/tashkent/?ll=${mapState?.center[1]}%2C${mapState?.center[0]}&mode=search&sll=${mapState?.center[1]}%2C${mapState?.center[0]}&text=${mapState?.center[0]}%2C${mapState?.center[1]}&z=15`, "_blank")
 
   // }
@@ -33,6 +39,7 @@ function LocationOfYandex({ locationText }) {
       top: 0,
     });
   }, []);
+
   return (
     <div className={`w-full `}>
       <div className={`w-full flex items-center mb-3 mt-4`}>
@@ -43,7 +50,7 @@ function LocationOfYandex({ locationText }) {
               ref={addresRef}
               className="text-[#000] not-italic font-AeonikProRegular text-[14px] xs:text-base "
             >
-              {locationText}
+              {locationText?.address}
             </span>
             <button
               type="button"
@@ -64,18 +71,28 @@ function LocationOfYandex({ locationText }) {
         >
           <Map
             className={` overflow-hidden w-full h-[350px] md:h-[400px] rounded-lg productDetailsMaps`}
-            defaultState={mapState}
+            state={{
+              center: placeMarkLocation,
+              zoom: 12,
+          }}
             modules={["control.FullscreenControl"]}
           >
             <Placemark
               className={" cursor-pointer"}
               // key={index}
               // onClick={() => handlePlaceMark(data?.marketId, data?.cordinate)}
-              geometry={mapState?.center}
+              // geometry={mapState?.center}
+              // options={{
+              //   iconLayout: "default#image",
+              //   iconImageHref: markerIcons,
+              //   iconImageSize: [32, 32],
+              // }}
+              geometry={placeMarkLocation}
               options={{
                 iconLayout: "default#image",
-                iconImageHref: markerIcons,
-                iconImageSize: [32, 32],
+                // iconImageHref: markerIcons,
+                iconImageHref: logaLocation,
+                iconImageSize: [45, 45], // Set the size of your image
               }}
               modules={["geoObject.addon.balloon"]}
             />

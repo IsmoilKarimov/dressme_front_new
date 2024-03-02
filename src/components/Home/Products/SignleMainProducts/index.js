@@ -27,7 +27,7 @@ export default function SingleMainProducts() {
     { label_uz: 'product', label_ru: 'продукт', url: '/product' },
     { label_uz: getproductName, label_ru: getproductName, url: `/product/${paramId?.product}` },
   ];
-
+  
   return (
     <main className="w-full ">
       <SingleProduct breadShops={breadcrumbItems} />
