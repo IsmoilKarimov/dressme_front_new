@@ -10,7 +10,7 @@ import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { NavLink } from "react-router-dom";
 import NewBreadCrump from "../../../../Breadcrumbs/NewBreadCrump";
 
-const CatalogTopFilter = ({paramId}) => {
+const CatalogTopFilter = ({ paramId }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const handleFilter = () => {
     setDressInfo({
@@ -105,108 +105,15 @@ const CatalogTopFilter = ({paramId}) => {
   ];
   return (
     <main className="w-full">
-      <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
-
-        <section className="w-[100%] h-fit flex-col hidden border-b border-searchBgColor">
-          <article className="w-full flex flex-col">
-            <figure className="relative w-full  md:h-[90px]  mt-2 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
-              <div className="w-full md:w-fit flex items-center justify-between md:mr-5  mt-6 md:mt-0">
-                <div className="w-full md:w-fit flex items-center justify-between ">
-                  <p className="flex items-center text-black text-xl not-italic font-AeonikProMedium tracking-[0.2px">
-                    Мужские кроссовки{" "}
-                  </p>
-                  <p className=" md:hidden text-setTexOpacity text-right text-sm not-italic font-AeonikProRegular tracking-[0.14px]">
-                    82 товара
-                  </p>
-                  <div className="md:flex items-center hidden ">
-                    <Popover
-                      open={state?.opensports}
-                      onOpenChange={handleOpenCategories}
-                      className="w-[260px] px-4 h-[52px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
-                      trigger="click"
-                      options={["Hide"]}
-                      placement="bottom"
-                      content={contentCategories}
-                    >
-                      <span className="text-[15px] font-AeonikProMedium">
-                        Спортивный
-                      </span>
-                      <span>
-                        <BiChevronDown
-                          size={22}
-                          style={{ color: "#000" }}
-                          className={`${state?.opensports ? "rotate-[-180deg]" : ""
-                            } duration-200`}
-                        />
-                      </span>
-                    </Popover>
-                  </div>
-                </div>
-              </div>
-            </figure>
-          </article>
-
-          <article className="w-full md:hidden flex items-center justify-between mt-6 mb-3  px-4">
-            <button
-              onClick={() => handleFilter()}
-              className="h-[44px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
-            >
-              <p>
-                <FilterIcons colors={"#000"} />
-              </p>
-              <p className="ml-2 not-italic  font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
-                Фильтры
-              </p>
-            </button>
-            <Popover
-              className="h-[44px] w-[48%] active:scale-95  select-none  active:opacity-70 rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center"
-              open={state?.openTypesofClothes}
-              onOpenChange={handleOpenTypesofClothes}
-              trigger="click"
-              options={["Hide"]}
-              placement="bottom"
-              content={contentTypesofClothes}
-            >
-              <p>
-                <ClothesIcons colors={"#000"} />
-              </p>
-              <p className="ml-2  not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%] cursor-pointer">
-                Тип одеждый
-              </p>
-            </Popover>
-          </article>
-        </section>
-
-        <section className="w-full h-full px-3 md:px-0">
-          <div className="md:pt-5 md:pb-4 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 md:py-3">
-            <section className="max-w-[1280px] w-[100%] h-full flex items-center justify-between m-auto">
-              <nav className="w-[100%] md:w-fit flex items-center p-1 md:p-0">
-                {/* <Breadcrumbs /> */}
-                <NewBreadCrump items={breadcrumbItems} />
-                {/* <ul className="h-10 w-[100%] md:w-fit flex items-center overflow-auto HorizantalScroll">
-                  <li className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-black tracking-[1%] mr-[10px]">
-                    <NavLink
-                      to="/"
-                      className="flex items-center whitespace-nowrap cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm text-black tracking-[1%]"
-                    >
-                      Главная
-                    </NavLink>
-                    <span>
-                      <ItailIcons colors={"#A1A1A1"} />
-                    </span>
-                  </li>
-                  <li className="not-italic font-AeonikProRegular flex items-center text-black tracking-[1%]">
-                    <div className="flex	whitespace-nowrap items-center pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm text-setTexOpacity tracking-[1%]">
-                      Категории
-                    </div>
-                  </li>
-                </ul> */}
-              </nav>
-
-              <nav className="hidden md:flex"></nav>
-            </section>
-          </div>
-        </section>
+ 
+      <section className="w-full h-full  border border-red-500 ">
+        <div className="md:my-6 flex flex-col  w-full justify-center items-center ">
+          <section className="max-w-[1280px] w-[100%] h-full flex items-center justify-between m-auto">
+            <nav className="w-[100%] md:w-fit flex items-center py-1 md:p-0">
+              <NewBreadCrump items={breadcrumbItems} />
+            </nav>
+          </section>
+        </div>
       </section>
     </main>
   );

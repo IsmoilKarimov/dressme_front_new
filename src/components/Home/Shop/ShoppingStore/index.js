@@ -1,5 +1,4 @@
 import ShoppingBrands from "./shoppingBrands/shoppingBrands";
-import ShoppingStoreBreadCrumb from "./shoppingStoreBreadcrumb/shoppingStoreBreadcrumb";
 import ShoppingTop from "../ShoppingStore/shoppingTop/shoppingTop";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
@@ -88,10 +87,11 @@ export default function ShoppingStore() {
 
   return (
     <main className="w-full flex flex-col items-center px-4 md:px-0">
-      <section className="w-full md:border-b md:border-searchBgColor max-w-[1280px]  flex items-center md:mt-5">
-        {/* <Breadcrumbs /> */}
-        <NewBreadCrump items={breadcrumbItems} />
-      </section>
+      <div className="w-full md:border-b md:border-searchBgColor justify-center">
+        <section className="w-full max-w-[1280px]  flex items-center md:mt-5  mx-auto">
+          <NewBreadCrump items={breadcrumbItems} />
+        </section>
+      </div>
       <section className="w-full md:border-b md:border-searchBgColor">
         <ShoppingTop
           // setLoading={setLoading}

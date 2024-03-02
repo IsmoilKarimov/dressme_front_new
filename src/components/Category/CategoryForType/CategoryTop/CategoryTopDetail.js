@@ -86,31 +86,12 @@ const CategoryTopDetail = ({
     { label_uz: 'section', label_ru: 'раздел', url: '/section' },
     { label_uz: paramsId, label_ru: paramsId, url: '/section/:id' },
   ];
-  
+
   return (
     <main className="flex flex-col justify-center border-t border-searchBgColor items-center">
-      <div className="md:pb-16 flex flex-col  w-full justify-center items-center m-0 ">
-        <section className="border-b md:min-h-[44px] py-3 border-searchBgColor w-[100%] h-full  flex items-center justify-between m-auto">
-          <nav className="w-[100%] md:w-fit flex items-center px-4">
-            {/* <ul className="h-10 w-[100%] md:w-fit flex items-center overflow-auto HorizantalScroll">
-              <li className="not-italic font-AeonikProRegular flex items-center flex-nowrap text-black mr-[10px]">
-                <NavLink
-                  to="/"
-                  className="flex items-center whitespace-nowrap cursor-pointer pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm text-black"
-                >
-                  Главная
-                </NavLink>
-                <span>
-                  <ItailIcons colors={"#A1A1A1"} />
-                </span>
-              </li>
-              <li className="not-italic font-AeonikProRegular flex items-center text-black">
-                <div className="flex whitespace-nowrap text-setTexOpacity items-center pt-[4px] pr-[10px] not-italic font-AeonikProMedium text-sm">
-                  Разделы
-                </div>
-              </li>
-            </ul> */}
-            {/* <Breadcrumbs /> */}
+      <div className=" flex flex-col  w-full justify-center items-center m-0  mt-2">
+        <section className="border-b md:my-6 border-searchBgColor w-[100%] h-full  flex items-center justify-between m-auto">
+          <nav className="w-[100%] md:w-fit flex items-center ">
             <NewBreadCrump items={breadcrumbItems} />
           </nav>
           <nav className="hidden md:flex"></nav>
@@ -118,7 +99,7 @@ const CategoryTopDetail = ({
       </div>
 
 
-      <section className=" w-[100%] flex flex-col items-center justify-between m-auto">
+      <section className=" w-[100%] flex flex-col items-center justify-between m-auto  md:mt-[60px]">
         <article className="w-[100%] h-fit md:mb-16">
           <article className="w-full flex flex-col border-b md:border-none border-searchBgColor">
             <figure className="relative w-full md:h-[90px] my-10 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-lg px-4 md:px-0">

@@ -29,7 +29,7 @@ export default function SingleMainProducts() {
   ];
 
   return (
-    <main className="w-full px-4">
+    <main className="w-full ">
       <SingleProduct breadShops={breadcrumbItems} />
     </main>
   );

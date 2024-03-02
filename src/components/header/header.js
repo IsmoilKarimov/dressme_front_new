@@ -133,8 +133,8 @@ const Header = () => {
   ]);
 
   return (
-    <header>
-      <section>
+    <header >
+      <section >
         {locationWindow !== "/locations" ? (
           <div className="w-full">
             <article
@@ -148,7 +148,7 @@ const Header = () => {
               <MediumHeader />
             </article>
             <article
-              className={`fixed top-0  w-full bg-white block
+              className={`fixed top-0  w-full bg-white block  border border-green-600
               ${
                 show
                   ? "visible duration-500 z-[25]"
