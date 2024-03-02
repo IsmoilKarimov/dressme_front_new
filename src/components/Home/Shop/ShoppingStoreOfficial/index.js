@@ -100,16 +100,7 @@ const ShoppingStoreOfficial = () => {
   const navigate = useNavigate();
   const params = useParams();
   const newId = params?.id?.replace(":", "");
-  console.log(newId?.split('-')?.join(' '), 'newId');
   const refreshLocationId = () => {
-    // data?.getMainProductCard?.shops?.map((item) => {
-    //   if (item?.id === Number(newId)) {
-    //     setDressInfo({
-    //       ...dressInfo,
-    //       locationIdParams: item?.approved_shop_locations[0]?.id,
-    //     });
-    //   }
-    // });
     data?.getMainProductCard?.shops?.map((item) => {
       if (item?.id === Number(newFilterParamasId)) {
         if (dressInfo?.mainSubRegionId) {
@@ -140,13 +131,14 @@ const ShoppingStoreOfficial = () => {
       }
     });
   };
+  
   useEffect(() => {
     refreshLocationId();
-  }, [newFilterParamasId, dressInfo?.mainSubRegionId]);
-  console.log(dressInfo?.shopsData?.shops, 'dressInfo?.shopsData?.shops?.data');
+  }, [newFilterParamasId, dressInfo?.mainSubRegionId, dressInfo?.mainRegionId]);
+  // console.log(dressInfo?.shopsData?.shops, 'dressInfo?.shopsData?.shops?.data');
   useEffect(() => {
     data?.getMainProductCard?.shops?.map(item => {
-      console.log(item?.name,'name');
+      console.log(item?.name, 'name');
       if (newId?.split('-')?.join(' ')?.includes(item?.name?.toLowerCase())) {
         setNewFilterParamasId(item?.id)
         if (!newFilterParamasIdCopy) {
@@ -154,9 +146,23 @@ const ShoppingStoreOfficial = () => {
         }
       }
     })
-  }, []);
+  }, [data?.getMainProductCard]);
+  // useEffect(() => {
+  //   if (!newFilterParamasId && !newFilterParamasIdCopy)
+  //     data?.getMainProductCard?.shops?.map(item => {
+  //       console.log(item?.name, 'name');
+  //       if (newId?.split('-')?.join(' ')?.includes(item?.name?.toLowerCase())) {
+  //         setNewFilterParamasId(item?.id)
+  //         if (!newFilterParamasIdCopy) {
+  //           setNewFilterParamasIdCopy(item?.id)
+  //         }
+  //       }
+  //     })
+  // }, [data?.getMainProductCard?.sections]);
+
   console.log(newFilterParamasId, 'newFilterParamasId');
   console.log(newFilterParamasIdCopy, 'newFilterParamasIdCopy');
+  console.log(dressInfo?.locationIdParams, 'dressInfo?.locationIdParams');
   const [loading, setLoading] = useState(false);
 
   const url = `https://api.dressme.uz/api`;
@@ -236,14 +242,15 @@ const ShoppingStoreOfficial = () => {
   };
 
   useEffect(() => {
-    if (initalParamsId && initalParamsId !== dressInfo?.locationIdParams && !getGenderId && !getCategory && !getRating && !getRange?.length && !dataColor?.length && !discount && !getOutWearList && !getUnderWearList && !getFootWearList) {
+    if (!filteredData && dressInfo?.locationIdParams || initalParamsId && initalParamsId !== dressInfo?.locationIdParams && !getGenderId && !getCategory && !getRating && !getRange?.length && !dataColor?.length && !discount && !getOutWearList && !getUnderWearList && !getFootWearList) {
       fetchGetAllData();
       setLoading(true)
     }
     setInitalParamsId(dressInfo?.locationIdParams)
   }, [dressInfo?.locationIdParams]);
+
   useEffect(() => {
-    if (data?.getMainProductCard && dressInfo?.locationIdParams && newFilterParamasIdCopy) {
+    if (data?.getMainProductCard?.shops && dressInfo?.locationIdParams && newFilterParamasIdCopy) {
       fetchGetAllData();
       if (!filteredData) {
         setLoading(true)
@@ -265,7 +272,9 @@ const ShoppingStoreOfficial = () => {
     getRange?.max,
     data?.getMainProductCard,
     dressInfo?.mainSearchNameshop,
+    data?.getMainProductCard?.shops,
   ]);
+  // console.log(data?.getMainProductCard, dressInfo?.locationIdParams, newFilterParamasIdCopy, 'run------');
   // console.log(dataColor, ' dataColor,');
   // console.log(getRange, ' getRange,');
   useEffect(() => {
