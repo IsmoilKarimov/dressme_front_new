@@ -34,45 +34,91 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
                 </div>
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
-                <div className="w-full overflow-x-scroll flex items-center justify-center px-[4px]">
+                <div className="w-full overflow-x-scroll flex items-center justify-start px-[4px]">
                   {data?.product?.sizes?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
                         <ul
                           key={data?.id}
-                          className="w-full flex items-center justify-center flex-col text-[13px] font-AeonikProRegular "
+                          className={`${
+                            !data?.min_wear_size &&
+                            !data?.max_wear_size &&
+                            !data?.letter_size &&
+                            !data?.min_chest_girth &&
+                            !data?.max_chest_girth &&
+                            !data?.min_waist_girth &&
+                            !data?.max_waist_girth &&
+                            !data?.min_hip_girth &&
+                            !data?.max_hip_girth ? 'hidden' : 'flex'
+                          } w-full items-center justify-start flex-col text-[13px] font-AeonikProRegular `}
                         >
                           {/* Sizes */}
-                          <li className="w-full h-10 flex items-center justify-center">
-                            {data?.min_wear_size}{" "}
-                            {data?.max_wear_size
-                              ? "- " + data?.max_wear_size
-                              : null}
+                          <li className="w-full h-10 flex items-center justify-start">
+                            <div className="w-[50px] text-center">
+                              {!data?.min_wear_size && !data?.max_wear_size ? (
+                                "-"
+                              ) : (
+                                <span>
+                                  {data?.min_wear_size}{" "}
+                                  {data?.max_wear_size
+                                    ? " - " + data?.max_wear_size
+                                    : null}
+                                </span>
+                              )}
+                            </div>
                           </li>
                           {/* Letter Sizes */}
-                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] flex items-center justify-center">
-                            <li>{data?.letter_size}</li>
+                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] flex items-center justify-start">
+                            <div className="w-[50px] text-center">
+                              {data?.letter_size ? data?.letter_size : "-"}
+                            </div>
                           </li>
                           {/* Chest Sizes */}
-                          <li className="w-full h-10 flex items-center justify-center">
-                            {data?.min_chest_girth}{" "}
-                            {data?.max_chest_girth
-                              ? "- " + data?.max_chest_girth
-                              : null}
+                          <li className="w-full h-10 flex items-center justify-start">
+                            <div className="w-[50px] text-center">
+                              {!data?.min_chest_girth &&
+                              !data?.max_chest_girth ? (
+                                "-"
+                              ) : (
+                                <span>
+                                  {data?.min_chest_girth}{" "}
+                                  {data?.max_chest_girth
+                                    ? " - " + data?.max_chest_girth
+                                    : null}
+                                </span>
+                              )}
+                            </div>
                           </li>
                           {/* Waist Sizes */}
-                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] flex items-center justify-center">
-                            {data?.min_waist_girth}{" "}
-                            {data?.max_waist_girth
-                              ? "- " + data?.max_waist_girth
-                              : null}
+                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 ml-[5px] flex items-center justify-start">
+                            <div className="w-[50px] text-center">
+                              {!data?.min_waist_girth &&
+                              !data?.max_waist_girth ? (
+                                "-"
+                              ) : (
+                                <span>
+                                  {data?.min_waist_girth}{" "}
+                                  {data?.max_waist_girth
+                                    ? " - " + data?.max_waist_girth
+                                    : null}
+                                </span>
+                              )}
+                            </div>
                           </li>
                           {/* Hip Sizes */}
-                          <li className="w-full h-10 flex items-center justify-center">
-                            {data?.min_hip_girth}{" "}
-                            {data?.max_hip_girth
-                              ? "- " + data?.max_hip_girth
-                              : null}
+                          <li className="w-full h-10 flex items-center justify-start">
+                            <div className="w-[50px] text-center">
+                              {!data?.min_hip_girth && !data?.max_hip_girth ? (
+                                "-"
+                              ) : (
+                                <span>
+                                  {data?.min_hip_girth}{" "}
+                                  {data?.max_hip_girth
+                                    ? " - " + data?.max_hip_girth
+                                    : null}
+                                </span>
+                              )}
+                            </div>
                           </li>
                         </ul>
                       );
@@ -103,43 +149,92 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
                 </div>
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
-                <div className="w-full overflow-x-scroll flex items-center justify-center">
+                <div className="w-full overflow-x-scroll flex items-center justify-start">
                   {data?.product?.sizes?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
                         <ul
                           key={data?.id}
-                          className="w-full flex items-center justify-center flex-col text-[13px] font-AeonikProRegular "
+                          className={`${
+                            !data?.min_wear_size &&
+                            !data?.max_wear_size &&
+                            !data?.letter_size &&
+                            !data?.min_height &&
+                            !data?.max_height &&
+                            !data?.min_waist_girth &&
+                            !data?.max_waist_girth &&
+                            !data?.min_hip_girth &&
+                            !data?.max_hip_girth
+                              ? "hidden"
+                              : "flex"
+                          } w-full items-center justify-start flex-col text-[13px] font-AeonikProRegular`}
                         >
                           {/* Sizes */}
-                          <li className="w-full h-10 flex items-center justify-center px-3">
-                            {data?.min_wear_size}{" "}
-                            {data?.max_wear_size
-                              ? "- " + data?.max_wear_size
-                              : null}
+                          <li className="w-full h-10 flex items-center justify-start px-3">
+                            <div className="w-[50px] text-center">
+                              {!data?.min_wear_size && !data?.max_wear_size ? (
+                                "-"
+                              ) : (
+                                <span>
+                                  {data?.min_wear_size}{" "}
+                                  {data?.max_wear_size
+                                    ? " - " + data?.max_wear_size
+                                    : null}
+                                </span>
+                              )}
+                            </div>
                           </li>
                           {/* Letter Sizes */}
-                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 flex items-center justify-center px-3">
-                            {data?.letter_size}
+                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 flex items-center justify-start px-3">
+                            <span className="w-[50px] text-center">
+                              {data?.letter_size ? data?.letter_size : "-"}
+                            </span>
                           </li>
                           {/* Chest Sizes */}
-                          <li className="w-full h-10 flex items-center justify-center px-3">
-                            {data?.min_height}{" "}
-                            {data?.max_height ? "- " + data?.max_height : null}
+                          <li className="w-full h-10 flex items-center justify-start px-3">
+                            <div className="w-[50px] text-center">
+                              {!data?.min_height && !data?.max_height ? (
+                                "-"
+                              ) : (
+                                <span>
+                                  {data?.min_height}
+                                  {data?.max_height
+                                    ? " - " + data?.max_height
+                                    : null}
+                                </span>
+                              )}
+                            </div>
                           </li>
                           {/* Waist Sizes */}
-                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 flex items-center justify-center px-3">
-                            {data?.min_waist_girth}{" "}
-                            {data?.max_waist_girth
-                              ? "- " + data?.max_waist_girth
-                              : null}
+                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 flex items-center justify-start px-3">
+                            <span className="w-[50px] text-center">
+                              {!data?.min_waist_girth &&
+                              !data?.max_waist_girth ? (
+                                "-"
+                              ) : (
+                                <span>
+                                  {data?.min_waist_girth}{" "}
+                                  {data?.max_waist_girth
+                                    ? " - " + data?.max_waist_girth
+                                    : null}
+                                </span>
+                              )}
+                            </span>
                           </li>
                           {/* Hip Sizes */}
-                          <li className="w-full h-10 flex items-center justify-center px-3">
-                            {data?.min_hip_girth}{" "}
-                            {data?.max_hip_girth
-                              ? "- " + data?.max_hip_girth
-                              : null}
+                          <li className="w-full h-10 flex items-center justify-start px-3">
+                            <span className="w-[50px] text-center">
+                              {!data?.min_hip_girth & !data?.max_hip_girth ? (
+                                "-"
+                              ) : (
+                                <span>
+                                  {data?.min_hip_girth}{" "}
+                                  {data?.max_hip_girth
+                                    ? " - " + data?.max_hip_girth
+                                    : null}
+                                </span>
+                              )}
+                            </span>
                           </li>
                         </ul>
                       );
@@ -173,19 +268,29 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
                             !data?.max_foot_length
                               ? "hidden"
                               : "flex"
-                          } w-fit items-center flex-col text-[13px] font-AeonikProRegular `}
+                          } w-full items-center flex-col text-[13px] font-AeonikProRegular `}
                         >
                           <li
-                            className={`w-[70px] h-10 flex items-center justify-center px-3`}
+                            className={`w-full h-10 flex items-center justify-start px-3`}
                           >
-                            {data?.wear_size}
+                            <span className="w-[50px] text-center">
+                              {data?.wear_size ? data?.wear_size : "-"}
+                            </span>
                           </li>
-                          <li className="w-[70px] bg-categoryModalBgColor rounded-l-lg h-10 flex items-center justify-center px-3">
-                            {" "}
-                            {data?.min_foot_length}{" "}
-                            {data?.max_foot_length
-                              ? "- " + data?.max_foot_length
-                              : null}
+                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 flex items-center justify-start px-3">
+                            <span className="w-[50px] text-center">
+                              {!data?.min_foot_length &&
+                              !data?.max_foot_length ? (
+                                "-"
+                              ) : (
+                                <span>
+                                  {data?.min_foot_length}
+                                  {data?.max_foot_length
+                                    ? " - " + data?.max_foot_length
+                                    : null}
+                                </span>
+                              )}
+                            </span>
                           </li>
                         </ul>
                       );
@@ -213,25 +318,40 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
                 </li>
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
-                <div className="w-full overflow-x-scroll flex items-center justify-center">
+                <div className="w-full overflow-x-scroll flex items-center justify-start">
                   {data?.product?.sizes?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
                         <ul
                           key={data?.id}
-                          className="w-full  flex items-center flex-col text-[13px] font-AeonikProRegular "
+                          className={`${
+                            !data?.wear_size &&
+                            !data?.letter_size &&
+                            !data?.length &&
+                            !data?.width
+                              ? "hidden"
+                              : "flex"
+                          } w-full items-center flex-col text-[13px] font-AeonikProRegular `}
                         >
+                          <li className="w-full h-10 flex items-center justify-start px-3">
+                            <span className="w-[50px] text-center">
+                              {data?.wear_size ? data?.wear_size : "-"}
+                            </span>
+                          </li>
+                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 flex items-center justify-start px-3">
+                            <span className="w-[50px] text-center">
+                              {data?.letter_size ? data?.letter_size : "-"}
+                            </span>
+                          </li>
                           <li className="w-full h-10 flex items-center justify-center px-3">
-                            {data?.wear_size}
+                            <span className="w-[50px] text-center">
+                              {data?.length ? data?.length : "-"}
+                            </span>
                           </li>
-                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 px-3 flex items-center justify-center">
-                            {data?.letter_size}
-                          </li>
-                          <li className="w-full h-10 flex items-center justify-center px-3">
-                            {data?.length}
-                          </li>
-                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 px-3 flex items-center justify-center">
-                            {data?.width}
+                          <li className="w-full bg-categoryModalBgColor rounded-l-lg h-10 flex items-center justify-start px-3">
+                            <span className="w-[50px] text-center">
+                              {data?.width ? data?.width : "-"}
+                            </span>
                           </li>
                         </ul>
                       );
