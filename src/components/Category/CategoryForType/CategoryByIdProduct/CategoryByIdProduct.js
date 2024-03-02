@@ -19,7 +19,7 @@ export default function CategoryByIdProduct() {
     }, []);
     const breadcrumbItems = [
         { label_uz: 'Home', label_ru: 'Главная', url: '/' },
-        { label_uz: 'section', label_ru: 'раздел', url: '/section' },
+        { label_uz: 'section', label_ru: 'Разделы', url: '/section' },
         { label_uz: paramsId?.id, label_ru: paramsId?.id, url: `/section/${paramsId?.id}` },
         { label_uz: getproductName, label_ru: getproductName, url: `/section/:${paramsId?.id}/${paramsId?.product}` },
     ];

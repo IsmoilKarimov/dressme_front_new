@@ -83,7 +83,7 @@ const CategoryTopDetail = ({
 
   const breadcrumbItems = [
     { label_uz: 'Home', label_ru: 'Главная', url: '/' },
-    { label_uz: 'section', label_ru: 'раздел', url: '/section' },
+    { label_uz: 'section', label_ru: 'Разделы', url: '/section' },
     { label_uz: paramsId, label_ru: paramsId, url: '/section/:id' },
   ];
 
