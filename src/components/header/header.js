@@ -117,11 +117,9 @@ const Header = () => {
         console.log(err, "ERRORLIST");
       });
   };
-  console.log(data?.getMainProductCard);
-  // console.log(state, "childData,---statein header");
+
   useEffect(() => {
     fetchGetAllData();
-    // console.log("is run");
   }, [
     dressInfo?.mainCategoryId,
     dressInfo?.mainColorHex,
@@ -133,15 +131,7 @@ const Header = () => {
     seasonId,
     page,
   ]);
-  // console.log(
-  //   dressInfo?.mainCategoryId, " dressInfo?.mainCategoryId",
-  //   dressInfo?.mainColorId, " state?.colorSelectId",
-  //   dressInfo?.mainRangePrice, " state?.getRangeData",
-  //   dressInfo?.mainGenderId, " state?.genderSelectId",
-  //   dressInfo?.mainSearchName, " dressInfo?.mainSearchName",
-  //   dressInfo?.mainRegionId, " dressInfo?.mainRegionId",
-  //   dressInfo?.mainSubRegionId, " dressInfo?.mainSubRegionId",
-  //   seasonId, " seasonId,",);
+
   return (
     <header>
       <section>
