@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import ShoppingStoreOfficialBreadCrumb from "./ShoppingStoreOfficialBreadcrumb/ShoppingStoreOfficialBreadcrumb";
 import ShoppingStoreOfficialTop from "./ShoppingStoreOfficialTop/ShoppingStoreOfficialTop";
 import ShowPageComment from "./ShowPageComment/ShowPageComment";
 import { GoBackIcon } from "../../../../assets/icons";
@@ -11,9 +10,7 @@ import FilterList from "./ShoppingStoreCategory/FilterList/FilterList";
 import axios from "axios";
 import LoadingNetwork from "../../../Loading/LoadingNetwork";
 import YandexLocationShop from "./ShoppingStoreCategory/YandexLocationShop/YandexLocationShop";
-import Breadcrumbs from "../../../Breadcrumbs/Breadcrumbs";
 import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
-// filteredData?.shop?.approved_shop_locations[dressInfo?.locationIdParams - 1]
 const ShoppingStoreOfficialByLocation = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
@@ -152,9 +149,6 @@ const ShoppingStoreOfficialByLocation = () => {
       }
     })
   }, [data?.getMainProductCard?.shops]);
-  // dressInfo?.yandexGetMarketId
-  // console.log(data?.selectedLoc, 'data?.selectedLoc');
-  // console.log(data?.selectedLoc?.length, 'data?.selectedLoc');
   useEffect(() => {
 
     if (data?.getMainProductCard?.shops) refreshLocationId();
@@ -313,14 +307,8 @@ const ShoppingStoreOfficialByLocation = () => {
         </div>
       ) :
         <div className="w-full">
-          <section className="w-full border-b border-searchBgColor ">
-            {/* <ShoppingStoreOfficialBreadCrumb
-              name={filteredData?.shop?.name}
-              paramsId={newId}
-            /> */}
-            {/* <Breadcrumbs /> */}
+          <section className="w-full border-b border-searchBgColor py-3 md:pt-8 md:pb-5">
             <NewBreadCrump items={breadcrumbItems} />
-
           </section>
           <section className="w-full border-searchBgColor ">
             <ShoppingStoreOfficialTop

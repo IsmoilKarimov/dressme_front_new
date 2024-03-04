@@ -80,184 +80,187 @@ function RegionList({ onClick }) {
       window.removeEventListener("resize", updateDimension);
     };
   }, [screenSize]);
-  
+
   return (
     <main className={`w-full h-fit`}>
-      {screenSize.width >= 768 && <div
-        className={`hidden md:flex flex-col max-w-[600px] h-fit px-3 md:px-6 py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg rounded-t-lg`}
-      >
-        <div className="w-full flex items-center justify-between my-3 md:my-0">
-          <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">
-            Выберите регион
-          </span>
-          <span
-            className="select-none cursor-pointer"
-            onClick={() => {
-              setDressInfo({
-                ...dressInfo,
-                yandexOpenRegionList: false,
-              });
-              MenuClose();
-            }}
-          >
-            <MenuCloseIcons colors="#000" />
-          </span>
-        </div>
+      {screenSize.width >= 768 && (
+        <div
+          className={`hidden md:flex flex-col max-w-[600px] h-fit px-3 md:px-6 py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg rounded-t-lg`}
+        >
+          <div className="w-full flex items-center justify-between my-3 md:my-0">
+            <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">
+              Выберите регион
+            </span>
+            <span
+              className="select-none cursor-pointer"
+              onClick={() => {
+                setDressInfo({
+                  ...dressInfo,
+                  yandexOpenRegionList: false,
+                });
+                MenuClose();
+              }}
+            >
+              <MenuCloseIcons colors="#000" />
+            </span>
+          </div>
 
-        <div className="w-full overflow-auto  flex flex-col gap-y-4 pt-3  overflow-x-hidden mt-3 h-[50vh] md:h-[60vh] VerticelScroll pr-2 ">
-          {data?.mainRegionsList?.length > 0 ? (
-            data?.mainRegionsList?.map((data) => {
-              return (
-                <div
-                  key={data?.id}
-                  onClick={() => {
-                    setDressInfo({
-                      ...dressInfo,
-                      yandexOpenRegionList: false,
-                      linkedFrom: "mainPageProductList",
-                    });
-                  }}
-                  className={`${data.id || data.sub_regions.id ? "" : ""
-                    } w-full h-fit `}
-                >
+          <div className="w-full overflow-auto  flex flex-col gap-y-4 pt-3  overflow-x-hidden mt-3 h-[50vh] md:h-[60vh] VerticelScroll pr-2 ">
+            {data?.mainRegionsList?.length > 0 ? (
+              data?.mainRegionsList?.map((data) => {
+                return (
                   <div
-                    className={`flex items-center ${data?.id == 2 ? "" : "opacity-50"
-                      } `}
+                    key={data?.id}
+                    onClick={() => {
+                      setDressInfo({
+                        ...dressInfo,
+                        yandexOpenRegionList: false,
+                        linkedFrom: "mainPageProductList",
+                      });
+                    }}
+                    className={`${
+                      data.id || data.sub_regions.id ? "" : ""
+                    } w-full h-fit `}
                   >
                     <div
-                      onClick={
-                        data?.id == 2
-                          ? () => {
-                            accordionCityList(data?.id);
-                          }
-                          : null
-                      }
-                      className="w-full cursor-pointer flex items-center  border-b border-[#F0F0F0] "
-                    >
-                      {data?.id == 2 ? (
-                        <label
-                        htmlFor={data?.name_uz}
-                        onClick={() => {
-                          setDressInfo({
-                            ...dressInfo,
-                            mainRegionId: data?.id,
-                            mainSubRegionId: null,
-                          });
-                          setPage(1)
-                        }}
-                        className="w-fit cursor-pointer flex items-center"
-                      >
-                        <input
-                          id={data?.name_uz}
-                          type="radio"
-                          name="region"
-                          value={data?.id}
-                          checked={
-                            dressInfo?.mainSubRegionId
-                              ? false
-                              : dressInfo?.mainRegionId === data?.id
-                          }
-                          className="w-[18px] h-[18px] cursor-pointer mr-3"
-                          onChange={(e) => {
-
-                            setDressInfo({
-                              ...dressInfo,
-                              mainRegionId: data?.id,
-                              mainSubRegionId: null,
-                            });
-                            setPage(1)
-                          }}
-                        />
-                        <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
-                          {data?.name_ru}
-                        </span>
-                      </label>
-                      ) : (
-                        <label className="w-fit cursor-pointer flex items-center">
-                          <div className="w-[20px] h-[20px] border rounded-full cursor-pointer mr-3"></div>
-                          <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
-                            {data?.name_ru}
-                          </span>
-                        </label>
-                      )}
-                      <span
-                        className={`${activeIndex === data?.id
-                          ? "rotate-[-0deg] duration-300"
-                          : "rotate-[-180deg] duration-300"
-                          } ml-auto`}
-                      >
-                        <ArrowTopIcons colors={"#a1a1a1"} />
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    className={`w-full grid grid-cols-2 xs:grid-cols-3 duration-[400ms]
-                              ${activeIndex == data?.id
-                        ? "openAccardion"
-                        : "CloseAccardion"
+                      className={`flex items-center ${
+                        data?.id == 2 ? "" : "opacity-50"
                       } `}
-                  >
-                    {data?.sub_regions?.map((item, index) => {
-                      return (
-                        <div
-                          onClick={() => {
-                            setDressInfo({
-                              ...dressInfo,
-                              yandexOpenRegionList: false,
-                              linkedFrom: "mainPageProductList",
-                            });
-                          }}
-                          key={item?.id}
-                          className="flex items-center px-[2px] gap-x-[4px] cursor-pointer"
-                        >
+                    >
+                      <div
+                        onClick={
+                          data?.id == 2
+                            ? () => {
+                                accordionCityList(data?.id);
+                              }
+                            : null
+                        }
+                        className="w-full cursor-pointer flex items-center  border-b border-[#F0F0F0] "
+                      >
+                        {data?.id == 2 ? (
                           <label
-                            htmlFor={item?.name_ru}
+                            htmlFor={data?.name_uz}
                             onClick={() => {
                               setDressInfo({
                                 ...dressInfo,
                                 mainRegionId: data?.id,
-                                mainSubRegionId: item?.id,
+                                mainSubRegionId: null,
                               });
-                              setPage(1)
-                            }
-                            }
-                            className="flex items-center gap-x-[6px]"
+                              setPage(1);
+                            }}
+                            className="w-fit cursor-pointer flex items-center"
                           >
                             <input
+                              id={data?.name_uz}
                               type="radio"
-                              id={item?.name_ru}
-                              name="Subregion"
-                              value={item?.region_id}
-                              checked={dressInfo?.mainSubRegionId == item?.id}
-                              className="w-4 h-4 border border-borderColor  cursor-pointer  flex items-center justify-center"
+                              name="region"
+                              value={data?.id}
+                              checked={
+                                dressInfo?.mainSubRegionId
+                                  ? false
+                                  : dressInfo?.mainRegionId === data?.id
+                              }
+                              className="w-[18px] h-[18px] cursor-pointer mr-3"
                               onChange={(e) => {
                                 setDressInfo({
                                   ...dressInfo,
                                   mainRegionId: data?.id,
-                                  mainSubRegionId: item?.id,
-                                  yandexOpenRegionList: false,
+                                  mainSubRegionId: null,
                                 });
-                                setPage(1)
+                                setPage(1);
                               }}
                             />
-                            <span className="text-[#303030]  cursor-pointer text-[15px] not-italic font-AeonikProRegular">
-                              {item?.name_ru}
+                            <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
+                              {data?.name_ru}
                             </span>
                           </label>
-                        </div>
-                      );
-                    })}
+                        ) : (
+                          <label className="w-fit cursor-pointer flex items-center">
+                            <div className="w-[20px] h-[20px] border rounded-full cursor-pointer mr-3"></div>
+                            <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
+                              {data?.name_ru}
+                            </span>
+                          </label>
+                        )}
+                        <span
+                          className={`${
+                            activeIndex === data?.id
+                              ? "rotate-[-0deg] duration-300"
+                              : "rotate-[-180deg] duration-300"
+                          } ml-auto`}
+                        >
+                          <ArrowTopIcons colors={"#a1a1a1"} />
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      className={`w-full grid grid-cols-2 xs:grid-cols-3 duration-[400ms]
+                                ${
+                                  activeIndex == data?.id
+                                    ? "openAccardion"
+                                    : "CloseAccardion"
+                                }`}
+                    >
+                      {data?.sub_regions?.map((item, index) => {
+                        return (
+                          <div
+                            onClick={() => {
+                              setDressInfo({
+                                ...dressInfo,
+                                yandexOpenRegionList: false,
+                                linkedFrom: "mainPageProductList",
+                              });
+                            }}
+                            key={item?.id}
+                            className="flex items-center px-[2px] gap-x-[4px] cursor-pointer"
+                          >
+                            <label
+                              htmlFor={item?.name_ru}
+                              onClick={() => {
+                                setDressInfo({
+                                  ...dressInfo,
+                                  mainRegionId: data?.id,
+                                  mainSubRegionId: item?.id,
+                                });
+                                setPage(1);
+                              }}
+                              className="flex items-center gap-x-[6px]"
+                            >
+                              <input
+                                type="radio"
+                                id={item?.name_ru}
+                                name="Subregion"
+                                value={item?.region_id}
+                                checked={dressInfo?.mainSubRegionId == item?.id}
+                                className="w-4 h-4 border border-borderColor  cursor-pointer  flex items-center justify-center"
+                                onChange={(e) => {
+                                  setDressInfo({
+                                    ...dressInfo,
+                                    mainRegionId: data?.id,
+                                    mainSubRegionId: item?.id,
+                                    yandexOpenRegionList: false,
+                                  });
+                                  setPage(1);
+                                }}
+                              />
+                              <span className="text-[#303030]  cursor-pointer text-[15px] not-italic font-AeonikProRegular">
+                                {item?.name_ru}
+                              </span>
+                            </label>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              );
-            })
-          ) : (
-            <p className="w-full h-full flex flex-col items-center justify-center">
-              Ma'lumotlar yuklanayapti...
-            </p>
-          )}
-        </div>
-        {/* <div className="w-full flex items-center justify-end  mt-2">
+                );
+              })
+            ) : (
+              <p className="w-full h-full flex flex-col items-center justify-center">
+                Ma'lumotlar yuklanayapti...
+              </p>
+            )}
+          </div>
+          {/* <div className="w-full flex items-center justify-end  mt-2">
           <span
             onClick={() => {
               // setDressInfo({
@@ -272,184 +275,190 @@ function RegionList({ onClick }) {
             Готово
           </span>
         </div> */}
-      </div>}
-      {/* ------for mobile device--------- */}
-      {screenSize.width < 768 && <div
-        className={`flex flex-col md:hidden max-w-[600px] h-fit px-3 md:px-6 py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg rounded-t-lg`}
-      >
-        <div className="w-full flex items-center justify-between my-3 md:my-0">
-          <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">
-            Выберите регион
-          </span>
-          <span
-            className="select-none cursor-pointer"
-            onClick={() => {
-              setDressInfo({
-                ...dressInfo,
-                yandexOpenRegionList: false,
-              });
-              MenuClose();
-            }}
-          >
-            <MenuCloseIcons colors="#000" />
-          </span>
         </div>
+      )}
+      {/* ------for mobile device--------- */}
+      {screenSize.width < 768 && (
+        <div
+          className={`flex flex-col md:hidden max-w-[600px] h-fit px-3 md:px-6 py-2 md:py-4 bg-white rounded-b-none md:rounded-b-lg rounded-t-lg`}
+        >
+          <div className="w-full flex items-center justify-between my-3 md:my-0">
+            <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">
+              Выберите регион
+            </span>
+            <span
+              className="select-none cursor-pointer"
+              onClick={() => {
+                setDressInfo({
+                  ...dressInfo,
+                  yandexOpenRegionList: false,
+                });
+                MenuClose();
+              }}
+            >
+              <MenuCloseIcons colors="#000" />
+            </span>
+          </div>
 
-        <div className="w-full overflow-auto  flex flex-col gap-y-4 pt-3  overflow-x-hidden mt-3 h-[50vh] md:h-[60vh] VerticelScroll pr-2 ">
-          {data?.mainRegionsList?.length > 0 ? (
-            data?.mainRegionsList?.map((data) => {
-              return (
-                <div
-                  key={data?.id}
-                  onClick={() => {
-                    setDressInfo({
-                      ...dressInfo,
-                      yandexOpenRegionList: false,
-                      linkedFrom: "mainPageProductList",
-                    });
-                  }}
-                  className={`${data.id || data.sub_regions.id ? "" : ""
-                    } w-full h-fit `}
-                >
+          <div className="w-full overflow-auto  flex flex-col gap-y-4 pt-3  overflow-x-hidden mt-3 h-[50vh] md:h-[60vh] VerticelScroll pr-2 ">
+            {data?.mainRegionsList?.length > 0 ? (
+              data?.mainRegionsList?.map((data) => {
+                return (
                   <div
-                    className={`flex items-center ${data?.id == 2 ? "" : "opacity-50"
-                      } `}
+                    key={data?.id}
+                    onClick={() => {
+                      setDressInfo({
+                        ...dressInfo,
+                        yandexOpenRegionList: false,
+                        linkedFrom: "mainPageProductList",
+                      });
+                    }}
+                    className={`${
+                      data.id || data.sub_regions.id ? "" : ""
+                    } w-full h-fit `}
                   >
                     <div
-                      onClick={
-                        data?.id == 2
-                          ? () => {
-                            accordionCityList(data?.id);
-                          }
-                          : null
-                      }
-                      className="w-full cursor-pointer flex items-center  border-b border-[#F0F0F0] "
+                      className={`flex items-center ${
+                        data?.id == 2 ? "" : "opacity-50"
+                      } `}
                     >
-                      {data?.id == 2 ? (
-                        <label
-                          htmlFor={data?.name_uz}
-                          onClick={() => {
-                            setDressInfo({
-                              ...dressInfo,
-                              mainRegionId: data?.id,
-                              mainSubRegionId: null,
-                            });
-                            setPage(1)
-                          }}
-                          className="w-fit cursor-pointer flex items-center"
-                        >
-                          <input
-                            id={data?.name_uz}
-                            type="radio"
-                            name="region"
-                            value={data?.id}
-                            checked={
-                              dressInfo?.mainSubRegionId
-                                ? false
-                                : dressInfo?.mainRegionId === data?.id
-                            }
-                            className="w-[18px] h-[18px] cursor-pointer mr-3"
-                            onChange={(e) => {
-
+                      <div
+                        onClick={
+                          data?.id == 2
+                            ? () => {
+                                accordionCityList(data?.id);
+                              }
+                            : null
+                        }
+                        className="w-full cursor-pointer flex items-center  border-b border-[#F0F0F0] "
+                      >
+                        {data?.id == 2 ? (
+                          <label
+                            htmlFor={data?.name_uz}
+                            onClick={() => {
                               setDressInfo({
                                 ...dressInfo,
                                 mainRegionId: data?.id,
                                 mainSubRegionId: null,
                               });
-                              setPage(1)
+                              setPage(1);
                             }}
-                          />
-                          <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
-                            {data?.name_ru}
-                          </span>
-                        </label>
-                      ) : (
-                        <label className="w-fit cursor-pointer flex items-center">
-                          <div className="w-[20px] h-[20px] border rounded-full cursor-pointer mr-3"></div>
-                          <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
-                            {data?.name_ru}
-                          </span>
-                        </label>
-                      )}
-                      <span
-                        className={`${activeIndex === data?.id
-                          ? "rotate-[-0deg] duration-300"
-                          : "rotate-[-180deg] duration-300"
-                          } ml-auto`}
-                      >
-                        <ArrowTopIcons colors={"#a1a1a1"} />
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    className={`w-full grid grid-cols-2 xs:grid-cols-3 duration-[400ms]
-                              ${activeIndex == data?.id
-                        ? "openAccardion"
-                        : "CloseAccardion"
-                      } `}
-                  >
-                    {data?.sub_regions?.map((item) => {
-                      return (
-                        <div
-                          onClick={() => {
-                            setDressInfo({
-                              ...dressInfo,
-                              yandexOpenRegionList: false,
-                              linkedFrom: "mainPageProductList",
-                            });
-                          }}
-                          key={item?.id}
-                          className="flex items-center px-[2px] gap-x-[4px] cursor-pointer"
-                        >
-                          <label
-                            htmlFor={item?.name_uz}
-                            onClick={() => {
-                              setDressInfo({
-                                ...dressInfo,
-                                mainRegionId: data?.id,
-                                mainSubRegionId: item?.id,
-                              });
-                              setPage(1)
-                            }
-                            }
-                            className="flex items-center gap-x-[6px]"
+                            className="w-fit cursor-pointer flex items-center"
                           >
                             <input
+                              id={data?.name_uz}
                               type="radio"
-                              id={item?.name_uz}
-                              name="Subregion"
-                              value={item?.region_id}
-                              checked={dressInfo?.mainSubRegionId === item?.id}
-                              className="w-4 h-4 border border-borderColor  cursor-pointer  flex items-center justify-center"
+                              name="region"
+                              value={data?.id}
+                              checked={
+                                dressInfo?.mainSubRegionId
+                                  ? false
+                                  : dressInfo?.mainRegionId === data?.id
+                              }
+                              className="w-[18px] h-[18px] cursor-pointer mr-3"
                               onChange={(e) => {
                                 setDressInfo({
                                   ...dressInfo,
                                   mainRegionId: data?.id,
-                                  mainSubRegionId: item?.id,
-                                  yandexOpenRegionList: false,
+                                  mainSubRegionId: null,
                                 });
-                                setPage(1)
+                                setPage(1);
                               }}
                             />
-                            <span className="text-[#303030]  cursor-pointer text-[15px] not-italic font-AeonikProRegular">
-                              {item?.name_ru}
+                            <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
+                              {data?.name_ru}
                             </span>
                           </label>
-                        </div>
-                      );
-                    })}
+                        ) : (
+                          <label className="w-fit cursor-pointer flex items-center">
+                            <div className="w-[20px] h-[20px] border rounded-full cursor-pointer mr-3"></div>
+                            <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
+                              {data?.name_ru}
+                            </span>
+                          </label>
+                        )}
+                        <span
+                          className={`${
+                            activeIndex === data?.id
+                              ? "rotate-[-0deg] duration-300"
+                              : "rotate-[-180deg] duration-300"
+                          } ml-auto`}
+                        >
+                          <ArrowTopIcons colors={"#a1a1a1"} />
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      className={`w-full grid grid-cols-2 xs:grid-cols-3 duration-[400ms]
+                              ${
+                                activeIndex == data?.id
+                                  ? "openAccardion"
+                                  : "CloseAccardion"
+                              } `}
+                    >
+                      {data?.sub_regions?.map((item) => {
+                        return (
+                          <div
+                            onClick={() => {
+                              setDressInfo({
+                                ...dressInfo,
+                                yandexOpenRegionList: false,
+                                linkedFrom: "mainPageProductList",
+                              });
+                            }}
+                            key={item?.id}
+                            className="flex items-center px-[2px] gap-x-[4px] cursor-pointer"
+                          >
+                            <label
+                              htmlFor={item?.name_uz}
+                              onClick={() => {
+                                setDressInfo({
+                                  ...dressInfo,
+                                  mainRegionId: data?.id,
+                                  mainSubRegionId: item?.id,
+                                });
+                                setPage(1);
+                              }}
+                              className="flex items-center gap-x-[6px]"
+                            >
+                              <input
+                                type="radio"
+                                id={item?.name_uz}
+                                name="Subregion"
+                                value={item?.region_id}
+                                checked={
+                                  dressInfo?.mainSubRegionId === item?.id
+                                }
+                                className="w-4 h-4 border border-borderColor  cursor-pointer  flex items-center justify-center"
+                                onChange={(e) => {
+                                  setDressInfo({
+                                    ...dressInfo,
+                                    mainRegionId: data?.id,
+                                    mainSubRegionId: item?.id,
+                                    yandexOpenRegionList: false,
+                                  });
+                                  setPage(1);
+                                }}
+                              />
+                              <span className="text-[#303030]  cursor-pointer text-[15px] not-italic font-AeonikProRegular">
+                                {item?.name_ru}
+                              </span>
+                            </label>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              );
-            })
-          ) : (
-            <p className="w-full h-full flex flex-col items-center justify-center">
-              Ma'lumotlar yuklanayapti...
-            </p>
-          )}
+                );
+              })
+            ) : (
+              <p className="w-full h-full flex flex-col items-center justify-center">
+                Ma'lumotlar yuklanayapti...
+              </p>
+            )}
+          </div>
         </div>
-
-      </div>}
+      )}
     </main>
   );
 }
