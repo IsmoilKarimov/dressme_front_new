@@ -15,8 +15,8 @@ export default function Favourites() {
   return (
     <main className="w-full flex flex-col items-center ">
       <section className="w-full border-b border-searchBgColor">
-        <main className="flex flex-col min-h-[44px]  justify-center items-center my-3 ">
-          <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto px-4 md:px-0">
+        <main className="flex flex-col  justify-center items-center md:mt-3">
+          <div className="max-w-[1280px] w-[100%] flex items-center justify-between m-auto py-[12px] md:py-5 px-4 md:px-0">
             <NewBreadCrump items={breadcrumbItems} />
           </div>
         </main>

@@ -3,9 +3,6 @@ import "./Breadcrumbs.css";
 
 export default function Breadcrumbs() {
   const location = useLocation();
-
-  // console.log(location, 'location');
-
   let currentLink = [];
   console.log(location?.pathname);
   const crumbs = location?.pathname?.split("/").filter((crumb) => crumb !== "").map((url) => {
@@ -24,8 +21,6 @@ export default function Breadcrumbs() {
       </div>
     );
   });
-  // console.log(crumbs, 'crumbs');
-  // console.log(currentLink, "currentLink");
 
   return (
     <div className="flex justify-center items-center ">
