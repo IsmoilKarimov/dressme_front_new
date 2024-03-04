@@ -88,9 +88,9 @@ const CategoryTopDetail = ({
   ];
 
   return (
-    <main className="flex flex-col justify-center border-t border-searchBgColor items-center">
+    <main className="flex flex-col justify-center items-center">
       <div className=" flex flex-col  w-full justify-center items-center m-0  mt-2">
-        <section className="border-b md:my-6 border-searchBgColor w-[100%] h-full  flex items-center justify-between m-auto">
+        <section className="pb-2 md:pb-5 border-b md:mt-6 border-searchBgColor w-[100%] h-full  flex items-center justify-between m-auto">
           <nav className="w-[100%] md:w-fit flex items-center ">
             <NewBreadCrump items={breadcrumbItems} />
           </nav>

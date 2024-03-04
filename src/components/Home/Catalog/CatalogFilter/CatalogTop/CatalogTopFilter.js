@@ -105,9 +105,8 @@ const CatalogTopFilter = ({ paramId }) => {
   ];
   return (
     <main className="w-full">
- 
       <section className="w-full h-full   ">
-        <div className="md:my-6 flex flex-col  w-full justify-center items-center ">
+        <div className="flex flex-col border-b border-searchBgColor pb-2 md:pt-8 md:pb-4 w-full justify-center items-center ">
           <section className="max-w-[1280px] w-[100%] h-full flex items-center justify-between m-auto">
             <nav className="w-[100%] md:w-fit flex items-center py-1 md:p-0">
               <NewBreadCrump items={breadcrumbItems} />

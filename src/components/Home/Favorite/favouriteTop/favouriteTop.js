@@ -5,7 +5,7 @@ export default function FavouriteTop() {
   const [value, SetValue] = useState({ min: 20, max: 150 });
 
   return (
-    <div className="flex flex-col min-h-[44px]  justify-center items-center m-0 p-0 box-border border-b border-searchBgColor">
+    <div className="flex flex-col md:min-h-[44px]  justify-center items-center m-0 p-0 box-border border-b border-searchBgColor">
       <div className="max-w-[1280px] w-full flex justify-between items-center m-auto py-5  ">
         <div className="text-2xl font-AeonikProMedium">Избранное</div>
         <div className="w-[fit] flex items-center ">
