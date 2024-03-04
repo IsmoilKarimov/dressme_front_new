@@ -18,7 +18,6 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
   const [openWearType, setOpenWearType] = useState(false);
   const [newFilterParamasId, setNewFilterParamasId] = useState();
 
-
   let LikeProduct = [];
   let LastSeenProduct = [];
   dressInfo.ProductList.forEach((data) => {
@@ -70,9 +69,9 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
   const paramsId = useParams();
   // console.log(paramsId,'paramsId');
   const [singleData, setSingleData] = useState();
-  console.log(singleData?.product?.name_ru, 'singleData');
+  console.log(singleData?.product?.name_ru, "singleData");
   useEffect(() => {
-    oncallProductName(singleData?.product?.name_ru)
+    oncallProductName(singleData?.product?.name_ru);
   }, [singleData?.product]);
   // useEffect(() => {
   //   data?.products?.map((item) => {
@@ -157,6 +156,7 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
         item?.id !== singleData?.product?.id
     )
     ?.slice(0, 6);
+
   return (
     <main className="flex flex-col m-0 p-0 box-border">
       {loading ? (

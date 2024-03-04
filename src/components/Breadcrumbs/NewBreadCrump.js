@@ -13,13 +13,13 @@ const NewBreadCrump = ({ items }) => {
           {items.map((item, index) => (
             <li className="breadcrumb-item" key={index}>
               {index === items.length - 1 ? (
-                <span className="breadcrumb-item--active text-setTexOpacity flex  text-[14px] md:text-[15px] capitalize items-center ">
+                <span className="breadcrumb-item--active text-setTexOpacity font-medium text-center flex text-[14px] md:text-[15px] capitalize items-center ">
                   {item.label_ru}
                 </span>
               ) : (
                 <>
                   <NavLink
-                    className="font-AeonikProMedium capitalize  text-[14px] md:text-[15px] items-center no-underline hover:text-fullBlue tracking-[1px]"
+                    className="font-AeonikProMedium capitalize text-[14px] md:text-[15px] items-center no-underline hover:text-fullBlue tracking-[1px]"
                     to={item?.url}
                   >
                     {item.label_ru}
