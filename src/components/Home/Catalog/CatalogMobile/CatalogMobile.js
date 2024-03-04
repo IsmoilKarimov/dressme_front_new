@@ -45,17 +45,17 @@ const CatalogMobile = () => {
 
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
-      <main className="w-full">
-        <div className="md:pt-5 md:pb-4 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 py-3">
+      <section className="w-full">
+        <div className="py-3 md:pt-8 md:pb-5 md:border-b border-searchBgColor flex flex-col md:min-h-[44px] w-full justify-center items-center m-0">
           <section className="max-w-[1280px] w-[100%] flex flex-col items-center">
             <nav className="w-[100%]  flex items-center p-1 md:p-0">
               <NewBreadCrump items={breadcrumbItems} />
             </nav>
           </section>
         </div>
-      </main>
+      </section>
       <section className="max-w-[1280px] w-[100%] md:h-[40vh] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
-        <article className="w-full h-full pt-6 pb-20 md:py-0 flex flex-wrap ll:gap-x-2 gap-y-4 justify-between xs:justify-start xs:gap-x-4">
+        <article className="w-full h-full pt-6 pb-20 md:pb-0 flex flex-wrap ll:gap-x-2 gap-y-4 justify-between xs:justify-start xs:gap-x-4">
           {data?.getMainProductCard?.categories?.map((item) => {
             return (
               <figure
@@ -81,10 +81,11 @@ const CatalogMobile = () => {
         </article>
       </section>
       <section
-        className={`w-full hidden h-screen ${openCatalog
-          ? "flex flex-col ease-linear duration-500 overscroll-none"
-          : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
-          }	bg-white fixed z-[110] top-0 left-0 `}
+        className={`w-full hidden h-screen ${
+          openCatalog
+            ? "flex flex-col ease-linear duration-500 overscroll-none"
+            : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
+        }	bg-white fixed z-[110] top-0 left-0 `}
       >
         <div className="w-full flex flex-col p-4">
           <div className="w-full flex justify-end">
