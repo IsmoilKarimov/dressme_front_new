@@ -12,7 +12,7 @@ const NewBreadCrump = ({ items }) => {
           {items.map((item, index) => (
             <li className="breadcrumb-item" key={index}>
               {index === items.length - 1 ? (
-                <span className="breadcrumb-item--active inline text-setTexOpacity font-AeonikProMedium text-center text-[14px] md:text-[15px] capitalize items-center">
+                <span className="breadcrumb-item--active inline truncate text-setTexOpacity font-AeonikProMedium text-center text-[14px] md:text-[15px] capitalize items-center">
                   {item.label_ru}
                 </span>
               ) : (

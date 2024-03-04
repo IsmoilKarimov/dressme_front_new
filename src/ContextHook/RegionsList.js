@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useEffect, useState } from "react";
 import { ArrowTopIcons, MenuCloseIcons } from "../assets/icons";
 import { HomeMainDataContext } from "./HomeMainData";

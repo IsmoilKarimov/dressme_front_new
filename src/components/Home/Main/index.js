@@ -12,6 +12,7 @@ export default function HomeIndex() {
       top: 0,
     });
   }, []);
+  
   return (
     <main className="w-[100%] h-fit md:mt-[170px]">
       {mainData?.loader ? (
