@@ -6,7 +6,6 @@ import Cookies from "js-cookie";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { UserRefreshTokenContext } from "../../../../ContextHook/UserRefreshToken";
 import { useNavigate } from "react-router-dom";
-import Breadcrumbs from "../../../Breadcrumbs/Breadcrumbs";
 import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
 
 export default function ShoppingStore() {
@@ -87,8 +86,8 @@ export default function ShoppingStore() {
 
   return (
     <main className="w-full flex flex-col items-center px-4 md:px-0">
-      <div className="w-full md:border-b md:border-searchBgColor justify-center">
-        <section className="w-full max-w-[1280px]  flex items-center md:mt-5  mx-auto">
+      <div className="w-full border-b border-searchBgColor justify-center md:mt-3">
+        <section className="w-full max-w-[1280px] flex items-center py-3 md:py-5 mx-auto">
           <NewBreadCrump items={breadcrumbItems} />
         </section>
       </div>

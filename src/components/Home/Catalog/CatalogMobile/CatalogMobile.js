@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { MenuCloseIcons } from "../../../../assets/icons";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { useNavigate } from "react-router-dom";
-import CatalogTopFilter from "../CatalogFilter/CatalogTop/CatalogTopFilter";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
 
@@ -47,7 +46,7 @@ const CatalogMobile = () => {
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <main className="w-full">
-        <div className="md:pt-5 md:pb-4 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 md:py-3">
+        <div className="md:pt-5 md:pb-4 flex flex-col md:min-h-[44px] w-full justify-center items-center m-0 py-3">
           <section className="max-w-[1280px] w-[100%] flex flex-col items-center">
             <nav className="w-[100%]  flex items-center p-1 md:p-0">
               <NewBreadCrump items={breadcrumbItems} />

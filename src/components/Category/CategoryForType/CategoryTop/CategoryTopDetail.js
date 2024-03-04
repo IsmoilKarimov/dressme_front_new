@@ -1,12 +1,11 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import {
-  ItailIcons,
   SearchIcons,
   SortIcons,
   UnderSection,
 } from "../../../../assets/icons";
 import React, { useContext, useState } from "react";
-import { Breadcrumb, Popover } from "antd";
+import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { MdClose } from "react-icons/md";
@@ -89,8 +88,8 @@ const CategoryTopDetail = ({
 
   return (
     <main className="flex flex-col justify-center items-center">
-      <div className=" flex flex-col  w-full justify-center items-center m-0  mt-2">
-        <section className="pb-2 md:pb-5 border-b md:mt-6 border-searchBgColor w-[100%] h-full  flex items-center justify-between m-auto">
+      <div className="flex flex-col  w-full justify-center items-center m-0 mt-3">
+        <section className="pb-3 md:py-5 border-b border-searchBgColor w-[100%] h-full  flex items-center justify-between m-auto">
           <nav className="w-[100%] md:w-fit flex items-center ">
             <NewBreadCrump items={breadcrumbItems} />
           </nav>

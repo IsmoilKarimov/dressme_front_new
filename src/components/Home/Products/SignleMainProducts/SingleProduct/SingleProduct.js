@@ -16,8 +16,6 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
   const [data, mainData, , wishList, setWishlist] =
     useContext(HomeMainDataContext);
   const [openWearType, setOpenWearType] = useState(false);
-  const [newFilterParamasId, setNewFilterParamasId] = useState();
-
   let LikeProduct = [];
   let LastSeenProduct = [];
   dressInfo.ProductList.forEach((data) => {
@@ -67,23 +65,11 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
   const url = "https://api.dressme.uz";
 
   const paramsId = useParams();
-  // console.log(paramsId,'paramsId');
   const [singleData, setSingleData] = useState();
   console.log(singleData?.product?.name_ru, "singleData");
   useEffect(() => {
     oncallProductName(singleData?.product?.name_ru);
   }, [singleData?.product]);
-  // useEffect(() => {
-  //   data?.products?.map((item) => {
-  //     if (
-  //       paramsId?.product?.includes(
-  //         item?.name_ru?.split(" ")?.join("-")?.toLowerCase()
-  //       )
-  //     ) {
-  //       setNewFilterParamasId(item?.id);
-  //     }
-  //   });
-  // }, [paramsId?.product]);
 
   const [loading, setLoading] = useState(true);
 
