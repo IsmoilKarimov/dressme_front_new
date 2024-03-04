@@ -395,8 +395,7 @@ function FilterList({
     }
   }, [dressInfo?.locationIdParams]);
   return (
-    <div
-      className={`w-full h-hull  py-5 px-3 border border-searchBgColor rounded-lg overflow-hidden `}
+    <div className={`w-full h-full py-5 px-3 border border-searchBgColor rounded-lg overflow-hidden `}
     >
       {getFilter ? (
         <div className={` w-full flex-col items-center md:mb-[38px]`}>

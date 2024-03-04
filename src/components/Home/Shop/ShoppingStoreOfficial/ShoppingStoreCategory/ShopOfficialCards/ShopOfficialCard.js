@@ -214,15 +214,9 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
         })}
       </div>
 
-      <div className="w-full h-fit md:hidden flex items-center justify-center mt-14">
-        <div className="w-[760px] h-[60px] cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-black flex items-center justify-center rounded-lg border border-searchBgColor bg-btnBgColor">
-          Показать ещё 30 наборов
-        </div>
-      </div>{" "}
-
-      <div className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6">
-        <article className="flex items-center">
-          <ul className="flex items-center">
+      <div className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6 pb-[80px] md:pb-0">
+        <article className="w-full flex items-center">
+          <ul className="w-full flex items-center">
             {filteredData?.products?.links?.map((item, index) => {
               return (
                 <li
