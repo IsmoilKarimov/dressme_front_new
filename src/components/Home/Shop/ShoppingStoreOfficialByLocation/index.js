@@ -364,7 +364,8 @@ const ShoppingStoreOfficialByLocation = () => {
                 {/* <ShoppingStoreCategory filteredData={filteredData} /> */}
                 <section className="w-[100%] h-fit">
                   <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
-                    {screenSize.width >= 768 && <div
+                    {screenSize.width >= 768 && 
+                    <div
                       className={`${filterToggle ? "md:block" : "md:hidden"
                         } hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}
                     >
