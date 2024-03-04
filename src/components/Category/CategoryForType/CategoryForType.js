@@ -187,6 +187,7 @@ function CategoryForType() {
         throw new Error(err || "something wrong");
       });
   }
+  
   useEffect(() => {
     if (initalParamsId && initalParamsId !== newFilterParamasId && !getGenderId && !getCategory && !getRating && !getRange?.length && !dataColor?.length && !discount && !getOutWearList && !getUnderWearList && !getFootWearList) {
       fetchGetAllData();
