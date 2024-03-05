@@ -1,6 +1,21 @@
 {
     "region": "Mintaqa ",
     "business": "Biznes ",
-    "market": "Do'konlar "
-
+    "market": "Do'konlar ",
+    "Mcategory": "Turkum ",
+    "Mmap": "Xarita ",
+    "Mmusic": "Musiqa ",
+    "Mquestion": "Savollar ",
+    "MsearchMar": "Do'konlarni qidirish ",
+    "MsearchProd": "Mahsulotlarni qidirish ",
+    "BselectColor": "Rangni tanlang    ",
+    "Bdisable": "Oʻchirish",
+    "BbyCategory": "Kategoriya bo'yicha",
+    "BbyBudget": "Narx bo'yicha",
+    "Bfrom": "dan",
+    "Bto": "gacha",
+    "Bsumm": "so'm",
+    "Bclear": "Tozalash",
+    "Bready": "Tayyor",
+    "Btext": "Shkafdagi hayotingiz zerikarli bo'lishiga yo'l qo'ymang!"
 }
