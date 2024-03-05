@@ -369,7 +369,7 @@ function MainPageSliders() {
                 onClick={() => setMore(!more)}
               >
                 <p className="not-italic font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
-                  {more ? "Свернуть" : t("one")}
+                  {more ? "Свернуть" : t('Text1')}
                 </p>
                 <div className="ml-2 ">
                   {more ? (
@@ -401,8 +401,8 @@ function MainPageSliders() {
                 onClick={() => setMore(!more)}
               >
                 <p className="not-italic font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
-                  {more ? "Свернуть" : t("one")}
-                </p> 
+                  {more ? "Свернуть" : t('Text1')}
+                </p>
                 <div className="ml-2 ">
                   {more ? (
                     <div>
@@ -467,7 +467,7 @@ function MainPageSliders() {
                     <div
                       key={data?.id}
                       onClick={() => {
-                        goDetail(data?.id,data?.name);
+                        goDetail(data?.id, data?.name);
                         // setDressInfo({
                         //   ...dressInfo,
                         //   linkedFrom: "mainPageShopsList",
