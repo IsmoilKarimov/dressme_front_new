@@ -21,6 +21,6 @@ export default function App() {
       yandexOpenMarketLocation: false,
     });
   }
-  console.log(data?.getMainProductCard?.products,'data?.getMainProductCard?.products');
+  // console.log(data?.getMainProductCard?.products,'data?.getMainProductCard?.products');
   return <RouterMain />;
 }
