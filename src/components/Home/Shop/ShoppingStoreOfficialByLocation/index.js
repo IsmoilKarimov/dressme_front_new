@@ -422,7 +422,7 @@ const ShoppingStoreOfficialByLocation = () => {
               {/* Map Section */}
               <div
                 className={`${openTabLocation ? "block" : "hidden"
-                  } w-full text-3xl px-4 pb-10`}
+                  } w-full text-3xl px-4 pb-[88px]`}
               >
                 <button
                   onClick={() => {
