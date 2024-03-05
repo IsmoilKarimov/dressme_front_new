@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 
 const TopHeader = () => {
-  const { i18n, t } = useTranslation('top')
+  const { i18n, t } = useTranslation('header')
 
   const [dressInfo] = useContext(dressMainData);
   const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
