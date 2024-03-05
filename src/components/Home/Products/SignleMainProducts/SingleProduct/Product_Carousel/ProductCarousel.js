@@ -506,7 +506,7 @@ const ProductCarousel = ({ show, data }) => {
           {/* 1 */}
           <article className="w-full h-full widthInherit mx-auto">
             <Slider
-              className="w-full h-[482px] rounded-lg"
+              className="w-full h-[400px] rounded-lg"
               ref={slider1}
               {...settings}
             >
@@ -521,7 +521,7 @@ const ProductCarousel = ({ show, data }) => {
                             handleClickCarosuel(i);
                           }}
                         >
-                          <figure className="relative w-full h-[478px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
+                          <figure className="relative mx-auto w-[290px] h-[380px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
                             <img
                               className="w-full h-full object-cover"
                               src={data?.url_photo}
@@ -552,7 +552,7 @@ const ProductCarousel = ({ show, data }) => {
                           handleClickCarosuel(i);
                         }}
                       >
-                        <figure className="relative w-full h-[478px] object-cover overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
+                        <figure className="relative mx-auto w-[290px] h-[380px] object-cover overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
                           <img
                             className="w-full h-full object-cover"
                             src={data?.url_photo}
