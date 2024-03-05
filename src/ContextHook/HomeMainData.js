@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { createContext,  useState } from "react";
+import { createContext, useState } from "react";
 
 export const HomeMainDataContext = createContext();
 
@@ -7,7 +7,7 @@ export const HomeMainDataContextProvider = ({ children }) => {
   const [data, setData] = useState({
     getMainProductCard: [],
     products: [],
-    loader: true,
+    loader: false,
     btnLoader: false,
     mainRegionsList: [],
     selectedLoc: "changed",

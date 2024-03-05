@@ -66,7 +66,7 @@ const Header = () => {
   const typeFilter = String(dressInfo?.type)?.split("");
   const seasonId = Number(typeFilter?.shift());
   const fetchGetAllData = () => {
-    setData({ ...data, btnLoader: true });
+    setData({ ...data, btnLoader: true, loader: true });
     var params = new URLSearchParams();
     params.append("page", page);
     dressInfo?.mainRegionId &&
@@ -139,28 +139,25 @@ const Header = () => {
           <div className="w-full">
             <article
               className={`block md:hidden relative z-[100]
-              ${
-                show
+              ${show
                   ? "visible duration-500 z-[25]"
                   : "visible duration-500 z-[25] translate-y-[-100%]"
-              }`}
+                }`}
             >
               <MediumHeader />
             </article>
             <article
               className={`fixed top-0  w-full bg-white block  
-              ${
-                show
+              ${show
                   ? "visible duration-500 z-[25]"
                   : "visible duration-500 z-[25] translate-y-[-100%]"
-              }`}
+                }`}
             >
               <TopHeader />
               <MediumHeader stateData={state} setStateData={setState} />
               <div
-                className={`${
-                  scrollPost > -530 ? "" : "h-0 overflow-hidden"
-                } visible duration-500`}
+                className={`${scrollPost > -530 ? "" : "h-0 overflow-hidden"
+                  } visible duration-500`}
               >
                 <NavbarBottomIndex
                 // getGender={getGender}
@@ -189,19 +186,17 @@ const Header = () => {
         )}
 
         <div
-          className={`${
-            locationWindow !== "/locations"
+          className={`${locationWindow !== "/locations"
               ? "md:mt-[99px]"
               : "mt-[0] h-0 overflow-hidden"
-          } `}
+            } `}
         >
           {!dressInfo?.yandexFullScreen && (
             <article
-              className={`fixed bottom-0 w-full bg-white ${
-                show
+              className={`fixed bottom-0 w-full bg-white ${show
                   ? "visible duration-500 z-[101]"
                   : "visible duration-500 z-[101] translate-y-[100%]"
-              } block md:hidden`}
+                } block md:hidden`}
             >
               <NavMenu stateData={state} setStateData={setState} />
             </article>
