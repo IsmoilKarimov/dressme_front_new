@@ -475,7 +475,7 @@ const ProductDetails = ({ data }) => {
                       data?.product?.shop?.name
                     );
                   }}
-                  className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%] hover:border-b border-black"
+                  className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%] border-b border-black"
                 >
                   {data?.product?.shop?.name}
                 </button>
