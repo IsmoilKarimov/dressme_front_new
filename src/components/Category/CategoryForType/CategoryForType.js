@@ -299,7 +299,7 @@ function CategoryForType() {
                       <p
                         key={data?.id}
                         onClick={() => {
-                          handleCategories(data?.name_uz, data?.id);
+                          handleCategories(data?.name_ru, data?.id);
                         }}
                         className={`${filterData?.section?.id === data?.id
                           ? "bg-bgColor"

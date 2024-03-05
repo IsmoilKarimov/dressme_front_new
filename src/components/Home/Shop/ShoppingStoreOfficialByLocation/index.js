@@ -96,10 +96,10 @@ const ShoppingStoreOfficialByLocation = () => {
   const paramsIDS = useParams();
   const newId = paramsIDS?.id.replace(":", "");
   // dressInfo?.yandexGetMarketId
-  console.log(dressInfo?.yandexGetMarketId, "dressInfo?.yandexGetMarketId");
-  console.log(newId, "newId---");
+  console.log(data?.getMainProductCard?.shops, "data?.getMainProductCard?.shops");
+  console.log(newFilterParamasId, "newFilterParamasId---");
   const refreshLocationId = () => {
-    // if (data?.selectedLoc === "changed") {
+
     data?.getMainProductCard?.shops?.map((item) => {
       if (item?.id === Number(newFilterParamasId)) {
         if (dressInfo?.mainSubRegionId) {
@@ -135,8 +135,8 @@ const ShoppingStoreOfficialByLocation = () => {
     });
     // }
   };
-  console.log(data?.selectedLoc, ';data?.selectedLoc');
-  console.log(dressInfo?.locationIdParams, ';locationIdParams?.selectedLoc');
+  // console.log(data?.selectedLoc, ';data?.selectedLoc');
+  // console.log(dressInfo?.locationIdParams, ';locationIdParams?.selectedLoc');
   useEffect(() => {
     data?.getMainProductCard?.shops?.map((item) => {
       if (newId?.split("-")?.join(" ")?.includes(item?.name?.toLowerCase())) {
@@ -153,8 +153,14 @@ const ShoppingStoreOfficialByLocation = () => {
   }, [data?.getMainProductCard?.shops]);
 
   useEffect(() => {
-    refreshLocationId();
+    if (data?.selectedLoc === "changed") {
+      refreshLocationId();
+    }
   }, [newFilterParamasId, dressInfo?.mainSubRegionId, dressInfo?.mainRegionId, data?.getMainProductCard?.shops]);
+  useEffect(() => {
+    if (dressInfo?.locationIdParams)
+      refreshLocationId();
+  }, []);
 
   const url = `https://api.dressme.uz/api`;
   const [loading, setLoading] = useState(false);
@@ -255,6 +261,7 @@ const ShoppingStoreOfficialByLocation = () => {
     }
     setInitalParamsId(dressInfo?.locationIdParams);
   }, [dressInfo?.locationIdParams]);
+
   useEffect(() => {
     if (dressInfo?.locationIdParams) {
       if(!filteredData){
