@@ -17,19 +17,19 @@ import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 
 const TopHeader = () => {
-  const { i18n, t } = useTranslation()
+  const { i18n, t } = useTranslation('top')
 
   const [dressInfo] = useContext(dressMainData);
   const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
   const [currentLang, setCurrentLang] = useState(localStorage.getItem("i18nextLng"))
   useEffect(() => {
     if (localStorage.getItem("i18nextLng")?.length > 2) {
-      i18next.changeLanguage("uz")
+      i18next.changeLanguage("ru")
     }
     setLanguageDetector({ typeLang: currentLang })
   }, [currentLang])
 
-console.log(currentLang);
+  console.log(currentLang);
   const { request } = useHttp()
   const [selectBtn, setSelectBtn] = useState(true);
   const [regionsShow, setRegionsShow] = useState(false);
@@ -37,17 +37,17 @@ console.log(currentLang);
   const [data, setData] = useContext(HomeMainDataContext);
 
   // -----Language Change-------------------
-  const [selectLang, setselectLang] = useState(1);
   const LanguageList = [
-    { id: 1, type: "Русский", icons: RussianFlag },
-    { id: 2, type: "O'zbekcha", icons: UzbekFlag },
+    { id: 1, value: "uz", type: "O'zbekcha", icons: UzbekFlag },
+    { id: 2, value: "ru", type: "Русский", icons: RussianFlag },
   ];
   const [openLang, setOpenLang] = useState(false);
   const handleOpenChangeLang = (newOpen) => {
     setOpenLang(newOpen);
   };
   const handleLangValue = (value) => {
-    setselectLang(value);
+    i18n.changeLanguage(value)
+    setCurrentLang(value)
     setOpenLang(false);
   };
   const contentLang = (
@@ -55,10 +55,10 @@ console.log(currentLang);
       {LanguageList.map((data) => {
         return (
           <article
-            key={data?.id}
+            key={data?.value}
             className={`p-2 text-sm cursor-pointer hover:bg-bgColor flex items-center justify-start  ${dressInfo?.ColorSeason}`}
             onClick={() => {
-              handleLangValue(data?.id);
+              handleLangValue(data?.value);
             }}
           >
             <figure className="mr-[6px]  w-5 h-5">
@@ -74,9 +74,9 @@ console.log(currentLang);
       })}
     </section>
   );
-
+  // console.log(selectLang, 'selectLang');
+  // console.log(currentLang, 'currentLang');
   // -------City Change -------------
-  // const [selectCity] = useState("Tashkent");
   const location = useLocation();
   const [locationWindow, setLocationWindow] = useState("");
 
@@ -111,10 +111,7 @@ console.log(currentLang);
       refetchOnWindowFocus: false,
     }
   );
-  const handleLanguageChange = (e) => {
-    i18n.changeLanguage(e.target.value) 
-    setCurrentLang(e.target.value)
-  }
+
   return (
     <nav>
       <div
@@ -154,8 +151,9 @@ console.log(currentLang);
                 <span className="mr-2">
                   <LocationIcons />
                 </span>
-                <div className="text-textColor text-[13px]  mr-[6px] font-AeonikProMedium">
-                  Регион:
+                <div className="flex items-center text-textColor text-[13px]  mr-[6px] font-AeonikProMedium">
+                  {t('region')}
+                  <span>:</span>
                 </div>
                 <div className="w-full min-w-[90px] font-AeonikProMedium flex items-center text-[13px]">
                   {data?.mainRegionsList?.filter((e) => e?.id === dressInfo?.mainRegionId)
@@ -183,7 +181,7 @@ console.log(currentLang);
             </section>
 
             <section className="w-fit h-fit py-[4px] rounded bg-white font-AeonikProMedium select-none cursor-pointer">
-              {LanguageList.filter((data) => data.id === selectLang).map(
+              {LanguageList.filter((data) => data.value === currentLang).map(
                 (data) => {
                   return (
                     <Popover
@@ -207,15 +205,7 @@ console.log(currentLang);
                 }
               )}
             </section>
-            <div className="flex items-center gap-x-3">
-                <label htmlFor="CheckUz" onChange={handleLanguageChange} value={currentLang}>Uz
-                  <input style={{ display: "none" }} id="CheckUz" type="radio" name="checkLang" value={"uz"} />
-                </label>
-                <label htmlFor="CheckRu" onChange={handleLanguageChange} value={currentLang}>
-                  Ru
-                  <input style={{ display: "none" }} id="CheckRu" type="radio" name="checkLang" value={"ru"} />
-                </label>
-            </div>
+
           </article>
 
           {/* RIGHT SIDE */}
@@ -241,7 +231,7 @@ console.log(currentLang);
                   ${!selectBtn ? "text-black" : "text-textColor"}
                 `}
               >
-                Бизнес
+                {t('business')}
               </p>
             </button>
             <article className="line h-5 border text-textColor mx-6"></article>
@@ -260,7 +250,7 @@ console.log(currentLang);
                   ${selectBtn ? "text-black" : "text-textColor"}
                 `}
               >
-                Магазины
+                {t('market')}
               </p>
             </NavLink>
           </article>
