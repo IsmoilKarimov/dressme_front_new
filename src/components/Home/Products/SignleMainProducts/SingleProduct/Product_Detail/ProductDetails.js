@@ -1406,17 +1406,17 @@ const ProductDetails = ({ data }) => {
           </div>
           <div className="w-full flex flex-col items-center border border-[#f0f0f0] p-[15px] bg-categoryModalBgColor rounded-xl">
             <div className="w-full flex items-center mb-4">
-              <div className="flex items-center text-sm font-AeonikProRegular">
+              <div className="flex items-center text-[14px] font-AeonikProRegular">
                 <DeliveryIcons />
-                <span className="ml-[6px]">Метод доставки:</span>
+                <span className="ml-[6px] inline">Метод доставки:</span>
               </div>
-              <div className="text-sm font-AeonikProRegular ml-[6px] text-[#a1a1a1]">
+              <div className="text-sm font-AeonikProRegular ml-[6px] text-black">
                 {data?.product?.shop?.delivery?.name_ru}
               </div>
             </div>
             <div className="w-full flex items-center mb-4">
               <section className="w-fit flex items-center h-fit text-sm">
-                <div className="flex items-center font-AeonikProRegular leading-4 ">
+                <div className="flex items-center font-AeonikProRegular">
                   <CalendarIcons colors={"#000"} />
                   <span className="mx-[6px]">Сезон:</span>
                 </div>
@@ -1439,7 +1439,7 @@ const ProductDetails = ({ data }) => {
                           }
                           alt=""
                         />
-                        <figcaption className="not-italic  ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-[#a1a1a1] tracking-[1%]">
+                        <figcaption className="not-italic inline ml-1 font-AeonikProRegular md:font-AeonikProMedium text-black">
                           {item?.name_ru}
                         </figcaption>
                       </figure>
@@ -1456,7 +1456,7 @@ const ProductDetails = ({ data }) => {
                 </div>
               </article>
               <article className="ml-2">
-                <p className="not-italic font-AeonikProRegular text-[14px]  text-[#a1a1a1]">
+                <p className="not-italic font-AeonikProRegular text-[14px]  text-black">
                   {data?.product?.shop?.name}
                 </p>
               </article>
@@ -1466,10 +1466,10 @@ const ProductDetails = ({ data }) => {
               <span className="text-sm font-AeonikProRegular ml-[6px]">
                 Артикул:
               </span>
-              <div className="text-sm bg-transparent w-fit font-AeonikProRegular ml-[6px] text-[#a1a1a1]" />
+              <div className="text-sm bg-transparent w-fit font-AeonikProRegular ml-[6px] text-black" />
               <div
                 ref={skuRef}
-                className="w-fit text-sm font-AeonikProRegular text-[#a1a1a1]"
+                className="w-fit text-sm font-AeonikProRegular text-black"
               >
                 {data?.product?.sku}
               </div>
@@ -1489,7 +1489,7 @@ const ProductDetails = ({ data }) => {
                 </div>
               </article>
               <article className="w-fit ml-[6px]">
-                <p className="not-italic font-AeonikProRegular text-[14px]  text-[#a1a1a1] ">
+                <p className="not-italic font-AeonikProRegular text-[14px]  text-black ">
                   {data?.product?.min_age_category} -{" "}
                   {data?.product?.max_age_category}
                 </p>
@@ -1503,7 +1503,7 @@ const ProductDetails = ({ data }) => {
                 </div>
               </article>
               <article className="w-fit ml-[6px]">
-                <p className="not-italic font-AeonikProRegular text-[14px]  text-[#a1a1a1] ">
+                <p className="not-italic font-AeonikProRegular text-[14px]  text-black ">
                   {data?.product?.quality_ru}
                 </p>
               </article>
@@ -1516,7 +1516,7 @@ const ProductDetails = ({ data }) => {
                 </div>
               </article>
               <article className="w-fit ml-[6px]">
-                <p className="not-italic font-AeonikProRegular text-[14px]  text-[#a1a1a1] ">
+                <p className="not-italic font-AeonikProRegular text-[14px]  text-black ">
                   Узбекистан
                 </p>
               </article>
@@ -1534,7 +1534,7 @@ const ProductDetails = ({ data }) => {
                     return (
                       <p
                         key={i}
-                        className="mr-[5px] not-italic font-AeonikProRegular text-[14px] text-[#a1a1a1] "
+                        className="mr-[5px] not-italic font-AeonikProRegular text-[14px] text-black "
                       >
                         {item?.name_ru}
                       </p>
@@ -1551,10 +1551,10 @@ const ProductDetails = ({ data }) => {
                 </div>
               </article>
               <article className="w-fit flex items-center ml-[6px]">
-                <div className="text-sm w-fit bg-transparent font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]" />
+                <div className="text-sm w-fit bg-transparent font-AeonikProRegular ml-[6px] text-black leading-4 tracking-[1%]" />
                 <div
                   ref={cardRef}
-                  className="w-fit text-sm font-AeonikProRegular text-[#a1a1a1]"
+                  className="w-fit text-sm font-AeonikProRegular text-black"
                 >
                   {data?.product?.seller?.card_number}
                 </div>
