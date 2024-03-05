@@ -1,4 +1,3 @@
-import { useState } from "react";
 import CategoryForType from "./CategoryForType";
 
 export default function CategoryMainType() {

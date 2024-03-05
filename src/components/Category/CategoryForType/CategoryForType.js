@@ -8,8 +8,12 @@ import FilterList from "./CategoryForBrand/FilterList/FilterList";
 import { MenuCloseIcons } from "../../../assets/icons";
 import LoadingNetwork from "../../Loading/LoadingNetwork";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
+import { useTranslation } from "react-i18next";
 
 function CategoryForType() {
+
+  const { t } = useTranslation("category");
+
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [filterData, setFilterData] = useState([]);
   const [pageId, setPageId] = useState(1);
@@ -65,8 +69,7 @@ function CategoryForType() {
     setGetFootWearList(childData);
     setPageId(1);
   };
-  // console.log(data?.getMainProductCard?.sections?.map((data) => {);
-  // console.log(data?.getMainProductCard?.sections, "data?.getMainProductCard?.sections");
+
   useEffect(() => {
     if (dressInfo?.openCategoryFilter) {
       document.body.style.overflow = "hidden";
@@ -77,18 +80,7 @@ function CategoryForType() {
 
   const paramsId = useParams();
   const newId = paramsId?.id.replace(":", "");
-  // console.log(paramsId, 'paramsId');
-  // console.log(newId, 'newId');
-  // useEffect(() => {
-  //   // setNewFilterParamasId(null)
-  //   console.log('run');
-  //   data?.getMainProductCard?.sections?.map(item => {
-  //     if (newId?.includes(item?.name_ru?.toLowerCase())) {
-  //       console.log(item?.name_ru, item?.id, 'item?.name_ru');
-  //       setNewFilterParamasId(item?.id)
-  //     }
-  //   })
-  // }, [paramsId?.id])
+
   useLayoutEffect(() => {
 
     data?.getMainProductCard?.sections?.map(item => {
@@ -101,19 +93,6 @@ function CategoryForType() {
     })
 
   }, [paramsId?.id, data?.getMainProductCard?.sections]);
-  // useLayoutEffect(() => {
-  //   if (!newFilterParamasIdCopy && !newFilterParamasIdCopy&&data?.getMainProductCard?.sections) {
-  //     data?.getMainProductCard?.sections?.map(item => {
-  //       if (newId?.includes(item?.name_uz?.split(' ')?.join('-')?.toLowerCase())) {
-  //         setNewFilterParamasId(item?.id)
-  //         if (!newFilterParamasIdCopy) {
-  //           setNewFilterParamasIdCopy(item?.id)
-  //         }
-  //       }
-  //     })
-  //     console.log('run--222');
-  //   }
-  // }, []);
 
   const [loading, setLoading] = useState(true);
   const url = `https://api.dressme.uz/api`;
@@ -220,8 +199,7 @@ function CategoryForType() {
     getRange?.max,
     dressInfo?.mainSearchNameCategory,
   ]);
-  // console.log(getRange?.min,'getRange');
-  // console.log(getRange?.max,'getRange');
+
   const navigate = useNavigate();
 
   const handleCategories = (value, id) => {
@@ -252,9 +230,10 @@ function CategoryForType() {
       window.removeEventListener("resize", updateDimension);
     };
   }, [screenSize]);
+
+  
   return (
     <div className="w-full">
-
       {loading ? (
         <div className="flex items-center justify-center w-full h-full ">
           <LoadingNetwork />
@@ -272,23 +251,27 @@ function CategoryForType() {
               setOpenMobileCategory={setOpenMobileCategory}
             />
           </section>
-          {filterData?.section_products?.data?.length > 0 ?
+          {filterData?.section_products?.data?.length > 0 ? (
             <section className="flex justify-between mb-10">
               <section
                 onClick={() => {
                   setOpenMobileCategory(false);
                   setOpenMobileFilter(false);
                 }}
-                className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter || openMobileCategory ? "" : "hidden"
-                  }`}
+                className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+                  openMobileFilter || openMobileCategory ? "" : "hidden"
+                }`}
               ></section>
               {/* For Mobile Versions */}
               <section
-                className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
-                  }`}
+                className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${
+                  openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
+                }`}
               >
                 <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between  mb-1 ">
-                  <p className="text-[16px] font-AeonikProMedium">Под разделу</p>
+                  <p className="text-[16px] font-AeonikProMedium">
+                    {t("by_section")}
+                  </p>
                   <button onClick={() => setOpenMobileCategory(false)}>
                     <MenuCloseIcons colors={"#000"} />
                   </button>
@@ -301,10 +284,11 @@ function CategoryForType() {
                         onClick={() => {
                           handleCategories(data?.name_ru, data?.id);
                         }}
-                        className={`${filterData?.section?.id === data?.id
-                          ? "bg-bgColor"
-                          : null
-                          } h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
+                        className={`${
+                          filterData?.section?.id === data?.id
+                            ? "bg-bgColor"
+                            : null
+                        } h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
                       >
                         {data?.name_ru}
                       </p>
@@ -312,36 +296,40 @@ function CategoryForType() {
                   })}
                 </div>
               </section>
-              {screenSize.width < 768 && <section
-                className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+              {screenSize.width < 768 && (
+                <section
+                  className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${
+                    openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
                   }`}
-              >
-                <div className="w-full h-[70vh] z-[114] overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
-                  <FilterList
-                    paramsId={newFilterParamasId}
-                    genderId={genderId}
-                    discountId={discountId}
-                    categoryId={categoryId}
-                    getBadgePrice={getBadgePrice}
-                    setDataColor={setDataColor}
-                    dataColor={dataColor}
-                    getRatingList={getRatingList}
-                    outWearList={outWearList}
-                    underWearList={underWearList}
-                    footWearList={footWearList}
-                    filterToggle={filterToggle}
-                    setFilterToggle={setFilterToggle}
-                    openMobileFilter={openMobileFilter}
-                    setOpenMobileFilter={setOpenMobileFilter}
-                  />
-                </div>
-              </section>}
+                >
+                  <div className="w-full h-[70vh] z-[114] overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
+                    <FilterList
+                      paramsId={newFilterParamasId}
+                      genderId={genderId}
+                      discountId={discountId}
+                      categoryId={categoryId}
+                      getBadgePrice={getBadgePrice}
+                      setDataColor={setDataColor}
+                      dataColor={dataColor}
+                      getRatingList={getRatingList}
+                      outWearList={outWearList}
+                      underWearList={underWearList}
+                      footWearList={footWearList}
+                      filterToggle={filterToggle}
+                      setFilterToggle={setFilterToggle}
+                      openMobileFilter={openMobileFilter}
+                      setOpenMobileFilter={setOpenMobileFilter}
+                    />
+                  </div>
+                </section>
+              )}
 
               {/* For Desktop Version */}
-              {screenSize.width >= 768 &&
+              {screenSize.width >= 768 && (
                 <article
-                  className={`${filterToggle ? "md:block" : "md:hidden"
-                    } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0 `}
+                  className={`${
+                    filterToggle ? "md:block" : "md:hidden"
+                  } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0 `}
                 >
                   <FilterList
                     paramsId={newFilterParamasId}
@@ -359,19 +347,25 @@ function CategoryForType() {
                     setFilterToggle={setFilterToggle}
                     setLoading={setLoading}
                   />
-                </article>}
+                </article>
+              )}
               <article
-                className={`${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-                  } w-full h-full px-[10px] md:px-0 `}
+                className={`${
+                  filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+                } w-full h-full px-[10px] md:px-0 `}
               >
-
-                <CategoryCards paramsId={newId} filterData={filterData} setPageId={setPageId} />
+                <CategoryCards
+                  paramsId={newId}
+                  filterData={filterData}
+                  setPageId={setPageId}
+                />
               </article>
-            </section> :
+            </section>
+          ) : (
             <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[50vh] ">
-              Ничего не найдено
+              {t("nothing_found")}
             </div>
-          }
+          )}
         </main>
       )}
     </div>
