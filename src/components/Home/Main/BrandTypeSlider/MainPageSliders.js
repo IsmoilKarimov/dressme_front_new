@@ -8,11 +8,13 @@ import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { NavLink, useNavigate } from "react-router-dom";
 import { NoImg, ShowMoreBackIcon, SircleNext } from "../../../../assets/icons";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
+import { useTranslation } from 'react-i18next';
 
 function MainPageSliders() {
   const [data, setData] = useContext(HomeMainDataContext);
-
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const { t } = useTranslation(["homePage"]);
+
   // maindata
   const NextArrow = (props) => {
     const { onClick } = props;
@@ -367,7 +369,7 @@ function MainPageSliders() {
                 onClick={() => setMore(!more)}
               >
                 <p className="not-italic font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
-                  {more ? "Свернуть" : "Посмотреть все разделы"}
+                  {more ? "Свернуть" : t("one")}
                 </p>
                 <div className="ml-2 ">
                   {more ? (
@@ -399,8 +401,8 @@ function MainPageSliders() {
                 onClick={() => setMore(!more)}
               >
                 <p className="not-italic font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
-                  {more ? "Свернуть" : "Посмотреть все разделы"}
-                </p>
+                  {more ? "Свернуть" : t("one")}
+                </p> 
                 <div className="ml-2 ">
                   {more ? (
                     <div>

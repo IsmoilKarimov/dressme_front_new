@@ -12,9 +12,24 @@ import RegionList from "../../ContextHook/RegionsList";
 import { useQuery } from "@tanstack/react-query";
 import { useHttp } from "../../hook/useHttp";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
+import { LanguageDetectorDress } from "../../language/LanguageItems";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 const TopHeader = () => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const { i18n, t } = useTranslation()
+
+  const [dressInfo] = useContext(dressMainData);
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const [currentLang, setCurrentLang] = useState(localStorage.getItem("i18nextLng"))
+  useEffect(() => {
+    if (localStorage.getItem("i18nextLng")?.length > 2) {
+      i18next.changeLanguage("uz")
+    }
+    setLanguageDetector({ typeLang: currentLang })
+  }, [currentLang])
+
+console.log(currentLang);
   const { request } = useHttp()
   const [selectBtn, setSelectBtn] = useState(true);
   const [regionsShow, setRegionsShow] = useState(false);
@@ -28,7 +43,7 @@ const TopHeader = () => {
     { id: 2, type: "O'zbekcha", icons: UzbekFlag },
   ];
   const [openLang, setOpenLang] = useState(false);
-  const handleOpenChangeWear = (newOpen) => {
+  const handleOpenChangeLang = (newOpen) => {
     setOpenLang(newOpen);
   };
   const handleLangValue = (value) => {
@@ -96,7 +111,10 @@ const TopHeader = () => {
       refetchOnWindowFocus: false,
     }
   );
-
+  const handleLanguageChange = (e) => {
+    i18n.changeLanguage(e.target.value) 
+    setCurrentLang(e.target.value)
+  }
   return (
     <nav>
       <div
@@ -171,7 +189,7 @@ const TopHeader = () => {
                     <Popover
                       key={data?.id}
                       open={openLang}
-                      onOpenChange={handleOpenChangeWear}
+                      onOpenChange={handleOpenChangeLang}
                       className="w-full flex text-[13px] items-center h-full px-3 "
                       trigger="click"
                       options={["Hide"]}
@@ -189,6 +207,15 @@ const TopHeader = () => {
                 }
               )}
             </section>
+            <div className="flex items-center gap-x-3">
+                <label htmlFor="CheckUz" onChange={handleLanguageChange} value={currentLang}>Uz
+                  <input style={{ display: "none" }} id="CheckUz" type="radio" name="checkLang" value={"uz"} />
+                </label>
+                <label htmlFor="CheckRu" onChange={handleLanguageChange} value={currentLang}>
+                  Ru
+                  <input style={{ display: "none" }} id="CheckRu" type="radio" name="checkLang" value={"ru"} />
+                </label>
+            </div>
           </article>
 
           {/* RIGHT SIDE */}

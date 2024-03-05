@@ -2,11 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import RouterMain from "./root/RouterMain";
 import { useLocation } from "react-router-dom";
 import { dressMainData } from "./ContextHook/ContextMenu";
-import { HomeMainDataContext } from "./ContextHook/HomeMainData";
 
 export default function App() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [data] = useContext(HomeMainDataContext);
 
   const location = useLocation();
 
