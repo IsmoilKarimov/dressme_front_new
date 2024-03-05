@@ -9,18 +9,21 @@ import { useNavigate } from "react-router-dom";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData";
 
-export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) {
+export default function ShopOfficialCard({
+  filteredData,
+  setPageId,
+  paramsId,
+}) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
 
   // Main data context -----------------
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
-  const onColorChecked = () => { };
+  const onColorChecked = () => {};
   const navigate = useNavigate();
   const goDetail = (id, name) => {
     navigate(`/shops/${paramsId}/${id}`);
-    // navigate(`/shops/${paramsId}/${name?.split(' ')?.join('-')?.toLowerCase()}`);
   };
 
   const handleLeaveMouse = (eId) => {
@@ -38,7 +41,7 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
   };
 
   const setPaginationFunc = (id) => {
-    setPageId(+id)
+    setPageId(+id);
   };
 
   return (
@@ -87,8 +90,9 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
                     </span>
                   </button>
                   <article
-                    className={`${data?.l ? "w-full px-1 xs:px-2 md:px-4 my-2" : "w-0 my-2"
-                      } group-hover:w-full group-hover:px-1 group-hover:xs:px-2 group-hover:md:px-4 group-hover:my-2 duration-300 w-0 my-2 absolute overflow-hidden hidden top-0 z-[1] md:flex items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
+                    className={`${
+                      data?.l ? "w-full px-1 xs:px-2 md:px-4 my-2" : "w-0 my-2"
+                    } group-hover:w-full group-hover:px-1 group-hover:xs:px-2 group-hover:md:px-4 group-hover:my-2 duration-300 w-0 my-2 absolute overflow-hidden hidden top-0 z-[1] md:flex items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
                   >
                     {data?.colors?.map((itemValue) => {
                       return (
@@ -115,8 +119,9 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
                 <article
                   onMouseEnter={() => handleLeaveMouse(data?.id)}
                   onClick={() => goDetail(data?.id, data?.name_ru)}
-                  className={`w-full px-2 xs:px-3 xs:mt-1 ${data?.cost?.discount_price ? "mb-0" : "mb-3"
-                    } md:mb-0`}
+                  className={`w-full px-2 xs:px-3 xs:mt-1 ${
+                    data?.cost?.discount_price ? "mb-0" : "mb-3"
+                  } md:mb-0`}
                 >
                   <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-[6px] md:mb-0  cursor-pointer">
                     <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
@@ -182,10 +187,11 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
                     )}
                   </article>
                   <figure
-                    className={`flex items-center select-none absolute right-2 ${data?.cost?.discount_price
-                      ? "bottom-[7px] ls:bottom-[-17px]"
-                      : " bottom-[8px] ls:bottom-[-17px]"
-                      } md:bottom-2`}
+                    className={`flex items-center select-none absolute right-2 ${
+                      data?.cost?.discount_price
+                        ? "bottom-[7px] ls:bottom-[-17px]"
+                        : " bottom-[8px] ls:bottom-[-17px]"
+                    } md:bottom-2`}
                   >
                     <button
                       onClick={() => {
@@ -216,24 +222,32 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
 
       <div className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6 pb-[80px] md:pb-0">
         <article className="w-full flex items-center">
-          <ul className="w-full flex items-center">
+          <ul className="w-full flex items-center justify-center">
             {filteredData?.products?.links?.map((item, index) => {
               return (
                 <li
                   key={index}
                   onClick={() => {
                     if (item?.url) {
-                      const newPageId = String(item?.url?.substr(-3)?.split('')?.reverse()?.join(''))?.split('')?.filter((item) => !isNaN(item))?.reverse()?.join('')
+                      const newPageId = String(
+                        item?.url?.substr(-3)?.split("")?.reverse()?.join("")
+                      )
+                        ?.split("")
+                        ?.filter((item) => !isNaN(item))
+                        ?.reverse()
+                        ?.join("");
                       setPaginationFunc(newPageId);
                     }
                   }}
-                  className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${item?.active
-                    ? "bg-fullBlue text-white"
-                    : "hover:bg-searchBgColor"
-                    } mx-[5px] flex items-center justify-center  ${item?.url
+                  className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${
+                    item?.active
+                      ? "bg-fullBlue text-white"
+                      : "hover:bg-searchBgColor"
+                  } mx-[5px] flex items-center justify-center  ${
+                    item?.url
                       ? "cursor-pointer"
                       : "opacity-70 cursor-not-allowed"
-                    }`}
+                  }`}
                 >
                   {item?.label}
                 </li>
