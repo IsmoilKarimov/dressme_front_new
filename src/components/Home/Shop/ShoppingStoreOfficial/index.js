@@ -381,10 +381,10 @@ const ShoppingStoreOfficial = () => {
                     } w-full `}
                 >
                   <section className="w-[100%] h-fit">
-                    <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
+                    <section className="w-full flex flex-gap-6 justify-between md:my-10 mt-3 mb-20">
                       {screenSize.width >= 768 && <div
                         className={`${filterToggle ? "md:block" : "md:hidden"
-                          } hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}
+                          } hidden md:w-[22%] h-full ss:px-4 md:px-0`}
                       >
                         <FilterList
                           paramsId={newFilterParamasId}
@@ -416,7 +416,7 @@ const ShoppingStoreOfficial = () => {
                             paramsId={newId}
                           />
                         ) : (
-                          <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[100vh] ">
+                          <div className="w-full flex items-center justify-center font-AeonikProMedium text-lg md:text-2xl h-fit md:h-[100vh] ">
                             Ничего не найдено
                           </div>
                         )
@@ -428,7 +428,7 @@ const ShoppingStoreOfficial = () => {
 
                 {/* Comment Section For Shopping Page */}
                 <div
-                  className={`${openTabComment ? "block" : "hidden"} w-full `}
+                  className={`${openTabComment ? "block" : "hidden"} w-full pb-[88px] `}
                 >
                   <ShowPageComment
                     filteredData={filteredData}
@@ -439,7 +439,7 @@ const ShoppingStoreOfficial = () => {
                 {/* Map Section */}
                 <div
                   className={`${openTabLocation ? "block" : "hidden"
-                    } w-full text-3xl px-4 pb-10`}
+                    } w-full text-3xl px-4 pb-[88px]`}
                 >
                   <button
                     onClick={() => {

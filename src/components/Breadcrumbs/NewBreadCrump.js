@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 const NewBreadCrump = ({ items }) => {
     return (
       <nav
-        className="w-full overflow-x-scroll md:overflow-auto mx-3 md:mx-0"
+        className="w-full overflow-x-scroll md:overflow-auto px-3 md:px-0"
         aria-label="breadcrumb"
       >
         <ol className="breadcrumb">

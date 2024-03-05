@@ -79,7 +79,7 @@ function YandexLocationShop({ filteredData }) {
                     }}
                 >
                     <Map
-                        className={` overflow-hidden w-full h-[350px] md:h-[400px] rounded-lg productDetailsMaps`}
+                        className={` overflow-hidden w-full h-[320px] md:h-[400px] rounded-lg productDetailsMaps`}
                         state={{
                             center: placeMarkLocation,
                             zoom: 12,
