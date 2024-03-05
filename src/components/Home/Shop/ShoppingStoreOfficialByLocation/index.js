@@ -96,8 +96,8 @@ const ShoppingStoreOfficialByLocation = () => {
   const paramsIDS = useParams();
   const newId = paramsIDS?.id.replace(":", "");
   // dressInfo?.yandexGetMarketId
-  console.log(dressInfo?.yandexGetMarketId, 'dressInfo?.yandexGetMarketId');
-  console.log(newId, 'newId---');
+  console.log(dressInfo?.yandexGetMarketId, "dressInfo?.yandexGetMarketId");
+  console.log(newId, "newId---");
   const refreshLocationId = () => {
     if (data?.selectedLoc === "changed") {
       data?.getMainProductCard?.shops?.map((item) => {
@@ -136,24 +136,22 @@ const ShoppingStoreOfficialByLocation = () => {
     }
   };
   useEffect(() => {
-    data?.getMainProductCard?.shops?.map(item => {
-      if (newId?.split('-')?.join(' ')?.includes(item?.name?.toLowerCase())) {
+    data?.getMainProductCard?.shops?.map((item) => {
+      if (newId?.split("-")?.join(" ")?.includes(item?.name?.toLowerCase())) {
         setDressInfo({
           ...dressInfo,
           yandexGetMarketId: item?.id,
         });
-        setNewFilterParamasId(item?.id)
+        setNewFilterParamasId(item?.id);
         if (!newFilterParamasIdCopy) {
-          setNewFilterParamasIdCopy(item?.id)
+          setNewFilterParamasIdCopy(item?.id);
         }
       }
-    })
+    });
   }, [data?.getMainProductCard?.shops]);
   useEffect(() => {
-
     if (data?.getMainProductCard?.shops) refreshLocationId();
-  }, [newFilterParamasId, dressInfo?.mainSubRegionId, dressInfo?.mainRegionId,]);
-
+  }, [newFilterParamasId, dressInfo?.mainSubRegionId, dressInfo?.mainRegionId]);
 
   const url = `https://api.dressme.uz/api`;
   const [loading, setLoading] = useState(false);
@@ -216,16 +214,15 @@ const ShoppingStoreOfficialByLocation = () => {
       })
       .then((res) => {
         if (res?.status >= 200 && res?.status < 300) {
-          setLoading(false)
+          setLoading(false);
           setFilteredData(res?.data);
-          setDressInfo({ ...dressInfo, filterDataProductList: res?.data })
-
+          setDressInfo({ ...dressInfo, filterDataProductList: res?.data });
         }
       })
       .catch((res) => {
         if (res?.response?.status === 422) {
           refreshLocationId();
-          setLoading(false)
+          setLoading(false);
         }
         throw new Error(res || "something wrong");
 
@@ -236,19 +233,31 @@ const ShoppingStoreOfficialByLocation = () => {
   };
 
   useEffect(() => {
-    if (initalParamsId && initalParamsId !== dressInfo?.locationIdParams && !getGenderId && !getCategory && !getRating && !getRange?.length && !dataColor?.length && !discount && !getOutWearList && !getUnderWearList && !getFootWearList) {
+    if (
+      initalParamsId &&
+      initalParamsId !== dressInfo?.locationIdParams &&
+      !getGenderId &&
+      !getCategory &&
+      !getRating &&
+      !getRange?.length &&
+      !dataColor?.length &&
+      !discount &&
+      !getOutWearList &&
+      !getUnderWearList &&
+      !getFootWearList
+    ) {
       fetchGetAllData();
-      setLoading(true)
+      setLoading(true);
     }
 
-    setInitalParamsId(dressInfo?.locationIdParams)
+    setInitalParamsId(dressInfo?.locationIdParams);
   }, [dressInfo?.locationIdParams]);
 
   useEffect(() => {
     if (data?.getMainProductCard?.shops && dressInfo?.locationIdParams) {
       fetchGetAllData();
       if (!filteredData) {
-        setLoading(true)
+        setLoading(true);
       }
     }
   }, [
@@ -268,7 +277,7 @@ const ShoppingStoreOfficialByLocation = () => {
     dressInfo?.mainSearchNameshopLocation,
     // data?.getMainProductCard?.shops
   ]);
-  console.log(dressInfo?.locationIdParams, 'run-- dressInfo?.locationIdParams');
+  console.log(dressInfo?.locationIdParams, "run-- dressInfo?.locationIdParams");
   useEffect(() => {
     if (openMobileFilter) {
       document.body.style.overflow = "hidden";
@@ -293,11 +302,15 @@ const ShoppingStoreOfficialByLocation = () => {
       window.removeEventListener("resize", updateDimension);
     };
   }, [screenSize]);
-  
+
   const breadcrumbItems = [
-    { label_uz: 'Home', label_ru: 'Главная', url: '/' },
-    { label_uz: 'Location', label_ru: 'Карта', url: '/locations' },
-    { label_uz: paramsIDS?.id, label_ru: paramsIDS?.id, url: '/shops_location/:id' },
+    { label_uz: "Home", label_ru: "Главная", url: "/" },
+    { label_uz: "Location", label_ru: "Карта", url: "/locations" },
+    {
+      label_uz: paramsIDS?.id,
+      label_ru: paramsIDS?.id,
+      url: "/shops_location/:id",
+    },
   ];
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
@@ -305,7 +318,7 @@ const ShoppingStoreOfficialByLocation = () => {
         <div className="flex items-center justify-center w-full h-full ">
           <LoadingNetwork />
         </div>
-      ) :
+      ) : (
         <div className="w-full">
           <section className="w-full border-b border-searchBgColor py-3 md:pt-8 md:pb-5">
             <NewBreadCrump items={breadcrumbItems} />
@@ -323,96 +336,103 @@ const ShoppingStoreOfficialByLocation = () => {
           {/* FOR MOBILE VERSION */}
           <section
             onClick={() => {
-              setOpenMobileFilter(false)
+              setOpenMobileFilter(false);
             }}
-            className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter ? "" : "hidden"
-              }`}
+            className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+              openMobileFilter ? "" : "hidden"
+            }`}
           ></section>
-          {screenSize.width < 768 && <section
-            className={`max-w-[440px] w-[100%]  mx-auto fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+          {screenSize.width < 768 && (
+            <section
+              className={`max-w-[440px] w-[100%]  mx-auto fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+                openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
               }`}
-          >
-            <div className="h-[70vh] z-[114] w-full  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
-              <FilterList
-                paramsId={newId}
-                genderId={genderId}
-                discountId={discountId}
-                categoryId={categoryId}
-                getBadgePrice={getBadgePrice}
-                setDataColor={setDataColor}
-                dataColor={dataColor}
-                getRatingList={getRatingList}
-                outWearList={outWearList}
-                underWearList={underWearList}
-                footWearList={footWearList}
-                filterToggle={filterToggle}
-                setFilterToggle={setFilterToggle}
-                setPageId={setPageId}
-                openMobileFilter={openMobileFilter}
-                setOpenMobileFilter={setOpenMobileFilter}
-
-              />
-            </div>
-          </section>}
+            >
+              <div className="h-[70vh] z-[114] w-full  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
+                <FilterList
+                  paramsId={newId}
+                  genderId={genderId}
+                  discountId={discountId}
+                  categoryId={categoryId}
+                  getBadgePrice={getBadgePrice}
+                  setDataColor={setDataColor}
+                  dataColor={dataColor}
+                  getRatingList={getRatingList}
+                  outWearList={outWearList}
+                  underWearList={underWearList}
+                  footWearList={footWearList}
+                  filterToggle={filterToggle}
+                  setFilterToggle={setFilterToggle}
+                  setPageId={setPageId}
+                  openMobileFilter={openMobileFilter}
+                  setOpenMobileFilter={setOpenMobileFilter}
+                />
+              </div>
+            </section>
+          )}
           <section className="w-full flex items-center justify-center ">
             <div className="w-full flex flex-col items-center justify-center">
               {/* Products Section */}
               <article
-                className={`${openTabComment || openTabLocation ? "hidden" : "block"
-                  } w-full `}
+                className={`${
+                  openTabComment || openTabLocation ? "hidden" : "block"
+                } w-full `}
               >
                 {/* <ShoppingStoreCategory filteredData={filteredData} /> */}
                 <section className="w-[100%] h-fit">
                   <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
-                    {screenSize.width >= 768 && 
-                    <div
-                      className={`${filterToggle ? "md:block" : "md:hidden"
+                    {screenSize.width >= 768 && (
+                      <div
+                        className={`${
+                          filterToggle ? "md:block" : "md:hidden"
                         } hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}
-                    >
-                      <FilterList
-                        paramsId={newId}
-                        genderId={genderId}
-                        discountId={discountId}
-                        categoryId={categoryId}
-                        getBadgePrice={getBadgePrice}
-                        setDataColor={setDataColor}
-                        dataColor={dataColor}
-                        getRatingList={getRatingList}
-                        outWearList={outWearList}
-                        underWearList={underWearList}
-                        footWearList={footWearList}
-                        filterToggle={filterToggle}
-                        setFilterToggle={setFilterToggle}
-                        setPageId={setPageId}
-                      />
-                    </div>}
+                      >
+                        <FilterList
+                          paramsId={newId}
+                          genderId={genderId}
+                          discountId={discountId}
+                          categoryId={categoryId}
+                          getBadgePrice={getBadgePrice}
+                          setDataColor={setDataColor}
+                          dataColor={dataColor}
+                          getRatingList={getRatingList}
+                          outWearList={outWearList}
+                          underWearList={underWearList}
+                          footWearList={footWearList}
+                          filterToggle={filterToggle}
+                          setFilterToggle={setFilterToggle}
+                          setPageId={setPageId}
+                        />
+                      </div>
+                    )}
 
                     <div
-                      className={` ${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-                        } w-full h-full px-[10px] md:px-0`}
+                      className={` ${
+                        filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+                      } w-full h-full px-[10px] md:px-0`}
                     >
-                      {
-                        filteredData ? (
-                          <ShopOfficialCard
-                            paramsId={newId}
-
-                            filteredData={filteredData}
-                            setPageId={setPageId}
-                          />
-                        ) : (
-                          <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[100vh] ">
-                            Ничего не найдено
-                          </div>
-                        )
-                      }
-
+                      {filteredData ? (
+                        <ShopOfficialCard
+                          paramsId={newId}
+                          filteredData={filteredData}
+                          setPageId={setPageId}
+                        />
+                      ) : (
+                        <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[100vh] ">
+                          Ничего не найдено
+                        </div>
+                      )}
                     </div>
                   </section>
                 </section>
               </article>
 
               {/* Comment Section For Shopping Page */}
-              <div className={`${openTabComment ? "block" : "hidden"} w-full `}>
+              <div
+                className={`${
+                  openTabComment ? "block" : "hidden"
+                } w-full pb-[88px] md:pb-0`}
+              >
                 <ShowPageComment
                   filteredData={filteredData}
                   setOpenTabComment={setOpenTabComment}
@@ -421,8 +441,9 @@ const ShoppingStoreOfficialByLocation = () => {
 
               {/* Map Section */}
               <div
-                className={`${openTabLocation ? "block" : "hidden"
-                  } w-full text-3xl px-4 pb-[88px]`}
+                className={`${
+                  openTabLocation && !openTabComment ? "block" : "hidden"
+                } w-full text-3xl px-4 pb-[88px] md:pb-0`}
               >
                 <button
                   onClick={() => {
@@ -437,7 +458,7 @@ const ShoppingStoreOfficialByLocation = () => {
             </div>
           </section>
         </div>
-      }
+      )}
     </main>
   );
 };
