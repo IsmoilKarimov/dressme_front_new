@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
-import ShoppingStoreOfficialBreadCrumb from "./ShoppingStoreOfficialBreadcrumb/ShoppingStoreOfficialBreadcrumb";
+import React, { useContext, useEffect, useState } from "react";
 import ShoppingStoreOfficialTop from "./ShoppingStoreOfficialTop/ShoppingStoreOfficialTop";
 import ShowPageComment from "./ShowPageComment/ShowPageComment";
 import { GoBackIcon } from "../../../../assets/icons";
-import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import ShopOfficialCard from "./ShoppingStoreCategory/ShopOfficialCards/ShopOfficialCard";
@@ -11,7 +10,6 @@ import FilterList from "./ShoppingStoreCategory/FilterList/FilterList";
 import axios from "axios";
 import YandexLocationShopFilter from "./ShoppingStoreCategory/YandexLocationShop/YandexLocationShopFilter";
 import LoadingNetwork from "../../../Loading/LoadingNetwork";
-import Breadcrumbs from "../../../Breadcrumbs/Breadcrumbs";
 import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
 
 const ShoppingStoreOfficial = () => {
@@ -150,22 +148,6 @@ const ShoppingStoreOfficial = () => {
       }
     })
   }, [data?.getMainProductCard]);
-  // useEffect(() => {
-  //   if (!newFilterParamasId && !newFilterParamasIdCopy)
-  //     data?.getMainProductCard?.shops?.map(item => {
-  //       console.log(item?.name, 'name');
-  //       if (newId?.split('-')?.join(' ')?.includes(item?.name?.toLowerCase())) {
-  //         setNewFilterParamasId(item?.id)
-  //         if (!newFilterParamasIdCopy) {
-  //           setNewFilterParamasIdCopy(item?.id)
-  //         }
-  //       }
-  //     })
-  // }, [data?.getMainProductCard?.sections]);
-
-  // console.log(newFilterParamasId, 'newFilterParamasId');
-  // console.log(newFilterParamasIdCopy, 'newFilterParamasIdCopy');
-  // console.log(dressInfo?.locationIdParams, 'dressInfo?.locationIdParams');
 
   const [loading, setLoading] = useState(false);
 
@@ -240,10 +222,6 @@ const ShoppingStoreOfficial = () => {
         }
         setLoading(false);
         throw new Error(res.response?.data?.message || "something wrong");
-
-        // setError(
-        //   res.response?.data?.message || "An unexpected error occurred."
-        // );
       });
   };
 
@@ -280,9 +258,7 @@ const ShoppingStoreOfficial = () => {
     dressInfo?.mainSearchNameshop,
     data?.getMainProductCard?.shops,
   ]);
-  // console.log(data?.getMainProductCard, dressInfo?.locationIdParams, newFilterParamasIdCopy, 'run------');
-  // console.log(dataColor, ' dataColor,');
-  // console.log(getRange, ' getRange,');
+
   useEffect(() => {
     if (openMobileFilter) {
       document.body.style.overflow = "hidden";
