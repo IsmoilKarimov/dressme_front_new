@@ -97,12 +97,16 @@ export default function CatalogItems() {
   const paramId = useParams();
 
   const newId = paramId?.id?.replace(":", "");
-  // console.log(newId, 'newId');
+  console.log(newId, 'newId');
   useLayoutEffect(() => {
+    console.log(';newId-1');
     if (newId === 'украшения-аксессуары') {
+      console.log(';newId-2');
       setNewFilterParamasId(5)
-      setNewFilterParamasIdCopy(newFilterParamasIdCopy)
-    } else {
+      setNewFilterParamasIdCopy(5)
+    }
+    if (newId !== 'украшения-аксессуары') {
+      console.log(';newId-3');
       data?.getMainProductCard?.categories?.map(item => {
         if (newId?.includes(item?.name_ru?.split(' ')?.join('-')?.toLowerCase())) {
           setNewFilterParamasId(item?.id)
@@ -112,7 +116,7 @@ export default function CatalogItems() {
         }
       })
     }
-  }, [paramId?.id, data?.getMainProductCard?.shops]);
+  }, [newId, data?.getMainProductCard?.shops]);
 
 
   // console.log(newFilterParamasId, 'newFilterParamasId');
