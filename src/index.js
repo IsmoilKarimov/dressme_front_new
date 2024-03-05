@@ -12,6 +12,9 @@ import { MainPageAudioContextProvider } from "./ContextHook/MainPageAudio";
 import { HomeFilterContextProvider } from "./ContextHook/HomeFilterContext";
 import { MobileSelectedDataContextProvider } from "./ContextHook/mobileSelectedData";
 import { UserRefreshTokenContextProvider } from "./ContextHook/UserRefreshToken";
+import { DressmeLanguage } from "./language/LanguageItems";
+import './language/i18n'
+
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -19,23 +22,25 @@ root.render(
   // <StrictMode>
   <QueryClientProvider client={queryClient}>
     <MainPageAudioContextProvider>
-      <DressMenu>
-        <BrowserRouter>
-          <UserRefreshTokenContextProvider>
-            <HomeMainDataContextProvider>
-              <SliderPhotosColorContextProvider>
-                <ProfileDataContextProvider>
-                  <HomeFilterContextProvider>
-                    <MobileSelectedDataContextProvider>
-                      <App />
-                    </MobileSelectedDataContextProvider>
-                  </HomeFilterContextProvider>
-                </ProfileDataContextProvider>
-              </SliderPhotosColorContextProvider>
-            </HomeMainDataContextProvider>
-          </UserRefreshTokenContextProvider>
-        </BrowserRouter>
-      </DressMenu>
+      <DressmeLanguage>
+        <DressMenu>
+          <BrowserRouter>
+            <UserRefreshTokenContextProvider>
+              <HomeMainDataContextProvider>
+                <SliderPhotosColorContextProvider>
+                  <ProfileDataContextProvider>
+                    <HomeFilterContextProvider>
+                      <MobileSelectedDataContextProvider>
+                        <App />
+                      </MobileSelectedDataContextProvider>
+                    </HomeFilterContextProvider>
+                  </ProfileDataContextProvider>
+                </SliderPhotosColorContextProvider>
+              </HomeMainDataContextProvider>
+            </UserRefreshTokenContextProvider>
+          </BrowserRouter>
+        </DressMenu>
+      </DressmeLanguage>
     </MainPageAudioContextProvider>
   </QueryClientProvider>
   // </StrictMode>
