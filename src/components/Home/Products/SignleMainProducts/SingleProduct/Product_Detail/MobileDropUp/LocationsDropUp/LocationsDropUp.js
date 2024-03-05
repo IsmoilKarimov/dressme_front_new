@@ -17,9 +17,6 @@ function LocationDropUp({
   existRegionsObj
 }) {
 
-  // console.log(data, "data");
-  // console.log(existRegions, "existRegions");
-
   return (
     <main>
       <div className="max-w-[440px] w-[100%] mx-auto bg-white shadow-navMenuShadov  overflow-hidden h-fit rounded-t-[12px]">
@@ -35,8 +32,8 @@ function LocationDropUp({
               style={{
                 width: "100%",
               }}
+              value={selectedLocation?.id}
               defaultValue={selectedLocation?.id}
-              // onChange={onChange}
             >
               {existRegions.map((item, i) => {
                 return (
@@ -47,8 +44,6 @@ function LocationDropUp({
                     <div className="w-full">
                       {data?.product?.locations.map((data, i) => {
                         if (data?.sub_region?.region_id === item) {
-                          // console.log(selectedLocation?.id,'selectedLocation?.id');
-                          // console.log(item?.id, "item?.id");
                           return (
                             <div
                               onClick={() => {
@@ -88,7 +83,7 @@ function LocationDropUp({
                 setOpenLocationModal(false);
                 setSelectedLocation(checkedData);
                 setSelectedSize(null);
-                onClick()
+                onClick();
               }}
               className="w-[55%] h-[38px] text-base font-AeonikProMedium bg-borderWinter text-white border border-borderWinter rounded-md active:scale-95"
             >
