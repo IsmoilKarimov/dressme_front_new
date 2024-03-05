@@ -14,10 +14,12 @@ import { HeartImg } from "../../assets";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import Cookies from "js-cookie";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
+import { useTranslation } from "react-i18next";
 
 const NavMenu = ({ stateData, setStateData }) => {
   const [dressInfo] = useContext(dressMainData);
-    const [, , wishList,] = useContext(HomeMainDataContext);
+  const [, , wishList,] = useContext(HomeMainDataContext);
+  const { i18n, t } = useTranslation('header')
 
   return (
     <nav
@@ -35,14 +37,14 @@ const NavMenu = ({ stateData, setStateData }) => {
                 <figure className="flex flex-col items-center justify-center">
                   <ActiveHomeIcons colors={dressInfo?.ColorSeason} />
                   <figcaption className="pt-[8px]">
-                    <p>Главная</p>
+                    <p>{t("NMhome")}</p>
                   </figcaption>{" "}
                 </figure>
               ) : (
                 <figure className=" flex flex-col items-center justify-center mt-1">
                   <HomeIcons colors={"#000"} />
                   <figcaption className="pt-[8px]">
-                    <p>Главная</p>
+                    <p>{t("NMhome")}</p>
                   </figcaption>
                 </figure>
               )
@@ -60,14 +62,14 @@ const NavMenu = ({ stateData, setStateData }) => {
                 <figure className="flex flex-col items-center justify-center mt-1">
                   <ActiveCotegoryIcons colors={dressInfo?.ColorSeason} />
                   <figcaption className="mt-2">
-                    <p>Категории</p>
+                    <p>{t("NMcategory")}</p>
                   </figcaption>
                 </figure>
               ) : (
                 <figure className=" flex flex-col items-center justify-center mt-1">
                   <CotegoryIcons colors={"#000"} />
                   <figcaption className="mt-2">
-                    <p>Категории</p>
+                    <p>{t("NMcategory")}</p>
                   </figcaption>
                 </figure>
               )
@@ -85,14 +87,14 @@ const NavMenu = ({ stateData, setStateData }) => {
                 <figure className="flex flex-col items-center justify-center mt-1">
                   <MapNavMenuIcons colors={dressInfo?.ColorSeason} />
                   <figcaption className="mt-2">
-                    <p>Карта</p>
+                    <p>{t("NMmap")}</p>
                   </figcaption>
                 </figure>
               ) : (
                 <figure className=" flex flex-col items-center justify-center mt-1 ">
                   <MapIcons colors={"#000"} />
                   <figcaption className="mt-2">
-                    <p>Карта</p>
+                    <p>{t("NMmap")}</p>
                   </figcaption>
                 </figure>
               )
@@ -125,17 +127,15 @@ const NavMenu = ({ stateData, setStateData }) => {
                       />
                     </svg>{" "}
                     <div
-                      className={` ${
-                        wishList?.length > 0 ? "flex" : "hidden"
-                      } ${
-                        wishList?.length > 9
+                      className={` ${wishList?.length > 0 ? "flex" : "hidden"
+                        } ${wishList?.length > 9
                           ? "w-[16px] h-[16px] text-[10px] -top-[5px] -right-[9px] "
                           : wishList?.length > 99
-                          ? "w-[18px] h-[18px] text-[8px] -top-[8px] -right-[13px]"
-                          : wishList?.length > 999
-                          ? "w-[20px] h-[20px] text-[8px] -top-[10px] -right-[14px]"
-                          : "w-[12px] h-[12px] text-[10px] -top-[4px] -right-[6px]"
-                      } items-center justify-center rounded-full  bg-white text-black text-center absolute  font-AeonikProMedium`}
+                            ? "w-[18px] h-[18px] text-[8px] -top-[8px] -right-[13px]"
+                            : wishList?.length > 999
+                              ? "w-[20px] h-[20px] text-[8px] -top-[10px] -right-[14px]"
+                              : "w-[12px] h-[12px] text-[10px] -top-[4px] -right-[6px]"
+                        } items-center justify-center rounded-full  bg-white text-black text-center absolute  font-AeonikProMedium`}
                     >
                       {wishList?.length > 999 ? (
                         <div className="w-full h-full flex items-center justify-center">
@@ -149,7 +149,7 @@ const NavMenu = ({ stateData, setStateData }) => {
                     </div>
                   </div>
                   <figcaption className="mt-2">
-                    <p>Избранное</p>
+                    <p>{t("NMfavorite")}</p>
                   </figcaption>{" "}
                 </figure>
               ) : (
@@ -157,17 +157,15 @@ const NavMenu = ({ stateData, setStateData }) => {
                   <div className="relative">
                     <img src={HeartImg} className={"w-5 h-5"} alt="heart" />
                     <div
-                      className={` ${
-                        wishList?.length > 0 ? "flex" : "hidden"
-                      } ${
-                        wishList?.length > 9
+                      className={` ${wishList?.length > 0 ? "flex" : "hidden"
+                        } ${wishList?.length > 9
                           ? "w-[16px] h-[16px] text-[10px] -top-[5px] -right-[9px] "
                           : wishList?.length > 99
-                          ? "w-[18px] h-[18px] text-[8px] -top-[8px] -right-[13px]"
-                          : wishList?.length > 999
-                          ? "w-[20px] h-[20px] text-[8px] -top-[10px] -right-[14px]"
-                          : "w-[12px] h-[12px] text-[10px] -top-[4px] -right-[6px]"
-                      } items-center justify-center rounded-full  bg-red-600 text-white text-center absolute  font-AeonikProMedium`}
+                            ? "w-[18px] h-[18px] text-[8px] -top-[8px] -right-[13px]"
+                            : wishList?.length > 999
+                              ? "w-[20px] h-[20px] text-[8px] -top-[10px] -right-[14px]"
+                              : "w-[12px] h-[12px] text-[10px] -top-[4px] -right-[6px]"
+                        } items-center justify-center rounded-full  bg-red-600 text-white text-center absolute  font-AeonikProMedium`}
                     >
                       {wishList?.length > 999 ? (
                         <div className="w-full h-full flex items-center justify-center">
@@ -181,7 +179,7 @@ const NavMenu = ({ stateData, setStateData }) => {
                     </div>
                   </div>
                   <figcaption className="mt-2">
-                    <p>Избранное</p>
+                    <p>{t("NMfavorite")}</p>
                   </figcaption>
                 </figure>
               )
@@ -201,14 +199,14 @@ const NavMenu = ({ stateData, setStateData }) => {
                 <figure className="flex flex-col items-center justify-center mt-1 ">
                   <ActivePersonIcons colors={dressInfo?.ColorSeason} />
                   <figcaption className="mt-1">
-                    <p>Профиль</p>
+                    <p>{t("NMprofile")}</p>
                   </figcaption>{" "}
                 </figure>
               ) : (
                 <figure className=" flex flex-col items-center justify-center mt-1">
                   <PersonIcons colors={"#000"} />
                   <figcaption className="mt-1">
-                    <p>Профиль</p>
+                    <p>{t("NMprofile")}</p>
                   </figcaption>
                 </figure>
               )

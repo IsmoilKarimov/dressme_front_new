@@ -17,5 +17,14 @@
     "Bsumm": "so'm",
     "Bclear": "Tozalash",
     "Bready": "Tayyor",
-    "Btext": "Shkafdagi hayotingiz zerikarli bo'lishiga yo'l qo'ymang!"
+    "Btext": "Shkafdagi hayotingiz zerikarli bo'lishiga yo'l qo'ymang!",
+    "Nlogin": "Tizimga kirish",
+    "NcreateAccount": "Akkount yaratish",
+    "Nback": "Orqaga",
+    "Nforgetpss": "Parolni unutdingizmi",
+    "NMhome": "Asosiy",
+    "NMcategory": "Kategoriyalar",
+    "NMmap": "Xarita",
+    "NMfavorite": "Sevimlilar",
+    "NMprofile": "Profil"
 }

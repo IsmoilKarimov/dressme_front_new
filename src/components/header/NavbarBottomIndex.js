@@ -12,8 +12,10 @@ import {
   PersonPlusIcons,
   SircleNext,
 } from "../../assets/icons";
-function NavbarBottomIndex({scrollPost}) {
+import { useTranslation } from "react-i18next";
+function NavbarBottomIndex({ scrollPost }) {
   const [dressInfo] = useContext(dressMainData);
+  const { i18n, t } = useTranslation('header')
 
   const location = useLocation();
 
@@ -41,7 +43,7 @@ function NavbarBottomIndex({scrollPost}) {
                     <PersonIcons colors={dressInfo?.ColorSeason} />
                   </span>
                   <p className=" font-AeonikProMedium ml-1 not-italic text-sm leading-4 tracking-[0,16px]">
-                    Войти в систему
+                    {t("Nlogin")}
                   </p>
                 </NavLink>
                 <NavLink
@@ -56,7 +58,7 @@ function NavbarBottomIndex({scrollPost}) {
                     <PersonPlusIcons colors={dressInfo?.ColorSeason} />
                   </span>
                   <p className=" font-AeonikProMedium not-italic ml-1  text-sm leading-4 tracking-[0,16px]">
-                    Создать аккаунт
+                    {t("NcreateAccount")}
                   </p>
                 </NavLink>
               </div>
@@ -77,7 +79,7 @@ function NavbarBottomIndex({scrollPost}) {
                       <SircleNext colors={dressInfo?.ColorSeason} />
                     </span>
                     <span className=" font-AeonikProMedium ml-2 not-italic text-sm leading-4 tracking-[0,16px]">
-                      Назад
+                    {t("Nback")}
                     </span>
                   </NavLink>
                   <div
@@ -88,8 +90,9 @@ function NavbarBottomIndex({scrollPost}) {
                     <span>
                       <EyesOpenIcons colors={dressInfo?.ColorSeason} />
                     </span>
-                    <span className="font-AeonikProMedium not-italic ml-2  text-sm leading-4 tracking-[0,16px]">
-                      Забыли пароль?
+                    <span className="font-AeonikProMedium flex items-center not-italic ml-2  text-sm leading-4 tracking-[0,16px]">
+                      {t("Nforgetpss")}
+                      <span>?</span>
                     </span>
                   </div>
                 </div>
@@ -113,12 +116,13 @@ function NavbarBottomIndex({scrollPost}) {
                       {" "}
                       <AiOutlineEye size={22} />
                     </span>
-                    <span className="font-AeonikProMedium not-italic ml-1  text-sm leading-4 tracking-[0,16px]">
-                      Забыли пароль?
+                    <span className="font-AeonikProMedium flex items-center not-italic ml-1  text-sm leading-4 tracking-[0,16px]">
+                      {t("Nforgetpss")}
+                      <span>?</span>
                     </span>
                   </div>{" "}
                 </div>
-              </div> 
+              </div>
             ) : null}
             {locationWindow === "/" ? (
               <span className=" md:my-3">
