@@ -187,7 +187,7 @@ function CategoryForType() {
         throw new Error(err || "something wrong");
       });
   }
-  
+
   useEffect(() => {
     if (initalParamsId && initalParamsId !== newFilterParamasId && !getGenderId && !getCategory && !getRating && !getRange?.length && !dataColor?.length && !discount && !getOutWearList && !getUnderWearList && !getFootWearList) {
       fetchGetAllData();
@@ -252,7 +252,6 @@ function CategoryForType() {
       window.removeEventListener("resize", updateDimension);
     };
   }, [screenSize]);
-
   return (
     <div className="w-full">
 
@@ -273,101 +272,106 @@ function CategoryForType() {
               setOpenMobileCategory={setOpenMobileCategory}
             />
           </section>
-          <section className="flex justify-between mb-10">
-            <section
-              onClick={() => {
-                setOpenMobileCategory(false);
-                setOpenMobileFilter(false);
-              }}
-              className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter || openMobileCategory ? "" : "hidden"
-                }`}
-            ></section>
-            {/* For Mobile Versions */}
-            <section
-              className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
-                }`}
-            >
-              <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between  mb-1 ">
-                <p className="text-[16px] font-AeonikProMedium">Под разделу</p>
-                <button onClick={() => setOpenMobileCategory(false)}>
-                  <MenuCloseIcons colors={"#000"} />
-                </button>
-              </section>
-              <div className="max-w-[440px]  w-[100%] h-[320px] z-[114]  border-y  overflow-y-auto overflow-hidden ">
-                {filterData?.sections?.map((data) => {
-                  return (
-                    <p
-                      key={data?.id}
-                      onClick={() => {
-                        handleCategories(data?.name_uz, data?.id);
-                      }}
-                      className={`${filterData?.section?.id === data?.id
-                        ? "bg-bgColor"
-                        : null
-                        } h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
-                    >
-                      {data?.name_ru}
-                    </p>
-                  );
-                })}
-              </div>
-            </section>
-            {screenSize.width < 768 && <section
-              className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
-                }`}
-            >
-              <div className="w-full h-[70vh] z-[114] overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
-                <FilterList
-                  paramsId={newFilterParamasId}
-                  genderId={genderId}
-                  discountId={discountId}
-                  categoryId={categoryId}
-                  getBadgePrice={getBadgePrice}
-                  setDataColor={setDataColor}
-                  dataColor={dataColor}
-                  getRatingList={getRatingList}
-                  outWearList={outWearList}
-                  underWearList={underWearList}
-                  footWearList={footWearList}
-                  filterToggle={filterToggle}
-                  setFilterToggle={setFilterToggle}
-                  openMobileFilter={openMobileFilter}
-                  setOpenMobileFilter={setOpenMobileFilter}
-                />
-              </div>
-            </section>}
-
-            {/* For Desktop Version */}
-            {screenSize.width >= 768 &&
-              <article
-                className={`${filterToggle ? "md:block" : "md:hidden"
-                  } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0 `}
+          {filterData?.section_products?.data?.length > 0 ?
+            <section className="flex justify-between mb-10">
+              <section
+                onClick={() => {
+                  setOpenMobileCategory(false);
+                  setOpenMobileFilter(false);
+                }}
+                className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter || openMobileCategory ? "" : "hidden"
+                  }`}
+              ></section>
+              {/* For Mobile Versions */}
+              <section
+                className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
+                  }`}
               >
-                <FilterList
-                  paramsId={newFilterParamasId}
-                  genderId={genderId}
-                  discountId={discountId}
-                  categoryId={categoryId}
-                  getBadgePrice={getBadgePrice}
-                  setDataColor={setDataColor}
-                  dataColor={dataColor}
-                  getRatingList={getRatingList}
-                  outWearList={outWearList}
-                  underWearList={underWearList}
-                  footWearList={footWearList}
-                  filterToggle={filterToggle}
-                  setFilterToggle={setFilterToggle}
-                  setLoading={setLoading}
-                />
-              </article>}
-            <article
-              className={`${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-                } w-full h-full px-[10px] md:px-0 `}
-            >
+                <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between  mb-1 ">
+                  <p className="text-[16px] font-AeonikProMedium">Под разделу</p>
+                  <button onClick={() => setOpenMobileCategory(false)}>
+                    <MenuCloseIcons colors={"#000"} />
+                  </button>
+                </section>
+                <div className="max-w-[440px]  w-[100%] h-[320px] z-[114]  border-y  overflow-y-auto overflow-hidden ">
+                  {filterData?.sections?.map((data) => {
+                    return (
+                      <p
+                        key={data?.id}
+                        onClick={() => {
+                          handleCategories(data?.name_uz, data?.id);
+                        }}
+                        className={`${filterData?.section?.id === data?.id
+                          ? "bg-bgColor"
+                          : null
+                          } h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
+                      >
+                        {data?.name_ru}
+                      </p>
+                    );
+                  })}
+                </div>
+              </section>
+              {screenSize.width < 768 && <section
+                className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+                  }`}
+              >
+                <div className="w-full h-[70vh] z-[114] overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
+                  <FilterList
+                    paramsId={newFilterParamasId}
+                    genderId={genderId}
+                    discountId={discountId}
+                    categoryId={categoryId}
+                    getBadgePrice={getBadgePrice}
+                    setDataColor={setDataColor}
+                    dataColor={dataColor}
+                    getRatingList={getRatingList}
+                    outWearList={outWearList}
+                    underWearList={underWearList}
+                    footWearList={footWearList}
+                    filterToggle={filterToggle}
+                    setFilterToggle={setFilterToggle}
+                    openMobileFilter={openMobileFilter}
+                    setOpenMobileFilter={setOpenMobileFilter}
+                  />
+                </div>
+              </section>}
 
-              <CategoryCards paramsId={newId} filterData={filterData} setPageId={setPageId} />
-            </article>
-          </section>
+              {/* For Desktop Version */}
+              {screenSize.width >= 768 &&
+                <article
+                  className={`${filterToggle ? "md:block" : "md:hidden"
+                    } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0 `}
+                >
+                  <FilterList
+                    paramsId={newFilterParamasId}
+                    genderId={genderId}
+                    discountId={discountId}
+                    categoryId={categoryId}
+                    getBadgePrice={getBadgePrice}
+                    setDataColor={setDataColor}
+                    dataColor={dataColor}
+                    getRatingList={getRatingList}
+                    outWearList={outWearList}
+                    underWearList={underWearList}
+                    footWearList={footWearList}
+                    filterToggle={filterToggle}
+                    setFilterToggle={setFilterToggle}
+                    setLoading={setLoading}
+                  />
+                </article>}
+              <article
+                className={`${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+                  } w-full h-full px-[10px] md:px-0 `}
+              >
+
+                <CategoryCards paramsId={newId} filterData={filterData} setPageId={setPageId} />
+              </article>
+            </section> :
+            <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[50vh] ">
+              Ничего не найдено
+            </div>
+          }
         </main>
       )}
     </div>
