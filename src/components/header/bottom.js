@@ -17,12 +17,14 @@ import {
 } from "../../assets/icons";
 import { GrClose } from "react-icons/gr";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
+import { useTranslation } from "react-i18next";
 
 const { Option } = Select;
 
 function BottomHeader() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData, , , page, setPage] = useContext(HomeMainDataContext);
+  const { i18n, t } = useTranslation('header')
 
   const [state, setState] = useState({
     openwear: false,
@@ -243,7 +245,7 @@ function BottomHeader() {
               className={`flex items-center justify-between border-b border-searchBgColor pb-3"`}
             >
               <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
-                Выберите цвет
+                {t('BselectColor')}
               </span>
               <button
                 className="py-2"
@@ -266,11 +268,10 @@ function BottomHeader() {
                         newColorArrayId(data?.hex, data?.id);
                       }}
                       style={{ backgroundColor: data?.hex }}
-                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${
-                        data?.hex === dressInfo?.mainColorHex
+                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${data?.hex === dressInfo?.mainColorHex
                           ? "border border-setTexOpacity flex items-center justify-center"
                           : "border"
-                      } `}
+                        } `}
                     >
                       {dressInfo?.mainColorHex == data?.hex &&
                         data?.id == 1 && (
@@ -309,7 +310,7 @@ function BottomHeader() {
                   onClick={() => ClearColorId()}
                   className="flex items-center text-fullBlue active:scale-95  active:opacity-70 justify-center  px-4 py-1"
                 >
-                  Отключить
+                  {t('Bdisable')}
                 </button>
               )}
             </div>
@@ -328,7 +329,7 @@ function BottomHeader() {
             bordered={false}
             placeholder={
               <span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide">
-                По категории
+                {t('BbyCategory')}
               </span>
             }
             optionFilterProp="children"
@@ -383,7 +384,7 @@ function BottomHeader() {
             </div>
           ) : (
             <p className="not-italic whitespace-nowrap mt-1 text-black text-sm font-AeonikProMedium tracking-wide leading-5 ">
-              По бюджету
+              {t('BbyBudget')}
             </p>
           )}
           {dressInfo?.mainRangePrice[0] && dressInfo?.mainRangePrice[1] ? (
@@ -422,9 +423,8 @@ function BottomHeader() {
           onClick={() => {
             setPriceModalOpen(false);
           }}
-          className={`${
-            priceModalOpen ? "" : "hidden"
-          } overflow-y-auto overflow-x-hidden md:fixed top-0right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full`}
+          className={`${priceModalOpen ? "" : "hidden"
+            } overflow-y-auto overflow-x-hidden md:fixed top-0right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full`}
         >
           <div
             onClick={(e) => {
@@ -437,7 +437,7 @@ function BottomHeader() {
               {/* Modal header */}
               <div className="flex justify-between items-start mx-4 py-2 border-b rounded-t border-searchBgColor ">
                 <p className="text-base font-AeonikProMedium text-gray-900">
-                  По бюджету
+                  {t('BbyBudget')}
                 </p>
                 <button
                   onClick={(e) => {
@@ -468,7 +468,7 @@ function BottomHeader() {
                 <div className=" flex justify-between items-center mb-4 w-full ">
                   <div className="flex ">
                     <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
-                      от
+                      {t('Bfrom')}
                     </span>
                     <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                       <input
@@ -477,12 +477,12 @@ function BottomHeader() {
                         // defaultValue={Number(values[0]).toLocaleString()}
                         value={Number(values[0]).toLocaleString()}
                       />{" "}
-                      сум
+                      {t('Bsumm')}
                     </span>
                   </div>
                   <div className="flex ">
                     <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
-                      до
+                      {t('Bto')}
                     </span>
                     <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                       <input
@@ -491,7 +491,7 @@ function BottomHeader() {
                         // defaultValue={Number(values[1]).toLocaleString()}
                         value={Number(values[1]).toLocaleString()}
                       />
-                      сум
+                      {t('Bsumm')}
                     </span>
                   </div>
                 </div>
@@ -509,9 +509,8 @@ function BottomHeader() {
               </div>
               {/* Modal footer */}
               <div
-                className={` flex items-center ${
-                  state?.clearPrice ? "justify-between" : "justify-end"
-                } px-6 py-3 space-x-2 rounded-b `}
+                className={` flex items-center ${state?.clearPrice ? "justify-between" : "justify-end"
+                  } px-6 py-3 space-x-2 rounded-b `}
               >
                 {state?.clearPrice && (
                   <span
@@ -522,7 +521,7 @@ function BottomHeader() {
                     }}
                     className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
                   >
-                    Сбросить
+                    {t('Bclear')}
                   </span>
                 )}
                 <span
@@ -534,7 +533,7 @@ function BottomHeader() {
                   }}
                   className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
                 >
-                  Готово
+                  {t('Bready')}
                 </span>
               </div>
             </div>
@@ -577,9 +576,8 @@ function BottomHeader() {
 
           <article className="w-[480px] h-full overflow-hidden flex items-center justify-between">
             <div
-              className={`${
-                state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
-              } px-2 w-full duration-500  h-full flex items-center justify-between  `}
+              className={`${state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
+                } px-2 w-full duration-500  h-full flex items-center justify-between  `}
             >
               {data?.getMainProductCard?.colors?.map((data, i) => {
                 if (i > 11) {
@@ -594,9 +592,8 @@ function BottomHeader() {
                           newColorArrayId(data?.hex, data?.id);
                         }}
                         style={{ backgroundColor: data?.hex }}
-                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
-                          !state?.textToColor && "border"
-                        }  border-borderColorCard `}
+                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${!state?.textToColor && "border"
+                          }  border-borderColorCard `}
                       >
                         {dressInfo?.mainColorHex == data?.hex &&
                           data?.id == 1 && (
@@ -641,12 +638,10 @@ function BottomHeader() {
               </button>
             </div>
             <p
-              className={`${
-                state?.textToColor ? " mr-0" : " mr-[-500px]"
-              } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
+              className={`${state?.textToColor ? " mr-0" : " mr-[-500px]"
+                } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
             >
-              Не давай своей гардеробной шкафной жизни стать скучной!
-            </p>
+              {t('Btext')}            </p>
           </article>
         </div>
 
@@ -668,11 +663,10 @@ function BottomHeader() {
                       >
                         <button
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${
-                            item?.id == dressInfo?.mainGenderId
+                          className={`${item?.id == dressInfo?.mainGenderId
                               ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
                               : " bg-btnBgColor text-black h-full"
-                          } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
+                            } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
                         >
                           <span>{item?.anyIcons}</span>
                           {item?.name && (

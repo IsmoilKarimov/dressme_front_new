@@ -46,12 +46,16 @@ import { MdClose } from "react-icons/md";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 
 import { MainPageAudioContext } from "../../ContextHook/MainPageAudio";
+import { useTranslation } from "react-i18next";
+import { LanguageDetectorDress } from "../../language/LanguageItems";
+import i18next from "i18next";
 
 const MediumHeader = ({ stateData, setStateData }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [data, setData, , , page, setPage] = useContext(HomeMainDataContext);
+  const [data, setPage] = useContext(HomeMainDataContext);
   const [audioPlay, setAudioPlay] = useContext(MainPageAudioContext);
   const [searchMarketName, setSearchMarketName] = useState();
+  const { i18n, t } = useTranslation('header')
 
   const [regionsList, setRegionsList] = useState(false);
   const [scrollPost, setscrollPost] = useState(0);
@@ -63,9 +67,17 @@ const MediumHeader = ({ stateData, setStateData }) => {
   const handleScroll = () => {
     setscrollPost(document.body.getBoundingClientRect().top);
   };
-
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const [currentLang, setCurrentLang] = useState(localStorage.getItem("i18nextLng"))
+  useEffect(() => {
+    if (localStorage.getItem("i18nextLng")?.length > 2) {
+      i18next.changeLanguage(currentLang)
+    }
+    setLanguageDetector({ typeLang: currentLang })
+  }, [currentLang])
   // useEffect
-
+// console.log(currentLang,'currentLang---11');
+// console.log(languageDetector,'languageDetector---11');
   useEffect(() => {
     if (stateData?.hamburgerMenu || regionsList) {
       document.body.style.overflow = "hidden";
@@ -167,12 +179,11 @@ const MediumHeader = ({ stateData, setStateData }) => {
     </section>
   );
 
-  const [selectLang, setselectLang] = useState(1);
   const [openLang, setOpenLang] = useState(false);
 
   const LanguageList = [
-    { id: 1, type: "Русский", icons: RussianFlag },
-    { id: 2, type: "O'zbekcha", icons: UzbekFlag },
+    { id: 1, value: "uz", type: " O'zbekcha", icons: UzbekFlag },
+    { id: 2, value: "ru", type: "Русский", icons:  RussianFlag },
   ];
 
   const handleOpenLangList = (newOpen) => {
@@ -180,7 +191,8 @@ const MediumHeader = ({ stateData, setStateData }) => {
   };
 
   const handleLangValue = (value) => {
-    setselectLang(value);
+    i18n.changeLanguage(value)
+    setCurrentLang(value)
     setOpenLang(false);
   };
 
@@ -192,7 +204,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
             key={data?.id}
             className={`p-2 text-sm cursor-pointer hover:bg-bgColor flex items-center justify-start  ${dressInfo?.ColorSeason}`}
             onClick={() => {
-              handleLangValue(data?.id);
+              handleLangValue(data?.value);
             }}
           >
             <figure className="w-5 h-5 mr-3">
@@ -510,7 +522,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                     <span
                       className={`not-italic font-AeonikProMedium text-sm leading-4 `}
                     >
-                      Категория
+                      {t("Mcategory")}
                     </span>
                   </button>
 
@@ -522,7 +534,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                       type="text"
                       name="search"
                       autoComplete="search"
-                      placeholder={`${searchForLocation?.includes("shops") && searchForLocation?.length == 2 ? 'Искать магазины' : 'Искать товары'} `}
+                      placeholder={`${searchForLocation?.includes("shops") && searchForLocation?.length == 2 ? t('MsearchMar') : t('MsearchProd') } `}
                       className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
                       value={searchMarketName}
                       onChange={handleChange}
@@ -560,7 +572,8 @@ const MediumHeader = ({ stateData, setStateData }) => {
                   <span className="pr-[6px]">
                     <MapIcons colors={"#000"} />
                   </span>
-                  <p className="font-AeonikProMedium text-sm">Карта</p>
+                  <p className="font-AeonikProMedium text-sm"> {t("Mmap")}
+                  </p>
                 </NavLink>
 
                 {/* Line border */}
@@ -672,7 +685,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                         <span className=" py-3 pr-3">
                           <MarketIcons colors={"#000"} />
                         </span>
-                        <span className="ml-[11.67px]">Магазины</span>
+                        <span className="ml-[11.67px]">{t("market")}</span>
                       </div>
                       <span className="arrowRotate ml-auto rotate-[90deg]">
                         <ArrowTopIcons colors={"#000"} />
@@ -692,47 +705,46 @@ const MediumHeader = ({ stateData, setStateData }) => {
                           <VolumeIcons colors={"#007DCA"} />
                         </span>
                         <span className="w-full items-center justify-center ml-[10px] text-base">
-                          Музыка
+                          {t("Mmusic")}
                         </span>
                       </div>
                     </div>
                     <div className="w-1/2 h-[52px] flex items-center bg-btnBgColor font-AeonikProMedium border rounded-xl border-searchBgColor px-5">
                       {LanguageList.filter(
-                        (data) => data.id === selectLang
-                      ).map((data) => {
-                        return (
-                          <div
-                            key={data?.id}
-                            className="w-full flex items-center justify-between"
-                          >
-                            <Popover
+                        (data) => data.value === currentLang).map((data) => {
+                          return (
+                            <div
                               key={data?.id}
-                              open={openLang}
-                              onOpenChange={handleOpenLangList}
-                              className="w-full languageMobile flex text-[13px] items-center h-full"
-                              trigger="click"
-                              options={["Hide"]}
-                              placement="bottom"
-                              content={contentLang}
+                              className="w-full flex items-center justify-between"
                             >
-                              <span>
-                                {" "}
-                                <img
-                                  src={data?.icons}
-                                  width={"20px"}
-                                  alt=""
-                                />{" "}
-                              </span>
-                              <p className="ml-3 not-italic flex items-center font-AeonikProMedium text-base text-black ">
-                                {data?.type}
-                              </p>
-                              <span className="arrowRotate ml-auto rotate-[180deg]">
-                                <ArrowTopIcons colors={"#000"} />
-                              </span>
-                            </Popover>
-                          </div>
-                        );
-                      })}
+                              <Popover
+                                key={data?.id}
+                                open={openLang}
+                                onOpenChange={handleOpenLangList}
+                                className="w-full languageMobile flex text-[13px] items-center h-full"
+                                trigger="click"
+                                options={["Hide"]}
+                                placement="bottom"
+                                content={contentLang}
+                              >
+                                <span>
+                                  {" "}
+                                  <img
+                                    src={data?.icons}
+                                    width={"20px"}
+                                    alt=""
+                                  />{" "}
+                                </span>
+                                <p className="ml-3 not-italic flex items-center font-AeonikProMedium text-base text-black ">
+                                  {data?.type}
+                                </p>
+                                <span className="arrowRotate ml-auto rotate-[180deg]">
+                                  <ArrowTopIcons colors={"#000"} />
+                                </span>
+                              </Popover>
+                            </div>
+                          );
+                        })}
                     </div>
                   </li>
                 </ul>
@@ -755,7 +767,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                         <HouseStatisticIcons colors={"#000"} />
                       </span>
                       <span className="h-full ml-[11.67px] text-[16pxpx] text-center">
-                        Бизнес
+                        {t("business")}
                       </span>
                     </div>
                     <span className="arrowRotate ml-auto rotate-[90deg]">
@@ -770,8 +782,9 @@ const MediumHeader = ({ stateData, setStateData }) => {
                   >
                     <div className="flex items-center">
                       <UploadIcons />
-                      <p className="text-[16px] font-AeonikProMedium leading-4 ml-[12.5px]">
-                        Вопросы?
+                      <p className="text-[16px] flex items-center font-AeonikProMedium leading-4 ml-[12.5px]">
+                        {t("Mquestion")}
+                        <span>?</span>
                       </p>
                     </div>
                     <span className="arrowRotate ml-auto rotate-[90deg]">

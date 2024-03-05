@@ -24,12 +24,14 @@ const TopHeader = () => {
   const [currentLang, setCurrentLang] = useState(localStorage.getItem("i18nextLng"))
   useEffect(() => {
     if (localStorage.getItem("i18nextLng")?.length > 2) {
-      i18next.changeLanguage("ru")
+      i18next.changeLanguage(currentLang)
     }
     setLanguageDetector({ typeLang: currentLang })
   }, [currentLang])
 
-  console.log(currentLang);
+  console.log(languageDetector,'languageDetector---22');
+  console.log(currentLang,'currentLang---22');
+  console.log('--------------------------');
   const { request } = useHttp()
   const [selectBtn, setSelectBtn] = useState(true);
   const [regionsShow, setRegionsShow] = useState(false);
@@ -181,7 +183,7 @@ const TopHeader = () => {
             </section>
 
             <section className="w-fit h-fit py-[4px] rounded bg-white font-AeonikProMedium select-none cursor-pointer">
-              {LanguageList.filter((data) => data.value === currentLang).map(
+              {LanguageList.filter((data) => data?.value === currentLang).map(
                 (data) => {
                   return (
                     <Popover
