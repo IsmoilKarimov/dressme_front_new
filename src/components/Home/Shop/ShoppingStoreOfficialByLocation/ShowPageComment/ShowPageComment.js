@@ -130,11 +130,11 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
               onClick={() => {
                 setOpenTabComment(false);
               }}
-              className={`flex items-center cursor-pointer justify-start md:justify-center md:border border-borderColor2 rounded-lg mr-20 md:mr-5`}
+              className={`flex items-center cursor-pointer justify-start md:justify-center md:border border-borderColor2 rounded-lg  md:mr-5`}
             >
               <GoBackIcon />
             </button>
-            <div className="flex justify-center items-center">
+            <div className="w-full md:w-fit flex justify-center items-center">
               <p className="not-italic font-AeonikProMedium text-base md:text-2xl leading-7 text-black track%]">
                 Отзывы о магазины
               </p>

@@ -293,12 +293,11 @@ const ShoppingStoreOfficial = () => {
   ];
   return (
     <div className="w-full">
-
       {loading ? (
         <div className="flex items-center justify-center w-full h-full ">
           <LoadingNetwork />
         </div>
-      ) :
+      ) : (
         <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
           {/* {!filteredData ? <LoadingNetwork />
         :  */}
@@ -321,70 +320,78 @@ const ShoppingStoreOfficial = () => {
               onClick={() => {
                 setOpenMobileFilter(false);
               }}
-              className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter ? "" : "hidden"
-                }`}
+              className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+                openMobileFilter ? "" : "hidden"
+              }`}
             ></section>
-            {screenSize.width < 768 && <section
-              className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+            {screenSize.width < 768 && (
+              <section
+                className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+                  openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
                 }`}
-            >
-              <div className="max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
-                <FilterList
-                  paramsId={newFilterParamasId}
-                  genderId={genderId}
-                  discountId={discountId}
-                  categoryId={categoryId}
-                  getBadgePrice={getBadgePrice}
-                  setDataColor={setDataColor}
-                  dataColor={dataColor}
-                  getRatingList={getRatingList}
-                  outWearList={outWearList}
-                  underWearList={underWearList}
-                  footWearList={footWearList}
-                  filterToggle={filterToggle}
-                  setFilterToggle={setFilterToggle}
-                  setPageId={setPageId}
-                  openMobileFilter={openMobileFilter}
-                  setOpenMobileFilter={setOpenMobileFilter}
-                />
-              </div>
-            </section>}
+              >
+                <div className="max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
+                  <FilterList
+                    paramsId={newFilterParamasId}
+                    genderId={genderId}
+                    discountId={discountId}
+                    categoryId={categoryId}
+                    getBadgePrice={getBadgePrice}
+                    setDataColor={setDataColor}
+                    dataColor={dataColor}
+                    getRatingList={getRatingList}
+                    outWearList={outWearList}
+                    underWearList={underWearList}
+                    footWearList={footWearList}
+                    filterToggle={filterToggle}
+                    setFilterToggle={setFilterToggle}
+                    setPageId={setPageId}
+                    openMobileFilter={openMobileFilter}
+                    setOpenMobileFilter={setOpenMobileFilter}
+                  />
+                </div>
+              </section>
+            )}
             <section className="w-full flex items-center justify-center ">
               <div className="w-full flex flex-col items-center justify-center">
                 {/* Products Section */}
                 <article
-                  className={`${openTabComment || openTabLocation ? "hidden" : "block"
-                    } w-full `}
+                  className={`${
+                    openTabComment || openTabLocation ? "hidden" : "block"
+                  } w-full `}
                 >
                   <section className="w-[100%] h-fit">
                     <section className="w-full flex flex-gap-6 justify-between md:my-10 mt-3 mb-20">
-                      {screenSize.width >= 768 && <div
-                        className={`${filterToggle ? "md:block" : "md:hidden"
+                      {screenSize.width >= 768 && (
+                        <div
+                          className={`${
+                            filterToggle ? "md:block" : "md:hidden"
                           } hidden md:w-[22%] h-full ss:px-4 md:px-0`}
-                      >
-                        <FilterList
-                          paramsId={newFilterParamasId}
-                          genderId={genderId}
-                          discountId={discountId}
-                          categoryId={categoryId}
-                          getBadgePrice={getBadgePrice}
-                          setDataColor={setDataColor}
-                          dataColor={dataColor}
-                          getRatingList={getRatingList}
-                          outWearList={outWearList}
-                          underWearList={underWearList}
-                          footWearList={footWearList}
-                          filterToggle={filterToggle}
-                          setFilterToggle={setFilterToggle}
-                          setPageId={setPageId}
-                        />
-                      </div>}
+                        >
+                          <FilterList
+                            paramsId={newFilterParamasId}
+                            genderId={genderId}
+                            discountId={discountId}
+                            categoryId={categoryId}
+                            getBadgePrice={getBadgePrice}
+                            setDataColor={setDataColor}
+                            dataColor={dataColor}
+                            getRatingList={getRatingList}
+                            outWearList={outWearList}
+                            underWearList={underWearList}
+                            footWearList={footWearList}
+                            filterToggle={filterToggle}
+                            setFilterToggle={setFilterToggle}
+                            setPageId={setPageId}
+                          />
+                        </div>
+                      )}
 
                       <div
-                        className={` ${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-                          } w-full h-full px-[10px] md:px-0`}
+                        className={` ${
+                          filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+                        } w-full h-full px-[10px] md:px-0`}
                       >
-
                         {filteredData ? (
                           <ShopOfficialCard
                             filteredData={filteredData}
@@ -395,8 +402,7 @@ const ShoppingStoreOfficial = () => {
                           <div className="w-full flex items-center justify-center font-AeonikProMedium text-lg md:text-2xl h-fit md:h-[100vh] ">
                             Ничего не найдено
                           </div>
-                        )
-                        }
+                        )}
                       </div>
                     </section>
                   </section>
@@ -404,7 +410,9 @@ const ShoppingStoreOfficial = () => {
 
                 {/* Comment Section For Shopping Page */}
                 <div
-                  className={`${openTabComment ? "block" : "hidden"} w-full pb-[88px] `}
+                  className={`${
+                    openTabComment ? "block" : "hidden"
+                  } w-full pb-[88px] `}
                 >
                   <ShowPageComment
                     filteredData={filteredData}
@@ -414,8 +422,9 @@ const ShoppingStoreOfficial = () => {
 
                 {/* Map Section */}
                 <div
-                  className={`${openTabLocation ? "block" : "hidden"
-                    } w-full text-3xl px-4 pb-[88px]`}
+                  className={`${
+                    openTabLocation && !openTabComment ? "block" : "hidden"
+                  } w-full text-3xl px-4 pb-[88px]`}
                 >
                   <button
                     onClick={() => {
@@ -431,7 +440,8 @@ const ShoppingStoreOfficial = () => {
               </div>
             </section>
           </div>
-        </main>}
+        </main>
+      )}
     </div>
   );
 };
