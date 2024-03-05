@@ -1,14 +1,30 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { InputCheckedTrueIcons, StarIcons } from "../../../../assets/icons";
-import { CalourCard, HeartImg } from "../../../../assets";
+import {
+  CalourCard,
+  HeartImg,
+  RussianFlag,
+  UzbekFlag,
+} from "../../../../assets";
 import WearType from "../../Main/WearCollectionCard/WearType";
 import Cookies from "js-cookie";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
+import { useTranslation } from "react-i18next";
+import { LanguageDetectorDress } from "../../../../language/LanguageItems";
+import i18next from "i18next";
 
 export default function FavouriteProducts() {
+  const { i18n, t } = useTranslation("favourite");
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
+  const [currentLang, setCurrentLang] = useState(
+    localStorage.getItem("i18nextLng")
+  );
+
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
   // -------------------------------------
@@ -18,11 +34,35 @@ export default function FavouriteProducts() {
   // Main data context -----------------
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
+  // -----Language Change-------------------
+  const LanguageList = [
+    { id: 1, value: "uz", type: "O'zbekcha", icons: UzbekFlag },
+    { id: 2, value: "ru", type: "Русский", icons: RussianFlag },
+  ];
+
+  // const [openLang, setOpenLang] = useState(false);
+  // const handleOpenChangeLang = (newOpen) => {
+  //   setOpenLang(newOpen);
+  // };
+
+  // const handleLangValue = (value) => {
+  //   i18n.changeLanguage(value);
+  //   setCurrentLang(value);
+  //   setOpenLang(false);
+  // };
+
   const onColorChecked = () => {};
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/product/${id}`);
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("i18nextLng")?.length > 2) {
+      i18next.changeLanguage("ru");
+    }
+    setLanguageDetector({ typeLang: currentLang });
+  }, [currentLang]);
 
   const handleLeaveMouse = (eId) => {
     const elementsIndex = dressInfo.ProductList.findIndex(
@@ -164,7 +204,7 @@ export default function FavouriteProducts() {
                                     </p>
                                     (
                                     <p className="ss:hidden lg:block md:mr-1 md:text-[11px]">
-                                      голосов:
+                                      {t("votes")}:
                                     </p>
                                     {data?.rated_users_count || 0})
                                   </article>
@@ -186,7 +226,7 @@ export default function FavouriteProducts() {
                                       ?.split(",")
                                       .join(" ")}
                                     {"  "}
-                                    сум
+                                     {t("currency")}
                                   </p>
                                   <p className="w-full text-start m-0 p-0 text-[12px] mb-[4px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
                                     {parseInt(data?.cost?.price)
@@ -194,7 +234,7 @@ export default function FavouriteProducts() {
                                       ?.split(",")
                                       .join(" ")}
                                     {"  "}
-                                    сум
+                                     {t("currency")}
                                   </p>
                                 </figure>
                               ) : (
@@ -207,7 +247,7 @@ export default function FavouriteProducts() {
                                     ?.split(",")
                                     .join(" ")}
                                   {"  "}
-                                  сум
+                                   {t("currency")}
                                 </p>
                               )}
                             </article>
@@ -249,7 +289,7 @@ export default function FavouriteProducts() {
                 })}
               </article>
             ) : (
-              <article className="w-full flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-[50px]  gap-y-2 lg:gap-x-3 lg:gap-y-3">
+              <article className="w-full flex flex-wrap justify-between md:justify-start md:mx-0  md:mt-0  gap-y-2 lg:gap-x-3 lg:gap-y-3">
                 {mainData?.products?.map((data) => {
                   if (wishList?.includes(data?.id)) {
                     return (
@@ -352,7 +392,7 @@ export default function FavouriteProducts() {
                                     </p>
                                     (
                                     <p className="ss:hidden lg:block md:mr-1 md:text-[11px]">
-                                      голосов:
+                                      {t("votes")}:
                                     </p>
                                     {data?.rated_users_count || 0})
                                   </article>
@@ -374,7 +414,7 @@ export default function FavouriteProducts() {
                                       ?.split(",")
                                       .join(" ")}
                                     {"  "}
-                                    сум
+                                    {t('currency')}
                                   </p>
                                   <p className="w-full text-start m-0 p-0 text-[12px] mb-[4px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
                                     {parseInt(data?.cost?.price)
@@ -382,7 +422,7 @@ export default function FavouriteProducts() {
                                       ?.split(",")
                                       .join(" ")}
                                     {"  "}
-                                    сум
+                                    {t('currency')}
                                   </p>
                                 </figure>
                               ) : (
@@ -395,7 +435,7 @@ export default function FavouriteProducts() {
                                     ?.split(",")
                                     .join(" ")}
                                   {"  "}
-                                  сум
+                                  {t('currency')}
                                 </p>
                               )}
                             </article>
@@ -442,7 +482,7 @@ export default function FavouriteProducts() {
                   <img src={HeartImg} alt="" className="w-8 md:w-[50px]" />
                 </figure>
                 <p className="text-xl md:text-3xl font-AeonikProMedium mb-3">
-                  Добавьте то, что понравилось
+                  {t("text_no_product")}
                 </p>
               </div>
             </article>
@@ -455,7 +495,7 @@ export default function FavouriteProducts() {
           } w-full h-fit flex items-center justify-center mt-14 md:hidden`}
         >
           <p className="w-[760px] h-[60px] cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-black flex items-center justify-center rounded-lg border border-searchBgColor bg-btnBgColor">
-            Показать ещё 30 наборов
+            {t("show_more")}
           </p>
         </section>
       </div>
