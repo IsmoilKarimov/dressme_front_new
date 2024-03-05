@@ -112,7 +112,7 @@ export default function CatalogItems() {
         }
       })
     }
-  }, [paramId?.id,data?.getMainProductCard?.shops]);
+  }, [paramId?.id, data?.getMainProductCard?.shops]);
 
 
   // console.log(newFilterParamasId, 'newFilterParamasId');
@@ -292,6 +292,8 @@ export default function CatalogItems() {
       window.removeEventListener("resize", updateDimension);
     };
   }, [screenSize]);
+  console.log(filterData, 'filterData');
+
   return (
     <main className="w-full h-full">
       {/* TOP DATA */}
@@ -306,7 +308,7 @@ export default function CatalogItems() {
         </div>
       ) : (
         <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto ">
-          <article className="w-[100%] h-fit ">
+          {filterData?.category_products?.data?.length > 0 ? <article className="w-[100%] h-fit ">
             <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
               <article className="w-[100%] h-fit md:mb-12 md:mt-[60px]">
                 <article className="w-full flex flex-col border-b md:border-none border-searchBgColor">
@@ -548,8 +550,13 @@ export default function CatalogItems() {
                 <CatalogCard paramsId={newId} filterData={filterData} setPageId={setPageId} />
               </article>
             </section>
-          </article>
-        </section>)}
+          </article> :
+            <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[50vh] ">
+              Ничего не найдено
+            </div>
+          }
+        </section>
+      )}
 
     </main>
   );
