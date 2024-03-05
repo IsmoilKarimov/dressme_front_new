@@ -29,9 +29,9 @@ const TopHeader = () => {
     setLanguageDetector({ typeLang: currentLang })
   }, [currentLang])
 
-  console.log(languageDetector,'languageDetector---22');
-  console.log(currentLang,'currentLang---22');
-  console.log('--------------------------');
+  // console.log(languageDetector,'languageDetector---22');
+  // console.log(currentLang,'currentLang---22');
+  // console.log('--------------------------');
   const { request } = useHttp()
   const [selectBtn, setSelectBtn] = useState(true);
   const [regionsShow, setRegionsShow] = useState(false);
