@@ -1,29 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { useNavigate } from "react-router-dom";
 import { InputCheckedTrueIcons, StarIcons } from "../../../../assets/icons";
-import {
-  CalourCard,
-  HeartImg,
-  RussianFlag,
-  UzbekFlag,
-} from "../../../../assets";
+import { CalourCard, HeartImg } from "../../../../assets";
 import WearType from "../../Main/WearCollectionCard/WearType";
 import Cookies from "js-cookie";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
-import { LanguageDetectorDress } from "../../../../language/LanguageItems";
-import i18next from "i18next";
 
 export default function FavouriteProducts() {
-  const { i18n, t } = useTranslation("favourite");
-  const [languageDetector, setLanguageDetector] = useContext(
-    LanguageDetectorDress
-  );
-  const [currentLang, setCurrentLang] = useState(
-    localStorage.getItem("i18nextLng")
-  );
+  const { t } = useTranslation("favourite");
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
@@ -34,35 +21,11 @@ export default function FavouriteProducts() {
   // Main data context -----------------
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
-  // -----Language Change-------------------
-  const LanguageList = [
-    { id: 1, value: "uz", type: "O'zbekcha", icons: UzbekFlag },
-    { id: 2, value: "ru", type: "Русский", icons: RussianFlag },
-  ];
-
-  // const [openLang, setOpenLang] = useState(false);
-  // const handleOpenChangeLang = (newOpen) => {
-  //   setOpenLang(newOpen);
-  // };
-
-  // const handleLangValue = (value) => {
-  //   i18n.changeLanguage(value);
-  //   setCurrentLang(value);
-  //   setOpenLang(false);
-  // };
-
   const onColorChecked = () => {};
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/product/${id}`);
   };
-
-  useEffect(() => {
-    if (localStorage.getItem("i18nextLng")?.length > 2) {
-      i18next.changeLanguage("ru");
-    }
-    setLanguageDetector({ typeLang: currentLang });
-  }, [currentLang]);
 
   const handleLeaveMouse = (eId) => {
     const elementsIndex = dressInfo.ProductList.findIndex(
@@ -95,7 +58,7 @@ export default function FavouriteProducts() {
       </section>
       <div
         className={`max-w-[1280px] w-[100%] flex flex-col items-center justify-between ${
-          wishList?.length > 4 ? "mb-10" : "mb-[120px]"
+          wishList?.length > 6 ? "mb-10" : "mb-[80px]"
         } m-auto px-[10px] md:px-0`}
       >
         <section className="w-full flex items-center justify-center flex-col">
@@ -226,7 +189,7 @@ export default function FavouriteProducts() {
                                       ?.split(",")
                                       .join(" ")}
                                     {"  "}
-                                     {t("currency")}
+                                    {t("currency")}
                                   </p>
                                   <p className="w-full text-start m-0 p-0 text-[12px] mb-[4px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
                                     {parseInt(data?.cost?.price)
@@ -234,7 +197,7 @@ export default function FavouriteProducts() {
                                       ?.split(",")
                                       .join(" ")}
                                     {"  "}
-                                     {t("currency")}
+                                    {t("currency")}
                                   </p>
                                 </figure>
                               ) : (
@@ -247,7 +210,7 @@ export default function FavouriteProducts() {
                                     ?.split(",")
                                     .join(" ")}
                                   {"  "}
-                                   {t("currency")}
+                                  {t("currency")}
                                 </p>
                               )}
                             </article>
@@ -414,7 +377,7 @@ export default function FavouriteProducts() {
                                       ?.split(",")
                                       .join(" ")}
                                     {"  "}
-                                    {t('currency')}
+                                    {t("currency")}
                                   </p>
                                   <p className="w-full text-start m-0 p-0 text-[12px] mb-[4px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
                                     {parseInt(data?.cost?.price)
@@ -422,7 +385,7 @@ export default function FavouriteProducts() {
                                       ?.split(",")
                                       .join(" ")}
                                     {"  "}
-                                    {t('currency')}
+                                    {t("currency")}
                                   </p>
                                 </figure>
                               ) : (
@@ -435,7 +398,7 @@ export default function FavouriteProducts() {
                                     ?.split(",")
                                     .join(" ")}
                                   {"  "}
-                                  {t('currency')}
+                                  {t("currency")}
                                 </p>
                               )}
                             </article>

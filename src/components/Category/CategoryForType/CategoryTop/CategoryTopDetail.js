@@ -10,6 +10,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { MdClose } from "react-icons/md";
 import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
+import { useTranslation } from "react-i18next";
 
 
 const CategoryTopDetail = ({
@@ -23,6 +24,7 @@ const CategoryTopDetail = ({
   const [searchMarketName, setSearchMarketName] = useState();
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
+  const { t } = useTranslation("category");
 
   const handleToggle = () => {
     if (filterLeftAction) {
@@ -97,7 +99,7 @@ const CategoryTopDetail = ({
         </section>
       </div>
 
-      {filterData?.section_products?.data?.length > 0 &&
+      {filterData?.section_products?.data?.length > 0 && (
         <div className="w-full flex flex-col justify-center items-center">
           <section className=" w-[100%] flex flex-col items-center justify-between m-auto  md:mt-[60px]">
             <article className="w-[100%] h-fit md:mb-16">
@@ -126,7 +128,7 @@ const CategoryTopDetail = ({
                   <div className="w-full md:w-fit flex items-center justify-between md:mr-5">
                     <div className="flex items-center">
                       <NavLink className="hidden md:flex items-center text-[15px] font-AeonikProMedium mr-[22px]">
-                        По разделу
+                        {t("by_section")}
                       </NavLink>
                       <div className="md:flex items-center hidden">
                         <Popover
@@ -145,8 +147,9 @@ const CategoryTopDetail = ({
                             <BiChevronDown
                               size={22}
                               style={{ color: "#000" }}
-                              className={`${state?.opensports ? "rotate-[-180deg]" : ""
-                                } duration-200`}
+                              className={`${
+                                state?.opensports ? "rotate-[-180deg]" : ""
+                              } duration-200`}
                             />
                           </span>
                         </Popover>
@@ -162,7 +165,7 @@ const CategoryTopDetail = ({
                 >
                   <SortIcons />
                   <p className="ml-2 not-italic  font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
-                    Фильтр
+                    {t("filter")}
                   </p>
                 </button>
                 <button
@@ -171,7 +174,7 @@ const CategoryTopDetail = ({
                 >
                   <UnderSection />
                   <p className="ml-2 not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%] cursor-pointer">
-                    По разделу
+                    {t("by_section")}
                   </p>
                 </button>
               </article>
@@ -181,13 +184,18 @@ const CategoryTopDetail = ({
               <article className="w-full border-b border-searchBgColor">
                 <article className="w-full hidden md:block mb-10">
                   <ul className=" flex flex-row items-center flex-wrap gap-x-[14px] gap-y-[14px]">
-                    {filterData?.section?.sub_sections?.map((catalog, index) => (
-                      <li key={index} className="text-[15px] font-AeonikProMedium">
-                        <button className="focus:bg-borderWinter focus:text-white hover:bg-borderWinter hover:text-white bg-white border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]">
-                          {catalog.name_ru}
-                        </button>
-                      </li>
-                    ))}
+                    {filterData?.section?.sub_sections?.map(
+                      (catalog, index) => (
+                        <li
+                          key={index}
+                          className="text-[15px] font-AeonikProMedium"
+                        >
+                          <button className="focus:bg-borderWinter focus:text-white hover:bg-borderWinter hover:text-white bg-white border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]">
+                            {catalog.name_ru}
+                          </button>
+                        </li>
+                      )
+                    )}
                   </ul>
                 </article>
               </article>
@@ -206,12 +214,12 @@ const CategoryTopDetail = ({
               {filterLeftAction ? (
                 <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                   {" "}
-                  Скрыть
+                  {t("hide")}
                 </p>
               ) : (
                 <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                   {" "}
-                  Фильтр
+                  {t("filter")}
                 </p>
               )}
             </button>
@@ -228,25 +236,21 @@ const CategoryTopDetail = ({
                   className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[14px] leading-4 border-r border-searchBgColor"
                 />
                 {searchMarketName && (
-                  <button
-                    onClick={handleClear}
-                    className="  "
-                    type="button"
-                  >
+                  <button onClick={handleClear} className="  " type="button">
                     <MdClose size={20} color={"#a1a1a1"} />
                   </button>
                 )}
               </div>
               <span
                 onClick={() => getSearchClick()}
-                className="w-[15%] h-full bg-btnBgColor rounded-r-xl active:scale-95 flex items-center justify-center ">
+                className="w-[15%] h-full bg-btnBgColor rounded-r-xl active:scale-95 flex items-center justify-center "
+              >
                 <SearchIcons />
               </span>
             </article>
           </section>
         </div>
-
-      }
+      )}
     </main>
   );
 };
