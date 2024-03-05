@@ -19,6 +19,7 @@ const ShoppingStoreOfficial = () => {
   const [openTabComment, setOpenTabComment] = useState(false);
   const [openTabLocation, setOpenTabLocation] = useState(false);
   const [filteredData, setFilteredData] = useState();
+  const [filteredError, setFilteredError] = useState(false);
   const [pageId, setPageId] = useState(1);
 
   const [getGenderId, setGetGenderId] = useState(null);
@@ -139,7 +140,6 @@ const ShoppingStoreOfficial = () => {
   // console.log(dressInfo?.shopsData?.shops, 'dressInfo?.shopsData?.shops?.data');
   useEffect(() => {
     data?.getMainProductCard?.shops?.map(item => {
-      console.log(item?.name, 'name');
       if (newId?.split('-')?.join(' ')?.includes(item?.name?.toLowerCase())) {
         setNewFilterParamasId(item?.id)
         if (!newFilterParamasIdCopy) {
@@ -147,7 +147,7 @@ const ShoppingStoreOfficial = () => {
         }
       }
     })
-  }, [data?.getMainProductCard]);
+  }, [data?.getMainProductCard?.shops]);
 
   const [loading, setLoading] = useState(false);
 
@@ -212,12 +212,15 @@ const ShoppingStoreOfficial = () => {
         if (res?.status >= 200 && res?.status < 300) {
           setFilteredData(res?.data);
           setDressInfo({ ...dressInfo, filterDataProductList: res?.data })
+          setFilteredError(false)
+          // console.log(filteredData,'11111-filteredData1111');
         }
       })
       .catch((res) => {
         if (res?.response?.status === 422) {
           refreshLocationId();
           setFilteredData(null)
+          setFilteredError(true)
         }
         throw new Error(res.response?.data?.message || "something wrong");
       })
@@ -285,8 +288,6 @@ const ShoppingStoreOfficial = () => {
     };
   }, [screenSize]);
 
-console.log(filteredData,'filteredData');
-console.log(loading,'loading');
   // console.log(params, 'params');
   const breadcrumbItems = [
     { label_uz: 'Home', label_ru: 'Главная', url: '/' },
@@ -307,137 +308,138 @@ console.log(loading,'loading');
             <section className="w-full border-b border-searchBgColor py-3 md:pt-8 md:pb-5">
               <NewBreadCrump items={breadcrumbItems} />
             </section>
-            {filteredData ? <div className="w-full">
-              <section className="w-full border-searchBgColor">
-                <ShoppingStoreOfficialTop
-                  clickButtons={clickButtons}
-                  filteredData={filteredData}
-                  toggleFilterLeftOpen={toggleFilterOpen}
-                  toggleFilterLeftClose={toggleFilterClose}
-                  filterLeftAction={filterToggle}
-                  setOpenMobileFilter={setOpenMobileFilter}
-                />
-              </section>
-              {/* FOR MOBILE VERSION */}
-              <section
-                onClick={() => {
-                  setOpenMobileFilter(false);
-                }}
-                className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter ? "" : "hidden"
-                  }`}
-              ></section>
-              {screenSize.width < 768 && (
-                <section
-                  className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
-                    }`}
-                >
-                  <div className="max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
-                    <FilterList
-                      paramsId={newFilterParamasId}
-                      genderId={genderId}
-                      discountId={discountId}
-                      categoryId={categoryId}
-                      getBadgePrice={getBadgePrice}
-                      setDataColor={setDataColor}
-                      dataColor={dataColor}
-                      getRatingList={getRatingList}
-                      outWearList={outWearList}
-                      underWearList={underWearList}
-                      footWearList={footWearList}
-                      filterToggle={filterToggle}
-                      setFilterToggle={setFilterToggle}
-                      setPageId={setPageId}
-                      openMobileFilter={openMobileFilter}
-                      setOpenMobileFilter={setOpenMobileFilter}
-                    />
-                  </div>
-                </section>
-              )}
-              <section className="w-full flex items-center justify-center ">
-                <div className="w-full flex flex-col items-center justify-center">
-                  {/* Products Section */}
-                  <article
-                    className={`${openTabComment || openTabLocation ? "hidden" : "block"
-                      } w-full `}
-                  >
-                    <section className="w-[100%] h-fit">
-                      <section className="w-full flex flex-gap-6 justify-between md:my-10 mt-3 mb-20">
-                        {screenSize.width >= 768 && (
-                          <div
-                            className={`${filterToggle ? "md:block" : "md:hidden"
-                              } hidden md:w-[22%] h-full ss:px-4 md:px-0`}
-                          >
-                            <FilterList
-                              paramsId={newFilterParamasId}
-                              genderId={genderId}
-                              discountId={discountId}
-                              categoryId={categoryId}
-                              getBadgePrice={getBadgePrice}
-                              setDataColor={setDataColor}
-                              dataColor={dataColor}
-                              getRatingList={getRatingList}
-                              outWearList={outWearList}
-                              underWearList={underWearList}
-                              footWearList={footWearList}
-                              filterToggle={filterToggle}
-                              setFilterToggle={setFilterToggle}
-                              setPageId={setPageId}
-                            />
-                          </div>
-                        )}
-
-                        <div
-                          className={` ${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-                            } w-full h-full px-[10px] md:px-0`}
-                        >
-                          {filteredData ? (
-                            <ShopOfficialCard
-                              filteredData={filteredData}
-                              setPageId={setPageId}
-                              paramsId={newId}
-                            />
-                          ) : (
-                            <div className="w-full flex items-center justify-center font-AeonikProMedium text-lg md:text-2xl h-fit md:h-[100vh] ">
-                              Ничего не найдено
-                            </div>
-                          )}
-                        </div>
-                      </section>
-                    </section>
-                  </article>
-
-                  {/* Comment Section For Shopping Page */}
-                  <div
-                    className={`${openTabComment ? "block" : "hidden"
-                      } w-full pb-[88px] `}
-                  >
-                    <ShowPageComment
-                      filteredData={filteredData}
-                      setOpenTabComment={setOpenTabComment}
-                    />
-                  </div>
-
-                  {/* Map Section */}
-                  <div
-                    className={`${openTabLocation && !openTabComment ? "block" : "hidden"
-                      } w-full text-3xl px-4 pb-[88px]`}
-                  >
-                    <button
-                      onClick={() => {
-                        setOpenTabLocation(false);
-                      }}
-                      className={`flex items-center cursor-pointer justify-start md:justify-center md:border border-borderColor2 rounded-lg mr-20 md:mt-4 md:mr-5`}
-                    >
-                      <GoBackIcon />
-                    </button>
-                    {/* <YandexLocationShop /> */}
-                    <YandexLocationShopFilter filteredData={filteredData} />
-                  </div>
-                </div>
-              </section>
-            </div> :
+            {filteredError ?
               <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[50vh] ">
                 Ничего не найдено
+              </div> :
+              <div className="w-full">
+                <section className="w-full border-searchBgColor">
+                  <ShoppingStoreOfficialTop
+                    clickButtons={clickButtons}
+                    filteredData={filteredData}
+                    toggleFilterLeftOpen={toggleFilterOpen}
+                    toggleFilterLeftClose={toggleFilterClose}
+                    filterLeftAction={filterToggle}
+                    setOpenMobileFilter={setOpenMobileFilter}
+                  />
+                </section>
+                {/* FOR MOBILE VERSION */}
+                <section
+                  onClick={() => {
+                    setOpenMobileFilter(false);
+                  }}
+                  className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter ? "" : "hidden"
+                    }`}
+                ></section>
+                {screenSize.width < 768 && (
+                  <section
+                    className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+                      }`}
+                  >
+                    <div className="max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
+                      <FilterList
+                        paramsId={newFilterParamasId}
+                        genderId={genderId}
+                        discountId={discountId}
+                        categoryId={categoryId}
+                        getBadgePrice={getBadgePrice}
+                        setDataColor={setDataColor}
+                        dataColor={dataColor}
+                        getRatingList={getRatingList}
+                        outWearList={outWearList}
+                        underWearList={underWearList}
+                        footWearList={footWearList}
+                        filterToggle={filterToggle}
+                        setFilterToggle={setFilterToggle}
+                        setPageId={setPageId}
+                        openMobileFilter={openMobileFilter}
+                        setOpenMobileFilter={setOpenMobileFilter}
+                      />
+                    </div>
+                  </section>
+                )}
+                <section className="w-full flex items-center justify-center ">
+                  <div className="w-full flex flex-col items-center justify-center">
+                    {/* Products Section */}
+                    <article
+                      className={`${openTabComment || openTabLocation ? "hidden" : "block"
+                        } w-full `}
+                    >
+                      <section className="w-[100%] h-fit">
+                        <section className="w-full flex flex-gap-6 justify-between md:my-10 mt-3 mb-20">
+                          {screenSize.width >= 768 && (
+                            <div
+                              className={`${filterToggle ? "md:block" : "md:hidden"
+                                } hidden md:w-[22%] h-full ss:px-4 md:px-0`}
+                            >
+                              <FilterList
+                                paramsId={newFilterParamasId}
+                                genderId={genderId}
+                                discountId={discountId}
+                                categoryId={categoryId}
+                                getBadgePrice={getBadgePrice}
+                                setDataColor={setDataColor}
+                                dataColor={dataColor}
+                                getRatingList={getRatingList}
+                                outWearList={outWearList}
+                                underWearList={underWearList}
+                                footWearList={footWearList}
+                                filterToggle={filterToggle}
+                                setFilterToggle={setFilterToggle}
+                                setPageId={setPageId}
+                              />
+                            </div>
+                          )}
+
+                          <div
+                            className={` ${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+                              } w-full h-full px-[10px] md:px-0`}
+                          >
+                            {filteredData ? (
+                              <ShopOfficialCard
+                                filteredData={filteredData}
+                                setPageId={setPageId}
+                                paramsId={newId}
+                              />
+                            ) : (
+                              <div className="w-full flex items-center justify-center font-AeonikProMedium text-lg md:text-2xl h-fit md:h-[100vh] ">
+                                Ничего не найдено
+                              </div>
+                            )}
+                          </div>
+                        </section>
+                      </section>
+                    </article>
+
+                    {/* Comment Section For Shopping Page */}
+                    <div
+                      className={`${openTabComment ? "block" : "hidden"
+                        } w-full pb-[88px] `}
+                    >
+                      <ShowPageComment
+                        filteredData={filteredData}
+                        setOpenTabComment={setOpenTabComment}
+                      />
+                    </div>
+
+                    {/* Map Section */}
+                    <div
+                      className={`${openTabLocation && !openTabComment ? "block" : "hidden"
+                        } w-full text-3xl px-4 pb-[88px]`}
+                    >
+                      <button
+                        onClick={() => {
+                          setOpenTabLocation(false);
+                        }}
+                        className={`flex items-center cursor-pointer justify-start md:justify-center md:border border-borderColor2 rounded-lg mr-20 md:mt-4 md:mr-5`}
+                      >
+                        <GoBackIcon />
+                      </button>
+                      {/* <YandexLocationShop /> */}
+                      <YandexLocationShopFilter filteredData={filteredData} />
+                    </div>
+                  </div>
+                </section>
               </div>
             }
           </div>
