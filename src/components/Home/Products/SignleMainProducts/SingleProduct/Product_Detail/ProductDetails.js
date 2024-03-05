@@ -356,7 +356,7 @@ const ProductDetails = ({ data }) => {
         }
       });
   };
-
+// В других локациях
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
       <div className="tableSizes">
@@ -745,6 +745,9 @@ const ProductDetails = ({ data }) => {
                   // onChange={onChange}
                 >
                   {existRegions.map((item, i) => {
+                    // console.log(existRegions,'existRegions');
+                    // console.log(data?.product?.locations,'data?.product?.locations');
+                    // console.log(item,'item');
                     return (
                       <div key={i}>
                         <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">

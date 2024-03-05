@@ -212,8 +212,6 @@ const ShoppingStoreOfficial = () => {
         if (res?.status >= 200 && res?.status < 300) {
           setFilteredData(res?.data);
           setDressInfo({ ...dressInfo, filterDataProductList: res?.data })
-
-          setLoading(false);
         }
       })
       .catch((res) => {
@@ -221,9 +219,11 @@ const ShoppingStoreOfficial = () => {
           refreshLocationId();
           setFilteredData(null)
         }
-        setLoading(false);
         throw new Error(res.response?.data?.message || "something wrong");
-      });
+      })
+      .finally(() => {
+        setLoading(false);
+      })
   };
 
   useEffect(() => {
@@ -285,7 +285,8 @@ const ShoppingStoreOfficial = () => {
     };
   }, [screenSize]);
 
-
+console.log(filteredData,'filteredData');
+console.log(loading,'loading');
   // console.log(params, 'params');
   const breadcrumbItems = [
     { label_uz: 'Home', label_ru: 'Главная', url: '/' },
