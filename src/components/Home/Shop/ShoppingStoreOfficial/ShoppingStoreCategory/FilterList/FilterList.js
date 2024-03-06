@@ -733,7 +733,7 @@ function FilterList({
                                                     {data?.key === 5 && <StarIcons />}
                                                 </div>
                                                 <span className="text-base leading-4 font-AeonikProRegular">
-                                                    ({data?.value})
+                                                    ({data?.value > 99 ? "99+" : data?.value})
                                                 </span>
                                             </div>
                                         );
@@ -799,7 +799,7 @@ function FilterList({
                                                         ) : (
                                                             <span>{outwear?.size}</span>
                                                         )}
-                                                        <span className="ml-1">({outwear?.amount})</span>
+                                                        <span className="ml-1">({outwear?.amount > 99 ? "99+" : outwear?.amount})</span>
                                                     </div>
                                                 </button>
                                             );
@@ -913,7 +913,8 @@ function FilterList({
                                                             ) : (
                                                                 <span>{underwear?.min_wear_size}</span>
                                                             )}
-                                                            <span className="ml-1">({underwear?.amount})</span>
+                                                            <span className="ml-1">({underwear?.amount > 99 ? "99+" : underwear?.amount})</span>
+
                                                         </div>
                                                     </button>
                                                 );
@@ -1006,7 +1007,8 @@ function FilterList({
                                                 >
                                                     <div className="flex items-center">
                                                         <span>{footwear?.size}</span>
-                                                        <span className="ml-1">({footwear?.amount})</span>
+                                                        <span className="ml-1">({footwear?.amount > 99 ? "99+" : footwear?.amount})</span>
+
                                                     </div>
                                                 </button>
                                             );
