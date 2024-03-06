@@ -8,10 +8,13 @@ import { CalourCard } from "../../../../../../assets";
 import { useNavigate } from "react-router-dom";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData";
+import { useTranslation } from "react-i18next";
 
 export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
+
+  const { t } = useTranslation("shops")
 
   // Main data context -----------------
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
@@ -41,15 +44,16 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
   const setPaginationFunc = (id) => {
     setPageId(+id)
   };
-// console.log(filteredData?.products?.data,'filteredData?.products?.data');
+
   return (
     <div className="flex flex-col box-border">
       {filteredData?.products?.data?.length > 0 ? (
         <div
-          className={`flex flex-wrap justify-between md:justify-start ${filteredData?.products?.length > 2
-            ? "mb-[20px] md:mb-[30px]"
-            : "mb-[80px]"
-            } md:mx-0 md:mt-[50px] md:mb-0 gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 `}
+          className={`flex flex-wrap justify-between md:justify-start ${
+            filteredData?.products?.length > 2
+              ? "mb-[20px] md:mb-[30px]"
+              : "mb-[80px]"
+          } md:mx-0 md:mt-[50px] md:mb-0 gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 `}
         >
           {filteredData?.products?.data?.map((data) => {
             return (
@@ -94,10 +98,11 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
                       </span>
                     </button>
                     <article
-                      className={`${data?.l
-                        ? "w-full px-1 xs:px-2 md:px-4 my-2"
-                        : "w-0 my-2"
-                        } group-hover:w-full group-hover:px-1 group-hover:xs:px-2 group-hover:md:px-4 group-hover:my-2 duration-300 w-0 my-2 absolute overflow-hidden hidden top-0 z-[1] md:flex items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
+                      className={`${
+                        data?.l
+                          ? "w-full px-1 xs:px-2 md:px-4 my-2"
+                          : "w-0 my-2"
+                      } group-hover:w-full group-hover:px-1 group-hover:xs:px-2 group-hover:md:px-4 group-hover:my-2 duration-300 w-0 my-2 absolute overflow-hidden hidden top-0 z-[1] md:flex items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
                     >
                       {data?.colors?.map((itemValue) => {
                         return (
@@ -123,8 +128,9 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
                   <article
                     onMouseEnter={() => handleLeaveMouse(data?.id)}
                     onClick={() => goDetail(data?.id, data?.name_ru)}
-                    className={`w-full px-2 xs:px-3 xs:mt-1 ${data?.cost?.discount_price ? "mb-0" : "mb-3"
-                      } md:mb-0`}
+                    className={`w-full px-2 xs:px-3 xs:mt-1 ${
+                      data?.cost?.discount_price ? "mb-0" : "mb-3"
+                    } md:mb-0`}
                   >
                     <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-[6px] md:mb-0  cursor-pointer">
                       <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
@@ -142,7 +148,7 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
                             </p>
                             (
                             <p className="hidden lg:block md:mr-1 md:text-[11px]">
-                              голосов:
+                              {t("votes")}:
                             </p>
                             {data?.rated_users_count || 0})
                           </article>
@@ -164,7 +170,7 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
                               ?.split(",")
                               .join(" ")}
                             {"  "}
-                            сум
+                            {t("currency")}
                           </p>
                           <p className="w-full text-start m-0 p-0 text-[12px] mb-[4px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
                             {parseInt(data?.cost?.price)
@@ -172,7 +178,7 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
                               ?.split(",")
                               .join(" ")}
                             {"  "}
-                            сум
+                            {t("currency")}
                           </p>
                         </figure>
                       ) : (
@@ -185,15 +191,16 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
                             ?.split(",")
                             .join(" ")}
                           {"  "}
-                          сум
+                          {t("currency")}
                         </p>
                       )}
                     </article>
                     <div
-                      className={`flex items-center select-none absolute right-2 ${data?.cost?.discount_price
-                        ? "bottom-[7px] ls:bottom-[-17px]"
-                        : " bottom-[8px] ls:bottom-[-17px]"
-                        } md:bottom-2`}
+                      className={`flex items-center select-none absolute right-2 ${
+                        data?.cost?.discount_price
+                          ? "bottom-[7px] ls:bottom-[-17px]"
+                          : " bottom-[8px] ls:bottom-[-17px]"
+                      } md:bottom-2`}
                     >
                       <button
                         onClick={() => {
@@ -223,7 +230,7 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
       ) : (
         <div className="h-[60vh] flex items-center justify-center">
           <span className=" flex items-center justify-center font-AeonikProMedium text-2xl ">
-            Ничего не найдено
+            {t("nothing_found")}
           </span>
         </div>
       )}
@@ -248,13 +255,15 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
                         setPaginationFunc(newPageId);
                       }
                     }}
-                    className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${item?.active
-                      ? "bg-fullBlue text-white"
-                      : "hover:bg-searchBgColor"
-                      } mx-[5px] flex items-center justify-center  ${item?.url
+                    className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${
+                      item?.active
+                        ? "bg-fullBlue text-white"
+                        : "hover:bg-searchBgColor"
+                    } mx-[5px] flex items-center justify-center  ${
+                      item?.url
                         ? "cursor-pointer"
                         : "opacity-70 cursor-not-allowed"
-                      }`}
+                    }`}
                   >
                     {item?.label}
                   </li>

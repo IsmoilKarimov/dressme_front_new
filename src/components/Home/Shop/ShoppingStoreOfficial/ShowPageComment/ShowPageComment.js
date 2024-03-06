@@ -180,7 +180,7 @@ function ShowPageComment({
                     }}
                     className="px-5 py-3 rounded-lg bg-borderWinter text-white text-base font-AeonikProMedium active:scale-95"
                   >
-                    Отправить
+                    {t("Send")}
                   </button>
                 </div>
               </div>
@@ -205,8 +205,7 @@ function ShowPageComment({
                 </span>
               </div>
               <div className="text-sm font-AeonikProRegular text-closeColorBtn mt-1">
-                {t("votes")}
-                : {filteredData?.shop?.rated_users_count}
+                {t("votes")}: {filteredData?.shop?.rated_users_count}
               </div>
             </div>
           </section>

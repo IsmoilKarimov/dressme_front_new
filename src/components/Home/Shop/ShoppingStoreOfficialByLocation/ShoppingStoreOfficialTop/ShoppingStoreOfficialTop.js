@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import "./Store.css";
 import {
   CommentStarIcon,
@@ -12,10 +11,11 @@ import {
   StarIcons,
   WomanGenIcons,
 } from "../../../../../assets/icons";
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Modal, Radio, Space } from "antd";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { MdClose } from "react-icons/md";
+import { useTranslation } from "react-i18next";
 
 const ShoppingStoreOfficialTop = ({
   filteredData,
@@ -27,6 +27,8 @@ const ShoppingStoreOfficialTop = ({
   
 }) => {
   const [openLocationModal, setOpenLocationModal] = useState(false);
+
+  const { t } = useTranslation("shops")
 
   const [locationList, setLocationList] = useState([]);
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -99,7 +101,6 @@ const ShoppingStoreOfficialTop = ({
   };
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
-
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
         <div className="w-[100%] h-fit flex flex-col">
           {/* Top section */}
@@ -115,10 +116,11 @@ const ShoppingStoreOfficialTop = ({
             )}
             <div
               className={`w-full md:h-[90px]   h-fit flex flex-col md:flex-row items-center border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0
-            ${filteredData?.shop?.url_background_photo
-                  ? "mt-2 md:mt-0"
-                  : "md:mt-10"
-                }
+            ${
+              filteredData?.shop?.url_background_photo
+                ? "mt-2 md:mt-0"
+                : "md:mt-10"
+            }
             `}
             >
               {/* 1 */}
@@ -141,8 +143,9 @@ const ShoppingStoreOfficialTop = ({
                     {filteredData?.shop?.name || "name"}
                   </p>
                   <div
-                    className={`${filteredData?.shop?.overall_rating ? "flex" : "hidden"
-                      } items-center`}
+                    className={`${
+                      filteredData?.shop?.overall_rating ? "flex" : "hidden"
+                    } items-center`}
                   >
                     <div className="flex items-center mr-[6px]">
                       <StarIcons />
@@ -151,16 +154,24 @@ const ShoppingStoreOfficialTop = ({
                       <p className="font-AeonikProMedium text-black mr-1">
                         {filteredData?.shop?.overall_rating}
                       </p>
-                      {filteredData?.shop?.rated_users_count && <p className="flex items-center text-setTexOpacity font-AeonikProRegular">
-                        ( <span className="flex gap-x-1"><span className="md:flex hidden">голосов:</span>{filteredData?.shop?.rated_users_count} </span> ){" "}
-                      </p>}
+                      {filteredData?.shop?.rated_users_count && (
+                        <p className="flex items-center text-setTexOpacity font-AeonikProRegular">
+                          ({" "}
+                          <span className="flex gap-x-1">
+                            <span className="md:flex hidden">
+                              {t("votes")}:
+                            </span>
+                            {filteredData?.shop?.rated_users_count}{" "}
+                          </span>{" "}
+                          ){" "}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
               </div>
               {/* 2 */}
               <div className="w-full md:w-[35%] hidden md:flex items-center border-t md:border-none border-searchBgColor mt-5 pt-5 md:pt-0 md:mt-0">
-
                 <button
                   onClick={(e) => {
                     e.preventDefault();
@@ -190,7 +201,6 @@ const ShoppingStoreOfficialTop = ({
               <div className="w-full md:w-[25%] flex items-center md:justify-end  md:mr-5 mt-5 md:mt-0">
                 <div className="md:hidden flex w-fit">
                   <div className="w-fit h-fit flex items-center justify-center gap-y-1 cursor-pointer">
-
                     <button
                       type="primary"
                       onClick={() => setOpenLocationModal(true)}
@@ -199,20 +209,22 @@ const ShoppingStoreOfficialTop = ({
                       <p className="mr-[6px]">
                         <LocationColoursIcons colors={"#0077B6"} />
                       </p>
-                      Все локации
+                      {t("all_locations")}
                     </button>
                   </div>
                 </div>
                 <div className="flex items-center ml-auto">
                   <button
-                    className={`${filteredData?.shop?.gender_id === "2" ? "hidden" : "flex"
-                      }  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}
+                    className={`${
+                      filteredData?.shop?.gender_id === "2" ? "hidden" : "flex"
+                    }  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}
                   >
                     <ManGenIcons />
                   </button>
                   <button
-                    className={`${filteredData?.shop?.gender_id === "1" ? "hidden" : "flex"
-                      } flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}
+                    className={`${
+                      filteredData?.shop?.gender_id === "1" ? "hidden" : "flex"
+                    } flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}
                   >
                     <WomanGenIcons />
                   </button>
@@ -227,7 +239,7 @@ const ShoppingStoreOfficialTop = ({
                       }}
                       className="w-[42%] min-w-min hidden md:block text-sm font-AeonikProRegular text-borderWinter ml-auto cursor-pointer"
                     >
-                      Посмотреть отзывы
+                      {t("view_reviews")}
                     </div>
                     <button
                       onClick={(e) => {
@@ -244,7 +256,6 @@ const ShoppingStoreOfficialTop = ({
                 </div>
               </div>
               <div className="w-full md:hidden flex items-center border-b md:border-none border-searchBgColor py-3">
-
                 <button
                   onClick={(e) => {
                     e.preventDefault();
@@ -286,19 +297,19 @@ const ShoppingStoreOfficialTop = ({
                   {filterLeftAction ? (
                     <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                       {" "}
-                      Скрыть
+                      {t("hide")}
                     </p>
                   ) : (
                     <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                       {" "}
-                      Фильтр
+                      {t("filter")}
                     </p>
                   )}
                 </button>
               </div>
               <div className="flex items-center text-base font-AeonikProMedium text-[#2C2C2C] ">
                 <DeliveryIcon />
-                <span className="mx-[5px]">Доставка:</span>
+                <span className="mx-[5px]">{t("delivery")}:</span>
                 <span>{filteredData?.shop?.delivery?.name_ru}</span>
               </div>
             </div>
@@ -312,7 +323,7 @@ const ShoppingStoreOfficialTop = ({
                   <p className="mr-[6px]">
                     <LocationColoursIcons colors={"#0077B6"} />
                   </p>
-                  Все локации
+                  {t("all_locations")}
                 </button>
                 <Modal
                   centered
@@ -325,7 +336,7 @@ const ShoppingStoreOfficialTop = ({
                 >
                   <div className="w-full px-4 md:px-[25px] pb-[15px] md:pb-[30px] pt-[10px] md:pt-[20px]">
                     <div className="text-[16px] md:text-2xl font-AeonikProRegular mb-[15px] md:mb-[30px]">
-                      Выберите локацию
+                      {t("select_location")}
                     </div>
                     <div className="font-AeonikProRegular text-[14px] md:text-lg border-b border-[#f0f0f0] mb-[15px]">
                       {locationList[0]?.region?.name_ru}
@@ -348,8 +359,12 @@ const ShoppingStoreOfficialTop = ({
                                     setCheckedData(item);
                                   }}
                                 >
-                                  <span className="text-[14px] md:text-lg font-AeonikProRegular">{item?.sub_region?.name_ru}</span>
-                                  <span className="text-[14px] md:text-lg font-AeonikProRegular">({item?.address} )</span>
+                                  <span className="text-[14px] md:text-lg font-AeonikProRegular">
+                                    {item?.sub_region?.name_ru}
+                                  </span>
+                                  <span className="text-[14px] md:text-lg font-AeonikProRegular">
+                                    ({item?.address} )
+                                  </span>
                                 </Radio>
                               </Space>
                             </div>
@@ -364,7 +379,7 @@ const ShoppingStoreOfficialTop = ({
                       }}
                       className="w-full flex justify-end mt-[60px] text-borderWinter text-lg font-AeonikProMedium"
                     >
-                      Готово
+                      {t("ready")}
                     </button>
                   </div>
                 </Modal>
@@ -379,36 +394,23 @@ const ShoppingStoreOfficialTop = ({
                 <input
                   type="text"
                   name="name"
-                  placeholder="Найти товар"
+                  placeholder={`${t("find_product")}`}
                   value={searchMarketName}
                   onChange={handleChange}
                   className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[14px] leading-4 border-r border-searchBgColor"
                 />
                 {searchMarketName && (
-                  <button
-                    onClick={handleClear}
-                    className=" "
-                    type="button"
-                  >
+                  <button onClick={handleClear} className=" " type="button">
                     <MdClose size={20} color={"#a1a1a1"} />
                   </button>
                 )}
               </div>
               <span
                 onClick={() => getSearchClick()}
-                className="w-[13%] h-full bg-btnBgColor rounded-r-xl active:scale-95 flex items-center justify-center ">
+                className="w-[13%] h-full bg-btnBgColor rounded-r-xl active:scale-95 flex items-center justify-center "
+              >
                 <SearchIcons />
               </span>
-              {/* <span className=" flex ss:pl-[11.65px] md:hidden">
-                <SearchIcons />
-              </span>
-              <input
-                type="text"
-                placeholder="Искать товары или бренды"
-                className="bg-transparent w-full px-3 h-12 text-[14px] bg-btnBgColor border border-transparent md:border-searchBgColor md:mx-0 md:-ml-[3px] md:px-3 md:h-12
-              placeholder-italic placeholder-AeonikProMedium placeholder-sm leading-4 placeholder-setTexOpacity placeholder-[1px]
-              "
-              /> */}
             </div>
             <button
               onClick={() => setOpenMobileFilter(true)}
