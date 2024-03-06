@@ -215,10 +215,13 @@ export default function CatalogItems() {
       .then((res) => {
         setFilterData(res);
         setDressInfo({ ...dressInfo, filterDataProductList: res })
-
         setLoading(false);
+        // console.log(res, 'category---res');
+
       })
       .catch((err) => {
+        // console.log(err, 'category---err');
+
         setLoading(false);
         throw new Error(err || "something wrong");
       });
@@ -296,7 +299,7 @@ export default function CatalogItems() {
       window.removeEventListener("resize", updateDimension);
     };
   }, [screenSize]);
-  console.log(filterData, 'filterData');
+  // console.log(filterData, 'category---filterData');
 
   return (
     <main className="w-full h-full">

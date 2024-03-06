@@ -9,7 +9,7 @@ import {
   StarIcons,
 } from "../../../../../../assets/icons";
 import { BiCheck } from "react-icons/bi";
-import { BsCheckLg } from "react-icons/bs";
+import { BsCheckLg } from "react-icons/bs"; 
 
 import Slider from "react-slider";
 
@@ -30,12 +30,13 @@ function FilterList({
   setFilterToggle,
   openMobileFilter,
   setOpenMobileFilter,
+  locationId
 }) {
   const { request } = useHttp();
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [getFilter, setGetFilter] = useState();
   const [getParamsTest, setgetParamsTest] = useState(
-    dressInfo?.locationIdParams
+    locationId
   );
 
   // ------------------------
@@ -78,7 +79,7 @@ function FilterList({
 
   function fetchGetAllData() {
     fetch(
-      `${url}/shops/filter/${dressInfo?.yandexGetMarketId}?location_id=${dressInfo?.locationIdParams}`
+      `${url}/shops/filter/${dressInfo?.yandexGetMarketId}?location_id=${locationId}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -108,11 +109,11 @@ function FilterList({
 
   useEffect(() => {
     if (getFilter) {
-      // setgetParamsTest(dressInfo?.locationIdParams)
+      // setgetParamsTest(locationId)
       setFilterToggle(false);
       setGetFilter();
     }
-  }, [dressInfo?.locationIdParams]);
+  }, [locationId]);
 
   const [genderCategory, setGenderCategory] = useState([
     {
@@ -389,11 +390,11 @@ function FilterList({
   };
 
   useEffect(() => {
-    if (dressInfo?.locationIdParams) {
+    if (locationId) {
       ClearAll();
       setGetFilter();
     }
-  }, [dressInfo?.locationIdParams]);
+  }, [locationId]);
   return (
     <div className={`w-full h-full py-5 px-3 border border-searchBgColor rounded-lg overflow-hidden `}
     >

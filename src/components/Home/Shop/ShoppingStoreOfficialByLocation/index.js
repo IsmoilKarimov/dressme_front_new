@@ -95,14 +95,12 @@ const ShoppingStoreOfficialByLocation = () => {
   const navigate = useNavigate();
   const paramsIDS = useParams();
   const newId = paramsIDS?.id.replace(":", "");
-  // dressInfo?.yandexGetMarketId
-  console.log(data?.getMainProductCard?.shops, "data?.getMainProductCard?.shops");
-  console.log(newFilterParamasId, "newFilterParamasId---");
+  const [locationId, setLocationId] = useState(dressInfo?.locationIdParams)
   const refreshLocationId = () => {
-
     data?.getMainProductCard?.shops?.map((item) => {
       if (item?.id === Number(newFilterParamasId)) {
         if (dressInfo?.mainSubRegionId) {
+          console.log('category---run1');
           let foundElement = item?.approved_shop_locations.find(function (
             element
           ) {
@@ -110,10 +108,9 @@ const ShoppingStoreOfficialByLocation = () => {
               Number(element.sub_region_id) === dressInfo?.mainSubRegionId
             );
           });
-          setDressInfo({
-            ...dressInfo,
-            locationIdParams: foundElement?.id,
-          });
+          
+          setLocationId(foundElement?.id)
+
           // let index = item?.approved_shop_locations.findIndex(function (
           //   element
           // ) {
@@ -126,17 +123,26 @@ const ShoppingStoreOfficialByLocation = () => {
           // }
         }
         if (!dressInfo?.mainSubRegionId) {
-          setDressInfo({
-            ...dressInfo,
-            locationIdParams: item?.approved_shop_locations[0]?.id,
-          });
+          console.log('category---run2');
+          setLocationId(item?.approved_shop_locations[0]?.id)
+
         }
       }
     });
     // }
   };
-  // console.log(data?.selectedLoc, ';data?.selectedLoc');
-  // console.log(dressInfo?.locationIdParams, ';locationIdParams?.selectedLoc');
+
+  useEffect(() => {
+    if (data?.selectedLoc === "changed") {
+      refreshLocationId();
+    }
+  }, [newFilterParamasId, dressInfo?.mainSubRegionId, dressInfo?.mainRegionId, data?.getMainProductCard?.shops]);
+
+  useEffect(() => {
+    if (locationId)
+      refreshLocationId();
+  }, []);
+
   useEffect(() => {
     data?.getMainProductCard?.shops?.map((item) => {
       if (newId?.split("-")?.join(" ")?.includes(item?.name?.toLowerCase())) {
@@ -152,22 +158,13 @@ const ShoppingStoreOfficialByLocation = () => {
     });
   }, [data?.getMainProductCard?.shops]);
 
-  useEffect(() => {
-    if (data?.selectedLoc === "changed") {
-      refreshLocationId();
-    }
-  }, [newFilterParamasId, dressInfo?.mainSubRegionId, dressInfo?.mainRegionId, data?.getMainProductCard?.shops]);
-  useEffect(() => {
-    if (dressInfo?.locationIdParams)
-      refreshLocationId();
-  }, []);
 
   const url = `https://api.dressme.uz/api`;
   const [loading, setLoading] = useState(false);
 
   const fetchGetAllData = () => {
     let params = new URLSearchParams();
-    params.append("location_id", dressInfo?.locationIdParams);
+    params.append("location_id", locationId);
     dressInfo?.mainSearchNameshopLocation &&
       params.append("keywords", dressInfo?.mainSearchNameshopLocation);
     getGenderId && params.append("gender", getGenderId);
@@ -226,6 +223,8 @@ const ShoppingStoreOfficialByLocation = () => {
           setLoading(false);
           setFilteredData(res?.data);
           setDressInfo({ ...dressInfo, filterDataProductList: res?.data });
+          console.log(res?.data, 'category---res?.data');
+
         }
       })
       .catch((res) => {
@@ -234,6 +233,8 @@ const ShoppingStoreOfficialByLocation = () => {
           setLoading(false);
           setFilteredData(null)
         }
+        console.log(res, 'category---error');
+
         throw new Error(res || "something wrong");
 
         // setError(
@@ -245,7 +246,7 @@ const ShoppingStoreOfficialByLocation = () => {
   useEffect(() => {
     if (
       initalParamsId &&
-      initalParamsId !== dressInfo?.locationIdParams &&
+      initalParamsId !== locationId &&
       !getGenderId &&
       !getCategory &&
       !getRating &&
@@ -259,19 +260,19 @@ const ShoppingStoreOfficialByLocation = () => {
       fetchGetAllData();
       setLoading(true);
     }
-    setInitalParamsId(dressInfo?.locationIdParams);
-  }, [dressInfo?.locationIdParams]);
+    setInitalParamsId(locationId);
+  }, [locationId]);
 
   useEffect(() => {
-    if (dressInfo?.locationIdParams) {
-      if(!filteredData){
+    if (locationId) {
+      if (!filteredData) {
         fetchGetAllData();
       }
     }
-  }, [dressInfo?.locationIdParams]);
+  }, [locationId]);
 
   useEffect(() => {
-    if (data?.getMainProductCard?.shops && dressInfo?.locationIdParams) {
+    if (data?.getMainProductCard?.shops && locationId) {
       fetchGetAllData();
       if (!filteredData) {
         setLoading(true);
@@ -290,11 +291,15 @@ const ShoppingStoreOfficialByLocation = () => {
     getRating,
     getRange?.min,
     getRange?.max,
-    // dressInfo?.locationIdParams,
+    // locationId,
     dressInfo?.mainSearchNameshopLocation,
     // data?.getMainProductCard?.shops
   ]);
-  console.log(dressInfo?.locationIdParams, "run-- dressInfo?.locationIdParams");
+  // console.log("category-- - run1-- - data1", data1)
+  console.log(locationId, "category--- locationId");
+  console.log(filteredData, 'category---filteredData');
+  console.log(data?.selectedLoc, 'category---data?.selectedLoc ');
+
   useEffect(() => {
     if (openMobileFilter) {
       document.body.style.overflow = "hidden";
@@ -350,6 +355,8 @@ const ShoppingStoreOfficialByLocation = () => {
                 toggleFilterLeftClose={toggleFilterClose}
                 filterLeftAction={filterToggle}
                 setOpenMobileFilter={setOpenMobileFilter}
+                locationId={locationId}
+                setLocationId={setLocationId}
               />
             </section>
             {/* FOR MOBILE VERSION */}
@@ -383,6 +390,7 @@ const ShoppingStoreOfficialByLocation = () => {
                     setPageId={setPageId}
                     openMobileFilter={openMobileFilter}
                     setOpenMobileFilter={setOpenMobileFilter}
+                    locationId={locationId}
                   />
                 </div>
               </section>
@@ -417,6 +425,7 @@ const ShoppingStoreOfficialByLocation = () => {
                             filterToggle={filterToggle}
                             setFilterToggle={setFilterToggle}
                             setPageId={setPageId}
+                            locationId={locationId}
                           />
                         </div>
                       )}
