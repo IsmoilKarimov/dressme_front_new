@@ -234,7 +234,9 @@ function CategoryForType() {
   }, [screenSize]);
 
   // console.log(filterData, 'category---filterData');
-
+  useEffect(() => {
+    setFilterToggle(false)
+  }, [dressInfo?.mainSubRegionId, dressInfo?.mainRegionId,])
   return (
     <div className="w-full">
       {loading ? (
@@ -255,7 +257,7 @@ function CategoryForType() {
             />
           </section>
 
-          {filterData?.sections?.length > 0 ? (
+          {/* {filterData?.sections?.length > 0 ? ( */}
             <section className="flex justify-between mb-10">
               <section
                 onClick={() => {
@@ -364,11 +366,13 @@ function CategoryForType() {
                   </div>
                 )}
               </article>
-            </section>) : (
+            </section>
+            {/* )
+             : (
             <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[50vh] ">
               {t("nothing_found")}
             </div>
-          )}
+          )} */}
         </main>
       )}
     </div>

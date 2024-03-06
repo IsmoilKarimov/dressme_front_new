@@ -93,6 +93,12 @@ function FilterList({
         }
     }, [filterToggle, openMobileFilter, dressInfo?.mainRegionId, dressInfo?.mainSubRegionId])
 
+    useEffect(() => {
+      if (getFilter) {
+        setGetFilter()
+      }
+    }, [dressInfo?.mainRegionId, dressInfo?.mainSubRegionId])
+    
     const [genderCategory, setGenderCategory] = useState([
         {
             id: 1,
