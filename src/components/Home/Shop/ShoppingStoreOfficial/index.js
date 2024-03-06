@@ -38,7 +38,9 @@ const ShoppingStoreOfficial = () => {
   const [newFilterParamasIdCopy, setNewFilterParamasIdCopy] = useState();
   const toggleFilterOpen = React.useCallback(() => setFilterToggle(true), []);
   const toggleFilterClose = React.useCallback(() => setFilterToggle(false), []);
-
+  useEffect(() => {
+    setFilterToggle(false)
+  }, [dressInfo?.mainSubRegionId, dressInfo?.mainRegionId,])
   useEffect(() => {
     if (dressInfo?.openShopIdFilter) {
       document.body.style.overflow = "hidden";
