@@ -23,19 +23,19 @@ const ShoppingStoreOfficialTop = ({
   toggleFilterLeftOpen,
   toggleFilterLeftClose,
   filterLeftAction,
-  setOpenMobileFilter
+  setOpenMobileFilter,
+  setLocationId,
+  locationId
 }) => {
   const [openLocationModal, setOpenLocationModal] = useState(false);
 
   const [locationList, setLocationList] = useState([]);
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [selectLocation, setSelectLocation] = useState(
-    dressInfo?.locationIdParams
-  );
+  const [selectLocation, setSelectLocation] = useState(null);
 
   useEffect(() => {
-    setSelectLocation(dressInfo?.locationIdParams);
-  }, [dressInfo?.locationIdParams]);
+    setSelectLocation(locationId);
+  }, [locationId]);
 
   // For DropUp
 
@@ -78,13 +78,14 @@ const ShoppingStoreOfficialTop = ({
     if (selectLocation) {
       setDressInfo({
         ...dressInfo,
-        locationIdParams: selectLocation,
+        // locationIdParams: selectLocation,
         productShowSelectedLocation: checkedData,
       });
+      setLocationId(selectLocation)
     }
     setOpenLocationModal(false);
   };
-  
+
   const [searchMarketName, setSearchMarketName] = useState();
   function getSearchClick() {
     setDressInfo({ ...dressInfo, mainSearchNameshopLocation: searchMarketName });
@@ -175,7 +176,7 @@ const ShoppingStoreOfficialTop = ({
                   </div>
 
                   {filteredData?.shop?.approved_shop_locations
-                    ?.filter((e) => e?.id === dressInfo?.locationIdParams)
+                    ?.filter((e) => e?.id === locationId)
                     ?.map((item) => {
                       return (
                         <p className="text-sm font-AeonikProRegular text-borderWinter">
@@ -258,7 +259,7 @@ const ShoppingStoreOfficialTop = ({
                     <LocationColoursIcons colors={"#007DCA"} />
                   </div>
                   {filteredData?.shop?.approved_shop_locations
-                    ?.filter((e) => e?.id === dressInfo?.locationIdParams)
+                    ?.filter((e) => e?.id === locationId)
                     ?.map((item) => {
                       return (
                         <p className="text-sm font-AeonikProRegular text-borderWinter">

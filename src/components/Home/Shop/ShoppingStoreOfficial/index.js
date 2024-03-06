@@ -213,10 +213,14 @@ const ShoppingStoreOfficial = () => {
           setFilteredData(res?.data);
           setDressInfo({ ...dressInfo, filterDataProductList: res?.data })
           setFilteredError(false)
+          // console.log(res?.data, 'category---res?.data');
+
           // console.log(filteredData,'11111-filteredData1111');
         }
       })
       .catch((res) => {
+        // console.log(res, 'category---error');
+
         if (res?.response?.status === 422) {
           refreshLocationId();
           setFilteredData(null)
@@ -294,6 +298,10 @@ const ShoppingStoreOfficial = () => {
     { label_uz: 'section', label_ru: 'Магазины', url: '/shops' },
     { label_uz: params?.id, label_ru: params?.id, url: '/shops/:id' },
   ];
+  // console.log(filteredData, 'category---filteredData');
+  // console.log(dressInfo?.locationIdParams, 'category---dressInfo?.locationIdParams');
+  // console.log('category-------------------------------------');
+
   return (
     <div className="w-full">
       {loading ? (
@@ -308,11 +316,11 @@ const ShoppingStoreOfficial = () => {
             <section className="w-full border-b border-searchBgColor py-3 md:pt-8 md:pb-5">
               <NewBreadCrump items={breadcrumbItems} />
             </section>
-            {filteredError ?
-              <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[50vh] ">
+            {dressInfo?.mainSubRegionId && !dressInfo?.locationIdParams ?
+              <div className="w-full flex items-center  justify-center font-AeonikProMedium text-2xl h-[50vh] ">
                 Ничего не найдено
               </div> :
-              <div className="w-full">
+              <div className="w-full ">
                 <section className="w-full border-searchBgColor">
                   <ShoppingStoreOfficialTop
                     clickButtons={clickButtons}
@@ -395,14 +403,14 @@ const ShoppingStoreOfficial = () => {
                             className={` ${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
                               } w-full h-full px-[10px] md:px-0`}
                           >
-                            {filteredData ? (
+                            {filteredData?.products?.data?.length > 0 ? (
                               <ShopOfficialCard
                                 filteredData={filteredData}
                                 setPageId={setPageId}
                                 paramsId={newId}
                               />
                             ) : (
-                              <div className="w-full flex items-center justify-center font-AeonikProMedium text-lg md:text-2xl h-fit md:h-[100vh] ">
+                              <div className="w-full flex items-center justify-center font-AeonikProMedium text-lg md:text-2xl h-fit md:h-[60vh] ">
                                 Ничего не найдено
                               </div>
                             )}
