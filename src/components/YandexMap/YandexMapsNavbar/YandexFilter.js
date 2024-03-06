@@ -100,6 +100,7 @@ export default function YandexFilter({ getMapsInfo }) {
     dressInfo?.yandexGenderId,
     dressInfo?.yandexCategoryWear,
     dressInfo?.yandexCategoryBrand,
+    getMapsInfo?.budget
   ]);
 
   const sendPriceList = () => {
