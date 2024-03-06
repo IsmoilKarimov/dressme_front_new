@@ -319,8 +319,8 @@ function BottomHeader() {
         </div>
       )}
 
-      <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto ">
-        <div className="mainCategory !w-[195px] relative gap-x-1 pl-1 h-[44px] border-searchBgColor border  rounded-[12px] bg-btnBgColor  overflow-hidden flex items-center  cursor-pointer select-none group  ">
+      <section className="max-w-[1280px] w-[100%] flex justify-between items-center m-auto ">
+        <div className="mainCategory w-[180px] relative gap-x-1 pl-1 h-[44px] border-searchBgColor border  rounded-[12px] bg-btnBgColor  overflow-hidden flex items-center  cursor-pointer select-none group  ">
           <span className="absolute left-2">
             <ClothesIcons colors={"#000"} />
           </span>
@@ -364,7 +364,7 @@ function BottomHeader() {
         </div>
 
         <button
-          className="w-[190px] gap-x-1 px-2 h-[44px] rounded-xl bg-btnBgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group ml-2"
+          className="w-[180px] gap-x-1 px-2 h-[44px] rounded-xl bg-btnBgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group ml-2"
           // onClick={openPrizeModal}
           onClick={() => {
             setPriceModalOpen(true);
