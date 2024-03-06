@@ -2,9 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { ArrowTopIcons, MenuCloseIcons } from "../assets/icons";
 import { HomeMainDataContext } from "./HomeMainData";
 import { dressMainData } from "./ContextMenu";
+import { LanguageDetectorDress } from "../language/LanguageItems";
+import { useTranslation } from "react-i18next";
 
 function RegionList({ onClick }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const { i18n, t } = useTranslation('header')
+
   const [state, setState] = useState({
     regionId: dressInfo?.mainRegionId,
     subRegionId: dressInfo?.mainSubRegionId,
@@ -89,7 +94,7 @@ function RegionList({ onClick }) {
         >
           <div className="w-full flex items-center justify-between my-3 md:my-0">
             <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">
-              Выберите регион
+              {t("selectRegion")}
             </span>
             <span
               className="select-none cursor-pointer"
@@ -118,21 +123,19 @@ function RegionList({ onClick }) {
                         linkedFrom: "mainPageProductList",
                       });
                     }}
-                    className={`${
-                      data.id || data.sub_regions.id ? "" : ""
-                    } w-full h-fit `}
+                    className={`${data?.id || data?.sub_regions?.id ? "" : ""
+                      } w-full h-fit `}
                   >
                     <div
-                      className={`flex items-center ${
-                        data?.id == 2 ? "" : "opacity-50"
-                      } `}
+                      className={`flex items-center ${data?.id == 2 ? "" : "opacity-50"
+                        } `}
                     >
                       <div
                         onClick={
                           data?.id == 2
                             ? () => {
-                                accordionCityList(data?.id);
-                              }
+                              accordionCityList(data?.id);
+                            }
                             : null
                         }
                         className="w-full cursor-pointer flex items-center  border-b border-[#F0F0F0] "
@@ -171,23 +174,24 @@ function RegionList({ onClick }) {
                               }}
                             />
                             <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
-                              {data?.name_ru}
+                              {languageDetector?.typeLang === 'ru' && data?.name_ru}
+                              {languageDetector?.typeLang === 'uz' && data?.name_uz}
                             </span>
                           </label>
                         ) : (
                           <label className="w-fit cursor-pointer flex items-center">
                             <div className="w-[20px] h-[20px] border rounded-full cursor-pointer mr-3"></div>
                             <span className="text-[#303030] ml-1 text-lg not-italic font-AeonikProRegular">
-                              {data?.name_ru}
+                              {languageDetector?.typeLang === 'ru' && data?.name_ru}
+                              {languageDetector?.typeLang === 'uz' && data?.name_uz}
                             </span>
                           </label>
                         )}
                         <span
-                          className={`${
-                            activeIndex === data?.id
-                              ? "rotate-[-0deg] duration-300"
-                              : "rotate-[-180deg] duration-300"
-                          } ml-auto`}
+                          className={`${activeIndex === data?.id
+                            ? "rotate-[-0deg] duration-300"
+                            : "rotate-[-180deg] duration-300"
+                            } ml-auto`}
                         >
                           <ArrowTopIcons colors={"#a1a1a1"} />
                         </span>
@@ -195,11 +199,10 @@ function RegionList({ onClick }) {
                     </div>
                     <div
                       className={`w-full grid grid-cols-2 xs:grid-cols-3 duration-[400ms]
-                                ${
-                                  activeIndex == data?.id
-                                    ? "openAccardion"
-                                    : "CloseAccardion"
-                                }`}
+                                ${activeIndex == data?.id
+                          ? "openAccardion"
+                          : "CloseAccardion"
+                        }`}
                     >
                       {data?.sub_regions?.map((item, index) => {
                         return (
@@ -244,7 +247,8 @@ function RegionList({ onClick }) {
                                 }}
                               />
                               <span className="text-[#303030]  cursor-pointer text-[15px] not-italic font-AeonikProRegular">
-                                {item?.name_ru}
+                                {languageDetector?.typeLang === 'ru' && item?.name_ru}
+                                {languageDetector?.typeLang === 'uz' && item?.name_uz}
                               </span>
                             </label>
                           </div>
@@ -313,21 +317,19 @@ function RegionList({ onClick }) {
                         linkedFrom: "mainPageProductList",
                       });
                     }}
-                    className={`${
-                      data.id || data.sub_regions.id ? "" : ""
-                    } w-full h-fit `}
+                    className={`${data.id || data.sub_regions.id ? "" : ""
+                      } w-full h-fit `}
                   >
                     <div
-                      className={`flex items-center ${
-                        data?.id == 2 ? "" : "opacity-50"
-                      } `}
+                      className={`flex items-center ${data?.id == 2 ? "" : "opacity-50"
+                        } `}
                     >
                       <div
                         onClick={
                           data?.id == 2
                             ? () => {
-                                accordionCityList(data?.id);
-                              }
+                              accordionCityList(data?.id);
+                            }
                             : null
                         }
                         className="w-full cursor-pointer flex items-center  border-b border-[#F0F0F0] "
@@ -378,11 +380,10 @@ function RegionList({ onClick }) {
                           </label>
                         )}
                         <span
-                          className={`${
-                            activeIndex === data?.id
-                              ? "rotate-[-0deg] duration-300"
-                              : "rotate-[-180deg] duration-300"
-                          } ml-auto`}
+                          className={`${activeIndex === data?.id
+                            ? "rotate-[-0deg] duration-300"
+                            : "rotate-[-180deg] duration-300"
+                            } ml-auto`}
                         >
                           <ArrowTopIcons colors={"#a1a1a1"} />
                         </span>
@@ -390,11 +391,10 @@ function RegionList({ onClick }) {
                     </div>
                     <div
                       className={`w-full grid grid-cols-2 xs:grid-cols-3 duration-[400ms]
-                              ${
-                                activeIndex == data?.id
-                                  ? "openAccardion"
-                                  : "CloseAccardion"
-                              } `}
+                              ${activeIndex == data?.id
+                          ? "openAccardion"
+                          : "CloseAccardion"
+                        } `}
                     >
                       {data?.sub_regions?.map((item) => {
                         return (

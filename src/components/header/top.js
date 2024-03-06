@@ -162,7 +162,9 @@ const TopHeader = () => {
                     ?.map((item) => {
                       return (
                         <div key={item?.id}>
-                          <span className="">{item?.name_ru}</span>
+                          <span className="">
+                            {languageDetector?.typeLang === 'ru' && item?.name_ru}
+                            {languageDetector?.typeLang === 'uz' && item?.name_uz}</span>
                           {item?.sub_regions
                             ?.filter((e) => e?.id === dressInfo?.mainSubRegionId)
                             ?.map((data) => {
@@ -170,7 +172,8 @@ const TopHeader = () => {
                                 <span key={data?.id} className="  ">
                                   ,{" "}
                                   <span className=" ml-[1px]">
-                                    {data?.name_ru}
+                                    {languageDetector?.typeLang === 'ru' && data?.name_ru}
+                                    {languageDetector?.typeLang === 'uz' && data?.name_uz}
                                   </span>
                                 </span>
                               );
