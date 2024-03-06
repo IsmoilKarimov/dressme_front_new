@@ -11,8 +11,11 @@ import {
   MarketIcons,
   UploadIcons,
 } from "../../assets/icons";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+
+  const { t } = useTranslation("footer")
   const dateObj = new Date();
 
   return (
@@ -46,7 +49,7 @@ const Footer = () => {
                     <img src={BrandBlack} alt="logo" className="w-fit" />
                   </Link>
                   <figcaption className="text-textColor mb-[18px] text-sm hidden md:flex">
-                    Торговая площадка одежды
+                    {t("text")}
                   </figcaption>
                 </figure>
 
@@ -57,7 +60,7 @@ const Footer = () => {
                 >
                   <UploadIcons />
                   <p className="text-base font-AeonikProMedium leading-4 ml-[12.5px] mr-[32.37px]">
-                    Есть вопросы?
+                    {t("have_questions")}?
                   </p>
                   <span className="rotate-90 ">
                     <ArrowTopIcons colors={"#000"} />
@@ -71,12 +74,12 @@ const Footer = () => {
               <article className="w-full font-AeonikProMedium">
                 <section className="w-full flex-col md:flex-row flex items-end justify-between text-[13px]">
                   <div className="w-full md:w-fit text-center md:text-start my-3 md:mb-0">
-                    Created by Dishkan (September 25, 2022, 8:16 PM)
+                    {t("created_by")} ({t("september")} 25, 2022, {t("pm")})
                   </div>
                   {/* --------------------- Menu ------------------- */}
                   <div className="w-full md:w-fit hidden md:flex items-center flex-col">
                     <h4 className="font-AeonikProMedium w-full text-center cursor-pointer text-base ss:mb-2 md:mb-[10px]">
-                      Меню
+                      {t("menu")}
                     </h4>
                     <ul className="flex flex-row text-sm">
                       <article className="flex flex-row basis-1/3 gap-x-4 md:gap-x-0">
@@ -84,7 +87,7 @@ const Footer = () => {
                           <Link to="/shops" className="flex items-center">
                             <MarketIcons colors={"#000"} />
                             <span className="font-AeonikProRegular ml-2">
-                              Магазины
+                              {t("shops")}
                             </span>
                           </Link>
                         </li>
@@ -92,7 +95,7 @@ const Footer = () => {
                           <Link to="/locations" className="flex items-center">
                             <MapIcons colors={"#000"} />
                             <span className="font-AeonikProRegular ml-2">
-                              Карта
+                              {t("map")}
                             </span>
                           </Link>
                         </li>
@@ -103,7 +106,7 @@ const Footer = () => {
                           >
                             <HouseStatisticIcons colors={"#000"} />
                             <span className="font-AeonikProRegular ml-2">
-                              Бизнес
+                              {t("business")}
                             </span>
                           </Link>
                         </li>
@@ -115,7 +118,7 @@ const Footer = () => {
                     <span className="ml-1">
                       <FooterOriginalIcons />
                     </span>
-                    <span className="md:ml-3">Все права защищены.</span>
+                    <span className="md:ml-3">{t("reserve")}.</span>
                   </article>
                 </section>
               </article>
