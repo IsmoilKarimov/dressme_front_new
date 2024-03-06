@@ -8,6 +8,7 @@ import { CalourCard } from "../../../../../../assets";
 import { useNavigate } from "react-router-dom";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData";
+import { useTranslation } from "react-i18next";
 
 export default function ShopOfficialCard({
   filteredData,
@@ -16,6 +17,8 @@ export default function ShopOfficialCard({
 }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
+
+  const { t } = useTranslation("shops")
 
   // Main data context -----------------
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
@@ -139,7 +142,7 @@ export default function ShopOfficialCard({
                           </p>
                           (
                           <p className="ss:hidden lg:block md:mr-1 md:text-[11px]">
-                            голосов:
+                            {t("votes")}:
                           </p>
                           {data?.rated_users_count || 0})
                         </article>
@@ -161,7 +164,7 @@ export default function ShopOfficialCard({
                             ?.split(",")
                             .join(" ")}
                           {"  "}
-                          сум
+                          {t("currency")}
                         </p>
                         <p className="w-full text-start m-0 p-0 text-[12px] mb-[4px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
                           {parseInt(data?.cost?.price)
@@ -169,7 +172,7 @@ export default function ShopOfficialCard({
                             ?.split(",")
                             .join(" ")}
                           {"  "}
-                          сум
+                          {t("currency")}
                         </p>
                       </figure>
                     ) : (
@@ -182,7 +185,7 @@ export default function ShopOfficialCard({
                           ?.split(",")
                           .join(" ")}
                         {"  "}
-                        сум
+                        {t("currency")}
                       </p>
                     )}
                   </article>

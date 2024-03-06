@@ -8,10 +8,13 @@ import {
 } from "../../../../../assets/icons";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import LoadingNetwork from "../../../../Loading/LoadingNetwork";
+import { useTranslation } from "react-i18next";
 
 const ShoppingBrands = ({ loading, setLoading }) => {
   const navigate = useNavigate();
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+
+  const { t } = useTranslation("shops")
 
   const goDetail = (id, name) => {
     // console.log(name?.split(' ')?.join('-'), "name");
@@ -81,8 +84,9 @@ const ShoppingBrands = ({ loading, setLoading }) => {
                         </p>
                         <div className="flex items-center md:justify-between">
                           <div
-                            className={`${data?.overall_rating ? "block" : "hidden"
-                              } not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex flex-wrap items-center text-sm`}
+                            className={`${
+                              data?.overall_rating ? "block" : "hidden"
+                            } not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex flex-wrap items-center text-sm`}
                           >
                             <div className="flex items-center">
                               <div className="flex items-center -mt-1 mr-[6px] md:mr-2">
@@ -93,10 +97,18 @@ const ShoppingBrands = ({ loading, setLoading }) => {
                               </p>
                             </div>
                             <div className="flex whitespace-nowrap">
-                              {data?.rated_users_count && <p className="flex items-center text-setTexOpacity font-AeonikProRegular whitespace-nowrap">
-                                ( <span className="flex gap-x-1"><span className="md:flex hidden">голосов:</span>{data?.rated_users_count} </span> ){" "}
-                              </p>}
-
+                              {data?.rated_users_count && (
+                                <p className="flex items-center text-setTexOpacity font-AeonikProRegular whitespace-nowrap">
+                                  ({" "}
+                                  <span className="flex gap-x-1">
+                                    <span className="md:flex hidden">
+                                      {t("votes")}:
+                                    </span>
+                                    {data?.rated_users_count}{" "}
+                                  </span>{" "}
+                                  ){" "}
+                                </p>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -111,18 +123,20 @@ const ShoppingBrands = ({ loading, setLoading }) => {
                       </div>
                       <div className="flex items-center md:ml-[88px] md:mt-0">
                         <div
-                          className={`${data.gender_id === "2"
-                            ? "hidden"
-                            : "flex w-9 h-9 md:w-12 md:h-12 items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white rounded-lg mr-1"
-                            } `}
+                          className={`${
+                            data.gender_id === "2"
+                              ? "hidden"
+                              : "flex w-9 h-9 md:w-12 md:h-12 items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white rounded-lg mr-1"
+                          } `}
                         >
                           <ManGenIcons />
                         </div>
                         <div
-                          className={`${data.gender_id === "1"
-                            ? "hidden"
-                            : "flex items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white w-9 h-9 md:w-12 md:h-12 rounded-lg"
-                            } `}
+                          className={`${
+                            data.gender_id === "1"
+                              ? "hidden"
+                              : "flex items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white w-9 h-9 md:w-12 md:h-12 rounded-lg"
+                          } `}
                         >
                           <WomanGenIcons />
                         </div>
@@ -134,10 +148,10 @@ const ShoppingBrands = ({ loading, setLoading }) => {
                         goDetail(data?.id, data?.name);
                       }}
                       className={
-                        "w-full md:w-fit flex items-center justify-center font-AeonikProMedium text-base text-SignInBgColor border border-searchBgColor md:border-SignInBgColor bg-[#E8F5FD] md:bg-white mt-6 md:mt-0 md:ml-[117px] py-2 md:py-1 md:px-3 md:hover:bg-SignInBgColor duration-300 ease-out md:hover:text-white rounded-lg"
+                        "w-full md:w-[400px] flex truncate items-center justify-center font-AeonikProMedium text-base text-SignInBgColor border border-searchBgColor md:border-SignInBgColor bg-[#E8F5FD] md:bg-white mt-6 md:mt-0 md:ml-[117px] py-2 md:py-1 md:px-3 md:hover:bg-SignInBgColor duration-300 ease-out md:hover:text-white rounded-lg"
                       }
                     >
-                      Подробнее
+                      {t("more_details")}
                     </button>
                   </div>
                 );
@@ -148,7 +162,7 @@ const ShoppingBrands = ({ loading, setLoading }) => {
                   <LoadingNetwork />
                 ) : (
                   <span className="w-full flex items-center justify-center font-AeonikProMedium text-2xl md:mt-[100px]">
-                    Ничего не найдено
+                    {t("nothing_found")}
                   </span>
                 )}
               </div>
@@ -167,13 +181,15 @@ const ShoppingBrands = ({ loading, setLoading }) => {
                             setPaginationFunc(item?.url);
                           }
                         }}
-                        className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${item?.active
-                          ? "bg-fullBlue text-white"
-                          : "hover:bg-searchBgColor"
-                          } mx-[5px] flex items-center justify-center  ${item?.url
+                        className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${
+                          item?.active
+                            ? "bg-fullBlue text-white"
+                            : "hover:bg-searchBgColor"
+                        } mx-[5px] flex items-center justify-center  ${
+                          item?.url
                             ? "cursor-pointer"
                             : "opacity-70 cursor-not-allowed"
-                          }`}
+                        }`}
                       >
                         {item?.label}
                       </li>

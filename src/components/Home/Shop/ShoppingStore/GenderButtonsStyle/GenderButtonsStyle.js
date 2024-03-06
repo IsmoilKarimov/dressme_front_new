@@ -5,6 +5,7 @@ import {
   ManWomanGen,
   WomanGenIcons,
 } from "../../../../../assets/icons";
+import { useTranslation } from "react-i18next";
 
 function GenderButtonsStyle({ handleGetId, getAllShops, setGetAllShops }) {
   const [genderCategory, setGenderCategory] = useState([
@@ -27,6 +28,8 @@ function GenderButtonsStyle({ handleGetId, getAllShops, setGetAllShops }) {
       icon: <ChildGenIcon />,
     },
   ]);
+
+  const { t } = useTranslation("shops")
 
   function onGetId(id) {
     handleGetId({
@@ -58,7 +61,9 @@ function GenderButtonsStyle({ handleGetId, getAllShops, setGetAllShops }) {
         } w-[32%] flex items-center justify-center active:scale-95 h-11 text-[15px] text-center font-AeonikProRegular`}
       >
         <ManWomanGen />
-        <span className="text-base ml-3 font-AeonikProRegular">Все</span>
+        <span className="text-base ml-3 font-AeonikProRegular">
+          {t("shop_genderAll_isSelected")}
+        </span>
       </button>
       <span className="text-searchBgColor flex items-center">|</span>
 

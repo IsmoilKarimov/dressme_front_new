@@ -11,10 +11,13 @@ import axios from "axios";
 import YandexLocationShopFilter from "./ShoppingStoreCategory/YandexLocationShop/YandexLocationShopFilter";
 import LoadingNetwork from "../../../Loading/LoadingNetwork";
 import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
+import { useTranslation } from "react-i18next";
 
 const ShoppingStoreOfficial = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
+
+  const { t } = useTranslation("shops")
 
   const [openTabComment, setOpenTabComment] = useState(false);
   const [openTabLocation, setOpenTabLocation] = useState(false);
@@ -116,14 +119,6 @@ const ShoppingStoreOfficial = () => {
             ...dressInfo,
             locationIdParams: foundElement?.id,
           });
-          // let index = item?.approved_shop_locations.findIndex(function (
-          //   element
-          // ) {
-          //   return Number(element.sub_region_id) === dressInfo?.mainSubRegionId;
-          // });
-          // if (index === -1) {
-          //   navigate("/");
-          // }
         }
         if (!dressInfo?.mainSubRegionId) {
           setDressInfo({
@@ -139,7 +134,6 @@ const ShoppingStoreOfficial = () => {
     refreshLocationId();
   }, [newFilterParamasId, dressInfo?.mainSubRegionId, dressInfo?.mainRegionId, data?.getMainProductCard?.shops]);
 
-  // console.log(dressInfo?.shopsData?.shops, 'dressInfo?.shopsData?.shops?.data');
   useEffect(() => {
     data?.getMainProductCard?.shops?.map(item => {
       if (newId?.split('-')?.join(' ')?.includes(item?.name?.toLowerCase())) {
@@ -215,14 +209,9 @@ const ShoppingStoreOfficial = () => {
           setFilteredData(res?.data);
           setDressInfo({ ...dressInfo, filterDataProductList: res?.data })
           setFilteredError(false)
-          // console.log(res?.data, 'category---res?.data');
-
-          // console.log(filteredData,'11111-filteredData1111');
         }
       })
       .catch((res) => {
-        // console.log(res, 'category---error');
-
         if (res?.response?.status === 422) {
           refreshLocationId();
           setFilteredData(null)
@@ -294,15 +283,11 @@ const ShoppingStoreOfficial = () => {
     };
   }, [screenSize]);
 
-  // console.log(params, 'params');
   const breadcrumbItems = [
     { label_uz: 'Home', label_ru: 'Главная', url: '/' },
     { label_uz: 'section', label_ru: 'Магазины', url: '/shops' },
     { label_uz: params?.id, label_ru: params?.id, url: '/shops/:id' },
   ];
-  // console.log(filteredData, 'category---filteredData');
-  // console.log(dressInfo?.locationIdParams, 'category---dressInfo?.locationIdParams');
-  // console.log('category-------------------------------------');
 
   return (
     <div className="w-full">
@@ -318,10 +303,11 @@ const ShoppingStoreOfficial = () => {
             <section className="w-full border-b border-searchBgColor py-3 md:pt-8 md:pb-5">
               <NewBreadCrump items={breadcrumbItems} />
             </section>
-            {dressInfo?.mainSubRegionId && !dressInfo?.locationIdParams ?
+            {dressInfo?.mainSubRegionId && !dressInfo?.locationIdParams ? (
               <div className="w-full flex items-center  justify-center font-AeonikProMedium text-2xl h-[50vh] ">
-                Ничего не найдено
-              </div> :
+                {t("nothing_found")}
+              </div>
+            ) : (
               <div className="w-full ">
                 <section className="w-full border-searchBgColor">
                   <ShoppingStoreOfficialTop
@@ -338,13 +324,15 @@ const ShoppingStoreOfficial = () => {
                   onClick={() => {
                     setOpenMobileFilter(false);
                   }}
-                  className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter ? "" : "hidden"
-                    }`}
+                  className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+                    openMobileFilter ? "" : "hidden"
+                  }`}
                 ></section>
                 {screenSize.width < 768 && (
                   <section
-                    className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
-                      }`}
+                    className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+                      openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+                    }`}
                   >
                     <div className="max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
                       <FilterList
@@ -372,15 +360,17 @@ const ShoppingStoreOfficial = () => {
                   <div className="w-full flex flex-col items-center justify-center">
                     {/* Products Section */}
                     <article
-                      className={`${openTabComment || openTabLocation ? "hidden" : "block"
-                        } w-full `}
+                      className={`${
+                        openTabComment || openTabLocation ? "hidden" : "block"
+                      } w-full `}
                     >
                       <section className="w-[100%] h-fit">
                         <section className="w-full flex flex-gap-6 justify-between md:my-10 mt-3 mb-20">
                           {screenSize.width >= 768 && (
                             <div
-                              className={`${filterToggle ? "md:block" : "md:hidden"
-                                } hidden md:w-[22%] h-full ss:px-4 md:px-0`}
+                              className={`${
+                                filterToggle ? "md:block" : "md:hidden"
+                              } hidden md:w-[22%] h-full ss:px-4 md:px-0`}
                             >
                               <FilterList
                                 paramsId={newFilterParamasId}
@@ -402,8 +392,9 @@ const ShoppingStoreOfficial = () => {
                           )}
 
                           <div
-                            className={` ${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-                              } w-full h-full px-[10px] md:px-0`}
+                            className={` ${
+                              filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+                            } w-full h-full px-[10px] md:px-0`}
                           >
                             {filteredData?.products?.data?.length > 0 ? (
                               <ShopOfficialCard
@@ -413,7 +404,7 @@ const ShoppingStoreOfficial = () => {
                               />
                             ) : (
                               <div className="w-full flex items-center justify-center font-AeonikProMedium text-lg md:text-2xl h-fit md:h-[60vh] ">
-                                Ничего не найдено
+                                {t("nothing_found")}
                               </div>
                             )}
                           </div>
@@ -423,8 +414,9 @@ const ShoppingStoreOfficial = () => {
 
                     {/* Comment Section For Shopping Page */}
                     <div
-                      className={`${openTabComment ? "block" : "hidden"
-                        } w-full pb-[88px] `}
+                      className={`${
+                        openTabComment ? "block" : "hidden"
+                      } w-full pb-[88px] `}
                     >
                       <ShowPageComment
                         filteredData={filteredData}
@@ -434,8 +426,9 @@ const ShoppingStoreOfficial = () => {
 
                     {/* Map Section */}
                     <div
-                      className={`${openTabLocation && !openTabComment ? "block" : "hidden"
-                        } w-full text-3xl px-4 pb-[88px]`}
+                      className={`${
+                        openTabLocation && !openTabComment ? "block" : "hidden"
+                      } w-full text-3xl px-4 pb-[88px]`}
                     >
                       <button
                         onClick={() => {
@@ -451,7 +444,7 @@ const ShoppingStoreOfficial = () => {
                   </div>
                 </section>
               </div>
-            }
+            )}
           </div>
         </main>
       )}

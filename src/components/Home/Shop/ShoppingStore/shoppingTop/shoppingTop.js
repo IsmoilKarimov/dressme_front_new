@@ -4,6 +4,7 @@ import GenderButtonsStyle from "../GenderButtonsStyle/GenderButtonsStyle";
 import { MdClose } from "react-icons/md";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 const ShoppingTop = ({
   getAllShops,
   setGetAllShops,
@@ -16,6 +17,7 @@ const ShoppingTop = ({
   const [searchForLocation, setSearchForLocation] = useState([]);
   let location = useLocation();
 
+  const { t } = useTranslation("shops")
 
   function handleGetId(childData) {
     setGetGenderId(childData?.genderFilterId);
@@ -70,7 +72,7 @@ const ShoppingTop = ({
           setGetAllShops={setGetAllShops}
         />
 
-        <article className="w-full  md:hidden flex items-center mt-3 md:mt-0 md:justify-end">
+        <article className="w-full md:hidden flex items-center mt-3 md:mt-0 md:justify-end">
           <article className="w-[400px] h-12 flex items-center justify-between bg-btnBgColor md:bg-white rounded-xl overflow-hidden border border-searchBgColor font-AeonikProRegular text-base">
             <div className="w-[90%] h-full flex items-center justify-between">
               <input
@@ -80,7 +82,7 @@ const ShoppingTop = ({
                 onChange={handleChange}
                 onKeyDown={_handleKeyDownSearch}
                 className="w-full h-full px-3 text-sm md:text-base  bg-white"
-                placeholder="Искать магазины"
+                placeholder={t("search_lang")}
               />
               {searchMarketName && (
                 <button onClick={handleClear} className=" mr-1" type="button">
