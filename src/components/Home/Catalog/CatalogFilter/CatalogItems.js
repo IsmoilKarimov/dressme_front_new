@@ -15,10 +15,13 @@ import {
 import { MdClose } from "react-icons/md";
 import LoadingNetwork from "../../../Loading/LoadingNetwork";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
+import { useTranslation } from "react-i18next";
 
 export default function CatalogItems() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data] = useContext(HomeMainDataContext);
+
+  const { t } = useTranslation("catalog")
 
   const [filterData, setFilterData] = useState([]);
   const [pageId, setPageId] = useState(1);
@@ -118,9 +121,6 @@ export default function CatalogItems() {
     }
   }, [newId, data?.getMainProductCard?.shops]);
 
-
-  // console.log(newFilterParamasId, 'newFilterParamasId');
-  // console.log(newFilterParamasIdCopy, 'newFilterParamasIdCopy');
   const handleOpenCategories = (newOpen) => {
     setState({ ...state, opensports: newOpen });
   };
@@ -308,263 +308,287 @@ export default function CatalogItems() {
         <CatalogTopFilter paramId={paramId} />
       </section>
 
-
       {loading ? (
         <div className="flex items-center justify-center w-full h-full ">
           <LoadingNetwork />
         </div>
       ) : (
         <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto ">
-          {filterData?.category_products?.data?.length > 0 ? <article className="w-[100%] h-fit ">
-            <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
-              <article className="w-[100%] h-fit md:mb-12 md:mt-[60px]">
-                <article className="w-full flex flex-col border-b md:border-none border-searchBgColor">
-                  <div className="relative w-full md:h-[90px] mt-6 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
-                    {/*  */}
-                    <div className="w-full md:w-fit flex h-[66px] md:h-fit items-center border md:border-none border-searchBgColor rounded-b-lg">
-                      <div
-                        style={{
-                          backgroundImage: `url("${filterData?.category?.url_photo}")`,
-                          backgroundPosition: "center center",
-                          backgroundSize: "contain",
-                          backgroundRepeat: "no-repeat",
-                        }}
-                        className="absolute w-[80px] h-[80px] md:w-[120px] md:h-[160px] overflow-hidden  left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center  bg-white"
-                      ></div>
-                      <div className="flex items-center ml-[112px] md:ml-[210px]">
-                        <div className="text-[16px] md:text-2xl font-AeonikProMedium">
-                          {filterData?.category?.name_ru}
-                          <span className="text-[16px] text-setTexOpacity font-AeonikProRegular ml-2 pr-3 md:pr-0">
-                            ({filterData?.category_products?.total})
-                          </span>
+          {filterData?.category_products?.data?.length > 0 ? (
+            <article className="w-[100%] h-fit ">
+              <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
+                <article className="w-[100%] h-fit md:mb-12 md:mt-[60px]">
+                  <article className="w-full flex flex-col border-b md:border-none border-searchBgColor">
+                    <div className="relative w-full md:h-[90px] mt-6 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
+                      {/*  */}
+                      <div className="w-full md:w-fit flex h-[66px] md:h-fit items-center border md:border-none border-searchBgColor rounded-b-lg">
+                        <div
+                          style={{
+                            backgroundImage: `url("${filterData?.category?.url_photo}")`,
+                            backgroundPosition: "center center",
+                            backgroundSize: "contain",
+                            backgroundRepeat: "no-repeat",
+                          }}
+                          className="absolute w-[80px] h-[80px] md:w-[120px] md:h-[160px] overflow-hidden  left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center  bg-white"
+                        ></div>
+                        <div className="flex items-center ml-[112px] md:ml-[210px]">
+                          <div className="text-[16px] md:text-2xl font-AeonikProMedium">
+                            {filterData?.category?.name_ru}
+                            <span className="text-[16px] text-setTexOpacity font-AeonikProRegular ml-2 pr-3 md:pr-0">
+                              ({filterData?.category_products?.total})
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    {/*  */}
-                    <div className="w-full md:w-fit flex items-center justify-between md:mr-5  mt-6 md:mt-0">
-                      <div className="flex items-center">
-                        <NavLink className="hidden md:flex items-center text-[15px] font-AeonikProMedium mr-[22px]">
-                          По категории
-                        </NavLink>
-                        <div className="md:flex items-center hidden">
-                          <Popover
-                            open={state?.opensports}
-                            onOpenChange={handleOpenCategories}
-                            className="w-[260px] px-4 h-[52px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
-                            trigger="click"
-                            options={["Hide"]}
-                            placement="bottom"
-                            content={contentCategories}
-                          >
-                            <span className="text-[15px] font-AeonikProMedium">
-                              {filterData?.category?.name_ru}
-                            </span>
-                            <span>
-                              <BiChevronDown
-                                size={22}
-                                style={{ color: "#000" }}
-                                className={`${state?.opensports ? "rotate-[-180deg]" : ""
+                      {/*  */}
+                      <div className="w-full md:w-fit flex items-center justify-between md:mr-5  mt-6 md:mt-0">
+                        <div className="flex items-center">
+                          <NavLink className="hidden md:flex items-center text-[15px] font-AeonikProMedium mr-[22px]">
+                            {t("by_category")}
+                          </NavLink>
+                          <div className="md:flex items-center hidden">
+                            <Popover
+                              open={state?.opensports}
+                              onOpenChange={handleOpenCategories}
+                              className="w-[260px] px-4 h-[52px] rounded-lg bg-btnBgColor  border-searchBgColor border flex items-center justify-between cursor-pointer select-none group  "
+                              trigger="click"
+                              options={["Hide"]}
+                              placement="bottom"
+                              content={contentCategories}
+                            >
+                              <span className="text-[15px] font-AeonikProMedium">
+                                {filterData?.category?.name_ru}
+                              </span>
+                              <span>
+                                <BiChevronDown
+                                  size={22}
+                                  style={{ color: "#000" }}
+                                  className={`${
+                                    state?.opensports ? "rotate-[-180deg]" : ""
                                   } duration-200`}
-                              />
-                            </span>
-                          </Popover>
+                                />
+                              </span>
+                            </Popover>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </article>
-              </article>
-              {filterData?.section?.sub_sections ? (
-                <article className="w-full border-b border-searchBgColor">
-                  <article className="w-full hidden md:block mb-10">
-                    <ul className=" flex flex-row items-center flex-wrap gap-x-[14px] gap-y-[14px]">
-                      {filterData?.section?.sub_sections?.map(
-                        (catalog, index) => (
-                          <li
-                            key={index}
-                            className="text-[15px] font-AeonikProMedium"
-                          >
-                            <button className="focus:bg-borderWinter focus:text-white hover:bg-borderWinter hover:text-white bg-white border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]">
-                              {catalog.name_ru}
-                            </button>
-                          </li>
-                        )
-                      )}
-                    </ul>
                   </article>
                 </article>
-              ) : null}
-              <div className="w-full md:hidden border-b border-searchBgColor">
-                <article className="w-full md:hidden flex items-center justify-between mt-3 mb-3 px-3">
-                  <button
-                    onClick={() => setOpenMobileFilter(true)}
-                    className="h-[48px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
-                  >
-                    <SortIcons />
-                    <p className="ml-2 not-italic  font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
-                      Фильтр
-                    </p>
-                  </button>
-                  <button
-                    onClick={() => setOpenMobileCategory(true)}
-                    className="h-[48px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
-                  >
-                    <UnderSection />
-                    <p className="ml-2 not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%] cursor-pointer">
-                      По категории
-                    </p>
-                  </button>
-                </article>
-              </div>
-            </section>
-            <section className="w-full px-3 flex my-3 md:hidden">
-              <article className="w-full search flex items-center bg-white justify-between rounded-xl font-AeonikProMedium h-12  border border-searchBgColor ss:mt-3">
-                <div className="w-[87%] h-full flex items-center justify-between">
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Найти товар"
-                    value={searchMarketName}
-                    onChange={handleChange}
-                    className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[14px] leading-4 border-r border-searchBgColor"
-                  />
-                  {searchMarketName && (
-                    <button onClick={handleClear} className="  " type="button">
-                      <MdClose size={20} color={"#a1a1a1"} />
-                    </button>
-                  )}
-                </div>
-                <span
-                  onClick={() => getSearchClick()}
-                  className="w-[13%] h-full bg-btnBgColor rounded-r-xl active:scale-95 flex items-center justify-center "
-                >
-                  <SearchIcons />
-                </span>
-              </article>
-            </section>
-            <div className="w-full hidden md:flex items-center ">
-              <button
-                onClick={handleToggle}
-                type="button"
-                className="w-[175px] gap-x-2 h-[44px] border border-[#F2F2F2] flex items-center justify-center  bg-white rounded-lg active:scale-95	active:opacity-70"
-              >
-                <span className="">
-                  {" "}
-                  <SortIcons />
-                </span>
-                {filterToggle ? (
-                  <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-                    {" "}
-                    Скрыть
-                  </p>
-                ) : (
-                  <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-                    {" "}
-                    Фильтр
-                  </p>
-                )}
-              </button>
-            </div>
-
-            <section className="flex justify-between mb-10 ">
-              {/* FOR MOBILE VERSION */}
-              <section
-                onClick={() => {
-                  setOpenMobileCategory(false);
-                  setOpenMobileFilter(false);
-                }}
-                className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter || openMobileCategory ? "" : "hidden"
-                  }`}
-              ></section>
-              {screenSize.width < 768 && <section
-                className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"}`}
-              >
-                <div className="max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
-                  <FilterList
-                    paramsId={newFilterParamasId}
-                    genderId={genderId}
-                    discountId={discountId}
-                    categoryId={categoryId}
-                    getBadgePrice={getBadgePrice}
-                    setDataColor={setDataColor}
-                    dataColor={dataColor}
-                    getRatingList={getRatingList}
-                    outWearList={outWearList}
-                    underWearList={underWearList}
-                    footWearList={footWearList}
-                    filterToggle={filterToggle}
-                    setFilterToggle={setFilterToggle}
-                    openMobileFilter={openMobileFilter}
-                    setOpenMobileFilter={setOpenMobileFilter}
-                  />
-                </div>
-              </section>}
-              <section
-                className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[40vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
-                  }`}
-              >
-                <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between  mb-1 ">
-                  <p className="text-xl font-AeonikProMedium"> По категории</p>
-                  <button onClick={() => setOpenMobileCategory(false)}>
-                    <MenuCloseIcons colors={"#000"} />
-                  </button>
-                </section>
-                <div className="max-w-[440px] w-[100%] h-[380px] z-[114]  overflow-y-auto mx-auto bg-white  overflow-hidden ">
-                  {filterData?.categories?.map((data) => {
-                    return (
-                      <p
-                        key={data?.id}
-                        onClick={() => {
-                          handleCategories(data?.id, data?.name_uz);
-                          setOpenMobileCategory(false);
-                        }}
-                        className={`${Number(paramId?.id) === data?.id ? "bg-bgColor" : null
-                          } h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
-                      >
-                        {data?.name_ru}
+                {filterData?.section?.sub_sections ? (
+                  <article className="w-full border-b border-searchBgColor">
+                    <article className="w-full hidden md:block mb-10">
+                      <ul className=" flex flex-row items-center flex-wrap gap-x-[14px] gap-y-[14px]">
+                        {filterData?.section?.sub_sections?.map(
+                          (catalog, index) => (
+                            <li
+                              key={index}
+                              className="text-[15px] font-AeonikProMedium"
+                            >
+                              <button className="focus:bg-borderWinter focus:text-white hover:bg-borderWinter hover:text-white bg-white border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]">
+                                {catalog.name_ru}
+                              </button>
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    </article>
+                  </article>
+                ) : null}
+                <div className="w-full md:hidden border-b border-searchBgColor">
+                  <article className="w-full md:hidden flex items-center justify-between mt-3 mb-3 px-3">
+                    <button
+                      onClick={() => setOpenMobileFilter(true)}
+                      className="h-[48px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                    >
+                      <SortIcons />
+                      <p className="ml-2 not-italic  font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+                        {t("filter")}
                       </p>
-                    );
-                  })}
+                    </button>
+                    <button
+                      onClick={() => setOpenMobileCategory(true)}
+                      className="h-[48px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                    >
+                      <UnderSection />
+                      <p className="ml-2 not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+                        {t("by_category")}
+                      </p>
+                    </button>
+                  </article>
                 </div>
               </section>
+              <section className="w-full px-3 flex my-3 md:hidden">
+                <article className="w-full search flex items-center bg-white justify-between rounded-xl font-AeonikProMedium h-12  border border-searchBgColor ss:mt-3">
+                  <div className="w-[87%] h-full flex items-center justify-between">
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Найти товар"
+                      value={searchMarketName}
+                      onChange={handleChange}
+                      className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[14px] leading-4 border-r border-searchBgColor"
+                    />
+                    {searchMarketName && (
+                      <button
+                        onClick={handleClear}
+                        className="  "
+                        type="button"
+                      >
+                        <MdClose size={20} color={"#a1a1a1"} />
+                      </button>
+                    )}
+                  </div>
+                  <span
+                    onClick={() => getSearchClick()}
+                    className="w-[13%] h-full bg-btnBgColor rounded-r-xl active:scale-95 flex items-center justify-center "
+                  >
+                    <SearchIcons />
+                  </span>
+                </article>
+              </section>
+              <div className="w-full hidden md:flex items-center ">
+                <button
+                  onClick={handleToggle}
+                  type="button"
+                  className="w-[175px] gap-x-2 h-[44px] border border-[#F2F2F2] flex items-center justify-center  bg-white rounded-lg active:scale-95	active:opacity-70"
+                >
+                  <span className="">
+                    {" "}
+                    <SortIcons />
+                  </span>
+                  {filterToggle ? (
+                    <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                      {" "}
+                      {t("hide")}
+                    </p>
+                  ) : (
+                    <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                      {" "}
+                      {t("filter")}
+                    </p>
+                  )}
+                </button>
+              </div>
 
-              {/* FOR DESCTOP VERSION */}
-              {screenSize.width >= 768 && <article
-                className={`${filterToggle ? "md:block" : "md:hidden"
-                  } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0`}
-              >
-                <FilterList
-                  paramsId={newFilterParamasId}
-                  genderId={genderId}
-                  discountId={discountId}
-                  categoryId={categoryId}
-                  getBadgePrice={getBadgePrice}
-                  setDataColor={setDataColor}
-                  dataColor={dataColor}
-                  getRatingList={getRatingList}
-                  outWearList={outWearList}
-                  underWearList={underWearList}
-                  footWearList={footWearList}
-                  filterToggle={filterToggle}
-                  setFilterToggle={setFilterToggle}
-                />
-              </article>}
-              <article
-                className={`${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+              <section className="flex justify-between mb-10 ">
+                {/* FOR MOBILE VERSION */}
+                <section
+                  onClick={() => {
+                    setOpenMobileCategory(false);
+                    setOpenMobileFilter(false);
+                  }}
+                  className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+                    openMobileFilter || openMobileCategory ? "" : "hidden"
+                  }`}
+                ></section>
+                {screenSize.width < 768 && (
+                  <section
+                    className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+                      openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+                    }`}
+                  >
+                    <div className="max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
+                      <FilterList
+                        paramsId={newFilterParamasId}
+                        genderId={genderId}
+                        discountId={discountId}
+                        categoryId={categoryId}
+                        getBadgePrice={getBadgePrice}
+                        setDataColor={setDataColor}
+                        dataColor={dataColor}
+                        getRatingList={getRatingList}
+                        outWearList={outWearList}
+                        underWearList={underWearList}
+                        footWearList={footWearList}
+                        filterToggle={filterToggle}
+                        setFilterToggle={setFilterToggle}
+                        openMobileFilter={openMobileFilter}
+                        setOpenMobileFilter={setOpenMobileFilter}
+                      />
+                    </div>
+                  </section>
+                )}
+                <section
+                  className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[40vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+                    openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
+                  }`}
+                >
+                  <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between  mb-1 ">
+                    <p className="text-xl font-AeonikProMedium">
+                      {" "}
+                      {t("by_category")}
+                    </p>
+                    <button onClick={() => setOpenMobileCategory(false)}>
+                      <MenuCloseIcons colors={"#000"} />
+                    </button>
+                  </section>
+                  <div className="max-w-[440px] w-[100%] h-[380px] z-[114]  overflow-y-auto mx-auto bg-white  overflow-hidden ">
+                    {filterData?.categories?.map((data) => {
+                      return (
+                        <p
+                          key={data?.id}
+                          onClick={() => {
+                            handleCategories(data?.id, data?.name_uz);
+                            setOpenMobileCategory(false);
+                          }}
+                          className={`${
+                            Number(paramId?.id) === data?.id
+                              ? "bg-bgColor"
+                              : null
+                          } h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
+                        >
+                          {data?.name_ru}
+                        </p>
+                      );
+                    })}
+                  </div>
+                </section>
+
+                {/* FOR DESCTOP VERSION */}
+                {screenSize.width >= 768 && (
+                  <article
+                    className={`${
+                      filterToggle ? "md:block" : "md:hidden"
+                    } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0`}
+                  >
+                    <FilterList
+                      paramsId={newFilterParamasId}
+                      genderId={genderId}
+                      discountId={discountId}
+                      categoryId={categoryId}
+                      getBadgePrice={getBadgePrice}
+                      setDataColor={setDataColor}
+                      dataColor={dataColor}
+                      getRatingList={getRatingList}
+                      outWearList={outWearList}
+                      underWearList={underWearList}
+                      footWearList={footWearList}
+                      filterToggle={filterToggle}
+                      setFilterToggle={setFilterToggle}
+                    />
+                  </article>
+                )}
+                <article
+                  className={`${
+                    filterToggle ? "md:w-[77%]" : "md:w-[100%]"
                   } w-full h-full px-[10px] md:px-0`}
-              >
-
-                <CatalogCard paramsId={newId} filterData={filterData} setPageId={setPageId} />
-              </article>
-            </section>
-          </article> :
+                >
+                  <CatalogCard
+                    paramsId={newId}
+                    filterData={filterData}
+                    setPageId={setPageId}
+                  />
+                </article>
+              </section>
+            </article>
+          ) : (
             <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[50vh] ">
-              Ничего не найдено
+              {t("CI_nothing_found")}
             </div>
-          }
+          )}
         </section>
       )}
-
     </main>
   );
 }
