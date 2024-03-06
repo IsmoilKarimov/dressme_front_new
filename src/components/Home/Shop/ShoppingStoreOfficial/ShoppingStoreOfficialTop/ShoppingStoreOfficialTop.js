@@ -6,7 +6,7 @@ import {
   LocationColoursIcons,
   ManGenIcons,
   NoImg,
-  SearchIcons,
+  SearchIcons, 
   SortIcons,
   StarIcons,
   WomanGenIcons,

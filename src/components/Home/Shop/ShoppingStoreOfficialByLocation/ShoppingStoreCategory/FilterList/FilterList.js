@@ -30,13 +30,13 @@ function FilterList({
   setFilterToggle,
   openMobileFilter,
   setOpenMobileFilter,
-  locationId
+  
 }) {
   const { request } = useHttp();
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [getFilter, setGetFilter] = useState();
   const [getParamsTest, setgetParamsTest] = useState(
-    locationId
+    dressInfo?.locationIdParams
   );
 
   // ------------------------
@@ -79,7 +79,7 @@ function FilterList({
 
   function fetchGetAllData() {
     fetch(
-      `${url}/shops/filter/${dressInfo?.yandexGetMarketId}?location_id=${locationId}`
+      `${url}/shops/filter/${dressInfo?.yandexGetMarketId}?location_id=${dressInfo?.locationIdParams}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -109,11 +109,11 @@ function FilterList({
 
   useEffect(() => {
     if (getFilter) {
-      // setgetParamsTest(locationId)
+      // setgetParamsTest(dressInfo?.locationIdParams)
       setFilterToggle(false);
       setGetFilter();
     }
-  }, [locationId]);
+  }, [dressInfo?.locationIdParams]);
 
   const [genderCategory, setGenderCategory] = useState([
     {
@@ -390,11 +390,11 @@ function FilterList({
   };
 
   useEffect(() => {
-    if (locationId) {
+    if (dressInfo?.locationIdParams) {
       ClearAll();
       setGetFilter();
     }
-  }, [locationId]);
+  }, [dressInfo?.locationIdParams]);
   return (
     <div className={`w-full h-full py-5 px-3 border border-searchBgColor rounded-lg overflow-hidden `}
     >

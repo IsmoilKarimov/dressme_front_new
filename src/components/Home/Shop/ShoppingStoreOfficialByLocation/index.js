@@ -95,7 +95,7 @@ const ShoppingStoreOfficialByLocation = () => {
   const navigate = useNavigate();
   const paramsIDS = useParams();
   const newId = paramsIDS?.id.replace(":", "");
-  const [locationId, setLocationId] = useState(dressInfo?.locationIdParams)
+  const [data1, setdata1] = useState(null)
   const refreshLocationId = () => {
     data?.getMainProductCard?.shops?.map((item) => {
       if (item?.id === Number(newFilterParamasId)) {
@@ -108,9 +108,14 @@ const ShoppingStoreOfficialByLocation = () => {
               Number(element.sub_region_id) === dressInfo?.mainSubRegionId
             );
           });
-          
-          setLocationId(foundElement?.id)
-
+          setDressInfo({
+            ...dressInfo,
+            locationIdParams: foundElement?.id,
+          });
+          setdata1(foundElement?.id)
+          console.log('category---run1-', foundElement);
+          console.log('category---run1-', dressInfo?.locationIdParams);
+          console.log('category---run1---data1', data1);
           // let index = item?.approved_shop_locations.findIndex(function (
           //   element
           // ) {
@@ -124,8 +129,11 @@ const ShoppingStoreOfficialByLocation = () => {
         }
         if (!dressInfo?.mainSubRegionId) {
           console.log('category---run2');
-          setLocationId(item?.approved_shop_locations[0]?.id)
 
+          setDressInfo({
+            ...dressInfo,
+            locationIdParams: item?.approved_shop_locations[0]?.id,
+          });
         }
       }
     });
@@ -133,29 +141,29 @@ const ShoppingStoreOfficialByLocation = () => {
   };
 
   useEffect(() => {
-    if (data?.selectedLoc === "changed") {
-      refreshLocationId();
-    }
-  }, [newFilterParamasId, dressInfo?.mainSubRegionId, dressInfo?.mainRegionId, data?.getMainProductCard?.shops]);
+    refreshLocationId();
+
+  }, [dressInfo?.mainSubRegionId, dressInfo?.mainRegionId, data?.getMainProductCard?.shops]);
 
   useEffect(() => {
-    if (locationId)
-      refreshLocationId();
-  }, []);
+    refreshLocationId();
+  }, [dressInfo?.yandexGetMarketId]);
 
   useEffect(() => {
-    data?.getMainProductCard?.shops?.map((item) => {
-      if (newId?.split("-")?.join(" ")?.includes(item?.name?.toLowerCase())) {
-        setDressInfo({
-          ...dressInfo,
-          yandexGetMarketId: item?.id,
-        });
-        setNewFilterParamasId(item?.id);
-        if (!newFilterParamasIdCopy) {
-          setNewFilterParamasIdCopy(item?.id);
+    if (!dressInfo?.yandexGetMarketId) {
+      data?.getMainProductCard?.shops?.map((item) => {
+        if (newId?.split("-")?.join(" ")?.includes(item?.name?.toLowerCase())) {
+          setDressInfo({
+            ...dressInfo,
+            yandexGetMarketId: item?.id,
+          });
+          setNewFilterParamasId(item?.id);
+          if (!newFilterParamasIdCopy) {
+            setNewFilterParamasIdCopy(item?.id);
+          }
         }
-      }
-    });
+      });
+    }
   }, [data?.getMainProductCard?.shops]);
 
 
@@ -164,7 +172,7 @@ const ShoppingStoreOfficialByLocation = () => {
 
   const fetchGetAllData = () => {
     let params = new URLSearchParams();
-    params.append("location_id", locationId);
+    params.append("location_id", dressInfo?.locationIdParams);
     dressInfo?.mainSearchNameshopLocation &&
       params.append("keywords", dressInfo?.mainSearchNameshopLocation);
     getGenderId && params.append("gender", getGenderId);
@@ -246,7 +254,7 @@ const ShoppingStoreOfficialByLocation = () => {
   useEffect(() => {
     if (
       initalParamsId &&
-      initalParamsId !== locationId &&
+      initalParamsId !== dressInfo?.locationIdParams &&
       !getGenderId &&
       !getCategory &&
       !getRating &&
@@ -258,21 +266,22 @@ const ShoppingStoreOfficialByLocation = () => {
       !getFootWearList
     ) {
       fetchGetAllData();
+      // console.log(1,"CAUHPVGIUERPJVASEPR");
       setLoading(true);
     }
-    setInitalParamsId(locationId);
-  }, [locationId]);
+    setInitalParamsId(dressInfo?.locationIdParams);
+  }, [dressInfo?.locationIdParams]);
 
   useEffect(() => {
-    if (locationId) {
+    if (dressInfo?.locationIdParams) {
       if (!filteredData) {
         fetchGetAllData();
       }
     }
-  }, [locationId]);
+  }, [dressInfo?.locationIdParams]);
 
   useEffect(() => {
-    if (data?.getMainProductCard?.shops && locationId) {
+    if (data?.getMainProductCard?.shops && dressInfo?.locationIdParams) {
       fetchGetAllData();
       if (!filteredData) {
         setLoading(true);
@@ -291,12 +300,12 @@ const ShoppingStoreOfficialByLocation = () => {
     getRating,
     getRange?.min,
     getRange?.max,
-    // locationId,
+    // dressInfo?.locationIdParams,
     dressInfo?.mainSearchNameshopLocation,
     // data?.getMainProductCard?.shops
   ]);
-  // console.log("category-- - run1-- - data1", data1)
-  console.log(locationId, "category--- locationId");
+  console.log(dressInfo?.yandexGetMarketId, 'category---dressInfo?.yandexGetMarketId');
+  console.log(dressInfo?.locationIdParams, "category--- dressInfo?.locationIdParams");
   console.log(filteredData, 'category---filteredData');
   console.log(data?.selectedLoc, 'category---data?.selectedLoc ');
 
@@ -355,8 +364,6 @@ const ShoppingStoreOfficialByLocation = () => {
                 toggleFilterLeftClose={toggleFilterClose}
                 filterLeftAction={filterToggle}
                 setOpenMobileFilter={setOpenMobileFilter}
-                locationId={locationId}
-                setLocationId={setLocationId}
               />
             </section>
             {/* FOR MOBILE VERSION */}
@@ -390,7 +397,6 @@ const ShoppingStoreOfficialByLocation = () => {
                     setPageId={setPageId}
                     openMobileFilter={openMobileFilter}
                     setOpenMobileFilter={setOpenMobileFilter}
-                    locationId={locationId}
                   />
                 </div>
               </section>
@@ -425,7 +431,6 @@ const ShoppingStoreOfficialByLocation = () => {
                             filterToggle={filterToggle}
                             setFilterToggle={setFilterToggle}
                             setPageId={setPageId}
-                            locationId={locationId}
                           />
                         </div>
                       )}

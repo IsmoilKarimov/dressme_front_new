@@ -24,18 +24,19 @@ const ShoppingStoreOfficialTop = ({
   toggleFilterLeftClose,
   filterLeftAction,
   setOpenMobileFilter,
-  setLocationId,
-  locationId
+  
 }) => {
   const [openLocationModal, setOpenLocationModal] = useState(false);
 
   const [locationList, setLocationList] = useState([]);
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [selectLocation, setSelectLocation] = useState(null);
+  const [selectLocation, setSelectLocation] = useState(
+    dressInfo?.locationIdParams
+  );
 
   useEffect(() => {
-    setSelectLocation(locationId);
-  }, [locationId]);
+    setSelectLocation(dressInfo?.locationIdParams);
+  }, [dressInfo?.locationIdParams]);
 
   // For DropUp
 
@@ -78,14 +79,13 @@ const ShoppingStoreOfficialTop = ({
     if (selectLocation) {
       setDressInfo({
         ...dressInfo,
-        // locationIdParams: selectLocation,
+        locationIdParams: selectLocation,
         productShowSelectedLocation: checkedData,
       });
-      setLocationId(selectLocation)
     }
     setOpenLocationModal(false);
   };
-
+  
   const [searchMarketName, setSearchMarketName] = useState();
   function getSearchClick() {
     setDressInfo({ ...dressInfo, mainSearchNameshopLocation: searchMarketName });
@@ -176,7 +176,7 @@ const ShoppingStoreOfficialTop = ({
                   </div>
 
                   {filteredData?.shop?.approved_shop_locations
-                    ?.filter((e) => e?.id === locationId)
+                    ?.filter((e) => e?.id === dressInfo?.locationIdParams)
                     ?.map((item) => {
                       return (
                         <p className="text-sm font-AeonikProRegular text-borderWinter">
@@ -259,7 +259,7 @@ const ShoppingStoreOfficialTop = ({
                     <LocationColoursIcons colors={"#007DCA"} />
                   </div>
                   {filteredData?.shop?.approved_shop_locations
-                    ?.filter((e) => e?.id === locationId)
+                    ?.filter((e) => e?.id === dressInfo?.locationIdParams)
                     ?.map((item) => {
                       return (
                         <p className="text-sm font-AeonikProRegular text-borderWinter">
