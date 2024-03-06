@@ -353,7 +353,7 @@ function FilterList({
       {getFilter ? (
         <div className={` w-full flex-col items-center md:mb-[38px]`}>
           <section className="h-fit  md:hidden w-full bg-btnBgColor flex items-center  justify-between md:mb-0 mb-4 ">
-            <p className="text-lg font-AeonikProMedium">{t("FLfilters")}</p>
+            <p className="text-lg font-AeonikProMedium">{t("FL_filters")}</p>
             <button type="button" onClick={() => setOpenMobileFilter(false)}>
               <MenuCloseIcons colors={"#b5b5b5"} />
             </button>
@@ -371,7 +371,8 @@ function FilterList({
                   </p>
                   <p
                     className={`
-                      ${genderToggle ? "rotate-[180deg]" : ""
+                      ${
+                        genderToggle ? "rotate-[180deg]" : ""
                       } duration-300 ml-1`}
                   >
                     <ArrowTopIcons colors={"#000"} />
@@ -380,10 +381,9 @@ function FilterList({
               </article>
               {/* Field */}
               <article
-                className={`w-full overflow-hidden ${genderToggle
-                  ? "duration-300 h-0"
-                  : "duration-300 h-fit mt-5 "
-                  } duration-300 flex flex-col gap-y-4`}
+                className={`w-full overflow-hidden ${
+                  genderToggle ? "duration-300 h-0" : "duration-300 h-fit mt-5 "
+                } duration-300 flex flex-col gap-y-4`}
               >
                 <div className={`w-full flex flex-col items-center`}>
                   <div className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px] ">
@@ -392,10 +392,11 @@ function FilterList({
                         <button
                           key={data?.id}
                           onClick={() => handleGenderCheck(data?.id)}
-                          className={`${selectedGender === data?.id
-                            ? "bg-fullBlue text-white"
-                            : "bg-bgCategory text-black"
-                            } 
+                          className={`${
+                            selectedGender === data?.id
+                              ? "bg-fullBlue text-white"
+                              : "bg-bgCategory text-black"
+                          } 
                                     active:scale-95	active:opacity-70 h-[44px] w-[49%] flex items-center justify-center hover:bg-fullBlue hover:text-white font-AeonikProMedium text-sm leading-3 text-center  rounded-lg duration-300`}
                         >
                           {data?.name}
@@ -405,14 +406,16 @@ function FilterList({
                     {getFilter?.discount && (
                       <button
                         onClick={() => handleDiscountCheck()}
-                        className={`${selectedDiscount
-                          ? "border border-fullBlue bg-bgCategory text-red-500 "
-                          : "bg-bgCategory text-red-600 border border-transparent"
-                          } ${genderNewList?.length === 2 ||
-                            genderNewList?.length === 4
+                        className={`${
+                          selectedDiscount
+                            ? "border border-fullBlue bg-bgCategory text-red-500 "
+                            : "bg-bgCategory text-red-600 border border-transparent"
+                        } ${
+                          genderNewList?.length === 2 ||
+                          genderNewList?.length === 4
                             ? "w-full"
                             : "w-[49%]"
-                          } h-[44px]  flex items-center justify-center font-AeonikProMedium text-sm leading-3 text-center active:scale-95 hover:text-red-500 hover:border hover:border-fullBlue rounded-lg duration-300`}
+                        } h-[44px]  flex items-center justify-center font-AeonikProMedium text-sm leading-3 text-center active:scale-95 hover:text-red-500 hover:border hover:border-fullBlue rounded-lg duration-300`}
                       >
                         {t("FL_discounts")}
                       </button>
@@ -445,18 +448,20 @@ function FilterList({
                     {t("FL_budget")}
                   </p>
                   <p
-                    className={`${budgetToggle ? "rotate-[180deg]" : ""
-                      } duration-300 ml-1`}
+                    className={`${
+                      budgetToggle ? "rotate-[180deg]" : ""
+                    } duration-300 ml-1`}
                   >
                     <ArrowTopIcons colors={"#000"} />
                   </p>
                 </figure>
               </article>
               <article
-                className={`border-1 overflow-hidden  ${budgetToggle
-                  ? "duration-300 h-0"
-                  : `h-[120px] duration-300 mt-5`
-                  } duration-300 `}
+                className={`border-1 overflow-hidden  ${
+                  budgetToggle
+                    ? "duration-300 h-0"
+                    : `h-[120px] duration-300 mt-5`
+                } duration-300 `}
               >
                 <div className="flex flex-col rounded-lg  w-full">
                   <div className="flex flex-wrap justify-between items-center mb-3 w-full px-2">
@@ -533,8 +538,9 @@ function FilterList({
                       {t("FL_color")}
                     </p>
                     <p
-                      className={`${colorToggle ? "rotate-[180deg]" : ""
-                        } duration-300 ml-1`}
+                      className={`${
+                        colorToggle ? "rotate-[180deg]" : ""
+                      } duration-300 ml-1`}
                     >
                       <ArrowTopIcons colors={"#000"} />
                     </p>
@@ -543,10 +549,11 @@ function FilterList({
                 {/* Colors */}
 
                 <article
-                  className={`overflow-hidden ${colorToggle
-                    ? "duration-300 h-0"
-                    : `h-fit duration-300 pt-5 pb-1`
-                    }  `}
+                  className={`overflow-hidden ${
+                    colorToggle
+                      ? "duration-300 h-0"
+                      : `h-fit duration-300 pt-5 pb-1`
+                  }  `}
                 >
                   <div className="flex items-center justify-start flex-wrap mx-1 gap-x-2 gap-y-2">
                     {getFilter?.colors?.map((data, index) => {
@@ -604,16 +611,18 @@ function FilterList({
                       {t("FL_customer_reviews")}
                     </p>
                     <p
-                      className={`${ratingToggle ? "rotate-[180deg]" : ""
-                        } duration-300 ml-1`}
+                      className={`${
+                        ratingToggle ? "rotate-[180deg]" : ""
+                      } duration-300 ml-1`}
                     >
                       <ArrowTopIcons colors={"#000"} />
                     </p>
                   </figure>
                 </article>
                 <article
-                  className={`flex flex-col   gap-y-3 overflow-hidden ${ratingToggle ? "duration-300 h-0" : `duration-300  mt-5`
-                    } duration-300`}
+                  className={`flex flex-col   gap-y-3 overflow-hidden ${
+                    ratingToggle ? "duration-300 h-0" : `duration-300  mt-5`
+                  } duration-300`}
                 >
                   {/* Field */}
 
@@ -675,18 +684,20 @@ function FilterList({
                       {t("FL_outerwear_size")}
                     </figcaption>
                     <p
-                      className={`${outwearToggle ? "rotate-[180deg]" : ""
-                        } duration-300 ml-1`}
+                      className={`${
+                        outwearToggle ? "rotate-[180deg]" : ""
+                      } duration-300 ml-1`}
                     >
                       <ArrowTopIcons colors={"#000"} />
                     </p>
                   </figure>
                 </article>
                 <article
-                  className={`overflow-hidden ${outwearToggle
-                    ? "duration-300 h-0"
-                    : "duration-300 h-fit mt-5"
-                    } duration-300`}
+                  className={`overflow-hidden ${
+                    outwearToggle
+                      ? "duration-300 h-0"
+                      : "duration-300 h-fit mt-5"
+                  } duration-300`}
                 >
                   <figure
                     className={`w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2`}
@@ -698,13 +709,15 @@ function FilterList({
                           <button
                             key={index + 1}
                             onClick={() => onHandleOutWearList(outwear)}
-                            className={`${outwear?.letter_size || outwear?.size
-                              ? "flex"
-                              : "hidden"
-                              } ${dataActionOutwearSizes === outwear
+                            className={`${
+                              outwear?.letter_size || outwear?.size
+                                ? "flex"
+                                : "hidden"
+                            } ${
+                              dataActionOutwearSizes === outwear
                                 ? "bg-fullBlue text-white"
                                 : ""
-                              } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
+                            } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
                           >
                             <div className="flex items-center">
                               {outwear?.letter_size ? (
@@ -715,9 +728,7 @@ function FilterList({
                               <span className="ml-1">
                                 {" "}
                                 (
-                                {outwear?.amount > 99
-                                  ? "99+"
-                                  : outwear?.amount}
+                                {outwear?.amount > 99 ? "99+" : outwear?.amount}
                                 )
                               </span>
                             </div>
@@ -726,10 +737,11 @@ function FilterList({
                       })}
 
                     <div
-                      className={`w-full flex items-center  ${dataActionOutwearSizes
-                        ? "justify-between"
-                        : "justify-end"
-                        }`}
+                      className={`w-full flex items-center  ${
+                        dataActionOutwearSizes
+                          ? "justify-between"
+                          : "justify-end"
+                      }`}
                     >
                       {dataActionOutwearSizes && (
                         <div className="flex w-1/3 justify-start items-center">
@@ -743,8 +755,9 @@ function FilterList({
                         </div>
                       )}
                       <div
-                        className={`${outwearData?.length > 12 ? "flex" : "hidden"
-                          } w-2/3 items-center justify-end`}
+                        className={`${
+                          outwearData?.length > 12 ? "flex" : "hidden"
+                        } w-2/3 items-center justify-end`}
                       >
                         <button
                           type="button"
@@ -752,10 +765,11 @@ function FilterList({
                           onClick={() => {
                             setVisibleButtons((prev) => prev - 12);
                           }}
-                          className={`${visibleButtons === 12
-                            ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
-                            : ""
-                            } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                          className={`${
+                            visibleButtons === 12
+                              ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                              : ""
+                          } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
                         >
                           {t("FL_less")}
                         </button>
@@ -766,10 +780,11 @@ function FilterList({
                           onClick={() => {
                             setVisibleButtons((prev) => prev + 12);
                           }}
-                          className={`${outwearData?.length <= visibleButtons
-                            ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
-                            : ""
-                            } w-full flex justify-center text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                          className={`${
+                            outwearData?.length <= visibleButtons
+                              ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                              : ""
+                          } w-full flex justify-center text-sm text-borderWinter font-AeonikProRegular mt-2`}
                         >
                           {t("FL_more")}
                         </button>
@@ -795,18 +810,20 @@ function FilterList({
                       {t("FL_bottom_size")}
                     </p>
                     <p
-                      className={`${underwearToggle ? "rotate-[180deg]" : ""
-                        } duration-300 ml-1`}
+                      className={`${
+                        underwearToggle ? "rotate-[180deg]" : ""
+                      } duration-300 ml-1`}
                     >
                       <ArrowTopIcons colors={"#000"} />
                     </p>
                   </figure>
                 </article>
                 <article
-                  className={` overflow-hidden ${underwearToggle
-                    ? "duration-300 h-0"
-                    : "duration-300 h-fit mt-5"
-                    } duration-300`}
+                  className={` overflow-hidden ${
+                    underwearToggle
+                      ? "duration-300 h-0"
+                      : "duration-300 h-fit mt-5"
+                  } duration-300`}
                 >
                   <figure
                     className={`w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2`}
@@ -818,13 +835,15 @@ function FilterList({
                           <button
                             key={index + 1}
                             onClick={() => onHandleUnderWearList(underwear)}
-                            className={`${underwear?.letter_size || underwear?.size
-                              ? "flex"
-                              : "hidden"
-                              } ${dataActionUnderwearSizes === underwear
+                            className={`${
+                              underwear?.letter_size || underwear?.size
+                                ? "flex"
+                                : "hidden"
+                            } ${
+                              dataActionUnderwearSizes === underwear
                                 ? "bg-fullBlue text-white"
                                 : ""
-                              } h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
+                            } h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
                           >
                             <div className="flex items-center">
                               {underwear?.letter_size ? (
@@ -850,10 +869,11 @@ function FilterList({
                         );
                       })}
                     <div
-                      className={`w-full flex items-center ${dataActionUnderwearSizes
-                        ? "justify-between"
-                        : "justify-end"
-                        }`}
+                      className={`w-full flex items-center ${
+                        dataActionUnderwearSizes
+                          ? "justify-between"
+                          : "justify-end"
+                      }`}
                     >
                       {dataActionUnderwearSizes && (
                         <div className="flex w-1/3 justify-start items-center">
@@ -867,8 +887,9 @@ function FilterList({
                         </div>
                       )}
                       <div
-                        className={`${underwearData?.length > 12 ? "flex" : "hidden"
-                          } w-2/3 items-center justify-end`}
+                        className={`${
+                          underwearData?.length > 12 ? "flex" : "hidden"
+                        } w-2/3 items-center justify-end`}
                       >
                         <button
                           type="button"
@@ -876,10 +897,11 @@ function FilterList({
                           onClick={() => {
                             setVisibleButtons((prev) => prev - 12);
                           }}
-                          className={`${visibleButtons === 12
-                            ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
-                            : ""
-                            } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                          className={`${
+                            visibleButtons === 12
+                              ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                              : ""
+                          } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
                         >
                           {t("FL_less")}
                         </button>
@@ -889,10 +911,11 @@ function FilterList({
                           onClick={() => {
                             setVisibleButtons((prev) => prev + 12);
                           }}
-                          className={`${underwearData?.length <= visibleButtons
-                            ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
-                            : ""
-                            } w-full flex-end justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                          className={`${
+                            underwearData?.length <= visibleButtons
+                              ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                              : ""
+                          } w-full flex-end justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
                         >
                           {t("FL_more")}
                         </button>
@@ -918,18 +941,20 @@ function FilterList({
                       {t("FL_shoe_size")}
                     </p>
                     <p
-                      className={`${footWearToggle ? "rotate-[180deg]" : ""
-                        } duration-300 ml-1`}
+                      className={`${
+                        footWearToggle ? "rotate-[180deg]" : ""
+                      } duration-300 ml-1`}
                     >
                       <ArrowTopIcons colors={"#000"} />
                     </p>
                   </figure>
                 </article>
                 <article
-                  className={` overflow-hidden ${footWearToggle
-                    ? "duration-300 h-0"
-                    : "duration-300 h-fit mt-5"
-                    } duration-300`}
+                  className={` overflow-hidden ${
+                    footWearToggle
+                      ? "duration-300 h-0"
+                      : "duration-300 h-fit mt-5"
+                  } duration-300`}
                 >
                   <figure className="w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2">
                     {footwearData
@@ -939,10 +964,11 @@ function FilterList({
                           <button
                             key={index + 1}
                             onClick={() => onHandleFootWearList(footwear)}
-                            className={`${dataActionFootwearSizes === footwear
-                              ? "bg-fullBlue text-white"
-                              : ""
-                              } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory  hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
+                            className={`${
+                              dataActionFootwearSizes === footwear
+                                ? "bg-fullBlue text-white"
+                                : ""
+                            } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory  hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
                           >
                             <div className="flex items-center">
                               <span>{footwear?.size}</span>
@@ -959,10 +985,11 @@ function FilterList({
                         );
                       })}
                     <div
-                      className={`w-full flex items-center  ${dataActionFootwearSizes
-                        ? "justify-between"
-                        : "justify-end"
-                        }`}
+                      className={`w-full flex items-center  ${
+                        dataActionFootwearSizes
+                          ? "justify-between"
+                          : "justify-end"
+                      }`}
                     >
                       {dataActionFootwearSizes && (
                         <div className="flex w-1/3 justify-start items-center">
@@ -976,8 +1003,9 @@ function FilterList({
                         </div>
                       )}
                       <div
-                        className={`${footwearData?.length > 12 ? "flex" : "hidden"
-                          } w-2/3 items-center justify-end`}
+                        className={`${
+                          footwearData?.length > 12 ? "flex" : "hidden"
+                        } w-2/3 items-center justify-end`}
                       >
                         <button
                           type="button"
@@ -985,10 +1013,11 @@ function FilterList({
                           onClick={() => {
                             setVisibleButtons((prev) => prev - 12);
                           }}
-                          className={`${visibleButtons === 12
-                            ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
-                            : ""
-                            } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                          className={`${
+                            visibleButtons === 12
+                              ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                              : ""
+                          } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
                         >
                           {t("FL_less")}
                         </button>
@@ -999,10 +1028,11 @@ function FilterList({
                           onClick={() => {
                             setVisibleButtons((prev) => prev + 12);
                           }}
-                          className={`${footwearData?.length <= visibleButtons
-                            ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
-                            : ""
-                            } w-full flex justify-center text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                          className={`${
+                            footwearData?.length <= visibleButtons
+                              ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                              : ""
+                          } w-full flex justify-center text-sm text-borderWinter font-AeonikProRegular mt-2`}
                         >
                           {t("FL_more")}
                         </button>

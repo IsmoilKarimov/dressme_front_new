@@ -116,16 +116,6 @@ function YandexLocationShopFilter({ filteredData }) {
                     </Map>
                 </YMaps>
             </div>
-            {/* <div className="w-full flex justify-end">
-        <button
-          onClick={handleOpenYandex}
-          className={
-            "w-full md:w-fit text-center active:scale-95 px-5 py-[10px] md:py-3 bg-borderWinter text-white font-AeonikProMedium text-xs md:text-base mt-[15px] rounded-lg"
-          }
-        >
-          Открыть на карте
-        </button>
-      </div> */}
         </div>
     );
 }

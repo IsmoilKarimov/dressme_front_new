@@ -15,6 +15,7 @@ import React, {  useContext, useEffect, useState } from "react";
 import { Modal, Radio, Space } from "antd";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { MdClose } from "react-icons/md";
+import { useTranslation } from "react-i18next";
 
 const ShoppingStoreOfficialTop = ({
   filteredData,
@@ -26,6 +27,8 @@ const ShoppingStoreOfficialTop = ({
 }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openLocationModal, setOpenLocationModal] = useState(false);
+
+  const { t } = useTranslation("shops")
 
   const [locationList, setLocationList] = useState([]);
   const [selectLocation, setSelectLocation] = useState(
@@ -157,7 +160,7 @@ const ShoppingStoreOfficialTop = ({
                           ({" "}
                           <span className="flex gap-x-1">
                             {" "}
-                            <span className="md:flex hidden">голосов:</span>
+                            <span className="block">{t("votes")}:</span>
                             {filteredData?.shop?.rated_users_count}
                           </span>{" "}
                           ){" "}
@@ -205,7 +208,7 @@ const ShoppingStoreOfficialTop = ({
                       <p className="mr-[6px]">
                         <LocationColoursIcons colors={"#0077B6"} />
                       </p>
-                      Все локации
+                      {t("all_locations")}
                     </button>
                   </div>
                 </div>
@@ -235,7 +238,7 @@ const ShoppingStoreOfficialTop = ({
                       }}
                       className="w-[42%] min-w-min hidden md:block text-sm font-AeonikProRegular text-borderWinter ml-auto cursor-pointer"
                     >
-                      Посмотреть отзывы
+                      {t("view_reviews")}
                     </div>
                     <button
                       onClick={(e) => {
@@ -293,19 +296,19 @@ const ShoppingStoreOfficialTop = ({
                   {filterLeftAction ? (
                     <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                       {" "}
-                      Скрыть
+                      {t("hide")}
                     </p>
                   ) : (
                     <p className="not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                       {" "}
-                      Фильтр
+                      {t("filter")}
                     </p>
                   )}
                 </button>
               </div>
               <div className="flex items-center text-base font-AeonikProMedium text-[#2C2C2C] ">
                 <DeliveryIcon />
-                <span className="mx-[5px]">Доставка:</span>
+                <span className="mx-[5px]">{t("delivery")}:</span>
                 <span>{filteredData?.shop?.delivery?.name_ru}</span>
               </div>
             </div>
@@ -319,7 +322,7 @@ const ShoppingStoreOfficialTop = ({
                   <p className="mr-[6px]">
                     <LocationColoursIcons colors={"#0077B6"} />
                   </p>
-                  Все локации
+                  {t("all_locations")}
                 </button>
                 <Modal
                   centered
@@ -332,7 +335,7 @@ const ShoppingStoreOfficialTop = ({
                 >
                   <div className="w-full px-4 md:px-[25px] pb-[15px] md:pb-[30px] pt-[10px] md:pt-[20px]">
                     <p className="text-[16px] md:text-2xl font-AeonikProRegular mb-[15px] md:mb-[30px]">
-                      Выберите локацию
+                      {t("select_location")}
                     </p>
                     <div className="font-AeonikProRegular text-[14px] md:text-lg border-b border-[#f0f0f0] mb-[15px]">
                       {locationList[0]?.region?.name_ru}
@@ -376,7 +379,7 @@ const ShoppingStoreOfficialTop = ({
                       }}
                       className="w-full flex justify-end mt-[60px] text-borderWinter text-lg font-AeonikProMedium"
                     >
-                      Готово
+                      {t("ready")}
                     </button>
                   </div>
                 </Modal>
@@ -391,7 +394,7 @@ const ShoppingStoreOfficialTop = ({
                 <input
                   type="text"
                   name="name"
-                  placeholder="Найти товар"
+                  placeholder={`${t("find_product")}`}
                   value={searchMarketName}
                   onChange={handleChange}
                   className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[14px] leading-4"

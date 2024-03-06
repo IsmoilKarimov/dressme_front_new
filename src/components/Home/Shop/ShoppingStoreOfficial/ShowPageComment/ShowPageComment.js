@@ -6,6 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import { UserRefreshTokenContext } from "../../../../../ContextHook/UserRefreshToken";
+import { useTranslation } from "react-i18next";
 
 function ShowPageComment({
   filteredData,
@@ -14,6 +15,8 @@ function ShowPageComment({
   const [addComment, setAddComment] = useState(false);
   const toggleAddComment = useCallback(() => setAddComment(false), []);
   const [openComment, setOpenComment] = useState(false);
+
+  const { t } = useTranslation("shops")
 
   const [reFreshTokenFunc, setUserLogedIn] = useContext(
     UserRefreshTokenContext
@@ -58,8 +61,6 @@ function ShowPageComment({
       {},
       {
         onSuccess: (res) => {
-          // console.log(res, "RES");
-          // refetch();
           if (res.status === 401 || res.status === 403) {
             reFreshTokenFunc();
             sendFunc();
@@ -68,14 +69,12 @@ function ShowPageComment({
             toast.success(res?.message);
           }
           if (res.errors) {
-            // console.log(res?.message);
             toast.error(res?.message);
           }
           rateRef.current.state.value = 1;
           textRef.current.value = null;
         },
         onError: (err) => {
-          // console.log(err, "ERROR");
           rateRef.current.state.value = 1;
           textRef.current.value = null;
         },
@@ -133,15 +132,15 @@ function ShowPageComment({
             </button>
             <div className="w-full md:w-fit flex justify-center items-center">
               <p className="not-italic font-AeonikProMedium text-base md:text-2xl leading-7 text-black track%]">
-                Отзывы о магазины
+                {t("reviews_of_stores")}
               </p>
               {Cookies.get("DressmeUserToken") ? (
                 <button
                   onClick={() => setOpenComment(true)}
                   type="button"
-                  className="flex items-center ml-[20px] text-SignInBgColor text-lg font-AeonikProRegular"
+                  className="hidden md:flex items-center ml-[20px] text-SignInBgColor text-lg font-AeonikProRegular"
                 >
-                  Написать отзыв
+                  {t("write_a_review")}
                   <span className="ml-[5px]">
                     <ReviewIcon />
                   </span>
@@ -162,7 +161,7 @@ function ShowPageComment({
                     name="comment"
                     id="comment"
                     ref={textRef}
-                    placeholder="Написать отзыв"
+                    placeholder={`${t("write_a_review")}`}
                     className="w-full h-[148px] resize-none bg-[#fdfdfd]"
                   ></textarea>
                   {/* Star Rating */}
@@ -193,7 +192,7 @@ function ShowPageComment({
               type="button"
               className="w-full flex md:hidden items-center text-SignInBgColor text-base font-AeonikProRegular mb-1"
             >
-              Написать отзыв
+              {t("write_a_review")}
               <span className="ml-[5px]">
                 <ReviewIcon />
               </span>
@@ -201,16 +200,13 @@ function ShowPageComment({
             <div className="flex md:hidden items-center justify-between border border-borderColor2 rounded-t-lg p-4">
               <div className="flex items-center">
                 <StarIcons />
-                <StarIcons />
-                <StarIcons />
-                <StarIcons />
-                <StarIcons />
                 <span className="ml-[10px] font-AeonikProMedium text-base">
-                  4.7
+                  {filteredData?.shop?.overall_rating}
                 </span>
               </div>
               <div className="text-sm font-AeonikProRegular text-closeColorBtn mt-1">
-                265 голосов
+                {t("votes")}
+                : {filteredData?.shop?.rated_users_count}
               </div>
             </div>
           </section>
@@ -220,7 +216,7 @@ function ShowPageComment({
             className="flex justify-between flex-wrap w-full h-fit overflow-hidden"
           >
             {filteredData?.shop?.ratings?.map((allComments) => {
-              // console.log(allComments, "Allcomments");
+              console.log(filteredData?.shop, "Allcomments");
               return (
                 <article
                   key={allComments.id}
@@ -233,14 +229,16 @@ function ShowPageComment({
                           {allComments?.user?.name}
                         </p>
                         <div className="flex md:hidden text-[13px] md:text-base items-center font-AeonikProRegular">
-                          Оценка покупки
-                          <span className="ml-[5px] mr-[2px]">4.7</span>
+                          {t("purchase_rating")}
+                          <span className="ml-[5px] mr-[2px]">
+                            {filteredData?.shop?.overall_rating}
+                          </span>
                           <StarIcons />
                         </div>
                       </div>
                     </div>
                     <article className="flex items-center md:mt-3">
-                      <p className="hidden md:flex items-center">
+                      <p className="hidden md:inline items-center">
                         {Array.from("55555").map((item, i) => {
                           if (i + 1 <= allComments?.score) {
                             return <StarIcons />;

@@ -93,12 +93,8 @@ export default function ShoppingStore() {
       </div>
       <section className="w-full md:border-b md:border-searchBgColor">
         <ShoppingTop
-          // setLoading={setLoading}
-          // handleData={handleData}
-          // getData={getData}
           setGetAllShops={setGetAllShops}
           getAllShops={getAllShops}
-          setError={setError}
           setGetGenderId={setGetGenderId}
           setgetSearchInput={setgetSearchInput}
         />
@@ -107,7 +103,6 @@ export default function ShoppingStore() {
         <ShoppingBrands
           loading={loading}
           setLoading={setLoading}
-        // setGetData={setGetData}
         />
       </section>
     </main>
