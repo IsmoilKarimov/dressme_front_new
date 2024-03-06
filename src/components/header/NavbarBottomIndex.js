@@ -64,7 +64,7 @@ function NavbarBottomIndex({ scrollPost }) {
               </div>
             ) : null}
             {locationWindow === "/forget_password" ||
-              locationWindow === "/enter_password_validate" ||
+              
               locationWindow === "/set_new_password" ? (
               <div>
                 {/* Mobile-Device */}

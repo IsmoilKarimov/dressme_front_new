@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { ToastContainer, toast } from "react-toastify";
 import LoadingNetwork from "../../Loading/LoadingNetwork";
+import { useTranslation } from "react-i18next";
 
 export default function ForgetPassword() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ export default function ForgetPassword() {
     openModalEmailMessage: false,
     btnDisable: false,
   });
+  const { i18n, t } = useTranslation('authen')
 
   const [loading, setLoading] = useState(false);
 
@@ -135,17 +137,18 @@ export default function ForgetPassword() {
       ) : (
         <div className="max-w-[440px] w-[100%] h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
           <div className=" w-full mt-1 mb-7 flex flex-col justify-center">
-            <span className="not-italic font-AeonikProMedium text-xl ss:text-start md:text-center leading-5   tracking-[0,16px] text-black">
-              Забыли пароль?
+            <span className="not-italic fle items-center font-AeonikProMedium text-xl ss:text-start md:text-center leading-5   tracking-[0,16px] text-black">
+              {t('LforgetPss')}
+              <span>?</span>
             </span>
             <span className="mt-2 not-italic font-AeonikProRegular text-sm leading-4 ss:text-start md:text-center text-setTexOpacity tracking-[0.16px]">
-              Не беспокойтесь, мы поможем вам
+              {t("FPdontWorry")}
             </span>
           </div>
 
           <div className="mt-1 w-full h-fit">
             <div className=" not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0.16px]">
-              Электронная почта
+              {t("Lemail")}
             </div>
             <div className="mt-1 xs:mt-[6px]  w-full flex items-center bg-btnBgColor border border-searchBgColor rounded-lg ">
               <input
@@ -154,7 +157,7 @@ export default function ForgetPassword() {
                 name="email"
                 value={state?.email}
                 onChange={(e) => setState({ ...state, email: e.target.value })}
-                placeholder="example@mail.com"
+                placeholder={t("Lemail")}
                 required
               />
               <span className="pr-2 xs:pr-[16px]">
@@ -170,14 +173,13 @@ export default function ForgetPassword() {
               }
             }}
             className={`mt-8 border bg-[#007dca] flex items-center justify-center border-searchBgColor bg-textBlueColor w-full h-12  select-none rounded-lg
-             ${
-               !state?.btnDisable
-                 ? " cursor-pointer active:scale-95	active:opacity-50 "
-                 : "opacity-50 cursor-not-allowed"
-             }`}
+             ${!state?.btnDisable
+                ? " cursor-pointer active:scale-95	active:opacity-50 "
+                : "opacity-50 cursor-not-allowed"
+              }`}
           >
             <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
-              Сбросить пароль{" "}
+              {t("FPresetPss")}{" "}
             </span>
             <span>
               <SircleNext colors={"#fff"} />

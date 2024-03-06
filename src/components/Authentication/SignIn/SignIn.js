@@ -9,11 +9,13 @@ import LoadingFor from "../../Loading/LoadingFor";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { UserRefreshTokenContext } from "../../../ContextHook/UserRefreshToken";
+import { useTranslation } from "react-i18next";
 
 export default function SignIn() {
   const [reFreshTokenFunc, setUserLogedIn] = useContext(
     UserRefreshTokenContext
   );
+  const { i18n, t } = useTranslation('authen')
 
   const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
@@ -126,12 +128,12 @@ export default function SignIn() {
 
       <form className="max-w-[440px] w-[100%] mt-[80px] h-fit md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
         <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-xl ss:text-start md:text-center leading-5   tracking-[0,16px] text-black">
-          Авторизоваться
+          {t("Llogin")}
         </div>
 
         <div className="mt-2 w-full h-fit">
           <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-            Электронная почта
+            {t("Lemail")}
           </div>
           <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
@@ -159,7 +161,7 @@ export default function SignIn() {
         </div>
         <div className="mt-4 w-full h-fit">
           <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-            Пароль
+            {t("Lpassword")}
           </div>
           <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
@@ -212,14 +214,15 @@ export default function SignIn() {
               className="not-italic select-none cursor-pointer font-AeonikProRegular text-sm leading-4 text-black tracking-[0,16px]"
             >
               {" "}
-              Запомнить
+              {t("Lremember")}
             </label>
           </div>
           <NavLink
             to={"/forget_password"}
-            className="not-italic underline	 font-AeonikProRegular text-sm leading-4 cursor-pointer text-black hover:text-SignInBgColor tracking-[0,16px]"
+            className="not-italic underline	flex items-center font-AeonikProRegular text-sm leading-4 cursor-pointer text-black hover:text-SignInBgColor tracking-[0,16px]"
           >
-            Забыли пароль?
+            {t("LforgetPss")}
+            <span>?</span>
           </NavLink>
         </div>
         <div
@@ -227,7 +230,7 @@ export default function SignIn() {
           className="mt-2 border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-SignInBgColor select-none rounded-lg active:scale-95	active:opacity-70 "
         >
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
-            Войти в систему
+          {t("LsignIn")}
           </span>
           <span>
             <SircleNext colors={"#fff"} />
@@ -235,14 +238,14 @@ export default function SignIn() {
         </div>
         <div className="md:hidden block mt-6 text-center">
           {" "}
-          Если у вас еще нету аккаунта
+          {t("LhaveAcc")}
         </div>
         <NavLink
           to={"/sign_up"}
           className="mt-3 border md:hidden cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-OpacitySignIn select-none rounded-lg active:scale-95	active:opacity-70 "
         >
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-black tracking-[0,16px]">
-            Создайте Аккаунт
+          {t("LcreateAcc")}
           </span>
         </NavLink>
       </form>

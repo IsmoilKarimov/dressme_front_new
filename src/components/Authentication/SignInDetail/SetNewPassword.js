@@ -5,9 +5,11 @@ import { SircleNext } from "../../../assets/icons";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import LoadingNetwork from "../../Loading/LoadingNetwork";
+import { useTranslation } from "react-i18next";
 
 export default function SetNewPassword() {
   const navigate = useNavigate();
+  const { i18n, t } = useTranslation('authen')
   const url = "https://api.dressme.uz/api";
   const [state, setState] = useState({
     newPassword: "",
@@ -123,16 +125,16 @@ export default function SetNewPassword() {
         <div className="max-w-[440px] w-[100%] h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
           <div className=" w-full mt-1 mb-7 flex flex-col justify-center">
             <span className="not-italic font-AeonikProMedium text-xl ss:text-start md:text-center leading-5   tracking-[0,16px] text-black">
-              Установите новый пароль{" "}
+              {t("NPnewMakePss")}{" "}
             </span>
             <span className="mt-2 not-italic font-AeonikProRegular text-sm leading-4 text-center text-setTexOpacity tracking-[0.16px]">
-              Ваш новый пароль должен отличаться от предыдущего пароля{" "}
+            {t("NPdontMatch")}{" "}
             </span>
           </div>
 
           <form className="mt-4 w-full h-fit">
             <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-              Новый пароль
+            {t("NPnewPss")}
             </div>
             <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
               <input
@@ -140,7 +142,7 @@ export default function SetNewPassword() {
                 name="password"
                 autoComplete="password"
                 type={state?.eyesShow ? "password" : "text"}
-                placeholder="Enter your password"
+                placeholder={t("NPnewPss")}
                 value={state?.newPassword}
                 onChange={(e) =>
                   setState({ ...state, newPassword: e.target.value })
@@ -169,7 +171,7 @@ export default function SetNewPassword() {
           </form>
           <form className="mt-4 w-full h-fit">
             <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-              Подтвердите пароль
+            {t("NPenterPss")}
             </div>
             <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
               <input
@@ -177,7 +179,7 @@ export default function SetNewPassword() {
                 name="password"
                 autoComplete="password"
                 type={state?.validateShow ? "password" : "text"}
-                placeholder="Enter your password"
+                placeholder={t("NPenterPss")}
                 value={state?.newPasswordConfirm}
                 onChange={(e) =>
                   setState({ ...state, newPasswordConfirm: e.target.value })
@@ -210,7 +212,7 @@ export default function SetNewPassword() {
             className={`mt-8 border bg-[#007dca] flex items-center justify-center border-searchBgColor bg-textBlueColor w-full h-12  select-none rounded-lg cursor-pointer active:scale-95	active:opacity-50 }`}
           >
             <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
-              Сбросит пароль{" "}
+            {t("FPresetPss")}{" "}
             </span>
             <span>
               <SircleNext colors={"#fff"} />

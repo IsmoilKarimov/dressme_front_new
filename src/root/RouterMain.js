@@ -17,9 +17,9 @@ const SingleMainProduct = React.lazy(() =>
   import("../components/Home/Products/SignleMainProducts")
 );
 const YandexMapDressMe = React.lazy(() => import("../components/YandexMap"));
-const ForgetConfirmPassword = React.lazy(() =>
-  import("../components/Authentication/SignInDetail/ForgetConfirmPassword")
-);
+// const ForgetConfirmPassword = React.lazy(() =>
+//   import("../components/Authentication/SignInDetail/ForgetConfirmPassword")
+// );
 const SetNewPassword = React.lazy(() =>
   import("../components/Authentication/SignInDetail/SetNewPassword")
 );
@@ -278,7 +278,7 @@ const RouterMain = () => {
             </Suspense>
           }
         />
-        <Route
+        {/* <Route
           path="/enter_password_validate"
           element={
             <Suspense
@@ -291,7 +291,7 @@ const RouterMain = () => {
               <ForgetConfirmPassword />
             </Suspense>
           }
-        />
+        /> */}
         <Route
           path="/product/:id/allcomments"
           element={
