@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useHttp } from "../../../../../../hook/useHttp";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 
 import SkeletonFilter from "../../SkeletonFilter/SkeletonFilter";
@@ -12,6 +11,7 @@ import { BiCheck } from "react-icons/bi";
 import { BsCheckLg } from "react-icons/bs"; 
 
 import Slider from "react-slider";
+import { useTranslation } from "react-i18next";
 
 function FilterList({
   paramsId,
@@ -32,12 +32,10 @@ function FilterList({
   setOpenMobileFilter,
   
 }) {
-  const { request } = useHttp();
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [getFilter, setGetFilter] = useState();
-  const [getParamsTest, setgetParamsTest] = useState(
-    dressInfo?.locationIdParams
-  );
+
+  const { t } = useTranslation("shops")
 
   // ------------------------
   const [genderToggle, setGenderToggle] = useState(false);
@@ -89,27 +87,20 @@ function FilterList({
         throw new Error(err || "something wrong");
       });
   }
-  // useEffect(() => {
-  //     if ((filterToggle || openMobileFilter) && !getFilter) {
-  //         fetchGetAllData()
-  //     }
-  // }, [filterToggle, openMobileFilter])
+
   useEffect(() => {
     if (!getFilter) {
       if (filterToggle) {
         fetchGetAllData();
-        // console.log('shop-1 run-1');
       }
       if (openMobileFilter) {
         fetchGetAllData();
-        // console.log('shop-1 run-1-1');
       }
     }
   }, [filterToggle, openMobileFilter]);
 
   useEffect(() => {
     if (getFilter) {
-      // setgetParamsTest(dressInfo?.locationIdParams)
       setFilterToggle(false);
       setGetFilter();
     }
@@ -396,12 +387,13 @@ function FilterList({
     }
   }, [dressInfo?.locationIdParams]);
   return (
-    <div className={`w-full h-full py-5 px-3 border border-searchBgColor rounded-lg overflow-hidden `}
+    <div
+      className={`w-full h-full py-5 px-3 border border-searchBgColor rounded-lg overflow-hidden `}
     >
       {getFilter ? (
         <div className={` w-full flex-col items-center md:mb-[38px]`}>
           <section className="h-fit  md:hidden w-full bg-btnBgColor flex items-center  justify-between md:mb-0 mb-4 ">
-            <p className="text-lg font-AeonikProMedium">Фильтры</p>
+            <p className="text-lg font-AeonikProMedium">{t("FL_filters")}</p>
             <button type="button" onClick={() => setOpenMobileFilter(false)}>
               <MenuCloseIcons colors={"#b5b5b5"} />
             </button>
@@ -415,11 +407,12 @@ function FilterList({
                   className="flex items-center cursor-pointer select-none"
                 >
                   <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                    Пол
+                    {t("FL_pol")}
                   </p>
                   <p
                     className={`
-                      ${genderToggle ? "rotate-[180deg]" : ""
+                      ${
+                        genderToggle ? "rotate-[180deg]" : ""
                       } duration-300 ml-1`}
                   >
                     <ArrowTopIcons colors={"#000"} />
@@ -428,8 +421,9 @@ function FilterList({
               </article>
               {/* Field */}
               <article
-                className={`w-full overflow-hidden ${genderToggle ? "duration-300 h-0" : "duration-300 h-fit mt-5 "
-                  } duration-300 flex flex-col gap-y-4`}
+                className={`w-full overflow-hidden ${
+                  genderToggle ? "duration-300 h-0" : "duration-300 h-fit mt-5 "
+                } duration-300 flex flex-col gap-y-4`}
               >
                 <div className={`w-full flex flex-col items-center`}>
                   <div className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px] ">
@@ -438,10 +432,11 @@ function FilterList({
                         <button
                           key={data?.id}
                           onClick={() => handleGenderCheck(data?.id)}
-                          className={`${selectedGender === data?.id
+                          className={`${
+                            selectedGender === data?.id
                               ? "bg-fullBlue text-white"
                               : "bg-bgCategory text-black"
-                            } 
+                          } 
                                     active:scale-95	active:opacity-70 h-[44px] w-[49%] flex items-center justify-center hover:bg-fullBlue hover:text-white font-AeonikProMedium text-sm leading-3 text-center  rounded-lg duration-300`}
                         >
                           {data?.name}
@@ -451,16 +446,18 @@ function FilterList({
                     {getFilter?.discount && (
                       <button
                         onClick={() => handleDiscountCheck()}
-                        className={`${selectedDiscount
+                        className={`${
+                          selectedDiscount
                             ? "border border-fullBlue bg-bgCategory text-red-500 "
                             : "bg-bgCategory text-red-600 border border-transparent"
-                          } ${genderNewList?.length === 2 ||
-                            genderNewList?.length === 4
+                        } ${
+                          genderNewList?.length === 2 ||
+                          genderNewList?.length === 4
                             ? "w-full"
                             : "w-[49%]"
-                          } h-[44px]  flex items-center justify-center font-AeonikProMedium text-sm leading-3 text-center active:scale-95 hover:text-red-500 hover:border hover:border-fullBlue rounded-lg duration-300`}
+                        } h-[44px]  flex items-center justify-center font-AeonikProMedium text-sm leading-3 text-center active:scale-95 hover:text-red-500 hover:border hover:border-fullBlue rounded-lg duration-300`}
                       >
-                        Скидки
+                        {t("FL_discounts")}
                       </button>
                     )}
                   </div>
@@ -471,7 +468,7 @@ function FilterList({
                         onClick={() => ClearListGender()}
                         className={`w-full flex flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
                       >
-                        Сбросить
+                        {t("FL_reset")}
                       </button>
                     </div>
                   ) : null}
@@ -493,11 +490,12 @@ function FilterList({
                     <p
                       className={`not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black`}
                     >
-                      Категории
+                      {t("FL_categories")}
                     </p>
                     <p
-                      className={`${categoryToggle ? "rotate-[180deg]" : ""
-                        } duration-300 ml-1`}
+                      className={`${
+                        categoryToggle ? "rotate-[180deg]" : ""
+                      } duration-300 ml-1`}
                     >
                       <ArrowTopIcons colors={"#000"} />
                     </p>
@@ -506,19 +504,21 @@ function FilterList({
 
                 {/* Field */}
                 <article
-                  className={`w-full overflow-hidden ${categoryToggle
+                  className={`w-full overflow-hidden ${
+                    categoryToggle
                       ? "duration-300 h-0"
                       : "duration-300 h-fit mt-5 "
-                    } duration-300 flex flex-col gap-y-4`}
+                  } duration-300 flex flex-col gap-y-4`}
                 >
                   {categoryNewList?.map((data) => {
                     return (
                       <button
                         key={data?.id}
-                        className={`${categorySelect === data?.id
+                        className={`${
+                          categorySelect === data?.id
                             ? "bg-fullBlue text-white"
                             : "bg-bgCategory text-black"
-                          } hover:bg-fullBlue hover:text-white  w-full h-[44px] rounded-lg justify-center  flex items-center select-none  `}
+                        } hover:bg-fullBlue hover:text-white  w-full h-[44px] rounded-lg justify-center  flex items-center select-none  `}
                         type="button"
                         onClick={() => handleCategoryCheck(data?.id)}
                       >
@@ -536,7 +536,7 @@ function FilterList({
                       onClick={() => ClearListCategory()}
                       className={`w-fit active:scale-95  active:opacity-7  mt-2 flex-start text-sm text-borderWinter font-AeonikProRegular`}
                     >
-                      Сбросить
+                      {t("FL_reset")}
                     </button>
                   </div>
                 )}
@@ -552,44 +552,46 @@ function FilterList({
                   className="flex items-center cursor-pointer select-none"
                 >
                   <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                    Бюджет
+                    {t("FL_budget")}
                   </p>
                   <p
-                    className={`${budgetToggle ? "rotate-[180deg]" : ""
-                      } duration-300 ml-1`}
+                    className={`${
+                      budgetToggle ? "rotate-[180deg]" : ""
+                    } duration-300 ml-1`}
                   >
                     <ArrowTopIcons colors={"#000"} />
                   </p>
                 </figure>
               </article>
               <article
-                className={`border-1 overflow-hidden  ${budgetToggle
+                className={`border-1 overflow-hidden  ${
+                  budgetToggle
                     ? "duration-300 h-0"
                     : `h-[120px] duration-300 mt-5`
-                  } duration-300 `}
+                } duration-300 `}
               >
                 <div className="flex flex-col rounded-lg  w-full">
                   <div className="flex flex-wrap justify-between items-center mb-3 w-full px-2">
                     <div className="flex">
                       <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#000] ">
-                        от
+                        {t("FL_after")}
                       </span>
                       <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                         <input
                           name="min_price"
-                          className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                          className="w-[100px] md:w-[66px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                           value={Number(values[0]).toLocaleString()}
                         />{" "}
                       </span>
                     </div>
                     <div className="flex ">
                       <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
-                        до
+                        {t("FL_before")}
                       </span>
                       <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                         <input
                           name="max_price"
-                          className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
+                          className="w-[120px] md:w-[94px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
                           value={Number(values[1]).toLocaleString()}
                         />
                       </span>
@@ -613,14 +615,14 @@ function FilterList({
                       onClick={() => ClearListBadget()}
                       className={`flex items-center active:scale-95  active:opacity-70 text-sm text-borderWinter font-AeonikProRegular`}
                     >
-                      Сбросить
+                      {t("FL_reset")}
                     </button>
                     <button
                       type="button"
                       onClick={() => sendPriceList()}
                       className="flex items-center active:scale-95  active:opacity-70 font-AeonikProRegular cursor-pointer text-sm justify-center  text-fullBlue"
                     >
-                      Готово
+                      {t("ready")}
                     </button>
                   </div>
                 )}
@@ -640,11 +642,12 @@ function FilterList({
                     className="flex items-center cursor-pointer select-none"
                   >
                     <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                      Цвет
+                      {t("FL_color")}
                     </p>
                     <p
-                      className={`${colorToggle ? "rotate-[180deg]" : ""
-                        } duration-300 ml-1`}
+                      className={`${
+                        colorToggle ? "rotate-[180deg]" : ""
+                      } duration-300 ml-1`}
                     >
                       <ArrowTopIcons colors={"#000"} />
                     </p>
@@ -653,10 +656,11 @@ function FilterList({
                 {/* Colors */}
 
                 <article
-                  className={`overflow-hidden ${colorToggle
+                  className={`overflow-hidden ${
+                    colorToggle
                       ? "duration-300 h-0"
                       : `h-fit duration-300 pt-5 pb-1`
-                    }  `}
+                  }  `}
                 >
                   <div className="flex items-center justify-start flex-wrap mx-1 gap-x-2 gap-y-2">
                     {getFilter?.colors?.map((data, index) => {
@@ -692,7 +696,7 @@ function FilterList({
                       onClick={() => ClearListColor()}
                       className={`w-fit mt-2 flex-start text-sm text-borderWinter font-AeonikProRegular`}
                     >
-                      Сбросить
+                      {t("FL_reset")}
                     </button>
                   )}
                 </article>
@@ -711,19 +715,21 @@ function FilterList({
                     className="flex items-center cursor-pointer select-none"
                   >
                     <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                      Отзывы клиентов
+                      {t("FL_customer_reviews")}
                     </p>
                     <p
-                      className={`${ratingToggle ? "rotate-[180deg]" : ""
-                        } duration-300 ml-1`}
+                      className={`${
+                        ratingToggle ? "rotate-[180deg]" : ""
+                      } duration-300 ml-1`}
                     >
                       <ArrowTopIcons colors={"#000"} />
                     </p>
                   </figure>
                 </article>
                 <article
-                  className={`flex flex-col   gap-y-3 overflow-hidden ${ratingToggle ? "duration-300 h-0" : `duration-300  mt-5`
-                    } duration-300`}
+                  className={`flex flex-col   gap-y-3 overflow-hidden ${
+                    ratingToggle ? "duration-300 h-0" : `duration-300  mt-5`
+                  } duration-300`}
                 >
                   {/* Field */}
 
@@ -752,7 +758,6 @@ function FilterList({
                         </div>
                         <span className="text-base leading-4 font-AeonikProRegular">
                           ({data?.value > 99 ? "99+" : data?.value})
-
                         </span>
                       </div>
                     );
@@ -764,7 +769,7 @@ function FilterList({
                       onClick={() => ClearList()}
                       className={`w-fit flex-start text-sm text-borderWinter font-AeonikProRegular`}
                     >
-                      Сбросить
+                      {t("FL_reset")}
                     </button>
                   )}
                 </article>
@@ -783,21 +788,23 @@ function FilterList({
                     className="flex items-center cursor-pointer select-none"
                   >
                     <figcaption className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                      Размер верхней одежды
+                      {t("FL_outerwear_size")}
                     </figcaption>
                     <p
-                      className={`${outwearToggle ? "rotate-[180deg]" : ""
-                        } duration-300 ml-1`}
+                      className={`${
+                        outwearToggle ? "rotate-[180deg]" : ""
+                      } duration-300 ml-1`}
                     >
                       <ArrowTopIcons colors={"#000"} />
                     </p>
                   </figure>
                 </article>
                 <article
-                  className={`overflow-hidden ${outwearToggle
+                  className={`overflow-hidden ${
+                    outwearToggle
                       ? "duration-300 h-0"
                       : "duration-300 h-fit mt-5"
-                    } duration-300`}
+                  } duration-300`}
                 >
                   <figure
                     className={`w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2`}
@@ -809,13 +816,15 @@ function FilterList({
                           <button
                             key={index + 1}
                             onClick={() => onHandleOutWearList(outwear)}
-                            className={`${outwear?.letter_size || outwear?.size
+                            className={`${
+                              outwear?.letter_size || outwear?.size
                                 ? "flex"
                                 : "hidden"
-                              } ${dataActionOutwearSizes === outwear
+                            } ${
+                              dataActionOutwearSizes === outwear
                                 ? "bg-fullBlue text-white"
                                 : ""
-                              } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
+                            } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
                           >
                             <div className="flex items-center">
                               {outwear?.letter_size ? (
@@ -823,17 +832,23 @@ function FilterList({
                               ) : (
                                 <span>{outwear?.size}</span>
                               )}
-                              <span className="ml-1"> ({outwear?.amount > 99 ? "99+" : outwear?.amount})</span>
+                              <span className="ml-1">
+                                {" "}
+                                (
+                                {outwear?.amount > 99 ? "99+" : outwear?.amount}
+                                )
+                              </span>
                             </div>
                           </button>
                         );
                       })}
 
                     <div
-                      className={`w-full flex items-center  ${dataActionOutwearSizes
+                      className={`w-full flex items-center  ${
+                        dataActionOutwearSizes
                           ? "justify-between"
                           : "justify-end"
-                        }`}
+                      }`}
                     >
                       {dataActionOutwearSizes && (
                         <div className="flex w-1/3 justify-start items-center">
@@ -842,13 +857,14 @@ function FilterList({
                             onClick={() => ClearListOutWear()}
                             className={` flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
                           >
-                            Сбросить
+                            {t("FL_reset")}
                           </button>
                         </div>
                       )}
                       <div
-                        className={`${outwearData?.length > 12 ? "flex" : "hidden"
-                          } w-2/3 items-center justify-end`}
+                        className={`${
+                          outwearData?.length > 12 ? "flex" : "hidden"
+                        } w-2/3 items-center justify-end`}
                       >
                         <button
                           type="button"
@@ -856,12 +872,13 @@ function FilterList({
                           onClick={() => {
                             setVisibleButtons((prev) => prev - 12);
                           }}
-                          className={`${visibleButtons === 12
+                          className={`${
+                            visibleButtons === 12
                               ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
                               : ""
-                            } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                          } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
                         >
-                          Меньше
+                          {t("FL_less")}
                         </button>
 
                         <button
@@ -870,12 +887,13 @@ function FilterList({
                           onClick={() => {
                             setVisibleButtons((prev) => prev + 12);
                           }}
-                          className={`${outwearData?.length <= visibleButtons
+                          className={`${
+                            outwearData?.length <= visibleButtons
                               ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
                               : ""
-                            } w-full flex justify-center text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                          } w-full flex justify-center text-sm text-borderWinter font-AeonikProRegular mt-2`}
                         >
-                          Больше
+                          {t("FL_more")}
                         </button>
                       </div>
                     </div>
@@ -896,21 +914,23 @@ function FilterList({
                     className="flex items-center cursor-pointer select-none"
                   >
                     <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                      Размер нижней одежды
+                      {t("FL_bottom_size")}
                     </p>
                     <p
-                      className={`${underwearToggle ? "rotate-[180deg]" : ""
-                        } duration-300 ml-1`}
+                      className={`${
+                        underwearToggle ? "rotate-[180deg]" : ""
+                      } duration-300 ml-1`}
                     >
                       <ArrowTopIcons colors={"#000"} />
                     </p>
                   </figure>
                 </article>
                 <article
-                  className={` overflow-hidden ${underwearToggle
+                  className={` overflow-hidden ${
+                    underwearToggle
                       ? "duration-300 h-0"
                       : "duration-300 h-fit mt-5"
-                    } duration-300`}
+                  } duration-300`}
                 >
                   <figure
                     className={`w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2`}
@@ -922,13 +942,15 @@ function FilterList({
                           <button
                             key={index + 1}
                             onClick={() => onHandleUnderWearList(underwear)}
-                            className={`${underwear?.letter_size || underwear?.size
+                            className={`${
+                              underwear?.letter_size || underwear?.size
                                 ? "flex"
                                 : "hidden"
-                              } ${dataActionUnderwearSizes === underwear
+                            } ${
+                              dataActionUnderwearSizes === underwear
                                 ? "bg-fullBlue text-white"
                                 : ""
-                              } h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
+                            } h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
                           >
                             <div className="flex items-center">
                               {underwear?.letter_size ? (
@@ -941,17 +963,25 @@ function FilterList({
                               ) : (
                                 <span>{underwear?.min_wear_size}</span>
                               )}
-                           
-                              <span className="ml-1"> ({underwear?.amount > 99 ? "99+" : underwear?.amount})</span>
+
+                              <span className="ml-1">
+                                {" "}
+                                (
+                                {underwear?.amount > 99
+                                  ? "99+"
+                                  : underwear?.amount}
+                                )
+                              </span>
                             </div>
                           </button>
                         );
                       })}
                     <div
-                      className={`w-full flex items-center ${dataActionUnderwearSizes
+                      className={`w-full flex items-center ${
+                        dataActionUnderwearSizes
                           ? "justify-between"
                           : "justify-end"
-                        }`}
+                      }`}
                     >
                       {dataActionUnderwearSizes && (
                         <div className="flex w-1/3 justify-start items-center">
@@ -960,13 +990,14 @@ function FilterList({
                             onClick={() => ClearListUnderWear()}
                             className={`flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
                           >
-                            Сбросить
+                            {t("FL_reset")}
                           </button>
                         </div>
                       )}
                       <div
-                        className={`${underwearData?.length > 12 ? "flex" : "hidden"
-                          } w-2/3 items-center justify-end`}
+                        className={`${
+                          underwearData?.length > 12 ? "flex" : "hidden"
+                        } w-2/3 items-center justify-end`}
                       >
                         <button
                           type="button"
@@ -974,12 +1005,13 @@ function FilterList({
                           onClick={() => {
                             setVisibleButtons((prev) => prev - 12);
                           }}
-                          className={`${visibleButtons === 12
+                          className={`${
+                            visibleButtons === 12
                               ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
                               : ""
-                            } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                          } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
                         >
-                          Меньше
+                          {t("FL_less")}
                         </button>
                         <button
                           type="button"
@@ -987,12 +1019,13 @@ function FilterList({
                           onClick={() => {
                             setVisibleButtons((prev) => prev + 12);
                           }}
-                          className={`${underwearData?.length <= visibleButtons
+                          className={`${
+                            underwearData?.length <= visibleButtons
                               ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
                               : ""
-                            } w-full flex-end justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                          } w-full flex-end justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
                         >
-                          Больше
+                          {t("FL_more")}
                         </button>
                       </div>
                     </div>
@@ -1013,21 +1046,23 @@ function FilterList({
                     className="flex items-center cursor-pointer select-none"
                   >
                     <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                      Размер обуви
+                      {t("FL_shoe_size")}
                     </p>
                     <p
-                      className={`${footWearToggle ? "rotate-[180deg]" : ""
-                        } duration-300 ml-1`}
+                      className={`${
+                        footWearToggle ? "rotate-[180deg]" : ""
+                      } duration-300 ml-1`}
                     >
                       <ArrowTopIcons colors={"#000"} />
                     </p>
                   </figure>
                 </article>
                 <article
-                  className={` overflow-hidden ${footWearToggle
+                  className={` overflow-hidden ${
+                    footWearToggle
                       ? "duration-300 h-0"
                       : "duration-300 h-fit mt-5"
-                    } duration-300`}
+                  } duration-300`}
                 >
                   <figure className="w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2">
                     {footwearData
@@ -1037,23 +1072,32 @@ function FilterList({
                           <button
                             key={index + 1}
                             onClick={() => onHandleFootWearList(footwear)}
-                            className={`${dataActionFootwearSizes === footwear
+                            className={`${
+                              dataActionFootwearSizes === footwear
                                 ? "bg-fullBlue text-white"
                                 : ""
-                              } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory  hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
+                            } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory  hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
                           >
                             <div className="flex items-center">
                               <span>{footwear?.size}</span>
-                              <span className="ml-1"> ({footwear?.amount > 99 ? "99+" : footwear?.amount})</span>
+                              <span className="ml-1">
+                                {" "}
+                                (
+                                {footwear?.amount > 99
+                                  ? "99+"
+                                  : footwear?.amount}
+                                )
+                              </span>
                             </div>
                           </button>
                         );
                       })}
                     <div
-                      className={`w-full flex items-center  ${dataActionFootwearSizes
+                      className={`w-full flex items-center  ${
+                        dataActionFootwearSizes
                           ? "justify-between"
                           : "justify-end"
-                        }`}
+                      }`}
                     >
                       {dataActionFootwearSizes && (
                         <div className="flex w-1/3 justify-start items-center">
@@ -1062,13 +1106,14 @@ function FilterList({
                             onClick={() => ClearListFootWear()}
                             className={` flex-start text-sm text-borderWinter font-AeonikProRegular mt-2`}
                           >
-                            Сбросить
+                            {t("FL_reset")}
                           </button>
                         </div>
                       )}
                       <div
-                        className={`${footwearData?.length > 12 ? "flex" : "hidden"
-                          } w-2/3 items-center justify-end`}
+                        className={`${
+                          footwearData?.length > 12 ? "flex" : "hidden"
+                        } w-2/3 items-center justify-end`}
                       >
                         <button
                           type="button"
@@ -1076,12 +1121,13 @@ function FilterList({
                           onClick={() => {
                             setVisibleButtons((prev) => prev - 12);
                           }}
-                          className={`${visibleButtons === 12
+                          className={`${
+                            visibleButtons === 12
                               ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
                               : ""
-                            } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                          } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
                         >
-                          Меньше
+                          {t("FL_less")}
                         </button>
 
                         <button
@@ -1090,12 +1136,13 @@ function FilterList({
                           onClick={() => {
                             setVisibleButtons((prev) => prev + 12);
                           }}
-                          className={`${footwearData?.length <= visibleButtons
+                          className={`${
+                            footwearData?.length <= visibleButtons
                               ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
                               : ""
-                            } w-full flex justify-center text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                          } w-full flex justify-center text-sm text-borderWinter font-AeonikProRegular mt-2`}
                         >
-                          Больше
+                          {t("FL_more")}
                         </button>
                       </div>
                     </div>
@@ -1111,7 +1158,7 @@ function FilterList({
               onClick={() => ClearAll()}
               className="h-[44px] border w-full flex items-center justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black bg-white rounded-lg active:scale-95	active:opacity-70"
             >
-              Сбросить фильтр
+              {t("FL_reset_filter")}
             </button>
           </div>
         </div>
