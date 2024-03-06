@@ -139,7 +139,7 @@ function BottomHeader() {
     {
       id: 4444,
       childText: [
-        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name: t("Bgender_is_selected"), action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
         { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
         { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
@@ -148,7 +148,7 @@ function BottomHeader() {
     {
       id: 1111,
       childText: [
-        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name: t("Bgender_is_selected"), action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
         { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
         { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
@@ -157,7 +157,7 @@ function BottomHeader() {
     {
       id: 2222,
       childText: [
-        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name: t("Bgender_is_selected"), action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
         { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
         { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
@@ -166,7 +166,7 @@ function BottomHeader() {
     {
       id: 3333,
       childText: [
-        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name: t("Bgender_is_selected"), action: false },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
         { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
         { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
@@ -175,7 +175,7 @@ function BottomHeader() {
     {
       id: 5555,
       childText: [
-        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: true },
+        { id: 0, anyIcons: <ManWomanGen />, name: t("Bgender_is_selected"), action: true },
         { id: 1, anyIcons: <ManGenIcons />, name: "", action: false },
         { id: 2, anyIcons: <WomanGenIcons />, name: "", action: false },
         { id: 3, anyIcons: <WinterBoyIcons />, name: "", action: false },
@@ -670,10 +670,18 @@ function BottomHeader() {
                         >
                           <span>{item?.anyIcons}</span>
                           {item?.name && (
+
+
+
+
                             <span className="ml-2 not-italic whitespace-nowrap text-sm font-AeonikProMedium tracking-wide leading-5">
                               {item?.name}
                             </span>
                           )}
+
+
+
+
                         </button>
                         {item?.id !== 3 && (
                           <span className="w-[2px] h-[30px] mx-[1px] border-r border-searchBgColor"></span>
