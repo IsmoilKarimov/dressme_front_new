@@ -9,11 +9,13 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { NoImg, ShowMoreBackIcon, SircleNext } from "../../../../assets/icons";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { useTranslation } from 'react-i18next';
+import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 
 function MainPageSliders() {
   const [data, setData] = useContext(HomeMainDataContext);
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const { t } = useTranslation(["homePage"]);
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
 
   // maindata
   const NextArrow = (props) => {
@@ -202,7 +204,7 @@ function MainPageSliders() {
         }
       });
   };
-
+  // console.log(languageDetector?.typeLang,'languageDetector');
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
@@ -238,7 +240,8 @@ function MainPageSliders() {
                       </div>
                       <article className="h-12.5 flex items-center justify-start">
                         <div className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-1 ml-2">
-                          {data?.name_ru || "type"}
+                          {languageDetector?.typeLang === 'ru' && data?.name_ru}
+                          {languageDetector?.typeLang === 'uz' && data?.name_uz}
                           <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
                             ({data?.products_count || "0"})
                           </p>
@@ -318,7 +321,8 @@ function MainPageSliders() {
                     </div>
                     <article className="w-full flex items-center justify-start">
                       <div className="w-full not-italic flex font-AeonikProMedium text-[12px] md:text-[16px] leading-4 text-black mt-2 md:mt-3 md:mr-2 md:ml-2">
-                        {data?.name_ru || "type"}
+                        {languageDetector?.typeLang === 'ru' && data?.name_ru}
+                        {languageDetector?.typeLang === 'uz' && data?.name_uz}
                         <p className="not-italic ml-1 md:ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
                           ({data?.products_count || "0"})
                         </p>
@@ -349,7 +353,8 @@ function MainPageSliders() {
                       </figure>
                       <article className="w-full py-1 flex items-center">
                         <div className="not-italic flex items-center font-AeonikProMedium text-xs xs:text-base leading-6 text-black">
-                          {data?.name_ru || "type"}
+                          {languageDetector?.typeLang === 'ru' && data?.name_ru}
+                          {languageDetector?.typeLang === 'uz' && data?.name_uz}
                           <p className="not-italic lex items-center font-AeonikProRegular text-xs xs:text-sm leading-4 text-gray-500 ml-1">
                             ({data?.products_count || "0"})
                           </p>

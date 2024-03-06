@@ -27,5 +27,6 @@
     "NMcategory": "Категории",
     "NMmap": "Карта",
     "NMfavorite": "Избранное",
-    "NMprofile": "Профиль"
+    "NMprofile": "Профиль",
+    "selectRegion": "Выберите регион"
 }
