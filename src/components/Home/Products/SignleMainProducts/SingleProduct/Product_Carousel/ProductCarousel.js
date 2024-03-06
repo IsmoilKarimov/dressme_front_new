@@ -504,9 +504,9 @@ const ProductCarousel = ({ show, data }) => {
       ) : (
         <section className="w-full h-full flex flex-col">
           {/* 1 */}
-          <article className="w-full max-w-[440px] h-full widthInherit mx-auto">
+          <article className="w-full ll:max-w-[440px] h-full widthInherit mx-auto ">
             <Slider
-              className="w-full h-[482px] rounded-lg"
+              className="w-full ll:h-[482px] rounded-lg"
               ref={slider1}
               {...settings}
             >
@@ -521,9 +521,9 @@ const ProductCarousel = ({ show, data }) => {
                             handleClickCarosuel(i);
                           }}
                         >
-                          <figure className="relative  w-full h-[478px]  overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
+                          <figure className="relative  w-full ll:h-[478px]  border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer ">
                             <img
-                              className="w-full ll:h-full object-cover"
+                              className="w-full ll:h-full object-cover "
                               src={data?.url_photo}
                               alt=""
                             />
@@ -550,16 +550,16 @@ const ProductCarousel = ({ show, data }) => {
                         key={i}
                         onClick={() => {
                           handleClickCarosuel(i);
-                        }}className="w-full"
+                        }}className="w-full "
                       >
-                        <figure className="relative w-full h-[478px] object-cover overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
+                        <figure className="relative w-full ll:h-[478px] object-cover overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
                           <img
                             className="w-full h-full object-cover"
                             src={data?.url_photo}
                             alt=""
                           />
                           {photos_length > 1 ? (
-                            <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
+                            <div className="flex w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
                               <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
                                 <p className="h-full w-full text-center pt-[4px]">
                                   {" "}
