@@ -76,8 +76,8 @@ const MediumHeader = ({ stateData, setStateData }) => {
     setLanguageDetector({ typeLang: currentLang })
   }, [currentLang])
   // useEffect
-// console.log(currentLang,'currentLang---11');
-// console.log(languageDetector,'languageDetector---11');
+  // console.log(currentLang,'currentLang---11');
+  // console.log(languageDetector,'languageDetector---11');
   useEffect(() => {
     if (stateData?.hamburgerMenu || regionsList) {
       document.body.style.overflow = "hidden";
@@ -182,8 +182,8 @@ const MediumHeader = ({ stateData, setStateData }) => {
   const [openLang, setOpenLang] = useState(false);
 
   const LanguageList = [
-    { id: 1, value: "uz", type: " O'zbekcha", icons: UzbekFlag },
-    { id: 2, value: "ru", type: "Русский", icons:  RussianFlag },
+    { id: 1, value: "uz", type: "O'zbekcha", icons: UzbekFlag },
+    { id: 2, value: "ru", type: "Русский", icons: RussianFlag },
   ];
 
   const handleOpenLangList = (newOpen) => {
@@ -534,7 +534,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                       type="text"
                       name="search"
                       autoComplete="search"
-                      placeholder={`${searchForLocation?.includes("shops") && searchForLocation?.length == 2 ? t('MsearchMar') : t('MsearchProd') } `}
+                      placeholder={`${searchForLocation?.includes("shops") && searchForLocation?.length == 2 ? t('MsearchMar') : t('MsearchProd')} `}
                       className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
                       value={searchMarketName}
                       onChange={handleChange}

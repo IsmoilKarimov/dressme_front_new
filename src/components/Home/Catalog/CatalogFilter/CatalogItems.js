@@ -18,10 +18,10 @@ import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
 
 export default function CatalogItems() {
+  const { t } = useTranslation("catalog")
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data] = useContext(HomeMainDataContext);
 
-  const { t } = useTranslation("catalog")
 
   const [filterData, setFilterData] = useState([]);
   const [pageId, setPageId] = useState(1);
