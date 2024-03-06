@@ -103,8 +103,9 @@ function BottomHeader() {
     dressInfo?.mainColorHex,
     dressInfo?.mainCategoryId,
     dressInfo?.mainGenderId,
+    data?.getMainProductCard?.budget
   ]);
-  // console.log(data?.getMainProductCard, 'data?.getMainProductCard');
+ 
   useEffect(() => {
     if (state?.showColour) {
       document.body.style.overflow = "hidden";
@@ -464,7 +465,7 @@ function BottomHeader() {
                 </button>
               </div>
               {/*  Modal body  */}
-              <div className="px-6 py-3 space-y-6">
+              <div className="px-6 py-3 space-y-6 ">
                 <div className=" flex justify-between items-center mb-4 w-full ">
                   <div className="flex ">
                     <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
@@ -670,18 +671,10 @@ function BottomHeader() {
                         >
                           <span>{item?.anyIcons}</span>
                           {item?.name && (
-
-
-
-
                             <span className="ml-2 not-italic whitespace-nowrap text-sm font-AeonikProMedium tracking-wide leading-5">
-                              {item?.name}
+                              {t("Bgender_is_selected")}
                             </span>
                           )}
-
-
-
-
                         </button>
                         {item?.id !== 3 && (
                           <span className="w-[2px] h-[30px] mx-[1px] border-r border-searchBgColor"></span>
