@@ -66,7 +66,9 @@ const Header = () => {
   const typeFilter = String(dressInfo?.type)?.split("");
   const seasonId = Number(typeFilter?.shift());
   const fetchGetAllData = () => {
-    setData({ ...data, btnLoader: true, loader: true });
+    if(data?.getMainProductCard?.length==0){
+      setData({ ...data, btnLoader: true, loader: true });
+    }
     var params = new URLSearchParams();
     params.append("page", page);
     dressInfo?.mainRegionId &&

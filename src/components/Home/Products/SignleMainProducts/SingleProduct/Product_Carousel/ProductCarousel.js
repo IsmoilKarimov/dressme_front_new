@@ -504,9 +504,9 @@ const ProductCarousel = ({ show, data }) => {
       ) : (
         <section className="w-full h-full flex flex-col">
           {/* 1 */}
-          <article className="w-full h-full widthInherit mx-auto">
+          <article className="w-full max-w-[440px] h-full widthInherit mx-auto">
             <Slider
-              className="w-full h-[400px] rounded-lg"
+              className="w-full h-[482px] rounded-lg"
               ref={slider1}
               {...settings}
             >
@@ -521,9 +521,9 @@ const ProductCarousel = ({ show, data }) => {
                             handleClickCarosuel(i);
                           }}
                         >
-                          <figure className="relative mx-auto w-[290px] h-[380px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
+                          <figure className="relative  w-full h-[478px]  overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
                             <img
-                              className="w-full h-full object-cover"
+                              className="w-full ll:h-full object-cover"
                               src={data?.url_photo}
                               alt=""
                             />
@@ -550,9 +550,9 @@ const ProductCarousel = ({ show, data }) => {
                         key={i}
                         onClick={() => {
                           handleClickCarosuel(i);
-                        }}
+                        }}className="w-full"
                       >
-                        <figure className="relative mx-auto w-[290px] h-[380px] object-cover overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
+                        <figure className="relative w-full h-[478px] object-cover overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
                           <img
                             className="w-full h-full object-cover"
                             src={data?.url_photo}
