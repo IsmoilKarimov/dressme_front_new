@@ -1,3 +1,9 @@
 {
-    "Text1": "Barcha bo'limlarni ko'rish "
+    "Text1": "Barcha bo'limlarni ko'rish ",
+    "CCclothesText": "Kiyimlar kolleksiyasi ",
+    "CCnotFound": "Hech narsa topilmadi ",
+    "CCmore": "Ko'proq ko'rsatish ",
+    "Bgender_is_selected": "Barchasi",
+    "CPsearchProd": "Mahsulotlarni qidirish "
+
 }

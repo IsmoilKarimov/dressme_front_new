@@ -9,6 +9,7 @@ import { CollectionCardItem } from "./CollectionCardItem";
 import { ClipLoader } from "react-spinners";
 import { MdClose } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function CollectionCards() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -17,6 +18,7 @@ export default function CollectionCards() {
   const [data, setData, wishList, setWishlist, page, setPage] =
     useContext(HomeMainDataContext);
   const [searchMarketName, setSearchMarketName] = useState();
+  const { t } = useTranslation(["homePage"]);
 
   // -------------------------------------
   const toggle = React.useCallback(() => setOpenWearType(false), []);
@@ -91,7 +93,7 @@ export default function CollectionCards() {
               value={searchMarketName}
               onChange={handleChange}
               onKeyDown={_handleKeyDownSearch}
-              placeholder="Искать товары"
+              placeholder={t("CPsearchProd")}
               autoComplete="name"
               className="bg-transparent w-[90%] h-full text-[14px] border border-transparent px-3"
             />
@@ -121,14 +123,14 @@ export default function CollectionCards() {
         {data?.products?.length ? (
           <section className="w-full  hidden md:flex justify-start items-center mb-[24px] md:mb-0 md:px-0">
             <div className="not-italic font-AeonikProMedium lg:w-fit lg:text-2xl xl:text-3xl flex items-center leading-8 text-black">
-              <p>Коллекция одежд</p>
+              <p>{t("CCclothesText")}</p>
             </div>
           </section>
         ) : null}
 
         <section className="w-full  md:hidden flex justify-start items-center my-5 ">
           <div className="not-italic font-AeonikProMedium lg:w-fit lg:text-2xl xl:text-3xl flex items-center leading-6 text-black">
-            <p>Коллекция одежд</p>
+          <p>{t("CCclothesText")}</p>
           </div>
         </section>
 
@@ -158,7 +160,7 @@ export default function CollectionCards() {
               })
             ) : (
               <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[200px] ">
-                Ничего не найдено
+                {t("CCnotFound")}
               </div>
             )}
           </article>
@@ -198,7 +200,7 @@ export default function CollectionCards() {
                   }}
                   className="w-[60%] md:w-[760px] h-[45px] md:h-[60px] active:opacity-80 md:active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-[14px] md:text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
                 >
-                  Показать ещё{" "}
+                   {t("CCmore")}{" "}
                 </button>
               )}
             </div>
