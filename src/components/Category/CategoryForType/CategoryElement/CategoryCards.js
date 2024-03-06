@@ -3,10 +3,13 @@ import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { CollectionCardItem } from "../../../Home/Main/WearCollectionCard/CollectionCardItem";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function CategoryCards({ filterData, setPageId, paramsId }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
+
+  const { t } = useTranslation("category")
 
   const handleLeaveMouse = (eId) => {
     const elementsIndex = dressInfo.ProductList.findIndex(

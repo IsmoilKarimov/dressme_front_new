@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
 import { InputCheckedTrueIcons, StarIcons } from "../../../../assets/icons";
 import { CalourCard } from "../../../../assets";
 import { SliderPhotosColorContext } from "../../../../ContextHook/SliderPhotosColor";
 import { MobileSelectedDataContext } from "../../../../ContextHook/mobileSelectedData";
+import { useTranslation } from "react-i18next";
 
 export const CollectionCardItem = ({
   data,
@@ -17,7 +17,8 @@ export const CollectionCardItem = ({
   dressInfo,
   onHandleCardId
 }) => {
-  const navigate = useNavigate();
+
+  const { t } = useTranslation("category")
 
   const goDetail = (id, name) => { 
     // navigate(`/product/${id}`);
@@ -51,14 +52,6 @@ export const CollectionCardItem = ({
     }
   }, [mainSelectedColor]);
 
-  // useEffect(() => {
-  //   if (mainSelectedId) {
-  //     console.log(mainSelectedId);
-  //   } else {
-  //     setSelectedPhoto(data?.photos[0]);
-  //   }
-  // }, [data]);
-
   // Remove duplicates and select only first -----
 
   let idMap = new Map();
@@ -76,7 +69,7 @@ export const CollectionCardItem = ({
       uniqueArray?.find((item) => item?.product_color_id === id)
     );
   };
-  // console.log(data,'data');
+
   return (
     <article
       key={data?.id}
@@ -125,8 +118,9 @@ export const CollectionCardItem = ({
             </span>
           </button>
           <article
-            className={`${data?.l ? "w-full px-1 xs:px-2 md:px-4 my-2" : "w-0 my-2"
-              } group-hover:w-full group-hover:px-1 group-hover:xs:px-2 group-hover:md:px-4 group-hover:my-2 duration-300 w-0 my-2 absolute overflow-hidden hidden top-0 z-[1] md:flex items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
+            className={`${
+              data?.l ? "w-full px-1 xs:px-2 md:px-4 my-2" : "w-0 my-2"
+            } group-hover:w-full group-hover:px-1 group-hover:xs:px-2 group-hover:md:px-4 group-hover:my-2 duration-300 w-0 my-2 absolute overflow-hidden hidden top-0 z-[1] md:flex items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
           >
             {data?.colors?.map((itemValue) => {
               return (
@@ -150,8 +144,9 @@ export const CollectionCardItem = ({
         <article
           onMouseEnter={() => handleLeaveMouse(data?.id)}
           onClick={() => goDetail(data?.id, data?.name_ru)}
-          className={`w-full px-2 xs:px-3 ${data?.cost?.discount_price ? "mb-3" : "mb-3"
-            } md:mb-0`}
+          className={`w-full px-2 xs:px-3 ${
+            data?.cost?.discount_price ? "mb-3" : "mb-3"
+          } md:mb-0`}
         >
           <div className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-[6px] md:mb-0  cursor-pointer">
             <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
@@ -169,7 +164,7 @@ export const CollectionCardItem = ({
                   </p>
                   (
                   <p className="hidden lg:block md:mr-1 md:text-[11px]">
-                    голосов:
+                    {t("CCI_votes")}:
                   </p>
                   {data?.rated_users_count || 0})
                 </article>
@@ -191,7 +186,7 @@ export const CollectionCardItem = ({
                     ?.split(",")
                     .join(" ")}
                   {"  "}
-                  сум
+                  {t("CCI_currency")}
                 </p>
                 <p className="w-full text-start m-0 p-0 text-[12px] mb-[4px] line-through not-italic font-AeonikProRegular leading-0 text-[#8b8e99] ss:leading-1 md:text-[12px]">
                   {parseInt(data?.cost?.price)
@@ -199,13 +194,14 @@ export const CollectionCardItem = ({
                     ?.split(",")
                     .join(" ")}
                   {"  "}
-                  сум
+                  {t("CCI_currency")}
                 </p>
               </div>
             ) : (
               <p
-                className={`not-italic font-AeonikProMedium text-[15px] ${data?.cost?.discount_price ? "" : ""
-                  }`}
+                className={`not-italic font-AeonikProMedium text-[15px] ${
+                  data?.cost?.discount_price ? "" : ""
+                }`}
                 style={{ color: "black" }}
               >
                 {parseInt(data?.cost?.price)
@@ -213,15 +209,16 @@ export const CollectionCardItem = ({
                   ?.split(",")
                   .join(" ")}
                 {"  "}
-                сум
+                {t("CCI_currency")}
               </p>
             )}
           </article>
           <div
-            className={`flex items-center select-none absolute right-2 ${data?.cost?.discount_price
-              ? "bottom-[7px] ls:bottom-[-2px]"
-              : " bottom-[8px] ls:bottom-[-2px]"
-              } md:bottom-2`}
+            className={`flex items-center select-none absolute right-2 ${
+              data?.cost?.discount_price
+                ? "bottom-[7px] ls:bottom-[-2px]"
+                : " bottom-[8px] ls:bottom-[-2px]"
+            } md:bottom-2`}
           >
             <button
               onClick={() => {
