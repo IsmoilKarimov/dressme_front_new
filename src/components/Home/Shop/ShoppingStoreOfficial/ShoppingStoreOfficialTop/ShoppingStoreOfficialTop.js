@@ -118,7 +118,7 @@ const ShoppingStoreOfficialTop = ({
               </figure>
             )}
             <div
-              className={`w-full md:h-[90px]   h-fit flex flex-col md:flex-row items-center border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0
+              className={`w-full md:h-[90px] h-fit flex flex-col md:flex-row items-center border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0
             ${filteredData?.shop?.url_background_photo
                   ? "mt-2 md:mt-0"
                   : "md:mt-10"
@@ -175,9 +175,7 @@ const ShoppingStoreOfficialTop = ({
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    clickButtons?.setOpenTabLocation(
-                      !clickButtons?.openTabLocation
-                    );
+                    clickButtons?.setOpenTabLocation(true);
                     clickButtons?.setOpenTabComment(false);
                   }}
                   className="flex gap-x-2 items-center ml-3 w-[65%] md:w-full"
@@ -229,9 +227,7 @@ const ShoppingStoreOfficialTop = ({
                     <div
                       onClick={(e) => {
                         e.preventDefault();
-                        clickButtons?.setOpenTabComment(
-                          !clickButtons?.openTabComment
-                        );
+                        clickButtons?.setOpenTabComment(true);
                         clickButtons?.setOpenTabLocation(false);
                       }}
                       className="w-[42%] min-w-min hidden md:block text-sm font-AeonikProRegular text-borderWinter ml-auto cursor-pointer"
@@ -241,9 +237,7 @@ const ShoppingStoreOfficialTop = ({
                     <button
                       onClick={(e) => {
                         e.preventDefault();
-                        clickButtons?.setOpenTabComment(
-                          !clickButtons?.openTabComment
-                        );
+                        clickButtons?.setOpenTabComment(true);
                       }}
                       className="flex items-center justify-center border border-searchBgColor w-[48px] h-[48px] rounded-xl ml-[24px] md:ml-[10px] flex-shrink-0"
                     >
