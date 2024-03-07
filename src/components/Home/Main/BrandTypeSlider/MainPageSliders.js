@@ -204,6 +204,16 @@ function MainPageSliders() {
         }
       });
   };
+  const goSectionId = (nameru, nameuz) => {
+    // to = {`/section/${data?.name_ru?.split(' ')?.join('-')?.toLowerCase()}`
+    if (languageDetector?.typeLang === 'ru') {
+      navigate(`/section/${nameru?.split(' ')?.join('-')?.toLowerCase()}`);
+    }
+    if (languageDetector?.typeLang === 'uz') {
+      navigate(`/section/${nameuz?.split(' ')?.join('-')?.toLowerCase()}`);
+    }
+  }
+
   // console.log(languageDetector?.typeLang,'languageDetector');
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
@@ -222,8 +232,8 @@ function MainPageSliders() {
               >
                 {data?.getMainProductCard?.sections?.map((data) => {
                   return (
-                    <NavLink
-                      to={`/section/${data?.name_ru?.split(' ')?.join('-')?.toLowerCase()}`}
+                    <div
+                      onClick={() => goSectionId(languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz)}
                       key={data?.id}
                       className="!w-[99%] h-[280px] rounded-lg"
                     >
@@ -247,7 +257,7 @@ function MainPageSliders() {
                           </p>
                         </div>
                       </article>
-                    </NavLink>
+                    </div>
                   );
                 })}
               </Slider>
@@ -255,8 +265,8 @@ function MainPageSliders() {
               <section className="w-full box-border flex flex-row justify-start gap-x-3  ">
                 {data?.getMainProductCard?.sections?.map((data) => {
                   return (
-                    <NavLink
-                      to={`/section/${data?.name_ru?.split(' ')?.join('-')?.toLowerCase()}`}
+                    <div
+                      onClick={() => goSectionId(languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz)}
                       key={data?.id}
                       className="max-w-[192px] w-full h-[280px] rounded-lg "
                     >
@@ -285,7 +295,7 @@ function MainPageSliders() {
                           )}
                         </div>
                       </article>
-                    </NavLink>
+                    </div>
                   );
                 })}
               </section>
@@ -300,8 +310,8 @@ function MainPageSliders() {
             {data?.getMainProductCard?.sections?.map((data, i) => {
               if (more) {
                 return (
-                  <NavLink
-                    to={`/section/${data?.name_ru?.split(' ')?.join('-')?.toLowerCase()}`}
+                  <div
+                    onClick={() => goSectionId(languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz)}
                     key={data?.id}
                     className="w-full md:!w-[99%] h-[170px] md:h-[280px] rounded-lg "
                   >
@@ -328,15 +338,15 @@ function MainPageSliders() {
                         </p>
                       </div>
                     </article>
-                  </NavLink>
+                  </div>
                 );
               } else {
                 if (i > 8) {
                   return false;
                 } else {
                   return (
-                    <NavLink
-                      to={`/section/${data?.name_ru?.split(' ')?.join('-')?.toLowerCase()}`}
+                    <div
+                      onClick={() => goSectionId(languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz)}
                       key={data?.id}
                       className="w-[100%] h-[170px]"
                     >
@@ -360,7 +370,7 @@ function MainPageSliders() {
                           </p>
                         </div>
                       </article>
-                    </NavLink>
+                    </div>
                   );
                 }
               }
