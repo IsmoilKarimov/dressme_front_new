@@ -33,7 +33,7 @@ export default function SingleMainProducts() {
     }
   }
   return (
-    <main className="w-full ">
+    <main className="w-full px-4 md:px-0">
       <SingleProduct breadShops={breadcrumbItems} oncallProductName={oncallProductName} />
     </main>
   );

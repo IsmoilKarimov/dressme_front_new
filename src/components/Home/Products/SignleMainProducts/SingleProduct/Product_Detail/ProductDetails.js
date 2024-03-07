@@ -48,10 +48,9 @@ import { SliderPhotosColorContext } from "../../../../../../ContextHook/SliderPh
 import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
 const ProductDetails = ({ data }) => {
   const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
-
+  // Rick Ortiz
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const { t } = useTranslation("products")
@@ -360,20 +359,18 @@ const ProductDetails = ({ data }) => {
       });
   };
 
-  
+
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
       <div className="tableSizes">
         <section
           onClick={() => setTableSizes(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-            tableSizes ? "" : "hidden"
-          }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${tableSizes ? "" : "hidden"
+            }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
-            tableSizes ? "bottom-0" : "bottom-[-800px] z-0"
-          }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${tableSizes ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
         >
           <TableSizesDropUp
             data={data}
@@ -385,14 +382,12 @@ const ProductDetails = ({ data }) => {
       <div className="locations">
         <section
           onClick={() => setLocations(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-            locations ? "" : "hidden"
-          }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${locations ? "" : "hidden"
+            }`}
         ></section>
         <div
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${
-            locations ? "bottom-0" : "bottom-[-800px] z-0"
-          }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${locations ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
         >
           <LocationDropUp
             selectedLocation={selectedLocation}
@@ -463,11 +458,11 @@ const ProductDetails = ({ data }) => {
         {/* Desktop Product Details*/}
         <section className="h-fit hidden md:flex md:flex-col items-center mb-[9px]">
           <div className="w-full flex items-center mb-4">
-            <div className="w-1/2 flex items-center">
-              <article className="w-fit flex items-center">
+            <div className="w-1/2 flex items-center ">
+              <article className="w-fit flex items-center ">
                 <MarketIcons colors={"#000"} />
                 <div className="not-italic flex items-center font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
-                  {t("Do'kon")}:
+                  {t("shop")}:
                 </div>
               </article>
               <article className="w-fit ml-2">
@@ -500,12 +495,12 @@ const ProductDetails = ({ data }) => {
                             item?.name_ru === "Весна"
                               ? springSeason
                               : item?.name_ru === "Лето"
-                              ? summerSeason
-                              : item?.name_ru === "Осень"
-                              ? autummSeason
-                              : item?.name_ru === "Зима"
-                              ? winterSeason
-                              : null
+                                ? summerSeason
+                                : item?.name_ru === "Осень"
+                                  ? autummSeason
+                                  : item?.name_ru === "Зима"
+                                    ? winterSeason
+                                    : null
                           }
                           alt=""
                         />
@@ -839,54 +834,53 @@ const ProductDetails = ({ data }) => {
           >
             {selectedSize
               ? uniqueArray?.map((data) => {
-                  return (
+                return (
+                  <div
+                    key={data?.id}
+                    className={`${data?.product_color_id ===
+                      selectedSize?.product_color_id
+                      ? ""
+                      : "opacity-40"
+                      } `}
+                  >
                     <div
                       key={data?.id}
-                      className={`${
-                        data?.product_color_id ===
-                        selectedSize?.product_color_id
-                          ? ""
-                          : "opacity-40"
-                      } `}
-                    >
-                      <div
-                        key={data?.id}
-                        className="!w-[64px] h-[72px] rounded-lg cursor-pointer  bg-black"
-                        onClick={() => {
-                          filterColorsOnSelect(data?.product_color_id);
-                          setcolorId(data?.product_color_id);
-                        }}
-                        style={{
-                          backgroundImage: `url("${data?.url_photo}")`,
-                          backgroundColor: "rgba(0,0,0,0.6)",
-                          backgroundPosition: "center center",
-                          backgroundSize: "cover",
-                          backgroundRepeat: "no-repeat",
-                        }}
-                      ></div>
-                    </div>
-                  );
-                })
+                      className="!w-[64px] h-[72px] rounded-lg cursor-pointer  bg-black"
+                      onClick={() => {
+                        filterColorsOnSelect(data?.product_color_id);
+                        setcolorId(data?.product_color_id);
+                      }}
+                      style={{
+                        backgroundImage: `url("${data?.url_photo}")`,
+                        backgroundColor: "rgba(0,0,0,0.6)",
+                        backgroundPosition: "center center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                      }}
+                    ></div>
+                  </div>
+                );
+              })
               : uniqueArray?.map((data) => {
-                  return (
-                    <div key={data?.id}>
-                      <div
-                        className="!w-[64px] h-[72px] rounded-lg cursor-pointer bg-black"
-                        onClick={() => {
-                          filterColorsOnSelect(data?.product_color_id);
-                          setcolorId(data?.product_color_id);
-                        }}
-                        style={{
-                          backgroundImage: `url("${data?.url_photo}")`,
-                          backgroundColor: "rgba(0,0,0,0.6)",
-                          backgroundPosition: "center center",
-                          backgroundSize: "cover",
-                          backgroundRepeat: "no-repeat",
-                        }}
-                      ></div>
-                    </div>
-                  );
-                })}
+                return (
+                  <div key={data?.id}>
+                    <div
+                      className="!w-[64px] h-[72px] rounded-lg cursor-pointer bg-black"
+                      onClick={() => {
+                        filterColorsOnSelect(data?.product_color_id);
+                        setcolorId(data?.product_color_id);
+                      }}
+                      style={{
+                        backgroundImage: `url("${data?.url_photo}")`,
+                        backgroundColor: "rgba(0,0,0,0.6)",
+                        backgroundPosition: "center center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                      }}
+                    ></div>
+                  </div>
+                );
+              })}
           </Slider>
           <button
             className="button mt-[-5px]"
@@ -1117,280 +1111,260 @@ const ProductDetails = ({ data }) => {
           <section className="flex flex-wrap items-center gap-x-3 gap-y-3">
             {data?.product?.category_id === "1"
               ? data?.product?.sizes?.map((data) => {
-                  if (
-                    data?.shop_location_id == selectedLocation?.id &&
-                    selectedColor?.pivot?.id === data?.product_color_id
-                  ) {
-                    return (
-                      <div
-                        key={data?.id}
-                        onClick={() => {
-                          setSelectedSize(data);
-                        }}
-                        className={`${
-                          data?.id === selectedSize?.id
-                            ? "border-fullBlue"
-                            : "border-[#dadada]"
+                if (
+                  data?.shop_location_id == selectedLocation?.id &&
+                  selectedColor?.pivot?.id === data?.product_color_id
+                ) {
+                  return (
+                    <div
+                      key={data?.id}
+                      onClick={() => {
+                        setSelectedSize(data);
+                      }}
+                      className={`${data?.id === selectedSize?.id
+                        ? "border-fullBlue"
+                        : "border-[#dadada]"
                         }  h-fit w-fit mt-4 rounded-lg border  hover:border-fullBlue`}
-                      >
-                        <Popover
-                          trigger={data?.min_head_girth ? "hover" : "false"}
-                          content={() => contentSize(data)}
-                          className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${
-                            data?.amount === "0"
-                              ? "bg-[#f6f6f9] text-[#d3d4dd]"
-                              : ""
+                    >
+                      <Popover
+                        trigger={data?.min_head_girth ? "hover" : "false"}
+                        content={() => contentSize(data)}
+                        className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${data?.amount === "0"
+                          ? "bg-[#f6f6f9] text-[#d3d4dd]"
+                          : ""
                           }`}
-                        >
-                          <p
-                            className={`font-AeonikProMedium text-sm uppercase text-center ${
-                              data?.amount === "0"
-                                ? "text-[#d3d4dd]"
-                                : "text-black"
+                      >
+                        <p
+                          className={`font-AeonikProMedium text-sm uppercase text-center ${data?.amount === "0"
+                            ? "text-[#d3d4dd]"
+                            : "text-black"
                             } `}
-                          >
-                            {data?.one_size ? "ONE SIZE" : null}
-                          </p>
-                        </Popover>
-                      </div>
-                    );
-                  }
-                })
+                        >
+                          {data?.one_size ? "ONE SIZE" : null}
+                        </p>
+                      </Popover>
+                    </div>
+                  );
+                }
+              })
               : null}
 
             {data?.product?.category_id === "2"
               ? data?.product?.sizes?.map((data) => {
-                  if (
-                    data?.shop_location_id == selectedLocation?.id &&
-                    selectedColor?.pivot?.id === data?.product_color_id
-                  ) {
-                    return (
-                      <div
-                        key={data?.id}
-                        onClick={() => {
-                          setSelectedSize(data);
-                        }}
-                        className={`${
-                          data?.id === selectedSize?.id
-                            ? "border-fullBlue"
-                            : "border-[#dadada]"
+                if (
+                  data?.shop_location_id == selectedLocation?.id &&
+                  selectedColor?.pivot?.id === data?.product_color_id
+                ) {
+                  return (
+                    <div
+                      key={data?.id}
+                      onClick={() => {
+                        setSelectedSize(data);
+                      }}
+                      className={`${data?.id === selectedSize?.id
+                        ? "border-fullBlue"
+                        : "border-[#dadada]"
                         }  h-fit w-fit mt-4 rounded-lg border   hover:border-fullBlue`}
-                      >
-                        <Popover
-                          trigger="hover"
-                          content={() => contentSize(data)}
-                          className={`h-11 w-[80px] md:w-auto ${
-                            data?.amount === "0"
-                              ? "bg-[#f6f6f9] text-[#d3d4dd]"
-                              : ""
+                    >
+                      <Popover
+                        trigger="hover"
+                        content={() => contentSize(data)}
+                        className={`h-11 w-[80px] md:w-auto ${data?.amount === "0"
+                          ? "bg-[#f6f6f9] text-[#d3d4dd]"
+                          : ""
                           }  cursor-pointer rounded-lg  px-4 flex flex-col items-center justify-center`}
-                        >
-                          <p
-                            className={`font-AeonikProMedium text-sm uppercase text-center ${
-                              data?.amount === "0"
-                                ? "text-[#d3d4dd]"
-                                : "text-black"
+                      >
+                        <p
+                          className={`font-AeonikProMedium text-sm uppercase text-center ${data?.amount === "0"
+                            ? "text-[#d3d4dd]"
+                            : "text-black"
                             } `}
-                          >
-                            {data?.letter_size}
-                          </p>
-                          {data?.letter_size ? (
-                            <span
-                              className={`text-[10px] font-AeonikProRegular ${
-                                data?.amount === "0"
-                                  ? "text-[#d3d4dd]"
-                                  : "text-[#757575]"
+                        >
+                          {data?.letter_size}
+                        </p>
+                        {data?.letter_size ? (
+                          <span
+                            className={`text-[10px] font-AeonikProRegular ${data?.amount === "0"
+                              ? "text-[#d3d4dd]"
+                              : "text-[#757575]"
                               } `}
-                            >
-                              {data?.min_wear_size}{" "}
-                              {data?.max_wear_size
-                                ? "- " + data?.max_wear_size
-                                : null}
-                            </span>
-                          ) : (
-                            <p
-                              className={`font-AeonikProMedium text-sm uppercase text-center ${
-                                data?.amount === "0"
-                                  ? "text-[#d3d4dd]"
-                                  : "text-black"
+                          >
+                            {data?.min_wear_size}{" "}
+                            {data?.max_wear_size
+                              ? "- " + data?.max_wear_size
+                              : null}
+                          </span>
+                        ) : (
+                          <p
+                            className={`font-AeonikProMedium text-sm uppercase text-center ${data?.amount === "0"
+                              ? "text-[#d3d4dd]"
+                              : "text-black"
                               }`}
-                            >
-                              {data?.min_wear_size}{" "}
-                              {data?.max_wear_size
-                                ? "- " + data?.max_wear_size
-                                : null}
-                            </p>
-                          )}
-                        </Popover>
-                      </div>
-                    );
-                  }
-                })
+                          >
+                            {data?.min_wear_size}{" "}
+                            {data?.max_wear_size
+                              ? "- " + data?.max_wear_size
+                              : null}
+                          </p>
+                        )}
+                      </Popover>
+                    </div>
+                  );
+                }
+              })
               : null}
 
             {data?.product?.category_id === "3"
               ? data?.product?.sizes?.map((data) => {
-                  if (
-                    data?.shop_location_id == selectedLocation?.id &&
-                    selectedColor?.pivot?.id === data?.product_color_id
-                  ) {
-                    return (
-                      <div
-                        key={data?.id}
-                        onClick={() => {
-                          setSelectedSize(data);
-                        }}
-                        className={`${
-                          data?.id === selectedSize?.id
-                            ? "border-fullBlue"
-                            : "border-[#dadada]"
+                if (
+                  data?.shop_location_id == selectedLocation?.id &&
+                  selectedColor?.pivot?.id === data?.product_color_id
+                ) {
+                  return (
+                    <div
+                      key={data?.id}
+                      onClick={() => {
+                        setSelectedSize(data);
+                      }}
+                      className={`${data?.id === selectedSize?.id
+                        ? "border-fullBlue"
+                        : "border-[#dadada]"
                         }  h-fit w-fit mt-4 rounded-lg border   hover:border-fullBlue`}
-                      >
-                        <Popover
-                          trigger="hover"
-                          content={() => contentSize(data)}
-                          className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${
-                            data?.amount === "0"
-                              ? "bg-[#f6f6f9] text-[#d3d4dd]"
-                              : ""
+                    >
+                      <Popover
+                        trigger="hover"
+                        content={() => contentSize(data)}
+                        className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${data?.amount === "0"
+                          ? "bg-[#f6f6f9] text-[#d3d4dd]"
+                          : ""
                           }`}
-                        >
-                          <p
-                            className={`font-AeonikProMedium text-sm uppercase text-center ${
-                              data?.amount === "0"
-                                ? "text-[#d3d4dd]"
-                                : "text-black"
+                      >
+                        <p
+                          className={`font-AeonikProMedium text-sm uppercase text-center ${data?.amount === "0"
+                            ? "text-[#d3d4dd]"
+                            : "text-black"
                             }`}
+                        >
+                          {data?.letter_size}
+                        </p>
+                        {data?.letter_size ? (
+                          <span
+                            className={`text-[10px] font-AeonikProRegular ${data?.amount === "0"
+                              ? "text-[#d3d4dd]"
+                              : "text-[#757575]"
+                              }`}
                           >
-                            {data?.letter_size}
+                            {data?.min_wear_size}{" "}
+                            {data?.max_wear_size
+                              ? "- " + data?.max_wear_size
+                              : null}
+                          </span>
+                        ) : (
+                          <p
+                            className={`font-AeonikProMedium text-sm uppercase text-center ${data?.amount === "0"
+                              ? "text-[#d3d4dd]"
+                              : "text-black"
+                              }`}
+                          >
+                            {data?.min_wear_size}{" "}
+                            {data?.max_wear_size
+                              ? "- " + data?.max_wear_size
+                              : null}
                           </p>
-                          {data?.letter_size ? (
-                            <span
-                              className={`text-[10px] font-AeonikProRegular ${
-                                data?.amount === "0"
-                                  ? "text-[#d3d4dd]"
-                                  : "text-[#757575]"
-                              }`}
-                            >
-                              {data?.min_wear_size}{" "}
-                              {data?.max_wear_size
-                                ? "- " + data?.max_wear_size
-                                : null}
-                            </span>
-                          ) : (
-                            <p
-                              className={`font-AeonikProMedium text-sm uppercase text-center ${
-                                data?.amount === "0"
-                                  ? "text-[#d3d4dd]"
-                                  : "text-black"
-                              }`}
-                            >
-                              {data?.min_wear_size}{" "}
-                              {data?.max_wear_size
-                                ? "- " + data?.max_wear_size
-                                : null}
-                            </p>
-                          )}
-                        </Popover>
-                      </div>
-                    );
-                  }
-                })
+                        )}
+                      </Popover>
+                    </div>
+                  );
+                }
+              })
               : null}
 
             {data?.product?.category_id === "4"
               ? data?.product?.sizes?.map((data) => {
-                  if (
-                    data?.shop_location_id == selectedLocation?.id &&
-                    selectedColor?.pivot?.id === data?.product_color_id
-                  ) {
-                    return (
-                      <div
-                        key={data?.id}
-                        onClick={() => {
-                          setSelectedSize(data);
-                        }}
-                        className={`${
-                          data?.id === selectedSize?.id
-                            ? "border-fullBlue"
-                            : "border-[#dadada]"
+                if (
+                  data?.shop_location_id == selectedLocation?.id &&
+                  selectedColor?.pivot?.id === data?.product_color_id
+                ) {
+                  return (
+                    <div
+                      key={data?.id}
+                      onClick={() => {
+                        setSelectedSize(data);
+                      }}
+                      className={`${data?.id === selectedSize?.id
+                        ? "border-fullBlue"
+                        : "border-[#dadada]"
                         }  h-fit w-fit mt-4 rounded-lg border   hover:border-fullBlue`}
-                      >
-                        <Popover
-                          trigger="hover"
-                          content={() => contentSize(data)}
-                          className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${
-                            data?.amount === "0"
-                              ? "bg-[#f6f6f9] text-[#d3d4dd]"
-                              : ""
+                    >
+                      <Popover
+                        trigger="hover"
+                        content={() => contentSize(data)}
+                        className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${data?.amount === "0"
+                          ? "bg-[#f6f6f9] text-[#d3d4dd]"
+                          : ""
                           }`}
-                        >
-                          <p
-                            className={`font-AeonikProMedium text-sm uppercase text-center ${
-                              data?.amount === "0"
-                                ? "text-[#d3d4dd]"
-                                : "text-black"
+                      >
+                        <p
+                          className={`font-AeonikProMedium text-sm uppercase text-center ${data?.amount === "0"
+                            ? "text-[#d3d4dd]"
+                            : "text-black"
                             }`}
-                          >
-                            {data?.wear_size}
-                          </p>
-                        </Popover>
-                      </div>
-                    );
-                  }
-                })
+                        >
+                          {data?.wear_size}
+                        </p>
+                      </Popover>
+                    </div>
+                  );
+                }
+              })
               : null}
 
             {data?.product?.category_id === "5"
               ? data?.product?.sizes?.map((data) => {
-                  if (
-                    data?.shop_location_id == selectedLocation?.id &&
-                    selectedColor?.pivot?.id === data?.product_color_id
-                  ) {
-                    return (
-                      <div
-                        key={data?.id}
-                        onClick={() => {
-                          setSelectedSize(data);
-                        }}
-                        className={`${
-                          data?.id === selectedSize?.id
-                            ? "border-fullBlue"
-                            : "border-[#dadada]"
+                if (
+                  data?.shop_location_id == selectedLocation?.id &&
+                  selectedColor?.pivot?.id === data?.product_color_id
+                ) {
+                  return (
+                    <div
+                      key={data?.id}
+                      onClick={() => {
+                        setSelectedSize(data);
+                      }}
+                      className={`${data?.id === selectedSize?.id
+                        ? "border-fullBlue"
+                        : "border-[#dadada]"
                         }  h-fit w-fit mt-4 rounded-lg border   hover:border-fullBlue`}
-                      >
-                        <Popover
-                          trigger="hover"
-                          content={() => contentSize(data)}
-                          className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${
-                            data?.amount === "0"
-                              ? "bg-[#f6f6f9] text-[#d3d4dd]"
-                              : ""
+                    >
+                      <Popover
+                        trigger="hover"
+                        content={() => contentSize(data)}
+                        className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${data?.amount === "0"
+                          ? "bg-[#f6f6f9] text-[#d3d4dd]"
+                          : ""
                           }`}
+                      >
+                        <p
+                          className={`font-AeonikProMedium text-sm uppercase text-center ${data?.amount === "0"
+                            ? "text-[#d3d4dd]"
+                            : "text-black"
+                            }`}
                         >
-                          <p
-                            className={`font-AeonikProMedium text-sm uppercase text-center ${
-                              data?.amount === "0"
-                                ? "text-[#d3d4dd]"
-                                : "text-black"
+                          {data?.letter_size}
+                        </p>
+                        <span
+                          className={`text-[10px] font-AeonikProRegular ${data?.amount === "0"
+                            ? "text-[#d3d4dd]"
+                            : "text-[#757575]"
                             }`}
-                          >
-                            {data?.letter_size}
-                          </p>
-                          <span
-                            className={`text-[10px] font-AeonikProRegular ${
-                              data?.amount === "0"
-                                ? "text-[#d3d4dd]"
-                                : "text-[#757575]"
-                            }`}
-                          >
-                            {data?.wear_size}
-                          </span>
-                        </Popover>
-                      </div>
-                    );
-                  }
-                })
+                        >
+                          {data?.wear_size}
+                        </span>
+                      </Popover>
+                    </div>
+                  );
+                }
+              })
               : null}
 
             <p className="w-[80px] h-11 flex md:hidden items-center justify-center rounded-lg border border-searchBgColor">
@@ -1405,6 +1379,26 @@ const ProductDetails = ({ data }) => {
             {data?.product?.name_ru}
           </div>
           <div className="w-full flex flex-col items-center border border-[#f0f0f0] p-[15px] bg-categoryModalBgColor rounded-xl">
+            <div
+              onClick={() => {
+                goDetailShop(
+                  data?.product?.shop?.id,
+                  data?.product?.shop?.name
+                );
+              }}
+              className="w-full flex items-center mb-4 ">
+              <article className="flex items-center">
+                <MarketIcons colors={"#000"} />
+                <div className="not-italic flex items-center font-AeonikProRegular text-[14px]  text-black ml-[6px]">
+                  {t("shop")}:
+                </div>
+              </article>
+              <article className="ml-2">
+                <p className="not-italic font-AeonikProRegular text-[14px]  text-black tracking-[1%] border-b border-black">
+                  {data?.product?.shop?.name}
+                </p>
+              </article>
+            </div>
             <div className="w-full flex items-center mb-4">
               <div className="flex items-center text-[14px] font-AeonikProRegular">
                 <DeliveryIcons />
@@ -1430,12 +1424,12 @@ const ProductDetails = ({ data }) => {
                             item?.name_ru === "Весна"
                               ? springSeason
                               : item?.name_ru === "Лето"
-                              ? summerSeason
-                              : item?.name_ru === "Осень"
-                              ? autummSeason
-                              : item?.name_ru === "Зима"
-                              ? winterSeason
-                              : null
+                                ? summerSeason
+                                : item?.name_ru === "Осень"
+                                  ? autummSeason
+                                  : item?.name_ru === "Зима"
+                                    ? winterSeason
+                                    : null
                           }
                           alt=""
                         />
@@ -1448,19 +1442,7 @@ const ProductDetails = ({ data }) => {
                 })}
               </section>
             </div>
-            <div className="w-full flex items-center mb-4">
-              <article className="flex items-center">
-                <MarketIcons colors={"#000"} />
-                <div className="not-italic flex items-center font-AeonikProRegular text-[14px]  text-black ml-[6px]">
-                  {t("Do'kon")}:
-                </div>
-              </article>
-              <article className="ml-2">
-                <p className="not-italic font-AeonikProRegular text-[14px]  text-black">
-                  {data?.product?.shop?.name}
-                </p>
-              </article>
-            </div>
+
             <div className="w-full flex items-center mb-4">
               <ProductArticleIcons />
               <span className="text-sm font-AeonikProRegular ml-[6px]">
@@ -1595,7 +1577,7 @@ const ProductDetails = ({ data }) => {
                     href={`https://t.me/${selectedLocation?.assistant_messenger?.slice(
                       1
                     )}`}
-                    // target="_blank"
+                  // target="_blank"
                   >
                     <p className="w-7 h-7  bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
                       <FaTelegramPlane size={16} />
@@ -1616,9 +1598,8 @@ const ProductDetails = ({ data }) => {
                 <address className="max-w-1/2 md:max-w-[70%] w-full">
                   <a
                     className=" w-full bg-fullBlue active:scale-95  active:opacity-70 text-white rounded-lg h-[44px] flex gap-x-1 ll:gap-x-2 items-center justify-center"
-                    href={`${
-                      "tel:" + selectedLocation?.second_assistant_phone
-                    }`}
+                    href={`${"tel:" + selectedLocation?.second_assistant_phone
+                      }`}
                   >
                     <PhoneIcons colors={"#fff"} />
                     <p className="text-sm ">
@@ -1634,7 +1615,7 @@ const ProductDetails = ({ data }) => {
                     href={`https://t.me/${selectedLocation?.second_assistant_messenger?.slice(
                       1
                     )}`}
-                    // target="_blank"
+                  // target="_blank"
                   >
                     <p className="w-7 h-7  bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
                       <FaTelegramPlane size={16} />
@@ -1703,13 +1684,13 @@ const ProductDetails = ({ data }) => {
               <p className="hidden md:block font-AeonikProMedium text-[20px] text-black">
                 {selectedSize?.discount_price
                   ? parseInt(selectedSize?.discount_price)
-                      ?.toLocaleString()
-                      ?.split(",")
-                      .join(" ")
+                    ?.toLocaleString()
+                    ?.split(",")
+                    .join(" ")
                   : parseInt(selectedSize?.price)
-                      ?.toLocaleString()
-                      ?.split(",")
-                      .join(" ")}{" "}
+                    ?.toLocaleString()
+                    ?.split(",")
+                    .join(" ")}{" "}
                 {t("currency")}
               </p>
               {selectedSize?.discount_price ? (
@@ -1734,13 +1715,13 @@ const ProductDetails = ({ data }) => {
               <p className="hidden md:block font-AeonikProMedium text-[20px] text-black">
                 {data?.product?.cost?.discount_price
                   ? parseInt(data?.product?.cost?.discount_price)
-                      ?.toLocaleString()
-                      ?.split(",")
-                      .join(" ")
+                    ?.toLocaleString()
+                    ?.split(",")
+                    .join(" ")
                   : parseInt(data?.product?.cost?.price)
-                      ?.toLocaleString()
-                      ?.split(",")
-                      .join(" ")}{" "}
+                    ?.toLocaleString()
+                    ?.split(",")
+                    .join(" ")}{" "}
                 {t("currency")}
               </p>
               {data?.product?.cost?.discount_price ? (
@@ -1757,9 +1738,8 @@ const ProductDetails = ({ data }) => {
 
           {selectedSize ? (
             <section
-              className={`${
-                selectedSize?.discount_percent ? "flex" : "hidden"
-              } w-[84px] h-9 md:w-[100px] md:h-11 cursor-pointer  items-center justify-center border border-searchBgColor rounded-lg ml-8 active:scale-95`}
+              className={`${selectedSize?.discount_percent ? "flex" : "hidden"
+                } w-[84px] h-9 md:w-[100px] md:h-11 cursor-pointer  items-center justify-center border border-searchBgColor rounded-lg ml-8 active:scale-95`}
             >
               <p>
                 <DiscountShapeIcons />
@@ -1889,15 +1869,13 @@ const ProductDetails = ({ data }) => {
             e.preventDefault();
             setOpenTab(1);
           }}
-          className={` ${
-            !data?.product?.composition_ru && !data?.product?.description_ru
-              ? "w-full"
-              : "w-[28%]"
-          } md:w-full md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
-            openTab === 1
+          className={` ${!data?.product?.composition_ru && !data?.product?.description_ru
+            ? "w-full"
+            : "w-[28%]"
+            } md:w-full md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${openTab === 1
               ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
               : ""
-          } `}
+            } `}
         >
           <p>{t("location")}</p>
         </button>
@@ -1907,11 +1885,10 @@ const ProductDetails = ({ data }) => {
               e.preventDefault();
               setOpenTab(2);
             }}
-            className={`w-[44%] md:w-full md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
-              openTab === 2
-                ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
-                : ""
-            } `}
+            className={`w-[44%] md:w-full md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${openTab === 2
+              ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
+              : ""
+              } `}
           >
             <p>{t("product_descriptions")}</p>
           </button>
@@ -1923,11 +1900,10 @@ const ProductDetails = ({ data }) => {
               e.preventDefault();
               setOpenTab(3);
             }}
-            className={`w-[28%] md:w-full md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
-              openTab === 3
-                ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-aut rounded-lg"
-                : ""
-            } `}
+            className={`w-[28%] md:w-full md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${openTab === 3
+              ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-aut rounded-lg"
+              : ""
+              } `}
           >
             <p>{t("compound")}</p>
           </button>
