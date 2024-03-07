@@ -352,7 +352,7 @@ export default function CatalogItems() {
             <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
               <article className="w-[100%] h-fit md:mb-12 md:mt-[60px]">
                 <article className="w-full flex flex-col border-b md:border-none border-searchBgColor">
-                  <div className="relative w-full md:h-[90px] mt-6 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
+                  <div className="relative w-full md:h-[90px] my-10 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
                     {/*  */}
                     <div className="w-full md:w-fit flex h-[66px] md:h-fit items-center border md:border-none border-searchBgColor rounded-b-lg">
                       <div
@@ -362,7 +362,7 @@ export default function CatalogItems() {
                           backgroundSize: "contain",
                           backgroundRepeat: "no-repeat",
                         }}
-                        className="absolute w-[80px] h-[80px] md:w-[120px] md:h-[160px] overflow-hidden  left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center  bg-white"
+                        className="absolute w-[80px] h-[120px] md:w-[120px] md:h-[160px] overflow-hidden  left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center  bg-white"
                       ></div>
                       <div className="flex items-center ml-[112px] md:ml-[210px]">
                         <div className="text-[16px] md:text-2xl font-AeonikProMedium">
@@ -375,7 +375,7 @@ export default function CatalogItems() {
                       </div>
                     </div>
                     {/*  */}
-                    <div className="w-full md:w-fit flex items-center justify-between md:mr-5  mt-6 md:mt-0">
+                    <div className="w-full md:w-fit flex items-center justify-between md:mr-5   md:mt-0">
                       <div className="flex items-center">
                         <NavLink className="hidden md:flex items-center text-[15px] font-AeonikProMedium mr-[22px]">
                           {t("by_category")}

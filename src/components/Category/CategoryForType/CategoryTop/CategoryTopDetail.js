@@ -247,7 +247,7 @@ const CategoryTopDetail = ({
                 className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[14px] leading-4 border-r border-searchBgColor"
               />
               {searchMarketName && (
-                <button onClick={handleClear} className="  " type="button">
+                <button onClick={handleClear} type="button">
                   <MdClose size={20} color={"#a1a1a1"} />
                 </button>
               )}

@@ -41,7 +41,7 @@ function YandexLocationShop({ filteredData }) {
             top: 0,
         });
     }, []);
-    return (
+     return (
         <div className={`w-full `}>
             <div className={`w-full flex items-center mb-3 mt-4`}>
                 <div className="flex flex-col xs:flex-row xs:items-center gap-x-1 md:gap-x-[6px] ">

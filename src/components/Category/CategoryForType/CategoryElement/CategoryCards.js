@@ -23,7 +23,7 @@ export default function CategoryCards({ filterData, setPageId, paramsId }) {
     setDressInfo((current) => {
       return { ...current, ProductList: newArray };
     });
-  }; 
+  };
 
   // ------------------
 
@@ -53,7 +53,7 @@ export default function CategoryCards({ filterData, setPageId, paramsId }) {
           })
         ) : (
           <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[200px] ">
-            Ничего не найдено
+            {t("nothing_found")}
           </div>
         )}
       </section>
@@ -61,7 +61,7 @@ export default function CategoryCards({ filterData, setPageId, paramsId }) {
         className={` w-full h-fit hidden items-center justify-center mt-14`}
       >
         <p className="w-[760px] h-[60px] cursor-pointer not-italic font-AeonikProMedium text-base leading-4 text-center text-black flex items-center justify-center rounded-lg border border-searchBgColor bg-btnBgColor">
-          Показать ещё 30 наборов
+          {t("CCshow_more")}
         </p>
       </section>
 

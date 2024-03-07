@@ -87,8 +87,7 @@ function ShowPageComment({
       top: 0,
     });
   }, []);
-
-  return (
+   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box md:mb-[60px]">
       <ToastContainer
         position="top-right"
