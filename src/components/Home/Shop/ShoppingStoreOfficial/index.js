@@ -299,9 +299,7 @@ const ShoppingStoreOfficial = () => {
     { label_uz: "Do'konlar", label_ru: 'Магазины', url: '/shops' },
     { label_uz: params?.id, label_ru: params?.id, url: '/shops/:id' },
   ];
-  // console.log(dressInfo?.mainSubRegionId, dressInfo?.locationIdParams, filteredError);
-  // console.log(loading, 'loading');
-  // console.log(filteredData, 'filteredData');
+
   return (
     <div className="w-full">
       {loading ? (
@@ -423,7 +421,7 @@ const ShoppingStoreOfficial = () => {
                       {/* Comment Section For Shopping Page */}
                       <div
                         className={`${openTabComment ? "block" : "hidden"
-                          } w-full pb-[88px] `}
+                          } w-full pb-[88px] md:pt-8`}
                       >
                         <ShowPageComment
                           filteredData={filteredData}
@@ -434,7 +432,7 @@ const ShoppingStoreOfficial = () => {
                       {/* Map Section */}
                       <div
                         className={`${openTabLocation && !openTabComment ? "block" : "hidden"
-                          } w-full text-3xl px-4 pb-[88px]`}
+                          } w-full text-3xl px-4 pb-[88px] pt-[12px] md:pt-12`}
                       >
                         <button
                           onClick={() => {

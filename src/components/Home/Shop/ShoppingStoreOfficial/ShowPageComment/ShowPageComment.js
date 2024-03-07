@@ -236,7 +236,7 @@ function ShowPageComment({
                       </div>
                     </div>
                     <article className="flex items-center md:mt-3">
-                      <p className="hidden md:inline items-center">
+                      <p className="hidden md:flex items-center">
                         {Array.from("55555").map((item, i) => {
                           if (i + 1 <= allComments?.score) {
                             return <StarIcons />;

@@ -401,7 +401,7 @@ export default function FavouriteProducts() {
                                 </figure>
                               ) : (
                                 <p
-                                  className="not-italic font-AeonikProMedium text-[15px] leading-4"
+                                  className="not-italic font-AeonikProMedium text-[15px] leading-4 md:mb-[4px]"
                                   style={{ color: "black" }}
                                 >
                                   {parseInt(data?.cost?.price)

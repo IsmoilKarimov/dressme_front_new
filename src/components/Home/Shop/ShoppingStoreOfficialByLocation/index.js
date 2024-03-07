@@ -471,7 +471,7 @@ const ShoppingStoreOfficialByLocation = () => {
                   <div
                     className={`${
                       openTabComment ? "block" : "hidden"
-                    } w-full pb-[88px] md:pb-0`}
+                    } w-full pb-[88px] md:pb-0 md:pt-8`}
                   >
                     <ShowPageComment
                       filteredData={filteredData}
@@ -483,7 +483,7 @@ const ShoppingStoreOfficialByLocation = () => {
                   <div
                     className={`${
                       openTabLocation && !openTabComment ? "block" : "hidden"
-                    } w-full text-3xl px-4 pb-[88px] md:pb-0`}
+                    } w-full text-3xl px-4 pb-[88px] pt-[12px] md:pb-0 md:pt-12`}
                   >
                     <button
                       onClick={() => {

@@ -74,7 +74,7 @@ const Footer = () => {
               <article className="w-full font-AeonikProMedium">
                 <section className="w-full flex-col md:flex-row flex items-end justify-between text-[13px]">
                   <div className="w-full md:w-fit text-center md:text-start my-3 md:mb-0">
-                    {t("created_by")} ({t("september")} 25, 2022, {t("pm")})
+                    Created by Dishkan (September 25, 2022, 20:16 PM)
                   </div>
                   {/* --------------------- Menu ------------------- */}
                   <div className="w-full md:w-fit hidden md:flex items-center flex-col">
