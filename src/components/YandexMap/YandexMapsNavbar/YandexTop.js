@@ -15,15 +15,20 @@ import Cookies from "js-cookie";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 import { useQuery } from "@tanstack/react-query";
 import { useHttp } from "../../../hook/useHttp";
+import { LanguageDetectorDress } from "../../../language/LanguageItems";
 
 const YandexTop = ({ onClick }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
-  const { request } = useHttp()
+  const { request } = useHttp();
   const [state, setState] = useState({
     openLang: false,
     openRegion: false,
   });
+
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
   // -----Language Change-------------------
   const [selectLang, setselectLang] = useState(1);
@@ -68,13 +73,16 @@ const YandexTop = ({ onClick }) => {
   );
 
   // -------City Change -------------
-  useQuery(["region-data"], () => {
-    return request({ url: "/main/regions", token: true });
-  },
+  useQuery(
+    ["region-data"],
+    () => {
+      return request({ url: "/main/regions", token: true });
+    },
     {
       onSuccess: (res) => {
         setData({
-          ...data, mainRegionsList: res?.regions
+          ...data,
+          mainRegionsList: res?.regions,
         });
       },
       onError: (err) => {
@@ -99,23 +107,33 @@ const YandexTop = ({ onClick }) => {
             Регион:
           </span>
           <div className="w-full min-w-[90px] font-AeonikProMedium flex items-center text-[13px]">
-            {data?.mainRegionsList?.filter((e) => e?.id === dressInfo?.mainRegionId)?.map((item) => {
-
-              return (
-                <React.Fragment key={item?.id}>
-                  <span className="">{item?.name_ru}</span>
-                  {item?.sub_regions
-                    ?.filter((e) => e?.id === dressInfo?.mainSubRegionId)
-                    ?.map((data) => {
-                      return (
-                        <span key={data?.id} className="  ">
-                          , <span className=" ml-[1px]">{data?.name_ru}</span>
-                        </span>
-                      );
-                    })}
-                </React.Fragment>
-              );
-            })}
+            {data?.mainRegionsList
+              ?.filter((e) => e?.id === dressInfo?.mainRegionId)
+              ?.map((item) => {
+                return (
+                  <React.Fragment key={item?.id}>
+                    <span className="">
+                      {languageDetector?.typeLang === "ru" && item?.name_ru}
+                      {languageDetector?.typeLang === "uz" && item?.name_uz}
+                    </span>
+                    {item?.sub_regions
+                      ?.filter((e) => e?.id === dressInfo?.mainSubRegionId)
+                      ?.map((data) => {
+                        return (
+                          <span key={data?.id} className="  ">
+                            ,{" "}
+                            <span className=" ml-[1px]">
+                              {languageDetector?.typeLang === "ru" &&
+                                data?.name_ru}
+                              {languageDetector?.typeLang === "uz" &&
+                                data?.name_uz}
+                            </span>
+                          </span>
+                        );
+                      })}
+                  </React.Fragment>
+                );
+              })}
           </div>
         </div>
 
@@ -155,12 +173,10 @@ const YandexTop = ({ onClick }) => {
         <button
           type="button"
           onClick={() =>
-            window.open(
-              " https://dressme-dashboard-new.vercel.app",
-              "_blank"
-            )
+            window.open(" https://dressme-dashboard-new.vercel.app", "_blank")
           }
-          className="flex items-center h-full  ml-6 ">
+          className="flex items-center h-full  ml-6 "
+        >
           <span className="mr-2">
             <HouseStatisticIcons colors={"#707070"} />
           </span>

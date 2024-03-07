@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
+import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 
 export default function FavouriteProducts() {
   const { t } = useTranslation("favourite");
@@ -26,6 +27,10 @@ export default function FavouriteProducts() {
   const goDetail = (id) => {
     navigate(`/product/${id}`);
   };
+
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
   const handleLeaveMouse = (eId) => {
     const elementsIndex = dressInfo.ProductList.findIndex(
@@ -153,7 +158,12 @@ export default function FavouriteProducts() {
                           >
                             <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-1 md:mb-0  cursor-pointer">
                               <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
-                              {data?.name_ru || "NoData"}
+                              {(languageDetector?.typeLang === "ru" &&
+                                data?.name_ru) ||
+                                "NoData"}
+                              {(languageDetector?.typeLang === "uz" &&
+                                data?.name_uz) ||
+                                "NoData"}
                             </figure>
                             <figure className="w-full h-[16px] flex justify-between items-center xs:mt-1">
                               {data?.overall_rating ? (
@@ -341,7 +351,12 @@ export default function FavouriteProducts() {
                           >
                             <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-[6px mb-1 md:mb-0] md:mb-0  cursor-pointer">
                               <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
-                              {data?.name_ru || "NoData"}
+                              {(languageDetector?.typeLang === "ru" &&
+                                data?.name_ru) ||
+                                "NoData"}
+                              {(languageDetector?.typeLang === "uz" &&
+                                data?.name_uz) ||
+                                "NoData"}
                             </figure>
                             <figure className="w-full h-[16px] flex justify-between items-center my-1">
                               {data?.overall_rating ? (

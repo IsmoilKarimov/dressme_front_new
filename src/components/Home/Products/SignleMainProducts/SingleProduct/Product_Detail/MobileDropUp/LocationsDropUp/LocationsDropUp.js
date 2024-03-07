@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   MenuCloseIcons,
 } from "../../../../../../../../assets/icons";
 import { Radio } from "antd";
 import { useTranslation } from "react-i18next";
+import { LanguageDetectorDress } from "../../../../../../../../language/LanguageItems";
 
 function LocationDropUp({
   onClick,
@@ -14,8 +15,11 @@ function LocationDropUp({
   setSelectedLocation,
   setSelectedSize,
   existRegions,
-  existRegionsObj
+  existRegionsObj,
 }) {
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
   const { t } = useTranslation("products")
 
@@ -60,7 +64,11 @@ function LocationDropUp({
                                 checked={selectedLocation?.id === item?.id}
                                 className="text-sm font-AeonikProRegular"
                               >
-                                {data?.sub_region?.name_ru} ({data?.address})
+                                {languageDetector?.typeLang === "ru" &&
+                                  data?.sub_region?.name_ru}
+                                {languageDetector?.typeLang === "uz" &&
+                                  data?.sub_region?.name_uz}
+                                ({data?.address})
                               </Radio>
                             </div>
                           );
