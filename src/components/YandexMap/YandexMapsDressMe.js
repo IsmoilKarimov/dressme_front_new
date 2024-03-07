@@ -17,7 +17,6 @@ import { Link, NavLink } from "react-router-dom";
 import {
   ArrowTopIcons,
   CommentIcons,
-  FilterIcons,
   FullScreenMapsIcons,
   HouseStatisticIcons,
   ListCollectionIcons,
@@ -28,6 +27,7 @@ import {
   MenuCloseIcons,
   PhoneIcons,
   SearchIcons,
+  SortIcons,
   VolumeIcons,
 } from "../../assets/icons";
 import { UzbekFlag } from "../../assets";
@@ -641,7 +641,7 @@ function YandexMapsDressMe() {
                 type="button"
                 className="md:hidden h-[40px] w-[40px] rounded-lg  bg-white flex items-center justify-center "
               >
-                <FilterIcons colors={"#000"} className="w-full h-full" />
+                <SortIcons colors={"#000"} className="w-full h-full" />
               </button>
             </div>
           </Map>

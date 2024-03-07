@@ -107,8 +107,6 @@ const CategoryTopDetail = ({
         </section>
       </div>
 
-      {/* {filterData?.section_products?.data?.length > 0 && ( */}
-      {/* {filterData?.sections?.length > 0 && ( */}
       <div className="w-full flex flex-col justify-center items-center">
         <section className=" w-[100%] flex flex-col items-center justify-between m-auto  md:mt-[60px]">
           <article className="w-[100%] h-fit md:mb-16">

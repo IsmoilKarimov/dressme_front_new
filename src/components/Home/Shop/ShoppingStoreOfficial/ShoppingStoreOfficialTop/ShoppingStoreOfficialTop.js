@@ -250,13 +250,12 @@ const ShoppingStoreOfficialTop = ({
                   </div>
                 </div>
               </div>
+              {/* 4 */}
               <div className="w-full md:hidden flex items-center border-b md:border-none border-searchBgColor py-3">
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    clickButtons?.setOpenTabLocation(
-                      !clickButtons?.openTabLocation
-                    );
+                    clickButtons?.setOpenTabLocation(true);
                     clickButtons?.setOpenTabComment(false);
                   }}
                   className="flex gap-x-2 items-center  w-[100%] "
