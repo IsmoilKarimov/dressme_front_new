@@ -158,12 +158,10 @@ export default function FavouriteProducts() {
                           >
                             <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-1 md:mb-0  cursor-pointer">
                               <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
-                              {(languageDetector?.typeLang === "ru" &&
-                                data?.name_ru) ||
-                                "NoData"}
-                              {(languageDetector?.typeLang === "uz" &&
-                                data?.name_uz) ||
-                                "NoData"}
+                              {languageDetector?.typeLang === "ru" &&
+                                data?.name_ru}
+                              {languageDetector?.typeLang === "uz" &&
+                                data?.name_uz}
                             </figure>
                             <figure className="w-full h-[16px] flex justify-between items-center xs:mt-1">
                               {data?.overall_rating ? (
@@ -351,12 +349,10 @@ export default function FavouriteProducts() {
                           >
                             <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-[6px mb-1 md:mb-0] md:mb-0  cursor-pointer">
                               <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
-                              {(languageDetector?.typeLang === "ru" &&
-                                data?.name_ru) ||
-                                "NoData"}
-                              {(languageDetector?.typeLang === "uz" &&
-                                data?.name_uz) ||
-                                "NoData"}
+                              {languageDetector?.typeLang === "ru" &&
+                                data?.name_ru}
+                              {languageDetector?.typeLang === "uz" &&
+                                data?.name_uz}
                             </figure>
                             <figure className="w-full h-[16px] flex justify-between items-center my-1">
                               {data?.overall_rating ? (

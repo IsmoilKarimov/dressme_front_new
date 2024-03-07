@@ -154,8 +154,8 @@ export const CollectionCardItem = ({
         >
           <div className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-[6px] md:mb-0  cursor-pointer">
             <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
-            {(languageDetector?.typeLang === "ru" && data?.name_ru) || "NoData"}
-            {(languageDetector?.typeLang === "uz" && data?.name_uz) || "NoData"}
+            {languageDetector?.typeLang === "ru" && data?.name_ru}
+            {languageDetector?.typeLang === "uz" && data?.name_uz}
           </div>
           <div className="w-full h-[10px] flex justify-between items-center mt-1">
             {data?.overall_rating ? (
