@@ -54,17 +54,6 @@ const ShoppingStoreOfficialTop = ({
 
   const [checkedData, setCheckedData] = useState(false);
   useEffect(() => {
-    // if (!checkedData) {
-    //   let n = locationList?.find((v) => {
-    //     return v.id == selectLocation;
-    //   });
-
-    //   setDressInfo({
-    //     ...dressInfo,
-    //     productShowSelectedLocation: n,
-    //   });
-    // }
-
     setLocationList([]);
     filteredData?.shop?.approved_shop_locations?.map((item) => {
       if (locationList?.length === 0) {
@@ -176,9 +165,7 @@ const ShoppingStoreOfficialTop = ({
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    clickButtons?.setOpenTabLocation(
-                      !clickButtons?.openTabLocation
-                    );
+                    clickButtons?.setOpenTabLocation(true);
                     clickButtons?.setOpenTabComment(false);
                   }}
                   className="flex gap-x-2 items-center ml-3 w-[65%] md:w-full"
@@ -231,9 +218,7 @@ const ShoppingStoreOfficialTop = ({
                     <div
                       onClick={(e) => {
                         e.preventDefault();
-                        clickButtons?.setOpenTabComment(
-                          !clickButtons?.openTabComment
-                        );
+                        clickButtons?.setOpenTabComment(true);
                         clickButtons?.setOpenTabLocation(false);
                       }}
                       className="w-[42%] min-w-min hidden md:block text-sm font-AeonikProRegular text-borderWinter ml-auto cursor-pointer"
@@ -243,9 +228,7 @@ const ShoppingStoreOfficialTop = ({
                     <button
                       onClick={(e) => {
                         e.preventDefault();
-                        clickButtons?.setOpenTabComment(
-                          !clickButtons?.openTabComment
-                        );
+                        clickButtons?.setOpenTabComment(true);
                       }}
                       className="flex items-center justify-center border border-searchBgColor w-[48px] h-[48px] rounded-xl ml-[24px] md:ml-[10px] flex-shrink-0"
                     >
