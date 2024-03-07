@@ -3,9 +3,12 @@ import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 import { MenuCloseIcons, ArrowTopIcons } from "../../../assets/icons";
 import { LanguageDetectorDress } from "../../../language/LanguageItems";
+import { useTranslation } from "react-i18next";
 
 function RegionListYandex({ onClick }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const { i18n, t } = useTranslation('yandexmap')
+
   const [state, setState] = useState({
     regionId: dressInfo?.mainRegionId,
     subRegionId: dressInfo?.mainSubRegionId,
@@ -73,7 +76,7 @@ function RegionListYandex({ onClick }) {
       >
         <div className="w-full flex items-center justify-between ">
           <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">
-            Выберите регион
+           {t("YRLselectRegion")}
           </span>
           <span
             className="select-none cursor-pointer"
@@ -231,7 +234,7 @@ function RegionListYandex({ onClick }) {
             })
           ) : (
             <p className="w-full h-full flex flex-col items-center justify-center">
-              Ma'lumotlar yuklanayapti...
+              {t("YRLuploadData")}
             </p>
           )}
         </div>

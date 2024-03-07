@@ -18,9 +18,11 @@ import {
   summerSeason,
   winterSeason,
 } from "../../../assets";
+import { LanguageDetectorDress } from "../../../language/LanguageItems";
 
 export default function NavbarTopOpenMenu() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
 
   const wearGroup = [
     { id: 1, name: "Футболки" },
@@ -38,25 +40,25 @@ export default function NavbarTopOpenMenu() {
     { id: 13, name: "Ремень" },
   ];
   const SeasonTypeArray = [
-    { id: 5555, type: "", icons: AllSeasonDesktop },
-    { id: 4444, type: "Весна", icons: springSeason },
-    { id: 1111, type: "Лето", icons: summerSeason },
-    { id: 2222, type: "Осень", icons: autummSeason },
-    { id: 3333, type: "Зима", icons: winterSeason },
+    { id: 5555, type_ru: "", type_uz: "", icons: AllSeasonDesktop },
+    { id: 1111, type_ru: "Лето", type_uz: "Yoz", icons: summerSeason },
+    { id: 2222, type_ru: "Осень", type_uz: "Kuz", icons: autummSeason },
+    { id: 3333, type_ru: "Зима", type_uz: "Qish", icons: winterSeason },
+    { id: 4444, type_ru: "Весна", type_uz: "Bahor", icons: springSeason },
   ];
   const SeasonTypeArrayMobile = [
-    { id: 5555, type: "Все", icons: AllSeason },
-    { id: 4444, type: "Весна", icons: springSeason },
-    { id: 1111, type: "Лето", icons: summerSeason },
-    { id: 2222, type: "Осень", icons: autummSeason },
-    { id: 3333, type: "Зима", icons: winterSeason },
+    { id: 5555, type_ru: "Все", type_uz: "Barchasi", icons: AllSeason },
+    { id: 1111, type_ru: "Лето", type_uz: "Yoz", icons: summerSeason },
+    { id: 2222, type_ru: "Осень", type_uz: "Kuz", icons: autummSeason },
+    { id: 3333, type_ru: "Зима", type_uz: "Qish", icons: winterSeason },
+    { id: 4444, type_ru: "Весна", type_uz: "Bahor", icons: springSeason },
   ];
   const BrandTypeArray = [
-    { id: 4444, type: "Весна", icons: BrandSpring },
-    { id: 1111, type: "Лето", icons: BrandSummer },
-    { id: 2222, type: "Осень", icons: BrandAutumm },
-    { id: 3333, type: "Зима", icons: BrandWinter },
-    { id: 5555, type: "Все", icons: allBrandDesktop },
+    { id: 4444, type_ru: "Весна", type_uz: "Bahor", icons: BrandSpring },
+    { id: 1111, type_ru: "Лето", type_uz: "Yoz", icons: BrandSummer },
+    { id: 2222, type_ru: "Осень", type_uz: "Kuz", icons: BrandAutumm },
+    { id: 3333, type_ru: "Зима", type_uz: "Qish", icons: BrandWinter },
+    { id: 5555, type_ru: "Все", type_uz: "Barchasi", icons: allBrandDesktop },
   ];
 
   // ----------------Wear state management----------------------------
@@ -85,7 +87,8 @@ export default function NavbarTopOpenMenu() {
             <article
               className={`flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
             >
-              {value?.type}
+              {languageDetector?.typeLang === 'ru' && value?.type_ru}
+              {languageDetector?.typeLang === 'uz' && value?.type_uz}
             </article>
           </article>
         );
@@ -103,7 +106,8 @@ export default function NavbarTopOpenMenu() {
             <article
               className={`flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
             >
-              {value?.type}
+              {languageDetector?.typeLang === 'ru' && value?.type_ru}
+              {languageDetector?.typeLang === 'uz' && value?.type_uz}
             </article>
           </article>
         );
@@ -193,14 +197,14 @@ export default function NavbarTopOpenMenu() {
   };
 
   return (
-    <div className="  w-[100%] overflow-hidden mr-auto  border border-searchBgColor  h-[60px] flex items-center rounded-[12px] bg-yandexNavbar   backdrop-blur-sm ">
+    <div className="  w-[100%]  overflow-hidden mr-auto  border border-searchBgColor  h-[60px] flex items-center rounded-[12px] bg-yandexNavbar   backdrop-blur-sm ">
       <div className="w-[27%] flex items-center ml-6  ">
         {/* Logo section */}
         <NavLink
           to="/"
           className="flex justify-center items-center rounded-lg h-[44px] md:w-[155px] ss:ml-2 md:ml-[0px]  "
         >
-          {BrandTypeArray.filter((data) => data.id === dressInfo.type).map(
+          {BrandTypeArray.filter((data) => data.id === dressInfo?.type).map(
             (data) => {
               return (
                 <img
@@ -247,7 +251,8 @@ export default function NavbarTopOpenMenu() {
                         className="mr-0 md:mr-[5px] "
                       />
                       <figcaption className=" font-AeonikProMedium  flex items-center text-[15px] ">
-                        {data?.type}
+                        {languageDetector?.typeLang === 'ru' && data?.type_ru}
+                        {languageDetector?.typeLang === 'uz' && data?.type_uz}
                       </figcaption>
                     </figure>
                   );

@@ -35,9 +35,13 @@ import YandexLocationMarketOpen from "./YandexLocationMarketOpen/YandexLocationM
 import CarouselModalMarket from "./YandexLocationMarketOpen/CarouselModalMarket";
 import MarketFilterofMaps from "./YandexLocationMarketOpen/MarketFilterofMaps";
 import Cookies from "js-cookie";
+import { useTranslation } from "react-i18next";
+import { LanguageDetectorDress } from "../../language/LanguageItems";
 
 function YandexMapsDressMe() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const { i18n, t } = useTranslation('yandexmap')
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
 
   const url = "https://api.dressme.uz/api/main";
 
@@ -304,7 +308,7 @@ function YandexMapsDressMe() {
         <YMaps
           query={{
             apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21",
-            lang: "ru",
+            lang: languageDetector?.typeLang,
           }}
         >
           <Map
@@ -368,7 +372,7 @@ function YandexMapsDressMe() {
                   floatIndex: 3000,
                   provider: "yandex#search",
                   geoObjectStandardPreset: "islands#blueDotIcon",
-                  placeholderContent: "Поиск мест и адресов",
+                  placeholderContent: t("YMsearch"),
                   // maxWidth: 400,
                   size: "large",
                 }}
@@ -410,7 +414,7 @@ function YandexMapsDressMe() {
             {/* </Clusterer > */}
             {/* Yandex Main menu */}
             <div
-              className={`max-w-[440px] w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${
+              className={`max-w-[440px] border border-red-600 w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${
                 dressInfo?.openMainMenu
                   ? "left-[-500px] md:left-[-5000px] z-[-80] ease-linear duration-500"
                   : "hamburger flex flex-col ease-linear duration-500 overscroll-none z-[105]"

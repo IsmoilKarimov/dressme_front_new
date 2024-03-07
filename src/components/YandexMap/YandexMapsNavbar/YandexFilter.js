@@ -17,13 +17,14 @@ import "../yandex.css";
 
 import Slider from "react-slider";
 import { LanguageDetectorDress } from "../../../language/LanguageItems";
+import { useTranslation } from "react-i18next";
 const { Option } = Select;
 
 export default function YandexFilter({ getMapsInfo }) {
   // useReplace
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
-  console.log(dressInfo, "getMapsInfo");
+  const { i18n, t } = useTranslation('yandexmap')
 
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
@@ -105,7 +106,19 @@ export default function YandexFilter({ getMapsInfo }) {
     dressInfo?.yandexGenderId,
     dressInfo?.yandexCategoryWear,
     dressInfo?.yandexCategoryBrand,
-    getMapsInfo?.budget,
+  ]);
+  useEffect(() => {
+    setState({ ...state, clearPrice: false });
+    setMinPrice(Number(getMapsInfo?.budget?.min_price));
+    setMaxPrice(Number(getMapsInfo?.budget?.max_price));
+    setValues([
+      Number(getMapsInfo?.budget?.min_price),
+      Number(getMapsInfo?.budget?.max_price),
+    ]);
+
+  }, [
+    getMapsInfo?.budget?.min_price,
+    getMapsInfo?.budget?.max_price,
   ]);
 
   const sendPriceList = () => {
@@ -201,7 +214,7 @@ export default function YandexFilter({ getMapsInfo }) {
             bordered={false}
             placeholder={
               <span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide	leading-5">
-                По категории
+                {t("YFbycategory")}
               </span>
             }
             optionFilterProp="children"
@@ -216,12 +229,12 @@ export default function YandexFilter({ getMapsInfo }) {
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }
-            // options={getMapsInfo?.categories?.map((item) => {
-            //   return {
-            //     value: item?.id,
-            //     label: item?.name_ru,
-            //   };
-            // })}
+          // options={getMapsInfo?.categories?.map((item) => {
+          //   return {
+          //     value: item?.id,
+          //     label: item?.name_ru,
+          //   };
+          // })}
           >
             {getMapsInfo?.categories?.map((item) => {
               return (
@@ -257,7 +270,7 @@ export default function YandexFilter({ getMapsInfo }) {
             </div>
           ) : (
             <p className="not-italic whitespace-nowrap mt-1 text-black text-sm font-AeonikProMedium tracking-wide leading-5 ">
-              По бюджету
+              {t("YFbyPrice")}
             </p>
           )}
           {dressInfo?.yandexRangePrice[0] && dressInfo?.yandexRangePrice[1] ? (
@@ -309,7 +322,7 @@ export default function YandexFilter({ getMapsInfo }) {
               {/* Modal header */}
               <div className="flex justify-between items-start mx-4 py-2 border-b rounded-t border-searchBgColor ">
                 <p className="text-base font-AeonikProMedium text-gray-900">
-                  По бюджету
+                  {t("YFbyPrice")}
                 </p>
                 <button
                   onClick={(e) => {
@@ -340,7 +353,7 @@ export default function YandexFilter({ getMapsInfo }) {
                 <div className=" flex justify-between items-center mb-4 w-full ">
                   <div className="flex ">
                     <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
-                      от
+                      {t("YFfrom")}
                     </span>
                     <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                       <input
@@ -349,12 +362,12 @@ export default function YandexFilter({ getMapsInfo }) {
                         // defaultValue={Number(values[0]).toLocaleString()}
                         value={Number(values[0]).toLocaleString()}
                       />{" "}
-                      сум
+                      {t("YFsumm")}
                     </span>
                   </div>
                   <div className="flex ">
                     <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
-                      до
+                      {t("YFto")}
                     </span>
                     <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                       <input
@@ -363,7 +376,7 @@ export default function YandexFilter({ getMapsInfo }) {
                         // defaultValue={Number(values[1]).toLocaleString()}
                         value={Number(values[1]).toLocaleString()}
                       />
-                      сум
+                      {t("YFsumm")}
                     </span>
                   </div>
                 </div>
@@ -381,9 +394,8 @@ export default function YandexFilter({ getMapsInfo }) {
               </div>
               {/* Modal footer */}
               <div
-                className={` flex items-center ${
-                  state?.clearPrice ? "justify-between" : "justify-end"
-                } px-6 py-3 space-x-2 rounded-b `}
+                className={` flex items-center ${state?.clearPrice ? "justify-between" : "justify-end"
+                  } px-6 py-3 space-x-2 rounded-b `}
               >
                 {state?.clearPrice && (
                   <span
@@ -394,7 +406,7 @@ export default function YandexFilter({ getMapsInfo }) {
                     }}
                     className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
                   >
-                    Сбросить
+                    {t("YFclear")}
                   </span>
                 )}
                 <span
@@ -406,7 +418,7 @@ export default function YandexFilter({ getMapsInfo }) {
                   }}
                   className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
                 >
-                  Готово
+                  {t("YFready")}
                 </span>
               </div>
             </div>
@@ -424,7 +436,7 @@ export default function YandexFilter({ getMapsInfo }) {
             // placeholder="По магазину"
             placeholder={
               <span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide	leading-5">
-                По магазину
+                {t("YTmarket")}
               </span>
             }
             optionFilterProp="children"
@@ -471,17 +483,16 @@ export default function YandexFilter({ getMapsInfo }) {
                       >
                         <button
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${
-                            item?.id === dressInfo?.yandexGenderId
-                              ? " bg-white border w-full h-[100%] my-auto mx-auto box-border border-searchBgColor rounded-lg"
-                              : " bg-btnBgColor text-black"
-                          } px-5 h-full cursor-pointer  font-AeonikProMedium    rounded-lg  justify-center flex items-center`}
+                          className={`${item?.id === dressInfo?.yandexGenderId
+                            ? " bg-white border w-full h-[100%] my-auto mx-auto box-border border-searchBgColor rounded-lg"
+                            : " bg-btnBgColor text-black"
+                            } ${languageDetector?.typeLang === "uz" ? 'px-4' : "px-5"}   h-full cursor-pointer  font-AeonikProMedium    rounded-lg  justify-center flex items-center`}
                         >
                           {/* <img src={item?.anyIcons} alt="male" /> */}
                           <span>{item?.anyIcons}</span>
                           {item?.name && (
                             <span className="ml-2 not-italic whitespace-nowrap  text-sm font-AeonikProMedium tracking-wide	leading-5">
-                              {item?.name}
+                              {t("YFgender_is_selected")}
                             </span>
                           )}
                         </button>
