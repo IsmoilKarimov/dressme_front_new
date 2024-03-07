@@ -18,8 +18,8 @@ export default function ShopStoreByLocationProduct() {
     }, []);
 
     const breadcrumbItems = [
-        { label_uz: 'Home', label_ru: 'Главная', url: '/' },
-        { label_uz: 'Location', label_ru: 'Карта', url: '/locations' },
+        { label_uz: 'Asosiy', label_ru: 'Главная', url: '/' },
+        { label_uz: 'Xarita', label_ru: 'Карта', url: '/locations' },
         { label_uz: params?.id, label_ru: params?.id, url: `/shops_location/${params?.id}` },
         { label_uz: getproductName, label_ru: getproductName, url: `/shops_location/${params?.id}/${params?.product}` },
     ];

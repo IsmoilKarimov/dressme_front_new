@@ -295,13 +295,13 @@ const ShoppingStoreOfficial = () => {
   }, [screenSize]);
 
   const breadcrumbItems = [
-    { label_uz: 'Home', label_ru: 'Главная', url: '/' },
-    { label_uz: 'section', label_ru: 'Магазины', url: '/shops' },
+    { label_uz: 'Asosiy', label_ru: 'Главная', url: '/' },
+    { label_uz: "Do'konlar", label_ru: 'Магазины', url: '/shops' },
     { label_uz: params?.id, label_ru: params?.id, url: '/shops/:id' },
   ];
   // console.log(dressInfo?.mainSubRegionId, dressInfo?.locationIdParams, filteredError);
-  console.log(loading, 'loading');
-  console.log(filteredData, 'filteredData');
+  // console.log(loading, 'loading');
+  // console.log(filteredData, 'filteredData');
   return (
     <div className="w-full">
       {loading ? (

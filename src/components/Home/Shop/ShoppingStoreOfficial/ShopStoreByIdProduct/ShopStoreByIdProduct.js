@@ -17,8 +17,8 @@ export default function ShopStoreByIdProduct() {
     }
   }, []);
   const breadcrumbItems = [
-    { label_uz: 'Home', label_ru: 'Главная', url: '/' },
-    { label_uz: 'shops', label_ru: 'Магазины', url: '/shops' },
+    { label_uz: 'Asosiy', label_ru: 'Главная', url: '/' },
+    { label_uz: "Do'konlar", label_ru: 'Магазины', url: '/shops' },
     { label_uz: params?.id, label_ru: params?.id, url: `/shops/${params?.id}` },
     { label_uz: getproductName, label_ru: getproductName, url: `/shops/${params?.id}/${params?.product}` },
   ];
