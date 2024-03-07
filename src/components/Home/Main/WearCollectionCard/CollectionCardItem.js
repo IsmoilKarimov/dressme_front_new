@@ -5,6 +5,7 @@ import { CalourCard } from "../../../../assets";
 import { SliderPhotosColorContext } from "../../../../ContextHook/SliderPhotosColor";
 import { MobileSelectedDataContext } from "../../../../ContextHook/mobileSelectedData";
 import { useTranslation } from "react-i18next";
+import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 
 export const CollectionCardItem = ({
   data,
@@ -15,14 +16,13 @@ export const CollectionCardItem = ({
   mainSelectedId,
   setDressInfo,
   dressInfo,
-  onHandleCardId
+  onHandleCardId,
 }) => {
+  const { t } = useTranslation("category");
 
-  const { t } = useTranslation("category")
-
-  const goDetail = (id, name) => { 
+  const goDetail = (id, name) => {
     // navigate(`/product/${id}`);
-    onHandleCardId(id, name)
+    onHandleCardId(id, name);
   };
   const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
 
@@ -39,6 +39,10 @@ export const CollectionCardItem = ({
       }
     });
   }
+
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
   useEffect(() => {
     if (mainSelectedId) {
@@ -150,7 +154,8 @@ export const CollectionCardItem = ({
         >
           <div className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-[6px] md:mb-0  cursor-pointer">
             <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
-            {data?.name_ru || "NoData"}
+            {(languageDetector?.typeLang === "ru" && data?.name_ru) || "NoData"}
+            {(languageDetector?.typeLang === "uz" && data?.name_uz) || "NoData"}
           </div>
           <div className="w-full h-[10px] flex justify-between items-center mt-1">
             {data?.overall_rating ? (

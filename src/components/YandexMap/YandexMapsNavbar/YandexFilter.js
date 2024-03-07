@@ -16,6 +16,7 @@ import { dressMainData } from "../../../ContextHook/ContextMenu";
 import "../yandex.css";
 
 import Slider from "react-slider";
+import { LanguageDetectorDress } from "../../../language/LanguageItems";
 const { Option } = Select;
 
 export default function YandexFilter({ getMapsInfo }) {
@@ -23,6 +24,10 @@ export default function YandexFilter({ getMapsInfo }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   console.log(dressInfo, "getMapsInfo");
+
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
   const [state, setState] = useState({
     openwear: false,
@@ -100,7 +105,7 @@ export default function YandexFilter({ getMapsInfo }) {
     dressInfo?.yandexGenderId,
     dressInfo?.yandexCategoryWear,
     dressInfo?.yandexCategoryBrand,
-    getMapsInfo?.budget
+    getMapsInfo?.budget,
   ]);
 
   const sendPriceList = () => {
@@ -223,7 +228,8 @@ export default function YandexFilter({ getMapsInfo }) {
                 <Option key={item.id} value={item.id} label={item.name_ru}>
                   <Space>
                     <span className="text-black text-sm font-AeonikProMedium tracking-wide	leading-5">
-                      {item.name_ru}
+                      {languageDetector?.typeLang === "ru" && item?.name_ru}
+                      {languageDetector?.typeLang === "uz" && item?.name_uz}
                     </span>
                   </Space>
                 </Option>
