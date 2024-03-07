@@ -1,9 +1,9 @@
 import React from "react";
 import {
   MenuCloseIcons,
-  SearchIcons,
 } from "../../../../../../../../assets/icons";
 import { Radio } from "antd";
+import { useTranslation } from "react-i18next";
 
 function LocationDropUp({
   onClick,
@@ -17,11 +17,13 @@ function LocationDropUp({
   existRegionsObj
 }) {
 
+  const { t } = useTranslation("products")
+
   return (
     <main>
       <div className="max-w-[440px] w-[100%] mx-auto bg-white shadow-navMenuShadov  overflow-hidden h-fit rounded-t-[12px]">
         <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between px-4 mb-1 ">
-          <p className="text-xl font-AeonikProMedium">Локации</p>
+          <p className="text-xl font-AeonikProMedium">{t("location")}</p>
           <button onClick={onClick}>
             <MenuCloseIcons colors={"#000"} />
           </button>
@@ -75,7 +77,7 @@ function LocationDropUp({
               onClick={onClick}
               className="w-[45%] h-[38px] text-base font-AeonikProMedium bg-white text-borderWinter border border-borderWinter rounded-md active:scale-95"
             >
-              Закрыт
+              {t("close")}
             </button>
             <button
               type="button"
@@ -87,7 +89,7 @@ function LocationDropUp({
               }}
               className="w-[55%] h-[38px] text-base font-AeonikProMedium bg-borderWinter text-white border border-borderWinter rounded-md active:scale-95"
             >
-              Готово
+              {t("ready")}
             </button>
           </div>
         </section>

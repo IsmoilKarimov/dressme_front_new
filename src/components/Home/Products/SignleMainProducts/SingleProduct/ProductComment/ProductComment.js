@@ -9,11 +9,14 @@ import { useParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { ToastContainer, toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 export default function ProductComment({ data, refetch }) {
   const [openComment, setOpenComment] = useState(false);
   const params = useParams();
   const [visibleComments, setVisibleCommnets] = useState(4);
+
+  const { t } = useTranslation("products")
 
   // useEffect(() => {
   //   window.scrollTo({
@@ -138,7 +141,7 @@ export default function ProductComment({ data, refetch }) {
             )}
 
             <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black track%]">
-              Отзывы о товаре
+              {t("product_reviews")}
             </p>
 
             {Cookies.get("DressmeUserToken") ? (
@@ -147,7 +150,7 @@ export default function ProductComment({ data, refetch }) {
                 type="button"
                 className="flex items-center ml-[20px] text-SignInBgColor text-lg font-AeonikProRegular"
               >
-                Написать отзыв
+                {t("write_a_review")}
                 <span className="ml-[5px]">
                   <ReviewIcon />
                 </span>
@@ -168,7 +171,7 @@ export default function ProductComment({ data, refetch }) {
                     ref={textRef}
                     name="comment"
                     id="comment"
-                    placeholder="Написать отзыв"
+                    placeholder={`${t("write_a_review")}`}
                     className="w-full h-[148px] resize-none bg-[#fdfdfd]"
                   ></textarea>
                   {/* Star Rating */}
@@ -187,7 +190,7 @@ export default function ProductComment({ data, refetch }) {
                     }}
                     className="px-5 py-3 rounded-lg bg-borderWinter text-white text-base font-AeonikProMedium active:scale-95"
                   >
-                    Отправить
+                    {t("send")}
                   </button>
                 </div>
               </div>
@@ -214,7 +217,7 @@ export default function ProductComment({ data, refetch }) {
                   <p
                     className={`text-borderWinter bg-transparent font-AeonikProRegular text-base`}
                   >
-                    Показать еще...
+                    {t("show_more")}...
                   </p>
                 </button>
               ) : (
@@ -229,7 +232,7 @@ export default function ProductComment({ data, refetch }) {
                     href="#comment"
                     className={`text-borderWinter bg-transparent font-AeonikProRegular text-base`}
                   >
-                    Свернуть...
+                    {t("show_less")}...
                   </a>
                 </button>
               )}

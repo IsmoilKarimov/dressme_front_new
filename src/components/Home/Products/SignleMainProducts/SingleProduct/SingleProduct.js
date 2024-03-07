@@ -10,6 +10,7 @@ import { HomeMainDataContext } from "../../../../../ContextHook/HomeMainData";
 import { CollectionCardItem } from "../../../Main/WearCollectionCard/CollectionCardItem";
 import LoadingNetwork from "../../../../Loading/LoadingNetwork";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const SingleProduct = ({ breadShops, oncallProductName }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -26,6 +27,8 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
       LastSeenProduct.push(data);
     }
   });
+
+  const { t } = useTranslation("products")
 
   const [show, setShow] = useState(true);
   const [scrollPost, setscrollPost] = useState(0);
@@ -195,55 +198,57 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
             <SingleProductTop data={singleData} breadShops={breadShops} />
           </section>
           <section className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto border-box mb-10 md:mb-[0px]">
-            {singleData ? <div className="w-full">
-              <section className="w-[100%] h-fit mt-4 md:mt-6 flex justify-between flex-col md:flex-row px-[12px] md md:px-0">
-                <section className={`md:w-1/2`}>
-                  <ProductCarousel show={show} data={singleData} />
+            {singleData ? (
+              <div className="w-full">
+                <section className="w-[100%] h-fit mt-4 md:mt-6 flex justify-between flex-col md:flex-row px-[12px] md md:px-0">
+                  <section className={`md:w-1/2`}>
+                    <ProductCarousel show={show} data={singleData} />
+                  </section>
+                  <section className="w-full md:w-1/2 h-full ">
+                    <ProductDetails data={singleData} />
+                  </section>
                 </section>
-                <section className="w-full md:w-1/2 h-full ">
-                  <ProductDetails data={singleData} />
-                </section>
-              </section>
-              {/* Products Comment */}
-              {singleData?.product?.ratings?.length ? (
-                <section className="md:mt-20 w-full">
-                  <ProductComment data={singleData} refetch={refetch} />
-                </section>
-              ) : null}
-              {sameTypeData?.length ? (
-                <section className="w-full h-fit">
-                  <article className="w-full mt-[34px] md:mt-[60px] md:mb-[60px]">
-                    <div className="md:mb-4">
-                      <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black mb-3 md:mb-0">
-                        Похожие продукты
-                      </p>
-                    </div>
-                    <article className="flex flex-wrap justify-between md:justify-start md:mx-0  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
-                      {sameTypeData?.map((data) => {
-                        return (
-                          <CollectionCardItem
-                            key={data?.id}
-                            data={data}
-                            setOpenWearType={setOpenWearType}
-                            handleLeaveMouse={handleLeaveMouse}
-                            wishList={wishList}
-                            setWishlist={setWishlist}
-                          />
-                        );
-                      })}
+                {/* Products Comment */}
+                {singleData?.product?.ratings?.length ? (
+                  <section className="md:mt-20 w-full">
+                    <ProductComment data={singleData} refetch={refetch} />
+                  </section>
+                ) : null}
+                {sameTypeData?.length ? (
+                  <section className="w-full h-fit">
+                    <article className="w-full mt-[34px] md:mt-[60px] md:mb-[60px]">
+                      <div className="md:mb-4">
+                        <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black mb-3 md:mb-0">
+                          {t("similar_products")}
+                        </p>
+                      </div>
+                      <article className="flex flex-wrap justify-between md:justify-start md:mx-0  gap-y-2 lg:gap-x-5 lg:gap-y-5 ">
+                        {sameTypeData?.map((data) => {
+                          return (
+                            <CollectionCardItem
+                              key={data?.id}
+                              data={data}
+                              setOpenWearType={setOpenWearType}
+                              handleLeaveMouse={handleLeaveMouse}
+                              wishList={wishList}
+                              setWishlist={setWishlist}
+                            />
+                          );
+                        })}
+                      </article>
                     </article>
-                  </article>
-                </section>
-              ) : null}
-            </div> :
+                  </section>
+                ) : null}
+              </div>
+            ) : (
               <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[50vh] ">
-                Ничего не найдено
-              </div>}
+                {t("nothing_found")}
+              </div>
+            )}
           </section>
         </div>
-      )
-      }
-    </main >
+      )}
+    </main>
   );
 };
 export { SingleProduct };

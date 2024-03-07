@@ -1,14 +1,17 @@
 import React from "react";
 import { MenuCloseIcons } from "../../../../../../../../assets/icons";
+import { useTranslation } from "react-i18next";
 
 function TableSizesDropUp({ onClick, data, selectedLocation }) {
   console.log(data, "data-table-data");
+
+  const { t } = useTranslation("products")
 
   return (
     <main>
       <div className="max-w-[440px] w-[100%] mx-auto bg-white shadow-navMenuShadov  overflow-hidden h-fit rounded-t-[12px]">
         <section className="w-full flex items-center  justify-between px-4 my-5">
-          <p className="text-xl font-AeonikProMedium">Таблица размеров</p>
+          <p className="text-xl font-AeonikProMedium">{t("size_table")}</p>
           <button onClick={onClick}>
             <MenuCloseIcons colors={"#000"} />
           </button>
@@ -18,19 +21,19 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
             <div className="w-full flex flex-row flex-nowrap gap-y-[10px] gap-x-[12px] mb-4">
               <ul className="w-[42%] h-full flex flex-col">
                 <li className="text-base font-AeonikProRegular h-10 flex items-center">
-                  Размер в числах
+                  {t("size_in_numbers")}
                 </li>
                 <li className="text-base font-AeonikProRegular h-10 flex items-center">
-                  Буквенный Размер
+                  {t("letter_size")}
                 </li>
                 <li className="text-base font-AeonikProRegular h-10 flex items-center">
-                  Обхват груди, в см
+                  {t("bust")}, {t("in_cm")}
                 </li>
                 <li className="text-base font-AeonikProRegular h-10 flex items-center">
-                  Обхват талии, в см
+                  {t("waist_circumference")}, {t("in_cm")}
                 </li>
                 <div className="text-base font-AeonikProRegular h-10 flex items-center">
-                  Обхват бедер, в см
+                  {t("hip_girth")}, {t("in_cm")}
                 </div>
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
@@ -49,7 +52,9 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
                             !data?.min_waist_girth &&
                             !data?.max_waist_girth &&
                             !data?.min_hip_girth &&
-                            !data?.max_hip_girth ? 'hidden' : 'flex'
+                            !data?.max_hip_girth
+                              ? "hidden"
+                              : "flex"
                           } w-full items-center justify-start flex-col text-[13px] font-AeonikProRegular `}
                         >
                           {/* Sizes */}
@@ -133,19 +138,19 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
             <div className="w-full flex flex-row flex-nowrap gap-y-[10px] gap-x-[12px] mb-4">
               <ul className="w-[42%] h-full flex flex-col">
                 <li className="text-base font-AeonikProRegular h-10 flex items-center">
-                  Размер в числах
+                  {t("size_in_numbers")}
                 </li>
                 <li className="text-base font-AeonikProRegular h-10 flex items-center">
-                  Буквенный Размер
+                  {t("letter_size")}
                 </li>
                 <li className="text-base font-AeonikProRegular h-10 flex items-center">
-                  Рост, в см
+                  {t("height")}, {t("in_cm")}
                 </li>
                 <li className="text-base font-AeonikProRegular h-10 flex items-center">
-                  Обхват талии, в см
+                  {t("waist_circumference")}, {t("in_cm")}
                 </li>
                 <div className="text-base font-AeonikProRegular h-10 flex items-center">
-                  Обхват бедер, в см
+                  {t("hip_girth")}, {t("in_cm")}
                 </div>
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
@@ -249,10 +254,10 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
             <div className="w-full flex flex-row flex-nowrap gap-y-[10px] gap-x-[12px] mb-4">
               <ul className="w-[42%] h-full flex flex-col">
                 <li className="text-base font-AeonikProRegular h-10 flex items-center">
-                  Размер в числах, в см
+                  {t("size_in_numbers")}, {t("in_cm")}
                 </li>
                 <li className="text-base font-AeonikProRegular h-10 flex items-center">
-                  Длина стопы, в см
+                  {t("foot_length")}, {t("in_cm")}
                 </li>
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
@@ -305,16 +310,16 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
             <div className="w-full flex flex-row flex-nowrap gap-y-[10px] gap-x-[12px] mb-4">
               <ul className="w-[42%] h-full flex flex-col">
                 <li className="text-base font-AeonikProRegular h-10 flex items-center">
-                  Размер в числах, в см
+                  {t("size_in_numbers")}, {t("in_cm")}
                 </li>
                 <li className="text-base font-AeonikProRegular h-10 flex items-center">
-                  Буквенный Размер
+                  {t("letter_size")}
                 </li>
                 <li className="text-base font-AeonikProRegular h-10 flex items-center">
-                  Длина, в см
+                  {t("length")}, {t("in_cm")}
                 </li>
                 <li className="text-base font-AeonikProRegular h-10 flex items-center">
-                  Ширина, в см
+                  {t("width")}, {t("in_cm")}
                 </li>
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
