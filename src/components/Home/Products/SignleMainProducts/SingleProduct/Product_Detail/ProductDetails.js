@@ -48,12 +48,16 @@ import { SliderPhotosColorContext } from "../../../../../../ContextHook/SliderPh
 import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { LanguageDetectorDress } from "../../../../../../language/LanguageItems";
 const ProductDetails = ({ data, shopsData }) => {
   const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
   // Rick Ortiz
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const { t } = useTranslation("products");
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
@@ -467,7 +471,8 @@ const ProductDetails = ({ data, shopsData }) => {
         </section>
         <section className="w-full mb-8">
           <p className="not-italic font-AeonikProMedium text-xl md:text-[22px] leading-7 text-TextTitle tracking-[1%]">
-            {data?.product?.name_ru}
+            {languageDetector?.typeLang === "ru" && data?.product?.name_ru}
+            {languageDetector?.typeLang === "uz" && data?.product?.name_uz}
           </p>
         </section>
 
@@ -522,7 +527,8 @@ const ProductDetails = ({ data, shopsData }) => {
                         />
 
                         <figcaption className="not-italic  ml-1 font-AeonikProMedium md:font-AeonikProRegular leading-4 text-black tracking-[1%]">
-                          {item?.name_ru}
+                          {languageDetector?.typeLang === "ru" && item?.name_ru}
+                          {languageDetector?.typeLang === "uz" && item?.name_uz}
                         </figcaption>
                       </figure>
                     </div>
@@ -541,7 +547,10 @@ const ProductDetails = ({ data, shopsData }) => {
               </article>
               <article className="w-fit ml-2">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                  {data?.product?.shop?.delivery?.name_ru}
+                  {languageDetector?.typeLang === "ru" &&
+                    data?.product?.shop?.delivery?.name_ru}
+                  {languageDetector?.typeLang === "uz" &&
+                    data?.product?.shop?.delivery?.name_uz}
                 </p>
               </article>
             </div>
@@ -590,7 +599,8 @@ const ProductDetails = ({ data, shopsData }) => {
                           key={i}
                           className="mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]"
                         >
-                          {item?.name_ru}
+                          {languageDetector?.typeLang === "ru" && item?.name_ru}
+                          {languageDetector?.typeLang === "uz" && item?.name_uz}
                         </p>
                       );
                     }
@@ -605,7 +615,8 @@ const ProductDetails = ({ data, shopsData }) => {
                         key={i}
                         className="mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]"
                       >
-                        {item?.name_ru}
+                        {languageDetector?.typeLang === "ru" && item?.name_ru}
+                        {languageDetector?.typeLang === "uz" && item?.name_uz}
                       </p>
                     );
                   }
@@ -624,7 +635,10 @@ const ProductDetails = ({ data, shopsData }) => {
               </article>
               <article className="w-fit ml-2">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                  {data?.product?.category?.name_ru}
+                  {languageDetector?.typeLang === "ru" &&
+                    data?.product?.category?.name_ru}
+                  {languageDetector?.typeLang === "uz" &&
+                    data?.product?.category?.name_uz}
                 </p>
               </article>
             </div>
@@ -637,7 +651,10 @@ const ProductDetails = ({ data, shopsData }) => {
                   </div>
                 </article>
                 <article className="w-fit ml-2 flex text-[14px] flex-wrap font-AeonikProRegular">
-                  {data?.product?.type?.name_ru}
+                  {languageDetector?.typeLang === "ru" &&
+                    data?.product?.type?.name_ru}
+                  {languageDetector?.typeLang === "uz" &&
+                    data?.product?.type?.name_uz}
                 </article>
               </div>
             </div>
@@ -653,7 +670,10 @@ const ProductDetails = ({ data, shopsData }) => {
               </article>
               <article className="w-fit ml-2">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                  {data?.product?.quality_ru}
+                  {languageDetector?.typeLang === "ru" &&
+                    data?.product?.quality_ru}
+                  {languageDetector?.typeLang === "uz" &&
+                    data?.product?.quality_uz}
                 </p>
               </article>
             </div>
@@ -704,7 +724,8 @@ const ProductDetails = ({ data, shopsData }) => {
               {t("color")}:
             </div>
             <p className="mr-1 not-italic leading-4 text-[#757575]">
-              {selectedColor?.name_ru}
+              {languageDetector?.typeLang === "ru" && selectedColor?.name_ru}
+              {languageDetector?.typeLang === "uz" && selectedColor?.name_uz}
             </p>
           </div>
           {data?.product?.locations?.length ? (
@@ -716,8 +737,18 @@ const ProductDetails = ({ data, shopsData }) => {
                 <LocationColoursIcons colors={"#303030"} />
               </span>
               <p className="text-[#303030] md:text-[#757575] font-AeonikProRegular md:font-AeonikProMedium text-base md:text-sm ml-[3px] md:ml-2">
-                {selectedLocation?.region?.name_ru},{" "}
-                {selectedLocation?.sub_region?.name_ru}
+                {/* Region */}
+                {languageDetector?.typeLang === "ru" &&
+                  selectedLocation?.region?.name_ru}
+                {languageDetector?.typeLang === "uz" &&
+                  selectedLocation?.region?.name_uz}
+                ,{/* Sub-Region */}
+                <span className="ml-[4px]">
+                  {languageDetector?.typeLang === "ru" &&
+                    selectedLocation?.sub_region?.name_ru}
+                  {languageDetector?.typeLang === "uz" &&
+                    selectedLocation?.sub_region?.name_uz}
+                </span>
               </p>
             </div>
           ) : null}
@@ -782,8 +813,11 @@ const ProductDetails = ({ data, shopsData }) => {
                                     checked={selectedLocation?.id === item?.id}
                                     className="text-lg font-AeonikProRegular"
                                   >
-                                    {data?.sub_region?.name_ru} ({data?.address}
-                                    )
+                                    {languageDetector?.typeLang === "ru" &&
+                                      data?.sub_region?.name_ru}
+                                    {languageDetector?.typeLang === "uz" &&
+                                      data?.sub_region?.name_uz}
+                                    ({data?.address})
                                   </Radio>
                                 </div>
                               );
@@ -1409,7 +1443,8 @@ const ProductDetails = ({ data, shopsData }) => {
         {/* Mobile Product Infos */}
         <article className="w-full flex md:hidden flex-col items-center">
           <div className="w-full text-xl text-pretty break-all font-AeonikProMedium mb-[18px]">
-            {data?.product?.name_ru}
+            {languageDetector?.typeLang === "ru" && data?.product?.name_ru}
+            {languageDetector?.typeLang === "uz" && data?.product?.name_uz}
           </div>
           <div className="w-full flex flex-col items-center border border-[#f0f0f0] p-[15px] bg-categoryModalBgColor rounded-xl">
             <div className="w-full flex items-center mb-4 ">
@@ -1440,7 +1475,10 @@ const ProductDetails = ({ data, shopsData }) => {
                 <span className="ml-[6px] inline">{t("delivery_method")}:</span>
               </div>
               <div className="text-sm font-AeonikProRegular ml-[6px] text-black">
-                {data?.product?.shop?.delivery?.name_ru}
+                {languageDetector?.typeLang === "ru" &&
+                  data?.product?.shop?.delivery?.name_ru}
+                {languageDetector?.typeLang === "uz" &&
+                  data?.product?.shop?.delivery?.name_uz}
               </div>
             </div>
             <div className="w-full flex items-center mb-4">
@@ -1469,7 +1507,8 @@ const ProductDetails = ({ data, shopsData }) => {
                           alt=""
                         />
                         <figcaption className="not-italic inline ml-1 font-AeonikProRegular md:font-AeonikProMedium text-black">
-                          {item?.name_ru}
+                          {languageDetector?.typeLang === "ru" && item?.name_ru}
+                          {languageDetector?.typeLang === "uz" && item?.name_uz}
                         </figcaption>
                       </figure>
                     </div>
@@ -1521,7 +1560,10 @@ const ProductDetails = ({ data, shopsData }) => {
               </article>
               <article className="w-fit ml-[6px]">
                 <p className="not-italic font-AeonikProRegular text-[14px]  text-black ">
-                  {data?.product?.quality_ru}
+                  {languageDetector?.typeLang === "ru" &&
+                    data?.product?.quality_ru}
+                  {languageDetector?.typeLang === "uz" &&
+                    data?.product?.quality_uz}
                 </p>
               </article>
             </div>
@@ -1553,7 +1595,8 @@ const ProductDetails = ({ data, shopsData }) => {
                         key={i}
                         className="mr-[5px] not-italic font-AeonikProRegular text-[14px] text-black "
                       >
-                        {item?.name_ru}{" "}
+                        {languageDetector?.typeLang === "ru" && item?.name_ru}
+                        {languageDetector?.typeLang === "uz" && item?.name_uz}
                         <span
                           className={`${
                             i + 1 === data?.product?.sections?.length

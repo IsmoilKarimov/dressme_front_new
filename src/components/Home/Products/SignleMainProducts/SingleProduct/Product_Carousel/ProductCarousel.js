@@ -12,6 +12,7 @@ import { Popover } from "antd";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
+import { LanguageDetectorDress } from "../../../../../../language/LanguageItems";
 
 const ProductCarousel = ({ show, data }) => {
   const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
@@ -19,7 +20,10 @@ const ProductCarousel = ({ show, data }) => {
   const [dressInfo] = useContext(dressMainData);
   const [nav2] = useState();
 
-  const { t } = useTranslation("products")
+  const { t } = useTranslation("products");
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
   const [selectedColor, setSelectedColor] = useState(data?.product?.colors[0]);
 
@@ -668,9 +672,14 @@ const ProductCarousel = ({ show, data }) => {
             <div className="w-full flex items-center justify-between mb-4 text-base">
               <div className="w-fit flex items-center">
                 <BrushColorIcons colors={"#000"} />
-                <p className="font-AeonikProRegular mr-2 ml-[6px]">{t("color")}:</p>
+                <p className="font-AeonikProRegular mr-2 ml-[6px]">
+                  {t("color")}:
+                </p>
                 <span className="font-AeonikProMedium">
-                  {selectedColor?.name_ru}
+                  {languageDetector?.typeLang === "ru" &&
+                    selectedColor?.name_ru}
+                  {languageDetector?.typeLang === "uz" &&
+                    selectedColor?.name_uz}
                 </span>
               </div>
               <button
