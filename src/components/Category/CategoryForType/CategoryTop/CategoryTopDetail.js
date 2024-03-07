@@ -11,6 +11,7 @@ import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { MdClose } from "react-icons/md";
 import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
 import { useTranslation } from "react-i18next";
+import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 
 
 const CategoryTopDetail = ({
@@ -23,6 +24,7 @@ const CategoryTopDetail = ({
 }) => {
   const [searchMarketName, setSearchMarketName] = useState();
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
 
   const { t } = useTranslation("category");
 
@@ -48,9 +50,14 @@ const CategoryTopDetail = ({
   const handleOpenCategories = (newOpen) => {
     setState({ ...state, opensports: newOpen });
   };
-  const handleCategories = (value, id) => {
+  const handleCategories = (nameru, nameuz, id) => {
     setState({ ...state, opensports: false });
-    navigate(`/section/${value?.split(' ')?.join('-')?.toLowerCase()}`);
+    if (languageDetector?.typeLang === 'uz') {
+      navigate(`/section/${nameuz?.split(' ')?.join('-')?.toLowerCase()}`);
+    }
+    if (languageDetector?.typeLang === 'ru') {
+      navigate(`/section/${nameru?.split(' ')?.join('-')?.toLowerCase()}`);
+    }
   };
 
   const contentCategories = (
@@ -60,12 +67,13 @@ const CategoryTopDetail = ({
           <p
             key={data?.id}
             onClick={() => {
-              handleCategories(data?.name_ru, data?.id);
+              handleCategories(languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz, data?.id);
             }}
             className={`${filterData?.section?.id === data?.id ? "bg-bgColor" : null
               } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
-            {data?.name_ru}
+            {languageDetector?.typeLang === 'ru' && data?.name_ru}
+            {languageDetector?.typeLang === 'uz' && data?.name_uz}
           </p>
         );
       })}
@@ -117,7 +125,8 @@ const CategoryTopDetail = ({
                   </div>
                   <div className="flex items-center ml-[112px] md:ml-[210px]">
                     <div className="text-xl font-AeonikProMedium">
-                      {filterData?.section?.name_ru}
+                      {languageDetector?.typeLang === 'ru' && filterData?.section?.name_ru}
+                      {languageDetector?.typeLang === 'uz' && filterData?.section?.name_uz}
                       <span className="text-xl text-setTexOpacity font-AeonikProRegular ml-2">
                         ({filterData?.section_products?.total})
                       </span>
@@ -142,7 +151,8 @@ const CategoryTopDetail = ({
                         content={contentCategories}
                       >
                         <span className="text-[15px] font-AeonikProMedium">
-                          {filterData?.section?.name_ru}
+                          {languageDetector?.typeLang === 'ru' && filterData?.section?.name_ru}
+                          {languageDetector?.typeLang === 'uz' && filterData?.section?.name_uz}
                         </span>
                         <span>
                           <BiChevronDown
@@ -191,7 +201,8 @@ const CategoryTopDetail = ({
                         className="text-[15px] font-AeonikProMedium"
                       >
                         <button className="focus:bg-borderWinter focus:text-white hover:bg-borderWinter hover:text-white bg-white border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]">
-                          {catalog.name_ru}
+                          {languageDetector?.typeLang === 'ru' && catalog?.name_ru}
+                          {languageDetector?.typeLang === 'uz' && catalog?.name_uz}
                         </button>
                       </li>
                     )

@@ -9,10 +9,12 @@ import { MenuCloseIcons } from "../../../assets/icons";
 import LoadingNetwork from "../../Loading/LoadingNetwork";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
+import { LanguageDetectorDress } from "../../../language/LanguageItems";
 
 function CategoryForType() {
 
   const { t } = useTranslation("category");
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [filterData, setFilterData] = useState([]);
@@ -82,15 +84,26 @@ function CategoryForType() {
   const newId = paramsId?.id.replace(":", "");
 
   useLayoutEffect(() => {
-
-    data?.getMainProductCard?.sections?.map(item => {
-      if (newId?.includes(item?.name_ru?.split(' ')?.join('-')?.toLowerCase())) {
-        setNewFilterParamasId(item?.id)
-        if (!newFilterParamasIdCopy) {
-          setNewFilterParamasIdCopy(item?.id)
+    if (languageDetector?.typeLang === 'uz') {
+      data?.getMainProductCard?.sections?.map(item => {
+        if (newId?.includes(item?.name_uz?.split(' ')?.join('-')?.toLowerCase())) {
+          setNewFilterParamasId(item?.id)
+          if (!newFilterParamasIdCopy) {
+            setNewFilterParamasIdCopy(item?.id)
+          }
         }
-      }
-    })
+      })
+    }
+    if (languageDetector?.typeLang === 'ru') {
+      data?.getMainProductCard?.sections?.map(item => {
+        if (newId?.includes(item?.name_ru?.split(' ')?.join('-')?.toLowerCase())) {
+          setNewFilterParamasId(item?.id)
+          if (!newFilterParamasIdCopy) {
+            setNewFilterParamasIdCopy(item?.id)
+          }
+        }
+      })
+    }
 
   }, [paramsId?.id, data?.getMainProductCard?.sections]);
 
@@ -204,9 +217,14 @@ function CategoryForType() {
 
   const navigate = useNavigate();
 
-  const handleCategories = (value, id) => {
+  const handleCategories = (nameru, nameuz, id) => {
     setOpenMobileCategory(false);
-    navigate(`/section/${value?.split(' ')?.join('-')?.toLowerCase()}`);
+    if (languageDetector?.typeLang === 'uz') {
+      navigate(`/section/${nameuz?.split(' ')?.join('-')?.toLowerCase()}`);
+    }
+    if (languageDetector?.typeLang === 'ru') {
+      navigate(`/section/${nameru?.split(' ')?.join('-')?.toLowerCase()}`);
+    }
   };
   useEffect(() => {
     if (openMobileFilter || openMobileCategory) {
@@ -258,80 +276,54 @@ function CategoryForType() {
           </section>
 
           {/* {filterData?.sections?.length > 0 ? ( */}
-            <section className="flex justify-between mb-10">
+          <section className="flex justify-between mb-10">
+            <section
+              onClick={() => {
+                setOpenMobileCategory(false);
+                setOpenMobileFilter(false);
+              }}
+              className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter || openMobileCategory ? "" : "hidden"
+                }`}
+            ></section>
+            {/* For Mobile Versions */}
+            <section
+              className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
+                }`}
+            >
+              <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between  mb-1 ">
+                <p className="text-[16px] font-AeonikProMedium">
+                  {t("by_section")}
+                </p>
+                <button onClick={() => setOpenMobileCategory(false)}>
+                  <MenuCloseIcons colors={"#000"} />
+                </button>
+              </section>
+              <div className="max-w-[440px]  w-[100%] h-[320px] z-[114]  border-y  overflow-y-auto overflow-hidden ">
+                {filterData?.sections?.map((data) => {
+                  return (
+                    <p
+                      key={data?.id}
+                      onClick={() => {
+                        handleCategories(languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz, data?.id);
+                      }}
+                      className={`${filterData?.section?.id === data?.id
+                        ? "bg-bgColor"
+                        : null
+                        } h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
+                    >
+                      {languageDetector?.typeLang === 'ru' && data?.name_ru}
+                      {languageDetector?.typeLang === 'uz' && data?.name_uz}
+                    </p>
+                  );
+                })}
+              </div>
+            </section>
+            {screenSize.width < 768 && (
               <section
-                onClick={() => {
-                  setOpenMobileCategory(false);
-                  setOpenMobileFilter(false);
-                }}
-                className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter || openMobileCategory ? "" : "hidden"
-                  }`}
-              ></section>
-              {/* For Mobile Versions */}
-              <section
-                className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
+                className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
                   }`}
               >
-                <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between  mb-1 ">
-                  <p className="text-[16px] font-AeonikProMedium">
-                    {t("by_section")}
-                  </p>
-                  <button onClick={() => setOpenMobileCategory(false)}>
-                    <MenuCloseIcons colors={"#000"} />
-                  </button>
-                </section>
-                <div className="max-w-[440px]  w-[100%] h-[320px] z-[114]  border-y  overflow-y-auto overflow-hidden ">
-                  {filterData?.sections?.map((data) => {
-                    return (
-                      <p
-                        key={data?.id}
-                        onClick={() => {
-                          handleCategories(data?.name_ru, data?.id);
-                        }}
-                        className={`${filterData?.section?.id === data?.id
-                          ? "bg-bgColor"
-                          : null
-                          } h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
-                      >
-                        {data?.name_ru}
-                      </p>
-                    );
-                  })}
-                </div>
-              </section>
-              {screenSize.width < 768 && (
-                <section
-                  className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
-                    }`}
-                >
-                  <div className="w-full h-[70vh] z-[114] overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
-                    <FilterList
-                      paramsId={newFilterParamasId}
-                      genderId={genderId}
-                      discountId={discountId}
-                      categoryId={categoryId}
-                      getBadgePrice={getBadgePrice}
-                      setDataColor={setDataColor}
-                      dataColor={dataColor}
-                      getRatingList={getRatingList}
-                      outWearList={outWearList}
-                      underWearList={underWearList}
-                      footWearList={footWearList}
-                      filterToggle={filterToggle}
-                      setFilterToggle={setFilterToggle}
-                      openMobileFilter={openMobileFilter}
-                      setOpenMobileFilter={setOpenMobileFilter}
-                    />
-                  </div>
-                </section>
-              )}
-
-              {/* For Desktop Version */}
-              {screenSize.width >= 768 && (
-                <article
-                  className={`${filterToggle ? "md:block" : "md:hidden"
-                    } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0 `}
-                >
+                <div className="w-full h-[70vh] z-[114] overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
                   <FilterList
                     paramsId={newFilterParamasId}
                     genderId={genderId}
@@ -346,28 +338,55 @@ function CategoryForType() {
                     footWearList={footWearList}
                     filterToggle={filterToggle}
                     setFilterToggle={setFilterToggle}
-                    setLoading={setLoading}
+                    openMobileFilter={openMobileFilter}
+                    setOpenMobileFilter={setOpenMobileFilter}
                   />
-                </article>
-              )}
+                </div>
+              </section>
+            )}
+
+            {/* For Desktop Version */}
+            {screenSize.width >= 768 && (
               <article
-                className={`${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-                  } w-full h-full px-[10px] md:px-0 `}
+                className={`${filterToggle ? "md:block" : "md:hidden"
+                  } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0 `}
               >
-                {filterData?.section_products?.data?.length > 0 ? (
-                  <CategoryCards
-                    paramsId={newId}
-                    filterData={filterData}
-                    setPageId={setPageId}
-                  />
-                ) : (
-                  <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[50vh] ">
-                    {t("nothing_found")}
-                  </div>
-                )}
+                <FilterList
+                  paramsId={newFilterParamasId}
+                  genderId={genderId}
+                  discountId={discountId}
+                  categoryId={categoryId}
+                  getBadgePrice={getBadgePrice}
+                  setDataColor={setDataColor}
+                  dataColor={dataColor}
+                  getRatingList={getRatingList}
+                  outWearList={outWearList}
+                  underWearList={underWearList}
+                  footWearList={footWearList}
+                  filterToggle={filterToggle}
+                  setFilterToggle={setFilterToggle}
+                  setLoading={setLoading}
+                />
               </article>
-            </section>
-            {/* )
+            )}
+            <article
+              className={`${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+                } w-full h-full px-[10px] md:px-0 `}
+            >
+              {filterData?.section_products?.data?.length > 0 ? (
+                <CategoryCards
+                  paramsId={newId}
+                  filterData={filterData}
+                  setPageId={setPageId}
+                />
+              ) : (
+                <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[50vh] ">
+                  {t("nothing_found")}
+                </div>
+              )}
+            </article>
+          </section>
+          {/* )
              : (
             <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[50vh] ">
               {t("nothing_found")}
