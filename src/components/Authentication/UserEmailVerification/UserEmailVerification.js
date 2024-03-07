@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { SircleNext, UserMailIcon } from "../../../assets/icons";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Cookies from "js-cookie";
+import { useTranslation } from "react-i18next";
 
 export default function UserEmailVerification() {
   const [timer, setTimer] = useState(false);
@@ -18,6 +19,7 @@ export default function UserEmailVerification() {
     errorMessage: "",
     errorsGroup: null,
   });
+  const { i18n, t } = useTranslation('authen')
 
   const setTimeForNotif = () => {
     setTimer(true);
@@ -94,8 +96,7 @@ export default function UserEmailVerification() {
     EnterTheSystem();
     setTimeForNotif();
   }
-
-  useEffect(() => {
+   useEffect(() => {
     document.title = "Подтвердить адрес электронной почты";
   }, []);
 
@@ -115,19 +116,19 @@ export default function UserEmailVerification() {
             )}
         </div>
         <div className=" w-full pb-[20px] pt-[30px] md:hidden not-italic font-AeonikProMedium text-xl text-center leading-5   tracking-[0,16px] text-black">
-          Вход для продавцов
+          {t("VEsellerEnter")}
         </div>
       </div>
 
       {/*  */}
       <div className="max-w-[460px] w-[100%]  h-fit  md:px-[40px] md:py-[32px] py-[25px] px-[15px] border border-searchBgColor rounded-[12px]">
         <div className=" w-full pb-[50px] pt-4 md:flex items-center justify-center hidden not-italic font-AeonikProMedium text-[25px] text-center leading-5   tracking-[0,16px] text-black">
-          Вход для продавцов
+          {t("VEsellerEnter")}
         </div>
 
         <div className=" w-full h-fit">
           <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px]  ">
-            Электронная почта
+            {t("Lemail")}
           </span>
           <div className="mt-[4px]  w-full flex items-center border border-searchBgColor overflow-hidden rounded-lg ">
             <input
@@ -140,7 +141,7 @@ export default function UserEmailVerification() {
                 setError();
                 setState({ ...state, email: value });
               }}
-              placeholder="Emailingizni kiriting..."
+              placeholder={t("Lemail")}
               required
             />
             <span className=" pr-2 xs:pr-4">
@@ -155,7 +156,7 @@ export default function UserEmailVerification() {
         </div>
         <form className="mt-4 w-full h-fit">
           <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px]  ">
-            Пароль
+          {t("Lpassword")}
           </span>
           <div className="mt-[4px]  w-full flex items-center border border-searchBgColor rounded-lg overflow-hidden">
             <input
@@ -163,7 +164,7 @@ export default function UserEmailVerification() {
               type={state?.eyesShow ? "password" : "text"}
               name="password"
               autoComplete="password"
-              placeholder="Enter your password"
+              placeholder={t("Lpassword")}
               value={state.password}
               onChange={({ target: { value } }) => {
                 setError();
@@ -208,7 +209,7 @@ export default function UserEmailVerification() {
               className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px] "
             >
               {" "}
-              Запомнить
+              {t("Lremember")}
             </label>
           </div>
         </div>
@@ -218,7 +219,7 @@ export default function UserEmailVerification() {
           className="mt-[50px] border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-fullBlue select-none rounded-lg active:scale-95	active:opacity-70"
         >
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
-            Войти в систему
+          {t("LsignIn")}
           </span>
           <span>
             <SircleNext colors={"#fff"} />

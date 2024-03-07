@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { ToastContainer, toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { UserRefreshTokenContext } from "../../../../../ContextHook/UserRefreshToken";
+import { useTranslation } from "react-i18next";
 
 export default function EditPassword({ onClick }) {
   const [reFreshTokenFunc, setUserLogedIn] = useContext(
@@ -20,6 +21,7 @@ export default function EditPassword({ onClick }) {
     eyesShowConfirm: false,
     errorsGroup: null,
   });
+  const { i18n, t } = useTranslation('authen')
 
   const url = "https://api.dressme.uz/api/user";
 
@@ -124,19 +126,18 @@ export default function EditPassword({ onClick }) {
       </div>
       <div className="w-full flex items-center justify-center">
         <span className="text-gray-800 text-center text-2xl not-italic font-AeonikProMedium">
-          Изменить пароль
+          {t("PPEeditPss")}
         </span>
       </div>
       <form className="mt-[30px] flex flex-col gap-y-5">
         <div className="w-full  h-fit ">
           <span className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-            Старый пароль
-          </span>
+            {t("PPEeditOldPss")}          </span>
           <label className="mt-[6px] overflow-hidden pr-2 w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
               className=" outline-none w-full h-[40px] pl-2 xs:h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type={state?.eyesShowOld ? "text" : "password"}
-              placeholder="Старый пароль"
+              placeholder={t("PPEeditOldPss")}
               name="password"
               value={state?.oldPassword || ""}
               onChange={(e) => {
@@ -170,13 +171,13 @@ export default function EditPassword({ onClick }) {
         </div>
         <div className="w-full  h-fit ">
           <span className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-            Новый пароль{" "}
+          {t("NPnewPss")} {" "}
           </span>
           <label className="mt-[6px] pr-2 overflow-hidden  w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
               className=" outline-none w-full pl-2 h-[40px] xs:h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type={state?.eyesShowNew ? "text" : "password"}
-              placeholder="Ввести старый пароль"
+              placeholder={t("NPnewPss")}
               name="new_password"
               value={state?.newPassword}
               onChange={(e) => {
@@ -211,13 +212,13 @@ export default function EditPassword({ onClick }) {
         </div>
         <div className="w-full  h-fit ">
           <span className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-            Подтвердить пароль{" "}
+          {t("ESenterPss")}{" "}
           </span>
           <label className="mt-[6px] pr-2  overflow-hidden w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
               className=" outline-none pl-2 w-full h-[40px] xs:h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type={state?.eyesShowConfirm ? "text" : "password"}
-              placeholder="Ввести старый пароль"
+              placeholder={t("ESenterPss")}
               name="confirm_new_password"
               value={state?.confirmNewPassword || ""}
               onChange={(e) => {
@@ -259,7 +260,7 @@ export default function EditPassword({ onClick }) {
           onClick={SendNewPassword}
           className="h-12 w-full active:scale-95  active:opacity-70 text-white rounded-lg  flex bg-borderWinter items-center justify-center text-center text-lg not-italic font-AeonikProMedium"
         >
-          Обновить пароль
+          {t("ESrefreshPss")}
         </button>
       </div>
     </div>

@@ -11,6 +11,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useHttp } from "../../../../../hook/useHttp";
 import Cookies from "js-cookie";
+import { useTranslation } from "react-i18next";
 
 const UserProfilePage = () => {
   const [phone, setPhone] = useState("");
@@ -28,6 +29,7 @@ const UserProfilePage = () => {
     Male: true,
     Female: false,
   });
+  const { i18n, t } = useTranslation('authen')
 
   // -------------  GET ALL PRODUCTS LENGTH --------------
   useQuery(
@@ -72,19 +74,19 @@ const UserProfilePage = () => {
       navigate(location.pathname);
     }
   };
-  return (
+   return (
     <div className="pt-3 md:pt-8 w-full flex justify-center ss:px-4 md:px-0">
       <div className="md:max-w-[820px] max-w-[440px] w-[100%] h-fit p-4 md:px-0  border border-searchBgColor rounded-lg mb-[100px] md:mb-0">
         <div className="md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
           <div className="">
             <span className="not-italic font-AeonikProMedium text-xl leading-6 text-black tracking-[1%]">
-              Мои данные
+              {t("PPmyInfor")}
             </span>
           </div>
           <div className="flex flex-col md:flex-row justify-between items-center mt-6">
             <div className="w-full md:w-[48%] h-fit">
               <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-                Имя{" "}
+                {t("Sfname")}
               </div>
               <div className="mt-[6px] px-[16px] w-full flex bg-btnBgColor items-center border border-searchBgColor rounded-lg ">
                 <input
@@ -92,7 +94,7 @@ const UserProfilePage = () => {
                   type="text"
                   name="name"
                   value={profileData?.name}
-                  placeholder="Имя"
+                  placeholder={t("Sfname")}
                   required
                 />
                 <span>
@@ -102,7 +104,7 @@ const UserProfilePage = () => {
             </div>
             <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
               <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-                Фамилия{" "}
+                {t("Slname")}
               </div>
               <div className="mt-[6px] px-[16px] w-full flex bg-btnBgColor items-center border border-searchBgColor rounded-lg ">
                 <input
@@ -110,7 +112,7 @@ const UserProfilePage = () => {
                   type="text"
                   name="name"
                   value={profileData?.surname}
-                  placeholder="Фамилия"
+                  placeholder={t("Slname")}
                   required
                 />
                 <span>
@@ -124,7 +126,7 @@ const UserProfilePage = () => {
           <div className="flex  flex-col md:flex-row justify-between items-center">
             <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
               <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-                Номер телефона{" "}
+                {t("SphoneNum")} {" "}
               </div>
               <div className="flex mt-[6px] items-center justify-center overflow-hidden border border-searchBgColor rounded-lg">
                 <div className="w-[35%] md:w-[25%] h-12 flex bg-btnBgColor items-center justify-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
@@ -142,9 +144,8 @@ const UserProfilePage = () => {
                     name="name"
                     value={profileData?.phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className={`w-full px-4  h-full not-italic bg-btnBgColor ${
-                      phone ? "font-AeonikProMedium" : null
-                    } text-base leading-4 text-black`}
+                    className={`w-full px-4  h-full not-italic bg-btnBgColor ${phone ? "font-AeonikProMedium" : null
+                      } text-base leading-4 text-black`}
                     placeholder={"(77) 777-77-77"}
                   ></InputMask>
                 </div>
@@ -152,7 +153,7 @@ const UserProfilePage = () => {
             </div>
             <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
               <div className="flex justify-between mt-[6px]  w-full items-center not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-                <span>Электронная почта</span>
+                <span>{t("Lemail")}</span>
               </div>
               <div className="mt-[6px] px-[16px] w-full flex items-center bg-btnBgColor border border-searchBgColor rounded-lg ">
                 <input
@@ -160,7 +161,7 @@ const UserProfilePage = () => {
                   type="email"
                   name="name"
                   value={profileData?.email}
-                  placeholder="Адрес электронной почты"
+                  placeholder={t("Lemail")}
                   required
                 />
                 <span>
@@ -180,7 +181,7 @@ const UserProfilePage = () => {
                 <LogOutIcons colors={"#D50000"} />
               </span>
               <span className="not-italic hidden md:block ml-2  font-AeonikProMedium text-base leading-4 tracking-[1%] text-RedColor text-center">
-                Выйти из системы
+              {t("PPexit")}
               </span>
             </button>
           </div>
@@ -188,7 +189,7 @@ const UserProfilePage = () => {
             {/* active:scale-95  active:opacity-70 */}
             <button className="w-[100%] md:w-[244px] h-[52px] cursor-not-allowed bg-gray-300 text-white rounded-lg flex items-center justify-center">
               <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center tracking-[1%]">
-                Обновить данные
+              {t("PPrefresh")}
               </span>
               <span className="ml-2">
                 <SircleNext colors={"#fff"} />

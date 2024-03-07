@@ -25,11 +25,13 @@ import LoadingNetwork from "../../../Loading/LoadingNetwork";
 import { ProfileDataContext } from "../../../../ContextHook/ProfileContext";
 import axios from "axios";
 import { UserRefreshTokenContext } from "../../../../ContextHook/UserRefreshToken";
+import { useTranslation } from "react-i18next";
 
 const EditProfilePage = () => {
   const [reFreshTokenFunc, setUserLogedIn] = useContext(
     UserRefreshTokenContext
   );
+  const { i18n, t } = useTranslation('authen')
 
   const { request } = useHttp();
   const [profileData, setProfileData] = useState("");
@@ -241,9 +243,8 @@ const EditProfilePage = () => {
 
   // =========== POST USER EDIT DATA ==========
   const sendEditedData = () => {
-    let date = `${dayValue}${selectMonth?.id ? "-" + selectMonth?.id : ""}${
-      selectYear ? "-" + selectYear : ""
-    }`;
+    let date = `${dayValue}${selectMonth?.id ? "-" + selectMonth?.id : ""}${selectYear ? "-" + selectYear : ""
+      }`;
 
     setLoading(true);
 
@@ -463,8 +464,7 @@ const EditProfilePage = () => {
       })}
     </div>
   );
-
-  return (
+   return (
     <div className="min-h-[76vh]">
       {loading ? (
         <div>
@@ -503,17 +503,15 @@ const EditProfilePage = () => {
               ></section>
               {/* PASSWORD COMPONENT */}
               <section
-                className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${
-                  openEditPasswordModal ? "" : "hidden z-0"
-                }`}
+                className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${openEditPasswordModal ? "" : "hidden z-0"
+                  }`}
               >
                 <EditPassword onClick={togglePassword} />
               </section>
               {/* EMAIL COMPONENT */}
               <section
-                className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${
-                  sendEmailModal ? "" : "hidden z-0"
-                }`}
+                className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${sendEmailModal ? "" : "hidden z-0"
+                  }`}
               >
                 <EmailSend sendData={sendData} onClick={toggleEmail} />
               </section>
@@ -523,9 +521,8 @@ const EditProfilePage = () => {
                   onClick={() => {
                     setState({ ...state, openModalEmailMessage: false });
                   }}
-                  className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-                    state?.openModalEmailMessage ? "" : "hidden"
-                  }`}
+                  className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${state?.openModalEmailMessage ? "" : "hidden"
+                    }`}
                 ></div>
                 {state?.openModalEmailMessage && (
                   <div className="fixed max-w-[490px] h-[275px]  p-3 bg-white rounded-lg mx-auto w-full z-[113] top-[50%] left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
@@ -553,10 +550,10 @@ const EditProfilePage = () => {
                         <SuccessIconsForMail />
                       </button>
                       <p className="text-[#1F1F1F] text-3xl not-italic font-AeonikProMedium mt-5">
-                        Мы отправили вам ссылку
+                        {t("SsendLink")}
                       </p>
                       <p className="text-[#8B8B8B] text-xl not-italic font-AeonikProRegular mt-[30px]">
-                        Проверьте свой E-mail
+                        {t("ScheckEmail")}
                       </p>
                     </div>
                   </div>
@@ -569,13 +566,13 @@ const EditProfilePage = () => {
                 <div className="md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
                   <div className="w-full flex justify-between items-center">
                     <span className="not-italic font-AeonikProMedium text-xl leading-6 text-black tracking-[1%]">
-                      Мои данные
+                      {t("PPmyInfor")}
                     </span>
                   </div>
                   <div className="flex flex-col md:flex-row justify-between items-center mt-6">
                     <div className="w-full md:w-[48%] h-fit">
                       <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-                        Имя{" "}
+                        {t("Sfname")}
                       </div>
                       <div className="mt-[6px] px-[16px] w-full flex bg-btnBgColor items-center border border-searchBgColor rounded-lg ">
                         <input
@@ -591,7 +588,7 @@ const EditProfilePage = () => {
                               activeEditPassword: true,
                             });
                           }}
-                          placeholder="Имя"
+                          placeholder={t("Sfname")}
                           required
                         />
                         <span>
@@ -601,7 +598,7 @@ const EditProfilePage = () => {
                     </div>
                     <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
                       <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-                        Фамилия{" "}
+                        {t("Slname")}
                       </div>
                       <div className="mt-[6px] px-[16px] w-full flex bg-btnBgColor items-center border border-searchBgColor rounded-lg ">
                         <input
@@ -617,7 +614,7 @@ const EditProfilePage = () => {
                               activeEditPassword: true,
                             });
                           }}
-                          placeholder="Фамилия"
+                          placeholder={t("Slname")}
                           required
                         />
                         <span>
@@ -631,7 +628,7 @@ const EditProfilePage = () => {
                 <div className="gap-8 flex md:border-b border-searchBgColor w-full md:px-[40px] md:py-[30px]">
                   <div className="w-full">
                     <div className="text-[14px] font-AeonikProRegular mb-[6px]">
-                      Пол
+                      {t("PPEgender")}
                     </div>
                     <div className="flex border rounded-lg overflow-hidden h-[48px]">
                       <div
@@ -646,11 +643,10 @@ const EditProfilePage = () => {
                             });
                           }
                         }}
-                        className={`${
-                          state?.gender_id === "1" ? "text-[#007DCA]" : ""
-                        } cursor-pointer border-r select-none w-full h-full flex items-center justify-center text-[16px] font-AeonikProMedium`}
+                        className={`${state?.gender_id === "1" ? "text-[#007DCA]" : ""
+                          } cursor-pointer border-r select-none w-full h-full flex items-center justify-center text-[16px] font-AeonikProMedium`}
                       >
-                        Мужской
+                        {t("PPEman")}
                       </div>
                       <div
                         onClick={() => {
@@ -664,11 +660,10 @@ const EditProfilePage = () => {
                             });
                           }
                         }}
-                        className={`${
-                          state?.gender_id === "2" ? "text-[#007DCA]" : ""
-                        } cursor-pointer select-none w-full h-full flex items-center justify-center text-[16px] font-AeonikProMedium`}
+                        className={`${state?.gender_id === "2" ? "text-[#007DCA]" : ""
+                          } cursor-pointer select-none w-full h-full flex items-center justify-center text-[16px] font-AeonikProMedium`}
                       >
-                        Женский
+                        {t("PPEwoman")}
                       </div>
                     </div>
                   </div>
@@ -677,8 +672,7 @@ const EditProfilePage = () => {
                       // htmlFor="bdate"
                       className="mb-[6px] font-AeonikProRegular text-sm"
                     >
-                      {" "}
-                      Дата рождения{" "}
+                      {t("Sbirthday")}{" "}
                     </label>
 
                     <div className="flex items-center justify-start border border-solid border-searchBgColor rounded-lg bg-btnBgColor mb-4 w-full">
@@ -772,7 +766,7 @@ const EditProfilePage = () => {
                         type="number"
                         name="day"
                         value={dayValue}
-                        placeholder="День"
+                        placeholder={t("Sday")}
                         id="day"
                         onInput={(e) => {
                           if (e.currentTarget.value < 32) {
@@ -800,9 +794,8 @@ const EditProfilePage = () => {
                           <BiChevronUp
                             size={20}
                             style={{ color: "#c2c2c2" }}
-                            className={`${
-                              openMonth ? "rotate-[180deg]" : ""
-                            } duration-200`}
+                            className={`${openMonth ? "rotate-[180deg]" : ""
+                              } duration-200`}
                           />{" "}
                         </span>
                       </Popover>
@@ -818,7 +811,7 @@ const EditProfilePage = () => {
                             <DatePicker
                               allowClear={false}
                               className="font-AeonikProRegular text-base flex items-center"
-                              placeholder="Год"
+                              placeholder={t("Syear")}
                               picker="year"
                               bordered={false}
                               suffixIcon
@@ -843,7 +836,7 @@ const EditProfilePage = () => {
                   <div className="flex  flex-col md:flex-row justify-between items-center">
                     <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
                       <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-                        Номер телефона{" "}
+                        {t("SphoneNum")}{" "}
                       </div>
                       <div className="flex mt-[6px] items-center justify-center overflow-hidden border border-searchBgColor rounded-lg">
                         <div className="w-[35%] md:w-[25%] h-12 flex bg-btnBgColor items-center justify-center  cursor-pointer border-r border-searchBgColor overflow-hidden">
@@ -877,11 +870,10 @@ const EditProfilePage = () => {
                                 activeEditPassword: true,
                               });
                             }}
-                            className={`w-full px-4  h-full not-italic bg-btnBgColor ${
-                              state?.userPhoneNumber
-                                ? "font-AeonikProMedium"
-                                : null
-                            } text-base leading-4 text-black`}
+                            className={`w-full px-4  h-full not-italic bg-btnBgColor ${state?.userPhoneNumber
+                              ? "font-AeonikProMedium"
+                              : null
+                              } text-base leading-4 text-black`}
                             placeholder={"(77) 777-77-77"}
                           ></InputMask>
                         </div>
@@ -889,7 +881,7 @@ const EditProfilePage = () => {
                     </div>
                     <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
                       <div className="flex justify-between mt-[6px]  w-full items-center not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-                        <span>Электронная почта</span>
+                        <span>{t("Lemail")}</span>
                       </div>
                       <div className="mt-[6px] px-[16px] w-full flex items-center bg-btnBgColor border border-searchBgColor rounded-lg ">
                         <input
@@ -905,7 +897,7 @@ const EditProfilePage = () => {
                               activeEditEmail: true,
                             });
                           }}
-                          placeholder="Адрес электронной почты"
+                          placeholder={t("Lemail")}
                           required
                         />
                         <span>
@@ -923,19 +915,18 @@ const EditProfilePage = () => {
                         "w-full text-start text-borderWinter text-base not-italic font-AeonikProRegular hover:underline"
                       }
                     >
-                      Изменить пароль
+                      {t("PPEeditPss")}
                     </button>
                     <button
                       onClick={() => setSendEmailModal(true)}
                       type="button"
                       disabled={state.activeEditEmail ? false : true}
-                      className={`${
-                        state.activeEditEmail
-                          ? "text-borderWinter hover:underline"
-                          : "text-[#e2e2e2] hover:no-underline"
-                      } w-full text-end  text-base not-italic font-AeonikProRegular `}
+                      className={`${state.activeEditEmail
+                        ? "text-borderWinter hover:underline"
+                        : "text-[#e2e2e2] hover:no-underline"
+                        } w-full text-end  text-base not-italic font-AeonikProRegular `}
                     >
-                      Обновить почту
+                      {t("PPEeditEmail")}
                     </button>
                   </div>
                 </div>
@@ -951,7 +942,7 @@ const EditProfilePage = () => {
                         <LogOutIcons colors={"#D50000"} />
                       </span>
                       <span className="not-italic hidden md:block ml-2 font-AeonikProMedium text-base leading-4 tracking-[1%] text-RedColor text-center">
-                        Выйти из системы
+                        {t("PPexit")}
                       </span>
                     </button>
                   </div>
@@ -960,15 +951,13 @@ const EditProfilePage = () => {
                       onClick={sendEditedData}
                       type="button"
                       disabled={state.activeEditPassword ? false : true}
-                      className={`${
-                        state.activeEditPassword
-                          ? "cursor-pointer bg-borderWinter active:scale-95 active:opacity-70"
-                          : "cursor-not-allowed bg-gray-300"
-                      } w-[100%] md:w-[244px] h-[52px]  text-white rounded-lg flex items-center justify-center`}
+                      className={`${state.activeEditPassword
+                        ? "cursor-pointer bg-borderWinter active:scale-95 active:opacity-70"
+                        : "cursor-not-allowed bg-gray-300"
+                        } w-[100%] md:w-[244px] h-[52px]  text-white rounded-lg flex items-center justify-center`}
                     >
                       <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center tracking-[1%]">
-                        Обновить данные
-                      </span>
+                        {t("PPrefresh")} </span>
                       <span className="ml-2">
                         <SircleNext colors={"#fff"} />
                       </span>
