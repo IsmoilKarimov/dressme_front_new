@@ -16,11 +16,13 @@ import { MdClose } from "react-icons/md";
 import LoadingNetwork from "../../../Loading/LoadingNetwork";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
+import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 
 export default function CatalogItems() {
   const { t } = useTranslation("catalog")
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data] = useContext(HomeMainDataContext);
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
 
 
   const [filterData, setFilterData] = useState([]);
@@ -103,37 +105,64 @@ export default function CatalogItems() {
   const paramId = useParams();
 
   const newId = paramId?.id?.replace(":", "");
+  // languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz
   console.log(newId, 'newId');
   useLayoutEffect(() => {
-    console.log(';newId-1');
-    if (newId === 'украшения-аксессуары') {
-      console.log(';newId-2');
-      setNewFilterParamasId(5)
-      setNewFilterParamasIdCopy(5)
-    }
-    if (newId !== 'украшения-аксессуары') {
-      console.log(';newId-3');
-      data?.getMainProductCard?.categories?.map(item => {
-        if (newId?.includes(item?.name_ru?.split(' ')?.join('-')?.toLowerCase())) {
-          setNewFilterParamasId(item?.id)
-          if (!newFilterParamasIdCopy) {
-            setNewFilterParamasIdCopy(item?.id)
+    if (languageDetector?.typeLang === 'ru') {
+      if (newId === 'украшения-аксессуары') {
+        setNewFilterParamasId(5)
+        setNewFilterParamasIdCopy(5)
+      }
+      if (newId !== 'украшения-аксессуары') {
+        data?.getMainProductCard?.categories?.map(item => {
+          if (newId?.includes(item?.name_ru?.split(' ')?.join('-')?.toLowerCase())) {
+            setNewFilterParamasId(item?.id)
+            if (!newFilterParamasIdCopy) {
+              setNewFilterParamasIdCopy(item?.id)
+            }
           }
-        }
-      })
+        })
+      }
+    }
+    if (languageDetector?.typeLang === 'uz') {
+      if (newId === 'taqinchoqlar-aksessuarlar') {
+        setNewFilterParamasId(5)
+        setNewFilterParamasIdCopy(5)
+      }
+      if (newId !== 'taqinchoqlar-aksessuarlar') {
+        data?.getMainProductCard?.categories?.map(item => {
+          if (newId?.includes(item?.name_uz?.split(' ')?.join('-')?.toLowerCase())) {
+            setNewFilterParamasId(item?.id)
+            if (!newFilterParamasIdCopy) {
+              setNewFilterParamasIdCopy(item?.id)
+            }
+          }
+        })
+      }
     }
   }, [newId, data?.getMainProductCard?.shops]);
 
   const handleOpenCategories = (newOpen) => {
     setState({ ...state, opensports: newOpen });
   };
-  const handleCategories = (id, name) => {
+  const handleCategories = (id, nameru, nameuz) => {
     setState({ ...state, opensports: false });
-    if (id !== 5) {
-      navigate(`/categories/${name?.split(' ')?.join('-')?.toLowerCase()}`);
+
+    if (languageDetector?.typeLang === 'ru') {
+      if (id !== 5) {
+        navigate(`/categories/${nameru?.split(' ')?.join('-')?.toLowerCase()}`);
+      }
+      if (id === 5) {
+        navigate(`/categories/${nameru?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+      }
     }
-    if (id === 5) {
-      navigate(`/categories/${name?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+    if (languageDetector?.typeLang === 'uz') {
+      if (id !== 5) {
+        navigate(`/categories/${nameuz?.split(' ')?.join('-')?.toLowerCase()}`);
+      }
+      if (id === 5) {
+        navigate(`/categories/${nameuz?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+      }
     }
   };
   const contentCategories = (
@@ -143,12 +172,13 @@ export default function CatalogItems() {
           <p
             key={data?.id}
             onClick={() => {
-              handleCategories(data?.id, data?.name_ru);
+              handleCategories(data?.id, languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz);
             }}
             className={`${Number(paramId?.id) === data?.id ? "bg-bgColor" : null
               } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
-            {data?.name_ru}
+            {languageDetector?.typeLang === 'ru' && data?.name_ru}
+            {languageDetector?.typeLang === 'uz' && data?.name_uz}
           </p>
         );
       })}
@@ -336,7 +366,8 @@ export default function CatalogItems() {
                       ></div>
                       <div className="flex items-center ml-[112px] md:ml-[210px]">
                         <div className="text-[16px] md:text-2xl font-AeonikProMedium">
-                          {filterData?.category?.name_ru}
+                          {languageDetector?.typeLang === 'ru' && filterData?.category?.name_ru}
+                          {languageDetector?.typeLang === 'uz' && filterData?.category?.name_uz}
                           <span className="text-[16px] text-setTexOpacity font-AeonikProRegular ml-2 pr-3 md:pr-0">
                             ({filterData?.category_products?.total})
                           </span>
@@ -360,7 +391,8 @@ export default function CatalogItems() {
                             content={contentCategories}
                           >
                             <span className="text-[15px] font-AeonikProMedium">
-                              {filterData?.category?.name_ru}
+                              {languageDetector?.typeLang === 'ru' && filterData?.category?.name_ru}
+                              {languageDetector?.typeLang === 'uz' && filterData?.category?.name_uz}
                             </span>
                             <span>
                               <BiChevronDown
@@ -388,7 +420,8 @@ export default function CatalogItems() {
                             className="text-[15px] font-AeonikProMedium"
                           >
                             <button className="focus:bg-borderWinter focus:text-white hover:bg-borderWinter hover:text-white bg-white border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]">
-                              {catalog.name_ru}
+                              {languageDetector?.typeLang === 'ru' && catalog?.name_ru}
+                              {languageDetector?.typeLang === 'uz' && catalog?.name_uz}
                             </button>
                           </li>
                         )
@@ -528,15 +561,16 @@ export default function CatalogItems() {
                       <p
                         key={data?.id}
                         onClick={() => {
-                          handleCategories(data?.id, data?.name_uz);
+                          handleCategories(data?.id, languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz);
                           setOpenMobileCategory(false);
                         }}
                         className={`${Number(paramId?.id) === data?.id
-                            ? "bg-bgColor"
-                            : null
+                          ? "bg-bgColor"
+                          : null
                           } h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
                       >
-                        {data?.name_ru}
+                        {languageDetector?.typeLang === 'ru' && data?.name_ru}
+                        {languageDetector?.typeLang === 'uz' && data?.name_uz}
                       </p>
                     );
                   })}

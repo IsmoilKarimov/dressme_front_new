@@ -2,8 +2,8 @@ import NewBreadCrump from "../../../../Breadcrumbs/NewBreadCrump";
 
 const CatalogTopFilter = ({ paramId }) => {
   const breadcrumbItems = [
-    { label_uz: 'Home', label_ru: 'Главная', url: '/' },
-    { label_uz: 'category', label_ru: 'категории', url: '/categories' },
+    { label_uz: 'Asosiy', label_ru: 'Главная', url: '/' },
+    { label_uz: 'Kategoriya', label_ru: 'категории', url: '/categories' },
     { label_uz: paramId?.id, label_ru: paramId?.id, url: '/categories/:id' },
   ];
 

@@ -341,8 +341,8 @@ const ShoppingStoreOfficialByLocation = () => {
   }, [screenSize]);
 
   const breadcrumbItems = [
-    { label_uz: "Home", label_ru: "Главная", url: "/" },
-    { label_uz: "Location", label_ru: "Карта", url: "/locations" },
+    { label_uz: "Asosiy", label_ru: "Главная", url: "/" },
+    { label_uz: "Xarita", label_ru: "Карта", url: "/locations" },
     {
       label_uz: paramsIDS?.id,
       label_ru: paramsIDS?.id,

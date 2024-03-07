@@ -306,13 +306,22 @@ const MediumHeader = ({ stateData, setStateData }) => {
       }
     }
   };
-
-  const goCatalogId = (id, name) => {
-    if (id !== 5) {
-      navigate(`/categories/${name?.split(' ')?.join('-')?.toLowerCase()}`);
+  const goCatalogId = (id, nameru, nameuz) => {
+    if (languageDetector?.typeLang === 'ru') {
+      if (id !== 5) {
+        navigate(`/categories/${nameru?.split(' ')?.join('-')?.toLowerCase()}`);
+      }
+      if (id === 5) {
+        navigate(`/categories/${nameru?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+      }
     }
-    if (id === 5) {
-      navigate(`/categories/${name?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+    if (languageDetector?.typeLang === 'uz') {
+      if (id !== 5) {
+        navigate(`/categories/${nameuz?.split(' ')?.join('-')?.toLowerCase()}`);
+      }
+      if (id === 5) {
+        navigate(`/categories/${nameuz?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+      }
     }
   };
 
@@ -367,14 +376,15 @@ const MediumHeader = ({ stateData, setStateData }) => {
                       className="w-1/5 flex items-center justify-center "
                     >
                       <figure
-                        onClick={() => goCatalogId(data?.id, data?.name_ru)}
+                        onClick={() => goCatalogId(data?.id, languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz)}
                         className="group cursor-pointer"
                       >
                         <div className="group-hover:border-black transition duration-300 w-[120px] h-[120px] border border-categoryModalBorderColor bg-categoryModalBgColor flex items-center justify-center rounded-xl">
                           <img src={data?.url_photo} alt="url_photo" />
                         </div>
                         <figcaption className="group-hover:text-black transition duration-300 text-center mt-2 text-setTexOpacity text-sm">
-                          {data?.name_ru}
+                          {languageDetector?.typeLang === 'ru' && data?.name_ru}
+                          {languageDetector?.typeLang === 'uz' && data?.name_uz}
                         </figcaption>
                       </figure>
                     </article>
@@ -666,7 +676,11 @@ const MediumHeader = ({ stateData, setStateData }) => {
                         <span className=" py-3 pr-3">
                           <LocationIcons colors={"#000"} />
                         </span>
-                        <span className="ml-[11.67px]">Ташкент</span>
+                        <span className="ml-[11.67px]">
+                          {languageDetector?.typeLang === 'ru' && 'Ташкент'}
+                          {languageDetector?.typeLang === 'uz' && 'Toshkent'}
+
+                        </span>
                       </div>
                       <span className="arrowRotate ml-auto rotate-[90deg]">
                         <ArrowTopIcons colors={"#000"} />

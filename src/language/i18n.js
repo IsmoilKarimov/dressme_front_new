@@ -10,7 +10,7 @@ i18n.use(Backend).use(LanguageDetector).use(initReactI18next).init({
     },
     fallbackLng: "en",
     debug: false,
-    ns: ["homePage", "shopLocation",'authentification','catalog','yandexmap'],
+    ns: ["homePage", "shopLocation",'authen','catalog','yandexmap','category','favourite','footer','header','shops'],
     interpolation: {
         espaceValue: false,
         formatSeparator: ",",

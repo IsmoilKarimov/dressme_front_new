@@ -80,8 +80,8 @@ export default function ShoppingStore() {
   }, []);
 
   const breadcrumbItems = [
-    { label_uz: 'Home', label_ru: 'Главная', url: '/' },
-    { label_uz: 'section', label_ru: 'Магазины', url: '/shops' },
+    { label_uz: 'Asosiy', label_ru: 'Главная', url: '/' },
+    { label_uz: "Do'konlar", label_ru: 'Магазины', url: '/shops' },
   ];
 
   return (

@@ -17,8 +17,8 @@ export default function CatalogByIdProduct() {
         }
     }, []);
     const breadcrumbItems = [
-        { label_uz: 'Home', label_ru: 'Главная', url: '/' },
-        { label_uz: 'category', label_ru: 'категории', url: '/categories' },
+        { label_uz: 'Asosiy', label_ru: 'Главная', url: '/' },
+        { label_uz: 'Kategoriya', label_ru: 'категории', url: '/categories' },
         { label_uz: paramId?.id, label_ru: paramId?.id, url: `/categories/${paramId?.id}` },
         { label_uz: getproductName, label_ru: getproductName, url: `/categories/${paramId?.id}/${paramId?.product}` },
     ];
