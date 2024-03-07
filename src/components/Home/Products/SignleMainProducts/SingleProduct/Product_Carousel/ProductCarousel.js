@@ -11,12 +11,15 @@ import { SliderPhotosColorContext } from "../../../../../../ContextHook/SliderPh
 import { Popover } from "antd";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData";
+import { useTranslation } from "react-i18next";
 
 const ProductCarousel = ({ show, data }) => {
   const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [dressInfo] = useContext(dressMainData);
   const [nav2] = useState();
+
+  const { t } = useTranslation("products")
 
   const [selectedColor, setSelectedColor] = useState(data?.product?.colors[0]);
 
@@ -446,7 +449,7 @@ const ProductCarousel = ({ show, data }) => {
                                   <VideoStoreIcons />
                                 </p>
                                 <p className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-black">
-                                  Видео
+                                  {t("video")}
                                 </p>
                               </span>
                             </figcaption>
@@ -490,7 +493,7 @@ const ProductCarousel = ({ show, data }) => {
                                 <VideoStoreIcons />
                               </p>
                               <p className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-black">
-                                Видео
+                                {t("video")}
                               </p>
                             </span>
                           </figcaption>
@@ -550,7 +553,8 @@ const ProductCarousel = ({ show, data }) => {
                         key={i}
                         onClick={() => {
                           handleClickCarosuel(i);
-                        }}className="w-full "
+                        }}
+                        className="w-full "
                       >
                         <figure className="relative w-full ll:h-[478px] object-cover overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
                           <img
@@ -583,9 +587,6 @@ const ProductCarousel = ({ show, data }) => {
           {/* 2 */}
           <article className="w-full flex md:hidden items-center justify-between mb-6 mt-4">
             <section className="w-fit flex items-center">
-              {/* <span className="text-base font-AeonikProMedium mr-[5px]">
-                от
-              </span> */}
               {selectedSize ? (
                 <>
                   <p className="flex font-AeonikProMedium text-[24px] text-black mx-[5px]">
@@ -603,7 +604,7 @@ const ProductCarousel = ({ show, data }) => {
                         selectedSize?.discount_price ? "hidden" : "flex ml-2"
                       }`}
                     >
-                      сум
+                      {t("currency")}
                     </span>
                   </p>
                   {selectedSize?.discount_price ? (
@@ -634,7 +635,7 @@ const ProductCarousel = ({ show, data }) => {
                           : "flex ml-2"
                       }`}
                     >
-                      сум
+                      {t("currency")}
                     </span>
                   </p>
                   {data?.product?.sizes[0]?.discount_price ? (
@@ -651,7 +652,9 @@ const ProductCarousel = ({ show, data }) => {
             <section
               className={`w-fit ${dressInfo?.TextColorSeason} items-center text-sm flex ml-8`}
             >
-              <p className="font-AeonikProRegular text-right">В наличии:</p>
+              <p className="font-AeonikProRegular text-right">
+                {t("in_stock")}:
+              </p>
               <p className="ml-2 font-AeonikProMedium text-base text-right">
                 {selectedSize
                   ? selectedSize?.amount
@@ -665,7 +668,7 @@ const ProductCarousel = ({ show, data }) => {
             <div className="w-full flex items-center justify-between mb-4 text-base">
               <div className="w-fit flex items-center">
                 <BrushColorIcons colors={"#000"} />
-                <p className="font-AeonikProRegular mr-2 ml-[6px]">Цвет:</p>
+                <p className="font-AeonikProRegular mr-2 ml-[6px]">{t("color")}:</p>
                 <span className="font-AeonikProMedium">
                   {selectedColor?.name_ru}
                 </span>

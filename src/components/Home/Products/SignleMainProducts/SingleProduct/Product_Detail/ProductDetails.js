@@ -46,12 +46,15 @@ import TableSizesDropUp from "./MobileDropUp/TableSizesDropUp/TableSizesDropUp";
 import LocationDropUp from "./MobileDropUp/LocationsDropUp/LocationsDropUp";
 import { SliderPhotosColorContext } from "../../../../../../ContextHook/SliderPhotosColor";
 import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const ProductDetails = ({ data }) => {
   const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+
+  const { t } = useTranslation("products")
 
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
@@ -90,7 +93,7 @@ const ProductDetails = ({ data }) => {
         <section className="w-[200px] h-fit p-[5px] ">
           <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
-              Размер в числах:
+              {t("size_in_numbers")}:
               <span className="ml-auto">
                 {data?.min_head_girth}{" "}
                 {data?.max_head_girth ? "- " + data?.max_head_girth : null}
@@ -104,28 +107,28 @@ const ProductDetails = ({ data }) => {
         <section className="w-[210px] h-[135px] p-[5px] ">
           <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
-              Размер в числах:
+              {t("size_in_numbers")}:
               <span className="ml-auto">
                 {data?.min_wear_size}{" "}
                 {data?.max_wear_size ? "- " + data?.max_wear_size : null}
               </span>
             </div>
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
-              Обхват груди, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              {t("bust")}, <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
               <span className="ml-auto">
                 {data?.min_chest_girth}{" "}
                 {data?.max_chest_girth ? "- " + data?.max_chest_girth : null}
               </span>
             </div>
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
-              Обхват талии, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              {t("waist_circumference")}, <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
               <span className="ml-auto">
                 {data?.min_waist_girth}{" "}
                 {data?.max_waist_girth ? "- " + data?.max_waist_girth : null}
               </span>
             </div>
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular">
-              Обхват бедер, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              {t("hip_girth")}, <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
               <span className="ml-auto">
                 {data?.min_hip_girth}{" "}
                 {data?.max_hip_girth ? "- " + data?.max_hip_girth : null}
@@ -139,21 +142,21 @@ const ProductDetails = ({ data }) => {
         <section className="w-[210px] h-fit p-[5px] ">
           <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
-              Размер в числах:
+              {t("size_in_numbers")}:
               <span className="ml-auto">
                 {data?.min_wear_size}{" "}
                 {data?.max_wear_size ? "- " + data?.max_wear_size : null}
               </span>
             </div>
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
-              Обхват талии, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              {t("waist_circumference")}, <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
               <span className="ml-auto">
                 {data?.min_waist_girth}{" "}
                 {data?.max_waist_girth ? "- " + data?.max_waist_girth : null}
               </span>
             </div>
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
-              Обхват бедер, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              {t("hip_girth")}, <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
               <span className="ml-auto">
                 {data?.min_hip_girth}{" "}
                 {data?.max_hip_girth ? "- " + data?.max_hip_girth : null}
@@ -161,7 +164,7 @@ const ProductDetails = ({ data }) => {
             </div>
 
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
-              Рост, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              {t("height")}, <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
               <span className="ml-auto">
                 {data?.min_height}{" "}
                 {data?.max_height ? "- " + data?.max_height : null}
@@ -175,11 +178,11 @@ const ProductDetails = ({ data }) => {
         <section className="w-[200px] h-fit p-[5px] ">
           <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
-              Размер в числах, <span className="text-[#a5a5a5] ml-1">в см</span>
+              {t("size_in_numbers")}, <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>
               :<span className="ml-auto">{data?.wear_size}</span>
             </div>
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular">
-              Длина стопы, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              {t("foot_length")}, <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
               <span className="ml-auto">
                 {data?.min_foot_length}{" "}
                 {data?.max_foot_length ? "- " + data?.max_foot_length : null}
@@ -193,15 +196,15 @@ const ProductDetails = ({ data }) => {
         <section className="w-[200px] h-fit p-[5px] ">
           <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
-              Размер в числах, <span className="text-[#a5a5a5] ml-1">в см</span>
+              {t("size_in_numbers")}, <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>
               :<span className="ml-auto">{data?.wear_size}</span>
             </div>
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
-              Длина, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              {t("length")}, <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
               <span className="ml-auto">{data?.length}</span>
             </div>
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
-              Ширина, <span className="text-[#a5a5a5] ml-1">в см</span>:
+              {t("width")}, <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
               <span className="ml-auto">{data?.width}</span>
             </div>
           </article>
@@ -356,7 +359,8 @@ const ProductDetails = ({ data }) => {
         }
       });
   };
-// В других локациях
+
+  
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
       <div className="tableSizes">
@@ -419,7 +423,7 @@ const ProductDetails = ({ data }) => {
                     {data?.product?.overall_rating}
                   </p>
                   <p className=" pl-1 not-italic font-AeonikProRegular mt-1 leading-4 text-setTexOpacity tracking-[1%]">
-                    (голосов: {data?.product?.rated_users_count})
+                    (t({"votes"}): {data?.product?.rated_users_count})
                   </p>
                 </article>
               </>
@@ -430,7 +434,7 @@ const ProductDetails = ({ data }) => {
                   <ProductArticleIcons />
                 </span>
                 <span className="text-sm font-AeonikProRegular leading-4 tracking-[1%]">
-                  Артикул:
+                  {t("vendor_code")}:
                 </span>
                 <div className="text-sm bg-transparent w-fit font-AeonikProRegular ml-[6px] text-[#a1a1a1] leading-4 tracking-[1%]" />
                 <div
@@ -463,7 +467,7 @@ const ProductDetails = ({ data }) => {
               <article className="w-fit flex items-center">
                 <MarketIcons colors={"#000"} />
                 <div className="not-italic flex items-center font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
-                  Магазин:
+                  {t("Do'kon")}:
                 </div>
               </article>
               <article className="w-fit ml-2">
@@ -484,7 +488,7 @@ const ProductDetails = ({ data }) => {
             <div className="w-1/2 flex items-center">
               <section className="w-fit flex items-center h-fit text-base md:text-sm mb-10 md:mb-0">
                 <div className="not-italic mr-3 font-AeonikProMedium leading-4 text-black tracking-[1%]">
-                  Сезон:
+                  {t("season")}:
                 </div>
 
                 {data?.product?.seasons?.map((item) => {
@@ -521,7 +525,7 @@ const ProductDetails = ({ data }) => {
               <article className="w-fit flex items-center">
                 <DeliveryIcons colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
-                  Доставка:
+                  {t("Yetkazib berish")}:
                 </div>
               </article>
               <article className="w-fit ml-2">
@@ -534,12 +538,12 @@ const ProductDetails = ({ data }) => {
               <article className="w-fit flex items-center">
                 <SettingsIcon colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
-                  Производитель:
+                  {t("manufacturer")}:
                 </div>
               </article>
               <article className="w-fit ml-2">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                  Узбекистан
+                  {t("Uzbekistan")}
                 </p>
               </article>
             </div>
@@ -549,7 +553,7 @@ const ProductDetails = ({ data }) => {
               <article className="w-fit flex items-center">
                 <CategoryUsersIcon colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
-                  Возрастная категория:
+                  {t("age_category")}:
                 </div>
               </article>
               <article className="w-fit ml-2">
@@ -564,7 +568,7 @@ const ProductDetails = ({ data }) => {
                 <article className="w-fit flex items-center">
                   <ChapterIcon colors={"#000"} />
                   <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
-                    Раздел:
+                    {t("chapter")}:
                   </div>
                 </article>
                 <article className="w-fit ml-2 flex flex-wrap">
@@ -604,7 +608,7 @@ const ProductDetails = ({ data }) => {
               <article className="w-fit flex items-center">
                 <CategoryIcon />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
-                  Категория:
+                  {t("Turkum")}:
                 </div>
               </article>
               <article className="w-fit ml-2">
@@ -618,7 +622,7 @@ const ProductDetails = ({ data }) => {
                 <article className="w-fit flex items-center">
                   <TypeIcon />
                   <div className="not-italic flex items-center  font-AeonikProMedium text-[14px] leading-0 text-black tracking-[1%] ml-2">
-                    Тип:
+                    {t("type")}:
                   </div>
                 </article>
                 <article className="w-fit ml-2 flex text-[14px] flex-wrap font-AeonikProRegular">
@@ -633,7 +637,7 @@ const ProductDetails = ({ data }) => {
               <article className="w-fit flex items-center">
                 <QualityIcon colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
-                  Качество:
+                  {t("quality")}:
                 </div>
               </article>
               <article className="w-fit ml-2">
@@ -646,7 +650,7 @@ const ProductDetails = ({ data }) => {
               <article className="w-fit flex items-center">
                 <PaymeSystemIcons colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
-                  Номер карты:
+                  {t("card_number")}:
                 </div>
               </article>
               <article className="w-fit flex items-center ml-2">
@@ -678,7 +682,7 @@ const ProductDetails = ({ data }) => {
               onClick={() => setTableSizes(true)}
               className="text-[13px] font-AeonikProMedium text-borderWinter border-b border-dashed border-borderWinter mb-5"
             >
-              Таблица размеров
+              {t("size_table")}
             </button>
           ) : null}
         </article>
@@ -686,7 +690,7 @@ const ProductDetails = ({ data }) => {
           <div className="hidden md:flex items-center">
             <ProductSwitchIcons colors={"#757575"} />
             <div className="not-italic ml-2 mr-3 font-AeonikProRegular md:font-AeonikProMedium leading-4 text-[#757575]">
-              Цвет:
+              {t("color")}:
             </div>
             <p className="mr-1 not-italic leading-4 text-[#757575]">
               {selectedColor?.name_ru}
@@ -712,7 +716,7 @@ const ProductDetails = ({ data }) => {
             onClick={() => setOpenLocationModal(true)}
             className="hidden md:block text-borderWinter font-AeonikProMedium"
           >
-            В других локациях
+            {t("other_locations")}
           </button>
 
           <button
@@ -720,7 +724,7 @@ const ProductDetails = ({ data }) => {
             onClick={() => setLocations(true)}
             className="block md:hidden text-borderWinter font-AeonikProMedium"
           >
-            В других локациях
+            {t("other_locations")}
           </button>
 
           <Modal
@@ -734,7 +738,7 @@ const ProductDetails = ({ data }) => {
           >
             <div className="w-full px-[25px] pb-[30px] pt-[20px]">
               <div className="text-2xl font-AeonikProRegular mb-[30px]">
-                Выберите локацию
+                {t("select_location")}
               </div>
               <div className="h-[300px] overflow-y-auto mb-[20px] VerticelScroll pr-2">
                 <Radio.Group
@@ -742,12 +746,8 @@ const ProductDetails = ({ data }) => {
                     width: "100%",
                   }}
                   defaultValue={selectedLocation?.id}
-                  // onChange={onChange}
                 >
                   {existRegions.map((item, i) => {
-                    // console.log(existRegions,'existRegions');
-                    // console.log(data?.product?.locations,'data?.product?.locations');
-                    // console.log(item,'item');
                     return (
                       <div key={i}>
                         <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
@@ -793,7 +793,7 @@ const ProductDetails = ({ data }) => {
                 }}
                 className="w-full flex justify-end text-borderWinter text-lg font-AeonikProMedium"
               >
-                Готово
+                {t("ready")}
               </button>
             </div>
           </Modal>
@@ -810,7 +810,7 @@ const ProductDetails = ({ data }) => {
                   {data?.product?.overall_rating}
                 </p>
                 <p className=" pl-1 not-italic font-AeonikProRegular text-setTexOpacity">
-                  (голосов: {data?.product?.rated_users_count})
+                  ({t("votes")}: {data?.product?.rated_users_count})
                 </p>
                 {/* <div className="text-setTexOpacity mx-[10px]">|</div>
                 <p className=" not-italic font-AeonikProRegular mt- text-setTexOpacity">
@@ -906,7 +906,7 @@ const ProductDetails = ({ data }) => {
                 onClick={() => setOpenSizeList(true)}
                 className="not-italic mr-3 font-AeonikProRegular mt-[30px] border-b border-dashed border-borderWinter md:font-AeonikProMedium text-borderWinter"
               >
-                Таблица размеров
+                {t("size_table")}
               </button>
             )
           ) : null}
@@ -924,19 +924,19 @@ const ProductDetails = ({ data }) => {
               <ul className="w-full px-[25px] pb-[30px] pt-[60px]">
                 <div className="w-full flex items-center justify-between bg-[#F4F6FB] px-[10px] py-[15px] rounded-lg text-base font-AeonikProRegular">
                   <li className="w-full flex items-center justify-center">
-                    Размер в числах
+                    {t("size_in_numbers")}
                   </li>
                   <li className="w-full flex items-center justify-center">
-                    Буквенный Размер
+                    {t("letter_size")}
                   </li>
                   <li className="w-full flex items-center justify-center">
-                    Обхват груди, в см
+                    {t("bust")}, {t("in_cm")}
                   </li>
                   <li className="w-full flex items-center justify-center">
-                    Обхват талии, в см
+                    {t("waist_circumference")}, {t("in_cm")}
                   </li>
                   <li className="w-full flex items-center justify-center">
-                    Обхват бедер, в см
+                    {t("hip_girth")}, {t("in_cm")}
                   </li>
                 </div>
                 <div className="w-full">
@@ -986,19 +986,19 @@ const ProductDetails = ({ data }) => {
               <ul className="w-full px-[25px] pb-[30px] pt-[60px]">
                 <div className="w-full flex items-center justify-between bg-[#F4F6FB] px-[10px] py-[15px] rounded-lg text-base font-AeonikProRegular">
                   <li className="w-full flex items-center justify-center">
-                    Размер в числах
+                    {t("size_in_numbers")}
                   </li>
                   <li className="w-full flex items-center justify-center">
-                    Буквенный Размер
+                    {t("letter_size")}
                   </li>
                   <li className="w-full flex items-center justify-center">
-                    Рост, в см
+                    {t("height")}, {t("in_cm")}
                   </li>
                   <li className="w-full flex items-center justify-center">
-                    Обхват талии, в см
+                    {t("waist_circumference")}, {t("in_cm")}
                   </li>
                   <li className="w-full flex items-center justify-center">
-                    Обхват бедер, в см
+                    {t("hip_girth")}, {t("in_cm")}
                   </li>
                 </div>
                 <div className="w-full">
@@ -1045,10 +1045,10 @@ const ProductDetails = ({ data }) => {
               <ul className="w-full px-[25px] pb-[30px] pt-[60px]">
                 <div className="w-full flex items-center justify-between bg-[#F4F6FB] px-[10px] py-[15px] rounded-lg text-base font-AeonikProRegular">
                   <li className="w-full flex items-center justify-center">
-                    Размер в числах, в см
+                    {t("size_in_numbers")}, {t("in_cm")}
                   </li>
                   <li className="w-full flex items-center justify-center">
-                    Длина стопы, в см
+                    {t("foot_length")}, {t("in_cm")}
                   </li>
                 </div>
                 <div className="w-full">
@@ -1079,16 +1079,16 @@ const ProductDetails = ({ data }) => {
               <ul className="w-full px-[25px] pb-[30px] pt-[60px]">
                 <div className="w-full flex items-center justify-between bg-[#F4F6FB] px-[10px] py-[15px] rounded-lg text-base font-AeonikProRegular">
                   <li className="w-full flex items-center justify-center">
-                    Размер в числах, в см
+                    {t("size_in_numbers")}, {t("in_cm")}
                   </li>
                   <li className="w-full flex items-center justify-center">
-                    Буквенный Размер
+                    {t("letter_size")}
                   </li>
                   <li className="w-full flex items-center justify-center">
-                    Длина, в см
+                    {t("length")}, {t("in_cm")}
                   </li>
                   <li className="w-full flex items-center justify-center">
-                    Ширина, в см
+                    {t("width")}, {t("in_cm")}
                   </li>
                 </div>
                 <div className="w-full">
@@ -1408,7 +1408,7 @@ const ProductDetails = ({ data }) => {
             <div className="w-full flex items-center mb-4">
               <div className="flex items-center text-[14px] font-AeonikProRegular">
                 <DeliveryIcons />
-                <span className="ml-[6px] inline">Метод доставки:</span>
+                <span className="ml-[6px] inline">{t("delivery_method")}:</span>
               </div>
               <div className="text-sm font-AeonikProRegular ml-[6px] text-black">
                 {data?.product?.shop?.delivery?.name_ru}
@@ -1418,7 +1418,7 @@ const ProductDetails = ({ data }) => {
               <section className="w-fit flex items-center h-fit text-sm">
                 <div className="flex items-center font-AeonikProRegular">
                   <CalendarIcons colors={"#000"} />
-                  <span className="mx-[6px]">Сезон:</span>
+                  <span className="mx-[6px]">{t("season")}:</span>
                 </div>
 
                 {data?.product?.seasons?.map((item) => {
@@ -1452,7 +1452,7 @@ const ProductDetails = ({ data }) => {
               <article className="flex items-center">
                 <MarketIcons colors={"#000"} />
                 <div className="not-italic flex items-center font-AeonikProRegular text-[14px]  text-black ml-[6px]">
-                  Магазин:
+                  {t("Do'kon")}:
                 </div>
               </article>
               <article className="ml-2">
@@ -1464,7 +1464,7 @@ const ProductDetails = ({ data }) => {
             <div className="w-full flex items-center mb-4">
               <ProductArticleIcons />
               <span className="text-sm font-AeonikProRegular ml-[6px]">
-                Артикул:
+                {t("vendor_code")}:
               </span>
               <div className="text-sm bg-transparent w-fit font-AeonikProRegular ml-[6px] text-black" />
               <div
@@ -1485,7 +1485,7 @@ const ProductDetails = ({ data }) => {
               <article className="w-fit flex items-center">
                 <CategoryUsersIcon colors={"#000"} />
                 <div className="not-italic flex items-center font-AeonikProRegular text-sm  text-black ml-[6px]">
-                  Возрастная категория:
+                  {t("age_category")}:
                 </div>
               </article>
               <article className="w-fit ml-[6px]">
@@ -1499,7 +1499,7 @@ const ProductDetails = ({ data }) => {
               <article className="w-fit flex items-center">
                 <QualityIcon colors={"#000"} />
                 <div className="not-italic flex items-center font-AeonikProRegular text-sm  text-black  ml-[6px]">
-                  Качество:
+                  {t("quality")}:
                 </div>
               </article>
               <article className="w-fit ml-[6px]">
@@ -1512,12 +1512,12 @@ const ProductDetails = ({ data }) => {
               <article className="w-fit flex items-center">
                 <SettingsIcon colors={"#000"} />
                 <div className="not-italic flex items-center font-AeonikProRegular text-[14px]  text-black  ml-[6px]">
-                  Производитель:
+                  {t("manufacturer")}:
                 </div>
               </article>
               <article className="w-fit ml-[6px]">
                 <p className="not-italic font-AeonikProRegular text-[14px]  text-black ">
-                  Узбекистан
+                  {t("Uzbekistan")}
                 </p>
               </article>
             </div>
@@ -1525,7 +1525,7 @@ const ProductDetails = ({ data }) => {
               <article className="w-fit flex items-center">
                 <ChapterIcon colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] text-black  ml-[6px]">
-                  Раздел:
+                  {t("chapter")}:
                 </div>
               </article>
               <article className="w-fit ml-[6px]">
@@ -1547,7 +1547,7 @@ const ProductDetails = ({ data }) => {
               <article className="w-fit flex items-center">
                 <PaymeSystemIcons colors={"#000"} />
                 <div className="not-italic flex items-center font-AeonikProRegular text-sm  text-black ml-[6px]">
-                  Номер карты:
+                  {t("card_number")}:
                 </div>
               </article>
               <article className="w-fit flex items-center ml-[6px]">
@@ -1653,7 +1653,9 @@ const ProductDetails = ({ data }) => {
       {/* Mobile version of comment */}
       {data?.product?.ratings?.length ? (
         <article className="w-full block md:hidden mt-5">
-          <div className="text-base font-AeonikProMedium mb-2">Отзывы</div>
+          <div className="text-base font-AeonikProMedium mb-2">
+            {t("reviews")}
+          </div>
           <div className="w-full border border-searchBgColor rounded-lg mb-[34px]">
             <div className="flex items-center justify-between p-4">
               <div className="flex items-center">
@@ -1663,7 +1665,7 @@ const ProductDetails = ({ data }) => {
                 </span>
               </div>
               <div className="text-sm font-AeonikProRegular text-closeColorBtn mt-1">
-                {data?.product?.rated_users_count} голосов
+                {data?.product?.rated_users_count} {t("votes")}
               </div>
             </div>
             <button
@@ -1676,7 +1678,7 @@ const ProductDetails = ({ data }) => {
                 <CommentIcons colors={"#000"} />
               </span>
               <div className="ml-2 font-AeonikProRegular text-sm">
-                Посмотреть комментарии или оставить отзыв
+                {t("comment")}
               </div>
               <span className="rotate-[90deg] ml-12">
                 <ArrowTopIcons colors={"#000"} />
@@ -1694,7 +1696,7 @@ const ProductDetails = ({ data }) => {
               <article className="flex md:hidden">
                 <DollorIcons colors={"#000"} />
                 <p className="text-base font-AeonikProRegular ml-[6px]">
-                  Цена:
+                  {t("price")}:
                 </p>
               </article>
               {/* <span className="text-base font-AeonikProMedium mr-3">от</span> */}
@@ -1708,7 +1710,7 @@ const ProductDetails = ({ data }) => {
                       ?.toLocaleString()
                       ?.split(",")
                       .join(" ")}{" "}
-                сум
+                {t("currency")}
               </p>
               {selectedSize?.discount_price ? (
                 <p className="hidden md:block ml-[10px] font-AeonikProRegular line-through text-[18px] text-setTexOpacity">
@@ -1716,7 +1718,7 @@ const ProductDetails = ({ data }) => {
                     ?.toLocaleString()
                     ?.split(",")
                     .join(" ")}{" "}
-                  сум
+                  {t("currency")}
                 </p>
               ) : null}
             </section>
@@ -1725,7 +1727,7 @@ const ProductDetails = ({ data }) => {
               <article className="flex md:hidden">
                 <DollorIcons colors={"#000"} />
                 <p className="text-base font-AeonikProRegular ml-[6px]">
-                  Цена:
+                  {t("price")}:
                 </p>
               </article>
               {/* <span className="text-base font-AeonikProMedium mr-3">от</span> */}
@@ -1739,7 +1741,7 @@ const ProductDetails = ({ data }) => {
                       ?.toLocaleString()
                       ?.split(",")
                       .join(" ")}{" "}
-                сум
+                {t("currency")}
               </p>
               {data?.product?.cost?.discount_price ? (
                 <p className="hidden md:block ml-[10px] font-AeonikProRegular line-through text-[18px] text-setTexOpacity">
@@ -1747,7 +1749,7 @@ const ProductDetails = ({ data }) => {
                     ?.toLocaleString()
                     ?.split(",")
                     .join(" ")}{" "}
-                  сум
+                  {t("currency")}
                 </p>
               ) : null}
             </section>
@@ -1780,7 +1782,7 @@ const ProductDetails = ({ data }) => {
           <section
             className={`w-fit ${dressInfo?.TextColorSeason} items-center text-sm hidden md:flex ml-8`}
           >
-            <p className="font-AeonikProRegular text-right">В наличии:</p>
+            <p className="font-AeonikProRegular text-right">{t("in_stock")}:</p>
             <p className="ml-2 font-AeonikProMedium text-right">
               {selectedSize
                 ? selectedSize?.amount
@@ -1897,7 +1899,7 @@ const ProductDetails = ({ data }) => {
               : ""
           } `}
         >
-          <p>Локация</p>
+          <p>{t("location")}</p>
         </button>
         {data?.product?.composition_ru ? (
           <button
@@ -1911,7 +1913,7 @@ const ProductDetails = ({ data }) => {
                 : ""
             } `}
           >
-            <p>Описания товара </p>
+            <p>{t("product_descriptions")}</p>
           </button>
         ) : null}
 
@@ -1927,7 +1929,7 @@ const ProductDetails = ({ data }) => {
                 : ""
             } `}
           >
-            <p>Состав</p>
+            <p>{t("compound")}</p>
           </button>
         ) : null}
       </article>
@@ -1942,7 +1944,7 @@ const ProductDetails = ({ data }) => {
         <div className={openTab === 2 ? "block" : "hidden"}>
           <div className="mt-5 flex-col gap-y-5 flex">
             <div className="not-italic font-AeonikProRegular text-base">
-              Кратко о товаре
+              {t("about_product")}
             </div>
             <article className="font-AeonikProRegular text-base">
               {data?.product?.description_ru}

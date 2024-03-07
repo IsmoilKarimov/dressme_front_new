@@ -12,11 +12,14 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { UserRefreshTokenContext } from "../../../../../../../ContextHook/UserRefreshToken";
+import { useTranslation } from "react-i18next";
 
 const MobileAllComments = () => {
   const [addComment, setAddComment] = useState(false);
   const toggleAddComment = useCallback(() => setAddComment(false), []);
   const [data, setData] = useState();
+
+  const { t } = useTranslation("products")
 
   const [reFreshTokenFunc, setUserLogedIn] = useContext(
     UserRefreshTokenContext
@@ -147,7 +150,7 @@ const MobileAllComments = () => {
         </button>
         <div className="w-full flex items-center justify-center">
           <span className="text-base leading-4 font-AeonikProMedium">
-            Отзывы о товаре
+            {t("product_reviews")}
           </span>
         </div>
       </div>
@@ -157,7 +160,7 @@ const MobileAllComments = () => {
           type="button"
           className="w-full flex items-center ml-[20px] text-SignInBgColor text-base font-AeonikProRegular mb-[2px]"
         >
-          Написать отзыв
+          {t("write_a_review")}
           <span className="ml-[5px]">
             <ReviewIcon />
           </span>
@@ -172,7 +175,7 @@ const MobileAllComments = () => {
           </span>
         </div>
         <div className="text-sm font-AeonikProRegular text-closeColorBtn mt-1">
-          {data?.rated_users_count} голосов
+          {data?.rated_users_count} {t("votes")}
         </div>
       </div>
       <div className="w-full">
@@ -190,7 +193,7 @@ const MobileAllComments = () => {
               </div>
             </div>
             <div className="w-full flex items-center text-[13px] font-AeonikProRegular mb-5">
-              <span>Оценка покупки</span>
+              <span>{t("purchase_rating")}</span>
               <span className="ml-[5px]">{item?.score}</span>
               <span className="ml-[2px]">
                 <FreeStar width={13} height={13} colors={"#F4A622"} />
