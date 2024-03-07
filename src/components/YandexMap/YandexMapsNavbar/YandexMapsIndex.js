@@ -7,9 +7,14 @@ import { dressMainData } from "../../../ContextHook/ContextMenu";
 import RegionListYandex from "./RegionListYandex";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 import { MenuCloseIcons } from "../../../assets/icons";
+import { LanguageDetectorDress } from "../../../language/LanguageItems";
 
 function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
   const [data] = useContext(HomeMainDataContext);
   function getYandexSearchName(childData) {
@@ -22,10 +27,16 @@ function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
 
   const goCatalogId = (id, name) => {
     if (id !== 5) {
-      navigate(`/categories/${name?.split(' ')?.join('-')?.toLowerCase()}`);
+      navigate(`/categories/${name?.split(" ")?.join("-")?.toLowerCase()}`);
     }
     if (id === 5) {
-      navigate(`/categories/${name?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+      navigate(
+        `/categories/${name
+          ?.split("/")
+          ?.map((item) => item.trim())
+          ?.join("-")
+          ?.toLowerCase()}`
+      );
     }
   };
   return (
@@ -37,8 +48,9 @@ function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
         ></div>
       )}
       <article
-        className={`fixed top-[235px] z-[251] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${dressInfo?.openCatologId ? "" : "hidden"
-          }`}
+        className={`fixed top-[235px] z-[251] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${
+          dressInfo?.openCatologId ? "" : "hidden"
+        }`}
       >
         <div className="flex justify-center items-center z-[99999]">
           <div className="w-[675px] flex flex-col shadow-modalCategoryShadow bg-white rounded-lg p-2">
@@ -69,7 +81,8 @@ function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
                           <img src={data?.url_photo} alt="url_photo" />
                         </div>
                         <figcaption className="group-hover:text-black transition duration-300 text-center mt-2 text-setTexOpacity text-sm">
-                          {data?.name_ru}
+                          {languageDetector?.typeLang === "ru" && data?.name_ru}
+                          {languageDetector?.typeLang === "uz" && data?.name_uz}
                         </figcaption>
                       </figure>
                     </article>
@@ -88,10 +101,11 @@ function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
       {regionsShow && (
         <div
           className={`max-w-[600px]  w-full fixed duration-500 z-[231]  left-1/2 right-1/2 top-[50%] translate-x-[-50%] translate-y-[-50%]  h-fit flex items-center  justify-center mx-auto
-        ${regionsShow
-              ? " bottom-0 md:flex flex-col"
-              : "bottom-[-1500px] z-[-10]"
-            }
+        ${
+          regionsShow
+            ? " bottom-0 md:flex flex-col"
+            : "bottom-[-1500px] z-[-10]"
+        }
         `}
         >
           <RegionListYandex onClick={toggleRegionsHide} />
@@ -100,10 +114,11 @@ function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
       <div className="max-w-[1320px] w-[100%] ss:block md:flex  md:py-0 justify-center items-center m-auto">
         <div className="">
           <div
-            className={`ss:px-3 mt-[1px] md:mt-0 md:px-[40px] md:rounded-b-[16px] ${!dressInfo?.yandexOpenMarket
-              ? "bg-yandexNavbar backdrop-blur-md"
-              : "bg-white"
-              }	border border-searchBgColor border-t-0`}
+            className={`ss:px-3 mt-[1px] md:mt-0 md:px-[40px] md:rounded-b-[16px] ${
+              !dressInfo?.yandexOpenMarket
+                ? "bg-yandexNavbar backdrop-blur-md"
+                : "bg-white"
+            }	border border-searchBgColor border-t-0`}
           >
             <div className="hidden md:block">
               {" "}
@@ -117,10 +132,11 @@ function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
           </div>
           {!dressInfo?.yandexOpenMarket && (
             <div
-              className={`flex flex-col justify-center  fixed left-0 right-0 z-55 ss:top-auto ${!dressInfo?.yandexFullScreen
-                ? "ss:bottom-[63px] "
-                : "ss:bottom-[0]"
-                }
+              className={`flex flex-col justify-center  fixed left-0 right-0 z-55 ss:top-auto ${
+                !dressInfo?.yandexFullScreen
+                  ? "ss:bottom-[63px] "
+                  : "ss:bottom-[0]"
+              }
 
                md:bottom-auto
               duration-500
