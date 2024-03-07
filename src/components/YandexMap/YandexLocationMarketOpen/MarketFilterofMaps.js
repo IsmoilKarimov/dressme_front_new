@@ -24,11 +24,13 @@ import { dressMainData } from "../../../ContextHook/ContextMenu";
 import Slider from "react-slider";
 import { GrClose } from "react-icons/gr";
 import { LanguageDetectorDress } from "../../../language/LanguageItems";
+import { useTranslation } from "react-i18next";
 
 function MarketFilterofMaps({ onClick, getMapsInfo }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [selectFilterType, setSelectFilterType] = useState("category");
   const [searchBrandName, setSearchBrandName] = useState();
+  const { i18n, t } = useTranslation('yandexmap')
 
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
@@ -48,71 +50,106 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
     {
       id: 4444,
       childText: [
-        { id: 1, anyIcons: <ManWomanGen />, name: "Все", action: false },
-        { id: 2, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
+        { id: 1, anyIcons: <ManWomanGen />, name_ru: "Все", name_uz: "Barchasi", action: false },
+        {
+          id: 2, anyIcons: <ManGenIcons />, name_ru: "Мужчинам",
+          name_uz: "Erkaklar ", action: false
+        },
         {
           id: 3,
           anyIcons: <WomanGenIcons />,
-          name: "Женщинам",
+          name_ru: "Ayollar",
+          name_uz: "Ayol",
           action: false,
         },
-        { id: 4, anyIcons: <SpringBoyIcons />, name: "Детям", action: false },
+        {
+          id: 4, anyIcons: <SpringBoyIcons />, name_ru: "Детям",
+          name_uz: "Bolalar ", action: false
+        },
       ],
     },
     {
       id: 1111,
       childText: [
-        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
-        { id: 1, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name_ru: "Все", name_uz: "Barchasi", action: false },
+        {
+          id: 1, anyIcons: <ManGenIcons />, name_ru: "Мужчинам",
+          name_uz: "Erkaklar ", action: false
+        },
         {
           id: 2,
           anyIcons: <WomanGenIcons />,
-          name: "Женщинам",
+          name_ru: "Женщинам",
+          name_uz: "Ayollar",
           action: false,
         },
-        { id: 3, anyIcons: <SummerBoyIcons />, name: "Детям", action: false },
+        {
+          id: 3, anyIcons: <SummerBoyIcons />, name_ru: "Детям",
+          name_uz: "Bolalar ", action: false
+        },
       ],
     },
     {
       id: 2222,
       childText: [
-        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
-        { id: 1, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name_ru: "Все", name_uz: "Barchasi", action: false },
+        {
+          id: 1, anyIcons: <ManGenIcons />, name_ru: "Мужчинам",
+          name_uz: "Erkaklar ", action: false
+        },
         {
           id: 2,
           anyIcons: <WomanGenIcons />,
-          name: "Женщинам",
+          name_ru: "Женщинам",
+          name_uz: "Ayollar",
           action: false,
         },
-        { id: 3, anyIcons: <AutummBoyIcons />, name: "Детям", action: false },
+        {
+          id: 3, anyIcons: <AutummBoyIcons />, name_ru: "Детям",
+          name_uz: "Bolalar ", action: false
+        },
       ],
     },
     {
       id: 3333,
       childText: [
-        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
-        { id: 1, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name_ru: "Все", name_uz: "Barchasi", action: false },
+        {
+          id: 1, anyIcons: <ManGenIcons />, name_ru: "Мужчинам",
+          name_uz: "Erkaklar ", action: false
+        },
         {
           id: 2,
           anyIcons: <WomanGenIcons />,
-          name: "Женщинам",
+          name_ru: "Женщинам",
+          name_uz: "Ayollar",
           action: false,
         },
-        { id: 3, anyIcons: <WinterBoyIcons />, name: "Детям", action: false },
+        {
+          id: 3, anyIcons: <WinterBoyIcons />, name_ru: "Детям",
+          name_uz: "Bolalar ", action: false
+        },
       ],
     },
     {
       id: 5555,
       childText: [
-        { id: 0, anyIcons: <ManWomanGen />, name: "Все", action: false },
-        { id: 1, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
+        { id: 0, anyIcons: <ManWomanGen />, name_ru: "Все", name_uz: "Barchasi", action: false },
+        {
+          id: 1, anyIcons: <ManGenIcons />, name_ru: "Мужчинам",
+          name_uz: "Erkaklar ", action: false
+        },
         {
           id: 2,
           anyIcons: <WomanGenIcons />,
-          name: "Женщинам",
+          name_ru: "Женщинам",
+          name_uz: "Ayollar",
           action: false,
         },
-        { id: 3, anyIcons: <WinterBoyIcons />, name: "Детям", action: false },
+        {
+          id: 3, anyIcons: <WinterBoyIcons />, name_ru: "Детям",
+          name_uz: "Bolalar ", action: false
+        },
       ],
     },
   ]);
@@ -191,7 +228,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
     <div className="w-full h-full flex flex-col  py-5 px-4 gap-y-3">
       <div className="flex items-center justify-between">
         <span className="text-[#303030] text-start text-xl not-italic font-AeonikProMedium">
-          Фильтровать
+          {t("YLOfilter")}
         </span>
         <span className="cursor-pointer w-6 h-6" onClick={onClick}>
           <MenuCloseIcons colors={"#000"} className="w-full h-full" />
@@ -200,11 +237,10 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
       <div className="w-full flex items-center justify-between">
         <button
           onClick={() => setSelectFilterType("category")}
-          className={`${
-            selectFilterType === "category"
-              ? dressInfo?.BtnActiveSeason
-              : "border border-['#E0E0E0']"
-          }   w-[85px] h-[52px] rounded-lg flex items-center justify-center  `}
+          className={`${selectFilterType === "category"
+            ? dressInfo?.BtnActiveSeason
+            : "border border-['#E0E0E0']"
+            }   w-[85px] h-[52px] rounded-lg flex items-center justify-center  `}
         >
           {selectFilterType === "category" ? (
             <ClothesIcons colors={dressInfo?.ColorSeason} />
@@ -214,11 +250,10 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
         </button>
         <button
           onClick={() => setSelectFilterType("price")}
-          className={`${
-            selectFilterType === "price"
-              ? dressInfo?.BtnActiveSeason
-              : "border border-['#E0E0E0']"
-          }  border border-['#E0E0E0'] w-[85px] h-[52px] rounded-lg flex items-center justify-center  `}
+          className={`${selectFilterType === "price"
+            ? dressInfo?.BtnActiveSeason
+            : "border border-['#E0E0E0']"
+            }  border border-['#E0E0E0'] w-[85px] h-[52px] rounded-lg flex items-center justify-center  `}
         >
           {selectFilterType === "price" ? (
             <DollorIcons colors={dressInfo?.ColorSeason} />
@@ -228,11 +263,10 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
         </button>
         <button
           onClick={() => setSelectFilterType("gender")}
-          className={`${
-            selectFilterType === "gender"
-              ? dressInfo?.BtnActiveSeason
-              : "border border-['#E0E0E0']"
-          }  border border-['#E0E0E0'] w-[85px] h-[52px] rounded-lg flex items-center justify-center  `}
+          className={`${selectFilterType === "gender"
+            ? dressInfo?.BtnActiveSeason
+            : "border border-['#E0E0E0']"
+            }  border border-['#E0E0E0'] w-[85px] h-[52px] rounded-lg flex items-center justify-center  `}
         >
           {selectFilterType === "gender" ? (
             <ManWomGenBlack colors={dressInfo?.ColorSeason} />
@@ -242,11 +276,10 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
         </button>
         <button
           onClick={() => setSelectFilterType("brand")}
-          className={`${
-            selectFilterType === "brand"
-              ? dressInfo?.BtnActiveSeason
-              : "border border-['#E0E0E0']"
-          }  border border-['#E0E0E0'] w-[85px] h-[52px] rounded-lg flex items-center justify-center  `}
+          className={`${selectFilterType === "brand"
+            ? dressInfo?.BtnActiveSeason
+            : "border border-['#E0E0E0']"
+            }  border border-['#E0E0E0'] w-[85px] h-[52px] rounded-lg flex items-center justify-center  `}
         >
           {selectFilterType === "brand" ? (
             <TopBrandsIcon colors={dressInfo?.ColorSeason} />
@@ -310,7 +343,8 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                           className={`bg-bgWinter w-fit h-fit gap-x-[6px] rounded-[20px] p-[6px] flex items-center justify-between cursor-pointer`}
                         >
                           <span className=" text-fullBlue text-[13px] not-italic font-AeonikProRegular">
-                            {item?.name}
+                            {languageDetector?.typeLang === 'ru' && item?.name_ru}
+                            {languageDetector?.typeLang === 'uz' && item?.name_uz}
                           </span>
                           <button
                             onClick={() => clearGenderSelect()}
@@ -360,11 +394,10 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                       })
                     }
                     key={item?.id}
-                    className={`${
-                      item?.id == dressInfo?.yandexCategoryWear
-                        ? "bg-bgWinter"
-                        : ""
-                    } w-full h-[44px] flex items-center justify-between cursor-pointer  border-b border-searchBgColor`}
+                    className={`${item?.id == dressInfo?.yandexCategoryWear
+                      ? "bg-bgWinter"
+                      : ""
+                      } w-full h-[44px] flex items-center justify-between cursor-pointer  border-b border-searchBgColor`}
                   >
                     <span className="text-black text-base not-italic font-AeonikProRegular">
                       {languageDetector?.typeLang === "ru" && item?.name_ru}
@@ -389,7 +422,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                   <article className="w-full flex justify-between items-center md:pt-[12px]">
                     <figure className="flex items-center cursor-pointer select-none">
                       <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                        Бюджет
+                      {t("YFPrice")}
                       </p>
                     </figure>
                   </article>
@@ -400,7 +433,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                       <div className="flex flex-wrap justify-between items-center mb-3 w-full px-2">
                         <div className="flex">
                           <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#000] ">
-                            от
+                          {t("YFfrom")}
                           </span>
                           <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                             <input
@@ -413,7 +446,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                         </div>
                         <div className="flex ">
                           <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
-                            до
+                          {t("YFto")}
                           </span>
                           <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                             <input
@@ -443,14 +476,14 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                           onClick={() => ClearListBadget()}
                           className={`flex items-center active:scale-95  active:opacity-70 text-sm text-borderWinter font-AeonikProRegular`}
                         >
-                          Сбросить
+                          {t("YFclear")}
                         </button>
                         <button
                           type="button"
                           onClick={() => sendPriceList()}
                           className="flex items-center active:scale-95  active:opacity-70 font-AeonikProRegular cursor-pointer text-sm justify-center  text-fullBlue"
                         >
-                          Готово
+                          {t("YFready")}
                         </button>
                       </div>
                     )}
@@ -479,16 +512,16 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                               onClick={() =>
                                 handleFilterByUser(data?.id, item?.id)
                               }
-                              className={`${
-                                item?.id === dressInfo?.yandexGenderId
-                                  ? dressInfo?.BtnActiveSeason
-                                  : " bg-white text-black border border-searchBgColor"
-                              } pl-[40%] rounded-lg w-full h-[64px]   cursor-pointer  font-AeonikProMedium   flex items-center`}
+                              className={`${item?.id === dressInfo?.yandexGenderId
+                                ? dressInfo?.BtnActiveSeason
+                                : " bg-white text-black border border-searchBgColor"
+                                } pl-[40%] rounded-lg w-full h-[64px]   cursor-pointer  font-AeonikProMedium   flex items-center`}
                             >
                               {/* <img src={item?.anyIcons} alt="male" /> */}
                               <span>{item?.anyIcons}</span>
                               <span className="ml-2 not-italic whitespace-nowrap  text-black text-right  text-sm font-AeonikProMedium tracking-wide	leading-5">
-                                {item?.name}
+                                {languageDetector?.typeLang === 'ru' && item?.name_ru}
+                                {languageDetector?.typeLang === 'uz' && item?.name_uz}
                               </span>
                             </button>
                           );
@@ -514,7 +547,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                   setSearchBrandName(e.target.value);
                 }}
                 className="w-[90%] h-full text-sm md:text-base bg-transparent"
-                placeholder="Найти магазин"
+                placeholder={t('YLOsearchmarket')}
               />
             </div>
             <div className="w-full h-full overflow-auto VerticelScroll flex flex-col  bg-white ">
@@ -523,8 +556,8 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                   ?.filter((e) =>
                     searchBrandName
                       ? e?.name
-                          ?.toLowerCase()
-                          ?.includes(searchBrandName?.toLowerCase())
+                        ?.toLowerCase()
+                        ?.includes(searchBrandName?.toLowerCase())
                       : e
                   )
                   ?.map((data) => {
@@ -537,11 +570,10 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                           })
                         }
                         key={data?.url_logo_photo}
-                        className={`w-[80px] h-20 cursor-pointer overflow-hidden  rounded-full bg-bgColor border ${
-                          dressInfo?.yandexCategoryBrand == data?.id
-                            ? "   border-fullBlue"
-                            : "border-borderColorCard "
-                        }`}
+                        className={`w-[80px] h-20 cursor-pointer overflow-hidden  rounded-full bg-bgColor border ${dressInfo?.yandexCategoryBrand == data?.id
+                          ? "   border-fullBlue"
+                          : "border-borderColorCard "
+                          }`}
                       >
                         <img
                           className="h-full w-full object-contain"

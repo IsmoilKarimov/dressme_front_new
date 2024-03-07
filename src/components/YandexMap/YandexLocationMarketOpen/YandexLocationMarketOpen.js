@@ -15,6 +15,7 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 import AddCopyCheckedIcon from "../../Home/Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
+import { useTranslation } from "react-i18next";
 
 function YandexLocationMarketOpen({
   getImgGallery,
@@ -25,6 +26,7 @@ function YandexLocationMarketOpen({
 }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
+  const { i18n, t } = useTranslation('yandexmap')
 
   const navigate = useNavigate();
   const openShoppingChild = () => {
@@ -348,7 +350,7 @@ function YandexLocationMarketOpen({
                       className={` w-full h-[48px] bg-fullBlue active:scale-95 mt-4 mb-2 md:mb-0 md:mt-0  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
                     >
                       <span className="not-italic font-AeonikProRegular tracking-[2%]  text-base leading-5 text-center   capitalize text-white">
-                        Подробнее
+                        {t("YLOedit")}
                       </span>
                       <span>
                         <SircleNext colors={"#fff"} />

@@ -16,37 +16,49 @@ import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 import { useQuery } from "@tanstack/react-query";
 import { useHttp } from "../../../hook/useHttp";
 import { LanguageDetectorDress } from "../../../language/LanguageItems";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 const YandexTop = ({ onClick }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
   const { request } = useHttp();
   const [state, setState] = useState({
     openLang: false,
     openRegion: false,
   });
+  const { i18n, t } = useTranslation('yandexmap')
+  const [currentLang, setCurrentLang] = useState(localStorage.getItem("i18nextLng"))
+  useEffect(() => {
+    if (localStorage.getItem("i18nextLng")?.length > 2) {
+      i18next.changeLanguage(currentLang)
+    }
+    setLanguageDetector({ typeLang: currentLang })
+  }, [currentLang])
 
-  const [languageDetector, setLanguageDetector] = useContext(
-    LanguageDetectorDress
-  );
 
   // -----Language Change-------------------
   const [selectLang, setselectLang] = useState(1);
 
   const LanguageList = [
-    { id: 1, type: "Русский", icons: RussianFlag },
-    { id: 2, type: "O'zbekcha", icons: UzbekFlag },
+    { id: 1, value: "uz", type: "O'zbekcha", icons: UzbekFlag },
+    { id: 2, value: "ru", type: "Русский", icons: RussianFlag },
   ];
 
   const handleOpenChangeWear = (newOpen) => {
     setState({ ...state, openLang: newOpen });
   };
 
+  // const handleLangValue = (value) => {
+  //   setselectLang(value);
+  //   setState({ ...state, openLang: false });
+  // };
   const handleLangValue = (value) => {
-    setselectLang(value);
+    i18n.changeLanguage(value)
+    setCurrentLang(value)
     setState({ ...state, openLang: false });
   };
-
   const contentLang = (
     <div className="w-fit h-fit m-0 p-0">
       {LanguageList.map((data) => {
@@ -55,7 +67,7 @@ const YandexTop = ({ onClick }) => {
             key={data?.id}
             className={`p-2 text-sm cursor-pointer hover:bg-bgColor flex items-center justify-start  ${dressInfo?.TextHoverSeason}`}
             onClick={() => {
-              handleLangValue(data?.id);
+              handleLangValue(data?.value);
             }}
           >
             <p className="mr-[6px]  w-5 h-5">
@@ -103,8 +115,9 @@ const YandexTop = ({ onClick }) => {
           <span className="mr-2">
             <LocationIcons />
           </span>
-          <span className="text-textColor text-[13px] mr-[6px] font-AeonikProMedium">
-            Регион:
+          <span className="text-textColor flex items-center text-[13px] mr-[6px] font-AeonikProMedium">
+            {t("YTregion")}
+            <span>:</span>
           </span>
           <div className="w-full min-w-[90px] font-AeonikProMedium flex items-center text-[13px]">
             {data?.mainRegionsList
@@ -138,7 +151,7 @@ const YandexTop = ({ onClick }) => {
         </div>
 
         <div className="w-fit h-full rounded bg-white ml-2 font-AeonikProMedium select-none overflow-hidden cursor-pointer">
-          {LanguageList.filter((data) => data.id === selectLang).map((data) => {
+          {LanguageList.filter((data) => data.value === currentLang).map((data) => {
             return (
               <Popover
                 key={data?.id}
@@ -162,14 +175,6 @@ const YandexTop = ({ onClick }) => {
         </div>
       </div>
       <div className="right h-full flex items-center ">
-        {/* <Link to="#" className="flex items-center h-full ">
-          <span className="mr-2">
-            <CommentIcons colors={"#707070"} />
-          </span>
-          <span className="text-textColor text-[13px]   font-AeonikProMedium  ">
-            Помощь
-          </span>
-        </Link> */}
         <button
           type="button"
           onClick={() =>
@@ -181,7 +186,7 @@ const YandexTop = ({ onClick }) => {
             <HouseStatisticIcons colors={"#707070"} />
           </span>
           <span className="text-textColor text-[13px]   font-AeonikProMedium  ">
-            Бизнес
+          {t("YTbusiness")}
           </span>
         </button>
         <div className="line h-5 border text-textColor ml-6"></div>
@@ -191,7 +196,7 @@ const YandexTop = ({ onClick }) => {
               <MyPurchaseIcons colors={"#707070"} />
             </span>
             <span className="text-textColor  text-[13px]   font-AeonikProMedium  ">
-              Мои заказы
+            {t("YTmyOrder")}
             </span>
           </NavLink>
         )}
@@ -203,7 +208,7 @@ const YandexTop = ({ onClick }) => {
             <MarketIcons colors={"#000"} />
           </span>{" "}
           <span className="font-AeonikProMedium  text-[13px]    ">
-            Магазины
+          {t("YTmarket")}
           </span>
         </NavLink>
       </div>

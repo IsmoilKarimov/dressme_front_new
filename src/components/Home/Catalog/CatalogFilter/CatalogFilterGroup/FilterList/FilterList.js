@@ -105,7 +105,7 @@ function FilterList({
     {
       id: 2,
       action: false,
-      name_ru: "Ayollar",
+      name_ru: "Женщинам",
       name_uz: "Ayol",
     },
     {

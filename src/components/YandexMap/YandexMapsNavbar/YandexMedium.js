@@ -30,38 +30,42 @@ import Cookies from "js-cookie";
 import { MdClose } from "react-icons/md";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 import { MainPageAudioContext } from "../../../ContextHook/MainPageAudio";
+import { useTranslation } from "react-i18next";
+import { LanguageDetectorDress } from "../../../language/LanguageItems";
 
 const YandexMedium = ({ getYandexSearchName }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data] = useContext(HomeMainDataContext);
   const [audioPlay, setAudioPlay] = useContext(MainPageAudioContext);
+  const { i18n, t } = useTranslation('yandexmap')
 
   const navigate = useNavigate();
   const handleMainMenu = () => {
     setDressInfo({ ...dressInfo, openMainMenu: !dressInfo.openMainMenu });
   };
   const [searchMarketName, setSearchMarketName] = useState();
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
 
   const SeasonTypeArray = [
-    { id: 5555, type: "", icons: AllSeasonDesktop },
-    { id: 1111, type: "Лето", icons: summerSeason },
-    { id: 2222, type: "Осень", icons: autummSeason },
-    { id: 3333, type: "Зима", icons: winterSeason },
-    { id: 4444, type: "Весна", icons: springSeason },
+    { id: 5555, type_ru: "",type_uz: "", icons: AllSeasonDesktop },
+    { id: 1111, type_ru: "Лето", type_uz: "Yoz", icons: summerSeason },
+    { id: 2222, type_ru: "Осень", type_uz: "Kuz", icons: autummSeason },
+    { id: 3333, type_ru: "Зима", type_uz: "Qish", icons: winterSeason },
+    { id: 4444, type_ru: "Весна", type_uz: "Bahor", icons: springSeason },
   ];
   const SeasonTypeArrayMobile = [
-    { id: 5555, type: "Все", icons: AllSeason },
-    { id: 1111, type: "Лето", icons: summerSeason },
-    { id: 2222, type: "Осень", icons: autummSeason },
-    { id: 3333, type: "Зима", icons: winterSeason },
-    { id: 4444, type: "Весна", icons: springSeason },
+    { id: 5555, type_ru: "Все",type_uz: "Barchasi", icons: AllSeason },
+    { id: 1111, type_ru: "Лето", type_uz: "Yoz", icons: summerSeason },
+    { id: 2222, type_ru: "Осень", type_uz: "Kuz", icons: autummSeason },
+    { id: 3333, type_ru: "Зима", type_uz: "Qish", icons: winterSeason },
+    { id: 4444, type_ru: "Весна", type_uz: "Bahor", icons: springSeason },
   ];
   const BrandTypeArray = [
-    { id: 4444, type: "Весна", icons: BrandSpring },
-    { id: 1111, type: "Лето", icons: BrandSummer },
-    { id: 2222, type: "Осень", icons: BrandAutumm },
-    { id: 3333, type: "Зима", icons: BrandWinter },
-    { id: 5555, type: "Все", icons: allBrandDesktop },
+    { id: 4444, type_ru: "Весна", type_uz: "Bahor", icons: BrandSpring },
+    { id: 1111, type_ru: "Лето", type_uz: "Yoz", icons: BrandSummer },
+    { id: 2222, type_ru: "Осень", type_uz: "Kuz", icons: BrandAutumm },
+    { id: 3333, type_ru: "Зима", type_uz: "Qish", icons: BrandWinter },
+    { id: 5555, type_ru: "Все",type_uz: "Barchasi", icons: allBrandDesktop },
   ];
 
   // ----------------Wear state management----------------------------
@@ -82,7 +86,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
           <article
             key={value?.id}
             className="w-full h-[42px] md:flex items-center hidden  md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
-            onClick={() => handleSeason(value.id)}
+            onClick={() => handleSeason(value?.id)}
           >
             <figure className="mr-2 md:mr-3">
               <img src={value?.icons} alt="" />
@@ -90,7 +94,8 @@ const YandexMedium = ({ getYandexSearchName }) => {
             <article
               className={`flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
             >
-              {value?.type}
+              {languageDetector?.typeLang === 'ru' && value?.type_ru}
+              {languageDetector?.typeLang === 'uz' && value?.type_uz}
             </article>
           </article>
         );
@@ -108,7 +113,8 @@ const YandexMedium = ({ getYandexSearchName }) => {
             <article
               className={`flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
             >
-              {value?.type}
+              {languageDetector?.typeLang === 'ru' && value?.type_ru}
+              {languageDetector?.typeLang === 'uz' && value?.type_uz}
             </article>
           </article>
         );
@@ -216,9 +222,10 @@ const YandexMedium = ({ getYandexSearchName }) => {
                         className="w-full h-full hidden md:flex  items-center justify-center select-none cursor-pointer   "
                       >
                         <img src={data?.icons} alt="weather" className=" " />
-                        {data?.type && (
+                        {(data?.type_ru || data?.type_uz) && (
                           <figcaption className=" ml-[10px] font-AeonikProMedium  flex items-center text-[15px] ">
-                            {data?.type}
+                            {languageDetector?.typeLang === 'ru' && data?.type_ru}
+                            {languageDetector?.typeLang === 'uz' && data?.type_uz}
                           </figcaption>
                         )}
                       </figure>
@@ -259,7 +266,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
               <span
                 className={"not-italic font-AeonikProMedium text-sm leading-4"}
               >
-                Категория
+                {t("YMcategory")}
               </span>
             </button>
             <span className="flex md:hidden">
@@ -270,7 +277,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
                 type="text"
                 name="search"
                 autoComplete="search"
-                placeholder="Поиск магазинов на карте"
+                placeholder={t("YMsearch")}
                 className="bg-transparent w-full px-3 h-[44px] text-sm border  md:border-searchBgColor placeholder:font-AeonikProRegular"
                 value={searchMarketName}
                 onChange={handleChange}
@@ -312,7 +319,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
               <MapIcons colors={dressInfo?.ColorSeason} />
             </span>
 
-            <span className="font-AeonikProMedium text-sm  ">Карта</span>
+            <span className="font-AeonikProMedium text-sm  ">{t("YMmap")}</span>
           </NavLink>
 
           {/* Line border */}
