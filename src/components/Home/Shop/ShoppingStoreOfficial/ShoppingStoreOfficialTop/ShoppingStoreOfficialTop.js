@@ -119,10 +119,11 @@ const ShoppingStoreOfficialTop = ({
             )}
             <div
               className={`w-full md:h-[90px] h-fit flex flex-col md:flex-row items-center border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0
-            ${filteredData?.shop?.url_background_photo
-                  ? "mt-2 md:mt-0"
-                  : "md:mt-10"
-                }
+            ${
+              filteredData?.shop?.url_background_photo
+                ? "mt-2 md:mt-0"
+                : "md:mt-10"
+            }
             `}
             >
               {/* 1 */}
@@ -145,8 +146,9 @@ const ShoppingStoreOfficialTop = ({
                     {filteredData?.shop?.name || null}
                   </p>
                   <div
-                    className={`${filteredData?.shop?.overall_rating ? "flex" : "hidden"
-                      } items-center`}
+                    className={`${
+                      filteredData?.shop?.overall_rating ? "flex" : "hidden"
+                    } items-center`}
                   >
                     <div className="flex items-center mr-[6px]">
                       <StarIcons />
@@ -212,14 +214,16 @@ const ShoppingStoreOfficialTop = ({
                 </div>
                 <div className="flex items-center ml-auto">
                   <button
-                    className={`${filteredData?.shop?.gender_id === "2" ? "hidden" : "flex"
-                      }  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}
+                    className={`${
+                      filteredData?.shop?.gender_id === "2" ? "hidden" : "flex"
+                    }  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}
                   >
                     <ManGenIcons />
                   </button>
                   <button
-                    className={`${filteredData?.shop?.gender_id === "1" ? "hidden" : "flex"
-                      } flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}
+                    className={`${
+                      filteredData?.shop?.gender_id === "1" ? "hidden" : "flex"
+                    } flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}
                   >
                     <WomanGenIcons />
                   </button>
@@ -273,13 +277,20 @@ const ShoppingStoreOfficialTop = ({
               </div>
             </div>
           </div>
-          <div className="w-full hidden md:flex items-center justify-between  mt-[72px] mb-3">
+          <div
+            className={` ${
+              clickButtons?.openTabComment === true ||
+              clickButtons?.openTabLocation === true
+                ? "md:hidden"
+                : "md:flex"
+            } w-full hidden items-center justify-between  mt-[72px] mb-3`}
+          >
             <div className="flex items-center gap-x-5">
               <div className="w-[175px] flex items-center ">
                 <button
                   onClick={handleToggle}
                   type="button"
-                  className="w-full gap-x-2 h-[44px] border border-[#F2F2F2] flex items-center justify-center  bg-white rounded-lg active:scale-95	active:opacity-70"
+                  className="w-full gap-x-2 h-[44px] border border-[#F2F2F2] flex items-center justify-center  bg-white rounded-xl active:scale-95	active:opacity-70"
                 >
                   <span className="">
                     {" "}
@@ -301,8 +312,12 @@ const ShoppingStoreOfficialTop = ({
               <div className="flex items-center text-base font-AeonikProMedium text-[#2C2C2C] ">
                 <DeliveryIcon />
                 <span className="mx-[5px]">{t("delivery")}:</span>
-                <span>{languageDetector?.typeLang === 'ru' && filteredData?.shop?.delivery?.name_ru}
-                  {languageDetector?.typeLang === 'uz' && filteredData?.shop?.delivery?.name_uz}</span>
+                <span>
+                  {languageDetector?.typeLang === "ru" &&
+                    filteredData?.shop?.delivery?.name_ru}
+                  {languageDetector?.typeLang === "uz" &&
+                    filteredData?.shop?.delivery?.name_uz}
+                </span>
               </div>
             </div>
             <div className="w-full md:w-fit flex md:items-center justify-end items-center mt-1">
@@ -331,9 +346,10 @@ const ShoppingStoreOfficialTop = ({
                       {t("select_location")}
                     </p>
                     <div className="font-AeonikProRegular text-[14px] md:text-lg border-b border-[#f0f0f0] mb-[15px]">
-                      {languageDetector?.typeLang === 'ru' && locationList[0]?.region?.name_ru}
-                      {languageDetector?.typeLang === 'uz' && locationList[0]?.region?.name_uz}
-
+                      {languageDetector?.typeLang === "ru" &&
+                        locationList[0]?.region?.name_ru}
+                      {languageDetector?.typeLang === "uz" &&
+                        locationList[0]?.region?.name_uz}
                     </div>
                     <div className="h-[200px] md:h-[250px] overflow-y-auto mb-[20px] VerticelScroll pr-2">
                       <Radio.Group
@@ -355,8 +371,10 @@ const ShoppingStoreOfficialTop = ({
                                 >
                                   {" "}
                                   <span className="text-[14px] md:text-lg font-AeonikProRegular">
-                                    {languageDetector?.typeLang === 'ru' && item?.sub_region?.name_ru}
-                                    {languageDetector?.typeLang === 'uz' && item?.sub_region?.name_uz}
+                                    {languageDetector?.typeLang === "ru" &&
+                                      item?.sub_region?.name_ru}
+                                    {languageDetector?.typeLang === "uz" &&
+                                      item?.sub_region?.name_uz}
                                   </span>
                                   <span className="text-[14px] md:text-lg font-AeonikProRegular">
                                     ({item?.address} )
@@ -383,7 +401,12 @@ const ShoppingStoreOfficialTop = ({
             </div>
           </div>
           <action
-            className={`w-full md:hidden flex items-center justify-between mt-3 mb-3 px-4 gap-x-2`}
+            className={`${
+              clickButtons?.openTabComment === true ||
+              clickButtons?.openTabLocation === true
+                ? "hidden"
+                : "flex"
+            } w-full md:hidden items-center justify-between mt-3 mb-3 px-4 gap-x-2`}
           >
             <div className="search flex items-center justify-between rounded-xl font-AeonikProMedium h-12 my-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
               <div className="w-[90%] h-full flex items-center justify-between">

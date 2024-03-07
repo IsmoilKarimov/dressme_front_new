@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { NoImg, ShowMoreBackIcon, SircleNext } from "../../../../assets/icons";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { useTranslation } from 'react-i18next';
@@ -221,8 +221,9 @@ function MainPageSliders() {
         <section className="w-full box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
           {/* MAIN SLIDER */}
           <div
-            className={`w-full ss:h-0 ${more ? "xs:h-0" : "xs:h-auto"
-              } overflow-hidden `}
+            className={`w-full ss:h-0 ${
+              more ? "xs:h-0" : "xs:h-auto"
+            } overflow-hidden `}
           >
             {data?.getMainProductCard?.sections?.length > 6 ? (
               <Slider
@@ -233,7 +234,12 @@ function MainPageSliders() {
                 {data?.getMainProductCard?.sections?.map((data) => {
                   return (
                     <div
-                      onClick={() => goSectionId(languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz)}
+                      onClick={() =>
+                        goSectionId(
+                          languageDetector?.typeLang === "ru" && data?.name_ru,
+                          languageDetector?.typeLang === "uz" && data?.name_uz
+                        )
+                      }
                       key={data?.id}
                       className="!w-[99%] h-[280px] rounded-lg"
                     >
@@ -250,8 +256,8 @@ function MainPageSliders() {
                       </div>
                       <article className="h-12.5 flex items-center justify-start">
                         <div className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3 mr-1 ml-2">
-                          {languageDetector?.typeLang === 'ru' && data?.name_ru}
-                          {languageDetector?.typeLang === 'uz' && data?.name_uz}
+                          {languageDetector?.typeLang === "ru" && data?.name_ru}
+                          {languageDetector?.typeLang === "uz" && data?.name_uz}
                           <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
                             ({data?.products_count || "0"})
                           </p>
@@ -266,7 +272,12 @@ function MainPageSliders() {
                 {data?.getMainProductCard?.sections?.map((data) => {
                   return (
                     <div
-                      onClick={() => goSectionId(languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz)}
+                      onClick={() =>
+                        goSectionId(
+                          languageDetector?.typeLang === "ru" && data?.name_ru,
+                          languageDetector?.typeLang === "uz" && data?.name_uz
+                        )
+                      }
                       key={data?.id}
                       className="max-w-[192px] w-full h-[280px] rounded-lg "
                     >
@@ -304,14 +315,20 @@ function MainPageSliders() {
 
           {/* CAROUSEL HIDDEN BLOCK */}
           <div
-            className={`${more ? "xs:grid" : "xs:hidden"
-              } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 `}
+            className={`${
+              more ? "xs:grid" : "xs:hidden"
+            } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 `}
           >
             {data?.getMainProductCard?.sections?.map((data, i) => {
               if (more) {
                 return (
                   <div
-                    onClick={() => goSectionId(languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz)}
+                    onClick={() =>
+                      goSectionId(
+                        languageDetector?.typeLang === "ru" && data?.name_ru,
+                        languageDetector?.typeLang === "uz" && data?.name_uz
+                      )
+                    }
                     key={data?.id}
                     className="w-full md:!w-[99%] h-[170px] md:h-[280px] rounded-lg "
                   >
@@ -331,8 +348,8 @@ function MainPageSliders() {
                     </div>
                     <article className="w-full flex items-center justify-start">
                       <div className="w-full not-italic flex font-AeonikProMedium text-[12px] md:text-[16px] leading-4 text-black mt-2 md:mt-3 md:mr-2 md:ml-2">
-                        {languageDetector?.typeLang === 'ru' && data?.name_ru}
-                        {languageDetector?.typeLang === 'uz' && data?.name_uz}
+                        {languageDetector?.typeLang === "ru" && data?.name_ru}
+                        {languageDetector?.typeLang === "uz" && data?.name_uz}
                         <p className="not-italic ml-1 md:ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
                           ({data?.products_count || "0"})
                         </p>
@@ -346,7 +363,12 @@ function MainPageSliders() {
                 } else {
                   return (
                     <div
-                      onClick={() => goSectionId(languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz)}
+                      onClick={() =>
+                        goSectionId(
+                          languageDetector?.typeLang === "ru" && data?.name_ru,
+                          languageDetector?.typeLang === "uz" && data?.name_uz
+                        )
+                      }
                       key={data?.id}
                       className="w-[100%] h-[170px]"
                     >
@@ -363,8 +385,8 @@ function MainPageSliders() {
                       </figure>
                       <article className="w-full py-1 flex items-center">
                         <div className="not-italic flex items-center font-AeonikProMedium text-xs xs:text-base leading-6 text-black">
-                          {languageDetector?.typeLang === 'ru' && data?.name_ru}
-                          {languageDetector?.typeLang === 'uz' && data?.name_uz}
+                          {languageDetector?.typeLang === "ru" && data?.name_ru}
+                          {languageDetector?.typeLang === "uz" && data?.name_uz}
                           <p className="not-italic lex items-center font-AeonikProRegular text-xs xs:text-sm leading-4 text-gray-500 ml-1">
                             ({data?.products_count || "0"})
                           </p>
@@ -384,6 +406,7 @@ function MainPageSliders() {
                 onClick={() => setMore(!more)}
               >
                 <p className="not-italic font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
+                  {more ? t("Minimize") : t("Text1")}
                   {more ? t('Text2') : t('Text1')}
                 </p>
                 <div className="ml-2 ">
@@ -416,6 +439,7 @@ function MainPageSliders() {
                 onClick={() => setMore(!more)}
               >
                 <p className="not-italic font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
+                  {more ? t("Minimize") : t("Text1")}
                   {more ? t('Text2') : t('Text1')}
                 </p>
                 <div className="ml-2 ">
