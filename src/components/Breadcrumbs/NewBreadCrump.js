@@ -8,10 +8,10 @@ const NewBreadCrump = ({ items }) => {
   console.log(languageDetector, 'languageDetector-bread');
   return (
     <nav
-      className="w-full   md:overflow-auto pb-[4px] md:pb-0 px-3 md:px-0"
+      className="w-full  overflow-x-scroll    md:overflow-auto pb-[4px] md:pb-0 px-3 md:px-0"
       aria-label="breadcrumb"
     >
-      <ol className="breadcrumb w-full overflow-x-scroll HorizantalScroll">
+      <ol className="breadcrumb  ">
         {items.map((item, index) => (
           <li className="breadcrumb-item" key={index}>
             {index === items.length - 1 ? (
