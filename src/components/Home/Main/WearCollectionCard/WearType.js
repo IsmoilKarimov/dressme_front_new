@@ -42,14 +42,14 @@ const WearType = ({ onClick, title }) => {
             return (
               <div
                 key={data?.id}
-                className="h-full w-[74px] rounded-[12px]  border border-searchBgColor overflow-hidden"
+                className="h-full w-[81px] rounded-[12px]  border border-searchBgColor overflow-hidden"
               >
                 <img
                   onClick={() => {
                     setcolorId(data?.product_color_id);
                     goDetail(selectedData?.id);
                   }}
-                  className="w-full h-full"
+                  className="w-full h-full object-cover"
                   key={data?.id}
                   src={data?.url_photo}
                   alt=""
