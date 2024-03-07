@@ -4,38 +4,31 @@ import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { useNavigate } from "react-router-dom";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
+import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 
 const CatalogMobile = () => {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data] = useContext(HomeMainDataContext);
 
-  const [openCatalog, setOpenCatalog] = useState(false);
-
-  const listItem = [
-    { id: 1, name: "Футболки и майки" },
-    { id: 2, name: "Носки" },
-    { id: 3, name: "Брюки и джинсы" },
-    { id: 4, name: "Спортивная одежда" },
-    { id: 5, name: "Толстовки" },
-    { id: 6, name: "Джемперы, свитеры и кардиганы" },
-    { id: 7, name: "Белье и пляжная одежда" },
-    { id: 8, name: "Рубашки" },
-    { id: 9, name: "Верхняя одежда" },
-    { id: 10, name: "Шорты" },
-    { id: 11, name: "Домашняя одежда" },
-    { id: 12, name: "Костюмы и комплекты" },
-    { id: 13, name: "Пиджаки и жилеты" },
-    { id: 14, name: "Религиозная одежда для мужчин" },
-  ];
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
 
   const navigate = useNavigate();
 
-  const goCatalogId = (id, name) => {
-    if (id !== 5) {
-      navigate(`/categories/${name?.split(' ')?.join('-')?.toLowerCase()}`);
+  const goCatalogId = (id, nameru, nameuz) => {
+    if (languageDetector?.typeLang === 'ru') {
+      if (id !== 5) {
+        navigate(`/categories/${nameru?.split(' ')?.join('-')?.toLowerCase()}`);
+      }
+      if (id === 5) {
+        navigate(`/categories/${nameru?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+      }
     }
-    if (id === 5) {
-      navigate(`/categories/${name?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+    if (languageDetector?.typeLang === 'uz') {
+      if (id !== 5) {
+        navigate(`/categories/${nameuz?.split(' ')?.join('-')?.toLowerCase()}`);
+      }
+      if (id === 5) {
+        navigate(`/categories/${nameuz?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+      }
     }
   };
   const breadcrumbItems = [
@@ -63,62 +56,24 @@ const CatalogMobile = () => {
                 className="w-[140px] ls:w-[150px] ll:w-[175px] h-fit flex flex-wrap gap-y-2 "
               >
                 <div
-                  onClick={() => goCatalogId(item?.id, item?.name_ru)}
+                  onClick={() => goCatalogId(item?.id, languageDetector?.typeLang === 'ru' && item?.name_ru, languageDetector?.typeLang === 'uz' && item?.name_uz)}
                   className="w-full h-[145px] ls:h-[155px] ll:h-[180px] flex items-center overflow-hidden justify-center border border-skeltonColor bg-categoryModalBgColor rounded-[12px] cursor-pointer"
                 >
                   <img src={item?.url_photo} alt="" className=" h-full	" />
                 </div>
                 <button
-                  //   onClick={() => setOpenCatalog(true)}
-                  onClick={() => goCatalogId(item?.id, item?.name_ru)}
+                  onClick={() => goCatalogId(item?.id, languageDetector?.typeLang === 'ru' && item?.name_ru, languageDetector?.typeLang === 'uz' && item?.name_uz)}
                   className="w-full h-8 text-catalogText leading-normal text-[12px] ll:text-[13px] not-italic font-AeonikProRegular flex items-center justify-center active:scale-95  active:opacity-70 border border-skeltonColor  rounded-[12px]"
                 >
-                  {item?.name_ru}
+                  {languageDetector?.typeLang === 'ru' && item?.name_ru}
+                  {languageDetector?.typeLang === 'uz' && item?.name_uz}
                 </button>
               </figure>
             );
           })}
         </article>
       </section>
-      <section
-        className={`w-full hidden h-screen ${
-          openCatalog
-            ? "flex flex-col ease-linear duration-500 overscroll-none"
-            : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
-        }	bg-white fixed z-[110] top-0 left-0 `}
-      >
-        <div className="w-full flex flex-col p-4">
-          <div className="w-full flex justify-end">
-            {" "}
-            <button
-              className="w-10 h-10 rounded-lg bg-white border border-searchBgColor flex items-center justify-center active:scale-95 active:opacity-70"
-              onClick={() => setOpenCatalog(false)}
-            >
-              {" "}
-              <MenuCloseIcons />
-            </button>
-          </div>
-          <div className="bg-white mt-5">
-            <ul>
-              {listItem.map((e) => {
-                console.log();
-                return (
-                  <li
-                    key={e?.id}
-                    onClick={() => {
-                      // goCatalogId(e?.id);
-                      setOpenCatalog(false);
-                    }}
-                    className={`text-catalogList text-lg mt-3 leading-normal not-italic font-AeonikProRegular ${dressInfo?.TextHoverSeason}`}
-                  >
-                    {e.name}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </div>
-      </section>
+
     </main>
   );
 };

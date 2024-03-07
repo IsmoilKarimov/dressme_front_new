@@ -389,6 +389,7 @@ function FilterList({
             setGetFilter()
         }
     }, [dressInfo?.locationIdParams])
+    
     return (
       <div
         className={`w-full h-hull  py-5 px-3 rounded-lg border border-searchBgColor overflow-hidden `}

@@ -9,10 +9,12 @@ import { useNavigate } from "react-router-dom";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
+import { LanguageDetectorDress } from "../../../../../../language/LanguageItems";
 
 export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
 
   const { t } = useTranslation("shops")
 
@@ -21,7 +23,7 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
 
   const onColorChecked = () => { };
   const navigate = useNavigate();
-  const goDetail = (id, name) => {
+  const goDetail = (id) => {
     navigate(`/shops_location/${paramsId}/${id} `);
     // navigate(`/shops_location/${paramsId}/${name?.split(' ')?.join('-')?.toLowerCase()}`);
 
@@ -44,16 +46,14 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
   const setPaginationFunc = (id) => {
     setPageId(+id)
   };
-
   return (
     <div className="flex flex-col box-border">
       {filteredData?.products?.data?.length > 0 ? (
         <div
-          className={`flex flex-wrap justify-between md:justify-start ${
-            filteredData?.products?.length > 2
+          className={`flex flex-wrap justify-between md:justify-start ${filteredData?.products?.length > 2
               ? "mb-[20px] md:mb-[30px]"
               : "mb-[80px]"
-          } md:mx-0 md:mt-[50px] md:mb-0 gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 `}
+            } md:mx-0 md:mt-[50px] md:mb-0 gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 `}
         >
           {filteredData?.products?.data?.map((data) => {
             return (
@@ -63,7 +63,7 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
               >
                 <figure
                   onClick={() => {
-                    goDetail(data?.id, data?.name_ru);
+                    goDetail(data?.id);
                   }}
                   style={{
                     backgroundImage: `url("${data?.photos[0]?.url_photo}")`,
@@ -98,11 +98,10 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
                       </span>
                     </button>
                     <article
-                      className={`${
-                        data?.l
+                      className={`${data?.l
                           ? "w-full px-1 xs:px-2 md:px-4 my-2"
                           : "w-0 my-2"
-                      } group-hover:w-full group-hover:px-1 group-hover:xs:px-2 group-hover:md:px-4 group-hover:my-2 duration-300 w-0 my-2 absolute overflow-hidden hidden top-0 z-[1] md:flex items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
+                        } group-hover:w-full group-hover:px-1 group-hover:xs:px-2 group-hover:md:px-4 group-hover:my-2 duration-300 w-0 my-2 absolute overflow-hidden hidden top-0 z-[1] md:flex items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
                     >
                       {data?.colors?.map((itemValue) => {
                         return (
@@ -127,14 +126,14 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
                   {/* 2 */}
                   <article
                     onMouseEnter={() => handleLeaveMouse(data?.id)}
-                    onClick={() => goDetail(data?.id, data?.name_ru)}
-                    className={`w-full px-2 xs:px-3 xs:mt-1 ${
-                      data?.cost?.discount_price ? "mb-0" : "mb-3"
-                    } md:mb-0`}
+                    onClick={() => goDetail(data?.id)}
+                    className={`w-full px-2 xs:px-3 xs:mt-1 ${data?.cost?.discount_price ? "mb-0" : "mb-3"
+                      } md:mb-0`}
                   >
                     <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-[6px] md:mb-0  cursor-pointer">
                       <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
-                      {data?.name_ru || "NoData"}
+                      {languageDetector?.typeLang === 'ru' && data?.name_ru}
+                      {languageDetector?.typeLang === 'uz' && data?.name_uz}
                     </figure>
                     <figure className="w-full h-[16px] flex justify-between items-center my-1">
                       {data?.overall_rating ? (
@@ -196,11 +195,10 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
                       )}
                     </article>
                     <div
-                      className={`flex items-center select-none absolute right-2 ${
-                        data?.cost?.discount_price
+                      className={`flex items-center select-none absolute right-2 ${data?.cost?.discount_price
                           ? "bottom-[7px] ls:bottom-[-17px]"
                           : " bottom-[8px] ls:bottom-[-17px]"
-                      } md:bottom-2`}
+                        } md:bottom-2`}
                     >
                       <button
                         onClick={() => {
@@ -255,15 +253,13 @@ export default function ShopOfficialCard({ filteredData, setPageId, paramsId }) 
                         setPaginationFunc(newPageId);
                       }
                     }}
-                    className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${
-                      item?.active
+                    className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${item?.active
                         ? "bg-fullBlue text-white"
                         : "hover:bg-searchBgColor"
-                    } mx-[5px] flex items-center justify-center  ${
-                      item?.url
+                      } mx-[5px] flex items-center justify-center  ${item?.url
                         ? "cursor-pointer"
                         : "opacity-70 cursor-not-allowed"
-                    }`}
+                      }`}
                   >
                     {item?.label}
                   </li>

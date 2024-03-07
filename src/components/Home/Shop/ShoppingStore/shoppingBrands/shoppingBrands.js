@@ -9,10 +9,12 @@ import {
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import LoadingNetwork from "../../../../Loading/LoadingNetwork";
 import { useTranslation } from "react-i18next";
+import { LanguageDetectorDress } from "../../../../../language/LanguageItems";
 
 const ShoppingBrands = ({ loading, setLoading }) => {
   const navigate = useNavigate();
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
 
   const { t } = useTranslation("shops")
 
@@ -118,7 +120,8 @@ const ShoppingBrands = ({ loading, setLoading }) => {
                       <div className="w-fit md:w-[250px] h-9 md:h-12 flex items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white px-5 rounded-lg md:ml-10">
                         <DeliveryStoreIcon />
                         <p className="text-[13px] md:text-base font-AeonikProMedium text-[#2c2c2c] ml-3">
-                          {data?.delivery?.name_ru}
+                          {languageDetector?.typeLang === 'ru' && data?.delivery?.name_ru}
+                          {languageDetector?.typeLang === 'uz' && data?.delivery?.name_uz}
                         </p>
                       </div>
                       <div className="flex items-center md:ml-[88px] md:mt-0">

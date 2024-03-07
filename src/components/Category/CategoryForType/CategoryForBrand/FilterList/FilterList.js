@@ -381,8 +381,7 @@ function FilterList({
         }
     }, [paramsId])
 
-
-    return (
+     return (
       <div
         className={`w-full h-hull  py-5 px-3 border border-searchBgColor rounded-lg overflow-hidden `}
       >
