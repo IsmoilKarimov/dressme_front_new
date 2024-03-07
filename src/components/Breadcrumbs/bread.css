@@ -27,3 +27,14 @@
   .breadcrumb-item--active {
     color: #A1A1A1;
   }
+  .HorizantalBredCump::-webkit-scrollbar {
+    width: 50px;
+    height: 2px;
+  }
+  
+  .HorizantalBredCump::-webkit-scrollbar-thumb {
+    background-color: #a1a1a1;
+    width: 50px;
+    border-radius: 8px;
+  }
+  
