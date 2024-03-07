@@ -28,5 +28,21 @@
     "NPnewMakePss": "Yangi parol o'rnating ",
     "NPdontMatch": "Yangi parolingiz avvalgi parolingizdan farq qilishi kerak",
     "NPnewPss": "Yangi parol",
-    "NPenterPss": "Parolni tasdiqlang "
+    "NPenterPss": "Parolni tasdiqlang ",
+    "PPmyInfor": "Mening ma'lumotlarim ",
+    "PPexit": "Tizimdan Chiqish",
+    "PPrefresh": "Ma'lumotlarni yangilash ",
+    "PPEgender": "Jins",
+    "PPEman": "Erkak",
+    "PPEwoman": "Ayol",
+    "PPEeditPss": "Parolni o'zgartirish ",
+    "PPEeditOldPss": "Eski parol ",
+    "PPEeditEmail": "Pochtani yangilash ",
+    "ESsure": "Ishonchingiz komilmi ",
+    "EScheckEmail": "Agar siz elektron pochtangizni yangilasangiz, yangi elektron pochtangizni tekshirmaguningizcha hisobingizga kirish imkoni bo'lmaydi. ",
+    "ESclose": "Bekor qilish ",
+    "ESrefresh": "Yangilash ",
+    "ESenterPss": "Parolni tasdiqlang ",
+    "ESrefreshPss": "Parolni yangilang ",
+    "VEsellerEnter": "Sotuvchiga kirish    "
 }
