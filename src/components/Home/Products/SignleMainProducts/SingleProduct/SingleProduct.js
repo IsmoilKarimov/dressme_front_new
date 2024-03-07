@@ -70,33 +70,11 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
   const paramsId = useParams();
   const [singleDataForCopy, setSingleDataForCopy] = useState();
   const [singleData, setSingleData] = useState();
-  // console.log(singleData?.product?.name_ru, "singleData");
   useEffect(() => {
     oncallProductName(singleData?.product?.name_ru);
   }, [singleData?.product]);
 
   const [loading, setLoading] = useState(true);
-
-  // useEffect(() => {
-  //   setLoading(true);
-  //   if (paramsId?.product) {
-  //     axios(`${url}/api/main/products/${paramsId?.product}`, {
-  //       method: "GET",
-  //       headers: {
-  //         Accept: "application/json",
-  //       },
-  //     })
-  //       .then((res) => {
-  //         setSingleData(res.data);
-  //         setLoading(false);
-  //         console.log(res, 'singlepage res');
-  //       })
-  //       .catch((error) => {
-  //         setLoading(false);
-  //         console.log(error, 'singlepage error');
-  //       });
-  //   }
-  // }, [paramsId?.product]);
 
   useEffect(() => {
     setLoading(true);
@@ -205,13 +183,16 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
                     <ProductCarousel show={show} data={singleData} />
                   </section>
                   <section className="w-full md:w-1/2 h-full ">
-                    <ProductDetails data={singleData} />
+                    <ProductDetails shopsData={data} data={singleData} />
                   </section>
                 </section>
                 {/* Products Comment */}
                 {singleData?.product?.ratings?.length ? (
                   <section className="md:mt-20 w-full">
-                    <ProductComment data={singleData} refetch={refetch} />
+                    <ProductComment
+                      data={singleData}
+                      refetch={refetch}
+                    />
                   </section>
                 ) : null}
                 {sameTypeData?.length ? (
