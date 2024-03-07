@@ -407,6 +407,7 @@ function MainPageSliders() {
               >
                 <p className="not-italic font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
                   {more ? t("Minimize") : t("Text1")}
+                  {more ? t('Text2') : t('Text1')}
                 </p>
                 <div className="ml-2 ">
                   {more ? (
@@ -439,6 +440,7 @@ function MainPageSliders() {
               >
                 <p className="not-italic font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
                   {more ? t("Minimize") : t("Text1")}
+                  {more ? t('Text2') : t('Text1')}
                 </p>
                 <div className="ml-2 ">
                   {more ? (

@@ -98,29 +98,26 @@ const MediumHeader = ({ stateData, setStateData }) => {
       setDressInfo({ ...dressInfo, openCatologId: false });
     }
   }, [scrollPost]);
-
   const SeasonTypeArray = [
-    { id: 5555, type: "", icons: AllSeasonDesktop },
-    { id: 1111, type: "Лето", icons: summerSeason },
-    { id: 2222, type: "Осень", icons: autummSeason },
-    { id: 3333, type: "Зима", icons: winterSeason },
-    { id: 4444, type: "Весна", icons: springSeason },
+    { id: 5555, type_ru: "", type_uz: "", icons: AllSeasonDesktop },
+    { id: 1111, type_ru: "Лето", type_uz: "Yoz", icons: summerSeason },
+    { id: 2222, type_ru: "Осень", type_uz: "Kuz", icons: autummSeason },
+    { id: 3333, type_ru: "Зима", type_uz: "Qish", icons: winterSeason },
+    { id: 4444, type_ru: "Весна", type_uz: "Bahor", icons: springSeason },
   ];
-  // console.log(dressInfo?.type, "dressInfo?.type");
   const SeasonTypeArrayMobile = [
-    { id: 5555, type: "Все", icons: AllSeason },
-    { id: 1111, type: "Лето", icons: summerSeason },
-    { id: 2222, type: "Осень", icons: autummSeason },
-    { id: 3333, type: "Зима", icons: winterSeason },
-    { id: 4444, type: "Весна", icons: springSeason },
+    { id: 5555, type_ru: "Все", type_uz: "Barchasi", icons: AllSeason },
+    { id: 1111, type_ru: "Лето", type_uz: "Yoz", icons: summerSeason },
+    { id: 2222, type_ru: "Осень", type_uz: "Kuz", icons: autummSeason },
+    { id: 3333, type_ru: "Зима", type_uz: "Qish", icons: winterSeason },
+    { id: 4444, type_ru: "Весна", type_uz: "Bahor", icons: springSeason },
   ];
-
   const BrandTypeArray = [
-    { id: 5555, type: "Все", icons: allBrandDesktop },
-    { id: 1111, type: "Лето", icons: BrandSummer },
-    { id: 2222, type: "Осень", icons: BrandAutumm },
-    { id: 3333, type: "Зима", icons: BrandWinter },
-    { id: 4444, type: "Весна", icons: BrandSpring },
+    { id: 4444, type_ru: "Весна", type_uz: "Bahor", icons: BrandSpring },
+    { id: 1111, type_ru: "Лето", type_uz: "Yoz", icons: BrandSummer },
+    { id: 2222, type_ru: "Осень", type_uz: "Kuz", icons: BrandAutumm },
+    { id: 3333, type_ru: "Зима", type_uz: "Qish", icons: BrandWinter },
+    { id: 5555, type_ru: "Все", type_uz: "Barchasi", icons: allBrandDesktop },
   ];
 
   //------------------------------------------------------------------------------------------------
@@ -148,11 +145,12 @@ const MediumHeader = ({ stateData, setStateData }) => {
             <figure className={`${value?.id !== 5555 ? "w-5" : ""} `}>
               <img src={value?.icons} alt="" className="object-cover w-full" />
             </figure>
-            {value?.type && (
+            {(value?.type_ru || value?.type_uz) && (
               <article
                 className={`ml-2 md:ml-3 flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
               >
-                {value?.type}
+                {languageDetector?.typeLang === 'ru' && value?.type_ru}
+                {languageDetector?.typeLang === 'uz' && value?.type_uz}
               </article>
             )}
           </article>
@@ -171,7 +169,8 @@ const MediumHeader = ({ stateData, setStateData }) => {
             <article
               className={`flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
             >
-              {value?.type}
+              {languageDetector?.typeLang === 'ru' && value?.type_ru}
+              {languageDetector?.typeLang === 'uz' && value?.type_uz}
             </article>
           </article>
         );
@@ -486,9 +485,10 @@ const MediumHeader = ({ stateData, setStateData }) => {
                               alt="weather"
                               className=" "
                             />
-                            {data?.type && (
+                            {(data?.type_ru && data?.type_uz) && (
                               <figcaption className=" ml-[10px] font-AeonikProMedium  flex items-center text-[15px] ">
-                                {data?.type}
+                                {languageDetector?.typeLang === 'ru' && data?.type_ru}
+                                {languageDetector?.typeLang === 'uz' && data?.type_uz}
                               </figcaption>
                             )}
                           </figure>
