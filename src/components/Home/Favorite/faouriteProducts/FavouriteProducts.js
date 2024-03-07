@@ -183,7 +183,7 @@ export default function FavouriteProducts() {
                             <article className="flex items-center">
                               {data?.cost?.discount_price ? (
                                 <figure className="flex flex-wrap flex-col-reverse	text-start items-start ">
-                                  <p className="w-full text-start m-0 p-0 not-italic font-AeonikProMedium text-[15px] md:text-[15px] leading-1 text-red-700 xs:text-[15px] xs:leading-0 mr-2">
+                                  <p className="w-full text-start m-0 p-0 font-AeonikProMedium text-[15px] md:text-[15px] leading-1 text-red-700 xs:text-[15px] xs:leading-0 mr-2">
                                     {parseInt(data?.cost?.discount_price)
                                       ?.toLocaleString()
                                       ?.split(",")
@@ -191,7 +191,7 @@ export default function FavouriteProducts() {
                                     {"  "}
                                     {t("currency")}
                                   </p>
-                                  <p className="w-full text-start m-0 p-0 text-[12px] mb-[4px] mt-[2px] line-through not-italic font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
+                                  <p className="w-full text-start m-0 p-0 text-[12px] mb-[4px] mt-[2px] line-through font-AeonikProRegular leading-3 text-[#8b8e99] ss:leading-1 md:text-[12px]">
                                     {parseInt(data?.cost?.price)
                                       ?.toLocaleString()
                                       ?.split(",")
@@ -202,7 +202,7 @@ export default function FavouriteProducts() {
                                 </figure>
                               ) : (
                                 <p
-                                  className="not-italic font-AeonikProMedium text-[15px] leading-4"
+                                  className=" font-AeonikProMedium text-[15px] md:mb-[6px] leading-4"
                                   style={{ color: "black" }}
                                 >
                                   {parseInt(data?.cost?.price)
