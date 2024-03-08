@@ -470,7 +470,7 @@ const ProductDetails = ({ data, shopsData }) => {
           </article>
         </section>
         <section className="w-full mb-8">
-          <p className="not-italic font-AeonikProMedium text-xl md:text-[22px] leading-7 text-TextTitle tracking-[1%]">
+          <p className="not-italic font-AeonikProMedium text-xl md:text-[22px] text-TextTitle">
             {languageDetector?.typeLang === "ru" && data?.product?.name_ru}
             {languageDetector?.typeLang === "uz" && data?.product?.name_uz}
           </p>
@@ -482,7 +482,7 @@ const ProductDetails = ({ data, shopsData }) => {
             <div className="w-1/2 flex items-center ">
               <article className="w-fit flex items-center ">
                 <MarketIcons colors={"#000"} />
-                <div className="not-italic flex items-center font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
+                <div className="not-italic flex items-center font-AeonikProMedium text-[14px]  text-black ml-2">
                   {t("shop")}:
                 </div>
               </article>
@@ -2016,7 +2016,10 @@ const ProductDetails = ({ data, shopsData }) => {
               {t("about_product")}
             </div>
             <article className="font-AeonikProRegular text-base">
-              {data?.product?.description_ru}
+              {languageDetector?.typeLang === "ru" &&
+                data?.product?.description_ru}
+              {languageDetector?.typeLang === "uz" &&
+                data?.product?.description_uz}
             </article>
           </div>
         </div>
@@ -2029,7 +2032,10 @@ const ProductDetails = ({ data, shopsData }) => {
                 }
               >
                 <BsCircleFill size={5} className="mx-2" />{" "}
-                {data?.product?.composition_ru}
+                {languageDetector?.typeLang === "ru" &&
+                  data?.product?.composition_ru}
+                {languageDetector?.typeLang === "uz" &&
+                  data?.product?.composition_uz}
               </li>
             </ul>
           </div>
