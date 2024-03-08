@@ -221,9 +221,8 @@ function MainPageSliders() {
         <section className="w-full box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
           {/* MAIN SLIDER */}
           <div
-            className={`w-full ss:h-0 ${
-              more ? "xs:h-0" : "xs:h-auto"
-            } overflow-hidden `}
+            className={`w-full ss:h-0 ${more ? "xs:h-0" : "xs:h-auto"
+              } overflow-hidden `}
           >
             {data?.getMainProductCard?.sections?.length > 6 ? (
               <Slider
@@ -294,7 +293,8 @@ function MainPageSliders() {
                       </div>
                       <article className="h-12.5 flex items-center justify-start">
                         <div className="not-italic flex font-AeonikProMedium text-base leading-4 text-black mt-3  ml-2">
-                          {data?.name_ru || "type"}
+                          {languageDetector?.typeLang === "ru" && data?.name_ru}
+                          {languageDetector?.typeLang === "uz" && data?.name_uz}
                           {data?.products_count > 999999 ? (
                             <p className="not-italic ml-2 font-AeonikProRegular text-xs leading-4 text-gray-500">
                               (999 999+)
@@ -315,9 +315,8 @@ function MainPageSliders() {
 
           {/* CAROUSEL HIDDEN BLOCK */}
           <div
-            className={`${
-              more ? "xs:grid" : "xs:hidden"
-            } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 `}
+            className={`${more ? "xs:grid" : "xs:hidden"
+              } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 `}
           >
             {data?.getMainProductCard?.sections?.map((data, i) => {
               if (more) {
