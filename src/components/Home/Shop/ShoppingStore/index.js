@@ -7,9 +7,11 @@ import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { UserRefreshTokenContext } from "../../../../ContextHook/UserRefreshToken";
 import { useNavigate } from "react-router-dom";
 import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
+import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 
 export default function ShoppingStore() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
 
   const [reFreshTokenFunc, setUserLogedIn] = useContext(
     UserRefreshTokenContext
@@ -40,7 +42,10 @@ export default function ShoppingStore() {
 
     axios
       .get(apiUrl, {
-        headers: { Authorization: `Token ${Cookies.get("DressmeUserToken")}` },
+        headers: {
+          'Accept-Language': languageDetector?.typeLang,
+          Authorization: `Token ${Cookies.get("DressmeUserToken")}`
+        },
         params: params,
       })
       .then((res) => {

@@ -12,10 +12,12 @@ import YandexLocationShopFilter from "./ShoppingStoreCategory/YandexLocationShop
 import LoadingNetwork from "../../../Loading/LoadingNetwork";
 import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
 import { useTranslation } from "react-i18next";
+import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 
 const ShoppingStoreOfficial = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
 
   const { t } = useTranslation("shops")
 
@@ -206,8 +208,11 @@ const ShoppingStoreOfficial = () => {
         params.append("colors[]", dataColor[index]);
       });
     axios
-      .get(`${url}/main/shops/${newFilterParamasId}?`, {
-        params: params,
+      .get(`${url}/main/shops/${newFilterParamasId}?`,  {
+        headers: {
+          'Accept-Language': languageDetector?.typeLang
+        },
+        params: params
       })
       .then((res) => {
         if (res?.status >= 200 && res?.status < 300) {

@@ -187,7 +187,10 @@ export default function CatalogItems() {
 
   const apiUrl = `https://api.dressme.uz/api/main/category/${newFilterParamasId}`;
   // setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
-
+  const headers = new Headers();
+  if (languageDetector && languageDetector.typeLang) {
+    headers.append('Accept-Language', languageDetector.typeLang);
+  }
   function fetchGetAllData() {
     let params = new URLSearchParams();
     dressInfo?.mainRegionId && !dressInfo?.mainSubRegionId && params.append("region", dressInfo?.mainRegionId);
@@ -243,7 +246,9 @@ export default function CatalogItems() {
         params.append("colors[]", dataColor[index]);
       });
 
-    fetch(`${apiUrl}?` + params)
+    fetch(`${apiUrl}?` + params, {
+      headers: headers
+    })
       .then((res) => res.json())
       .then((res) => {
         setFilterData(res);
