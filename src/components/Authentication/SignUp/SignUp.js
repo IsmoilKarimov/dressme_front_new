@@ -238,30 +238,35 @@ export default function SignUp() {
 
           <div className="pb-10 md:py-8 w-full mb-10 flex justify-center">
             <div className="max-w-[440px] w-[100%] h-fit  md:px-[40px] md:py-[32px] ss:p-5 border border-searchBgColor rounded-lg">
-              {languageDetector?.typeLang === "uz" && <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-[17px] ls:text-[19px] ll:text-[20px] leading-5 ss:text-start md:text-center  tracking-[0,16px] text-black">
-                Xush kelebsiz{" "}
-                <span className={`mr-1 ${dressInfo?.TextColorSeason}`}>
-                  Dressme
-                </span>
-                ga !
-              </div>}
-              {languageDetector?.typeLang === "ru" && <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-[17px] ls:text-[19px] ll:text-[20px] leading-5 ss:text-start md:text-center  tracking-[0,16px] text-black">
-                Добро пожаловать в{" "}
-                <span className={`${dressInfo?.TextColorSeason}`}>
-                  Dressme
-                </span>
-                !
-              </div>}
+              {languageDetector?.typeLang === "uz" && (
+                <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-[17px] ls:text-[19px] ll:text-[20px] leading-5 ss:text-start md:text-center  tracking-[0,16px] text-black">
+                  Xush kelebsiz{" "}
+                  <span className={`mr-1 ${dressInfo?.TextColorSeason}`}>
+                    Dressme
+                  </span>
+                  ga !
+                </div>
+              )}
+              {languageDetector?.typeLang === "ru" && (
+                <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-[17px] ls:text-[19px] ll:text-[20px] leading-5 ss:text-start md:text-center  tracking-[0,16px] text-black">
+                  Добро пожаловать в{" "}
+                  <span className={`${dressInfo?.TextColorSeason}`}>
+                    Dressme
+                  </span>
+                  !
+                </div>
+              )}
               {/* Gender Registration Section */}
               <div className="flex gap-4 mb-4">
                 <div
                   onClick={() => {
                     setState({ ...state, gender_id: 1 });
                   }}
-                  className={`cursor-pointer flex items-center justify-center text-[14px] font-AeonikProMedium w-full h-[80px] rounded-lg border border-[#007DCA] bg-[#E5F2FA] ${state?.gender_id === 1
-                    ? "border-[#007DCA] text-[#007DCA] bg-[#E5F2FA]"
-                    : "border-[#F2F2F2] bg-[#FCFCFC]"
-                    }`}
+                  className={`cursor-pointer flex items-center justify-center text-[14px] font-AeonikProMedium w-full h-[80px] rounded-lg border border-[#007DCA] bg-[#E5F2FA] ${
+                    state?.gender_id === 1
+                      ? "border-[#007DCA] text-[#007DCA] bg-[#E5F2FA]"
+                      : "border-[#F2F2F2] bg-[#FCFCFC]"
+                  }`}
                 >
                   <div className="flex flex-col items-center">
                     <div className="w-[32px] h-[32px] flex items-center justify-center mb-2">
@@ -275,10 +280,11 @@ export default function SignUp() {
                   onClick={() => {
                     setState({ ...state, gender_id: 2 });
                   }}
-                  className={`cursor-pointer flex items-center justify-center text-[14px] font-AeonikProMedium w-full h-[80px] rounded-lg border border-[#007DCA] bg-[#E5F2FA] ${state?.gender_id === 2
-                    ? "border-[#007DCA]  text-[#007DCA] bg-[#E5F2FA]"
-                    : "border-[#F2F2F2]  bg-[#FCFCFC]"
-                    }`}
+                  className={`cursor-pointer flex items-center justify-center text-[14px] font-AeonikProMedium w-full h-[80px] rounded-lg border border-[#007DCA] bg-[#E5F2FA] ${
+                    state?.gender_id === 2
+                      ? "border-[#007DCA]  text-[#007DCA] bg-[#E5F2FA]"
+                      : "border-[#F2F2F2]  bg-[#FCFCFC]"
+                  }`}
                 >
                   <div>
                     <div className="flex flex-col items-center">
@@ -353,7 +359,6 @@ export default function SignUp() {
                 )}
               </div>
               {/* Birth Registration Section */}
-
               <label
                 // htmlFor="bdate"
                 className="mb-[6px] font-AeonikProRegular text-sm flex items-center"
@@ -471,12 +476,16 @@ export default function SignUp() {
                   className="w-[40%] px-[17px] h-12 bg-btnBgColor border-r flex items-center justify-between cursor-pointer select-none group"
                   trigger="click"
                   content={contentMonth}
+                  placement={t("Smonth")}
                 >
                   <span
-                    className={` ${selectMonth?.text === t('Smonth')
-                      ? "text-closeColorBtn"
-                      : "text-black"
-                      } not-italic font-AeonikProMedium text-[15px] text-center mt-1 text-sm leading-4 `}
+                    className={` 
+                    ${
+                      selectMonth?.text === t("Smonth")
+                        ? "text-closeColorBtn"
+                        : "text-black"
+                    } 
+                    not-italic font-AeonikProMedium text-[15px] text-center mt-1 text-sm leading-4 `}
                   >
                     {selectMonth?.text}
                   </span>
@@ -484,8 +493,9 @@ export default function SignUp() {
                     <BiChevronUp
                       size={20}
                       style={{ color: "#c2c2c2" }}
-                      className={`${openMonth ? "rotate-[180deg]" : ""
-                        } duration-200`}
+                      className={`${
+                        openMonth ? "rotate-[180deg]" : ""
+                      } duration-200`}
                     />{" "}
                   </span>
                 </Popover>
@@ -500,7 +510,7 @@ export default function SignUp() {
                     <span>
                       <DatePicker
                         className="font-AeonikProMedium text-[15px] flex items-center text-black"
-                        placeholder={t('Syear')}
+                        placeholder={t("Syear")}
                         allowClear={false}
                         picker="year"
                         defaultValue={() => {
@@ -581,8 +591,9 @@ export default function SignUp() {
                       onChange={(e) =>
                         setState({ ...state, phoneNumber: e.target.value })
                       }
-                      className={`w-full px-4 h-full  flex items-center font-AeonikProMedium justify-center ${state?.phoneNumber ? "font-AeonikProMedium" : null
-                        } text-base leading-4 text-black`}
+                      className={`w-full px-4 h-full  flex items-center font-AeonikProMedium justify-center ${
+                        state?.phoneNumber ? "font-AeonikProMedium" : null
+                      } text-base leading-4 text-black`}
                       placeholder={"(97) 123-45-67"}
                     ></InputMask>
                   </div>
@@ -618,9 +629,7 @@ export default function SignUp() {
                   <span className="cursor-pointer">
                     {state?.eyesShow ? (
                       <AiOutlineEyeInvisible
-                        onClick={() =>
-                          setState({ ...state, eyesShow: false })
-                        }
+                        onClick={() => setState({ ...state, eyesShow: false })}
                         size={20}
                       />
                     ) : (
@@ -695,8 +704,9 @@ export default function SignUp() {
                   onClick={() => {
                     setState({ ...state, openModalEmailMessage: false });
                   }}
-                  className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${state?.openModalEmailMessage ? "" : "hidden"
-                    }`}
+                  className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+                    state?.openModalEmailMessage ? "" : "hidden"
+                  }`}
                 ></div>
                 {state?.openModalEmailMessage && (
                   <div className="fixed max-w-[490px] h-[275px]  p-3 bg-white rounded-lg  mx-auto w-full  z-[113] top-[50%] left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
@@ -743,7 +753,6 @@ export default function SignUp() {
               </button>
             </div>
           </div>
-
         </div>
       )}
     </div>

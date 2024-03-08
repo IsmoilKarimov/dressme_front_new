@@ -64,7 +64,7 @@ export default function CollectionCards() {
       return { ...current, ProductList: newArray };
     });
   };
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   function onHandleCardId(child, name) {
     navigate(`/product/${child}`);
     // navigate(`/product/${name?.split(' ')?.join('-')?.toLowerCase()}`);
@@ -73,12 +73,14 @@ export default function CollectionCards() {
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <div
         onClick={() => setOpenWearType(false)}
-        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openWearType ? "" : "hidden"
-          }`}
+        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+          openWearType ? "" : "hidden"
+        }`}
       ></div>
       <section
-        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openWearType ? "bottom-0" : "bottom-[-800px] z-0"
-          }`}
+        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+          openWearType ? "bottom-0" : "bottom-[-800px] z-0"
+        }`}
       >
         <WearType onClick={toggle} />
       </section>
@@ -128,18 +130,19 @@ export default function CollectionCards() {
           </section>
         ) : null}
 
-        <section className="w-full  md:hidden flex justify-start items-center my-5 ">
+        <section className="w-full  md:hidden flex justify-start items-center my-5">
           <div className="not-italic font-AeonikProMedium lg:w-fit lg:text-2xl xl:text-3xl flex items-center leading-6 text-black">
-          <p>{t("CCclothesText")}</p>
+            <p>{t("CCclothesText")}</p>
           </div>
         </section>
 
         <div className="w-full flex flex-col box-border ">
           <article
-            className={`flex flex-wrap justify-between md:justify-start ${data?.products?.length > 2
-                ? "mb-[20px] md:mb-[30px]"
+            className={`flex flex-wrap justify-between md:justify-start ${
+              data?.products?.length > 2
+                ? "mb-[20px] md:mb-[30px] md:mt-[50px]"
                 : "mb-[80px]"
-              } md:mx-0 md:mt-[50px] md:mb-0 gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 `}
+            } md:mx-0 md:mb-0 gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 `}
           >
             {data?.products?.length ? (
               data?.products?.map((data) => {
@@ -159,7 +162,7 @@ export default function CollectionCards() {
                 );
               })
             ) : (
-              <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[200px] ">
+              <div className="w-full flex items-center justify-center md:mb-[80px] font-AeonikProMedium text-2xl h-[200px] ">
                 {t("CCnotFound")}
               </div>
             )}
@@ -200,7 +203,7 @@ export default function CollectionCards() {
                   }}
                   className="w-[60%] md:w-[760px] h-[45px] md:h-[60px] active:opacity-80 md:active:scale-95 cursor-pointer not-italic font-AeonikProMedium text-[14px] md:text-base leading-4 text-center text-borderWinter flex items-center justify-center rounded-xl border border-borderWinter bg-btnBgColor"
                 >
-                   {t("CCmore")}{" "}
+                  {t("CCmore")}{" "}
                 </button>
               )}
             </div>
