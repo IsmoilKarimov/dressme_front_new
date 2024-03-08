@@ -222,7 +222,7 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
             className="flex justify-between flex-wrap w-full h-fit overflow-hidden"
           >
             {filteredData?.shop?.ratings?.map((allComments) => {
-              console.log(filteredData?.shop, "Allcomments");
+              // console.log(filteredData?.shop, "Allcomments");
               return (
                 <article
                   key={allComments.id}

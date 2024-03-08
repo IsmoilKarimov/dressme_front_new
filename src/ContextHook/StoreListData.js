@@ -1,12 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import Cookies from "js-cookie";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { UserRefreshTokenContext } from "./UserRefreshToken";
 
 export const StoreListDataContext = createContext();
 
 export const StoreListDataContextProvider = ({ children }) => {
   const [data, setData] = useState([]);
-
+  const [reFreshTokenFunc, setUserLogedIn] = useContext(
+    UserRefreshTokenContext
+  );
   //   let WishlistDataFromCookies = Cookies.get("WishList");
 
   //   const [wishList, setWishlist] = useState([]);
@@ -46,7 +49,7 @@ export const StoreListDataContextProvider = ({ children }) => {
         setData(res);
       },
       onError: (err) => {
-        console.log(err, "err");
+        // console.log(err, "err");
       },
       keepPreviousData: true,
       refetchOnWindowFocus: true,

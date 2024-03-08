@@ -53,20 +53,20 @@ export default function ProductComment({ data, refetch }) {
       {},
       {
         onSuccess: (res) => {
-          console.log(res, "RES");
+          // console.log(res, "RES");
           refetch();
           if (!res?.errors) {
             toast.success(res?.message);
           }
           if (res.errors) {
-            console.log(res?.message);
+            // console.log(res?.message);
             toast.error(res?.message);
           }
           rateRef.current.state.value = 1;
           textRef.current.value = null;
         },
         onError: (err) => {
-          console.log(err, "ERROR");
+          // console.log(err, "ERROR");
           rateRef.current.state.value = 1;
           textRef.current.value = null;
         },

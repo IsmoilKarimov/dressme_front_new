@@ -26,7 +26,7 @@ export default function FavouritByIdProduct() {
             })
         }
     }, []);
-    console.log(paramId, 'paramId');
+    // console.log(paramId, 'paramId');
     const breadcrumbItems = [
         { label_uz: 'Asosiy', label_ru: 'Главная', url: '/' },
         { label_uz: 'Sevimli', label_ru: 'Избранное', url: '/favourites' },

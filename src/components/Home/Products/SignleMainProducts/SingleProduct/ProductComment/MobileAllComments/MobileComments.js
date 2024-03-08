@@ -29,7 +29,7 @@ const MobileAllComments = () => {
 
   const params = useParams();
   const newId = params?.id?.replace(":", "");
-  console.log(newId);
+  // console.log(newId);
 
   const { refetch } = useQuery(
     ["get_mobile_comment"],
@@ -47,7 +47,7 @@ const MobileAllComments = () => {
         setData(res?.product);
       },
       onError: (err) => {
-        console.log(err, "err");
+        // console.log(err, "err");
       },
       keepPreviousData: true,
       refetchOnWindowFocus: true,
@@ -79,7 +79,7 @@ const MobileAllComments = () => {
       {},
       {
         onSuccess: (res) => {
-          console.log(res, "RES");
+          // console.log(res, "RES");
           if (res.status === 401 || res.status === 403) {
             reFreshTokenFunc();
             sendFunc();
@@ -89,14 +89,14 @@ const MobileAllComments = () => {
             toast.success(res?.message);
           }
           if (res.errors) {
-            console.log(res?.message);
+            // console.log(res?.message);
             toast.error(res?.message);
           }
           rateRef.current.state.value = 1;
           textRef.current.value = null;
         },
         onError: (err) => {
-          console.log(err, "ERROR");
+          // console.log(err, "ERROR");
           rateRef.current.state.value = 1;
           textRef.current.value = null;
         },

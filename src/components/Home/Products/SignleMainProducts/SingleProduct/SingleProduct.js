@@ -90,11 +90,11 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
           setSingleDataForCopy(res.data);
 
           setLoading(false);
-          console.log(res, 'singlepage res');
+          // console.log(res, 'singlepage res');
         })
         .catch((error) => {
           setLoading(false);
-          console.log(error, 'singlepage error');
+          // console.log(error, 'singlepage error');
         });
     }
   }, [paramsId?.product]);
@@ -114,7 +114,7 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
       })
       .catch((error) => {
         setLoading(false);
-        console.log(error);
+        // console.log(error);
       });
   };
 

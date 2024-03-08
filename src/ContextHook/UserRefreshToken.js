@@ -20,12 +20,12 @@ export const UserRefreshTokenContextProvider = ({ children }) => {
 
         if (data?.status === 200) {
           Cookies.set("DressmeUserToken", data?.data?.access_token);
-          console.log("token updated");
+          // console.log("token updated");
         } else {
           Cookies.remove("DressmeUserToken");
           Cookies.remove("DressmeUserRefreshToken");
           navigate("/sign_in");
-          console.log("Logged out");
+          // console.log("Logged out");
           window.location.reload();
         }
       } catch (error) {
@@ -36,13 +36,13 @@ export const UserRefreshTokenContextProvider = ({ children }) => {
           Cookies.remove("DressmeUserToken");
           Cookies.remove("DressmeUserRefreshToken");
           navigate("/sign_in");
-          console.log("Logged out");
+          // console.log("Logged out");
           window.location.reload();
         } else {
           Cookies.remove("DressmeUserToken");
           Cookies.remove("DressmeUserRefreshToken");
           navigate("/sign_in");
-          console.log("Logged out");
+          // console.log("Logged out");
           window.location.reload();
         }
       }
