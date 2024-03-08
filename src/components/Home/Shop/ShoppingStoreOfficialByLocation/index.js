@@ -181,7 +181,7 @@ const ShoppingStoreOfficialByLocation = () => {
 
 
   const url = `https://api.dressme.uz/api`;
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (filteredData) {
       setLoading(false)
