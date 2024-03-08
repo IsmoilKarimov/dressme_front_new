@@ -123,10 +123,7 @@ function BottomHeader() {
     data?.getMainProductCard?.budget?.min_price,
     data?.getMainProductCard?.budget?.max_price,
   ]);
-  console.log(
-    data?.getMainProductCard?.budget, "data",
-    values, 'values',
-    '-------------------');
+ 
   useEffect(() => {
     if (state?.showColour) {
       document.body.style.overflow = "hidden";
