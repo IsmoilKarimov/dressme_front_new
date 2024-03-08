@@ -72,7 +72,8 @@ export default function SignUp() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
+        'Accept': "application/json",
+        'Accept-Language': languageDetector?.typeLang
       },
       body: JSON.stringify({
         name: state?.firstName,

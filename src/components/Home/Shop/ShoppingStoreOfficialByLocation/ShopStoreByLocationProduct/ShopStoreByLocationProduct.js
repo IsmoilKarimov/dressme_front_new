@@ -19,7 +19,8 @@ export default function ShopStoreByLocationProduct() {
                     }
                     if (languageDetector?.typeLang === 'uz') {
                         setGetproductName(item?.name_uz)
-                    }                  }
+                    }
+                }
             })
         }
     }, []);
