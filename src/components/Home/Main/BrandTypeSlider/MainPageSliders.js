@@ -8,14 +8,16 @@ import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { useNavigate } from "react-router-dom";
 import { NoImg, ShowMoreBackIcon, SircleNext } from "../../../../assets/icons";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 
 function MainPageSliders() {
   const [data, setData] = useContext(HomeMainDataContext);
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const { t } = useTranslation(["homePage"]);
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
   // maindata
   const NextArrow = (props) => {
@@ -191,7 +193,7 @@ function MainPageSliders() {
             productShowSelectedLocation: foundElement,
             linkedFrom: "mainPageShopsList",
           });
-          navigate(`/shops/${name?.split(' ')?.join('-')?.toLowerCase()}`);
+          navigate(`/shops/${name?.split(" ")?.join("-")?.toLowerCase()}`);
         }
         if (!dressInfo?.mainSubRegionId) {
           setDressInfo({
@@ -200,19 +202,19 @@ function MainPageSliders() {
             productShowSelectedLocation: item?.approved_shop_locations[0],
             linkedFrom: "mainPageShopsList",
           });
-          navigate(`/shops/${name?.split(' ')?.join('-')?.toLowerCase()}`);
+          navigate(`/shops/${name?.split(" ")?.join("-")?.toLowerCase()}`);
         }
       });
   };
   const goSectionId = (nameru, nameuz) => {
     // to = {`/section/${data?.name_ru?.split(' ')?.join('-')?.toLowerCase()}`
-    if (languageDetector?.typeLang === 'ru') {
-      navigate(`/section/${nameru?.split(' ')?.join('-')?.toLowerCase()}`);
+    if (languageDetector?.typeLang === "ru") {
+      navigate(`/section/${nameru?.split(" ")?.join("-")?.toLowerCase()}`);
     }
-    if (languageDetector?.typeLang === 'uz') {
-      navigate(`/section/${nameuz?.split(' ')?.join('-')?.toLowerCase()}`);
+    if (languageDetector?.typeLang === "uz") {
+      navigate(`/section/${nameuz?.split(" ")?.join("-")?.toLowerCase()}`);
     }
-  }
+  };
 
   // console.log(languageDetector?.typeLang,'languageDetector');
   return (
@@ -221,8 +223,9 @@ function MainPageSliders() {
         <section className="w-full box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
           {/* MAIN SLIDER */}
           <div
-            className={`w-full ss:h-0 ${more ? "xs:h-0" : "xs:h-auto"
-              } overflow-hidden `}
+            className={`w-full ss:h-0 ${
+              more ? "xs:h-0" : "xs:h-auto"
+            } overflow-hidden `}
           >
             {data?.getMainProductCard?.sections?.length > 6 ? (
               <Slider
@@ -315,8 +318,9 @@ function MainPageSliders() {
 
           {/* CAROUSEL HIDDEN BLOCK */}
           <div
-            className={`${more ? "xs:grid" : "xs:hidden"
-              } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 `}
+            className={`${
+              more ? "xs:grid" : "xs:hidden"
+            } w-full h-fit grid grid-cols-3 xs:grid-cols-6 gap-2 xs:gap-[22px] overflow-hidden  my-0 py-0 `}
           >
             {data?.getMainProductCard?.sections?.map((data, i) => {
               if (more) {
@@ -405,7 +409,7 @@ function MainPageSliders() {
                 onClick={() => setMore(!more)}
               >
                 <p className="not-italic font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
-                  {more ? t('Text2') : t('Text1')}
+                  {more ? t("Text2") : t("Text1")}
                 </p>
                 <div className="ml-2 ">
                   {more ? (
@@ -424,7 +428,9 @@ function MainPageSliders() {
                       </span>
                     </div>
                   ) : (
-                    <SircleNext colors={dressInfo?.ColorSeason} />
+                    <span className="block rotate-90">
+                      <SircleNext colors={dressInfo?.ColorSeason} />
+                    </span>
                   )}
                 </div>
               </button>
@@ -437,7 +443,7 @@ function MainPageSliders() {
                 onClick={() => setMore(!more)}
               >
                 <p className="not-italic font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
-                  {more ? t('Text2') : t('Text1')}
+                  {more ? t("Text2") : t("Text1")}
                 </p>
                 <div className="ml-2 ">
                   {more ? (
@@ -456,7 +462,9 @@ function MainPageSliders() {
                       </span>
                     </div>
                   ) : (
-                    <SircleNext colors={dressInfo?.ColorSeason} />
+                    <span className="block rotate-90">
+                      <SircleNext colors={dressInfo?.ColorSeason} />
+                    </span>
                   )}
                 </div>
               </button>
