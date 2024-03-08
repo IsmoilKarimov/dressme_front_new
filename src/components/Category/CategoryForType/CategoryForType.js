@@ -219,6 +219,7 @@ function CategoryForType() {
     getRange?.min,
     getRange?.max,
     dressInfo?.mainSearchNameCategory,
+    languageDetector?.typeLang
   ]);
 
   const navigate = useNavigate();

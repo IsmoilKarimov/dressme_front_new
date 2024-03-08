@@ -76,6 +76,7 @@ export default function ShoppingStore() {
     dressInfo?.mainSearchNameshopMarket,
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
+    languageDetector?.typeLang
   ]);
 
   useEffect(() => {

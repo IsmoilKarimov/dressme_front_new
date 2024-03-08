@@ -296,6 +296,7 @@ export default function CatalogItems() {
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
     dressInfo?.mainSearchNameCatalog,
+    languageDetector?.typeLang
   ]);
 
   useEffect(() => {

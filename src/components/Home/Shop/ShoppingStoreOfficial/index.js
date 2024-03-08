@@ -262,12 +262,13 @@ const ShoppingStoreOfficial = () => {
     getUnderWearList,
     getOutWearList,
     getFootWearList,
-    getRating,
+    getRating, 
     getRange?.min,
     getRange?.max,
     data?.getMainProductCard,
     dressInfo?.mainSearchNameshop,
     data?.getMainProductCard?.shops,
+    languageDetector?.typeLang
   ]);
   useEffect(() => {
     if (filteredData) {
