@@ -41,8 +41,9 @@ export default function SignIn() {
     return fetch(`${url}/login`, {
       method: "POST",
       headers: {
-        Accept: "application/json",
+        'Accept': "application/json",
         "Content-type": "application/json",
+        'Accept-Language': languageDetector?.typeLang
       },
       body: JSON.stringify({
         email: state.email,
@@ -231,7 +232,7 @@ export default function SignIn() {
           className="mt-2 border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-SignInBgColor select-none rounded-lg active:scale-95	active:opacity-70 "
         >
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
-          {t("LsignIn")}
+            {t("LsignIn")}
           </span>
           <span>
             <SircleNext colors={"#fff"} />
@@ -246,7 +247,7 @@ export default function SignIn() {
           className="mt-3 border md:hidden cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-OpacitySignIn select-none rounded-lg active:scale-95	active:opacity-70 "
         >
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-black tracking-[0,16px]">
-          {t("LcreateAcc")}
+            {t("LcreateAcc")}
           </span>
         </NavLink>
       </form>

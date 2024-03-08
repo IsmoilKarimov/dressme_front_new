@@ -38,7 +38,7 @@ const ShoppingStoreOfficialByLocation = () => {
   const [openMobileFilter, setOpenMobileFilter] = useState(false);
   const [initalParamsId, setInitalParamsId] = useState(null);
   const [newFilterParamasId, setNewFilterParamasId] = useState();
-
+ 
   const [newFilterParamasIdCopy, setNewFilterParamasIdCopy] = useState();
   const toggleFilterOpen = React.useCallback(() => setFilterToggle(true), []);
   const toggleFilterClose = React.useCallback(() => setFilterToggle(false), []);
@@ -237,7 +237,6 @@ const ShoppingStoreOfficialByLocation = () => {
           setFilteredData(res?.data);
           setDressInfo({ ...dressInfo, filterDataProductList: res?.data });
           console.log(res?.data, 'category---res?.data');
-
         }
       })
       .catch((res) => {
@@ -247,9 +246,7 @@ const ShoppingStoreOfficialByLocation = () => {
           setFilteredData(null)
         }
         console.log(res, 'category---error');
-
         throw new Error(res || "something wrong");
-
         // setError(
         //   res.response?.data?.message || "An unexpected error occurred."
         // );
@@ -334,7 +331,6 @@ const ShoppingStoreOfficialByLocation = () => {
       setScreenSize(getCurrentDimension());
     };
     window.addEventListener("resize", updateDimension);
-
     return () => {
       window.removeEventListener("resize", updateDimension);
     };

@@ -7,10 +7,12 @@ import { Outlet, useLocation } from "react-router-dom";
 import NavbarBottomIndex from "./NavbarBottomIndex";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
+import { LanguageDetectorDress } from "../../language/LanguageItems";
 
 const Header = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData, , , page, setPage] = useContext(HomeMainDataContext);
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
 
   const [state, setState] = useState({
     getAllCardList: null,
@@ -65,8 +67,13 @@ const Header = () => {
   // ------------GET METHOD Main data -----------------\
   const typeFilter = String(dressInfo?.type)?.split("");
   const seasonId = Number(typeFilter?.shift());
+  const headers = new Headers();
+
   const fetchGetAllData = () => {
-    if(data?.getMainProductCard?.length==0){
+    if (languageDetector && languageDetector.typeLang) {
+      headers.append('Accept-Language', languageDetector.typeLang);
+    }
+    if (data?.getMainProductCard?.length == 0) {
       setData({ ...data, btnLoader: true, loader: true });
     }
     var params = new URLSearchParams();
@@ -88,7 +95,9 @@ const Header = () => {
     dressInfo?.mainRangePrice[1] &&
       params.append("budget[to]", dressInfo?.mainRangePrice[1]);
 
-    fetch(`${url}?` + params)
+    fetch(`${url}?` + params, {
+      headers: headers
+    })
       .then((res) => res.json())
       .then((res) => {
         setState({ ...state, getAllCardList: res });
@@ -116,7 +125,6 @@ const Header = () => {
           loader: false,
           btnLoader: false,
         });
-        console.log(err, "ERRORLIST");
       });
   };
 
@@ -189,15 +197,15 @@ const Header = () => {
 
         <div
           className={`${locationWindow !== "/locations"
-              ? "md:mt-[99px]"
-              : "mt-[0] h-0 overflow-hidden"
+            ? "md:mt-[99px]"
+            : "mt-[0] h-0 overflow-hidden"
             } `}
         >
           {!dressInfo?.yandexFullScreen && (
             <article
               className={`fixed bottom-0 w-full bg-white ${show
-                  ? "visible duration-500 z-[101]"
-                  : "visible duration-500 z-[101] translate-y-[100%]"
+                ? "visible duration-500 z-[101]"
+                : "visible duration-500 z-[101] translate-y-[100%]"
                 } block md:hidden`}
             >
               <NavMenu stateData={state} setStateData={setState} />
