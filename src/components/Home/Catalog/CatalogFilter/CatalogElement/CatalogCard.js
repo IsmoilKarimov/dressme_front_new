@@ -24,7 +24,7 @@ export default function CatalogCard({ filterData, setPageId, paramsId }) {
       return { ...current, ProductList: newArray };
     });
   };
-  console.log(paramsId, 'paramsId');
+  // console.log(paramsId, 'paramsId');
   const setPaginationFunc = (id) => {
     setPageId(+id);
   };

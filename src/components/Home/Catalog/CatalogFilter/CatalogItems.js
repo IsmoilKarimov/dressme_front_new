@@ -106,7 +106,7 @@ export default function CatalogItems() {
 
   const newId = paramId?.id?.replace(":", "");
   // languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz
-  console.log(newId, 'newId');
+  // console.log(newId, 'newId');
   useLayoutEffect(() => {
     if (languageDetector?.typeLang === 'ru') {
       if (newId === 'украшения-аксессуары') {

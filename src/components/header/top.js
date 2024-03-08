@@ -107,7 +107,7 @@ const TopHeader = () => {
         });
       },
       onError: (err) => {
-        console.log(err, "ERR-PROFILE");
+        // console.log(err, "ERR-PROFILE");
       },
       keepPreviousData: true,
       refetchOnWindowFocus: false,

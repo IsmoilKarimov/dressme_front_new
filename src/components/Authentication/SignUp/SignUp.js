@@ -213,7 +213,7 @@ export default function SignUp() {
       })}
     </div>
   );
-  console.log(languageDetector, 'languageDetector');
+  // console.log(languageDetector, 'languageDetector');
   return (
     <div className="mt-[80px] w-full">
       {loading ? (

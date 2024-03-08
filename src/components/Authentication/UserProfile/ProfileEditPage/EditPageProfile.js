@@ -108,7 +108,7 @@ const EditProfilePage = () => {
         })
         .catch((err) => {
           setLoading(false);
-          console.log(err);
+          // console.log(err);
           if (err?.response?.status === 401 || err?.response?.status === 403) {
             reFreshTokenFunc();
             // navigate("/sign_in");
@@ -169,10 +169,10 @@ const EditProfilePage = () => {
       })
       .catch((err) => {
         setLoading(false);
-        console.log(err);
+        // console.log(err);
         if (err?.response?.status === 401 || err?.response?.status === 403) {
           // reFreshTokenFunc();
-          console.log("401");
+          // console.log("401");
 
           // toast.error(`${err?.response?.data?.message}`, {
           //   position: "top-right",
@@ -271,7 +271,7 @@ const EditProfilePage = () => {
       })
       .then((res) => {
         if (res?.errors && res?.message) {
-          console.log(res, "Bu-Error send edit postttttt");
+          // console.log(res, "Bu-Error send edit postttttt");
           setState({ ...state, errorsGroup: res, activeEditPassword: false });
           setLoading(false);
           toast.error(`${res?.message}`, {
@@ -290,7 +290,7 @@ const EditProfilePage = () => {
             reFreshTokenFunc();
             sendEditedData();
             reFetchFunction();
-            console.log(res, "Bu-error edit posttttt");
+            // console.log(res, "Bu-error edit posttttt");
           } else {
             toast.success(`${res?.message}`, {
               position: "top-right",
@@ -302,7 +302,7 @@ const EditProfilePage = () => {
               progress: undefined,
               theme: "light",
             });
-            console.log(res, "Bu-success edit posttttt");
+            // console.log(res, "Bu-success edit posttttt");
           }
           setState({ ...state, errorsGroup: res, activeEditPassword: false });
           setLoading(false);
@@ -310,7 +310,7 @@ const EditProfilePage = () => {
       })
       .catch((err) => {
         setLoading(false);
-        console.log(err);
+        // console.log(err);
         if (err?.status === 401 || err?.status === 403) {
           reFreshTokenFunc();
         } else {
@@ -335,12 +335,12 @@ const EditProfilePage = () => {
       }),
     })
       .then((res) => {
-        console.log(res.status, "ffffffffffffffffff");
+        // console.log(res.status, "ffffffffffffffffff");
         return res.json();
       })
       .catch((err) => {
         setLoading(false);
-        console.log(err);
+        // console.log(err);
         if (err?.status === 401 || err?.status === 403) {
           reFreshTokenFunc();
         } else {
@@ -356,7 +356,7 @@ const EditProfilePage = () => {
       {},
       {
         onSuccess: (res) => {
-          console.log(res, "USER-EMAIL");
+          // console.log(res, "USER-EMAIL");
           if (res?.message && !res.errors) {
             if (res?.message === "Unauthenticated.") {
               reFreshTokenFunc();
@@ -401,7 +401,7 @@ const EditProfilePage = () => {
           }
         },
         onError: (err) => {
-          console.log(err);
+          // console.log(err);
         },
       }
     );

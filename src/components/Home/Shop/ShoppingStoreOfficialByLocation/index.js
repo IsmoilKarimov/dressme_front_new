@@ -103,15 +103,15 @@ const ShoppingStoreOfficialByLocation = () => {
   const paramsIDS = useParams();
   const newId = paramsIDS?.id.replace(":", "");
   const [data1, setdata1] = useState(null)
-  console.log(data?.getMainProductCard?.shops, 'category--data?.getMainProductCard?.shops');
-  console.log(newFilterParamasId, 'category--newFilterParamasId');
+  // console.log(data?.getMainProductCard?.shops, 'category--data?.getMainProductCard?.shops');
+  // console.log(newFilterParamasId, 'category--newFilterParamasId');
 
   const refreshLocationId = () => {
 
     data?.getMainProductCard?.shops?.map((item) => {
       if (item?.id === Number(newFilterParamasId)) {
         if (dressInfo?.mainSubRegionId) {
-          console.log('category---run1');
+          // console.log('category---run1');
           let foundElement = item?.approved_shop_locations.find(function (
             element
           ) {
@@ -126,7 +126,7 @@ const ShoppingStoreOfficialByLocation = () => {
           setdata1(foundElement?.id)
         }
         if (!dressInfo?.mainSubRegionId) {
-          console.log(item?.approved_shop_locations[0]?.id, 'category---run2');
+          // console.log(item?.approved_shop_locations[0]?.id, 'category---run2');
           setDressInfo({
             ...dressInfo,
             locationIdParams: item?.approved_shop_locations[0]?.id,
@@ -254,7 +254,7 @@ const ShoppingStoreOfficialByLocation = () => {
           setLoading(false);
           setFilteredData(res?.data);
           setDressInfo({ ...dressInfo, filterDataProductList: res?.data });
-          console.log(res?.data, 'category---res?.data');
+          // console.log(res?.data, 'category---res?.data');
         }
       })
       .catch((res) => {
@@ -263,7 +263,7 @@ const ShoppingStoreOfficialByLocation = () => {
           setLoading(false);
           setFilteredData(null)
         }
-        console.log(res, 'category---error');
+        // console.log(res, 'category---error');
         throw new Error(res || "something wrong");
       });
   };
@@ -321,23 +321,23 @@ const ShoppingStoreOfficialByLocation = () => {
     data?.getMainProductCard?.shops,
     languageDetector?.typeLang
   ]);
-  console.log(pageId,
-    discount,
-    dataColor?.length,
-    getGenderId,
-    discount,
-    getCategory,
-    getUnderWearList,
-    getOutWearList,
-    getFootWearList,
-    getRating,
-    getRange?.min,
-    getRange?.max,
-    // dressInfo?.locationIdParams,
-    dressInfo?.mainSearchNameshopLocation, "filtersss");
+  // console.log(pageId,
+  //   discount,
+  //   dataColor?.length,
+  //   getGenderId,
+  //   discount,
+  //   getCategory,
+  //   getUnderWearList,
+  //   getOutWearList,
+  //   getFootWearList,
+  //   getRating,
+  //   getRange?.min,
+  //   getRange?.max,
+  //   // dressInfo?.locationIdParams,
+  //   dressInfo?.mainSearchNameshopLocation, "filtersss");
   // console.log(dressInfo?.yandexGetMarketId, 'category---dressInfo?.yandexGetMarketId');
-  console.log(dressInfo?.locationIdParams, "category--- dressInfo?.locationIdParams");
-  console.log(initalParamsId, 'category---initalParamsId');
+  // console.log(dressInfo?.locationIdParams, "category--- dressInfo?.locationIdParams");
+  // console.log(initalParamsId, 'category---initalParamsId');
   // console.log(data?.selectedLoc, 'category---data?.selectedLoc ');
 
   useEffect(() => {

@@ -40,12 +40,12 @@ const UserProfilePage = () => {
     {
       onSuccess: (res) => {
         if (res) {
-          console.log(res, "PROFILE");
+          // console.log(res, "PROFILE");
           setProfileData(res);
         }
       },
       onError: (err) => {
-        console.log(err, "ERR-PROFILE");
+        // console.log(err, "ERR-PROFILE");
       },
       keepPreviousData: true,
       refetchOnWindowFocus: false,

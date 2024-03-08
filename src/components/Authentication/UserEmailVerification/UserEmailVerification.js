@@ -44,7 +44,7 @@ export default function UserEmailVerification() {
       .then((results) => results.json())
       .then((data) => {
         setState({ ...state, getVerfyMessage: data });
-        console.log(data, "Return Get method");
+        // console.log(data, "Return Get method");
       });
   }, []);
 
@@ -68,7 +68,7 @@ export default function UserEmailVerification() {
       {},
       {
         onSuccess: (res) => {
-          console.log(res, "RES-AUTH");
+          // console.log(res, "RES-AUTH");
           if (res?.message && !res.errors) {
             setState({ ...state, errorsGroup: res });
           } else if (res?.message && res?.errors) {
@@ -85,7 +85,7 @@ export default function UserEmailVerification() {
           }
         },
         onError: (err) => {
-          console.log(err, "ERR");
+          // console.log(err, "ERR");
           setState({ ...state, errorMessage: err?.message });
         },
       }

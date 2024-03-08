@@ -36,7 +36,7 @@ function ShowPageComment({
   const textRef = useRef();
   const rateRef = useRef();
 
-  console.log(filteredData?.shop?.id, 'storedata');
+  // console.log(filteredData?.shop?.id, 'storedata');
 
   const commentMutate = useMutation(() => {
     return fetch(`${url}/user-main/ratings/store-rating`, {
@@ -214,7 +214,7 @@ function ShowPageComment({
             className="flex justify-between flex-wrap w-full h-fit overflow-hidden"
           >
             {filteredData?.shop?.ratings?.map((allComments) => {
-              console.log(filteredData?.shop, "Allcomments");
+              // console.log(filteredData?.shop, "Allcomments");
               return (
                 <article
                   key={allComments.id}

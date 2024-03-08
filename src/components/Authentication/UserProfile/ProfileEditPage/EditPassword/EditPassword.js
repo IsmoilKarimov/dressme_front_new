@@ -47,7 +47,7 @@ export default function EditPassword({ onClick }) {
       {},
       {
         onSuccess: (res) => {
-          console.log(res, "RES");
+          // console.log(res, "RES");
           if (res.status === 401 || res.status === 403) {
             reFreshTokenFunc();
             SendNewPassword();
@@ -94,7 +94,7 @@ export default function EditPassword({ onClick }) {
           }
         },
         onError: (err) => {
-          console.log(err);
+          // console.log(err);
         },
       }
     );

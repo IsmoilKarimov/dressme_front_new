@@ -40,7 +40,7 @@ export default function ForgetPassword() {
         {},
         {
           onSuccess: (res) => {
-            console.log(res, "forgotPassword");
+            // console.log(res, "forgotPassword");
             if (res?.status == 200 || res?.ok) {
               setState({
                 ...state,
