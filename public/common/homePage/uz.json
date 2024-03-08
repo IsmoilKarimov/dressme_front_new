@@ -5,6 +5,15 @@
     "CCnotFound": "Hech narsa topilmadi ",
     "CCmore": "Ko'proq ko'rsatish ",
     "Bgender_is_selected": "Barchasi",
-    "CPsearchProd": "Mahsulotlarni qidirish "
-
+    "CPsearchProd": "Mahsulotlarni qidirish ",
+    "CPbycategory": "Kategoriyalar ",
+    "CPdelete": "Oʻchirish    ",
+    "CPbyprice": "Narxlar ",
+    "CPbycolor": "Ranglar ",
+    "CPbygender": " Jins ",
+    "CPfrom": "dan",
+    "CPto": "gacha",
+    "CPsumm": "so'm",
+    "CPclear": "Tozalash",
+    "CPready": "Tayyor"
 }

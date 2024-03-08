@@ -264,9 +264,8 @@ const ClothingParametr = () => {
       <section className="w-full">
         {/* Cateories */}
         <section
-          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
-            state?.clothesTypeMobile ? "w-[92%]" : "w-0"
-          }  `}
+          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${state?.clothesTypeMobile ? "w-[92%]" : "w-0"
+            }  `}
         >
           {state?.clothesTypeMobile && (
             <div className="fixed inset-0 z-10">
@@ -278,7 +277,7 @@ const ClothingParametr = () => {
                 <div className="relative w-full max-w-lg p-4 mx-auto bg-white rounded-md shadow-lg">
                   <div className="flex items-center justify-between border-b border-searchBgColor pb-3 ">
                     <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
-                      По категории
+                      {t("CPbycategory")}
                     </span>
                     <button
                       type=""
@@ -306,13 +305,11 @@ const ClothingParametr = () => {
                                 };
                               });
                             }}
-                            className={`${
-                              data?.id === dressInfo?.mainCategoryId
+                            className={`${data?.id === dressInfo?.mainCategoryId
                                 ? "text-borderWinter bg-[#F6F6F6]"
                                 : ""
-                            }  ${
-                              dressInfo?.TextHoverSeason
-                            } relative bg-bgCard text-base text-[#303030] font-AeonikProMedium hover:bg-[#F6F6F6] w-[100%] h-10 xs:h-12 rounded-lg cursor-pointer flex items-center justify-center hover:duration-300 hover:ease-linear `}
+                              }  ${dressInfo?.TextHoverSeason
+                              } relative bg-bgCard text-base text-[#303030] font-AeonikProMedium hover:bg-[#F6F6F6] w-[100%] h-10 xs:h-12 rounded-lg cursor-pointer flex items-center justify-center hover:duration-300 hover:ease-linear `}
                           >
                             {languageDetector?.typeLang === "ru" &&
                               data?.name_ru}
@@ -329,7 +326,7 @@ const ClothingParametr = () => {
                           onClick={() => onClearFilterCategoryId()}
                           className="flex items-center text-fullBlue active:scale-95  active:opacity-70 justify-center px-2 pt-1"
                         >
-                          Отключить
+                          {t("CPdelete")}
                         </button>
                       )}
                     </div>
@@ -342,9 +339,8 @@ const ClothingParametr = () => {
 
         {/* Prizes */}
         <section
-          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
-            state?.priceToggleMobile ? "w-[100%]" : "w-0"
-          }  `}
+          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${state?.priceToggleMobile ? "w-[100%]" : "w-0"
+            }  `}
         >
           {state?.priceToggleMobile && (
             <div className="fixed inset-0 z-10 ">
@@ -357,7 +353,7 @@ const ClothingParametr = () => {
                   <div className=" w-full h-[180px] m-0 ">
                     <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
                       <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
-                        По бюджету
+                      {t("CPbyprice")}
                       </span>
                       <span
                         onClick={() =>
@@ -374,35 +370,35 @@ const ClothingParametr = () => {
                     <div className="  flex flex-col rounded-lg  w-full pb-5 pt-6">
                       <div className="flex justify-between items-center mb-6 w-full px-2">
                         <div className="flex ">
-                          <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
-                            от
+                          <span className="hidden ll:flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
+                          {t("CPfrom")}
                           </span>
-                          <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                          <span className="flex items-center ls:ml-2 justify-center not-italic font-AeonikProMedium text-[14px] ll:text-base leading-3 text-center text-black">
                             <input
                               className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                               name="name"
                               value={Number(values[0]).toLocaleString()}
-                              // defaultValue={Number(
-                              //   data?.getMainProductCard?.budget?.min_price
-                              // ).toLocaleString()}
+                            // defaultValue={Number(
+                            //   data?.getMainProductCard?.budget?.min_price
+                            // ).toLocaleString()}
                             />{" "}
-                            сум
+                            {t("CPsumm")}
                           </span>
                         </div>
                         <div className="flex ">
-                          <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
-                            до
+                          <span className="hidden ll:flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
+                          {t("CPto")}
                           </span>
-                          <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                          <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-[14px] ll:text-base leading-3 text-center text-black">
                             <input
                               className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                               name="name"
                               value={Number(values[1]).toLocaleString()}
-                              // defaultValue={Number(
-                              //   data?.getMainProductCard?.budget?.max_price
-                              // ).toLocaleString()}
+                            // defaultValue={Number(
+                            //   data?.getMainProductCard?.budget?.max_price
+                            // ).toLocaleString()}
                             />
-                            сум
+                            {t("CPsumm")}
                           </span>
                         </div>
                       </div>
@@ -418,9 +414,8 @@ const ClothingParametr = () => {
                         />
                       </div>
                       <div
-                        className={`flex items-center  mt-4 ${
-                          state?.clearPrice ? "justify-between" : "justify-end"
-                        }`}
+                        className={`flex items-center  mt-4 ${state?.clearPrice ? "justify-between" : "justify-end"
+                          }`}
                       >
                         {state?.clearPrice && (
                           <span
@@ -430,7 +425,7 @@ const ClothingParametr = () => {
                             }}
                             className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
                           >
-                            Сбросить
+                            {t("CPclear")}
                           </span>
                         )}
                         <span
@@ -459,7 +454,7 @@ const ClothingParametr = () => {
                           }}
                           className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
                         >
-                          Готово
+                          {t("CPready")}
                         </span>
                       </div>
                     </div>
@@ -472,9 +467,8 @@ const ClothingParametr = () => {
 
         {/* Colors */}
         <section
-          className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
-            state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
-          }`}
+          className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
+            }`}
         >
           {state?.selectColorToggleMobile && (
             <div className="fixed inset-0 z-10 ">
@@ -491,7 +485,7 @@ const ClothingParametr = () => {
                        `}
                   >
                     <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
-                      По цвету
+                    {t("CPbycolor")}
                     </span>
                     <button
                       className="py-2"
@@ -523,11 +517,10 @@ const ClothingParametr = () => {
                               });
                             }}
                             style={{ backgroundColor: data?.hex }}
-                            className={`rounded-full flex items-center justify-center w-[35px] h-[35px] ${
-                              data?.hex === dressInfo?.mainColorHex
+                            className={`rounded-full flex items-center justify-center w-[35px] h-[35px] ${data?.hex === dressInfo?.mainColorHex
                                 ? "border border-setTexOpacity flex items-center justify-center"
                                 : "border"
-                            }  `}
+                              }  `}
                           >
                             {dressInfo?.mainColorHex === data?.hex &&
                               data?.id !== 1 && (
@@ -559,7 +552,7 @@ const ClothingParametr = () => {
                         onClick={() => ClearColorId()}
                         className="flex items-center text-fullBlue active:scale-95  active:opacity-70 justify-center  px-4"
                       >
-                        Отключить
+                        {t("CPdelete")}
                       </button>
                     )}
                   </div>
@@ -571,9 +564,8 @@ const ClothingParametr = () => {
 
         {/* Gender BUTTONS */}
         <section
-          className={`w-full h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
-            state?.genderMobile ? "w-[92%]" : "w-0"
-          }`}
+          className={`w-full h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${state?.genderMobile ? "w-[92%]" : "w-0"
+            }`}
         >
           {state?.genderMobile && (
             <div className="fixed inset-0 z-10 ">
@@ -588,7 +580,7 @@ const ClothingParametr = () => {
                        `}
                   >
                     <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
-                      По полу
+                    {t("CPbygender")}
                     </span>
                     <button
                       className="py-2"
@@ -629,15 +621,14 @@ const ClothingParametr = () => {
                                         };
                                       });
                                     }}
-                                    className={`${
-                                      item?.id == dressInfo?.mainGenderId
+                                    className={`${item?.id == dressInfo?.mainGenderId
                                         ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
                                         : " bg-btnBgColor text-black h-full"
-                                    } px-5  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
+                                      } px-4 ls:px-5  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
                                   >
                                     <span>{item?.anyIcons}</span>
                                     {item?.id === 0 && (
-                                      <span className="ml-2 not-italic whitespace-nowrap text-sm font-AeonikProMedium tracking-wide	leading-5">
+                                      <span className="ls:ml-2 not-italic whitespace-nowrap text-[12px] ls:text-sm font-AeonikProMedium tracking-wide	leading-5">
                                         {t("Bgender_is_selected")}
                                       </span>
                                     )}
