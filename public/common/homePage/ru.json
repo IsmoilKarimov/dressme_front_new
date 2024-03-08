@@ -5,5 +5,16 @@
     "CCnotFound": "Ничего не найдено",
     "CCmore": "Показать ещё",
     "Bgender_is_selected": "Все",
-    "CPsearchProd": "Искать товары "
+    "CPsearchProd": "Искать товары ",
+
+    "CPbycategory": "По категории ",
+    "CPdelete": "Отключить ",
+    "CPbyprice": "По бюджету ",
+    "CPbycolor": "По цвету ",
+    "CPbygender": " По полу ",
+    "CPfrom": "от",
+    "CPto": "до",
+    "CPsumm": "сум",
+    "CPclear": "Сбросить",
+    "CPready": "Готово"
 }
