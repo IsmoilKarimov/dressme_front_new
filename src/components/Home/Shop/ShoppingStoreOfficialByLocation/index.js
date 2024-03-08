@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import ShoppingStoreOfficialTop from "./ShoppingStoreOfficialTop/ShoppingStoreOfficialTop";
 import ShowPageComment from "./ShowPageComment/ShowPageComment";
 import { GoBackIcon } from "../../../../assets/icons";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import ShopOfficialCard from "./ShoppingStoreCategory/ShopOfficialCards/ShopOfficialCard";
@@ -12,12 +12,14 @@ import LoadingNetwork from "../../../Loading/LoadingNetwork";
 import YandexLocationShop from "./ShoppingStoreCategory/YandexLocationShop/YandexLocationShop";
 import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
 import { useTranslation } from "react-i18next";
+import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 
 const ShoppingStoreOfficialByLocation = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
 
   const { t } = useTranslation("shops")
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
 
   // const [error, setError] = useState(false);
   const [openTabComment, setOpenTabComment] = useState(false);
@@ -38,7 +40,7 @@ const ShoppingStoreOfficialByLocation = () => {
   const [openMobileFilter, setOpenMobileFilter] = useState(false);
   const [initalParamsId, setInitalParamsId] = useState(null);
   const [newFilterParamasId, setNewFilterParamasId] = useState();
- 
+
   const [newFilterParamasIdCopy, setNewFilterParamasIdCopy] = useState();
   const toggleFilterOpen = React.useCallback(() => setFilterToggle(true), []);
   const toggleFilterClose = React.useCallback(() => setFilterToggle(false), []);
@@ -229,7 +231,10 @@ const ShoppingStoreOfficialByLocation = () => {
 
     axios
       .get(`${url}/main/shops/${dressInfo?.yandexGetMarketId}?`, {
-        params: params,
+        headers: {
+          'Accept-Language': languageDetector?.typeLang
+        },
+        params: params
       })
       .then((res) => {
         if (res?.status >= 200 && res?.status < 300) {
@@ -306,7 +311,7 @@ const ShoppingStoreOfficialByLocation = () => {
     dressInfo?.mainSearchNameshopLocation,
     // data?.getMainProductCard?.shops
   ]);
-  
+
   // console.log(dressInfo?.yandexGetMarketId, 'category---dressInfo?.yandexGetMarketId');
   // console.log(dressInfo?.locationIdParams, "category--- dressInfo?.locationIdParams");
   // console.log(filteredData, 'category---filteredData');
@@ -374,15 +379,13 @@ const ShoppingStoreOfficialByLocation = () => {
                 onClick={() => {
                   setOpenMobileFilter(false);
                 }}
-                className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-                  openMobileFilter ? "" : "hidden"
-                }`}
+                className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter ? "" : "hidden"
+                  }`}
               ></section>
               {screenSize.width < 768 && (
                 <section
-                  className={`max-w-[440px] w-[100%]  mx-auto fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
-                    openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
-                  }`}
+                  className={`max-w-[440px] w-[100%]  mx-auto fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+                    }`}
                 >
                   <div className="h-[70vh] z-[114] w-full  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
                     <FilterList
@@ -410,18 +413,16 @@ const ShoppingStoreOfficialByLocation = () => {
                 <div className="w-full flex flex-col items-center justify-center">
                   {/* Products Section */}
                   <article
-                    className={`${
-                      openTabComment || openTabLocation ? "hidden" : "block"
-                    } w-full `}
+                    className={`${openTabComment || openTabLocation ? "hidden" : "block"
+                      } w-full `}
                   >
                     {/* <ShoppingStoreCategory filteredData={filteredData} /> */}
                     <section className="w-[100%] h-fit">
                       <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
                         {screenSize.width >= 768 && (
                           <div
-                            className={`${
-                              filterToggle ? "md:block" : "md:hidden"
-                            } hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}
+                            className={`${filterToggle ? "md:block" : "md:hidden"
+                              } hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}
                           >
                             <FilterList
                               paramsId={newId}
@@ -443,9 +444,8 @@ const ShoppingStoreOfficialByLocation = () => {
                         )}
 
                         <div
-                          className={` ${
-                            filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-                          } w-full h-full px-[10px] md:px-0`}
+                          className={` ${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+                            } w-full h-full px-[10px] md:px-0`}
                         >
                           {filteredData ? (
                             <ShopOfficialCard
@@ -465,9 +465,8 @@ const ShoppingStoreOfficialByLocation = () => {
 
                   {/* Comment Section For Shopping Page */}
                   <div
-                    className={`${
-                      openTabComment ? "block" : "hidden"
-                    } w-full pb-[88px] md:pb-0 md:pt-8`}
+                    className={`${openTabComment ? "block" : "hidden"
+                      } w-full pb-[88px] md:pb-0 md:pt-8`}
                   >
                     <ShowPageComment
                       filteredData={filteredData}
@@ -477,9 +476,8 @@ const ShoppingStoreOfficialByLocation = () => {
 
                   {/* Map Section */}
                   <div
-                    className={`${
-                      openTabLocation && !openTabComment ? "block" : "hidden"
-                    } w-full text-3xl px-4 pb-[88px] pt-[12px] md:pb-0 md:pt-12`}
+                    className={`${openTabLocation && !openTabComment ? "block" : "hidden"
+                      } w-full text-3xl px-4 pb-[88px] pt-[12px] md:pb-0 md:pt-12`}
                   >
                     <button
                       onClick={() => {

@@ -107,6 +107,10 @@ function CategoryForType() {
 
   }, [paramsId?.id, data?.getMainProductCard?.sections]);
 
+  const headers = new Headers();
+  if (languageDetector && languageDetector.typeLang) {
+    headers.append('Accept-Language', languageDetector.typeLang);
+  }
   const [loading, setLoading] = useState(true);
   const url = `https://api.dressme.uz/api`;
   function fetchGetAllData() {
@@ -167,7 +171,9 @@ function CategoryForType() {
       params.append("sub_region", dressInfo?.mainSubRegionId);
 
 
-    fetch(`${url}/main/section/${newFilterParamasId}?` + params)
+    fetch(`${url}/main/section/${newFilterParamasId}?` + params, {
+      headers: headers
+    })
       .then((res) => res.json())
       .then((res) => {
         setFilterData(res);
