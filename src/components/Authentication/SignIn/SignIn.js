@@ -10,12 +10,14 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { UserRefreshTokenContext } from "../../../ContextHook/UserRefreshToken";
 import { useTranslation } from "react-i18next";
+import { LanguageDetectorDress } from "../../../language/LanguageItems";
 
 export default function SignIn() {
   const [reFreshTokenFunc, setUserLogedIn] = useContext(
     UserRefreshTokenContext
   );
   const { i18n, t } = useTranslation('authen')
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
 
   const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
@@ -55,7 +57,6 @@ export default function SignIn() {
       {},
       {
         onSuccess: (res) => {
-          console.log(res, "RES-LOGIN");
           if (res?.message && res.errors !== true) {
             setState({ ...state, errorsGroup: res });
           } else if (res?.message && res?.errors === true) {

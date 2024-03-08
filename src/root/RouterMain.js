@@ -10,8 +10,9 @@ import LoadingNetwork from "../components/Loading/LoadingNetwork";
 import ShoppingStore from "../components/Home/Shop/ShoppingStore";
 import { CatalogMobile } from "../components/Home/Catalog/CatalogMobile/CatalogMobile";
 import CatalogByIdProduct from "../components/Home/Catalog/CatalogFilter/CatalogByIdProduct/CatalogByIdProduct";
+// import FavouriteByIdProduct from "../components/Home/Favorite/FavouriteByIdProduct/FavouriteByIdProduct";
 // import ShopStoreByLocationProduct from "../components/Home/Shop/ShoppingStoreOfficialByLocation/ShopStoreByLocationProduct/ShopStoreByLocationProduct";
-
+import FavouriteByIdProduct from "../components/Home/Favorite/FavouriteByIdProduct/FavouritByIdProduct"
 const HomeIndex = React.lazy(() => import("../components/Home/Main"));
 const SingleMainProduct = React.lazy(() =>
   import("../components/Home/Products/SignleMainProducts")
@@ -190,6 +191,20 @@ const RouterMain = () => {
               }
             >
               <Favourites />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/favourites/:product"
+          element={
+            <Suspense
+              fallback={
+                <div className="w-full h-full flex items-center justify-center">
+                  <LoadingNetwork />
+                </div>
+              }
+            >
+              <FavouriteByIdProduct />
             </Suspense>
           }
         />

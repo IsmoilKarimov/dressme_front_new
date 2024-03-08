@@ -25,7 +25,7 @@ export default function FavouriteProducts() {
   const onColorChecked = () => {};
   const navigate = useNavigate();
   const goDetail = (id) => {
-    navigate(`/product/${id}`);
+    navigate(`/favourites/${id}`);
   };
 
   const [languageDetector, setLanguageDetector] = useContext(

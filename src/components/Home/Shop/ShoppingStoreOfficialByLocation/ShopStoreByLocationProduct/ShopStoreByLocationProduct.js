@@ -2,17 +2,24 @@ import React, { useContext, useLayoutEffect, useState } from 'react'
 import { SingleProduct } from '../../../Products/SignleMainProducts/SingleProduct/SingleProduct'
 import { useParams } from 'react-router-dom';
 import { dressMainData } from '../../../../../ContextHook/ContextMenu';
+import { LanguageDetectorDress } from '../../../../../language/LanguageItems';
 
 export default function ShopStoreByLocationProduct() {
     const [dressInfo] = useContext(dressMainData);
     const [getproductName, setGetproductName] = useState(null);
     const params = useParams();
+    const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+
     useLayoutEffect(() => {
         if (dressInfo?.filterDataProductList?.products?.data) {
             dressInfo?.filterDataProductList?.products?.data?.map(item => {
                 if (params?.product == item?.id) {
-                    setGetproductName(item?.name_ru)
-                }
+                    if (languageDetector?.typeLang === 'ru') {
+                        setGetproductName(item?.name_ru)
+                    }
+                    if (languageDetector?.typeLang === 'uz') {
+                        setGetproductName(item?.name_uz)
+                    }                  }
             })
         }
     }, []);
