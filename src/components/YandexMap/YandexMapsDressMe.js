@@ -253,7 +253,7 @@ function YandexMapsDressMe() {
           <div
             className={`fixed w-full bg-white rounded-t-[12px] z-[116] left-0 right-0 overflow-hidden  ${
               dressInfo?.yandexOpenMarketLocation
-                ? "h-[570px] bottom-0 ease-linear duration-300 "
+                ? "h-[570px] overflow-y-auto bottom-0 ease-linear duration-300 "
                 : "h-0 bottom-0 ease-linear duration-300 "
             }  ease-linear duration-300 `}
           >

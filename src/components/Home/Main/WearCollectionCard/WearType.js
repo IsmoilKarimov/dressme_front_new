@@ -8,7 +8,9 @@ import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 const WearType = ({ onClick, title }) => {
   const [selectedData, setSelectedData] = useContext(MobileSelectedDataContext);
   const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
   let idMap = new Map();
   let uniqueArray = [];
@@ -27,8 +29,8 @@ const WearType = ({ onClick, title }) => {
 
   return (
     <div className="max-w-[440px] w-[100%] mx-auto bg-white shadow-navMenuShadov  overflow-hidden h-fit rounded-t-[12px]">
-      <section className="h-[52px] w-full bg-btnBgColor border-b border-searchBgColor flex items-center justify-between px-4">
-        <p className="break-all pr-2">
+      <section className="py-4 w-full bg-btnBgColor border-b border-searchBgColor flex items-center justify-between px-4">
+        <p className="break-all leading-5 pr-2">
           {languageDetector?.typeLang === "ru" && selectedData?.name_ru}
           {languageDetector?.typeLang === "uz" && selectedData?.name_uz}
         </p>

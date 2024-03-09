@@ -14,9 +14,11 @@ import { LanguageDetectorDress } from "../../../../../language/LanguageItems";
 const ShoppingBrands = ({ loading, setLoading }) => {
   const navigate = useNavigate();
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
-  const { t } = useTranslation("shops")
+  const { t } = useTranslation("shops");
 
   const goDetail = (id, name) => {
     // console.log(name?.split(' ')?.join('-'), "name");
@@ -30,12 +32,15 @@ const ShoppingBrands = ({ loading, setLoading }) => {
           ) {
             return Number(element.sub_region_id) === dressInfo?.mainSubRegionId;
           });
-          setDressInfo({ ...dressInfo, locationIdParams: foundElement?.id, });
-          navigate(`/shops/${name?.split(' ')?.join('-')?.toLowerCase()}`);
+          setDressInfo({ ...dressInfo, locationIdParams: foundElement?.id });
+          navigate(`/shops/${name?.split(" ")?.join("-")?.toLowerCase()}`);
         }
         if (!dressInfo?.mainSubRegionId) {
-          setDressInfo({ ...dressInfo, locationIdParams: item?.approved_shop_locations[0]?.id, });
-          navigate(`/shops/${name?.split(' ')?.join('-')?.toLowerCase()}`);
+          setDressInfo({
+            ...dressInfo,
+            locationIdParams: item?.approved_shop_locations[0]?.id,
+          });
+          navigate(`/shops/${name?.split(" ")?.join("-")?.toLowerCase()}`);
         }
       });
   };
@@ -78,10 +83,10 @@ const ShoppingBrands = ({ loading, setLoading }) => {
                           backgroundSize: "contain",
                           backgroundRepeat: "no-repeat",
                         }}
-                        className="w-[80px] h-[80px] overflow-hidden md:w-[120px] md:h-[120px] md:ml-10 rounded-full border border-searchBgColor flex items-center justify-center bg-white"
+                        className="min-w-[80px] min-h-[80px] overflow-hidden md:w-[120px] md:h-[120px] md:ml-10 rounded-full border border-searchBgColor flex items-center justify-center bg-white"
                       ></figure>
                       <div className="flex flex-col ml-4 md:ml-10">
-                        <p className="text-base ll:text-lg md:text-xl font-AeonikProMedium mb-[5px] md:mb-3">
+                        <p className="break-all text-base ll:text-lg md:text-xl font-AeonikProMedium mb-[5px] md:mb-3">
                           {data?.name || null}
                         </p>
                         <div className="flex items-center md:justify-between">
@@ -120,8 +125,10 @@ const ShoppingBrands = ({ loading, setLoading }) => {
                       <div className="w-fit md:w-[250px] h-9 md:h-12 flex items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white px-5 rounded-lg md:ml-10">
                         <DeliveryStoreIcon />
                         <p className="text-[13px] md:text-base font-AeonikProMedium text-[#2c2c2c] ml-3">
-                          {languageDetector?.typeLang === 'ru' && data?.delivery?.name_ru}
-                          {languageDetector?.typeLang === 'uz' && data?.delivery?.name_uz}
+                          {languageDetector?.typeLang === "ru" &&
+                            data?.delivery?.name_ru}
+                          {languageDetector?.typeLang === "uz" &&
+                            data?.delivery?.name_uz}
                         </p>
                       </div>
                       <div className="flex items-center md:ml-[88px] md:mt-0">
