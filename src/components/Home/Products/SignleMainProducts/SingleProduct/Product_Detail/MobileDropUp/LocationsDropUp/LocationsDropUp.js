@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
-import {
-  MenuCloseIcons,
-} from "../../../../../../../../assets/icons";
+import { MenuCloseIcons } from "../../../../../../../../assets/icons";
 import { Radio } from "antd";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../../../../../language/LanguageItems";
@@ -21,7 +19,7 @@ function LocationDropUp({
     LanguageDetectorDress
   );
 
-  const { t } = useTranslation("products")
+  const { t } = useTranslation("products");
 
   return (
     <main>
@@ -38,7 +36,7 @@ function LocationDropUp({
               style={{
                 width: "100%",
               }}
-              value={selectedLocation?.id}
+              // value={selectedLocation?.id}
               defaultValue={selectedLocation?.id}
             >
               {existRegions.map((item, i) => {
