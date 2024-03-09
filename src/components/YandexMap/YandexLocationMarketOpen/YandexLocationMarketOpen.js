@@ -26,7 +26,7 @@ function YandexLocationMarketOpen({
 }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
-  const { i18n, t } = useTranslation('yandexmap')
+  const { i18n, t } = useTranslation("yandexmap");
 
   const navigate = useNavigate();
   const openShoppingChild = () => {
@@ -151,11 +151,11 @@ function YandexLocationMarketOpen({
               <div className="relative w-full flex items-center justify-between">
                 <div className="w-fit flex items-center gap-x-3">
                   {" "}
-                  <span className="not-italic font-AeonikProMedium ml-[10px] text-xl leading-5 text-fullBlue ">
+                  <span className="break-all py-1 not-italic font-AeonikProMedium ml-[10px] text-xl leading-5 text-fullBlue ">
                     {data?.shop?.name}
                   </span>
                   {data?.shop?.overall_rating && (
-                    <div className="w-fit flex items-center gap-x-[2px] ">
+                    <div className="w-fit flex items-center gap-x-[2px] mr-2 md:mr-4">
                       <span className="font-AeonikProMedium">
                         <StarIcons />
                       </span>

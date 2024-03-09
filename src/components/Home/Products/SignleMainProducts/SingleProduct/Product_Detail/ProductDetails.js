@@ -470,7 +470,7 @@ const ProductDetails = ({ data, shopsData }) => {
           </article>
         </section>
         <section className="w-full mb-8">
-          <p className="not-italic font-AeonikProMedium text-xl md:text-[22px] text-TextTitle">
+          <p className="not-italic font-AeonikProMedium text-xl md:text-[22px] text-TextTitle break-all">
             {languageDetector?.typeLang === "ru" && data?.product?.name_ru}
             {languageDetector?.typeLang === "uz" && data?.product?.name_uz}
           </p>
@@ -495,7 +495,7 @@ const ProductDetails = ({ data, shopsData }) => {
                       data?.product?.shop?.name
                     );
                   }}
-                  className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%] border-b border-black"
+                  className="break-all mr-2 not-italic text-left font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%] border-b border-black"
                 >
                   {data?.product?.shop?.name}
                 </button>
@@ -1466,7 +1466,7 @@ const ProductDetails = ({ data, shopsData }) => {
                       data?.product?.shop?.name
                     );
                   }}
-                  className="not-italic font-AeonikProRegular text-[14px]  text-black tracking-[1%] border-b border-black"
+                  className="not-italic break-all text-left font-AeonikProRegular text-[14px]  text-black tracking-[1%] border-b border-black"
                 >
                   {data?.product?.shop?.name}
                 </button>
