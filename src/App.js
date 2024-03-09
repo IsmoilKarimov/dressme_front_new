@@ -1,10 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import RouterMain from "./root/RouterMain";
 import { useLocation } from "react-router-dom";
 import { dressMainData } from "./ContextHook/ContextMenu";
 
 export default function App() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+
+  useEffect(() => {
+    if (localStorage.getItem("i18nextLng") === "en-US") {
+      localStorage.setItem("i18nextLng", "ru");
+      window.location.reload();
+    }
+  }, []);
 
   const location = useLocation();
 

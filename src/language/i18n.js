@@ -8,7 +8,7 @@ i18n.use(Backend).use(LanguageDetector).use(initReactI18next).init({
     backend: {
         loadPath: "/common/{{ns}}/{{lng}}.json"
     },
-    fallbackLng: "en",
+    fallbackLng: "ru",
     debug: false,
     ns: ["homePage", "shopLocation",'authen','catalog','yandexmap','category','favourite','footer','header','shops', "products"],
     interpolation: {
