@@ -12,7 +12,9 @@ import { LanguageDetectorDress } from "../../language/LanguageItems";
 const Header = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData, , , page, setPage] = useContext(HomeMainDataContext);
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
   const [state, setState] = useState({
     getAllCardList: null,
@@ -70,8 +72,13 @@ const Header = () => {
   const headers = new Headers();
 
   const fetchGetAllData = () => {
+    setData({
+      ...data,
+      btnLoader: true,
+    });
+
     if (languageDetector && languageDetector.typeLang) {
-      headers.append('Accept-Language', languageDetector.typeLang);
+      headers.append("Accept-Language", languageDetector.typeLang);
     }
     if (data?.getMainProductCard?.length == 0) {
       setData({ ...data, btnLoader: true, loader: true });
@@ -96,7 +103,7 @@ const Header = () => {
       params.append("budget[to]", dressInfo?.mainRangePrice[1]);
 
     fetch(`${url}?` + params, {
-      headers: headers
+      headers: headers,
     })
       .then((res) => res.json())
       .then((res) => {
@@ -143,31 +150,34 @@ const Header = () => {
   ]);
 
   return (
-    <header >
-      <section >
+    <header>
+      <section>
         {locationWindow !== "/locations" ? (
           <div className="w-full">
             <article
               className={`block md:hidden relative z-[100]
-              ${show
+              ${
+                show
                   ? "visible duration-500 z-[25]"
                   : "visible duration-500 z-[25] translate-y-[-100%]"
-                }`}
+              }`}
             >
               <MediumHeader />
             </article>
             <article
-              className={`fixed top-0  w-full bg-white block  
-              ${show
+              className={`fixed top-0  w-full bg-white block
+              ${
+                show
                   ? "visible duration-500 z-[25]"
                   : "visible duration-500 z-[25] translate-y-[-100%]"
-                }`}
+              }`}
             >
               <TopHeader />
               <MediumHeader stateData={state} setStateData={setState} />
               <div
-                className={`${scrollPost > -530 ? "" : "h-0 overflow-hidden"
-                  } visible duration-500`}
+                className={`${
+                  scrollPost > -530 ? "" : "h-0 overflow-hidden"
+                } visible duration-500`}
               >
                 <NavbarBottomIndex
                 // getGender={getGender}
@@ -196,17 +206,19 @@ const Header = () => {
         )}
 
         <div
-          className={`${locationWindow !== "/locations"
-            ? "md:mt-[99px]"
-            : "mt-[0] h-0 overflow-hidden"
-            } `}
+          className={`${
+            locationWindow !== "/locations"
+              ? "md:mt-[99px]"
+              : "mt-[0] h-0 overflow-hidden"
+          } `}
         >
           {!dressInfo?.yandexFullScreen && (
             <article
-              className={`fixed bottom-0 w-full bg-white ${show
-                ? "visible duration-500 z-[101]"
-                : "visible duration-500 z-[101] translate-y-[100%]"
-                } block md:hidden`}
+              className={`fixed bottom-0 w-full bg-white ${
+                show
+                  ? "visible duration-500 z-[101]"
+                  : "visible duration-500 z-[101] translate-y-[100%]"
+              } block md:hidden`}
             >
               <NavMenu stateData={state} setStateData={setState} />
             </article>
