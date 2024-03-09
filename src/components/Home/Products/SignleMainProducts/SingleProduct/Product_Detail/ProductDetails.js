@@ -563,7 +563,10 @@ const ProductDetails = ({ data, shopsData }) => {
               </article>
               <article className="w-fit ml-2">
                 <p className="not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]">
-                  {t("Uzbekistan")}
+                  {languageDetector?.typeLang === "ru" &&
+                    data?.product?.producer?.name_ru}
+                  {languageDetector?.typeLang === "uz" &&
+                    data?.product?.producer?.name_uz}
                 </p>
               </article>
             </div>
@@ -1472,7 +1475,7 @@ const ProductDetails = ({ data, shopsData }) => {
             <div className="w-full flex items-center mb-4">
               <div className="flex items-center text-[14px] font-AeonikProRegular">
                 <DeliveryIcons />
-                <span className="ml-[6px] inline">{t("delivery_method")}:</span>
+                <span className="ml-[6px] inline">{t("delivery")}:</span>
               </div>
               <div className="text-sm font-AeonikProRegular ml-[6px] text-black">
                 {languageDetector?.typeLang === "ru" &&
@@ -1576,7 +1579,10 @@ const ProductDetails = ({ data, shopsData }) => {
               </article>
               <article className="w-fit ml-[6px]">
                 <p className="not-italic font-AeonikProRegular text-[14px]  text-black ">
-                  {t("Uzbekistan")}
+                  {languageDetector?.typeLang === "ru" &&
+                    data?.product?.producer?.name_ru}
+                  {languageDetector?.typeLang === "uz" &&
+                    data?.product?.producer?.name_uz}
                 </p>
               </article>
             </div>

@@ -27,10 +27,10 @@ const WearType = ({ onClick, title }) => {
 
   return (
     <div className="max-w-[440px] w-[100%] mx-auto bg-white shadow-navMenuShadov  overflow-hidden h-fit rounded-t-[12px]">
-      <section className="h-[52px] w-full bg-btnBgColor border-b border-searchBgColor flex items-center  justify-between px-4">
-        <p>
-          {languageDetector?.typeLang === 'ru' && selectedData?.name_ru}
-          {languageDetector?.typeLang === 'uz' && selectedData?.name_uz}
+      <section className="h-[52px] w-full bg-btnBgColor border-b border-searchBgColor flex items-center justify-between px-4">
+        <p className="break-all pr-2">
+          {languageDetector?.typeLang === "ru" && selectedData?.name_ru}
+          {languageDetector?.typeLang === "uz" && selectedData?.name_uz}
         </p>
         <button onClick={onClick}>
           <MenuCloseIcons />
