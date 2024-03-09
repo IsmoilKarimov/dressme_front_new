@@ -144,7 +144,7 @@ const ShoppingStoreOfficialTop = ({
                   )}
                 </figure>
                 <div className="flex flex-col ml-8">
-                  <p className="text-xl font-AeonikProMedium mb-3 break-all">
+                  <p className="text-[20px] leading-none font-AeonikProMedium mb-3 break-all">
                     {filteredData?.shop?.name || null}
                   </p>
                   <div

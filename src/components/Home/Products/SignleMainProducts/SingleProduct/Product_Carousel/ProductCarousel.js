@@ -511,9 +511,9 @@ const ProductCarousel = ({ show, data }) => {
       ) : (
         <section className="w-full h-full flex flex-col">
           {/* 1 */}
-          <article className="w-full ll:max-w-[440px] h-full widthInherit mx-auto ">
+          <article className="w-full max-w-[440px] h-full widthInherit mx-auto ">
             <Slider
-              className="w-full ll:h-[482px] rounded-lg"
+              className="w-full h-[482px] rounded-lg"
               ref={slider1}
               {...settings}
             >
@@ -528,9 +528,9 @@ const ProductCarousel = ({ show, data }) => {
                             handleClickCarosuel(i);
                           }}
                         >
-                          <figure className="relative  w-full ll:h-[478px]  border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer ">
+                          <figure className="relative w-full h-[478px] overflow-hidden  border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer ">
                             <img
-                              className="w-full ll:h-full object-cover "
+                              className="w-full h-full object-cover "
                               src={data?.url_photo}
                               alt=""
                             />
@@ -560,7 +560,7 @@ const ProductCarousel = ({ show, data }) => {
                         }}
                         className="w-full "
                       >
-                        <figure className="relative w-full ll:h-[478px] object-cover overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
+                        <figure className="relative w-full h-[478px] object-cover overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
                           <img
                             className="w-full h-full object-cover"
                             src={data?.url_photo}
