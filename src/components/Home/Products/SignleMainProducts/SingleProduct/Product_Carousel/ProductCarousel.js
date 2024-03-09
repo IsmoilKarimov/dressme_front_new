@@ -534,19 +534,18 @@ const ProductCarousel = ({ show, data }) => {
                               src={data?.url_photo}
                               alt=""
                             />
-                            {photos_length > 1 ? (
-                              <div className="flex w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
+                            {filteredForModal?.length > 1 ? (
+                              <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
                                 <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
                                   <p className="h-full w-full text-center pt-[4px]">
                                     {" "}
-                                    {i + 1}
+                                    {indexPageSelected}
                                   </p>
                                   <span className="text-center pt-[2px]">
                                     /
                                   </span>
-
                                   <p className="h-full w-full text-center pt-[4px]">
-                                    {photos_length}
+                                    {filteredForModal?.length}
                                   </p>
                                 </span>
                               </div>
