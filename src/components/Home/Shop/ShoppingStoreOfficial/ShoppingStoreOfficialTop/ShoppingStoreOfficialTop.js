@@ -24,13 +24,15 @@ const ShoppingStoreOfficialTop = ({
   toggleFilterLeftOpen,
   toggleFilterLeftClose,
   filterLeftAction,
-  setOpenMobileFilter
+  setOpenMobileFilter,
 }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openLocationModal, setOpenLocationModal] = useState(false);
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
-  const { t } = useTranslation("shops")
+  const { t } = useTranslation("shops");
 
   const [locationList, setLocationList] = useState([]);
   const [selectLocation, setSelectLocation] = useState(
@@ -107,7 +109,7 @@ const ShoppingStoreOfficialTop = ({
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
         <div className="w-[100%] h-fit flex flex-col">
           {/* Top section */}
-          <div className="w-full flex flex-col border-[#F0F0F0]">
+          <div className="w-full flex flex-col border-[#F0F0F0] mt-4 md:mt-0">
             {filteredData?.shop?.url_background_photo && (
               <figure className="w-full h-[240px] md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
                 <img
@@ -128,7 +130,7 @@ const ShoppingStoreOfficialTop = ({
             >
               {/* 1 */}
               <div className="w-full md:w-[40%] flex h-[80px] md:h-fit items-center md:ml-[40px] mt-3 md:mt-0 ">
-                <figure className="w-[80px] md:w-[150px] h-[80px] md:h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white overflow-hidden">
+                <figure className="max-w-[80px] md:max-w-[150px] max-h-[80px] md:max-h-[150px] min-w-[80px] md:min-w-[150px] min-h-[80px] md:min-h-[150px] md:left-[40px] rounded-full border border-searchBgColor flex items-center justify-center bg-white overflow-hidden">
                   {filteredData?.shop?.url_logo_photo ? (
                     <img
                       src={filteredData?.shop?.url_logo_photo}
@@ -142,7 +144,7 @@ const ShoppingStoreOfficialTop = ({
                   )}
                 </figure>
                 <div className="flex flex-col ml-8">
-                  <p className="text-xl font-AeonikProMedium mb-3">
+                  <p className="text-xl font-AeonikProMedium mb-3 break-all">
                     {filteredData?.shop?.name || null}
                   </p>
                   <div
@@ -182,7 +184,7 @@ const ShoppingStoreOfficialTop = ({
                   }}
                   className="flex gap-x-2 items-center ml-3 w-[65%] md:w-full"
                 >
-                  <span className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer">
+                  <span className="flex items-center justify-center min-w-12 min-h-12 w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer">
                     <LocationColoursIcons colors={"#007DCA"} />
                   </span>
                   {filteredData?.shop?.approved_shop_locations
@@ -260,7 +262,7 @@ const ShoppingStoreOfficialTop = ({
                   }}
                   className="flex gap-x-2 items-center  w-[100%] "
                 >
-                  <span className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer">
+                  <span className="flex items-center justify-center min-w-12 min-h-12 w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer">
                     <LocationColoursIcons colors={"#007DCA"} />
                   </span>
                   {filteredData?.shop?.approved_shop_locations
