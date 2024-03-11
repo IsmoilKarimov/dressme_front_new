@@ -179,6 +179,8 @@ const ShoppingStoreOfficialByLocation = () => {
 
   }, []);
 
+  const typeFilter = String(dressInfo?.type)?.split("");
+  const seasonId = Number(typeFilter?.shift());
 
   const url = `https://api.dressme.uz/api`;
   const [loading, setLoading] = useState(true);
@@ -197,6 +199,7 @@ const ShoppingStoreOfficialByLocation = () => {
       params.append("keywords", dressInfo?.mainSearchNameshopLocation);
     getGenderId && params.append("gender", getGenderId);
     discount && params.append("discount", discount);
+    seasonId !== 5 && params.append("season", seasonId);
     getCategory && params.append("category", getCategory);
     getRating && params.append("rating", getRating);
     getFootWearList?.wear_size &&
@@ -303,12 +306,14 @@ const ShoppingStoreOfficialByLocation = () => {
         setLoading(true);
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     pageId,
     discount,
     dataColor?.length,
     getGenderId,
     discount,
+    seasonId,
     getCategory,
     getUnderWearList,
     getOutWearList,

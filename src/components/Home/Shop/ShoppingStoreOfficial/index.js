@@ -158,6 +158,9 @@ const ShoppingStoreOfficial = () => {
 
   const [loading, setLoading] = useState(true);
 
+  const typeFilter = String(dressInfo?.type)?.split("");
+  const seasonId = Number(typeFilter?.shift());
+
   const url = `https://api.dressme.uz/api`;
 
   const fetchGetAllData = () => {
@@ -170,6 +173,7 @@ const ShoppingStoreOfficial = () => {
     params.append("location_id", dressInfo?.locationIdParams);
     getGenderId && params.append("gender", getGenderId);
     discount && params.append("discount", discount);
+    seasonId !== 5 && params.append("season", seasonId);
     getCategory && params.append("category", getCategory);
     getRating && params.append("rating", getRating);
     getFootWearList?.wear_size &&
@@ -272,6 +276,7 @@ const ShoppingStoreOfficial = () => {
         setLoading(true);
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     newFilterParamasIdCopy,
     pageId,
@@ -279,6 +284,7 @@ const ShoppingStoreOfficial = () => {
     dataColor?.length,
     getGenderId,
     discount,
+    seasonId,
     getCategory,
     getUnderWearList,
     getOutWearList,
