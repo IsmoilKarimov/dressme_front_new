@@ -83,7 +83,7 @@ const ShoppingBrands = ({ loading, setLoading }) => {
                           backgroundSize: "contain",
                           backgroundRepeat: "no-repeat",
                         }}
-                        className="min-w-[80px] min-h-[80px] overflow-hidden md:w-[120px] md:h-[120px] md:ml-10 rounded-full border border-searchBgColor flex items-center justify-center bg-white"
+                        className="min-w-[80px] min-h-[80px] overflow-hidden md:min-w-[120px] md:min-h-[120px] md:ml-10 rounded-full border border-searchBgColor flex items-center justify-center bg-white"
                       ></figure>
                       <div className="flex flex-col ml-4 md:ml-10">
                         <p className="break-all text-base ll:text-lg md:text-xl font-AeonikProMedium mb-[5px] md:mb-3">
