@@ -41,6 +41,7 @@ const ShoppingStoreOfficialByLocation = () => {
   const [initalParamsId, setInitalParamsId] = useState(null);
   const [newFilterParamasId, setNewFilterParamasId] = useState();
 
+
   const [newFilterParamasIdCopy, setNewFilterParamasIdCopy] = useState();
   const toggleFilterOpen = React.useCallback(() => setFilterToggle(true), []);
   const toggleFilterClose = React.useCallback(() => setFilterToggle(false), []);
@@ -178,9 +179,24 @@ const ShoppingStoreOfficialByLocation = () => {
     });
 
   }, []);
+  const [seasonId, setSeasonId] = useState(null);
+  const [seasonIdCopy, setSeasonIdCopy] = useState(null);
+  useEffect(() => {
+    const typeFilter = String(dressInfo?.type)?.split("");
+    if (!seasonId) {
+      setSeasonId(Number(typeFilter?.shift()))
+    }
+    if (seasonId && Number(typeFilter?.shift()) !== seasonIdCopy){
+      setSeasonId(Number(typeFilter?.shift()))
+    }
+     setSeasonIdCopy(seasonId)
+    // const seasonId = Number(typeFilter?.shift());
 
-  const typeFilter = String(dressInfo?.type)?.split("");
-  const seasonId = Number(typeFilter?.shift());
+  }, [dressInfo?.type])
+
+  console.log(dressInfo?.type, 'seasonId--dressInfo?.type');
+  console.log(seasonId, 'seasonId');
+  console.log(seasonIdCopy, 'seasonId--seasonIdCopy');
 
   const url = `https://api.dressme.uz/api`;
   const [loading, setLoading] = useState(true);
@@ -298,14 +314,14 @@ const ShoppingStoreOfficialByLocation = () => {
         setLoading(true);
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     pageId,
     discount,
     dataColor?.length,
     getGenderId,
     discount,
-    seasonId,
+    dressInfo?.type,
     getCategory,
     getUnderWearList,
     getOutWearList,

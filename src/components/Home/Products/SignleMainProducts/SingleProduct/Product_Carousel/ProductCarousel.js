@@ -229,14 +229,12 @@ const ProductCarousel = ({ show, data }) => {
       <div className="w-full">
         <section
           onClick={() => setModalOfCarsouel(false)}
-          className={`fixed inset-0 z-[200] duration-200 w-full h-[100vh] bg-black opacity-60 ${
-            modalOfCarsouel ? "" : "hidden"
-          }`}
+          className={`fixed inset-0 z-[200] duration-200 w-full h-[100vh] bg-black opacity-60 ${modalOfCarsouel ? "" : "hidden"
+            }`}
         ></section>
         <section
-          className={`fixed z-[201] rounded-lg bg-white w-full md:w-fit h-fit mx-auto my-auto md:m-auto cursor-pointer flex flex-col items-center justify-center inset-0 ${
-            modalOfCarsouel ? "" : "hidden"
-          }`}
+          className={`fixed z-[201] rounded-lg bg-white w-full md:w-fit h-fit mx-auto my-auto md:m-auto cursor-pointer flex flex-col items-center justify-center inset-0 ${modalOfCarsouel ? "" : "hidden"
+            }`}
         >
           <button
             onClick={() => setModalOfCarsouel(false)}
@@ -252,47 +250,8 @@ const ProductCarousel = ({ show, data }) => {
             >
               {colorId
                 ? filteredForModal?.map((data, i) => {
-                    if (data?.product_color_id === colorId) {
-                      indexPage += 1;
-                      return (
-                        <article
-                          key={i}
-                          className="relative w-full h-full overflow-hidden"
-                        >
-                          <figure
-                            key={data?.id}
-                            // style={{
-                            //   backgroundImage: `url("${data?.url_photo}")`,
-                            //   backgroundColor: "rgba(0,0,0,0.6)",
-                            //   backgroundPosition: "center center",
-                            //   backgroundSize: "cover",
-                            //   backgroundRepeat: "no-repeat",
-                            // }}
-                            className="relative overflow-hidden h-full w-full md:h-[100vh] md:rounded-lg border md:border-green-700 border-searchBgColor bg-btnBgColor flex items-center justify-center"
-                          >
-                            <img
-                              src={data?.url_photo}
-                              alt=""
-                              className={`w-full h-[482px] md:h-fit object-contain border border-sky-700 overflow-hidden`}
-                            />
-                            <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
-                              <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
-                                <p className="h-full w-full text-center pt-[4px]">
-                                  {" "}
-                                  {indexPage}
-                                </p>
-                                <span className="text-center pt-[2px]">/</span>
-                                <p className="h-full w-full text-center pt-[4px]">
-                                  {filteredForModal?.length}
-                                </p>
-                              </span>
-                            </div>
-                          </figure>
-                        </article>
-                      );
-                    }
-                  })
-                : data?.product?.photos?.map((data, i) => {
+                  if (data?.product_color_id === colorId) {
+                    indexPage += 1;
                     return (
                       <article
                         key={i}
@@ -307,33 +266,71 @@ const ProductCarousel = ({ show, data }) => {
                           //   backgroundSize: "cover",
                           //   backgroundRepeat: "no-repeat",
                           // }}
-                          className="relative overflow-hidden h-full w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center "
+                          className="relative overflow-hidden h-full w-full md:h-[100vh] md:rounded-lg border md:border-green-700 border-searchBgColor bg-btnBgColor flex items-center justify-center"
                         >
                           <img
                             src={data?.url_photo}
                             alt=""
-                            className={`w-full h-[482px] md:h-fit object-contain overflow-hidden`}
+                            className={`w-full h-[482px] md:h-fit object-contain border border-sky-700 overflow-hidden`}
                           />
-                          <div
-                            className={` ${
-                              photos_length > 1 ? "flex" : "hidden"
-                            } first-letter:flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-8`}
-                          >
+                          <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
                             <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
                               <p className="h-full w-full text-center pt-[4px]">
                                 {" "}
-                                {i + 1}
+                                {indexPage}
                               </p>
                               <span className="text-center pt-[2px]">/</span>
                               <p className="h-full w-full text-center pt-[4px]">
-                                {photos_length}
+                                {filteredForModal?.length}
                               </p>
                             </span>
                           </div>
                         </figure>
                       </article>
                     );
-                  })}
+                  }
+                })
+                : data?.product?.photos?.map((data, i) => {
+                  return (
+                    <article
+                      key={i}
+                      className="relative w-full h-full overflow-hidden"
+                    >
+                      <figure
+                        key={data?.id}
+                        // style={{
+                        //   backgroundImage: `url("${data?.url_photo}")`,
+                        //   backgroundColor: "rgba(0,0,0,0.6)",
+                        //   backgroundPosition: "center center",
+                        //   backgroundSize: "cover",
+                        //   backgroundRepeat: "no-repeat",
+                        // }}
+                        className="relative overflow-hidden h-full w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center "
+                      >
+                        <img
+                          src={data?.url_photo}
+                          alt=""
+                          className={`w-full h-[482px] md:h-fit object-contain overflow-hidden`}
+                        />
+                        <div
+                          className={` ${photos_length > 1 ? "flex" : "hidden"
+                            } first-letter:flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-8`}
+                        >
+                          <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
+                            <p className="h-full w-full text-center pt-[4px]">
+                              {" "}
+                              {i + 1}
+                            </p>
+                            <span className="text-center pt-[2px]">/</span>
+                            <p className="h-full w-full text-center pt-[4px]">
+                              {photos_length}
+                            </p>
+                          </span>
+                        </div>
+                      </figure>
+                    </article>
+                  );
+                })}
             </Slider>
           </div>
         </section>
@@ -341,42 +338,13 @@ const ProductCarousel = ({ show, data }) => {
 
       {screenSize.width >= 768 ? (
         <section
-          className={`w-full h-[620px] flex flex-col md:flex-row md:gap-x-[10px] md:sticky duration-500 ${
-            show ? "visible z-20 top-[110px]" : "visible z-20 top-[16px]"
-          }`}
+          className={`w-full h-[620px] flex flex-col md:flex-row md:gap-x-[10px] md:sticky duration-500 ${show ? "visible z-20 top-[110px]" : "visible z-20 top-[16px]"
+            }`}
         >
           <article className="flex w-[93px] flex-col">
             {colorId
               ? filteredForModal?.map((data, i) => {
-                  if (data?.product_color_id === colorId) {
-                    return (
-                      <div
-                        key={i}
-                        onClick={() => {
-                          setSliderState(i);
-                        }}
-                        className="mb-2"
-                      >
-                        <figure
-                          key={data?.id}
-                          style={{
-                            backgroundImage: `url("${data?.url_photo}")`,
-                            backgroundColor: "rgba(0,0,0,0.6)",
-                            backgroundPosition: "center center",
-                            backgroundSize: "cover",
-                            backgroundRepeat: "no-repeat",
-                          }}
-                          className={`${
-                            sliderState === i
-                              ? "border-2 border-[#007DCA]"
-                              : "border border-searchBgColor"
-                          } !w-[90px] cursor-pointer !h-[120px] bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center`}
-                        ></figure>
-                      </div>
-                    );
-                  }
-                })
-              : data?.product?.photos?.map((data, i) => {
+                if (data?.product_color_id === colorId) {
                   return (
                     <div
                       key={i}
@@ -394,15 +362,41 @@ const ProductCarousel = ({ show, data }) => {
                           backgroundSize: "cover",
                           backgroundRepeat: "no-repeat",
                         }}
-                        className={`${
-                          sliderState === i
+                        className={`${sliderState === i
                             ? "border-2 border-[#007DCA]"
                             : "border border-searchBgColor"
-                        }  !w-[90px] cursor-pointer !h-[120px] bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center`}
+                          } !w-[90px] cursor-pointer !h-[120px] bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center`}
                       ></figure>
                     </div>
                   );
-                })}
+                }
+              })
+              : data?.product?.photos?.map((data, i) => {
+                return (
+                  <div
+                    key={i}
+                    onClick={() => {
+                      setSliderState(i);
+                    }}
+                    className="mb-2"
+                  >
+                    <figure
+                      key={data?.id}
+                      style={{
+                        backgroundImage: `url("${data?.url_photo}")`,
+                        backgroundColor: "rgba(0,0,0,0.6)",
+                        backgroundPosition: "center center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                      }}
+                      className={`${sliderState === i
+                          ? "border-2 border-[#007DCA]"
+                          : "border border-searchBgColor"
+                        }  !w-[90px] cursor-pointer !h-[120px] bg-btnBgColor rounded-lg backdrop-blur-md flex items-center justify-center`}
+                    ></figure>
+                  </div>
+                );
+              })}
           </article>
 
           <article className="group mx-auto md:w-[480px] md:h-[620px]">
@@ -418,51 +412,7 @@ const ProductCarousel = ({ show, data }) => {
             >
               {colorId
                 ? filteredForModal?.map((data, i) => {
-                    if (data?.product_color_id === colorId) {
-                      return (
-                        <article
-                          key={i}
-                          onClick={() => {
-                            handleClickCarosuel(i);
-                          }}
-                        >
-                          <figure
-                            style={{
-                              backgroundImage: `url("${data?.url_photo}")`,
-                              backgroundColor: "rgba(0,0,0,0.85)",
-                              backgroundPosition: "center center",
-                              backgroundSize: "cover",
-                              backgroundRepeat: "no-repeat",
-                              backgroundBlendMode: "darken",
-                            }}
-                            className="relative w-full h-[620px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer"
-                          >
-                            <img
-                              className="w-full h-fit"
-                              src={data?.url_photo}
-                              alt=""
-                            />
-
-                            <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
-                              <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
-                                <p> {data.id}</p>
-                                <p>{data?.product?.photos?.length}</p>
-                              </span>
-                              <span className="w-fit flex items-center p-2 gap-x-2 rounded-lg bg-bgCard border border-searchBgColor">
-                                <p className="flex items-center ">
-                                  <VideoStoreIcons />
-                                </p>
-                                <p className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-black">
-                                  {t("video")}
-                                </p>
-                              </span>
-                            </figcaption>
-                          </figure>
-                        </article>
-                      );
-                    }
-                  })
-                : data?.product?.photos?.map((data, i) => {
+                  if (data?.product_color_id === colorId) {
                     return (
                       <article
                         key={i}
@@ -504,83 +454,92 @@ const ProductCarousel = ({ show, data }) => {
                         </figure>
                       </article>
                     );
-                  })}
+                  }
+                })
+                : data?.product?.photos?.map((data, i) => {
+                  return (
+                    <article
+                      key={i}
+                      onClick={() => {
+                        handleClickCarosuel(i);
+                      }}
+                    >
+                      <figure
+                        style={{
+                          backgroundImage: `url("${data?.url_photo}")`,
+                          backgroundColor: "rgba(0,0,0,0.85)",
+                          backgroundPosition: "center center",
+                          backgroundSize: "cover",
+                          backgroundRepeat: "no-repeat",
+                          backgroundBlendMode: "darken",
+                        }}
+                        className="relative w-full h-[620px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer"
+                      >
+                        <img
+                          className="w-full h-fit"
+                          src={data?.url_photo}
+                          alt=""
+                        />
+
+                        <figcaption className="flex md:hidden w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 ">
+                          <span className="bg-bgCard pt-1 gap-x-[3px] rounded-[40%] px-3 py-1 flex items-center leading-5 tracking-wider  ">
+                            <p> {data.id}</p>
+                            <p>{data?.product?.photos?.length}</p>
+                          </span>
+                          <span className="w-fit flex items-center p-2 gap-x-2 rounded-lg bg-bgCard border border-searchBgColor">
+                            <p className="flex items-center ">
+                              <VideoStoreIcons />
+                            </p>
+                            <p className="flex items-center not-italic font-AeonikProRegular text-sm leading-4 text-black">
+                              {t("video")}
+                            </p>
+                          </span>
+                        </figcaption>
+                      </figure>
+                    </article>
+                  );
+                })}
             </Slider>
           </article>
         </section>
       ) : (
         <section className="w-full h-full flex flex-col">
           {/* 1 */}
-          <article className="w-full max-w-[440px] h-full widthInherit mx-auto ">
+          <article className="w-full ll:max-w-[440px] h-full widthInherit mx-auto ">
             <Slider
-              className="w-full h-[482px] rounded-lg"
+              className="w-full ll:h-[482px] rounded-lg"
               ref={slider1}
               {...settings}
             >
               {colorId
                 ? filteredForModal?.map((data, i) => {
-                    if (data?.product_color_id === colorId) {
-                      indexPageSelected += 1;
-                      return (
-                        <article
-                          key={i}
-                          onClick={() => {
-                            handleClickCarosuel(i);
-                          }}
-                        >
-                          <figure className="relative w-full h-[478px] overflow-hidden  border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer ">
-                            <img
-                              className="w-full h-full object-cover "
-                              src={data?.url_photo}
-                              alt=""
-                            />
-                            {filteredForModal?.length > 1 ? (
-                              <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
-                                <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
-                                  <p className="h-full w-full text-center pt-[4px]">
-                                    {" "}
-                                    {indexPageSelected}
-                                  </p>
-                                  <span className="text-center pt-[2px]">
-                                    /
-                                  </span>
-                                  <p className="h-full w-full text-center pt-[4px]">
-                                    {filteredForModal?.length}
-                                  </p>
-                                </span>
-                              </div>
-                            ) : null}
-                          </figure>
-                        </article>
-                      );
-                    }
-                  })
-                : data?.product?.photos?.map((data, i) => {
+                  if (data?.product_color_id === colorId) {
+                    indexPageSelected += 1;
                     return (
                       <article
                         key={i}
                         onClick={() => {
                           handleClickCarosuel(i);
                         }}
-                        className="w-full "
                       >
-                        <figure className="relative w-full h-[478px] object-cover overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
+                        <figure className="relative w-full  w-full ll:h-[478px] overflow-hidden  border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer ">
                           <img
-                            className="w-full h-full object-cover"
+                            className="w-full ll:h-full object-cover "
                             src={data?.url_photo}
                             alt=""
                           />
-                          {photos_length > 1 ? (
-                            <div className="flex w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
+                          {filteredForModal?.length > 1 ? (
+                            <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
                               <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
                                 <p className="h-full w-full text-center pt-[4px]">
                                   {" "}
-                                  {i + 1}
+                                  {indexPageSelected}
                                 </p>
-                                <span className="text-center pt-[2px]">/</span>
-
+                                <span className="text-center pt-[2px]">
+                                  /
+                                </span>
                                 <p className="h-full w-full text-center pt-[4px]">
-                                  {photos_length}
+                                  {filteredForModal?.length}
                                 </p>
                               </span>
                             </div>
@@ -588,7 +547,42 @@ const ProductCarousel = ({ show, data }) => {
                         </figure>
                       </article>
                     );
-                  })}
+                  }
+                })
+                : data?.product?.photos?.map((data, i) => {
+                  return (
+                    <article
+                      key={i}
+                      onClick={() => {
+                        handleClickCarosuel(i);
+                      }}
+                      className="w-full "
+                    >
+                      <figure className="relative w-full  ll:h-[478px] object-cover overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
+                        <img
+                          className="w-full h-full object-cover"
+                          src={data?.url_photo}
+                          alt=""
+                        />
+                        {photos_length > 1 ? (
+                          <div className="flex w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
+                            <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
+                              <p className="h-full w-full text-center pt-[4px]">
+                                {" "}
+                                {i + 1}
+                              </p>
+                              <span className="text-center pt-[2px]">/</span>
+
+                              <p className="h-full w-full text-center pt-[4px]">
+                                {photos_length}
+                              </p>
+                            </span>
+                          </div>
+                        ) : null}
+                      </figure>
+                    </article>
+                  );
+                })}
             </Slider>
           </article>
 
@@ -600,17 +594,16 @@ const ProductCarousel = ({ show, data }) => {
                   <p className="flex font-AeonikProMedium text-[24px] text-black mx-[5px]">
                     {selectedSize?.discount_price
                       ? parseInt(selectedSize?.discount_price)
-                          ?.toLocaleString()
-                          ?.split(",")
-                          .join(" ")
+                        ?.toLocaleString()
+                        ?.split(",")
+                        .join(" ")
                       : parseInt(selectedSize?.price)
-                          ?.toLocaleString()
-                          ?.split(",")
-                          .join(" ")}{" "}
+                        ?.toLocaleString()
+                        ?.split(",")
+                        .join(" ")}{" "}
                     <span
-                      className={`${
-                        selectedSize?.discount_price ? "hidden" : "flex ml-2"
-                      }`}
+                      className={`${selectedSize?.discount_price ? "hidden" : "flex ml-2"
+                        }`}
                     >
                       {t("currency")}
                     </span>
@@ -629,19 +622,18 @@ const ProductCarousel = ({ show, data }) => {
                   <p className="flex font-AeonikProMedium text-[24px] text-black mx-[5px]">
                     {data?.product?.sizes[0]?.discount_price
                       ? parseInt(data?.product?.sizes[0]?.discount_price)
-                          ?.toLocaleString()
-                          ?.split(",")
-                          .join(" ")
+                        ?.toLocaleString()
+                        ?.split(",")
+                        .join(" ")
                       : parseInt(data?.product?.sizes[0]?.price)
-                          ?.toLocaleString()
-                          ?.split(",")
-                          .join(" ")}{" "}
+                        ?.toLocaleString()
+                        ?.split(",")
+                        .join(" ")}{" "}
                     <span
-                      className={`${
-                        data?.product?.sizes[0]?.discount_price
+                      className={`${data?.product?.sizes[0]?.discount_price
                           ? "hidden"
                           : "flex ml-2"
-                      }`}
+                        }`}
                     >
                       {t("currency")}
                     </span>
@@ -709,65 +701,62 @@ const ProductCarousel = ({ show, data }) => {
             <article className="flex flex-row gap-x-1">
               {selectedSize
                 ? uniqueArray?.map((data, i) => {
-                    return (
+                  return (
+                    <div
+                      key={data?.id}
+                      className={`${data?.product_color_id ===
+                          selectedSize?.product_color_id
+                          ? ""
+                          : "opacity-40"
+                        } `}
+                    >
                       <div
                         key={data?.id}
-                        className={`${
-                          data?.product_color_id ===
-                          selectedSize?.product_color_id
-                            ? ""
-                            : "opacity-40"
-                        } `}
-                      >
-                        <div
-                          key={data?.id}
-                          className={`${
-                            colorId === data?.product_color_id
-                              ? "border-2 border-[#007DCA]"
-                              : "border border-searchBgColor"
+                        className={`${colorId === data?.product_color_id
+                            ? "border-2 border-[#007DCA]"
+                            : "border border-searchBgColor"
                           }  !w-[72px] cursor-pointer !h-[96px] bg-btnBgColor rounded-lg flex items-center justify-center`}
-                          onClick={() => {
-                            filterColorsOnSelect(data?.product_color_id);
-                            setcolorId(data?.product_color_id);
-                            setSelectedSize(null);
-                            setSliderState(0);
-                          }}
-                          style={{
-                            backgroundImage: `url("${data?.url_photo}")`,
-                            backgroundColor: "rgba(0,0,0,0.6)",
-                            backgroundPosition: "center center",
-                            backgroundSize: "cover",
-                            backgroundRepeat: "no-repeat",
-                          }}
-                        ></div>
-                      </div>
-                    );
-                  })
+                        onClick={() => {
+                          filterColorsOnSelect(data?.product_color_id);
+                          setcolorId(data?.product_color_id);
+                          setSelectedSize(null);
+                          setSliderState(0);
+                        }}
+                        style={{
+                          backgroundImage: `url("${data?.url_photo}")`,
+                          backgroundColor: "rgba(0,0,0,0.6)",
+                          backgroundPosition: "center center",
+                          backgroundSize: "cover",
+                          backgroundRepeat: "no-repeat",
+                        }}
+                      ></div>
+                    </div>
+                  );
+                })
                 : uniqueArray?.map((data, i) => {
-                    return (
-                      <div key={data?.id}>
-                        <div
-                          className={`${
-                            colorId === data?.product_color_id
-                              ? "border-2 border-[#007DCA]"
-                              : "border border-searchBgColor"
+                  return (
+                    <div key={data?.id}>
+                      <div
+                        className={`${colorId === data?.product_color_id
+                            ? "border-2 border-[#007DCA]"
+                            : "border border-searchBgColor"
                           }  !w-[72px] cursor-pointer !h-[96px] bg-btnBgColor rounded-lg flex items-center justify-center`}
-                          onClick={() => {
-                            filterColorsOnSelect(data?.product_color_id);
-                            setcolorId(data?.product_color_id);
-                            setSliderState(0);
-                          }}
-                          style={{
-                            backgroundImage: `url("${data?.url_photo}")`,
-                            backgroundColor: "rgba(0,0,0,0.6)",
-                            backgroundPosition: "center center",
-                            backgroundSize: "cover",
-                            backgroundRepeat: "no-repeat",
-                          }}
-                        ></div>
-                      </div>
-                    );
-                  })}
+                        onClick={() => {
+                          filterColorsOnSelect(data?.product_color_id);
+                          setcolorId(data?.product_color_id);
+                          setSliderState(0);
+                        }}
+                        style={{
+                          backgroundImage: `url("${data?.url_photo}")`,
+                          backgroundColor: "rgba(0,0,0,0.6)",
+                          backgroundPosition: "center center",
+                          backgroundSize: "cover",
+                          backgroundRepeat: "no-repeat",
+                        }}
+                      ></div>
+                    </div>
+                  );
+                })}
             </article>
           </article>
 
@@ -776,280 +765,260 @@ const ProductCarousel = ({ show, data }) => {
             <section className="w-full h-fit flex flex-wrap items-center gap-x-3 gap-y-3">
               {data?.product?.category_id === "1"
                 ? data?.product?.sizes?.map((data) => {
-                    if (
-                      data?.shop_location_id == selectedLocation?.id &&
-                      selectedColor?.pivot?.id === data?.product_color_id
-                    ) {
-                      return (
-                        <div
-                          key={data?.id}
-                          onClick={() => {
-                            setSelectedSize(data);
-                          }}
-                          className={`${
-                            data?.id === selectedSize?.id
-                              ? "border-fullBlue"
-                              : "border-[#dadada]"
+                  if (
+                    data?.shop_location_id == selectedLocation?.id &&
+                    selectedColor?.pivot?.id === data?.product_color_id
+                  ) {
+                    return (
+                      <div
+                        key={data?.id}
+                        onClick={() => {
+                          setSelectedSize(data);
+                        }}
+                        className={`${data?.id === selectedSize?.id
+                            ? "border-fullBlue"
+                            : "border-[#dadada]"
                           }  w-[62px] !h-[39px] mt-4 rounded-lg border  hover:border-fullBlue`}
-                        >
-                          <Popover
-                            trigger={"false"}
-                            // content={() => contentSize(data)}
-                            className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${
-                              data?.amount === "0"
-                                ? "bg-[#f6f6f9] text-[#d3d4dd]"
-                                : ""
+                      >
+                        <Popover
+                          trigger={"false"}
+                          // content={() => contentSize(data)}
+                          className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${data?.amount === "0"
+                              ? "bg-[#f6f6f9] text-[#d3d4dd]"
+                              : ""
                             }`}
-                          >
-                            <p
-                              className={`w-full font-AeonikProMedium text-sm uppercase text-center ${
-                                data?.amount === "0"
-                                  ? "text-[#d3d4dd]"
-                                  : "text-black"
+                        >
+                          <p
+                            className={`w-full font-AeonikProMedium text-sm uppercase text-center ${data?.amount === "0"
+                                ? "text-[#d3d4dd]"
+                                : "text-black"
                               } `}
-                            >
-                              {data?.one_size ? "ONE SIZE" : null}
-                            </p>
-                          </Popover>
-                        </div>
-                      );
-                    }
-                  })
+                          >
+                            {data?.one_size ? "ONE SIZE" : null}
+                          </p>
+                        </Popover>
+                      </div>
+                    );
+                  }
+                })
                 : null}
 
               {data?.product?.category_id === "2"
                 ? data?.product?.sizes?.map((data) => {
-                    if (
-                      data?.shop_location_id == selectedLocation?.id &&
-                      selectedColor?.pivot?.id === data?.product_color_id
-                    ) {
-                      return (
-                        <div
-                          key={data?.id}
-                          onClick={() => {
-                            setSelectedSize(data);
-                          }}
-                          className={`${
-                            data?.id === selectedSize?.id
-                              ? "border-fullBlue"
-                              : "border-[#dadada]"
+                  if (
+                    data?.shop_location_id == selectedLocation?.id &&
+                    selectedColor?.pivot?.id === data?.product_color_id
+                  ) {
+                    return (
+                      <div
+                        key={data?.id}
+                        onClick={() => {
+                          setSelectedSize(data);
+                        }}
+                        className={`${data?.id === selectedSize?.id
+                            ? "border-fullBlue"
+                            : "border-[#dadada]"
                           } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
-                        >
-                          <Popover
-                            trigger="false"
-                            // content={() => contentSize(data)}
-                            className={`w-full !h-full ${
-                              data?.amount === "0"
-                                ? "bg-[#f6f6f9] text-[#d3d4dd]"
-                                : ""
+                      >
+                        <Popover
+                          trigger="false"
+                          // content={() => contentSize(data)}
+                          className={`w-full !h-full ${data?.amount === "0"
+                              ? "bg-[#f6f6f9] text-[#d3d4dd]"
+                              : ""
                             }  cursor-pointer rounded-lg flex flex-col items-center justify-center`}
+                        >
+                          <p
+                            className={`w-full font-AeonikProMedium text-sm uppercase text-center ${data?.amount === "0"
+                                ? "text-[#d3d4dd]"
+                                : "text-black"
+                              } `}
                           >
+                            {data?.letter_size}
+                          </p>
+                          {data?.letter_size ? (
+                            <span
+                              className={`w-full text-center text-[10px] font-AeonikProRegular ${data?.amount === "0"
+                                  ? "text-[#d3d4dd]"
+                                  : "text-[#757575]"
+                                } `}
+                            >
+                              {data?.min_wear_size}{" "}
+                              {data?.max_wear_size
+                                ? "- " + data?.max_wear_size
+                                : null}
+                            </span>
+                          ) : (
                             <p
-                              className={`w-full font-AeonikProMedium text-sm uppercase text-center ${
-                                data?.amount === "0"
+                              className={`w-full font-AeonikProMedium text-sm uppercase text-center ${data?.amount === "0"
                                   ? "text-[#d3d4dd]"
                                   : "text-black"
-                              } `}
-                            >
-                              {data?.letter_size}
-                            </p>
-                            {data?.letter_size ? (
-                              <span
-                                className={`w-full text-center text-[10px] font-AeonikProRegular ${
-                                  data?.amount === "0"
-                                    ? "text-[#d3d4dd]"
-                                    : "text-[#757575]"
-                                } `}
-                              >
-                                {data?.min_wear_size}{" "}
-                                {data?.max_wear_size
-                                  ? "- " + data?.max_wear_size
-                                  : null}
-                              </span>
-                            ) : (
-                              <p
-                                className={`w-full font-AeonikProMedium text-sm uppercase text-center ${
-                                  data?.amount === "0"
-                                    ? "text-[#d3d4dd]"
-                                    : "text-black"
                                 }`}
-                              >
-                                {data?.min_wear_size}{" "}
-                                {data?.max_wear_size
-                                  ? "- " + data?.max_wear_size
-                                  : null}
-                              </p>
-                            )}
-                          </Popover>
-                        </div>
-                      );
-                    }
-                  })
+                            >
+                              {data?.min_wear_size}{" "}
+                              {data?.max_wear_size
+                                ? "- " + data?.max_wear_size
+                                : null}
+                            </p>
+                          )}
+                        </Popover>
+                      </div>
+                    );
+                  }
+                })
                 : null}
 
               {data?.product?.category_id === "3"
                 ? data?.product?.sizes?.map((data) => {
-                    if (
-                      data?.shop_location_id == selectedLocation?.id &&
-                      selectedColor?.pivot?.id === data?.product_color_id
-                    ) {
-                      return (
-                        <div
-                          key={data?.id}
-                          onClick={() => {
-                            setSelectedSize(data);
-                          }}
-                          className={`${
-                            data?.id === selectedSize?.id
-                              ? "border-fullBlue"
-                              : "border-[#dadada]"
+                  if (
+                    data?.shop_location_id == selectedLocation?.id &&
+                    selectedColor?.pivot?.id === data?.product_color_id
+                  ) {
+                    return (
+                      <div
+                        key={data?.id}
+                        onClick={() => {
+                          setSelectedSize(data);
+                        }}
+                        className={`${data?.id === selectedSize?.id
+                            ? "border-fullBlue"
+                            : "border-[#dadada]"
                           } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
-                        >
-                          <Popover
-                            trigger="false"
-                            // content={() => contentSize(data)}
-                            className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${
-                              data?.amount === "0"
-                                ? "bg-[#f6f6f9] text-[#d3d4dd]"
-                                : ""
+                      >
+                        <Popover
+                          trigger="false"
+                          // content={() => contentSize(data)}
+                          className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${data?.amount === "0"
+                              ? "bg-[#f6f6f9] text-[#d3d4dd]"
+                              : ""
                             }`}
+                        >
+                          <p
+                            className={`w-full font-AeonikProMedium text-sm uppercase text-center ${data?.amount === "0"
+                                ? "text-[#d3d4dd]"
+                                : "text-black"
+                              }`}
                           >
+                            {data?.letter_size}
+                          </p>
+                          {data?.letter_size ? (
+                            <span
+                              className={`w-full text-center text-[10px] font-AeonikProRegular ${data?.amount === "0"
+                                  ? "text-[#d3d4dd]"
+                                  : "text-[#757575]"
+                                }`}
+                            >
+                              {data?.min_wear_size}{" "}
+                              {data?.max_wear_size
+                                ? "- " + data?.max_wear_size
+                                : null}
+                            </span>
+                          ) : (
                             <p
-                              className={`w-full font-AeonikProMedium text-sm uppercase text-center ${
-                                data?.amount === "0"
+                              className={`w-full font-AeonikProMedium text-sm uppercase text-center ${data?.amount === "0"
                                   ? "text-[#d3d4dd]"
                                   : "text-black"
-                              }`}
+                                }`}
                             >
-                              {data?.letter_size}
+                              {data?.min_wear_size}{" "}
+                              {data?.max_wear_size
+                                ? "- " + data?.max_wear_size
+                                : null}
                             </p>
-                            {data?.letter_size ? (
-                              <span
-                                className={`w-full text-center text-[10px] font-AeonikProRegular ${
-                                  data?.amount === "0"
-                                    ? "text-[#d3d4dd]"
-                                    : "text-[#757575]"
-                                }`}
-                              >
-                                {data?.min_wear_size}{" "}
-                                {data?.max_wear_size
-                                  ? "- " + data?.max_wear_size
-                                  : null}
-                              </span>
-                            ) : (
-                              <p
-                                className={`w-full font-AeonikProMedium text-sm uppercase text-center ${
-                                  data?.amount === "0"
-                                    ? "text-[#d3d4dd]"
-                                    : "text-black"
-                                }`}
-                              >
-                                {data?.min_wear_size}{" "}
-                                {data?.max_wear_size
-                                  ? "- " + data?.max_wear_size
-                                  : null}
-                              </p>
-                            )}
-                          </Popover>
-                        </div>
-                      );
-                    }
-                  })
+                          )}
+                        </Popover>
+                      </div>
+                    );
+                  }
+                })
                 : null}
 
               {data?.product?.category_id === "4"
                 ? data?.product?.sizes?.map((data) => {
-                    if (
-                      data?.shop_location_id == selectedLocation?.id &&
-                      selectedColor?.pivot?.id === data?.product_color_id
-                    ) {
-                      return (
-                        <div
-                          key={data?.id}
-                          onClick={() => {
-                            setSelectedSize(data);
-                          }}
-                          className={`${
-                            data?.id === selectedSize?.id
-                              ? "border-fullBlue"
-                              : "border-[#dadada]"
+                  if (
+                    data?.shop_location_id == selectedLocation?.id &&
+                    selectedColor?.pivot?.id === data?.product_color_id
+                  ) {
+                    return (
+                      <div
+                        key={data?.id}
+                        onClick={() => {
+                          setSelectedSize(data);
+                        }}
+                        className={`${data?.id === selectedSize?.id
+                            ? "border-fullBlue"
+                            : "border-[#dadada]"
                           } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
-                        >
-                          <Popover
-                            trigger="false"
-                            // content={() => contentSize(data)}
-                            className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${
-                              data?.amount === "0"
-                                ? "bg-[#f6f6f9] text-[#d3d4dd]"
-                                : ""
+                      >
+                        <Popover
+                          trigger="false"
+                          // content={() => contentSize(data)}
+                          className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${data?.amount === "0"
+                              ? "bg-[#f6f6f9] text-[#d3d4dd]"
+                              : ""
                             }`}
-                          >
-                            <p
-                              className={`w-full font-AeonikProMedium text-sm uppercase text-center ${
-                                data?.amount === "0"
-                                  ? "text-[#d3d4dd]"
-                                  : "text-black"
+                        >
+                          <p
+                            className={`w-full font-AeonikProMedium text-sm uppercase text-center ${data?.amount === "0"
+                                ? "text-[#d3d4dd]"
+                                : "text-black"
                               }`}
-                            >
-                              {data?.wear_size}
-                            </p>
-                          </Popover>
-                        </div>
-                      );
-                    }
-                  })
+                          >
+                            {data?.wear_size}
+                          </p>
+                        </Popover>
+                      </div>
+                    );
+                  }
+                })
                 : null}
 
               {data?.product?.category_id === "5"
                 ? data?.product?.sizes?.map((data) => {
-                    if (
-                      data?.shop_location_id == selectedLocation?.id &&
-                      selectedColor?.pivot?.id === data?.product_color_id
-                    ) {
-                      return (
-                        <div
-                          key={data?.id}
-                          onClick={() => {
-                            setSelectedSize(data);
-                          }}
-                          className={`${
-                            data?.id === selectedSize?.id
-                              ? "border-fullBlue"
-                              : "border-[#dadada]"
+                  if (
+                    data?.shop_location_id == selectedLocation?.id &&
+                    selectedColor?.pivot?.id === data?.product_color_id
+                  ) {
+                    return (
+                      <div
+                        key={data?.id}
+                        onClick={() => {
+                          setSelectedSize(data);
+                        }}
+                        className={`${data?.id === selectedSize?.id
+                            ? "border-fullBlue"
+                            : "border-[#dadada]"
                           } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
-                        >
-                          <Popover
-                            trigger="false"
-                            // content={() => contentSize(data)}
-                            className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${
-                              data?.amount === "0"
-                                ? "bg-[#f6f6f9] text-[#d3d4dd]"
-                                : ""
+                      >
+                        <Popover
+                          trigger="false"
+                          // content={() => contentSize(data)}
+                          className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${data?.amount === "0"
+                              ? "bg-[#f6f6f9] text-[#d3d4dd]"
+                              : ""
                             }`}
+                        >
+                          <p
+                            className={`w-full font-AeonikProMedium text-sm uppercase text-center ${data?.amount === "0"
+                                ? "text-[#d3d4dd]"
+                                : "text-black"
+                              }`}
                           >
-                            <p
-                              className={`w-full font-AeonikProMedium text-sm uppercase text-center ${
-                                data?.amount === "0"
-                                  ? "text-[#d3d4dd]"
-                                  : "text-black"
+                            {data?.letter_size}
+                          </p>
+                          <span
+                            className={`w-full text-center text-[10px] font-AeonikProRegular ${data?.amount === "0"
+                                ? "text-[#d3d4dd]"
+                                : "text-[#757575]"
                               }`}
-                            >
-                              {data?.letter_size}
-                            </p>
-                            <span
-                              className={`w-full text-center text-[10px] font-AeonikProRegular ${
-                                data?.amount === "0"
-                                  ? "text-[#d3d4dd]"
-                                  : "text-[#757575]"
-                              }`}
-                            >
-                              {data?.wear_size}
-                            </span>
-                          </Popover>
-                        </div>
-                      );
-                    }
-                  })
+                          >
+                            {data?.wear_size}
+                          </span>
+                        </Popover>
+                      </div>
+                    );
+                  }
+                })
                 : null}
             </section>
           </article>
