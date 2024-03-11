@@ -190,7 +190,7 @@ const ShoppingStoreOfficialByLocation = () => {
     }
   }, [filteredData])
   const fetchGetAllData = () => {
-    if(!filteredData){
+    if (!filteredData) {
       setLoading(true)
     }
     let params = new URLSearchParams();
@@ -292,14 +292,6 @@ const ShoppingStoreOfficialByLocation = () => {
   }, [dressInfo?.locationIdParams]);
 
   useEffect(() => {
-    if (dressInfo?.locationIdParams) {
-      if (!filteredData) {
-        fetchGetAllData();
-      }
-    }
-  }, [dressInfo?.locationIdParams]);
-
-  useEffect(() => {
     if (data?.getMainProductCard?.shops && dressInfo?.locationIdParams) {
       fetchGetAllData();
       if (!filteredData) {
@@ -326,25 +318,14 @@ const ShoppingStoreOfficialByLocation = () => {
     data?.getMainProductCard?.shops,
     languageDetector?.typeLang
   ]);
-  // console.log(pageId,
-  //   discount,
-  //   dataColor?.length,
-  //   getGenderId,
-  //   discount,
-  //   getCategory,
-  //   getUnderWearList,
-  //   getOutWearList,
-  //   getFootWearList,
-  //   getRating,
-  //   getRange?.min,
-  //   getRange?.max,
-  //   // dressInfo?.locationIdParams,
-  //   dressInfo?.mainSearchNameshopLocation, "filtersss");
-  // console.log(dressInfo?.yandexGetMarketId, 'category---dressInfo?.yandexGetMarketId');
-  // console.log(dressInfo?.locationIdParams, "category--- dressInfo?.locationIdParams");
-  // console.log(initalParamsId, 'category---initalParamsId');
-  // console.log(data?.selectedLoc, 'category---data?.selectedLoc ');
 
+  useEffect(() => {
+    if (dressInfo?.locationIdParams) {
+      if (!filteredData) {
+        fetchGetAllData();
+      }
+    }
+  }, [dressInfo?.locationIdParams]);
   useEffect(() => {
     if (openMobileFilter) {
       document.body.style.overflow = "hidden";
