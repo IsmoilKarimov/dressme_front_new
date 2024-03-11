@@ -100,7 +100,7 @@ const CategoryTopDetail = ({
     <main className="flex flex-col justify-center items-center">
       <div className="flex flex-col  w-full justify-center items-center m-0 mt-3">
         <section className="pb-3 md:py-5 border-b border-searchBgColor w-[100%] h-full  flex items-center justify-between m-auto">
-          <nav className="w-[100%] md:w-fit flex items-center ">
+          <nav className="w-[100%] md:w-fit flex items-center px-4 md:px-0">
             <NewBreadCrump items={breadcrumbItems} />
           </nav>
           <nav className="hidden md:flex"></nav>

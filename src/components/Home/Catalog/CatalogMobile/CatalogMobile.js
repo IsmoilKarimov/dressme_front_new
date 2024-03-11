@@ -41,7 +41,7 @@ const CatalogMobile = () => {
       <section className="w-full">
         <div className="py-3 md:pt-8 md:pb-5 md:border-b border-searchBgColor flex flex-col md:min-h-[44px] w-full justify-center items-center m-0">
           <section className="max-w-[1280px] w-[100%] flex flex-col items-center">
-            <nav className="w-[100%]  flex items-center p-1 md:p-0">
+            <nav className="w-[100%]  flex items-center p-1 md:p-0 px-4 md:px-0">
               <NewBreadCrump items={breadcrumbItems} />
             </nav>
           </section>
