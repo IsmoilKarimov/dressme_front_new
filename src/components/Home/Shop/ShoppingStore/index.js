@@ -97,8 +97,8 @@ export default function ShoppingStore() {
 
   return (
     <main className="w-full flex flex-col items-center px-4 md:px-0">
-      <div className="w-full border-b border-searchBgColor justify-center md:mt-3">
-        <section className="w-full max-w-[1280px] flex items-center py-3 md:py-5 mx-auto">
+      <div className="w-full border-b border-searchBgColor justify-center md:mt-3 px-4 md:px-0">
+        <section className="w-full max-w-[1280px] flex items-center py-3 md:py-5 mx-auto ">
           <NewBreadCrump items={breadcrumbItems} />
         </section>
       </div>
