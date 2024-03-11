@@ -2,7 +2,11 @@ import React, { useContext, useState, useEffect } from "react";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 
 import SkeletonFilter from "../../SkeletonFilter/SkeletonFilter";
-import { ArrowTopIcons, MenuCloseIcons, StarIcons } from "../../../../../../assets/icons";
+import {
+  ArrowTopIcons,
+  MenuCloseIcons,
+  StarIcons,
+} from "../../../../../../assets/icons";
 import { BiCheck } from "react-icons/bi";
 import { BsCheckLg } from "react-icons/bs";
 
@@ -25,14 +29,16 @@ function FilterList({
   filterToggle,
   setFilterToggle,
   openMobileFilter,
-  setOpenMobileFilter
+  setOpenMobileFilter,
 }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [getFilter, setGetFilter] = useState()
+  const [getFilter, setGetFilter] = useState();
   // const [getParamsTest, setgetParamsTest] = useState(paramsId)
 
   const { t } = useTranslation("catalog");
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
   // ------------------------
   const [genderToggle, setGenderToggle] = useState(false);
@@ -70,14 +76,15 @@ function FilterList({
 
   function fetchGetAllData() {
     let params = new URLSearchParams();
-    dressInfo?.mainRegionId && !dressInfo?.mainSubRegionId &&
+    dressInfo?.mainRegionId &&
+      !dressInfo?.mainSubRegionId &&
       params.append("region", dressInfo?.mainRegionId);
     dressInfo?.mainSubRegionId &&
       params.append("sub_region", dressInfo?.mainSubRegionId);
     fetch(`${url}/category-filter/${paramsId}?` + params)
       .then((res) => res.json())
       .then((res) => {
-        setGetFilter(res?.filter)
+        setGetFilter(res?.filter);
       })
       .catch((err) => {
         throw new Error(err || "something wrong");
@@ -85,15 +92,20 @@ function FilterList({
   }
   useEffect(() => {
     if ((filterToggle || openMobileFilter) && !getFilter) {
-      fetchGetAllData()
+      fetchGetAllData();
     }
-  }, [filterToggle, openMobileFilter, dressInfo?.mainRegionId, dressInfo?.mainSubRegionId])
+  }, [
+    filterToggle,
+    openMobileFilter,
+    dressInfo?.mainRegionId,
+    dressInfo?.mainSubRegionId,
+  ]);
 
   useEffect(() => {
     if (getFilter) {
-      setGetFilter()
+      setGetFilter();
     }
-  }, [dressInfo?.mainRegionId, dressInfo?.mainSubRegionId])
+  }, [dressInfo?.mainRegionId, dressInfo?.mainSubRegionId]);
 
   const [genderCategory, setGenderCategory] = useState([
     {
@@ -123,52 +135,50 @@ function FilterList({
   ]);
 
   useEffect(() => {
-    setGenderNewList([])
-    genderCategory?.map(item => {
-      getFilter?.gender_ids?.map(data => {
+    setGenderNewList([]);
+    genderCategory?.map((item) => {
+      getFilter?.gender_ids?.map((data) => {
         if (item?.id == data) {
           if (!genderNewList) {
-            setGenderNewList(genderNewList => [...genderNewList, item])
+            setGenderNewList((genderNewList) => [...genderNewList, item]);
           }
           if (genderNewList && !genderNewList?.includes(item)) {
-            setGenderNewList(genderNewList => [...genderNewList, item])
+            setGenderNewList((genderNewList) => [...genderNewList, item]);
           }
         }
-      })
-    })
-  }, [getFilter])
+      });
+    });
+  }, [getFilter]);
 
   const handleGenderCheck = (value) => {
-    genderId(value)
-    setSelectedGender(value)
+    genderId(value);
+    setSelectedGender(value);
   };
   function handleDiscountCheck() {
-    discountId(1)
-    setSelectedDiscount(1)
-  };
-  function ClearListGender() {
-    discountId(false)
-    genderId(null)
-    setSelectedDiscount(null)
-    setSelectedGender(0)
+    discountId(1);
+    setSelectedDiscount(1);
   }
-
+  function ClearListGender() {
+    discountId(false);
+    genderId(null);
+    setSelectedDiscount(null);
+    setSelectedGender(0);
+  }
 
   function onHandleColorList(hexCode) {
     if (dataColor?.length === 0) {
-      setDataColor(dataColor => [...dataColor, hexCode])
+      setDataColor((dataColor) => [...dataColor, hexCode]);
     }
     if (dataColor?.length > 0 && !dataColor?.includes(hexCode)) {
-      setDataColor(dataColor => [...dataColor, hexCode])
+      setDataColor((dataColor) => [...dataColor, hexCode]);
     }
     if (dataColor?.length > 0 && dataColor?.includes(hexCode)) {
-      setDataColor(dataColor?.filter((e) => e !== hexCode)
-      );
+      setDataColor(dataColor?.filter((e) => e !== hexCode));
     }
   }
   const ClearListColor = () => {
-    setDataColor([])
-  }
+    setDataColor([]);
+  };
 
   // -------------------Budget---------------
 
@@ -190,183 +200,180 @@ function FilterList({
   useEffect(() => {
     if (values[0] && values[1] && minPrice && maxPrice) {
       if (minPrice !== values[0] || maxPrice !== values[1]) {
-        setClearPrice(true)
+        setClearPrice(true);
       }
     }
   }, [values]);
 
   const sendPriceList = () => {
-    getBadgePrice({ min: values[0], max: values[1] })
+    getBadgePrice({ min: values[0], max: values[1] });
   };
 
   const ClearListBadget = () => {
-    setClearPrice(false)
+    setClearPrice(false);
     setValues([
       Number(getFilter?.budget?.min_price),
       Number(getFilter?.budget?.max_price),
     ]);
-    getBadgePrice([])
+    getBadgePrice([]);
   };
 
   // ------------Ratinbglist
-  const [transformedArray, setTransformedArray] = useState([])
+  const [transformedArray, setTransformedArray] = useState([]);
   useEffect(() => {
-
     const originalObject = getFilter?.ratings;
     if (originalObject) {
-      const transformed = Object.entries(originalObject).map(([key, value]) => ({
-        key: parseInt(key, 10),
-        value: value + 0,
-      }));
-      setTransformedArray(transformed)
+      const transformed = Object.entries(originalObject).map(
+        ([key, value]) => ({
+          key: parseInt(key, 10),
+          value: value + 0,
+        })
+      );
+      setTransformedArray(transformed);
     }
-  }, [getFilter])
+  }, [getFilter]);
 
   const onHandleRating = (id) => {
-    setSelectedRating(id)
-    getRatingList(id)
-  }
+    setSelectedRating(id);
+    getRatingList(id);
+  };
   const ClearList = () => {
-    setSelectedRating(null)
-    getRatingList(null)
-  }
+    setSelectedRating(null);
+    getRatingList(null);
+  };
   // --------OutWear
-
 
   useEffect(() => {
     if (getFilter?.wear_sizes?.outwear) {
-      const transformedArray = Object?.entries(getFilter?.wear_sizes?.outwear).map(
-        ([size, details]) => ({ size, ...details })
-      );
+      const transformedArray = Object?.entries(
+        getFilter?.wear_sizes?.outwear
+      ).map(([size, details]) => ({ size, ...details }));
       setOutwearData(transformedArray);
     }
   }, [getFilter]);
 
   const onHandleOutWearList = (select) => {
-    setDataActionOutwearSizes(select)
-    outWearList(select)
+    setDataActionOutwearSizes(select);
+    outWearList(select);
     // ---UnderWear
-    setDataActionUnderwearSizes(null)
-    underWearList(null)
+    setDataActionUnderwearSizes(null);
+    underWearList(null);
     // --FootWear
-    setDataActionFootwearSizes(null)
-    footWearList(null)
-  }
+    setDataActionFootwearSizes(null);
+    footWearList(null);
+  };
   const ClearListOutWear = () => {
-    setDataActionOutwearSizes(null)
-    outWearList(null)
-  }
+    setDataActionOutwearSizes(null);
+    outWearList(null);
+  };
   // -------UnderWear
 
   useEffect(() => {
     if (getFilter?.wear_sizes?.underwear) {
-      const transformedArray = Object?.entries(getFilter?.wear_sizes?.underwear).map(
-        ([size, details]) => ({ size, ...details })
-      );
+      const transformedArray = Object?.entries(
+        getFilter?.wear_sizes?.underwear
+      ).map(([size, details]) => ({ size, ...details }));
       setUnderwearData(transformedArray);
     }
   }, [getFilter]);
 
-
   const onHandleUnderWearList = (select) => {
-    setDataActionUnderwearSizes(select)
-    underWearList(select)
+    setDataActionUnderwearSizes(select);
+    underWearList(select);
     // --OutWear
-    setDataActionOutwearSizes(null)
-    outWearList(null)
+    setDataActionOutwearSizes(null);
+    outWearList(null);
     // --FootWear
-    setDataActionFootwearSizes(null)
-    footWearList(null)
-
-  }
+    setDataActionFootwearSizes(null);
+    footWearList(null);
+  };
   const ClearListUnderWear = () => {
-    setDataActionUnderwearSizes(null)
-    underWearList(null)
-  }
+    setDataActionUnderwearSizes(null);
+    underWearList(null);
+  };
 
   // --------FootWear-------
 
   useEffect(() => {
     if (getFilter?.wear_sizes?.footwear) {
-
-      const transformedArray = Object?.entries(getFilter?.wear_sizes?.footwear).map(
-        ([size, details]) => ({ size, ...details })
-      );
+      const transformedArray = Object?.entries(
+        getFilter?.wear_sizes?.footwear
+      ).map(([size, details]) => ({ size, ...details }));
       setFootwearData(transformedArray);
     }
   }, [getFilter]);
 
   const onHandleFootWearList = (select) => {
-    setDataActionFootwearSizes(select)
-    footWearList(select)
+    setDataActionFootwearSizes(select);
+    footWearList(select);
     //---underWear
-    setDataActionUnderwearSizes(null)
-    underWearList(null)
+    setDataActionUnderwearSizes(null);
+    underWearList(null);
     // outWear
-    setDataActionOutwearSizes(null)
-    outWearList(null)
-  }
+    setDataActionOutwearSizes(null);
+    outWearList(null);
+  };
   const ClearListFootWear = () => {
-    setDataActionFootwearSizes(null)
-    footWearList(null)
-  }
+    setDataActionFootwearSizes(null);
+    footWearList(null);
+  };
 
   const ClearAll = () => {
-    discountId(false)
-    genderId(null)
-    setSelectedDiscount(null)
-    setSelectedGender(0)
+    discountId(false);
+    genderId(null);
+    setSelectedDiscount(null);
+    setSelectedGender(0);
     //---Color
-    setDataColor([])
+    setDataColor([]);
     // ---Category
-    categoryId(null)
+    categoryId(null);
     // setCategorySelect()
     //---Budget
-    getBadgePrice([])
+    getBadgePrice([]);
     setValues([
       Number(getFilter?.budget?.min_price),
       Number(getFilter?.budget?.max_price),
     ]);
-    setClearPrice(false)
+    setClearPrice(false);
     // ---ratingList
-    setSelectedRating(null)
-    getRatingList(null)
+    setSelectedRating(null);
+    getRatingList(null);
     // ---Sizes
-    underWearList(null)
-    outWearList(null)
-    footWearList(null)
+    underWearList(null);
+    outWearList(null);
+    footWearList(null);
     // ---outWear
-    setDataActionOutwearSizes(null)
-    outWearList(null)
+    setDataActionOutwearSizes(null);
+    outWearList(null);
     // ---underWear
-    setDataActionUnderwearSizes(null)
-    underWearList(null)
+    setDataActionUnderwearSizes(null);
+    underWearList(null);
     // ---OutWear
-    setDataActionFootwearSizes(null)
-    footWearList(null)
-  }
+    setDataActionFootwearSizes(null);
+    footWearList(null);
+  };
   useEffect(() => {
     if (paramsId) {
-      ClearAll()
-      setFilterToggle(false)
-      setGetFilter()
+      ClearAll();
+      setFilterToggle(false);
+      setGetFilter();
     }
-  }, [paramsId])
+  }, [paramsId]);
   return (
     <div
-      className={`w-full h-hull  py-5 px-3 border border-searchBgColor rounded-lg overflow-hidden `}
+      className={`w-full h-hull pt-12  py-5  border border-searchBgColor rounded-lg overflow-hidden `}
     >
       {getFilter ? (
         <div className={` w-full flex-col items-center md:mb-[38px]`}>
-          <section className="h-fit  md:hidden w-full bg-btnBgColor flex items-center  justify-between md:mb-0 mb-4 ">
-            <p className="text-lg font-AeonikProMedium">{t("FL_filters")}</p>
+          <section className="px-3 absolute z-50 top-0 h-fit  md:hidden py-2 w-full bg-btnBgColor flex items-center  justify-between md:mb-0 mb-4 ">
+            <p className=" text-lg font-AeonikProMedium">{t("FL_filters")}</p>
             <button type="button" onClick={() => setOpenMobileFilter(false)}>
               <MenuCloseIcons colors={"#b5b5b5"} />
             </button>
           </section>
           {/* ------Пол---- */}
           {getFilter?.gender_ids && (
-            <div className=" mb-[20px] md:mb-[38px]">
+            <div className="px-3 mb-[20px] md:mb-[38px]">
               <article className="w-full flex justify-between items-center">
                 <figure
                   onClick={() => setGenderToggle(!genderToggle)}
@@ -377,7 +384,8 @@ function FilterList({
                   </p>
                   <p
                     className={`
-                      ${genderToggle ? "rotate-[180deg]" : ""
+                      ${
+                        genderToggle ? "rotate-[180deg]" : ""
                       } duration-300 ml-1`}
                   >
                     <ArrowTopIcons colors={"#000"} />
@@ -386,8 +394,9 @@ function FilterList({
               </article>
               {/* Field */}
               <article
-                className={`w-full overflow-hidden ${genderToggle ? "duration-300 h-0" : "duration-300 h-fit mt-5 "
-                  } duration-300 flex flex-col gap-y-4`}
+                className={`w-full overflow-hidden ${
+                  genderToggle ? "duration-300 h-0" : "duration-300 h-fit mt-5 "
+                } duration-300 flex flex-col gap-y-4`}
               >
                 <div className={`w-full flex flex-col items-center`}>
                   <div className="w-full flex flex-wrap gap-x-[4px] gap-y-[8px] ">
@@ -396,28 +405,31 @@ function FilterList({
                         <button
                           key={data?.id}
                           onClick={() => handleGenderCheck(data?.id)}
-                          className={`${selectedGender === data?.id
-                            ? "bg-fullBlue text-white"
-                            : "bg-bgCategory text-black"
-                            } 
+                          className={`${
+                            selectedGender === data?.id
+                              ? "bg-fullBlue text-white"
+                              : "bg-bgCategory text-black"
+                          }
                                     active:scale-95	active:opacity-70 h-[44px] w-[49%] flex items-center justify-center hover:bg-fullBlue hover:text-white font-AeonikProMedium text-sm leading-3 text-center  rounded-lg duration-300`}
                         >
-                          {languageDetector?.typeLang === 'ru' && data?.name_ru}
-                          {languageDetector?.typeLang === 'uz' && data?.name_uz}
+                          {languageDetector?.typeLang === "ru" && data?.name_ru}
+                          {languageDetector?.typeLang === "uz" && data?.name_uz}
                         </button>
                       );
                     })}
                     {getFilter?.discount && (
                       <button
                         onClick={() => handleDiscountCheck()}
-                        className={`${selectedDiscount
-                          ? "border border-fullBlue bg-bgCategory text-red-500 "
-                          : "bg-bgCategory text-red-600 border border-transparent"
-                          } ${genderNewList?.length === 2 ||
-                            genderNewList?.length === 4
+                        className={`${
+                          selectedDiscount
+                            ? "border border-fullBlue bg-bgCategory text-red-500 "
+                            : "bg-bgCategory text-red-600 border border-transparent"
+                        } ${
+                          genderNewList?.length === 2 ||
+                          genderNewList?.length === 4
                             ? "w-full"
                             : "w-[49%]"
-                          } h-[44px]  flex items-center justify-center font-AeonikProMedium text-sm leading-3 text-center active:scale-95 hover:text-red-500 hover:border hover:border-fullBlue rounded-lg duration-300`}
+                        } h-[44px]  flex items-center justify-center font-AeonikProMedium text-sm leading-3 text-center active:scale-95 hover:text-red-500 hover:border hover:border-fullBlue rounded-lg duration-300`}
                       >
                         {t("FL_discounts")}
                       </button>
@@ -440,7 +452,7 @@ function FilterList({
           )}
           {/* -----Budget---- */}
           {getFilter?.budget?.min_price && getFilter?.budget?.max_price && (
-            <div className={`  w-full h-fit mb-[20px] md:mb-[10px]`}>
+            <div className={`px-3  w-full h-fit mb-[20px] md:mb-[10px]`}>
               <article className="w-full flex justify-between items-center md:pt-[12px]">
                 <figure
                   onClick={() => setBudgetToggle(!budgetToggle)}
@@ -450,18 +462,20 @@ function FilterList({
                     {t("FL_budget")}
                   </p>
                   <p
-                    className={`${budgetToggle ? "rotate-[180deg]" : ""
-                      } duration-300 ml-1`}
+                    className={`${
+                      budgetToggle ? "rotate-[180deg]" : ""
+                    } duration-300 ml-1`}
                   >
                     <ArrowTopIcons colors={"#000"} />
                   </p>
                 </figure>
               </article>
               <article
-                className={`border-1 overflow-hidden  ${budgetToggle
-                  ? "duration-300 h-0"
-                  : `h-[120px] duration-300 mt-5`
-                  } duration-300 `}
+                className={`border-1 overflow-hidden  ${
+                  budgetToggle
+                    ? "duration-300 h-0"
+                    : `h-[120px] duration-300 mt-5`
+                } duration-300 `}
               >
                 <div className="flex flex-col rounded-lg  w-full">
                   <div className="flex flex-wrap justify-between items-center mb-3 w-full px-2">
@@ -525,7 +539,7 @@ function FilterList({
           {/* -----Color_------ */}
           {getFilter?.colors && (
             <div
-              className={`w-full flex items-center flex-col mb-[20px] md:mb-[38px]`}
+              className={`px-3 w-full flex items-center flex-col mb-[20px] md:mb-[38px]`}
             >
               <section className="w-full h-fit ">
                 {/* Controls */}
@@ -538,8 +552,9 @@ function FilterList({
                       {t("FL_color")}
                     </p>
                     <p
-                      className={`${colorToggle ? "rotate-[180deg]" : ""
-                        } duration-300 ml-1`}
+                      className={`${
+                        colorToggle ? "rotate-[180deg]" : ""
+                      } duration-300 ml-1`}
                     >
                       <ArrowTopIcons colors={"#000"} />
                     </p>
@@ -548,10 +563,11 @@ function FilterList({
                 {/* Colors */}
 
                 <article
-                  className={`overflow-hidden ${colorToggle
-                    ? "duration-300 h-0"
-                    : `h-fit duration-300 pt-5 pb-1`
-                    }  `}
+                  className={`overflow-hidden ${
+                    colorToggle
+                      ? "duration-300 h-0"
+                      : `h-fit duration-300 pt-5 pb-1`
+                  }  `}
                 >
                   <div className="flex items-center justify-start flex-wrap mx-1 gap-x-2 gap-y-2">
                     {getFilter?.colors?.map((data, index) => {
@@ -597,7 +613,7 @@ function FilterList({
           {/* ------rating------ */}
           {getFilter?.ratings && (
             <div
-              className={` w-full flex-col items-center mb-[20px] md:mb-[38px]`}
+              className={`px-3 w-full flex-col items-center mb-[20px] md:mb-[38px]`}
             >
               <section className="w-full h-fit mt-[12px]">
                 <article className="w-full flex justify-between items-center">
@@ -609,16 +625,18 @@ function FilterList({
                       {t("FL_customer_reviews")}
                     </p>
                     <p
-                      className={`${ratingToggle ? "rotate-[180deg]" : ""
-                        } duration-300 ml-1`}
+                      className={`${
+                        ratingToggle ? "rotate-[180deg]" : ""
+                      } duration-300 ml-1`}
                     >
                       <ArrowTopIcons colors={"#000"} />
                     </p>
                   </figure>
                 </article>
                 <article
-                  className={`flex flex-col   gap-y-3 overflow-hidden ${ratingToggle ? "duration-300 h-0" : `duration-300  mt-5`
-                    } duration-300`}
+                  className={`flex flex-col   gap-y-3 overflow-hidden ${
+                    ratingToggle ? "duration-300 h-0" : `duration-300  mt-5`
+                  } duration-300`}
                 >
                   {/* Field */}
 
@@ -668,7 +686,7 @@ function FilterList({
           {/* ----OutWearList---- */}
           {getFilter?.wear_sizes?.outwear && (
             <div
-              className={`w-full flex-col items-center mb-[20px] md:mb-[38px]`}
+              className={`px-3 w-full flex-col items-center mb-[20px] md:mb-[38px]`}
             >
               <section className="w-full h-fit mt-[12px] ">
                 <article className="w-full flex justify-between items-center ">
@@ -680,18 +698,20 @@ function FilterList({
                       {t("FL_outerwear_size")}
                     </figcaption>
                     <p
-                      className={`${outwearToggle ? "rotate-[180deg]" : ""
-                        } duration-300 ml-1`}
+                      className={`${
+                        outwearToggle ? "rotate-[180deg]" : ""
+                      } duration-300 ml-1`}
                     >
                       <ArrowTopIcons colors={"#000"} />
                     </p>
                   </figure>
                 </article>
                 <article
-                  className={`overflow-hidden ${outwearToggle
-                    ? "duration-300 h-0"
-                    : "duration-300 h-fit mt-5"
-                    } duration-300`}
+                  className={`overflow-hidden ${
+                    outwearToggle
+                      ? "duration-300 h-0"
+                      : "duration-300 h-fit mt-5"
+                  } duration-300`}
                 >
                   <figure
                     className={`w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2`}
@@ -703,13 +723,15 @@ function FilterList({
                           <button
                             key={index + 1}
                             onClick={() => onHandleOutWearList(outwear)}
-                            className={`${outwear?.letter_size || outwear?.size
-                              ? "flex"
-                              : "hidden"
-                              } ${dataActionOutwearSizes === outwear
+                            className={`${
+                              outwear?.letter_size || outwear?.size
+                                ? "flex"
+                                : "hidden"
+                            } ${
+                              dataActionOutwearSizes === outwear
                                 ? "bg-fullBlue text-white"
                                 : ""
-                              } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
+                            } h-10 w-[57px]  items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
                           >
                             <div className="flex items-center">
                               {outwear?.letter_size ? (
@@ -717,7 +739,13 @@ function FilterList({
                               ) : (
                                 <span>{outwear?.size}</span>
                               )}
-                              <span className={`ml-1 ${outwear?.amount?.length > 99 ? "text-[10px] text-[#b5b5b5]" : " "}`}>
+                              <span
+                                className={`ml-1 ${
+                                  outwear?.amount?.length > 99
+                                    ? "text-[10px] text-[#b5b5b5]"
+                                    : " "
+                                }`}
+                              >
                                 (
                                 {outwear?.amount > 99 ? "99+" : outwear?.amount}
                                 )
@@ -728,10 +756,11 @@ function FilterList({
                       })}
 
                     <div
-                      className={`w-full flex items-center  ${dataActionOutwearSizes
-                        ? "justify-between"
-                        : "justify-end"
-                        }`}
+                      className={`w-full flex items-center  ${
+                        dataActionOutwearSizes
+                          ? "justify-between"
+                          : "justify-end"
+                      }`}
                     >
                       {dataActionOutwearSizes && (
                         <div className="flex w-1/3 justify-start items-center">
@@ -745,8 +774,9 @@ function FilterList({
                         </div>
                       )}
                       <div
-                        className={`${outwearData?.length > 12 ? "flex" : "hidden"
-                          } w-2/3 items-center justify-end`}
+                        className={`${
+                          outwearData?.length > 12 ? "flex" : "hidden"
+                        } w-2/3 items-center justify-end`}
                       >
                         <button
                           type="button"
@@ -754,10 +784,11 @@ function FilterList({
                           onClick={() => {
                             setVisibleButtons((prev) => prev - 12);
                           }}
-                          className={`${visibleButtons === 12
-                            ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
-                            : ""
-                            } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                          className={`${
+                            visibleButtons === 12
+                              ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                              : ""
+                          } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
                         >
                           {t("FL_less")}
                         </button>
@@ -768,10 +799,11 @@ function FilterList({
                           onClick={() => {
                             setVisibleButtons((prev) => prev + 12);
                           }}
-                          className={`${outwearData?.length <= visibleButtons
-                            ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
-                            : ""
-                            } w-full flex justify-center text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                          className={`${
+                            outwearData?.length <= visibleButtons
+                              ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                              : ""
+                          } w-full flex justify-center text-sm text-borderWinter font-AeonikProRegular mt-2`}
                         >
                           {t("FL_more")}
                         </button>
@@ -785,7 +817,7 @@ function FilterList({
           {/* ---underWearList--- */}
           {getFilter?.wear_sizes?.underwear && (
             <div
-              className={` w-full flex flex-col items-center mb-[20px] md:mb-[38px]`}
+              className={`px-3 w-full flex flex-col items-center mb-[20px] md:mb-[38px]`}
             >
               <section className="w-full h-fit mt-[12px] ">
                 <article className="w-full flex justify-between items-center ">
@@ -797,18 +829,20 @@ function FilterList({
                       {t("FL_bottom_size")}
                     </p>
                     <p
-                      className={`${underwearToggle ? "rotate-[180deg]" : ""
-                        } duration-300 ml-1`}
+                      className={`${
+                        underwearToggle ? "rotate-[180deg]" : ""
+                      } duration-300 ml-1`}
                     >
                       <ArrowTopIcons colors={"#000"} />
                     </p>
                   </figure>
                 </article>
                 <article
-                  className={` overflow-hidden ${underwearToggle
-                    ? "duration-300 h-0"
-                    : "duration-300 h-fit mt-5"
-                    } duration-300`}
+                  className={` overflow-hidden ${
+                    underwearToggle
+                      ? "duration-300 h-0"
+                      : "duration-300 h-fit mt-5"
+                  } duration-300`}
                 >
                   <figure
                     className={`w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2`}
@@ -820,13 +854,15 @@ function FilterList({
                           <button
                             key={index + 1}
                             onClick={() => onHandleUnderWearList(underwear)}
-                            className={`${underwear?.letter_size || underwear?.size
-                              ? "flex"
-                              : "hidden"
-                              } ${dataActionUnderwearSizes === underwear
+                            className={`${
+                              underwear?.letter_size || underwear?.size
+                                ? "flex"
+                                : "hidden"
+                            } ${
+                              dataActionUnderwearSizes === underwear
                                 ? "bg-fullBlue text-white"
                                 : ""
-                              } h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
+                            } h-10 w-[57px] items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory hover:bg-fullBlue hover:text-white transition ease-linear duration-200 rounded-lg`}
                           >
                             <div className="flex items-center">
                               {underwear?.letter_size ? (
@@ -839,7 +875,14 @@ function FilterList({
                               ) : (
                                 <span>{underwear?.min_wear_size}</span>
                               )}
-                              <span className={`ml-1 ${underwear?.amount?.length > 99 ? "text-[10px] text-[#b5b5b5]" : " "}`}>                                 {" "}
+                              <span
+                                className={`ml-1 ${
+                                  underwear?.amount?.length > 99
+                                    ? "text-[10px] text-[#b5b5b5]"
+                                    : " "
+                                }`}
+                              >
+                                {" "}
                                 (
                                 {underwear?.amount > 99
                                   ? "99+"
@@ -851,10 +894,11 @@ function FilterList({
                         );
                       })}
                     <div
-                      className={`w-full flex items-center ${dataActionUnderwearSizes
-                        ? "justify-between"
-                        : "justify-end"
-                        }`}
+                      className={`w-full flex items-center ${
+                        dataActionUnderwearSizes
+                          ? "justify-between"
+                          : "justify-end"
+                      }`}
                     >
                       {dataActionUnderwearSizes && (
                         <div className="flex w-1/3 justify-start items-center">
@@ -868,8 +912,9 @@ function FilterList({
                         </div>
                       )}
                       <div
-                        className={`${underwearData?.length > 12 ? "flex" : "hidden"
-                          } w-2/3 items-center justify-end`}
+                        className={`${
+                          underwearData?.length > 12 ? "flex" : "hidden"
+                        } w-2/3 items-center justify-end`}
                       >
                         <button
                           type="button"
@@ -877,10 +922,11 @@ function FilterList({
                           onClick={() => {
                             setVisibleButtons((prev) => prev - 12);
                           }}
-                          className={`${visibleButtons === 12
-                            ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
-                            : ""
-                            } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                          className={`${
+                            visibleButtons === 12
+                              ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                              : ""
+                          } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
                         >
                           {t("FL_less")}
                         </button>
@@ -890,10 +936,11 @@ function FilterList({
                           onClick={() => {
                             setVisibleButtons((prev) => prev + 12);
                           }}
-                          className={`${underwearData?.length <= visibleButtons
-                            ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
-                            : ""
-                            } w-full flex-end justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                          className={`${
+                            underwearData?.length <= visibleButtons
+                              ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                              : ""
+                          } w-full flex-end justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
                         >
                           {t("FL_more")}
                         </button>
@@ -907,7 +954,7 @@ function FilterList({
           {/* ----footWear--- */}
           {getFilter?.wear_sizes?.footwear && (
             <div
-              className={`w-full flex flex-col items-center mb-[20px] md:mb-[38px]`}
+              className={`px-3 w-full flex flex-col items-center mb-[20px] md:mb-[38px]`}
             >
               <section className="w-full h-fit mt-[12px] ">
                 <article className="w-full flex justify-between items-center ">
@@ -919,18 +966,20 @@ function FilterList({
                       {t("FL_shoe_size")}
                     </p>
                     <p
-                      className={`${footWearToggle ? "rotate-[180deg]" : ""
-                        } duration-300 ml-1`}
+                      className={`${
+                        footWearToggle ? "rotate-[180deg]" : ""
+                      } duration-300 ml-1`}
                     >
                       <ArrowTopIcons colors={"#000"} />
                     </p>
                   </figure>
                 </article>
                 <article
-                  className={` overflow-hidden ${footWearToggle
-                    ? "duration-300 h-0"
-                    : "duration-300 h-fit mt-5"
-                    } duration-300`}
+                  className={` overflow-hidden ${
+                    footWearToggle
+                      ? "duration-300 h-0"
+                      : "duration-300 h-fit mt-5"
+                  } duration-300`}
                 >
                   <figure className="w-full flex flex-wrap justify-start gap-x-[2px] gap-y-2">
                     {footwearData
@@ -940,14 +989,22 @@ function FilterList({
                           <button
                             key={index + 1}
                             onClick={() => onHandleFootWearList(footwear)}
-                            className={`${dataActionFootwearSizes === footwear
-                              ? "bg-fullBlue text-white"
-                              : ""
-                              } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory  hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
+                            className={`${
+                              dataActionFootwearSizes === footwear
+                                ? "bg-fullBlue text-white"
+                                : ""
+                            } h-10 w-[57px] flex items-center justify-center not-italic font-AeonikProMedium text-xs leading-3 text-center text-black bg-bgCategory  hover:bg-fullBlue  hover:text-white transition ease-linear duration-200 rounded-lg`}
                           >
                             <div className="flex items-center">
                               <span>{footwear?.size}</span>
-                              <span className={`ml-1 ${footwear?.amount?.length > 99 ? "text-[10px] text-[#b5b5b5]" : " "}`}>                                   {" "}
+                              <span
+                                className={`ml-1 ${
+                                  footwear?.amount?.length > 99
+                                    ? "text-[10px] text-[#b5b5b5]"
+                                    : " "
+                                }`}
+                              >
+                                {" "}
                                 (
                                 {footwear?.amount > 99
                                   ? "99+"
@@ -959,10 +1016,11 @@ function FilterList({
                         );
                       })}
                     <div
-                      className={`w-full flex items-center  ${dataActionFootwearSizes
-                        ? "justify-between"
-                        : "justify-end"
-                        }`}
+                      className={`w-full flex items-center  ${
+                        dataActionFootwearSizes
+                          ? "justify-between"
+                          : "justify-end"
+                      }`}
                     >
                       {dataActionFootwearSizes && (
                         <div className="flex w-1/3 justify-start items-center">
@@ -976,8 +1034,9 @@ function FilterList({
                         </div>
                       )}
                       <div
-                        className={`${footwearData?.length > 12 ? "flex" : "hidden"
-                          } w-2/3 items-center justify-end`}
+                        className={`${
+                          footwearData?.length > 12 ? "flex" : "hidden"
+                        } w-2/3 items-center justify-end`}
                       >
                         <button
                           type="button"
@@ -985,10 +1044,11 @@ function FilterList({
                           onClick={() => {
                             setVisibleButtons((prev) => prev - 12);
                           }}
-                          className={`${visibleButtons === 12
-                            ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
-                            : ""
-                            } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                          className={`${
+                            visibleButtons === 12
+                              ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                              : ""
+                          } w-full flex justify-end text-sm text-borderWinter font-AeonikProRegular mt-2`}
                         >
                           {t("FL_less")}
                         </button>
@@ -999,10 +1059,11 @@ function FilterList({
                           onClick={() => {
                             setVisibleButtons((prev) => prev + 12);
                           }}
-                          className={`${footwearData?.length <= visibleButtons
-                            ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
-                            : ""
-                            } w-full flex justify-center text-sm text-borderWinter font-AeonikProRegular mt-2`}
+                          className={`${
+                            footwearData?.length <= visibleButtons
+                              ? "cursor-not-allowed text-textOpacity font-AeonikProMedium"
+                              : ""
+                          } w-full flex justify-center text-sm text-borderWinter font-AeonikProRegular mt-2`}
                         >
                           {t("FL_more")}
                         </button>
@@ -1030,5 +1091,5 @@ function FilterList({
       )}
     </div>
   );
-};
+}
 export default React.memo(FilterList);

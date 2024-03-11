@@ -19,11 +19,12 @@ import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 
 export default function CatalogItems() {
-  const { t } = useTranslation("catalog")
+  const { t } = useTranslation("catalog");
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data] = useContext(HomeMainDataContext);
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
-
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
   const [filterData, setFilterData] = useState([]);
   const [pageId, setPageId] = useState(1);
@@ -58,8 +59,8 @@ export default function CatalogItems() {
     }
   };
   useEffect(() => {
-    setFilterToggle(false)
-  }, [dressInfo?.mainSubRegionId, dressInfo?.mainRegionId,])
+    setFilterToggle(false);
+  }, [dressInfo?.mainSubRegionId, dressInfo?.mainRegionId]);
   const genderId = (childData) => {
     setGetGenderId(childData);
     setPageId(1);
@@ -108,36 +109,40 @@ export default function CatalogItems() {
   // languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz
   // console.log(newId, 'newId');
   useLayoutEffect(() => {
-    if (languageDetector?.typeLang === 'ru') {
-      if (newId === 'украшения-аксессуары') {
-        setNewFilterParamasId(5)
-        setNewFilterParamasIdCopy(5)
+    if (languageDetector?.typeLang === "ru") {
+      if (newId === "украшения-аксессуары") {
+        setNewFilterParamasId(5);
+        setNewFilterParamasIdCopy(5);
       }
-      if (newId !== 'украшения-аксессуары') {
-        data?.getMainProductCard?.categories?.map(item => {
-          if (newId?.includes(item?.name_ru?.split(' ')?.join('-')?.toLowerCase())) {
-            setNewFilterParamasId(item?.id)
+      if (newId !== "украшения-аксессуары") {
+        data?.getMainProductCard?.categories?.map((item) => {
+          if (
+            newId?.includes(item?.name_ru?.split(" ")?.join("-")?.toLowerCase())
+          ) {
+            setNewFilterParamasId(item?.id);
             if (!newFilterParamasIdCopy) {
-              setNewFilterParamasIdCopy(item?.id)
+              setNewFilterParamasIdCopy(item?.id);
             }
           }
-        })
+        });
       }
     }
-    if (languageDetector?.typeLang === 'uz') {
-      if (newId === 'taqinchoqlar-aksessuarlar') {
-        setNewFilterParamasId(5)
-        setNewFilterParamasIdCopy(5)
+    if (languageDetector?.typeLang === "uz") {
+      if (newId === "taqinchoqlar-aksessuarlar") {
+        setNewFilterParamasId(5);
+        setNewFilterParamasIdCopy(5);
       }
-      if (newId !== 'taqinchoqlar-aksessuarlar') {
-        data?.getMainProductCard?.categories?.map(item => {
-          if (newId?.includes(item?.name_uz?.split(' ')?.join('-')?.toLowerCase())) {
-            setNewFilterParamasId(item?.id)
+      if (newId !== "taqinchoqlar-aksessuarlar") {
+        data?.getMainProductCard?.categories?.map((item) => {
+          if (
+            newId?.includes(item?.name_uz?.split(" ")?.join("-")?.toLowerCase())
+          ) {
+            setNewFilterParamasId(item?.id);
             if (!newFilterParamasIdCopy) {
-              setNewFilterParamasIdCopy(item?.id)
+              setNewFilterParamasIdCopy(item?.id);
             }
           }
-        })
+        });
       }
     }
   }, [newId, data?.getMainProductCard?.shops]);
@@ -148,20 +153,32 @@ export default function CatalogItems() {
   const handleCategories = (id, nameru, nameuz) => {
     setState({ ...state, opensports: false });
 
-    if (languageDetector?.typeLang === 'ru') {
+    if (languageDetector?.typeLang === "ru") {
       if (id !== 5) {
-        navigate(`/categories/${nameru?.split(' ')?.join('-')?.toLowerCase()}`);
+        navigate(`/categories/${nameru?.split(" ")?.join("-")?.toLowerCase()}`);
       }
       if (id === 5) {
-        navigate(`/categories/${nameru?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+        navigate(
+          `/categories/${nameru
+            ?.split("/")
+            ?.map((item) => item.trim())
+            ?.join("-")
+            ?.toLowerCase()}`
+        );
       }
     }
-    if (languageDetector?.typeLang === 'uz') {
+    if (languageDetector?.typeLang === "uz") {
       if (id !== 5) {
-        navigate(`/categories/${nameuz?.split(' ')?.join('-')?.toLowerCase()}`);
+        navigate(`/categories/${nameuz?.split(" ")?.join("-")?.toLowerCase()}`);
       }
       if (id === 5) {
-        navigate(`/categories/${nameuz?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+        navigate(
+          `/categories/${nameuz
+            ?.split("/")
+            ?.map((item) => item.trim())
+            ?.join("-")
+            ?.toLowerCase()}`
+        );
       }
     }
   };
@@ -172,13 +189,18 @@ export default function CatalogItems() {
           <p
             key={data?.id}
             onClick={() => {
-              handleCategories(data?.id, languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz);
+              handleCategories(
+                data?.id,
+                languageDetector?.typeLang === "ru" && data?.name_ru,
+                languageDetector?.typeLang === "uz" && data?.name_uz
+              );
             }}
-            className={`${Number(paramId?.id) === data?.id ? "bg-bgColor" : null
-              } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+            className={`${
+              Number(paramId?.id) === data?.id ? "bg-bgColor" : null
+            } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
-            {languageDetector?.typeLang === 'ru' && data?.name_ru}
-            {languageDetector?.typeLang === 'uz' && data?.name_uz}
+            {languageDetector?.typeLang === "ru" && data?.name_ru}
+            {languageDetector?.typeLang === "uz" && data?.name_uz}
           </p>
         );
       })}
@@ -189,11 +211,13 @@ export default function CatalogItems() {
   // setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
   const headers = new Headers();
   if (languageDetector && languageDetector.typeLang) {
-    headers.append('Accept-Language', languageDetector.typeLang);
+    headers.append("Accept-Language", languageDetector.typeLang);
   }
   function fetchGetAllData() {
     let params = new URLSearchParams();
-    dressInfo?.mainRegionId && !dressInfo?.mainSubRegionId && params.append("region", dressInfo?.mainRegionId);
+    dressInfo?.mainRegionId &&
+      !dressInfo?.mainSubRegionId &&
+      params.append("region", dressInfo?.mainRegionId);
     dressInfo?.mainSearchNameCatalog &&
       params.append("keywords", dressInfo?.mainSearchNameCatalog);
     dressInfo?.mainSubRegionId &&
@@ -247,15 +271,14 @@ export default function CatalogItems() {
       });
 
     fetch(`${apiUrl}?` + params, {
-      headers: headers
+      headers: headers,
     })
       .then((res) => res.json())
       .then((res) => {
         setFilterData(res);
-        setDressInfo({ ...dressInfo, filterDataProductList: res })
+        setDressInfo({ ...dressInfo, filterDataProductList: res });
         setLoading(false);
         // console.log(res, 'category---res');
-
       })
       .catch((err) => {
         // console.log(err, 'category---err');
@@ -265,11 +288,23 @@ export default function CatalogItems() {
       });
   }
   useEffect(() => {
-    if (initalParamsId && initalParamsId !== newFilterParamasId && !getGenderId && !getCategory && !getRating && !getRange?.length && !dataColor?.length && !discount && !getOutWearList && !getUnderWearList && !getFootWearList) {
+    if (
+      initalParamsId &&
+      initalParamsId !== newFilterParamasId &&
+      !getGenderId &&
+      !getCategory &&
+      !getRating &&
+      !getRange?.length &&
+      !dataColor?.length &&
+      !discount &&
+      !getOutWearList &&
+      !getUnderWearList &&
+      !getFootWearList
+    ) {
       fetchGetAllData();
       setLoading(true);
     }
-    setInitalParamsId(newFilterParamasId)
+    setInitalParamsId(newFilterParamasId);
   }, [newFilterParamasId]);
 
   useEffect(() => {
@@ -296,7 +331,7 @@ export default function CatalogItems() {
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
     dressInfo?.mainSearchNameCatalog,
-    languageDetector?.typeLang
+    languageDetector?.typeLang,
   ]);
 
   useEffect(() => {
@@ -353,7 +388,6 @@ export default function CatalogItems() {
         </div>
       ) : (
         <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto ">
-
           <article className="w-[100%] h-fit ">
             <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
               <article className="w-[100%] h-fit md:mb-12 md:mt-[60px]">
@@ -372,8 +406,10 @@ export default function CatalogItems() {
                       ></div>
                       <div className="flex items-center ml-[112px] md:ml-[210px]">
                         <div className="text-[16px] md:text-2xl font-AeonikProMedium">
-                          {languageDetector?.typeLang === 'ru' && filterData?.category?.name_ru}
-                          {languageDetector?.typeLang === 'uz' && filterData?.category?.name_uz}
+                          {languageDetector?.typeLang === "ru" &&
+                            filterData?.category?.name_ru}
+                          {languageDetector?.typeLang === "uz" &&
+                            filterData?.category?.name_uz}
                           <span className="text-[16px] text-setTexOpacity font-AeonikProRegular ml-2 pr-3 md:pr-0">
                             ({filterData?.category_products?.total})
                           </span>
@@ -397,15 +433,18 @@ export default function CatalogItems() {
                             content={contentCategories}
                           >
                             <span className="text-[15px] font-AeonikProMedium">
-                              {languageDetector?.typeLang === 'ru' && filterData?.category?.name_ru}
-                              {languageDetector?.typeLang === 'uz' && filterData?.category?.name_uz}
+                              {languageDetector?.typeLang === "ru" &&
+                                filterData?.category?.name_ru}
+                              {languageDetector?.typeLang === "uz" &&
+                                filterData?.category?.name_uz}
                             </span>
                             <span>
                               <BiChevronDown
                                 size={22}
                                 style={{ color: "#000" }}
-                                className={`${state?.opensports ? "rotate-[-180deg]" : ""
-                                  } duration-200`}
+                                className={`${
+                                  state?.opensports ? "rotate-[-180deg]" : ""
+                                } duration-200`}
                               />
                             </span>
                           </Popover>
@@ -426,8 +465,10 @@ export default function CatalogItems() {
                             className="text-[15px] font-AeonikProMedium"
                           >
                             <button className="focus:bg-borderWinter focus:text-white hover:bg-borderWinter hover:text-white bg-white border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]">
-                              {languageDetector?.typeLang === 'ru' && catalog?.name_ru}
-                              {languageDetector?.typeLang === 'uz' && catalog?.name_uz}
+                              {languageDetector?.typeLang === "ru" &&
+                                catalog?.name_ru}
+                              {languageDetector?.typeLang === "uz" &&
+                                catalog?.name_uz}
                             </button>
                           </li>
                         )
@@ -471,11 +512,7 @@ export default function CatalogItems() {
                     className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[14px] leading-4 border-r border-searchBgColor"
                   />
                   {searchMarketName && (
-                    <button
-                      onClick={handleClear}
-                      className="  "
-                      type="button"
-                    >
+                    <button onClick={handleClear} className="  " type="button">
                       <MdClose size={20} color={"#a1a1a1"} />
                     </button>
                   )}
@@ -519,15 +556,17 @@ export default function CatalogItems() {
                   setOpenMobileCategory(false);
                   setOpenMobileFilter(false);
                 }}
-                className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter || openMobileCategory ? "" : "hidden"
-                  }`}
+                className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+                  openMobileFilter || openMobileCategory ? "" : "hidden"
+                }`}
               ></section>
               {screenSize.width < 768 && (
                 <section
-                  className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
-                    }`}
+                  className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+                    openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+                  }`}
                 >
-                  <div className="max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
+                  <div className="relative max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
                     <FilterList
                       paramsId={newFilterParamasId}
                       genderId={genderId}
@@ -549,8 +588,9 @@ export default function CatalogItems() {
                 </section>
               )}
               <section
-                className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[40vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
-                  }`}
+                className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[40vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+                  openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
+                }`}
               >
                 <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between  mb-1 ">
                   <p className="text-xl font-AeonikProMedium">
@@ -567,16 +607,20 @@ export default function CatalogItems() {
                       <p
                         key={data?.id}
                         onClick={() => {
-                          handleCategories(data?.id, languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz);
+                          handleCategories(
+                            data?.id,
+                            languageDetector?.typeLang === "ru" &&
+                              data?.name_ru,
+                            languageDetector?.typeLang === "uz" && data?.name_uz
+                          );
                           setOpenMobileCategory(false);
                         }}
-                        className={`${Number(paramId?.id) === data?.id
-                          ? "bg-bgColor"
-                          : null
-                          } h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
+                        className={`${
+                          Number(paramId?.id) === data?.id ? "bg-bgColor" : null
+                        } h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
                       >
-                        {languageDetector?.typeLang === 'ru' && data?.name_ru}
-                        {languageDetector?.typeLang === 'uz' && data?.name_uz}
+                        {languageDetector?.typeLang === "ru" && data?.name_ru}
+                        {languageDetector?.typeLang === "uz" && data?.name_uz}
                       </p>
                     );
                   })}
@@ -586,8 +630,9 @@ export default function CatalogItems() {
               {/* FOR DESCTOP VERSION */}
               {screenSize.width >= 768 && (
                 <article
-                  className={`${filterToggle ? "md:block" : "md:hidden"
-                    } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0`}
+                  className={`${
+                    filterToggle ? "md:block" : "md:hidden"
+                  } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0`}
                 >
                   <FilterList
                     paramsId={newFilterParamasId}
@@ -607,14 +652,16 @@ export default function CatalogItems() {
                 </article>
               )}
               <article
-                className={`${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-                  } w-full h-full px-[10px] md:px-0`}
+                className={`${
+                  filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+                } w-full h-full px-[10px] md:px-0`}
               >
-                {filterData?.category_products?.data?.length > 0 ? (<CatalogCard
-                  paramsId={newId}
-                  filterData={filterData}
-                  setPageId={setPageId}
-                />
+                {filterData?.category_products?.data?.length > 0 ? (
+                  <CatalogCard
+                    paramsId={newId}
+                    filterData={filterData}
+                    setPageId={setPageId}
+                  />
                 ) : (
                   <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[50vh] ">
                     {t("CI_nothing_found")}
@@ -623,7 +670,6 @@ export default function CatalogItems() {
               </article>
             </section>
           </article>
-
         </section>
       )}
     </main>
