@@ -123,23 +123,25 @@ const MediumHeader = ({ stateData, setStateData }) => {
   //------------------------------------------------------------------------------------------------
 
   // ----------------Wear state management----------------------------
-  const [openwear, setOpenwear] = useState(false);
-  const handleOpenChangeWear = (newOpen) => {
-    setOpenwear(newOpen);
+  const [openWeather, setOpenWeather] = useState(false);
+  const handleOpenChangeWeather = (newOpen) => {
+    setOpenWeather(newOpen);
   };
 
   const handleSeason = (id) => {
     setDressInfo({ ...dressInfo, type: id });
-    setOpenwear(false);
+    setOpenWeather(false);
   };
 
-  const contentWear = (
+  console.log(dressInfo?.type, "dressInfo?.type");
+
+  const contentWeather = (
     <section className="ss:w-fit md:w-[120px] h-fit m-0 p-0  data1">
       {SeasonTypeArray.map((value) => {
         return (
           <article
             key={value?.id}
-            className="w-full h-[42px] md:flex items-center hidden  md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
+            className="w-full h-[42px] md:flex items-center hidden md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
             onClick={() => handleSeason(value.id)}
           >
             <figure className={`${value?.id !== 5555 ? "w-5" : ""} `}>
@@ -160,7 +162,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
         return (
           <article
             key={value?.id}
-            className="w-full h-[42px] flex items-center  md:hidden md:justify-center md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
+            className="w-full h-[42px] flex items-center md:hidden md:justify-center md:pl-3 justify-start not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor"
             onClick={() => handleSeason(value.id)}
           >
             <figure className="mr-1 md:mr-3 w-6 ">
@@ -465,12 +467,12 @@ const MediumHeader = ({ stateData, setStateData }) => {
                   <div className="w-full h-full ">
                     <Popover
                       className=" w-full h-full flex items-center justify-center rounded-lg cursor-pointer  md:px-2 md:gap-x-[5px] "
-                      open={openwear}
-                      onOpenChange={handleOpenChangeWear}
+                      open={openWeather}
+                      onOpenChange={handleOpenChangeWeather}
                       trigger="click"
                       options={["Hide"]}
                       placement="bottomRight"
-                      content={contentWear}
+                      content={contentWeather}
                     >
                       {SeasonTypeArray.filter(
                         (e) => e.id === dressInfo.type
