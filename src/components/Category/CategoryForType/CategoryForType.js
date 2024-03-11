@@ -297,7 +297,7 @@ function CategoryForType() {
               className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
                 }`}
             >
-              <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between  mb-1 ">
+              <section className="h-[52px] w-full bg-btnBgColor flex items-center justify-between mb-1">
                 <p className="text-[16px] font-AeonikProMedium">
                   {t("by_section")}
                 </p>
@@ -305,7 +305,7 @@ function CategoryForType() {
                   <MenuCloseIcons colors={"#000"} />
                 </button>
               </section>
-              <div className="max-w-[440px]  w-[100%] h-[320px] z-[114]  border-y  overflow-y-auto overflow-hidden ">
+              <div className="max-w-[440px] w-[100%] h-[320px] z-[114] border-y overflow-y-auto overflow-hidden ">
                 {filterData?.sections?.map((data) => {
                   return (
                     <p
@@ -316,7 +316,7 @@ function CategoryForType() {
                       className={`${filterData?.section?.id === data?.id
                         ? "bg-bgColor"
                         : null
-                        } h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
+                        } h-10 w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
                     >
                       {languageDetector?.typeLang === 'ru' && data?.name_ru}
                       {languageDetector?.typeLang === 'uz' && data?.name_uz}
