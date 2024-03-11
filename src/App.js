@@ -7,7 +7,10 @@ export default function App() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   useEffect(() => {
-    if (localStorage.getItem("i18nextLng") === "en-US") {
+    if (
+      localStorage.getItem("i18nextLng") === "en-US" ||
+      localStorage.getItem("i18nextLng") === "en-UZ"
+    ) {
       localStorage.setItem("i18nextLng", "ru");
       window.location.reload();
     }
