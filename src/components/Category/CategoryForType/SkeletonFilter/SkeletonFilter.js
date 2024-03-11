@@ -5,7 +5,7 @@ export default function SkeletonFilter() {
 
     return (
         <div className="w-full h-fit">
-            <div className="w-full grid grid-cols-2 gap-4 ">
+            <div className="w-full grid grid-cols-2 gap-4 pt-5">
                 <Skeleton.Button active size={'large'} shape={'default'} block={true} />
                 <Skeleton.Button active size={'large'} shape={'default'} block={true} />
 

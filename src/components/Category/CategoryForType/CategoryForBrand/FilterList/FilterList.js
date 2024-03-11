@@ -389,11 +389,11 @@ function FilterList({
 
   return (
     <div
-      className={`w-full h-full relative pb-5 px-3 border border-searchBgColor rounded-lg overflow-hidden `}
+      className={`w-full h-full pb-5 md:py-5 px-3 border border-searchBgColor rounded-lg md:overflow-hidden`}
     >
       {getFilter ? (
-        <div className={`relative w-full flex-col items-center md:mb-[38px]`}>
-          <section className="h-[52px] sticky top-0 bg-white w-full md:hidden flex items-center justify-between md:mb-0 mb-4">
+        <div className={`w-full flex-col items-center md:mb-[38px]`}>
+          <section className="h-[52px] sticky top-0 z-10 bg-white w-full md:hidden flex items-center justify-between md:mb-0 mb-4">
             <p className="text-lg font-AeonikProMedium">{t("FLfilters")}</p>
             <button type="button" onClick={() => setOpenMobileFilter(false)}>
               <MenuCloseIcons colors={"#b5b5b5"} />
@@ -565,7 +565,7 @@ function FilterList({
                   : `h-[120px] duration-300 mt-5`
                   } duration-300 `}
               >
-                <div className="flex flex-col rounded-lg  w-full">
+                <div className="flex flex-col rounded-lg w-full">
                   <div className="flex flex-wrap justify-between items-center mb-3 w-full px-2">
                     <div className="flex">
                       <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#000] ">
