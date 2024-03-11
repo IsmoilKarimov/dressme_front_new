@@ -386,7 +386,7 @@ const ShoppingStoreOfficialByLocation = () => {
         </div>
       ) : (
         <div className="w-full">
-          <section className="w-full border-b border-searchBgColor py-3 md:pt-8 md:pb-5">
+          <section className="w-full border-b border-searchBgColor py-3 md:pt-8 md:pb-5 ">
             <NewBreadCrump items={breadcrumbItems} />
           </section>
 
