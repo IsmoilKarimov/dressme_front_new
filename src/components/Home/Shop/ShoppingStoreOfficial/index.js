@@ -259,6 +259,7 @@ const ShoppingStoreOfficial = () => {
         !getUnderWearList &&
         !getFootWearList)
     ) {
+
       fetchGetAllData();
       setLoading(true);
     }
