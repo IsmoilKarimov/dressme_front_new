@@ -37,7 +37,7 @@ export default function ShopStoreByLocationProduct() {
         }
     }
     return (
-        <div>
+        <div className='px-4 md:px-0'>
             <SingleProduct breadShops={breadcrumbItems} oncallProductName={oncallProductName} />
         </div>
     )
