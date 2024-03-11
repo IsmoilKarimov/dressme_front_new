@@ -71,6 +71,8 @@ const Header = () => {
   const seasonId = Number(typeFilter?.shift());
   const headers = new Headers();
 
+  console.log(seasonId, "seasonId");
+
   const fetchGetAllData = () => {
     setData({
       ...data,
