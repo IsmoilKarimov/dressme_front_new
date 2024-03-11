@@ -26,6 +26,9 @@ export default function ShoppingStore() {
   const [getGenderID, setGetGenderId] = useState(null);
   const [getSearchInput, setgetSearchInput] = useState(null);
 
+  const typeFilter = String(dressInfo?.type)?.split("");
+  const seasonId = Number(typeFilter?.shift());
+
   const apiUrl = `https://api.dressme.uz/api/main/shops`;
 
   const fetchGetAllData = () => {
@@ -37,6 +40,7 @@ export default function ShoppingStore() {
       params.append("keywords", dressInfo?.mainSearchNameshopMarket);
     dressInfo?.mainRegionId && !dressInfo?.mainSubRegionId &&
       params.append("region", dressInfo?.mainRegionId);
+    seasonId !== 5 && params.append("season", seasonId);
     dressInfo?.mainSubRegionId &&
       params.append("sub_region", dressInfo?.mainSubRegionId);
 
@@ -69,14 +73,15 @@ export default function ShoppingStore() {
   };
 
   useEffect(() => {
-    fetchGetAllData()
+    fetchGetAllData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     getGenderID,
     dressInfo?.mainSearchNameshopMarket,
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
-    languageDetector?.typeLang
+    languageDetector?.typeLang,
+    seasonId,
   ]);
 
   useEffect(() => {
