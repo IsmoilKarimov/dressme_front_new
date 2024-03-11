@@ -12,9 +12,10 @@ import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../language/LanguageItems";
 
 function CategoryForType() {
-
   const { t } = useTranslation("category");
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [filterData, setFilterData] = useState([]);
@@ -84,32 +85,38 @@ function CategoryForType() {
   const newId = paramsId?.id.replace(":", "");
 
   useLayoutEffect(() => {
-    if (languageDetector?.typeLang === 'uz') {
-      data?.getMainProductCard?.sections?.map(item => {
-        if (newId?.includes(item?.name_uz?.split(' ')?.join('-')?.toLowerCase())) {
-          setNewFilterParamasId(item?.id)
+    if (languageDetector?.typeLang === "uz") {
+      data?.getMainProductCard?.sections?.map((item) => {
+        if (
+          newId?.includes(item?.name_uz?.split(" ")?.join("-")?.toLowerCase())
+        ) {
+          setNewFilterParamasId(item?.id);
           if (!newFilterParamasIdCopy) {
-            setNewFilterParamasIdCopy(item?.id)
+            setNewFilterParamasIdCopy(item?.id);
           }
         }
-      })
+      });
     }
-    if (languageDetector?.typeLang === 'ru') {
-      data?.getMainProductCard?.sections?.map(item => {
-        if (newId?.includes(item?.name_ru?.split(' ')?.join('-')?.toLowerCase())) {
-          setNewFilterParamasId(item?.id)
+    if (languageDetector?.typeLang === "ru") {
+      data?.getMainProductCard?.sections?.map((item) => {
+        if (
+          newId?.includes(item?.name_ru?.split(" ")?.join("-")?.toLowerCase())
+        ) {
+          setNewFilterParamasId(item?.id);
           if (!newFilterParamasIdCopy) {
-            setNewFilterParamasIdCopy(item?.id)
+            setNewFilterParamasIdCopy(item?.id);
           }
         }
-      })
+      });
     }
-
   }, [paramsId?.id, data?.getMainProductCard?.sections]);
+
+  const typeFilter = String(dressInfo?.type)?.split("");
+  const seasonId = Number(typeFilter?.shift());
 
   const headers = new Headers();
   if (languageDetector && languageDetector.typeLang) {
-    headers.append('Accept-Language', languageDetector.typeLang);
+    headers.append("Accept-Language", languageDetector.typeLang);
   }
   const [loading, setLoading] = useState(true);
   const url = `https://api.dressme.uz/api`;
@@ -119,6 +126,7 @@ function CategoryForType() {
       params.append("keywords", dressInfo?.mainSearchNameCategory);
     getGenderId && params.append("gender", getGenderId);
     discount && params.append("discount", discount);
+    seasonId !== 5 && params.append("season", seasonId);
     getCategory && params.append("category", getCategory);
     getRating && params.append("rating", getRating);
     getFootWearList?.wear_size &&
@@ -166,18 +174,19 @@ function CategoryForType() {
       dataColor?.forEach((e, index) => {
         params.append("colors[]", dataColor[index]);
       });
-    dressInfo?.mainRegionId && !dressInfo?.mainSubRegionId && params.append("region", dressInfo?.mainRegionId);
+    dressInfo?.mainRegionId &&
+      !dressInfo?.mainSubRegionId &&
+      params.append("region", dressInfo?.mainRegionId);
     dressInfo?.mainSubRegionId &&
       params.append("sub_region", dressInfo?.mainSubRegionId);
 
-
     fetch(`${url}/main/section/${newFilterParamasId}?` + params, {
-      headers: headers
+      headers: headers,
     })
       .then((res) => res.json())
       .then((res) => {
         setFilterData(res);
-        setDressInfo({ ...dressInfo, filterDataProductList: res })
+        setDressInfo({ ...dressInfo, filterDataProductList: res });
         setLoading(false);
         // console.log(res, 'category---res');
       })
@@ -189,11 +198,23 @@ function CategoryForType() {
   }
 
   useEffect(() => {
-    if (initalParamsId && initalParamsId !== newFilterParamasId && !getGenderId && !getCategory && !getRating && !getRange?.length && !dataColor?.length && !discount && !getOutWearList && !getUnderWearList && !getFootWearList) {
+    if (
+      initalParamsId &&
+      initalParamsId !== newFilterParamasId &&
+      !getGenderId &&
+      !getCategory &&
+      !getRating &&
+      !getRange?.length &&
+      !dataColor?.length &&
+      !discount &&
+      !getOutWearList &&
+      !getUnderWearList &&
+      !getFootWearList
+    ) {
       fetchGetAllData();
       setLoading(true);
     }
-    setInitalParamsId(newFilterParamasId)
+    setInitalParamsId(newFilterParamasId);
   }, [newFilterParamasId]);
 
   useEffect(() => {
@@ -203,12 +224,14 @@ function CategoryForType() {
     if (!filterData) {
       setLoading(true);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     newFilterParamasIdCopy,
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
     pageId,
     discount,
+    seasonId,
     dataColor?.length,
     getGenderId,
     getCategory,
@@ -219,18 +242,18 @@ function CategoryForType() {
     getRange?.min,
     getRange?.max,
     dressInfo?.mainSearchNameCategory,
-    languageDetector?.typeLang
+    languageDetector?.typeLang,
   ]);
 
   const navigate = useNavigate();
 
   const handleCategories = (nameru, nameuz, id) => {
     setOpenMobileCategory(false);
-    if (languageDetector?.typeLang === 'uz') {
-      navigate(`/section/${nameuz?.split(' ')?.join('-')?.toLowerCase()}`);
+    if (languageDetector?.typeLang === "uz") {
+      navigate(`/section/${nameuz?.split(" ")?.join("-")?.toLowerCase()}`);
     }
-    if (languageDetector?.typeLang === 'ru') {
-      navigate(`/section/${nameru?.split(' ')?.join('-')?.toLowerCase()}`);
+    if (languageDetector?.typeLang === "ru") {
+      navigate(`/section/${nameru?.split(" ")?.join("-")?.toLowerCase()}`);
     }
   };
   useEffect(() => {
@@ -260,8 +283,8 @@ function CategoryForType() {
 
   // console.log(filterData, 'category---filterData');
   useEffect(() => {
-    setFilterToggle(false)
-  }, [dressInfo?.mainSubRegionId, dressInfo?.mainRegionId,])
+    setFilterToggle(false);
+  }, [dressInfo?.mainSubRegionId, dressInfo?.mainRegionId]);
   return (
     <div className="w-full">
       {loading ? (
@@ -289,13 +312,15 @@ function CategoryForType() {
                 setOpenMobileCategory(false);
                 setOpenMobileFilter(false);
               }}
-              className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter || openMobileCategory ? "" : "hidden"
-                }`}
+              className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+                openMobileFilter || openMobileCategory ? "" : "hidden"
+              }`}
             ></section>
             {/* For Mobile Versions */}
             <section
-              className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
-                }`}
+              className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${
+                openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
+              }`}
             >
               <section className="h-[52px] w-full bg-btnBgColor flex items-center justify-between mb-1">
                 <p className="text-[16px] font-AeonikProMedium">
@@ -311,15 +336,20 @@ function CategoryForType() {
                     <p
                       key={data?.id}
                       onClick={() => {
-                        handleCategories(languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz, data?.id);
+                        handleCategories(
+                          languageDetector?.typeLang === "ru" && data?.name_ru,
+                          languageDetector?.typeLang === "uz" && data?.name_uz,
+                          data?.id
+                        );
                       }}
-                      className={`${filterData?.section?.id === data?.id
-                        ? "bg-bgColor"
-                        : null
-                        } h-10 w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
+                      className={`${
+                        filterData?.section?.id === data?.id
+                          ? "bg-bgColor"
+                          : null
+                      } h-10 w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
                     >
-                      {languageDetector?.typeLang === 'ru' && data?.name_ru}
-                      {languageDetector?.typeLang === 'uz' && data?.name_uz}
+                      {languageDetector?.typeLang === "ru" && data?.name_ru}
+                      {languageDetector?.typeLang === "uz" && data?.name_uz}
                     </p>
                   );
                 })}
@@ -327,8 +357,9 @@ function CategoryForType() {
             </section>
             {screenSize.width < 768 && (
               <section
-                className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
-                  }`}
+                className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${
+                  openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+                }`}
               >
                 <div className="w-full h-[70vh] z-[114] overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
                   <FilterList
@@ -355,8 +386,9 @@ function CategoryForType() {
             {/* For Desktop Version */}
             {screenSize.width >= 768 && (
               <article
-                className={`${filterToggle ? "md:block" : "md:hidden"
-                  } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0 `}
+                className={`${
+                  filterToggle ? "md:block" : "md:hidden"
+                } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0 `}
               >
                 <FilterList
                   paramsId={newFilterParamasId}
@@ -377,8 +409,9 @@ function CategoryForType() {
               </article>
             )}
             <article
-              className={`${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-                } w-full h-full px-[10px] md:px-0 `}
+              className={`${
+                filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+              } w-full h-full px-[10px] md:px-0 `}
             >
               {filterData?.section_products?.data?.length > 0 ? (
                 <CategoryCards

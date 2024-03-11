@@ -207,6 +207,9 @@ export default function CatalogItems() {
     </section>
   );
 
+  const typeFilter = String(dressInfo?.type)?.split("");
+  const seasonId = Number(typeFilter?.shift());
+
   const apiUrl = `https://api.dressme.uz/api/main/category/${newFilterParamasId}`;
   // setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
   const headers = new Headers();
@@ -224,6 +227,7 @@ export default function CatalogItems() {
       params.append("sub_region", dressInfo?.mainSubRegionId);
     getGenderId && params.append("gender", getGenderId);
     discount && params.append("discount", discount);
+    seasonId !== 5 && params.append("season", seasonId);
     getCategory && params.append("category", getCategory);
     getRating && params.append("rating", getRating);
     getFootWearList?.wear_size &&
@@ -325,6 +329,7 @@ export default function CatalogItems() {
     getRange?.max,
     dataColor?.length,
     discount,
+    seasonId,
     getOutWearList,
     getUnderWearList,
     getFootWearList,
