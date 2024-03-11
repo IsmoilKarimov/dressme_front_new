@@ -171,7 +171,7 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
       {loading ? (
         <LoadingNetwork />
       ) : (
-        <div className="w-full px-[10px] md:px-0">
+        <div className="w-full">
           <section>
             <SingleProductTop data={singleData} breadShops={breadShops} />
           </section>
