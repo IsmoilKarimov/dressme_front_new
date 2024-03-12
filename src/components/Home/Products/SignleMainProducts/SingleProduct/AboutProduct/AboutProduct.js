@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
+import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext";
 
 export default function AboutProduct() {
   const [dressInfo] = useContext(dressMainData);
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
 
   const [productDescription, setProductDescription] = useState(true);
 
@@ -17,7 +19,7 @@ export default function AboutProduct() {
             onClick={() => setProductDescription(true)}
             className={`ss:w-1/2 md:w-[152px] md:h-[50px]  h-[42px] text-base text-black text-center font-AeonikProRegular not-italic ${
               productDescription
-                ? ` bg-white border  border-searchBgColor rounded-lg ${dressInfo?.TextColorSeason}`
+                ? ` bg-white border  border-searchBgColor rounded-lg ${seasonDetector?.TextColorSeason}`
                 : ""
             }
           `}
@@ -29,7 +31,7 @@ export default function AboutProduct() {
             onClick={() => setProductDescription(false)}
             className={`ss:w-1/2 md:w-[152px] md:h-[50px]  h-[42px] text-base text-black text-center font-AeonikProRegular not-italic ${
               !productDescription
-                ? ` bg-white border  border-searchBgColor rounded-lg ${dressInfo?.TextColorSeason}`
+                ? ` bg-white border  border-searchBgColor rounded-lg ${seasonDetector?.TextColorSeason}`
                 : ""
             }
           `}

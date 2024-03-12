@@ -15,7 +15,7 @@ export default function App() {
       window.location.reload();
     }
   }, []);
-
+ 
   const location = useLocation();
 
   const [locationWindow, setLocationWindow] = useState("");

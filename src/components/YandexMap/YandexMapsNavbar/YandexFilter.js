@@ -18,6 +18,7 @@ import "../yandex.css";
 import Slider from "react-slider";
 import { LanguageDetectorDress } from "../../../language/LanguageItems";
 import { useTranslation } from "react-i18next";
+import { SaesonDetectorDress } from "../../../ContextHook/SeasonContext";
 const { Option } = Select;
 
 export default function YandexFilter({ getMapsInfo }) {
@@ -200,6 +201,7 @@ export default function YandexFilter({ getMapsInfo }) {
   const closePrizeModal = (e) => {
     targetModal.classList.add("hidden");
   };
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
 
   return (
     <div className="w-fit px-10 py-2 mt-[-2px] md:px-6  md:rounded-b-[16px] bg-yandexNavbar border border-searchBgColor border-t-0 backdrop-blur-sm flex flex-col justify-between items-center m-auto md:border-t">
@@ -468,7 +470,7 @@ export default function YandexFilter({ getMapsInfo }) {
 
         <div className="box-border flex items-center gap-x-2  h-[44px] border border-searchBgColor overflow-hidden rounded-lg bg-btnBgColor">
           {personItems
-            ?.filter((value) => value.id === dressInfo?.type)
+            ?.filter((value) => value.id === seasonDetector?.typeId)
             .map((data) => {
               return (
                 <div
@@ -512,7 +514,7 @@ export default function YandexFilter({ getMapsInfo }) {
           {selectWear && (
             <button
               type="button"
-              className={`h-[32px] px-2 flex items-center ${dressInfo?.BtnOpacitySeason} rounded-lg gap-x-[6px]`}
+              className={`h-[32px] px-2 flex items-center ${seasonDetector?.BtnOpacitySeason} rounded-lg gap-x-[6px]`}
             >
               <span className="text-sm not-italic font-AeonikProMedium leading-5">
                 {selectWear}
@@ -522,7 +524,7 @@ export default function YandexFilter({ getMapsInfo }) {
                 className="w-4 h-4 px-[2px] rounded-full flex items-center justify-center bg-white"
               >
                 <MenuCloseIcons
-                  colors={dressInfo?.ColorSeason}
+                  colors={seasonDetector?.ColorSeason}
                   className="w-full h-full"
                 />
               </span>
@@ -534,7 +536,7 @@ export default function YandexFilter({ getMapsInfo }) {
           {selectBrand && (
             <button
               type="button"
-              className={`h-[32px] px-2 flex items-center ${dressInfo?.BtnOpacitySeason} rounded-lg gap-x-[6px]`}
+              className={`h-[32px] px-2 flex items-center ${seasonDetector?.BtnOpacitySeason} rounded-lg gap-x-[6px]`}
             >
               <span className="text-sm not-italic font-AeonikProMedium leading-5">
                 {selectBrand}
@@ -544,7 +546,7 @@ export default function YandexFilter({ getMapsInfo }) {
                 className="w-4 h-4 px-[2px] rounded-full flex items-center justify-center bg-white"
               >
                 <MenuCloseIcons
-                  colors={dressInfo?.ColorSeason}
+                  colors={seasonDetector?.ColorSeason}
                   className="w-full h-full"
                 />
               </span>

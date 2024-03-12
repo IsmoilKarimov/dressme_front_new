@@ -21,10 +21,12 @@ import Slider from "react-slider";
 import { HomeFilterContext } from "../../../../ContextHook/HomeFilterContext";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../language/LanguageItems";
+import { SaesonDetectorDress } from "../../../../ContextHook/SeasonContext";
 const ClothingParametr = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData, , , page, setPage] = useContext(HomeMainDataContext);
   const { i18n, t } = useTranslation("homePage");
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
 
   const [state, setState] = useState({
     clothesTypeMobile: false,
@@ -308,7 +310,7 @@ const ClothingParametr = () => {
                             className={`${data?.id === dressInfo?.mainCategoryId
                                 ? "text-borderWinter bg-[#F6F6F6]"
                                 : ""
-                              }  ${dressInfo?.TextHoverSeason
+                              }  ${seasonDetector?.TextHoverSeason
                               } relative bg-bgCard text-base text-[#303030] font-AeonikProMedium hover:bg-[#F6F6F6] w-[100%] h-10 xs:h-12 rounded-lg cursor-pointer flex items-center justify-center hover:duration-300 hover:ease-linear `}
                           >
                             {languageDetector?.typeLang === "ru" &&
@@ -596,7 +598,7 @@ const ClothingParametr = () => {
                   {/* Gender selection for Mobile */}
                   <div className="w-fit mx-auto box-border flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-xl bg-btnBgColor mt-5 mb-2">
                     {personItems
-                      ?.filter((value) => value?.id === dressInfo?.type)
+                      ?.filter((value) => value?.id === seasonDetector?.typeId)
                       ?.map((data) => {
                         return (
                           <div

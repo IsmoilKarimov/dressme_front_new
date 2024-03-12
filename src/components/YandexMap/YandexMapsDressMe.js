@@ -37,6 +37,7 @@ import MarketFilterofMaps from "./YandexLocationMarketOpen/MarketFilterofMaps";
 import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../language/LanguageItems";
+import { SaesonDetectorDress } from "../../ContextHook/SeasonContext";
 
 function YandexMapsDressMe() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -72,7 +73,9 @@ function YandexMapsDressMe() {
   }
 
   // -------------Get Request
-  const typeFilter = String(dressInfo?.type)?.split("");
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+
+  const typeFilter = String(seasonDetector?.typeId)?.split("");
   const seasonId = Number(typeFilter?.shift());
 
   const fetchGetAllData = () => {
@@ -440,7 +443,7 @@ function YandexMapsDressMe() {
                 <div className="flex items-center justify-between h-fit mb-3">
                   <button className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
                     <span>
-                      <VolumeIcons colors={dressInfo?.ColorSeason} />
+                      <VolumeIcons colors={seasonDetector?.ColorSeason} />
                     </span>
                     <span className=" ml-[10px]">Музика</span>
                   </button>

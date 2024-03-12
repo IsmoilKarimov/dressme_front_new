@@ -8,10 +8,12 @@ import { UserRefreshTokenContext } from "../../../../ContextHook/UserRefreshToke
 import { useNavigate } from "react-router-dom";
 import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
 import { LanguageDetectorDress } from "../../../../language/LanguageItems";
+import { SaesonDetectorDress } from "../../../../ContextHook/SeasonContext";
 
 export default function ShoppingStore() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
 
   const [reFreshTokenFunc, setUserLogedIn] = useContext(
     UserRefreshTokenContext
@@ -26,7 +28,7 @@ export default function ShoppingStore() {
   const [getGenderID, setGetGenderId] = useState(null);
   const [getSearchInput, setgetSearchInput] = useState(null);
 
-  const typeFilter = String(dressInfo?.type)?.split("");
+  const typeFilter = String(seasonDetector?.typeId)?.split("");
   const seasonId = Number(typeFilter?.shift());
 
   const apiUrl = `https://api.dressme.uz/api/main/shops`;

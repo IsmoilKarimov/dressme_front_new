@@ -11,8 +11,10 @@ import {
   WinterMale,
 } from "../../../assets";
 import "../header.css";
+import { SaesonDetectorDress } from "../../../ContextHook/SeasonContext";
 const CategoryNavbar = () => {
   const [dressInfo] = useContext(dressMainData);
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
 
   const [state, setState] = useState({
     openwear: false,
@@ -51,7 +53,7 @@ const CategoryNavbar = () => {
             onClick={() => {
               handleWearValue(data?.type);
             }}
-            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${dressInfo?.TextHoverSeason}`}
+            className={`w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor ${seasonDetector?.TextHoverSeason}`}
           >
             {data?.type}
           </p>
@@ -113,7 +115,7 @@ const CategoryNavbar = () => {
           >
             <span>
               {personItems
-                ?.filter((value) => value.id === dressInfo?.type)
+                ?.filter((value) => value.id === seasonDetector?.typeId)
                 .map((data) => {
                   return (
                     <img
