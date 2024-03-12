@@ -248,7 +248,7 @@ const ShoppingStoreOfficial = () => {
 
   useEffect(() => {
     if (
-      (!filteredData && dressInfo?.locationIdParams) ||
+      (newFilterParamasId && !filteredData && dressInfo?.locationIdParams) ||
       (initalParamsId &&
         initalParamsId !== dressInfo?.locationIdParams &&
         !getGenderId &&
@@ -272,14 +272,14 @@ const ShoppingStoreOfficial = () => {
     if (
       data?.getMainProductCard?.shops &&
       dressInfo?.locationIdParams &&
-      newFilterParamasIdCopy
+      newFilterParamasId
     ) {
       fetchGetAllData();
       if (!filteredData) {
         setLoading(true);
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     newFilterParamasIdCopy,
     pageId,
@@ -371,15 +371,13 @@ const ShoppingStoreOfficial = () => {
                   onClick={() => {
                     setOpenMobileFilter(false);
                   }}
-                  className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-                    openMobileFilter ? "" : "hidden"
-                  }`}
+                  className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter ? "" : "hidden"
+                    }`}
                 ></section>
                 {screenSize.width < 768 && (
                   <section
-                    className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
-                      openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
-                    }`}
+                    className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+                      }`}
                   >
                     <div className="max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
                       <FilterList
@@ -407,17 +405,15 @@ const ShoppingStoreOfficial = () => {
                   <div className="w-full flex flex-col items-center justify-center">
                     {/* Products Section */}
                     <article
-                      className={`${
-                        openTabComment || openTabLocation ? "hidden" : "block"
-                      } w-full `}
+                      className={`${openTabComment || openTabLocation ? "hidden" : "block"
+                        } w-full `}
                     >
                       <section className="w-[100%] h-fit">
                         <section className="w-full flex flex-gap-6 justify-between md:my-10 mt-3 mb-20">
                           {screenSize.width >= 768 && (
                             <div
-                              className={`${
-                                filterToggle ? "md:block" : "md:hidden"
-                              } hidden md:w-[22%] h-full ss:px-4 md:px-0`}
+                              className={`${filterToggle ? "md:block" : "md:hidden"
+                                } hidden md:w-[22%] h-full ss:px-4 md:px-0`}
                             >
                               <FilterList
                                 paramsId={newFilterParamasId}
@@ -439,9 +435,8 @@ const ShoppingStoreOfficial = () => {
                           )}
 
                           <div
-                            className={` ${
-                              filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-                            } w-full h-full px-[10px] md:px-0`}
+                            className={` ${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+                              } w-full h-full px-[10px] md:px-0`}
                           >
                             {filteredData ? (
                               <ShopOfficialCard
@@ -461,9 +456,8 @@ const ShoppingStoreOfficial = () => {
 
                     {/* Comment Section For Shopping Page */}
                     <div
-                      className={`${
-                        openTabComment ? "block" : "hidden"
-                      } w-full pb-[88px] md:pt-8`}
+                      className={`${openTabComment ? "block" : "hidden"
+                        } w-full pb-[88px] md:pt-8`}
                     >
                       <ShowPageComment
                         filteredData={filteredData}
@@ -473,9 +467,8 @@ const ShoppingStoreOfficial = () => {
 
                     {/* Map Section */}
                     <div
-                      className={`${
-                        openTabLocation && !openTabComment ? "block" : "hidden"
-                      } w-full text-3xl px-4 pb-[88px] pt-[12px] md:pt-12`}
+                      className={`${openTabLocation && !openTabComment ? "block" : "hidden"
+                        } w-full text-3xl px-4 pb-[88px] pt-[12px] md:pt-12`}
                     >
                       <button
                         onClick={() => {
