@@ -15,6 +15,7 @@ import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 import { LanguageDetectorDress } from "../../language/LanguageItems";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
+import { SaesonDetectorDress } from "../../ContextHook/SeasonContext";
 
 const TopHeader = () => {
   const { i18n, t } = useTranslation('header')
@@ -52,13 +53,15 @@ const TopHeader = () => {
     setCurrentLang(value)
     setOpenLang(false);
   };
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+
   const contentLang = (
     <section className="w-fit h-fit m-0 p-0">
       {LanguageList.map((data) => {
         return (
           <article
             key={data?.value}
-            className={`p-2 text-sm cursor-pointer hover:bg-bgColor flex items-center justify-start  ${dressInfo?.ColorSeason}`}
+            className={`p-2 text-sm cursor-pointer hover:bg-bgColor flex items-center justify-start  ${seasonDetector?.ColorSeason}`}
             onClick={() => {
               handleLangValue(data?.value);
             }}
@@ -67,7 +70,7 @@ const TopHeader = () => {
               <img className="w-full h-full" src={data?.icons} alt="" />
             </figure>
             <article
-              className={`not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black  ${dressInfo?.ColorSeason}`}
+              className={`not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black  ${seasonDetector?.ColorSeason}`}
             >
               {data?.type}
             </article>
