@@ -145,7 +145,7 @@ const ShoppingStoreOfficialTop = ({
                 <div className="w-[calc(100%-96px)]  md:w-[calc(100%-180px)]  flex flex-col ml-4  md:ml-8  ">
                   <p className="relative w-full h-[50px] break-all overflow-hidden     ">
                     <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-5"></div>
-                    <span className="w-full break-all  text-weatherWinterColor text-lg md:text-xl leading-6 md:leading-none	 font-AeonikProMedium not-italic font-AeonikProMedium ">
+                    <span className="w-full break-all  text-weatherWinterColor text-lg md:text-xl leading-6 md:leading-none	 font-AeonikProMedium not-italic">
                       {filteredData?.shop?.name || null}
                     </span>
                   </p>
@@ -335,6 +335,7 @@ const ShoppingStoreOfficialTop = ({
                   </p>
                   {t("all_locations")}
                 </button>
+
                 <Modal
                   centered
                   width={700}
@@ -342,7 +343,7 @@ const ShoppingStoreOfficialTop = ({
                   onOk={() => setOpenLocationModal(false)}
                   onCancel={() => setOpenLocationModal(false)}
                   footer={null}
-                  className="w-full p-6"
+                  className=" w-full p-6"
                 >
                   <div className="w-full px-4 md:px-[25px] pb-[15px] md:pb-[30px] pt-[10px] md:pt-[20px]">
                     <p className="text-[16px] md:text-2xl font-AeonikProRegular mb-[15px] md:mb-[30px]">

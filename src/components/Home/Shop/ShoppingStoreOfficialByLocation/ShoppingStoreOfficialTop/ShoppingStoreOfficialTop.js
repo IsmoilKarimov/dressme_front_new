@@ -257,7 +257,7 @@ const ShoppingStoreOfficialTop = ({
                   }}
                   className="flex gap-x-2 items-center w-[100%] md:w-full"
                 >
-                  <div className="flex items-center justify-center w-12 h-12 rounded-xl border border-searchBgColor cursor-pointer">
+                  <div className="flex items-center justify-center min-w-[48px] w-12 h-12 min-h-[48px] rounded-xl border border-searchBgColor cursor-pointer">
                     <LocationColoursIcons colors={"#007DCA"} />
                   </div>
                   {filteredData?.shop?.approved_shop_locations
