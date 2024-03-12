@@ -224,44 +224,42 @@ export default function ShopOfficialCard({
         </div>
       )}
 
-      {filteredData?.products?.data?.length > 0 && (
-        <div className="w-full hidden h-fit md:flex items-center justify-center mt-[75px] gap-x-6">
-          <article className="flex items-center">
-            <ul className="flex items-center">
-              {filteredData?.products?.links?.map((item, index) => {
-                return (
-                  <li
-                    key={index}
-                    onClick={() => {
-                      if (item?.url) {
-                        const newPageId = String(
-                          item?.url?.substr(-3)?.split("")?.reverse()?.join("")
-                        )
-                          ?.split("")
-                          ?.filter((item) => !isNaN(item))
-                          ?.reverse()
-                          ?.join("");
-                        setPaginationFunc(newPageId);
-                      }
-                    }}
-                    className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${
-                      item?.active
-                        ? "bg-fullBlue text-white"
-                        : "hover:bg-searchBgColor"
-                    } mx-[5px] flex items-center justify-center  ${
-                      item?.url
-                        ? "cursor-pointer"
-                        : "opacity-70 cursor-not-allowed"
-                    }`}
-                  >
-                    {item?.label}
-                  </li>
-                );
-              })}
-            </ul>
-          </article>
-        </div>
-      )}
+      <section className="w-full  h-fit flex items-center justify-center md:mt-[75px] gap-x-6 pb-[80px] md:pb-0">
+        <article className="flex w-full items-center md:justify-center">
+          <ul className="flex w-full items-center md:justify-center overflow-x-auto pb-[8px] md:pb-0">
+            {filteredData?.products?.links?.map((item, index) => {
+              return (
+                <li
+                  key={index}
+                  onClick={() => {
+                    if (item?.url) {
+                      const newPageId = String(
+                        item?.url?.substr(-3)?.split("")?.reverse()?.join("")
+                      )
+                        ?.split("")
+                        ?.filter((item) => !isNaN(item))
+                        ?.reverse()
+                        ?.join("");
+                      setPaginationFunc(newPageId);
+                    }
+                  }}
+                  className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-4 w-fit md:min-w-[45px] border h-[35px] md:h-[45px] rounded-lg  ${
+                    item?.active
+                      ? "bg-fullBlue text-white"
+                      : "hover:bg-searchBgColor"
+                  } mx - [5px] flex items-center justify-center  ${
+                    item?.url
+                      ? "cursor-pointer"
+                      : "opacity-70 cursor-not-allowed"
+                  } `}
+                >
+                  {item?.label}
+                </li>
+              );
+            })}
+          </ul>
+        </article>
+      </section>
     </div>
   );
 }
