@@ -136,7 +136,7 @@ const ShoppingStoreOfficialTop = ({
                 <div className="w-[calc(100%-96px)]  md:w-[calc(100%-180px)]  flex flex-col ml-4  md:ml-8  ">
                   <p className="relative w-full h-[50px] break-all overflow-hidden     ">
                     <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-5"></div>
-                    <span className="w-full break-all  text-weatherWinterColor text-lg md:text-xl  font-AeonikProMedium not-italic font-AeonikProMedium ">
+                    <span className="w-full break-all  text-weatherWinterColor text-lg md:text-xl leading-6 md:leading-none font-AeonikProMedium not-italic font-AeonikProMedium ">
                       {filteredData?.shop?.name || null}
                     </span>
                   </p>

@@ -23,7 +23,6 @@ import { ToastContainer, toast } from "react-toastify";
 import LoadingNetwork from "../../Loading/LoadingNetwork";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../language/LanguageItems";
-import { SaesonDetectorDress } from "../../../ContextHook/SeasonContext";
 
 export default function SignUp() {
   // const [phone, setPhone] = useState("");
@@ -33,7 +32,7 @@ export default function SignUp() {
 
   const [selectMonth, setselectMonth] = useState({ text: t('Smonth'), id: false });
   const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+
   const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
     firstName: "",
@@ -242,7 +241,7 @@ export default function SignUp() {
               {languageDetector?.typeLang === "uz" && (
                 <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-[17px] ls:text-[19px] ll:text-[20px] leading-5 ss:text-start md:text-center  tracking-[0,16px] text-black">
                   Xush kelebsiz{" "}
-                  <span className={`mr-1 ${seasonDetector?.TextColorSeason}`}>
+                  <span className={`mr-1 ${dressInfo?.TextColorSeason}`}>
                     Dressme
                   </span>
                   ga !
@@ -251,7 +250,7 @@ export default function SignUp() {
               {languageDetector?.typeLang === "ru" && (
                 <div className=" w-full  mb-7 not-italic font-AeonikProMedium text-[17px] ls:text-[19px] ll:text-[20px] leading-5 ss:text-start md:text-center  tracking-[0,16px] text-black">
                   Добро пожаловать в{" "}
-                  <span className={`${seasonDetector?.TextColorSeason}`}>
+                  <span className={`${dressInfo?.TextColorSeason}`}>
                     Dressme
                   </span>
                   !

@@ -19,12 +19,10 @@ import {
   winterSeason,
 } from "../../../assets";
 import { LanguageDetectorDress } from "../../../language/LanguageItems";
-import { SaesonDetectorDress } from "../../../ContextHook/SeasonContext";
 
 export default function NavbarTopOpenMenu() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
 
   const wearGroup = [
     { id: 1, name: "Футболки" },
@@ -87,7 +85,7 @@ export default function NavbarTopOpenMenu() {
               <img src={value?.icons} alt="" />
             </figure>
             <article
-              className={`flex font-AeonikProMedium text-base text-black not-italic ${seasonDetector?.TextHoverSeason}`}
+              className={`flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
             >
               {languageDetector?.typeLang === 'ru' && value?.type_ru}
               {languageDetector?.typeLang === 'uz' && value?.type_uz}
@@ -106,7 +104,7 @@ export default function NavbarTopOpenMenu() {
               <img src={value?.icons} alt="" />
             </figure>
             <article
-              className={`flex font-AeonikProMedium text-base text-black not-italic ${seasonDetector?.TextHoverSeason}`}
+              className={`flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
             >
               {languageDetector?.typeLang === 'ru' && value?.type_ru}
               {languageDetector?.typeLang === 'uz' && value?.type_uz}
@@ -206,7 +204,7 @@ export default function NavbarTopOpenMenu() {
           to="/"
           className="flex justify-center items-center rounded-lg h-[44px] md:w-[155px] ss:ml-2 md:ml-[0px]  "
         >
-          {BrandTypeArray.filter((data) => data.id === seasonDetector?.typeId).map(
+          {BrandTypeArray.filter((data) => data.id === dressInfo?.type).map(
             (data) => {
               return (
                 <img
@@ -225,7 +223,7 @@ export default function NavbarTopOpenMenu() {
           className={` bg-white w-[44px] h-[44px] ml-[25px] rounded-lg cursor-pointer hidden items-center justify-center md:flex`}
         >
           <span>
-            <VolumeIcons colors={seasonDetector?.ColorSeason} />
+            <VolumeIcons colors={dressInfo?.ColorSeason} />
           </span>
         </div>
         {/* Weather section */}

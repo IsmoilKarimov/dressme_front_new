@@ -13,7 +13,6 @@ import YandexLocationShop from "./ShoppingStoreCategory/YandexLocationShop/Yande
 import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../language/LanguageItems";
-import { SaesonDetectorDress } from "../../../../ContextHook/SeasonContext";
 
 const ShoppingStoreOfficialByLocation = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -21,7 +20,7 @@ const ShoppingStoreOfficialByLocation = () => {
 
   const { t } = useTranslation("shops")
   const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+
   // const [error, setError] = useState(false);
   const [openTabComment, setOpenTabComment] = useState(false);
   const [openTabLocation, setOpenTabLocation] = useState(false);
@@ -180,27 +179,24 @@ const ShoppingStoreOfficialByLocation = () => {
     });
 
   }, []);
-  const [seasonId, setSeasonId] = useState(5);
+  const [seasonId, setSeasonId] = useState(null);
   const [seasonIdCopy, setSeasonIdCopy] = useState(null);
-  const typeFilter = String(seasonDetector?.typeId)?.split("");
   useEffect(() => {
-    setSeasonId(Number(typeFilter?.shift()))
+    const typeFilter = String(dressInfo?.type)?.split("");
+    if (!seasonId) {
+      setSeasonId(Number(typeFilter?.shift()))
+    }
+    if (seasonId && Number(typeFilter?.shift()) !== seasonIdCopy){
+      setSeasonId(Number(typeFilter?.shift()))
+    }
+     setSeasonIdCopy(seasonId)
+    // const seasonId = Number(typeFilter?.shift());
 
-  }, [seasonDetector?.typeId])
+  }, [dressInfo?.type])
 
-  // useEffect(() => {
-  //   if (!seasonId) {
-  //     setSeasonId(Number(typeFilter?.shift()))
-  //   }
-  //   if (seasonId && Number(typeFilter?.shift()) !== seasonIdCopy) {
-  //   }
-  //   setSeasonIdCopy(seasonId)
-  //   // const seasonId = Number(typeFilter?.shift());
-  // }, [seasonDetector?.typeId])
-
-  // console.log(dressInfo?.type, 'seasonId--dressInfo?.type');
-  // console.log(seasonId, 'seasonId');
-  // console.log(seasonIdCopy, 'seasonId--seasonIdCopy');
+  console.log(dressInfo?.type, 'seasonId--dressInfo?.type');
+  console.log(seasonId, 'seasonId');
+  console.log(seasonIdCopy, 'seasonId--seasonIdCopy');
 
   const url = `https://api.dressme.uz/api`;
   const [loading, setLoading] = useState(true);
@@ -325,7 +321,7 @@ const ShoppingStoreOfficialByLocation = () => {
     dataColor?.length,
     getGenderId,
     discount,
-    seasonId,
+    dressInfo?.type,
     getCategory,
     getUnderWearList,
     getOutWearList,

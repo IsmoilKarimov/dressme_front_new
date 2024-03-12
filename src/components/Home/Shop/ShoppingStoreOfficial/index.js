@@ -13,7 +13,6 @@ import LoadingNetwork from "../../../Loading/LoadingNetwork";
 import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../language/LanguageItems";
-import { SaesonDetectorDress } from "../../../../ContextHook/SeasonContext";
 
 const ShoppingStoreOfficial = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -158,9 +157,8 @@ const ShoppingStoreOfficial = () => {
   }, [data?.getMainProductCard?.shops]);
 
   const [loading, setLoading] = useState(true);
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
 
-  const typeFilter = String(seasonDetector?.typeId)?.split("");
+  const typeFilter = String(dressInfo?.type)?.split("");
   const seasonId = Number(typeFilter?.shift());
 
   const url = `https://api.dressme.uz/api`;
@@ -272,7 +270,7 @@ const ShoppingStoreOfficial = () => {
     if (
       data?.getMainProductCard?.shops &&
       dressInfo?.locationIdParams &&
-      newFilterParamasId
+      newFilterParamasIdCopy
     ) {
       fetchGetAllData();
       if (!filteredData) {
