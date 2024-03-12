@@ -18,7 +18,7 @@ import { useTranslation } from "react-i18next";
 import { SaesonDetectorDress } from "../../ContextHook/SeasonContext";
 
 const NavMenu = ({ stateData, setStateData }) => {
-   const [  wishList,] = useContext(HomeMainDataContext);
+   const [, , wishList,] = useContext(HomeMainDataContext);
    const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
   const { i18n, t } = useTranslation('header')
 
@@ -136,7 +136,7 @@ const NavMenu = ({ stateData, setStateData }) => {
                             : wishList?.length > 999
                               ? "w-[20px] h-[20px] text-[8px] -top-[10px] -right-[14px]"
                               : "w-[12px] h-[12px] text-[10px] -top-[4px] -right-[6px]"
-                        } items-center justify-center rounded-full  bg-white text-black text-center absolute  font-AeonikProMedium`}
+                        } items-center justify-center rounded-full bg-white border border-red-600 text-black text-center absolute  font-AeonikProMedium`}
                     >
                       {wishList?.length > 999 ? (
                         <div className="w-full h-full flex items-center justify-center">
@@ -154,7 +154,7 @@ const NavMenu = ({ stateData, setStateData }) => {
                   </figcaption>{" "}
                 </figure>
               ) : (
-                <figure className=" flex flex-col items-center justify-center mt-1 ">
+                <figure className="flex flex-col items-center justify-center mt-1 ">
                   <div className="relative">
                     <img src={HeartImg} className={"w-5 h-5"} alt="heart" />
                     <div
