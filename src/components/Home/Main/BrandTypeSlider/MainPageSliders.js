@@ -10,7 +10,6 @@ import { NoImg, ShowMoreBackIcon, SircleNext } from "../../../../assets/icons";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../language/LanguageItems";
-import { SaesonDetectorDress } from "../../../../ContextHook/SeasonContext";
 
 function MainPageSliders() {
   const [data, setData] = useContext(HomeMainDataContext);
@@ -19,7 +18,7 @@ function MainPageSliders() {
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+
   // maindata
   const NextArrow = (props) => {
     const { onClick } = props;
@@ -406,7 +405,7 @@ function MainPageSliders() {
           {data?.getMainProductCard?.sections?.length > 6 ? (
             <div className="w-full hidden md:flex justify-center items-center mt-10">
               <button
-                className={`w-fit cursor-pointer active:scale-95 active:opacity-70 flex items-center h-[40px] xs:h-[52px] px-4 ll:px-10 rounded-xl border ${seasonDetector?.BtnSeason}`}
+                className={`w-fit cursor-pointer active:scale-95 active:opacity-70 flex items-center h-[40px] xs:h-[52px] px-4 ll:px-10 rounded-xl border ${dressInfo?.BtnSeason}`}
                 onClick={() => setMore(!more)}
               >
                 <p className="not-italic font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
@@ -417,20 +416,20 @@ function MainPageSliders() {
                     <div>
                       <span className="xs:hidden">
                         <ShowMoreBackIcon
-                          colors={seasonDetector?.ColorSeason}
+                          colors={dressInfo?.ColorSeason}
                           width={18}
                         />
                       </span>
                       <span className="hidden xs:block">
                         <ShowMoreBackIcon
-                          colors={seasonDetector?.ColorSeason}
+                          colors={dressInfo?.ColorSeason}
                           width={24}
                         />
                       </span>
                     </div>
                   ) : (
                     <span className="block rotate-90">
-                      <SircleNext colors={seasonDetector?.ColorSeason} />
+                      <SircleNext colors={dressInfo?.ColorSeason} />
                     </span>
                   )}
                 </div>
@@ -440,7 +439,7 @@ function MainPageSliders() {
           {data?.getMainProductCard?.sections?.length > 9 ? (
             <div className="w-full flex md:hidden justify-center items-center mt-10">
               <button
-                className={`w-fit cursor-pointer active:scale-95 active:opacity-70 flex items-center h-[40px] xs:h-[52px] px-4 ll:px-10 rounded-xl border ${seasonDetector?.BtnSeason}`}
+                className={`w-fit cursor-pointer active:scale-95 active:opacity-70 flex items-center h-[40px] xs:h-[52px] px-4 ll:px-10 rounded-xl border ${dressInfo?.BtnSeason}`}
                 onClick={() => setMore(!more)}
               >
                 <p className="not-italic font-AeonikProMedium text-sm xs:text-base leading-4 text-center">
@@ -451,20 +450,20 @@ function MainPageSliders() {
                     <div>
                       <span className="xs:hidden">
                         <ShowMoreBackIcon
-                          colors={seasonDetector?.ColorSeason}
+                          colors={dressInfo?.ColorSeason}
                           width={18}
                         />
                       </span>
                       <span className="hidden xs:block">
                         <ShowMoreBackIcon
-                          colors={seasonDetector?.ColorSeason}
+                          colors={dressInfo?.ColorSeason}
                           width={24}
                         />
                       </span>
                     </div>
                   ) : (
                     <span className="block rotate-90">
-                      <SircleNext colors={seasonDetector?.ColorSeason} />
+                      <SircleNext colors={dressInfo?.ColorSeason} />
                     </span>
                   )}
                 </div>

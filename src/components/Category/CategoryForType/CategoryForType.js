@@ -10,14 +10,12 @@ import LoadingNetwork from "../../Loading/LoadingNetwork";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../language/LanguageItems";
-import { SaesonDetectorDress } from "../../../ContextHook/SeasonContext";
 
 function CategoryForType() {
   const { t } = useTranslation("category");
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [filterData, setFilterData] = useState([]);
@@ -113,7 +111,7 @@ function CategoryForType() {
     }
   }, [paramsId?.id, data?.getMainProductCard?.sections]);
 
-  const typeFilter = String(seasonDetector?.typeId)?.split("");
+  const typeFilter = String(dressInfo?.type)?.split("");
   const seasonId = Number(typeFilter?.shift());
 
   const headers = new Headers();

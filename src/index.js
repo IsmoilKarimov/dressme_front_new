@@ -14,7 +14,6 @@ import { MobileSelectedDataContextProvider } from "./ContextHook/mobileSelectedD
 import { UserRefreshTokenContextProvider } from "./ContextHook/UserRefreshToken";
 import { DressmeLanguage } from "./language/LanguageItems";
 import './language/i18n'
-import { DressmeSeason } from "./ContextHook/SeasonContext";
 
 const queryClient = new QueryClient();
 
@@ -23,7 +22,6 @@ root.render(
   // <StrictMode>
   <QueryClientProvider client={queryClient}>
     <MainPageAudioContextProvider>
-    <DressmeSeason>
       <DressmeLanguage>
         <DressMenu>
           <BrowserRouter>
@@ -43,7 +41,6 @@ root.render(
           </BrowserRouter>
         </DressMenu>
       </DressmeLanguage>
-    </DressmeSeason>
     </MainPageAudioContextProvider>
   </QueryClientProvider>
   // </StrictMode>

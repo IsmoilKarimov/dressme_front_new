@@ -15,13 +15,12 @@ import { dressMainData } from "../../ContextHook/ContextMenu";
 import Cookies from "js-cookie";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
-import { SaesonDetectorDress } from "../../ContextHook/SeasonContext";
 
 const NavMenu = ({ stateData, setStateData }) => {
   const [dressInfo] = useContext(dressMainData);
   const [, , wishList,] = useContext(HomeMainDataContext);
   const { i18n, t } = useTranslation('header')
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+
   return (
     <nav
       className={`bg-white shadow-navMenuShadov  px-4 w-full rounded-t-xl md:hidden z-[101] h-full overscroll-none overflow-y-hidden`}
@@ -36,7 +35,7 @@ const NavMenu = ({ stateData, setStateData }) => {
             {({ isActive }) =>
               isActive ? (
                 <figure className="flex flex-col items-center justify-center">
-                  <ActiveHomeIcons colors={seasonDetector?.ColorSeason} />
+                  <ActiveHomeIcons colors={dressInfo?.ColorSeason} />
                   <figcaption className="pt-[8px]">
                     <p>{t("NMhome")}</p>
                   </figcaption>{" "}
@@ -61,7 +60,7 @@ const NavMenu = ({ stateData, setStateData }) => {
             {({ isActive }) =>
               isActive ? (
                 <figure className="flex flex-col items-center justify-center mt-1">
-                  <ActiveCotegoryIcons colors={seasonDetector?.ColorSeason} />
+                  <ActiveCotegoryIcons colors={dressInfo?.ColorSeason} />
                   <figcaption className="mt-2">
                     <p>{t("NMcategory")}</p>
                   </figcaption>
@@ -86,7 +85,7 @@ const NavMenu = ({ stateData, setStateData }) => {
             {({ isActive }) =>
               isActive ? (
                 <figure className="flex flex-col items-center justify-center mt-1">
-                  <MapNavMenuIcons colors={seasonDetector?.ColorSeason} />
+                  <MapNavMenuIcons colors={dressInfo?.ColorSeason} />
                   <figcaption className="mt-2">
                     <p>{t("NMmap")}</p>
                   </figcaption>
@@ -198,7 +197,7 @@ const NavMenu = ({ stateData, setStateData }) => {
             {({ isActive }) =>
               isActive ? (
                 <figure className="flex flex-col items-center justify-center mt-1 ">
-                  <ActivePersonIcons colors={seasonDetector?.ColorSeason} />
+                  <ActivePersonIcons colors={dressInfo?.ColorSeason} />
                   <figcaption className="mt-1">
                     <p>{t("NMprofile")}</p>
                   </figcaption>{" "}

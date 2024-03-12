@@ -49,7 +49,6 @@ import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData"
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../../../language/LanguageItems";
-import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext";
 const ProductDetails = ({ data, shopsData }) => {
   const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
   // Rick Ortiz
@@ -59,7 +58,6 @@ const ProductDetails = ({ data, shopsData }) => {
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
 
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
@@ -1857,7 +1855,7 @@ const ProductDetails = ({ data, shopsData }) => {
           ) : null}
 
           <section
-            className={`w-fit ${seasonDetector?.TextColorSeason} items-center text-sm hidden md:flex ml-8`}
+            className={`w-fit ${dressInfo?.TextColorSeason} items-center text-sm hidden md:flex ml-8`}
           >
             <p className="font-AeonikProRegular text-right">{t("in_stock")}:</p>
             <p className="ml-2 font-AeonikProMedium text-right">

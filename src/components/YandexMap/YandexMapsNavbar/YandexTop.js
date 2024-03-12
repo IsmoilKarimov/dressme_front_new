@@ -18,13 +18,11 @@ import { useHttp } from "../../../hook/useHttp";
 import { LanguageDetectorDress } from "../../../language/LanguageItems";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
-import { SaesonDetectorDress } from "../../../ContextHook/SeasonContext";
 
 const YandexTop = ({ onClick }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
   const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
   const { request } = useHttp();
   const [state, setState] = useState({
     openLang: false,
@@ -38,6 +36,7 @@ const YandexTop = ({ onClick }) => {
     }
     setLanguageDetector({ typeLang: currentLang })
   }, [currentLang])
+
 
   // -----Language Change-------------------
   const [selectLang, setselectLang] = useState(1);
@@ -66,7 +65,7 @@ const YandexTop = ({ onClick }) => {
         return (
           <div
             key={data?.id}
-            className={`p-2 text-sm cursor-pointer hover:bg-bgColor flex items-center justify-start  ${seasonDetector?.TextHoverSeason}`}
+            className={`p-2 text-sm cursor-pointer hover:bg-bgColor flex items-center justify-start  ${dressInfo?.TextHoverSeason}`}
             onClick={() => {
               handleLangValue(data?.value);
             }}
@@ -75,7 +74,7 @@ const YandexTop = ({ onClick }) => {
               <img className="w-full h-full" src={data?.icons} alt="" />
             </p>
             <p
-              className={`not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black  ${seasonDetector?.TextHoverSeason}`}
+              className={`not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black  ${dressInfo?.TextHoverSeason}`}
             >
               {data?.type}
             </p>

@@ -19,7 +19,6 @@ import { GrClose } from "react-icons/gr";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../language/LanguageItems";
-import { SaesonDetectorDress } from "../../ContextHook/SeasonContext";
 
 const { Option } = Select;
 
@@ -31,7 +30,6 @@ function BottomHeader() {
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
 
   const [state, setState] = useState({
     openwear: false,
@@ -120,12 +118,12 @@ function BottomHeader() {
       Number(data?.getMainProductCard?.budget?.min_price),
       Number(data?.getMainProductCard?.budget?.max_price),
     ]);
-
+   
   }, [
     data?.getMainProductCard?.budget?.min_price,
     data?.getMainProductCard?.budget?.max_price,
   ]);
-
+ 
   useEffect(() => {
     if (state?.showColour) {
       document.body.style.overflow = "hidden";
@@ -697,7 +695,7 @@ function BottomHeader() {
         <div className="line h-6 border-r-[1px] text-textColor mx-3"></div>
         <div className="box-border flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-xl bg-btnBgColor">
           {personItems
-            ?.filter((value) => value.id === seasonDetector?.typeId)
+            ?.filter((value) => value.id === dressInfo?.type)
             .map((data) => {
               return (
                 <div
