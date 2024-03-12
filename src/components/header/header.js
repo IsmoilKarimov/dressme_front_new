@@ -8,6 +8,7 @@ import NavbarBottomIndex from "./NavbarBottomIndex";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 import { LanguageDetectorDress } from "../../language/LanguageItems";
+import { SaesonDetectorDress } from "../../ContextHook/SeasonContext";
 
 const Header = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -15,7 +16,7 @@ const Header = () => {
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
-
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
   const [state, setState] = useState({
     getAllCardList: null,
     genderSelectId: 0,
@@ -67,7 +68,7 @@ const Header = () => {
   const url = "https://api.dressme.uz/api/main";
 
   // ------------GET METHOD Main data -----------------\
-  const typeFilter = String(dressInfo?.type)?.split("");
+  const typeFilter = String(seasonDetector?.type)?.split("");
   const seasonId = Number(typeFilter?.shift());
   const headers = new Headers();
 

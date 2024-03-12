@@ -14,6 +14,7 @@ import { MobileSelectedDataContextProvider } from "./ContextHook/mobileSelectedD
 import { UserRefreshTokenContextProvider } from "./ContextHook/UserRefreshToken";
 import { DressmeLanguage } from "./language/LanguageItems";
 import './language/i18n'
+import { DressmeSeason } from "./ContextHook/SeasonContext";
 
 const queryClient = new QueryClient();
 
@@ -23,23 +24,25 @@ root.render(
   <QueryClientProvider client={queryClient}>
     <MainPageAudioContextProvider>
       <DressmeLanguage>
-        <DressMenu>
-          <BrowserRouter>
-            <UserRefreshTokenContextProvider>
-              <HomeMainDataContextProvider>
-                <SliderPhotosColorContextProvider>
-                  <ProfileDataContextProvider>
-                    <HomeFilterContextProvider>
-                      <MobileSelectedDataContextProvider>
-                        <App />
-                      </MobileSelectedDataContextProvider>
-                    </HomeFilterContextProvider>
-                  </ProfileDataContextProvider>
-                </SliderPhotosColorContextProvider>
-              </HomeMainDataContextProvider>
-            </UserRefreshTokenContextProvider>
-          </BrowserRouter>
-        </DressMenu>
+        <DressmeSeason>
+          <DressMenu>
+            <BrowserRouter>
+              <UserRefreshTokenContextProvider>
+                <HomeMainDataContextProvider>
+                  <SliderPhotosColorContextProvider>
+                    <ProfileDataContextProvider>
+                      <HomeFilterContextProvider>
+                        <MobileSelectedDataContextProvider>
+                          <App />
+                        </MobileSelectedDataContextProvider>
+                      </HomeFilterContextProvider>
+                    </ProfileDataContextProvider>
+                  </SliderPhotosColorContextProvider>
+                </HomeMainDataContextProvider>
+              </UserRefreshTokenContextProvider>
+            </BrowserRouter>
+          </DressMenu>
+        </DressmeSeason>
       </DressmeLanguage>
     </MainPageAudioContextProvider>
   </QueryClientProvider>
