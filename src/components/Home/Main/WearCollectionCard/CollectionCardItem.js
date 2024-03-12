@@ -6,7 +6,7 @@ import { SliderPhotosColorContext } from "../../../../ContextHook/SliderPhotosCo
 import { MobileSelectedDataContext } from "../../../../ContextHook/mobileSelectedData";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../language/LanguageItems";
-
+ 
 export const CollectionCardItem = ({
   data,
   setOpenWearType,

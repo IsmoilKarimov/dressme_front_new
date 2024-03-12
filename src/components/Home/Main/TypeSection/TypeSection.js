@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
 import { NoImg, SeasonSquare } from "../../../../assets/icons";
+import { SaesonDetectorDress } from "../../../../ContextHook/SeasonContext";
 
 export default function TypeSection() {
-  const [dressInfo] = useContext(dressMainData);
+   const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+
   const typeSectionData = [
     {
       id: 1,
@@ -71,11 +73,11 @@ export default function TypeSection() {
                       </p>
                       <p className="flex items-center cursor-pointer">
                         <span
-                          className={`not-italic font-AeonikProMedium md:text-sm ss:text-base lg:text-base  leading-4 text-right mr-2 text-black ${dressInfo?.TextHoverSeason}`}
+                          className={`not-italic font-AeonikProMedium md:text-sm ss:text-base lg:text-base  leading-4 text-right mr-2 text-black ${seasonDetector?.TextHoverSeason}`}
                         >
                           {data?.buy}
                         </span>
-                        <SeasonSquare colors={dressInfo?.ColorSeason} />
+                        <SeasonSquare colors={seasonDetector?.ColorSeason} />
                       </p>
                     </div>
                     <div className="w-full flex flex-wrap gap-y-2 justify-between mt-4">

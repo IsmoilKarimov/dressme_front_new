@@ -13,12 +13,14 @@ import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../../../language/LanguageItems";
+import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext";
 
 const ProductCarousel = ({ show, data }) => {
   const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
   const [dressInfo] = useContext(dressMainData);
   const [nav2] = useState();
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
 
   const { t } = useTranslation("products");
   const [languageDetector, setLanguageDetector] = useContext(
@@ -650,7 +652,7 @@ const ProductCarousel = ({ show, data }) => {
               )}
             </section>
             <section
-              className={`w-fit ${dressInfo?.TextColorSeason} items-center text-sm flex ml-8`}
+              className={`w-fit ${seasonDetector?.TextColorSeason} items-center text-sm flex ml-8`}
             >
               <p className="font-AeonikProRegular text-right">
                 {t("in_stock")}:
