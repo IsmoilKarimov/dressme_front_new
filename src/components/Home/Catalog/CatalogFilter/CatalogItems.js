@@ -26,7 +26,7 @@ export default function CatalogItems() {
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress);
 
   const [filterData, setFilterData] = useState([]);
   const [pageId, setPageId] = useState(1);
