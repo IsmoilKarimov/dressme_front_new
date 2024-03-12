@@ -401,7 +401,7 @@ function FilterList({
     >
       {getFilter ? (
         <div className={`w-full flex-col items-center md:mb-[38px]`}>
-          <section className="h-[52px] sticky top-0 md:hidden w-full bg-white flex items-center  justify-between md:mb-0 mb-4 ">
+          <section className="h-[52px] sticky top-0 md:hidden w-full bg-white z-10 flex items-center  justify-between md:mb-0 mb-4 ">
             <p className="text-lg font-AeonikProMedium">{t("FL_filters")}</p>
             <button type="button" onClick={() => setOpenMobileFilter(false)}>
               <MenuCloseIcons colors={"#b5b5b5"} />
