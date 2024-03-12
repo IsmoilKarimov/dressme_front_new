@@ -17,6 +17,7 @@ import LoadingNetwork from "../../../Loading/LoadingNetwork";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../language/LanguageItems";
+import { SaesonDetectorDress } from "../../../../ContextHook/SeasonContext";
 
 export default function CatalogItems() {
   const { t } = useTranslation("catalog");
@@ -25,6 +26,7 @@ export default function CatalogItems() {
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
 
   const [filterData, setFilterData] = useState([]);
   const [pageId, setPageId] = useState(1);
@@ -207,7 +209,7 @@ export default function CatalogItems() {
     </section>
   );
 
-  const typeFilter = String(dressInfo?.type)?.split("");
+  const typeFilter = String(seasonDetector?.type)?.split("");
   const seasonId = Number(typeFilter?.shift());
 
   console.log(seasonId, "seasonId");
