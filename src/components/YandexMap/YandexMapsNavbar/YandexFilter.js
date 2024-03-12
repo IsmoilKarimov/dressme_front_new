@@ -27,10 +27,10 @@ export default function YandexFilter({ getMapsInfo }) {
 
   const { i18n, t } = useTranslation('yandexmap')
 
-  const [languageDetector, setLanguageDetector] = useContext(
+  const [languageDetector] = useContext(
     LanguageDetectorDress
   );
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+  const [seasonDetector, ] = useContext(SaesonDetectorDress)
 
   const [state, setState] = useState({
     openwear: false,
