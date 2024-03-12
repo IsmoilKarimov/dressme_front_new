@@ -32,6 +32,7 @@ import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 import { MainPageAudioContext } from "../../../ContextHook/MainPageAudio";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../language/LanguageItems";
+import { SaesonDetectorDress } from "../../../ContextHook/SeasonContext";
 
 const YandexMedium = ({ getYandexSearchName }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -45,16 +46,16 @@ const YandexMedium = ({ getYandexSearchName }) => {
   };
   const [searchMarketName, setSearchMarketName] = useState();
   const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
-
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
   const SeasonTypeArray = [
-    { id: 5555, type_ru: "",type_uz: "", icons: AllSeasonDesktop },
+    { id: 5555, type_ru: "", type_uz: "", icons: AllSeasonDesktop },
     { id: 1111, type_ru: "Лето", type_uz: "Yoz", icons: summerSeason },
     { id: 2222, type_ru: "Осень", type_uz: "Kuz", icons: autummSeason },
     { id: 3333, type_ru: "Зима", type_uz: "Qish", icons: winterSeason },
     { id: 4444, type_ru: "Весна", type_uz: "Bahor", icons: springSeason },
   ];
   const SeasonTypeArrayMobile = [
-    { id: 5555, type_ru: "Все",type_uz: "Barchasi", icons: AllSeason },
+    { id: 5555, type_ru: "Все", type_uz: "Barchasi", icons: AllSeason },
     { id: 1111, type_ru: "Лето", type_uz: "Yoz", icons: summerSeason },
     { id: 2222, type_ru: "Осень", type_uz: "Kuz", icons: autummSeason },
     { id: 3333, type_ru: "Зима", type_uz: "Qish", icons: winterSeason },
@@ -65,7 +66,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
     { id: 1111, type_ru: "Лето", type_uz: "Yoz", icons: BrandSummer },
     { id: 2222, type_ru: "Осень", type_uz: "Kuz", icons: BrandAutumm },
     { id: 3333, type_ru: "Зима", type_uz: "Qish", icons: BrandWinter },
-    { id: 5555, type_ru: "Все",type_uz: "Barchasi", icons: allBrandDesktop },
+    { id: 5555, type_ru: "Все", type_uz: "Barchasi", icons: allBrandDesktop },
   ];
 
   // ----------------Wear state management----------------------------
@@ -75,7 +76,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
   };
 
   const handleSeason = (id) => {
-    setDressInfo({ ...dressInfo, type: id });
+    setSeasonDetector({ ...seasonDetector, type: id });
     setOpenwear(false);
   };
 
@@ -92,7 +93,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
               <img src={value?.icons} alt="" />
             </figure>
             <article
-              className={`flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
+              className={`flex font-AeonikProMedium text-base text-black not-italic ${seasonDetector?.TextHoverSeason}`}
             >
               {languageDetector?.typeLang === 'ru' && value?.type_ru}
               {languageDetector?.typeLang === 'uz' && value?.type_uz}
@@ -111,7 +112,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
               <img src={value?.icons} alt="" />
             </figure>
             <article
-              className={`flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
+              className={`flex font-AeonikProMedium text-base text-black not-italic ${seasonDetector?.TextHoverSeason}`}
             >
               {languageDetector?.typeLang === 'ru' && value?.type_ru}
               {languageDetector?.typeLang === 'uz' && value?.type_uz}
@@ -175,7 +176,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
             // to="/"
             className="flex justify-center items-center rounded-xl h-[48px] ss:w-[calc(100%-96px)] ss:p-2 ll:p-1  md:p-0 md:w-[155px] ss:ml-2 md:ml-[0px]  ss:bg-btnBgColor md:bg-transparent"
           >
-            {BrandTypeArray.filter((data) => data.id === dressInfo.type).map(
+            {BrandTypeArray.filter((data) => data.id === seasonDetector.type).map(
               (data) => {
                 return (
                   <img
@@ -197,7 +198,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
             className={`bg-white w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
           >
             <span>
-              <VolumeIcons colors={dressInfo?.ColorSeason} />
+              <VolumeIcons colors={seasonDetector?.ColorSeason} />
             </span>
           </div>
 
@@ -214,7 +215,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
                 placement="bottom"
                 content={contentWear}
               >
-                {SeasonTypeArray.filter((e) => e.id === dressInfo.type).map(
+                {SeasonTypeArray.filter((e) => e.id === seasonDetector.type).map(
                   (data) => {
                     return (
                       <figure
@@ -233,7 +234,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
                   }
                 )}
                 {SeasonTypeArrayMobile.filter(
-                  (e) => e.id === dressInfo.type
+                  (e) => e.id === seasonDetector.type
                 ).map((data) => {
                   return (
                     <figure
@@ -252,7 +253,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
           <div className="flex items-center justify-center rounded-xl font-AeonikProMedium h-[44px]  md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
             {/* Catalog section */}
             <button
-              className={`items-center ${dressInfo?.BtnOpacitySeason} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
+              className={`items-center ${seasonDetector?.BtnOpacitySeason} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
               onClick={() =>
                 setDressInfo({
                   ...dressInfo,
@@ -261,7 +262,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
               }
             >
               <span>
-                <CotegoryIcons colors={dressInfo?.ColorSeason} />
+                <CotegoryIcons colors={seasonDetector?.ColorSeason} />
               </span>
               <span
                 className={"not-italic font-AeonikProMedium text-sm leading-4"}
@@ -311,12 +312,12 @@ const YandexMedium = ({ getYandexSearchName }) => {
             to="/locations"
             className={({ isActive }) =>
               isActive
-                ? dressInfo?.LinkActiveSeason
+                ? seasonDetector?.LinkActiveSeason
                 : "items-center justify-center bg-white rounded-lg md:h-[44px] text-sm md:w-[100px] md:mt-0 hidden md:flex"
             }
           >
             <span className="pr-[6px]">
-              <MapIcons colors={dressInfo?.ColorSeason} />
+              <MapIcons colors={seasonDetector?.ColorSeason} />
             </span>
 
             <span className="font-AeonikProMedium text-sm  ">{t("YMmap")}</span>

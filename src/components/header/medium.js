@@ -49,6 +49,7 @@ import { MainPageAudioContext } from "../../ContextHook/MainPageAudio";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../language/LanguageItems";
 import i18next from "i18next";
+import { SaesonDetectorDress } from "../../ContextHook/SeasonContext";
 
 const MediumHeader = ({ stateData, setStateData }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -56,7 +57,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
   const [audioPlay, setAudioPlay] = useContext(MainPageAudioContext);
   const [searchMarketName, setSearchMarketName] = useState();
   const { i18n, t } = useTranslation('header')
-
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
   const [regionsList, setRegionsList] = useState(false);
   const [scrollPost, setscrollPost] = useState(0);
   const toggleRegionsShow = useCallback(() => setRegionsList(false), []);
@@ -130,6 +131,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
 
   const handleSeason = (id) => {
     setDressInfo({ ...dressInfo, type: id });
+    setSeasonDetector({ ...seasonDetector, type: id });
     setOpenWeather(false);
   };
 
@@ -149,7 +151,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
             </figure>
             {(value?.type_ru || value?.type_uz) && (
               <article
-                className={`ml-2 md:ml-3 flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
+                className={`ml-2 md:ml-3 flex font-AeonikProMedium text-base text-black not-italic ${seasonDetector?.TextHoverSeason}`}
               >
                 {languageDetector?.typeLang === 'ru' && value?.type_ru}
                 {languageDetector?.typeLang === 'uz' && value?.type_uz}
@@ -169,7 +171,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
               <img src={value?.icons} alt="" className="object-cover w-full" />
             </figure>
             <article
-              className={`flex font-AeonikProMedium text-base text-black not-italic ${dressInfo?.TextHoverSeason}`}
+              className={`flex font-AeonikProMedium text-base text-black not-italic ${seasonDetector?.TextHoverSeason}`}
             >
               {languageDetector?.typeLang === 'ru' && value?.type_ru}
               {languageDetector?.typeLang === 'uz' && value?.type_uz}
@@ -203,7 +205,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
         return (
           <article
             key={data?.id}
-            className={`p-2 text-sm cursor-pointer hover:bg-bgColor flex items-center justify-start  ${dressInfo?.ColorSeason}`}
+            className={`p-2 text-sm cursor-pointer hover:bg-bgColor flex items-center justify-start  ${seasonDetector?.ColorSeason}`}
             onClick={() => {
               handleLangValue(data?.value);
             }}
@@ -212,7 +214,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
               <img className="w-full h-full" src={data?.icons} alt="" />
             </figure>
             <article
-              className={`not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black  ${dressInfo?.ColorSeason}`}
+              className={`not-italic flex items-center font-AeonikProMedium text-sm leading-4 text-black  ${seasonDetector?.ColorSeason}`}
             >
               {data?.type}
             </article>
@@ -437,7 +439,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                   className="flex justify-center items-center select-none rounded-xl h-[48px] ss:w-[calc(100%-96px)] ss:p-2 ll:p-1 md:p-0 md:w-[155px] ss:ml-2 md:ml-[0px]  ss:bg-btnBgColor md:bg-transparent"
                 >
                   {BrandTypeArray.filter(
-                    (data) => data.id === dressInfo.type
+                    (data) => data.id === seasonDetector.type
                   ).map((data) => {
                     return (
                       <img
@@ -458,7 +460,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                   className={` bg-btnBgColor w-11 h-11 ml-[25px] rounded-xl cursor-pointer hidden items-center justify-center md:flex`}
                 >
                   <span className="w-[22px]">
-                    <VolumeIcons colors={dressInfo?.ColorSeason} />
+                    <VolumeIcons colors={seasonDetector?.ColorSeason} />
                   </span>
                 </div>
 
@@ -475,7 +477,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                       content={contentWeather}
                     >
                       {SeasonTypeArray.filter(
-                        (e) => e.id === dressInfo.type
+                        (e) => e.id === seasonDetector.type
                       ).map((data) => {
                         return (
                           <figure
@@ -497,7 +499,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                         );
                       })}
                       {SeasonTypeArrayMobile.filter(
-                        (e) => e.id === dressInfo.type
+                        (e) => e.id === seasonDetector.type
                       ).map((data) => {
                         return (
                           <figure
@@ -520,7 +522,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                 <article className="items-center justify-center rounded-xl font-AeonikProMedium h-[44px] md:border-transparent md:w-[676px] ml-2 ss:hidden md:flex">
                   {/* Catalog section */}
                   <button
-                    className={`items-center left-20 ${dressInfo?.BtnOpacitySeason} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
+                    className={`items-center left-20 ${seasonDetector?.BtnOpacitySeason} justify-center px-5 gap-x-[10px] h-[44px] rounded-l-xl cursor-pointer hidden md:flex`}
                     onClick={() =>
                       setDressInfo({
                         ...dressInfo,
@@ -529,7 +531,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                     }
                   >
                     <span>
-                      <CotegoryIcons colors={dressInfo?.ColorSeason} />
+                      <CotegoryIcons colors={seasonDetector?.ColorSeason} />
                     </span>
                     <span
                       className={`not-italic font-AeonikProMedium text-sm leading-4 `}
@@ -600,7 +602,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                     {({ isActive }) =>
                       isActive ? (
                         <span>
-                          <ActivePersonIcons colors={dressInfo?.ColorSeason} />
+                          <ActivePersonIcons colors={seasonDetector?.ColorSeason} />
                         </span>
                       ) : (
                         <span>

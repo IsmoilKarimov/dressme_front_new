@@ -13,10 +13,10 @@ import {
   SircleNext,
 } from "../../assets/icons";
 import { useTranslation } from "react-i18next";
+import { SaesonDetectorDress } from "../../ContextHook/SeasonContext";
 function NavbarBottomIndex({ scrollPost }) {
-  const [dressInfo] = useContext(dressMainData);
-  const { i18n, t } = useTranslation('header')
-
+   const { i18n, t } = useTranslation('header')
+   const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
   const location = useLocation();
 
   const [locationWindow, setLocationWindow] = useState("");
@@ -35,12 +35,12 @@ function NavbarBottomIndex({ scrollPost }) {
                   to={"/sign_in"}
                   className={({ isActive }) =>
                     isActive
-                      ? dressInfo?.AuthenActiveSeason
+                      ? seasonDetector?.AuthenActiveSeason
                       : "w-1/2 md:h-[48px] ss:h-[52px] px-2   justify-center flex  items-center  md:bg-btnBgColor md:border   rounded-lg"
                   }
                 >
                   <span>
-                    <PersonIcons colors={dressInfo?.ColorSeason} />
+                    <PersonIcons colors={seasonDetector?.ColorSeason} />
                   </span>
                   <p className=" font-AeonikProMedium ml-1 not-italic text-sm leading-4 tracking-[0,16px]">
                     {t("Nlogin")}
@@ -50,12 +50,12 @@ function NavbarBottomIndex({ scrollPost }) {
                   to={"/sign_up"}
                   className={({ isActive }) =>
                     isActive
-                      ? dressInfo?.AuthenActiveSeason
+                      ? seasonDetector?.AuthenActiveSeason
                       : "w-1/2 md:h-[48px] ss:h-[52px] px-2   justify-center flex  items-center  md:bg-btnBgColor md:border   rounded-lg"
                   }
                 >
                   <span>
-                    <PersonPlusIcons colors={dressInfo?.ColorSeason} />
+                    <PersonPlusIcons colors={seasonDetector?.ColorSeason} />
                   </span>
                   <p className=" font-AeonikProMedium not-italic ml-1  text-sm leading-4 tracking-[0,16px]">
                     {t("NcreateAccount")}
@@ -76,7 +76,7 @@ function NavbarBottomIndex({ scrollPost }) {
                     }
                   >
                     <span className="rotate-[180deg]">
-                      <SircleNext colors={dressInfo?.ColorSeason} />
+                      <SircleNext colors={seasonDetector?.ColorSeason} />
                     </span>
                     <span className=" font-AeonikProMedium ml-2 not-italic text-sm leading-4 tracking-[0,16px]">
                     {t("Nback")}
@@ -88,7 +88,7 @@ function NavbarBottomIndex({ scrollPost }) {
                     }
                   >
                     <span>
-                      <EyesOpenIcons colors={dressInfo?.ColorSeason} />
+                      <EyesOpenIcons colors={seasonDetector?.ColorSeason} />
                     </span>
                     <span className="font-AeonikProMedium flex items-center not-italic ml-2  text-sm leading-4 tracking-[0,16px]">
                       {t("Nforgetpss")}
@@ -101,16 +101,16 @@ function NavbarBottomIndex({ scrollPost }) {
                 <div className="w-full h-fit md:mx-auto my-3 ss:hidden justify-center md:flex items-center">
                   <NavLink
                     to="/sign_in "
-                    className={`text-${dressInfo?.ColorSeason} md:h-[48px] ss:h-[52px] w-[56px] rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center mr-3 `}
+                    className={`text-${seasonDetector?.ColorSeason} md:h-[48px] ss:h-[52px] w-[56px] rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center mr-3 `}
                   >
                     <span
                       className={`flex items-center justify-center rotate-[180deg] `}
                     >
-                      <SircleNext colors={dressInfo?.ColorSeason} />
+                      <SircleNext colors={seasonDetector?.ColorSeason} />
                     </span>
                   </NavLink>
                   <div
-                    className={`${dressInfo?.BtnActiveSeason} w-fit md:h-[48px] ss:h-[52px] px-4 justify-center flex items-center   mr-2 rounded-lg`}
+                    className={`${seasonDetector?.BtnActiveSeason} w-fit md:h-[48px] ss:h-[52px] px-4 justify-center flex items-center   mr-2 rounded-lg`}
                   >
                     <span>
                       {" "}

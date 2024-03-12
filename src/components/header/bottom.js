@@ -19,6 +19,7 @@ import { GrClose } from "react-icons/gr";
 import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../language/LanguageItems";
+import { SaesonDetectorDress } from "../../ContextHook/SeasonContext";
 
 const { Option } = Select;
 
@@ -30,7 +31,7 @@ function BottomHeader() {
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
-
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
   const [state, setState] = useState({
     openwear: false,
     openPrice: false,
@@ -695,7 +696,7 @@ function BottomHeader() {
         <div className="line h-6 border-r-[1px] text-textColor mx-3"></div>
         <div className="box-border flex items-center gap-x-2 h-[44px] border border-searchBgColor overflow-hidden rounded-xl bg-btnBgColor">
           {personItems
-            ?.filter((value) => value.id === dressInfo?.type)
+            ?.filter((value) => value.id === seasonDetector?.type)
             .map((data) => {
               return (
                 <div
