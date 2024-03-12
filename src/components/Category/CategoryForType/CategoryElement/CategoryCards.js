@@ -51,8 +51,8 @@ export default function CategoryCards({ filterData, setPageId, paramsId }) {
       </section>
 
       <section className="w-full  h-fit flex items-center justify-center mt-[75px] gap-x-6">
-        <article className="flex w-full items-center md:justify-center">
-          <ul className="flex w-full items-center md:justify-center overflow-x-auto pb-[8px] md:pb-0">
+        <article className="flex  items-center md:justify-center">
+          <ul className="flex items-center md:justify-center overflow-x-auto pb-[8px] md:pb-0">
             {filterData?.section_products?.links?.map((item, index) => {
               return (
                 <li
