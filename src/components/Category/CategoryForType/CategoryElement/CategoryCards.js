@@ -9,26 +9,12 @@ export default function CategoryCards({ filterData, setPageId, paramsId }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
-  const { t } = useTranslation("category")
-
-  const handleLeaveMouse = (eId) => {
-    const elementsIndex = dressInfo.ProductList.findIndex(
-      (element) => element.id == eId
-    );
-    let newArray = [...dressInfo.ProductList];
-    newArray[elementsIndex] = {
-      ...newArray[elementsIndex],
-      colourCard: false,
-    };
-    setDressInfo((current) => {
-      return { ...current, ProductList: newArray };
-    });
-  };
+  const { t } = useTranslation("category");
 
   // ------------------
 
   const setPaginationFunc = (id) => {
-    setPageId(+id)
+    setPageId(+id);
   };
   const navigate = useNavigate();
   function onHandleCardId(child, name) {
@@ -44,7 +30,6 @@ export default function CategoryCards({ filterData, setPageId, paramsId }) {
               <CollectionCardItem
                 data={data}
                 key={data?.id}
-                handleLeaveMouse={handleLeaveMouse}
                 wishList={wishList}
                 setWishlist={setWishlist}
                 onHandleCardId={onHandleCardId}
@@ -84,13 +69,15 @@ export default function CategoryCards({ filterData, setPageId, paramsId }) {
                       setPaginationFunc(newPageId);
                     }
                   }}
-                  className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${item?.active
-                    ? "bg-fullBlue text-white"
-                    : "hover:bg-searchBgColor"
-                    } mx-[5px] flex items-center justify-center  ${item?.url
+                  className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${
+                    item?.active
+                      ? "bg-fullBlue text-white"
+                      : "hover:bg-searchBgColor"
+                  } mx-[5px] flex items-center justify-center  ${
+                    item?.url
                       ? "cursor-pointer"
                       : "opacity-70 cursor-not-allowed"
-                    }`}
+                  }`}
                 >
                   {item?.label}
                 </li>

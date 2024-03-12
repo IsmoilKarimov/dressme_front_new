@@ -51,19 +51,6 @@ export default function CollectionCards() {
     setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
   }
 
-  const handleLeaveMouse = (eId) => {
-    const elementsIndex = dressInfo.ProductList.findIndex(
-      (element) => element.id == eId
-    );
-    let newArray = [...dressInfo.ProductList];
-    newArray[elementsIndex] = {
-      ...newArray[elementsIndex],
-      colourCard: false,
-    };
-    setDressInfo((current) => {
-      return { ...current, ProductList: newArray };
-    });
-  };
   const navigate = useNavigate();
   function onHandleCardId(child, name) {
     navigate(`/product/${child}`);
@@ -153,7 +140,6 @@ export default function CollectionCards() {
                     key={data?.id}
                     data={data}
                     setOpenWearType={setOpenWearType}
-                    handleLeaveMouse={handleLeaveMouse}
                     wishList={wishList}
                     setWishlist={setWishlist}
                     mainSelectedId={dressInfo?.mainColorId}

@@ -32,20 +32,6 @@ export default function FavouriteProducts() {
     LanguageDetectorDress
   );
 
-  const handleLeaveMouse = (eId) => {
-    const elementsIndex = dressInfo.ProductList.findIndex(
-      (element) => element.id == eId
-    );
-    let newArray = [...dressInfo.ProductList];
-    newArray[elementsIndex] = {
-      ...newArray[elementsIndex],
-      colourCard: false,
-    };
-    setDressInfo((current) => {
-      return { ...current, ProductList: newArray };
-    });
-  };
-
   return (
     <main className="md:w-full flex flex-col min-h-[44px] justify-center items-center mt-4 md:mt-8">
       <div
@@ -150,7 +136,6 @@ export default function FavouriteProducts() {
                           </div>
                           {/* 2 */}
                           <article
-                            onMouseEnter={() => handleLeaveMouse(data?.id)}
                             onClick={() => goDetail(data?.id)}
                             className={`w-full px-2 xs:px-3 xs:mt-1 ${
                               data?.cost?.discount_price ? "mb-0" : "mb-3"
@@ -184,10 +169,7 @@ export default function FavouriteProducts() {
                             </figure>
                           </article>
                           {/* 3 */}
-                          <article
-                            onMouseEnter={() => handleLeaveMouse(data?.id)}
-                            className="w-full h-fit md:h-[31px] flex items-end justify-between pl-3 pr-[5px]"
-                          >
+                          <article className="w-full h-fit md:h-[31px] flex items-end justify-between pl-3 pr-[5px]">
                             <article className="flex items-center">
                               {data?.cost?.discount_price ? (
                                 <figure className="flex flex-wrap flex-col-reverse	text-start items-start ">
@@ -341,7 +323,6 @@ export default function FavouriteProducts() {
                           </div>
                           {/* 2 */}
                           <article
-                            onMouseEnter={() => handleLeaveMouse(data?.id)}
                             onClick={() => goDetail(data?.id)}
                             className={`w-full px-2 xs:px-3 xs:mt-1 ${
                               data?.cost?.discount_price ? "mb-0" : "mb-3"
@@ -375,10 +356,7 @@ export default function FavouriteProducts() {
                             </figure>
                           </article>
                           {/* 3 */}
-                          <article
-                            onMouseEnter={() => handleLeaveMouse(data?.id)}
-                            className="w-full h-fit md:h-[31px] flex items-end justify-between pl-3 pr-[5px]"
-                          >
+                          <article className="w-full h-fit md:h-[31px] flex items-end justify-between pl-3 pr-[5px]">
                             <article className="flex items-center">
                               {data?.cost?.discount_price ? (
                                 <figure className="flex flex-wrap flex-col-reverse	text-start items-start ">

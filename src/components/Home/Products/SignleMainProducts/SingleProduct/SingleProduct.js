@@ -17,18 +17,8 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
   const [data, mainData, , wishList, setWishlist] =
     useContext(HomeMainDataContext);
   const [openWearType, setOpenWearType] = useState(false);
-  let LikeProduct = [];
-  let LastSeenProduct = [];
-  dressInfo.ProductList.forEach((data) => {
-    if (data.id > 0 && data.id <= 5) {
-      LikeProduct.push(data);
-    }
-    if (data.id > 5 && data.id <= 10) {
-      LastSeenProduct.push(data);
-    }
-  });
 
-  const { t } = useTranslation("products")
+  const { t } = useTranslation("products");
 
   const [show, setShow] = useState(true);
   const [scrollPost, setscrollPost] = useState(0);
@@ -128,20 +118,6 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
     }
   }, [openWearType]);
 
-  const handleLeaveMouse = (eId) => {
-    const elementsIndex = dressInfo.ProductList.findIndex(
-      (element) => element.id == eId
-    );
-    let newArray = [...dressInfo.ProductList];
-    newArray[elementsIndex] = {
-      ...newArray[elementsIndex],
-      colourCard: false,
-    };
-    setDressInfo((current) => {
-      return { ...current, ProductList: newArray };
-    });
-  };
-
   const sameTypeData = mainData?.products?.data
     ?.filter(
       (item) =>
@@ -151,20 +127,26 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
     ?.slice(0, 6);
   // region_id sub_region_id
   useEffect(() => {
-    singleDataForCopy?.product?.locations?.map(item => {
+    singleDataForCopy?.product?.locations?.map((item) => {
       if (item?.region_id == dressInfo?.mainRegionId) {
-        if (dressInfo?.mainSubRegionId && (Number(item?.sub_region_id) !== dressInfo?.mainSubRegionId)) {
-          setSingleData(null)
+        if (
+          dressInfo?.mainSubRegionId &&
+          Number(item?.sub_region_id) !== dressInfo?.mainSubRegionId
+        ) {
+          setSingleData(null);
         }
-        if (dressInfo?.mainSubRegionId && (Number(item?.sub_region_id) === dressInfo?.mainSubRegionId)) {
-          setSingleData(singleDataForCopy)
+        if (
+          dressInfo?.mainSubRegionId &&
+          Number(item?.sub_region_id) === dressInfo?.mainSubRegionId
+        ) {
+          setSingleData(singleDataForCopy);
         }
         if (!dressInfo?.mainSubRegionId) {
-          setSingleData(singleDataForCopy)
+          setSingleData(singleDataForCopy);
         }
       }
-    })
-  }, [dressInfo?.mainSubRegionId, dressInfo?.mainRegionId])
+    });
+  }, [dressInfo?.mainSubRegionId, dressInfo?.mainRegionId]);
 
   return (
     <main className="flex flex-col m-0 p-0 box-border">
@@ -189,10 +171,7 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
                 {/* Products Comment */}
                 {singleData?.product?.ratings?.length ? (
                   <section className="md:mt-20 w-full">
-                    <ProductComment
-                      data={singleData}
-                      refetch={refetch}
-                    />
+                    <ProductComment data={singleData} refetch={refetch} />
                   </section>
                 ) : null}
                 {sameTypeData?.length ? (
@@ -210,7 +189,6 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
                               key={data?.id}
                               data={data}
                               setOpenWearType={setOpenWearType}
-                              handleLeaveMouse={handleLeaveMouse}
                               wishList={wishList}
                               setWishlist={setWishlist}
                             />

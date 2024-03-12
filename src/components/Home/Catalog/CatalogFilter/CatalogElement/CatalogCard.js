@@ -11,24 +11,10 @@ export default function CatalogCard({ filterData, setPageId, paramsId }) {
 
   const { t } = useTranslation("catalog");
 
-  const handleLeaveMouse = (eId) => {
-    const elementsIndex = dressInfo.ProductList.findIndex(
-      (element) => element.id == eId
-    );
-    let newArray = [...dressInfo.ProductList];
-    newArray[elementsIndex] = {
-      ...newArray[elementsIndex],
-      colourCard: false,
-    };
-    setDressInfo((current) => {
-      return { ...current, ProductList: newArray };
-    });
-  };
-  // console.log(paramsId, 'paramsId');
   const setPaginationFunc = (id) => {
     setPageId(+id);
   };
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   function onHandleCardId(child, name) {
     navigate(`/categories/${paramsId}/${child} `);
   }
@@ -41,7 +27,6 @@ export default function CatalogCard({ filterData, setPageId, paramsId }) {
               <CollectionCardItem
                 data={data}
                 key={data?.id}
-                handleLeaveMouse={handleLeaveMouse}
                 wishList={wishList}
                 setWishlist={setWishlist}
                 onHandleCardId={onHandleCardId}

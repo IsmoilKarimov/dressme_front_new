@@ -18,37 +18,25 @@ export default function ShopOfficialCard({
 }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
-  const { t } = useTranslation("shops")
+  const { t } = useTranslation("shops");
 
   // Main data context -----------------
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
-  const onColorChecked = () => { };
+  const onColorChecked = () => {};
   const navigate = useNavigate();
-  const goDetail = (id,) => {
+  const goDetail = (id) => {
     navigate(`/shops/${paramsId}/${id}`);
-  };
-
-  const handleLeaveMouse = (eId) => {
-    const elementsIndex = dressInfo.ProductList.findIndex(
-      (element) => element.id == eId
-    );
-    let newArray = [...dressInfo.ProductList];
-    newArray[elementsIndex] = {
-      ...newArray[elementsIndex],
-      colourCard: false,
-    };
-    setDressInfo((current) => {
-      return { ...current, ProductList: newArray };
-    });
   };
 
   const setPaginationFunc = (id) => {
     setPageId(+id);
   };
-   return (
+  return (
     <div className="flex flex-col box-border">
       <div className="flex justify-start flex-wrap gap-x-[6px] gap-y-[6px]">
         {filteredData?.products?.data.map((data) => {
@@ -59,7 +47,7 @@ export default function ShopOfficialCard({
             >
               <figure
                 onClick={() => {
-                  goDetail(data?.id,);
+                  goDetail(data?.id);
                 }}
                 style={{
                   backgroundImage: `url("${data?.photos[0]?.url_photo}")`,
@@ -94,8 +82,9 @@ export default function ShopOfficialCard({
                     </span>
                   </button>
                   <article
-                    className={`${data?.l ? "w-full px-1 xs:px-2 md:px-4 my-2" : "w-0 my-2"
-                      } group-hover:w-full group-hover:px-1 group-hover:xs:px-2 group-hover:md:px-4 group-hover:my-2 duration-300 w-0 my-2 absolute overflow-hidden hidden top-0 z-[1] md:flex items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
+                    className={`${
+                      data?.l ? "w-full px-1 xs:px-2 md:px-4 my-2" : "w-0 my-2"
+                    } group-hover:w-full group-hover:px-1 group-hover:xs:px-2 group-hover:md:px-4 group-hover:my-2 duration-300 w-0 my-2 absolute overflow-hidden hidden top-0 z-[1] md:flex items-center xs:h-[38px] lg:h-8 ss:h-[30px]  bg-white`}
                   >
                     {data?.colors?.map((itemValue) => {
                       return (
@@ -120,16 +109,15 @@ export default function ShopOfficialCard({
                 </div>
                 {/* 2 */}
                 <article
-                  onMouseEnter={() => handleLeaveMouse(data?.id)}
                   onClick={() => goDetail(data?.id)}
-                  className={`w-full px-2 xs:px-3 xs:mt-1 ${data?.cost?.discount_price ? "mb-0" : "mb-3"
-                    } md:mb-0`}
+                  className={`w-full px-2 xs:px-3 xs:mt-1 ${
+                    data?.cost?.discount_price ? "mb-0" : "mb-3"
+                  } md:mb-0`}
                 >
                   <figure className="relative w-full whitespace-nowrap overflow-hidden not-italic font-AeonikProRegular text-[12px] ls:text-sm lg:text-[14px] leading-0 text-black mb-[6px] md:mb-0  cursor-pointer">
                     <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-0"></div>
-                    {languageDetector?.typeLang === 'ru' && data?.name_ru}
-                    {languageDetector?.typeLang === 'uz' && data?.name_uz}
-
+                    {languageDetector?.typeLang === "ru" && data?.name_ru}
+                    {languageDetector?.typeLang === "uz" && data?.name_uz}
                   </figure>
                   <figure className="w-full h-[16px] flex justify-between items-center my-1">
                     {data?.overall_rating ? (
@@ -152,10 +140,7 @@ export default function ShopOfficialCard({
                   </figure>
                 </article>
                 {/* 3 */}
-                <article
-                  onMouseEnter={() => handleLeaveMouse(data?.id)}
-                  className="w-full h-fit md:h-[31px] flex items-end justify-between pl-3 pr-[5px]"
-                >
+                <article className="w-full h-fit md:h-[31px] flex items-end justify-between pl-3 pr-[5px]">
                   <article className="flex items-center">
                     {data?.cost?.discount_price ? (
                       <figure className="flex flex-wrap flex-col-reverse	text-start items-start ">
@@ -191,10 +176,11 @@ export default function ShopOfficialCard({
                     )}
                   </article>
                   <figure
-                    className={`flex items-center select-none absolute right-2 ${data?.cost?.discount_price
+                    className={`flex items-center select-none absolute right-2 ${
+                      data?.cost?.discount_price
                         ? "bottom-[7px] ls:bottom-[-17px]"
                         : " bottom-[8px] ls:bottom-[-17px]"
-                      } md:bottom-2`}
+                    } md:bottom-2`}
                   >
                     <button
                       onClick={() => {
@@ -242,13 +228,15 @@ export default function ShopOfficialCard({
                       setPaginationFunc(newPageId);
                     }
                   }}
-                  className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${item?.active
+                  className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-2 min-w-[45px] border h-[45px] rounded-lg  ${
+                    item?.active
                       ? "bg-fullBlue text-white"
                       : "hover:bg-searchBgColor"
-                    } mx-[5px] flex items-center justify-center  ${item?.url
+                  } mx-[5px] flex items-center justify-center  ${
+                    item?.url
                       ? "cursor-pointer"
                       : "opacity-70 cursor-not-allowed"
-                    }`}
+                  }`}
                 >
                   {item?.label}
                 </li>
