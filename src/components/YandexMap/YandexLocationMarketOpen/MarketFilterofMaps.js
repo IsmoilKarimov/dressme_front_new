@@ -25,12 +25,14 @@ import Slider from "react-slider";
 import { GrClose } from "react-icons/gr";
 import { LanguageDetectorDress } from "../../../language/LanguageItems";
 import { useTranslation } from "react-i18next";
+import { SaesonDetectorDress } from "../../../ContextHook/SeasonContext";
 
 function MarketFilterofMaps({ onClick, getMapsInfo }) {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [selectFilterType, setSelectFilterType] = useState("category");
   const [searchBrandName, setSearchBrandName] = useState();
   const { i18n, t } = useTranslation('yandexmap')
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
 
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
@@ -238,12 +240,12 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
         <button
           onClick={() => setSelectFilterType("category")}
           className={`${selectFilterType === "category"
-            ? dressInfo?.BtnActiveSeason
+            ? seasonDetector?.BtnActiveSeason
             : "border border-['#E0E0E0']"
             }   w-[85px] h-[52px] rounded-lg flex items-center justify-center  `}
         >
           {selectFilterType === "category" ? (
-            <ClothesIcons colors={dressInfo?.ColorSeason} />
+            <ClothesIcons colors={seasonDetector?.ColorSeason} />
           ) : (
             <ClothesIcons colors={"#000"} />
           )}
@@ -251,12 +253,12 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
         <button
           onClick={() => setSelectFilterType("price")}
           className={`${selectFilterType === "price"
-            ? dressInfo?.BtnActiveSeason
+            ? seasonDetector?.BtnActiveSeason
             : "border border-['#E0E0E0']"
             }  border border-['#E0E0E0'] w-[85px] h-[52px] rounded-lg flex items-center justify-center  `}
         >
           {selectFilterType === "price" ? (
-            <DollorIcons colors={dressInfo?.ColorSeason} />
+            <DollorIcons colors={seasonDetector?.ColorSeason} />
           ) : (
             <DollorIcons colors={"#000"} />
           )}
@@ -264,12 +266,12 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
         <button
           onClick={() => setSelectFilterType("gender")}
           className={`${selectFilterType === "gender"
-            ? dressInfo?.BtnActiveSeason
+            ? seasonDetector?.BtnActiveSeason
             : "border border-['#E0E0E0']"
             }  border border-['#E0E0E0'] w-[85px] h-[52px] rounded-lg flex items-center justify-center  `}
         >
           {selectFilterType === "gender" ? (
-            <ManWomGenBlack colors={dressInfo?.ColorSeason} />
+            <ManWomGenBlack colors={seasonDetector?.ColorSeason} />
           ) : (
             <ManWomGenBlack colors={"#000"} />
           )}
@@ -277,12 +279,12 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
         <button
           onClick={() => setSelectFilterType("brand")}
           className={`${selectFilterType === "brand"
-            ? dressInfo?.BtnActiveSeason
+            ? seasonDetector?.BtnActiveSeason
             : "border border-['#E0E0E0']"
             }  border border-['#E0E0E0'] w-[85px] h-[52px] rounded-lg flex items-center justify-center  `}
         >
           {selectFilterType === "brand" ? (
-            <TopBrandsIcon colors={dressInfo?.ColorSeason} />
+            <TopBrandsIcon colors={seasonDetector?.ColorSeason} />
           ) : (
             <TopBrandsIcon colors={"#000"} />
           )}
@@ -330,7 +332,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
         )}
         {dressInfo?.yandexGenderId > 0 &&
           personItems
-            ?.filter((value) => value?.id === dressInfo?.type)
+            ?.filter((value) => value?.id === seasonDetector?.type)
             .map((data) => {
               return (
                 <div key={data?.id} className="w-fit   ">
@@ -498,7 +500,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
             <div className="w-full h-full overflow-auto VerticelScroll flex flex-col  bg-white">
               <div className=" box-border	w-full flex flex-col items-center  h-full ">
                 {personItems
-                  ?.filter((value) => value.id === dressInfo?.type)
+                  ?.filter((value) => value.id === seasonDetector?.type)
                   .map((data) => {
                     return (
                       <div
@@ -513,7 +515,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                                 handleFilterByUser(data?.id, item?.id)
                               }
                               className={`${item?.id === dressInfo?.yandexGenderId
-                                ? dressInfo?.BtnActiveSeason
+                                ? seasonDetector?.BtnActiveSeason
                                 : " bg-white text-black border border-searchBgColor"
                                 } pl-[40%] rounded-lg w-full h-[64px]   cursor-pointer  font-AeonikProMedium   flex items-center`}
                             >

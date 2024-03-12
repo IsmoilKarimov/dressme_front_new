@@ -12,7 +12,7 @@ export const DressmeSeason = ({ children }) => {
         TextColorSeason: null,
         LinkActiveSeason: null,
         BtnActiveSeason: null,
-        AuthenActiveSeason: null,
+        AuthenActiveSeason: null, 
     });
     const BtnSeasonArray = [
         {
