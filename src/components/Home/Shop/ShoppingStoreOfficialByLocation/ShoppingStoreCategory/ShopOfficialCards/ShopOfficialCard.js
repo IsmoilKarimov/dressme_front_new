@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import {
   InputCheckedTrueIcons,
   StarIcons,
@@ -16,7 +15,6 @@ export default function ShopOfficialCard({
   setPageId,
   paramsId,
 }) {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
@@ -217,7 +215,7 @@ export default function ShopOfficialCard({
           })}
         </div>
       ) : (
-        <div className="h-[60vh] flex items-center justify-center">
+        <div className="h-[25vh] flex items-center justify-center">
           <span className=" flex items-center justify-center font-AeonikProMedium text-2xl ">
             {t("nothing_found")}
           </span>

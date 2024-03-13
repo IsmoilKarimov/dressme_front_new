@@ -98,6 +98,16 @@ const ShoppingStoreOfficialTop = ({
   const handleChange = (event) => {
     setSearchMarketName(event.target.value);
   };
+
+  const _handleKeyDownSearch = (event) => {
+    if (event.key === "Enter") {
+      setDressInfo({
+        ...dressInfo,
+        mainSearchNameshop: searchMarketName,
+      });
+    }
+  };
+
   const handleClear = () => {
     setSearchMarketName("");
     setDressInfo({ ...dressInfo, mainSearchNameshop: null });
@@ -420,6 +430,7 @@ const ShoppingStoreOfficialTop = ({
                   placeholder={`${t("find_product")}`}
                   value={searchMarketName}
                   onChange={handleChange}
+                  onKeyDown={_handleKeyDownSearch}
                   className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[14px] leading-4"
                 />
                 {searchMarketName && (

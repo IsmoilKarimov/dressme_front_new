@@ -351,7 +351,7 @@ const ShoppingStoreOfficial = () => {
               <NewBreadCrump items={breadcrumbItems} />
             </section>
             {dressInfo?.mainSubRegionId && !dressInfo?.locationIdParams ? (
-              <div className="w-full flex items-center  justify-center font-AeonikProMedium text-2xl h-[50vh] ">
+              <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[50vh] ">
                 {t("nothing_found")}
               </div>
             ) : (

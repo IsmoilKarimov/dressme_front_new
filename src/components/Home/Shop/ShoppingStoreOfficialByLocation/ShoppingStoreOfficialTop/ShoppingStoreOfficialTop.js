@@ -89,9 +89,19 @@ const ShoppingStoreOfficialTop = ({
   const handleChange = (event) => {
     setSearchMarketName(event.target.value);
   };
+
   const handleClear = () => {
     setSearchMarketName("");
     setDressInfo({ ...dressInfo, mainSearchNameshopLocation: null });
+  };
+
+  const _handleKeyDownSearch = (event) => {
+    if (event.key === "Enter") {
+      setDressInfo({
+        ...dressInfo,
+        mainSearchNameshopLocation: searchMarketName,
+      });
+    }
   };
 
   return (
@@ -412,7 +422,8 @@ const ShoppingStoreOfficialTop = ({
                   placeholder={`${t("find_product")}`}
                   value={searchMarketName}
                   onChange={handleChange}
-                  className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[14px] leading-4 border-r border-searchBgColor"
+                  onKeyDown={_handleKeyDownSearch}
+                  className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[14px] leading-4"
                 />
                 {searchMarketName && (
                   <button onClick={handleClear} className=" " type="button">
@@ -422,7 +433,7 @@ const ShoppingStoreOfficialTop = ({
               </div>
               <span
                 onClick={() => getSearchClick()}
-                className="w-[13%] h-full bg-btnBgColor rounded-r-xl active:scale-95 flex items-center justify-center "
+                className="w-[13%] h-full bg-btnBgColor border-l border-searchBgColor rounded-r-xl active:scale-95 flex items-center justify-center "
               >
                 <SearchIcons />
               </span>

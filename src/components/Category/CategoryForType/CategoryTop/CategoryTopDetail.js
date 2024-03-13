@@ -82,15 +82,8 @@ const CategoryTopDetail = ({
     </section>
   );
 
-  const location = useLocation();
-  const [searchForLocation, setSearchForLocation] = useState([]);
-
-  useEffect(() => {
-    setSearchForLocation(location?.pathname?.split("/"));
-  }, [location.pathname]);
-
   const _handleKeyDownSearch = (event) => {
-    if (searchForLocation?.includes("section")) {
+    if (event.key === "Enter") {
       setDressInfo({
         ...dressInfo,
         mainSearchNameCategory: searchMarketName,
