@@ -50,6 +50,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../../../language/LanguageItems";
 import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext";
+import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
 const ProductDetails = ({ data, shopsData }) => {
   const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
   // Rick Ortiz
@@ -59,6 +60,7 @@ const ProductDetails = ({ data, shopsData }) => {
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
+  const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
 
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
@@ -260,7 +262,7 @@ const ProductDetails = ({ data, shopsData }) => {
     if (!selectedLocation) {
       let n =
         data?.product?.locations?.filter(
-          (v) => v?.id === dressInfo?.locationIdParams
+          (v) => v?.id === locationIdDetector?.locationIdForTest
         ) || [];
 
       setSelectedLocation(n[0]);
@@ -366,10 +368,17 @@ const ProductDetails = ({ data, shopsData }) => {
           ) {
             return Number(element.sub_region_id) === dressInfo?.mainSubRegionId;
           });
+          setLocationIdDetector({
+      ...locationIdDetector, locationIdForTest: foundElement?.id
+          })
+ 
           setDressInfo({ ...dressInfo, locationIdParams: foundElement?.id });
           navigate(`/shops/${name?.split(" ")?.join("-")?.toLowerCase()}`);
         }
         if (!dressInfo?.mainSubRegionId) {
+          setLocationIdDetector({
+      ...locationIdDetector, locationIdForTest: item?.approved_shop_locations[0]?.id
+          })
           setDressInfo({
             ...dressInfo,
             locationIdParams: item?.approved_shop_locations[0]?.id,

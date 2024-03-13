@@ -16,6 +16,8 @@ import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { MdClose } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../../language/LanguageItems";
+import { SaesonDetectorDress } from "../../../../../ContextHook/SeasonContext";
+import { LocationIdDetector } from "../../../../../ContextHook/LocationId";
 
 const ShoppingStoreOfficialTop = ({
   filteredData,
@@ -30,11 +32,12 @@ const ShoppingStoreOfficialTop = ({
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
+  const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
 
   const { t } = useTranslation("shops");
 
   const [locationList, setLocationList] = useState([]);
- 
+
 
   const handleToggle = () => {
     if (filterLeftAction) {
@@ -50,8 +53,11 @@ const ShoppingStoreOfficialTop = ({
   useEffect(() => {
     if (!checkedData) {
       let n = locationList?.find((v) => {
-        return v.id == dressInfo?.locationIdParams;
+        return v.id == locationIdDetector?.locationIdForTest;
       });
+      // let n = locationList?.find((v) => {
+      //   return v.id == locationIdDetector?.locationIdForTest;
+      // });
 
       setDressInfo({
         ...dressInfo,
@@ -70,7 +76,9 @@ const ShoppingStoreOfficialTop = ({
   }, [filteredData?.shop?.approved_shop_locations]);
 
   const onChangeSelectLocation = (e) => {
-     
+    setLocationIdDetector({
+      ...locationIdDetector, locationIdForTest: e?.target?.value
+    })
     setDressInfo({
       ...dressInfo,
       locationIdParams: e?.target?.value,
@@ -101,7 +109,7 @@ const ShoppingStoreOfficialTop = ({
     setDressInfo({ ...dressInfo, mainSearchNameshop: null });
   };
   //  name_ru
-   return (
+  return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
         <div className="w-[100%] h-fit flex flex-col">
@@ -186,7 +194,7 @@ const ShoppingStoreOfficialTop = ({
                     <LocationColoursIcons colors={"#007DCA"} />
                   </span>
                   {filteredData?.shop?.approved_shop_locations
-                    ?.filter((e) => e?.id === dressInfo?.locationIdParams)
+                    ?.filter((e) => e?.id === locationIdDetector?.locationIdForTest)
                     ?.map((item) => {
                       return (
                         <p className="text-sm font-AeonikProRegular text-borderWinter">
@@ -263,7 +271,7 @@ const ShoppingStoreOfficialTop = ({
                     <LocationColoursIcons colors={"#007DCA"} />
                   </span>
                   {filteredData?.shop?.approved_shop_locations
-                    ?.filter((e) => e?.id === dressInfo?.locationIdParams)
+                    ?.filter((e) => e?.id === locationIdDetector?.locationIdForTest)
                     ?.map((item) => {
                       return (
                         <p className="text-[12px] xs:text-sm  font-AeonikProRegular text-borderWinter">
@@ -352,8 +360,8 @@ const ShoppingStoreOfficialTop = ({
                     <div className="h-[200px] md:h-[250px] overflow-y-auto mb-[20px] VerticelScroll pr-2">
                       <Radio.Group
                         onChange={onChangeSelectLocation}
-                        value={dressInfo?.locationIdParams}
-                        defaultValue={dressInfo?.locationIdParams}
+                        value={locationIdDetector?.locationIdForTest}
+                        defaultValue={locationIdDetector?.locationIdForTest}
                       >
                         {locationList?.map((item, index) => {
                           return (
@@ -362,7 +370,7 @@ const ShoppingStoreOfficialTop = ({
                                 <Radio
                                   className="text-lg font-AeonikProRegular"
                                   value={item?.id}
-                                  checked={dressInfo?.locationIdParams === item?.id}
+                                  checked={locationIdDetector?.locationIdForTest === item?.id}
                                   onClick={() => {
                                     setCheckedData(item);
                                   }}

@@ -14,6 +14,7 @@ import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 import { SaesonDetectorDress } from "../../../../ContextHook/SeasonContext";
+import { LocationIdDetector } from "../../../../ContextHook/LocationId";
 
 const ShoppingStoreOfficial = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -51,6 +52,7 @@ const ShoppingStoreOfficial = () => {
   useEffect(() => {
     setFilterToggle(false);
   }, [dressInfo?.mainSubRegionId, dressInfo?.mainRegionId]);
+  const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
 
   useEffect(() => {
     if (dressInfo?.openShopIdFilter) {
@@ -127,19 +129,21 @@ const ShoppingStoreOfficial = () => {
             ...dressInfo,
             locationIdParams: foundElement?.id,
           });
+          setLocationIdDetector({
+      ...locationIdDetector, locationIdForTest: foundElement?.id
+          })
         }
         if (!dressInfo?.mainSubRegionId) {
-          console.log("locationIdParams--RUN-1");
-          console.log(dressInfo?.locationIdParams, 'locationIdParams=-----dressInfo');
-          console.log(item?.approved_shop_locations[0]?.id, 'locationIdParams---item?.approved_shop_locations[0]?.id');
-          if (dressInfo?.locationIdParams !== item?.approved_shop_locations[0]?.id) {
-            setDressInfo({ ...dressInfo, locationIdParams: item?.approved_shop_locations[0]?.id, });
-          }
+
+          setDressInfo({ ...dressInfo, locationIdParams: item?.approved_shop_locations[0]?.id, });
+          setLocationIdDetector({
+      ...locationIdDetector, locationIdForTest: item?.approved_shop_locations[0]?.id
+          })
         }
       }
     });
   };
-  console.log(dressInfo?.locationIdParams, 'locationIdParams=-----dressInfo');
+  console.log(locationIdDetector?.locationIdForTest, 'locationIdParams=-----dressInfo');
 
   useEffect(() => {
     refreshLocationId();
@@ -175,7 +179,7 @@ const ShoppingStoreOfficial = () => {
     let params = new URLSearchParams();
     dressInfo?.mainSearchNameshop &&
       params.append("keywords", dressInfo?.mainSearchNameshop);
-    params.append("location_id", dressInfo?.locationIdParams);
+    params.append("location_id", locationIdDetector?.locationIdForTest);
     getGenderId && params.append("gender", getGenderId);
     discount && params.append("discount", discount);
     seasonId !== 5 && params.append("season", seasonId);
@@ -251,9 +255,9 @@ const ShoppingStoreOfficial = () => {
 
   useEffect(() => {
     if (
-      (newFilterParamasId && !filteredData && dressInfo?.locationIdParams) ||
+      (newFilterParamasId && !filteredData && locationIdDetector?.locationIdForTest) ||
       (initalParamsId &&
-        initalParamsId !== dressInfo?.locationIdParams &&
+        initalParamsId !== locationIdDetector?.locationIdForTest &&
         !getGenderId &&
         !getCategory &&
         !getRating &&
@@ -267,13 +271,13 @@ const ShoppingStoreOfficial = () => {
 
       fetchGetAllData();
     }
-    setInitalParamsId(dressInfo?.locationIdParams);
-  }, [dressInfo?.locationIdParams]);
+    setInitalParamsId(locationIdDetector?.locationIdForTest);
+  }, [locationIdDetector?.locationIdForTest]);
 
   useEffect(() => {
     if (
       data?.getMainProductCard?.shops &&
-      dressInfo?.locationIdParams &&
+      locationIdDetector?.locationIdForTest &&
       newFilterParamasId
     ) {
       fetchGetAllData();
@@ -337,7 +341,7 @@ const ShoppingStoreOfficial = () => {
     { label_uz: "Do'konlar", label_ru: "Магазины", url: "/shops" },
     { label_uz: params?.id, label_ru: params?.id, url: "/shops/:id" },
   ];
-  // dressInfo?.locationIdParams
+  // locationIdDetector?.locationIdForTest
   return (
     <div className="w-full">
       {loading ? (
@@ -352,7 +356,7 @@ const ShoppingStoreOfficial = () => {
             <section className="w-full border-b border-searchBgColor py-3 px-4 md:pt-8 md:pb-5">
               <NewBreadCrump items={breadcrumbItems} />
             </section>
-            {dressInfo?.mainSubRegionId && !dressInfo?.locationIdParams ? (
+            {dressInfo?.mainSubRegionId && !locationIdDetector?.locationIdForTest ? (
               <div className="w-full flex items-center justify-center font-AeonikProMedium text-2xl h-[50vh] ">
                 {t("nothing_found")}
               </div>

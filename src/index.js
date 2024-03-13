@@ -15,6 +15,7 @@ import { UserRefreshTokenContextProvider } from "./ContextHook/UserRefreshToken"
 import { DressmeLanguage } from "./language/LanguageItems";
 import './language/i18n'
 import { DressmeSeason } from "./ContextHook/SeasonContext";
+import { LocationId } from "./ContextHook/LocationId";
 
 const queryClient = new QueryClient();
 
@@ -25,23 +26,25 @@ root.render(
     <MainPageAudioContextProvider>
       <DressmeLanguage>
         <DressmeSeason>
-          <DressMenu>
-            <BrowserRouter>
-              <UserRefreshTokenContextProvider>
-                <HomeMainDataContextProvider>
-                  <SliderPhotosColorContextProvider>
-                    <ProfileDataContextProvider>
-                      <HomeFilterContextProvider>
-                        <MobileSelectedDataContextProvider>
-                          <App />
-                        </MobileSelectedDataContextProvider>
-                      </HomeFilterContextProvider>
-                    </ProfileDataContextProvider>
-                  </SliderPhotosColorContextProvider>
-                </HomeMainDataContextProvider>
-              </UserRefreshTokenContextProvider>
-            </BrowserRouter>
-          </DressMenu>
+          <LocationId>
+            <DressMenu>
+              <BrowserRouter>
+                <UserRefreshTokenContextProvider>
+                  <HomeMainDataContextProvider>
+                    <SliderPhotosColorContextProvider>
+                      <ProfileDataContextProvider>
+                        <HomeFilterContextProvider>
+                          <MobileSelectedDataContextProvider>
+                            <App />
+                          </MobileSelectedDataContextProvider>
+                        </HomeFilterContextProvider>
+                      </ProfileDataContextProvider>
+                    </SliderPhotosColorContextProvider>
+                  </HomeMainDataContextProvider>
+                </UserRefreshTokenContextProvider>
+              </BrowserRouter>
+            </DressMenu>
+          </LocationId>
         </DressmeSeason>
       </DressmeLanguage>
     </MainPageAudioContextProvider>

@@ -13,6 +13,8 @@ import { BsCheckLg } from "react-icons/bs";
 import Slider from "react-slider";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../../../language/LanguageItems";
+import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext";
+import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
 
 function FilterList({
   paramsId,
@@ -38,6 +40,7 @@ function FilterList({
 
   const { t } = useTranslation("shops")
   const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
 
   // ------------------------
   const [genderToggle, setGenderToggle] = useState(false);
@@ -79,7 +82,7 @@ function FilterList({
 
   function fetchGetAllData() {
     fetch(
-      `${url}/shops/filter/${dressInfo?.yandexGetMarketId}?location_id=${dressInfo?.locationIdParams}`
+      `${url}/shops/filter/${dressInfo?.yandexGetMarketId}?location_id=${locationIdDetector?.locationIdForTest}`
     )
       .then((res) => res.json())
       .then((res) => {
@@ -106,7 +109,7 @@ function FilterList({
       setFilterToggle(false);
       setGetFilter();
     }
-  }, [dressInfo?.locationIdParams]);
+  }, [locationIdDetector?.locationIdForTest]);
 
   const [genderCategory, setGenderCategory] = useState([
     {
@@ -387,11 +390,11 @@ function FilterList({
   };
 
   useEffect(() => {
-    if (dressInfo?.locationIdParams) {
+    if (locationIdDetector?.locationIdForTest) {
       ClearAll();
       setGetFilter();
     }
-  }, [dressInfo?.locationIdParams]);
+  }, [locationIdDetector?.locationIdForTest]);
   return (
     <div
       className={`w-full h-full md:py-5 px-3 border border-searchBgColor rounded-lg md:overflow-hidden `}

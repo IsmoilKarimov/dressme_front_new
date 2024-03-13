@@ -11,10 +11,13 @@ import "./LocationOfYandex.css";
 import AddCopyCheckedIcon from "../../../../Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
 import { markerIcons } from "../../../../../../assets";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
+import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext";
+import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
 // import AddCopyCheckedIcon from "../AddCopyCheckedIcon/AddCopyCheckedIcon";
 
 function YandexLocationShop({ filteredData }) {
     const [dressInfo, setDressInfo] = useContext(dressMainData);
+    const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
 
     //------------------------------------------------------------------------------------------------
     const [logaLocation, setLogaLocation] = useState()
@@ -23,7 +26,7 @@ function YandexLocationShop({ filteredData }) {
     //------------------------------------------------------------------------------------------------
     useEffect(() => {
         filteredData?.shop?.approved_shop_locations?.map(item => {
-            if (item?.id === dressInfo?.locationIdParams) {
+            if (item?.id === locationIdDetector?.locationIdForTest) {
                 setPlaceMarkLocation([item?.latitude, item?.longitude])
             }
         })
@@ -52,7 +55,7 @@ function YandexLocationShop({ filteredData }) {
                             className="text-[#000] not-italic font-AeonikProRegular text-[14px] xs:text-base "
                         >
                             {
-                                filteredData?.shop?.approved_shop_locations?.filter(e => e?.id === dressInfo?.locationIdParams)?.map(item => {
+                                filteredData?.shop?.approved_shop_locations?.filter(e => e?.id === locationIdDetector?.locationIdForTest)?.map(item => {
                                     return (
                                         <p className="text-sm font-AeonikProRegular ">
                                             {item?.address}

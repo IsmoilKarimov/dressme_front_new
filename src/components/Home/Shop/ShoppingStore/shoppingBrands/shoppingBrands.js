@@ -10,6 +10,8 @@ import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import LoadingNetwork from "../../../../Loading/LoadingNetwork";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../../language/LanguageItems";
+import { SaesonDetectorDress } from "../../../../../ContextHook/SeasonContext";
+import { LocationIdDetector } from "../../../../../ContextHook/LocationId";
 
 const ShoppingBrands = ({ loading, setLoading }) => {
   const navigate = useNavigate();
@@ -17,6 +19,7 @@ const ShoppingBrands = ({ loading, setLoading }) => {
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
+  const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
 
   const { t } = useTranslation("shops");
   const goDetail = (id, name) => {
@@ -32,6 +35,10 @@ const ShoppingBrands = ({ loading, setLoading }) => {
           ) {
             return Number(element.sub_region_id) === dressInfo?.mainSubRegionId;
           });
+          setLocationIdDetector({
+      ...locationIdDetector, locationIdForTest: foundElement?.id
+          })
+ 
           setDressInfo({ ...dressInfo, locationIdParams: foundElement?.id });
           navigate(`/shops/${name?.split(" ")?.join("-")?.toLowerCase()}`);
         }
@@ -40,6 +47,9 @@ const ShoppingBrands = ({ loading, setLoading }) => {
             ...dressInfo,
             locationIdParams: item?.approved_shop_locations[0]?.id,
           });
+          setLocationIdDetector({
+      ...locationIdDetector, locationIdForTest: item?.approved_shop_locations[0]?.id
+          })
           navigate(`/shops/${name?.split(" ")?.join("-")?.toLowerCase()}`);
         }
       });
@@ -133,16 +143,16 @@ const ShoppingBrands = ({ loading, setLoading }) => {
                       <div className="flex items-center md:ml-[88px] md:mt-0">
                         <div
                           className={`${data.gender_id === "2"
-                              ? "hidden"
-                              : "flex w-9 h-9 md:w-12 md:h-12 items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white rounded-lg mr-1"
+                            ? "hidden"
+                            : "flex w-9 h-9 md:w-12 md:h-12 items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white rounded-lg mr-1"
                             } `}
                         >
                           <ManGenIcons />
                         </div>
                         <div
                           className={`${data.gender_id === "1"
-                              ? "hidden"
-                              : "flex items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white w-9 h-9 md:w-12 md:h-12 rounded-lg"
+                            ? "hidden"
+                            : "flex items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white w-9 h-9 md:w-12 md:h-12 rounded-lg"
                             } `}
                         >
                           <WomanGenIcons />
@@ -200,8 +210,8 @@ const ShoppingBrands = ({ loading, setLoading }) => {
                         }
                       }}
                       className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-4 w-fit md:min-w-[45px] border h-[35px] md:h-[45px] rounded-lg  ${item?.active
-                          ? "bg-fullBlue text-white"
-                          : "hover:bg-searchBgColor"
+                        ? "bg-fullBlue text-white"
+                        : "hover:bg-searchBgColor"
                         } mx - [5px] flex items-center justify-center  ${item?.url
                           ? "cursor-pointer"
                           : "opacity-70 cursor-not-allowed"
