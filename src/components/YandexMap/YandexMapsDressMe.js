@@ -38,12 +38,14 @@ import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../language/LanguageItems";
 import { SaesonDetectorDress } from "../../ContextHook/SeasonContext";
+import { LocationIdDetector } from "../../ContextHook/LocationId";
 
 function YandexMapsDressMe() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const { i18n, t } = useTranslation('yandexmap')
   const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
   const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+  const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
 
   const url = "https://api.dressme.uz/api/main";
 
@@ -172,9 +174,12 @@ function YandexMapsDressMe() {
   // --------------Open Main MenusetDressInfo
   const handlePlaceMark = (shopId, value, cordinate) => {
     // setOpenCordinateMap(cordinate);
+    setLocationIdDetector({
+      ...locationIdDetector, locationIdForTest: value
+    })
     setDressInfo({
       ...dressInfo,
-      locationIdParams: value,
+      locationIdParams: value, 
       yandexGetMarketId: shopId,
       yandexOpenMarketLocation: true,
     });
