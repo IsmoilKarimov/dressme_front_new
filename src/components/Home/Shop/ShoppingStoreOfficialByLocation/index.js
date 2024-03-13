@@ -130,10 +130,13 @@ const ShoppingStoreOfficialByLocation = () => {
         }
         if (!dressInfo?.mainSubRegionId) {
           // console.log(item?.approved_shop_locations[0]?.id, 'category---run2');
-          setDressInfo({
-            ...dressInfo,
-            locationIdParams: item?.approved_shop_locations[0]?.id,
-          });
+          if (dressInfo?.locationIdParams !== item?.approved_shop_locations[0]?.id) {
+            setDressInfo({
+              ...dressInfo,
+              locationIdParams: item?.approved_shop_locations[0]?.id,
+            });
+          }
+         
         }
       }
     });

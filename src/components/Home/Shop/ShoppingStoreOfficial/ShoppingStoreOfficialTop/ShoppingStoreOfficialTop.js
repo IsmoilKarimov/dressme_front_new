@@ -34,14 +34,7 @@ const ShoppingStoreOfficialTop = ({
   const { t } = useTranslation("shops");
 
   const [locationList, setLocationList] = useState([]);
-  const [selectLocation, setSelectLocation] = useState(
-    dressInfo?.locationIdParams
-  );
-
-  // For DropUp
-  useEffect(() => {
-    setSelectLocation(dressInfo?.locationIdParams);
-  }, [dressInfo?.locationIdParams]);
+ 
 
   const handleToggle = () => {
     if (filterLeftAction) {
@@ -57,7 +50,7 @@ const ShoppingStoreOfficialTop = ({
   useEffect(() => {
     if (!checkedData) {
       let n = locationList?.find((v) => {
-        return v.id == selectLocation;
+        return v.id == dressInfo?.locationIdParams;
       });
 
       setDressInfo({
@@ -77,7 +70,7 @@ const ShoppingStoreOfficialTop = ({
   }, [filteredData?.shop?.approved_shop_locations]);
 
   const onChangeSelectLocation = (e) => {
-    // setSelectLocation(e?.target?.value);
+     
     setDressInfo({
       ...dressInfo,
       locationIdParams: e?.target?.value,
@@ -108,8 +101,7 @@ const ShoppingStoreOfficialTop = ({
     setDressInfo({ ...dressInfo, mainSearchNameshop: null });
   };
   //  name_ru
-  console.log(filteredData?.shop?.name?.length, 'ressInf');
-  return (
+   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
         <div className="w-[100%] h-fit flex flex-col">
