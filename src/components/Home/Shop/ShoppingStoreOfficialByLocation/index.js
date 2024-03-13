@@ -384,7 +384,7 @@ const ShoppingStoreOfficialByLocation = () => {
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
       {loading ? (
-        <div className="flex items-center justify-center w-full h-full ">
+        <div className="flex items-center justify-center w-full h-full">
           <LoadingNetwork />
         </div>
       ) : (

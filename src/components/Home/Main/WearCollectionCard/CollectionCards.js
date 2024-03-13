@@ -37,6 +37,7 @@ export default function CollectionCards() {
   };
 
   const _handleKeyDownSearch = (event) => {
+    console.log(event,"event");
     if (event.key === "Enter") {
       setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
     }
