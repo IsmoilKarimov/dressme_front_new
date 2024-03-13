@@ -1,6 +1,4 @@
-import React, { useContext, useState } from "react";
-import { MenuCloseIcons } from "../../../../assets/icons";
-import { dressMainData } from "../../../../ContextHook/ContextMenu";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
@@ -32,8 +30,8 @@ const CatalogMobile = () => {
     }
   };
   const breadcrumbItems = [
-    { label_uz: 'Home', label_ru: 'Главная', url: '/' },
-    { label_uz: 'category', label_ru: 'категории', url: '/categories' },
+    { label_uz: "Asosiy", label_ru: "Главная", url: "/" },
+    { label_uz: "Kategoriya", label_ru: "категории", url: "/categories" },
   ];
 
   return (
