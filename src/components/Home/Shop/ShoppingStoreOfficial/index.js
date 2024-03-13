@@ -129,14 +129,18 @@ const ShoppingStoreOfficial = () => {
           });
         }
         if (!dressInfo?.mainSubRegionId) {
-          setDressInfo({
-            ...dressInfo,
-            locationIdParams: item?.approved_shop_locations[0]?.id,
-          });
+          console.log("locationIdParams--RUN-1");
+          console.log(dressInfo?.locationIdParams, 'locationIdParams=-----dressInfo');
+          console.log(item?.approved_shop_locations[0]?.id, 'locationIdParams---item?.approved_shop_locations[0]?.id');
+          if (dressInfo?.locationIdParams !== item?.approved_shop_locations[0]?.id) {
+            setDressInfo({ ...dressInfo, locationIdParams: null, });
+            setDressInfo({ ...dressInfo, locationIdParams: item?.approved_shop_locations[0]?.id, });
+          }
         }
       }
     });
   };
+  console.log(dressInfo?.locationIdParams, 'locationIdParams=-----dressInfo');
 
   useEffect(() => {
     refreshLocationId();
@@ -263,7 +267,7 @@ const ShoppingStoreOfficial = () => {
     ) {
 
       fetchGetAllData();
-     }
+    }
     setInitalParamsId(dressInfo?.locationIdParams);
   }, [dressInfo?.locationIdParams]);
 
@@ -334,7 +338,7 @@ const ShoppingStoreOfficial = () => {
     { label_uz: "Do'konlar", label_ru: "Магазины", url: "/shops" },
     { label_uz: params?.id, label_ru: params?.id, url: "/shops/:id" },
   ];
-// dressInfo?.locationIdParams
+  // dressInfo?.locationIdParams
   return (
     <div className="w-full">
       {loading ? (

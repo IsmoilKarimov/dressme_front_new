@@ -5,7 +5,7 @@ export default function AboutProduct() {
    const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
 
   const [productDescription, setProductDescription] = useState(true);
-
+  // В других локациях
   return (
     <main className="w-full block md:hidden">
       <section className="w-full">
