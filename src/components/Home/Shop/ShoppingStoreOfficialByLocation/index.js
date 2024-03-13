@@ -14,6 +14,7 @@ import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 import { SaesonDetectorDress } from "../../../../ContextHook/SeasonContext";
+import { LocationIdDetector } from "../../../../ContextHook/LocationId";
 
 const ShoppingStoreOfficialByLocation = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -22,6 +23,7 @@ const ShoppingStoreOfficialByLocation = () => {
   const { t } = useTranslation("shops")
   const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
   const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+  const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
 
   // const [error, setError] = useState(false);
   const [openTabComment, setOpenTabComment] = useState(false);
@@ -126,17 +128,23 @@ const ShoppingStoreOfficialByLocation = () => {
             ...dressInfo,
             locationIdParams: foundElement?.id,
           });
+          setLocationIdDetector({
+      ...locationIdDetector, locationIdForTest: foundElement?.id
+          })
           setdata1(foundElement?.id)
         }
         if (!dressInfo?.mainSubRegionId) {
           // console.log(item?.approved_shop_locations[0]?.id, 'category---run2');
-          if (dressInfo?.locationIdParams !== item?.approved_shop_locations[0]?.id) {
-            setDressInfo({
-              ...dressInfo,
-              locationIdParams: item?.approved_shop_locations[0]?.id,
-            });
-          }
-         
+          // if (locationIdDetector?.locationIdForTest !== item?.approved_shop_locations[0]?.id) {
+          setDressInfo({
+            ...dressInfo,
+            locationIdParams: item?.approved_shop_locations[0]?.id,
+          });
+          setLocationIdDetector({
+      ...locationIdDetector, locationIdForTest: item?.approved_shop_locations[0]?.id
+          })
+          // }
+
         }
       }
     });
@@ -148,7 +156,7 @@ const ShoppingStoreOfficialByLocation = () => {
   }, [dressInfo?.mainSubRegionId, dressInfo?.mainRegionId, data?.getMainProductCard?.shops]);
 
   useEffect(() => {
-    if (!dressInfo?.locationIdParams)
+    if (!locationIdDetector?.locationIdForTest)
       refreshLocationId();
   }, [dressInfo?.yandexGetMarketId]);
 
@@ -185,7 +193,7 @@ const ShoppingStoreOfficialByLocation = () => {
 
   }, []);
   const [seasonId, setSeasonId] = useState(5);
-   const typeFilter = String(seasonDetector?.type)?.split("");
+  const typeFilter = String(seasonDetector?.type)?.split("");
   useEffect(() => {
     setSeasonId(Number(typeFilter?.shift()))
 
@@ -219,7 +227,7 @@ const ShoppingStoreOfficialByLocation = () => {
       setLoading(true)
     }
     let params = new URLSearchParams();
-    params.append("location_id", dressInfo?.locationIdParams);
+    params.append("location_id", locationIdDetector?.locationIdForTest);
     dressInfo?.mainSearchNameshopLocation &&
       params.append("keywords", dressInfo?.mainSearchNameshopLocation);
     getGenderId && params.append("gender", getGenderId);
@@ -299,7 +307,7 @@ const ShoppingStoreOfficialByLocation = () => {
   useEffect(() => {
     if (
       initalParamsId &&
-      initalParamsId !== dressInfo?.locationIdParams &&
+      initalParamsId !== locationIdDetector?.locationIdForTest &&
       !getGenderId &&
       !getCategory &&
       !getRating &&
@@ -311,12 +319,12 @@ const ShoppingStoreOfficialByLocation = () => {
       !getFootWearList
     ) {
       fetchGetAllData();
-     }
-    setInitalParamsId(dressInfo?.locationIdParams);
-  }, [dressInfo?.locationIdParams]);
+    }
+    setInitalParamsId(locationIdDetector?.locationIdForTest);
+  }, [locationIdDetector?.locationIdForTest]);
 
   useEffect(() => {
-    if (data?.getMainProductCard?.shops && dressInfo?.locationIdParams) {
+    if (data?.getMainProductCard?.shops && locationIdDetector?.locationIdForTest) {
       fetchGetAllData();
       if (!filteredData) {
         setLoading(true);
@@ -337,19 +345,19 @@ const ShoppingStoreOfficialByLocation = () => {
     getRating,
     getRange?.min,
     getRange?.max,
-    // dressInfo?.locationIdParams,
+    // locationIdDetector?.locationIdForTest,
     dressInfo?.mainSearchNameshopLocation,
     data?.getMainProductCard?.shops,
     languageDetector?.typeLang
   ]);
 
   useEffect(() => {
-    if (dressInfo?.locationIdParams) {
+    if (locationIdDetector?.locationIdForTest) {
       if (!filteredData) {
         fetchGetAllData();
       }
     }
-  }, [dressInfo?.locationIdParams]);
+  }, [locationIdDetector?.locationIdForTest]);
   useEffect(() => {
     if (openMobileFilter) {
       document.body.style.overflow = "hidden";

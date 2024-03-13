@@ -11,6 +11,7 @@ import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 import { SaesonDetectorDress } from "../../../../ContextHook/SeasonContext";
+import { LocationIdDetector } from "../../../../ContextHook/LocationId";
 
 function MainPageSliders() {
   const [data, setData] = useContext(HomeMainDataContext);
@@ -20,6 +21,8 @@ function MainPageSliders() {
     LanguageDetectorDress
   );
   const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+  const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
+
   // maindata
   const NextArrow = (props) => {
     const { onClick } = props;
@@ -188,6 +191,9 @@ function MainPageSliders() {
           ) {
             return Number(element.sub_region_id) === dressInfo?.mainSubRegionId;
           });
+          setLocationIdDetector({
+      ...locationIdDetector, locationIdForTest: foundElement?.id
+          })
           setDressInfo({
             ...dressInfo,
             locationIdParams: foundElement?.id,
@@ -197,6 +203,9 @@ function MainPageSliders() {
           navigate(`/shops/${name?.split(" ")?.join("-")?.toLowerCase()}`);
         }
         if (!dressInfo?.mainSubRegionId) {
+          setLocationIdDetector({
+      ...locationIdDetector, locationIdForTest: item?.approved_shop_locations[0]?.id
+          })
           setDressInfo({
             ...dressInfo,
             locationIdParams: item?.approved_shop_locations[0]?.id,

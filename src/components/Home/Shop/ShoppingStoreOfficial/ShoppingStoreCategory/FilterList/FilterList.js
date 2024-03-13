@@ -9,6 +9,8 @@ import { BsCheckLg } from "react-icons/bs";
 import Slider from "react-slider";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../../../language/LanguageItems";
+import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext";
+import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
 
 function FilterList({
   paramsId,
@@ -33,6 +35,7 @@ function FilterList({
 
   const { t } = useTranslation("shops")
   const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
 
   // ------------------------
   const [genderToggle, setGenderToggle] = useState(false);
@@ -73,7 +76,7 @@ function FilterList({
   const url = `https://api.dressme.uz/api/main`;
 
   function fetchGetAllData() {
-    fetch(`${url}/shops/filter/${paramsId}?location_id=${dressInfo?.locationIdParams}`)
+    fetch(`${url}/shops/filter/${paramsId}?location_id=${locationIdDetector?.locationIdForTest}`)
       .then((res) => res.json())
       .then((res) => {
         setGetFilter(res?.filter)
@@ -103,7 +106,7 @@ function FilterList({
       // console.log('shop-1 run-2');
 
     }
-  }, [dressInfo?.locationIdParams])
+  }, [locationIdDetector?.locationIdForTest])
 
   // console.log(filterToggle, "shop-1 filterToggle");
   // console.log(getFilter, "shop-1 getFilter");
@@ -389,11 +392,11 @@ function FilterList({
     footWearList(null)
   }
   useEffect(() => {
-    if (dressInfo?.locationIdParams) {
+    if (locationIdDetector?.locationIdForTest) {
       ClearAll()
       setGetFilter()
     }
-  }, [dressInfo?.locationIdParams])
+  }, [locationIdDetector?.locationIdForTest])
 
   return (
     <div

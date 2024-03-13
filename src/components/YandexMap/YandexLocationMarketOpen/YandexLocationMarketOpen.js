@@ -16,6 +16,8 @@ import { useNavigate } from "react-router-dom";
 import AddCopyCheckedIcon from "../../Home/Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
+import { SaesonDetectorDress } from "../../../ContextHook/SeasonContext";
+import { LocationIdDetector } from "../../../ContextHook/LocationId";
 
 function YandexLocationMarketOpen({
   getImgGallery,
@@ -27,6 +29,7 @@ function YandexLocationMarketOpen({
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
   const { i18n, t } = useTranslation("yandexmap");
+  const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
 
   const navigate = useNavigate();
   const openShoppingChild = () => {
@@ -52,7 +55,7 @@ function YandexLocationMarketOpen({
 
   useEffect(() => {
     modalInfo?.locations
-      ?.filter((e) => e?.id === dressInfo?.locationIdParams)
+      ?.filter((e) => e?.id === locationIdDetector?.locationIdForTest)
       ?.map((data) => {
         setCopyAddress(data?.address);
         setPhoneNum(data?.assistant_phone);
@@ -62,7 +65,7 @@ function YandexLocationMarketOpen({
           { id: 3, img: data?.url_image_path_three },
         ]);
       });
-  }, [modalInfo, dressInfo?.locationIdParams]);
+  }, [modalInfo, locationIdDetector?.locationIdForTest]);
 
   useEffect(() => {
     setNewImgList([]);
@@ -140,7 +143,7 @@ function YandexLocationMarketOpen({
   return (
     <div className="w-full h-full ">
       {modalInfo?.locations
-        ?.filter((e) => e?.id === dressInfo?.locationIdParams)
+        ?.filter((e) => e?.id === locationIdDetector?.locationIdForTest)
         ?.map((data) => {
           return (
             <div

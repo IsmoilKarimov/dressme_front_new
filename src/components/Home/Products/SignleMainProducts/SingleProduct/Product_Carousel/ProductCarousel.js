@@ -14,6 +14,7 @@ import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData"
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../../../language/LanguageItems";
 import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext";
+import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
 
 const ProductCarousel = ({ show, data }) => {
   const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
@@ -26,6 +27,7 @@ const ProductCarousel = ({ show, data }) => {
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
+  const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
 
   const [selectedColor, setSelectedColor] = useState(data?.product?.colors[0]);
 
@@ -176,7 +178,7 @@ const ProductCarousel = ({ show, data }) => {
     if (!selectedLocation) {
       let n =
         data?.product?.locations?.filter(
-          (v) => v?.id === dressInfo?.locationIdParams
+          (v) => v?.id === locationIdDetector?.locationIdForTest
         ) || [];
 
       setSelectedLocation(n[0]);
