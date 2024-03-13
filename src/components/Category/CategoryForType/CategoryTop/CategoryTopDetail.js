@@ -186,19 +186,19 @@ const CategoryTopDetail = ({
             <article className="w-full md:hidden flex items-center justify-between mt-6 mb-3 px-4">
               <button
                 onClick={() => setOpenMobileFilter(true)}
-                className="h-[48px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                className="h-[38px] md:h-[48px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
               >
                 <SortIcons />
-                <p className="ml-2 not-italic  font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+                <p className="ml-2 not-italic  font-AeonikProMedium   text-[12px] md:text-sm leading-4 text-black tracking-[1%] cursor-pointer">
                   {t("filter")}
                 </p>
               </button>
               <button
                 onClick={() => setOpenMobileCategory(true)}
-                className="h-[48px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                className="h-[38px] md:h-[48px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
               >
                 <UnderSection />
-                <p className="ml-2 not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+                <p className="ml-2 not-italic font-AeonikProMedium text-[12px] md:text-sm leading-4 text-black tracking-[1%] cursor-pointer">
                   {t("by_section")}
                 </p>
               </button>
@@ -231,7 +231,7 @@ const CategoryTopDetail = ({
           <button
             onClick={handleToggle}
             type="button"
-            className="w-[175px] gap-x-2 h-[44px] border border-[#F2F2F2] flex items-center justify-center  bg-white rounded-xl active:scale-95	active:opacity-70"
+            className="w-[175px] gap-x-2 h-[38px] md:h-[44px] border border-[#F2F2F2] flex items-center justify-center  bg-white rounded-xl active:scale-95	active:opacity-70"
           >
             <span className="">
               {" "}
@@ -251,7 +251,7 @@ const CategoryTopDetail = ({
           </button>
         </div>
         <section className="w-full px-4 block md:hidden">
-          <article className="w-full search flex items-center bg-white justify-between rounded-xl font-AeonikProMedium h-12 mt-3 mb-3 border border-searchBgColor ss:mt-3">
+          <article className="w-full search flex items-center bg-white justify-between rounded-xl font-AeonikProMedium h-[38px] md:h-12 mt-3 mb-3 border border-searchBgColor ss:mt-3">
             <div className="w-[90%] h-full flex items-center justify-between">
               <input
                 type="text"
@@ -260,10 +260,10 @@ const CategoryTopDetail = ({
                 value={searchMarketName}
                 onChange={handleChange}
                 onKeyDown={_handleKeyDownSearch}
-                className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[14px] leading-4"
+                className="font-AeonikProRegular bg-transparent w-full px-3   h-full text-[12px] md:text-[14px] leading-4"
               />
               {searchMarketName && (
-                <button onClick={handleClear} type="button">
+                <button onClick={handleClear} type="button" className="  px-1">
                   <MdClose size={20} color={"#a1a1a1"} />
                 </button>
               )}

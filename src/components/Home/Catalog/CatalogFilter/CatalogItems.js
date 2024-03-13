@@ -500,19 +500,19 @@ export default function CatalogItems() {
                 <article className="w-full md:hidden flex items-center justify-between mt-3 mb-3 px-3">
                   <button
                     onClick={() => setOpenMobileFilter(true)}
-                    className="h-[48px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                    className="h-[38px] md:h-[48px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                   >
                     <SortIcons />
-                    <p className="ml-2 not-italic  font-AeonikProMedium   text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+                    <p className="ml-2 not-italic  font-AeonikProMedium  text-[12px] md:text-[14px]  leading-4 text-black tracking-[1%] cursor-pointer">
                       {t("filter")}
                     </p>
                   </button>
                   <button
                     onClick={() => setOpenMobileCategory(true)}
-                    className="h-[48px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                    className="h-[38px] md:h-[48px] w-[48%] select-none active:scale-95  active:opacity-70 rounded-xl border border-searchBgColor bg-btnBgColor flex items-center justify-center"
                   >
                     <UnderSection />
-                    <p className="ml-2 not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%] cursor-pointer">
+                    <p className="ml-2 not-italic font-AeonikProMedium text-[12px] md:text-[14px]  leading-4 text-black tracking-[1%] cursor-pointer">
                       {t("by_category")}
                     </p>
                   </button>
@@ -520,7 +520,7 @@ export default function CatalogItems() {
               </div>
             </section>
             <section className="w-full px-3 flex my-3 md:hidden">
-              <article className="w-full search flex items-center bg-white justify-between rounded-xl font-AeonikProMedium h-12  border border-searchBgColor ss:mt-3">
+              <article className="w-full search flex items-center bg-white justify-between rounded-xl font-AeonikProMedium h-[38px] md:h-12  border border-searchBgColor ss:mt-3">
                 <div className="w-[87%] h-full flex items-center justify-between">
                   <input
                     type="text"
@@ -529,10 +529,10 @@ export default function CatalogItems() {
                     value={searchMarketName}
                     onChange={handleChange}
                     onKeyDown={_handleKeyDownSearch}
-                    className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[14px] leading-4"
+                    className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[12px] md:text-[14px] leading-4"
                   />
                   {searchMarketName && (
-                    <button onClick={handleClear} className="  " type="button">
+                    <button onClick={handleClear} className=" px-1 " type="button">
                       <MdClose size={20} color={"#a1a1a1"} />
                     </button>
                   )}
