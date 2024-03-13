@@ -73,7 +73,7 @@ const ShoppingTop = ({
         />
 
         <article className="w-full md:hidden flex items-center mt-3 md:mt-0 md:justify-end">
-          <article className="w-[400px] h-12 flex items-center justify-between bg-btnBgColor md:bg-white rounded-xl overflow-hidden border border-searchBgColor font-AeonikProRegular text-base">
+          <article className="w-[400px] h-[38px] md:h-12 flex items-center justify-between bg-btnBgColor md:bg-white rounded-xl overflow-hidden border border-searchBgColor font-AeonikProRegular text-base">
             <div className="w-[90%] h-full flex items-center justify-between">
               <input
                 type="text"
@@ -81,11 +81,11 @@ const ShoppingTop = ({
                 value={searchMarketName}
                 onChange={handleChange}
                 onKeyDown={_handleKeyDownSearch}
-                className="w-full h-full px-3 text-sm md:text-base  bg-white"
+                className="w-full h-full px-3 text-[12px] xs:text-sm md:text-base  bg-white"
                 placeholder={t("search_lang")}
               />
               {searchMarketName && (
-                <button onClick={handleClear} className=" mr-1" type="button">
+                <button onClick={handleClear} className=" px-1" type="button">
                   <MdClose size={20} color={"#a1a1a1"} />
                 </button>
               )}

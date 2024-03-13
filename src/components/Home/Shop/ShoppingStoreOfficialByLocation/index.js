@@ -308,8 +308,7 @@ const ShoppingStoreOfficialByLocation = () => {
       !getFootWearList
     ) {
       fetchGetAllData();
-      setLoading(true);
-    }
+     }
     setInitalParamsId(dressInfo?.locationIdParams);
   }, [dressInfo?.locationIdParams]);
 

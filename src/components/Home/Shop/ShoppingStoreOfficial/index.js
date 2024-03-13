@@ -263,8 +263,7 @@ const ShoppingStoreOfficial = () => {
     ) {
 
       fetchGetAllData();
-      setLoading(true);
-    }
+     }
     setInitalParamsId(dressInfo?.locationIdParams);
   }, [dressInfo?.locationIdParams]);
 
@@ -335,7 +334,7 @@ const ShoppingStoreOfficial = () => {
     { label_uz: "Do'konlar", label_ru: "Магазины", url: "/shops" },
     { label_uz: params?.id, label_ru: params?.id, url: "/shops/:id" },
   ];
-
+// dressInfo?.locationIdParams
   return (
     <div className="w-full">
       {loading ? (
