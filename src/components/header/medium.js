@@ -753,7 +753,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                                     alt=""
                                   />{" "}
                                 </span>
-                                <p className="ml-3 not-italic flex items-center font-AeonikProMedium text-base text-black ">
+                                <p className="ml-[6px] ll:ml-3 not-italic flex items-center font-AeonikProMedium text-base text-black ">
                                   {data?.type}
                                 </p>
                                 <span className="arrowRotate ml-auto rotate-[180deg]">
@@ -767,7 +767,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                   </li>
                 </ul>
 
-                {/* Location and Language */}
+                {/* Business and Questions */}
                 <div className="w-full gap-x-3 mt-3 flex items-center justify-between">
                   <button
                     type="button"

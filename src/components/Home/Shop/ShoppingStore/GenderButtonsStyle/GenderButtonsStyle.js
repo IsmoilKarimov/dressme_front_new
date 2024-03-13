@@ -61,7 +61,7 @@ function GenderButtonsStyle({ handleGetId, getAllShops, setGetAllShops }) {
         } w-[32%] flex items-center justify-center active:scale-95 h-11 text-[15px] text-center font-AeonikProRegular`}
       >
         <ManWomanGen />
-        <span className="text-base ml-3 font-AeonikProRegular">
+        <span className="text-base ml-[6px] ll:ml-[8px] font-AeonikProRegular">
           {t("shop_genderAll_isSelected")}
         </span>
       </button>
