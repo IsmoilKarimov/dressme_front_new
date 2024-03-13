@@ -133,7 +133,6 @@ const ShoppingStoreOfficial = () => {
           console.log(dressInfo?.locationIdParams, 'locationIdParams=-----dressInfo');
           console.log(item?.approved_shop_locations[0]?.id, 'locationIdParams---item?.approved_shop_locations[0]?.id');
           if (dressInfo?.locationIdParams !== item?.approved_shop_locations[0]?.id) {
-            setDressInfo({ ...dressInfo, locationIdParams: null, });
             setDressInfo({ ...dressInfo, locationIdParams: item?.approved_shop_locations[0]?.id, });
           }
         }
