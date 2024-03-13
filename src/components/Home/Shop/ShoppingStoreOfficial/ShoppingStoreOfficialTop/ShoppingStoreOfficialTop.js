@@ -27,6 +27,7 @@ const ShoppingStoreOfficialTop = ({
 }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openLocationModal, setOpenLocationModal] = useState(false);
+  const [openLocationModalMobile, setOpenLocationModalMobile] = useState(false);
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
@@ -79,6 +80,13 @@ const ShoppingStoreOfficialTop = ({
   const onChangeSelectLocation = (e) => {
     setSelectLocation(e?.target?.value);
   };
+  const onChangeSelectLocationMobile = (e) => {
+    setDressInfo({
+      ...dressInfo,
+      locationIdParams: e?.target?.value,
+      productShowSelectedLocation: checkedData,
+    });
+  };
 
   const onhandleSelect = () => {
     setOpenLocationModal(false);
@@ -113,6 +121,7 @@ const ShoppingStoreOfficialTop = ({
     setDressInfo({ ...dressInfo, mainSearchNameshop: null });
   };
   //  name_ru
+  console.log(dressInfo?.locationIdParams,'ressInfo?.locationIdParams');
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
@@ -130,11 +139,10 @@ const ShoppingStoreOfficialTop = ({
             )}
             <div
               className={`w-full md:h-[90px] h-fit flex flex-col md:flex-row items-center border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0
-            ${
-              filteredData?.shop?.url_background_photo
-                ? "mt-2 md:mt-0"
-                : "md:mt-10"
-            }
+            ${filteredData?.shop?.url_background_photo
+                  ? "mt-2 md:mt-0"
+                  : "md:mt-10"
+                }
             `}
             >
               {/* 1 */}
@@ -160,9 +168,8 @@ const ShoppingStoreOfficialTop = ({
                     </span>
                   </p>
                   <div
-                    className={`${
-                      filteredData?.shop?.overall_rating ? "flex" : "hidden"
-                    } items-center`}
+                    className={`${filteredData?.shop?.overall_rating ? "flex" : "hidden"
+                      } items-center`}
                   >
                     <div className="flex items-center mr-[6px]">
                       <StarIcons />
@@ -216,7 +223,7 @@ const ShoppingStoreOfficialTop = ({
                   <div className="w-fit h-fit flex items-center justify-center gap-y-1 cursor-pointer">
                     <button
                       type="primary"
-                      onClick={() => setOpenLocationModal(true)}
+                      onClick={() => setOpenLocationModalMobile(true)}
                       className={`text-borderWinter flex items-center border-b border-dashed border-borderWinter ml-3 text-sm md:text-base not-italic font-AeonikProRegular`}
                     >
                       <p className="mr-[6px]">
@@ -225,19 +232,76 @@ const ShoppingStoreOfficialTop = ({
                       {t("all_locations")}
                     </button>
                   </div>
+
+                  <Modal
+                    centered
+                    width={440}
+                    open={openLocationModalMobile}
+                    onOk={() => setOpenLocationModalMobile(false)}
+                    onCancel={() => setOpenLocationModalMobile(false)}
+                    footer={null}
+                    className=" w-full p-6"
+                  >
+                    <div className="w-full px-4 md:px-[25px] pb-[15px] md:pb-[30px] pt-[10px] md:pt-[20px]">
+                      <p className="text-[16px] md:text-2xl font-AeonikProRegular mb-[15px] md:mb-[30px]">
+                        {t("select_location")}
+                      </p>
+                      <div className="font-AeonikProRegular text-[14px] md:text-lg border-b border-[#f0f0f0] mb-[15px]">
+                        {languageDetector?.typeLang === "ru" &&
+                          locationList[0]?.region?.name_ru}
+                        {languageDetector?.typeLang === "uz" &&
+                          locationList[0]?.region?.name_uz}
+                      </div>
+                      <div className="h-[200px] md:h-[250px] overflow-y-auto mb-[20px] VerticelScroll pr-2">
+                        <Radio.Group
+                          onChange={onChangeSelectLocationMobile}
+                          value={dressInfo?.locationIdParams}
+                          defaultValue={dressInfo?.locationIdParams}
+                        >
+                          {locationList?.map((item, index) => {
+                            return (
+                              <div className="mb-[8px] gap-x-3 flex items-center cursor-pointer">
+                                <Space direction="vertical">
+                                  <Radio
+                                    className="text-lg font-AeonikProRegular"
+                                    value={item?.id}
+                                    checked={dressInfo?.locationIdParams === item?.id}
+                                    onClick={() => {
+                                      setCheckedData(item);
+                                      
+                                    }}
+                                  >
+                                    {" "}
+                                    <span className="text-[14px] md:text-lg font-AeonikProRegular">
+                                      {languageDetector?.typeLang === "ru" &&
+                                        item?.sub_region?.name_ru}
+                                      {languageDetector?.typeLang === "uz" &&
+                                        item?.sub_region?.name_uz}
+                                    </span>
+                                    <span className="text-[14px] md:text-lg font-AeonikProRegular">
+                                      ({item?.address} )
+                                    </span>
+                                  </Radio>
+                                </Space>
+                              </div>
+                            );
+                          })}
+                        </Radio.Group>
+                      </div>
+                   
+                    </div>
+                  </Modal>
                 </div>
                 <div className="flex items-center ml-auto">
                   <button
-                    className={`${
-                      filteredData?.shop?.gender_id === "2" ? "hidden" : "flex"
-                    }  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}
+                    className={`${filteredData?.shop?.gender_id === "2" ? "hidden" : "flex"
+                      }  flex-shrink-0 items-center ml-auto justify-center border border-searchBgColor w-12 h-12 rounded-xl mr-1`}
                   >
                     <ManGenIcons />
                   </button>
                   <button
-                    className={`${
-                      filteredData?.shop?.gender_id === "1" ? "hidden" : "flex"
-                    } flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}
+                    className={`${filteredData?.shop?.gender_id === "1" ? "hidden" : "flex"
+                      } flex flex-shrink-0 items-center justify-center border border-searchBgColor w-12 h-12 rounded-xl`}
                   >
                     <WomanGenIcons />
                   </button>
@@ -291,12 +355,11 @@ const ShoppingStoreOfficialTop = ({
             </div>
           </div>
           <div
-            className={` ${
-              clickButtons?.openTabComment === true ||
-              clickButtons?.openTabLocation === true
+            className={` ${clickButtons?.openTabComment === true ||
+                clickButtons?.openTabLocation === true
                 ? "md:hidden"
                 : "md:flex"
-            } w-full hidden items-center justify-between  mt-[72px] mb-3`}
+              } w-full hidden items-center justify-between  mt-[72px] mb-3`}
           >
             <div className="flex items-center gap-x-5">
               <div className="w-[175px] flex items-center ">
@@ -415,12 +478,11 @@ const ShoppingStoreOfficialTop = ({
             </div>
           </div>
           <action
-            className={`${
-              clickButtons?.openTabComment === true ||
-              clickButtons?.openTabLocation === true
+            className={`${clickButtons?.openTabComment === true ||
+                clickButtons?.openTabLocation === true
                 ? "hidden"
                 : "flex"
-            } w-full md:hidden items-center justify-between mt-3 mb-3 px-4 gap-x-2`}
+              } w-full md:hidden items-center justify-between mt-3 mb-3 px-4 gap-x-2`}
           >
             <div className="search flex items-center justify-between rounded-xl font-AeonikProMedium h-12 my-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
               <div className="w-[90%] h-full flex items-center justify-between">
