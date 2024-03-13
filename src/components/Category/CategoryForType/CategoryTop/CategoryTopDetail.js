@@ -1,10 +1,6 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import {
-  SearchIcons,
-  SortIcons,
-  UnderSection,
-} from "../../../../assets/icons";
-import React, { useContext, useState } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { SearchIcons, SortIcons, UnderSection } from "../../../../assets/icons";
+import React, { useContext, useEffect, useState } from "react";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
 import { dressMainData } from "../../../../ContextHook/ContextMenu";
@@ -13,27 +9,28 @@ import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 
-
 const CategoryTopDetail = ({
   filterData,
   filterLeftAction,
   setOpenMobileFilter,
   setOpenMobileCategory,
   setFilterToggle,
-  paramsId
+  paramsId,
 }) => {
   const [searchMarketName, setSearchMarketName] = useState();
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
   const { t } = useTranslation("category");
 
   const handleToggle = () => {
     if (filterLeftAction) {
       // toggleFilterLeftClose();
-      setFilterToggle(false)
+      setFilterToggle(false);
     } else {
-      setFilterToggle(true)
+      setFilterToggle(true);
       // toggleFilterLeftOpen();
     }
   };
@@ -52,11 +49,11 @@ const CategoryTopDetail = ({
   };
   const handleCategories = (nameru, nameuz, id) => {
     setState({ ...state, opensports: false });
-    if (languageDetector?.typeLang === 'uz') {
-      navigate(`/section/${nameuz?.split(' ')?.join('-')?.toLowerCase()}`);
+    if (languageDetector?.typeLang === "uz") {
+      navigate(`/section/${nameuz?.split(" ")?.join("-")?.toLowerCase()}`);
     }
-    if (languageDetector?.typeLang === 'ru') {
-      navigate(`/section/${nameru?.split(' ')?.join('-')?.toLowerCase()}`);
+    if (languageDetector?.typeLang === "ru") {
+      navigate(`/section/${nameru?.split(" ")?.join("-")?.toLowerCase()}`);
     }
   };
 
@@ -67,18 +64,40 @@ const CategoryTopDetail = ({
           <p
             key={data?.id}
             onClick={() => {
-              handleCategories(languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz, data?.id);
+              handleCategories(
+                languageDetector?.typeLang === "ru" && data?.name_ru,
+                languageDetector?.typeLang === "uz" && data?.name_uz,
+                data?.id
+              );
             }}
-            className={`${filterData?.section?.id === data?.id ? "bg-bgColor" : null
-              } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+            className={`${
+              filterData?.section?.id === data?.id ? "bg-bgColor" : null
+            } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
-            {languageDetector?.typeLang === 'ru' && data?.name_ru}
-            {languageDetector?.typeLang === 'uz' && data?.name_uz}
+            {languageDetector?.typeLang === "ru" && data?.name_ru}
+            {languageDetector?.typeLang === "uz" && data?.name_uz}
           </p>
         );
       })}
     </section>
   );
+
+  const location = useLocation();
+  const [searchForLocation, setSearchForLocation] = useState([]);
+
+  useEffect(() => {
+    setSearchForLocation(location?.pathname?.split("/"));
+  }, [location.pathname]);
+
+  const _handleKeyDownSearch = (event) => {
+    if (searchForLocation?.includes("section")) {
+      setDressInfo({
+        ...dressInfo,
+        mainSearchNameCategory: searchMarketName,
+      });
+    }
+  };
+
   function getSearchClick() {
     setDressInfo({ ...dressInfo, mainSearchNameCategory: searchMarketName });
   }
@@ -91,9 +110,9 @@ const CategoryTopDetail = ({
   };
 
   const breadcrumbItems = [
-    { label_uz: 'Asosiy', label_ru: 'Главная', url: '/' },
-    { label_uz: "Bo'limlar", label_ru: 'Разделы', url: '/section' },
-    { label_uz: paramsId, label_ru: paramsId, url: '/section/:id' },
+    { label_uz: "Asosiy", label_ru: "Главная", url: "/" },
+    { label_uz: "Bo'limlar", label_ru: "Разделы", url: "/section" },
+    { label_uz: paramsId, label_ru: paramsId, url: "/section/:id" },
   ];
 
   return (
@@ -123,8 +142,10 @@ const CategoryTopDetail = ({
                   </div>
                   <div className="flex items-center ml-[112px] md:ml-[210px]">
                     <div className="text-xl font-AeonikProMedium">
-                      {languageDetector?.typeLang === 'ru' && filterData?.section?.name_ru}
-                      {languageDetector?.typeLang === 'uz' && filterData?.section?.name_uz}
+                      {languageDetector?.typeLang === "ru" &&
+                        filterData?.section?.name_ru}
+                      {languageDetector?.typeLang === "uz" &&
+                        filterData?.section?.name_uz}
                       <span className="text-xl text-setTexOpacity font-AeonikProRegular ml-2">
                         ({filterData?.section_products?.total})
                       </span>
@@ -149,15 +170,18 @@ const CategoryTopDetail = ({
                         content={contentCategories}
                       >
                         <span className="text-[15px] font-AeonikProMedium">
-                          {languageDetector?.typeLang === 'ru' && filterData?.section?.name_ru}
-                          {languageDetector?.typeLang === 'uz' && filterData?.section?.name_uz}
+                          {languageDetector?.typeLang === "ru" &&
+                            filterData?.section?.name_ru}
+                          {languageDetector?.typeLang === "uz" &&
+                            filterData?.section?.name_uz}
                         </span>
                         <span>
                           <BiChevronDown
                             size={22}
                             style={{ color: "#000" }}
-                            className={`${state?.opensports ? "rotate-[-180deg]" : ""
-                              } duration-200`}
+                            className={`${
+                              state?.opensports ? "rotate-[-180deg]" : ""
+                            } duration-200`}
                           />
                         </span>
                       </Popover>
@@ -192,19 +216,19 @@ const CategoryTopDetail = ({
             <article className="w-full border-b border-searchBgColor">
               <article className="w-full hidden md:block mb-10">
                 <ul className=" flex flex-row items-center flex-wrap gap-x-[14px] gap-y-[14px]">
-                  {filterData?.section?.sub_sections?.map(
-                    (catalog, index) => (
-                      <li
-                        key={index}
-                        className="text-[15px] font-AeonikProMedium"
-                      >
-                        <button className="focus:bg-borderWinter focus:text-white hover:bg-borderWinter hover:text-white bg-white border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]">
-                          {languageDetector?.typeLang === 'ru' && catalog?.name_ru}
-                          {languageDetector?.typeLang === 'uz' && catalog?.name_uz}
-                        </button>
-                      </li>
-                    )
-                  )}
+                  {filterData?.section?.sub_sections?.map((catalog, index) => (
+                    <li
+                      key={index}
+                      className="text-[15px] font-AeonikProMedium"
+                    >
+                      <button className="focus:bg-borderWinter focus:text-white hover:bg-borderWinter hover:text-white bg-white border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]">
+                        {languageDetector?.typeLang === "ru" &&
+                          catalog?.name_ru}
+                        {languageDetector?.typeLang === "uz" &&
+                          catalog?.name_uz}
+                      </button>
+                    </li>
+                  ))}
                 </ul>
               </article>
             </article>
@@ -242,7 +266,8 @@ const CategoryTopDetail = ({
                 placeholder="Найти товар"
                 value={searchMarketName}
                 onChange={handleChange}
-                className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[14px] leading-4 border-r border-searchBgColor"
+                onKeyDown={_handleKeyDownSearch}
+                className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[14px] leading-4"
               />
               {searchMarketName && (
                 <button onClick={handleClear} type="button">
@@ -252,7 +277,7 @@ const CategoryTopDetail = ({
             </div>
             <span
               onClick={() => getSearchClick()}
-              className="w-[15%] h-full bg-btnBgColor rounded-r-xl active:scale-95 flex items-center justify-center "
+              className="w-[15%] h-full bg-btnBgColor border-l border-searchBgColor rounded-r-xl active:scale-95 flex items-center justify-center "
             >
               <SearchIcons />
             </span>
