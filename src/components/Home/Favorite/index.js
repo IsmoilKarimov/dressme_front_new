@@ -10,7 +10,7 @@ export default function Favourites() {
   }, []);
   const breadcrumbItems = [
     { label_uz: 'Asosiy', label_ru: 'Главная', url: '/' },
-    { label_uz: 'Sevimli', label_ru: 'Избранное', url: '/favourites' },
+    { label_uz: 'Sevimli', label_ru: 'Избранные', url: '/favourites' },
   ];
   return (
     <main className="w-full flex flex-col items-center ">
