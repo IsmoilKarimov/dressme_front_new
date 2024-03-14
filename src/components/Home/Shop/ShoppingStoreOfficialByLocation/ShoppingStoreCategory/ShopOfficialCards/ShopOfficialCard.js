@@ -9,6 +9,8 @@ import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../../../language/LanguageItems";
+import { MobileSelectedDataContext } from "../../../../../../ContextHook/mobileSelectedData";
+import WearType from "../../../../Main/WearCollectionCard/WearType";
 
 export default function ShopOfficialCard({
   filteredData,
@@ -16,20 +18,20 @@ export default function ShopOfficialCard({
   paramsId,
 }) {
   const [openWearType, setOpenWearType] = useState(false);
-  const [languageDetector, setLanguageDetector] = useContext(
-    LanguageDetectorDress
-  );
+  const [languageDetector] = useContext(LanguageDetectorDress);
+
+  const [, setSelectedData] = useContext(MobileSelectedDataContext);
+  const toggle = React.useCallback(() => setOpenWearType(false), []);
 
   const { t } = useTranslation("shops");
 
   // Main data context -----------------
-  const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
+  const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
   const onColorChecked = () => {};
   const navigate = useNavigate();
   const goDetail = (id) => {
     navigate(`/shops_location/${paramsId}/${id} `);
-    // navigate(`/shops_location/${paramsId}/${name?.split(' ')?.join('-')?.toLowerCase()}`);
   };
 
   const setPaginationFunc = (id) => {
@@ -37,6 +39,20 @@ export default function ShopOfficialCard({
   };
   return (
     <div className="flex flex-col box-border">
+      <div
+        onClick={() => setOpenWearType(false)}
+        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+          openWearType ? "" : "hidden"
+        }`}
+      ></div>
+      <section
+        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+          openWearType ? "bottom-0" : "bottom-[-800px] z-0"
+        }`}
+      >
+        <WearType onClick={toggle} />
+      </section>
+
       {filteredData?.products?.data?.length > 0 ? (
         <div
           className={`flex flex-wrap justify-between md:justify-start ${
@@ -77,7 +93,10 @@ export default function ShopOfficialCard({
                       </span>
                     </button>
                     <button
-                      onClick={() => setOpenWearType(true)}
+                      onClick={() => {
+                        setSelectedData(data);
+                        setOpenWearType(true);
+                      }}
                       className="w-12 h-7 md:hidden border border-searchBgColor rounded-lg flex items-center cursor-pointer select-none mt-[6px] mx-2 justify-center gap-x-1"
                     >
                       <figure className="w-6 h-6 flex items-center justify-center">
