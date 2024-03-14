@@ -17,7 +17,7 @@ export default function CollectionCards() {
   // const [pagination, setPagination] = useState(30);
   const [data, setData, wishList, setWishlist, page, setPage] =
     useContext(HomeMainDataContext);
-  const [searchMarketName, setSearchMarketName] = useState();
+  const [searchMarketName, setSearchMarketName] = useState(dressInfo?.mainSearchName);
   const { t } = useTranslation(["homePage"]);
 
   // -------------------------------------
@@ -33,9 +33,8 @@ export default function CollectionCards() {
   }, [openWearType]);
 
   const handleChange = (event) => {
-    // setSearchMarketName(event.target.value);
-    setDressInfo({ ...dressInfo, mainSearchName: event.target.value });
-  };
+    setSearchMarketName(event.target.value);
+   };
 
   const _handleKeyDownSearch = (event) => {
     if (event.key === "Enter") {
@@ -81,14 +80,14 @@ export default function CollectionCards() {
             <input
               type="text"
               name="name"
-              value={dressInfo.mainSearchName}
+              value={searchMarketName}
               onChange={handleChange}
               onKeyDown={_handleKeyDownSearch}
               placeholder={t("CPsearchProd")}
               autoComplete="name"
               className="bg-transparent w-[90%] h-full text-[14px] border border-transparent px-3"
             />
-            {dressInfo.mainSearchName && (
+            {searchMarketName && (
               <button
                 onClick={handleClear}
                 className="absolute right-2 cursor-pointer"

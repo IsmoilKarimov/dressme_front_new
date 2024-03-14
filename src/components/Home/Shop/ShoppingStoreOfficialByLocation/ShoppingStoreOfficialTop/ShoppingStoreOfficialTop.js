@@ -80,7 +80,7 @@ const ShoppingStoreOfficialTop = ({
   };
 
 
-  const [searchMarketName, setSearchMarketName] = useState();
+  const [searchMarketName, setSearchMarketName] = useState(dressInfo?.mainSearchNameshopLocation);
   function getSearchClick() {
     setDressInfo({
       ...dressInfo,
@@ -88,11 +88,11 @@ const ShoppingStoreOfficialTop = ({
     });
   }
   const handleChange = (event) => {
-    // setSearchMarketName(event.target.value);
-    setDressInfo({
-      ...dressInfo,
-      mainSearchNameshopLocation: event.target.value,
-    });
+    setSearchMarketName(event.target.value);
+    // setDressInfo({
+    //   ...dressInfo,
+    //   mainSearchNameshopLocation: event.target.value,
+    // });
   };
 
   const handleClear = () => {
@@ -429,12 +429,12 @@ const ShoppingStoreOfficialTop = ({
                   type="text"
                   name="name"
                   placeholder={`${t("find_product")}`}
-                  value={dressInfo?.mainSearchNameshopLocation}
+                  value={searchMarketName}
                   onChange={handleChange}
                   onKeyDown={_handleKeyDownSearch}
                   className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[12px] md:text-[14px] leading-4"
                 />
-                {dressInfo?.mainSearchNameshopLocation && (
+                {searchMarketName && (
                   <button onClick={handleClear} className="px-1 " type="button">
                     <MdClose size={20} color={"#a1a1a1"} />
                   </button>
