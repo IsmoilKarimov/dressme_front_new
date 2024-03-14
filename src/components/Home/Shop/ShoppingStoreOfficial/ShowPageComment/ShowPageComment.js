@@ -1,4 +1,10 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { GoBackIcon, ReviewIcon, StarIcons } from "../../../../../assets/icons";
 import { Modal, Rate } from "antd";
 import CommentDropUp from "../../../Products/SignleMainProducts/SingleProduct/ProductComment/MobileAllComments/CommentDropUp";
@@ -8,15 +14,12 @@ import { ToastContainer, toast } from "react-toastify";
 import { UserRefreshTokenContext } from "../../../../../ContextHook/UserRefreshToken";
 import { useTranslation } from "react-i18next";
 
-function ShowPageComment({
-  filteredData,
-  setOpenTabComment,
-}) {
+function ShowPageComment({ filteredData, setOpenTabComment }) {
   const [addComment, setAddComment] = useState(false);
   const toggleAddComment = useCallback(() => setAddComment(false), []);
   const [openComment, setOpenComment] = useState(false);
 
-  const { t } = useTranslation("shops")
+  const { t } = useTranslation("shops");
 
   const [reFreshTokenFunc, setUserLogedIn] = useContext(
     UserRefreshTokenContext
@@ -87,7 +90,7 @@ function ShowPageComment({
       top: 0,
     });
   }, []);
-   return (
+  return (
     <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto  border-box md:mb-[60px]">
       <ToastContainer
         position="top-right"
@@ -186,16 +189,18 @@ function ShowPageComment({
             </Modal>
           </section>
           <section>
-            <button
-              onClick={() => setAddComment(true)}
-              type="button"
-              className="w-full flex md:hidden items-center text-SignInBgColor text-base font-AeonikProRegular mb-1"
-            >
-              {t("write_a_review")}
-              <span className="ml-[5px]">
-                <ReviewIcon />
-              </span>
-            </button>
+            {Cookies.get("DressmeUserToken") ? (
+              <button
+                onClick={() => setAddComment(true)}
+                type="button"
+                className="w-full flex md:hidden items-center text-SignInBgColor text-base font-AeonikProRegular mb-1"
+              >
+                {t("write_a_review")}
+                <span className="ml-[5px]">
+                  <ReviewIcon />
+                </span>
+              </button>
+            ) : null}
             <div className="flex md:hidden items-center justify-between border border-borderColor2 rounded-t-lg p-4">
               <div className="flex items-center">
                 <StarIcons />
@@ -243,28 +248,28 @@ function ShowPageComment({
                           }
                         })}
                       </p>
-                      <button className="not-italic ml-3 font-AeonikProRegular text-xs md:text-base leading-4 text-setTexOpacity">
+                      <button className="ml-3 font-AeonikProRegular text-xs md:text-base text-setTexOpacity">
                         {allComments?.created_at}
                       </button>
                     </article>
                   </article>
                   <article className="mt-6 md:mt-4">
-                    <p className="not-italic font-AeonikProRegular text-[13px] md:text-base leading-4 text-[#505050]">
+                    <p className="font-AeonikProRegular text-[13px] md:text-base text-[#505050]">
                       {allComments?.comment}
                     </p>
                   </article>
 
-                  <article className="bg-[#F4F6FB] md:bg-white px-[15px] py-3 md:px-0 md:py-0 rounded-lg mt-6 md:ml-8">
-                    <article className="flex items-center justify-between md:justify-start">
-                      <p className="not-italic font-AeonikProMedium text-[13px] md:text-lg leading-5 text-[#2C2C2C]">
+                  <article className="w-full bg-[#F4F6FB] md:bg-white px-[15px] py-3 md:px-0 md:py-0 rounded-lg mt-6 md:ml-8">
+                    <article className="w-full flex items-center justify-between ">
+                      <p className="w-[70%] break-all font-AeonikProMedium text-[13px] md:text-lg  text-[#2C2C2C]">
                         {filteredData?.shop?.name}
                       </p>
-                      <p className="not-italic ml-3 font-AeonikProRegular text-[11px] md:text-base leading-4 text-setTexOpacity">
+                      <p className="ml-3 font-AeonikProRegular text-[11px] md:text-base text-setTexOpacity">
                         {allComments?.updated_at}
                       </p>
                     </article>
                     <article className="mt-4">
-                      <p className="not-italic font-AeonikProRegular text-[13px] md:text-base leading-4 text-[#505050]">
+                      <p className="font-AeonikProRegular text-[13px] md:text-base text-[#505050]">
                         {allComments?.replyText}
                       </p>
                     </article>
@@ -279,4 +284,4 @@ function ShowPageComment({
   );
 }
 
-export default React.memo(ShowPageComment)
+export default React.memo(ShowPageComment);

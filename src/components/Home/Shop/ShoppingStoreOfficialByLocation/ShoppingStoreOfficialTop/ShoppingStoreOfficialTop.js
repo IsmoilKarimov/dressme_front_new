@@ -223,7 +223,7 @@ const ShoppingStoreOfficialTop = ({
                     <button
                       type="primary"
                       onClick={() => setOpenLocationModal(true)}
-                      className={`text-borderWinter flex items-center border-b border-dashed border-borderWinter ml-3 text-[12px] xs:text-sm md:text-base not-italic font-AeonikProRegular`}
+                      className={`text-borderWinter flex items-center border-b border-dashed border-borderWinter ml-[9px] text-[12px] xs:text-sm md:text-base not-italic font-AeonikProRegular`}
                     >
                       <p className="mr-[6px]">
                         <LocationColoursIcons colors={"#0077B6"} />
