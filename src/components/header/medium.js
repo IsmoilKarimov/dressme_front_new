@@ -325,7 +325,23 @@ const MediumHeader = ({ stateData, setStateData }) => {
       }
     }
   };
-
+  useEffect(() => {
+    if (
+      dressInfo?.mainSearchName ||
+      dressInfo?.mainSearchNameCategory ||
+      dressInfo?.mainSearchNameCatalog ||
+      dressInfo?.mainSearchNameshop ||
+      dressInfo?.mainSearchNameshopMarket ||
+      dressInfo?.mainSearchNameshopLocation)
+      setDressInfo({
+        ...dressInfo,
+         mainSearchNameCategory: null,
+        mainSearchNameCatalog: null,
+        mainSearchNameshop: null,
+        mainSearchNameshopMarket: null,
+        mainSearchNameshopLocation: null,
+      });
+  }, [location.pathname])
   return (
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <div

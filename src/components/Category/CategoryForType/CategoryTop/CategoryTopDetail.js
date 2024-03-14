@@ -17,8 +17,8 @@ const CategoryTopDetail = ({
   setFilterToggle,
   paramsId,
 }) => {
-  const [searchMarketName, setSearchMarketName] = useState(dressInfo?.mainSearchNameCategory);
   const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [searchMarketName, setSearchMarketName] = useState(dressInfo?.mainSearchNameCategory);
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
