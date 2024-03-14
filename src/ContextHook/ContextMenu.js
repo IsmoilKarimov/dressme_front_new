@@ -66,8 +66,8 @@ export const DressMenu = ({ children }) => {
     // --- for Product showPage
     linkedFrom: "mainPageProductList",
     productShowSelectedLocation: {},
-
     ProductList: [],
+    searchProduct:""
   });
   return (
     <dressMainData.Provider value={[dressInfo, setDressInfo]}>
