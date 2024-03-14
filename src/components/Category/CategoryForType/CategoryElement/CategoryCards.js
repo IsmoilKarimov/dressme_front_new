@@ -1,17 +1,18 @@
-import React, { useContext } from "react";
-import { dressMainData } from "../../../../ContextHook/ContextMenu";
+import React, { useContext, useState } from "react";
 import { CollectionCardItem } from "../../../Home/Main/WearCollectionCard/CollectionCardItem";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export default function CategoryCards({ filterData, setPageId, paramsId }) {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
+  const [openWearType, setOpenWearType] = useState(false);
 
   const { t } = useTranslation("category");
 
-  // ------------------
+  // -------------------------------------
+  const toggle = React.useCallback(() => setOpenWearType(false), []);
+  // -------------------------------------
 
   const setPaginationFunc = (id) => {
     setPageId(+id);
@@ -23,6 +24,20 @@ export default function CategoryCards({ filterData, setPageId, paramsId }) {
   }
   return (
     <main className="flex flex-col box-border mt-2 mb-12 md:mb-0">
+      <div
+        onClick={() => setOpenWearType(false)}
+        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+          openWearType ? "" : "hidden"
+        }`}
+      ></div>
+      <section
+        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+          openWearType ? "bottom-0" : "bottom-[-800px] z-0"
+        }`}
+      >
+        <openWearType onClick={toggle} />
+      </section>
+
       <section className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 mt-1 md:mt-8">
         {filterData?.section_products?.data?.length ? (
           filterData?.section_products?.data.map((data) => {
@@ -33,6 +48,7 @@ export default function CategoryCards({ filterData, setPageId, paramsId }) {
                 wishList={wishList}
                 setWishlist={setWishlist}
                 onHandleCardId={onHandleCardId}
+                setOpenWearType={setOpenWearType}
               />
             );
           })
