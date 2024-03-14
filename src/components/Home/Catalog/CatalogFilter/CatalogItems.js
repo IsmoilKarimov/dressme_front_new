@@ -34,7 +34,7 @@ export default function CatalogItems() {
     opensports: false,
     openTypesofClothes: false,
   });
-  const [searchMarketName, setSearchMarketName] = useState();
+  const [searchMarketName, setSearchMarketName] = useState(dressInfo?.mainSearchNameCatalog);
 
   const [getGenderId, setGetGenderId] = useState(null);
   const [getCategory, setGetCategory] = useState(null);
@@ -350,17 +350,14 @@ export default function CatalogItems() {
       document.body.style.overflow = "auto";
     }
   }, [openMobileFilter, openMobileCategory]);
+
+  const handleChange = (event) => {
+    setSearchMarketName(event.target.value);   
+  };
+  
   function getSearchClick() {
     setDressInfo({ ...dressInfo, mainSearchNameCatalog: searchMarketName });
   }
-  const handleChange = (event) => {
-    // setSearchMarketName(event.target.value);
-    setDressInfo({
-      ...dressInfo,
-      mainSearchNameCatalog: event.target.value,
-    });
-  };
-
   const _handleKeyDownSearch = (event) => {
     if (event.key === "Enter") {
       setDressInfo({
@@ -524,12 +521,12 @@ export default function CatalogItems() {
                     type="text"
                     name="name"
                     placeholder="Найти товар"
-                    value={dressInfo?.mainSearchNameCatalog}
+                    value={searchMarketName}
                     onChange={handleChange}
                     onKeyDown={_handleKeyDownSearch}
                     className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[12px] md:text-[14px] leading-4"
                   />
-                  {dressInfo?.mainSearchNameCatalog && (
+                  {searchMarketName && (
                     <button
                       onClick={handleClear}
                       className=" px-1 "

@@ -17,7 +17,7 @@ const CategoryTopDetail = ({
   setFilterToggle,
   paramsId,
 }) => {
-  const [searchMarketName, setSearchMarketName] = useState();
+  const [searchMarketName, setSearchMarketName] = useState(dressInfo?.mainSearchNameCategory);
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
@@ -67,9 +67,8 @@ const CategoryTopDetail = ({
                 data?.id
               );
             }}
-            className={`${
-              filterData?.section?.id === data?.id ? "bg-bgColor" : null
-            } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+            className={`${filterData?.section?.id === data?.id ? "bg-bgColor" : null
+              } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {languageDetector?.typeLang === "ru" && data?.name_ru}
             {languageDetector?.typeLang === "uz" && data?.name_uz}
@@ -92,9 +91,8 @@ const CategoryTopDetail = ({
     setDressInfo({ ...dressInfo, mainSearchNameCategory: searchMarketName });
   }
   const handleChange = (event) => {
-    // setSearchMarketName(event.target.value);
-    setDressInfo({ ...dressInfo, mainSearchNameCategory: event.target.value });
-  };
+    setSearchMarketName(event.target.value)
+   };
   const handleClear = () => {
     setSearchMarketName("");
     setDressInfo({ ...dressInfo, mainSearchNameCategory: "" });
@@ -170,9 +168,8 @@ const CategoryTopDetail = ({
                           <BiChevronDown
                             size={22}
                             style={{ color: "#000" }}
-                            className={`${
-                              state?.opensports ? "rotate-[-180deg]" : ""
-                            } duration-200`}
+                            className={`${state?.opensports ? "rotate-[-180deg]" : ""
+                              } duration-200`}
                           />
                         </span>
                       </Popover>
@@ -255,12 +252,12 @@ const CategoryTopDetail = ({
                 type="text"
                 name="name"
                 placeholder="Найти товар"
-                value={dressInfo.mainSearchNameCategory}
+                value={searchMarketName}
                 onChange={handleChange}
                 onKeyDown={_handleKeyDownSearch}
                 className="font-AeonikProRegular bg-transparent w-full px-3   h-full text-[12px] md:text-[14px] leading-4"
               />
-              {dressInfo.mainSearchNameCategory && (
+              {searchMarketName && (
                 <button onClick={handleClear} type="button" className="  px-1">
                   <MdClose size={20} color={"#a1a1a1"} />
                 </button>
