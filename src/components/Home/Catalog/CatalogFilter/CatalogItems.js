@@ -354,7 +354,11 @@ export default function CatalogItems() {
     setDressInfo({ ...dressInfo, mainSearchNameCatalog: searchMarketName });
   }
   const handleChange = (event) => {
-    setSearchMarketName(event.target.value);
+    // setSearchMarketName(event.target.value);
+    setDressInfo({
+      ...dressInfo,
+      mainSearchNameCatalog: event.target.value,
+    });
   };
 
   const _handleKeyDownSearch = (event) => {
@@ -368,12 +372,7 @@ export default function CatalogItems() {
 
   const handleClear = () => {
     setSearchMarketName("");
-    setDressInfo({
-      ...dressInfo,
-      mainSearchName: null,
-      mainSearchNameCategory: null,
-      mainSearchNameCatalog: null,
-    });
+    setDressInfo({ ...dressInfo, mainSearchNameCatalog: ""});
   };
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
@@ -392,7 +391,6 @@ export default function CatalogItems() {
       window.removeEventListener("resize", updateDimension);
     };
   }, [screenSize]);
-  // console.log(filterData, 'category---filterData');
 
   return (
     <main className="w-full h-full">
@@ -526,13 +524,17 @@ export default function CatalogItems() {
                     type="text"
                     name="name"
                     placeholder="Найти товар"
-                    value={searchMarketName}
+                    value={dressInfo?.mainSearchNameCatalog}
                     onChange={handleChange}
                     onKeyDown={_handleKeyDownSearch}
                     className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[12px] md:text-[14px] leading-4"
                   />
-                  {searchMarketName && (
-                    <button onClick={handleClear} className=" px-1 " type="button">
+                  {dressInfo?.mainSearchNameCatalog && (
+                    <button
+                      onClick={handleClear}
+                      className=" px-1 "
+                      type="button"
+                    >
                       <MdClose size={20} color={"#a1a1a1"} />
                     </button>
                   )}

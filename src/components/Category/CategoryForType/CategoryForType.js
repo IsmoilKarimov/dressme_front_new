@@ -287,6 +287,8 @@ function CategoryForType() {
   useEffect(() => {
     setFilterToggle(false);
   }, [dressInfo?.mainSubRegionId, dressInfo?.mainRegionId]);
+
+
   return (
     <div className="w-full">
       {loading ? (
@@ -307,7 +309,6 @@ function CategoryForType() {
             />
           </section>
 
-          {/* {filterData?.sections?.length > 0 ? ( */}
           <section className="flex justify-between mb-10">
             <section
               onClick={() => {

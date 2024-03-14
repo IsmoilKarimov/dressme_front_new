@@ -23,10 +23,6 @@ const ShoppingTop = ({
     setGetGenderId(childData?.genderFilterId);
   }
 
-  const handleChange = (event) => {
-    setSearchMarketName(event.target.value);
-  };
-
   function getSearchClick() {
     if (searchForLocation?.includes("shops")) {
       setDressInfo({
@@ -35,7 +31,7 @@ const ShoppingTop = ({
       });
     }
   }
-
+  
   useEffect(() => {
     setSearchForLocation(location?.pathname?.split("/"));
   }, [location.pathname]);
@@ -48,18 +44,26 @@ const ShoppingTop = ({
       });
     }
   };
+  
+  const handleChange = (event) => {
+    // setSearchMarketName(event.target.value);
+    setDressInfo({
+      ...dressInfo,
+      mainSearchNameshopMarket: event.target.value,
+    });
+  };
 
   const handleClear = () => {
-    setgetSearchInput("");
+    // setgetSearchInput("");
     setSearchMarketName("");
     setDressInfo({
       ...dressInfo,
-      mainSearchName: null,
-      mainSearchNameCategory: null,
-      mainSearchNameCatalog: null,
-      mainSearchNameshop: null,
-      mainSearchNameshopMarket: null,
-      mainSearchNameshopLocation: null,
+      mainSearchNameshopMarket: "",
+      // mainSearchName: null,
+      // mainSearchNameCategory: null,
+      // mainSearchNameCatalog: null,
+      // mainSearchNameshop: null,
+      // mainSearchNameshopLocation: null,
     });
   };
 
@@ -78,13 +82,13 @@ const ShoppingTop = ({
               <input
                 type="text"
                 name="keywords"
-                value={searchMarketName}
+                value={dressInfo?.mainSearchNameshopMarket}
                 onChange={handleChange}
                 onKeyDown={_handleKeyDownSearch}
                 className="w-full h-full px-3 text-[12px] xs:text-sm md:text-base  bg-white"
                 placeholder={t("search_lang")}
               />
-              {searchMarketName && (
+              {dressInfo?.mainSearchNameshopMarket && (
                 <button onClick={handleClear} className=" px-1" type="button">
                   <MdClose size={20} color={"#a1a1a1"} />
                 </button>

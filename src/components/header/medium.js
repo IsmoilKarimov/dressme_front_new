@@ -135,8 +135,6 @@ const MediumHeader = ({ stateData, setStateData }) => {
     setOpenWeather(false);
   };
 
-  console.log(dressInfo?.type, "dressInfo?.type");
-
   const contentWeather = (
     <section className="ss:w-fit md:w-[120px] h-fit m-0 p-0  data1">
       {SeasonTypeArray.map((value) => {

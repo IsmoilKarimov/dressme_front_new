@@ -27,14 +27,11 @@ const CategoryTopDetail = ({
 
   const handleToggle = () => {
     if (filterLeftAction) {
-      // toggleFilterLeftClose();
       setFilterToggle(false);
     } else {
       setFilterToggle(true);
-      // toggleFilterLeftOpen();
     }
   };
-  // For DropUp
 
   const [state, setState] = useState({
     opensports: false,
@@ -95,11 +92,12 @@ const CategoryTopDetail = ({
     setDressInfo({ ...dressInfo, mainSearchNameCategory: searchMarketName });
   }
   const handleChange = (event) => {
-    setSearchMarketName(event.target.value);
+    // setSearchMarketName(event.target.value);
+    setDressInfo({ ...dressInfo, mainSearchNameCategory: event.target.value });
   };
   const handleClear = () => {
     setSearchMarketName("");
-    setDressInfo({ ...dressInfo, mainSearchNameCategory: null });
+    setDressInfo({ ...dressInfo, mainSearchNameCategory: "" });
   };
 
   const breadcrumbItems = [
@@ -257,12 +255,12 @@ const CategoryTopDetail = ({
                 type="text"
                 name="name"
                 placeholder="Найти товар"
-                value={searchMarketName}
+                value={dressInfo.mainSearchNameCategory}
                 onChange={handleChange}
                 onKeyDown={_handleKeyDownSearch}
                 className="font-AeonikProRegular bg-transparent w-full px-3   h-full text-[12px] md:text-[14px] leading-4"
               />
-              {searchMarketName && (
+              {dressInfo.mainSearchNameCategory && (
                 <button onClick={handleClear} type="button" className="  px-1">
                   <MdClose size={20} color={"#a1a1a1"} />
                 </button>
