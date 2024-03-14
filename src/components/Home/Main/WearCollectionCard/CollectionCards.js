@@ -33,11 +33,11 @@ export default function CollectionCards() {
   }, [openWearType]);
 
   const handleChange = (event) => {
-    setSearchMarketName(event.target.value);
+    // setSearchMarketName(event.target.value);
+    setDressInfo({ ...dressInfo, mainSearchName: event.target.value });
   };
 
   const _handleKeyDownSearch = (event) => {
-    console.log(event,"event");
     if (event.key === "Enter") {
       setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
     }
@@ -45,7 +45,7 @@ export default function CollectionCards() {
 
   const handleClear = () => {
     setSearchMarketName("");
-    setDressInfo({ ...dressInfo, mainSearchName: null });
+    setDressInfo({ ...dressInfo, mainSearchName: "" });
   };
 
   function getSearchClick() {
@@ -55,8 +55,9 @@ export default function CollectionCards() {
   const navigate = useNavigate();
   function onHandleCardId(child, name) {
     navigate(`/product/${child}`);
-    // navigate(`/product/${name?.split(' ')?.join('-')?.toLowerCase()}`);
   }
+
+  console.log(dressInfo.mainSearchName, "dressInfo.mainSearchName");
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <div
@@ -80,14 +81,14 @@ export default function CollectionCards() {
             <input
               type="text"
               name="name"
-              value={searchMarketName}
+              value={dressInfo.mainSearchName}
               onChange={handleChange}
               onKeyDown={_handleKeyDownSearch}
               placeholder={t("CPsearchProd")}
               autoComplete="name"
               className="bg-transparent w-[90%] h-full text-[14px] border border-transparent px-3"
             />
-            {searchMarketName && (
+            {dressInfo.mainSearchName && (
               <button
                 onClick={handleClear}
                 className="absolute right-2 cursor-pointer"

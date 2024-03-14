@@ -20,7 +20,6 @@ export const CollectionCardItem = ({
   const { t } = useTranslation("category");
 
   const goDetail = (id, nameru, nameuz) => {
-    // navigate(`/product/${id}`);
     if (languageDetector?.typeLang === "ru") {
       onHandleCardId(id, nameru);
     }
