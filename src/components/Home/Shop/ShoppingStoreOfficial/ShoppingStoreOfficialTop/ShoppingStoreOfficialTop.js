@@ -10,13 +10,14 @@ import {
   StarIcons,
   WomanGenIcons,
 } from "../../../../../assets/icons";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Modal, Radio, Space } from "antd";
 import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { MdClose } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../../language/LanguageItems";
 import { LocationIdDetector } from "../../../../../ContextHook/LocationId";
+import LocationDropUp from "./LocationDropUp";
 
 const ShoppingStoreOfficialTop = ({
   filteredData,
@@ -36,6 +37,8 @@ const ShoppingStoreOfficialTop = ({
   const { t } = useTranslation("shops");
 
   const [locationList, setLocationList] = useState([]);
+  const [locations, setLocations] = useState(false);
+  const toggleLocations = useCallback(() => setLocations(false), []);
 
 
   const handleToggle = () => {
@@ -111,6 +114,27 @@ const ShoppingStoreOfficialTop = ({
 
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
+      <div className="locations">
+        <section
+          onClick={() => setLocations(false)}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+            locations ? "" : "hidden"
+          }`}
+        ></section>
+        <div
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300  overflow-hidden ${
+            locations ? "bottom-0" : "bottom-[-800px] z-0"
+          }`}
+        >
+          <LocationDropUp
+            locationList={locationList}
+            setCheckedData={setCheckedData}
+            locationIdDetector={locationIdDetector}
+            onChangeSelectLocation={onChangeSelectLocation}
+            onClick={toggleLocations}
+          />
+        </div>
+      </div>
       <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
         <div className="w-[100%] h-fit flex flex-col">
           {/* Top section */}
@@ -216,7 +240,7 @@ const ShoppingStoreOfficialTop = ({
                   <div className="w-fit h-fit flex items-center justify-center gap-y-1 cursor-pointer">
                     <button
                       type="primary"
-                      onClick={() => setOpenLocationModal(true)}
+                      onClick={() => setLocations(true)}
                       className={`text-borderWinter flex items-center border-b border-dashed border-borderWinter ml-[9px] text-[12px] xs:text-sm md:text-base not-italic font-AeonikProRegular`}
                     >
                       <p className="mr-[6px]">
