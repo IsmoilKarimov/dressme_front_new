@@ -34,51 +34,6 @@ function LocationDropUp({
         </section>
         <section className="w-full h-[380px] px-4 flex flex-col items-center">
           <div className="w-full h-fit flex items-center justify-center overflow-auto VerticelScroll flex-wrap gap-x-7 mb-[28px]">
-            {/* <Radio.Group
-              style={{
-                width: "100%",
-              }}
-              // value={selectedLocation?.id}
-              defaultValue={selectedLocation?.id}
-            >
-              {existRegions.map((item, i) => {
-                return (
-                  <div key={i}>
-                    <div className="font-AeonikProRegular text-base border-b border-[#f0f0f0] mb-[15px]">
-                      {existRegionsObj[item]}
-                    </div>
-                    <div className="w-full">
-                      {data?.product?.locations.map((data, i) => {
-                        if (data?.sub_region?.region_id === item) {
-                          return (
-                            <div
-                              onClick={() => {
-                                checkedData = data;
-                              }}
-                              key={i}
-                              className="mb-[8px]"
-                            >
-                              <Radio
-                                value={data?.id}
-                                name="location"
-                                checked={selectedLocation?.id === item?.id}
-                                className="text-sm font-AeonikProRegular"
-                              >
-                                {languageDetector?.typeLang === "ru" &&
-                                  data?.sub_region?.name_ru}
-                                {languageDetector?.typeLang === "uz" &&
-                                  data?.sub_region?.name_uz}
-                                ({data?.address})
-                              </Radio>
-                            </div>
-                          );
-                        }
-                      })}
-                    </div>
-                  </div>
-                );
-              })}
-            </Radio.Group> */}
             <Radio.Group
               style={{
                 width: "100%",
