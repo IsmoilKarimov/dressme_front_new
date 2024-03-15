@@ -32,14 +32,14 @@ const ShoppingStoreOfficialTop = ({
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
-  const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
+  const [locationIdDetector, setLocationIdDetector] =
+    useContext(LocationIdDetector);
 
   const { t } = useTranslation("shops");
 
   const [locationList, setLocationList] = useState([]);
   const [locations, setLocations] = useState(false);
   const toggleLocations = useCallback(() => setLocations(false), []);
-
 
   const handleToggle = () => {
     if (filterLeftAction) {
@@ -79,8 +79,9 @@ const ShoppingStoreOfficialTop = ({
 
   const onChangeSelectLocation = (e) => {
     setLocationIdDetector({
-      ...locationIdDetector, locationIdForTest: e?.target?.value
-    })
+      ...locationIdDetector,
+      locationIdForTest: e?.target?.value,
+    });
     setDressInfo({
       ...dressInfo,
       locationIdParams: e?.target?.value,
@@ -88,8 +89,9 @@ const ShoppingStoreOfficialTop = ({
     });
   };
 
-
-  const [searchMarketName, setSearchMarketName] = useState(dressInfo?.mainSearchNameshop);
+  const [searchMarketName, setSearchMarketName] = useState(
+    dressInfo?.mainSearchNameshop
+  );
   function getSearchClick() {
     setDressInfo({ ...dressInfo, mainSearchNameshop: searchMarketName });
   }
@@ -173,13 +175,12 @@ const ShoppingStoreOfficialTop = ({
                   )}
                 </figure>
                 <div className="w-[calc(100%-96px)]  md:w-[calc(100%-180px)]  flex flex-col ml-4  md:ml-8  ">
-                  <p
-                    className={`relative w-full h-[50px] break-all flex overflow-hidden  items-center`}
-                  >
-                    <div className="absolute font-AeonikProRegular categoryLinearText left-0 w-full h-full z-[10] top-5"></div>
-                    <span className="w-full break-all  text-weatherWinterColor text-lg md:text-xl leading-6 md:leading-none	 font-AeonikProMedium not-italic">
-                      {filteredData?.shop?.name || null}
-                    </span>
+                  <p className="block md:hidden break-all text-base ll:text-lg md:text-xl font-AeonikProMedium mb-[5px] md:mb-3">
+                    {filteredData?.shop?.name || null}
+                  </p>
+                  <p className="relative md:block hidden max-h-[56px] mb-[5px] overflow-hidden w-full break-all md:pr-4 text-[13px] md:w-[250px] ls:text-[14px] xs:text-xl font-AeonikProMedium">
+                    {filteredData?.shop?.name || null}
+                    <span className="absolute right-[16px] top-[28px] w-full block linearGr h-[28px]"></span>
                   </p>
                   <div
                     className={`${

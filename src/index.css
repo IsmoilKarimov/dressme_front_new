@@ -37,7 +37,7 @@ body {
   overflow: hidden;
 }
 
-.slick-slide>div {
+.slick-slide > div {
   margin: 0 10px;
 }
 
@@ -50,7 +50,7 @@ body {
   border-radius: 8px;
 }
 
-.showpageSlider .slick-slide>div {
+.showpageSlider .slick-slide > div {
   margin: 0;
 }
 
@@ -109,7 +109,7 @@ select {
   transition: all 0.5s ease-out;
 }
 
-.nav-link:hover+.followers {
+.nav-link:hover + .followers {
   left: 31px;
   z-index: 10;
 }
@@ -219,9 +219,11 @@ select {
 
 /* ----------CateGory----------- */
 .categoryLinearText {
-  background: linear-gradient(to right,
-      rgba(167, 207, 223, 0) 50%,
-      rgba(255, 255, 255, 0.99) 100%);
+  background: linear-gradient(
+    to right,
+    rgba(167, 207, 223, 0) 50%,
+    rgba(255, 255, 255, 0.99) 100%
+  );
 }
 
 /* Table */
@@ -313,7 +315,8 @@ table tr th:nth-child(1) {
 }
 
 .example-thumb1 {
-  background: rgba(0, 125, 202, 1) url("./assets//Category//ReactSliderMenu.svg");
+  background: rgba(0, 125, 202, 1)
+    url("./assets//Category//ReactSliderMenu.svg");
   width: 24px;
   height: 16px;
   background-repeat: no-repeat;
@@ -501,7 +504,6 @@ body::-webkit-scrollbar-thumb {
 
 .slider .track-0 {
   border: 1px solid #d2d2d2;
-
 }
 
 .slider .track-1 {
@@ -510,6 +512,14 @@ body::-webkit-scrollbar-thumb {
 
 .slider .track-2 {
   border: 1px solid #d2d2d2;
+}
+
+.linearGr {
+  background: linear-gradient(
+    90deg,
+    rgba(167, 207, 223, 0) 50%,
+    hsla(0, 0%, 100%, 0.99)
+  );
 }
 
 /* .languageMobile .css-dev-only-do-not-override-1me4733 {

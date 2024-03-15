@@ -19,7 +19,8 @@ const ShoppingBrands = ({ loading, setLoading }) => {
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
-  const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
+  const [locationIdDetector, setLocationIdDetector] =
+    useContext(LocationIdDetector);
 
   const { t } = useTranslation("shops");
   const goDetail = (id, name) => {
@@ -36,9 +37,10 @@ const ShoppingBrands = ({ loading, setLoading }) => {
             return Number(element.sub_region_id) === dressInfo?.mainSubRegionId;
           });
           setLocationIdDetector({
-      ...locationIdDetector, locationIdForTest: foundElement?.id
-          })
- 
+            ...locationIdDetector,
+            locationIdForTest: foundElement?.id,
+          });
+
           setDressInfo({ ...dressInfo, locationIdParams: foundElement?.id });
           navigate(`/shops/${name?.split(" ")?.join("-")?.toLowerCase()}`);
         }
@@ -48,8 +50,9 @@ const ShoppingBrands = ({ loading, setLoading }) => {
             locationIdParams: item?.approved_shop_locations[0]?.id,
           });
           setLocationIdDetector({
-      ...locationIdDetector, locationIdForTest: item?.approved_shop_locations[0]?.id
-          })
+            ...locationIdDetector,
+            locationIdForTest: item?.approved_shop_locations[0]?.id,
+          });
           navigate(`/shops/${name?.split(" ")?.join("-")?.toLowerCase()}`);
         }
       });
@@ -96,13 +99,18 @@ const ShoppingBrands = ({ loading, setLoading }) => {
                         className="min-w-[80px] min-h-[80px] overflow-hidden md:min-w-[120px] md:min-h-[120px] md:ml-10 rounded-full border border-searchBgColor flex items-center justify-center bg-white"
                       ></figure>
                       <div className="flex flex-col ml-4 md:ml-10">
-                        <p className="break-all text-base ll:text-lg md:text-xl font-AeonikProMedium mb-[5px] md:mb-3">
+                        <p className="block md:hidden break-all text-base ll:text-lg md:text-xl font-AeonikProMedium mb-[5px] md:mb-3">
                           {data?.name || null}
+                        </p>
+                        <p className="relative md:block hidden max-h-[56px] mb-[5px] overflow-hidden w-full break-all md:pr-4 text-[13px] md:w-[250px] ls:text-[14px] xs:text-xl font-AeonikProMedium">
+                          {data?.name || null}
+                          <span className="absolute right-[16px] top-[28px] w-full block linearGr h-[28px]"></span>
                         </p>
                         <div className="flex items-center md:justify-between">
                           <div
-                            className={`${data?.overall_rating ? "block" : "hidden"
-                              } not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 ml-[2px] md:ml-1 flex flex-wrap items-center text-sm`}
+                            className={`${
+                              data?.overall_rating ? "block" : "hidden"
+                            } not-italic font-AeonikProRegular text-[10px] ls:text-xs leading-4 text-right text-gray-500 flex flex-wrap items-center text-sm`}
                           >
                             <div className="flex items-center">
                               <div className="flex items-center -mt-1 mr-[6px] md:mr-2">
@@ -142,18 +150,20 @@ const ShoppingBrands = ({ loading, setLoading }) => {
                       </div>
                       <div className="flex items-center md:ml-[88px] md:mt-0">
                         <div
-                          className={`${data.gender_id === "2"
-                            ? "hidden"
-                            : "flex w-9 h-9 md:w-12 md:h-12 items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white rounded-lg mr-1"
-                            } `}
+                          className={`${
+                            data.gender_id === "2"
+                              ? "hidden"
+                              : "flex w-9 h-9 md:w-12 md:h-12 items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white rounded-lg mr-1"
+                          } `}
                         >
                           <ManGenIcons />
                         </div>
                         <div
-                          className={`${data.gender_id === "1"
-                            ? "hidden"
-                            : "flex items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white w-9 h-9 md:w-12 md:h-12 rounded-lg"
-                            } `}
+                          className={`${
+                            data.gender_id === "1"
+                              ? "hidden"
+                              : "flex items-center justify-center border border-searchBgColor bg-btnBgColor md:bg-white w-9 h-9 md:w-12 md:h-12 rounded-lg"
+                          } `}
                         >
                           <WomanGenIcons />
                         </div>
@@ -209,13 +219,15 @@ const ShoppingBrands = ({ loading, setLoading }) => {
                           setPaginationFunc(newPageId);
                         }
                       }}
-                      className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-4 w-fit md:min-w-[45px] border h-[35px] md:h-[45px] rounded-lg  ${item?.active
-                        ? "bg-fullBlue text-white"
-                        : "hover:bg-searchBgColor"
-                        } mx - [5px] flex items-center justify-center  ${item?.url
+                      className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-4 w-fit md:min-w-[45px] border h-[35px] md:h-[45px] rounded-lg  ${
+                        item?.active
+                          ? "bg-fullBlue text-white"
+                          : "hover:bg-searchBgColor"
+                      } mx - [5px] flex items-center justify-center  ${
+                        item?.url
                           ? "cursor-pointer"
                           : "opacity-70 cursor-not-allowed"
-                        } `}
+                      } `}
                     >
                       {item?.label}
                     </li>
