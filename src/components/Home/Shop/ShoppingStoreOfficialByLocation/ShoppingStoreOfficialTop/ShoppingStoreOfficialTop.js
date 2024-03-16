@@ -143,7 +143,7 @@ const ShoppingStoreOfficialTop = ({
             {filteredData?.shop?.url_background_photo && (
               <figure className="w-full h-[240px] md:h-[360px] overflow-hidden border border-searchBgColor bg-btnBgColor rounded-t-lg">
                 <img
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover"
                   src={filteredData?.shop?.url_background_photo}
                   alt="url_background_photo"
                 />
