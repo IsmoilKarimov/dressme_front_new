@@ -31,7 +31,7 @@ function BottomHeader() {
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress);
   const [state, setState] = useState({
     openwear: false,
     openPrice: false,
@@ -119,12 +119,11 @@ function BottomHeader() {
       Number(data?.getMainProductCard?.budget?.min_price),
       Number(data?.getMainProductCard?.budget?.max_price),
     ]);
-   
   }, [
     data?.getMainProductCard?.budget?.min_price,
     data?.getMainProductCard?.budget?.max_price,
   ]);
- 
+
   useEffect(() => {
     if (state?.showColour) {
       document.body.style.overflow = "hidden";
@@ -313,10 +312,11 @@ function BottomHeader() {
                         newColorArrayId(data?.hex, data?.id);
                       }}
                       style={{ backgroundColor: data?.hex }}
-                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${data?.hex === dressInfo?.mainColorHex
-                        ? "border border-setTexOpacity flex items-center justify-center"
-                        : "border"
-                        } `}
+                      className={`rounded-[12px] flex items-center justify-center w-[65px] h-[40px] cursor-pointer ${
+                        data?.hex === dressInfo?.mainColorHex
+                          ? "border border-setTexOpacity flex items-center justify-center"
+                          : "border"
+                      } `}
                     >
                       {dressInfo?.mainColorHex == data?.hex &&
                         data?.id == 1 && (
@@ -365,7 +365,7 @@ function BottomHeader() {
       )}
 
       <section className="max-w-[1280px] w-[100%] flex justify-between items-center m-auto ">
-        <div className="mainCategory w-[180px] relative gap-x-1 pl-1 h-[44px] border-searchBgColor border  rounded-[12px] bg-btnBgColor  overflow-hidden flex items-center  cursor-pointer select-none group  ">
+        <div className="mainCategory w-[230px] relative gap-x-1 pl-1 h-[44px] border-searchBgColor border  rounded-[12px] bg-btnBgColor  overflow-hidden flex items-center  cursor-pointer select-none group  ">
           <span className="absolute left-2">
             <ClothesIcons colors={"#000"} />
           </span>
@@ -470,8 +470,9 @@ function BottomHeader() {
           onClick={() => {
             setPriceModalOpen(false);
           }}
-          className={`${priceModalOpen ? "" : "hidden"
-            } overflow-y-auto overflow-x-hidden md:fixed top-0right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full`}
+          className={`${
+            priceModalOpen ? "" : "hidden"
+          } overflow-y-auto overflow-x-hidden md:fixed top-0right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full`}
         >
           <div
             onClick={(e) => {
@@ -556,8 +557,9 @@ function BottomHeader() {
               </div>
               {/* Modal footer */}
               <div
-                className={` flex items-center ${state?.clearPrice ? "justify-between" : "justify-end"
-                  } px-6 py-3 space-x-2 rounded-b `}
+                className={` flex items-center ${
+                  state?.clearPrice ? "justify-between" : "justify-end"
+                } px-6 py-3 space-x-2 rounded-b `}
               >
                 {state?.clearPrice && (
                   <span
@@ -623,8 +625,9 @@ function BottomHeader() {
 
           <article className="w-[480px] h-full overflow-hidden flex items-center justify-between">
             <div
-              className={`${state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
-                } px-2 w-full duration-500  h-full flex items-center justify-between  `}
+              className={`${
+                state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
+              } px-2 w-full duration-500  h-full flex items-center justify-between  `}
             >
               {data?.getMainProductCard?.colors?.map((data, i) => {
                 if (i > 11) {
@@ -639,8 +642,9 @@ function BottomHeader() {
                           newColorArrayId(data?.hex, data?.id);
                         }}
                         style={{ backgroundColor: data?.hex }}
-                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${!state?.textToColor && "border"
-                          }  border-borderColorCard `}
+                        className={`rounded-full w-6 h-6  cursor-pointer flex items-center justify-center hover:scale-110 duration-300 ${
+                          !state?.textToColor && "border"
+                        }  border-borderColorCard `}
                       >
                         {dressInfo?.mainColorHex == data?.hex &&
                           data?.id == 1 && (
@@ -685,8 +689,9 @@ function BottomHeader() {
               </button>
             </div>
             <p
-              className={`${state?.textToColor ? " mr-0" : " mr-[-500px]"
-                } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
+              className={`${
+                state?.textToColor ? " mr-0" : " mr-[-500px]"
+              } w-full duration-500 px-3 overflow-hidden h-full  flex items-center not-italic font-AeonikProMedium text-sm leading-4 text-center text-black  tracking-[1%] `}
             >
               {t("Btext")}{" "}
             </p>
@@ -711,10 +716,11 @@ function BottomHeader() {
                       >
                         <button
                           onClick={() => handleFilterByUser(data?.id, item?.id)}
-                          className={`${item?.id == dressInfo?.mainGenderId
-                            ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
-                            : " bg-btnBgColor text-black h-full"
-                            } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
+                          className={`${
+                            item?.id == dressInfo?.mainGenderId
+                              ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
+                              : " bg-btnBgColor text-black h-full"
+                          } px-6  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
                         >
                           <span>{item?.anyIcons}</span>
                           {item?.name && (
