@@ -17,7 +17,9 @@ export default function CollectionCards() {
   // const [pagination, setPagination] = useState(30);
   const [data, setData, wishList, setWishlist, page, setPage] =
     useContext(HomeMainDataContext);
-  const [searchMarketName, setSearchMarketName] = useState(dressInfo?.mainSearchName);
+  const [searchMarketName, setSearchMarketName] = useState(
+    dressInfo?.mainSearchName
+  );
   const { t } = useTranslation(["homePage"]);
 
   // -------------------------------------
@@ -34,7 +36,7 @@ export default function CollectionCards() {
 
   const handleChange = (event) => {
     setSearchMarketName(event.target.value);
-   };
+  };
 
   const _handleKeyDownSearch = (event) => {
     if (event.key === "Enter") {
@@ -126,11 +128,7 @@ export default function CollectionCards() {
 
         <div className="w-full flex flex-col box-border ">
           <article
-            className={`flex flex-wrap justify-between md:justify-start ${
-              data?.products?.length > 2
-                ? "mb-[20px] md:mb-[30px] md:mt-[50px]"
-                : "mb-[80px]"
-            } md:mx-0 md:mb-0 gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 `}
+            className={`flex flex-wrap justify-between md:justify-start mb-[20px] md:mb-[30px] md:mt-[50px] md:mx-0  gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 `}
           >
             {data?.products?.length ? (
               data?.products?.map((data) => {
