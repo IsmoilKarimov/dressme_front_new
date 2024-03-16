@@ -365,7 +365,7 @@ function BottomHeader() {
       )}
 
       <section className="max-w-[1280px] w-[100%] flex justify-between items-center m-auto ">
-        <div className="mainCategory w-[230px] relative gap-x-1 pl-1 h-[44px] border-searchBgColor border  rounded-[12px] bg-btnBgColor  overflow-hidden flex items-center  cursor-pointer select-none group  ">
+        <div className="mainCategory w-[226px] relative gap-x-1 pl-1 h-[44px] border-searchBgColor border  rounded-[12px] bg-btnBgColor  overflow-hidden flex items-center  cursor-pointer select-none group  ">
           <span className="absolute left-2">
             <ClothesIcons colors={"#000"} />
           </span>
