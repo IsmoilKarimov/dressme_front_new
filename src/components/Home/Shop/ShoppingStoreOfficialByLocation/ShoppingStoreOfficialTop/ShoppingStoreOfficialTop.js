@@ -141,7 +141,7 @@ const ShoppingStoreOfficialTop = ({
           {/* Top section */}
           <div className="w-full flex flex-col border-[#F0F0F0] mt-4 md:mt-0">
             {filteredData?.shop?.url_background_photo && (
-              <figure className="w-full h-[240px] md:h-[360px] overflow-hidden md:border border-searchBgColor bg-btnBgColor rounded-t-lg">
+              <figure className="w-full h-[240px] md:h-[360px] overflow-hidden md:border border-searchBgColor bg-btnBgColor md:rounded-t-lg">
                 <img
                   className="w-full h-full object-cover"
                   src={filteredData?.shop?.url_background_photo}
