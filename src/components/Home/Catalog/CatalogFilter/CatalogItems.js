@@ -679,6 +679,7 @@ export default function CatalogItems() {
               >
                 {filterData?.category_products?.data?.length > 0 ? (
                   <CatalogCard
+                    filterToggle={filterToggle}
                     paramsId={newId}
                     filterData={filterData}
                     setPageId={setPageId}

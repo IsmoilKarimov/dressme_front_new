@@ -16,6 +16,7 @@ export default function ShopOfficialCard({
   filteredData,
   setPageId,
   paramsId,
+  filterToggle,
 }) {
   const [openWearType, setOpenWearType] = useState(false);
   const [languageDetector] = useContext(LanguageDetectorDress);
@@ -55,11 +56,15 @@ export default function ShopOfficialCard({
 
       {filteredData?.products?.data?.length > 0 ? (
         <div
-          className={`flex flex-wrap justify-between ${
+          className={`flex flex-wrap justify-between md:grid ${
+            filterToggle
+              ? "md:grid-cols-4 md:gap-x-2"
+              : "md:grid-cols-5 md:gap-x-5"
+          } ${
             filteredData?.products?.length > 2
               ? "mb-[20px] md:mb-[30px]"
               : "mb-[80px]"
-          } md:mx-0 md:mt-[40px] md:mb-0 gap-y-[6px] lg:gap-y-5 `}
+          } gap-y-[9px] lg:gap-y-3 mt-1 md:mt-[40px]`}
         >
           {filteredData?.products?.data?.map((data) => {
             return (

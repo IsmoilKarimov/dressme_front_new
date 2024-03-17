@@ -17,7 +17,7 @@ function CategoryForType() {
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress);
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [filterData, setFilterData] = useState([]);
@@ -226,7 +226,7 @@ function CategoryForType() {
     if (!filterData) {
       setLoading(true);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     newFilterParamasIdCopy,
     dressInfo?.mainRegionId,
@@ -287,7 +287,6 @@ function CategoryForType() {
   useEffect(() => {
     setFilterToggle(false);
   }, [dressInfo?.mainSubRegionId, dressInfo?.mainRegionId]);
-
 
   return (
     <div className="w-full">
@@ -418,6 +417,7 @@ function CategoryForType() {
             >
               {filterData?.section_products?.data?.length > 0 ? (
                 <CategoryCards
+                  filterToggle={filterToggle}
                   paramsId={newId}
                   filterData={filterData}
                   setPageId={setPageId}
