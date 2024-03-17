@@ -38,7 +38,7 @@ export default function CatalogCard({ filterData, setPageId, paramsId }) {
         <WearType onClick={toggle} />
       </section>
 
-      <section className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 mt-1 md:mt-8">
+      <section className="flex flex-wrap justify-between gap-y-2  lg:gap-y-3 mt-1 md:mt-8">
         {filterData?.category_products?.data?.length ? (
           filterData?.category_products?.data?.map((data) => {
             return (

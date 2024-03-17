@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export default function CategoryCards({ filterData, setPageId, paramsId }) {
-  const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
+  const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
   const [openWearType, setOpenWearType] = useState(false);
 
   const { t } = useTranslation("category");
@@ -20,7 +20,6 @@ export default function CategoryCards({ filterData, setPageId, paramsId }) {
   const navigate = useNavigate();
   function onHandleCardId(child, name) {
     navigate(`/section/${paramsId}/${child}`);
-    // navigate(`/section/${paramsId}/${name?.split(' ')?.join('-')?.toLowerCase()}`);
   }
   return (
     <main className="flex flex-col box-border mt-2 mb-12 md:mb-0">
@@ -38,7 +37,7 @@ export default function CategoryCards({ filterData, setPageId, paramsId }) {
         <openWearType onClick={toggle} />
       </section>
 
-      <section className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 mt-1 md:mt-8">
+      <section className="flex flex-wrap justify-between gap-y-2 lg:gap-y-3 mt-1 md:mt-8">
         {filterData?.section_products?.data?.length ? (
           filterData?.section_products?.data.map((data) => {
             return (
