@@ -60,7 +60,7 @@ function CarouselModalMarket({ getAllImgGallery }) {
               return (
                 <React.Fragment key={data?.id}>
                   {data?.img && (
-                    <figure className="relative  overflow-hidden !w-full ll:h-[400px] h-[450px] xs:h-[550px] md:h-[700px] sm:rounded-lg border border-searchBgColor bg-white  flex items-center justify-center">
+                    <figure className="relative  overflow-hidden !w-full ll:h-[400px] h-[450px] xs:h-[550px] md:h-[700px] sm:rounded-lg md:border border-searchBgColor bg-white  flex items-center justify-center">
                       <img
                         className="w-full h-full object-contain"
                         src={data?.img}
