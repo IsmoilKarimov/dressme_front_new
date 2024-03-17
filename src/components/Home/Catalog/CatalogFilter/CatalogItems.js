@@ -34,7 +34,9 @@ export default function CatalogItems() {
     opensports: false,
     openTypesofClothes: false,
   });
-  const [searchMarketName, setSearchMarketName] = useState(dressInfo?.mainSearchNameCatalog);
+  const [searchMarketName, setSearchMarketName] = useState(
+    dressInfo?.mainSearchNameCatalog
+  );
 
   const [getGenderId, setGetGenderId] = useState(null);
   const [getCategory, setGetCategory] = useState(null);
@@ -198,7 +200,7 @@ export default function CatalogItems() {
               );
             }}
             className={`${
-              Number(paramId?.id) === data?.id ? "bg-bgColor" : null
+              filterData?.category?.id === data?.id ? "bg-bgColor" : null
             } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {languageDetector?.typeLang === "ru" && data?.name_ru}
@@ -352,9 +354,9 @@ export default function CatalogItems() {
   }, [openMobileFilter, openMobileCategory]);
 
   const handleChange = (event) => {
-    setSearchMarketName(event.target.value);   
+    setSearchMarketName(event.target.value);
   };
-  
+
   function getSearchClick() {
     setDressInfo({ ...dressInfo, mainSearchNameCatalog: searchMarketName });
   }
@@ -369,7 +371,7 @@ export default function CatalogItems() {
 
   const handleClear = () => {
     setSearchMarketName("");
-    setDressInfo({ ...dressInfo, mainSearchNameCatalog: ""});
+    setDressInfo({ ...dressInfo, mainSearchNameCatalog: "" });
   };
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
