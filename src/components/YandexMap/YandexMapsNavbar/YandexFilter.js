@@ -242,7 +242,7 @@ export default function YandexFilter({ getMapsInfo }) {
               return (
                 <Option key={item.id} value={item.id} label={item.name_ru}>
                   <Space>
-                    <span className="text-black text-sm font-AeonikProMedium tracking-wide	leading-5">
+                    <span className="text-black text-[13px] font-AeonikProMedium tracking-wide	leading-5">
                       {languageDetector?.typeLang === "ru" && item?.name_ru}
                       {languageDetector?.typeLang === "uz" && item?.name_uz}
                     </span>
