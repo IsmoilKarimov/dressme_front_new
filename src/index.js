@@ -16,6 +16,7 @@ import { DressmeLanguage } from "./language/LanguageItems";
 import './language/i18n'
 import { DressmeSeason } from "./ContextHook/SeasonContext";
 import { LocationId } from "./ContextHook/LocationId";
+import { MapsShopsList } from "./ContextHook/MapsShopsList";
 
 const queryClient = new QueryClient();
 
@@ -31,15 +32,17 @@ root.render(
               <BrowserRouter>
                 <UserRefreshTokenContextProvider>
                   <HomeMainDataContextProvider>
-                    <SliderPhotosColorContextProvider>
-                      <ProfileDataContextProvider>
-                        <HomeFilterContextProvider>
-                          <MobileSelectedDataContextProvider>
-                            <App />
-                          </MobileSelectedDataContextProvider>
-                        </HomeFilterContextProvider>
-                      </ProfileDataContextProvider>
-                    </SliderPhotosColorContextProvider>
+                    <MapsShopsList>
+                      <SliderPhotosColorContextProvider>
+                        <ProfileDataContextProvider>
+                          <HomeFilterContextProvider>
+                            <MobileSelectedDataContextProvider>
+                              <App />
+                            </MobileSelectedDataContextProvider>
+                          </HomeFilterContextProvider>
+                        </ProfileDataContextProvider>
+                      </SliderPhotosColorContextProvider>
+                    </MapsShopsList>
                   </HomeMainDataContextProvider>
                 </UserRefreshTokenContextProvider>
               </BrowserRouter>
