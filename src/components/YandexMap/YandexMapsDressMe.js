@@ -63,9 +63,9 @@ function YandexMapsDressMe() {
     () => setMarketsFilterMaps(false),
     []
   );
-
+  console.log(mapslist, 'mapslist');
   // request get
-   const [FilterSearchByBrand, setFilterSearchByBrand] = useState({});
+  const [FilterSearchByBrand, setFilterSearchByBrand] = useState({});
   const [getAllImgGallery, setGetAllImgGallery] = useState();
 
   function getImgGallery(childData) {
@@ -279,7 +279,7 @@ function YandexMapsDressMe() {
               }  ease-linear duration-300 `}
           >
             <MarketFilterofMaps
-              mapslist={mapslist}
+              getMapsInfo={mapslist}
               onClick={toggleMarketsFilterMaps}
             />
           </div>
@@ -292,7 +292,7 @@ function YandexMapsDressMe() {
             }  ease-linear duration-500 w-full`}
         >
           <YandexMapsIndex
-            mapslist={mapslist}
+            getMapsInfo={mapslist}
             getFilterSearchByBrand={getFilterSearchByBrand}
           />
         </div>
