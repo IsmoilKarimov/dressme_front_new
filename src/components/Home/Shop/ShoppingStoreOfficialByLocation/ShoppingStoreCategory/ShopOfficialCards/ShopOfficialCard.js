@@ -59,7 +59,7 @@ export default function ShopOfficialCard({
             filteredData?.products?.length > 2
               ? "mb-[20px] md:mb-[30px]"
               : "mb-[80px]"
-          } md:mx-0 md:mt-[50px] md:mb-0 gap-y-[6px] lg:gap-y-5 `}
+          } md:mx-0 md:mt-[40px] md:mb-0 gap-y-[6px] lg:gap-y-5 `}
         >
           {filteredData?.products?.data?.map((data) => {
             return (
