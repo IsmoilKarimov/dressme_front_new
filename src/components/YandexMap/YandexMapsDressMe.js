@@ -39,6 +39,7 @@ import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../language/LanguageItems";
 import { SaesonDetectorDress } from "../../ContextHook/SeasonContext";
 import { LocationIdDetector } from "../../ContextHook/LocationId";
+import { MapsList } from "../../ContextHook/MapsShopsList";
 
 function YandexMapsDressMe() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -46,6 +47,7 @@ function YandexMapsDressMe() {
   const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
   const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
   const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
+  const [mapslist, setMapslist] = useContext(MapsList);
 
   const url = "https://api.dressme.uz/api/main";
 
@@ -63,8 +65,7 @@ function YandexMapsDressMe() {
   );
 
   // request get
-  const [getMapsInfo, setGetMapsInfo] = useState(null);
-  const [FilterSearchByBrand, setFilterSearchByBrand] = useState({});
+   const [FilterSearchByBrand, setFilterSearchByBrand] = useState({});
   const [getAllImgGallery, setGetAllImgGallery] = useState();
 
   function getImgGallery(childData) {
@@ -103,7 +104,7 @@ function YandexMapsDressMe() {
     fetch(`${url}/map/index?` + params)
       .then((res) => res.json())
       .then((res) => {
-        setGetMapsInfo(res);
+        setMapslist(res);
       })
       .catch((err) => console.log(err, "ERRORLIST"));
   };
@@ -179,7 +180,7 @@ function YandexMapsDressMe() {
     })
     setDressInfo({
       ...dressInfo,
-      locationIdParams: value, 
+      locationIdParams: value,
       yandexGetMarketId: shopId,
       yandexOpenMarketLocation: true,
     });
@@ -246,7 +247,7 @@ function YandexMapsDressMe() {
             <YandexLocationMarketOpen
               onClick={toggleCarouselModal}
               getImgGallery={getImgGallery}
-              modalInfo={getMapsInfo}
+              modalInfo={mapslist}
               carouselIndex={carouselIndex}
               setCarouselIndex={setCarouselIndex}
             />
@@ -263,7 +264,7 @@ function YandexMapsDressMe() {
             <YandexLocationMarketOpen
               onClick={toggleCarouselModal}
               getImgGallery={getImgGallery}
-              modalInfo={getMapsInfo}
+              modalInfo={mapslist}
               carouselIndex={carouselIndex}
               setCarouselIndex={setCarouselIndex}
             />
@@ -278,7 +279,7 @@ function YandexMapsDressMe() {
               }  ease-linear duration-300 `}
           >
             <MarketFilterofMaps
-              getMapsInfo={getMapsInfo}
+              mapslist={mapslist}
               onClick={toggleMarketsFilterMaps}
             />
           </div>
@@ -291,7 +292,7 @@ function YandexMapsDressMe() {
             }  ease-linear duration-500 w-full`}
         >
           <YandexMapsIndex
-            getMapsInfo={getMapsInfo}
+            mapslist={mapslist}
             getFilterSearchByBrand={getFilterSearchByBrand}
           />
         </div>
@@ -385,7 +386,7 @@ function YandexMapsDressMe() {
                 groupByCoordinates: false,
               }}
             > */}
-            {getMapsInfo?.locations?.map((data, index) => (
+            {mapslist?.locations?.map((data, index) => (
               // console.log(data, "data");
               <Placemark
                 onError={handleError}
@@ -721,7 +722,7 @@ function YandexMapsDressMe() {
                 groupByCoordinates: false,
               }}
             > */}
-            {getMapsInfo?.locations?.map((data, index) => (
+            {mapslist?.locations?.map((data, index) => (
               // console.log(data, "data");
               <Placemark
                 onError={handleError}
