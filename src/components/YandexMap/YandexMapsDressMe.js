@@ -43,9 +43,9 @@ import { MapsList } from "../../ContextHook/MapsShopsList";
 
 function YandexMapsDressMe() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const { i18n, t } = useTranslation('yandexmap')
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+  const { t } = useTranslation('yandexmap')
+  const [languageDetector] = useContext(LanguageDetectorDress)
+  const [seasonDetector] = useContext(SaesonDetectorDress)
   const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
   const [mapslist, setMapslist] = useContext(MapsList);
 
@@ -122,7 +122,6 @@ function YandexMapsDressMe() {
     dressInfo?.mainSubRegionId,
     seasonId,
   ]);
-  // console.log(dressInfo?.yandexGenderId, " dressInfo?.yandexGenderId");
 
   function getCurrentDimension() {
     return {
