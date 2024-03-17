@@ -29,7 +29,8 @@ function YandexLocationMarketOpen({
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
   const { i18n, t } = useTranslation("yandexmap");
-  const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
+  const [locationIdDetector, setLocationIdDetector] =
+    useContext(LocationIdDetector);
 
   const navigate = useNavigate();
   const openShoppingChild = () => {
