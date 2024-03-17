@@ -24,7 +24,7 @@ export default function SingleMainProducts() {
 
   const breadcrumbItems = [
     { label_uz: 'Asosiy', label_ru: 'Главная', url: '/' },
-    { label_uz: 'Mahsulotlar', label_ru: 'Продукты', url: '/product' },
+    { label_uz: 'Mahsulotlar', label_ru: 'Продукты', url: '/' },
     { label_uz: getproductName, label_ru: getproductName, url: `/product/${paramId?.product}` },
   ];
   function oncallProductName(child) {
