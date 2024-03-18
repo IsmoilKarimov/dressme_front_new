@@ -31,7 +31,7 @@ const ShoppingTop = ({
       });
     }
   }
-  
+
   useEffect(() => {
     setSearchForLocation(location?.pathname?.split("/"));
   }, [location.pathname]);
@@ -44,10 +44,10 @@ const ShoppingTop = ({
       });
     }
   };
-  
+
   const handleChange = (event) => {
     setSearchMarketName(event.target.value);
-    
+
   };
 
   const handleClear = () => {
@@ -79,7 +79,7 @@ const ShoppingTop = ({
               <input
                 type="text"
                 name="keywords"
-                value={searchMarketName}
+                value={searchMarketName || ""}
                 onChange={handleChange}
                 onKeyDown={_handleKeyDownSearch}
                 className="w-full h-full px-3 text-[12px] xs:text-sm md:text-base  bg-white"

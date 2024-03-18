@@ -23,7 +23,7 @@ export default function SignIn() {
   const [state, setState] = useState({
     eyesShow: true,
     password: "",
-    rememberCheck: "",
+    rememberCheck: false,
     email: "",
     errorsGroup: null,
   });
@@ -36,7 +36,7 @@ export default function SignIn() {
     const { checked } = e.target;
     setState({ ...state, rememberCheck: checked });
   };
-
+  console.log(state?.rememberCheck, 'rememberCheck');
   const dataMutate = useMutation(() => {
     return fetch(`${url}/login`, {
       method: "POST",
@@ -143,7 +143,7 @@ export default function SignIn() {
               type="email"
               name="email"
               autoComplete="email"
-              value={state.email}
+              value={state.email || ""}
               onChange={({ target: { value } }) => {
                 setError();
                 setState({ ...state, email: value });
@@ -172,7 +172,7 @@ export default function SignIn() {
               // placeholder="Enter your password"
               name="password"
               autoComplete="password"
-              value={state.password}
+              value={state.password || ""}
               onChange={({ target: { value } }) => {
                 setError();
                 setState({ ...state, password: value });
@@ -208,8 +208,8 @@ export default function SignIn() {
               className=" text-black bg-white placeholder-bg-white mr-2"
               id="vehicle1"
               name="vehicle1"
-              // value="Bike"
-              onClick={handleChange}
+              value={state?.rememberCheck || ''}
+              onChange={handleChange}
             />
             <label
               htmlFor="vehicle1"

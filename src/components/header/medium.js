@@ -335,7 +335,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
       dressInfo?.mainSearchNameshopLocation)
       setDressInfo({
         ...dressInfo,
-         mainSearchNameCategory: null,
+        mainSearchNameCategory: null,
         mainSearchNameCatalog: null,
         mainSearchNameshop: null,
         mainSearchNameshopMarket: null,
@@ -564,7 +564,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                       autoComplete="search"
                       placeholder={`${searchForLocation?.includes("shops") && searchForLocation?.length == 2 ? t('MsearchMar') : t('MsearchProd')} `}
                       className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
-                      value={searchMarketName}
+                      value={searchMarketName || ""}
                       onChange={handleChange}
                       onKeyDown={_handleKeyDownSearch}
                     />

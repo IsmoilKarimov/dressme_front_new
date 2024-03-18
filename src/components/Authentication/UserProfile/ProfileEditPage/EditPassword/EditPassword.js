@@ -179,7 +179,7 @@ export default function EditPassword({ onClick }) {
               type={state?.eyesShowNew ? "text" : "password"}
               placeholder={t("NPnewPss")}
               name="new_password"
-              value={state?.newPassword}
+              value={state?.newPassword|| ""}
               onChange={(e) => {
                 setState({
                   ...state,

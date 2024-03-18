@@ -123,7 +123,7 @@ function BottomHeader() {
     data?.getMainProductCard?.budget?.min_price,
     data?.getMainProductCard?.budget?.max_price,
   ]);
-   useEffect(() => {
+  useEffect(() => {
     if (state?.showColour) {
       document.body.style.overflow = "hidden";
     } else {
@@ -517,27 +517,33 @@ function BottomHeader() {
                     <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
                       {t("Bfrom")}
                     </span>
-                    <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-                      <input
+                    <div className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                      {/* <input
                         name="name"
                         className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                         // defaultValue={Number(values[0]).toLocaleString()}
                         value={Number(values[0]).toLocaleString()}
-                      />{" "}
+                      />{" "} */}
+                      <span className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1">
+                        {Number(values[0]).toLocaleString()}
+                      </span>
                       {t("Bsumm")}
-                    </span>
+                    </div>
                   </div>
                   <div className="flex ">
                     <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
                       {t("Bto")}
                     </span>
                     <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-                      <input
+                      {/* <input
                         name="name"
                         className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                         // defaultValue={Number(values[1]).toLocaleString()}
                         value={Number(values[1]).toLocaleString()}
-                      />
+                      /> */}
+                      <span className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1">
+                        {Number(values[1]).toLocaleString()}
+                      </span>
                       {t("Bsumm")}
                     </span>
                   </div>
@@ -667,8 +673,10 @@ function BottomHeader() {
                         type="radio"
                         id={data?.id}
                         name="checkStatus"
+                        className={"hidden w-full h-full"}
                         value={data?.id}
-                        className={"hidden  w-full h-full"}
+                        // checked={selectedValue === 'option1'}
+                        onChange={() => newColorArrayId(data?.hex, data?.id)}
                       />
                     </div>
                   );

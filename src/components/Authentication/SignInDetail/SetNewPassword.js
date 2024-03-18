@@ -128,13 +128,13 @@ export default function SetNewPassword() {
               {t("NPnewMakePss")}{" "}
             </span>
             <span className="mt-2 not-italic font-AeonikProRegular text-sm leading-4 text-center text-setTexOpacity tracking-[0.16px]">
-            {t("NPdontMatch")}{" "}
+              {t("NPdontMatch")}{" "}
             </span>
           </div>
 
           <form className="mt-4 w-full h-fit">
             <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-            {t("NPnewPss")}
+              {t("NPnewPss")}
             </div>
             <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
               <input
@@ -143,7 +143,7 @@ export default function SetNewPassword() {
                 autoComplete="password"
                 type={state?.eyesShow ? "password" : "text"}
                 placeholder={t("NPnewPss")}
-                value={state?.newPassword}
+                value={state?.newPassword || ""}
                 onChange={(e) =>
                   setState({ ...state, newPassword: e.target.value })
                 }
@@ -171,7 +171,7 @@ export default function SetNewPassword() {
           </form>
           <form className="mt-4 w-full h-fit">
             <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
-            {t("NPenterPss")}
+              {t("NPenterPss")}
             </div>
             <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
               <input
@@ -180,7 +180,7 @@ export default function SetNewPassword() {
                 autoComplete="password"
                 type={state?.validateShow ? "password" : "text"}
                 placeholder={t("NPenterPss")}
-                value={state?.newPasswordConfirm}
+                value={state?.newPasswordConfirm || ""}
                 onChange={(e) =>
                   setState({ ...state, newPasswordConfirm: e.target.value })
                 }
@@ -212,7 +212,7 @@ export default function SetNewPassword() {
             className={`mt-8 border bg-[#007dca] flex items-center justify-center border-searchBgColor bg-textBlueColor w-full h-12  select-none rounded-lg cursor-pointer active:scale-95	active:opacity-50 }`}
           >
             <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
-            {t("FPresetPss")}{" "}
+              {t("FPresetPss")}{" "}
             </span>
             <span>
               <SircleNext colors={"#fff"} />

@@ -308,8 +308,8 @@ const ClothingParametr = () => {
                               });
                             }}
                             className={`${data?.id === dressInfo?.mainCategoryId
-                                ? "text-borderWinter bg-[#F6F6F6]"
-                                : ""
+                              ? "text-borderWinter bg-[#F6F6F6]"
+                              : ""
                               }  ${seasonDetector?.TextHoverSeason
                               } relative bg-bgCard text-base text-[#303030] font-AeonikProMedium hover:bg-[#F6F6F6] w-[100%] h-10 xs:h-12 rounded-lg cursor-pointer flex items-center justify-center hover:duration-300 hover:ease-linear `}
                           >
@@ -355,7 +355,7 @@ const ClothingParametr = () => {
                   <div className=" w-full h-[180px] m-0 ">
                     <div className="flex items-center justify-between border-b border-searchBgColor pb-3">
                       <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
-                      {t("CPbyprice")}
+                        {t("CPbyprice")}
                       </span>
                       <span
                         onClick={() =>
@@ -373,35 +373,44 @@ const ClothingParametr = () => {
                       <div className="flex justify-between items-center mb-6 w-full px-2">
                         <div className="flex ">
                           <span className="hidden ll:flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
-                          {t("CPfrom")}
+                            {t("CPfrom")}
                           </span>
-                          <span className="flex items-center ls:ml-2 justify-center not-italic font-AeonikProMedium text-[14px] ll:text-base leading-3 text-center text-black">
-                            <input
+                          <div className="flex items-center ls:ml-2 justify-center not-italic font-AeonikProMedium text-[14px] ll:text-base leading-3 text-center text-black">
+                            {/* <input
                               className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                               name="name"
                               value={Number(values[0]).toLocaleString()}
                             // defaultValue={Number(
                             //   data?.getMainProductCard?.budget?.min_price
                             // ).toLocaleString()}
-                            />{" "}
+                            />{" "} */}
+                            <span className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+
+                            >
+                              {Number(values[0]).toLocaleString()}
+                            </span>
                             {t("CPsumm")}
-                          </span>
+                          </div>
                         </div>
                         <div className="flex ">
                           <span className="hidden ll:flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
-                          {t("CPto")}
+                            {t("CPto")}
                           </span>
-                          <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-[14px] ll:text-base leading-3 text-center text-black">
-                            <input
+                          <div className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-[14px] ll:text-base leading-3 text-center text-black">
+                            {/* <input
                               className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                               name="name"
                               value={Number(values[1]).toLocaleString()}
                             // defaultValue={Number(
                             //   data?.getMainProductCard?.budget?.max_price
                             // ).toLocaleString()}
-                            />
+                            /> */}
+                            <span className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                            >
+                              {Number(values[1]).toLocaleString()}
+                            </span>
                             {t("CPsumm")}
-                          </span>
+                          </div>
                         </div>
                       </div>
                       <div className="relative z-50 mb-[6px] w-full  marketFilter">
@@ -487,7 +496,7 @@ const ClothingParametr = () => {
                        `}
                   >
                     <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
-                    {t("CPbycolor")}
+                      {t("CPbycolor")}
                     </span>
                     <button
                       className="py-2"
@@ -520,8 +529,8 @@ const ClothingParametr = () => {
                             }}
                             style={{ backgroundColor: data?.hex }}
                             className={`rounded-full flex items-center justify-center w-[35px] h-[35px] ${data?.hex === dressInfo?.mainColorHex
-                                ? "border border-setTexOpacity flex items-center justify-center"
-                                : "border"
+                              ? "border border-setTexOpacity flex items-center justify-center"
+                              : "border"
                               }  `}
                           >
                             {dressInfo?.mainColorHex === data?.hex &&
@@ -582,7 +591,7 @@ const ClothingParametr = () => {
                        `}
                   >
                     <span className="text-black text-lg not-italic font-AeonikProRegular leading-5">
-                    {t("CPbygender")}
+                      {t("CPbygender")}
                     </span>
                     <button
                       className="py-2"
@@ -624,8 +633,8 @@ const ClothingParametr = () => {
                                       });
                                     }}
                                     className={`${item?.id == dressInfo?.mainGenderId
-                                        ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
-                                        : " bg-btnBgColor text-black h-full"
+                                      ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
+                                      : " bg-btnBgColor text-black h-full"
                                       } px-4 ls:px-5  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
                                   >
                                     <span>{item?.anyIcons}</span>

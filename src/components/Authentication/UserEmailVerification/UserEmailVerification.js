@@ -96,7 +96,7 @@ export default function UserEmailVerification() {
     EnterTheSystem();
     setTimeForNotif();
   }
-   useEffect(() => {
+  useEffect(() => {
     document.title = "Подтвердить адрес электронной почты";
   }, []);
 
@@ -136,7 +136,7 @@ export default function UserEmailVerification() {
               type="email"
               name="email"
               autoComplete="email"
-              value={state.email}
+              value={state.email || ""}
               onChange={({ target: { value } }) => {
                 setError();
                 setState({ ...state, email: value });
@@ -156,7 +156,7 @@ export default function UserEmailVerification() {
         </div>
         <form className="mt-4 w-full h-fit">
           <span className="flex items-center text-[#303030] text-[14px] xs:text-base not-italic font-AeonikProRegular leading-4 tracking-[0,16px]  ">
-          {t("Lpassword")}
+            {t("Lpassword")}
           </span>
           <div className="mt-[4px]  w-full flex items-center border border-searchBgColor rounded-lg overflow-hidden">
             <input
@@ -165,7 +165,7 @@ export default function UserEmailVerification() {
               name="password"
               autoComplete="password"
               placeholder={t("Lpassword")}
-              value={state.password}
+              value={state.password || ""}
               onChange={({ target: { value } }) => {
                 setError();
                 setState({ ...state, password: value });
@@ -202,6 +202,7 @@ export default function UserEmailVerification() {
               className="w-[18px] h-[18px] rounded-lg text-black bg-white placeholder-bg-white mr-2"
               id="vehicle1"
               name="vehicle1"
+              value={state?.rememberCheck || ""}
               onChange={handleChange}
             />
             <label
@@ -219,7 +220,7 @@ export default function UserEmailVerification() {
           className="mt-[50px] border cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-fullBlue select-none rounded-lg active:scale-95	active:opacity-70"
         >
           <span className="not-italic font-AeonikProMedium mr-2 text-base leading-4 text-center text-white tracking-[0,16px]">
-          {t("LsignIn")}
+            {t("LsignIn")}
           </span>
           <span>
             <SircleNext colors={"#fff"} />

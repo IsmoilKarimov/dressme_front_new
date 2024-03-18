@@ -464,7 +464,7 @@ const EditProfilePage = () => {
       })}
     </div>
   );
-   return (
+  return (
     <div className="min-h-[76vh]">
       {loading ? (
         <div>
@@ -765,7 +765,7 @@ const EditProfilePage = () => {
                       <input
                         type="number"
                         name="day"
-                        value={dayValue}
+                        value={dayValue || ""}
                         placeholder={t("Sday")}
                         id="day"
                         onInput={(e) => {
