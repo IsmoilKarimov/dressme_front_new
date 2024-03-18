@@ -7,13 +7,18 @@ import {
   Placemark,
 } from "react-yandex-maps";
 import "./LocationOfYandex.css";
+import { markerIcons } from "../../../../../../../assets";
 import AddCopyCheckedIcon from "../AddCopyCheckedIcon/AddCopyCheckedIcon";
 
 function LocationOfYandex({ locationText, data }) {
   const [logaLocation, setLogaLocation] = useState()
   const [placeMarkLocation, setPlaceMarkLocation] = useState([])
 
- 
+  //------------------------------------------------------------------------------------------------
+  const mapState = {
+    center: [41.327228, 69.249023],
+    zoom: 14,
+  };
   //------------------------------------------------------------------------------------------------
   useEffect(() => {
     setLogaLocation(data?.product?.shop?.url_logo_photo)
@@ -22,6 +27,7 @@ function LocationOfYandex({ locationText, data }) {
   }, [data, locationText])  // const handleOpenYandex = () => {
   //   window.open(`https://yandex.uz/maps/10335/tashkent/?ll=${mapState?.center[1]}%2C${mapState?.center[0]}&mode=search&sll=${mapState?.center[1]}%2C${mapState?.center[0]}&text=${mapState?.center[0]}%2C${mapState?.center[1]}&z=15`, "_blank")
 
+  // }
   const addresRef = useRef();
 
   const handleCopyText = () => {
@@ -38,6 +44,7 @@ function LocationOfYandex({ locationText, data }) {
     <div className={`w-full `}>
       <div className={`w-full flex items-center mb-3 mt-4`}>
         <div className="flex flex-col xs:flex-row xs:items-center gap-x-1 md:gap-x-[6px] ">
+          {/* <span className="text-[#000] not-italic font-AeonikProMedium text-[14px] xs:text-base ">Адрес:</span> */}
           <div className="flex items-center">
             <span
               ref={addresRef}
@@ -72,7 +79,14 @@ function LocationOfYandex({ locationText, data }) {
           >
             <Placemark
               className={" cursor-pointer"}
-           
+              // key={index}
+              // onClick={() => handlePlaceMark(data?.marketId, data?.cordinate)}
+              // geometry={mapState?.center}
+              // options={{
+              //   iconLayout: "default#image",
+              //   iconImageHref: markerIcons,
+              //   iconImageSize: [32, 32],
+              // }}
               geometry={placeMarkLocation}
               options={{
                 iconLayout: "default#image",
@@ -99,7 +113,16 @@ function LocationOfYandex({ locationText, data }) {
           </Map>
         </YMaps>
       </div>
-      
+      {/* <div className="w-full flex justify-end">
+        <button
+          onClick={handleOpenYandex}
+          className={
+            "w-full md:w-fit text-center active:scale-95 px-5 py-[10px] md:py-3 bg-borderWinter text-white font-AeonikProMedium text-xs md:text-base mt-[15px] rounded-lg"
+          }
+        >
+          Открыть на карте
+        </button>
+      </div> */}
     </div>
   );
 }

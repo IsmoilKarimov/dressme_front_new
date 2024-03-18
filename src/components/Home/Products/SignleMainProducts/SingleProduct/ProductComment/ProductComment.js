@@ -18,6 +18,11 @@ export default function ProductComment({ data, refetch }) {
 
   const { t } = useTranslation("products")
 
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: 0,
+  //   });
+  // }, []);
 
   const textRef = useRef();
   const rateRef = useRef();

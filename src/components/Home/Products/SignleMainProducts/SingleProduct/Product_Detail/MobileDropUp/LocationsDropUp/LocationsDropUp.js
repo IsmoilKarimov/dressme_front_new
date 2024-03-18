@@ -9,15 +9,17 @@ function LocationDropUp({
   data,
   selectedLocation,
   checkedData,
+  setOpenLocationModal,
   setSelectedLocation,
   setSelectedSize,
   existRegions,
   existRegionsObj,
 }) {
-  const [languageDetector] = useContext(
+  const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
 
+  console.log(selectedLocation?.id, "ssssssssssssssss");
 
   const { t } = useTranslation("products");
 

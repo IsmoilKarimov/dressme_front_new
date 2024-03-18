@@ -10,12 +10,13 @@ import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import LoadingNetwork from "../../../../Loading/LoadingNetwork";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../../language/LanguageItems";
+import { SaesonDetectorDress } from "../../../../../ContextHook/SeasonContext";
 import { LocationIdDetector } from "../../../../../ContextHook/LocationId";
 
 const ShoppingBrands = ({ loading, setLoading }) => {
   const navigate = useNavigate();
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [languageDetector] = useContext(
+  const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
   const [locationIdDetector, setLocationIdDetector] =
@@ -23,6 +24,8 @@ const ShoppingBrands = ({ loading, setLoading }) => {
 
   const { t } = useTranslation("shops");
   const goDetail = (id, name) => {
+    console.log("RUN-------shops");
+    // console.log(name?.split(' ')?.join('-'), "name");
 
     dressInfo?.shopsData?.shops?.data
       ?.filter((e) => e?.id == id)

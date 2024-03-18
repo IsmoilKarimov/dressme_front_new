@@ -23,8 +23,10 @@ export default function CatalogItems() {
   const { t } = useTranslation("catalog");
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data] = useContext(HomeMainDataContext);
-  const [languageDetector] = useContext(LanguageDetectorDress);
-  const [seasonDetector] = useContext(SaesonDetectorDress);
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress);
 
   const [filterData, setFilterData] = useState([]);
   const [pageId, setPageId] = useState(1);
@@ -32,9 +34,7 @@ export default function CatalogItems() {
     opensports: false,
     openTypesofClothes: false,
   });
-  const [searchMarketName, setSearchMarketName] = useState(
-    dressInfo?.mainSearchNameCatalog
-  );
+  const [searchMarketName, setSearchMarketName] = useState(dressInfo?.mainSearchNameCatalog);
 
   const [getGenderId, setGetGenderId] = useState(null);
   const [getCategory, setGetCategory] = useState(null);
@@ -108,7 +108,8 @@ export default function CatalogItems() {
   const paramId = useParams();
 
   const newId = paramId?.id?.replace(":", "");
-
+  // languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz
+  // console.log(newId, 'newId');
   useLayoutEffect(() => {
     if (languageDetector?.typeLang === "ru") {
       if (newId === "украшения-аксессуары") {
@@ -146,7 +147,6 @@ export default function CatalogItems() {
         });
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newId, data?.getMainProductCard?.shops]);
 
   const handleOpenCategories = (newOpen) => {
@@ -197,8 +197,9 @@ export default function CatalogItems() {
                 languageDetector?.typeLang === "uz" && data?.name_uz
               );
             }}
-            className={`${filterData?.category?.id === data?.id ? "bg-bgColor" : null
-              } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+            className={`${
+              Number(paramId?.id) === data?.id ? "bg-bgColor" : null
+            } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {languageDetector?.typeLang === "ru" && data?.name_ru}
             {languageDetector?.typeLang === "uz" && data?.name_uz}
@@ -285,8 +286,10 @@ export default function CatalogItems() {
         setFilterData(res);
         setDressInfo({ ...dressInfo, filterDataProductList: res });
         setLoading(false);
+        // console.log(res, 'category---res');
       })
       .catch((err) => {
+        // console.log(err, 'category---err');
 
         setLoading(false);
         throw new Error(err || "something wrong");
@@ -310,7 +313,6 @@ export default function CatalogItems() {
       setLoading(true);
     }
     setInitalParamsId(newFilterParamasId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newFilterParamasId]);
 
   useEffect(() => {
@@ -350,9 +352,9 @@ export default function CatalogItems() {
   }, [openMobileFilter, openMobileCategory]);
 
   const handleChange = (event) => {
-    setSearchMarketName(event.target.value);
+    setSearchMarketName(event.target.value);   
   };
-
+  
   function getSearchClick() {
     setDressInfo({ ...dressInfo, mainSearchNameCatalog: searchMarketName });
   }
@@ -367,7 +369,7 @@ export default function CatalogItems() {
 
   const handleClear = () => {
     setSearchMarketName("");
-    setDressInfo({ ...dressInfo, mainSearchNameCatalog: "" });
+    setDressInfo({ ...dressInfo, mainSearchNameCatalog: ""});
   };
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
@@ -402,7 +404,7 @@ export default function CatalogItems() {
         <section className="max-w-[1280px] w-[100%] flex justify-center items-center m-auto ">
           <article className="w-[100%] h-fit ">
             <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
-              <article className="w-[100%] h-fit md:mb-6 md:mt-[60px]">
+              <article className="w-[100%] h-fit md:mb-12 md:mt-[60px]">
                 <article className="w-full flex flex-col border-b md:border-none border-searchBgColor">
                   <div className="relative w-full md:h-[90px] my-10 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
                     {/*  */}
@@ -454,8 +456,9 @@ export default function CatalogItems() {
                               <BiChevronDown
                                 size={22}
                                 style={{ color: "#000" }}
-                                className={`${state?.opensports ? "rotate-[-180deg]" : ""
-                                  } duration-200`}
+                                className={`${
+                                  state?.opensports ? "rotate-[-180deg]" : ""
+                                } duration-200`}
                               />
                             </span>
                           </Popover>
@@ -572,13 +575,15 @@ export default function CatalogItems() {
                   setOpenMobileCategory(false);
                   setOpenMobileFilter(false);
                 }}
-                className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter || openMobileCategory ? "" : "hidden"
-                  }`}
+                className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+                  openMobileFilter || openMobileCategory ? "" : "hidden"
+                }`}
               ></section>
               {screenSize.width < 768 && (
                 <section
-                  className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
-                    }`}
+                  className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+                    openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+                  }`}
                 >
                   <div className="relative max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
                     <FilterList
@@ -602,8 +607,9 @@ export default function CatalogItems() {
                 </section>
               )}
               <section
-                className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[40vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
-                  }`}
+                className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[40vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+                  openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
+                }`}
               >
                 <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between  mb-1 ">
                   <p className="text-xl font-AeonikProMedium">
@@ -623,13 +629,14 @@ export default function CatalogItems() {
                           handleCategories(
                             data?.id,
                             languageDetector?.typeLang === "ru" &&
-                            data?.name_ru,
+                              data?.name_ru,
                             languageDetector?.typeLang === "uz" && data?.name_uz
                           );
                           setOpenMobileCategory(false);
                         }}
-                        className={`${Number(paramId?.id) === data?.id ? "bg-bgColor" : null
-                          } h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
+                        className={`${
+                          Number(paramId?.id) === data?.id ? "bg-bgColor" : null
+                        } h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
                       >
                         {languageDetector?.typeLang === "ru" && data?.name_ru}
                         {languageDetector?.typeLang === "uz" && data?.name_uz}
@@ -642,8 +649,9 @@ export default function CatalogItems() {
               {/* FOR DESCTOP VERSION */}
               {screenSize.width >= 768 && (
                 <article
-                  className={`${filterToggle ? "md:block" : "md:hidden"
-                    } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0`}
+                  className={`${
+                    filterToggle ? "md:block" : "md:hidden"
+                  } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0`}
                 >
                   <FilterList
                     paramsId={newFilterParamasId}
@@ -663,12 +671,12 @@ export default function CatalogItems() {
                 </article>
               )}
               <article
-                className={`${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-                  } w-full h-full px-[10px] md:px-0`}
+                className={`${
+                  filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+                } w-full h-full px-[10px] md:px-0`}
               >
                 {filterData?.category_products?.data?.length > 0 ? (
                   <CatalogCard
-                    filterToggle={filterToggle}
                     paramsId={newId}
                     filterData={filterData}
                     setPageId={setPageId}

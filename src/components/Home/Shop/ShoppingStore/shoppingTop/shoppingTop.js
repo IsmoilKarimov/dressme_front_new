@@ -9,6 +9,7 @@ const ShoppingTop = ({
   getAllShops,
   setGetAllShops,
   setGetGenderId,
+  setgetSearchInput,
 }) => {
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
