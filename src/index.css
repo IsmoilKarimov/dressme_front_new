@@ -225,6 +225,13 @@ select {
     rgba(255, 255, 255, 0.99) 100%
   );
 }
+.categoryLinearPrice {
+  background: linear-gradient(
+    to right,
+    rgba(167, 207, 223, 0) 80%,
+    rgba(255, 255, 255, 0.99) 100%
+  );
+}
 
 /* Table */
 table,
