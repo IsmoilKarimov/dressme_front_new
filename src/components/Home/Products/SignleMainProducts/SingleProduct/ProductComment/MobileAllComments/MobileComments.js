@@ -21,7 +21,7 @@ const MobileAllComments = () => {
 
   const { t } = useTranslation("products")
 
-  const [reFreshTokenFunc, setUserLogedIn] = useContext(
+  const [reFreshTokenFunc] = useContext(
     UserRefreshTokenContext
   );
 

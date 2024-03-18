@@ -7,7 +7,7 @@ import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 const CatalogMobile = () => {
   const [data] = useContext(HomeMainDataContext);
 
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const [languageDetector,  ] = useContext(LanguageDetectorDress)
 
   const navigate = useNavigate();
 

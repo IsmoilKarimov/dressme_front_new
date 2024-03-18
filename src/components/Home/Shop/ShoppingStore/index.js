@@ -12,22 +12,20 @@ import { SaesonDetectorDress } from "../../../../ContextHook/SeasonContext";
 
 export default function ShoppingStore() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const [languageDetector] = useContext(LanguageDetectorDress)
 
-  const [reFreshTokenFunc, setUserLogedIn] = useContext(
+  const [reFreshTokenFunc] = useContext(
     UserRefreshTokenContext
   );
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+  const [seasonDetector] = useContext(SaesonDetectorDress)
 
   const [loading, setLoading] = useState(false);
   const [getAllShops, setGetAllShops] = useState(true);
-  const [error, setError] = useState();
 
   const navigate = useNavigate();
 
   const [getGenderID, setGetGenderId] = useState(null);
-  const [getSearchInput, setgetSearchInput] = useState(null);
-
+ 
   const typeFilter = String(seasonDetector?.type)?.split("");
   const seasonId = Number(typeFilter?.shift());
 
@@ -67,9 +65,7 @@ export default function ShoppingStore() {
           Cookies.remove("DressmeUserRefreshToken");
           navigate("/sign_in");
         }
-        setError(
-          err.response?.data?.message || "An unexpected error occurred."
-        );
+      
         setLoading(false);
       });
   };
@@ -109,8 +105,7 @@ export default function ShoppingStore() {
           setGetAllShops={setGetAllShops}
           getAllShops={getAllShops}
           setGetGenderId={setGetGenderId}
-          setgetSearchInput={setgetSearchInput}
-        />
+         />
       </section>
       <section className="w-full">
         <ShoppingBrands

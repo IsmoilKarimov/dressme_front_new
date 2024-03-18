@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 
-import { dressMainData } from "../../../../ContextHook/ContextMenu";
-import { NoImg, SeasonSquare } from "../../../../assets/icons";
+ import { NoImg, SeasonSquare } from "../../../../assets/icons";
 import { SaesonDetectorDress } from "../../../../ContextHook/SeasonContext";
 
 export default function TypeSection() {
-   const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+   const [seasonDetector] = useContext(SaesonDetectorDress)
 
   const typeSectionData = [
     {

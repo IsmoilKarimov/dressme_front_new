@@ -27,7 +27,7 @@ export default function ShopOfficialCard({
   const { t } = useTranslation("shops");
 
   // Main data context -----------------
-  const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
+  const [ wishList, setWishlist] = useContext(HomeMainDataContext);
 
   const onColorChecked = () => {};
   const navigate = useNavigate();

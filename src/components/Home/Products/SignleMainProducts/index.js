@@ -15,11 +15,12 @@ export default function SingleMainProducts() {
   useLayoutEffect(() => {
     if (data?.getMainProductCard?.products) {
       data?.getMainProductCard?.products?.data?.map(item => {
-        if (paramId?.product == item?.id) {
+        if (Number(paramId?.product) === Number(item?.id)) {
           setGetproductName(item?.name_ru)
         }
       })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const breadcrumbItems = [
