@@ -18,7 +18,9 @@ const CategoryTopDetail = ({
   paramsId,
 }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [searchMarketName, setSearchMarketName] = useState(dressInfo?.mainSearchNameCategory);
+  const [searchMarketName, setSearchMarketName] = useState(
+    dressInfo?.mainSearchNameCategory
+  );
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
@@ -67,8 +69,9 @@ const CategoryTopDetail = ({
                 data?.id
               );
             }}
-            className={`${filterData?.section?.id === data?.id ? "bg-bgColor" : null
-              } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+            className={`${
+              filterData?.section?.id === data?.id ? "bg-bgColor" : null
+            } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {languageDetector?.typeLang === "ru" && data?.name_ru}
             {languageDetector?.typeLang === "uz" && data?.name_uz}
@@ -91,8 +94,8 @@ const CategoryTopDetail = ({
     setDressInfo({ ...dressInfo, mainSearchNameCategory: searchMarketName });
   }
   const handleChange = (event) => {
-    setSearchMarketName(event.target.value)
-   };
+    setSearchMarketName(event.target.value);
+  };
   const handleClear = () => {
     setSearchMarketName("");
     setDressInfo({ ...dressInfo, mainSearchNameCategory: "" });
@@ -117,7 +120,7 @@ const CategoryTopDetail = ({
 
       <div className="w-full flex flex-col justify-center items-center">
         <section className=" w-[100%] flex flex-col items-center justify-between m-auto  md:mt-[60px]">
-          <article className="w-[100%] h-fit md:mb-16">
+          <article className="w-[100%] h-fit md:mb-8">
             <article className="w-full flex flex-col border-b md:border-none border-searchBgColor">
               <figure className="relative w-full md:h-[90px] my-10 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-lg px-4 md:px-0">
                 {/*  */}
@@ -168,8 +171,9 @@ const CategoryTopDetail = ({
                           <BiChevronDown
                             size={22}
                             style={{ color: "#000" }}
-                            className={`${state?.opensports ? "rotate-[-180deg]" : ""
-                              } duration-200`}
+                            className={`${
+                              state?.opensports ? "rotate-[-180deg]" : ""
+                            } duration-200`}
                           />
                         </span>
                       </Popover>
