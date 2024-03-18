@@ -51,7 +51,6 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("scroll", handleScrollNavMenu);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [show, scrollPost, ShowNavMenu, ScrollPostNavMenu]);
 
   // ------------GET METHOD Main data ------------------------------------------------
@@ -63,7 +62,6 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
   const [singleData, setSingleData] = useState();
   useEffect(() => {
     oncallProductName(singleData?.product?.name_ru);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [singleData?.product]);
 
   const [loading, setLoading] = useState(true);
@@ -130,7 +128,7 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
   // region_id sub_region_id
   useEffect(() => {
     singleDataForCopy?.product?.locations?.map((item) => {
-      if (Number(item?.region_id) === Number(dressInfo?.mainRegionId)) {
+      if (item?.region_id == dressInfo?.mainRegionId) {
         if (
           dressInfo?.mainSubRegionId &&
           Number(item?.sub_region_id) !== dressInfo?.mainSubRegionId
@@ -148,7 +146,6 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
         }
       }
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dressInfo?.mainSubRegionId, dressInfo?.mainRegionId]);
 
   return (

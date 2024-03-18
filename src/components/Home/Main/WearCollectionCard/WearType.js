@@ -6,9 +6,9 @@ import { SliderPhotosColorContext } from "../../../../ContextHook/SliderPhotosCo
 import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 
 const WearType = ({ onClick, title }) => {
-  const [selectedData ] = useContext(MobileSelectedDataContext);
-  const [ setcolorId] = useContext(SliderPhotosColorContext);
-  const [languageDetector] = useContext(
+  const [selectedData, setSelectedData] = useContext(MobileSelectedDataContext);
+  const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
+  const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
 

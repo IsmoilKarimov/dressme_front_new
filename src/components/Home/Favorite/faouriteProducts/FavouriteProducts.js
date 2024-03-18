@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
- import { useNavigate } from "react-router-dom";
+import { dressMainData } from "../../../../ContextHook/ContextMenu";
+import { useNavigate } from "react-router-dom";
 import { InputCheckedTrueIcons, StarIcons } from "../../../../assets/icons";
 import { CalourCard, HeartImg } from "../../../../assets";
 import WearType from "../../Main/WearCollectionCard/WearType";
@@ -12,13 +13,14 @@ import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 export default function FavouriteProducts() {
   const { t } = useTranslation("favourite");
 
-   const [openWearType, setOpenWearType] = useState(false);
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [openWearType, setOpenWearType] = useState(false);
   // -------------------------------------
   const toggle = React.useCallback(() => setOpenWearType(false), []);
   // -------------------------------------
 
   // Main data context -----------------
-  const [mainData,  wishList, setWishlist] = useContext(HomeMainDataContext);
+  const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
   const onColorChecked = () => {};
   const navigate = useNavigate();
@@ -26,7 +28,7 @@ export default function FavouriteProducts() {
     navigate(`/favourites/${id}`);
   };
 
-  const [languageDetector,  ] = useContext(
+  const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
 

@@ -52,12 +52,12 @@ import { LanguageDetectorDress } from "../../../../../../language/LanguageItems"
 import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext";
 import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
 const ProductDetails = ({ data, shopsData }) => {
-  const [wishList, setWishlist] = useContext(HomeMainDataContext);
+  const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
   // Rick Ortiz
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [seasonDetector,] = useContext(SaesonDetectorDress);
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress);
   const { t } = useTranslation("products");
-  const [languageDetector,] = useContext(
+  const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
   const [locationIdDetector, setLocationIdDetector] =
@@ -69,7 +69,7 @@ const ProductDetails = ({ data, shopsData }) => {
   const [locations, setLocations] = useState(false);
 
   // color context---
-  const [setcolorId] = useContext(SliderPhotosColorContext);
+  const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
 
   const toggleTableSizes = useCallback(() => setTableSizes(false), []);
   const toggleLocations = useCallback(() => setLocations(false), []);
@@ -283,14 +283,14 @@ const ProductDetails = ({ data, shopsData }) => {
   useEffect(() => {
     if (dressInfo?.linkedFrom === "mainPageShopsList") {
       data?.product?.locations?.forEach((item) => {
-        if (item?.address === dressInfo?.productShowSelectedLocation?.address) {
+        if (item?.address == dressInfo?.productShowSelectedLocation?.address) {
           setSelectedLocation(item);
           setSelectedColor(data?.product?.colors[0]);
         }
       });
     } else if (dressInfo?.linkedFrom === "shopsFromLocation") {
       data?.product?.locations?.forEach((item) => {
-        if (item?.address === dressInfo?.productShowSelectedLocation?.address) {
+        if (item?.address == dressInfo?.productShowSelectedLocation?.address) {
           setSelectedLocation(item);
           setSelectedColor(data?.product?.colors[0]);
         }
@@ -300,7 +300,7 @@ const ProductDetails = ({ data, shopsData }) => {
       dressInfo?.mainSubRegionId
     ) {
       data?.product?.locations?.forEach((item) => {
-        if (Number(item?.sub_region_id) === Number(dressInfo?.mainSubRegionId)) {
+        if (item?.sub_region_id == dressInfo?.mainSubRegionId) {
           setSelectedLocation(item);
           setSelectedColor(data?.product?.colors[0]);
         }
@@ -358,9 +358,10 @@ const ProductDetails = ({ data, shopsData }) => {
   // console.log(shopsData?.getMainProductCard?.shops, "shopsData");
 
   const goDetailShop = (id, name) => {
+    console.log("RUN-------PRODUCTR");
 
     shopsData?.getMainProductCard?.shops
-      ?.filter((e) => Number(e?.id) === Number(id))
+      ?.filter((e) => e?.id == id)
       ?.map((item) => {
         if (dressInfo?.mainSubRegionId) {
           let foundElement = item?.approved_shop_locations.find(function (
@@ -389,7 +390,7 @@ const ProductDetails = ({ data, shopsData }) => {
         }
       });
   };
-  console.log(data?.product, 'data?.product');
+
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
       <div className="tableSizes">
@@ -596,7 +597,7 @@ const ProductDetails = ({ data, shopsData }) => {
                 </p>
               </article>
             </div>
-            <div className="w-1/2 flex flex-col border border-red-600">
+            <div className="w-1/2 flex flex-col">
               <div className="flex items-center mb-1">
                 <article className="w-fit flex items-center">
                   <ChapterIcon colors={"#000"} />
@@ -635,9 +636,9 @@ const ProductDetails = ({ data, shopsData }) => {
                           key={i}
                           className="mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]"
                         >
-                          {languageDetector?.typeLang === "ru" && item?.name_ru}{languageDetector?.typeLang === "ru" && lastIndex !== i && ","}
-                          {languageDetector?.typeLang === "uz" && item?.name_uz}{languageDetector?.typeLang === "uz" && lastIndex !== i && ","}
-                        </p>,
+                          {languageDetector?.typeLang === "ru" && item?.name_ru} {languageDetector?.typeLang === "ru" && lastIndex !== i && ","}
+                          {languageDetector?.typeLang === "uz" && item?.name_uz} {languageDetector?.typeLang === "uz" && lastIndex !== i && ","}
+                        </p>
                       </div>
                     );
                   }
@@ -647,7 +648,7 @@ const ProductDetails = ({ data, shopsData }) => {
           </div>
           {/* ---- */}
           <div className="w-full flex items-center mb-4">
-            <div className="w-1/2 flex items-center ">
+            <div className="w-1/2 flex items-center">
               <article className="w-fit flex items-center">
                 <CategoryIcon />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
@@ -663,7 +664,7 @@ const ProductDetails = ({ data, shopsData }) => {
                 </p>
               </article>
             </div>
-            <div className="w-1/2 flex flex-col  ">
+            <div className="w-1/2 flex flex-col">
               <div className="flex items-center mb-1">
                 <article className="w-fit flex items-center">
                   <TypeIcon />
@@ -1004,7 +1005,7 @@ const ProductDetails = ({ data, shopsData }) => {
                 </div>
                 <div className="w-full">
                   {data?.product?.sizes?.map((data) => {
-                    if (Number(data?.shop_location_id) === Number(selectedLocation?.id)) {
+                    if (data?.shop_location_id == selectedLocation?.id) {
                       return (
                         <div
                           key={data?.id}
@@ -1066,7 +1067,7 @@ const ProductDetails = ({ data, shopsData }) => {
                 </div>
                 <div className="w-full">
                   {data?.product?.sizes?.map((data) => {
-                    if (Number(data?.shop_location_id) === Number(selectedLocation?.id)) {
+                    if (data?.shop_location_id == selectedLocation?.id) {
                       return (
                         <div
                           key={data?.id}
@@ -1116,7 +1117,7 @@ const ProductDetails = ({ data, shopsData }) => {
                 </div>
                 <div className="w-full">
                   {data?.product?.sizes?.map((data) => {
-                    if (Number(data?.shop_location_id) === Number(selectedLocation?.id)) {
+                    if (data?.shop_location_id == selectedLocation?.id) {
                       return (
                         <div
                           key={data?.id}
@@ -1156,7 +1157,7 @@ const ProductDetails = ({ data, shopsData }) => {
                 </div>
                 <div className="w-full">
                   {data?.product?.sizes?.map((data) => {
-                    if (Number(data?.shop_location_id) === Number(selectedLocation?.id)) {
+                    if (data?.shop_location_id == selectedLocation?.id) {
                       return (
                         <div
                           key={data?.id}
@@ -1181,7 +1182,7 @@ const ProductDetails = ({ data, shopsData }) => {
             {data?.product?.category_id === "1"
               ? data?.product?.sizes?.map((data) => {
                 if (
-                  Number(data?.shop_location_id) === Number(selectedLocation?.id) &&
+                  data?.shop_location_id == selectedLocation?.id &&
                   selectedColor?.pivot?.id === data?.product_color_id
                 ) {
                   return (
@@ -1221,7 +1222,7 @@ const ProductDetails = ({ data, shopsData }) => {
             {data?.product?.category_id === "2"
               ? data?.product?.sizes?.map((data) => {
                 if (
-                  Number(data?.shop_location_id) === Number(selectedLocation?.id) &&
+                  data?.shop_location_id == selectedLocation?.id &&
                   selectedColor?.pivot?.id === data?.product_color_id
                 ) {
                   return (
@@ -1286,7 +1287,7 @@ const ProductDetails = ({ data, shopsData }) => {
             {data?.product?.category_id === "3"
               ? data?.product?.sizes?.map((data) => {
                 if (
-                  Number(data?.shop_location_id) === Number(selectedLocation?.id) &&
+                  data?.shop_location_id == selectedLocation?.id &&
                   selectedColor?.pivot?.id === data?.product_color_id
                 ) {
                   return (
@@ -1351,7 +1352,7 @@ const ProductDetails = ({ data, shopsData }) => {
             {data?.product?.category_id === "4"
               ? data?.product?.sizes?.map((data) => {
                 if (
-                  Number(data?.shop_location_id) === Number(selectedLocation?.id) &&
+                  data?.shop_location_id == selectedLocation?.id &&
                   selectedColor?.pivot?.id === data?.product_color_id
                 ) {
                   return (
@@ -1391,7 +1392,7 @@ const ProductDetails = ({ data, shopsData }) => {
             {data?.product?.category_id === "5"
               ? data?.product?.sizes?.map((data) => {
                 if (
-                  Number(data?.shop_location_id) === Number(selectedLocation?.id) &&
+                  data?.shop_location_id == selectedLocation?.id &&
                   selectedColor?.pivot?.id === data?.product_color_id
                 ) {
                   return (

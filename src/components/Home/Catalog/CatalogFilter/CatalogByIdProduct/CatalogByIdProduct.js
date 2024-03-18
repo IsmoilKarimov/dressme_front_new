@@ -5,15 +5,15 @@ import { dressMainData } from '../../../../../ContextHook/ContextMenu';
 import { LanguageDetectorDress } from '../../../../../language/LanguageItems';
 
 export default function CatalogByIdProduct() {
-    const [dressInfo,] = useContext(dressMainData);
+    const [dressInfo, setDressInfo] = useContext(dressMainData);
     const [getproductName, setGetproductName] = useState(null);
     const paramId = useParams();
-    const [languageDetector,] = useContext(LanguageDetectorDress)
+    const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
 
     useLayoutEffect(() => {
         if (dressInfo?.filterDataProductList?.category_products) {
             dressInfo?.filterDataProductList?.category_products?.data?.map(item => {
-                if (Number(paramId?.product) === Number(item?.id)) {
+                if (paramId?.product == item?.id) {
                     if (languageDetector?.typeLang === 'ru') {
                         setGetproductName(item?.name_ru)
                     }
@@ -23,7 +23,6 @@ export default function CatalogByIdProduct() {
                 }
             })
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const breadcrumbItems = [
         { label_uz: 'Asosiy', label_ru: 'Главная', url: '/' },

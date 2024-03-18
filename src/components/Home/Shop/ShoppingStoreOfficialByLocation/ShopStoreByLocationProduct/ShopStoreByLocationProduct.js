@@ -8,7 +8,7 @@ export default function ShopStoreByLocationProduct() {
     const [dressInfo] = useContext(dressMainData);
     const [getproductName, setGetproductName] = useState(null);
     const params = useParams();
-    const [languageDetector] = useContext(LanguageDetectorDress)
+    const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
 
     useLayoutEffect(() => {
         if (dressInfo?.filterDataProductList?.products?.data) {
@@ -23,7 +23,6 @@ export default function ShopStoreByLocationProduct() {
                 }
             })
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const breadcrumbItems = [

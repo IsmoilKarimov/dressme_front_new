@@ -15,17 +15,16 @@ export default function SingleMainProducts() {
   useLayoutEffect(() => {
     if (data?.getMainProductCard?.products) {
       data?.getMainProductCard?.products?.data?.map(item => {
-        if (Number(paramId?.product) === Number(item?.id)) {
+        if (paramId?.product == item?.id) {
           setGetproductName(item?.name_ru)
         }
       })
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const breadcrumbItems = [
     { label_uz: 'Asosiy', label_ru: 'Главная', url: '/' },
-    { label_uz: 'Mahsulotlar', label_ru: 'Продукты', url: '/' },
+    { label_uz: 'Mahsulotlar', label_ru: 'Продукты', url: '/product' },
     { label_uz: getproductName, label_ru: getproductName, url: `/product/${paramId?.product}` },
   ];
   function oncallProductName(child) {

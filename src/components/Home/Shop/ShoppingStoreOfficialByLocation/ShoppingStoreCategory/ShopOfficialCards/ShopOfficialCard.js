@@ -16,7 +16,6 @@ export default function ShopOfficialCard({
   filteredData,
   setPageId,
   paramsId,
-  filterToggle,
 }) {
   const [openWearType, setOpenWearType] = useState(false);
   const [languageDetector] = useContext(LanguageDetectorDress);
@@ -27,7 +26,7 @@ export default function ShopOfficialCard({
   const { t } = useTranslation("shops");
 
   // Main data context -----------------
-  const [ wishList, setWishlist] = useContext(HomeMainDataContext);
+  const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
 
   const onColorChecked = () => {};
   const navigate = useNavigate();
@@ -56,15 +55,11 @@ export default function ShopOfficialCard({
 
       {filteredData?.products?.data?.length > 0 ? (
         <div
-          className={`flex flex-wrap justify-between md:grid ${
-            filterToggle
-              ? "md:grid-cols-4 md:gap-x-2"
-              : "md:grid-cols-5 md:gap-x-5"
-          } ${
+          className={`flex flex-wrap justify-between md:justify-start ${
             filteredData?.products?.length > 2
               ? "mb-[20px] md:mb-[30px]"
               : "mb-[80px]"
-          } gap-y-[9px] lg:gap-y-3 mt-1 md:mt-[40px]`}
+          } md:mx-0 md:mt-[50px] md:mb-0 gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 `}
         >
           {filteredData?.products?.data?.map((data) => {
             return (

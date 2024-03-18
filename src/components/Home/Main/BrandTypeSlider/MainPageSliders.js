@@ -14,13 +14,13 @@ import { SaesonDetectorDress } from "../../../../ContextHook/SeasonContext";
 import { LocationIdDetector } from "../../../../ContextHook/LocationId";
 
 function MainPageSliders() {
-  const [data,  ] = useContext(HomeMainDataContext);
+  const [data, setData] = useContext(HomeMainDataContext);
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const { t } = useTranslation(["homePage"]);
-  const [languageDetector,  ] = useContext(
+  const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
-  const [seasonDetector,  ] = useContext(SaesonDetectorDress)
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
   const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
 
   // maindata
@@ -183,7 +183,7 @@ function MainPageSliders() {
   const navigate = useNavigate();
   const goDetail = (id, name) => {
     data?.getMainProductCard?.shops
-      ?.filter((e) => Number(e?.id) === Number(id))
+      ?.filter((e) => e?.id == id)
       ?.map((item) => {
         if (dressInfo?.mainSubRegionId) {
           let foundElement = item?.approved_shop_locations.find(function (
