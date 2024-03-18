@@ -30,7 +30,7 @@ export default function YandexFilter({ getMapsInfo }) {
   const [languageDetector] = useContext(
     LanguageDetectorDress
   );
-  const [seasonDetector, ] = useContext(SaesonDetectorDress)
+  const [seasonDetector,] = useContext(SaesonDetectorDress)
 
   const [state, setState] = useState({
     openwear: false,
@@ -90,7 +90,6 @@ export default function YandexFilter({ getMapsInfo }) {
     ]);
     setDressInfo({ ...dressInfo, yandexRangePrice: [] });
   };
-
   useEffect(() => {
     setState({ ...state, clearPrice: false });
     setMinPrice(Number(getMapsInfo?.budget?.min_price));
@@ -109,6 +108,12 @@ export default function YandexFilter({ getMapsInfo }) {
     dressInfo?.yandexCategoryWear,
     dressInfo?.yandexCategoryBrand,
   ]);
+  console.log(dressInfo?.mainRegionId,
+    dressInfo?.mainSubRegionId,
+    dressInfo?.yandexGenderId,
+    dressInfo?.yandexCategoryWear,
+    dressInfo?.yandexCategoryBrand,
+    "dressInfo?.mainRegionId,    dressInfo?.mainSubRegionId,    dressInfo?.yandexGenderId,    dressInfo?.yandexCategoryWear,    dressInfo?.yandexCategoryBrand, ");
   useEffect(() => {
     setState({ ...state, clearPrice: false });
     setMinPrice(Number(getMapsInfo?.budget?.min_price));
@@ -126,7 +131,7 @@ export default function YandexFilter({ getMapsInfo }) {
   const sendPriceList = () => {
     setDressInfo({ ...dressInfo, yandexRangePrice: values });
   };
-
+  console.log(dressInfo?.yandexRangePrice, 'dressInfo?.yandexRangePrice--map');
   // ----------------------Brend State Management----------------------
 
   const [selectBrand, setSelectBrand] = useState();
@@ -254,9 +259,11 @@ export default function YandexFilter({ getMapsInfo }) {
         </div>
 
         <button
-          className="w-[190px] gap-x-1 px-2 h-[44px] rounded-xl bg-btnBgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group ml-2"
+          className="w-[190px] gap-x-1 px-2 h-[44px] overflow-hidden rounded-xl bg-btnBgColor  border-searchBgColor border  flex items-center justify-between  cursor-pointer select-none group ml-2"
           onClick={openPrizeModal}
         >
+          {dressInfo?.yandexRangePrice?.length > 2 && <div className={` absolute font-AeonikProRegular categoryLinearPrice left-0 w-full h-full z-[10] top-0`}></div>}
+
           <span className=" flex items-center ">
             <DollorIcons colors={"#000"} />
           </span>
