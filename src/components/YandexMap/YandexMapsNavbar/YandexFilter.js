@@ -365,12 +365,16 @@ export default function YandexFilter({ getMapsInfo }) {
                       {t("YFfrom")}
                     </span>
                     <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-                      <input
+                      {/* <input
                         name="name"
                         className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                         // defaultValue={Number(values[0]).toLocaleString()}
                         value={Number(values[0]).toLocaleString()}
-                      />{" "}
+                      />{" "} */}
+                      <span className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                      >
+                        {Number(values[0]).toLocaleString()}
+                      </span>
                       {t("YFsumm")}
                     </span>
                   </div>
@@ -379,12 +383,16 @@ export default function YandexFilter({ getMapsInfo }) {
                       {t("YFto")}
                     </span>
                     <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-                      <input
+                      {/* <input
                         name="name"
                         className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                         // defaultValue={Number(values[1]).toLocaleString()}
                         value={Number(values[1]).toLocaleString()}
-                      />
+                      /> */}
+                      <span className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                      >
+                        {Number(values[1]).toLocaleString()}
+                      </span>
                       {t("YFsumm")}
                     </span>
                   </div>

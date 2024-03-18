@@ -582,25 +582,33 @@ function FilterList({
                       <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#000] ">
                         {t("FL_after")}
                       </span>
-                      <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black">
-                        <input
+                      <div className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black">
+                        {/* <input
                           name="min_price"
                           className="w-[100px] md:w-[66px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                           value={Number(values[0]).toLocaleString()}
-                        />{" "}
-                      </span>
+                        />{" "} */}
+                        <span className="w-[100px] md:w-[66px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                        >
+                          {Number(values[0]).toLocaleString()}
+                        </span>
+                      </div>
                     </div>
                     <div className="flex ">
                       <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
                         {t("FL_before")}
                       </span>
-                      <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black">
-                        <input
+                      <div className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-sm leading-3 text-center text-black">
+                        {/* <input
                           name="max_price"
                           className="w-[120px] md:w-[94px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
                           value={Number(values[1]).toLocaleString()}
-                        />
-                      </span>
+                        /> */}
+                        <span className="w-[120px] md:w-[94px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
+                        >
+                          {Number(values[1]).toLocaleString()}
+                        </span>
+                      </div>
                     </div>
                   </div>
                   <Slider

@@ -69,9 +69,8 @@ const CategoryTopDetail = ({
                 data?.id
               );
             }}
-            className={`${
-              filterData?.section?.id === data?.id ? "bg-bgColor" : null
-            } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+            className={`${filterData?.section?.id === data?.id ? "bg-bgColor" : null
+              } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {languageDetector?.typeLang === "ru" && data?.name_ru}
             {languageDetector?.typeLang === "uz" && data?.name_uz}
@@ -171,9 +170,8 @@ const CategoryTopDetail = ({
                           <BiChevronDown
                             size={22}
                             style={{ color: "#000" }}
-                            className={`${
-                              state?.opensports ? "rotate-[-180deg]" : ""
-                            } duration-200`}
+                            className={`${state?.opensports ? "rotate-[-180deg]" : ""
+                              } duration-200`}
                           />
                         </span>
                       </Popover>
@@ -256,7 +254,7 @@ const CategoryTopDetail = ({
                 type="text"
                 name="name"
                 placeholder="Найти товар"
-                value={searchMarketName}
+                value={searchMarketName || ""}
                 onChange={handleChange}
                 onKeyDown={_handleKeyDownSearch}
                 className="font-AeonikProRegular bg-transparent w-full px-3   h-full text-[12px] md:text-[14px] leading-4"

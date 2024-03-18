@@ -76,7 +76,7 @@ function RegionListYandex({ onClick }) {
       >
         <div className="w-full flex items-center justify-between ">
           <span className="text-black text-xl md:text-2xl not-italic font-AeonikProRegular">
-           {t("YRLselectRegion")}
+            {t("YRLselectRegion")}
           </span>
           <span
             className="select-none cursor-pointer"
@@ -98,21 +98,19 @@ function RegionListYandex({ onClick }) {
               return (
                 <div
                   key={data?.id}
-                  className={`${
-                    data.id || data.sub_regions.id ? "" : ""
-                  } w-full h-fit `}
+                  className={`${data.id || data.sub_regions.id ? "" : ""
+                    } w-full h-fit `}
                 >
                   <div
-                    className={`flex items-center ${
-                      data?.id === 2 ? "" : "opacity-50"
-                    } `}
+                    className={`flex items-center ${data?.id === 2 ? "" : "opacity-50"
+                      } `}
                   >
                     <div
                       onClick={
                         data?.id === 2
                           ? () => {
-                              accordionCityList(data?.id);
-                            }
+                            accordionCityList(data?.id);
+                          }
                           : null
                       }
                       className="w-full cursor-pointer flex items-center  border-b border-[#F0F0F0] "
@@ -133,7 +131,7 @@ function RegionListYandex({ onClick }) {
                             id={data?.name_uz}
                             type="radio"
                             name="region"
-                            value={data?.id}
+                            value={data?.id || ""}
                             checked={
                               dressInfo?.mainSubRegionId
                                 ? false
@@ -167,11 +165,10 @@ function RegionListYandex({ onClick }) {
                         </div>
                       )}
                       <span
-                        className={`${
-                          activeIndex === data?.id
-                            ? "rotate-[-0deg] duration-300"
-                            : "rotate-[-180deg] duration-300"
-                        } ml-auto`}
+                        className={`${activeIndex === data?.id
+                          ? "rotate-[-0deg] duration-300"
+                          : "rotate-[-180deg] duration-300"
+                          } ml-auto`}
                       >
                         <ArrowTopIcons colors={"#a1a1a1"} />
                       </span>
@@ -179,11 +176,10 @@ function RegionListYandex({ onClick }) {
                   </div>
                   <div
                     className={`w-full grid grid-cols-2 xs:grid-cols-3 duration-[400ms]
-                              ${
-                                activeIndex === data?.id
-                                  ? "openAccardion"
-                                  : "CloseAccardion"
-                              } `}
+                              ${activeIndex === data?.id
+                        ? "openAccardion"
+                        : "CloseAccardion"
+                      } `}
                   >
                     {data?.sub_regions?.map((item) => {
                       return (
@@ -206,7 +202,7 @@ function RegionListYandex({ onClick }) {
                               type="radio"
                               id={item?.name_ru}
                               name="Subregion"
-                              value={item?.region_id}
+                              value={item?.region_id || ""}
                               checked={dressInfo?.mainSubRegionId == item?.id}
                               className="w-4 h-4 border border-borderColor  cursor-pointer  flex items-center justify-center"
                               onChange={(e) => {

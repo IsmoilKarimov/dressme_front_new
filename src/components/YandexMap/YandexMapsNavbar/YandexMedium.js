@@ -280,7 +280,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
                 autoComplete="search"
                 placeholder={t("YMsearch")}
                 className="bg-transparent w-full px-3 h-[44px] text-sm border  md:border-searchBgColor placeholder:font-AeonikProRegular"
-                value={searchMarketName}
+                value={searchMarketName || ""}
                 onChange={handleChange}
                 onKeyDown={_handleKeyDownSearchYandex}
               />

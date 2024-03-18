@@ -521,7 +521,7 @@ export default function CatalogItems() {
                     type="text"
                     name="name"
                     placeholder="Найти товар"
-                    value={searchMarketName}
+                    value={searchMarketName|| ""}
                     onChange={handleChange}
                     onKeyDown={_handleKeyDownSearch}
                     className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[12px] md:text-[14px] leading-4"

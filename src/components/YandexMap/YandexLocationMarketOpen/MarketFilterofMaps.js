@@ -424,7 +424,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                   <article className="w-full flex justify-between items-center md:pt-[12px]">
                     <figure className="flex items-center cursor-pointer select-none">
                       <p className="not-italic mr-1 font-AeonikProMedium text-base leading-4 text-black">
-                      {t("YFPrice")}
+                        {t("YFPrice")}
                       </p>
                     </figure>
                   </article>
@@ -435,28 +435,36 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                       <div className="flex flex-wrap justify-between items-center mb-3 w-full px-2">
                         <div className="flex">
                           <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#000] ">
-                          {t("YFfrom")}
+                            {t("YFfrom")}
                           </span>
                           <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-                            <input
+                            {/* <input
                               name="min_price"
                               className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                               value={Number(values[0]).toLocaleString()}
                               readOnly
-                            />{" "}
+                            />{" "} */}
+                            <span className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                            >
+                              {Number(values[0]).toLocaleString()}
+                            </span>
                           </span>
                         </div>
                         <div className="flex ">
                           <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
-                          {t("YFto")}
+                            {t("YFto")}
                           </span>
                           <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
-                            <input
+                            {/* <input
                               name="max_price"
                               className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
                               value={Number(values[1]).toLocaleString()}
                               readOnly
-                            />
+                            /> */}
+                            <span className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
+                            >
+                              {Number(values[1]).toLocaleString()}
+                            </span>
                           </span>
                         </div>
                       </div>
@@ -544,7 +552,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
               <input
                 type="text"
                 name="keywords"
-                value={searchBrandName}
+                value={searchBrandName || ""}
                 onChange={(e) => {
                   setSearchBrandName(e.target.value);
                 }}
