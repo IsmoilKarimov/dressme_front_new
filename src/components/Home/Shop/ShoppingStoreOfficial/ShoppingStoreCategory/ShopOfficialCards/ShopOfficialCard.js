@@ -19,7 +19,7 @@ export default function ShopOfficialCard({
   filterToggle,
 }) {
   const [openWearType, setOpenWearType] = useState(false);
-  const [languageDetector, setLanguageDetector] = useContext(
+  const [languageDetector] = useContext(
     LanguageDetectorDress
   );
   const [, setSelectedData] = useContext(MobileSelectedDataContext);
@@ -39,6 +39,7 @@ export default function ShopOfficialCard({
   const setPaginationFunc = (id) => {
     setPageId(+id);
   };
+  
   return (
     <div className="flex flex-col box-border">
       <div

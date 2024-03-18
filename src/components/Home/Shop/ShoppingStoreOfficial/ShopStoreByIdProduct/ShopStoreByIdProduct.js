@@ -8,20 +8,22 @@ export default function ShopStoreByIdProduct() {
   const [dressInfo] = useContext(dressMainData);
   const [getproductName, setGetproductName] = useState(null);
   const params = useParams();
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const [languageDetector] = useContext(LanguageDetectorDress)
 
   useLayoutEffect(() => {
     if (dressInfo?.filterDataProductList?.products) {
       dressInfo?.filterDataProductList?.products?.data?.map(item => {
-        if (params?.product == item?.id) {
+        if (Number(params?.product) === Number(item?.id)) {
           if (languageDetector?.typeLang === 'ru') {
             setGetproductName(item?.name_ru)
-        }
-        if (languageDetector?.typeLang === 'uz') {
+          }
+          if (languageDetector?.typeLang === 'uz') {
             setGetproductName(item?.name_uz)
-        }             }
+          }
+        }
       })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const breadcrumbItems = [
     { label_uz: 'Asosiy', label_ru: 'Главная', url: '/' },

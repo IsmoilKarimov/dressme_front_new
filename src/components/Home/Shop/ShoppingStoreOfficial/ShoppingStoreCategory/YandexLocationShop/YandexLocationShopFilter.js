@@ -8,21 +8,15 @@ import {
 } from "react-yandex-maps";
 import "./LocationOfYandex.css";
 import AddCopyCheckedIcon from "../../../../Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
-import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
-import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext";
 import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
 
 function YandexLocationShopFilter({ filteredData }) {
-    const [dressInfo] = useContext(dressMainData);
-    const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
+    const [locationIdDetector] = useContext(LocationIdDetector)
 
     //------------------------------------------------------------------------------------------------
     const [logaLocation, setLogaLocation] = useState()
     const [placeMarkLocation, setPlaceMarkLocation] = useState([])
-    const [mapState, setMapState] = useState({
-        center: [41.2893580, 69.253175],
-        zoom: 12,
-    })
+   
     //------------------------------------------------------------------------------------------------
     useEffect(() => {
         filteredData?.shop?.approved_shop_locations?.map(item => {

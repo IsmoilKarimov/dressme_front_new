@@ -18,13 +18,13 @@ import { LocationIdDetector } from "../../../../ContextHook/LocationId";
 
 const ShoppingStoreOfficialByLocation = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [data, setData] = useContext(HomeMainDataContext);
+  const [data] = useContext(HomeMainDataContext);
   console.log(dressInfo?.yandexRangePrice, 'dressInfo?.yandexRangePrice--shop');
   const { t } = useTranslation("shops");
-  const [languageDetector, setLanguageDetector] = useContext(
+  const [languageDetector] = useContext(
     LanguageDetectorDress
   );
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress);
+  const [seasonDetector] = useContext(SaesonDetectorDress);
   const [locationIdDetector, setLocationIdDetector] =
     useContext(LocationIdDetector);
 
@@ -109,9 +109,7 @@ const ShoppingStoreOfficialByLocation = () => {
   }, []);
   const paramsIDS = useParams();
   const newId = paramsIDS?.id.replace(":", "");
-  const [data1, setdata1] = useState(null);
-  // console.log(data?.getMainProductCard?.shops, 'category--data?.getMainProductCard?.shops');
-  // console.log(newFilterParamasId, 'category--newFilterParamasId');
+
 
   const refreshLocationId = () => {
     data?.getMainProductCard?.shops?.map((item) => {
@@ -131,7 +129,6 @@ const ShoppingStoreOfficialByLocation = () => {
             ...locationIdDetector,
             locationIdForTest: foundElement?.id,
           });
-          setdata1(foundElement?.id);
         }
         if (!dressInfo?.mainSubRegionId) {
           // console.log(item?.approved_shop_locations[0]?.id, 'category---run2');
@@ -153,6 +150,7 @@ const ShoppingStoreOfficialByLocation = () => {
 
   useEffect(() => {
     refreshLocationId();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     dressInfo?.mainSubRegionId,
     dressInfo?.mainRegionId,
@@ -161,6 +159,7 @@ const ShoppingStoreOfficialByLocation = () => {
 
   useEffect(() => {
     if (!locationIdDetector?.locationIdForTest) refreshLocationId();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dressInfo?.yandexGetMarketId]);
 
   useEffect(() => {
@@ -178,6 +177,7 @@ const ShoppingStoreOfficialByLocation = () => {
         }
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.getMainProductCard?.shops, dressInfo?.yandexGetMarketId]);
 
   useEffect(() => {
@@ -193,28 +193,15 @@ const ShoppingStoreOfficialByLocation = () => {
         }
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [seasonId, setSeasonId] = useState(5);
   const typeFilter = String(seasonDetector?.type)?.split("");
   useEffect(() => {
     setSeasonId(Number(typeFilter?.shift()));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [seasonDetector?.type]);
-  // useEffect(() => {
-  //   const typeFilter = String(seasonDetector?.type)?.split("");
-  //   if (!seasonId) {
-  //     setSeasonId(Number(typeFilter?.shift()))
-  //   }
-  //   if (seasonId && Number(typeFilter?.shift()) !== seasonIdCopy){
-  //     setSeasonId(Number(typeFilter?.shift()))
-  //   }
-  //    setSeasonIdCopy(seasonId)
-  //   // const seasonId = Number(typeFilter?.shift());
 
-  // }, [seasonDetector?.type])
-
-  // console.log(dressInfo?.type, 'seasonId--dressInfo?.type');
-  // console.log(seasonId, 'seasonId');
-  // console.log(seasonIdCopy, 'seasonId--seasonIdCopy');
 
   const url = `https://api.dressme.uz/api`;
   const [loading, setLoading] = useState(true);
@@ -322,6 +309,7 @@ const ShoppingStoreOfficialByLocation = () => {
       fetchGetAllData();
     }
     setInitalParamsId(locationIdDetector?.locationIdForTest);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [locationIdDetector?.locationIdForTest]);
 
   useEffect(() => {
@@ -361,6 +349,7 @@ const ShoppingStoreOfficialByLocation = () => {
         fetchGetAllData();
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [locationIdDetector?.locationIdForTest]);
   useEffect(() => {
     if (openMobileFilter) {

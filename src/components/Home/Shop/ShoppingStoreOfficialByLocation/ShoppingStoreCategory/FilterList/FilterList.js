@@ -13,7 +13,6 @@ import { BsCheckLg } from "react-icons/bs";
 import Slider from "react-slider";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../../../language/LanguageItems";
-import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext";
 import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
 
 function FilterList({
@@ -35,12 +34,12 @@ function FilterList({
   setOpenMobileFilter,
 
 }) {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+  const [dressInfo] = useContext(dressMainData);
   const [getFilter, setGetFilter] = useState();
 
   const { t } = useTranslation("shops")
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
-  const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
+  const [languageDetector] = useContext(LanguageDetectorDress)
+  const [locationIdDetector] = useContext(LocationIdDetector)
 
   // ------------------------
   const [genderToggle, setGenderToggle] = useState(false);
@@ -102,6 +101,7 @@ function FilterList({
         fetchGetAllData();
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterToggle, openMobileFilter]);
 
   useEffect(() => {
@@ -109,9 +109,10 @@ function FilterList({
       setFilterToggle(false);
       setGetFilter();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [locationIdDetector?.locationIdForTest]);
 
-  const [genderCategory, setGenderCategory] = useState([
+  const [genderCategory] = useState([
     {
       id: 1,
       action: false,
@@ -122,7 +123,7 @@ function FilterList({
       id: 2,
       action: false,
       name_ru: "Женщинам",
-      name_uz: "Ayol",
+      name_uz: "Ayollar",
     },
     {
       id: 3,
@@ -142,7 +143,7 @@ function FilterList({
     setGenderNewList([]);
     genderCategory?.map((item) => {
       getFilter?.gender_ids?.map((data) => {
-        if (item?.id == data) {
+        if (Number(item?.id) === Number(data)) {
           if (!genderNewList) {
             setGenderNewList((genderNewList) => [...genderNewList, item]);
           }
@@ -152,6 +153,7 @@ function FilterList({
         }
       });
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getFilter]);
 
   const handleGenderCheck = (value) => {
@@ -185,7 +187,7 @@ function FilterList({
     setDataColor([]);
   };
 
-  const [categories, setCategories] = useState([
+  const [categories] = useState([
     { id: 1, name_uz: "Bosh kiyimlar", name_ru: "Головные уборы" },
     { id: 2, name_uz: "Ustki kiyimlar", name_ru: "Верхняя одежда" },
     { id: 3, name_uz: "Pastki kiyimlar", name_ru: "Нижняя одежда" },
@@ -206,6 +208,7 @@ function FilterList({
         }
       });
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getFilter]);
 
   const handleCategoryCheck = (value) => {
@@ -231,6 +234,7 @@ function FilterList({
     } else {
       setValues([0, 0]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getFilter]);
 
   useEffect(() => {
@@ -239,6 +243,7 @@ function FilterList({
         setClearPrice(true);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values]);
 
   const sendPriceList = () => {
@@ -394,6 +399,7 @@ function FilterList({
       ClearAll();
       setGetFilter();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [locationIdDetector?.locationIdForTest]);
   return (
     <div

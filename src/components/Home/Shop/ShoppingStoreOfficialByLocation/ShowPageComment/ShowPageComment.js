@@ -21,7 +21,7 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
 
   const { t } = useTranslation("shops");
 
-  const [reFreshTokenFunc, setUserLogedIn] = useContext(
+  const [reFreshTokenFunc] = useContext(
     UserRefreshTokenContext
   );
 

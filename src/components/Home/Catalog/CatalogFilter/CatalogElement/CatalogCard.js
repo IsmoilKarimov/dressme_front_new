@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { HomeMainDataContext } from "../../../../../ContextHook/HomeMainData";
 import { CollectionCardItem } from "../../../Main/WearCollectionCard/CollectionCardItem";
-import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import WearType from "../../../Main/WearCollectionCard/WearType";
@@ -12,8 +11,7 @@ export default function CatalogCard({
   paramsId,
   filterToggle,
 }) {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
+  const [wishList, setWishlist] = useContext(HomeMainDataContext);
   const [openWearType, setOpenWearType] = useState(false);
   const toggle = React.useCallback(() => setOpenWearType(false), []);
 
@@ -31,24 +29,21 @@ export default function CatalogCard({
     <main className="flex flex-col box-border mt-2 mb-12 md:mb-0">
       <div
         onClick={() => setOpenWearType(false)}
-        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-          openWearType ? "" : "hidden"
-        }`}
+        className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openWearType ? "" : "hidden"
+          }`}
       ></div>
       <section
-        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
-          openWearType ? "bottom-0" : "bottom-[-800px] z-0"
-        }`}
+        className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openWearType ? "bottom-0" : "bottom-[-800px] z-0"
+          }`}
       >
         <WearType onClick={toggle} />
       </section>
 
       <section
-        className={`flex flex-wrap justify-between md:grid ${
-          filterToggle
+        className={`flex flex-wrap justify-between md:grid ${filterToggle
             ? "md:grid-cols-4 md:gap-x-2"
             : "md:grid-cols-5 md:gap-x-5"
-        } gap-y-[9px] lg:gap-y-3 mt-1 md:mt-8`}
+          } gap-y-[9px] lg:gap-y-3 mt-1 md:mt-8`}
       >
         {filterData?.category_products?.data?.length ? (
           filterData?.category_products?.data?.map((data) => {
@@ -89,15 +84,13 @@ export default function CatalogCard({
                       setPaginationFunc(newPageId);
                     }
                   }}
-                  className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-4 w-fit md:min-w-[45px] border h-[35px] md:h-[45px] rounded-lg  ${
-                    item?.active
+                  className={`not-italic font-AeonikProRegular text-sm leading-4 text-center px-4 w-fit md:min-w-[45px] border h-[35px] md:h-[45px] rounded-lg  ${item?.active
                       ? "bg-fullBlue text-white"
                       : "hover:bg-searchBgColor"
-                  } mx - [5px] flex items-center justify-center  ${
-                    item?.url
+                    } mx - [5px] flex items-center justify-center  ${item?.url
                       ? "cursor-pointer"
                       : "opacity-70 cursor-not-allowed"
-                  } `}
+                    } `}
                 >
                   {item?.label}
                 </li>

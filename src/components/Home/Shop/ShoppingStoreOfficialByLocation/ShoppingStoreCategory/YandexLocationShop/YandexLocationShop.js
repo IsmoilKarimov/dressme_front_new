@@ -7,17 +7,11 @@ import {
     Placemark,
 } from "react-yandex-maps";
 import "./LocationOfYandex.css";
-// import { markerIcons } from "../../../../../../../assets";
 import AddCopyCheckedIcon from "../../../../Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
-import { markerIcons } from "../../../../../../assets";
-import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
-import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext";
 import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
-// import AddCopyCheckedIcon from "../AddCopyCheckedIcon/AddCopyCheckedIcon";
 
 function YandexLocationShop({ filteredData }) {
-    const [dressInfo, setDressInfo] = useContext(dressMainData);
-    const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
+    const [locationIdDetector] = useContext(LocationIdDetector)
 
     //------------------------------------------------------------------------------------------------
     const [logaLocation, setLogaLocation] = useState()
@@ -31,7 +25,7 @@ function YandexLocationShop({ filteredData }) {
             }
         })
         setLogaLocation(filteredData?.shop?.url_logo_photo)
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filteredData])
     const addresRef = useRef();
 
@@ -44,7 +38,7 @@ function YandexLocationShop({ filteredData }) {
             top: 0,
         });
     }, []);
-     return (
+    return (
         <div className={`w-full `}>
             <div className={`w-full flex items-center mb-3 mt-4`}>
                 <div className="flex flex-col xs:flex-row xs:items-center gap-x-1 md:gap-x-[6px] ">
@@ -119,16 +113,7 @@ function YandexLocationShop({ filteredData }) {
                     </Map>
                 </YMaps>
             </div>
-            {/* <div className="w-full flex justify-end">
-        <button
-          onClick={handleOpenYandex}
-          className={
-            "w-full md:w-fit text-center active:scale-95 px-5 py-[10px] md:py-3 bg-borderWinter text-white font-AeonikProMedium text-xs md:text-base mt-[15px] rounded-lg"
-          }
-        >
-          Открыть на карте
-        </button>
-      </div> */}
+
         </div>
     );
 }
