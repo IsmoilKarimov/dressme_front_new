@@ -20,7 +20,7 @@ export const StoreListDataContextProvider = ({ children }) => {
   //     }
   //   }, []);
 
-  //   if(Cookies.get("DressmeUserToken")){
+  //   if( localStorage?.getItem("userAccess")){
   //     Cookies.set("WishList", JSON.stringify(wishList), { expires: 99999 });
   //   } else {
   //     Cookies.set("WishList", JSON.stringify(wishList), { expires: 2 });
@@ -36,7 +36,7 @@ export const StoreListDataContextProvider = ({ children }) => {
         method: "GET",
         headers: {
           Accept: "application/json",
-          Authorization: `Token ${Cookies.get("DressmeUserToken")}`,
+          Authorization: `Token ${ localStorage?.getItem("userAccess")}`,
           //   "Content-type": "application/json; charset=UTF-8",
         },
       }).then((res) => res.json());

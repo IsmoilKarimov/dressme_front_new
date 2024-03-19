@@ -13,6 +13,7 @@ import CatalogByIdProduct from "../components/Home/Catalog/CatalogFilter/Catalog
 // import FavouriteByIdProduct from "../components/Home/Favorite/FavouriteByIdProduct/FavouriteByIdProduct";
 // import ShopStoreByLocationProduct from "../components/Home/Shop/ShoppingStoreOfficialByLocation/ShopStoreByLocationProduct/ShopStoreByLocationProduct";
 import FavouriteByIdProduct from "../components/Home/Favorite/FavouriteByIdProduct/FavouritByIdProduct"
+import { ProtectedRoute } from "./protected-route";
 const HomeIndex = React.lazy(() => import("../components/Home/Main"));
 const SingleMainProduct = React.lazy(() =>
   import("../components/Home/Products/SignleMainProducts")
@@ -73,6 +74,16 @@ const RouterMain = () => {
     <Fragment>
       <Header />
       <Routes>
+
+        <Route path="/profile/settings" element={
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>} />
+        <Route path="/profile/edit" element={
+          <ProtectedRoute>
+            <EditProfilePage />
+          </ProtectedRoute>} />
+
         <Route
           path="/"
           element={
@@ -177,8 +188,6 @@ const RouterMain = () => {
           }
         />
 
-        <Route path="/profile/settings" element={<ProfilePage />} />
-        <Route path="/profile/edit" element={<EditProfilePage />} />
 
         <Route
           path="/favourites"
@@ -335,7 +344,7 @@ const RouterMain = () => {
             </Suspense>
           }
         />
-      <Route path="*" element={<Navigate to={"/"} />} />
+        <Route path="*" element={<Navigate to={"/"} />} />
       </Routes>
 
       {locationWindow !== "/add_user_private_data" &&

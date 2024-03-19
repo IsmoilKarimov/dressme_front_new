@@ -193,7 +193,7 @@ const YandexTop = ({ onClick }) => {
           </span>
         </button>
         <div className="line h-5 border text-textColor ml-6"></div>
-        {Cookies.get("DressmeUserToken") && (
+        { localStorage?.getItem("userAccess") && (
           <NavLink to="/my-order" className="flex items-center h-full  ml-6 ">
             <span className="mr-2">
               <MyPurchaseIcons colors={"#707070"} />

@@ -11,7 +11,7 @@ export const useHttp = () => {
         token = false,
     }) => {
         if (token) {
-            headers["authorization"] = `Bearer ${Cookies.get("DressmeUserToken")}`;
+            headers["authorization"] = `Bearer ${ localStorage?.getItem("userAccess")}`;
             headers["Content-type"] = "application/json";
             headers["Accept"] = "application/json";
         }

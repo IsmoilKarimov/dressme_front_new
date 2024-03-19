@@ -74,6 +74,8 @@ export default function SignIn() {
             });
           } else if (res?.access_token) {
             setLoading(false);
+            localStorage.setItem("userAccess", res?.access_token)
+            localStorage.setItem("userRefresh", res?.refresh_token)
             Cookies.set("DressmeUserToken", res?.access_token);
             Cookies.set("DressmeUserRefreshToken", res?.refresh_token);
             toast.success(`Успешный вход в систему`, {
@@ -141,10 +143,10 @@ export default function SignIn() {
           </div>
           <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
-              className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black focus:bg-white placeholder-bg-white"
+              className=" !bg-white w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black focus:bg-white placeholder-bg-white"
               type="email"
               name="email"
-              autoComplete="email"
+              autoComplete="on"
               value={state.email || ""}
               onChange={({ target: { value } }) => {
                 setError();
@@ -169,11 +171,11 @@ export default function SignIn() {
           </div>
           <div className="mt-[6px] px-[16px] w-full flex items-center border border-searchBgColor rounded-lg ">
             <input
-              className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+              className=" !bg-white w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
               type={state?.eyesShow ? "password" : "text"}
               // placeholder="Enter your password"
               name="password"
-              autoComplete="password"
+              autoComplete="on"
               value={state.password || ""}
               onChange={({ target: { value } }) => {
                 setError();

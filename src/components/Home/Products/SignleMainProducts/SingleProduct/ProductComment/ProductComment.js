@@ -37,7 +37,7 @@ export default function ProductComment({ data, refetch }) {
       headers: {
         Accept: "application/json",
         "Content-type": "application/json",
-        Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
+        Authorization: `Bearer ${ localStorage?.getItem("userAccess")}`,
       },
       body: JSON.stringify({
         score: rateRef.current.state.value,
@@ -146,7 +146,7 @@ export default function ProductComment({ data, refetch }) {
               {t("product_reviews")}
             </p>
 
-            {Cookies.get("DressmeUserToken") ? (
+            { localStorage?.getItem("userAccess") ? (
               <button
                 onClick={() => setOpenComment(true)}
                 type="button"

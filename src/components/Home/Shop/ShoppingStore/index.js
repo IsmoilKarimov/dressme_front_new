@@ -50,7 +50,7 @@ export default function ShoppingStore() {
       .get(apiUrl, {
         headers: {
           'Accept-Language': languageDetector?.typeLang,
-          Authorization: `Token ${Cookies.get("DressmeUserToken")}`
+          Authorization: `Token ${ localStorage?.getItem("userAccess")}`
         },
         params: params,
       })

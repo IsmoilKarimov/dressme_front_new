@@ -47,7 +47,7 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
       headers: {
         Accept: "application/json",
         "Content-type": "application/json",
-        Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
+        Authorization: `Bearer ${ localStorage?.getItem("userAccess")}`,
       },
       body: JSON.stringify({
         score: rateRef.current.state.value,
@@ -136,7 +136,7 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
               <p className="not-italic font-AeonikProMedium text-base md:text-2xl leading-7 text-black track%]">
                 {t("reviews_of_stores")}
               </p>
-              {Cookies.get("DressmeUserToken") ? (
+              { localStorage?.getItem("userAccess") ? (
                 <button
                   onClick={() => setOpenComment(true)}
                   type="button"
@@ -189,7 +189,7 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
             </Modal>
           </section>
           <section>
-            {Cookies.get("DressmeUserToken") ? (
+            { localStorage?.getItem("userAccess") ? (
               <button
                 onClick={() => setAddComment(true)}
                 type="button"

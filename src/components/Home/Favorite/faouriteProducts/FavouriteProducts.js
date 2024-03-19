@@ -54,7 +54,7 @@ export default function FavouriteProducts() {
       >
         <section className="w-full flex items-center justify-center flex-col">
           {wishList?.length ? (
-            Cookies.get("DressmeUserToken") ? (
+             localStorage?.getItem("userAccess") ? (
               <article className="w-full flex flex-wrap justify-between md:justify-start md:mx-0 md:mt-[50px] gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 ">
                 {mainData?.products?.map((data) => {
                   if (wishList?.includes(data?.id)) {
@@ -211,7 +211,7 @@ export default function FavouriteProducts() {
                                   : " bottom-[8px] ls:bottom-[-17px]"
                               } md:bottom-2`}
                             >
-                              {Cookies.get("DressmeUserToken") && (
+                              { localStorage?.getItem("userAccess") && (
                                 <button
                                   onClick={() => {
                                     if (wishList?.includes(data?.id)) {

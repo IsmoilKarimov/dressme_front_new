@@ -190,7 +190,7 @@ const NavMenu = ({ stateData, setStateData }) => {
         <li className="w-[72px] h-[56px]">
           <NavLink
             to={
-              Cookies.get("DressmeUserToken") ? "/profile/settings" : "/sign_in"
+               localStorage?.getItem("userAccess") ? "/profile/settings" : "/sign_in"
             }
             onClick={() => setStateData({ ...stateData, hamburgerMenu: false })}
             className="w-full h-full flex items-center justify-center text-center "
