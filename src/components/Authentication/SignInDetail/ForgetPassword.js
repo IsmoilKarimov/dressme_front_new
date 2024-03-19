@@ -80,7 +80,7 @@ export default function ForgetPassword() {
           },
           onError: (err) => {
             // message.error("введите правильный адрес электронной почты")
-            console.log(err, "err");
+            // console.log(err, "err");
             setLoading(false);
             toast.error("введите правильный адрес электронной почты", {
               position: "top-right",
@@ -92,6 +92,8 @@ export default function ForgetPassword() {
               progress: undefined,
               theme: "light",
             });
+            throw new Error(err || "something wrong");
+
           },
         }
       );

@@ -45,6 +45,8 @@ export const UserRefreshTokenContextProvider = ({ children }) => {
           // console.log("Logged out");
           window.location.reload();
         }
+        throw new Error(error || "something wrong");
+
       }
     }
   };

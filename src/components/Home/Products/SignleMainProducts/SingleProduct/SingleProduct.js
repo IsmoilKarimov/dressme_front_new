@@ -85,6 +85,8 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
         .catch((error) => {
           setLoading(false);
           // console.log(error, 'singlepage error');
+          throw new Error(error || "something wrong");
+
         });
     }
   }, [paramsId?.product]);
@@ -105,6 +107,8 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
       .catch((error) => {
         setLoading(false);
         // console.log(error);
+        throw new Error(error || "something wrong");
+
       });
   };
 

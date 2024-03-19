@@ -58,7 +58,7 @@ export default function CollectionCards() {
     navigate(`/product/${child}`);
   }
 
-  console.log(dressInfo.mainSearchName, "dressInfo.mainSearchName");
+  // console.log(dressInfo.mainSearchName, "dressInfo.mainSearchName");
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <div
@@ -114,7 +114,7 @@ export default function CollectionCards() {
           <section className="w-full  hidden md:flex justify-start items-center mb-[24px] md:mb-0 md:px-0">
             <div className="not-italic font-AeonikProMedium lg:w-fit lg:text-2xl xl:text-3xl flex items-center leading-8 text-black">
               <p>{t("CCclothesText")}</p>
-            </div>
+            </div> 
           </section>
         ) : null}
 
@@ -132,8 +132,7 @@ export default function CollectionCards() {
               data?.products?.map((data) => {
                 return (
                   <CollectionCardItem
-                    setDressInfo={setDressInfo}
-                    dressInfo={dressInfo}
+                    
                     key={data?.id}
                     data={data}
                     setOpenWearType={setOpenWearType}

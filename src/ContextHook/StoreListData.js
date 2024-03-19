@@ -49,7 +49,7 @@ export const StoreListDataContextProvider = ({ children }) => {
         setData(res);
       },
       onError: (err) => {
-        // console.log(err, "err");
+        throw new Error(err || "something wrong");
       },
       keepPreviousData: true,
       refetchOnWindowFocus: true,

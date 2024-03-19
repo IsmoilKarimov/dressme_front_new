@@ -108,12 +108,7 @@ export default function YandexFilter({ getMapsInfo }) {
     dressInfo?.yandexCategoryWear,
     dressInfo?.yandexCategoryBrand,
   ]);
-  console.log(dressInfo?.mainRegionId,
-    dressInfo?.mainSubRegionId,
-    dressInfo?.yandexGenderId,
-    dressInfo?.yandexCategoryWear,
-    dressInfo?.yandexCategoryBrand,
-    "dressInfo?.mainRegionId,    dressInfo?.mainSubRegionId,    dressInfo?.yandexGenderId,    dressInfo?.yandexCategoryWear,    dressInfo?.yandexCategoryBrand, ");
+
   useEffect(() => {
     setState({ ...state, clearPrice: false });
     setMinPrice(Number(getMapsInfo?.budget?.min_price));
@@ -131,7 +126,6 @@ export default function YandexFilter({ getMapsInfo }) {
   const sendPriceList = () => {
     setDressInfo({ ...dressInfo, yandexRangePrice: values });
   };
-  console.log(dressInfo?.yandexRangePrice, 'dressInfo?.yandexRangePrice--map');
   // ----------------------Brend State Management----------------------
 
   const [selectBrand, setSelectBrand] = useState();
@@ -228,7 +222,7 @@ export default function YandexFilter({ getMapsInfo }) {
             onChange={(e) => {
               setDressInfo({ ...dressInfo, yandexCategoryWear: e });
             }}
-            onSearch={onSearch}
+            // onSearch={onSearch}
             // suffixIcon={<></>}
             allowClear
             value={dressInfo?.yandexCategoryWear}
@@ -364,37 +358,37 @@ export default function YandexFilter({ getMapsInfo }) {
                     <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-[#555] ">
                       {t("YFfrom")}
                     </span>
-                    <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                    <div className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                       {/* <input
                         name="name"
                         className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                         // defaultValue={Number(values[0]).toLocaleString()}
                         value={Number(values[0]).toLocaleString()}
                       />{" "} */}
-                      <span className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                      <span className="w-[90px] outline-none h-[32px] flex items-center justify-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                       >
                         {Number(values[0]).toLocaleString()}
                       </span>
                       {t("YFsumm")}
-                    </span>
+                    </div>
                   </div>
                   <div className="flex ">
                     <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
                       {t("YFto")}
                     </span>
-                    <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                    <div className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                       {/* <input
                         name="name"
                         className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                         // defaultValue={Number(values[1]).toLocaleString()}
                         value={Number(values[1]).toLocaleString()}
                       /> */}
-                      <span className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                      <span className="w-[100px] outline-none h-[32px] justify-center flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                       >
                         {Number(values[1]).toLocaleString()}
                       </span>
                       {t("YFsumm")}
-                    </span>
+                    </div>
                   </div>
                 </div>
                 <div className="relative z-50 mb-[6px] w-[350px] ">

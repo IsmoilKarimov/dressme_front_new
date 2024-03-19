@@ -148,10 +148,10 @@ const ShoppingStoreOfficial = () => {
       }
     });
   };
-  console.log(
-    locationIdDetector?.locationIdForTest,
-    "locationIdParams=-----dressInfo"
-  );
+  // console.log(
+  //   locationIdDetector?.locationIdForTest,
+  //   "locationIdParams=-----dressInfo"
+  // );
 
   useEffect(() => {
     refreshLocationId();

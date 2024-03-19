@@ -212,7 +212,7 @@ export default function CatalogItems() {
   const typeFilter = String(seasonDetector?.type)?.split("");
   const seasonId = Number(typeFilter?.shift());
 
-  console.log(seasonId, "seasonId");
+  // console.log(seasonId, "seasonId");
 
   const apiUrl = `https://api.dressme.uz/api/main/category/${newFilterParamasId}`;
   // setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });

@@ -108,6 +108,8 @@ const TopHeader = () => {
       },
       onError: (err) => {
         // console.log(err, "ERR-PROFILE");
+        throw new Error(err || "something wrong");
+
       },
       keepPreviousData: true,
       refetchOnWindowFocus: false,

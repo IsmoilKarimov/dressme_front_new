@@ -48,6 +48,8 @@ const MobileAllComments = () => {
       },
       onError: (err) => {
         // console.log(err, "err");
+        throw new Error(err || "something wrong");
+
       },
       keepPreviousData: true,
       refetchOnWindowFocus: true,
@@ -99,6 +101,8 @@ const MobileAllComments = () => {
           // console.log(err, "ERROR");
           rateRef.current.state.value = 1;
           textRef.current.value = null;
+          throw new Error(err || "something wrong");
+
         },
       }
     );

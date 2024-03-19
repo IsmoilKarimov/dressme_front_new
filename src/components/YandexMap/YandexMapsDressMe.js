@@ -63,7 +63,7 @@ function YandexMapsDressMe() {
     () => setMarketsFilterMaps(false),
     []
   );
-  console.log(mapslist, 'mapslist');
+  // console.log(mapslist, 'mapslist');
   // request get
   const [FilterSearchByBrand, setFilterSearchByBrand] = useState({});
   const [getAllImgGallery, setGetAllImgGallery] = useState();
@@ -106,7 +106,10 @@ function YandexMapsDressMe() {
       .then((res) => {
         setMapslist(res);
       })
-      .catch((err) => console.log(err, "ERRORLIST"));
+      .catch((err) =>{
+        throw new Error(err || "something wrong");
+
+      });
   };
 
   useEffect(() => {

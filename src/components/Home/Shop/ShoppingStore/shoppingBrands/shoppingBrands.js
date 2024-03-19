@@ -24,7 +24,7 @@ const ShoppingBrands = ({ loading, setLoading }) => {
 
   const { t } = useTranslation("shops");
   const goDetail = (id, name) => {
-    console.log("RUN-------shops");
+    // console.log("RUN-------shops");
     // console.log(name?.split(' ')?.join('-'), "name");
 
     dressInfo?.shopsData?.shops?.data
