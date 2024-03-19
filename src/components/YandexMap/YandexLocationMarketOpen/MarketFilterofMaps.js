@@ -471,7 +471,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                       <Slider
                         className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] my-5`}
                         onChange={setValues}
-                        value={values}
+                        value={values|| ""}
                         minDistance={10}
                         min={Number(minPrice)}
                         max={Number(maxPrice)}

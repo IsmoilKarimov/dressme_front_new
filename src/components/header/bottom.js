@@ -553,7 +553,7 @@ function BottomHeader() {
                   <Slider
                     className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] mt-[10px]`}
                     onChange={setValues}
-                    value={values}
+                    value={values|| ""}
                     minDistance={10}
                     min={Number(minPrice)}
                     max={Number(maxPrice)}
