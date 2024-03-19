@@ -7,17 +7,11 @@ import {
     Placemark,
 } from "react-yandex-maps";
 import "./LocationOfYandex.css";
-// import { markerIcons } from "../../../../../../../assets";
-import AddCopyCheckedIcon from "../../../../Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
-import { markerIcons } from "../../../../../../assets";
-import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
-import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext";
+ import AddCopyCheckedIcon from "../../../../Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
 import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
-// import AddCopyCheckedIcon from "../AddCopyCheckedIcon/AddCopyCheckedIcon";
-
+ 
 function YandexLocationShop({ filteredData }) {
-    const [dressInfo, setDressInfo] = useContext(dressMainData);
-    const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
+     const [locationIdDetector,  ] = useContext(LocationIdDetector)
 
     //------------------------------------------------------------------------------------------------
     const [logaLocation, setLogaLocation] = useState()
@@ -44,7 +38,7 @@ function YandexLocationShop({ filteredData }) {
             top: 0,
         });
     }, []);
-     return (
+    return (
         <div className={`w-full `}>
             <div className={`w-full flex items-center mb-3 mt-4`}>
                 <div className="flex flex-col xs:flex-row xs:items-center gap-x-1 md:gap-x-[6px] ">
@@ -57,7 +51,7 @@ function YandexLocationShop({ filteredData }) {
                             {
                                 filteredData?.shop?.approved_shop_locations?.filter(e => e?.id === locationIdDetector?.locationIdForTest)?.map(item => {
                                     return (
-                                        <p className="text-sm font-AeonikProRegular ">
+                                        <p key={item?.address} className="text-sm font-AeonikProRegular ">
                                             {item?.address}
                                         </p>
                                     )
