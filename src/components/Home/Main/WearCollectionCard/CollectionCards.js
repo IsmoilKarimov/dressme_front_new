@@ -129,7 +129,6 @@ export default function CollectionCards() {
           >
             {data?.products?.length ? (
               data?.products?.map((data) => {
-                console.log(data,"data-main");
                 return (
                   <CollectionCardItem      
                     key={data?.id}

@@ -9,7 +9,6 @@ import {
 import "./LocationOfYandex.css";
 import AddCopyCheckedIcon from "../../../../Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
-import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext";
 import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
 
 function YandexLocationShopFilter({ filteredData }) {
@@ -56,9 +55,9 @@ function YandexLocationShopFilter({ filteredData }) {
                             className="text-[#000] not-italic font-AeonikProRegular text-[14px] xs:text-base "
                         >
                             {
-                                filteredData?.shop?.approved_shop_locations?.filter(e => e?.id === locationIdDetector?.locationIdForTest)?.map(item => {
+                                filteredData?.shop?.approved_shop_locations?.filter(e => e?.id === locationIdDetector?.locationIdForTest)?.map((item,index) => {
                                     return (
-                                        <p className="text-sm font-AeonikProRegular ">
+                                        <p key={index} className="text-sm font-AeonikProRegular ">
                                             {item?.address}
                                         </p>
                                     )

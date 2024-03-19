@@ -218,11 +218,10 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
             id="comment"
             className="flex justify-between flex-wrap w-full h-fit overflow-hidden"
           >
-            {filteredData?.shop?.ratings?.map((allComments) => {
-              // console.log(filteredData?.shop, "Allcomments");
+            {filteredData?.shop?.ratings?.map((allComments,index) => {
               return (
                 <article
-                  key={allComments.id}
+                  key={index}
                   className="w-full md:w-[45%] h-fit border md:border-0 md:border-b border-borderColor2 rounded-lg md:rounded-none p-[15px] pr-5 md:pb-10 mt-4 md:mt-10 "
                 >
                   <article className="flex md:flex-col items-center md:items-start justify-between md:justify-start">
@@ -244,7 +243,11 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
                       <p className="hidden md:flex items-center">
                         {Array.from("55555").map((item, i) => {
                           if (i + 1 <= allComments?.score) {
-                            return <StarIcons />;
+                            return (
+                              <span key={i}>
+                                <StarIcons />
+                              </span>
+                            );
                           }
                         })}
                       </p>
