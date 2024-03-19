@@ -67,7 +67,7 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
           // console.log(res, "RES");
           // refetch();
           if (res.status === 401 || res.status === 403) {
-            reFreshTokenFunc();
+            // reFreshTokenFunc();
             sendFunc();
           }
           if (!res?.errors) {

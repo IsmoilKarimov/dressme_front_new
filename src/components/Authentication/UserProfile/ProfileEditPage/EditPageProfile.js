@@ -96,45 +96,7 @@ const EditProfilePage = () => {
   const url = "https://api.dressme.uz/api/user";
 
   // ----------------GET USER PROFILE-------------
-
-  // useEffect(() => {
-  //   if (!profileContextData) {
-  //     setLoading(true);
-  //     axios(`${url}/profile`, {
-  //       headers: {
-  //         Authorization: `Bearer ${ localStorage?.getItem("userAccess")}`,
-  //       },
-  //     })
-  //       .then((res) => {
-  //         setProfileContextData(res?.data);
-  //         setLoading(false);
-  //       })
-  //       .catch((err) => {
-  //         setLoading(false);
-  //         // console.log(err);
-  //         if (err?.response?.status === 401 || err?.response?.status === 403) {
-  //           reFreshTokenFunc();
-  //           // navigate("/sign_in");
-  //           // toast.error(`${err?.response?.data?.message}`, {
-  //           //   position: "top-right",
-  //           //   autoClose: 5000,
-  //           //   hideProgressBar: false,
-  //           //   closeOnClick: true,
-  //           //   pauseOnHover: true,
-  //           //   draggable: true,
-  //           //   progress: undefined,
-  //           //   theme: "light",
-  //           // });
-  //         } else {
-  //           Cookies.remove("DressmeUserToken");
-  //           Cookies.remove("DressmeUserRefreshToken");
-  //           navigate("/sign_in");
-  //         }
-  //         throw new Error(err || "something wrong");
-
-  //       });
-  //   }
-  // }, []);
+ 
   const fetchData = async (customHeaders) => {
     try {
       const response = await axiosInstance.get("/profile", {
@@ -153,10 +115,11 @@ const EditProfilePage = () => {
     Authorization: `Bearer ${localStorage.getItem("userAccess")}`, // Add other headers as needed
   };
 
-  useQuery(["get_profile_list2"], () => fetchData(customHeaders), {
+  useQuery(["get_profile_list21"], () => fetchData(customHeaders), {
     onSuccess: (data) => {
       if (data?.status >= 200 && data?.status < 300) {
         setProfileContextData(data?.data)
+        console.log(data?.data,'data?.data');
       }
     },
     onError: (error) => {
@@ -165,7 +128,7 @@ const EditProfilePage = () => {
     keepPreviousData: true,
     refetchOnWindowFocus: false,
   });
-  console.log("run profile", profileContextData);
+  console.log("run profile", profileContextData);   
   useEffect(() => {
     let ar = Number(profileContextData?.birth_date?.split("-")[1]);
     setProfileData(profileContextData);
@@ -229,45 +192,6 @@ const EditProfilePage = () => {
       });
   };
 
-  // const { refetch } = useQuery(
-  //   ["get-user-profile"],
-  //   async () => {
-  //     setLoading(true);
-  //     return request({ url: `/user/profile`, token: true });
-  //   },
-  //   {
-  //     onSuccess: (res) => {
-  //       console.log(res, "SUCCESS, GET USER PROFILE");
-  //       let ar = Number(res?.birth_date?.split("-")[1]);
-  //       setProfileData(res);
-  //       setDayValue(parseInt(res?.birth_date));
-  //       setselectMonth({ text: monthList[ar - 1].type, id: ar });
-  //       setSelectYear(res?.birth_date?.split("-")[2]);
-  //       setState({
-  //         ...state,
-  //         userFirstname: res?.name,
-  //         userLastname: res?.surname,
-  //         userEmail: res?.email,
-  //         gender_id: res?.gender_id,
-  //         birth_date: res?.birth_date,
-  //         userPhoneCode: res?.phone && res?.phone.slice(0, 3),
-  //         userPhoneNumber: res?.phone && res?.phone.slice(3, 12),
-  //         // --------------
-  //         userFirstnameForEdit: res?.name,
-  //         userLastnameForEdit: res?.surname,
-  //         userPhoneNumberForEdit: res?.phone && res?.phone.slice(3, 12),
-  //       });
-  //       setLoading(false);
-  //     },
-  //     onError: (err) => {
-  //       setLoading(false);
-  //       console.log(err, "THERE IS AN ERROR IN GET-USER-PROFILE");
-  //     },
-  //     keepPreviousData: true,
-  //     refetchOnWindowFocus: false,
-  //   }
-  // );
-
   let data = state?.userPhoneNumber?.split("-");
   let arr = data?.join("");
   let data1 = arr?.split("(");
@@ -324,7 +248,7 @@ const EditProfilePage = () => {
         } else if (res?.message) {
           if (res?.message === "Unauthenticated.") {
             setProfileContextData(false);
-            reFreshTokenFunc();
+            // reFreshTokenFunc();
             sendEditedData();
             reFetchFunction();
             // console.log(res, "Bu-error edit posttttt");
@@ -349,7 +273,7 @@ const EditProfilePage = () => {
         setLoading(false);
         // console.log(err);
         if (err?.status === 401 || err?.status === 403) {
-          reFreshTokenFunc();
+          // reFreshTokenFunc();
         } else {
           Cookies.remove("DressmeUserToken");
           Cookies.remove("DressmeUserRefreshToken");
@@ -381,7 +305,7 @@ const EditProfilePage = () => {
         setLoading(false);
         // console.log(err);
         if (err?.status === 401 || err?.status === 403) {
-          reFreshTokenFunc();
+          // reFreshTokenFunc();
         } else {
           Cookies.remove("DressmeUserToken");
           Cookies.remove("DressmeUserRefreshToken");
@@ -400,7 +324,7 @@ const EditProfilePage = () => {
           // console.log(res, "USER-EMAIL");
           if (res?.message && !res.errors) {
             if (res?.message === "Unauthenticated.") {
-              reFreshTokenFunc();
+              // reFreshTokenFunc();
               sendEditedEmailData()
               // navigate("/sign_in");
               // toast.error(`${res?.message}`, {
@@ -423,7 +347,7 @@ const EditProfilePage = () => {
             });
           } else if (res?.message && res.errors) {
             if (res?.message === "Unauthenticated.") {
-              reFreshTokenFunc();
+              // reFreshTokenFunc();
               sendEditedEmailData()
               // navigate("/sign_in");
             }
@@ -452,8 +376,9 @@ const EditProfilePage = () => {
 
   const location = useLocation();
   const LogOut = () => {
-    Cookies.remove("DressmeUserToken");
-    Cookies.remove("DressmeUserRefreshToken");
+     
+    localStorage.removeItem("userRefresh")
+    localStorage.removeItem("userAccess")
     setUserLogedIn(false);
     if (location?.pathname?.includes("profile/edit")) {
       navigate("/sign_in");

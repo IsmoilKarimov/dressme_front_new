@@ -65,8 +65,8 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
       {
         onSuccess: (res) => {
           if (res.status === 401 || res.status === 403) {
-            reFreshTokenFunc();
-            sendFunc();
+            // reFreshTokenFunc();
+            // sendFunc();
           }
           if (!res?.errors) {
             toast.success(res?.message);
