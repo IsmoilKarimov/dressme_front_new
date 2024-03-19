@@ -58,7 +58,6 @@ export default function CollectionCards() {
     navigate(`/product/${child}`);
   }
 
-  // console.log(dressInfo.mainSearchName, "dressInfo.mainSearchName");
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <div
@@ -130,9 +129,9 @@ export default function CollectionCards() {
           >
             {data?.products?.length ? (
               data?.products?.map((data) => {
+                console.log(data,"data-main");
                 return (
-                  <CollectionCardItem
-                    
+                  <CollectionCardItem      
                     key={data?.id}
                     data={data}
                     setOpenWearType={setOpenWearType}
