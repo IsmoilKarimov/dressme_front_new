@@ -125,7 +125,7 @@ export default function CollectionCards() {
 
         <div className="w-full flex flex-col box-border ">
           <article
-            className={`flex flex-wrap justify-between md:justify-start mb-[20px] md:mb-[30px] md:mt-[50px] md:mx-0  gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 `}
+            className={`flex flex-wrap justify-between md:justify-start mb-[20px] md:mb-[30px] md:mt-[40px] md:mx-0  gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 `}
           >
             {data?.products?.length ? (
               data?.products?.map((data) => {

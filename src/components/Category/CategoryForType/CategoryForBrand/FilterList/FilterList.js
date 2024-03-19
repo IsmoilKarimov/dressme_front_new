@@ -578,7 +578,7 @@ function FilterList({
                           value={Number(values[0]).toLocaleString()}
                           readOnly
                         />{" "} */}
-                        <span className="w-[66px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1">
+                        <span className="w-[100px] md:w-[66px] outline-none h-[32px] flex items-center justify-center rounded-lg text-center border border-searchBgColor px-[6px] mr-1">
                           {Number(values[0]).toLocaleString()}
                         </span>
                       </div>
@@ -594,7 +594,7 @@ function FilterList({
                           value={Number(values[1]).toLocaleString()}
                           readOnly
                         /> */}
-                        <span className="w-[92px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]">
+                        <span className="w-[120px] md:w-[92px] outline-none h-[32px] flex items-center justify-center rounded-lg text-center border border-searchBgColor px-[6px]">
                           {Number(values[1]).toLocaleString()}
                         </span>
                       </span>
