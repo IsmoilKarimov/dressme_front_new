@@ -51,16 +51,10 @@ const ShoppingTop = ({
   };
 
   const handleClear = () => {
-    // setgetSearchInput("");
     setSearchMarketName("");
     setDressInfo({
       ...dressInfo,
       mainSearchNameshopMarket: "",
-      // mainSearchName: null,
-      // mainSearchNameCategory: null,
-      // mainSearchNameCatalog: null,
-      // mainSearchNameshop: null,
-      // mainSearchNameshopLocation: null,
     });
   };
 

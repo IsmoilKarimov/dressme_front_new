@@ -223,11 +223,10 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
             id="comment"
             className="flex justify-between flex-wrap w-full h-fit overflow-hidden"
           >
-            {filteredData?.shop?.ratings?.map((allComments) => {
-              // console.log(filteredData?.shop, "Allcomments");
+            {filteredData?.shop?.ratings?.map((allComments,index) => {
               return (
                 <article
-                  key={allComments.id}
+                  key={index}
                   className="w-full md:w-[45%] h-fit border md:border-0 md:border-b border-borderColor2 rounded-lg p-[15px] pr-5 md:pb-10 mt-4 md:mt-10 "
                 >
                   <article className="flex md:flex-col items-center md:items-start justify-between md:justify-start">
@@ -252,7 +251,7 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
                             <p key={i} className="hidden md:flex items-center">
                               <StarIcons />;
                             </p>
-                          )
+                          );
                         }
                       })}
                       <button className="not-italic ml-3 font-AeonikProRegular text-xs md:text-base  text-setTexOpacity">

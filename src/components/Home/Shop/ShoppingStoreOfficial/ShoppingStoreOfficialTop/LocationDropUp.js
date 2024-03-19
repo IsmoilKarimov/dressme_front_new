@@ -39,7 +39,7 @@ function LocationDropUp({
           >
             {locationList?.map((item, index) => {
               return (
-                <div className="mb-[8px] gap-x-3 flex items-center cursor-pointer">
+                <div key={index} className="mb-[8px] gap-x-3 flex items-center cursor-pointer">
                   <Space direction="vertical">
                     <Radio
                       className="text-lg font-AeonikProRegular"
