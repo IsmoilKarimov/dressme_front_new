@@ -115,14 +115,12 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
       <div className="comments">
         <section
           onClick={() => setAddComment(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-            addComment ? "" : "hidden"
-          }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${addComment ? "" : "hidden"
+            }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
-            addComment ? "bottom-0" : "bottom-[-800px] z-0"
-          }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${addComment ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
         >
           <CommentDropUp onClick={toggleAddComment} />
         </section>
@@ -248,13 +246,15 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
                       </div>
                     </div>
                     <article className="flex items-center md:mt-3">
-                      <p className="hidden md:flex items-center">
-                        {Array.from("55555").map((item, i) => {
-                          if (i + 1 <= allComments?.score) {
-                            return <StarIcons />;
-                          }
-                        })}
-                      </p>
+                      {Array.from("55555").map((item, i) => {
+                        if (i + 1 <= allComments?.score) {
+                          return (
+                            <p key={i} className="hidden md:flex items-center">
+                              <StarIcons />;
+                            </p>
+                          )
+                        }
+                      })}
                       <button className="not-italic ml-3 font-AeonikProRegular text-xs md:text-base  text-setTexOpacity">
                         {allComments?.created_at}
                       </button>

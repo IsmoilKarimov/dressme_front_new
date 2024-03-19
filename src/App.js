@@ -18,17 +18,28 @@ export default function App() {
 
   const location = useLocation();
 
+  // const [locationWindow, setLocationWindow] = useState("");
+  // useEffect(() => {
+  //   setLocationWindow(location.pathname);
+  // }, [location.pathname]);
+
+  // if (locationWindow !== "/locations" && dressInfo?.yandexOpenMarketLocation) {
+  //   setDressInfo({
+  //     ...dressInfo,
+  //     yandexOpenMarketLocation: false,
+  //   });
+  // }
   const [locationWindow, setLocationWindow] = useState("");
   useEffect(() => {
     setLocationWindow(location.pathname);
-  }, [location.pathname]);
-
-  if (locationWindow !== "/locations" && dressInfo?.yandexOpenMarketLocation) {
-    setDressInfo({
-      ...dressInfo,
-      yandexOpenMarketLocation: false,
-    });
-  }
+    
+    if (locationWindow !== "/locations" && dressInfo?.yandexOpenMarketLocation) {
+      setDressInfo({
+        ...dressInfo,
+        yandexOpenMarketLocation: false,
+      });
+    }
+  }, [location.pathname, dressInfo, locationWindow]);
   // console.log(data?.getMainProductCard?.products,'data?.getMainProductCard?.products');
   return <RouterMain />;
 }
