@@ -60,7 +60,7 @@ export default function ShoppingStore() {
       })
       .catch((err) => {
         if (err?.response?.status === 401 || err?.response?.status === 403) {
-          reFreshTokenFunc();
+          // reFreshTokenFunc();
           fetchGetAllData();
         } else {
           Cookies.remove("DressmeUserToken");

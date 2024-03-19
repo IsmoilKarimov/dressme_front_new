@@ -83,7 +83,7 @@ const MobileAllComments = () => {
         onSuccess: (res) => {
           // console.log(res, "RES");
           if (res.status === 401 || res.status === 403) {
-            reFreshTokenFunc();
+            // reFreshTokenFunc();
             sendFunc();
           }
           refetch();

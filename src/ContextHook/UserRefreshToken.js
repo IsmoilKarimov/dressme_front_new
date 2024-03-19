@@ -12,19 +12,18 @@ export const UserRefreshTokenContextProvider = ({ children }) => {
   const url = "https://api.dressme.uz/api/user";
 
   const reFreshTokenFunc = async () => {
-    if (Cookies.get("DressmeUserRefreshToken")) {
+    if (localStorage.getItem("userRefresh")) {
       try {
         const data = await axios.post(`${url}/refresh-token`, {
-          refresh_token: Cookies.get("DressmeUserRefreshToken"),
+          refresh_token: localStorage.getItem("userRefresh"),
         });
 
         if (data?.status === 200) {
-          Cookies.set("DressmeUserToken", data?.data?.access_token);
-          localStorage.setItem("userAccess", data?.access_token)
+          localStorage.setItem("userAccess", data?.data?.access_token)
           // console.log("token updated");
         } else {
-          Cookies.remove("DressmeUserToken");
-          Cookies.remove("DressmeUserRefreshToken");
+          localStorage.removeItem("userRefresh")
+          localStorage.removeItem("userAccess");
           navigate("/sign_in");
           // console.log("Logged out");
           window.location.reload();
@@ -34,14 +33,14 @@ export const UserRefreshTokenContextProvider = ({ children }) => {
           error?.response?.status === 401 ||
           error?.response?.status === 403
         ) {
-          Cookies.remove("DressmeUserToken");
-          Cookies.remove("DressmeUserRefreshToken");
+          localStorage.removeItem("userRefresh")
+          localStorage.removeItem("userAccess");
           navigate("/sign_in");
           // console.log("Logged out");
           window.location.reload();
         } else {
-          Cookies.remove("DressmeUserToken");
-          Cookies.remove("DressmeUserRefreshToken");
+          localStorage.removeItem("userRefresh")
+          localStorage.removeItem("userAccess");
           navigate("/sign_in");
           // console.log("Logged out");
           window.location.reload();
@@ -52,16 +51,16 @@ export const UserRefreshTokenContextProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    if (userLogedIn) {
-      const intervalId = setInterval(() => {
-        reFreshTokenFunc();
-      }, 2 * 59 * 60 * 1000);
-      return () => {
-        clearInterval(intervalId);
-      };
-    }
-  }, [userLogedIn]);
+  // useEffect(() => {
+  //   if (userLogedIn) {
+  //     const intervalId = setInterval(() => {
+  //       reFreshTokenFunc();
+  //     }, 2 * 59 * 60 * 1000);
+  //     return () => {
+  //       clearInterval(intervalId);
+  //     };
+  //   }
+  // }, [userLogedIn]);
 
   return (
     <UserRefreshTokenContext.Provider
