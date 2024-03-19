@@ -9,7 +9,6 @@ import { BsCheckLg } from "react-icons/bs";
 import Slider from "react-slider";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../../../language/LanguageItems";
-import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext";
 import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
 
 function FilterList({
@@ -30,7 +29,6 @@ function FilterList({
   openMobileFilter,
   setOpenMobileFilter
 }) {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [getFilter, setGetFilter] = useState()
 
   const { t } = useTranslation("shops")
@@ -553,7 +551,7 @@ function FilterList({
           )}
           {/* -----Budget---- */}
           {getFilter?.budget?.min_price && getFilter?.budget?.min_price && (
-            <div className={`  w-full h-fit mb-[20px] md:mb-[10px]`}>
+            <div className={`w-full h-fit mb-[20px] md:mb-[10px]`}>
               <article className="w-full flex justify-between items-center md:pt-[12px]">
                 <figure
                   onClick={() => setBudgetToggle(!budgetToggle)}
@@ -588,7 +586,7 @@ function FilterList({
                           className="w-[100px] md:w-[66px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                           value={Number(values[0]).toLocaleString()}
                         />{" "} */}
-                        <span className="w-[100px] md:w-[66px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                        <span className="w-[100px] md:w-[66px] outline-none h-[32px] flex items-center justify-center rounded-lg text-center border border-searchBgColor px-[6px] mr-1"
                         >
                           {Number(values[0]).toLocaleString()}
                         </span>
@@ -604,7 +602,7 @@ function FilterList({
                           className="w-[120px] md:w-[94px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
                           value={Number(values[1]).toLocaleString()}
                         /> */}
-                        <span className="w-[120px] md:w-[94px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
+                        <span className="w-[120px] md:w-[94px] flex items-center justify-center outline-none h-[32px] rounded-lg text-center border border-searchBgColor px-[6px]"
                         >
                           {Number(values[1]).toLocaleString()}
                         </span>

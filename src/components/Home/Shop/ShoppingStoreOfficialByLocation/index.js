@@ -459,10 +459,10 @@ const ShoppingStoreOfficialByLocation = () => {
                   >
                     {/* <ShoppingStoreCategory filteredData={filteredData} /> */}
                     <section className="w-[100%] h-fit">
-                      <section className="w-full flex flex-gap-6 justify-between md:my-10 my-3">
+                      <section className="w-full flex flex-gap-6 justify-between md:mb-10 my-3 md:mt-0">
                         {screenSize.width >= 768 && (
                           <div
-                            className={`${filterToggle ? "md:block" : "md:hidden"
+                            className={`${filterToggle ? "md:block md:mt-10" : "md:hidden"
                               } hidden  md:w-[22%] h-full ss:px-4 md:px-0 `}
                           >
                             <FilterList

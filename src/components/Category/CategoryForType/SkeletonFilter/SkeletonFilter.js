@@ -36,7 +36,7 @@ export default function SkeletonFilter() {
                     paragraph={{ rows: 0 }}
                 />
             </div>
-            <div className="w-full  grid grid-cols-6 gap-4">
+            <div className="w-full grid grid-cols-6 gap-4">
                 {Array.from({ length: 12 }, (_, index) => (
                     <Skeleton.Avatar key={index} size={'default'} shape="circle" active block={true} />
                 ))}
