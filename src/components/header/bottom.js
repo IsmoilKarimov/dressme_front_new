@@ -632,7 +632,7 @@ function BottomHeader() {
           <article className="w-[480px] h-full overflow-hidden flex items-center justify-between">
             <div
               className={`${state?.textToColor ? "ml-[-500px] " : "ml-[0px] "
-                } px-2 w-full duration-500  h-full flex items-center justify-between  `}
+                } px-2 w-full duration-500  h-full flex items-center justify-between   `}
             >
               {data?.getMainProductCard?.colors?.map((data, i) => {
                 if (i > 11) {
@@ -678,7 +678,7 @@ function BottomHeader() {
                         className={"hidden w-full h-full"}
                         value={data?.id}
                         // checked={selectedValue === 'option1'}
-                        onChange={() => newColorArrayId(data?.hex, data?.id)}
+                        // onChange={() => newColorArrayId(data?.hex, data?.id)}
                       />
                     </div>
                   );
