@@ -1040,7 +1040,7 @@ function FilterList({
                     {footwearData
                       ?.slice(0, visibleButtons)
                       ?.map((footwear, index) => {
-                        console.log(footwear, 'footwear?.amount?.length');
+                        // console.log(footwear, 'footwear?.amount?.length');
                         return (
                           <button
                             key={index + 1}

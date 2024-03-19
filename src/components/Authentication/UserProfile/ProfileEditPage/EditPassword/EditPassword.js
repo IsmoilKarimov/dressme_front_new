@@ -95,6 +95,8 @@ export default function EditPassword({ onClick }) {
         },
         onError: (err) => {
           // console.log(err);
+          throw new Error(err || "something wrong");
+
         },
       }
     );

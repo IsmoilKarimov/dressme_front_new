@@ -19,7 +19,7 @@ function LocationDropUp({
     LanguageDetectorDress
   );
 
-  console.log(selectedLocation?.id, "ssssssssssssssss");
+  // console.log(selectedLocation?.id, "ssssssssssssssss");
 
   const { t } = useTranslation("products");
 

@@ -69,6 +69,8 @@ export default function ProductComment({ data, refetch }) {
           // console.log(err, "ERROR");
           rateRef.current.state.value = 1;
           textRef.current.value = null;
+          throw new Error(err || "something wrong");
+
         },
       }
     );

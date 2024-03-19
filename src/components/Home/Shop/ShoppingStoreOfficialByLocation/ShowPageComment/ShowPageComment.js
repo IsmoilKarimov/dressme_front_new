@@ -39,7 +39,7 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
   const textRef = useRef();
   const rateRef = useRef();
 
-  console.log(filteredData?.shop?.id, "storedata");
+  // console.log(filteredData?.shop?.id, "storedata");
 
   const commentMutate = useMutation(() => {
     return fetch(`${url}/user-main/ratings/store-rating`, {
@@ -84,6 +84,8 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
           // console.log(err, "ERROR");
           rateRef.current.state.value = 1;
           textRef.current.value = null;
+          throw new Error(err || "something wrong");
+
         },
       }
     );

@@ -428,7 +428,7 @@ const ShoppingStoreOfficialTop = ({
               </div>
             </div>
           </div>
-          <action
+          <div
             className={`${clickButtons?.openTabComment === true ||
                 clickButtons?.openTabLocation === true
                 ? "hidden"
@@ -465,7 +465,7 @@ const ShoppingStoreOfficialTop = ({
             >
               <SortIcons colors={"#000"} />
             </button>
-          </action>
+          </div>
         </div>
       </section>
     </main>

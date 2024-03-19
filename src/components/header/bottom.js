@@ -386,6 +386,8 @@ function BottomHeader() {
             onDropdownVisibleChange={setSelectOpen}
             allowClear
             size="large"
+            optionLabelProp="label"
+
           >
             {data?.getMainProductCard?.categories?.map((item) => {
               return (
@@ -524,7 +526,7 @@ function BottomHeader() {
                         // defaultValue={Number(values[0]).toLocaleString()}
                         value={Number(values[0]).toLocaleString()}
                       />{" "} */}
-                      <span className="w-[90px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1">
+                      <span className="w-[90px] outline-none justify-center h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1">
                         {Number(values[0]).toLocaleString()}
                       </span>
                       {t("Bsumm")}
@@ -534,18 +536,18 @@ function BottomHeader() {
                     <span className="flex items-center justify-start not-italic font-AeonikProMedium text-[13px] leading-3 text-center text-text-[#555] ">
                       {t("Bto")}
                     </span>
-                    <span className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
+                    <div className="flex items-center ml-2 justify-center not-italic font-AeonikProMedium text-base leading-3 text-center text-black">
                       {/* <input
                         name="name"
                         className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                         // defaultValue={Number(values[1]).toLocaleString()}
                         value={Number(values[1]).toLocaleString()}
                       /> */}
-                      <span className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1">
+                      <span className="w-[100px] outline-none justify-center h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1">
                         {Number(values[1]).toLocaleString()}
                       </span>
                       {t("Bsumm")}
-                    </span>
+                    </div>
                   </div>
                 </div>
                 <div className="relative z-50 mb-[6px] w-[350px] ">
@@ -553,7 +555,7 @@ function BottomHeader() {
                   <Slider
                     className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] mt-[10px]`}
                     onChange={setValues}
-                    value={values|| ""}
+                    value={values || ""}
                     minDistance={10}
                     min={Number(minPrice)}
                     max={Number(maxPrice)}

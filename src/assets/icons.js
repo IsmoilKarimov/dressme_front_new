@@ -3508,7 +3508,7 @@ const ShowMoreBackIcon = ({ colors, width }) => {
       viewBox="0 0 24 24"
       fill="none"
     >
-      <g clip-path="url(#clip0_2291_34733)">
+      <g clipPath="url(#clip0_2291_34733)">
         <path
           fillRule="evenodd"
           clipRule="evenodd"

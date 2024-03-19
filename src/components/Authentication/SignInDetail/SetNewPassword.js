@@ -95,7 +95,7 @@ export default function SetNewPassword() {
         onError: (err) => {
           setState({ ...state, isLoadingSent: false });
 
-          console.log(err, "err");
+          // console.log(err, "err");
           toast.error(`ошибка ${err}`, {
             position: "top-right",
             autoClose: 3000,
@@ -106,6 +106,8 @@ export default function SetNewPassword() {
             progress: undefined,
             theme: "light",
           });
+          throw new Error(err || "something wrong");
+
         },
       }
     );

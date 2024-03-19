@@ -358,7 +358,6 @@ const ProductDetails = ({ data, shopsData }) => {
   // console.log(shopsData?.getMainProductCard?.shops, "shopsData");
 
   const goDetailShop = (id, name) => {
-    console.log("RUN-------PRODUCTR");
 
     shopsData?.getMainProductCard?.shops
       ?.filter((e) => e?.id == id)
@@ -611,13 +610,21 @@ const ProductDetails = ({ data, shopsData }) => {
 
                     if (i < 2) {
                       return (
-                        <div>
+                        <div key={i}>
                           <p
-                            key={i}
-                            className="mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]"
+
+                            className="mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]  "
                           >
-                            {languageDetector?.typeLang === "ru" && item?.name_ru} {languageDetector?.typeLang === "ru" && lastIndex !== i && ","}
-                            {languageDetector?.typeLang === "uz" && item?.name_uz} {languageDetector?.typeLang === "uz" && lastIndex !== i && ","}
+                            {languageDetector?.typeLang === "ru" && item?.name_ru}
+                            {languageDetector?.typeLang === "uz" && item?.name_uz}
+                            <span
+                              className={`${i + 1 === data?.product?.sections?.length
+                                ? "hidden"
+                                : ""
+                                }`}
+                            >
+                              ,
+                            </span>
                           </p>
                         </div>
                       );
@@ -631,13 +638,21 @@ const ProductDetails = ({ data, shopsData }) => {
 
                   if (i > 1) {
                     return (
-                      <div>
+                      <div key={i}>
                         <p
                           key={i}
-                          className="mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]"
+                          className="mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]  "
                         >
-                          {languageDetector?.typeLang === "ru" && item?.name_ru} {languageDetector?.typeLang === "ru" && lastIndex !== i && ","}
-                          {languageDetector?.typeLang === "uz" && item?.name_uz} {languageDetector?.typeLang === "uz" && lastIndex !== i && ","}
+                          {languageDetector?.typeLang === "ru" && item?.name_ru}
+                          {languageDetector?.typeLang === "uz" && item?.name_uz}
+                          <span
+                            className={`${i + 1 === data?.product?.sections?.length
+                              ? "hidden"
+                              : ""
+                              }`}
+                          >
+                            ,
+                          </span>
                         </p>
                       </div>
                     );
@@ -811,7 +826,7 @@ const ProductDetails = ({ data, shopsData }) => {
                   }}
                   defaultValue={selectedLocation?.id}
                 >
-                  {existRegions.map((item, i) => {
+                  {existRegions?.map((item, i) => {
                     return (
                       <div key={i}>
                         <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
@@ -819,7 +834,7 @@ const ProductDetails = ({ data, shopsData }) => {
                         </div>
 
                         <div className="w-full">
-                          {data?.product?.locations.map((data, i) => {
+                          {data?.product?.locations?.map((data, i) => {
                             if (data?.sub_region?.region_id === item) {
                               return (
                                 <div

@@ -3,6 +3,7 @@ import { CollectionCardItem } from "../../../Home/Main/WearCollectionCard/Collec
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import WearType from "../../../Home/Main/WearCollectionCard/WearType";
 
 export default function CategoryCards({
   filterData,
@@ -39,7 +40,7 @@ export default function CategoryCards({
           openWearType ? "bottom-0" : "bottom-[-800px] z-0"
         }`}
       >
-        {/* <openWearType onClick={toggle} /> */}
+        <WearType onClick={toggle} />
       </section>
 
       <section

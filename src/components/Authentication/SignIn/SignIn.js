@@ -36,7 +36,7 @@ export default function SignIn() {
     const { checked } = e.target;
     setState({ ...state, rememberCheck: checked });
   };
-  console.log(state?.rememberCheck, 'rememberCheck');
+  // console.log(state?.rememberCheck, 'rememberCheck');
   const dataMutate = useMutation(() => {
     return fetch(`${url}/login`, {
       method: "POST",
@@ -92,7 +92,7 @@ export default function SignIn() {
           }
         },
         onError: (err) => {
-          console.log(err, "ERROR");
+          // console.log(err, "ERROR");
           toast.error("Serverda xatolik", {
             position: "top-right",
             autoClose: 5000,
@@ -103,6 +103,8 @@ export default function SignIn() {
             progress: undefined,
             theme: "colored",
           });
+          throw new Error(err || "something wrong");
+
         },
       }
     );

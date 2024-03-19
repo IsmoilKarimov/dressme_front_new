@@ -127,6 +127,8 @@ const EditProfilePage = () => {
             Cookies.remove("DressmeUserRefreshToken");
             navigate("/sign_in");
           }
+          throw new Error(err || "something wrong");
+
         });
     }
   }, []);
@@ -189,6 +191,8 @@ const EditProfilePage = () => {
           Cookies.remove("DressmeUserRefreshToken");
           navigate("/sign_in");
         }
+        throw new Error(err || "something wrong");
+
       });
   };
 
@@ -318,6 +322,8 @@ const EditProfilePage = () => {
           Cookies.remove("DressmeUserRefreshToken");
           navigate("/sign_in");
         }
+        throw new Error(err || "something wrong");
+
       });
   };
 
@@ -348,6 +354,8 @@ const EditProfilePage = () => {
           Cookies.remove("DressmeUserRefreshToken");
           navigate("/sign_in");
         }
+        throw new Error(err || "something wrong");
+
       });
   });
 
@@ -402,6 +410,8 @@ const EditProfilePage = () => {
         },
         onError: (err) => {
           // console.log(err);
+          throw new Error(err || "something wrong");
+
         },
       }
     );
