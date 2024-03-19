@@ -39,7 +39,7 @@ export default function CategoryCards({
           openWearType ? "bottom-0" : "bottom-[-800px] z-0"
         }`}
       >
-        <openWearType onClick={toggle} />
+        {/* <openWearType onClick={toggle} /> */}
       </section>
 
       <section

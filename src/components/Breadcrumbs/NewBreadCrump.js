@@ -5,8 +5,7 @@ import { LanguageDetectorDress } from '../../language/LanguageItems';
 
 const NewBreadCrump = ({ items }) => {
   const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
-  console.log(languageDetector, 'languageDetector-bread');
-  return (
+   return (
     <nav
       className="w-full  overflow-x-scroll md:overflow-auto pb-[10px] md:pb-0"
       aria-label="breadcrumb"

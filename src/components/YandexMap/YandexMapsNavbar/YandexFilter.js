@@ -402,7 +402,7 @@ export default function YandexFilter({ getMapsInfo }) {
                   <Slider
                     className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] mt-[10px]`}
                     onChange={setValues}
-                    value={values}
+                    value={values || ""}
                     minDistance={10}
                     min={Number(minPrice)}
                     max={Number(maxPrice)}
@@ -415,7 +415,8 @@ export default function YandexFilter({ getMapsInfo }) {
                   } px-6 py-3 space-x-2 rounded-b `}
               >
                 {state?.clearPrice && (
-                  <span
+                  <button
+                    type="button"
                     onClick={(e) => {
                       e.stopPropagation();
                       closePrizeModal();
@@ -424,9 +425,10 @@ export default function YandexFilter({ getMapsInfo }) {
                     className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
                   >
                     {t("YFclear")}
-                  </span>
+                  </button>
                 )}
-                <span
+                <button
+                  type="button"
                   onClick={(e) => {
                     e.stopPropagation();
                     sendPriceList();
@@ -436,7 +438,7 @@ export default function YandexFilter({ getMapsInfo }) {
                   className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
                 >
                   {t("YFready")}
-                </span>
+                </button>
               </div>
             </div>
           </div>
