@@ -26,6 +26,7 @@ import { ProfileDataContext } from "../../../../ContextHook/ProfileContext";
 import axios from "axios";
 import { UserRefreshTokenContext } from "../../../../ContextHook/UserRefreshToken";
 import { useTranslation } from "react-i18next";
+import axiosInstance from "../AxiosIntance";
 
 const EditProfilePage = () => {
   const [reFreshTokenFunc, setUserLogedIn] = useContext(
@@ -46,6 +47,8 @@ const EditProfilePage = () => {
 
   const [profileContextData, setProfileContextData] =
     useContext(ProfileDataContext);
+
+ 
 
   const monthList = [
     { id: 1, type: "Январь" },
@@ -94,45 +97,75 @@ const EditProfilePage = () => {
 
   // ----------------GET USER PROFILE-------------
 
-  useEffect(() => {
-    if (!profileContextData) {
-      setLoading(true);
-      axios(`${url}/profile`, {
-        headers: {
-          Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
-        },
-      })
-        .then((res) => {
-          setProfileContextData(res?.data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          setLoading(false);
-          // console.log(err);
-          if (err?.response?.status === 401 || err?.response?.status === 403) {
-            reFreshTokenFunc();
-            // navigate("/sign_in");
-            // toast.error(`${err?.response?.data?.message}`, {
-            //   position: "top-right",
-            //   autoClose: 5000,
-            //   hideProgressBar: false,
-            //   closeOnClick: true,
-            //   pauseOnHover: true,
-            //   draggable: true,
-            //   progress: undefined,
-            //   theme: "light",
-            // });
-          } else {
-            Cookies.remove("DressmeUserToken");
-            Cookies.remove("DressmeUserRefreshToken");
-            navigate("/sign_in");
-          }
-          throw new Error(err || "something wrong");
+  // useEffect(() => {
+  //   if (!profileContextData) {
+  //     setLoading(true);
+  //     axios(`${url}/profile`, {
+  //       headers: {
+  //         Authorization: `Bearer ${ localStorage?.getItem("userAccess")}`,
+  //       },
+  //     })
+  //       .then((res) => {
+  //         setProfileContextData(res?.data);
+  //         setLoading(false);
+  //       })
+  //       .catch((err) => {
+  //         setLoading(false);
+  //         // console.log(err);
+  //         if (err?.response?.status === 401 || err?.response?.status === 403) {
+  //           reFreshTokenFunc();
+  //           // navigate("/sign_in");
+  //           // toast.error(`${err?.response?.data?.message}`, {
+  //           //   position: "top-right",
+  //           //   autoClose: 5000,
+  //           //   hideProgressBar: false,
+  //           //   closeOnClick: true,
+  //           //   pauseOnHover: true,
+  //           //   draggable: true,
+  //           //   progress: undefined,
+  //           //   theme: "light",
+  //           // });
+  //         } else {
+  //           Cookies.remove("DressmeUserToken");
+  //           Cookies.remove("DressmeUserRefreshToken");
+  //           navigate("/sign_in");
+  //         }
+  //         throw new Error(err || "something wrong");
 
-        });
+  //       });
+  //   }
+  // }, []);
+  const fetchData = async (customHeaders) => {
+    try {
+      const response = await axiosInstance.get("/profile", {
+        headers: customHeaders,
+      });
+      const status = response.status;
+      const data = response.data;
+      return { data, status };
+    } catch (error) {
+      const status = error.response ? error.response.status : null;
+      return { error, status };
     }
-  }, []);
+  };
+  const customHeaders = {
+    "Content-type": "application/json; charset=UTF-8",
+    Authorization: `Bearer ${localStorage.getItem("userAccess")}`, // Add other headers as needed
+  };
 
+  useQuery(["get_profile_list2"], () => fetchData(customHeaders), {
+    onSuccess: (data) => {
+      if (data?.status >= 200 && data?.status < 300) {
+        setProfileContextData(data?.data)
+      }
+    },
+    onError: (error) => {
+      throw new Error(error || "something wrong");
+    },
+    keepPreviousData: true,
+    refetchOnWindowFocus: false,
+  });
+  console.log("run profile", profileContextData);
   useEffect(() => {
     let ar = Number(profileContextData?.birth_date?.split("-")[1]);
     setProfileData(profileContextData);
@@ -162,7 +195,7 @@ const EditProfilePage = () => {
     setLoading(true);
     axios(`${url}/profile`, {
       headers: {
-        Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
+        Authorization: `Bearer ${localStorage?.getItem("userAccess")}`,
       },
     })
       .then((res) => {
@@ -266,7 +299,7 @@ const EditProfilePage = () => {
       method: "POST",
       headers: {
         Accept: "application/json",
-        Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
+        Authorization: `Bearer ${localStorage?.getItem("userAccess")}`,
       },
       body: form,
     })
@@ -334,7 +367,7 @@ const EditProfilePage = () => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
+        Authorization: `Bearer ${localStorage?.getItem("userAccess")}`,
       },
       body: JSON.stringify({
         email: state?.userEmail,

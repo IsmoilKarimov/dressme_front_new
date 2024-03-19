@@ -32,7 +32,7 @@ export default function EditPassword({ onClick }) {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
+        Authorization: `Bearer ${ localStorage?.getItem("userAccess")}`,
       },
       body: JSON.stringify({
         current_password: state?.oldPassword,
@@ -73,7 +73,8 @@ export default function EditPassword({ onClick }) {
             });
           } else if (res?.access_token) {
             Cookies.set("DressmeUserToken", res?.access_token);
-            toast.success(`Успешный вход в систему`, {
+            localStorage.setItem("userAccess", res?.access_token)
+             toast.success(`Успешный вход в систему`, {
               position: "top-right",
               autoClose: 5000,
               hideProgressBar: false,

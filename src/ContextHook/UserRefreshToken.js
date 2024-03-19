@@ -20,6 +20,7 @@ export const UserRefreshTokenContextProvider = ({ children }) => {
 
         if (data?.status === 200) {
           Cookies.set("DressmeUserToken", data?.data?.access_token);
+          localStorage.setItem("userAccess", data?.access_token)
           // console.log("token updated");
         } else {
           Cookies.remove("DressmeUserToken");

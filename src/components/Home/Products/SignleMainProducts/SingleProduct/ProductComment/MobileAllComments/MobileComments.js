@@ -65,7 +65,7 @@ const MobileAllComments = () => {
       headers: {
         Accept: "application/json",
         "Content-type": "application/json",
-        Authorization: `Bearer ${Cookies.get("DressmeUserToken")}`,
+        Authorization: `Bearer ${ localStorage?.getItem("userAccess")}`,
       },
       body: JSON.stringify({
         score: rateRef.current.state.value,
@@ -158,7 +158,7 @@ const MobileAllComments = () => {
           </span>
         </div>
       </div>
-      {Cookies.get("DressmeUserToken") ? (
+      { localStorage?.getItem("userAccess") ? (
         <button
           onClick={() => setAddComment(true)}
           type="button"

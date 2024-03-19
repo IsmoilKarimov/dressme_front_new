@@ -79,7 +79,8 @@ export default function UserEmailVerification() {
             });
           } else if (res?.access_token) {
             Cookies.set("DressmeUserToken", res?.access_token);
-            navigate("/profile/edit");
+            localStorage.setItem("userAccess", res?.access_token)
+             navigate("/profile/edit");
             // window.location.reload();
             setState({ ...state, email: "", password: "", errorsGroup: "" });
           }

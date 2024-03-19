@@ -472,7 +472,7 @@ function YandexMapsDressMe() {
                     </button>
                   </li>
                   <li>
-                    {Cookies.get("DressmeUserToken") ? (
+                    { localStorage?.getItem("userAccess") ? (
                       <NavLink
                         to="/my-order"
                         className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 w-full"
@@ -808,7 +808,7 @@ function YandexMapsDressMe() {
                     </button>
                   </li>
                   <li>
-                    {Cookies.get("DressmeUserToken") ? (
+                    { localStorage?.getItem("userAccess") ? (
                       <NavLink
                         to="/my-order"
                         className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 w-full"

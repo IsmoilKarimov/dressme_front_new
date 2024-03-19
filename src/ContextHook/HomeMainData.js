@@ -24,7 +24,7 @@ export const HomeMainDataContextProvider = ({ children }) => {
 
   const [wishList, setWishlist] = useState(list);
 
-  if (Cookies.get("DressmeUserToken")) {
+  if ( localStorage?.getItem("userAccess")) {
     Cookies.set("WishList", JSON.stringify(wishList), { expires: 99999 });
   } else {
     Cookies.set("WishList", JSON.stringify(wishList), { expires: 2 });
