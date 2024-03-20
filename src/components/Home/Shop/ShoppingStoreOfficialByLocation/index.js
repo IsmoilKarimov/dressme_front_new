@@ -198,22 +198,6 @@ const ShoppingStoreOfficialByLocation = () => {
     setSeasonId(Number(typeFilter?.shift()))
 
   }, [seasonDetector?.type])
-  // useEffect(() => {
-  //   const typeFilter = String(seasonDetector?.type)?.split("");
-  //   if (!seasonId) {
-  //     setSeasonId(Number(typeFilter?.shift()))
-  //   }
-  //   if (seasonId && Number(typeFilter?.shift()) !== seasonIdCopy){
-  //     setSeasonId(Number(typeFilter?.shift()))
-  //   }
-  //    setSeasonIdCopy(seasonId)
-  //   // const seasonId = Number(typeFilter?.shift());
-
-  // }, [seasonDetector?.type])
-
-  // console.log(dressInfo?.type, 'seasonId--dressInfo?.type');
-  // console.log(seasonId, 'seasonId');
-  // console.log(seasonIdCopy, 'seasonId--seasonIdCopy');
 
   const url = `https://api.dressme.uz/api`;
   const [loading, setLoading] = useState(true);
