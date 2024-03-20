@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
  
 
 const axiosInstance = axios.create({
@@ -29,6 +30,8 @@ async function refreshToken() {
     } catch (error) {
         if (error?.response?.status === 401 || error?.response?.status === 403) {
             localStorage.removeItem("userAccess");
+            <Navigate to="/sign_in" replace />;
+
             if (localStorage?.getItem("userAccess")) {
                 window.location.reload();
             }
