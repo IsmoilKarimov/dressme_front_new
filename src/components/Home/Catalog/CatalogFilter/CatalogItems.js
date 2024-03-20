@@ -34,7 +34,9 @@ export default function CatalogItems() {
     opensports: false,
     openTypesofClothes: false,
   });
-  const [searchMarketName, setSearchMarketName] = useState(dressInfo?.mainSearchNameCatalog);
+  const [searchMarketName, setSearchMarketName] = useState(
+    dressInfo?.mainSearchNameCatalog
+  );
 
   const [getGenderId, setGetGenderId] = useState(null);
   const [getCategory, setGetCategory] = useState(null);
@@ -352,9 +354,9 @@ export default function CatalogItems() {
   }, [openMobileFilter, openMobileCategory]);
 
   const handleChange = (event) => {
-    setSearchMarketName(event.target.value);   
+    setSearchMarketName(event.target.value);
   };
-  
+
   function getSearchClick() {
     setDressInfo({ ...dressInfo, mainSearchNameCatalog: searchMarketName });
   }
@@ -369,7 +371,7 @@ export default function CatalogItems() {
 
   const handleClear = () => {
     setSearchMarketName("");
-    setDressInfo({ ...dressInfo, mainSearchNameCatalog: ""});
+    setDressInfo({ ...dressInfo, mainSearchNameCatalog: "" });
   };
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
@@ -521,7 +523,7 @@ export default function CatalogItems() {
                     type="text"
                     name="name"
                     placeholder="Найти товар"
-                    value={searchMarketName|| ""}
+                    value={searchMarketName || ""}
                     onChange={handleChange}
                     onKeyDown={_handleKeyDownSearch}
                     className="font-AeonikProRegular bg-transparent w-full px-3 h-full text-[12px] md:text-[14px] leading-4"
@@ -677,6 +679,7 @@ export default function CatalogItems() {
               >
                 {filterData?.category_products?.data?.length > 0 ? (
                   <CatalogCard
+                    filterToggle={filterToggle}
                     paramsId={newId}
                     filterData={filterData}
                     setPageId={setPageId}

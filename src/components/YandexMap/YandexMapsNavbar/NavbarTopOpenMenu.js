@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { Popover } from "antd";
 import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
@@ -22,8 +21,10 @@ import { LanguageDetectorDress } from "../../../language/LanguageItems";
 import { SaesonDetectorDress } from "../../../ContextHook/SeasonContext";
 
 export default function NavbarTopOpenMenu() {
-   const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress);
 
   const wearGroup = [
     { id: 1, name: "Футболки" },
@@ -88,8 +89,8 @@ export default function NavbarTopOpenMenu() {
             <article
               className={`flex font-AeonikProMedium text-base text-black not-italic ${seasonDetector?.TextHoverSeason}`}
             >
-              {languageDetector?.typeLang === 'ru' && value?.type_ru}
-              {languageDetector?.typeLang === 'uz' && value?.type_uz}
+              {languageDetector?.typeLang === "ru" && value?.type_ru}
+              {languageDetector?.typeLang === "uz" && value?.type_uz}
             </article>
           </article>
         );
@@ -107,8 +108,8 @@ export default function NavbarTopOpenMenu() {
             <article
               className={`flex font-AeonikProMedium text-base text-black not-italic ${seasonDetector?.TextHoverSeason}`}
             >
-              {languageDetector?.typeLang === 'ru' && value?.type_ru}
-              {languageDetector?.typeLang === 'uz' && value?.type_uz}
+              {languageDetector?.typeLang === "ru" && value?.type_ru}
+              {languageDetector?.typeLang === "uz" && value?.type_uz}
             </article>
           </article>
         );
@@ -205,18 +206,18 @@ export default function NavbarTopOpenMenu() {
           to="/"
           className="flex justify-center items-center rounded-lg h-[44px] md:w-[155px] ss:ml-2 md:ml-[0px]  "
         >
-          {BrandTypeArray.filter((data) => data.id === seasonDetector?.type).map(
-            (data) => {
-              return (
-                <img
-                  key={data?.id}
-                  className="w-full"
-                  src={data?.icons}
-                  alt="logo"
-                />
-              );
-            }
-          )}
+          {BrandTypeArray.filter(
+            (data) => data.id === seasonDetector?.type
+          ).map((data) => {
+            return (
+              <img
+                key={data?.id}
+                className="w-full"
+                src={data?.icons}
+                alt="logo"
+              />
+            );
+          })}
         </NavLink>
 
         {/* Voice section */}
@@ -252,25 +253,25 @@ export default function NavbarTopOpenMenu() {
                         className="mr-0 md:mr-[5px] "
                       />
                       <figcaption className=" font-AeonikProMedium  flex items-center text-[15px] ">
-                        {languageDetector?.typeLang === 'ru' && data?.type_ru}
-                        {languageDetector?.typeLang === 'uz' && data?.type_uz}
+                        {languageDetector?.typeLang === "ru" && data?.type_ru}
+                        {languageDetector?.typeLang === "uz" && data?.type_uz}
                       </figcaption>
                     </figure>
                   );
                 }
               )}
-              {SeasonTypeArrayMobile.filter((e) => e.id === seasonDetector.type).map(
-                (data) => {
-                  return (
-                    <figure
-                      key={data?.id}
-                      className="w-full h-full md:hidden flex items-center justify-center select-none cursor-pointer  "
-                    >
-                      <img src={data?.icons} alt="weather" className="mr-0 " />
-                    </figure>
-                  );
-                }
-              )}
+              {SeasonTypeArrayMobile.filter(
+                (e) => e.id === seasonDetector.type
+              ).map((data) => {
+                return (
+                  <figure
+                    key={data?.id}
+                    className="w-full h-full md:hidden flex items-center justify-center select-none cursor-pointer  "
+                  >
+                    <img src={data?.icons} alt="weather" className="mr-0 " />
+                  </figure>
+                );
+              })}
             </Popover>
           </div>
         </article>
