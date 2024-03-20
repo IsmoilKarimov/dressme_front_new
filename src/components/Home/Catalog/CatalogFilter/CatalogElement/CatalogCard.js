@@ -1,13 +1,16 @@
 import React, { useContext, useState } from "react";
 import { HomeMainDataContext } from "../../../../../ContextHook/HomeMainData";
 import { CollectionCardItem } from "../../../Main/WearCollectionCard/CollectionCardItem";
-import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import WearType from "../../../Main/WearCollectionCard/WearType";
 
-export default function CatalogCard({ filterData, setPageId, paramsId }) {
-  const [dressInfo, setDressInfo] = useContext(dressMainData);
+export default function CatalogCard({
+  filterToggle,
+  filterData,
+  setPageId,
+  paramsId,
+}) {
   const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
   const [openWearType, setOpenWearType] = useState(false);
   const toggle = React.useCallback(() => setOpenWearType(false), []);
@@ -38,7 +41,13 @@ export default function CatalogCard({ filterData, setPageId, paramsId }) {
         <WearType onClick={toggle} />
       </section>
 
-      <section className="flex flex-wrap justify-between md:justify-start gap-y-2 lg:gap-x-3 lg:gap-y-3 mt-1 md:mt-8">
+      <section
+        className={`flex flex-wrap justify-between md:grid ${
+          filterToggle
+            ? "md:grid-cols-4 md:gap-x-2"
+            : "md:grid-cols-5 md:gap-x-5"
+        } gap-y-[9px] lg:gap-y-3 mt-1 md:mt-8`}
+      >
         {filterData?.category_products?.data?.length ? (
           filterData?.category_products?.data?.map((data) => {
             return (

@@ -461,6 +461,7 @@ const ShoppingStoreOfficial = () => {
                           >
                             {filteredData ? (
                               <ShopOfficialCard
+                                filterToggle={filterToggle}
                                 filteredData={filteredData}
                                 setPageId={setPageId}
                                 paramsId={newId}

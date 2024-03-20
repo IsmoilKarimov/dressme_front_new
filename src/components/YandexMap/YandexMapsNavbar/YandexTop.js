@@ -1,17 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { Popover } from "antd";
 
 import {
-  CommentIcons,
   HouseStatisticIcons,
   LocationIcons,
   MarketIcons,
-  MyPurchaseIcons,
 } from "../../../assets/icons";
-import { EnglishFlag, RussianFlag, UzbekFlag } from "../../../assets";
-import Cookies from "js-cookie";
+import {  RussianFlag, UzbekFlag } from "../../../assets";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 import { useQuery } from "@tanstack/react-query";
 import { useHttp } from "../../../hook/useHttp";
@@ -40,9 +37,6 @@ const YandexTop = ({ onClick }) => {
     setLanguageDetector({ typeLang: currentLang })
   }, [currentLang])
 
-
-  // -----Language Change-------------------
-  const [selectLang, setselectLang] = useState(1);
 
   const LanguageList = [
     { id: 1, value: "uz", type: "O'zbekcha", icons: UzbekFlag },
@@ -193,16 +187,6 @@ const YandexTop = ({ onClick }) => {
           </span>
         </button>
         <div className="line h-5 border text-textColor ml-6"></div>
-        { localStorage?.getItem("userAccess") && (
-          <NavLink to="/my-order" className="flex items-center h-full  ml-6 ">
-            <span className="mr-2">
-              <MyPurchaseIcons colors={"#707070"} />
-            </span>
-            <span className="text-textColor  text-[13px]   font-AeonikProMedium  ">
-            {t("YTmyOrder")}
-            </span>
-          </NavLink>
-        )}
         <NavLink
           to="/shops"
           className="flex items-center bg-white rounded cursor-pointer h-full  ml-6 px-3 py-[2px]"

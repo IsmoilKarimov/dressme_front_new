@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { NavLink, Navigate, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { dressMainData } from "../../../ContextHook/ContextMenu";
 import { Popover } from "antd";
 import {
@@ -26,9 +26,7 @@ import {
   AllSeason,
   allBrandDesktop,
 } from "../../../assets";
-import Cookies from "js-cookie";
 import { MdClose } from "react-icons/md";
-import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 import { MainPageAudioContext } from "../../../ContextHook/MainPageAudio";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../language/LanguageItems";
@@ -36,9 +34,8 @@ import { SaesonDetectorDress } from "../../../ContextHook/SeasonContext";
 
 const YandexMedium = ({ getYandexSearchName }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [data] = useContext(HomeMainDataContext);
   const [audioPlay, setAudioPlay] = useContext(MainPageAudioContext);
-  const { i18n, t } = useTranslation('yandexmap')
+  const { t } = useTranslation('yandexmap')
 
   const navigate = useNavigate();
   const handleMainMenu = () => {

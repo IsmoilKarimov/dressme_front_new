@@ -8,6 +8,7 @@ import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { CollectionCardItem } from "../../../../Main/WearCollectionCard/CollectionCardItem";
 
 export default function ShopOfficialCard({
+  filterToggle,
   filteredData,
   setPageId,
   paramsId,
@@ -32,7 +33,6 @@ export default function ShopOfficialCard({
     navigate(`/shops/${paramsId}/${child}`);
   }
 
-
   return (
     <div className="flex flex-col box-border">
       <div
@@ -51,14 +51,20 @@ export default function ShopOfficialCard({
 
       {filteredData?.products?.data?.length > 0 ? (
         <div
-          className={`flex flex-wrap justify-between md:justify-start ${
+          className={`flex flex-wrap justify-between md:grid
+          ${
             filteredData?.products?.length > 2
               ? "mb-[20px] md:mb-[30px]"
               : "mb-[80px]"
-          } md:mx-0 md:mt-[40px] md:mb-0 gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 `}
+          }
+          ${
+            filterToggle
+              ? "md:grid-cols-4 md:gap-x-2"
+              : "md:grid-cols-5 md:gap-x-5"
+          } gap-y-[9px] lg:gap-y-3 mt-1 md:mt-10`}
         >
           {filteredData?.products?.data?.map((data) => {
-            return(
+            return (
               <CollectionCardItem
                 key={data?.id}
                 data={data}
@@ -68,7 +74,7 @@ export default function ShopOfficialCard({
                 mainSelectedId={dressInfo?.mainColorId}
                 onHandleCardId={onHandleCardId}
               />
-            )
+            );
           })}
         </div>
       ) : (
