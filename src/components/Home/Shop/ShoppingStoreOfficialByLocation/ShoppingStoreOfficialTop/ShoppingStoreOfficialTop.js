@@ -223,9 +223,9 @@ const ShoppingStoreOfficialTop = ({
                     ?.filter(
                       (e) => e?.id === locationIdDetector?.locationIdForTest
                     )
-                    ?.map((item) => {
+                    ?.map((item,index) => {
                       return (
-                        <p className="text-sm font-AeonikProRegular text-borderWinter">
+                        <p key={index} className="text-sm font-AeonikProRegular text-borderWinter">
                           {item?.address}
                         </p>
                       );
@@ -302,9 +302,9 @@ const ShoppingStoreOfficialTop = ({
                     ?.filter(
                       (e) => e?.id === locationIdDetector?.locationIdForTest
                     )
-                    ?.map((item) => {
+                    ?.map((item,index) => {
                       return (
-                        <p className="text-[12px] xs:text-sm font-AeonikProRegular text-borderWinter">
+                        <p key={index} className="text-[12px] xs:text-sm font-AeonikProRegular text-borderWinter">
                           {item?.address}
                         </p>
                       );
@@ -395,7 +395,7 @@ const ShoppingStoreOfficialTop = ({
                       >
                         {locationList?.map((item, index) => {
                           return (
-                            <div className="mb-[8px] gap-x-3 flex items-center cursor-pointer">
+                            <div key={index} className="mb-[8px] gap-x-3 flex items-center cursor-pointer">
                               <Space direction="vertical">
                                 <Radio
                                   className="text-lg font-AeonikProRegular"
