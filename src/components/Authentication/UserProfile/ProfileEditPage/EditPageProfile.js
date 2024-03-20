@@ -128,8 +128,7 @@ const EditProfilePage = () => {
     keepPreviousData: true,
     refetchOnWindowFocus: false,
   });
-  console.log("run profile", profileContextData);   
-  useEffect(() => {
+   useEffect(() => {
     let ar = Number(profileContextData?.birth_date?.split("-")[1]);
     setProfileData(profileContextData);
     setDayValue(parseInt(profileContextData?.birth_date));

@@ -30,7 +30,7 @@ async function refreshToken() {
     } catch (error) {
         if (error?.response?.status === 401 || error?.response?.status === 403) {
             localStorage.removeItem("userAccess");
-            <Navigate to="/login-seller" replace />;
+            <Navigate to="/sign_in" replace />;
 
             if (localStorage?.getItem("userAccess")) {
                 window.location.reload();
