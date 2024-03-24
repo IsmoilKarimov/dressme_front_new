@@ -139,7 +139,7 @@ const CategoryTopDetail = ({
             <article className="w-full flex flex-col border-b md:border-none border-searchBgColor px-4 md:px-0">
               <figure className="relative w-full md:h-[90px] my-10 md:mt-0 h-fit flex flex-row items-center justify-between border-t-0 border border-searchBgColor rounded-lg   ">
                 {/*  */}
-                <div className=" w-fit flex h-[66px] md:h-fit items-center   rounded-lg  ">
+                <div className="w-fit flex h-[66px] md:h-fit items-center   rounded-lg  ">
                   <div className="absolute w-[80px] h-[120px] md:w-[120px] md:h-[160px] overflow-hidden left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center bg-white columns-1">
                     <img
                       src={filterData?.section?.url_photo}
@@ -147,7 +147,7 @@ const CategoryTopDetail = ({
                       className="w-full h-full rounded-xl object-cover object-top"
                     />
                   </div>
-                  <div className="flex items-center ml-[112px] md:ml-[210px]">
+                  <div className="flex items-center ml-[130px] md:ml-[210px]">
                     <div className="text-xl font-AeonikProMedium">
                       {languageDetector?.typeLang === "ru" &&
                         filterData?.section?.name_ru}
@@ -163,7 +163,7 @@ const CategoryTopDetail = ({
                 {/*  */}
                 <button
                   onClick={() => setMobileSubSection(true)}
-                  className="w-fit md:hidden  flex">
+                  className="w-fit md:hidden  flex mr-3">
                   <VerticalMenu colors="#161616" />
                 </button>
 

@@ -596,7 +596,7 @@ const ProductDetails = ({ data, shopsData }) => {
                 </p>
               </article>
             </div>
-            <div className="w-1/2 flex flex-col  ">
+            <div className="w-1/2 flex flex-col   ">
               <div className="flex items-center mb-1">
                 <article className="w-fit flex items-center">
                   <ChapterIcon colors={"#000"} />
@@ -606,49 +606,72 @@ const ProductDetails = ({ data, shopsData }) => {
                 </article>
                 <article className="w-fit ml-2 flex flex-wrap items-center">
                   {data?.product?.sections?.map((item, i, array) => {
-                    console.log(data?.product, 'data?.product');
-                    if (i < 2) {
-                      return (
-                        <div key={i}>
-                          <p
+ 
 
-                            className="mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]  "
-                          >
-                            {languageDetector?.typeLang === "ru" && item?.name_ru}
-                            {languageDetector?.typeLang === "uz" && item?.name_uz}
-                            <span
-                              className={`${i + 1 === data?.product?.sections?.length
-                                ? "hidden"
-                                : ""
-                                }`}
-                            >
-                              ,
-                            </span>
-                          </p>
-                        </div>
-                      );
-                    }
-                  })}
-                  {data?.product?.sub_sections?.length > 0 && data?.product?.sub_sections?.map((item, i, array) => {
                     return (
-                      <div key={i} className="text-[12px] leading-4 text-[#858585]">
-                        (<span className="mr-[5px] not-italic font-AeonikProRegular text-[12px] leading-4 text-[#858585] tracking-[1%]  "
-                        >  {languageDetector?.typeLang === "ru" && item?.name_ru}
-                          {languageDetector?.typeLang === "uz" && item?.name_uz}</span>)
-                        <span
-                          className={`${i + 1 === data?.product?.sub_sections?.length
-                            ? "hidden"
-                            : ""
-                            }`}
+                      <div key={i}>
+                        <div
+                          className="flex flex-wrap mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]  "
                         >
-                          ,
-                        </span>
+                          {languageDetector?.typeLang === "ru" && item?.name_ru}
+                          {languageDetector?.typeLang === "uz" && item?.name_uz}
+                          <div key={i} className="text-[10px] ml-1 leading-4 text-[#858585] flex items-center flex-wrap">
+                            {data?.product?.sub_sections?.filter(e => e?.section_id == item?.id)?.map((item, i) => {
+                              return (
+                                <>
+                                  ( <div key={i} className="text-[12px] leading-4 text-[#858585]">
+                                    <span className="not-italic font-AeonikProRegular text-[10px] leading-4 text-[#858585] tracking-[1%]  "
+                                    >  {languageDetector?.typeLang === "ru" && item?.name_ru}
+                                      {languageDetector?.typeLang === "uz" && item?.name_uz}</span>
+                                    <span
+                                      className={`${i + 1 === data?.product?.sub_sections?.length
+                                        ? "hidden"
+                                        : ""
+                                        }`}
+                                    >
+                                      ,
+                                    </span>
+                                  </div>)
+                                </>
+                              )
+                            })}
+                          </div>
+                          <span
+                            className={`${i + 1 === data?.product?.sections?.length
+                              ? "hidden"
+                              : ""
+                              }`}
+                          >
+                            ,
+                          </span>
+
+                        </div>
                       </div>
-                    )
+                    );
+
                   })}
+                  {/* <div className="text-[#858585] text-[12px] flex items-center ">
+                    ({data?.product?.sub_sections?.length > 0 && data?.product?.sub_sections?.map((item, i, array) => {
+                      return (
+                        <div key={i} className="text-[12px] leading-4 text-[#858585]">
+                          <span className="mr-[5px] not-italic font-AeonikProRegular text-[12px] leading-4 text-[#858585] tracking-[1%]  "
+                          >  {languageDetector?.typeLang === "ru" && item?.name_ru}
+                            {languageDetector?.typeLang === "uz" && item?.name_uz}</span>
+                          <span
+                            className={`${i + 1 === data?.product?.sub_sections?.length
+                              ? "hidden"
+                              : ""
+                              }`}
+                          >
+                            ,
+                          </span>
+                        </div>
+                      )
+                    })})
+                  </div> */}
                 </article>
               </div>
-              <div className="flex flex-wrap">
+              {/* <div className="flex flex-wrap border hidden border-green-600">
                 {data?.product?.sections?.map((item, i, array) => {
                   if (i > 1) {
                     return (
@@ -672,8 +695,8 @@ const ProductDetails = ({ data, shopsData }) => {
                     );
                   }
                 })}
-                
-              </div>
+
+              </div> */}
             </div>
           </div>
           {/* ---- */}
@@ -1623,27 +1646,46 @@ const ProductDetails = ({ data, shopsData }) => {
                   {t("chapter")}:
                 </div>
               </article>
-              <article className="w-fit ml-[6px] flex items-center">
+              <article className="w-fit ml-[6px] flex items-center flex-wrap">
                 {data?.product?.sections?.map((item, i) => {
-                  if (i < 2) {
-                    return (
-                      <p
-                        key={i}
-                        className="mr-[5px] not-italic font-AeonikProRegular text-[14px] text-black "
+                  return (
+                    <p
+                      key={i}
+                      className="mr-[5px] flex flex-wrap not-italic font-AeonikProRegular text-[14px] text-black "
+                    >
+                      {languageDetector?.typeLang === "ru" && item?.name_ru}
+                      {languageDetector?.typeLang === "uz" && item?.name_uz}
+                      <div key={i} className="text-[10px] ml-1 leading-4 text-[#858585] flex items-center flex-wrap">
+                        {data?.product?.sub_sections?.filter(e => e?.section_id == item?.id)?.map((item, i) => {
+                          return (
+                            <>
+                              ( <div key={i} className="text-[12px] leading-4 text-[#858585]">
+                                <span className="not-italic font-AeonikProRegular text-[10px] leading-4 text-[#858585] tracking-[1%]  "
+                                >  {languageDetector?.typeLang === "ru" && item?.name_ru}
+                                  {languageDetector?.typeLang === "uz" && item?.name_uz}</span>
+                                <span
+                                  className={`${i + 1 === data?.product?.sub_sections?.length
+                                    ? "hidden"
+                                    : ""
+                                    }`}
+                                >
+                                  ,
+                                </span>
+                              </div>)
+                            </>
+                          )
+                        })}
+                      </div>
+                      <span
+                        className={`${i + 1 === data?.product?.sections?.length
+                          ? "hidden"
+                          : ""
+                          }`}
                       >
-                        {languageDetector?.typeLang === "ru" && item?.name_ru}
-                        {languageDetector?.typeLang === "uz" && item?.name_uz}
-                        <span
-                          className={`${i + 1 === data?.product?.sections?.length
-                            ? "hidden"
-                            : ""
-                            }`}
-                        >
-                          ,
-                        </span>
-                      </p>
-                    );
-                  }
+                        ,
+                      </span>
+                    </p>
+                  );
                 })}
               </article>
             </div>
