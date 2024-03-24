@@ -11,6 +11,7 @@ import { CollectionCardItem } from "../../../Main/WearCollectionCard/CollectionC
 import LoadingNetwork from "../../../../Loading/LoadingNetwork";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { ToastContainer } from "react-toastify";
 
 const SingleProduct = ({ breadShops, oncallProductName }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -86,7 +87,6 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
           setLoading(false);
           // console.log(error, 'singlepage error');
           throw new Error(error || "something wrong");
-
         });
     }
   }, [paramsId?.product]);
@@ -108,7 +108,6 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
         setLoading(false);
         // console.log(error);
         throw new Error(error || "something wrong");
-
       });
   };
 
@@ -154,6 +153,7 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
 
   return (
     <main className="flex flex-col m-0 p-0 box-border">
+      <ToastContainer />
       {loading ? (
         <LoadingNetwork />
       ) : (
@@ -174,9 +174,9 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
                 </section>
                 {/* Products Comment */}
                 {/* {singleData?.product?.ratings?.length ? ( */}
-                  <section className="md:mt-20 w-full  ">
-                    <ProductComment data={singleData} refetch={refetch} />
-                  </section>
+                <section className="md:mt-20 w-full  ">
+                  <ProductComment data={singleData} refetch={refetch} />
+                </section>
                 {/* ) : null} */}
                 {sameTypeData?.length ? (
                   <section className="w-full h-fit">
