@@ -19,7 +19,7 @@ const MobileAllComments = () => {
   const toggleAddComment = useCallback(() => setAddComment(false), []);
   const [data, setData] = useState();
 
-  const { t } = useTranslation("products")
+  const { t } = useTranslation("products");
 
   const [reFreshTokenFunc, setUserLogedIn] = useContext(
     UserRefreshTokenContext
@@ -49,7 +49,6 @@ const MobileAllComments = () => {
       onError: (err) => {
         // console.log(err, "err");
         throw new Error(err || "something wrong");
-
       },
       keepPreviousData: true,
       refetchOnWindowFocus: true,
@@ -65,7 +64,7 @@ const MobileAllComments = () => {
       headers: {
         Accept: "application/json",
         "Content-type": "application/json",
-        Authorization: `Bearer ${ localStorage?.getItem("userAccess")}`,
+        Authorization: `Bearer ${localStorage?.getItem("userAccess")}`,
       },
       body: JSON.stringify({
         score: rateRef.current.state.value,
@@ -102,7 +101,6 @@ const MobileAllComments = () => {
           rateRef.current.state.value = 1;
           textRef.current.value = null;
           throw new Error(err || "something wrong");
-
         },
       }
     );
@@ -158,7 +156,7 @@ const MobileAllComments = () => {
           </span>
         </div>
       </div>
-      { localStorage?.getItem("userAccess") ? (
+      {localStorage?.getItem("userAccess") ? (
         <button
           onClick={() => setAddComment(true)}
           type="button"
