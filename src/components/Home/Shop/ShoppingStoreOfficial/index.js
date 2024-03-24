@@ -380,7 +380,7 @@ const ShoppingStoreOfficial = () => {
                     toggleFilterLeftClose={toggleFilterClose}
                     filterLeftAction={filterToggle}
                     setOpenMobileFilter={setOpenMobileFilter}
-                  />
+                   />
                 </section>
                 {/* FOR MOBILE VERSION */}
                 <section
@@ -485,6 +485,8 @@ const ShoppingStoreOfficial = () => {
                       <ShowPageComment
                         filteredData={filteredData}
                         setOpenTabComment={setOpenTabComment}
+                        fetchGetAllData={fetchGetAllData}
+
                       />
                     </div>
 

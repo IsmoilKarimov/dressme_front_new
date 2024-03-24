@@ -11,19 +11,15 @@ import CommentDropUp from "../../../Products/SignleMainProducts/SingleProduct/Pr
 import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { ToastContainer, toast } from "react-toastify";
-import { UserRefreshTokenContext } from "../../../../../ContextHook/UserRefreshToken";
 import { useTranslation } from "react-i18next";
 
-function ShowPageComment({ filteredData, setOpenTabComment }) {
+function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
   const [addComment, setAddComment] = useState(false);
   const toggleAddComment = useCallback(() => setAddComment(false), []);
   const [openComment, setOpenComment] = useState(false);
 
   const { t } = useTranslation("shops");
 
-  const [reFreshTokenFunc, setUserLogedIn] = useContext(
-    UserRefreshTokenContext
-  );
 
   // For DropUp
   useEffect(() => {
@@ -47,7 +43,7 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
       headers: {
         Accept: "application/json",
         "Content-type": "application/json",
-        Authorization: `Bearer ${ localStorage?.getItem("userAccess")}`,
+        Authorization: `Bearer ${localStorage?.getItem("userAccess")}`,
       },
       body: JSON.stringify({
         score: rateRef.current.state.value,
@@ -69,10 +65,29 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
             // sendFunc();
           }
           if (!res?.errors) {
-            toast.success(res?.message);
+            toast.success(`${res?.message}`, {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            fetchGetAllData()
           }
           if (res.errors) {
-            toast.error(res?.message);
+            toast.error(`${res?.message}`, {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
           }
           rateRef.current.state.value = 1;
           textRef.current.value = null;
@@ -108,14 +123,12 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
       <div className="comments">
         <section
           onClick={() => setAddComment(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-            addComment ? "" : "hidden"
-          }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${addComment ? "" : "hidden"
+            }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
-            addComment ? "bottom-0" : "bottom-[-800px] z-0"
-          }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${addComment ? "bottom-0" : "bottom-[-800px] z-0"
+            }`}
         >
           <CommentDropUp onClick={toggleAddComment} />
         </section>
@@ -136,7 +149,7 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
               <p className="not-italic font-AeonikProMedium text-base md:text-2xl leading-7 text-black track%]">
                 {t("reviews_of_stores")}
               </p>
-              { localStorage?.getItem("userAccess") ? (
+              {localStorage?.getItem("userAccess") ? (
                 <button
                   onClick={() => setOpenComment(true)}
                   type="button"
@@ -189,7 +202,7 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
             </Modal>
           </section>
           <section>
-            { localStorage?.getItem("userAccess") ? (
+            {localStorage?.getItem("userAccess") ? (
               <button
                 onClick={() => setAddComment(true)}
                 type="button"
@@ -218,7 +231,7 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
             id="comment"
             className="flex justify-between flex-wrap w-full h-fit overflow-hidden"
           >
-            {filteredData?.shop?.ratings?.map((allComments,index) => {
+            {filteredData?.shop?.ratings?.map((allComments, index) => {
               return (
                 <article
                   key={index}
