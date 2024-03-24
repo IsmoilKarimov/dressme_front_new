@@ -55,30 +55,12 @@ export default function ProductComment({ data, refetch }) {
         onSuccess: (res) => {
           // console.log(res, "RES");
           if (!res?.errors) {
-            toast.success(`${res?.message}`, {
-              position: "top-right",
-              autoClose: 3000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
             refetch();
+            toast.success(res?.message);
           }
           if (res.errors) {
             // console.log(res?.message);
-            toast.error(`${res?.message}`, {
-              position: "top-right",
-              autoClose: 3000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
+            toast.error(res?.message, { autoClose: 3000 });
           }
           rateRef.current.state.value = 1;
           textRef.current.value = null;
@@ -143,19 +125,6 @@ export default function ProductComment({ data, refetch }) {
 
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto border-box md:mb-[0px]">
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        limit={4}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
       <section className="relative w-[100%] h-fit md:mt-6 flex justify-between">
         {/* Desktop version of comment*/}
         <article className="w-full hidden md:block  ">
