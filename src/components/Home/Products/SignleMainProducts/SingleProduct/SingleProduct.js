@@ -173,11 +173,11 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
                   </section>
                 </section>
                 {/* Products Comment */}
-                {singleData?.product?.ratings?.length ? (
-                  <section className="md:mt-20 w-full">
+                {/* {singleData?.product?.ratings?.length ? ( */}
+                  <section className="md:mt-20 w-full  ">
                     <ProductComment data={singleData} refetch={refetch} />
                   </section>
-                ) : null}
+                {/* ) : null} */}
                 {sameTypeData?.length ? (
                   <section className="w-full h-fit">
                     <article className="w-full mt-[34px] md:mt-[60px] md:mb-[60px]">

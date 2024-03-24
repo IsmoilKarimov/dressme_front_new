@@ -416,7 +416,7 @@ function YandexMapsDressMe() {
             {/* </Clusterer > */}
             {/* Yandex Main menu */}
             <div
-              className={`max-w-[440px] border border-red-600 w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${dressInfo?.openMainMenu
+              className={`max-w-[440px]   w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${dressInfo?.openMainMenu
                 ? "left-[-500px] md:left-[-5000px] z-[-80] ease-linear duration-500"
                 : "hamburger flex flex-col ease-linear duration-500 overscroll-none z-[105]"
                 }`}
@@ -752,7 +752,7 @@ function YandexMapsDressMe() {
             {/* </Clusterer > */}
             {/* Yandex Main menu */}
             <div
-              className={`max-w-[440px] border border-red-600 w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${dressInfo?.openMainMenu
+              className={`max-w-[440px]   w-[100%] fixed bg-white top-[70px] left-0 h-[100vh] px-3 ${dressInfo?.openMainMenu
                 ? "left-[-500px] md:left-[-5000px] z-[-80] ease-linear duration-500"
                 : "hamburger flex flex-col ease-linear duration-500 overscroll-none z-[105]"
                 }`}

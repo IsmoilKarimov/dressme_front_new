@@ -136,7 +136,7 @@ const NavMenu = ({ stateData, setStateData }) => {
                             : wishList?.length > 999
                               ? "w-[20px] h-[20px] text-[8px] -top-[10px] -right-[14px]"
                               : "w-[12px] h-[12px] text-[10px] -top-[4px] -right-[6px]"
-                        } items-center justify-center rounded-full bg-white border border-red-600 text-black text-center absolute  font-AeonikProMedium`}
+                        } items-center justify-center rounded-full bg-white   text-black text-center absolute  font-AeonikProMedium`}
                     >
                       {wishList?.length > 999 ? (
                         <div className="w-full h-full flex items-center justify-center">

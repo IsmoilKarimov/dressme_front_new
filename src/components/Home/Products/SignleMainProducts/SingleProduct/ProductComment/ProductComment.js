@@ -37,7 +37,7 @@ export default function ProductComment({ data, refetch }) {
       headers: {
         Accept: "application/json",
         "Content-type": "application/json",
-        Authorization: `Bearer ${ localStorage?.getItem("userAccess")}`,
+        Authorization: `Bearer ${localStorage?.getItem("userAccess")}`,
       },
       body: JSON.stringify({
         score: rateRef.current.state.value,
@@ -54,13 +54,32 @@ export default function ProductComment({ data, refetch }) {
       {
         onSuccess: (res) => {
           // console.log(res, "RES");
-          refetch();
           if (!res?.errors) {
-            toast.success(res?.message);
+             toast.success(`${res?.message}`, {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            refetch();
+
           }
           if (res.errors) {
             // console.log(res?.message);
-            toast.error(res?.message);
+             toast.error(`${res?.message}`, {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
           }
           rateRef.current.state.value = 1;
           textRef.current.value = null;
@@ -84,7 +103,7 @@ export default function ProductComment({ data, refetch }) {
       return (
         <article
           key={i}
-          className="w-[45%] h-fit border-b border-borderColor2 pr-5 pb-10 mt-10 "
+          className="w-[45%] h-fit border-b border-borderColor2 pr-5 pb-10 mt-10   "
         >
           <p className="not-italic font-AeonikProMedium text-xl leading-6 text-black">
             {allComments?.user?.name}
@@ -126,31 +145,42 @@ export default function ProductComment({ data, refetch }) {
 
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col justify-start items-center m-auto border-box md:mb-[0px]">
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        limit={4}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <section className="relative w-[100%] h-fit md:mt-6 flex justify-between">
         {/* Desktop version of comment*/}
-        <article className="w-full hidden md:block">
-          <section className="flex items-center border-b border-borderColor2 pb-10">
+        <article className="w-full hidden md:block  ">
+          <section className="flex items-center gap-x-5 border-b border-borderColor2 pb-10 ">
             {showNextComments?.length > 4 && (
               <button
                 onClick={() => {
                   setVisibleCommnets(4);
                 }}
-                className={`flex items-center cursor-pointer justify-center border border-borderColor2 rounded-lg mr-5`}
+                className={`flex items-center cursor-pointer justify-center border border-borderColor2 rounded-lg  `}
               >
                 <GoBackIcon />
               </button>
             )}
-
-            <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black track%]">
-              {t("product_reviews")}
-            </p>
-
-            { localStorage?.getItem("userAccess") ? (
+            {data?.product?.ratings?.length ?
+              <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black ">
+                {t("product_reviews")}
+              </p> : null}
+            {localStorage?.getItem("userAccess") ? (
               <button
                 onClick={() => setOpenComment(true)}
                 type="button"
-                className="flex items-center ml-[20px] text-SignInBgColor text-lg font-AeonikProRegular"
+                className="flex items-center   text-SignInBgColor text-lg font-AeonikProRegular"
               >
                 {t("write_a_review")}
                 <span className="ml-[5px]">
@@ -198,48 +228,50 @@ export default function ProductComment({ data, refetch }) {
               </div>
             </Modal>
           </section>
+          {data?.product?.ratings?.length ?
+            <div className="w-full">
+              <section
+                id="comment"
+                className="flex justify-between flex-wrap w-full h-fit overflow-hidden"
+              >
+                {showNextComments}
+              </section>
 
-          <section
-            id="comment"
-            className="flex justify-between flex-wrap w-full h-fit overflow-hidden"
-          >
-            {showNextComments}
-          </section>
-
-          {data?.product?.ratings?.length <= 4 ? null : (
-            <section className="w-full py-6 flex justify-center items-center">
-              {data?.product?.ratings?.length !== showNextComments?.length ? (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setVisibleCommnets((prev) => prev + 4);
-                  }}
-                  className={`flex active:scale-95 active:opacity-70 rounded-xl px-[30px] py-[10px] border border-searchBgColor bg-bgColor items-center gap-x-3 `}
-                >
-                  <p
-                    className={`text-borderWinter bg-transparent font-AeonikProRegular text-base`}
-                  >
-                    {t("show_more")}...
-                  </p>
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setVisibleCommnets(4);
-                  }}
-                  className={`flex rounded-xl px-[30px] py-[10px] border border-searchBgColor bg-bgColor items-center gap-x-3 `}
-                >
-                  <a
-                    href="#comment"
-                    className={`text-borderWinter bg-transparent font-AeonikProRegular text-base`}
-                  >
-                    {t("show_less")}...
-                  </a>
-                </button>
+              {data?.product?.ratings?.length <= 4 ? null : (
+                <section className="w-full py-6 flex justify-center items-center">
+                  {data?.product?.ratings?.length !== showNextComments?.length ? (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setVisibleCommnets((prev) => prev + 4);
+                      }}
+                      className={`flex active:scale-95 active:opacity-70 rounded-xl px-[30px] py-[10px] border border-searchBgColor bg-bgColor items-center gap-x-3 `}
+                    >
+                      <p
+                        className={`text-borderWinter bg-transparent font-AeonikProRegular text-base`}
+                      >
+                        {t("show_more")}...
+                      </p>
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setVisibleCommnets(4);
+                      }}
+                      className={`flex rounded-xl px-[30px] py-[10px] border border-searchBgColor bg-bgColor items-center gap-x-3 `}
+                    >
+                      <a
+                        href="#comment"
+                        className={`text-borderWinter bg-transparent font-AeonikProRegular text-base`}
+                      >
+                        {t("show_less")}...
+                      </a>
+                    </button>
+                  )}
+                </section>
               )}
-            </section>
-          )}
+            </div> : null}
         </article>
       </section>
     </main>
