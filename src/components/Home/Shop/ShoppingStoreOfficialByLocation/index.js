@@ -523,6 +523,7 @@ const ShoppingStoreOfficialByLocation = () => {
                     <ShowPageComment
                       filteredData={filteredData}
                       setOpenTabComment={setOpenTabComment}
+                      fetchGetAllData={fetchGetAllData}
                     />
                   </div>
 

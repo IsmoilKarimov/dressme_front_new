@@ -20,7 +20,6 @@ function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
 
   const { t } = useTranslation("shops");
 
-
   // For DropUp
   useEffect(() => {
     if (addComment) {
@@ -75,7 +74,7 @@ function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
               progress: undefined,
               theme: "light",
             });
-            fetchGetAllData()
+            fetchGetAllData();
           }
           if (res.errors) {
             toast.error(`${res?.message}`, {
@@ -123,12 +122,14 @@ function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
       <div className="comments">
         <section
           onClick={() => setAddComment(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${addComment ? "" : "hidden"
-            }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+            addComment ? "" : "hidden"
+          }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${addComment ? "bottom-0" : "bottom-[-800px] z-0"
-            }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+            addComment ? "bottom-0" : "bottom-[-800px] z-0"
+          }`}
         >
           <CommentDropUp onClick={toggleAddComment} />
         </section>
@@ -277,10 +278,10 @@ function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
 
                   <article className="w-full bg-[#F4F6FB] md:bg-white px-[15px] py-3 md:px-0 md:py-0 rounded-lg mt-6 md:ml-8">
                     <article className="w-full flex items-center justify-between ">
-                      <p className="w-[70%] break-all font-AeonikProMedium text-[13px] md:text-lg  text-[#2C2C2C]">
+                      <p className="w-[70%] break-all font-AeonikProMedium text-[13px] md:text-lg text-[#2C2C2C]">
                         {filteredData?.shop?.name}
                       </p>
-                      <p className="ml-3 font-AeonikProRegular text-[11px] md:text-base text-setTexOpacity">
+                      <p className="mr-3 font-AeonikProRegular text-[11px] md:text-base text-setTexOpacity">
                         {allComments?.updated_at}
                       </p>
                     </article>
