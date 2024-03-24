@@ -29,6 +29,7 @@ function CategoryForType() {
   // ---
   const [getGenderId, setGetGenderId] = useState(null);
   const [getCategory, setGetCategory] = useState(null);
+  const [subSection, setSubSection] = useState(null);
   const [getRating, setGetRating] = useState(null);
   const [getRange, setGetRange] = useState([]);
   const [dataColor, setDataColor] = useState([]);
@@ -38,10 +39,15 @@ function CategoryForType() {
   const [getFootWearList, setGetFootWearList] = useState(null);
   const [filterToggle, setFilterToggle] = useState(false);
   const [openMobileFilter, setOpenMobileFilter] = useState(false);
+  const [mobileSubSection, setMobileSubSection] = useState(false);
   const [openMobileCategory, setOpenMobileCategory] = useState(false);
 
   const [initalParamsId, setInitalParamsId] = useState(null);
 
+  const getSubSection = (childData) => {
+    setSubSection(childData);
+    // setPageId(1);
+  };
   const genderId = (childData) => {
     setGetGenderId(childData);
     setPageId(1);
@@ -128,6 +134,7 @@ function CategoryForType() {
       params.append("keywords", dressInfo?.mainSearchNameCategory);
     getGenderId && params.append("gender", getGenderId);
     discount && params.append("discount", discount);
+    subSection && params.append("sub_section", subSection);
     seasonId !== 5 && params.append("season", seasonId);
     getCategory && params.append("category", getCategory);
     getRating && params.append("rating", getRating);
@@ -211,7 +218,8 @@ function CategoryForType() {
       !discount &&
       !getOutWearList &&
       !getUnderWearList &&
-      !getFootWearList
+      !getFootWearList&&
+      !subSection
     ) {
       fetchGetAllData();
       setLoading(true);
@@ -245,6 +253,7 @@ function CategoryForType() {
     getRange?.max,
     dressInfo?.mainSearchNameCategory,
     languageDetector?.typeLang,
+    subSection
   ]);
 
   const navigate = useNavigate();
@@ -259,12 +268,12 @@ function CategoryForType() {
     }
   };
   useEffect(() => {
-    if (openMobileFilter || openMobileCategory) {
+    if (openMobileFilter || openMobileCategory || mobileSubSection) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  }, [openMobileFilter, openMobileCategory]);
+  }, [openMobileFilter, openMobileCategory, mobileSubSection]);
   const [screenSize, setScreenSize] = useState(getCurrentDimension());
 
   function getCurrentDimension() {
@@ -287,7 +296,20 @@ function CategoryForType() {
   useEffect(() => {
     setFilterToggle(false);
   }, [dressInfo?.mainSubRegionId, dressInfo?.mainRegionId]);
-
+   
+  const selectSubSection = (id) => {
+    if (!subSection) {
+      setSubSection(id)
+    }
+    if (subSection !== id) {
+      setSubSection(id)
+    }
+  }
+  const selectRemove = (id) => {
+      if (subSection === id) {
+      setSubSection(null)
+    }
+  }
   return (
     <div className="w-full">
       {loading ? (
@@ -305,6 +327,9 @@ function CategoryForType() {
               filterLeftAction={filterToggle}
               setOpenMobileFilter={setOpenMobileFilter}
               setOpenMobileCategory={setOpenMobileCategory}
+              getSubSection={getSubSection}
+              subSection={subSection}
+              setMobileSubSection={setMobileSubSection}
             />
           </section>
 
@@ -313,16 +338,15 @@ function CategoryForType() {
               onClick={() => {
                 setOpenMobileCategory(false);
                 setOpenMobileFilter(false);
+                setMobileSubSection(false)
               }}
-              className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-                openMobileFilter || openMobileCategory ? "" : "hidden"
-              }`}
+              className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter || openMobileCategory || mobileSubSection ? "" : "hidden"
+                }`}
             ></section>
             {/* For Mobile Versions */}
             <section
-              className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${
-                openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
-              }`}
+              className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
+                }`}
             >
               <section className="h-[52px] w-full bg-btnBgColor flex items-center justify-between mb-1">
                 <p className="text-[16px] font-AeonikProMedium">
@@ -344,11 +368,10 @@ function CategoryForType() {
                           data?.id
                         );
                       }}
-                      className={`${
-                        filterData?.section?.id === data?.id
-                          ? "bg-bgColor"
-                          : null
-                      } h-10 w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
+                      className={`${filterData?.section?.id === data?.id
+                        ? "bg-bgColor"
+                        : null
+                        } h-10 w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
                     >
                       {languageDetector?.typeLang === "ru" && data?.name_ru}
                       {languageDetector?.typeLang === "uz" && data?.name_uz}
@@ -357,11 +380,45 @@ function CategoryForType() {
                 })}
               </div>
             </section>
+            <section
+              className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${mobileSubSection ? "bottom-0" : "bottom-[-800px] z-0"
+                }`}
+            >
+              <section className="h-[52px] w-full bg-btnBgColor flex items-center justify-between mb-1">
+                <p className="text-[16px] font-AeonikProMedium">
+                  {t("by_section")}
+                </p>
+                <button onClick={() => setMobileSubSection(false)}>
+                  <MenuCloseIcons colors={"#a1a1a1"} />
+                </button>
+              </section>
+              <div className="max-w-[440px] w-[100%] h-[320px] z-[114] border-y overflow-y-auto overflow-hidden ">
+                {filterData?.section?.sub_sections?.map((data) => {
+                  return (
+                    <button
+                      onClick={() => selectSubSection(data?.id)}
+                      className={`${subSection === data?.id
+                        ? "bg-bgColor"
+                        : null
+                        } h-12 w-full flex items-center justify-between border-b border-searchBgColor text-[#303030]  text-[14px] font-AeonikProRegular`
+                      }>
+                      <p
+                        key={data?.id}
+                        className={`  flex items-center justify-start   text-[#303030]  text-[14px] font-AeonikProRegular`}
+                      >
+                        {languageDetector?.typeLang === "ru" && data?.name_ru}
+                        {languageDetector?.typeLang === "uz" && data?.name_uz}
+                      </p>
+                      {subSection === data?.id && <span onClick={() => selectRemove(data?.id)}  ><MenuCloseIcons colors="#a1a1a1" /></span>}
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
             {screenSize.width < 768 && (
               <section
-                className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${
-                  openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
-                }`}
+                className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+                  }`}
               >
                 <div className="w-full h-[70vh] z-[114] overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
                   <FilterList
@@ -388,9 +445,8 @@ function CategoryForType() {
             {/* For Desktop Version */}
             {screenSize.width >= 768 && (
               <article
-                className={`${
-                  filterToggle ? "md:block" : "md:hidden"
-                } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0 `}
+                className={`${filterToggle ? "md:block" : "md:hidden"
+                  } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0 `}
               >
                 <FilterList
                   paramsId={newFilterParamasId}
@@ -411,9 +467,8 @@ function CategoryForType() {
               </article>
             )}
             <article
-              className={`${
-                filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-              } w-full h-full px-[10px] md:px-0 `}
+              className={`${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+                } w-full h-full px-[10px] md:px-0 `}
             >
               {filterData?.section_products?.data?.length > 0 ? (
                 <CategoryCards
@@ -436,8 +491,9 @@ function CategoryForType() {
             </div>
           )} */}
         </main>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 }
 

@@ -35,7 +35,7 @@ const WearType = ({ onClick, title }) => {
           {languageDetector?.typeLang === "uz" && selectedData?.name_uz}
         </p>
         <button onClick={onClick}>
-          <MenuCloseIcons />
+        <MenuCloseIcons colors={"#000"} />
         </button>
       </section>
       <section className="h-[142px] w-full px-4 flex items-center">
