@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { NavLink, useNavigate } from "react-router-dom";
 import { EmailIcons, SircleNext } from "../../../assets/icons";
@@ -17,14 +17,20 @@ export default function SignIn() {
   const [reFreshTokenFunc, setUserLogedIn] = useContext(
     UserRefreshTokenContext
   );
-  const { i18n, t } = useTranslation('authen')
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const { i18n, t } = useTranslation("authen");
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
   const [loading, setLoading] = useState(false);
+
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+
   const [state, setState] = useState({
     eyesShow: true,
-    password: "",
+    password: passwordRef.current?.value || "",
     rememberCheck: false,
-    email: "",
+    email: emailRef.current?.value || "",
     errorsGroup: null,
   });
 
@@ -41,13 +47,13 @@ export default function SignIn() {
     return fetch(`${url}/login`, {
       method: "POST",
       headers: {
-        'Accept': "application/json",
+        Accept: "application/json",
         "Content-type": "application/json",
-        'Accept-Language': languageDetector?.typeLang
+        "Accept-Language": languageDetector?.typeLang,
       },
       body: JSON.stringify({
-        email: state.email,
-        password: state.password,
+        email: emailRef.current?.value || "",
+        password: passwordRef.current?.value || "",
         rememberToken: state.rememberCheck,
       }),
     }).then((res) => res.json());
@@ -74,8 +80,8 @@ export default function SignIn() {
             });
           } else if (res?.access_token) {
             setLoading(false);
-            localStorage.setItem("userAccess", res?.access_token)
-            localStorage.setItem("userRefresh", res?.refresh_token)
+            localStorage.setItem("userAccess", res?.access_token);
+            localStorage.setItem("userRefresh", res?.refresh_token);
             Cookies.set("DressmeUserToken", res?.access_token);
             Cookies.set("DressmeUserRefreshToken", res?.refresh_token);
             toast.success(`Успешный вход в систему`, {
@@ -90,6 +96,8 @@ export default function SignIn() {
             });
             navigate("/profile/edit");
             setState({ ...state, email: "", password: "", errorsGroup: "" });
+            emailRef.current.value = "";
+            passwordRef.current.value = "";
             setUserLogedIn(true);
           }
         },
@@ -106,7 +114,6 @@ export default function SignIn() {
             theme: "colored",
           });
           throw new Error(err || "something wrong");
-
         },
       }
     );
@@ -137,7 +144,7 @@ export default function SignIn() {
           {t("Llogin")}
         </div>
 
-        <div className="mt-2 w-full h-fit">
+        <label className="mt-2 w-full h-fit block">
           <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
             {t("Lemail")}
           </div>
@@ -146,12 +153,9 @@ export default function SignIn() {
               className=" !bg-white w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black focus:bg-white placeholder-bg-white"
               type="email"
               name="email"
-              autoComplete="on"
-              value={state.email || ""}
-              onChange={({ target: { value } }) => {
-                setError();
-                setState({ ...state, email: value });
-              }}
+              inputMode="email"
+              autoComplete="username"
+              ref={emailRef}
               // placeholder="Emailingizni kiriting..."
               required
             />
@@ -164,8 +168,8 @@ export default function SignIn() {
               {state?.errorsGroup?.errors?.email}
             </p>
           )}
-        </div>
-        <div className="mt-4 w-full h-fit">
+        </label>
+        <label className="mt-4 w-full h-fit block">
           <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
             {t("Lpassword")}
           </div>
@@ -175,12 +179,8 @@ export default function SignIn() {
               type={state?.eyesShow ? "password" : "text"}
               // placeholder="Enter your password"
               name="password"
-              autoComplete="on"
-              value={state.password || ""}
-              onChange={({ target: { value } }) => {
-                setError();
-                setState({ ...state, password: value });
-              }}
+              ref={passwordRef}
+              autoComplete="current-password"
               required
             />
             <span className="cursor-pointer">
@@ -202,7 +202,7 @@ export default function SignIn() {
               {state?.errorsGroup?.errors?.password}
             </p>
           )}
-        </div>
+        </label>
         {error?.length ? <div className={`text-RedColor`}>{error}</div> : null}
 
         <div className="my-5 flex items-center justify-between w-full">
@@ -212,7 +212,7 @@ export default function SignIn() {
               className=" text-black bg-white placeholder-bg-white mr-2"
               id="vehicle1"
               name="vehicle1"
-              value={state?.rememberCheck || ''}
+              value={state?.rememberCheck || ""}
               onChange={handleChange}
             />
             <label
@@ -242,10 +242,7 @@ export default function SignIn() {
             <SircleNext colors={"#fff"} />
           </span>
         </div>
-        <div className="md:hidden block mt-6 text-center">
-          {" "}
-          {t("LhaveAcc")}
-        </div>
+        <div className="md:hidden block mt-6 text-center"> {t("LhaveAcc")}</div>
         <NavLink
           to={"/sign_up"}
           className="mt-3 border md:hidden cursor-pointer flex items-center justify-center border-searchBgColor w-full h-12 bg-OpacitySignIn select-none rounded-lg active:scale-95	active:opacity-70 "
