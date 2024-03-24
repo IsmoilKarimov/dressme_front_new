@@ -116,7 +116,7 @@ export default function SetNewPassword() {
     window.scrollTo({
       top: 0,
     });
-    document.title = "Подтвердите пароль";
+    // document.title = "Подтвердите пароль";
   }, []);
 
   return (

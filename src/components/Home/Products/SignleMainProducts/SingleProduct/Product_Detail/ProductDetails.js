@@ -596,7 +596,7 @@ const ProductDetails = ({ data, shopsData }) => {
                 </p>
               </article>
             </div>
-            <div className="w-1/2 flex flex-col">
+            <div className="w-1/2 flex flex-col  ">
               <div className="flex items-center mb-1">
                 <article className="w-fit flex items-center">
                   <ChapterIcon colors={"#000"} />
@@ -604,10 +604,9 @@ const ProductDetails = ({ data, shopsData }) => {
                     {t("chapter")}:
                   </div>
                 </article>
-                <article className="w-fit ml-2 flex flex-wrap">
+                <article className="w-fit ml-2 flex flex-wrap items-center">
                   {data?.product?.sections?.map((item, i, array) => {
-                    const lastIndex = array.length - 1;
-
+                    console.log(data?.product, 'data?.product');
                     if (i < 2) {
                       return (
                         <div key={i}>
@@ -630,12 +629,27 @@ const ProductDetails = ({ data, shopsData }) => {
                       );
                     }
                   })}
+                  {data?.product?.sub_sections?.length > 0 && data?.product?.sub_sections?.map((item, i, array) => {
+                    return (
+                      <div key={i} className="text-[12px] leading-4 text-[#858585]">
+                        (<span className="mr-[5px] not-italic font-AeonikProRegular text-[12px] leading-4 text-[#858585] tracking-[1%]  "
+                        >  {languageDetector?.typeLang === "ru" && item?.name_ru}
+                          {languageDetector?.typeLang === "uz" && item?.name_uz}</span>)
+                        <span
+                          className={`${i + 1 === data?.product?.sub_sections?.length
+                            ? "hidden"
+                            : ""
+                            }`}
+                        >
+                          ,
+                        </span>
+                      </div>
+                    )
+                  })}
                 </article>
               </div>
               <div className="flex flex-wrap">
                 {data?.product?.sections?.map((item, i, array) => {
-                  const lastIndex = array.length - 1;
-
                   if (i > 1) {
                     return (
                       <div key={i}>
@@ -658,6 +672,7 @@ const ProductDetails = ({ data, shopsData }) => {
                     );
                   }
                 })}
+                
               </div>
             </div>
           </div>

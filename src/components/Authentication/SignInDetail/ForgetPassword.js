@@ -115,7 +115,7 @@ export default function ForgetPassword() {
     window.scrollTo({
       top: 0,
     });
-    document.title = "Забыли пароль";
+    // document.title = "Забыли пароль";
   }, []);
 
   return (

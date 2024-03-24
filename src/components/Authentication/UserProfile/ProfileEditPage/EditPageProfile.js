@@ -396,7 +396,7 @@ const EditProfilePage = () => {
     window.scrollTo({
       top: 0,
     });
-    document.title = "Pедактировать профиль";
+    // document.title = "Pедактировать профиль";
   }, []);
 
   // ----------------Month state management----------------------------

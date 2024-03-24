@@ -98,7 +98,7 @@ export default function UserEmailVerification() {
     setTimeForNotif();
   }
   useEffect(() => {
-    document.title = "Подтвердить адрес электронной почты";
+    // document.title = "Подтвердить адрес электронной почты";
   }, []);
 
   return (
