@@ -379,7 +379,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                 setDressInfo({ ...dressInfo, openCatologId: false })
               }
             >
-              <MenuCloseIcons />
+              <MenuCloseIcons colors={"#000"} />
             </button>
             <div className="ss:w-fit md:w-[650px] h-[210px] m-0 p-2 pb-4 pt-4">
               <div className="w-full flex items-start flex-wrap gap-y-6">
@@ -608,7 +608,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                 <p className="line h-5 border-x-[1px] text-textColor ss:hidden md:block mx-3"></p>
 
                 {/* User section */}
-                { localStorage.getItem("userAccess") ? (
+                {localStorage.getItem("userAccess") ? (
                   <NavLink
                     to="/profile/edit"
                     className=" bg-btnBgColor rounded-xl items-center justify-center w-11 h-11 mr-2 hidden md:flex"

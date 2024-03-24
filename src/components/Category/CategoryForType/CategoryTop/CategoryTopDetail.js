@@ -1,5 +1,5 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { SearchIcons, SortIcons, UnderSection } from "../../../../assets/icons";
+import { MenuCloseIcons, SearchIcons, SortIcons, UnderSection, VerticalMenu } from "../../../../assets/icons";
 import React, { useContext, useEffect, useState } from "react";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
@@ -8,6 +8,8 @@ import { MdClose } from "react-icons/md";
 import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../language/LanguageItems";
+import { CiMenuKebab } from "react-icons/ci";
+import { GrClose } from "react-icons/gr";
 
 const CategoryTopDetail = ({
   filterData,
@@ -16,6 +18,9 @@ const CategoryTopDetail = ({
   setOpenMobileCategory,
   setFilterToggle,
   paramsId,
+  subSection,
+  getSubSection,
+  setMobileSubSection
 }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [searchMarketName, setSearchMarketName] = useState(
@@ -43,6 +48,17 @@ const CategoryTopDetail = ({
   const navigate = useNavigate();
 
   // CATEGORIES
+  const handleSelectSubSection = (id) => {
+    if (!subSection) {
+      getSubSection(id)
+    }
+    if (subSection == id) {
+      getSubSection(null)
+    }
+    if (subSection !== id) {
+      getSubSection(id)
+    }
+  };
   const handleOpenCategories = (newOpen) => {
     setState({ ...state, opensports: newOpen });
   };
@@ -117,13 +133,13 @@ const CategoryTopDetail = ({
         </section>
       </div>
 
-      <div className="w-full flex flex-col justify-center items-center">
-        <section className=" w-[100%] flex flex-col items-center justify-between m-auto  md:mt-[60px]">
+      <div className="w-full flex flex-col justify-center items-center  ">
+        <section className=" w-[100%] flex flex-col items-center justify-between m-auto  md:mt-[60px]  ">
           <article className="w-[100%] h-fit md:mb-8">
-            <article className="w-full flex flex-col border-b md:border-none border-searchBgColor">
-              <figure className="relative w-full md:h-[90px] my-10 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-lg px-4 md:px-0">
+            <article className="w-full flex flex-col border-b md:border-none border-searchBgColor px-4 md:px-0">
+              <figure className="relative w-full md:h-[90px] my-10 md:mt-0 h-fit flex flex-row items-center justify-between border-t-0 border border-searchBgColor rounded-lg   ">
                 {/*  */}
-                <div className="w-full md:w-fit flex h-[66px] md:h-fit items-center border md:border-none border-searchBgColor rounded-lg">
+                <div className=" w-fit flex h-[66px] md:h-fit items-center   rounded-lg  ">
                   <div className="absolute w-[80px] h-[120px] md:w-[120px] md:h-[160px] overflow-hidden left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center bg-white columns-1">
                     <img
                       src={filterData?.section?.url_photo}
@@ -145,7 +161,13 @@ const CategoryTopDetail = ({
                 </div>
 
                 {/*  */}
-                <div className="w-full md:w-fit flex items-center justify-between md:mr-5">
+                <button
+                  onClick={() => setMobileSubSection(true)}
+                  className="w-fit md:hidden  flex">
+                  <VerticalMenu colors="#161616" />
+                </button>
+
+                <div className="w-full md:w-fit hidden md:flex items-center justify-between md:mr-5  ">
                   <div className="flex items-center">
                     <NavLink className="hidden md:flex items-center text-[15px] font-AeonikProMedium mr-[22px]">
                       {t("by_section")}
@@ -179,6 +201,27 @@ const CategoryTopDetail = ({
                   </div>
                 </div>
               </figure>
+
+              <div className={`w-full ${subSection ? " md:hidden flex" : "hidden  "}    overflow-hidden items-center justify-end mb-1  `}>
+                {filterData?.section?.sub_sections?.filter(e => e?.id === subSection)?.map((catalog, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className={`bg-bgWinter w-fit h-fit gap-x-[6px] rounded-[20px] py-1 px-[6px] flex items-center justify-between cursor-pointer `}
+                    >
+                      <span className="text-fullBlue text-[12px] not-italic font-AeonikProRegular">
+                        {languageDetector?.typeLang === "ru" && catalog?.name_ru}
+                        {languageDetector?.typeLang === "uz" && catalog?.name_uz}
+                      </span>
+                      <button
+                        onClick={() => getSubSection()}
+                        className="rounded-full bg-white h-5 w-5 flex items-center justify-center"
+                      >
+                        <GrClose size={10} colors={"#007DCA"} />
+                      </button>
+                    </div>)
+                })}
+              </div>
             </article>
             <article className="w-full md:hidden flex items-center justify-between mt-6 mb-3 px-4">
               <button
@@ -203,28 +246,32 @@ const CategoryTopDetail = ({
           </article>
 
           {filterData?.section?.sub_sections ? (
-            <article className="w-full border-b border-searchBgColor">
-              <article className="w-full hidden md:block mb-10">
+            <article className="w-full border-b border-searchBgColor pb-5 mb-5">
+              <article className="w-full hidden md:block  ">
                 <ul className=" flex flex-row items-center flex-wrap gap-x-[14px] gap-y-[14px]">
-                  {filterData?.section?.sub_sections?.map((catalog, index) => (
-                    <li
-                      key={index}
-                      className="text-[15px] font-AeonikProMedium"
-                    >
-                      <button className="focus:bg-borderWinter focus:text-white hover:bg-borderWinter hover:text-white bg-white border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]">
-                        {languageDetector?.typeLang === "ru" &&
-                          catalog?.name_ru}
-                        {languageDetector?.typeLang === "uz" &&
-                          catalog?.name_uz}
-                      </button>
-                    </li>
-                  ))}
+                  {filterData?.section?.sub_sections?.map((catalog, index) => {
+                    return (
+                      <li
+                        key={index}
+                        className="text-[15px] font-AeonikProMedium"
+                      >
+                        <button onClick={() => handleSelectSubSection(catalog?.id)}
+                          className={`${subSection == catalog?.id ? "bg-borderWinter text-white" : "bg-white text-black "}    hover:bg-borderWinter hover:text-white   border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]`}>
+                          {languageDetector?.typeLang === "ru" &&
+                            catalog?.name_ru}
+                          {languageDetector?.typeLang === "uz" &&
+                            catalog?.name_uz}
+                        </button>
+                      </li>
+                    )
+                  }
+                  )}
                 </ul>
               </article>
             </article>
           ) : null}
         </section>
-        <div className="w-full hidden md:flex items-center ">
+        <div className="w-full hidden md:flex items-center  ">
           <button
             onClick={handleToggle}
             type="button"

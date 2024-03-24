@@ -587,7 +587,7 @@ function YandexMapsDressMe() {
                 >
                   <div className="flex items-center justify-center">
                     <span>
-                      <MenuCloseIcons />
+                      <MenuCloseIcons colors={"#000"}/>
                     </span>
                     <div className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                       Магазины
@@ -923,7 +923,7 @@ function YandexMapsDressMe() {
                 >
                   <div className="flex items-center justify-center">
                     <span>
-                      <MenuCloseIcons />
+                    <MenuCloseIcons colors={"#000"}/>
                     </span>
                     <div className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                       Магазины

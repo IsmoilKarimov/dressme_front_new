@@ -64,7 +64,7 @@ function YandexMapsIndex({ getMapsInfo, getFilterSearchByBrand }) {
                 setDressInfo({ ...dressInfo, openCatologId: false })
               }
             >
-              <MenuCloseIcons />
+                      <MenuCloseIcons colors={"#000"}/>
             </button>
             <div className="ss:w-fit md:w-[650px] h-[210px] m-0 p-2 pb-4 pt-4">
               <div className="w-full flex items-start flex-wrap gap-y-6">
