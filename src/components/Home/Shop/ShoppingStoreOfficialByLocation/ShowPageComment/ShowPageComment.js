@@ -14,7 +14,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { UserRefreshTokenContext } from "../../../../../ContextHook/UserRefreshToken";
 import { useTranslation } from "react-i18next";
 
-function ShowPageComment({ filteredData, setOpenTabComment }) {
+function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
   const [addComment, setAddComment] = useState(false);
   const toggleAddComment = useCallback(() => setAddComment(false), []);
   const [openComment, setOpenComment] = useState(false);
@@ -47,7 +47,7 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
       headers: {
         Accept: "application/json",
         "Content-type": "application/json",
-        Authorization: `Bearer ${ localStorage?.getItem("userAccess")}`,
+        Authorization: `Bearer ${localStorage?.getItem("userAccess")}`,
       },
       body: JSON.stringify({
         score: rateRef.current.state.value,
@@ -68,14 +68,32 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
           // refetch();
           if (res.status === 401 || res.status === 403) {
             // reFreshTokenFunc();
-            sendFunc();
+            // sendFunc();
           }
           if (!res?.errors) {
-            toast.success(res?.message);
+            toast.success(`${res?.message}`, {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            fetchGetAllData();
           }
           if (res.errors) {
-            // console.log(res?.message);
-            toast.error(res?.message);
+            toast.error(`${res?.message}`, {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
           }
           rateRef.current.state.value = 1;
           textRef.current.value = null;
@@ -85,7 +103,6 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
           rateRef.current.state.value = 1;
           textRef.current.value = null;
           throw new Error(err || "something wrong");
-
         },
       }
     );
@@ -115,12 +132,14 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
       <div className="comments">
         <section
           onClick={() => setAddComment(false)}
-          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${addComment ? "" : "hidden"
-            }`}
+          className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+            addComment ? "" : "hidden"
+          }`}
         ></section>
         <section
-          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${addComment ? "bottom-0" : "bottom-[-800px] z-0"
-            }`}
+          className={`fixed z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+            addComment ? "bottom-0" : "bottom-[-800px] z-0"
+          }`}
         >
           <CommentDropUp onClick={toggleAddComment} />
         </section>
@@ -141,7 +160,7 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
               <p className="not-italic font-AeonikProMedium text-base md:text-2xl leading-7 text-black track%]">
                 {t("reviews_of_stores")}
               </p>
-              { localStorage?.getItem("userAccess") ? (
+              {localStorage?.getItem("userAccess") ? (
                 <button
                   onClick={() => setOpenComment(true)}
                   type="button"
@@ -194,7 +213,7 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
             </Modal>
           </section>
           <section>
-            { localStorage?.getItem("userAccess") ? (
+            {localStorage?.getItem("userAccess") ? (
               <button
                 onClick={() => setAddComment(true)}
                 type="button"
@@ -223,11 +242,11 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
             id="comment"
             className="flex justify-between flex-wrap w-full h-fit overflow-hidden"
           >
-            {filteredData?.shop?.ratings?.map((allComments,index) => {
+            {filteredData?.shop?.ratings?.map((allComments, index) => {
               return (
                 <article
                   key={index}
-                  className="w-full md:w-[45%] h-fit border md:border-0 md:border-b border-borderColor2 rounded-lg p-[15px] pr-5 md:pb-10 mt-4 md:mt-10 "
+                  className="w-full md:w-[45%] h-fit border md:border-0 md:border-b border-borderColor2 rounded-lg md:rounded-none p-[15px] pr-5 md:pb-10 mt-4 md:mt-10 "
                 >
                   <article className="flex md:flex-col items-center md:items-start justify-between md:justify-start">
                     <div className="flex md:block items-center justify-between">
@@ -238,44 +257,46 @@ function ShowPageComment({ filteredData, setOpenTabComment }) {
                         <div className="flex md:hidden text-[13px] md:text-base items-center font-AeonikProRegular">
                           {t("purchase_rating")}
                           <span className="ml-[5px] mr-[2px]">
-                            {filteredData?.shop?.overall_rating || 0}
+                            {filteredData?.shop?.overall_rating}
                           </span>
                           <StarIcons />
                         </div>
                       </div>
                     </div>
                     <article className="flex items-center md:mt-3">
-                      {Array.from("55555").map((item, i) => {
-                        if (i + 1 <= allComments?.score) {
-                          return (
-                            <p key={i} className="hidden md:flex items-center">
-                              <StarIcons />;
-                            </p>
-                          );
-                        }
-                      })}
-                      <button className="not-italic ml-3 font-AeonikProRegular text-xs md:text-base  text-setTexOpacity">
+                      <p className="hidden md:flex items-center">
+                        {Array.from("55555").map((item, i) => {
+                          if (i + 1 <= allComments?.score) {
+                            return (
+                              <span key={i}>
+                                <StarIcons />
+                              </span>
+                            );
+                          }
+                        })}
+                      </p>
+                      <button className="ml-3 font-AeonikProRegular text-xs md:text-base text-setTexOpacity">
                         {allComments?.created_at}
                       </button>
                     </article>
                   </article>
                   <article className="mt-6 md:mt-4">
-                    <p className="not-italic font-AeonikProRegular text-[13px] md:text-base text-[#505050]">
+                    <p className="font-AeonikProRegular text-[13px] md:text-base text-[#505050]">
                       {allComments?.comment}
                     </p>
                   </article>
 
-                  <article className="bg-[#F4F6FB] md:bg-white px-[15px] py-3 md:px-0 md:py-0 rounded-lg mt-6 md:ml-8">
-                    <article className="flex items-center justify-between md:justify-start">
-                      <p className="w-[70%] not-italic break-all font-AeonikProMedium text-[13px] md:text-lg leading-5 text-[#2C2C2C]">
+                  <article className="w-full bg-[#F4F6FB] md:bg-white px-[15px] py-3 md:px-0 md:py-0 rounded-lg mt-6 md:ml-8">
+                    <article className="w-full flex items-center justify-between ">
+                      <p className="w-[70%] break-all font-AeonikProMedium text-[13px] md:text-lg text-[#2C2C2C]">
                         {filteredData?.shop?.name}
                       </p>
-                      <p className="not-italic ml-3 font-AeonikProRegular text-[11px] md:text-base leading-4 text-setTexOpacity">
+                      <p className="mr-3 font-AeonikProRegular text-[11px] md:text-base text-setTexOpacity">
                         {allComments?.updated_at}
                       </p>
                     </article>
                     <article className="mt-4">
-                      <p className="not-italic font-AeonikProRegular text-[13px] md:text-base leading-4 text-[#505050]">
+                      <p className="font-AeonikProRegular text-[13px] md:text-base text-[#505050]">
                         {allComments?.replyText}
                       </p>
                     </article>
