@@ -16,7 +16,7 @@ export default function ProductComment({ data, refetch }) {
   const params = useParams();
   const [visibleComments, setVisibleCommnets] = useState(4);
 
-  const { t } = useTranslation("products")
+  const { t } = useTranslation("products");
 
   // useEffect(() => {
   //   window.scrollTo({
@@ -42,7 +42,7 @@ export default function ProductComment({ data, refetch }) {
       body: JSON.stringify({
         score: rateRef.current.state.value,
         comment: textRef.current.value,
-        rateable_id: params?.id,
+        rateable_id: params?.product,
         rateable_type: "product",
       }),
     }).then((res) => res.json());
@@ -55,7 +55,7 @@ export default function ProductComment({ data, refetch }) {
         onSuccess: (res) => {
           // console.log(res, "RES");
           if (!res?.errors) {
-             toast.success(`${res?.message}`, {
+            toast.success(`${res?.message}`, {
               position: "top-right",
               autoClose: 3000,
               hideProgressBar: false,
@@ -66,11 +66,10 @@ export default function ProductComment({ data, refetch }) {
               theme: "light",
             });
             refetch();
-
           }
           if (res.errors) {
             // console.log(res?.message);
-             toast.error(`${res?.message}`, {
+            toast.error(`${res?.message}`, {
               position: "top-right",
               autoClose: 3000,
               hideProgressBar: false,
@@ -89,7 +88,6 @@ export default function ProductComment({ data, refetch }) {
           rateRef.current.state.value = 1;
           textRef.current.value = null;
           throw new Error(err || "something wrong");
-
         },
       }
     );
@@ -172,10 +170,11 @@ export default function ProductComment({ data, refetch }) {
                 <GoBackIcon />
               </button>
             )}
-            {data?.product?.ratings?.length ?
+            {data?.product?.ratings?.length ? (
               <p className="not-italic font-AeonikProMedium text-2xl leading-7 text-black ">
                 {t("product_reviews")}
-              </p> : null}
+              </p>
+            ) : null}
             {localStorage?.getItem("userAccess") ? (
               <button
                 onClick={() => setOpenComment(true)}
@@ -228,7 +227,7 @@ export default function ProductComment({ data, refetch }) {
               </div>
             </Modal>
           </section>
-          {data?.product?.ratings?.length ?
+          {data?.product?.ratings?.length ? (
             <div className="w-full">
               <section
                 id="comment"
@@ -239,7 +238,8 @@ export default function ProductComment({ data, refetch }) {
 
               {data?.product?.ratings?.length <= 4 ? null : (
                 <section className="w-full py-6 flex justify-center items-center">
-                  {data?.product?.ratings?.length !== showNextComments?.length ? (
+                  {data?.product?.ratings?.length !==
+                  showNextComments?.length ? (
                     <button
                       type="button"
                       onClick={() => {
@@ -271,7 +271,8 @@ export default function ProductComment({ data, refetch }) {
                   )}
                 </section>
               )}
-            </div> : null}
+            </div>
+          ) : null}
         </article>
       </section>
     </main>
