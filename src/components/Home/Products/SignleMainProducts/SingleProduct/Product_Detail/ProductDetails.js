@@ -51,6 +51,7 @@ import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../../../language/LanguageItems";
 import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext";
 import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
+import Item from "antd/es/list/Item";
 const ProductDetails = ({ data, shopsData }) => {
   const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
   // Rick Ortiz
@@ -606,8 +607,8 @@ const ProductDetails = ({ data, shopsData }) => {
                 </article>
                 <article className="w-fit ml-2 flex flex-wrap items-center">
                   {data?.product?.sections?.map((item, i, array) => {
- 
 
+                    console.log(data?.product?.sections, 'data?.product?.sections');
                     return (
                       <div key={i}>
                         <div
@@ -615,27 +616,29 @@ const ProductDetails = ({ data, shopsData }) => {
                         >
                           {languageDetector?.typeLang === "ru" && item?.name_ru}
                           {languageDetector?.typeLang === "uz" && item?.name_uz}
-                          <div key={i} className="text-[10px] ml-1 leading-4 text-[#858585] flex items-center flex-wrap">
-                            {data?.product?.sub_sections?.filter(e => e?.section_id == item?.id)?.map((item, i) => {
-                              return (
-                                <>
-                                  ( <div key={i} className="text-[12px] leading-4 text-[#858585]">
-                                    <span className="not-italic font-AeonikProRegular text-[10px] leading-4 text-[#858585] tracking-[1%]  "
-                                    >  {languageDetector?.typeLang === "ru" && item?.name_ru}
-                                      {languageDetector?.typeLang === "uz" && item?.name_uz}</span>
-                                    <span
-                                      className={`${i + 1 === data?.product?.sub_sections?.length
-                                        ? "hidden"
-                                        : ""
-                                        }`}
-                                    >
-                                      ,
-                                    </span>
-                                  </div>)
-                                </>
-                              )
-                            })}
-                          </div>
+                          {item?.sub_sections?.length > 0 && (
+                            <div key={i} className="text-[10px] ml-1 leading-4 text-[#858585] flex items-center flex-wrap">
+                              ( <div className="flex items-center flex-wrap">
+                                {item?.sub_sections?.map((data, i) => {
+                                  return (
+                                    <div key={i} className="text-[12px] leading-4 text-[#858585]">
+                                      <span className="not-italic font-AeonikProRegular text-[10px] leading-4 text-[#858585] tracking-[1%]  "
+                                      >  {languageDetector?.typeLang === "ru" && data?.name_ru}
+                                        {languageDetector?.typeLang === "uz" && data?.name_uz}</span>
+                                      <span
+                                        className={`${i + 1 === item?.sub_sections?.length
+                                          ? "hidden"
+                                          : ""
+                                          }`}
+                                      >
+                                        ,
+                                      </span>
+                                    </div>
+                                  )
+                                })}
+                              </div>)
+                            </div>
+                          )}
                           <span
                             className={`${i + 1 === data?.product?.sections?.length
                               ? "hidden"
@@ -1655,27 +1658,29 @@ const ProductDetails = ({ data, shopsData }) => {
                     >
                       {languageDetector?.typeLang === "ru" && item?.name_ru}
                       {languageDetector?.typeLang === "uz" && item?.name_uz}
-                      <div key={i} className="text-[10px] ml-1 leading-4 text-[#858585] flex items-center flex-wrap">
-                        {data?.product?.sub_sections?.filter(e => e?.section_id == item?.id)?.map((item, i) => {
-                          return (
-                            <>
-                              ( <div key={i} className="text-[12px] leading-4 text-[#858585]">
-                                <span className="not-italic font-AeonikProRegular text-[10px] leading-4 text-[#858585] tracking-[1%]  "
-                                >  {languageDetector?.typeLang === "ru" && item?.name_ru}
-                                  {languageDetector?.typeLang === "uz" && item?.name_uz}</span>
-                                <span
-                                  className={`${i + 1 === data?.product?.sub_sections?.length
-                                    ? "hidden"
-                                    : ""
-                                    }`}
-                                >
-                                  ,
-                                </span>
-                              </div>)
-                            </>
-                          )
-                        })}
-                      </div>
+                      {item?.sub_sections?.length > 0 && (
+                        <div key={i} className="text-[10px] ml-1 leading-4 text-[#858585] flex items-center flex-wrap">
+                          ( <div className="flex items-center flex-wrap">
+                            {item?.sub_sections?.map((data, i) => {
+                              return (
+                                <div key={i} className="text-[12px] leading-4 text-[#858585]">
+                                  <span className="not-italic font-AeonikProRegular text-[10px] leading-4 text-[#858585] tracking-[1%]  "
+                                  >  {languageDetector?.typeLang === "ru" && data?.name_ru}
+                                    {languageDetector?.typeLang === "uz" && data?.name_uz}</span>
+                                  <span
+                                    className={`${i + 1 === item?.sub_sections?.length
+                                      ? "hidden"
+                                      : ""
+                                      }`}
+                                  >
+                                    ,
+                                  </span>
+                                </div>
+                              )
+                            })}
+                          </div>)
+                        </div>
+                      )}
                       <span
                         className={`${i + 1 === data?.product?.sections?.length
                           ? "hidden"
