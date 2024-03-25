@@ -276,21 +276,23 @@ function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
                     </p>
                   </article>
 
-                  <article className="w-full bg-[#F4F6FB] md:bg-white px-[15px] py-3 md:px-0 md:py-0 rounded-lg mt-6 md:ml-8">
-                    <article className="w-full flex items-center justify-between ">
-                      <p className="w-[70%] break-all font-AeonikProMedium text-[13px] md:text-lg text-[#2C2C2C]">
-                        {filteredData?.shop?.name}
-                      </p>
-                      <p className="mr-3 font-AeonikProRegular text-[11px] md:text-base text-setTexOpacity">
-                        {allComments?.updated_at}
-                      </p>
+                  {allComments?.reply ? (
+                    <article className="w-full bg-[#F4F6FB] md:bg-white px-[15px] py-3 md:px-0 md:py-0 rounded-lg mt-6 md:ml-8">
+                      <article className="w-full flex items-center justify-between ">
+                        <p className="w-[70%] break-all font-AeonikProMedium text-[13px] md:text-lg text-[#2C2C2C]">
+                          {filteredData?.shop?.name}
+                        </p>
+                        <p className="mr-3 font-AeonikProRegular text-[11px] md:text-base text-setTexOpacity">
+                          {allComments?.updated_at}
+                        </p>
+                      </article>
+                      <article className="mt-4">
+                        <p className="font-AeonikProRegular text-[13px] md:text-base text-[#505050]">
+                          {allComments?.reply}
+                        </p>
+                      </article>
                     </article>
-                    <article className="mt-4">
-                      <p className="font-AeonikProRegular text-[13px] md:text-base text-[#505050]">
-                        {allComments?.replyText}
-                      </p>
-                    </article>
-                  </article>
+                  ) : null}
                 </article>
               );
             })}
