@@ -117,7 +117,7 @@ const EditProfilePage = () => {
     onSuccess: (data) => {
       if (data?.status >= 200 && data?.status < 300) {
         setProfileContextData(data?.data);
-        console.log(data?.data, "data?.data");
+        // console.log(data?.data, "data?.data");
       }
     },
     onError: (error) => {

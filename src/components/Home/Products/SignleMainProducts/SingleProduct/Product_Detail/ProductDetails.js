@@ -592,10 +592,10 @@ const ProductDetails = ({ data, shopsData }) => {
                 </article>
                 <article className="w-fit ml-2 flex flex-wrap items-center">
                   {data?.product?.sections?.map((item, i, array) => {
-                    console.log(
-                      data?.product?.sections,
-                      "data?.product?.sections"
-                    );
+                    // console.log(
+                    //   data?.product?.sections,
+                    //   "data?.product?.sections"
+                    // );
                     return (
                       <div key={i}>
                         <div className="flex flex-wrap mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]  ">
