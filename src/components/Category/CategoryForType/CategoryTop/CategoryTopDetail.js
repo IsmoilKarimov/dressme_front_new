@@ -1,5 +1,11 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { MenuCloseIcons, SearchIcons, SortIcons, UnderSection, VerticalMenu } from "../../../../assets/icons";
+import {
+  MenuCloseIcons,
+  SearchIcons,
+  SortIcons,
+  UnderSection,
+  VerticalMenu,
+} from "../../../../assets/icons";
 import React, { useContext, useEffect, useState } from "react";
 import { Popover } from "antd";
 import { BiChevronDown } from "react-icons/bi";
@@ -20,7 +26,7 @@ const CategoryTopDetail = ({
   paramsId,
   subSection,
   getSubSection,
-  setMobileSubSection
+  setMobileSubSection,
 }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [searchMarketName, setSearchMarketName] = useState(
@@ -50,13 +56,13 @@ const CategoryTopDetail = ({
   // CATEGORIES
   const handleSelectSubSection = (id) => {
     if (!subSection) {
-      getSubSection(id)
+      getSubSection(id);
     }
     if (subSection == id) {
-      getSubSection(null)
+      getSubSection(null);
     }
     if (subSection !== id) {
-      getSubSection(id)
+      getSubSection(id);
     }
   };
   const handleOpenCategories = (newOpen) => {
@@ -85,8 +91,9 @@ const CategoryTopDetail = ({
                 data?.id
               );
             }}
-            className={`${filterData?.section?.id === data?.id ? "bg-bgColor" : null
-              } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+            className={`${
+              filterData?.section?.id === data?.id ? "bg-bgColor" : null
+            } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {languageDetector?.typeLang === "ru" && data?.name_ru}
             {languageDetector?.typeLang === "uz" && data?.name_uz}
@@ -137,7 +144,7 @@ const CategoryTopDetail = ({
         <section className=" w-[100%] flex flex-col items-center justify-between m-auto  md:mt-[60px]  ">
           <article className="w-[100%] h-fit md:mb-8">
             <article className="w-full flex flex-col border-b md:border-none border-searchBgColor px-4 md:px-0">
-              <figure className="relative w-full md:h-[90px] my-10 md:mt-0 h-fit flex flex-row items-center justify-between border-t-0 border border-searchBgColor rounded-lg   ">
+              <figure className="relative w-full md:h-[90px] my-10 md:mt-0 h-fit flex flex-row items-center justify-between border border-searchBgColor rounded-lg">
                 {/*  */}
                 <div className="w-fit flex h-[66px] md:h-fit items-center   rounded-lg  ">
                   <div className="absolute w-[80px] h-[120px] md:w-[120px] md:h-[160px] overflow-hidden left-[38px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center bg-white columns-1">
@@ -163,7 +170,8 @@ const CategoryTopDetail = ({
                 {/*  */}
                 <button
                   onClick={() => setMobileSubSection(true)}
-                  className="w-fit md:hidden  flex mr-3">
+                  className="w-fit md:hidden  flex mr-3"
+                >
                   <VerticalMenu colors="#161616" />
                 </button>
 
@@ -192,8 +200,9 @@ const CategoryTopDetail = ({
                           <BiChevronDown
                             size={22}
                             style={{ color: "#000" }}
-                            className={`${state?.opensports ? "rotate-[-180deg]" : ""
-                              } duration-200`}
+                            className={`${
+                              state?.opensports ? "rotate-[-180deg]" : ""
+                            } duration-200`}
                           />
                         </span>
                       </Popover>
@@ -202,25 +211,34 @@ const CategoryTopDetail = ({
                 </div>
               </figure>
 
-              <div className={`w-full ${subSection ? " md:hidden flex" : "hidden  "}    overflow-hidden items-center justify-end mb-1  `}>
-                {filterData?.section?.sub_sections?.filter(e => e?.id === subSection)?.map((catalog, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className={`bg-bgWinter w-fit h-fit gap-x-[6px] rounded-[20px] py-1 px-[6px] flex items-center justify-between cursor-pointer `}
-                    >
-                      <span className="text-fullBlue text-[12px] not-italic font-AeonikProRegular">
-                        {languageDetector?.typeLang === "ru" && catalog?.name_ru}
-                        {languageDetector?.typeLang === "uz" && catalog?.name_uz}
-                      </span>
-                      <button
-                        onClick={() => getSubSection()}
-                        className="rounded-full bg-white h-5 w-5 flex items-center justify-center"
+              <div
+                className={`w-full ${
+                  subSection ? " md:hidden flex" : "hidden  "
+                }    overflow-hidden items-center justify-end mb-1  `}
+              >
+                {filterData?.section?.sub_sections
+                  ?.filter((e) => e?.id === subSection)
+                  ?.map((catalog, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className={`bg-bgWinter w-fit h-fit gap-x-[6px] rounded-[20px] py-1 px-[6px] flex items-center justify-between cursor-pointer `}
                       >
-                        <GrClose size={10} colors={"#007DCA"} />
-                      </button>
-                    </div>)
-                })}
+                        <span className="text-fullBlue text-[12px] not-italic font-AeonikProRegular">
+                          {languageDetector?.typeLang === "ru" &&
+                            catalog?.name_ru}
+                          {languageDetector?.typeLang === "uz" &&
+                            catalog?.name_uz}
+                        </span>
+                        <button
+                          onClick={() => getSubSection()}
+                          className="rounded-full bg-white h-5 w-5 flex items-center justify-center"
+                        >
+                          <GrClose size={10} colors={"#007DCA"} />
+                        </button>
+                      </div>
+                    );
+                  })}
               </div>
             </article>
             <article className="w-full md:hidden flex items-center justify-between mt-6 mb-3 px-4">
@@ -255,17 +273,22 @@ const CategoryTopDetail = ({
                         key={index}
                         className="text-[15px] font-AeonikProMedium"
                       >
-                        <button onClick={() => handleSelectSubSection(catalog?.id)}
-                          className={`${subSection == catalog?.id ? "bg-borderWinter text-white" : "bg-white text-black "}    hover:bg-borderWinter hover:text-white   border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]`}>
+                        <button
+                          onClick={() => handleSelectSubSection(catalog?.id)}
+                          className={`${
+                            subSection == catalog?.id
+                              ? "bg-borderWinter text-white"
+                              : "bg-white text-black "
+                          }    hover:bg-borderWinter hover:text-white   border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]`}
+                        >
                           {languageDetector?.typeLang === "ru" &&
                             catalog?.name_ru}
                           {languageDetector?.typeLang === "uz" &&
                             catalog?.name_uz}
                         </button>
                       </li>
-                    )
-                  }
-                  )}
+                    );
+                  })}
                 </ul>
               </article>
             </article>
