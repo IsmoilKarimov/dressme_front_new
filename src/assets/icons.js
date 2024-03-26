@@ -1552,10 +1552,11 @@ const BrushColorIcons = ({ colors }) => {
 const TopBrandsIcon = ({ colors }) => {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M5.83398 8.94995V11.6166" stroke={colors} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M10 7.5V13.0667" stroke={colors} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M14.166 8.94995V11.6166" stroke={colors} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-      <path d="M7.49935 18.3334H12.4993C16.666 18.3334 18.3327 16.6667 18.3327 12.5001V7.50008C18.3327 3.33341 16.666 1.66675 12.4993 1.66675H7.49935C3.33268 1.66675 1.66602 3.33341 1.66602 7.50008V12.5001C1.66602 16.6667 3.33268 18.3334 7.49935 18.3334Z" stroke={colors} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M5.83398 8.94995V11.6166" stroke={colors} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M10 7.5V13.0667" stroke={colors} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M14.166 8.94995V11.6166" stroke={colors} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M7.49935 18.3334H12.4993C16.666 18.3334 18.3327 16.6667 18.3327 12.5001V7.50008C18.3327 3.33341 16.666 1.66675 12.4993 1.66675H7.49935C3.33268 1.66675 1.66602 3.33341 1.66602 7.50008V12.5001C1.66602 16.6667 3.33268 18.3334 7.49935 18.3334Z" stroke={colors} strokeWidth="1.5"
+        strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 };
@@ -3742,7 +3743,7 @@ const XbtnForMobile = () => {
 const VerticalMenu = (colors) => {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill={colors} xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" clip-rule="evenodd"
+      <path fillRule="evenodd" clipRule="evenodd"
         d="M9.99967 3.33333C10.9201 3.33333 11.6663 2.58714 11.6663 1.66667C11.6663 0.746192 10.9201 0 9.99967 0C9.0792 0 8.33301 0.746192 8.33301 1.66667C8.33301 2.58714 9.0792 3.33333 9.99967 3.33333ZM9.99967 11.6667C10.9201 11.6667 11.6663 10.9205 11.6663 10C11.6663 9.07952 10.9201 8.33333 9.99967 8.33333C9.0792 8.33333 8.33301 9.07952 8.33301 10C8.33301 10.9205 9.0792 11.6667 9.99967 11.6667ZM11.6663 18.3333C11.6663 19.2538 10.9201 20 9.99967 20C9.0792 20 8.33301 19.2538 8.33301 18.3333C8.33301 17.4129 9.0792 16.6667 9.99967 16.6667C10.9201 16.6667 11.6663 17.4129 11.6663 18.3333Z"
         fill={colors} />
     </svg>

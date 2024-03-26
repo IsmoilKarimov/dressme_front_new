@@ -24,7 +24,7 @@ const NavMenu = ({ stateData, setStateData }) => {
 
   return (
     <nav
-      className={`bg-white shadow-navMenuShadov  px-4 w-full rounded-t-xl md:hidden z-[101] h-full overscroll-none overflow-y-hidden`}
+      className={`bg-white shadow-navMenuShadov  px-4 w-full rounded-t-xl md:hidden z-[101] h-full overscroll-none overflow-y-hidden  `}
     >
       <ul className="flex items-center justify-between text-[10px] font-AeonikProMedium py-1 ">
         <li className="w-[72px] h-[56px]">
@@ -190,7 +190,7 @@ const NavMenu = ({ stateData, setStateData }) => {
         <li className="w-[72px] h-[56px]">
           <NavLink
             to={
-               localStorage?.getItem("userAccess") ? "/profile/settings" : "/sign_in"
+               localStorage?.getItem("userAccess") ? "/profile/edit" : "/sign_in"
             }
             onClick={() => setStateData({ ...stateData, hamburgerMenu: false })}
             className="w-full h-full flex items-center justify-center text-center "

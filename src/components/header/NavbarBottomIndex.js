@@ -15,8 +15,8 @@ import {
 import { useTranslation } from "react-i18next";
 import { SaesonDetectorDress } from "../../ContextHook/SeasonContext";
 function NavbarBottomIndex({ scrollPost }) {
-   const { i18n, t } = useTranslation('header')
-   const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+  const { i18n, t } = useTranslation('header')
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
   const location = useLocation();
 
   const [locationWindow, setLocationWindow] = useState("");
@@ -63,9 +63,7 @@ function NavbarBottomIndex({ scrollPost }) {
                 </NavLink>
               </div>
             ) : null}
-            {locationWindow === "/forget_password" ||
-              
-              locationWindow === "/set_new_password" ? (
+            {locationWindow === "/forget_password" ? (
               <div>
                 {/* Mobile-Device */}
                 <div className="w-full md:hidden md:mx-auto  my-3 md:w-fit ss:flex gap-x-2 items-center justify-between ss:border md:border-0 ss:bg-btnBgColor md:bg-transparent border-searchBgColor rounded-lg">
@@ -79,7 +77,7 @@ function NavbarBottomIndex({ scrollPost }) {
                       <SircleNext colors={seasonDetector?.ColorSeason} />
                     </span>
                     <span className=" font-AeonikProMedium ml-2 not-italic text-sm leading-4 tracking-[0,16px]">
-                    {t("Nback")}
+                      {t("Nback")}
                     </span>
                   </NavLink>
                   <div

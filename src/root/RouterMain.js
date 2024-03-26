@@ -29,9 +29,7 @@ const ForgetPassword = React.lazy(() =>
   import("../components/Authentication/SignInDetail/ForgetPassword")
 );
 const Footer = React.lazy(() => import("../components/footer/footer"));
-const ProfilePage = React.lazy(() =>
-  import("../components/Authentication/UserProfile/PorofilePage/ProfilePage")
-);
+
 const ShoppingStoreOfficial = React.lazy(() =>
   import("../components/Home/Shop/ShoppingStoreOfficial")
 );
@@ -74,16 +72,10 @@ const RouterMain = () => {
     <Fragment>
       <Header />
       <Routes>
-
-        <Route path="/profile/settings" element={
-          <ProtectedRoute>
-            <ProfilePage />
-          </ProtectedRoute>} />
         <Route path="/profile/edit" element={
           <ProtectedRoute>
             <EditProfilePage />
           </ProtectedRoute>} />
-
         <Route
           path="/"
           element={
@@ -350,7 +342,6 @@ const RouterMain = () => {
       {locationWindow !== "/add_user_private_data" &&
         locationWindow !== "/add_user_body_data" &&
         locationWindow !== "/confirm_password" &&
-        locationWindow !== "/set_new_password" &&
         locationWindow !== "/categories" &&
         locationWindow !== "/enter_password_validate" &&
         locationWindow !== "/forget_password" &&
@@ -358,7 +349,6 @@ const RouterMain = () => {
         locationWindow !== "/sign_in" &&
         locationWindow !== "/src" &&
         locationWindow !== "/allcomments" &&
-        locationWindow !== "/profile/settings" &&
         locationWindow !== "/profile/edit" &&
         locationWindow !== "/locations" ? (
         <Suspense fallback={<>Loading...</>}>
