@@ -200,7 +200,7 @@ export default function CatalogItems() {
               );
             }}
             className={`${
-              Number(paramId?.id) === data?.id ? "bg-bgColor" : null
+              Number(newFilterParamasId) === data?.id ? "bg-bgColor" : null
             } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {languageDetector?.typeLang === "ru" && data?.name_ru}
@@ -408,9 +408,9 @@ export default function CatalogItems() {
             <section className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
               <article className="w-[100%] h-fit md:mb-12 md:mt-[60px]">
                 <article className="w-full flex flex-col border-b md:border-none border-searchBgColor">
-                  <div className="relative w-full md:h-[90px] my-10 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-b-lg px-4 md:px-0">
+                  <div className="relative w-full md:h-[90px] my-10 md:mt-0 h-fit flex flex-col md:flex-row items-center justify-between border-t-0 md:border md:border-searchBgColor rounded-lg px-4 md:px-0">
                     {/*  */}
-                    <div className="w-full md:w-fit flex h-[66px] md:h-fit items-center border md:border-none border-searchBgColor rounded-b-lg">
+                    <div className="w-full md:w-fit flex h-[66px] md:h-fit items-center border md:border-none border-searchBgColor rounded-lg">
                       <div
                         style={{
                           backgroundImage: `url("${filterData?.category?.url_photo}")`,
