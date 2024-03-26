@@ -60,6 +60,8 @@ export default function SignUp() {
     birth_date: "",
   });
 
+  console.log(Boolean(state.year));
+
   let data = state?.phoneNumber.split("-");
   let arr = data.join("");
   let data1 = arr.split("(");
@@ -172,11 +174,6 @@ export default function SignUp() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleClick = () => {
-    onSubmit();
-    setLoading(true);
-  };
-
   // ----------------Month state management----------------------------
   const [openMonth, setOpenMonth] = useState(false);
 
@@ -221,6 +218,18 @@ export default function SignUp() {
     </div>
   );
   // console.log(languageDetector, 'languageDetector');
+
+  const [bDateValid, setBDateValid] = useState(true);
+
+  const handleClick = () => {
+    if (state.year) {
+      setBDateValid(true);
+    } else {
+      setBDateValid(false);
+    }
+    onSubmit();
+    setLoading(true);
+  };
   return (
     <div className="mt-[80px] w-full">
       {loading ? (
@@ -508,7 +517,9 @@ export default function SignUp() {
                 </Popover>
 
                 <Space
-                  className="w-[26%] cursor-pointer"
+                  className={`w-[26%] cursor-pointer ${
+                    bDateValid ? "" : "border"
+                  }  border-red-500`}
                   direction="vertical"
                   size={12}
                   options={["Hide"]}
