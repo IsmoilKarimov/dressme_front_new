@@ -32,7 +32,7 @@ const EditProfilePage = () => {
   const [reFreshTokenFunc, setUserLogedIn] = useContext(
     UserRefreshTokenContext
   );
-  const { i18n, t } = useTranslation('authen')
+  const { i18n, t } = useTranslation("authen");
 
   const { request } = useHttp();
   const [profileData, setProfileData] = useState("");
@@ -47,8 +47,6 @@ const EditProfilePage = () => {
 
   const [profileContextData, setProfileContextData] =
     useContext(ProfileDataContext);
-
- 
 
   const monthList = [
     { id: 1, type: "Январь" },
@@ -96,7 +94,7 @@ const EditProfilePage = () => {
   const url = "https://api.dressme.uz/api/user";
 
   // ----------------GET USER PROFILE-------------
- 
+
   const fetchData = async (customHeaders) => {
     try {
       const response = await axiosInstance.get("/profile", {
@@ -118,8 +116,8 @@ const EditProfilePage = () => {
   useQuery(["get_profile_list21"], () => fetchData(customHeaders), {
     onSuccess: (data) => {
       if (data?.status >= 200 && data?.status < 300) {
-        setProfileContextData(data?.data)
-        console.log(data?.data,'data?.data');
+        setProfileContextData(data?.data);
+        console.log(data?.data, "data?.data");
       }
     },
     onError: (error) => {
@@ -128,7 +126,7 @@ const EditProfilePage = () => {
     keepPreviousData: true,
     refetchOnWindowFocus: false,
   });
-   useEffect(() => {
+  useEffect(() => {
     let ar = Number(profileContextData?.birth_date?.split("-")[1]);
     setProfileData(profileContextData);
     setDayValue(parseInt(profileContextData?.birth_date));
@@ -170,7 +168,6 @@ const EditProfilePage = () => {
         if (err?.response?.status === 401 || err?.response?.status === 403) {
           // reFreshTokenFunc();
           // console.log("401");
-
           // toast.error(`${err?.response?.data?.message}`, {
           //   position: "top-right",
           //   autoClose: 5000,
@@ -187,7 +184,6 @@ const EditProfilePage = () => {
           navigate("/sign_in");
         }
         throw new Error(err || "something wrong");
-
       });
   };
 
@@ -203,8 +199,9 @@ const EditProfilePage = () => {
 
   // =========== POST USER EDIT DATA ==========
   const sendEditedData = () => {
-    let date = `${dayValue}${selectMonth?.id ? "-" + selectMonth?.id : ""}${selectYear ? "-" + selectYear : ""
-      }`;
+    let date = `${dayValue}${selectMonth?.id ? "-" + selectMonth?.id : ""}${
+      selectYear ? "-" + selectYear : ""
+    }`;
 
     setLoading(true);
 
@@ -279,7 +276,6 @@ const EditProfilePage = () => {
           navigate("/sign_in");
         }
         throw new Error(err || "something wrong");
-
       });
   };
 
@@ -311,7 +307,6 @@ const EditProfilePage = () => {
           navigate("/sign_in");
         }
         throw new Error(err || "something wrong");
-
       });
   });
 
@@ -324,7 +319,7 @@ const EditProfilePage = () => {
           if (res?.message && !res.errors) {
             if (res?.message === "Unauthenticated.") {
               // reFreshTokenFunc();
-              sendEditedEmailData()
+              sendEditedEmailData();
               // navigate("/sign_in");
               // toast.error(`${res?.message}`, {
               //   position: "top-right",
@@ -347,7 +342,7 @@ const EditProfilePage = () => {
           } else if (res?.message && res.errors) {
             if (res?.message === "Unauthenticated.") {
               // reFreshTokenFunc();
-              sendEditedEmailData()
+              sendEditedEmailData();
               // navigate("/sign_in");
             }
             setLoading(false);
@@ -367,7 +362,6 @@ const EditProfilePage = () => {
         onError: (err) => {
           // console.log(err);
           throw new Error(err || "something wrong");
-
         },
       }
     );
@@ -375,9 +369,8 @@ const EditProfilePage = () => {
 
   const location = useLocation();
   const LogOut = () => {
-     
-    localStorage.removeItem("userRefresh")
-    localStorage.removeItem("userAccess")
+    localStorage.removeItem("userRefresh");
+    localStorage.removeItem("userAccess");
     setUserLogedIn(false);
     if (location?.pathname?.includes("profile/edit")) {
       navigate("/sign_in");
@@ -470,15 +463,17 @@ const EditProfilePage = () => {
               ></section>
               {/* PASSWORD COMPONENT */}
               <section
-                className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${openEditPasswordModal ? "" : "hidden z-0"
-                  }`}
+                className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${
+                  openEditPasswordModal ? "" : "hidden z-0"
+                }`}
               >
                 <EditPassword onClick={togglePassword} />
               </section>
               {/* EMAIL COMPONENT */}
               <section
-                className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${sendEmailModal ? "" : "hidden z-0"
-                  }`}
+                className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${
+                  sendEmailModal ? "" : "hidden z-0"
+                }`}
               >
                 <EmailSend sendData={sendData} onClick={toggleEmail} />
               </section>
@@ -488,8 +483,9 @@ const EditProfilePage = () => {
                   onClick={() => {
                     setState({ ...state, openModalEmailMessage: false });
                   }}
-                  className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${state?.openModalEmailMessage ? "" : "hidden"
-                    }`}
+                  className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+                    state?.openModalEmailMessage ? "" : "hidden"
+                  }`}
                 ></div>
                 {state?.openModalEmailMessage && (
                   <div className="fixed max-w-[490px] h-[275px]  p-3 bg-white rounded-lg mx-auto w-full z-[113] top-[50%] left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
@@ -536,7 +532,7 @@ const EditProfilePage = () => {
                       {t("PPmyInfor")}
                     </span>
                   </div>
-                  <div className="flex flex-col md:flex-row justify-between items-center mt-6">
+                  <div className="flex flex-col md:flex-row justify-between items-center mt-6 mb-6 md:mb-0">
                     <div className="w-full md:w-[48%] h-fit">
                       <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
                         {t("Sfname")}
@@ -592,12 +588,12 @@ const EditProfilePage = () => {
                   </div>
                 </div>
                 {/* 2 */}
-                <div className="gap-8 flex md:border-b border-searchBgColor w-full md:px-[40px] md:py-[30px]">
+                <div className="gap-6 md:gap-8 flex-wrap md:flex-nowrap flex md:border-b border-searchBgColor w-full md:px-[40px] md:py-[30px]">
                   <div className="w-full">
-                    <div className="text-[14px] font-AeonikProRegular mb-[6px]">
+                    <div className="text-[14px] font-AeonikProRegular mb-[6px] md:mb-[12px]">
                       {t("PPEgender")}
                     </div>
-                    <div className="flex border rounded-lg overflow-hidden h-[48px]">
+                    <div className="flex border rounded-lg overflow-hidden h-[48px] md:h-[50px]">
                       <div
                         onClick={() => {
                           if (state?.gender_id === "1") {
@@ -610,8 +606,9 @@ const EditProfilePage = () => {
                             });
                           }
                         }}
-                        className={`${state?.gender_id === "1" ? "text-[#007DCA]" : ""
-                          } cursor-pointer border-r select-none w-full h-full flex items-center justify-center text-[16px] font-AeonikProMedium`}
+                        className={`${
+                          state?.gender_id === "1" ? "text-[#007DCA]" : ""
+                        } cursor-pointer border-r select-none w-full h-full flex items-center justify-center text-[16px] font-AeonikProMedium`}
                       >
                         {t("PPEman")}
                       </div>
@@ -627,8 +624,9 @@ const EditProfilePage = () => {
                             });
                           }
                         }}
-                        className={`${state?.gender_id === "2" ? "text-[#007DCA]" : ""
-                          } cursor-pointer select-none w-full h-full flex items-center justify-center text-[16px] font-AeonikProMedium`}
+                        className={`${
+                          state?.gender_id === "2" ? "text-[#007DCA]" : ""
+                        } cursor-pointer select-none w-full h-full flex items-center justify-center text-[16px] font-AeonikProMedium`}
                       >
                         {t("PPEwoman")}
                       </div>
@@ -637,14 +635,14 @@ const EditProfilePage = () => {
                   <div className="w-full">
                     <label
                       // htmlFor="bdate"
-                      className="mb-[6px] font-AeonikProRegular text-sm"
+                      className="mb-[5px] md:mb-[6px] font-AeonikProRegular text-sm block"
                     >
                       {t("Sbirthday")}{" "}
                     </label>
 
                     <div className="flex items-center justify-start border border-solid border-searchBgColor rounded-lg bg-btnBgColor mb-4 w-full">
-                      <span className="h-full w-[15%] py-[14px] border-r border-searchBgColor">
-                        <div className="mx-4">
+                      <div className="h-full w-[15%] py-[14px] border-r border-searchBgColor flex">
+                        <div className="mx-auto">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width={20}
@@ -728,7 +726,7 @@ const EditProfilePage = () => {
                             />
                           </svg>
                         </div>
-                      </span>
+                      </div>
                       <input
                         type="number"
                         name="day"
@@ -761,8 +759,9 @@ const EditProfilePage = () => {
                           <BiChevronUp
                             size={20}
                             style={{ color: "#c2c2c2" }}
-                            className={`${openMonth ? "rotate-[180deg]" : ""
-                              } duration-200`}
+                            className={`${
+                              openMonth ? "rotate-[180deg]" : ""
+                            } duration-200`}
                           />{" "}
                         </span>
                       </Popover>
@@ -773,7 +772,7 @@ const EditProfilePage = () => {
                         size={12}
                         options={["Hide"]}
                       >
-                        <div className="flex items-center justify-center w-full pl-5">
+                        <div className="flex items-center justify-center w-full pl-1 md:pl-5">
                           <span>
                             <DatePicker
                               allowClear={false}
@@ -801,7 +800,7 @@ const EditProfilePage = () => {
                 {/* 3 */}
                 <div className="w-full md:px-[40px] md:py-[30px] md:border-b border-searchBgColor">
                   <div className="flex  flex-col md:flex-row justify-between items-center">
-                    <div className="w-full md:w-[48%] h-fit mt-6 md:mt-0">
+                    <div className="w-full md:w-[48%] h-fit mt-4 md:mt-0">
                       <div className="not-italic font-AeonikProRegular text-sm leading-4 text-black  tracking-[0,16px] ">
                         {t("SphoneNum")}{" "}
                       </div>
@@ -837,10 +836,11 @@ const EditProfilePage = () => {
                                 activeEditPassword: true,
                               });
                             }}
-                            className={`w-full px-4  h-full not-italic bg-btnBgColor ${state?.userPhoneNumber
-                              ? "font-AeonikProMedium"
-                              : null
-                              } text-base leading-4 text-black`}
+                            className={`w-full px-4  h-full not-italic bg-btnBgColor ${
+                              state?.userPhoneNumber
+                                ? "font-AeonikProMedium"
+                                : null
+                            } text-base leading-4 text-black`}
                             placeholder={"(77) 777-77-77"}
                           ></InputMask>
                         </div>
@@ -852,7 +852,7 @@ const EditProfilePage = () => {
                       </div>
                       <div className="mt-[6px] px-[16px] w-full flex items-center bg-btnBgColor border border-searchBgColor rounded-lg ">
                         <input
-                          className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
+                          className="  w-full h-12 placeholder-not-italic bg-btnBgColor placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black pr-3"
                           type="email"
                           name="email"
                           autoComplete="email"
@@ -874,7 +874,7 @@ const EditProfilePage = () => {
                     </div>
                   </div>
                   {/* EditPassword and Send Edited Email */}
-                  <div className="w-full flex items-center xs:justify-start justify-end xs:mt-5 ">
+                  <div className="w-full flex items-center xs:justify-start justify-end mt-5 ">
                     <button
                       onClick={() => setOpenEditPasswordModal(true)}
                       type="button"
@@ -888,10 +888,11 @@ const EditProfilePage = () => {
                       onClick={() => setSendEmailModal(true)}
                       type="button"
                       disabled={state.activeEditEmail ? false : true}
-                      className={`${state.activeEditEmail
-                        ? "text-borderWinter hover:underline"
-                        : "text-[#e2e2e2] hover:no-underline"
-                        } w-full text-end  text-base not-italic font-AeonikProRegular `}
+                      className={`${
+                        state.activeEditEmail
+                          ? "text-borderWinter hover:underline"
+                          : "text-[#e2e2e2] hover:no-underline"
+                      } w-full text-end  text-base not-italic font-AeonikProRegular `}
                     >
                       {t("PPEeditEmail")}
                     </button>
@@ -918,13 +919,15 @@ const EditProfilePage = () => {
                       onClick={sendEditedData}
                       type="button"
                       disabled={state.activeEditPassword ? false : true}
-                      className={`${state.activeEditPassword
-                        ? "cursor-pointer bg-borderWinter active:scale-95 active:opacity-70"
-                        : "cursor-not-allowed bg-gray-300"
-                        } w-[100%] md:w-[244px] h-[52px]  text-white rounded-lg flex items-center justify-center`}
+                      className={`${
+                        state.activeEditPassword
+                          ? "cursor-pointer bg-borderWinter active:scale-95 active:opacity-70"
+                          : "cursor-not-allowed bg-gray-300"
+                      } w-[100%] md:w-[244px] h-[52px]  text-white rounded-lg flex items-center justify-center`}
                     >
                       <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center tracking-[1%]">
-                        {t("PPrefresh")} </span>
+                        {t("PPrefresh")}{" "}
+                      </span>
                       <span className="ml-2">
                         <SircleNext colors={"#fff"} />
                       </span>
