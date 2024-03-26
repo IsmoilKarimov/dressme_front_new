@@ -127,6 +127,12 @@ const EditProfilePage = () => {
     refetchOnWindowFocus: false,
   });
   useEffect(() => {
+    if (profileContextData?.birth_date) {
+      localStorage.setItem(
+        "selectedYear",
+        profileContextData?.birth_date?.split("-")[2]
+      );
+    }
     let ar = Number(profileContextData?.birth_date?.split("-")[1]);
     setProfileData(profileContextData);
     setDayValue(parseInt(profileContextData?.birth_date));
