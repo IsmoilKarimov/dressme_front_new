@@ -131,7 +131,10 @@ const EditProfilePage = () => {
     setProfileData(profileContextData);
     setDayValue(parseInt(profileContextData?.birth_date));
     setselectMonth({ text: monthList[ar - 1]?.type, id: ar });
-    setSelectYear(profileContextData?.birth_date?.split("-")[2]);
+    setSelectYear(
+      profileContextData?.birth_date?.split("-")[2] ||
+        localStorage.getItem("selectedYear")
+    );
     setState({
       ...state,
       userFirstname: profileContextData?.name,
