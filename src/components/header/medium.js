@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  useContext,
-  useEffect,
-  useCallback,
-} from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./header.css";
 import { dressMainData } from "../../ContextHook/ContextMenu";
@@ -56,8 +51,8 @@ const MediumHeader = ({ stateData, setStateData }) => {
   const [data, setPage] = useContext(HomeMainDataContext);
   const [audioPlay, setAudioPlay] = useContext(MainPageAudioContext);
   const [searchMarketName, setSearchMarketName] = useState();
-  const { i18n, t } = useTranslation('header')
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+  const { i18n, t } = useTranslation("header");
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress);
   const [regionsList, setRegionsList] = useState(false);
   const [scrollPost, setscrollPost] = useState(0);
   const toggleRegionsShow = useCallback(() => setRegionsList(false), []);
@@ -68,14 +63,18 @@ const MediumHeader = ({ stateData, setStateData }) => {
   const handleScroll = () => {
     setscrollPost(document.body.getBoundingClientRect().top);
   };
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
-  const [currentLang, setCurrentLang] = useState(localStorage.getItem("i18nextLng"))
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
+  const [currentLang, setCurrentLang] = useState(
+    localStorage.getItem("i18nextLng")
+  );
   useEffect(() => {
     if (localStorage.getItem("i18nextLng")?.length > 2) {
-      i18next.changeLanguage(currentLang)
+      i18next.changeLanguage(currentLang);
     }
-    setLanguageDetector({ typeLang: currentLang })
-  }, [currentLang])
+    setLanguageDetector({ typeLang: currentLang });
+  }, [currentLang]);
   // useEffect
   // console.log(currentLang,'currentLang---11');
   // console.log(languageDetector,'languageDetector---11');
@@ -151,8 +150,8 @@ const MediumHeader = ({ stateData, setStateData }) => {
               <article
                 className={`ml-2 md:ml-3 flex font-AeonikProMedium text-base text-black not-italic ${seasonDetector?.TextHoverSeason}`}
               >
-                {languageDetector?.typeLang === 'ru' && value?.type_ru}
-                {languageDetector?.typeLang === 'uz' && value?.type_uz}
+                {languageDetector?.typeLang === "ru" && value?.type_ru}
+                {languageDetector?.typeLang === "uz" && value?.type_uz}
               </article>
             )}
           </article>
@@ -171,8 +170,8 @@ const MediumHeader = ({ stateData, setStateData }) => {
             <article
               className={`flex font-AeonikProMedium text-base text-black not-italic ${seasonDetector?.TextHoverSeason}`}
             >
-              {languageDetector?.typeLang === 'ru' && value?.type_ru}
-              {languageDetector?.typeLang === 'uz' && value?.type_uz}
+              {languageDetector?.typeLang === "ru" && value?.type_ru}
+              {languageDetector?.typeLang === "uz" && value?.type_uz}
             </article>
           </article>
         );
@@ -192,13 +191,13 @@ const MediumHeader = ({ stateData, setStateData }) => {
   };
 
   const handleLangValue = (value) => {
-    i18n.changeLanguage(value)
-    setCurrentLang(value)
+    i18n.changeLanguage(value);
+    setCurrentLang(value);
     setOpenLang(false);
   };
 
   const contentLang = (
-    <section className="w-[155px] h-fit m-0 p-0">
+    <section className="w-[115px] md:w-[155px] h-fit m-0 p-0">
       {LanguageList.map((data) => {
         return (
           <article
@@ -208,7 +207,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
               handleLangValue(data?.value);
             }}
           >
-            <figure className="w-5 h-5 mr-3">
+            <figure className="w-5 h-5 min-w-[20px] min-h-[20px] mr-3">
               <img className="w-full h-full" src={data?.icons} alt="" />
             </figure>
             <article
@@ -252,13 +251,25 @@ const MediumHeader = ({ stateData, setStateData }) => {
 
   function getSearchClick() {
     setPage(1);
-    if (searchForLocation?.includes("shops") && searchForLocation?.length == 2) {
-      setDressInfo({ ...dressInfo, mainSearchNameshopMarket: searchMarketName });
+    if (
+      searchForLocation?.includes("shops") &&
+      searchForLocation?.length == 2
+    ) {
+      setDressInfo({
+        ...dressInfo,
+        mainSearchNameshopMarket: searchMarketName,
+      });
     }
-    if (searchForLocation?.includes("shops") && searchForLocation?.length >= 3) {
+    if (
+      searchForLocation?.includes("shops") &&
+      searchForLocation?.length >= 3
+    ) {
       setDressInfo({ ...dressInfo, mainSearchNameshop: searchMarketName });
     }
-    if (searchForLocation?.includes("shops_location") && searchForLocation?.length >= 3) {
+    if (
+      searchForLocation?.includes("shops_location") &&
+      searchForLocation?.length >= 3
+    ) {
       setDressInfo({
         ...dressInfo,
         mainSearchNameshopLocation: searchMarketName,
@@ -270,7 +281,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
     if (searchForLocation?.includes("categories")) {
       setDressInfo({ ...dressInfo, mainSearchNameCatalog: searchMarketName });
     }
-    if (!searchForLocation?.some(item => item?.length > 0)) {
+    if (!searchForLocation?.some((item) => item?.length > 0)) {
       if (searchForLocation?.length <= 2) {
         setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
       }
@@ -279,13 +290,25 @@ const MediumHeader = ({ stateData, setStateData }) => {
 
   const _handleKeyDownSearch = (event) => {
     if (event.key === "Enter") {
-      if (searchForLocation?.includes("shops") && searchForLocation?.length == 2) {
-        setDressInfo({ ...dressInfo, mainSearchNameshopMarket: searchMarketName });
+      if (
+        searchForLocation?.includes("shops") &&
+        searchForLocation?.length == 2
+      ) {
+        setDressInfo({
+          ...dressInfo,
+          mainSearchNameshopMarket: searchMarketName,
+        });
       }
-      if (searchForLocation?.includes("shops") && searchForLocation?.length >= 3) {
+      if (
+        searchForLocation?.includes("shops") &&
+        searchForLocation?.length >= 3
+      ) {
         setDressInfo({ ...dressInfo, mainSearchNameshop: searchMarketName });
       }
-      if (searchForLocation?.includes("shops_location") && searchForLocation?.length >= 3) {
+      if (
+        searchForLocation?.includes("shops_location") &&
+        searchForLocation?.length >= 3
+      ) {
         setDressInfo({
           ...dressInfo,
           mainSearchNameshopLocation: searchMarketName,
@@ -300,7 +323,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
       if (searchForLocation?.includes("categories")) {
         setDressInfo({ ...dressInfo, mainSearchNameCatalog: searchMarketName });
       }
-      if (!searchForLocation?.some(item => item?.length > 0)) {
+      if (!searchForLocation?.some((item) => item?.length > 0)) {
         if (searchForLocation?.length <= 2) {
           setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
         }
@@ -308,20 +331,32 @@ const MediumHeader = ({ stateData, setStateData }) => {
     }
   };
   const goCatalogId = (id, nameru, nameuz) => {
-    if (languageDetector?.typeLang === 'ru') {
+    if (languageDetector?.typeLang === "ru") {
       if (id !== 5) {
-        navigate(`/categories/${nameru?.split(' ')?.join('-')?.toLowerCase()}`);
+        navigate(`/categories/${nameru?.split(" ")?.join("-")?.toLowerCase()}`);
       }
       if (id === 5) {
-        navigate(`/categories/${nameru?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+        navigate(
+          `/categories/${nameru
+            ?.split("/")
+            ?.map((item) => item.trim())
+            ?.join("-")
+            ?.toLowerCase()}`
+        );
       }
     }
-    if (languageDetector?.typeLang === 'uz') {
+    if (languageDetector?.typeLang === "uz") {
       if (id !== 5) {
-        navigate(`/categories/${nameuz?.split(' ')?.join('-')?.toLowerCase()}`);
+        navigate(`/categories/${nameuz?.split(" ")?.join("-")?.toLowerCase()}`);
       }
       if (id === 5) {
-        navigate(`/categories/${nameuz?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+        navigate(
+          `/categories/${nameuz
+            ?.split("/")
+            ?.map((item) => item.trim())
+            ?.join("-")
+            ?.toLowerCase()}`
+        );
       }
     }
   };
@@ -332,7 +367,8 @@ const MediumHeader = ({ stateData, setStateData }) => {
       dressInfo?.mainSearchNameCatalog ||
       dressInfo?.mainSearchNameshop ||
       dressInfo?.mainSearchNameshopMarket ||
-      dressInfo?.mainSearchNameshopLocation)
+      dressInfo?.mainSearchNameshopLocation
+    )
       setDressInfo({
         ...dressInfo,
         mainSearchNameCategory: null,
@@ -341,7 +377,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
         mainSearchNameshopMarket: null,
         mainSearchNameshopLocation: null,
       });
-  }, [location.pathname])
+  }, [location.pathname]);
   return (
     <nav className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <div
@@ -353,9 +389,10 @@ const MediumHeader = ({ stateData, setStateData }) => {
 
       <div
         className={`max-w-[440px] rounded-t-[12px] mx-auto w-full fixed duration-300 z-[114] h-fit flex items-center justify-center
-          ${regionsList
-            ? "bottom-[64px] md:flex flex-col z-[232]"
-            : "bottom-[-1500px] z-[-10]"
+          ${
+            regionsList
+              ? "bottom-[64px] md:flex flex-col z-[232]"
+              : "bottom-[-1500px] z-[-10]"
           }`}
       >
         {regionsList && <RegionsList onClick={toggleRegionsShow} />}
@@ -368,8 +405,9 @@ const MediumHeader = ({ stateData, setStateData }) => {
         ></div>
       )}
       <article
-        className={`fixed top-[235px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${dressInfo?.openCatologId ? "" : "hidden"
-          }`}
+        className={`fixed top-[235px] z-[113] left-[52.9%] right-1/2 overflow-hidden translate-x-[-50%] translate-y-[-50%] inset-0 w-fit h-fit shadow-modalCategoryShadow transform tras ${
+          dressInfo?.openCatologId ? "" : "hidden"
+        }`}
       >
         <div className="flex justify-center items-center z-[120]">
           <div className="w-[675px] flex flex-col shadow-modalCategoryShadow bg-white rounded-lg p-2">
@@ -393,15 +431,22 @@ const MediumHeader = ({ stateData, setStateData }) => {
                       className="w-1/5 flex items-center justify-center "
                     >
                       <figure
-                        onClick={() => goCatalogId(data?.id, languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz)}
+                        onClick={() =>
+                          goCatalogId(
+                            data?.id,
+                            languageDetector?.typeLang === "ru" &&
+                              data?.name_ru,
+                            languageDetector?.typeLang === "uz" && data?.name_uz
+                          )
+                        }
                         className="group cursor-pointer"
                       >
                         <div className="group-hover:border-black transition duration-300 w-[120px] h-[120px] border border-categoryModalBorderColor bg-categoryModalBgColor flex items-center justify-center rounded-xl">
                           <img src={data?.url_photo} alt="url_photo" />
                         </div>
                         <figcaption className="group-hover:text-black transition duration-300 text-center mt-2 text-setTexOpacity text-sm">
-                          {languageDetector?.typeLang === 'ru' && data?.name_ru}
-                          {languageDetector?.typeLang === 'uz' && data?.name_uz}
+                          {languageDetector?.typeLang === "ru" && data?.name_ru}
+                          {languageDetector?.typeLang === "uz" && data?.name_uz}
                         </figcaption>
                       </figure>
                     </article>
@@ -503,10 +548,12 @@ const MediumHeader = ({ stateData, setStateData }) => {
                               alt="weather"
                               className=" "
                             />
-                            {(data?.type_ru && data?.type_uz) && (
+                            {data?.type_ru && data?.type_uz && (
                               <figcaption className=" ml-[10px] font-AeonikProMedium  flex items-center text-[15px] ">
-                                {languageDetector?.typeLang === 'ru' && data?.type_ru}
-                                {languageDetector?.typeLang === 'uz' && data?.type_uz}
+                                {languageDetector?.typeLang === "ru" &&
+                                  data?.type_ru}
+                                {languageDetector?.typeLang === "uz" &&
+                                  data?.type_uz}
                               </figcaption>
                             )}
                           </figure>
@@ -562,7 +609,12 @@ const MediumHeader = ({ stateData, setStateData }) => {
                       type="text"
                       name="search"
                       autoComplete="search"
-                      placeholder={`${searchForLocation?.includes("shops") && searchForLocation?.length == 2 ? t('MsearchMar') : t('MsearchProd')} `}
+                      placeholder={`${
+                        searchForLocation?.includes("shops") &&
+                        searchForLocation?.length == 2
+                          ? t("MsearchMar")
+                          : t("MsearchProd")
+                      } `}
                       className="bg-transparent w-full px-3 h-[44px] text-sm border border-transparent md:border-searchBgColor placeholder:font-AeonikProRegular"
                       value={searchMarketName || ""}
                       onChange={handleChange}
@@ -600,8 +652,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                   <span className="pr-[6px]">
                     <MapIcons colors={"#000"} />
                   </span>
-                  <p className="font-AeonikProMedium text-sm"> {t("Mmap")}
-                  </p>
+                  <p className="font-AeonikProMedium text-sm"> {t("Mmap")}</p>
                 </NavLink>
 
                 {/* Line border */}
@@ -616,7 +667,9 @@ const MediumHeader = ({ stateData, setStateData }) => {
                     {({ isActive }) =>
                       isActive ? (
                         <span>
-                          <ActivePersonIcons colors={seasonDetector?.ColorSeason} />
+                          <ActivePersonIcons
+                            colors={seasonDetector?.ColorSeason}
+                          />
                         </span>
                       ) : (
                         <span>
@@ -674,10 +727,11 @@ const MediumHeader = ({ stateData, setStateData }) => {
 
             {/*Starting of Opened Hamburger Menu section */}
             <section
-              className={`flex md:hidden max-w-[440px] h-[90vh] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0  px-3 ${stateData?.hamburgerMenu
-                ? " flex flex-col ease-linear duration-500 overscroll-none"
-                : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
-                }`}
+              className={`flex md:hidden max-w-[440px] h-[90vh] w-[100%] z-50 fixed bg-white top-[70px] left-0 right-0 bottom-0  px-3 ${
+                stateData?.hamburgerMenu
+                  ? " flex flex-col ease-linear duration-500 overscroll-none"
+                  : "left-[-500px] lg:left-[-1000px] ease-linear duration-500"
+              }`}
             >
               <div
                 className={`w-full h-full flex flex-col mb-[80px] flex-wrap relative`}
@@ -695,9 +749,8 @@ const MediumHeader = ({ stateData, setStateData }) => {
                           <LocationIcons colors={"#000"} />
                         </span>
                         <span className="ml-[11.67px]">
-                          {languageDetector?.typeLang === 'ru' && 'Ташкент'}
-                          {languageDetector?.typeLang === 'uz' && 'Toshkent'}
-
+                          {languageDetector?.typeLang === "ru" && "Ташкент"}
+                          {languageDetector?.typeLang === "uz" && "Toshkent"}
                         </span>
                       </div>
                       <span className="arrowRotate ml-auto rotate-[90deg]">
@@ -743,40 +796,41 @@ const MediumHeader = ({ stateData, setStateData }) => {
                     </div>
                     <div className="w-1/2 h-[52px] flex items-center bg-btnBgColor font-AeonikProMedium border rounded-xl border-searchBgColor px-5">
                       {LanguageList.filter(
-                        (data) => data.value === currentLang).map((data) => {
-                          return (
-                            <div
+                        (data) => data.value === currentLang
+                      ).map((data) => {
+                        return (
+                          <div
+                            key={data?.id}
+                            className="w-full flex items-center justify-between"
+                          >
+                            <Popover
                               key={data?.id}
-                              className="w-full flex items-center justify-between"
+                              open={openLang}
+                              onOpenChange={handleOpenLangList}
+                              className="w-full languageMobile flex text-[13px] items-center h-full"
+                              trigger="click"
+                              options={["Hide"]}
+                              placement="bottom"
+                              content={contentLang}
                             >
-                              <Popover
-                                key={data?.id}
-                                open={openLang}
-                                onOpenChange={handleOpenLangList}
-                                className="w-full languageMobile flex text-[13px] items-center h-full"
-                                trigger="click"
-                                options={["Hide"]}
-                                placement="bottom"
-                                content={contentLang}
-                              >
-                                <span>
-                                  {" "}
-                                  <img
-                                    src={data?.icons}
-                                    width={"20px"}
-                                    alt=""
-                                  />{" "}
-                                </span>
-                                <p className="ml-[6px] ll:ml-3 not-italic flex items-center font-AeonikProMedium text-base text-black ">
-                                  {data?.type}
-                                </p>
-                                <span className="arrowRotate ml-auto rotate-[180deg]">
-                                  <ArrowTopIcons colors={"#000"} />
-                                </span>
-                              </Popover>
-                            </div>
-                          );
-                        })}
+                              <span className="block min-w-[20px] w-[20px]">
+                                {" "}
+                                <img
+                                  src={data?.icons}
+                                  width={"20px"}
+                                  alt=""
+                                />{" "}
+                              </span>
+                              <p className="ml-[6px] mr-[5px] ll:ml-3 not-italic flex items-center font-AeonikProMedium text-base text-black ">
+                                {data?.type}
+                              </p>
+                              <span className="arrowRotate ml-auto rotate-[180deg]">
+                                <ArrowTopIcons colors={"#000"} />
+                              </span>
+                            </Popover>
+                          </div>
+                        );
+                      })}
                     </div>
                   </li>
                 </ul>
@@ -786,11 +840,11 @@ const MediumHeader = ({ stateData, setStateData }) => {
                   <button
                     type="button"
                     onClick={() => {
-                      setStateData({ ...stateData, hamburgerMenu: false })
+                      setStateData({ ...stateData, hamburgerMenu: false });
                       window.open(
                         " https://dressme-dashboard-new.vercel.app",
                         "_blank"
-                      )
+                      );
                     }}
                     className="w-1/2 flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-xl border-searchBgColor px-5"
                   >
@@ -798,7 +852,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                       <span className=" py-3 pr-3">
                         <HouseStatisticIcons colors={"#000"} />
                       </span>
-                      <span className="h-full ml-[11.67px] text-[16pxpx] text-center">
+                      <span className="h-full mr-[5px] ml-[11.67px] text-[16pxpx] text-center">
                         {t("business")}
                       </span>
                     </div>
@@ -814,7 +868,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
                   >
                     <div className="flex items-center">
                       <UploadIcons />
-                      <p className="text-[16px] flex items-center font-AeonikProMedium leading-4 ml-[12.5px]">
+                      <p className="text-[16px] mr-[2px] flex items-center font-AeonikProMedium leading-4 ml-[10px] xs:ml-[12.5px]">
                         {t("Mquestion")}
                         <span>?</span>
                       </p>
