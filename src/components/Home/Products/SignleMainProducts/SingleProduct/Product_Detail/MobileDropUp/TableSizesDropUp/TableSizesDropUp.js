@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 function TableSizesDropUp({ onClick, data, selectedLocation }) {
   // console.log(data, "data-table-data");
 
-  const { t } = useTranslation("products")
+  const { t } = useTranslation("products");
 
   return (
     <main>
@@ -20,19 +20,19 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
           {data?.product?.category_id === "2" ? (
             <div className="w-full flex flex-row flex-nowrap gap-y-[10px] gap-x-[12px] mb-4">
               <ul className="w-[42%] h-full flex flex-col">
-                <li className="text-base font-AeonikProRegular h-10 flex items-center">
+                <li className="text-[16px] font-AeonikProRegular h-10 flex items-center">
                   {t("size_in_numbers")}
                 </li>
-                <li className="text-base font-AeonikProRegular h-10 flex items-center">
+                <li className="text-[16px] font-AeonikProRegular h-10 flex items-center">
                   {t("letter_size")}
                 </li>
-                <li className="text-base font-AeonikProRegular h-10 flex items-center">
+                <li className="text-[16px] font-AeonikProRegular h-10 flex items-center">
                   {t("bust")}, {t("in_cm")}
                 </li>
-                <li className="text-base font-AeonikProRegular h-10 flex items-center">
+                <li className="text-[16px] font-AeonikProRegular h-10 flex items-center">
                   {t("waist_circumference")}, {t("in_cm")}
                 </li>
-                <div className="text-base font-AeonikProRegular h-10 flex items-center">
+                <div className="text-[16px] font-AeonikProRegular h-10 flex items-center">
                   {t("hip_girth")}, {t("in_cm")}
                 </div>
               </ul>
@@ -137,19 +137,19 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
           {data?.product?.category_id === "3" ? (
             <div className="w-full flex flex-row flex-nowrap gap-y-[10px] gap-x-[12px] mb-4">
               <ul className="w-[42%] h-full flex flex-col">
-                <li className="text-base font-AeonikProRegular h-10 flex items-center">
+                <li className="text-[16px] font-AeonikProRegular h-10 flex items-center">
                   {t("size_in_numbers")}
                 </li>
-                <li className="text-base font-AeonikProRegular h-10 flex items-center">
+                <li className="text-[16px] font-AeonikProRegular h-10 flex items-center">
                   {t("letter_size")}
                 </li>
-                <li className="text-base font-AeonikProRegular h-10 flex items-center">
+                <li className="text-[16px] font-AeonikProRegular h-10 flex items-center">
                   {t("height")}, {t("in_cm")}
                 </li>
-                <li className="text-base font-AeonikProRegular h-10 flex items-center">
+                <li className="text-[16px] font-AeonikProRegular h-10 flex items-center">
                   {t("waist_circumference")}, {t("in_cm")}
                 </li>
-                <div className="text-base font-AeonikProRegular h-10 flex items-center">
+                <div className="text-[16px] font-AeonikProRegular h-10 flex items-center">
                   {t("hip_girth")}, {t("in_cm")}
                 </div>
               </ul>
@@ -253,10 +253,10 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
           {data?.product?.category_id === "4" ? (
             <div className="w-full flex flex-row flex-nowrap gap-y-[10px] gap-x-[12px] mb-4">
               <ul className="w-[42%] h-full flex flex-col">
-                <li className="text-base font-AeonikProRegular h-10 flex items-center">
+                <li className="text-[16px] font-AeonikProRegular h-10 flex items-center">
                   {t("size_in_numbers")}, {t("in_cm")}
                 </li>
-                <li className="text-base font-AeonikProRegular h-10 flex items-center">
+                <li className="text-[16px] font-AeonikProRegular h-10 flex items-center">
                   {t("foot_length")}, {t("in_cm")}
                 </li>
               </ul>
@@ -309,16 +309,16 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
           {data?.product?.category_id === "5" ? (
             <div className="w-full flex flex-row flex-nowrap gap-y-[10px] gap-x-[12px] mb-4">
               <ul className="w-[42%] h-full flex flex-col">
-                <li className="text-base font-AeonikProRegular h-10 flex items-center">
+                <li className="text-[16px] font-AeonikProRegular h-10 flex items-center">
                   {t("size_in_numbers")}, {t("in_cm")}
                 </li>
-                <li className="text-base font-AeonikProRegular h-10 flex items-center">
+                <li className="text-[16px] font-AeonikProRegular h-10 flex items-center">
                   {t("letter_size")}
                 </li>
-                <li className="text-base font-AeonikProRegular h-10 flex items-center">
+                <li className="text-[16px] font-AeonikProRegular h-10 flex items-center">
                   {t("length")}, {t("in_cm")}
                 </li>
-                <li className="text-base font-AeonikProRegular h-10 flex items-center">
+                <li className="text-[16px] font-AeonikProRegular h-10 flex items-center">
                   {t("width")}, {t("in_cm")}
                 </li>
               </ul>
