@@ -18,12 +18,6 @@ export default function ProductComment({ data, refetch }) {
 
   const { t } = useTranslation("products");
 
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: 0,
-  //   });
-  // }, []);
-
   const textRef = useRef();
   const rateRef = useRef();
 
@@ -114,7 +108,7 @@ export default function ProductComment({ data, refetch }) {
               </article>
               <article className="mt-4">
                 <p className="not-italic font-AeonikProRegular text-base leading-4 text-black">
-                  {allComments?.replyText}
+                  {allComments?.reply}
                 </p>
               </article>
             </article>
