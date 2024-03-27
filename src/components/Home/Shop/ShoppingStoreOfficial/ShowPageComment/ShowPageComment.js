@@ -282,9 +282,6 @@ function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
                         <p className="w-[70%] break-all font-AeonikProMedium text-[13px] md:text-lg text-[#2C2C2C]">
                           {filteredData?.shop?.name}
                         </p>
-                        <p className="mr-3 font-AeonikProRegular text-[11px] md:text-base text-setTexOpacity">
-                          {allComments?.updated_at}
-                        </p>
                       </article>
                       <article className="mt-4">
                         <p className="font-AeonikProRegular text-[13px] md:text-base text-[#505050]">

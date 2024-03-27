@@ -5,6 +5,7 @@ import {
   SortIcons,
   UnderSection,
   VerticalMenu,
+  XbtnForMobile,
 } from "../../../../assets/icons";
 import React, { useContext, useEffect, useState } from "react";
 import { Popover } from "antd";
@@ -290,7 +291,7 @@ const CategoryTopDetail = ({
                             catalog?.name_uz}
                           {subSection == catalog?.id ? (
                             <span className="flex ml-2 items-center justify-center rounded-full w-[18px] h-[18px] border border-borderWinter text-borderWinter">
-                              x
+                              <XbtnForMobile />
                             </span>
                           ) : null}
                         </button>
