@@ -146,7 +146,7 @@ const CategoryTopDetail = ({
             <article className="w-full flex flex-col border-b md:border-none border-searchBgColor px-4 md:px-0">
               <figure className="relative w-full md:h-[90px] my-10 md:mt-0 h-fit flex flex-row items-center justify-between border border-searchBgColor rounded-lg">
                 {/*  */}
-                <div className="w-fit flex h-[66px] md:h-fit items-center   rounded-lg">
+                <div className="w-fit flex h-[66px] md:h-fit items-center rounded-lg">
                   <div className="absolute w-[80px] h-[120px] md:w-[120px] md:h-[160px] overflow-hidden left-[20px] md:left-[40px] rounded-xl border border-searchBgColor flex items-center justify-center bg-white columns-1">
                     <img
                       src={filterData?.section?.url_photo}
@@ -168,12 +168,15 @@ const CategoryTopDetail = ({
                 </div>
 
                 {/*  */}
-                <button
-                  onClick={() => setMobileSubSection(true)}
-                  className="w-fit md:hidden  flex mr-3"
-                >
-                  <VerticalMenu colors="#161616" />
-                </button>
+
+                {filterData?.section?.sub_sections?.length ? (
+                  <button
+                    onClick={() => setMobileSubSection(true)}
+                    className="w-fit md:hidden  flex mr-3"
+                  >
+                    <VerticalMenu colors="#161616" />
+                  </button>
+                ) : null}
 
                 <div className="w-full md:w-fit hidden md:flex items-center justify-between md:mr-5  ">
                   <div className="flex items-center">
@@ -277,14 +280,19 @@ const CategoryTopDetail = ({
                           onClick={() => handleSelectSubSection(catalog?.id)}
                           className={`${
                             subSection == catalog?.id
-                              ? "bg-borderWinter text-white"
+                              ? "bg-white border-borderWinter text-borderWinter"
                               : "bg-white text-black "
-                          }    hover:bg-borderWinter hover:text-white   border border-[#f0f0f0] rounded-lg px-[20px] py-[14px]`}
+                          }       flex items-center  border border-[#f0f0f0] rounded-lg px-[20px] py-[14px] min-h-[48px]`}
                         >
                           {languageDetector?.typeLang === "ru" &&
                             catalog?.name_ru}
                           {languageDetector?.typeLang === "uz" &&
                             catalog?.name_uz}
+                          {subSection == catalog?.id ? (
+                            <span className="flex ml-2 items-center justify-center rounded-full w-[18px] h-[18px] border border-borderWinter text-borderWinter">
+                              x
+                            </span>
+                          ) : null}
                         </button>
                       </li>
                     );
