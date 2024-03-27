@@ -2125,7 +2125,7 @@ const ProductDetails = ({ data, shopsData }) => {
           </div>
         </div>
         <div className={openTab === 2 ? "block" : "hidden"}>
-          <div className="mt-5 flex-col gap-y-5 flex">
+          <div className="mt-5 flex-col gap-y-5 flex mb-[70px] md:mb-0">
             <div className="not-italic font-AeonikProRegular text-base">
               {t("about_product")}
             </div>
@@ -2133,12 +2133,12 @@ const ProductDetails = ({ data, shopsData }) => {
               {languageDetector?.typeLang === "ru" &&
                 data?.product?.description_ru}
               {languageDetector?.typeLang === "uz" &&
-                data?.product?.description_uz}
+                data?.product?.description_uz}{" "}
             </article>
           </div>
         </div>
         <div className={openTab === 3 ? "block" : "hidden"}>
-          <div className="mt-5 block">
+          <div className="mt-5 block mb-[70px] md:mb-0">
             <ul>
               <li
                 className={
@@ -2148,7 +2148,7 @@ const ProductDetails = ({ data, shopsData }) => {
                 {languageDetector?.typeLang === "ru" &&
                   data?.product?.composition_ru}
                 {languageDetector?.typeLang === "uz" &&
-                  data?.product?.composition_uz}
+                  data?.product?.composition_uz}{" "}
               </li>
             </ul>
           </div>
