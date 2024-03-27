@@ -154,7 +154,7 @@ const CategoryTopDetail = ({
                       className="w-full h-full rounded-xl object-cover object-top"
                     />
                   </div>
-                  <div className="flex items-center ml-[115px] md:ml-[210px]">
+                  <div className="flex items-center ml-[110px] md:ml-[210px]">
                     <div className="text-xl font-AeonikProMedium">
                       {languageDetector?.typeLang === "ru" &&
                         filterData?.section?.name_ru}
