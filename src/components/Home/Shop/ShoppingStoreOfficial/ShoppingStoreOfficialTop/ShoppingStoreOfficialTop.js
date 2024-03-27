@@ -114,6 +114,8 @@ const ShoppingStoreOfficialTop = ({
     setDressInfo({ ...dressInfo, mainSearchNameshop: "" });
   };
 
+  console.log(filteredData?.shop, "iiiiiiiiii");
+
   return (
     <main className="flex flex-col justify-center md:border-b border-searchBgColor  items-center md:mt-5">
       <div className="locations">
