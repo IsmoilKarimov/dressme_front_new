@@ -32,7 +32,7 @@ function CategoryForType() {
   const [subSection, setSubSection] = useState(null);
   const [getRating, setGetRating] = useState(null);
   const [getRange, setGetRange] = useState([]);
-  const [dataColor, setDataColor] = useState([]);
+  const [dataColor, setDataColor] = useState(null);
   const [discount, setDiscount] = useState(false);
   const [getOutWearList, setGetOutWearList] = useState(null);
   const [getUnderWearList, setGetUnderWearList] = useState(null);
@@ -179,10 +179,7 @@ function CategoryForType() {
 
     getRange?.min && params.append("budget[from]", getRange?.min);
     getRange?.max && params.append("budget[to]", getRange?.max);
-    dataColor?.length > 0 &&
-      dataColor?.forEach((e, index) => {
-        params.append("colors[]", dataColor[index]);
-      });
+    dataColor && params.append("colors[]", dataColor);
     dressInfo?.mainRegionId &&
       !dressInfo?.mainSubRegionId &&
       params.append("region", dressInfo?.mainRegionId);
@@ -214,7 +211,7 @@ function CategoryForType() {
       !getCategory &&
       !getRating &&
       !getRange?.length &&
-      !dataColor?.length &&
+      !dataColor &&
       !discount &&
       !getOutWearList &&
       !getUnderWearList &&
@@ -242,7 +239,7 @@ function CategoryForType() {
     pageId,
     discount,
     seasonId,
-    dataColor?.length,
+    dataColor,
     getGenderId,
     getCategory,
     getUnderWearList,
@@ -340,17 +337,15 @@ function CategoryForType() {
                 setOpenMobileFilter(false);
                 setMobileSubSection(false);
               }}
-              className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-                openMobileFilter || openMobileCategory || mobileSubSection
-                  ? ""
-                  : "hidden"
-              }`}
+              className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter || openMobileCategory || mobileSubSection
+                ? ""
+                : "hidden"
+                }`}
             ></section>
             {/* For Mobile Versions */}
             <section
-              className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${
-                openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
-              }`}
+              className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
+                }`}
             >
               <section className="h-[52px] w-full bg-btnBgColor flex items-center justify-between mb-1">
                 <p className="text-[16px] font-AeonikProMedium">
@@ -372,11 +367,10 @@ function CategoryForType() {
                           data?.id
                         );
                       }}
-                      className={`${
-                        filterData?.section?.id === data?.id
-                          ? "bg-bgColor"
-                          : null
-                      } h-10 w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
+                      className={`${filterData?.section?.id === data?.id
+                        ? "bg-bgColor"
+                        : null
+                        } h-10 w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
                     >
                       {languageDetector?.typeLang === "ru" && data?.name_ru}
                       {languageDetector?.typeLang === "uz" && data?.name_uz}
@@ -386,9 +380,8 @@ function CategoryForType() {
               </div>
             </section>
             <section
-              className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${
-                mobileSubSection ? "bottom-0" : "bottom-[-800px] z-0"
-              }`}
+              className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[50vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${mobileSubSection ? "bottom-0" : "bottom-[-800px] z-0"
+                }`}
             >
               <section className="h-[52px] w-full bg-btnBgColor flex items-center justify-between mb-1">
                 <p className="text-[16px] font-AeonikProMedium">
@@ -403,9 +396,8 @@ function CategoryForType() {
                   return (
                     <button
                       onClick={() => selectSubSection(data?.id)}
-                      className={`${
-                        subSection === data?.id ? "bg-bgColor" : null
-                      } h-12 w-full flex items-center justify-between border-b border-searchBgColor text-[#303030]  text-[14px] font-AeonikProRegular`}
+                      className={`${subSection === data?.id ? "bg-bgColor" : null
+                        } h-12 w-full flex items-center justify-between border-b border-searchBgColor text-[#303030]  text-[14px] font-AeonikProRegular`}
                     >
                       <p
                         key={data?.id}
@@ -426,9 +418,8 @@ function CategoryForType() {
             </section>
             {screenSize.width < 768 && (
               <section
-                className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${
-                  openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
-                }`}
+                className={`max-w-[440px] w-[100%] mx-auto  fixed h-[70vh] overflow-hidden z-[113] left-0 right-0 md:hidden duration-300 ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+                  }`}
               >
                 <div className="w-full h-[70vh] z-[114] overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
                   <FilterList
@@ -455,9 +446,8 @@ function CategoryForType() {
             {/* For Desktop Version */}
             {screenSize.width >= 768 && (
               <article
-                className={`${
-                  filterToggle ? "md:block" : "md:hidden"
-                } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0 `}
+                className={`${filterToggle ? "md:block" : "md:hidden"
+                  } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0 `}
               >
                 <FilterList
                   paramsId={newFilterParamasId}
@@ -478,9 +468,8 @@ function CategoryForType() {
               </article>
             )}
             <article
-              className={`${
-                filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-              } w-full h-full px-[10px] md:px-0 `}
+              className={`${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+                } w-full h-full px-[10px] md:px-0 `}
             >
               {filterData?.section_products?.data?.length > 0 ? (
                 <CategoryCards
