@@ -160,19 +160,18 @@ function FilterList({
   }
 
   function onHandleColorList(hexCode) {
-    if (dataColor?.length === 0) {
-      setDataColor(dataColor => [...dataColor, hexCode])
+    if (!dataColor) {
+      setDataColor(hexCode)
     }
-    if (dataColor?.length > 0 && !dataColor?.includes(hexCode)) {
-      setDataColor(dataColor => [...dataColor, hexCode])
+    if (dataColor == hexCode) {
+      setDataColor(null)
     }
-    if (dataColor?.length > 0 && dataColor?.includes(hexCode)) {
-      setDataColor(dataColor?.filter((e) => e !== hexCode)
-      );
+    if (dataColor !== hexCode) {
+      setDataColor(hexCode)
     }
   }
-  const ClearListColor = () => {
-    setDataColor([])
+   const ClearListColor = () => {
+    setDataColor(null)
   }
   const [categories, setCategories] = useState([
     { id: 1, name_uz: "Bosh kiyimlar", name_ru: "Головные уборы" },
@@ -351,7 +350,7 @@ function FilterList({
     setSelectedDiscount(null)
     setSelectedGender(0)
     //---Color
-    setDataColor([])
+    setDataColor(null)
     // ---Category
     categoryId(null)
     setCategorySelect()
