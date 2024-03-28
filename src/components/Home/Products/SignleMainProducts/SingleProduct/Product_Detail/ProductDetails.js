@@ -373,6 +373,17 @@ const ProductDetails = ({ data, shopsData }) => {
       });
   };
 
+  useEffect(() => {
+    if (colorId) {
+      setSelectedSize(
+        data?.product?.sizes?.find((x) => x.product_color_id === colorId)
+      );
+      setSelectedColor(
+        data?.product?.colors?.find((item) => item?.pivot?.id === colorId)
+      );
+    }
+  }, [colorId]);
+
   return (
     <main className="w-full relative h-full mt-3 md:mt-4">
       <div className="tableSizes">
@@ -954,7 +965,7 @@ const ProductDetails = ({ data, shopsData }) => {
             ref={slider}
             {...settings}
             slidesToShow={uniqueArray?.length}
-            className="hidden md:flex md:w-[88%] h-[84px] items-center"
+            className="hidden md:flex md:w-[88%] h-[86px] items-center"
           >
             {selectedSize
               ? uniqueArray?.map((data) => {
@@ -970,7 +981,11 @@ const ProductDetails = ({ data, shopsData }) => {
                     >
                       <div
                         key={data?.id}
-                        className="!w-[64px] h-[84px] rounded-lg cursor-pointer  bg-black"
+                        className={`!w-[64px] h-[84px] rounded-lg cursor-pointer  bg-black ${
+                          colorId === data?.product_color_id
+                            ? "border-2 border-[#007DCA]"
+                            : "border border-searchBgColor"
+                        }`}
                         onClick={() => {
                           filterColorsOnSelect(data?.product_color_id);
                           setcolorId(data?.product_color_id);
