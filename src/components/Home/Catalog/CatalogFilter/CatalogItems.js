@@ -42,7 +42,7 @@ export default function CatalogItems() {
   const [getCategory, setGetCategory] = useState(null);
   const [getRating, setGetRating] = useState(null);
   const [getRange, setGetRange] = useState([]);
-  const [dataColor, setDataColor] = useState(null);
+  const [dataColor, setDataColor] = useState([]);
   const [discount, setDiscount] = useState(false);
   const [getOutWearList, setGetOutWearList] = useState(null);
   const [getUnderWearList, setGetUnderWearList] = useState(null);
@@ -199,8 +199,9 @@ export default function CatalogItems() {
                 languageDetector?.typeLang === "uz" && data?.name_uz
               );
             }}
-            className={`${Number(newFilterParamasId) === data?.id ? "bg-bgColor" : null
-              } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
+            className={`${
+              Number(newFilterParamasId) === data?.id ? "bg-bgColor" : null
+            } w-full h-[42px] flex items-center justify-center not-italic cursor-pointer font-AeonikProMedium text-sm leading-4 text-center hover:bg-bgColor`}
           >
             {languageDetector?.typeLang === "ru" && data?.name_ru}
             {languageDetector?.typeLang === "uz" && data?.name_uz}
@@ -274,8 +275,10 @@ export default function CatalogItems() {
     pageId && params.append("page", pageId);
     getRange?.min && params.append("budget[from]", getRange?.min);
     getRange?.max && params.append("budget[to]", getRange?.max);
-    dataColor && params.append("colors[]", dataColor);
-
+    dataColor?.length > 0 &&
+      dataColor?.forEach((e, index) => {
+        params.append("colors[]", dataColor[index]);
+      });
 
     fetch(`${apiUrl}?` + params, {
       headers: headers,
@@ -302,7 +305,7 @@ export default function CatalogItems() {
       !getCategory &&
       !getRating &&
       !getRange?.length &&
-      !dataColor &&
+      !dataColor?.length &&
       !discount &&
       !getOutWearList &&
       !getUnderWearList &&
@@ -330,7 +333,7 @@ export default function CatalogItems() {
     getRating,
     getRange?.min,
     getRange?.max,
-    dataColor,
+    dataColor?.length,
     discount,
     seasonId,
     getOutWearList,
@@ -455,8 +458,9 @@ export default function CatalogItems() {
                               <BiChevronDown
                                 size={22}
                                 style={{ color: "#000" }}
-                                className={`${state?.opensports ? "rotate-[-180deg]" : ""
-                                  } duration-200`}
+                                className={`${
+                                  state?.opensports ? "rotate-[-180deg]" : ""
+                                } duration-200`}
                               />
                             </span>
                           </Popover>
@@ -573,13 +577,15 @@ export default function CatalogItems() {
                   setOpenMobileCategory(false);
                   setOpenMobileFilter(false);
                 }}
-                className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${openMobileFilter || openMobileCategory ? "" : "hidden"
-                  }`}
+                className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
+                  openMobileFilter || openMobileCategory ? "" : "hidden"
+                }`}
               ></section>
               {screenSize.width < 768 && (
                 <section
-                  className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
-                    }`}
+                  className={` fixed h-[70vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+                    openMobileFilter ? "bottom-0" : "bottom-[-800px] z-0"
+                  }`}
                 >
                   <div className="relative max-w-[440px] w-[100%] h-[70vh] z-[114]  overflow-y-auto mx-auto bg-white shadow-navMenuShadov  overflow-hidden rounded-t-[12px]">
                     <FilterList
@@ -603,8 +609,9 @@ export default function CatalogItems() {
                 </section>
               )}
               <section
-                className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[40vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
-                  }`}
+                className={`max-w-[440px] rounded-t-[12px] bg-white w-full px-4 mx-auto fixed h-[40vh] z-[113] left-0 right-0 md:hidden duration-300 overflow-hidden ${
+                  openMobileCategory ? "bottom-0" : "bottom-[-800px] z-0"
+                }`}
               >
                 <section className="h-[52px] w-full bg-btnBgColor flex items-center  justify-between  mb-1 ">
                   <p className="text-xl font-AeonikProMedium">
@@ -624,13 +631,14 @@ export default function CatalogItems() {
                           handleCategories(
                             data?.id,
                             languageDetector?.typeLang === "ru" &&
-                            data?.name_ru,
+                              data?.name_ru,
                             languageDetector?.typeLang === "uz" && data?.name_uz
                           );
                           setOpenMobileCategory(false);
                         }}
-                        className={`${Number(paramId?.id) === data?.id ? "bg-bgColor" : null
-                          } h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
+                        className={`${
+                          Number(paramId?.id) === data?.id ? "bg-bgColor" : null
+                        } h-10   w-full flex items-center justify-start border-b border-searchBgColor text-[#303030]  text-base font-AeonikProRegular`}
                       >
                         {languageDetector?.typeLang === "ru" && data?.name_ru}
                         {languageDetector?.typeLang === "uz" && data?.name_uz}
@@ -643,8 +651,9 @@ export default function CatalogItems() {
               {/* FOR DESCTOP VERSION */}
               {screenSize.width >= 768 && (
                 <article
-                  className={`${filterToggle ? "md:block" : "md:hidden"
-                    } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0`}
+                  className={`${
+                    filterToggle ? "md:block" : "md:hidden"
+                  } hidden  md:w-[22%] h-full pt-10 ss:px-4 md:px-0`}
                 >
                   <FilterList
                     paramsId={newFilterParamasId}
@@ -664,8 +673,9 @@ export default function CatalogItems() {
                 </article>
               )}
               <article
-                className={`${filterToggle ? "md:w-[77%]" : "md:w-[100%]"
-                  } w-full h-full px-[10px] md:px-0`}
+                className={`${
+                  filterToggle ? "md:w-[77%]" : "md:w-[100%]"
+                } w-full h-full px-[10px] md:px-0`}
               >
                 {filterData?.category_products?.data?.length > 0 ? (
                   <CatalogCard

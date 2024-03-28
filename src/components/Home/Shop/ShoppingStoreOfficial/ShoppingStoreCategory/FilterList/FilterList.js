@@ -169,21 +169,21 @@ function FilterList({
   }
 
 
-
   function onHandleColorList(hexCode) {
-    if (!dataColor) {
-      setDataColor(hexCode)
+    setPageId(1)
+    if (dataColor?.length === 0) {
+      setDataColor(dataColor => [...dataColor, hexCode])
     }
-    if (dataColor == hexCode) {
-      setDataColor(null)
+    if (dataColor?.length > 0 && !dataColor?.includes(hexCode)) {
+      setDataColor(dataColor => [...dataColor, hexCode])
     }
-    if (dataColor !== hexCode) {
-      setDataColor(hexCode)
+    if (dataColor?.length > 0 && dataColor?.includes(hexCode)) {
+      setDataColor(dataColor?.filter((e) => e !== hexCode)
+      );
     }
   }
   const ClearListColor = () => {
-    setDataColor(null)
-
+    setDataColor([])
   }
 
   const [categories, setCategories] = useState([
@@ -361,8 +361,7 @@ function FilterList({
     setSelectedDiscount(null)
     setSelectedGender(0)
     //---Color
-    setDataColor(null)
-
+    setDataColor([])
     // ---Category
     categoryId(null)
     setCategorySelect()
@@ -613,7 +612,7 @@ function FilterList({
                   <Slider
                     className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] my-5`}
                     onChange={setValues}
-                    value={values || ""}
+                    value={values|| ""}
                     minDistance={10}
                     min={Number(minPrice)}
                     max={Number(maxPrice)}
