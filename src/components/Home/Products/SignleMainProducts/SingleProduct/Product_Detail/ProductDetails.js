@@ -27,6 +27,7 @@ import {
   ProductArticleIcons,
   ProductSwitchIcons,
   QualityIcon,
+  ReviewIcon,
   SettingsIcon,
   StarIcons,
   TypeIcon,
@@ -335,10 +336,10 @@ const ProductDetails = ({ data, shopsData }) => {
 
   const navigate = useNavigate();
   const goDetail = () => {
-    navigate(`/product/${data?.product?.shop_id}/allcomments`);
+    navigate(`/product/${data?.product?.id}/allcomments`);
   };
 
-  // console.log(shopsData?.getMainProductCard?.shops, "shopsData");
+  // console.log(data?.product?.id, "shopsData");
 
   const goDetailShop = (id, name) => {
     shopsData?.getMainProductCard?.shops
@@ -1761,11 +1762,13 @@ const ProductDetails = ({ data, shopsData }) => {
               {selectedLocation?.assistant_phone ? (
                 <address className="max-w-1/2 md:max-w-[70%] w-full">
                   <a
-                    className=" w-full bg-fullBlue active:scale-95  active:opacity-70 text-white rounded-lg h-[44px] flex gap-x-1 ll:gap-x-2 items-center justify-center"
+                    className="  relative w-full bg-fullBlue active:scale-95  active:opacity-70 text-white rounded-lg h-[44px] flex gap-x-1 ll:gap-x-2 items-center"
                     href={`${"tel:" + selectedLocation?.assistant_phone}`}
                   >
-                    <PhoneIcons colors={"#fff"} />
-                    <p className="text-sm ">
+                    <span className="absolute left-[16px]">
+                      <PhoneIcons colors={"#fff"} />
+                    </span>
+                    <p className="text-sm break-all w-full text-center pl-[40px] pr-[10px]">
                       {selectedLocation?.assistant_name}
                     </p>
                   </a>
@@ -1774,16 +1777,16 @@ const ProductDetails = ({ data, shopsData }) => {
               {selectedLocation?.assistant_messenger ? (
                 <address className=" max-w-1/2 md:max-w-[35%] w-full">
                   <a
-                    className={` w-full h-[44px] active:scale-95  active:opacity-70 px-5 flex gap-x-1 ll:gap-x-2 items-center justify-center  rounded-lg  text-fullBlue border border-fullBlue`}
+                    className={`relative w-full h-[44px] active:scale-95  active:opacity-70 flex gap-x-1 ll:gap-x-2 items-center justify-center  rounded-lg  text-fullBlue border border-fullBlue`}
                     href={`https://t.me/${selectedLocation?.assistant_messenger?.slice(
                       1
                     )}`}
                     // target="_blank"
                   >
-                    <p className="w-7 h-7  bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
+                    <p className="absolute left-[14px]  w-7 h-7  bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
                       <FaTelegramPlane size={16} />
                     </p>{" "}
-                    <p className="text-sm block">
+                    <p className="text-sm break-all w-full text-center pl-[50px] pr-[10px]">
                       {selectedLocation?.assistant_messenger}
                     </p>{" "}
                   </a>
@@ -1798,13 +1801,15 @@ const ProductDetails = ({ data, shopsData }) => {
               {selectedLocation?.second_assistant_phone ? (
                 <address className="max-w-1/2 md:max-w-[70%] w-full">
                   <a
-                    className=" w-full bg-fullBlue active:scale-95  active:opacity-70 text-white rounded-lg h-[44px] flex gap-x-1 ll:gap-x-2 items-center justify-center"
+                    className="relative w-full bg-fullBlue active:scale-95  active:opacity-70 text-white rounded-lg h-[44px] flex gap-x-1 ll:gap-x-2 items-center justify-center"
                     href={`${
                       "tel:" + selectedLocation?.second_assistant_phone
                     }`}
                   >
-                    <PhoneIcons colors={"#fff"} />
-                    <p className="text-sm ">
+                    <span className="absolute left-[16px]">
+                      <PhoneIcons colors={"#fff"} />
+                    </span>
+                    <p className="text-sm break-all w-full text-center pl-[40px] pr-[10px]">
                       {selectedLocation?.second_assistant_name}
                     </p>
                   </a>
@@ -1813,16 +1818,16 @@ const ProductDetails = ({ data, shopsData }) => {
               {selectedLocation?.second_assistant_messenger ? (
                 <address className=" max-w-1/2 md:max-w-[35%] w-full">
                   <a
-                    className={` w-full h-[44px] active:scale-95  active:opacity-70 px-5 flex gap-x-1 ll:gap-x-2 items-center justify-center  rounded-lg  text-fullBlue border border-fullBlue`}
+                    className={`relative w-full h-[44px] active:scale-95  active:opacity-70 flex gap-x-1 ll:gap-x-2 items-center justify-center  rounded-lg  text-fullBlue border border-fullBlue`}
                     href={`https://t.me/${selectedLocation?.second_assistant_messenger?.slice(
                       1
                     )}`}
                     // target="_blank"
                   >
-                    <p className="w-7 h-7  bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
+                    <p className="absolute left-[14px] w-7 h-7  bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
                       <FaTelegramPlane size={16} />
                     </p>{" "}
-                    <p className="text-sm block">
+                    <p className="text-sm break-all w-full text-center pl-[50px] pr-[10px]">
                       {selectedLocation?.second_assistant_messenger}
                     </p>{" "}
                   </a>
@@ -1832,6 +1837,19 @@ const ProductDetails = ({ data, shopsData }) => {
           </article>
         </div>
       </section>
+
+      {localStorage?.getItem("userAccess") ? (
+        <button
+          onClick={() => goDetail()}
+          type="button"
+          className="flex items-center  md:hidden mt-4 text-SignInBgColor text-lg font-AeonikProRegular"
+        >
+          {t("write_a_review")}
+          <span className="ml-[5px]">
+            <ReviewIcon />
+          </span>
+        </button>
+      ) : null}
 
       {/* Mobile version of comment */}
       {data?.product?.ratings?.length ? (
@@ -1852,9 +1870,7 @@ const ProductDetails = ({ data, shopsData }) => {
               </div>
             </div>
             <button
-              onClick={() =>
-                goDetail(`/product/${data?.product?.shop_id}/allcomments`)
-              }
+              onClick={() => goDetail()}
               className="w-full py-4 px-4 flex items-center justify-center border-t border-searchBgColor"
             >
               <span className="ml-8">
@@ -1982,11 +1998,15 @@ const ProductDetails = ({ data, shopsData }) => {
             {selectedLocation?.assistant_phone ? (
               <address className="w-[65%] md:w-fit">
                 <a
-                  className="w-[232px] h-12 md:h-[52px] px-5  rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex gap-x-3 items-center justify-center bg-fullBlue"
+                  className="relative w-[232px] h-12 md:h-[52px]  rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex gap-x-3 items-center justify-center bg-fullBlue"
                   href={`${"tel:" + selectedLocation?.assistant_phone}`}
                 >
-                  <PhoneIcons colors={"#fff"} />{" "}
-                  {selectedLocation?.assistant_name}
+                  <span className="absolute left-[16px]">
+                    <PhoneIcons colors={"#fff"} />
+                  </span>
+                  <span className="inline-block w-full pl-[40px] pr-[10px]">
+                    {selectedLocation?.assistant_name}
+                  </span>
                 </a>
               </address>
             ) : null}
@@ -1995,15 +2015,17 @@ const ProductDetails = ({ data, shopsData }) => {
               <address className="w-[35%] md:w-fit  ml-4">
                 <a
                   target="_blank"
-                  className={`w-[232px] h-12 md:h-[52px] px-5 rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center flex gap-x-3 items-center justify-center text-fullBlue border border-fullBlue`}
+                  className={`relative w-[232px] h-12 md:h-[52px] rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center flex gap-x-3 items-center justify-center text-fullBlue border border-fullBlue`}
                   href={`https://t.me/${selectedLocation?.assistant_messenger?.slice(
                     1
                   )}`}
                 >
-                  <span className="w-7 h-7 bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
+                  <span className="absolute left-[16px] w-7 h-7 bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
                     <FaTelegramPlane size={16} />
                   </span>{" "}
-                  <span>{selectedLocation?.assistant_messenger}</span>{" "}
+                  <span className="inline-block w-full text-center pl-[50px] pr-[10px]">
+                    {selectedLocation?.assistant_messenger}
+                  </span>
                 </a>
               </address>
             ) : null}
@@ -2036,11 +2058,15 @@ const ProductDetails = ({ data, shopsData }) => {
             {selectedLocation?.second_assistant_phone ? (
               <address className="w-[65%] md:w-fit">
                 <a
-                  className="w-[232px] h-12 md:h-[52px] px-5  rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex gap-x-3 items-center justify-center bg-fullBlue"
+                  className="relative w-[232px] h-12 md:h-[52px]  rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center text-white flex gap-x-3 items-center justify-center bg-fullBlue"
                   href={`${"tel:" + selectedLocation?.second_assistant_phone}`}
                 >
-                  <PhoneIcons colors={"#fff"} />{" "}
-                  {selectedLocation?.second_assistant_name}
+                  <span className="absolute left-[16px]">
+                    <PhoneIcons colors={"#fff"} />
+                  </span>
+                  <span className="inline-block w-full pl-[40px] pr-[10px]">
+                    {selectedLocation?.second_assistant_name}
+                  </span>
                 </a>
               </address>
             ) : null}
@@ -2049,15 +2075,17 @@ const ProductDetails = ({ data, shopsData }) => {
               <address className="w-[35%] md:w-fit  ml-4">
                 <a
                   target="_blank"
-                  className={`w-[232px] h-12 md:h-[52px] px-5 rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center flex gap-x-3 items-center justify-center text-fullBlue border border-fullBlue`}
+                  className={`relative w-[232px] h-12 md:h-[52px] rounded-[12px] not-italic font-AeonikProMedium text-base leading-4 text-center flex gap-x-3 items-center justify-center text-fullBlue border border-fullBlue`}
                   href={`https://t.me/${selectedLocation?.second_assistant_messenger?.slice(
                     1
                   )}`}
                 >
-                  <span className="w-7 h-7 bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
+                  <span className="absolute left-[16px] w-7 h-7 bg-fullBlue text-white rounded-full flex items-center px-auto justify-center pr-[2px]">
                     <FaTelegramPlane size={16} />
                   </span>{" "}
-                  <span>{selectedLocation?.second_assistant_messenger}</span>{" "}
+                  <span className="inline-block w-full text-center pl-[50px] pr-[10px]">
+                    {selectedLocation?.second_assistant_messenger}
+                  </span>
                 </a>
               </address>
             ) : null}

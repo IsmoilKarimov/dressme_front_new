@@ -29,7 +29,6 @@ const MobileAllComments = () => {
 
   const params = useParams();
   const newId = params?.id?.replace(":", "");
-  // console.log(newId);
 
   const { refetch } = useQuery(
     ["get_mobile_comment"],
@@ -213,13 +212,10 @@ const MobileAllComments = () => {
                 <div className="text-[13px] font-AeonikProMedium">
                   {data?.shop?.name}
                 </div>
-                <div className="text-[11px] font-AeonikProRegular text-[#B2B8C8]">
-                  {item?.reply}
-                </div>
               </div>
-              <p className="text-[13px] font-AeonikProRegular text-[#505050]">
-                {item?.updated_at}
-              </p>
+              <div className="text-[11px] font-AeonikProRegular text-[#B2B8C8]">
+                {item?.reply}
+              </div>
             </div>
           </div>
         ))}
