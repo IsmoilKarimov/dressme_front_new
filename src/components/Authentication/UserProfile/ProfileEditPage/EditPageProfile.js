@@ -329,17 +329,6 @@ const EditProfilePage = () => {
             if (res?.message === "Unauthenticated.") {
               // reFreshTokenFunc();
               sendEditedEmailData();
-              // navigate("/sign_in");
-              // toast.error(`${res?.message}`, {
-              //   position: "top-right",
-              //   autoClose: 5000,
-              //   hideProgressBar: false,
-              //   closeOnClick: true,
-              //   pauseOnHover: true,
-              //   draggable: true,
-              //   progress: undefined,
-              //   theme: "light",
-              // });
             }
             setLoading(false);
             setState({
@@ -836,7 +825,7 @@ const EditProfilePage = () => {
                         </div>
                         <div className="w-[65%] md:w-[75%] bg-btnBgColor h-12 overflow-hidden">
                           <InputMask
-                            mask="(99)999-99-99"
+                            mask="(99) 999-99-99"
                             value={state?.userPhoneNumber || ""}
                             onChange={(e) => {
                               setState({
