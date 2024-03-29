@@ -16,7 +16,7 @@ const Header = () => {
   const [languageDetector, setLanguageDetector] = useContext(
     LanguageDetectorDress
   );
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress);
   const [state, setState] = useState({
     getAllCardList: null,
     genderSelectId: 0,
@@ -133,6 +133,15 @@ const Header = () => {
           loader: false,
           btnLoader: false,
         });
+      })
+      .finally(() => {
+        setData((prev) => {
+          return {
+            ...prev,
+            loader: false,
+            btnLoader: false,
+          };
+        });
       });
   };
 
@@ -146,6 +155,7 @@ const Header = () => {
     dressInfo?.mainSearchName,
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
+    dressInfo?.state,
     seasonId,
     page,
   ]);

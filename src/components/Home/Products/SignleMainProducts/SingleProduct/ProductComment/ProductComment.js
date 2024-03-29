@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import {
   GoBackIcon,
   ReviewIcon,
@@ -7,14 +7,16 @@ import {
 import { Modal, Rate } from "antd";
 import { useParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
-import Cookies from "js-cookie";
+
 import { ToastContainer, toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 
 export default function ProductComment({ data, refetch }) {
   const [openComment, setOpenComment] = useState(false);
   const params = useParams();
   const [visibleComments, setVisibleCommnets] = useState(4);
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const { t } = useTranslation("products");
 
@@ -58,6 +60,7 @@ export default function ProductComment({ data, refetch }) {
           }
           rateRef.current.state.value = 1;
           textRef.current.value = null;
+          setDressInfo({ ...dressInfo, state: dressInfo.state + 1 });
         },
         onError: (err) => {
           // console.log(err, "ERROR");
