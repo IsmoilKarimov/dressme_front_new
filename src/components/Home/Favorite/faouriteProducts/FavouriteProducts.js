@@ -9,9 +9,11 @@ import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../language/LanguageItems";
+import { MobileSelectedDataContext } from "../../../../ContextHook/mobileSelectedData";
 
 export default function FavouriteProducts() {
   const { t } = useTranslation("favourite");
+  const [selectedData, setSelectedData] = useContext(MobileSelectedDataContext);
 
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [openWearType, setOpenWearType] = useState(false);
@@ -54,7 +56,7 @@ export default function FavouriteProducts() {
       >
         <section className="w-full flex items-center justify-center flex-col">
           {wishList?.length ? (
-             localStorage?.getItem("userAccess") ? (
+            localStorage?.getItem("userAccess") ? (
               <article className="w-full flex flex-wrap justify-between md:justify-start md:mx-0 md:mt-[50px] gap-y-[6px] gap-x-[6px] lg:gap-x-5 lg:gap-y-5 ">
                 {mainData?.products?.map((data) => {
                   if (wishList?.includes(data?.id)) {
@@ -92,7 +94,10 @@ export default function FavouriteProducts() {
                               </span>
                             </button>
                             <button
-                              onClick={() => setOpenWearType(true)}
+                              onClick={() => {
+                                setSelectedData(data);
+                                setOpenWearType(true);
+                              }}
                               className="w-12 h-7 md:hidden border border-searchBgColor rounded-lg flex items-center cursor-pointer select-none my-[6px] mx-2 justify-center gap-x-1 "
                             >
                               <figure className="w-6 h-6 flex items-center justify-center">
@@ -211,7 +216,7 @@ export default function FavouriteProducts() {
                                   : " bottom-[8px] ls:bottom-[-17px]"
                               } md:bottom-2`}
                             >
-                              { localStorage?.getItem("userAccess") && (
+                              {localStorage?.getItem("userAccess") && (
                                 <button
                                   onClick={() => {
                                     if (wishList?.includes(data?.id)) {
