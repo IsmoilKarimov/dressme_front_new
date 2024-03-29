@@ -1581,32 +1581,36 @@ const ProductDetails = ({ data, shopsData }) => {
                   <span className="mx-[6px]">{t("season")}:</span>
                 </div>
 
-                {data?.product?.seasons?.map((item) => {
-                  return (
-                    <div key={item?.id}>
-                      <figure className="flex items-center pr-3 mr-3 last:border-none border-r-[2px] border-searchBgColor">
-                        <img
-                          src={
-                            item?.name_ru === "Весна"
-                              ? springSeason
-                              : item?.name_ru === "Лето"
-                              ? summerSeason
-                              : item?.name_ru === "Осень"
-                              ? autummSeason
-                              : item?.name_ru === "Зима"
-                              ? winterSeason
-                              : null
-                          }
-                          alt=""
-                        />
-                        <figcaption className="not-italic inline ml-1 font-AeonikProRegular md:font-AeonikProMedium text-black">
-                          {languageDetector?.typeLang === "ru" && item?.name_ru}
-                          {languageDetector?.typeLang === "uz" && item?.name_uz}
-                        </figcaption>
-                      </figure>
-                    </div>
-                  );
-                })}
+                <div className="flex items-center flex-wrap">
+                  {data?.product?.seasons?.map((item) => {
+                    return (
+                      <div key={item?.id}>
+                        <figure className="flex items-center pr-3 mr-3 last:border-none border-r-[2px] border-searchBgColor">
+                          <img
+                            src={
+                              item?.name_ru === "Весна"
+                                ? springSeason
+                                : item?.name_ru === "Лето"
+                                ? summerSeason
+                                : item?.name_ru === "Осень"
+                                ? autummSeason
+                                : item?.name_ru === "Зима"
+                                ? winterSeason
+                                : null
+                            }
+                            alt=""
+                          />
+                          <figcaption className="not-italic inline ml-1 font-AeonikProRegular md:font-AeonikProMedium text-black">
+                            {languageDetector?.typeLang === "ru" &&
+                              item?.name_ru}
+                            {languageDetector?.typeLang === "uz" &&
+                              item?.name_uz}
+                          </figcaption>
+                        </figure>
+                      </div>
+                    );
+                  })}
+                </div>
               </section>
             </div>
 

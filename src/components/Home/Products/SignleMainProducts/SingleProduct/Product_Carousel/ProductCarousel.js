@@ -533,7 +533,7 @@ const ProductCarousel = ({ show, data }) => {
                             handleClickCarosuel(i);
                           }}
                         >
-                          <figure className="relative w-full  w-full ll:h-[478px] overflow-hidden  border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer ">
+                          <figure className="relative w-full ll:h-[478px] overflow-hidden  border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer ">
                             <img
                               className="w-full ll:h-full object-cover "
                               src={data?.url_photo}
@@ -671,7 +671,7 @@ const ProductCarousel = ({ show, data }) => {
               <p className="ml-2 font-AeonikProMedium text-base text-right">
                 {selectedSize
                   ? selectedSize?.amount
-                  : data?.product?.sizes[0]?.amount}{" "}
+                  : data?.product?.sizes_sum_amount}
               </p>
             </section>
           </article>
