@@ -14,11 +14,13 @@ import { ToastContainer, toast } from "react-toastify";
 import { UserRefreshTokenContext } from "../../../../../../../ContextHook/UserRefreshToken";
 import { useTranslation } from "react-i18next";
 import LoadingNetwork from "../../../../../../Loading/LoadingNetwork";
+import { dressMainData } from "../../../../../../../ContextHook/ContextMenu";
 
 const MobileAllComments = () => {
   const [addComment, setAddComment] = useState(false);
   const toggleAddComment = useCallback(() => setAddComment(false), []);
   const [data, setData] = useState();
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const [loader, setLoader] = useState(true);
 
@@ -174,7 +176,14 @@ const MobileAllComments = () => {
         <>
           {localStorage?.getItem("userAccess") ? (
             <button
-              onClick={() => setAddComment(true)}
+              onClick={() => {
+                setDressInfo({
+                  ...dressInfo,
+                  rateable_type: "product",
+                  rateable_id: newId,
+                });
+                setAddComment(true);
+              }}
               type="button"
               className="w-full flex items-center ml-[20px] text-SignInBgColor text-base font-AeonikProRegular mb-[2px]"
             >
