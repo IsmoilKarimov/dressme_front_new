@@ -249,9 +249,9 @@ const ProductCarousel = ({ show, data }) => {
           >
             <MenuCloseIcons width={20} height={20} colors="#000" />
           </button>
-          <div className="w-full h-full">
+          <div className="w-full h-full ">
             <Slider
-              className="w-full h-[482px] overflow-hidden md:!w-[750px] md:h-[100vh] showpageSlider bg-white md:rounded-lg"
+              className=" w-full h-[482px] overflow-hidden md:!w-[520px] md:h-[85vh] showpageSlider bg-white md:rounded-lg"
               {...settingsModal}
               ref={sliderRef}
             >
@@ -273,12 +273,12 @@ const ProductCarousel = ({ show, data }) => {
                             //   backgroundSize: "cover",
                             //   backgroundRepeat: "no-repeat",
                             // }}
-                            className="relative overflow-hidden h-full w-full md:h-[100vh] md:rounded-lg border md:border-green-700 border-searchBgColor bg-btnBgColor flex items-center justify-center"
+                            className="relative overflow-hidden h-full w-full md:h-[85vh] md:rounded-lg  bg-btnBgColor flex items-center justify-center"
                           >
                             <img
                               src={data?.url_photo}
                               alt=""
-                              className={`w-full h-[482px] md:h-fit object-contain border border-sky-700 overflow-hidden`}
+                              className={`w-full h-[482px] md:h-fit object-cover overflow-hidden`}
                             />
                             <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
                               <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
@@ -301,7 +301,7 @@ const ProductCarousel = ({ show, data }) => {
                     return (
                       <article
                         key={i}
-                        className="relative w-full h-full overflow-hidden"
+                        className="relative w-full h-[482px] md:h-[85vh] overflow-hidden"
                       >
                         <figure
                           key={data?.id}
@@ -312,17 +312,17 @@ const ProductCarousel = ({ show, data }) => {
                           //   backgroundSize: "cover",
                           //   backgroundRepeat: "no-repeat",
                           // }}
-                          className="relative overflow-hidden h-full w-full md:h-[100vh] md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center "
+                          className=" overflow-hidden h-full w-full  md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center "
                         >
                           <img
                             src={data?.url_photo}
                             alt=""
-                            className={`w-full h-[482px] md:h-fit object-contain overflow-hidden`}
+                            className={`w-full h-[482px] md:h-fit max-w-[620px] object-cover overflow-hidden`}
                           />
                           <div
                             className={` ${
                               photos_length > 1 ? "flex" : "hidden"
-                            } first-letter:flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-8`}
+                            } first-letter:flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 bottom-4 md:bottom-8`}
                           >
                             <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
                               <p className="h-full w-full text-center pt-[4px]">
