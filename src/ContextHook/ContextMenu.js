@@ -18,6 +18,10 @@ export const DressMenu = ({ children }) => {
     yandexRangePrice: [],
     yandexGenderId: 0,
 
+    // for post refetch
+
+    state: 0,
+
     // Cordinate
     yandexPositionX: null,
     yandexPositionY: null,
@@ -67,7 +71,7 @@ export const DressMenu = ({ children }) => {
     linkedFrom: "mainPageProductList",
     productShowSelectedLocation: {},
     ProductList: [],
-    searchProduct:""
+    searchProduct: "",
   });
   return (
     <dressMainData.Provider value={[dressInfo, setDressInfo]}>

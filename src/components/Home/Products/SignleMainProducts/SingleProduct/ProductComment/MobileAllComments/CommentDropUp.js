@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { Rate } from "antd";
 import {
   AddComment,
@@ -10,11 +10,14 @@ import { useTranslation } from "react-i18next";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { dressMainData } from "../../../../../../../ContextHook/ContextMenu";
 
 function CommentDropUp({ onClick }) {
   const [rating, setRating] = useState(false);
   const [data, setData] = useState();
   const { t } = useTranslation("products");
+
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const url = "https://api.dressme.uz";
 
@@ -87,6 +90,8 @@ function CommentDropUp({ onClick }) {
           }
           rateRef.current.state.value = 1;
           textRef.current.value = null;
+
+          setDressInfo({ ...dressInfo, state: dressInfo.state + 1 });
         },
         onError: (err) => {
           // console.log(err, "ERROR");
