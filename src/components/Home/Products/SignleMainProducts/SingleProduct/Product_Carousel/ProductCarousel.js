@@ -598,11 +598,11 @@ const ProductCarousel = ({ show, data }) => {
           </article>
 
           {/* 2 */}
-          <article className="w-full flex md:hidden items-center justify-between mb-6 mt-4">
-            <section className="w-fit flex items-center">
+          <article className="w-full flex md:hidden items-center justify-between mb-4 mt-6">
+            <section className="w-fit flex flex-wrap pr-[5px] items-center">
               {selectedSize ? (
                 <>
-                  <p className="flex font-AeonikProMedium text-[24px] text-black mx-[5px]">
+                  <p className="flex items-center font-AeonikProMedium text-[20px] text-black">
                     {selectedSize?.discount_price
                       ? parseInt(selectedSize?.discount_price)
                           ?.toLocaleString()
@@ -613,25 +613,28 @@ const ProductCarousel = ({ show, data }) => {
                           ?.split(",")
                           .join(" ")}{" "}
                     <span
-                      className={`${
-                        selectedSize?.discount_price ? "hidden" : "flex ml-2"
+                      className={`text-[16px] ${
+                        selectedSize?.discount_price ? "ml-2" : "flex ml-2"
                       }`}
                     >
                       {t("currency")}
                     </span>
                   </p>
                   {selectedSize?.discount_price ? (
-                    <p className="font-AeonikProRegular line-through text-[16px] text-setTexOpacity">
+                    <p className="flex items-center font-AeonikProRegular line-through text-[16px] text-setTexOpacity">
                       {parseInt(selectedSize?.price)
                         ?.toLocaleString()
                         ?.split(",")
                         .join(" ")}{" "}
+                      <span className={`${"ml-2 text-[14px]"}`}>
+                        {t("currency")}
+                      </span>
                     </p>
                   ) : null}
                 </>
               ) : (
                 <>
-                  <p className="flex font-AeonikProMedium text-[24px] text-black mx-[5px]">
+                  <p className="flex items-center font-AeonikProMedium text-[20px] text-black">
                     {data?.product?.sizes[0]?.discount_price
                       ? parseInt(data?.product?.sizes[0]?.discount_price)
                           ?.toLocaleString()
@@ -642,9 +645,9 @@ const ProductCarousel = ({ show, data }) => {
                           ?.split(",")
                           .join(" ")}{" "}
                     <span
-                      className={`${
+                      className={`text-[16px] ${
                         data?.product?.sizes[0]?.discount_price
-                          ? "hidden"
+                          ? "ml-2"
                           : "flex ml-2"
                       }`}
                     >
@@ -652,20 +655,23 @@ const ProductCarousel = ({ show, data }) => {
                     </span>
                   </p>
                   {data?.product?.sizes[0]?.discount_price ? (
-                    <p className="font-AeonikProRegular line-through text-[16px] text-setTexOpacity">
+                    <p className="flex items-center font-AeonikProRegular line-through text-[16px] text-setTexOpacity">
                       {parseInt(data?.product?.sizes[0]?.price)
                         ?.toLocaleString()
                         ?.split(",")
                         .join(" ")}{" "}
+                      <span className={`${"ml-2 text-[14px]"}`}>
+                        {t("currency")}
+                      </span>
                     </p>
                   ) : null}
                 </>
               )}
             </section>
             <section
-              className={`w-fit ${seasonDetector?.TextColorSeason} items-center text-sm flex ml-8`}
+              className={`w-fit ${seasonDetector?.TextColorSeason} items-center text-sm flex ml-auto`}
             >
-              <p className="font-AeonikProRegular text-right">
+              <p className="font-AeonikProRegular text-center">
                 {t("in_stock")}:
               </p>
               <p className="ml-2 font-AeonikProMedium text-base text-right">
