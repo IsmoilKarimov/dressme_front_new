@@ -133,15 +133,6 @@ const Header = () => {
           loader: false,
           btnLoader: false,
         });
-      })
-      .finally(() => {
-        setData((prev) => {
-          return {
-            ...prev,
-            loader: false,
-            btnLoader: false,
-          };
-        });
       });
   };
 
