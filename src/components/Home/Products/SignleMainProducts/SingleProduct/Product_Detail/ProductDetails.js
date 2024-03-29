@@ -55,6 +55,7 @@ import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
 import Item from "antd/es/list/Item";
 const ProductDetails = ({ data, shopsData }) => {
   const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
+
   // Rick Ortiz
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress);
@@ -2109,11 +2110,7 @@ const ProductDetails = ({ data, shopsData }) => {
             e.preventDefault();
             setOpenTab(1);
           }}
-          className={` ${
-            !data?.product?.composition_ru && !data?.product?.description_ru
-              ? "w-full"
-              : "w-[28%]"
-          } md:w-full md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
+          className={`w-full  h-[38px] md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
             openTab === 1
               ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
               : ""
@@ -2121,13 +2118,14 @@ const ProductDetails = ({ data, shopsData }) => {
         >
           <p>{t("location")}</p>
         </button>
-        {data?.product?.composition_ru ? (
+        {languageDetector?.typeLang === "ru" &&
+        data?.product?.description_ru ? (
           <button
             onClick={(e) => {
               e.preventDefault();
               setOpenTab(2);
             }}
-            className={`w-[44%] md:w-full md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
+            className={`w-full  h-[38px] md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
               openTab === 2
                 ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
                 : ""
@@ -2137,13 +2135,47 @@ const ProductDetails = ({ data, shopsData }) => {
           </button>
         ) : null}
 
-        {data?.product?.description_ru ? (
+        {languageDetector?.typeLang === "uz" &&
+        data?.product?.description_uz ? (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setOpenTab(2);
+            }}
+            className={`w-full  h-[38px] md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
+              openTab === 2
+                ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-auto rounded-lg"
+                : ""
+            } `}
+          >
+            <p>{t("product_descriptions")}</p>
+          </button>
+        ) : null}
+
+        {languageDetector?.typeLang === "ru" &&
+        data?.product?.composition_ru ? (
           <button
             onClick={(e) => {
               e.preventDefault();
               setOpenTab(3);
             }}
-            className={`w-[28%] md:w-full md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
+            className={`w-full  h-[38px] md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
+              openTab === 3
+                ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-aut rounded-lg"
+                : ""
+            } `}
+          >
+            <p>{t("compound")}</p>
+          </button>
+        ) : null}
+        {languageDetector?.typeLang === "uz" &&
+        data?.product?.composition_uz ? (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setOpenTab(3);
+            }}
+            className={`w-full  h-[38px] md:h-[42px] flex items-center justify-center text-sm md:text-base text-center px-5 font-AeonikProRegular ${
               openTab === 3
                 ? "shadow-modalCategoryShadow bg-white h-[38px] md:h-[42px] my-auto mx-aut rounded-lg"
                 : ""
