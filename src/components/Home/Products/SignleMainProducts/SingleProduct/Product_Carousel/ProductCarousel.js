@@ -569,7 +569,7 @@ const ProductCarousel = ({ show, data }) => {
                         }}
                         className="w-full "
                       >
-                        <figure className="relative w-full  ll:h-[478px] object-cover overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
+                        <figure className="relative w-full h-[478px] object-cover overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
                           <img
                             className="w-full h-full object-cover"
                             src={data?.url_photo}
@@ -671,7 +671,13 @@ const ProductCarousel = ({ show, data }) => {
             <section
               className={`w-fit ${seasonDetector?.TextColorSeason} items-center text-sm flex ml-auto`}
             >
-              <p className="font-AeonikProRegular text-center">
+              <p
+                className={`font-AeonikProRegular text-center ${
+                  languageDetector?.typeLang === "ru"
+                    ? "whitespace-nowrap ml-[8px]"
+                    : null
+                }`}
+              >
                 {t("in_stock")}:
               </p>
               <p className="ml-2 font-AeonikProMedium text-base text-right">
