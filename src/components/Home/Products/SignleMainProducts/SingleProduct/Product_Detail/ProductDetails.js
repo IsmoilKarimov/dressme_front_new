@@ -823,7 +823,7 @@ const ProductDetails = ({ data, shopsData }) => {
               <span className="block md:hidden">
                 <LocationColoursIcons colors={"#303030"} />
               </span>
-              <p className="text-[#303030] md:text-[#757575] font-AeonikProRegular md:font-AeonikProMedium text-base md:text-sm ml-[3px] md:ml-2">
+              <p className="text-[#303030] md:text-[#757575] font-AeonikProRegular md:font-AeonikProMedium text-base md:text-sm ml-[3px] pr-[5px] md:ml-2">
                 {/* Region */}
                 {languageDetector?.typeLang === "ru" &&
                   selectedLocation?.region?.name_ru}
@@ -918,17 +918,6 @@ const ProductDetails = ({ data, shopsData }) => {
                   })}
                 </Radio.Group>
               </div>
-              {/* <button
-                type="button"
-                onClick={() => {
-                  setOpenLocationModal(false);
-                  setSelectedLocation(checkedData);
-                  setSelectedSize(null);
-                }}
-                className="w-full flex justify-end text-borderWinter text-lg font-AeonikProMedium"
-              >
-                {t("ready")}
-              </button> */}
             </div>
           </Modal>
         </article>
