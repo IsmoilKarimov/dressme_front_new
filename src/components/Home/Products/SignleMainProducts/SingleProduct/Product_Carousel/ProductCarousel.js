@@ -602,7 +602,7 @@ const ProductCarousel = ({ show, data }) => {
             <section className="w-fit flex flex-wrap pr-[5px] items-center">
               {selectedSize ? (
                 <>
-                  <p className="flex items-center font-AeonikProMedium text-[20px] text-black">
+                  <p className="mr-[8px] flex items-center font-AeonikProMedium text-[20px] text-black">
                     {selectedSize?.discount_price
                       ? parseInt(selectedSize?.discount_price)
                           ?.toLocaleString()
@@ -614,7 +614,7 @@ const ProductCarousel = ({ show, data }) => {
                           .join(" ")}{" "}
                     <span
                       className={`text-[16px] ${
-                        selectedSize?.discount_price ? "ml-2" : "flex ml-2"
+                        selectedSize?.discount_price ? "ml-[5px]" : "flex ml-2"
                       }`}
                     >
                       {t("currency")}
@@ -626,7 +626,7 @@ const ProductCarousel = ({ show, data }) => {
                         ?.toLocaleString()
                         ?.split(",")
                         .join(" ")}{" "}
-                      <span className={`${"ml-2 text-[14px]"}`}>
+                      <span className={`${"ml-[5px] text-[14px]"}`}>
                         {t("currency")}
                       </span>
                     </p>
@@ -634,7 +634,7 @@ const ProductCarousel = ({ show, data }) => {
                 </>
               ) : (
                 <>
-                  <p className="flex items-center font-AeonikProMedium text-[20px] text-black">
+                  <p className="mr-[8px] flex items-center font-AeonikProMedium text-[20px] text-black">
                     {data?.product?.sizes[0]?.discount_price
                       ? parseInt(data?.product?.sizes[0]?.discount_price)
                           ?.toLocaleString()
@@ -647,8 +647,8 @@ const ProductCarousel = ({ show, data }) => {
                     <span
                       className={`text-[16px] ${
                         data?.product?.sizes[0]?.discount_price
-                          ? "ml-2"
-                          : "flex ml-2"
+                          ? "ml-[5px]"
+                          : "flex ml-[5px]"
                       }`}
                     >
                       {t("currency")}
@@ -660,7 +660,7 @@ const ProductCarousel = ({ show, data }) => {
                         ?.toLocaleString()
                         ?.split(",")
                         .join(" ")}{" "}
-                      <span className={`${"ml-2 text-[14px]"}`}>
+                      <span className={`${"ml-[5px] text-[14px]"}`}>
                         {t("currency")}
                       </span>
                     </p>
