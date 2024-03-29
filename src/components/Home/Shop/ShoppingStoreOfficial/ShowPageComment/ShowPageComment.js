@@ -12,11 +12,13 @@ import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 
 function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
   const [addComment, setAddComment] = useState(false);
   const toggleAddComment = useCallback(() => setAddComment(false), []);
   const [openComment, setOpenComment] = useState(false);
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const { t } = useTranslation("shops");
 
@@ -205,7 +207,14 @@ function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
           <section>
             {localStorage?.getItem("userAccess") ? (
               <button
-                onClick={() => setAddComment(true)}
+                onClick={() => {
+                  setDressInfo({
+                    ...dressInfo,
+                    rateable_type: "shop",
+                    rateable_id: dressInfo.filterDataProductList?.shop?.id,
+                  });
+                  setAddComment(true);
+                }}
                 type="button"
                 className="w-full flex md:hidden items-center text-SignInBgColor text-base font-AeonikProRegular mb-1"
               >

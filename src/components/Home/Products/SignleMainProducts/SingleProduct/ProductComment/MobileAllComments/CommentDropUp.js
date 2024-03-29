@@ -24,7 +24,6 @@ function CommentDropUp({ onClick }) {
   const params = useParams();
 
   const newId = params?.id?.replace(":", "");
-  // console.log(newId);
 
   const { refetch } = useQuery(
     ["get_mobile_comment"],
@@ -53,6 +52,8 @@ function CommentDropUp({ onClick }) {
   const textRef = useRef();
   const rateRef = useRef();
 
+  // console.log(rateRef?.current?.state?.value, "ooo");
+
   const commentMutate = useMutation(() => {
     return fetch(`${url}/api/user-main/ratings/store-rating`, {
       method: "POST",
@@ -64,8 +65,8 @@ function CommentDropUp({ onClick }) {
       body: JSON.stringify({
         score: rateRef.current.state.value,
         comment: textRef.current.value,
-        rateable_id: params.id,
-        rateable_type: "product",
+        rateable_id: dressInfo?.rateable_id,
+        rateable_type: dressInfo?.rateable_type,
       }),
     }).then((res) => res.json());
   });

@@ -1846,7 +1846,8 @@ const ProductDetails = ({ data, shopsData }) => {
         </div>
       </section>
 
-      {localStorage?.getItem("userAccess") ? (
+      {localStorage?.getItem("userAccess") &&
+      data?.product?.ratings?.length === 0 ? (
         <button
           onClick={() => goDetail()}
           type="button"

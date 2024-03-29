@@ -22,6 +22,11 @@ export const DressMenu = ({ children }) => {
 
     state: 0,
 
+    // for mobile comment
+
+    rateable_id: null,
+    rateable_type: null,
+
     // Cordinate
     yandexPositionX: null,
     yandexPositionY: null,

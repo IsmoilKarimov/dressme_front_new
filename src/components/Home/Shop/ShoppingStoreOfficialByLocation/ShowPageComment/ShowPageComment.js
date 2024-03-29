@@ -13,11 +13,13 @@ import Cookies from "js-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import { UserRefreshTokenContext } from "../../../../../ContextHook/UserRefreshToken";
 import { useTranslation } from "react-i18next";
+import { dressMainData } from "../../../../../ContextHook/ContextMenu";
 
 function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
   const [addComment, setAddComment] = useState(false);
   const toggleAddComment = useCallback(() => setAddComment(false), []);
   const [openComment, setOpenComment] = useState(false);
+  const [dressInfo, setDressInfo] = useContext(dressMainData);
 
   const { t } = useTranslation("shops");
 
@@ -141,7 +143,11 @@ function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
             addComment ? "bottom-0" : "bottom-[-800px] z-0"
           }`}
         >
-          <CommentDropUp onClick={toggleAddComment} />
+          <CommentDropUp
+            onClick={() => {
+              toggleAddComment();
+            }}
+          />
         </section>
       </div>
 
@@ -164,7 +170,7 @@ function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
                 <button
                   onClick={() => setOpenComment(true)}
                   type="button"
-                  className="flex items-center ml-[20px] text-SignInBgColor text-lg font-AeonikProRegular"
+                  className="hidden md:flex items-center ml-[20px] text-SignInBgColor text-lg font-AeonikProRegular"
                 >
                   {t("write_a_review")}
                   <span className="ml-[5px]">
@@ -215,7 +221,14 @@ function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
           <section>
             {localStorage?.getItem("userAccess") ? (
               <button
-                onClick={() => setAddComment(true)}
+                onClick={() => {
+                  setDressInfo({
+                    ...dressInfo,
+                    rateable_type: "shop",
+                    rateable_id: dressInfo.filterDataProductList?.shop?.id,
+                  });
+                  setAddComment(true);
+                }}
                 type="button"
                 className="w-full flex md:hidden items-center text-SignInBgColor text-base font-AeonikProRegular mb-1"
               >
@@ -286,18 +299,20 @@ function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
                     </p>
                   </article>
 
-                  <article className="w-full bg-[#F4F6FB] md:bg-white px-[15px] py-3 md:px-0 md:py-0 rounded-lg mt-6 md:ml-8">
-                    <article className="w-full flex items-center justify-between ">
-                      <p className="w-[70%] break-all font-AeonikProMedium text-[13px] md:text-lg text-[#2C2C2C]">
-                        {filteredData?.shop?.name}
-                      </p>
+                  {allComments?.reply ? (
+                    <article className="w-full bg-[#F4F6FB] md:bg-white px-[15px] py-3 md:px-0 md:py-0 rounded-lg mt-6 md:ml-8">
+                      <article className="w-full flex items-center justify-between ">
+                        <p className="w-[70%] break-all font-AeonikProMedium text-[13px] md:text-lg text-[#2C2C2C]">
+                          {filteredData?.shop?.name}
+                        </p>
+                      </article>
+                      <article className="mt-4">
+                        <p className="font-AeonikProRegular text-[13px] md:text-base text-[#505050]">
+                          {allComments?.reply}
+                        </p>
+                      </article>
                     </article>
-                    <article className="mt-4">
-                      <p className="font-AeonikProRegular text-[13px] md:text-base text-[#505050]">
-                        {allComments?.replyText}
-                      </p>
-                    </article>
-                  </article>
+                  ) : null}
                 </article>
               );
             })}
