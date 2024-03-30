@@ -251,7 +251,7 @@ const ProductCarousel = ({ show, data }) => {
           </button>
           <div className="w-full h-full ">
             <Slider
-              className=" w-full h-[482px] overflow-hidden md:!w-[520px] md:h-[85vh] showpageSlider bg-white md:rounded-lg"
+              className=" w-full h-[80vh] overflow-hidden md:!w-[610px] md:h-[100vh] showpageSlider bg-white md:rounded-lg"
               {...settingsModal}
               ref={sliderRef}
             >
@@ -262,36 +262,33 @@ const ProductCarousel = ({ show, data }) => {
                       return (
                         <article
                           key={i}
-                          className="relative w-full h-full overflow-hidden"
+                          className="relative w-full h-[80vh] md:h-full overflow-hidden"
                         >
                           <figure
                             key={data?.id}
-                            // style={{
-                            //   backgroundImage: `url("${data?.url_photo}")`,
-                            //   backgroundColor: "rgba(0,0,0,0.6)",
-                            //   backgroundPosition: "center center",
-                            //   backgroundSize: "cover",
-                            //   backgroundRepeat: "no-repeat",
-                            // }}
-                            className="relative overflow-hidden h-full w-full md:h-[85vh] md:rounded-lg  bg-btnBgColor flex items-center justify-center"
+                            className="relative overflow-hidden h-[80vh] w-full md:h-[100vh] md:rounded-lg  bg-btnBgColor flex items-center justify-center"
                           >
                             <img
                               src={data?.url_photo}
                               alt=""
-                              className={`w-full h-[482px] md:h-fit object-cover overflow-hidden`}
+                              className={`block w-full h-fit md:h-fit object-cover overflow-hidden`}
                             />
-                            <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
-                              <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
-                                <p className="h-full w-full text-center pt-[4px]">
-                                  {" "}
-                                  {indexPage}
-                                </p>
-                                <span className="text-center pt-[2px]">/</span>
-                                <p className="h-full w-full text-center pt-[4px]">
-                                  {filteredForModal?.length}
-                                </p>
-                              </span>
-                            </div>
+                            {filteredForModal?.length > 1 ? (
+                              <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
+                                <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
+                                  <p className="h-full w-full text-center pt-[4px]">
+                                    {" "}
+                                    {indexPage}
+                                  </p>
+                                  <span className="text-center pt-[2px]">
+                                    /
+                                  </span>
+                                  <p className="h-full w-full text-center pt-[4px]">
+                                    {filteredForModal?.length}
+                                  </p>
+                                </span>
+                              </div>
+                            ) : null}
                           </figure>
                         </article>
                       );
@@ -301,23 +298,16 @@ const ProductCarousel = ({ show, data }) => {
                     return (
                       <article
                         key={i}
-                        className="relative w-full h-[482px] md:h-[85vh] overflow-hidden"
+                        className="relative w-full h-[80vh] md:h-full overflow-hidden"
                       >
                         <figure
                           key={data?.id}
-                          // style={{
-                          //   backgroundImage: `url("${data?.url_photo}")`,
-                          //   backgroundColor: "rgba(0,0,0,0.6)",
-                          //   backgroundPosition: "center center",
-                          //   backgroundSize: "cover",
-                          //   backgroundRepeat: "no-repeat",
-                          // }}
-                          className=" overflow-hidden h-full w-full  md:rounded-lg border border-searchBgColor bg-btnBgColor flex items-center justify-center "
+                          className=" relative overflow-hidden h-[80vh] w-full md:h-[100vh] md:rounded-lg  bg-btnBgColor flex items-center justify-center "
                         >
                           <img
                             src={data?.url_photo}
                             alt=""
-                            className={`w-full h-[482px] md:h-fit max-w-[620px] object-cover overflow-hidden`}
+                            className={`block w-full h-fit md:h-fit object-cover overflow-hidden`}
                           />
                           <div
                             className={` ${
@@ -533,9 +523,9 @@ const ProductCarousel = ({ show, data }) => {
                             handleClickCarosuel(i);
                           }}
                         >
-                          <figure className="relative w-full ll:h-[478px] overflow-hidden  border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer ">
+                          <figure className="relative w-full h-[478px] overflow-hidden  border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer ">
                             <img
-                              className="w-full ll:h-full object-cover "
+                              className="w-full h-full object-cover "
                               src={data?.url_photo}
                               alt=""
                             />

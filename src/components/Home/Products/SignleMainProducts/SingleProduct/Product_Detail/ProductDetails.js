@@ -105,7 +105,7 @@ const ProductDetails = ({ data, shopsData }) => {
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
               {t("size_in_numbers")}:
               <span className="ml-auto">
-                {data?.min_head_girth}{" "}
+                {data?.min_head_girth ? data?.min_head_girth : "-"}{" "}
                 {data?.max_head_girth ? "- " + data?.max_head_girth : null}
               </span>
             </div>
@@ -119,7 +119,7 @@ const ProductDetails = ({ data, shopsData }) => {
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
               {t("size_in_numbers")}:
               <span className="ml-auto">
-                {data?.min_wear_size}{" "}
+                {data?.min_wear_size ? data?.min_wear_size : "-"}{" "}
                 {data?.max_wear_size ? "- " + data?.max_wear_size : null}
               </span>
             </div>
@@ -127,7 +127,7 @@ const ProductDetails = ({ data, shopsData }) => {
               {t("bust")},{" "}
               <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
               <span className="ml-auto">
-                {data?.min_chest_girth}{" "}
+                {data?.min_chest_girth ? data?.min_chest_girth : "-"}{" "}
                 {data?.max_chest_girth ? "- " + data?.max_chest_girth : null}
               </span>
             </div>
@@ -135,7 +135,7 @@ const ProductDetails = ({ data, shopsData }) => {
               {t("waist_circumference")},{" "}
               <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
               <span className="ml-auto">
-                {data?.min_waist_girth}{" "}
+                {data?.min_waist_girth ? data?.min_waist_girth : "-"}{" "}
                 {data?.max_waist_girth ? "- " + data?.max_waist_girth : null}
               </span>
             </div>
@@ -143,7 +143,7 @@ const ProductDetails = ({ data, shopsData }) => {
               {t("hip_girth")},{" "}
               <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
               <span className="ml-auto">
-                {data?.min_hip_girth}{" "}
+                {data?.min_hip_girth ? data?.min_hip_girth : "-"}{" "}
                 {data?.max_hip_girth ? "- " + data?.max_hip_girth : null}
               </span>
             </div>
@@ -157,7 +157,7 @@ const ProductDetails = ({ data, shopsData }) => {
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
               {t("size_in_numbers")}:
               <span className="ml-auto">
-                {data?.min_wear_size}{" "}
+                {data?.min_wear_size ? data?.min_wear_size : "-"}{" "}
                 {data?.max_wear_size ? "- " + data?.max_wear_size : null}
               </span>
             </div>
@@ -165,7 +165,7 @@ const ProductDetails = ({ data, shopsData }) => {
               {t("waist_circumference")},{" "}
               <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
               <span className="ml-auto">
-                {data?.min_waist_girth}{" "}
+                {data?.min_waist_girth ? data?.min_waist_girth : "-"}{" "}
                 {data?.max_waist_girth ? "- " + data?.max_waist_girth : null}
               </span>
             </div>
@@ -173,7 +173,7 @@ const ProductDetails = ({ data, shopsData }) => {
               {t("hip_girth")},{" "}
               <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
               <span className="ml-auto">
-                {data?.min_hip_girth}{" "}
+                {data?.min_hip_girth ? data?.min_hip_girth : "-"}{" "}
                 {data?.max_hip_girth ? "- " + data?.max_hip_girth : null}
               </span>
             </div>
@@ -182,7 +182,7 @@ const ProductDetails = ({ data, shopsData }) => {
               {t("height")},{" "}
               <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
               <span className="ml-auto">
-                {data?.min_height}{" "}
+                {data?.min_height ? data?.min_height : "-"}{" "}
                 {data?.max_height ? "- " + data?.max_height : null}
               </span>
             </div>
@@ -196,13 +196,15 @@ const ProductDetails = ({ data, shopsData }) => {
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
               {t("size_in_numbers")},{" "}
               <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
-              <span className="ml-auto">{data?.wear_size}</span>
+              <span className="ml-auto">
+                {data?.wear_size ? data?.wear_size : "-"}
+              </span>
             </div>
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular">
               {t("foot_length")},{" "}
               <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
               <span className="ml-auto">
-                {data?.min_foot_length}{" "}
+                {data?.min_foot_length ? data?.min_foot_length : "-"}{" "}
                 {data?.max_foot_length ? "- " + data?.max_foot_length : null}
               </span>
             </div>
@@ -216,17 +218,21 @@ const ProductDetails = ({ data, shopsData }) => {
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
               {t("size_in_numbers")},{" "}
               <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
-              <span className="ml-auto">{data?.wear_size}</span>
+              <span className="ml-auto">
+                {data?.wear_size ? data?.wear_size : "-"}
+              </span>
             </div>
             <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
               {t("length")},{" "}
               <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
-              <span className="ml-auto">{data?.length}</span>
+              <span className="ml-auto">
+                {data?.length ? data?.length : "-"}
+              </span>
             </div>
             <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
               {t("width")},{" "}
               <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
-              <span className="ml-auto">{data?.width}</span>
+              <span className="ml-auto">{data?.width ? data?.width : "-"}</span>
             </div>
           </article>
         </section>
@@ -1022,6 +1028,8 @@ const ProductDetails = ({ data, shopsData }) => {
           </button>
         </article>
 
+        {/* Table desktop */}
+
         <article className="w-full hidden md:flex items-center text-sm">
           {checkTableShow ? (
             data?.product?.category_id === "1" ? null : (
@@ -1072,28 +1080,32 @@ const ProductDetails = ({ data, shopsData }) => {
                           className="w-full flex items-center justify-between px-[10px] py-[15px] rounded-lg text-base font-AeonikProRegular"
                         >
                           <li className="w-full flex items-center justify-center">
-                            {data?.min_wear_size}{" "}
+                            {data?.min_wear_size ? data?.min_wear_size : "-"}{" "}
                             {data?.max_wear_size
                               ? "- " + data?.max_wear_size
                               : null}
                           </li>
                           <li className="w-full flex items-center justify-center">
-                            {data?.letter_size}
+                            {data?.letter_size ? data?.letter_size : "-"}
                           </li>
                           <li className="w-full flex items-center justify-center">
-                            {data?.min_chest_girth}{" "}
+                            {data?.min_chest_girth
+                              ? data?.min_chest_girth
+                              : "-"}{" "}
                             {data?.max_chest_girth
                               ? "- " + data?.max_chest_girth
                               : null}
                           </li>
                           <li className="w-full flex items-center justify-center">
-                            {data?.min_waist_girth}{" "}
+                            {data?.min_waist_girth
+                              ? data?.min_waist_girth
+                              : "-"}{" "}
                             {data?.max_waist_girth
                               ? "- " + data?.max_waist_girth
                               : null}
                           </li>
                           <li className="w-full flex items-center justify-center">
-                            {data?.min_hip_girth}{" "}
+                            {data?.min_hip_girth ? data?.min_hip_girth : "-"}{" "}
                             {data?.max_hip_girth
                               ? "- " + data?.max_hip_girth
                               : null}
@@ -1134,26 +1146,28 @@ const ProductDetails = ({ data, shopsData }) => {
                           className="w-full flex items-center justify-between px-[10px] py-[15px] rounded-lg text-base font-AeonikProRegular"
                         >
                           <li className="w-full flex items-center justify-center">
-                            {data?.min_wear_size}{" "}
+                            {data?.min_wear_size ? data?.min_wear_size : "-"}{" "}
                             {data?.max_wear_size
                               ? "- " + data?.max_wear_size
                               : null}
                           </li>
                           <li className="w-full flex items-center justify-center">
-                            {data?.letter_size}
+                            {data?.letter_size ? data?.letter_size : "-"}
                           </li>
                           <li className="w-full flex items-center justify-center">
-                            {data?.min_height}{" "}
+                            {data?.min_height ? data?.min_height : "-"}{" "}
                             {data?.max_height ? "- " + data?.max_height : null}
                           </li>
                           <li className="w-full flex items-center justify-center">
-                            {data?.min_waist_girth}{" "}
+                            {data?.min_waist_girth
+                              ? data?.min_waist_girth
+                              : "-"}{" "}
                             {data?.max_waist_girth
                               ? "- " + data?.max_waist_girth
                               : null}
                           </li>
                           <li className="w-full flex items-center justify-center">
-                            {data?.min_hip_girth}{" "}
+                            {data?.min_hip_girth ? data?.min_hip_girth : "-"}{" "}
                             {data?.max_hip_girth
                               ? "- " + data?.max_hip_girth
                               : null}
@@ -1184,10 +1198,12 @@ const ProductDetails = ({ data, shopsData }) => {
                           className="w-full flex items-center justify-between px-[10px] py-[15px] rounded-lg text-base font-AeonikProRegular"
                         >
                           <li className="w-full flex items-center justify-center">
-                            {data?.wear_size}
+                            {data?.wear_size ? data?.wear_size : "-"}
                           </li>
                           <li className="w-full flex items-center justify-center">
-                            {data?.min_foot_length}{" "}
+                            {data?.min_foot_length
+                              ? data?.min_foot_length
+                              : "-"}{" "}
                             {data?.max_foot_length
                               ? "- " + data?.max_foot_length
                               : null}
@@ -1223,10 +1239,10 @@ const ProductDetails = ({ data, shopsData }) => {
                           key={data?.id}
                           className="flex items-center justify-between px-[10px] py-[15px] rounded-lg text-base font-AeonikProRegular"
                         >
-                          <li>{data?.wear_size}</li>
-                          <li>{data?.letter_size}</li>
-                          <li>{data?.length}</li>
-                          <li>{data?.width}</li>
+                          <li>{data?.wear_size ? data?.wear_size : "-"}</li>
+                          <li>{data?.letter_size ? data?.letter_size : "-"}</li>
+                          <li>{data?.length ? data?.length : "-"}</li>
+                          <li>{data?.width ? data?.width : "-"}</li>
                         </div>
                       );
                     }
