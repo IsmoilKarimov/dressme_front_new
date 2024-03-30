@@ -214,9 +214,7 @@ function YandexLocationMarketOpen({
                                   className="w-full h-full cursor-pointer flex items-center justify-center"
                                 >
                                   <img
-                                    className={
-                                      "mx-auto h-[220px] w-full md:h-[250px] sm:w-auto flex items-center object-cover	"
-                                    }
+                                    className={"h-full w-full object-cover	"}
                                     src={data?.img}
                                     alt="img"
                                   />
