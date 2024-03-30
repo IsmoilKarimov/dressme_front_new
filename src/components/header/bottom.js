@@ -368,8 +368,7 @@ function BottomHeader() {
             <ClothesIcons colors={"#000"} />
           </span>
           <Select
-            // showSearch
-            className="w-[100%] cursor-pointer  flex items-center !caret-transparent h-full !outline-none text-center overflow-hidden  !py-0 text-black text-sm font-AeonikProMedium tracking-wide "
+            className="w-[100%] cursor-pointer  flex items-center !caret-transparent h-full !outline-none text-center overflow-hidden  !py-0 text-black text-sm !font-AeonikProMedium tracking-wide "
             bordered={false}
             placeholder={
               <span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide">
@@ -377,7 +376,6 @@ function BottomHeader() {
               </span>
             }
             optionFilterProp="children"
-            defaultValue={dressInfo?.mainCategoryId}
             onChange={(e) => {
               setPage(1);
               setDressInfo({ ...dressInfo, mainCategoryId: e });
@@ -385,17 +383,17 @@ function BottomHeader() {
             open={selectOpen}
             onDropdownVisibleChange={setSelectOpen}
             allowClear
-            size="large"
             optionLabelProp="label"
 
           >
             {data?.getMainProductCard?.categories?.map((item) => {
               return (
                 <Option
-                  className=""
                   key={item.id}
                   value={item.id}
                   label={item.name_ru}
+                  className="text-black text-[13px] font-AeonikProMedium tracking-wide"
+
                 >
                   <Space>
                     <span className="text-black  text-[13px] font-AeonikProMedium tracking-wide ">
@@ -677,8 +675,8 @@ function BottomHeader() {
                         name="checkStatus"
                         className={"hidden w-full h-full"}
                         value={data?.id}
-                        // checked={selectedValue === 'option1'}
-                        // onChange={() => newColorArrayId(data?.hex, data?.id)}
+                      // checked={selectedValue === 'option1'}
+                      // onChange={() => newColorArrayId(data?.hex, data?.id)}
                       />
                     </div>
                   );

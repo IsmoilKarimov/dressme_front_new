@@ -164,21 +164,52 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
   );
   const [values, setValues] = useState([]);
   const [clearPrice, setClearPrice] = useState(false);
+  // useEffect(() => {
+  //   setMinPrice(Number(getMapsInfo?.budget?.min_price));
+  //   setMaxPrice(Number(getMapsInfo?.budget?.max_price));
+  //   if (getMapsInfo?.budget?.min_price && getMapsInfo?.budget?.max_price) {
+  //     if (!values[0] && !values[1]) {
+  //       setValues([
+  //         Number(getMapsInfo?.budget?.min_price),
+  //         Number(getMapsInfo?.budget?.max_price),
+  //       ]);
+  //     }
+  //   }
+  //   if (!getMapsInfo?.budget?.min_price && !getMapsInfo?.budget?.max_price) {
+  //     setValues([0, 0]);
+  //   }
+  // }, [getMapsInfo?.budget]);
+  useEffect(() => {
+    // setState({ ...state, clearPrice: false });
+    setMinPrice(Number(getMapsInfo?.budget?.min_price));
+    setMaxPrice(Number(getMapsInfo?.budget?.max_price));
+    setValues([
+      Number(getMapsInfo?.budget?.min_price),
+      Number(getMapsInfo?.budget?.max_price),
+    ]);
+    if (dressInfo?.yandexRangePrice[0] && dressInfo?.yandexRangePrice[1]) {
+      setDressInfo({ ...dressInfo, yandexRangePrice: [] });
+    }
+  }, [
+    dressInfo?.mainRegionId,
+    dressInfo?.mainSubRegionId,
+    dressInfo?.yandexCategoryWear,
+    dressInfo?.yandexCategoryBrand,
+    dressInfo?.yandexGenderId, 
+    // getMapsInfo?.budget?.min_price,
+    // getMapsInfo?.budget?.max_price,
+  ]);
   useEffect(() => {
     setMinPrice(Number(getMapsInfo?.budget?.min_price));
     setMaxPrice(Number(getMapsInfo?.budget?.max_price));
-    if (getMapsInfo?.budget?.min_price && getMapsInfo?.budget?.max_price) {
-      if (!values[0] && !values[1]) {
-        setValues([
-          Number(getMapsInfo?.budget?.min_price),
-          Number(getMapsInfo?.budget?.max_price),
-        ]);
-      }
-    }
-    if (!getMapsInfo?.budget?.min_price && !getMapsInfo?.budget?.max_price) {
-      setValues([0, 0]);
-    }
-  }, [getMapsInfo?.budget]);
+    setValues([
+      Number(getMapsInfo?.budget?.min_price),
+      Number(getMapsInfo?.budget?.max_price),
+    ]);
+  }, [
+    getMapsInfo?.budget?.min_price,
+    getMapsInfo?.budget?.max_price,
+  ]);
 
   useEffect(() => {
     if (values[0] && values[1] && minPrice && maxPrice) {
@@ -444,7 +475,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                               value={Number(values[0]).toLocaleString()}
                               readOnly
                             />{" "} */}
-                            <span className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                            <span className="min-w-[70px] justify-center outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                             >
                               {Number(values[0]).toLocaleString()}
                             </span>
@@ -461,7 +492,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                               value={Number(values[1]).toLocaleString()}
                               readOnly
                             /> */}
-                            <span className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
+                            <span className="min-w-[100px] justify-center outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px]"
                             >
                               {Number(values[1]).toLocaleString()}
                             </span>
@@ -471,7 +502,7 @@ function MarketFilterofMaps({ onClick, getMapsInfo }) {
                       <Slider
                         className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] my-5`}
                         onChange={setValues}
-                        value={values|| ""}
+                        value={values || ""}
                         minDistance={10}
                         min={Number(minPrice)}
                         max={Number(maxPrice)}
