@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 // import { MenuCloseIcons } from "../../../assets/icons";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Slider from "react-slick";
+import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 
 function CarouselModalMarket({ getAllImgGallery }) {
   const NextArrowModal = (props) => {
@@ -60,12 +61,18 @@ function CarouselModalMarket({ getAllImgGallery }) {
               return (
                 <React.Fragment key={data?.id}>
                   {data?.img && (
-                    <figure className="relative  overflow-hidden !w-full ll:h-[400px] h-[450px] xs:h-[550px] md:h-[700px] sm:rounded-lg md:border border-searchBgColor bg-white  flex items-center justify-center">
-                      <img
-                        className="w-full h-full object-contain"
-                        src={data?.img}
-                        alt=""
-                      />
+                    <div className="relative">
+                      <TransformWrapper defaultScale={1}>
+                        <TransformComponent>
+                          <figure className="relative  overflow-hidden !w-full ll:h-[400px] h-[450px] xs:h-[550px] md:h-[700px] sm:rounded-lg md:border border-searchBgColor bg-white  flex items-center justify-center">
+                            <img
+                              className="w-full h-full object-contain"
+                              src={data?.img}
+                              alt=""
+                            />
+                          </figure>
+                        </TransformComponent>
+                      </TransformWrapper>
                       <figcaption
                         className={`${
                           getAllImgGallery?.newImgList?.length > 1
@@ -78,7 +85,7 @@ function CarouselModalMarket({ getAllImgGallery }) {
                           <p>{getAllImgGallery?.newImgList?.length}</p>
                         </span>
                       </figcaption>
-                    </figure>
+                    </div>
                   )}
                 </React.Fragment>
               );
