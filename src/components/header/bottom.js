@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { dressMainData } from "../../ContextHook/ContextMenu";
 import { BiCheck } from "react-icons/bi";
-import { Select, Space } from "antd";
+import { Popover, Select, Space } from "antd";
 import Slider from "react-slider";
 
 import style from "./bottom.module.css";
@@ -20,7 +20,7 @@ import { HomeMainDataContext } from "../../ContextHook/HomeMainData";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../language/LanguageItems";
 import { SaesonDetectorDress } from "../../ContextHook/SeasonContext";
-
+import './bottom.module.css'
 const { Option } = Select;
 
 function BottomHeader() {
@@ -271,6 +271,44 @@ function BottomHeader() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [selectOpen]);
+  const [openWeather, setOpenWeather] = useState(false);
+  const handleOpenChangeWeather = (newOpen) => {
+    setOpenWeather(newOpen);
+  };
+  const handleSelectId = (e) => {
+    setPage(1);
+    setDressInfo({ ...dressInfo, mainCategoryId: Number(e) });
+    setOpenWeather(false);
+  }
+  const handleClearId = (e) => {
+    setPage(1);
+    setDressInfo({ ...dressInfo, mainCategoryId: null });
+  }
+
+  const contentWeather = (
+    <div className=" w-[180px]   ">
+      {data?.getMainProductCard?.categories?.map((item) => {
+        return (
+          <section
+            onClick={() => handleSelectId(item?.id)}
+            className={` w-full h-[30px] flex items-center hover:bg-bgColor  cursor-pointer ${Number(item?.id) === dressInfo?.mainCategoryId ? "bg-bgColor" : ""}`}>
+            <span className="text-black  text-[13px] font-AeonikProMedium tracking-wide ">
+              {languageDetector?.typeLang === "ru" && item?.name_ru}
+              {languageDetector?.typeLang === "uz" && item?.name_uz}
+            </span>
+          </section>
+        )
+      })
+      }
+      {/* <section className=" w-[120px] h-fit m-0 p-0  data1">
+
+        <span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide">
+          {t("BbyCategory")}
+        </span>
+      </section> */}
+    </div>
+  );
+  // console.log(dressInfo?.mainCategoryId, "mainCategoryId");
 
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
@@ -363,13 +401,66 @@ function BottomHeader() {
       )}
 
       <section className="max-w-[1280px] w-[100%] flex justify-between items-center m-auto ">
-        <div className="mainCategory w-[226px] relative gap-x-1 pl-1 h-[44px] border-searchBgColor border  rounded-[12px] bg-btnBgColor  overflow-hidden flex items-center  cursor-pointer select-none group  ">
+        <div className="mainCategory  w-[226px] relative gap-x-1 pl-1 h-[44px] border-searchBgColor border  rounded-[12px] bg-btnBgColor  overflow-hidden flex items-center  cursor-pointer select-none group  ">
           <span className="absolute left-2">
             <ClothesIcons colors={"#000"} />
           </span>
-          <Select
-            className="w-[100%] cursor-pointer  flex items-center !caret-transparent h-full !outline-none text-center overflow-hidden  !py-0 text-black text-sm !font-AeonikProMedium tracking-wide "
+
+          <Popover
+            className=" w-full h-full flex items-center justify-center rounded-lg cursor-pointer  md:px-2 md:gap-x-[5px]  "
+            open={openWeather}
+            onOpenChange={handleOpenChangeWeather}
+            trigger="click"
+            options={["Hide"]}
+            placement="bottom"
+            content={contentWeather}
+          >
+            <span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide">
+              {!dressInfo?.mainCategoryId && t("BbyCategory")}
+              {data?.getMainProductCard?.categories?.find(item => Number(item.id) === dressInfo?.mainCategoryId) &&
+                <>
+                  <span className={`flex items-center text-black text-sm font-AeonikProMedium tracking-wide ${dressInfo?.mainCategoryId === 5 ? "pl-5" : ""}  `}>
+                    {languageDetector?.typeLang === "ru"
+                      ? data?.getMainProductCard?.categories?.find(item => item.id === dressInfo?.mainCategoryId)?.name_ru
+                      : data?.getMainProductCard?.categories?.find(item => item.id === dressInfo?.mainCategoryId)?.name_uz
+                    }
+                  </span>
+                </>
+              }
+
+            </span>
+          </Popover>
+          <div className=" absolute right-2 h-full flex items-center">
+            {dressInfo?.mainCategoryId ? (
+              <span
+                onClick={(e) => handleClearId()}
+                role="img"
+                aria-label="close-circle"
+                className="anticon anticon-close-circle"
+              >
+                <svg
+                  viewBox="64 64 896 896"
+                  focusable="false"
+                  data-icon="close-circle"
+                  width="12px"
+                  height="12px"
+                  fill="#b5b5b5"
+                  aria-hidden="true"
+                >
+                  <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z"></path>
+                </svg>
+              </span>
+            ) : (
+              <span className="font-AeonikProMedium iconArrow">
+                <DownArrowAntd />
+              </span>
+            )}
+          </div>
+          {/* <Select
+            style={{ fontFamily: "AeonikProMedium" }}
+            className="  w-[100%] cursor-pointer   flex items-center !caret-transparent h-full !outline-none text-center overflow-hidden   text-red-600 text-sm !font-AeonikProMedium tracking-wide "
             bordered={false}
+            id="data"
             placeholder={
               <span className="placeholder text-black text-sm font-AeonikProMedium tracking-wide">
                 {t("BbyCategory")}
@@ -392,7 +483,7 @@ function BottomHeader() {
                   key={item.id}
                   value={item.id}
                   label={item.name_ru}
-                  className="text-black text-[13px] font-AeonikProMedium tracking-wide"
+                  className="!outline-none text-center overflow-hidden text-red-600 text-sm !font-AeonikProMedium tracking-wide"
 
                 >
                   <Space>
@@ -404,7 +495,7 @@ function BottomHeader() {
                 </Option>
               );
             })}
-          </Select>
+           </Select> */}
         </div>
 
         <button

@@ -60,7 +60,7 @@ export default function SignUp() {
     birth_date: "",
   });
 
-  console.log(Boolean(state.year));
+  // console.log(Boolean(state.year));
 
   let data = state?.phoneNumber.split("-");
   let arr = data.join("");
