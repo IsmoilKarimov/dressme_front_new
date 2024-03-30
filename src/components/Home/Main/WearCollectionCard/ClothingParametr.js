@@ -130,27 +130,27 @@ const ClothingParametr = () => {
 
   const [values, setValues] = useState([]);
 
-  useEffect(() => {
-    setMinPrice(Number(data?.getMainProductCard?.budget?.min_price));
-    setMaxPrice(Number(data?.getMainProductCard?.budget?.max_price));
-    if (
-      data?.getMainProductCard?.budget?.min_price &&
-      data?.getMainProductCard?.budget?.max_price
-    ) {
-      if (!values[0] && !values[1]) {
-        setValues([
-          Number(data?.getMainProductCard?.budget?.min_price),
-          Number(data?.getMainProductCard?.budget?.max_price),
-        ]);
-      }
-    }
-    if (
-      !data?.getMainProductCard?.budget?.min_price &&
-      !data?.getMainProductCard?.budget?.max_price
-    ) {
-      setValues([0, 0]);
-    }
-  }, [data?.getMainProductCard?.budget]);
+  // useEffect(() => {
+  //   setMinPrice(Number(data?.getMainProductCard?.budget?.min_price));
+  //   setMaxPrice(Number(data?.getMainProductCard?.budget?.max_price));
+  //   if (
+  //     data?.getMainProductCard?.budget?.min_price &&
+  //     data?.getMainProductCard?.budget?.max_price
+  //   ) {
+  //     if (!values[0] && !values[1]) {
+  //       setValues([
+  //         Number(data?.getMainProductCard?.budget?.min_price),
+  //         Number(data?.getMainProductCard?.budget?.max_price),
+  //       ]);
+  //     }
+  //   }
+  //   if (
+  //     !data?.getMainProductCard?.budget?.min_price &&
+  //     !data?.getMainProductCard?.budget?.max_price
+  //   ) {
+  //     setValues([0, 0]);
+  //   }
+  // }, [data?.getMainProductCard?.budget]);
 
   useEffect(() => {
     if (values[1] && values[0] && minPrice && maxPrice) {
@@ -160,6 +160,44 @@ const ClothingParametr = () => {
     }
   }, [values]);
 
+  useEffect(() => {
+    setState({ ...state, clearPrice: false });
+    setMinPrice(Number(data?.getMainProductCard?.budget?.min_price));
+    setMaxPrice(Number(data?.getMainProductCard?.budget?.max_price));
+    setValues([
+      Number(data?.getMainProductCard?.budget?.min_price),
+      Number(data?.getMainProductCard?.budget?.max_price),
+    ]);
+    if (dressInfo?.mainRangePrice[0] && dressInfo?.mainRangePrice[1]) {
+      setDressInfo({ ...dressInfo, mainRangePrice: [] });
+    }
+    setSelectedFilters({ ...selectedFilters, price: null });
+
+  }, [
+    dressInfo?.mainRegionId,
+    dressInfo?.mainSubRegionId,
+    dressInfo?.mainColorHex,
+    dressInfo?.mainCategoryId,
+    dressInfo?.mainGenderId,
+    // data?.getMainProductCard?.budget?.min_price,
+    // data?.getMainProductCard?.budget?.max_price,
+  ]);
+  useEffect(() => {
+    setMinPrice(Number(data?.getMainProductCard?.budget?.min_price));
+    setMaxPrice(Number(data?.getMainProductCard?.budget?.max_price));
+    setValues([
+      Number(data?.getMainProductCard?.budget?.min_price),
+      Number(data?.getMainProductCard?.budget?.max_price),
+    ]);
+  }, [
+    data?.getMainProductCard?.budget?.min_price,
+    data?.getMainProductCard?.budget?.max_price,
+  ]);
+  console.log(dressInfo?.mainRegionId,
+    dressInfo?.mainSubRegionId,
+    dressInfo?.mainColorHex,
+    dressInfo?.mainCategoryId,
+    dressInfo?.mainGenderId, "dressInfo?.mainRegionId,  dressInfo?.mainSubRegionId,  dressInfo?.mainColorHex,  dressInfo?.mainCategoryId,  dressInfo?.mainGenderId,");
   const sendPriceList = () => {
     setDressInfo({ ...dressInfo, mainRangePrice: values });
   };
@@ -201,7 +239,6 @@ const ClothingParametr = () => {
       setDressInfo({ ...dressInfo, mainGenderId: childId });
     }
   };
-
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center m-auto md:px-0">
       <section className="w-full md:hidden flex items-center justify-between pb-3 gap-x-2">
@@ -384,7 +421,7 @@ const ClothingParametr = () => {
                             //   data?.getMainProductCard?.budget?.min_price
                             // ).toLocaleString()}
                             />{" "} */}
-                            <span className="w-[70px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                            <span className="min-w-[70px] justify-center outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
 
                             >
                               {Number(values[0]).toLocaleString()}
@@ -405,7 +442,7 @@ const ClothingParametr = () => {
                             //   data?.getMainProductCard?.budget?.max_price
                             // ).toLocaleString()}
                             /> */}
-                            <span className="w-[100px] outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
+                            <span className="min-w-[100px] justify-center outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
                             >
                               {Number(values[1]).toLocaleString()}
                             </span>
@@ -418,7 +455,7 @@ const ClothingParametr = () => {
                         <Slider
                           className={`slider w-full flex items-center h-[4px] bg-fullBlue border rounded-[1px] mt-[10px]`}
                           onChange={setValues}
-                          value={values|| ""}
+                          value={values || ""}
                           minDistance={10}
                           min={Number(minPrice)}
                           max={Number(maxPrice)}
