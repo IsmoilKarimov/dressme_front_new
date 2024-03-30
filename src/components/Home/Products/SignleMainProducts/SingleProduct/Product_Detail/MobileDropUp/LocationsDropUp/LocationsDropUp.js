@@ -71,7 +71,7 @@ function LocationDropUp({
                                   data?.sub_region?.name_ru}
                                 {languageDetector?.typeLang === "uz" &&
                                   data?.sub_region?.name_uz}
-                                ({data?.address})
+                                {` `}({data?.address})
                               </Radio>
                             </div>
                           );
