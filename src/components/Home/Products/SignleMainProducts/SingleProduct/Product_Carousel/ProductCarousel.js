@@ -15,7 +15,11 @@ import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../../../language/LanguageItems";
 import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext";
 import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
-import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
+import {
+  TransformComponent,
+  TransformWrapper,
+  useControls,
+} from "react-zoom-pan-pinch";
 
 const ProductCarousel = ({ show, data }) => {
   const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
@@ -265,36 +269,34 @@ const ProductCarousel = ({ show, data }) => {
                           key={i}
                           className="relative w-full h-[80vh] md:h-full overflow-hidden"
                         >
-                          <figure
-                            key={data?.id}
-                            className="relative overflow-hidden h-[80vh] w-full md:h-[100vh] md:rounded-lg  bg-btnBgColor flex items-center justify-center"
-                          >
-                            <TransformWrapper defaultScale={1}>
-                              <TransformComponent>
+                          <TransformWrapper defaultScale={1}>
+                            <TransformComponent>
+                              <figure
+                                key={data?.id}
+                                className="relative overflow-hidden h-[80vh] w-full md:h-[100vh] md:rounded-lg  bg-btnBgColor flex items-center justify-center"
+                              >
                                 <img
                                   src={data?.url_photo}
                                   alt=""
                                   className={`block w-full h-fit md:h-fit object-cover overflow-hidden`}
                                 />
-                              </TransformComponent>
-                            </TransformWrapper>
-                            {filteredForModal?.length > 1 ? (
-                              <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
-                                <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
-                                  <p className="h-full w-full text-center pt-[4px]">
-                                    {" "}
-                                    {indexPage}
-                                  </p>
-                                  <span className="text-center pt-[2px]">
-                                    /
-                                  </span>
-                                  <p className="h-full w-full text-center pt-[4px]">
-                                    {filteredForModal?.length}
-                                  </p>
-                                </span>
-                              </div>
-                            ) : null}
-                          </figure>
+                              </figure>
+                            </TransformComponent>
+                          </TransformWrapper>
+                          {filteredForModal?.length > 1 ? (
+                            <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
+                              <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
+                                <p className="h-full w-full text-center pt-[4px]">
+                                  {" "}
+                                  {indexPage}
+                                </p>
+                                <span className="text-center pt-[2px]">/</span>
+                                <p className="h-full w-full text-center pt-[4px]">
+                                  {filteredForModal?.length}
+                                </p>
+                              </span>
+                            </div>
+                          ) : null}
                         </article>
                       );
                     }
@@ -305,36 +307,36 @@ const ProductCarousel = ({ show, data }) => {
                         key={i}
                         className="relative w-full h-[80vh] md:h-full overflow-hidden"
                       >
-                        <figure
-                          key={data?.id}
-                          className=" relative overflow-hidden h-[80vh] w-full md:h-[100vh] md:rounded-lg  bg-btnBgColor flex items-center justify-center "
-                        >
-                          <TransformWrapper defaultScale={1}>
-                            <TransformComponent>
+                        <TransformWrapper defaultScale={1}>
+                          <TransformComponent>
+                            <figure
+                              key={data?.id}
+                              className=" overflow-hidden h-[80vh] w-full md:h-[100vh] md:rounded-lg  bg-btnBgColor flex items-center justify-center "
+                            >
                               <img
                                 src={data?.url_photo}
                                 alt=""
                                 className={`block w-full h-fit md:h-fit object-cover overflow-hidden`}
                               />
-                            </TransformComponent>
-                          </TransformWrapper>
-                          <div
-                            className={` ${
-                              photos_length > 1 ? "flex" : "hidden"
-                            } first-letter:flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 bottom-4 md:bottom-8`}
-                          >
-                            <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
-                              <p className="h-full w-full text-center pt-[4px]">
-                                {" "}
-                                {i + 1}
-                              </p>
-                              <span className="text-center pt-[2px]">/</span>
-                              <p className="h-full w-full text-center pt-[4px]">
-                                {photos_length}
-                              </p>
-                            </span>
-                          </div>
-                        </figure>
+                            </figure>
+                          </TransformComponent>
+                        </TransformWrapper>
+                        <div
+                          className={` ${
+                            photos_length > 1 ? "flex" : "hidden"
+                          } first-letter:flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 bottom-4 md:bottom-8`}
+                        >
+                          <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
+                            <p className="h-full w-full text-center pt-[4px]">
+                              {" "}
+                              {i + 1}
+                            </p>
+                            <span className="text-center pt-[2px]">/</span>
+                            <p className="h-full w-full text-center pt-[4px]">
+                              {photos_length}
+                            </p>
+                          </span>
+                        </div>
                       </article>
                     );
                   })}
@@ -502,33 +504,31 @@ const ProductCarousel = ({ show, data }) => {
                             handleClickCarosuel(i);
                           }}
                         >
-                          <figure className="relative w-full h-[478px] overflow-hidden  border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer ">
-                            <TransformWrapper defaultScale={1}>
-                              <TransformComponent>
+                          <TransformWrapper defaultScale={1}>
+                            <TransformComponent>
+                              <figure className="relative w-full h-[478px] overflow-hidden  border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer ">
                                 <img
                                   className="w-full h-full object-cover "
                                   src={data?.url_photo}
                                   alt=""
                                 />
-                              </TransformComponent>
-                            </TransformWrapper>
-                            {filteredForModal?.length > 1 ? (
-                              <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
-                                <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
-                                  <p className="h-full w-full text-center pt-[4px]">
-                                    {" "}
-                                    {indexPageSelected}
-                                  </p>
-                                  <span className="text-center pt-[2px]">
-                                    /
-                                  </span>
-                                  <p className="h-full w-full text-center pt-[4px]">
-                                    {filteredForModal?.length}
-                                  </p>
-                                </span>
-                              </div>
-                            ) : null}
-                          </figure>
+                              </figure>
+                            </TransformComponent>
+                          </TransformWrapper>
+                          {filteredForModal?.length > 1 ? (
+                            <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
+                              <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
+                                <p className="h-full w-full text-center pt-[4px]">
+                                  {" "}
+                                  {indexPageSelected}
+                                </p>
+                                <span className="text-center pt-[2px]">/</span>
+                                <p className="h-full w-full text-center pt-[4px]">
+                                  {filteredForModal?.length}
+                                </p>
+                              </span>
+                            </div>
+                          ) : null}
                         </article>
                       );
                     }
@@ -542,32 +542,32 @@ const ProductCarousel = ({ show, data }) => {
                         }}
                         className="w-full "
                       >
-                        <figure className="relative w-full h-[478px] object-cover overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
-                          <TransformWrapper defaultScale={1}>
-                            <TransformComponent>
+                        <TransformWrapper defaultScale={1}>
+                          <TransformComponent>
+                            <figure className="relative w-full h-[478px] object-cover overflow-hidden border border-searchBgColor bg-btnBgColor rounded-lg flex items-center justify-center cursor-pointer">
                               <img
                                 className="w-full h-full object-cover"
                                 src={data?.url_photo}
                                 alt=""
                               />
-                            </TransformComponent>
-                          </TransformWrapper>
-                          {photos_length > 1 ? (
-                            <div className="flex w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
-                              <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
-                                <p className="h-full w-full text-center pt-[4px]">
-                                  {" "}
-                                  {i + 1}
-                                </p>
-                                <span className="text-center pt-[2px]">/</span>
+                            </figure>
+                          </TransformComponent>
+                        </TransformWrapper>
+                        {photos_length > 1 ? (
+                          <div className="flex w-full absolute items-center justify-between px-4 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
+                            <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
+                              <p className="h-full w-full text-center pt-[4px]">
+                                {" "}
+                                {i + 1}
+                              </p>
+                              <span className="text-center pt-[2px]">/</span>
 
-                                <p className="h-full w-full text-center pt-[4px]">
-                                  {photos_length}
-                                </p>
-                              </span>
-                            </div>
-                          ) : null}
-                        </figure>
+                              <p className="h-full w-full text-center pt-[4px]">
+                                {photos_length}
+                              </p>
+                            </span>
+                          </div>
+                        ) : null}
                       </article>
                     );
                   })}
