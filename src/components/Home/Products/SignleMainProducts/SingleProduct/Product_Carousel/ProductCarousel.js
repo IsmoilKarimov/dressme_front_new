@@ -902,7 +902,7 @@ const ProductCarousel = ({ show, data }) => {
           </article>
 
           {/* 4 */}
-          <article className="w-full h-fit flex md:hidden items-center">
+          <article className="w-full h-fit flex md:hidden mt-7 mb-4 items-center">
             <section className="w-full h-fit flex flex-wrap items-center gap-x-3 gap-y-3">
               {data?.product?.category_id === "1"
                 ? data?.product?.sizes?.map((data) => {
@@ -920,7 +920,7 @@ const ProductCarousel = ({ show, data }) => {
                             data?.id === selectedSize?.id
                               ? "border-fullBlue"
                               : "border-[#dadada]"
-                          }  w-[62px] !h-[39px] mt-4 rounded-lg border  hover:border-fullBlue`}
+                          }  w-fit px-2 !h-[39px] rounded-lg border  hover:border-fullBlue`}
                         >
                           <Popover
                             trigger={data?.min_head_girth ? "click" : "false"}
@@ -963,7 +963,7 @@ const ProductCarousel = ({ show, data }) => {
                             data?.id === selectedSize?.id
                               ? "border-fullBlue"
                               : "border-[#dadada]"
-                          } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
+                          } w-[60px] !h-[39px] rounded-lg border hover:border-fullBlue`}
                         >
                           <Popover
                             trigger="click"
@@ -1034,7 +1034,7 @@ const ProductCarousel = ({ show, data }) => {
                             data?.id === selectedSize?.id
                               ? "border-fullBlue"
                               : "border-[#dadada]"
-                          } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
+                          } w-[60px] !h-[39px] rounded-lg border hover:border-fullBlue`}
                         >
                           <Popover
                             trigger="click"
@@ -1104,7 +1104,7 @@ const ProductCarousel = ({ show, data }) => {
                             data?.id === selectedSize?.id
                               ? "border-fullBlue"
                               : "border-[#dadada]"
-                          } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
+                          } w-[60px] !h-[39px] rounded-lg border hover:border-fullBlue`}
                         >
                           <Popover
                             trigger="click"
@@ -1147,7 +1147,7 @@ const ProductCarousel = ({ show, data }) => {
                             data?.id === selectedSize?.id
                               ? "border-fullBlue"
                               : "border-[#dadada]"
-                          } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
+                          } w-[60px] !h-[39px] rounded-lg border hover:border-fullBlue`}
                         >
                           <Popover
                             trigger="click"

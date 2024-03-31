@@ -1249,8 +1249,8 @@ const ProductDetails = ({ data, shopsData }) => {
           </Modal>
         </article> */}
 
-        <article className="w-full hidden md:flex items-center mt-1">
-          <section className="flex flex-wrap items-center gap-x-3 gap-y-3">
+        <article className="w-full hidden md:flex items-center mt-5">
+          <section className="flex flex-wrap items-center gap-3">
             {data?.product?.category_id === "1"
               ? data?.product?.sizes?.map((data) => {
                   if (
@@ -1267,7 +1267,7 @@ const ProductDetails = ({ data, shopsData }) => {
                           data?.id === selectedSize?.id
                             ? "border-fullBlue"
                             : "border-[#dadada]"
-                        }  h-fit w-fit mt-4 rounded-lg border  hover:border-fullBlue`}
+                        }  h-fit w-fit rounded-lg border  hover:border-fullBlue`}
                       >
                         <Popover
                           trigger={data?.min_head_girth ? "hover" : "false"}
@@ -1310,7 +1310,7 @@ const ProductDetails = ({ data, shopsData }) => {
                           data?.id === selectedSize?.id
                             ? "border-fullBlue"
                             : "border-[#dadada]"
-                        }  h-fit w-fit mt-4 rounded-lg border   hover:border-fullBlue`}
+                        }  h-fit w-fit rounded-lg border min-w-[60px]  hover:border-fullBlue`}
                       >
                         <Popover
                           trigger="hover"
@@ -1319,7 +1319,7 @@ const ProductDetails = ({ data, shopsData }) => {
                             data?.amount === "0"
                               ? "bg-[#f6f6f9] text-[#d3d4dd]"
                               : ""
-                          }  cursor-pointer rounded-lg  px-4 flex flex-col items-center justify-center`}
+                          }  cursor-pointer rounded-lg flex flex-col items-center justify-center`}
                         >
                           <p
                             className={`font-AeonikProMedium text-sm uppercase text-center ${
@@ -1380,12 +1380,12 @@ const ProductDetails = ({ data, shopsData }) => {
                           data?.id === selectedSize?.id
                             ? "border-fullBlue"
                             : "border-[#dadada]"
-                        }  h-fit w-fit mt-4 rounded-lg border   hover:border-fullBlue`}
+                        }  h-fit w-fit rounded-lg border min-w-[60px]  hover:border-fullBlue`}
                       >
                         <Popover
                           trigger="hover"
                           content={() => contentSize(data)}
-                          className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${
+                          className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                             data?.amount === "0"
                               ? "bg-[#f6f6f9] text-[#d3d4dd]"
                               : ""
@@ -1450,12 +1450,12 @@ const ProductDetails = ({ data, shopsData }) => {
                           data?.id === selectedSize?.id
                             ? "border-fullBlue"
                             : "border-[#dadada]"
-                        }  h-fit w-fit mt-4 rounded-lg border   hover:border-fullBlue`}
+                        }  h-fit w-fit rounded-lg border min-w-[60px]  hover:border-fullBlue`}
                       >
                         <Popover
                           trigger="hover"
                           content={() => contentSize(data)}
-                          className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${
+                          className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                             data?.amount === "0"
                               ? "bg-[#f6f6f9] text-[#d3d4dd]"
                               : ""
@@ -1493,12 +1493,12 @@ const ProductDetails = ({ data, shopsData }) => {
                           data?.id === selectedSize?.id
                             ? "border-fullBlue"
                             : "border-[#dadada]"
-                        }  h-fit w-fit mt-4 rounded-lg border   hover:border-fullBlue`}
+                        }  h-fit w-fit rounded-lg border min-w-[60px]  hover:border-fullBlue`}
                       >
                         <Popover
                           trigger="hover"
                           content={() => contentSize(data)}
-                          className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg px-4 flex flex-col items-center justify-center ${
+                          className={`h-11 w-[80px] md:w-auto cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                             data?.amount === "0"
                               ? "bg-[#f6f6f9] text-[#d3d4dd]"
                               : ""
