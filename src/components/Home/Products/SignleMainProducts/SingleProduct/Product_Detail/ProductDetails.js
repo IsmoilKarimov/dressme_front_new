@@ -279,9 +279,9 @@ const ProductDetails = ({ data, shopsData }) => {
     }
   }, [data]);
 
-  let checkTableShow = data?.product?.sizes?.find(
-    (item) => item?.shop_location_id == selectedLocation?.id
-  );
+  // let checkTableShow = data?.product?.sizes?.find(
+  //   (item) => item?.shop_location_id == selectedLocation?.id
+  // );
 
   checkedData = selectedLocation;
 
@@ -797,7 +797,7 @@ const ProductDetails = ({ data, shopsData }) => {
 
       {/* 2 */}
       <section className="w-full md:border-t md:border-y md:border-searchBgColor md:py-[25px] ">
-        <article className="w-full block md:hidden">
+        {/* <article className="w-full block md:hidden">
           {checkTableShow ? (
             <button
               onClick={() => setTableSizes(true)}
@@ -806,11 +806,11 @@ const ProductDetails = ({ data, shopsData }) => {
               {t("size_table")}
             </button>
           ) : null}
-        </article>
-        <article className="w-full flex items-center justify-between bg-[#fdfdfd] md:bg-white border-y md:border-none mb-4 text-sm font-AeonikProMedium">
-          <div className="hidden md:flex items-center">
+        </article> */}
+        <article className="mt-4 md:mt-0 w-full flex items-center justify-between bg-[#fdfdfd] md:bg-white border-y md:border-none mb-4 text-sm font-AeonikProMedium">
+          <div className="hidden md:flex items-center ">
             <ProductSwitchIcons colors={"#757575"} />
-            <div className="not-italic ml-2 mr-3 font-AeonikProRegular md:font-AeonikProMedium leading-4 text-[#757575]">
+            <div className="not-italic ml-2 mr-3  font-AeonikProRegular md:font-AeonikProMedium leading-4 text-[#757575]">
               {t("color")}:
             </div>
             <p className="mr-1 not-italic leading-4 text-[#757575]">
@@ -1026,7 +1026,7 @@ const ProductDetails = ({ data, shopsData }) => {
 
         {/* Table desktop */}
 
-        <article className="w-full hidden md:flex items-center text-sm">
+        {/* <article className="w-full hidden md:flex items-center text-sm">
           {checkTableShow ? (
             data?.product?.category_id === "1" ? null : (
               <button
@@ -1247,9 +1247,9 @@ const ProductDetails = ({ data, shopsData }) => {
               </ul>
             ) : null}
           </Modal>
-        </article>
+        </article> */}
 
-        <article className="w-full hidden md:flex items-center">
+        <article className="w-full hidden md:flex items-center mt-1">
           <section className="flex flex-wrap items-center gap-x-3 gap-y-3">
             {data?.product?.category_id === "1"
               ? data?.product?.sizes?.map((data) => {
