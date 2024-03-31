@@ -79,6 +79,149 @@ const ProductCarousel = ({ show, data }) => {
     setModalOfCarsouel(true);
   };
 
+  const contentSize = (data) => {
+    if (data?.category_id === "1") {
+      return (
+        <section className="w-[250px] h-fit p-[5px] ">
+          <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              {t("size_in_numbers")}:
+              <span className="ml-auto">
+                {data?.min_head_girth ? data?.min_head_girth : "-"}{" "}
+                {data?.max_head_girth ? "- " + data?.max_head_girth : null}
+              </span>
+            </div>
+          </article>
+        </section>
+      );
+    } else if (data?.category_id === "2") {
+      return (
+        <section className="w-[250px] h-[135px] p-[5px]">
+          <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              {t("size_in_numbers")}:
+              <span className="ml-auto">
+                {data?.min_wear_size ? data?.min_wear_size : "-"}{" "}
+                {data?.max_wear_size ? "- " + data?.max_wear_size : null}
+              </span>
+            </div>
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              {t("bust")},{" "}
+              <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
+              <span className="ml-auto">
+                {data?.min_chest_girth ? data?.min_chest_girth : "-"}{" "}
+                {data?.max_chest_girth ? "- " + data?.max_chest_girth : null}
+              </span>
+            </div>
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
+              {t("waist_circumference")},{" "}
+              <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
+              <span className="ml-auto">
+                {data?.min_waist_girth ? data?.min_waist_girth : "-"}{" "}
+                {data?.max_waist_girth ? "- " + data?.max_waist_girth : null}
+              </span>
+            </div>
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular">
+              {t("hip_girth")},{" "}
+              <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
+              <span className="ml-auto">
+                {data?.min_hip_girth ? data?.min_hip_girth : "-"}{" "}
+                {data?.max_hip_girth ? "- " + data?.max_hip_girth : null}
+              </span>
+            </div>
+          </article>
+        </section>
+      );
+    } else if (data?.category_id === "3") {
+      return (
+        <section className="w-[250px] h-fit p-[5px] ">
+          <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              {t("size_in_numbers")}:
+              <span className="ml-auto">
+                {data?.min_wear_size ? data?.min_wear_size : "-"}{" "}
+                {data?.max_wear_size ? "- " + data?.max_wear_size : null}
+              </span>
+            </div>
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
+              {t("waist_circumference")},{" "}
+              <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
+              <span className="ml-auto">
+                {data?.min_waist_girth ? data?.min_waist_girth : "-"}{" "}
+                {data?.max_waist_girth ? "- " + data?.max_waist_girth : null}
+              </span>
+            </div>
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
+              {t("hip_girth")},{" "}
+              <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
+              <span className="ml-auto">
+                {data?.min_hip_girth ? data?.min_hip_girth : "-"}{" "}
+                {data?.max_hip_girth ? "- " + data?.max_hip_girth : null}
+              </span>
+            </div>
+
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              {t("height")},{" "}
+              <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
+              <span className="ml-auto">
+                {data?.min_height ? data?.min_height : "-"}{" "}
+                {data?.max_height ? "- " + data?.max_height : null}
+              </span>
+            </div>
+          </article>
+        </section>
+      );
+    } else if (data?.category_id === "4") {
+      return (
+        <section className="w-[250px] h-fit p-[5px] ">
+          <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
+              {t("size_in_numbers")},{" "}
+              <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
+              <span className="ml-auto">
+                {data?.wear_size ? data?.wear_size : "-"}
+              </span>
+            </div>
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular">
+              {t("foot_length")},{" "}
+              <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
+              <span className="ml-auto">
+                {data?.min_foot_length ? data?.min_foot_length : "-"}{" "}
+                {data?.max_foot_length ? "- " + data?.max_foot_length : null}
+              </span>
+            </div>
+          </article>
+        </section>
+      );
+    } else if (data?.category_id === "5") {
+      return (
+        <section className="w-[250px] h-fit p-[5px] ">
+          <article className="w-full flex flex-col items-center justify-start font-AeonikProMedium text-sm text-center">
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
+              {t("size_in_numbers")},{" "}
+              <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
+              <span className="ml-auto">
+                {data?.wear_size ? data?.wear_size : "-"}
+              </span>
+            </div>
+            <div className="w-full flex items-center justify-between text-base font-AeonikProRegular mb-[10px]">
+              {t("length")},{" "}
+              <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
+              <span className="ml-auto">
+                {data?.length ? data?.length : "-"}
+              </span>
+            </div>
+            <div className="w-full flex items-center justify-start text-base font-AeonikProRegular mb-[10px]">
+              {t("width")},{" "}
+              <span className="text-[#a5a5a5] ml-1">{t("in_cm")}</span>:
+              <span className="ml-auto">{data?.width ? data?.width : "-"}</span>
+            </div>
+          </article>
+        </section>
+      );
+    }
+  };
+
   useEffect(() => {
     if (modalOfCarsouel) {
       document.body.style.overflow = "hidden";
@@ -780,8 +923,8 @@ const ProductCarousel = ({ show, data }) => {
                           }  w-[62px] !h-[39px] mt-4 rounded-lg border  hover:border-fullBlue`}
                         >
                           <Popover
-                            trigger={"false"}
-                            // content={() => contentSize(data)}
+                            trigger={data?.min_head_girth ? "click" : "false"}
+                            content={() => contentSize(data)}
                             className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"
@@ -823,8 +966,9 @@ const ProductCarousel = ({ show, data }) => {
                           } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
                         >
                           <Popover
-                            trigger="false"
-                            // content={() => contentSize(data)}
+                            trigger="click"
+                            style={{ left: "100px" }}
+                            content={() => contentSize(data)}
                             className={`w-full !h-full ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"
@@ -893,8 +1037,8 @@ const ProductCarousel = ({ show, data }) => {
                           } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
                         >
                           <Popover
-                            trigger="false"
-                            // content={() => contentSize(data)}
+                            trigger="click"
+                            content={() => contentSize(data)}
                             className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"
@@ -963,8 +1107,8 @@ const ProductCarousel = ({ show, data }) => {
                           } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
                         >
                           <Popover
-                            trigger="false"
-                            // content={() => contentSize(data)}
+                            trigger="click"
+                            content={() => contentSize(data)}
                             className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"
@@ -1006,8 +1150,8 @@ const ProductCarousel = ({ show, data }) => {
                           } w-[62px] !h-[39px] mt-4 rounded-lg border hover:border-fullBlue`}
                         >
                           <Popover
-                            trigger="false"
-                            // content={() => contentSize(data)}
+                            trigger="click"
+                            content={() => contentSize(data)}
                             className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                               data?.amount === "0"
                                 ? "bg-[#f6f6f9] text-[#d3d4dd]"

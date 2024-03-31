@@ -38,7 +38,7 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
                 <div className="w-full overflow-x-scroll flex items-center justify-start px-[4px]">
-                  {data?.product?.sizes?.map((data) => {
+                  {data?.product?.size_table?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
                         <ul
@@ -155,7 +155,7 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
                 <div className="w-full overflow-x-scroll flex items-center justify-start">
-                  {data?.product?.sizes?.map((data) => {
+                  {data?.product?.size_table?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
                         <ul
@@ -262,7 +262,7 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
                 <div className="w-[100%] overflow-x-scroll flex items-center justify-start">
-                  {data?.product?.sizes?.map((data) => {
+                  {data?.product?.size_table?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
                         <ul
@@ -324,7 +324,7 @@ function TableSizesDropUp({ onClick, data, selectedLocation }) {
               </ul>
               <div className="w-[58%] overflow-x-auto pb-2 bg-[#F7F8FC] rounded-l-lg flex flex-col">
                 <div className="w-full overflow-x-scroll flex items-center justify-start">
-                  {data?.product?.sizes?.map((data) => {
+                  {data?.product?.size_table?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
                         <ul
