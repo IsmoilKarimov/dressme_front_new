@@ -277,7 +277,7 @@ const ProductCarousel = ({ show, data }) => {
     const { onClick } = props;
     return (
       <main
-        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] hidden md:flex items-center justify-center top-[47%] z-10 right-[15px] md:right-[0px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
+        className={`fixed md:absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center bottom-[2vh] md:top-[47%] z-10 right-[30%] md:right-[0px] rounded-full bg-bgColor duration-200 border  border-searchBgColor  `}
         onClick={onClick}
       >
         <button className="next">
@@ -290,7 +290,7 @@ const ProductCarousel = ({ show, data }) => {
     const { onClick } = props;
     return (
       <main
-        className={`absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] hidden md:flex items-center justify-center top-[47%] z-10 left-[15px] md:left-[0px] rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
+        className={`fixed md:absolute text-center cursor-pointer no-underline opacity-70 w-[44px] h-[44px] flex items-center justify-center bottom-[2vh] md:top-[47%] z-10 left-[30%] md:left-[0px] rounded-full bg-bgColor duration-200 border  border-searchBgColor`}
         onClick={onClick}
       >
         <button className="prev">
