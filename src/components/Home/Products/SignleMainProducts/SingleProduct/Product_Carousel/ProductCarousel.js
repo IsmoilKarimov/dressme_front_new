@@ -412,11 +412,54 @@ const ProductCarousel = ({ show, data }) => {
                           key={i}
                           className="relative w-full h-[80vh] md:h-full overflow-hidden"
                         >
+                          <div className="relative w-fit mx-auto rounded-lg overflow-hidden">
+                            <TransformWrapper defaultScale={1}>
+                              <TransformComponent>
+                                <figure
+                                  key={data?.id}
+                                  className="relative overflow-hidden h-[80vh] w-full md:h-[100vh] md:rounded-lg  bg-btnBgColor flex items-center justify-center"
+                                >
+                                  <img
+                                    src={data?.url_photo}
+                                    alt=""
+                                    className={`block w-full h-fit md:h-fit object-cover overflow-hidden`}
+                                  />
+                                </figure>
+                              </TransformComponent>
+                            </TransformWrapper>
+                            {filteredForModal?.length > 1 ? (
+                              <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
+                                <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
+                                  <p className="h-full w-full text-center pt-[4px]">
+                                    {" "}
+                                    {indexPage}
+                                  </p>
+                                  <span className="text-center pt-[2px]">
+                                    /
+                                  </span>
+                                  <p className="h-full w-full text-center pt-[4px]">
+                                    {filteredForModal?.length}
+                                  </p>
+                                </span>
+                              </div>
+                            ) : null}
+                          </div>
+                        </article>
+                      );
+                    }
+                  })
+                : data?.product?.photos?.map((data, i) => {
+                    return (
+                      <article
+                        key={i}
+                        className="flex relative w-full h-[80vh] md:h-full overflow-hidden"
+                      >
+                        <div className="relative w-fit mx-auto rounded-lg overflow-hidden">
                           <TransformWrapper defaultScale={1}>
                             <TransformComponent>
                               <figure
                                 key={data?.id}
-                                className="relative overflow-hidden h-[80vh] w-full md:h-[100vh] md:rounded-lg  bg-btnBgColor flex items-center justify-center"
+                                className=" overflow-hidden h-[80vh] w-full md:h-[100vh] md:rounded-lg  bg-btnBgColor flex items-center justify-center "
                               >
                                 <img
                                   src={data?.url_photo}
@@ -426,59 +469,22 @@ const ProductCarousel = ({ show, data }) => {
                               </figure>
                             </TransformComponent>
                           </TransformWrapper>
-                          {filteredForModal?.length > 1 ? (
-                            <div className="flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 right-0 bottom-4 md:bottom-6">
-                              <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
-                                <p className="h-full w-full text-center pt-[4px]">
-                                  {" "}
-                                  {indexPage}
-                                </p>
-                                <span className="text-center pt-[2px]">/</span>
-                                <p className="h-full w-full text-center pt-[4px]">
-                                  {filteredForModal?.length}
-                                </p>
-                              </span>
-                            </div>
-                          ) : null}
-                        </article>
-                      );
-                    }
-                  })
-                : data?.product?.photos?.map((data, i) => {
-                    return (
-                      <article
-                        key={i}
-                        className="relative w-full h-[80vh] md:h-full overflow-hidden"
-                      >
-                        <TransformWrapper defaultScale={1}>
-                          <TransformComponent>
-                            <figure
-                              key={data?.id}
-                              className=" overflow-hidden h-[80vh] w-full md:h-[100vh] md:rounded-lg  bg-btnBgColor flex items-center justify-center "
-                            >
-                              <img
-                                src={data?.url_photo}
-                                alt=""
-                                className={`block w-full h-fit md:h-fit object-cover overflow-hidden`}
-                              />
-                            </figure>
-                          </TransformComponent>
-                        </TransformWrapper>
-                        <div
-                          className={` ${
-                            photos_length > 1 ? "flex" : "hidden"
-                          } first-letter:flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 bottom-4 md:bottom-8`}
-                        >
-                          <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
-                            <p className="h-full w-full text-center pt-[4px]">
-                              {" "}
-                              {i + 1}
-                            </p>
-                            <span className="text-center pt-[2px]">/</span>
-                            <p className="h-full w-full text-center pt-[4px]">
-                              {photos_length}
-                            </p>
-                          </span>
+                          <div
+                            className={` ${
+                              photos_length > 1 ? "flex" : "hidden"
+                            } first-letter:flex w-full absolute items-center justify-between px-5 opacity-80 text-sm font-AeonikProMedium left-0 bottom-4 md:bottom-8`}
+                          >
+                            <span className="bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 flex items-center justify-center text-center">
+                              <p className="h-full w-full text-center pt-[4px]">
+                                {" "}
+                                {i + 1}
+                              </p>
+                              <span className="text-center pt-[2px]">/</span>
+                              <p className="h-full w-full text-center pt-[4px]">
+                                {photos_length}
+                              </p>
+                            </span>
+                          </div>
                         </div>
                       </article>
                     );
