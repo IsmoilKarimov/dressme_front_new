@@ -22,7 +22,7 @@ export default function ShopStoreByIdProduct() {
         }             }
       })
     }
-  }, []);
+  }, [languageDetector?.typeLang]);
   const breadcrumbItems = [
     { label_uz: 'Asosiy', label_ru: 'Главная', url: '/' },
     { label_uz: "Do'konlar", label_ru: 'Магазины', url: '/shops' },

@@ -21,7 +21,8 @@ export default function CategoryByIdProduct() {
                     }                }
             })
         }
-    }, []);
+    }, [languageDetector?.typeLang]);
+    
     const breadcrumbItems = [
         { label_uz: 'Asosiy', label_ru: 'Главная', url: '/' },
         { label_uz: "Bo'limlar", label_ru: 'Разделы', url: '/section' },

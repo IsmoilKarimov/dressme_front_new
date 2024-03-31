@@ -23,7 +23,7 @@ export default function CatalogByIdProduct() {
                 }
             })
         }
-    }, []);
+    }, [languageDetector?.typeLang]);
     const breadcrumbItems = [
         { label_uz: 'Asosiy', label_ru: 'Главная', url: '/' },
         { label_uz: 'Kategoriya', label_ru: 'категории', url: '/categories' },

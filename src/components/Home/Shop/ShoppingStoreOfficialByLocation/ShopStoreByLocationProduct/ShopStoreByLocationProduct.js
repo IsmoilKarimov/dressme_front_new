@@ -23,7 +23,7 @@ export default function ShopStoreByLocationProduct() {
                 }
             })
         }
-    }, []);
+    }, [languageDetector?.typeLang]);
 
     const breadcrumbItems = [
         { label_uz: 'Asosiy', label_ru: 'Главная', url: '/' },
