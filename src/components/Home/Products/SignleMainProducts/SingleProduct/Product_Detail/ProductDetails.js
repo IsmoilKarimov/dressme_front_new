@@ -611,10 +611,6 @@ const ProductDetails = ({ data, shopsData }) => {
                 </article>
                 <article className="w-fit ml-2 flex flex-wrap items-center">
                   {data?.product?.sections?.map((item, i, array) => {
-                    // console.log(
-                    //   data?.product?.sections,
-                    //   "data?.product?.sections"
-                    // );
                     return (
                       <div key={i}>
                         <div className="flex flex-wrap mr-[5px] not-italic font-AeonikProRegular text-[14px] leading-4 text-black tracking-[1%]  ">
@@ -631,9 +627,9 @@ const ProductDetails = ({ data, shopsData }) => {
                                   return (
                                     <div
                                       key={i}
-                                      className="text-[12px] leading-4 text-[#858585]"
+                                      className="text-[14px] leading-4 text-[#858585]"
                                     >
-                                      <span className="not-italic font-AeonikProRegular text-[10px] leading-4 text-[#858585] tracking-[1%]  ">
+                                      <span className="not-italic font-AeonikProRegular text-[14px] text-[#858585] tracking-[1%]  ">
                                         {" "}
                                         {languageDetector?.typeLang === "ru" &&
                                           data?.name_ru}
@@ -1072,7 +1068,7 @@ const ProductDetails = ({ data, shopsData }) => {
                   </li>
                 </div>
                 <div className="w-full">
-                  {data?.product?.sizes?.map((data) => {
+                  {data?.product?.size_table?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
                         <div
@@ -1138,7 +1134,7 @@ const ProductDetails = ({ data, shopsData }) => {
                   </li>
                 </div>
                 <div className="w-full">
-                  {data?.product?.sizes?.map((data) => {
+                  {data?.product?.size_table?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
                         <div
@@ -1190,7 +1186,7 @@ const ProductDetails = ({ data, shopsData }) => {
                   </li>
                 </div>
                 <div className="w-full">
-                  {data?.product?.sizes?.map((data) => {
+                  {data?.product?.size_table?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
                         <div
@@ -1232,7 +1228,7 @@ const ProductDetails = ({ data, shopsData }) => {
                   </li>
                 </div>
                 <div className="w-full">
-                  {data?.product?.sizes?.map((data) => {
+                  {data?.product?.size_table?.map((data) => {
                     if (data?.shop_location_id == selectedLocation?.id) {
                       return (
                         <div
@@ -1715,7 +1711,7 @@ const ProductDetails = ({ data, shopsData }) => {
                                   key={i}
                                   className="text-[12px] leading-4 text-[#858585]"
                                 >
-                                  <span className="not-italic font-AeonikProRegular text-[10px] leading-4 text-[#858585] tracking-[1%]  ">
+                                  <span className="not-italic font-AeonikProRegular text-[14px] text-[#858585] tracking-[1%]  ">
                                     {" "}
                                     {languageDetector?.typeLang === "ru" &&
                                       data?.name_ru}
