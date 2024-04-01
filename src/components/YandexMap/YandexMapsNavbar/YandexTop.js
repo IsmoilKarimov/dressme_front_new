@@ -8,7 +8,7 @@ import {
   LocationIcons,
   MarketIcons,
 } from "../../../assets/icons";
-import {  RussianFlag, UzbekFlag } from "../../../assets";
+import { RussianFlag, UzbekFlag } from "../../../assets";
 import { HomeMainDataContext } from "../../../ContextHook/HomeMainData";
 import { useQuery } from "@tanstack/react-query";
 import { useHttp } from "../../../hook/useHttp";
@@ -20,23 +20,26 @@ import { SaesonDetectorDress } from "../../../ContextHook/SeasonContext";
 const YandexTop = ({ onClick }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData] = useContext(HomeMainDataContext);
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress);
 
   const { request } = useHttp();
   const [state, setState] = useState({
     openLang: false,
     openRegion: false,
   });
-  const { i18n, t } = useTranslation('yandexmap')
-  const [currentLang, setCurrentLang] = useState(localStorage.getItem("i18nextLng"))
+  const { i18n, t } = useTranslation("yandexmap");
+  const [currentLang, setCurrentLang] = useState(
+    localStorage.getItem("i18nextLng")
+  );
   useEffect(() => {
     if (localStorage.getItem("i18nextLng")?.length > 2) {
-      i18next.changeLanguage(currentLang)
+      i18next.changeLanguage(currentLang);
     }
-    setLanguageDetector({ typeLang: currentLang })
-  }, [currentLang])
-
+    setLanguageDetector({ typeLang: currentLang });
+  }, [currentLang]);
 
   const LanguageList = [
     { id: 1, value: "uz", type: "O'zbekcha", icons: UzbekFlag },
@@ -52,8 +55,8 @@ const YandexTop = ({ onClick }) => {
   //   setState({ ...state, openLang: false });
   // };
   const handleLangValue = (value) => {
-    i18n.changeLanguage(value)
-    setCurrentLang(value)
+    i18n.changeLanguage(value);
+    setCurrentLang(value);
     setState({ ...state, openLang: false });
   };
   const contentLang = (
@@ -148,27 +151,29 @@ const YandexTop = ({ onClick }) => {
         </div>
 
         <div className="w-fit h-full rounded bg-white ml-2 font-AeonikProMedium select-none overflow-hidden cursor-pointer">
-          {LanguageList.filter((data) => data.value === currentLang).map((data) => {
-            return (
-              <Popover
-                key={data?.id}
-                open={state?.openLang}
-                onOpenChange={handleOpenChangeWear}
-                className="w-full flex text-[13px] items-center border-searchBgColor border h-[32px] px-3 rounded-lg"
-                trigger="click"
-                options={["Hide"]}
-                placement="bottom"
-                content={contentLang}
-              >
-                <span className="mr-[6px] ">
-                  <img src={data?.icons} alt="" />
-                </span>
-                <p className="not-italic flex items-center font-AeonikProMedium text-sm text-black ">
-                  {data?.type}
-                </p>
-              </Popover>
-            );
-          })}
+          {LanguageList.filter((data) => data.value === currentLang).map(
+            (data) => {
+              return (
+                <Popover
+                  key={data?.id}
+                  open={state?.openLang}
+                  onOpenChange={handleOpenChangeWear}
+                  className="w-full flex text-[13px] items-center border-searchBgColor border h-[32px] px-3 rounded-lg"
+                  trigger="click"
+                  options={["Hide"]}
+                  placement="bottom"
+                  content={contentLang}
+                >
+                  <span className="mr-[6px] ">
+                    <img src={data?.icons} alt="" />
+                  </span>
+                  <p className="not-italic flex items-center font-AeonikProMedium text-sm text-black ">
+                    {data?.type}
+                  </p>
+                </Popover>
+              );
+            }
+          )}
         </div>
       </div>
       <div className="right h-full flex items-center ">
@@ -177,16 +182,16 @@ const YandexTop = ({ onClick }) => {
           onClick={() =>
             window.open(" https://dressme-dashboard-new.vercel.app", "_blank")
           }
-          className="flex items-center h-full  ml-6 "
+          className="flex items-center h-full "
         >
           <span className="mr-2">
             <HouseStatisticIcons colors={"#707070"} />
           </span>
           <span className="text-textColor text-[13px]   font-AeonikProMedium  ">
-          {t("YTbusiness")}
+            {t("YTbusiness")}
           </span>
         </button>
-        <div className="line h-5 border text-textColor ml-6"></div>
+
         <NavLink
           to="/shops"
           className="flex items-center bg-white rounded cursor-pointer h-full  ml-6 px-3 py-[2px]"
@@ -195,7 +200,7 @@ const YandexTop = ({ onClick }) => {
             <MarketIcons colors={"#000"} />
           </span>{" "}
           <span className="font-AeonikProMedium  text-[13px]    ">
-          {t("YTmarket")}
+            {t("YTmarket")}
           </span>
         </NavLink>
       </div>

@@ -3,15 +3,13 @@ import { MenuCloseIcons } from "../../../../../../../../assets/icons";
 import { Radio } from "antd";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../../../../../language/LanguageItems";
+import { SelectedLocation } from "../../../../../../../../ContextHook/SelectedLocation";
 
 function LocationDropUp({
   onClick,
   data,
-  selectedLocation,
   checkedData,
   setOpenLocationModal,
-  setSelectedLocation,
-  setSelectedSize,
   existRegions,
   existRegionsObj,
 }) {
@@ -19,7 +17,8 @@ function LocationDropUp({
     LanguageDetectorDress
   );
 
-  // console.log(selectedLocation?.id, "ssssssssssssssss");
+  const [selectedLocation, setSelectedLocation, , setSelectedSize] =
+    useContext(SelectedLocation);
 
   const { t } = useTranslation("products");
 
