@@ -754,18 +754,18 @@ const ProductCarousel = ({ show, data }) => {
               ) : (
                 <>
                   <p className="mr-[8px] flex items-center font-AeonikProMedium text-[20px] text-black">
-                    {data?.product?.sizes[0]?.discount_price
-                      ? parseInt(data?.product?.sizes[0]?.discount_price)
+                    {data?.product?.cost?.discount_price
+                      ? parseInt(data?.product?.cost?.discount_price)
                           ?.toLocaleString()
                           ?.split(",")
                           .join(" ")
-                      : parseInt(data?.product?.sizes[0]?.price)
+                      : parseInt(data?.product?.cost?.price)
                           ?.toLocaleString()
                           ?.split(",")
                           .join(" ")}{" "}
                     <span
                       className={`text-[16px] ${
-                        data?.product?.sizes[0]?.discount_price
+                        data?.product?.cost?.discount_price
                           ? "ml-[5px]"
                           : "flex ml-[5px]"
                       }`}
@@ -773,9 +773,9 @@ const ProductCarousel = ({ show, data }) => {
                       {t("currency")}
                     </span>
                   </p>
-                  {data?.product?.sizes[0]?.discount_price ? (
+                  {data?.product?.cost?.discount_price ? (
                     <p className="flex items-center font-AeonikProRegular line-through text-[16px] text-setTexOpacity">
-                      {parseInt(data?.product?.sizes[0]?.price)
+                      {parseInt(data?.product?.cost?.price)
                         ?.toLocaleString()
                         ?.split(",")
                         .join(" ")}{" "}
@@ -787,6 +787,7 @@ const ProductCarousel = ({ show, data }) => {
                 </>
               )}
             </section>
+
             <section
               className={`w-fit ${seasonDetector?.TextColorSeason} items-center text-sm flex ml-auto`}
             >
