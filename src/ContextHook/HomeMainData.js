@@ -15,21 +15,27 @@ export const HomeMainDataContextProvider = ({ children }) => {
   const [page, setPage] = useState(1);
 
   let WishlistDataFromCookies = Cookies.get("WishList");
+  let oldWishlistDataFromCookies = Cookies.get("oldWishList");
 
   let list = [];
+  let oldList = [];
 
   if (WishlistDataFromCookies) {
     list = JSON.parse(WishlistDataFromCookies);
   }
-
-  console.log(list);
+  if (oldWishlistDataFromCookies) {
+    oldList = JSON.parse(oldWishlistDataFromCookies);
+  }
 
   const [wishList, setWishlist] = useState(list);
+  const [oldWishList, setOldWishlist] = useState(oldList);
 
   if (localStorage?.getItem("userAccess")) {
     Cookies.set("WishList", JSON.stringify(wishList), { expires: 99999 });
+    Cookies.set("oldWishList", JSON.stringify(oldWishList), { expires: 99999 });
   } else {
     Cookies.set("WishList", JSON.stringify(wishList), { expires: 2 });
+    Cookies.set("oldWishList", JSON.stringify(oldWishList), { expires: 2 });
   }
 
   useEffect(() => {
@@ -37,8 +43,9 @@ export const HomeMainDataContextProvider = ({ children }) => {
 
     if (data?.products?.length) {
       data?.products?.forEach((item) => {
-        console.log(item?.id);
         if (list?.includes(item?.id)) {
+          included.push(item?.id);
+        } else if (oldList?.includes(item?.id)) {
           included.push(item?.id);
         }
       });
@@ -47,9 +54,24 @@ export const HomeMainDataContextProvider = ({ children }) => {
     }
   }, [data?.products]);
 
+  useEffect(() => {
+    let unique = new Set([...oldWishList, ...wishList]);
+
+    setOldWishlist([...unique]);
+  }, [wishList]);
+
   return (
     <HomeMainDataContext.Provider
-      value={[data, setData, wishList, setWishlist, page, setPage]}
+      value={[
+        data,
+        setData,
+        wishList,
+        setWishlist,
+        page,
+        setPage,
+        oldWishList,
+        setOldWishlist,
+      ]}
     >
       {children}
     </HomeMainDataContext.Provider>

@@ -22,7 +22,8 @@ export default function FavouriteProducts() {
   // -------------------------------------
 
   // Main data context -----------------
-  const [mainData, , wishList, setWishlist] = useContext(HomeMainDataContext);
+  const [mainData, , wishList, setWishlist, , , oldWishList, setOldWishlist] =
+    useContext(HomeMainDataContext);
 
   const onColorChecked = () => {};
   const navigate = useNavigate();
@@ -225,6 +226,11 @@ export default function FavouriteProducts() {
                                           (item) => item !== data?.id
                                         )
                                       );
+                                      setOldWishlist(
+                                        oldWishList?.filter(
+                                          (item) => item !== data?.id
+                                        )
+                                      );
                                     } else {
                                       setWishlist([...wishList, data?.id]);
                                     }
@@ -411,6 +417,11 @@ export default function FavouriteProducts() {
                                   if (wishList?.includes(data?.id)) {
                                     setWishlist(
                                       wishList?.filter(
+                                        (item) => item !== data?.id
+                                      )
+                                    );
+                                    setOldWishlist(
+                                      oldWishList?.filter(
                                         (item) => item !== data?.id
                                       )
                                     );

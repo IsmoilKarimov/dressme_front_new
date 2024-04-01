@@ -54,7 +54,8 @@ import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext
 import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
 import Item from "antd/es/list/Item";
 const ProductDetails = ({ data, shopsData }) => {
-  const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
+  const [, , wishList, setWishlist, , , oldWishList, setOldWishlist] =
+    useContext(HomeMainDataContext);
 
   // Rick Ortiz
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -2343,6 +2344,9 @@ const ProductDetails = ({ data, shopsData }) => {
                 if (wishList?.includes(data?.product?.id)) {
                   setWishlist(
                     wishList?.filter((item) => item !== data?.product?.id)
+                  );
+                  setOldWishlist(
+                    oldWishList?.filter((item) => item !== data?.product?.id)
                   );
                 } else {
                   setWishlist([...wishList, data?.product?.id]);
