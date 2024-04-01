@@ -380,6 +380,11 @@ const ProductCarousel = ({ show, data }) => {
   let indexPage = 0;
   let indexPageSelected = 0;
 
+  useEffect(() => {
+    setSelectedLocation([]);
+    setSelectedSize(null);
+  }, []);
+
   return (
     <main className="w-full md:w-fit h-full ">
       <div className="w-full">
