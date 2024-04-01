@@ -10,21 +10,6 @@ export const StoreListDataContextProvider = ({ children }) => {
   const [reFreshTokenFunc, setUserLogedIn] = useContext(
     UserRefreshTokenContext
   );
-  //   let WishlistDataFromCookies = Cookies.get("WishList");
-
-  //   const [wishList, setWishlist] = useState([]);
-
-  //   useEffect(() => {
-  //     if (WishlistDataFromCookies) {
-  //       setWishlist(JSON.parse(WishlistDataFromCookies));
-  //     }
-  //   }, []);
-
-  //   if( localStorage?.getItem("userAccess")){
-  //     Cookies.set("WishList", JSON.stringify(wishList), { expires: 99999 });
-  //   } else {
-  //     Cookies.set("WishList", JSON.stringify(wishList), { expires: 2 });
-  //   }
 
   const url = "https://api.dressme.uz";
 
@@ -36,7 +21,7 @@ export const StoreListDataContextProvider = ({ children }) => {
         method: "GET",
         headers: {
           Accept: "application/json",
-          Authorization: `Token ${ localStorage?.getItem("userAccess")}`,
+          Authorization: `Token ${localStorage?.getItem("userAccess")}`,
           //   "Content-type": "application/json; charset=UTF-8",
         },
       }).then((res) => res.json());

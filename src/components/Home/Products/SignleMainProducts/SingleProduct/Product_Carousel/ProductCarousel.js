@@ -50,7 +50,8 @@ const ProductCarousel = ({ show, data }) => {
     }
   });
 
-  const [, , wishList, setWishlist] = useContext(HomeMainDataContext);
+  const [, , wishList, setWishlist, , , oldWishList, setOldWishlist] =
+    useContext(HomeMainDataContext);
   const slider1 = useRef(null);
 
   const [sliderState, setSliderState] = useState(0);
@@ -680,6 +681,9 @@ const ProductCarousel = ({ show, data }) => {
                   if (wishList?.includes(data?.product?.id)) {
                     setWishlist(
                       wishList?.filter((item) => item !== data?.product?.id)
+                    );
+                    setOldWishlist(
+                      oldWishList?.filter((item) => item !== data?.product?.id)
                     );
                   } else {
                     setWishlist([...wishList, data?.product?.id]);
