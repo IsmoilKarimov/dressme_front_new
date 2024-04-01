@@ -26,7 +26,7 @@ const ClothingParametr = () => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, setData, , , page, setPage] = useContext(HomeMainDataContext);
   const { i18n, t } = useTranslation("homePage");
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress);
 
   const [state, setState] = useState({
     clothesTypeMobile: false,
@@ -67,46 +67,190 @@ const ClothingParametr = () => {
     {
       id: 1111,
       childText: [
-        { id: 0, anyIcons: <CotegoryMenuIcons />, name: "Все", action: false },
-        { id: 1, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
-        { id: 2, anyIcons: <WomanGenIcons />, name: "Женщинам", action: false },
-        { id: 3, anyIcons: <WinterBoyIcons />, name: "Детям", action: false },
+        {
+          id: 0,
+          anyIcons: <CotegoryMenuIcons />,
+          name_ru: "Все",
+          name_uz: "Hammasi",
+          action: false,
+        },
+        {
+          id: 1,
+          anyIcons: <ManGenIcons />,
+          name_ru: "Мужчинам",
+          name_uz: "Erkaklar",
+          action: false,
+        },
+        {
+          id: 2,
+          anyIcons: <WomanGenIcons />,
+          name_ru: "Женщинам",
+          name_uz: "Ayollar",
+          action: false,
+        },
+        {
+          id: 3,
+          anyIcons: <WinterBoyIcons />,
+          name_ru: "Детям",
+          name_uz: "Bolalar",
+          action: false,
+        },
       ],
     },
     {
       id: 2222,
       childText: [
-        { id: 0, anyIcons: <CotegoryMenuIcons />, name: "Все", action: false },
-        { id: 1, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
-        { id: 2, anyIcons: <WomanGenIcons />, name: "Женщинам", action: false },
-        { id: 3, anyIcons: <WinterBoyIcons />, name: "Детям", action: false },
+        {
+          id: 0,
+          anyIcons: <CotegoryMenuIcons />,
+          name_ru: "Все",
+          name_uz: "Hammasi",
+
+          action: false,
+        },
+        {
+          id: 1,
+          anyIcons: <ManGenIcons />,
+          name_ru: "Мужчинам",
+
+          name_uz: "Erkaklar",
+
+          action: false,
+        },
+        {
+          id: 2,
+          anyIcons: <WomanGenIcons />,
+          name_ru: "Женщинам",
+
+          name_uz: "Ayollar",
+
+          action: false,
+        },
+        {
+          id: 3,
+          anyIcons: <WinterBoyIcons />,
+          name_ru: "Детям",
+
+          name_uz: "Bolalar",
+          action: false,
+        },
       ],
     },
     {
       id: 3333,
       childText: [
-        { id: 0, anyIcons: <CotegoryMenuIcons />, name: "Все", action: false },
-        { id: 1, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
-        { id: 2, anyIcons: <WomanGenIcons />, name: "Женщинам", action: false },
-        { id: 3, anyIcons: <WinterBoyIcons />, name: "Детям", action: false },
+        {
+          id: 0,
+          anyIcons: <CotegoryMenuIcons />,
+          name_ru: "Все",
+          name_uz: "Hammasi",
+
+          action: false,
+        },
+        {
+          id: 1,
+          anyIcons: <ManGenIcons />,
+          name_ru: "Мужчинам",
+
+          name_uz: "Erkaklar",
+
+          action: false,
+        },
+        {
+          id: 2,
+          anyIcons: <WomanGenIcons />,
+          name_ru: "Женщинам",
+
+          name_uz: "Ayollar",
+
+          action: false,
+        },
+        {
+          id: 3,
+          anyIcons: <WinterBoyIcons />,
+          name_ru: "Детям",
+
+          name_uz: "Bolalar",
+          action: false,
+        },
       ],
     },
     {
       id: 4444,
       childText: [
-        { id: 0, anyIcons: <CotegoryMenuIcons />, name: "Все", action: false },
-        { id: 1, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
-        { id: 2, anyIcons: <WomanGenIcons />, name: "Женщинам", action: false },
-        { id: 3, anyIcons: <WinterBoyIcons />, name: "Детям", action: false },
+        {
+          id: 0,
+          anyIcons: <CotegoryMenuIcons />,
+          name_ru: "Все",
+          name_uz: "Hammasi",
+
+          action: false,
+        },
+        {
+          id: 1,
+          anyIcons: <ManGenIcons />,
+          name_ru: "Мужчинам",
+
+          name_uz: "Erkaklar",
+
+          action: false,
+        },
+        {
+          id: 2,
+          anyIcons: <WomanGenIcons />,
+          name_ru: "Женщинам",
+
+          name_uz: "Ayollar",
+
+          action: false,
+        },
+        {
+          id: 3,
+          anyIcons: <WinterBoyIcons />,
+          name_ru: "Детям",
+
+          name_uz: "Bolalar",
+          action: false,
+        },
       ],
     },
     {
       id: 5555,
       childText: [
-        { id: 0, anyIcons: <CotegoryMenuIcons />, name: "Все", action: true },
-        { id: 1, anyIcons: <ManGenIcons />, name: "Мужчинам", action: false },
-        { id: 2, anyIcons: <WomanGenIcons />, name: "Женщинам", action: false },
-        { id: 3, anyIcons: <WinterBoyIcons />, name: "Детям", action: false },
+        {
+          id: 0,
+          anyIcons: <CotegoryMenuIcons />,
+          name_ru: "Все",
+          name_uz: "Hammasi",
+
+          action: true,
+        },
+        {
+          id: 1,
+          anyIcons: <ManGenIcons />,
+          name_ru: "Мужчинам",
+
+          name_uz: "Erkaklar",
+
+          action: false,
+        },
+        {
+          id: 2,
+          anyIcons: <WomanGenIcons />,
+          name_ru: "Женщинам",
+
+          name_uz: "Ayollar",
+
+          action: false,
+        },
+        {
+          id: 3,
+          anyIcons: <WinterBoyIcons />,
+          name_ru: "Детям",
+
+          name_uz: "Bolalar",
+          action: false,
+        },
       ],
     },
   ]);
@@ -172,7 +316,6 @@ const ClothingParametr = () => {
       setDressInfo({ ...dressInfo, mainRangePrice: [] });
     }
     setSelectedFilters({ ...selectedFilters, price: null });
-
   }, [
     dressInfo?.mainRegionId,
     dressInfo?.mainSubRegionId,
@@ -303,8 +446,9 @@ const ClothingParametr = () => {
       <section className="w-full">
         {/* Cateories */}
         <section
-          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${state?.clothesTypeMobile ? "w-[92%]" : "w-0"
-            }  `}
+          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
+            state?.clothesTypeMobile ? "w-[92%]" : "w-0"
+          }  `}
         >
           {state?.clothesTypeMobile && (
             <div className="fixed inset-0 z-10">
@@ -344,11 +488,13 @@ const ClothingParametr = () => {
                                 };
                               });
                             }}
-                            className={`${data?.id === dressInfo?.mainCategoryId
-                              ? "text-borderWinter bg-[#F6F6F6]"
-                              : ""
-                              }  ${seasonDetector?.TextHoverSeason
-                              } relative bg-bgCard text-base text-[#303030] font-AeonikProMedium hover:bg-[#F6F6F6] w-[100%] h-10 xs:h-12 rounded-lg cursor-pointer flex items-center justify-center hover:duration-300 hover:ease-linear `}
+                            className={`${
+                              data?.id === dressInfo?.mainCategoryId
+                                ? "text-borderWinter bg-[#F6F6F6]"
+                                : ""
+                            }  ${
+                              seasonDetector?.TextHoverSeason
+                            } relative bg-bgCard text-base text-[#303030] font-AeonikProMedium hover:bg-[#F6F6F6] w-[100%] h-10 xs:h-12 rounded-lg cursor-pointer flex items-center justify-center hover:duration-300 hover:ease-linear `}
                           >
                             {languageDetector?.typeLang === "ru" &&
                               data?.name_ru}
@@ -378,8 +524,9 @@ const ClothingParametr = () => {
 
         {/* Prizes */}
         <section
-          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${state?.priceToggleMobile ? "w-[100%]" : "w-0"
-            }  `}
+          className={`h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
+            state?.priceToggleMobile ? "w-[100%]" : "w-0"
+          }  `}
         >
           {state?.priceToggleMobile && (
             <div className="fixed inset-0 z-10 ">
@@ -421,9 +568,7 @@ const ClothingParametr = () => {
                             //   data?.getMainProductCard?.budget?.min_price
                             // ).toLocaleString()}
                             />{" "} */}
-                            <span className="min-w-[70px] justify-center outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-
-                            >
+                            <span className="min-w-[70px] justify-center outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1">
                               {Number(values[0]).toLocaleString()}
                             </span>
                             {t("CPsumm")}
@@ -442,8 +587,7 @@ const ClothingParametr = () => {
                             //   data?.getMainProductCard?.budget?.max_price
                             // ).toLocaleString()}
                             /> */}
-                            <span className="min-w-[100px] justify-center outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1"
-                            >
+                            <span className="min-w-[100px] justify-center outline-none h-[32px] flex items-center rounded-lg text-center border border-searchBgColor px-[2px] mr-1">
                               {Number(values[1]).toLocaleString()}
                             </span>
                             {t("CPsumm")}
@@ -462,8 +606,9 @@ const ClothingParametr = () => {
                         />
                       </div>
                       <div
-                        className={`flex items-center  mt-4 ${state?.clearPrice ? "justify-between" : "justify-end"
-                          }`}
+                        className={`flex items-center  mt-4 ${
+                          state?.clearPrice ? "justify-between" : "justify-end"
+                        }`}
                       >
                         {state?.clearPrice && (
                           <span
@@ -515,8 +660,9 @@ const ClothingParametr = () => {
 
         {/* Colors */}
         <section
-          className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
-            }`}
+          className={`h-fit top-30  left-[16px] fixed  bg-white shadow-lg  duration-200 z-50 ${
+            state?.selectColorToggleMobile ? "w-[92%]" : "w-0"
+          }`}
         >
           {state?.selectColorToggleMobile && (
             <div className="fixed inset-0 z-10 ">
@@ -565,10 +711,11 @@ const ClothingParametr = () => {
                               });
                             }}
                             style={{ backgroundColor: data?.hex }}
-                            className={`rounded-full flex items-center justify-center w-[35px] h-[35px] ${data?.hex === dressInfo?.mainColorHex
-                              ? "border border-setTexOpacity flex items-center justify-center"
-                              : "border"
-                              }  `}
+                            className={`rounded-full flex items-center justify-center w-[35px] h-[35px] ${
+                              data?.hex === dressInfo?.mainColorHex
+                                ? "border border-setTexOpacity flex items-center justify-center"
+                                : "border"
+                            }  `}
                           >
                             {dressInfo?.mainColorHex === data?.hex &&
                               data?.id !== 1 && (
@@ -612,8 +759,9 @@ const ClothingParametr = () => {
 
         {/* Gender BUTTONS */}
         <section
-          className={`w-full h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${state?.genderMobile ? "w-[92%]" : "w-0"
-            }`}
+          className={`w-full h-fit top-30 left-[16px] fixed bg-white shadow-lg duration-200 z-50 ${
+            state?.genderMobile ? "w-[92%]" : "w-0"
+          }`}
         >
           {state?.genderMobile && (
             <div className="fixed inset-0 z-10 ">
@@ -663,16 +811,18 @@ const ClothingParametr = () => {
                                       setSelectedFilters((prev) => {
                                         return {
                                           ...prev,
-                                          gender: item.name,
+                                          gender: item.name_ru,
+                                          genderNameUz: item.name_uz,
                                           genderOrder: prev.index + 5,
                                           index: prev.index + 5,
                                         };
                                       });
                                     }}
-                                    className={`${item?.id == dressInfo?.mainGenderId
-                                      ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
-                                      : " bg-btnBgColor text-black h-full"
-                                      } px-4 ls:px-5  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
+                                    className={`${
+                                      item?.id == dressInfo?.mainGenderId
+                                        ? "bg-white border w-full h-[98%] my-auto mx-auto box-border border-searchBgColor rounded-xl"
+                                        : " bg-btnBgColor text-black h-full"
+                                    } px-4 ls:px-5  cursor-pointer box-border  font-AeonikProMedium rounded-xl justify-center flex items-center`}
                                   >
                                     <span>{item?.anyIcons}</span>
                                     {item?.id === 0 && (
@@ -751,7 +901,10 @@ const ClothingParametr = () => {
             style={{ order: selectedFilters.genderOrder }}
             className={`text-[#007DCA] text-[13px] font-medium rounded-[20px] px-[9px] py-[9px] bg-[#007DCA1A] flex items-center`}
           >
-            {selectedFilters.gender}
+            {languageDetector?.typeLang === "ru" && selectedFilters.gender}
+            {languageDetector?.typeLang === "uz" &&
+              selectedFilters.genderNameUz}
+
             <div
               onClick={() => {
                 handleFilterByUser(0, 0);
