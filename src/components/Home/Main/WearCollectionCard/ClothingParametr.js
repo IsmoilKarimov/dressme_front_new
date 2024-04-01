@@ -634,21 +634,25 @@ const ClothingParametr = () => {
                                     ?.toLocaleString()
                                     ?.split(",")
                                     .join(" ") +
-                                  `${
-                                    languageDetector?.typeLang === "ru"
-                                      ? " сум"
-                                      : " so'm"
-                                  }` +
+                                  " сум" +
                                   " - " +
                                   values[1]
                                     ?.toLocaleString()
                                     ?.split(",")
                                     .join(" ") +
-                                  `${
-                                    languageDetector?.typeLang === "ru"
-                                      ? " сум"
-                                      : " so'm"
-                                  }`,
+                                  " сум",
+                                priceUzName:
+                                  values[0]
+                                    ?.toLocaleString()
+                                    ?.split(",")
+                                    .join(" ") +
+                                  " so'm" +
+                                  " - " +
+                                  values[1]
+                                    ?.toLocaleString()
+                                    ?.split(",")
+                                    .join(" ") +
+                                  " so'm",
                                 priceOrder: prev.index + 5,
                                 index: prev.index + 5,
                               };
@@ -885,7 +889,8 @@ const ClothingParametr = () => {
             style={{ order: selectedFilters.priceOrder }}
             className={`text-[#007DCA] text-[13px] font-medium rounded-[20px] px-[9px] py-[9px] bg-[#007DCA1A] flex items-center`}
           >
-            {selectedFilters.price}
+            {languageDetector?.typeLang === "ru" && selectedFilters.price}
+            {languageDetector?.typeLang === "uz" && selectedFilters.priceUzName}
             <div
               onClick={() => {
                 clearPriceValue();
