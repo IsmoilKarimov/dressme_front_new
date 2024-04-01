@@ -12,12 +12,14 @@ import LoadingNetwork from "../../../../Loading/LoadingNetwork";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { ToastContainer } from "react-toastify";
+import { LanguageDetectorDress } from "../../../../../language/LanguageItems";
 
 const SingleProduct = ({ breadShops, oncallProductName }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [data, mainData, , wishList, setWishlist] =
     useContext(HomeMainDataContext);
   const [openWearType, setOpenWearType] = useState(false);
+  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
 
   const { t } = useTranslation("products");
 
@@ -62,7 +64,12 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
   const [singleDataForCopy, setSingleDataForCopy] = useState();
   const [singleData, setSingleData] = useState();
   useEffect(() => {
-    oncallProductName(singleData?.product?.name_ru);
+    if (languageDetector?.typeLang === 'ru') {
+      oncallProductName(singleData?.product?.name_ru);
+    }
+    if (languageDetector?.typeLang === 'uz') {
+      oncallProductName(singleData?.product?.name_uz);
+    }
   }, [singleData?.product]);
 
   const [loading, setLoading] = useState(true);
