@@ -483,6 +483,7 @@ const ClothingParametr = () => {
                                 return {
                                   ...prev,
                                   category: data?.name_ru,
+                                  categoryUzName: data?.name_uz,
                                   categoryOrder: prev.index + 5,
                                   index: prev.index + 5,
                                 };
@@ -633,13 +634,21 @@ const ClothingParametr = () => {
                                     ?.toLocaleString()
                                     ?.split(",")
                                     .join(" ") +
-                                  " сум" +
+                                  `${
+                                    languageDetector?.typeLang === "ru"
+                                      ? " сум"
+                                      : " so'm"
+                                  }` +
                                   " - " +
                                   values[1]
                                     ?.toLocaleString()
                                     ?.split(",")
                                     .join(" ") +
-                                  " сум",
+                                  `${
+                                    languageDetector?.typeLang === "ru"
+                                      ? " сум"
+                                      : " so'm"
+                                  }`,
                                 priceOrder: prev.index + 5,
                                 index: prev.index + 5,
                               };
@@ -648,6 +657,10 @@ const ClothingParametr = () => {
                           className="flex items-center select-none cursor-pointer text-sm justify-center  text-fullBlue"
                         >
                           {t("CPready")}
+                          {languageDetector?.typeLang === "ru" &&
+                            selectedFilters.category}
+                          {languageDetector?.typeLang === "uz" &&
+                            selectedFilters.categoryUzName}
                         </span>
                       </div>
                     </div>
@@ -705,6 +718,7 @@ const ClothingParametr = () => {
                                 return {
                                   ...prev,
                                   color: data?.name_ru,
+                                  colorUzName: data?.name_uz,
                                   colorOrder: prev.index + 5,
                                   index: prev.index + 5,
                                 };
@@ -854,7 +868,9 @@ const ClothingParametr = () => {
             style={{ order: selectedFilters.categoryOrder }}
             className={`text-[#007DCA] text-[13px] font-medium rounded-[20px] px-[9px] py-[9px] bg-[#007DCA1A] flex items-center`}
           >
-            {selectedFilters.category}
+            {languageDetector?.typeLang === "ru" && selectedFilters.category}
+            {languageDetector?.typeLang === "uz" &&
+              selectedFilters.categoryUzName}
             <div
               onClick={() => onClearFilterCategoryId()}
               className="ml-[6px] cursor-pointer active:translate-y-[2px] w-[16px] h-[16px] bg-white rounded-full flex items-center justify-center"
@@ -886,7 +902,8 @@ const ClothingParametr = () => {
             style={{ order: selectedFilters.colorOrder }}
             className={`text-[#007DCA] text-[13px] font-medium rounded-[20px] px-[9px] py-[9px] bg-[#007DCA1A] flex items-center`}
           >
-            {selectedFilters.color}
+            {languageDetector?.typeLang === "ru" && selectedFilters.color}
+            {languageDetector?.typeLang === "uz" && selectedFilters.colorUzName}
             <div
               onClick={() => ClearColorId()}
               className="ml-[6px] cursor-pointer active:translate-y-[2px] w-[16px] h-[16px] bg-white rounded-full flex items-center justify-center"

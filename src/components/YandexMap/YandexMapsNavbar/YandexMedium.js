@@ -35,15 +35,17 @@ import { SaesonDetectorDress } from "../../../ContextHook/SeasonContext";
 const YandexMedium = ({ getYandexSearchName }) => {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const [audioPlay, setAudioPlay] = useContext(MainPageAudioContext);
-  const { t } = useTranslation('yandexmap')
+  const { t } = useTranslation("yandexmap");
 
   const navigate = useNavigate();
   const handleMainMenu = () => {
     setDressInfo({ ...dressInfo, openMainMenu: !dressInfo.openMainMenu });
   };
   const [searchMarketName, setSearchMarketName] = useState();
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress)
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
+  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress);
   const SeasonTypeArray = [
     { id: 5555, type_ru: "", type_uz: "", icons: AllSeasonDesktop },
     { id: 1111, type_ru: "Лето", type_uz: "Yoz", icons: summerSeason },
@@ -92,8 +94,8 @@ const YandexMedium = ({ getYandexSearchName }) => {
             <article
               className={`flex font-AeonikProMedium text-base text-black not-italic ${seasonDetector?.TextHoverSeason}`}
             >
-              {languageDetector?.typeLang === 'ru' && value?.type_ru}
-              {languageDetector?.typeLang === 'uz' && value?.type_uz}
+              {languageDetector?.typeLang === "ru" && value?.type_ru}
+              {languageDetector?.typeLang === "uz" && value?.type_uz}
             </article>
           </article>
         );
@@ -111,8 +113,8 @@ const YandexMedium = ({ getYandexSearchName }) => {
             <article
               className={`flex font-AeonikProMedium text-base text-black not-italic ${seasonDetector?.TextHoverSeason}`}
             >
-              {languageDetector?.typeLang === 'ru' && value?.type_ru}
-              {languageDetector?.typeLang === 'uz' && value?.type_uz}
+              {languageDetector?.typeLang === "ru" && value?.type_ru}
+              {languageDetector?.typeLang === "uz" && value?.type_uz}
             </article>
           </article>
         );
@@ -173,18 +175,18 @@ const YandexMedium = ({ getYandexSearchName }) => {
             // to="/"
             className="flex justify-center items-center rounded-xl h-[48px] ss:w-[calc(100%-96px)] ss:p-2 ll:p-1  md:p-0 md:w-[155px] ss:ml-2 md:ml-[0px]  ss:bg-btnBgColor md:bg-transparent"
           >
-            {BrandTypeArray.filter((data) => data.id === seasonDetector.type).map(
-              (data) => {
-                return (
-                  <img
-                    key={data?.id}
-                    className="h-full"
-                    src={data?.icons}
-                    alt="logo"
-                  />
-                );
-              }
-            )}
+            {BrandTypeArray.filter(
+              (data) => data.id === seasonDetector.type
+            ).map((data) => {
+              return (
+                <img
+                  key={data?.id}
+                  className="h-full"
+                  src={data?.icons}
+                  alt="logo"
+                />
+              );
+            })}
           </button>
 
           {/* Voice section */}
@@ -212,24 +214,24 @@ const YandexMedium = ({ getYandexSearchName }) => {
                 placement="bottom"
                 content={contentWear}
               >
-                {SeasonTypeArray.filter((e) => e.id === seasonDetector.type).map(
-                  (data) => {
-                    return (
-                      <figure
-                        key={data?.id}
-                        className="w-full h-full hidden md:flex  items-center justify-center select-none cursor-pointer   "
-                      >
-                        <img src={data?.icons} alt="weather" className=" " />
-                        {(data?.type_ru || data?.type_uz) && (
-                          <figcaption className=" ml-[10px] font-AeonikProMedium  flex items-center text-[15px] ">
-                            {languageDetector?.typeLang === 'ru' && data?.type_ru}
-                            {languageDetector?.typeLang === 'uz' && data?.type_uz}
-                          </figcaption>
-                        )}
-                      </figure>
-                    );
-                  }
-                )}
+                {SeasonTypeArray.filter(
+                  (e) => e.id === seasonDetector.type
+                ).map((data) => {
+                  return (
+                    <figure
+                      key={data?.id}
+                      className="w-full h-full hidden md:flex  items-center justify-center select-none cursor-pointer   "
+                    >
+                      <img src={data?.icons} alt="weather" className=" " />
+                      {(data?.type_ru || data?.type_uz) && (
+                        <figcaption className=" ml-[10px] font-AeonikProMedium  flex items-center text-[15px] ">
+                          {languageDetector?.typeLang === "ru" && data?.type_ru}
+                          {languageDetector?.typeLang === "uz" && data?.type_uz}
+                        </figcaption>
+                      )}
+                    </figure>
+                  );
+                })}
                 {SeasonTypeArrayMobile.filter(
                   (e) => e.id === seasonDetector.type
                 ).map((data) => {
@@ -275,7 +277,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
                 type="text"
                 name="search"
                 autoComplete="search"
-                placeholder={t("YMsearch")}
+                placeholder={t("findShops")}
                 className="bg-transparent w-full px-3 h-[44px] text-sm border  md:border-searchBgColor placeholder:font-AeonikProRegular"
                 value={searchMarketName || ""}
                 onChange={handleChange}
