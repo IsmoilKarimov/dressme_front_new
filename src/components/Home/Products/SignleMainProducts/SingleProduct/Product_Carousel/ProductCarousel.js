@@ -367,6 +367,13 @@ const ProductCarousel = ({ show, data }) => {
   }, [data, dressInfo]);
 
   useEffect(() => {
+    if (!colorId) {
+      setSelectedLocation([]);
+      setSelectedSize(null);
+    }
+  }, []);
+
+  useEffect(() => {
     if (colorId) {
       setSelectedSize(
         data?.product?.sizes?.find((x) => x.product_color_id === colorId)
@@ -379,11 +386,6 @@ const ProductCarousel = ({ show, data }) => {
 
   let indexPage = 0;
   let indexPageSelected = 0;
-
-  useEffect(() => {
-    setSelectedLocation([]);
-    setSelectedSize(null);
-  }, []);
 
   return (
     <main className="w-full md:w-fit h-full ">
@@ -851,6 +853,8 @@ const ProductCarousel = ({ show, data }) => {
               </button>
             </div>
 
+            {/* Mobile slider ----------- */}
+
             <article className="flex flex-row gap-x-1">
               {selectedSize
                 ? uniqueArray?.map((data, i) => {
@@ -858,7 +862,7 @@ const ProductCarousel = ({ show, data }) => {
                       <div
                         key={data?.id}
                         className={`${
-                          data?.product_color_id ===
+                          data?.product_color_id ==
                           selectedSize?.product_color_id
                             ? ""
                             : "opacity-40"
@@ -867,7 +871,7 @@ const ProductCarousel = ({ show, data }) => {
                         <div
                           key={data?.id}
                           className={`${
-                            colorId === data?.product_color_id
+                            colorId == data?.product_color_id
                               ? "border-2 border-[#007DCA]"
                               : "border border-searchBgColor"
                           }  !w-[72px] cursor-pointer !h-[96px] bg-btnBgColor rounded-lg flex items-center justify-center`}
@@ -892,7 +896,7 @@ const ProductCarousel = ({ show, data }) => {
                       <div key={data?.id}>
                         <div
                           className={`${
-                            colorId === data?.product_color_id
+                            colorId == data?.product_color_id
                               ? "border-2 border-[#007DCA]"
                               : "border border-searchBgColor"
                           }  !w-[72px] cursor-pointer !h-[96px] bg-btnBgColor rounded-lg flex items-center justify-center`}
