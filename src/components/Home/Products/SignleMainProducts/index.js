@@ -29,21 +29,20 @@ export default function SingleMainProducts() {
       })
     }
   }, [languageDetector?.typeLang]);
-  console.log(getproductName, "getproductName");
-  console.log(data?.getMainProductCard?.products?.data, "data?.getMainProductCard?.products?.data");
+
   const breadcrumbItems = [
     { label_uz: 'Asosiy', label_ru: 'Главная', url: '/' },
     { label_uz: 'Mahsulotlar', label_ru: 'Продукты', url: '/product' },
     { label_uz: getproductName, label_ru: getproductName, url: `/product/${paramId?.product}` },
   ];
-  function oncallProductName(child) {
-    if (!getproductName) {
+   function oncallProductName(child) {
+     if (!getproductName) {
       setGetproductName(child)
     }
   }
   return (
     <main className="w-full px-4 md:px-0">
-      <SingleProduct breadShops={breadcrumbItems} oncallProductName={oncallProductName} />
+      <SingleProduct breadShops={breadcrumbItems} oncallProductName={oncallProductName} getproductName={getproductName} setGetproductName={setGetproductName} />
     </main>
   );
 }
