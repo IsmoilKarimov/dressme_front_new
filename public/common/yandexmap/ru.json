@@ -1,29 +1,27 @@
 {
-    "YTregion": "Регион",
-    "YTbusiness": "Бизнес ",
-    "YTmyOrder": "Мои заказы ",
-    "YTmarket": "Магазины ",
-    "YMcategory": "Категории",
-    "YMmap": "Карта ",
-    "YMsearch": "Поиск адресов",
-    "YFbycategory": "По категории ",
-    "YFbyPrice": "По бюджету ",
-    "YFPrice": "  бюджету ",
-    "YFbyMarket": "По магазину",
-    "YFfrom": "от",
-    "YFto": "до",
-    "YFsumm": "сум",
-    "YFclear": "Сбросить",
-    "YFready": "Готово",
-    "YFgender_is_selected": "Все",
+  "YTregion": "Регион",
+  "YTbusiness": "Бизнес ",
+  "YTmyOrder": "Мои заказы ",
+  "YTmarket": "Магазины ",
+  "YMcategory": "Категории",
+  "YMmap": "Карта ",
+  "YMsearch": "Поиск адресов",
+  "YFbycategory": "По категории ",
+  "YFbyPrice": "По бюджету ",
+  "YFPrice": "  бюджету ",
+  "YFbyMarket": "По магазину",
+  "YFfrom": "от",
+  "YFto": "до",
+  "YFsumm": "сум",
+  "YFclear": "Сбросить",
+  "YFready": "Готово",
+  "YFgender_is_selected": "Все",
 
-    "YRLselectRegion": "Выберите регион",
-    "YRLuploadData": "Загрузка данных... ",
+  "YRLselectRegion": "Выберите регион",
+  "YRLuploadData": "Загрузка данных... ",
 
-    "YLOedit": "Подробнее ",
-    "YLOfilter": "Фильтровать ",
-    "YLOsearchmarket": "Найти магазин "
-    
-   
-
-} 
+  "YLOedit": "Подробнее ",
+  "YLOfilter": "Фильтровать ",
+  "YLOsearchmarket": "Найти магазин ",
+  "findShops": "Найти магазин"
+}
