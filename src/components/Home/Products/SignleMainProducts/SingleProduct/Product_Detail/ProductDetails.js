@@ -2495,7 +2495,7 @@ const ProductDetails = ({ data, shopsData }) => {
             <div className="not-italic font-AeonikProRegular text-base">
               {t("about_product")}
             </div>
-            <article className="font-AeonikProRegular text-base">
+            <article className="font-AeonikProRegular text-base break-all">
               {languageDetector?.typeLang === "ru" &&
                 data?.product?.description_ru}
               {languageDetector?.typeLang === "uz" &&
@@ -2508,7 +2508,7 @@ const ProductDetails = ({ data, shopsData }) => {
             <ul>
               <li
                 className={
-                  "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%]"
+                  "flex items-center not-italic font-AeonikProRegular text-base leading-7 text-black tracking-[1%] break-all"
                 }
               >
                 {languageDetector?.typeLang === "ru" &&
