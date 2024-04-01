@@ -53,6 +53,7 @@ import { LanguageDetectorDress } from "../../../../../../language/LanguageItems"
 import { SaesonDetectorDress } from "../../../../../../ContextHook/SeasonContext";
 import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
 import Item from "antd/es/list/Item";
+import { SelectedLocation } from "../../../../../../ContextHook/SelectedLocation";
 const ProductDetails = ({ data, shopsData }) => {
   const [, , wishList, setWishlist, , , oldWishList, setOldWishlist] =
     useContext(HomeMainDataContext);
@@ -66,6 +67,8 @@ const ProductDetails = ({ data, shopsData }) => {
   );
   const [locationIdDetector, setLocationIdDetector] =
     useContext(LocationIdDetector);
+
+  const [selectedLocation, setSelectedLocation] = useContext(SelectedLocation);
 
   const [openLocationModal, setOpenLocationModal] = useState(false);
   const [openSizeList, setOpenSizeList] = useState(false);
@@ -267,7 +270,7 @@ const ProductDetails = ({ data, shopsData }) => {
 
   let checkedData = {};
 
-  const [selectedLocation, setSelectedLocation] = useState();
+  // const [selectedLocation, setSelectedLocation] = useState();
 
   useEffect(() => {
     if (!selectedLocation) {
@@ -798,7 +801,7 @@ const ProductDetails = ({ data, shopsData }) => {
 
       {/* ------------------------------------ */}
 
-      <article className="w-full h-fit flex md:hidden mt-7 mb-4 items-center">
+      {/* <article className="w-full h-fit flex md:hidden mt-7 mb-4 items-center">
         <section className="w-full h-fit flex flex-wrap items-center gap-x-3 gap-y-3">
           {data?.product?.category_id === "1"
             ? data?.product?.sizes?.map((data) => {
@@ -1079,7 +1082,7 @@ const ProductDetails = ({ data, shopsData }) => {
               })
             : null}
         </section>
-      </article>
+      </article> */}
 
       {/* 2 */}
       <section className="w-full md:border-t md:border-y md:border-searchBgColor md:py-[25px] ">

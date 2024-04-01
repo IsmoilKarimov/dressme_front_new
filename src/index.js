@@ -13,10 +13,11 @@ import { HomeFilterContextProvider } from "./ContextHook/HomeFilterContext";
 import { MobileSelectedDataContextProvider } from "./ContextHook/mobileSelectedData";
 import { UserRefreshTokenContextProvider } from "./ContextHook/UserRefreshToken";
 import { DressmeLanguage } from "./language/LanguageItems";
-import './language/i18n'
+import "./language/i18n";
 import { DressmeSeason } from "./ContextHook/SeasonContext";
 import { LocationId } from "./ContextHook/LocationId";
 import { MapsShopsList } from "./ContextHook/MapsShopsList";
+import { SelectedLocationProvider } from "./ContextHook/SelectedLocation";
 
 const queryClient = new QueryClient();
 
@@ -37,7 +38,9 @@ root.render(
                         <ProfileDataContextProvider>
                           <HomeFilterContextProvider>
                             <MobileSelectedDataContextProvider>
-                              <App />
+                              <SelectedLocationProvider>
+                                <App />
+                              </SelectedLocationProvider>
                             </MobileSelectedDataContextProvider>
                           </HomeFilterContextProvider>
                         </ProfileDataContextProvider>
