@@ -17,22 +17,26 @@ import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 
 const TopHeader = () => {
-  const { i18n, t } = useTranslation('header')
+  const { i18n, t } = useTranslation("header");
 
   const [dressInfo] = useContext(dressMainData);
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
-  const [currentLang, setCurrentLang] = useState(localStorage.getItem("i18nextLng"))
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
+  const [currentLang, setCurrentLang] = useState(
+    localStorage.getItem("i18nextLng")
+  );
   useEffect(() => {
     if (localStorage.getItem("i18nextLng")?.length > 2) {
-      i18next.changeLanguage(currentLang)
+      i18next.changeLanguage(currentLang);
     }
-    setLanguageDetector({ typeLang: currentLang })
-  }, [currentLang])
+    setLanguageDetector({ typeLang: currentLang });
+  }, [currentLang]);
 
   // console.log(languageDetector,'languageDetector---22');
   // console.log(currentLang,'currentLang---22');
   // console.log('--------------------------');
-  const { request } = useHttp()
+  const { request } = useHttp();
   const [selectBtn, setSelectBtn] = useState(true);
   const [regionsShow, setRegionsShow] = useState(false);
   const toggleRegionsShow = useCallback(() => setRegionsShow(false), []);
@@ -48,8 +52,8 @@ const TopHeader = () => {
     setOpenLang(newOpen);
   };
   const handleLangValue = (value) => {
-    i18n.changeLanguage(value)
-    setCurrentLang(value)
+    i18n.changeLanguage(value);
+    setCurrentLang(value);
     setOpenLang(false);
   };
   const contentLang = (
@@ -97,19 +101,21 @@ const TopHeader = () => {
   // ----------Get Region List
   const url = "https://api.dressme.uz/api/main";
 
-  useQuery(["region-data-top"], () => {
-    return request({ url: "/main/regions", token: true });
-  },
+  useQuery(
+    ["region-data-top"],
+    () => {
+      return request({ url: "/main/regions", token: true });
+    },
     {
       onSuccess: (res) => {
         setData({
-          ...data, mainRegionsList: res?.regions
+          ...data,
+          mainRegionsList: res?.regions,
         });
       },
       onError: (err) => {
         // console.log(err, "ERR-PROFILE");
         throw new Error(err || "something wrong");
-
       },
       keepPreviousData: true,
       refetchOnWindowFocus: false,
@@ -126,10 +132,11 @@ const TopHeader = () => {
       {regionsShow && (
         <div
           className={`max-w-[600px]  w-full fixed duration-500 z-[231]  left-1/2 right-1/2 top-[50%] translate-x-[-50%] translate-y-[-50%]  h-fit flex items-center  justify-center mx-auto
-        ${regionsShow
-              ? " bottom-0 md:flex flex-col"
-              : "bottom-[-1500px] z-[-10]"
-            }
+        ${
+          regionsShow
+            ? " bottom-0 md:flex flex-col"
+            : "bottom-[-1500px] z-[-10]"
+        }
         `}
         >
           <RegionList onClick={toggleRegionsShow} />
@@ -137,10 +144,11 @@ const TopHeader = () => {
       )}
 
       <div
-        className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${locationWindow === "/locations"
-          ? "bg-transparent h-[40px] "
-          : "bg-bgColor h-[36px] "
-          }`}
+        className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${
+          locationWindow === "/locations"
+            ? "bg-transparent h-[40px] "
+            : "bg-bgColor h-[36px] "
+        }`}
       >
         <section className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">
           {/* LEFT SIDE */}
@@ -156,26 +164,34 @@ const TopHeader = () => {
                   <LocationIcons />
                 </span>
                 <div className="flex items-center text-textColor text-[13px]  mr-[6px] font-AeonikProMedium">
-                  {t('region')}
+                  {t("region")}
                   <span>:</span>
                 </div>
                 <div className="w-full min-w-[90px] font-AeonikProMedium flex items-center text-[13px]">
-                  {data?.mainRegionsList?.filter((e) => e?.id === dressInfo?.mainRegionId)
+                  {data?.mainRegionsList
+                    ?.filter((e) => e?.id === dressInfo?.mainRegionId)
                     ?.map((item) => {
                       return (
                         <div key={item?.id}>
                           <span className="">
-                            {languageDetector?.typeLang === 'ru' && item?.name_ru}
-                            {languageDetector?.typeLang === 'uz' && item?.name_uz}</span>
+                            {languageDetector?.typeLang === "ru" &&
+                              item?.name_ru}
+                            {languageDetector?.typeLang === "uz" &&
+                              item?.name_uz}
+                          </span>
                           {item?.sub_regions
-                            ?.filter((e) => e?.id === dressInfo?.mainSubRegionId)
+                            ?.filter(
+                              (e) => e?.id === dressInfo?.mainSubRegionId
+                            )
                             ?.map((data) => {
                               return (
                                 <span key={data?.id} className="  ">
                                   ,{" "}
                                   <span className=" ml-[1px]">
-                                    {languageDetector?.typeLang === 'ru' && data?.name_ru}
-                                    {languageDetector?.typeLang === 'uz' && data?.name_uz}
+                                    {languageDetector?.typeLang === "ru" &&
+                                      data?.name_ru}
+                                    {languageDetector?.typeLang === "uz" &&
+                                      data?.name_uz}
                                   </span>
                                 </span>
                               );
@@ -212,7 +228,6 @@ const TopHeader = () => {
                 }
               )}
             </section>
-
           </article>
 
           {/* RIGHT SIDE */}
@@ -225,7 +240,7 @@ const TopHeader = () => {
                   "_blank"
                 )
               }
-              className={`flex items-center h-fit py-[4px] ml-6
+              className={`flex items-center h-fit py-[4px] mx-6
                  ${!selectBtn ? "py-[4px] px-3 bg-white rounded" : ""}
               `}
             >
@@ -238,10 +253,9 @@ const TopHeader = () => {
                   ${!selectBtn ? "text-black" : "text-textColor"}
                 `}
               >
-                {t('business')}
+                {t("business")}
               </p>
             </button>
-            <article className="line h-5 border text-textColor mx-6"></article>
             <NavLink
               to="/shops"
               onClick={() => setSelectBtn(true)}
@@ -257,7 +271,7 @@ const TopHeader = () => {
                   ${selectBtn ? "text-black" : "text-textColor"}
                 `}
               >
-                {t('market')}
+                {t("market")}
               </p>
             </NavLink>
           </article>
