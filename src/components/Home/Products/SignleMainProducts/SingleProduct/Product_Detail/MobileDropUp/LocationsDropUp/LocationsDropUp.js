@@ -4,6 +4,7 @@ import { Radio } from "antd";
 import { useTranslation } from "react-i18next";
 import { LanguageDetectorDress } from "../../../../../../../../language/LanguageItems";
 import { SelectedLocation } from "../../../../../../../../ContextHook/SelectedLocation";
+import { SliderPhotosColorContext } from "../../../../../../../../ContextHook/SliderPhotosColor";
 
 function LocationDropUp({
   onClick,
@@ -19,6 +20,7 @@ function LocationDropUp({
 
   const [selectedLocation, setSelectedLocation, , setSelectedSize] =
     useContext(SelectedLocation);
+  const [colorId, setcolorId] = useContext(SliderPhotosColorContext);
 
   const { t } = useTranslation("products");
 
@@ -56,6 +58,7 @@ function LocationDropUp({
                                 checkedData = data;
                                 setSelectedLocation(data);
                                 setSelectedSize(null);
+                                setcolorId(null);
                               }}
                               key={i}
                               className="mb-[8px]"

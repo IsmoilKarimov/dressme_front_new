@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 export const SelectedLocation = createContext();
 export const SelectedLocationProvider = ({ children }) => {
-  const [selectedLocation, setSelectedLocation] = useState([]);
+  const [selectedLocation, setSelectedLocation] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
   return (
     <SelectedLocation.Provider
