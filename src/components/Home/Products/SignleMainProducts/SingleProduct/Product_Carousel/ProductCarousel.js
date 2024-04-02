@@ -35,13 +35,6 @@ const ProductCarousel = ({ show, data }) => {
 
   const [selectedColor, setSelectedColor] = useState(data?.product?.colors[0]);
 
-  useEffect(() => {
-    if (selectedSize === null) {
-      setSelectedColor(data?.product?.colors[0]);
-      setcolorId(null);
-    }
-  }, [selectedSize]);
-
   const filterColorsOnSelect = (id) => {
     setSelectedColor(
       data?.product?.colors?.find((item) => item?.pivot?.id === id)
@@ -365,6 +358,13 @@ const ProductCarousel = ({ show, data }) => {
       setSelectedLocation(data?.product?.locations[0]);
     }
   }, [data, dressInfo]);
+
+  // useEffect(() => {
+  //   if (selectedSize === null) {
+  //     setSelectedColor(data?.product?.colors[0]);
+  //     setcolorId(null);
+  //   }
+  // }, [selectedSize]);
 
   useEffect(() => {
     if (!colorId) {
