@@ -368,21 +368,36 @@ const ProductCarousel = ({ show, data }) => {
 
   useEffect(() => {
     if (!colorId) {
-      setSelectedLocation([]);
+      setSelectedLocation(null);
       setSelectedSize(null);
     }
   }, []);
 
   useEffect(() => {
     if (colorId) {
-      setSelectedSize(
-        data?.product?.sizes?.find((x) => x.product_color_id === colorId)
-      );
+      if (selectedLocation) {
+        setSelectedSize(
+          data?.product?.sizes?.find(
+            (x) =>
+              Number(x?.product_color_id) === Number(colorId) &&
+              x?.shop_location_id == selectedLocation?.id
+          )
+        );
+      } else {
+        setSelectedSize(
+          data?.product?.sizes?.find(
+            (x) =>
+              Number(x?.product_color_id) === Number(colorId) &&
+              x?.shop_location_id == data?.product?.locations[0]?.id
+          )
+        );
+      }
+
       setSelectedColor(
         data?.product?.colors?.find((item) => item?.pivot?.id === colorId)
       );
     }
-  }, [colorId]);
+  }, [colorId, selectedLocation]);
 
   let indexPage = 0;
   let indexPageSelected = 0;
@@ -970,7 +985,7 @@ const ProductCarousel = ({ show, data }) => {
                 ? data?.product?.sizes?.map((data) => {
                     if (
                       data?.shop_location_id == selectedLocation?.id &&
-                      selectedColor?.pivot?.id === data?.product_color_id
+                      selectedColor?.pivot?.id == data?.product_color_id
                     ) {
                       return (
                         <div
