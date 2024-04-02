@@ -59,10 +59,6 @@ const ProductCarousel = ({ show, data }) => {
 
   const [sliderState, setSliderState] = useState(0);
 
-  useEffect(() => {
-    setSliderState(0);
-  }, [colorId]);
-
   let photos_length = data?.product?.photos?.length;
 
   useEffect(() => {
@@ -373,6 +369,10 @@ const ProductCarousel = ({ show, data }) => {
     }
   }, []);
 
+  // useEffect(() => {
+  //   setSliderState(0);
+  // }, [colorId]);
+
   useEffect(() => {
     if (colorId) {
       if (selectedLocation) {
@@ -392,6 +392,8 @@ const ProductCarousel = ({ show, data }) => {
           )
         );
       }
+
+      setSliderState(0);
 
       setSelectedColor(
         data?.product?.colors?.find((item) => item?.pivot?.id === colorId)
@@ -666,6 +668,10 @@ const ProductCarousel = ({ show, data }) => {
               className="w-full ll:h-[482px] rounded-lg"
               ref={slider1}
               {...settings}
+              initialSlide={0}
+              afterChange={(current) => {
+                setSliderState(current);
+              }}
             >
               {colorId
                 ? filteredForModal?.map((data, i) => {
