@@ -444,7 +444,7 @@ const ProductCarousel = ({ show, data }) => {
                               <TransformComponent>
                                 <figure
                                   key={data?.id}
-                                  className="relative overflow-hidden h-[80vh] w-full md:h-[100vh] md:rounded-lg  bg-btnBgColor flex items-center justify-center"
+                                  className="relative overflow-hidden min-w-[100vw] md:min-w-[610px] h-[80vh] w-full md:h-[100vh] md:rounded-lg  bg-btnBgColor flex items-center justify-center"
                                 >
                                   <img
                                     src={data?.url_photo}
@@ -486,7 +486,7 @@ const ProductCarousel = ({ show, data }) => {
                             <TransformComponent>
                               <figure
                                 key={data?.id}
-                                className=" overflow-hidden h-[80vh] w-full md:h-[100vh] md:rounded-lg  bg-btnBgColor flex items-center justify-center "
+                                className=" overflow-hidden min-w-[100vw] md:min-w-[610px] h-[80vh] w-full md:h-[100vh] md:rounded-lg  bg-btnBgColor flex items-center justify-center "
                               >
                                 <img
                                   src={data?.url_photo}
