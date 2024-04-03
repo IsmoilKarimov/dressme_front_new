@@ -371,6 +371,10 @@ const ClothingParametr = () => {
     });
   };
 
+  // if (dressInfo?.mainColorHex) {
+  //   ClearColorId();
+  // } else {
+
   const handleFilterByUser = (fathId, childId) => {
     if (childId === 0) {
       setDressInfo({ ...dressInfo, mainGenderId: 0 });
@@ -715,10 +719,11 @@ const ClothingParametr = () => {
                         >
                           <div
                             onClick={() => {
-                              if (dressInfo?.mainColorHex) {
+                              newColorArrayId(data?.hex, data?.id);
+
+                              if (dressInfo?.mainColorHex === data.hex) {
                                 ClearColorId();
                               } else {
-                                newColorArrayId(data?.hex, data?.id);
                                 setSelectedFilters((prev) => {
                                   return {
                                     ...prev,
