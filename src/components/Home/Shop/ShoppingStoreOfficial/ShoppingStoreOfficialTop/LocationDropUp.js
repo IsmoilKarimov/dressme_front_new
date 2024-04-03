@@ -11,7 +11,7 @@ function LocationDropUp({
   onClick,
   locationList,
 }) {
-  const [languageDetector] = useContext( LanguageDetectorDress )
+  const [languageDetector] = useContext(LanguageDetectorDress);
   const { t } = useTranslation("products");
 
   return (
@@ -39,7 +39,10 @@ function LocationDropUp({
           >
             {locationList?.map((item, index) => {
               return (
-                <div key={index} className="mb-[8px] gap-x-3 flex items-center cursor-pointer">
+                <div
+                  key={index}
+                  className="mb-[8px] gap-x-3 flex items-center cursor-pointer"
+                >
                   <Space direction="vertical">
                     <Radio
                       className="text-lg font-AeonikProRegular"
@@ -59,7 +62,7 @@ function LocationDropUp({
                           item?.sub_region?.name_uz}
                       </span>
                       <span className="text-[14px] md:text-lg font-AeonikProRegular">
-                        ({item?.address} )
+                        {` `}({item?.address})
                       </span>
                     </Radio>
                   </Space>

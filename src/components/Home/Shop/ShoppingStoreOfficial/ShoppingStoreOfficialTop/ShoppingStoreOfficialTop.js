@@ -430,7 +430,7 @@ const ShoppingStoreOfficialTop = ({
                                       item?.sub_region?.name_uz}
                                   </span>
                                   <span className="text-[14px] md:text-lg font-AeonikProRegular">
-                                    ({item?.address} )
+                                    {` `}({item?.address})
                                   </span>
                                 </Radio>
                               </Space>
