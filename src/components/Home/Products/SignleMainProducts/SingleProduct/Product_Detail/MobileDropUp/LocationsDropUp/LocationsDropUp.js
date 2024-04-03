@@ -42,7 +42,7 @@ function LocationDropUp({
               defaultValue={selectedLocation?.id}
               value={selectedLocation?.id}
             >
-              {existRegions.map((item, i) => {
+              {existRegions?.map((item, i) => {
                 return (
                   <div key={i}>
                     <div className="font-AeonikProRegular text-lg border-b border-[#f0f0f0] mb-[15px]">
@@ -50,7 +50,7 @@ function LocationDropUp({
                     </div>
 
                     <div className="w-full">
-                      {data?.product?.locations.map((data, i) => {
+                      {data?.product?.locations?.map((data, i) => {
                         if (data?.sub_region?.region_id === item) {
                           return (
                             <div
