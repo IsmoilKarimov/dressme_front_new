@@ -25,7 +25,7 @@ const { Option } = Select;
 
 function BottomHeader() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [data, setPage] = useContext(HomeMainDataContext);
+  const [data, setData, , , page, setPage] = useContext(HomeMainDataContext);
   const { t } = useTranslation("header");
 
   const [languageDetector,] = useContext(
