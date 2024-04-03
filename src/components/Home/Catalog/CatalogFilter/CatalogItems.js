@@ -111,8 +111,7 @@ export default function CatalogItems() {
 
   const newId = paramId?.id?.replace(":", "");
   // languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz
-  // console.log(newId, 'newId');
-  useLayoutEffect(() => {
+   useLayoutEffect(() => {
     if (languageDetector?.typeLang === "ru") {
       if (newId === "украшения-аксессуары") {
         setNewFilterParamasId(5);
@@ -214,8 +213,7 @@ export default function CatalogItems() {
   const typeFilter = String(seasonDetector?.type)?.split("");
   const seasonId = Number(typeFilter?.shift());
 
-  // console.log(seasonId, "seasonId");
-
+ 
   const apiUrl = `https://api.dressme.uz/api/main/category/${newFilterParamasId}`;
   // setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
   const headers = new Headers();
@@ -288,11 +286,9 @@ export default function CatalogItems() {
         setFilterData(res);
         setDressInfo({ ...dressInfo, filterDataProductList: res });
         setLoading(false);
-        // console.log(res, 'category---res');
-      })
+       })
       .catch((err) => {
-        // console.log(err, 'category---err');
-
+ 
         setLoading(false);
         throw new Error(err || "something wrong");
       });

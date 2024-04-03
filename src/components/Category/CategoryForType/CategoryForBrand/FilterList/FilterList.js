@@ -1040,8 +1040,7 @@ function FilterList({
                     {footwearData
                       ?.slice(0, visibleButtons)
                       ?.map((footwear, index) => {
-                        // console.log(footwear, 'footwear?.amount?.length');
-                        return (
+                         return (
                           <button
                             key={index + 1}
                             onClick={() => onHandleFootWearList(footwear)}

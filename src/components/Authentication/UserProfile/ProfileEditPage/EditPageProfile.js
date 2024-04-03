@@ -66,7 +66,7 @@ const EditProfilePage = () => {
   const [state, setState] = useState({
     userFirstname: "",
     userLastname: "",
-    userPhoneCode: "",
+    userPhoneCode: "+998",
     userPhoneNumber: "",
     userLastnameForEdit: "",
     userFirstnameForEdit: "",
@@ -117,7 +117,6 @@ const EditProfilePage = () => {
     onSuccess: (data) => {
       if (data?.status >= 200 && data?.status < 300) {
         setProfileContextData(data?.data);
-        // console.log(data?.data, "data?.data");
       }
     },
     onError: (error) => {
@@ -139,7 +138,7 @@ const EditProfilePage = () => {
     setselectMonth({ text: monthList[ar - 1]?.type, id: ar });
     setSelectYear(
       profileContextData?.birth_date?.split("-")[2] ||
-        localStorage.getItem("selectedYear")
+      localStorage.getItem("selectedYear")
     );
     setState({
       ...state,
@@ -148,15 +147,14 @@ const EditProfilePage = () => {
       userEmail: profileContextData?.email,
       gender_id: profileContextData?.gender_id,
       birth_date: profileContextData?.birth_date,
-      userPhoneCode:
-        profileContextData?.phone && profileContextData?.phone.slice(0, 3),
+
       userPhoneNumber:
-        profileContextData?.phone && profileContextData?.phone.slice(3, 12),
+        profileContextData?.phone && profileContextData?.phone.slice(4, 13),
       // --------------
       userFirstnameForEdit: profileContextData?.name,
       userLastnameForEdit: profileContextData?.surname,
       userPhoneNumberForEdit:
-        profileContextData?.phone && profileContextData?.phone.slice(3, 12),
+        profileContextData?.phone && profileContextData?.phone.slice(4, 13),
     });
   }, [profileContextData]);
 
@@ -173,20 +171,17 @@ const EditProfilePage = () => {
       })
       .catch((err) => {
         setLoading(false);
-        // console.log(err);
         if (err?.response?.status === 401 || err?.response?.status === 403) {
-          // reFreshTokenFunc();
-          // console.log("401");
-          // toast.error(`${err?.response?.data?.message}`, {
-          //   position: "top-right",
-          //   autoClose: 5000,
-          //   hideProgressBar: false,
-          //   closeOnClick: true,
-          //   pauseOnHover: true,
-          //   draggable: true,
-          //   progress: undefined,
-          //   theme: "light",
-          // });
+          toast.error(`${err?.response?.data?.message}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         } else {
           Cookies.remove("DressmeUserToken");
           Cookies.remove("DressmeUserRefreshToken");
@@ -196,21 +191,22 @@ const EditProfilePage = () => {
       });
   };
 
-  let data = state?.userPhoneNumber?.split("-");
-  let arr = data?.join("");
-  let data1 = arr?.split("(");
-  let arr1 = data1?.join("");
-  let arr2 = arr1?.split(")");
-  let data2 = arr2?.join("");
-  let arr3 = state?.userPhoneCode?.split("+");
-  let data3 = arr3?.join("");
-  const sendMessagePhoneNumber = data3 + data2;
 
-  // =========== POST USER EDIT DATA ==========
+ 
+  let data = state?.userPhoneNumber.split("-");
+  let arr = data.join("");
+  let data1 = arr.split("(");
+  let arr1 = data1.join("");
+  let arr2 = arr1.split(")");
+  let data2 = arr2.join("");
+  let data3 = data2.split(" ");
+  let data4 = data3.join("");
+ 
+  const sendMessagePhoneNumber = state?.userPhoneCode + data4;
+    // =========== POST USER EDIT DATA ==========
   const sendEditedData = () => {
-    let date = `${dayValue}${selectMonth?.id ? "-" + selectMonth?.id : ""}${
-      selectYear ? "-" + selectYear : ""
-    }`;
+    let date = `${dayValue}${selectMonth?.id ? "-" + selectMonth?.id : ""}${selectYear ? "-" + selectYear : ""
+      }`;
 
     setLoading(true);
 
@@ -237,8 +233,7 @@ const EditProfilePage = () => {
       })
       .then((res) => {
         if (res?.errors && res?.message) {
-          // console.log(res, "Bu-Error send edit postttttt");
-          setState({ ...state, errorsGroup: res, activeEditPassword: false });
+           setState({ ...state, errorsGroup: res, activeEditPassword: false });
           setLoading(false);
           toast.error(`${res?.message}`, {
             position: "top-right",
@@ -256,8 +251,7 @@ const EditProfilePage = () => {
             // reFreshTokenFunc();
             sendEditedData();
             reFetchFunction();
-            // console.log(res, "Bu-error edit posttttt");
-          } else {
+           } else {
             toast.success(`${res?.message}`, {
               position: "top-right",
               autoClose: 5000,
@@ -268,16 +262,14 @@ const EditProfilePage = () => {
               progress: undefined,
               theme: "light",
             });
-            // console.log(res, "Bu-success edit posttttt");
-          }
+           }
           setState({ ...state, errorsGroup: res, activeEditPassword: false });
           setLoading(false);
         }
       })
       .catch((err) => {
         setLoading(false);
-        // console.log(err);
-        if (err?.status === 401 || err?.status === 403) {
+         if (err?.status === 401 || err?.status === 403) {
           // reFreshTokenFunc();
         } else {
           Cookies.remove("DressmeUserToken");
@@ -302,13 +294,11 @@ const EditProfilePage = () => {
       }),
     })
       .then((res) => {
-        // console.log(res.status, "ffffffffffffffffff");
-        return res.json();
+         return res.json();
       })
       .catch((err) => {
         setLoading(false);
-        // console.log(err);
-        if (err?.status === 401 || err?.status === 403) {
+         if (err?.status === 401 || err?.status === 403) {
           // reFreshTokenFunc();
         } else {
           Cookies.remove("DressmeUserToken");
@@ -324,8 +314,7 @@ const EditProfilePage = () => {
       {},
       {
         onSuccess: (res) => {
-          // console.log(res, "USER-EMAIL");
-          if (res?.message && !res.errors) {
+           if (res?.message && !res.errors) {
             if (res?.message === "Unauthenticated.") {
               // reFreshTokenFunc();
               sendEditedEmailData();
@@ -358,8 +347,7 @@ const EditProfilePage = () => {
           }
         },
         onError: (err) => {
-          // console.log(err);
-          throw new Error(err || "something wrong");
+           throw new Error(err || "something wrong");
         },
       }
     );
@@ -461,17 +449,15 @@ const EditProfilePage = () => {
               ></section>
               {/* PASSWORD COMPONENT */}
               <section
-                className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${
-                  openEditPasswordModal ? "" : "hidden z-0"
-                }`}
+                className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${openEditPasswordModal ? "" : "hidden z-0"
+                  }`}
               >
                 <EditPassword onClick={togglePassword} />
               </section>
               {/* EMAIL COMPONENT */}
               <section
-                className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${
-                  sendEmailModal ? "" : "hidden z-0"
-                }`}
+                className={`fixed  max-w-[440px] md:max-w-[550px] mx-auto w-full md:w-auto z-[113] bottom-0 md:bottom-auto  duration-300 overflow-hidden ${sendEmailModal ? "" : "hidden z-0"
+                  }`}
               >
                 <EmailSend sendData={sendData} onClick={toggleEmail} />
               </section>
@@ -481,9 +467,8 @@ const EditProfilePage = () => {
                   onClick={() => {
                     setState({ ...state, openModalEmailMessage: false });
                   }}
-                  className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-                    state?.openModalEmailMessage ? "" : "hidden"
-                  }`}
+                  className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${state?.openModalEmailMessage ? "" : "hidden"
+                    }`}
                 ></div>
                 {state?.openModalEmailMessage && (
                   <div className="fixed max-w-[490px] h-[275px]  p-3 bg-white rounded-lg mx-auto w-full z-[113] top-[50%] left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
@@ -604,9 +589,8 @@ const EditProfilePage = () => {
                             });
                           }
                         }}
-                        className={`${
-                          state?.gender_id === "1" ? "text-[#007DCA]" : ""
-                        } cursor-pointer border-r select-none w-full h-full flex items-center justify-center text-[16px] font-AeonikProMedium`}
+                        className={`${state?.gender_id === "1" ? "text-[#007DCA]" : ""
+                          } cursor-pointer border-r select-none w-full h-full flex items-center justify-center text-[16px] font-AeonikProMedium`}
                       >
                         {t("PPEman")}
                       </div>
@@ -622,9 +606,8 @@ const EditProfilePage = () => {
                             });
                           }
                         }}
-                        className={`${
-                          state?.gender_id === "2" ? "text-[#007DCA]" : ""
-                        } cursor-pointer select-none w-full h-full flex items-center justify-center text-[16px] font-AeonikProMedium`}
+                        className={`${state?.gender_id === "2" ? "text-[#007DCA]" : ""
+                          } cursor-pointer select-none w-full h-full flex items-center justify-center text-[16px] font-AeonikProMedium`}
                       >
                         {t("PPEwoman")}
                       </div>
@@ -757,9 +740,8 @@ const EditProfilePage = () => {
                           <BiChevronUp
                             size={20}
                             style={{ color: "#c2c2c2" }}
-                            className={`${
-                              openMonth ? "rotate-[180deg]" : ""
-                            } duration-200`}
+                            className={`${openMonth ? "rotate-[180deg]" : ""
+                              } duration-200`}
                           />{" "}
                         </span>
                       </Popover>
@@ -826,19 +808,19 @@ const EditProfilePage = () => {
                         <div className="w-[65%] md:w-[75%] bg-btnBgColor h-12 overflow-hidden">
                           <InputMask
                             mask="(99) 999-99-99"
-                            value={state?.userPhoneNumber || ""}
+                            value={state?.userPhoneNumber}
                             onChange={(e) => {
                               setState({
                                 ...state,
                                 userPhoneNumber: e.target.value,
                                 activeEditPassword: true,
                               });
-                            }}
-                            className={`w-full px-4  h-full not-italic bg-btnBgColor ${
-                              state?.userPhoneNumber
-                                ? "font-AeonikProMedium"
-                                : null
-                            } text-base leading-4 text-black`}
+                            }
+                            }
+                            className={`w-full px-4  h-full not-italic bg-btnBgColor ${state?.userPhoneNumber
+                              ? "font-AeonikProMedium"
+                              : null
+                              } text-base leading-4 text-black`}
                             placeholder={"(77) 777-77-77"}
                           ></InputMask>
                         </div>
@@ -872,28 +854,33 @@ const EditProfilePage = () => {
                     </div>
                   </div>
                   {/* EditPassword and Send Edited Email */}
-                  <div className="w-full flex items-center xs:justify-start justify-end mt-5 ">
-                    <button
-                      onClick={() => setOpenEditPasswordModal(true)}
-                      type="button"
-                      className={
-                        "w-full text-start text-borderWinter text-base not-italic font-AeonikProRegular hover:underline"
-                      }
-                    >
-                      {t("PPEeditPss")}
-                    </button>
-                    <button
-                      onClick={() => setSendEmailModal(true)}
-                      type="button"
-                      disabled={state.activeEditEmail ? false : true}
-                      className={`${
-                        state.activeEditEmail
+                  <div className="w-full flex items-center xs:justify-start justify-end mt-5  ">
+                    <div className="w-full">
+                      <button
+                        onClick={() => setOpenEditPasswordModal(true)}
+                        type="button"
+                        className={
+                          "w-fit text-start text-borderWinter text-base not-italic font-AeonikProRegular hover:underline  "
+                        }
+                      >
+                        {t("PPEeditPss")}
+                      </button>
+                    </div>
+                    <div className="w-full flex items-center justify-end">
+                      <button
+                        onClick={() => setSendEmailModal(true)}
+                        type="button"
+                        disabled={state.activeEditEmail ? false : true}
+                        className={`${state.activeEditEmail
                           ? "text-borderWinter hover:underline"
                           : "text-[#e2e2e2] hover:no-underline"
-                      } w-full text-end  text-base not-italic font-AeonikProRegular `}
-                    >
-                      {t("PPEeditEmail")}
-                    </button>
+                          } w-fit text-end  text-base not-italic font-AeonikProRegular `}
+                      >
+                        {t("PPEeditEmail")}
+                      </button>
+                    </div>
+
+
                   </div>
                 </div>
 
@@ -917,11 +904,10 @@ const EditProfilePage = () => {
                       onClick={sendEditedData}
                       type="button"
                       disabled={state.activeEditPassword ? false : true}
-                      className={`${
-                        state.activeEditPassword
-                          ? "cursor-pointer bg-borderWinter active:scale-95 active:opacity-70"
-                          : "cursor-not-allowed bg-gray-300"
-                      } w-[100%] md:w-[244px] h-[52px]  text-white rounded-lg flex items-center justify-center`}
+                      className={`${state.activeEditPassword
+                        ? "cursor-pointer bg-borderWinter active:scale-95 active:opacity-70"
+                        : "cursor-not-allowed bg-gray-300"
+                        } w-[100%] md:w-[244px] h-[52px]  text-white rounded-lg flex items-center justify-center`}
                     >
                       <span className="not-italic  font-AeonikProMedium text-base leading-4 text-center tracking-[1%]">
                         {t("PPrefresh")}{" "}

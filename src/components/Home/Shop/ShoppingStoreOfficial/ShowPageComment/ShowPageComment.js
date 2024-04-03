@@ -36,8 +36,7 @@ function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
   const textRef = useRef();
   const rateRef = useRef();
 
-  // console.log(filteredData?.shop?.id, 'storedata');
-
+ 
   const commentMutate = useMutation(() => {
     return fetch(`${url}/user-main/ratings/store-rating`, {
       method: "POST",

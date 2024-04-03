@@ -42,8 +42,7 @@ export default function SignIn() {
     const { checked } = e.target;
     setState({ ...state, rememberCheck: checked });
   };
-  // console.log(state?.rememberCheck, 'rememberCheck');
-  const dataMutate = useMutation(() => {
+   const dataMutate = useMutation(() => {
     return fetch(`${url}/login`, {
       method: "POST",
       headers: {
@@ -102,8 +101,7 @@ export default function SignIn() {
           }
         },
         onError: (err) => {
-          // console.log(err, "ERROR");
-          toast.error("Serverda xatolik", {
+           toast.error("Serverda xatolik", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,

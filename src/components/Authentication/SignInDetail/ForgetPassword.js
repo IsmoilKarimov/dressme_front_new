@@ -40,8 +40,7 @@ export default function ForgetPassword() {
         {},
         {
           onSuccess: (res) => {
-            // console.log(res, "forgotPassword");
-            if (res?.status == 200 || res?.ok) {
+             if (res?.status == 200 || res?.ok) {
               setState({
                 ...state,
                 openModalEmailMessage: true,
@@ -80,8 +79,7 @@ export default function ForgetPassword() {
           },
           onError: (err) => {
             // message.error("введите правильный адрес электронной почты")
-            // console.log(err, "err");
-            setLoading(false);
+             setLoading(false);
             toast.error("введите правильный адрес электронной почты", {
               position: "top-right",
               autoClose: 5000,

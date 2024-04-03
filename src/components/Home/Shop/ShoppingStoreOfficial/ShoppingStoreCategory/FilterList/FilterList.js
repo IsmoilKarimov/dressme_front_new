@@ -88,12 +88,10 @@ function FilterList({
     if (!getFilter) {
       if (filterToggle) {
         fetchGetAllData()
-        // console.log('shop-1 run-1');
-      }
+       }
       if (openMobileFilter) {
         fetchGetAllData()
-        // console.log('shop-1 run-1-1');
-      }
+       }
     }
   }, [filterToggle, openMobileFilter])
 
@@ -101,13 +99,11 @@ function FilterList({
     if (getFilter) {
       setFilterToggle(false)
       setGetFilter()
-      // console.log('shop-1 run-2');
-
+ 
     }
   }, [locationIdDetector?.locationIdForTest])
 
-  // console.log(filterToggle, "shop-1 filterToggle");
-  // console.log(getFilter, "shop-1 getFilter");
+  
 
   const [genderCategory, setGenderCategory] = useState([
     {

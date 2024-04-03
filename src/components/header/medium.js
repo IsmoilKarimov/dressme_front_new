@@ -76,8 +76,7 @@ const MediumHeader = ({ stateData, setStateData }) => {
     setLanguageDetector({ typeLang: currentLang });
   }, [currentLang]);
   // useEffect
-  // console.log(currentLang,'currentLang---11');
-  // console.log(languageDetector,'languageDetector---11');
+ 
   useEffect(() => {
     if (stateData?.hamburgerMenu || regionsList) {
       document.body.style.overflow = "hidden";

@@ -92,10 +92,9 @@ const YandexTop = ({ onClick }) => {
     },
     {
       onSuccess: (res) => {
-        setData({
-          ...data,
-          mainRegionsList: res?.regions,
-        });
+        if (res?.regions) {
+          localStorage.setItem("regions", JSON.stringify(res?.regions))
+        }
       },
       onError: (err) => {
         throw new Error(err || "something wrong");

@@ -308,8 +308,7 @@ function BottomHeader() {
       </section> */}
     </div>
   );
-  // console.log(dressInfo?.mainCategoryId, "mainCategoryId");
-
+ 
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
       <div

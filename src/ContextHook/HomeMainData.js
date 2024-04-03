@@ -9,7 +9,7 @@ export const HomeMainDataContextProvider = ({ children }) => {
     products: [],
     loader: false,
     btnLoader: false,
-    mainRegionsList: [],
+    mainRegionsList: JSON.parse(localStorage.getItem("regions")),
     selectedLoc: "changed",
   });
   const [page, setPage] = useState(1);

@@ -189,8 +189,7 @@ export default function YandexFilter({ getMapsInfo }) {
   };
 
   const onSearch = (value) => {
-    // console.log("search:", value);
-  };
+   };
 
   const targetModal = document.getElementById("defaultModal");
 

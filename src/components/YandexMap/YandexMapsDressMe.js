@@ -63,8 +63,7 @@ function YandexMapsDressMe() {
     () => setMarketsFilterMaps(false),
     []
   );
-  // console.log(mapslist, 'mapslist');
-  // request get
+   // request get
   const [FilterSearchByBrand, setFilterSearchByBrand] = useState({});
   const [getAllImgGallery, setGetAllImgGallery] = useState();
 
@@ -389,8 +388,7 @@ function YandexMapsDressMe() {
               }}
             > */}
             {mapslist?.locations?.map((data, index) => (
-              // console.log(data, "data");
-              <Placemark
+               <Placemark
                 onError={handleError}
                 className={"placemarkCLuster cursor-pointer "}
                 key={data?.id}
@@ -725,8 +723,7 @@ function YandexMapsDressMe() {
               }}
             > */}
             {mapslist?.locations?.map((data, index) => (
-              // console.log(data, "data");
-              <Placemark
+               <Placemark
                 onError={handleError}
                 className={"placemarkCLuster cursor-pointer "}
                 key={data?.id}

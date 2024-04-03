@@ -44,8 +44,7 @@ export default function UserEmailVerification() {
       .then((results) => results.json())
       .then((data) => {
         setState({ ...state, getVerfyMessage: data });
-        // console.log(data, "Return Get method");
-      });
+       });
   }, []);
 
   const dataMutate = useMutation(() => {
@@ -68,8 +67,7 @@ export default function UserEmailVerification() {
       {},
       {
         onSuccess: (res) => {
-          // console.log(res, "RES-AUTH");
-          if (res?.message && !res.errors) {
+           if (res?.message && !res.errors) {
             setState({ ...state, errorsGroup: res });
           } else if (res?.message && res?.errors) {
             setState({
@@ -86,8 +84,7 @@ export default function UserEmailVerification() {
           }
         },
         onError: (err) => {
-          // console.log(err, "ERR");
-          setState({ ...state, errorMessage: err?.message });
+           setState({ ...state, errorMessage: err?.message });
         },
       }
     );

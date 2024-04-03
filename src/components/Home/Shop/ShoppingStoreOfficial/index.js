@@ -100,8 +100,7 @@ const ShoppingStoreOfficial = () => {
     setPageId(1);
   };
 
-  // console.log(pageId, "pageId,");
-  const clickButtons = {
+   const clickButtons = {
     openTabComment,
     setOpenTabComment,
     openTabLocation,
@@ -148,10 +147,7 @@ const ShoppingStoreOfficial = () => {
       }
     });
   };
-  // console.log(
-  //   locationIdDetector?.locationIdForTest,
-  //   "locationIdParams=-----dressInfo"
-  // );
+  
 
   useEffect(() => {
     refreshLocationId();

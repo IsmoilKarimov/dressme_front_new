@@ -110,15 +110,13 @@ const ShoppingStoreOfficialByLocation = () => {
   const paramsIDS = useParams();
   const newId = paramsIDS?.id.replace(":", "");
   const [data1, setdata1] = useState(null);
-  // console.log(data?.getMainProductCard?.shops, 'category--data?.getMainProductCard?.shops');
-  // console.log(newFilterParamasId, 'category--newFilterParamasId');
+   
 
   const refreshLocationId = () => {
     data?.getMainProductCard?.shops?.map((item) => {
       if (item?.id === Number(newFilterParamasId)) {
         if (dressInfo?.mainSubRegionId) {
-          // console.log('category---run1');
-          let foundElement = item?.approved_shop_locations.find(function (
+           let foundElement = item?.approved_shop_locations.find(function (
             element
           ) {
             return Number(element.sub_region_id) === dressInfo?.mainSubRegionId;
@@ -134,8 +132,7 @@ const ShoppingStoreOfficialByLocation = () => {
           setdata1(foundElement?.id);
         }
         if (!dressInfo?.mainSubRegionId) {
-          // console.log(item?.approved_shop_locations[0]?.id, 'category---run2');
-          // if (locationIdDetector?.locationIdForTest !== item?.approved_shop_locations[0]?.id) {
+           // if (locationIdDetector?.locationIdForTest !== item?.approved_shop_locations[0]?.id) {
           setDressInfo({
             ...dressInfo,
             locationIdParams: item?.approved_shop_locations[0]?.id,
@@ -211,10 +208,7 @@ const ShoppingStoreOfficialByLocation = () => {
   //   // const seasonId = Number(typeFilter?.shift());
 
   // }, [seasonDetector?.type])
-
-  // console.log(dressInfo?.type, 'seasonId--dressInfo?.type');
-  // console.log(seasonId, 'seasonId');
-  // console.log(seasonIdCopy, 'seasonId--seasonIdCopy');
+ 
 
   const url = `https://api.dressme.uz/api`;
   const [loading, setLoading] = useState(true);
@@ -291,8 +285,7 @@ const ShoppingStoreOfficialByLocation = () => {
           setLoading(false);
           setFilteredData(res?.data);
           setDressInfo({ ...dressInfo, filterDataProductList: res?.data });
-          // console.log(res?.data, 'category---res?.data');
-        }
+         }
       })
       .catch((res) => {
         if (res?.response?.status === 422) {
@@ -300,8 +293,7 @@ const ShoppingStoreOfficialByLocation = () => {
           setLoading(false);
           setFilteredData(null);
         }
-        // console.log(res, 'category---error');
-        throw new Error(res || "something wrong");
+         throw new Error(res || "something wrong");
       });
   };
 

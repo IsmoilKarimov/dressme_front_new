@@ -53,8 +53,7 @@ const MobileAllComments = () => {
         setLoader(false);
       },
       onError: (err) => {
-        // console.log(err, "err");
-        setLoader(false);
+         setLoader(false);
         throw new Error(err || "something wrong");
       },
       keepPreviousData: true,
@@ -88,8 +87,7 @@ const MobileAllComments = () => {
       {},
       {
         onSuccess: (res) => {
-          // console.log(res, "RES");
-          if (res.status === 401 || res.status === 403) {
+           if (res.status === 401 || res.status === 403) {
             // reFreshTokenFunc();
             sendFunc();
             setLoader(false);
@@ -101,16 +99,14 @@ const MobileAllComments = () => {
             setLoader(false);
           }
           if (res.errors) {
-            // console.log(res?.message);
-            toast.error(res?.message);
+             toast.error(res?.message);
             setLoader(false);
           }
           rateRef.current.state.value = 1;
           textRef.current.value = null;
         },
         onError: (err) => {
-          // console.log(err, "ERROR");
-          setLoader(false);
+           setLoader(false);
           rateRef.current.state.value = 1;
           textRef.current.value = null;
           throw new Error(err || "something wrong");

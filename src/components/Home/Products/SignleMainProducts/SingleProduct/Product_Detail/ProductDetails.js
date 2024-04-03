@@ -350,8 +350,7 @@ const ProductDetails = ({ data, shopsData }) => {
     navigate(`/product/${data?.product?.id}/allcomments`);
   };
 
-  // console.log(data?.product?.id, "shopsData");
-
+ 
   const goDetailShop = (id, name) => {
     shopsData?.getMainProductCard?.shops
       ?.filter((e) => e?.id == id)

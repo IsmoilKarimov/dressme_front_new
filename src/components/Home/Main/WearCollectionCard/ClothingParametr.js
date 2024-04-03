@@ -336,11 +336,7 @@ const ClothingParametr = () => {
     data?.getMainProductCard?.budget?.min_price,
     data?.getMainProductCard?.budget?.max_price,
   ]);
-  // console.log(dressInfo?.mainRegionId,
-  //   dressInfo?.mainSubRegionId,
-  //   dressInfo?.mainColorHex,
-  //   dressInfo?.mainCategoryId,
-  //   dressInfo?.mainGenderId, "dressInfo?.mainRegionId,  dressInfo?.mainSubRegionId,  dressInfo?.mainColorHex,  dressInfo?.mainCategoryId,  dressInfo?.mainGenderId,");
+ 
   const sendPriceList = () => {
     setDressInfo({ ...dressInfo, mainRangePrice: values });
   };
