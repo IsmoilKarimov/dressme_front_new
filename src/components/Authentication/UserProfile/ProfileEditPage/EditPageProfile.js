@@ -193,14 +193,14 @@ const EditProfilePage = () => {
 
 
  
-  let data = state?.userPhoneNumber.split("-");
-  let arr = data.join("");
-  let data1 = arr.split("(");
-  let arr1 = data1.join("");
-  let arr2 = arr1.split(")");
-  let data2 = arr2.join("");
-  let data3 = data2.split(" ");
-  let data4 = data3.join("");
+  let data = state?.userPhoneNumber?.split("-");
+  let arr = data?.join("");
+  let data1 = arr?.split("(");
+  let arr1 = data1?.join("");
+  let arr2 = arr1?.split(")");
+  let data2 = arr2?.join("");
+  let data3 = data2?.split(" ");
+  let data4 = data3?.join("");
  
   const sendMessagePhoneNumber = state?.userPhoneCode + data4;
     // =========== POST USER EDIT DATA ==========
