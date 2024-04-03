@@ -62,7 +62,11 @@ export const CollectionCardItem = ({
 
   useEffect(() => {
     if (mainSelectedId) {
-      setSelectedPhoto(uniqueArray[0]);
+      uniqueArray?.find((item) => {
+        if (item?.product_color_id === mainSelectedColor?.pivot?.id) {
+          setSelectedPhoto(item);
+        }
+      });
     } else {
       setSelectedPhoto(data?.photos[0]);
     }
