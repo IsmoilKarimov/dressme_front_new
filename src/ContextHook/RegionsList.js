@@ -37,8 +37,7 @@ function RegionList({ onClick }) {
     });
   };
   const accordionCityList = (id) => {
-    // console.log(id, "buqanday id");
-    if (activeIndex === id) {
+     if (activeIndex === id) {
       setActiveIndex(0);
     } else {
       setActiveIndex(id);

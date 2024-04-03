@@ -60,8 +60,7 @@ export default function SignUp() {
     birth_date: "",
   });
 
-  // console.log(Boolean(state.year));
-
+ 
   let data = state?.phoneNumber.split("-");
   let arr = data.join("");
   let data1 = arr.split("(");
@@ -70,9 +69,7 @@ export default function SignUp() {
   let data2 = arr2.join("");
   let data3 = data2.split(" ");
   let data4 = data3.join("");
-  let arr3 = state.phoneCode.split("+");
-  let data5 = arr3.join("");
-  const sendPhoneNumber = state.phoneNumber ? data5 + data4 : "";
+  const sendPhoneNumber = state.phoneNumber ? state.phoneCode + data4 : "";
 
   // =========== POST USER REGISTER DATA ==========
   const { mutate } = useMutation(() => {
@@ -80,7 +77,7 @@ export default function SignUp() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
+        'Accept': "application/json",
         "Accept-Language": languageDetector?.typeLang,
       },
       body: JSON.stringify({
@@ -95,11 +92,9 @@ export default function SignUp() {
       }),
     }).then((res) => res.json());
   });
-
   const onSubmit = () => {
-    let date = `${state.day}${selectMonth?.id ? "-" + selectMonth?.id : ""}${
-      state.year ? "-" + state.year : ""
-    }`;
+    let date = `${state.day}${selectMonth?.id ? "-" + selectMonth?.id : ""}${state.year ? "-" + state.year : ""
+      }`;
 
     setState({
       ...state,
@@ -145,7 +140,7 @@ export default function SignUp() {
         },
         onError: (err) => {
           setLoading(false);
-          toast.error("Serverda xatolik", {
+          toast.error(`${err}`, {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -217,8 +212,7 @@ export default function SignUp() {
       })}
     </div>
   );
-  // console.log(languageDetector, 'languageDetector');
-
+ 
   const [bDateValid, setBDateValid] = useState(true);
 
   const handleClick = () => {
@@ -278,11 +272,10 @@ export default function SignUp() {
                   onClick={() => {
                     setState({ ...state, gender_id: 1 });
                   }}
-                  className={`cursor-pointer flex items-center justify-center text-[14px] font-AeonikProMedium w-full h-[80px] rounded-lg border border-[#007DCA] bg-[#E5F2FA] ${
-                    state?.gender_id === 1
-                      ? "border-[#007DCA] text-[#007DCA] bg-[#E5F2FA]"
-                      : "border-[#F2F2F2] bg-[#FCFCFC]"
-                  }`}
+                  className={`cursor-pointer flex items-center justify-center text-[14px] font-AeonikProMedium w-full h-[80px] rounded-lg border border-[#007DCA] bg-[#E5F2FA] ${state?.gender_id === 1
+                    ? "border-[#007DCA] text-[#007DCA] bg-[#E5F2FA]"
+                    : "border-[#F2F2F2] bg-[#FCFCFC]"
+                    }`}
                 >
                   <div className="flex flex-col items-center">
                     <div className="w-[32px] h-[32px] flex items-center justify-center mb-2">
@@ -296,11 +289,10 @@ export default function SignUp() {
                   onClick={() => {
                     setState({ ...state, gender_id: 2 });
                   }}
-                  className={`cursor-pointer flex items-center justify-center text-[14px] font-AeonikProMedium w-full h-[80px] rounded-lg border border-[#007DCA] bg-[#E5F2FA] ${
-                    state?.gender_id === 2
-                      ? "border-[#007DCA]  text-[#007DCA] bg-[#E5F2FA]"
-                      : "border-[#F2F2F2]  bg-[#FCFCFC]"
-                  }`}
+                  className={`cursor-pointer flex items-center justify-center text-[14px] font-AeonikProMedium w-full h-[80px] rounded-lg border border-[#007DCA] bg-[#E5F2FA] ${state?.gender_id === 2
+                    ? "border-[#007DCA]  text-[#007DCA] bg-[#E5F2FA]"
+                    : "border-[#F2F2F2]  bg-[#FCFCFC]"
+                    }`}
                 >
                   <div>
                     <div className="flex flex-col items-center">
@@ -324,7 +316,7 @@ export default function SignUp() {
                   <input
                     className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                     type="text"
-                    name="name"
+                    name="fname"
                     autoComplete="name"
                     placeholder={t("Sfname")}
                     value={state?.firstName || ""}
@@ -356,7 +348,7 @@ export default function SignUp() {
                     className="  w-full h-12 placeholder-not-italic placeholder-font-AeonikProMedium placeholder-text-base placeholder-leading-4 placeholder-text-black"
                     type="text"
                     placeholder={t("Slname")}
-                    name="surname"
+                    name="lname"
                     autoComplete="surname"
                     value={state?.lastName || ""}
                     onChange={(e) =>
@@ -496,11 +488,10 @@ export default function SignUp() {
                 >
                   <span
                     className={`
-                    ${
-                      selectMonth?.text === t("Smonth")
+                    ${selectMonth?.text === t("Smonth")
                         ? "text-closeColorBtn"
                         : "text-black"
-                    }
+                      }
                     not-italic font-AeonikProMedium text-[15px] text-center mt-1 text-sm leading-4 `}
                   >
                     {selectMonth?.text}
@@ -509,17 +500,15 @@ export default function SignUp() {
                     <BiChevronUp
                       size={20}
                       style={{ color: "#c2c2c2" }}
-                      className={`${
-                        openMonth ? "rotate-[180deg]" : ""
-                      } duration-200`}
+                      className={`${openMonth ? "rotate-[180deg]" : ""
+                        } duration-200`}
                     />{" "}
                   </span>
                 </Popover>
 
                 <Space
-                  className={`w-[26%] cursor-pointer ${
-                    bDateValid ? "" : "border"
-                  }  border-red-500`}
+                  className={`w-[26%] cursor-pointer ${bDateValid ? "" : "border"
+                    }  border-red-500`}
                   direction="vertical"
                   size={12}
                   options={["Hide"]}
@@ -613,9 +602,8 @@ export default function SignUp() {
                       onChange={(e) =>
                         setState({ ...state, phoneNumber: e.target.value })
                       }
-                      className={`w-full px-4 h-full  flex items-center font-AeonikProMedium justify-center ${
-                        state?.phoneNumber ? "font-AeonikProMedium" : null
-                      } text-base leading-4 text-black`}
+                      className={`w-full px-4 h-full  flex items-center font-AeonikProMedium justify-center ${state?.phoneNumber ? "font-AeonikProMedium" : null
+                        } text-base leading-4 text-black`}
                       placeholder={"(97) 123-45-67"}
                     ></InputMask>
                   </div>
@@ -726,9 +714,8 @@ export default function SignUp() {
                   onClick={() => {
                     setState({ ...state, openModalEmailMessage: false });
                   }}
-                  className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${
-                    state?.openModalEmailMessage ? "" : "hidden"
-                  }`}
+                  className={`fixed inset-0 z-[112] duration-200 w-full h-[100vh] bg-black opacity-50 ${state?.openModalEmailMessage ? "" : "hidden"
+                    }`}
                 ></div>
                 {state?.openModalEmailMessage && (
                   <div className="fixed max-w-[490px] h-[275px]  p-3 bg-white rounded-lg  mx-auto w-full  z-[113] top-[50%] left-1/2 right-1/2 translate-x-[-50%] translate-y-[-50%] overflow-hidden">

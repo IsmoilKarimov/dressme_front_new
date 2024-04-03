@@ -20,13 +20,11 @@ export const UserRefreshTokenContextProvider = ({ children }) => {
 
         if (data?.status === 200) {
           localStorage.setItem("userAccess", data?.data?.access_token)
-          // console.log("token updated");
-        } else {
+         } else {
           localStorage.removeItem("userRefresh")
           localStorage.removeItem("userAccess");
           navigate("/sign_in");
-          // console.log("Logged out");
-          window.location.reload();
+           window.location.reload();
         }
       } catch (error) {
         if (
@@ -36,14 +34,12 @@ export const UserRefreshTokenContextProvider = ({ children }) => {
           localStorage.removeItem("userRefresh")
           localStorage.removeItem("userAccess");
           navigate("/sign_in");
-          // console.log("Logged out");
-          window.location.reload();
+           window.location.reload();
         } else {
           localStorage.removeItem("userRefresh")
           localStorage.removeItem("userAccess");
           navigate("/sign_in");
-          // console.log("Logged out");
-          window.location.reload();
+           window.location.reload();
         }
         throw new Error(error || "something wrong");
 

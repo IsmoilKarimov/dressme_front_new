@@ -41,8 +41,7 @@ function CommentDropUp({ onClick }) {
         setData(res?.product);
       },
       onError: (err) => {
-        // console.log(err, "err");
-        throw new Error(err || "something wrong");
+         throw new Error(err || "something wrong");
       },
       keepPreviousData: true,
       refetchOnWindowFocus: true,
@@ -52,8 +51,7 @@ function CommentDropUp({ onClick }) {
   const textRef = useRef();
   const rateRef = useRef();
 
-  // console.log(rateRef?.current?.state?.value, "ooo");
-
+ 
   const commentMutate = useMutation(() => {
     return fetch(`${url}/api/user-main/ratings/store-rating`, {
       method: "POST",
@@ -76,8 +74,7 @@ function CommentDropUp({ onClick }) {
       {},
       {
         onSuccess: (res) => {
-          // console.log(res, "RES");
-          if (res.status === 401 || res.status === 403) {
+           if (res.status === 401 || res.status === 403) {
             // reFreshTokenFunc();
             // sendFunc();
           }
@@ -86,8 +83,7 @@ function CommentDropUp({ onClick }) {
             toast.success(res?.message);
           }
           if (res.errors) {
-            // console.log(res?.message);
-            toast.error(res?.message);
+             toast.error(res?.message);
           }
           rateRef.current.state.value = 1;
           textRef.current.value = null;
@@ -95,8 +91,7 @@ function CommentDropUp({ onClick }) {
           setDressInfo({ ...dressInfo, state: dressInfo.state + 1 });
         },
         onError: (err) => {
-          // console.log(err, "ERROR");
-          rateRef.current.state.value = 1;
+           rateRef.current.state.value = 1;
           textRef.current.value = null;
           throw new Error(err || "something wrong");
         },

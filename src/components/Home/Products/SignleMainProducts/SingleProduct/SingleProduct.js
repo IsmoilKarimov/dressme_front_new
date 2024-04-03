@@ -88,12 +88,10 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
           setSingleDataForCopy(res.data);
 
           setLoading(false);
-          // console.log(res, 'singlepage res');
-        })
+         })
         .catch((error) => {
           setLoading(false);
-          // console.log(error, 'singlepage error');
-          throw new Error(error || "something wrong");
+           throw new Error(error || "something wrong");
         });
     }
   }, [paramsId?.product]);
@@ -113,8 +111,7 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
       })
       .catch((error) => {
         setLoading(false);
-        // console.log(error);
-        throw new Error(error || "something wrong");
+         throw new Error(error || "something wrong");
       });
   };
 

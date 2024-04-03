@@ -3,8 +3,7 @@ import { MenuCloseIcons } from "../../../../../../../../assets/icons";
 import { useTranslation } from "react-i18next";
 
 function TableSizesDropUp({ onClick, data, selectedLocation }) {
-  // console.log(data, "data-table-data");
-
+ 
   const { t } = useTranslation("products");
 
   return (

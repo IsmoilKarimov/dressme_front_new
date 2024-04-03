@@ -40,6 +40,5 @@ export default function App() {
       });
     }
   }, [location.pathname, dressInfo, locationWindow]);
-  // console.log(data?.getMainProductCard?.products,'data?.getMainProductCard?.products');
-  return <RouterMain />;
+   return <RouterMain />;
 }

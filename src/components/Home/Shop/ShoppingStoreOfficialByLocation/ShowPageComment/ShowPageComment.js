@@ -41,8 +41,7 @@ function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
   const textRef = useRef();
   const rateRef = useRef();
 
-  // console.log(filteredData?.shop?.id, "storedata");
-
+ 
   const commentMutate = useMutation(() => {
     return fetch(`${url}/user-main/ratings/store-rating`, {
       method: "POST",
@@ -66,8 +65,7 @@ function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
       {},
       {
         onSuccess: (res) => {
-          // console.log(res, "RES");
-          // refetch();
+           // refetch();
           if (res.status === 401 || res.status === 403) {
             // reFreshTokenFunc();
             // sendFunc();
@@ -101,8 +99,7 @@ function ShowPageComment({ filteredData, setOpenTabComment, fetchGetAllData }) {
           textRef.current.value = null;
         },
         onError: (err) => {
-          // console.log(err, "ERROR");
-          rateRef.current.state.value = 1;
+           rateRef.current.state.value = 1;
           textRef.current.value = null;
           throw new Error(err || "something wrong");
         },

@@ -33,9 +33,7 @@ const TopHeader = () => {
     setLanguageDetector({ typeLang: currentLang });
   }, [currentLang]);
 
-  // console.log(languageDetector,'languageDetector---22');
-  // console.log(currentLang,'currentLang---22');
-  // console.log('--------------------------');
+ 
   const { request } = useHttp();
   const [selectBtn, setSelectBtn] = useState(true);
   const [regionsShow, setRegionsShow] = useState(false);
@@ -80,8 +78,7 @@ const TopHeader = () => {
       })}
     </section>
   );
-  // console.log(selectLang, 'selectLang');
-  // console.log(currentLang, 'currentLang');
+ 
   // -------City Change -------------
   const location = useLocation();
   const [locationWindow, setLocationWindow] = useState("");
@@ -101,28 +98,23 @@ const TopHeader = () => {
   // ----------Get Region List
   const url = "https://api.dressme.uz/api/main";
 
-  useQuery(
-    ["region-data-top"],
-    () => {
-      return request({ url: "/main/regions", token: true });
-    },
+  useQuery(["region-data-top"], () => {
+    return request({ url: "/main/regions", token: true });
+  },
     {
       onSuccess: (res) => {
-        setData({
-          ...data,
-          mainRegionsList: res?.regions,
-        });
+        if (res?.regions) {
+          localStorage.setItem("regions", JSON.stringify(res?.regions))
+        }
       },
       onError: (err) => {
-        // console.log(err, "ERR-PROFILE");
-        throw new Error(err || "something wrong");
+         throw new Error(err || "something wrong");
       },
       keepPreviousData: true,
       refetchOnWindowFocus: false,
     }
   );
-
-  return (
+   return (
     <nav>
       <div
         onClick={() => setRegionsShow(false)}
@@ -132,11 +124,10 @@ const TopHeader = () => {
       {regionsShow && (
         <div
           className={`max-w-[600px]  w-full fixed duration-500 z-[231]  left-1/2 right-1/2 top-[50%] translate-x-[-50%] translate-y-[-50%]  h-fit flex items-center  justify-center mx-auto
-        ${
-          regionsShow
-            ? " bottom-0 md:flex flex-col"
-            : "bottom-[-1500px] z-[-10]"
-        }
+        ${regionsShow
+              ? " bottom-0 md:flex flex-col"
+              : "bottom-[-1500px] z-[-10]"
+            }
         `}
         >
           <RegionList onClick={toggleRegionsShow} />
@@ -144,11 +135,10 @@ const TopHeader = () => {
       )}
 
       <div
-        className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${
-          locationWindow === "/locations"
-            ? "bg-transparent h-[40px] "
-            : "bg-bgColor h-[36px] "
-        }`}
+        className={`hidden md:block flex-col justify-center items-center m-0 p-0 box-border ${locationWindow === "/locations"
+          ? "bg-transparent h-[40px] "
+          : "bg-bgColor h-[36px] "
+          }`}
       >
         <section className="max-w-[1280px] w-[100%] h-full py-[2px] flex justify-between items-center m-auto  ">
           {/* LEFT SIDE */}

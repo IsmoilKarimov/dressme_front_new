@@ -197,11 +197,9 @@ function CategoryForType() {
         setFilterData(res);
         setDressInfo({ ...dressInfo, filterDataProductList: res });
         setLoading(false);
-        // console.log(res, 'category---res');
-      })
+       })
       .catch((err) => {
-        // console.log(err, 'category---err');
-        setLoading(false);
+         setLoading(false);
         throw new Error(err || "something wrong");
       });
   }
@@ -292,8 +290,7 @@ function CategoryForType() {
     };
   }, [screenSize]);
 
-  // console.log(filterData, 'category---filterData');
-  useEffect(() => {
+   useEffect(() => {
     setFilterToggle(false);
   }, [dressInfo?.mainSubRegionId, dressInfo?.mainRegionId]);
 

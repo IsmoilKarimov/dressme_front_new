@@ -49,22 +49,19 @@ export default function ProductComment({ data, refetch }) {
       {},
       {
         onSuccess: (res) => {
-          // console.log(res, "RES");
-          if (!res?.errors) {
+           if (!res?.errors) {
             refetch();
             toast.success(res?.message);
           }
           if (res.errors) {
-            // console.log(res?.message);
-            toast.error(res?.message, { autoClose: 3000 });
+             toast.error(res?.message, { autoClose: 3000 });
           }
           rateRef.current.state.value = 1;
           textRef.current.value = null;
           setDressInfo({ ...dressInfo, state: dressInfo.state + 1 });
         },
         onError: (err) => {
-          // console.log(err, "ERROR");
-          rateRef.current.state.value = 1;
+           rateRef.current.state.value = 1;
           textRef.current.value = null;
           throw new Error(err || "something wrong");
         },

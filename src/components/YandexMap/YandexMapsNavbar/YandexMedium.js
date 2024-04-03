@@ -136,8 +136,7 @@ const YandexMedium = ({ getYandexSearchName }) => {
       searchMarketName: searchMarketName,
     });
   }
-  // console.log(searchMarketName, "searchMarketName");
-  const _handleKeyDownSearchYandex = (event) => {
+   const _handleKeyDownSearchYandex = (event) => {
     if (event.key === "Enter") {
       getYandexSearchName({
         searchMarketName: searchMarketName,

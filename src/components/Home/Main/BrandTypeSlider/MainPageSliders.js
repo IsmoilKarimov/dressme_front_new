@@ -226,8 +226,7 @@ function MainPageSliders() {
     }
   };
 
-  // console.log(languageDetector?.typeLang,'languageDetector');
-  return (
+   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
       <section className="max-w-[1280px] w-[100%] ss:px-4 md:px-0 flex justify-center items-center m-auto border-t md:border-0 border-searchBgColor">
         <section className="w-full box-border flex flex-col justify-center mt-4 mb-6 md:my-6">
@@ -486,8 +485,7 @@ function MainPageSliders() {
                 className="w-[100%] flex xs:justify-between  px-[1px]"
               >
                 {data?.getMainProductCard?.shops?.map((data) => {
-                  // console.log(data, "shops-data");
-                  return (
+                   return (
                     <div
                       key={data?.id}
                       onClick={() => {

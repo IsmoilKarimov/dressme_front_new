@@ -36,8 +36,7 @@ function YandexLocationMarketOpen({
   const openShoppingChild = () => {
     modalInfo?.locations?.map((item) => {
       if (item?.shop_id == dressInfo?.yandexGetMarketId) {
-        // console.log(item?.shop?.name);
-        navigate(
+         navigate(
           `/shops_location/${item?.shop?.name
             ?.split(" ")
             ?.join("-")

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { SircleNext } from "../../../assets/icons";
@@ -6,6 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import LoadingNetwork from "../../Loading/LoadingNetwork";
 import { useTranslation } from "react-i18next";
+import { LanguageDetectorDress } from "../../../language/LanguageItems";
 
 export default function SetNewPassword() {
   const navigate = useNavigate();
@@ -20,6 +21,9 @@ export default function SetNewPassword() {
     eyesShow: true,
     validateShow: true,
   });
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
   // ------------Password Confirm----------
   const [confirmError, setConfirmError] = useState("");
@@ -33,6 +37,8 @@ export default function SetNewPassword() {
       headers: {
         "Content-Type": "application/json; charset=UTF-8",
         Accept: "application/json",
+        "Accept-Language": languageDetector?.typeLang,
+
       },
       body: JSON.stringify({
         password: state?.newPassword,
@@ -90,13 +96,11 @@ export default function SetNewPassword() {
               theme: "light",
             });
           }
-          // console.log(res?.status, "resetpassword");
-        },
+         },
         onError: (err) => {
           setState({ ...state, isLoadingSent: false });
 
-          // console.log(err, "err");
-          toast.error(`ошибка ${err}`, {
+           toast.error(`ошибка ${err}`, {
             position: "top-right",
             autoClose: 3000,
             hideProgressBar: false,

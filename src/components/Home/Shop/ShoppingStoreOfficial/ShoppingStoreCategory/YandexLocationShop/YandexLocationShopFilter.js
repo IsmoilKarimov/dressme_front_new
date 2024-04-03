@@ -33,8 +33,7 @@ function YandexLocationShopFilter({ filteredData }) {
         setLogaLocation(filteredData?.shop?.url_logo_photo)
     }, [filteredData, locationIdDetector?.locationIdForTest])
     const addresRef = useRef();
-    // console.log(mapState, 'mapState');
-    const handleCopyText = () => {
+     const handleCopyText = () => {
         navigator.clipboard.writeText(addresRef.current.innerText);
     };
 
