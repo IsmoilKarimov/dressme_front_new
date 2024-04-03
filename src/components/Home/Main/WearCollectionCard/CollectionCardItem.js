@@ -48,18 +48,6 @@ export const CollectionCardItem = ({
     LanguageDetectorDress
   );
 
-  useEffect(() => {
-    if (mainSelectedId) {
-      data?.photos?.forEach((item) => {
-        if (item?.product_color_id === mainSelectedColor?.pivot?.id) {
-          setSelectedPhoto(item);
-        }
-      });
-    } else {
-      setSelectedPhoto(data?.photos[0]);
-    }
-  }, [mainSelectedColor]);
-
   // Remove duplicates and select only first -----
 
   let idMap = new Map();
@@ -71,6 +59,14 @@ export const CollectionCardItem = ({
       uniqueArray.push(obj);
     }
   });
+
+  useEffect(() => {
+    if (mainSelectedId) {
+      setSelectedPhoto(uniqueArray[0]);
+    } else {
+      setSelectedPhoto(data?.photos[0]);
+    }
+  }, [mainSelectedColor]);
 
   const onColorChecked = (id) => {
     setSelectedPhoto(
