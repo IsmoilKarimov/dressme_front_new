@@ -25,13 +25,13 @@ const { Option } = Select;
 
 function BottomHeader() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
-  const [data, setData, , , page, setPage] = useContext(HomeMainDataContext);
-  const { i18n, t } = useTranslation("header");
+  const [data, setPage] = useContext(HomeMainDataContext);
+  const { t } = useTranslation("header");
 
-  const [languageDetector, setLanguageDetector] = useContext(
+  const [languageDetector,] = useContext(
     LanguageDetectorDress
   );
-  const [seasonDetector, setSeasonDetector] = useContext(SaesonDetectorDress);
+  const [seasonDetector,] = useContext(SaesonDetectorDress);
   const [state, setState] = useState({
     openwear: false,
     openPrice: false,
@@ -109,8 +109,7 @@ function BottomHeader() {
     dressInfo?.mainColorHex,
     dressInfo?.mainCategoryId,
     dressInfo?.mainGenderId,
-    // data?.getMainProductCard?.budget?.min_price,
-    // data?.getMainProductCard?.budget?.max_price,
+ 
   ]);
   useEffect(() => {
     setMinPrice(Number(data?.getMainProductCard?.budget?.min_price));
@@ -290,6 +289,7 @@ function BottomHeader() {
       {data?.getMainProductCard?.categories?.map((item) => {
         return (
           <section
+            key={item?.id}
             onClick={() => handleSelectId(item?.id)}
             className={` w-full h-[30px] flex items-center hover:bg-bgColor  cursor-pointer ${Number(item?.id) === dressInfo?.mainCategoryId ? "bg-bgColor" : ""}`}>
             <span className="text-black  text-[13px] font-AeonikProMedium tracking-wide ">
@@ -308,7 +308,7 @@ function BottomHeader() {
       </section> */}
     </div>
   );
- 
+
   return (
     <nav className="w-full flex flex-col justify-center items-center m-0 p-0 box-border ss:hidden md:block">
       <div
