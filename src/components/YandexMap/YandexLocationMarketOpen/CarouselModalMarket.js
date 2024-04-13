@@ -53,7 +53,7 @@ function CarouselModalMarket({ getAllImgGallery }) {
       <div className="w-full h-full ">
         <Slider
           ref={sliderRef}
-          className="relative !w-full xs:!w-[580px] !overflow-visible md:!w-[780px] sm:!h-[550px] md:!h-[700px] md:rounded-lg sm:px-[50px]"
+          className="relative !w-full xs:!w-[580px] !overflow-visible md:min-w-[610px] sm:!h-[550px] md:!h-[100vh] md:rounded-lg sm:px-[50px]"
           {...settingsModal}
         >
           {getAllImgGallery?.newImgList?.length &&
@@ -61,14 +61,14 @@ function CarouselModalMarket({ getAllImgGallery }) {
               return (
                 <React.Fragment key={data?.id}>
                   {data?.img && (
-                    <div className="relative">
+                    <div className="relative md:rounded-lg overflow-hidden">
                       <TransformWrapper defaultScale={1}>
                         <TransformComponent>
-                          <figure className="relative  overflow-hidden !w-full ll:h-[400px] h-[450px] xs:h-[550px] md:h-[700px] sm:rounded-lg md:border border-searchBgColor bg-white  flex items-center justify-center">
+                          <figure className="relative overflow-hidden min-w-[100vw] md:min-w-[610px] h-[80vh] w-full md:h-[100vh] md:rounded-lg  bg-btnBgColor flex items-center justify-center">
                             <img
-                              className="w-full h-full object-contain"
                               src={data?.img}
                               alt=""
+                              className={`block w-full h-fit md:h-fit object-cover overflow-hidden`}
                             />
                           </figure>
                         </TransformComponent>
