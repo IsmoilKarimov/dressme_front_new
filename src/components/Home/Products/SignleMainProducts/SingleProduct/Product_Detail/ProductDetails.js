@@ -42,8 +42,7 @@ import Slider from "react-slick";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { Modal, Popover, Radio } from "antd";
 import AddCopyCheckedIcon from "./AddCopyCheckedIcon/AddCopyCheckedIcon";
-import LocationOfYandex from "./LocationOfYandex/LocationOfYandex";
-import TableSizesDropUp from "./MobileDropUp/TableSizesDropUp/TableSizesDropUp";
+ import TableSizesDropUp from "./MobileDropUp/TableSizesDropUp/TableSizesDropUp";
 import LocationDropUp from "./MobileDropUp/LocationsDropUp/LocationsDropUp";
 import { SliderPhotosColorContext } from "../../../../../../ContextHook/SliderPhotosColor";
 import { HomeMainDataContext } from "../../../../../../ContextHook/HomeMainData";
@@ -2174,8 +2173,7 @@ const ProductDetails = ({ data, shopsData }) => {
       <div className="w-full">
         <div className={openTab === 1 ? "block" : "hidden"}>
           <div className=" flex  ">
-            {/* <LocationOfYandex locationText={selectedLocation} data={data} /> */}
-            {selectedLocation && <ProductLocations locationText={selectedLocation} data={data} />}
+             {selectedLocation && <ProductLocations locationText={selectedLocation} data={data} />}
           </div>
         </div>
         <div className={openTab === 2 ? "block" : "hidden"}>
