@@ -1,0 +1,50 @@
+  .mapRoot .leaflet-container {
+      width: 100%;
+      height: 400px; 
+      border-radius: 8px !important;
+  }
+
+  .mapRoot .leaflet-marker-icon {
+      background-color: white;
+      object-fit: contain;
+      border-radius: 50%;
+      overflow: hidden;
+      background-position: center center !important;
+      background-repeat: no-repeat;
+      background-size: 100% !important;
+      border: 2px solid #007dca;
+  }
+
+  .mapRoot .leaflet-control-zoom {
+      height: 105px !important;
+      width: 36px !important;
+      padding: 0px !important;
+      border-radius: 8px;
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center !important;
+      border: none !important;
+      --tw-gap-y: 10px;
+      /* This value corresponds to the spacing utility class in Tailwind CSS */
+      gap: var(--tw-gap-y);
+      right: 0 !important;
+  }
+
+  .mapRoot .leaflet-control-zoom-in,
+  .leaflet-control-zoom-out {
+      box-shadow: none !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      top: 0px !important;
+      width: 36px !important;
+      height: 36px !important;
+      border-radius: 8px !important;
+      box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15),
+          0 2px 5px -3px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  .mapRoot .leaflet-control-container .leaflet-top {
+      left: auto !important;
+      right: 12px !important;
+  }
