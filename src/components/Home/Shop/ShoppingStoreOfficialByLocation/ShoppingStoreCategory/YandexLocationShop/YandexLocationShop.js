@@ -7,11 +7,12 @@ import {
     Placemark,
 } from "react-yandex-maps";
 import "./LocationOfYandex.css";
- import AddCopyCheckedIcon from "../../../../Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
+import AddCopyCheckedIcon from "../../../../Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
 import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
- 
+import ProductLocationsShopByMaps from "./ProductLocations/ProductLocationsShopByMaps";
+
 function YandexLocationShop({ filteredData }) {
-     const [locationIdDetector,  ] = useContext(LocationIdDetector)
+    const [locationIdDetector,] = useContext(LocationIdDetector)
 
     //------------------------------------------------------------------------------------------------
     const [logaLocation, setLogaLocation] = useState()
@@ -38,6 +39,9 @@ function YandexLocationShop({ filteredData }) {
             top: 0,
         });
     }, []);
+    const handleClick = () => {
+        window.open(`https://yandex.uz/maps/10335/tashkent/?ll=${placeMarkLocation[1]}%2C${placeMarkLocation[0]}&mode=search&sll=${placeMarkLocation[1]}%2C${placeMarkLocation[0]}&text=${placeMarkLocation[0]}%2C${placeMarkLocation[1]}&z=15`, "_blank")
+    };
     return (
         <div className={`w-full `}>
             <div className={`w-full flex items-center mb-3 mt-4`}>
@@ -51,9 +55,9 @@ function YandexLocationShop({ filteredData }) {
                             {
                                 filteredData?.shop?.approved_shop_locations?.filter(e => e?.id === locationIdDetector?.locationIdForTest)?.map(item => {
                                     return (
-                                        <p key={item?.address} className="text-sm font-AeonikProRegular ">
+                                        <button onClick={handleClick} key={item?.id} className="text-sm  text-borderWinter font-AeonikbuttonroRegular ">
                                             {item?.address}
-                                        </p>
+                                        </button>
                                     )
                                 })
                             }
@@ -68,51 +72,15 @@ function YandexLocationShop({ filteredData }) {
                     </div>
                 </div>
             </div>
-            <div className={"mapRoot"}>
-                <YMaps
-                    query={{
-                        apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21",
-                        lang: "ru",
-                    }}
-                >
-                    <Map
-                        className={` overflow-hidden w-full h-[320px] md:h-[400px] rounded-lg productDetailsMaps`}
-                        state={{
-                            center: placeMarkLocation,
-                            zoom: 12,
-                        }}
-                        modules={["control.FullscreenControl"]}
-                    >
-                        <Placemark
-                            className={" cursor-pointer"}
-                            // key={index}
-                            // onClick={() => handlePlaceMark(data?.marketId, data?.cordinate)}
-                            geometry={placeMarkLocation}
-                            options={{
-                                iconLayout: "default#image",
-                                // iconImageHref: markerIcons,
-                                iconImageHref: logaLocation,
-                                iconImageSize: [45, 45], // Set the size of your image
-                            }}
-                            modules={["geoObject.addon.balloon"]}
-                        />
-                        <ZoomControl
-                            options={{
-                                float: "right",
-                                position: { bottom: 170, right: 10 },
-                                size: "small",
-                            }}
-                        />{" "}
-                        <GeolocationControl
-                            options={{
-                                float: "right",
-                                position: { bottom: 120, right: 10 },
-                                // size: "small",
-                            }}
-                        />
-                    </Map>
-                </YMaps>
-            </div>
+            {
+                filteredData?.shop?.approved_shop_locations?.filter(e => e?.id == locationIdDetector?.locationIdForTest)?.map((item, index) => {
+                    return (
+                        <div className={"w-full h-[400px] "}>
+                            <ProductLocationsShopByMaps locationText={item} data={filteredData} />
+                        </div>
+                    )
+                })
+            }
             {/* <div className="w-full flex justify-end">
         <button
           onClick={handleOpenYandex}
@@ -123,7 +91,7 @@ function YandexLocationShop({ filteredData }) {
           Открыть на карте
         </button>
       </div> */}
-        </div>
+        </div >
     );
 }
 export default React.memo(YandexLocationShop);
