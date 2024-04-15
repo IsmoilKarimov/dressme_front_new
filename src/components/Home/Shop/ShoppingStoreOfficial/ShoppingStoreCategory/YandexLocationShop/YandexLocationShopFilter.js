@@ -1,48 +1,36 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import {
-    YMaps,
-    Map,
-    ZoomControl,
-    GeolocationControl,
-    Placemark,
-} from "react-yandex-maps";
+
 import "./LocationOfYandex.css";
 import AddCopyCheckedIcon from "../../../../Products/SignleMainProducts/SingleProduct/Product_Detail/AddCopyCheckedIcon/AddCopyCheckedIcon";
 import { dressMainData } from "../../../../../../ContextHook/ContextMenu";
 import { LocationIdDetector } from "../../../../../../ContextHook/LocationId";
-
+ import ProductLocationsShop from "./ProductLocations/ProductLocationsShop";
 function YandexLocationShopFilter({ filteredData }) {
     const [dressInfo] = useContext(dressMainData);
     const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
-
     //------------------------------------------------------------------------------------------------
-    const [logaLocation, setLogaLocation] = useState()
-    const [placeMarkLocation, setPlaceMarkLocation] = useState([])
-    const [mapState, setMapState] = useState({
-        center: [41.2893580, 69.253175],
-        zoom: 12,
-    })
+     const [placeMarkLocation, setPlaceMarkLocation] = useState([])
     //------------------------------------------------------------------------------------------------
     useEffect(() => {
         filteredData?.shop?.approved_shop_locations?.map(item => {
-            if (item?.id === locationIdDetector?.locationIdForTest) {
+            if (Number(item?.id) === locationIdDetector?.locationIdForTest) {
                 setPlaceMarkLocation([item?.latitude, item?.longitude])
-                // setMapState({ ...mapState, zoom: 12, center: [item?.latitude, item?.longitude] })
             }
         })
-        setLogaLocation(filteredData?.shop?.url_logo_photo)
     }, [filteredData, locationIdDetector?.locationIdForTest])
+
     const addresRef = useRef();
-     const handleCopyText = () => {
+    const handleCopyText = () => {
         navigator.clipboard.writeText(addresRef.current.innerText);
     };
-
     useEffect(() => {
         window.scrollTo({
             top: 0,
         });
     }, []);
-    // const zoom = 12;
+    const handleClick = () => {
+         window.open(`https://yandex.uz/maps/10335/tashkent/?ll=${placeMarkLocation[1]}%2C${placeMarkLocation[0]}&mode=search&sll=${placeMarkLocation[1]}%2C${placeMarkLocation[0]}&text=${placeMarkLocation[0]}%2C${placeMarkLocation[1]}&z=15`, "_blank")
+     };
     return (
         <div className={`w-full `}>
             <div className={`w-full flex items-center mb-3 mt-4`}>
@@ -54,11 +42,11 @@ function YandexLocationShopFilter({ filteredData }) {
                             className="text-[#000] not-italic font-AeonikProRegular text-[14px] xs:text-base "
                         >
                             {
-                                filteredData?.shop?.approved_shop_locations?.filter(e => e?.id === locationIdDetector?.locationIdForTest)?.map((item,index) => {
+                                filteredData?.shop?.approved_shop_locations?.filter(e => e?.id === locationIdDetector?.locationIdForTest)?.map((item, index) => {
                                     return (
-                                        <p key={index} className="text-sm font-AeonikProRegular ">
+                                        <button onClick={handleClick} key={index} className="text-sm  text-borderWinter font-AeonikbuttonroRegular ">
                                             {item?.address}
-                                        </p>
+                                        </button>
                                     )
                                 })
                             }
@@ -73,51 +61,16 @@ function YandexLocationShopFilter({ filteredData }) {
                     </div>
                 </div>
             </div>
-            <div className={"mapRoot"}>
-                <YMaps
-                    query={{
-                        apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21",
-                        lang: "ru",
-                    }}
-                >
-                    <Map
-                        className={` overflow-hidden w-full h-[350px] md:h-[400px] rounded-lg productDetailsMaps`}
-                        state={{
-                            center: placeMarkLocation,
-                            zoom: 12,
-                        }}
-                        modules={["control.FullscreenControl"]}
-                    >
-                        <Placemark
-                            className={" cursor-pointer"}
-                            // key={index}
-                            // onClick={() => handlePlaceMark(data?.marketId, data?.cordinate)}
-                            geometry={placeMarkLocation}
-                            options={{
-                                iconLayout: "default#image",
-                                // iconImageHref: markerIcons,
-                                iconImageHref: logaLocation,
-                                iconImageSize: [45, 45], // Set the size of your image
-                            }}
-                            modules={["geoObject.addon.balloon"]}
-                        />
-                        <ZoomControl
-                            options={{
-                                float: "right",
-                                position: { bottom: 170, right: 10 },
-                                size: "small",
-                            }}
-                        />{" "}
-                        <GeolocationControl
-                            options={{
-                                float: "right",
-                                position: { bottom: 120, right: 10 },
-                                // size: "small",
-                            }}
-                        />
-                    </Map>
-                </YMaps>
-            </div>
+            {
+                filteredData?.shop?.approved_shop_locations?.filter(e => e?.id == locationIdDetector?.locationIdForTest)?.map((item, index) => {
+                    return (
+                        <div className={"w-full h-[400px] "}>
+                            <ProductLocationsShop locationText={item} data={filteredData} />
+                        </div>
+                    )
+                })
+            }
+
         </div>
     );
 }
