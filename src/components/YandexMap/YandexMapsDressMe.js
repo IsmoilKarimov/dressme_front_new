@@ -1,9 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 
 import {
   YMaps,
   Map,
-  ZoomControl,
+  // ZoomControl,
   GeolocationControl,
   Placemark,
   SearchControl,
@@ -41,6 +41,15 @@ import { SaesonDetectorDress } from "../../ContextHook/SeasonContext";
 import { LocationIdDetector } from "../../ContextHook/LocationId";
 import { MapsList } from "../../ContextHook/MapsShopsList";
 
+
+import { MapContainer, Marker, TileLayer, ScaleControl, ZoomControl, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L, { Icon, divIcon } from "leaflet";
+import MarkerClusterGroup from "react-leaflet-cluster";
+import { LocateControl } from "../Home/Shop/ShoppingStoreOfficial/ShoppingStoreCategory/YandexLocationShop/ProductLocations/LocateControls";
+// import { LocateControl } from './LocateControls';
+import { addressPoints } from "./realworld";
+
 function YandexMapsDressMe() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   const { t } = useTranslation('yandexmap')
@@ -48,6 +57,7 @@ function YandexMapsDressMe() {
   const [seasonDetector] = useContext(SaesonDetectorDress)
   const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
   const [mapslist, setMapslist] = useContext(MapsList);
+
 
   const url = "https://api.dressme.uz/api/main";
 
@@ -63,7 +73,7 @@ function YandexMapsDressMe() {
     () => setMarketsFilterMaps(false),
     []
   );
-   // request get
+  // request get
   const [FilterSearchByBrand, setFilterSearchByBrand] = useState({});
   const [getAllImgGallery, setGetAllImgGallery] = useState();
 
@@ -105,7 +115,7 @@ function YandexMapsDressMe() {
       .then((res) => {
         setMapslist(res);
       })
-      .catch((err) =>{
+      .catch((err) => {
         throw new Error(err || "something wrong");
 
       });
@@ -175,7 +185,6 @@ function YandexMapsDressMe() {
 
   // --------------Open Main MenusetDressInfo
   const handlePlaceMark = (shopId, value, cordinate) => {
-    // setOpenCordinateMap(cordinate);
     setLocationIdDetector({
       ...locationIdDetector, locationIdForTest: value
     })
@@ -196,14 +205,20 @@ function YandexMapsDressMe() {
     console.error("Error loading Placemark");
   };
 
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: 0,
-  //   });
-  // }, []);
-
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [map, setMap] = useState(null);
+  const tileRef = useRef(null);
 
+  useEffect(() => {
+    if (!map) return;
+    tileRef.current.getContainer().style.setProperty("filter", `grayscale(1)`);
+  }, [map]);
+ 
+
+  const tileLayer = {
+    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+  }
+  
   return (
     <div className="h-fit w-full flex items-center justify-center overflow-hidden overflow-y-hidden">
       <div
@@ -305,9 +320,95 @@ function YandexMapsDressMe() {
         >
           <NavbarTopOpenMenu />
         </div>
+        <div className="w-full h-full  ymapsName  ">
+
+          <MapContainer
+            center={[41.311151, 69.279737]}
+            zoom={12}
+            whenReady={setMap}
+            onMouseDown={HandleData}
+            eventHandlers={{
+              click: () => {
+                onMapClick()
+              },
+            }
+            }
+          >
+
+            <TileLayer {...tileLayer} ref={tileRef} />
+
+            <ScaleControl imperial={false} />
+            {mapslist?.locations?.map((data, index) => (
+              data?.id && <Marker
+                className={"placemarkCLuster cursor-pointer border border-black"}
+                key={data?.id}
+
+                eventHandlers={{
+                  click: (e) => {
+                    handlePlaceMark(
+                      data?.shop_id,
+                      data?.id,
+                      data?.latitude,
+                      data?.longitude
+                    );
+                    setCarouselIndex(0);
+                  },
+                }}
+                position={[data?.latitude, data?.longitude]} icon={
+                  L.icon({
+                    iconUrl: data?.shop?.url_logo_photo,
+                    iconRetinaUrl: data?.shop?.url_logo_photo,
+                    iconAnchor: [5, 55],
+                    popupAnchor: [10, -44],
+                    iconSize: [45, 45],
+                  })
+                }
+              >
+
+              </Marker>
+            ))}
+
+            <LocateControl />
+
+            <div
+              onClick={handleFullScreen}
+              className={`fullScreenIconsForMobile absolute right-3 ${!dressInfo?.yandexFullScreen
+                ? "bottom-[75px] md:bottom-[87px]"
+                : "bottom-[8px] md:bottom-[87px]"
+                }  cursor-pointer z-[51] w-10 h-10 rounded-lg bg-white ss:flex items-center justify-center block md:hidden`}
+            >
+              {dressInfo?.yandexFullScreen ? (
+                <span>
+                  <FullScreenMapsIcons />
+                </span>
+              ) : (
+                <span>
+                  <MaximazeMapsIcons />
+                </span>
+              )}
+            </div>
+
+
+            {/* Yandex Sort */}
+            <div
+              className={`sortIconsForMobile absolute md:hidden ${!dressInfo?.yandexFullScreen
+                ? "bottom-[128px]"
+                : "bottom-[65px]"
+                } left-auto  right-3  overflow-hidden !z-50   h-[40px] w-fit `}
+            >
+              <button
+                onClick={() => setMarketsFilterMaps(!marketsFilterMaps)}
+                type="button"
+                className="md:hidden h-[40px] w-[40px] rounded-lg  bg-white flex items-center justify-center "
+              >
+                <SortIcons colors={"#000"} className="w-full h-full" />
+              </button>
+            </div>
+          </MapContainer>
+        </div>
 
         {/* <YMaps query={{ apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21" }}> */}
-        {languageDetector?.typeLang === 'uz' && <YMaps
+        {languageDetector?.typeLang === 'uz' && false && <YMaps
           query={{
             apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21",
             lang: 'uz',
@@ -315,26 +416,12 @@ function YandexMapsDressMe() {
         >
           <Map
             defaultState={mapState}
-            // onBoundsChange={handleBoundsChange}
-            // state={state}
-            // {...mapOptions}
-            // onLoad={setMapConstructor}
-            // onBoundsChange={handleBoundsChange}
-            // instanceRef={mapRef}
             onClick={onMapClick}
             onMouseDown={HandleData}
             width="100%"
             height="100%"
             modules={["control.FullscreenControl"]}
 
-          // {...mapOptions}
-          // state={{
-          //   center: forMaps?.center,
-          //   zoom: forMaps?.zoom,
-          // }}
-          // onLoad={setMapConstructor}
-          // onBoundsChange={handleBoundsChange}
-          // instanceRef={mapRef}
           >
             <div
               onClick={handleFullScreen}
@@ -388,7 +475,7 @@ function YandexMapsDressMe() {
               }}
             > */}
             {mapslist?.locations?.map((data, index) => (
-               <Placemark
+              <Placemark
                 onError={handleError}
                 className={"placemarkCLuster cursor-pointer "}
                 key={data?.id}
@@ -420,21 +507,7 @@ function YandexMapsDressMe() {
                 }`}
             >
               <div className={`w-full h-full `}>
-                {/* Searching section */}
-                {/* <div className="search flex items-center bg-btnBgColor justify-between rounded-lg font-AeonikProMedium h-12 mt-3 mb-3 border border-searchBgColor ss:mt-3 md:hidden w-full">
-                  <span className=" flex ss:pl-[11.65px] md:hidden">
-                    <SearchIcons />
-                  </span>
 
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Искать товары или бренды"
-                    className="bg-transparent w-full px-3 h-12 text-[14px] bg-btnBgColor border border-transparent md:border-searchBgColor md:mx-0 md:-ml-[3px] md:px-3 md:h-12
-                    placeholder-italic placeholder-AeonikProMedium placeholder-sm leading-4 placeholder-setTexOpacity placeholder-[1px]
-                    "
-                  />
-                </div> */}
                 {/* Music and Map selection for Mobile */}
                 <div className="flex items-center justify-between h-fit mb-3">
                   <button type="button " className="left h-[52px] rounded-lg flex items-center justify-center font-AeonikProMedium rouded-lg border border-searchBgColor bg-btnBgColor ss:w-[48%]">
@@ -470,7 +543,7 @@ function YandexMapsDressMe() {
                     </button>
                   </li>
                   <li>
-                    { localStorage?.getItem("userAccess") ? (
+                    {localStorage?.getItem("userAccess") ? (
                       <NavLink
                         to="/my-order"
                         className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 w-full"
@@ -585,7 +658,7 @@ function YandexMapsDressMe() {
                 >
                   <div className="flex items-center justify-center">
                     <span>
-                      <MenuCloseIcons colors={"#000"}/>
+                      <MenuCloseIcons colors={"#000"} />
                     </span>
                     <div className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                       Магазины
@@ -595,36 +668,7 @@ function YandexMapsDressMe() {
                 </div>
               </div>
             </div>
-            {/* {!dressInfo?.yandexOpenMarket && (
-              <div
-                className={`fixed block md:hidden  bg-white  z-[55]  ${!dressInfo?.yandexFullScreen ? "bottom-[63px] " : "bottom-[0]"
-                  }   w-full  bg-yandexNavbar flex items-center py-2
 
-              `}
-              >
-                <ScrollFilter _class="items gap-x-2 pl-3">
-                  {wearGroup?.map((data) => {
-                    return (
-                      <div key={data.id} className={`item`}>
-                        <p className=" cursor-pointer rounded-xl bg-white not-italic font-AeonikProMedium text-sm text-black tracking-[1%] ">
-                          {data?.name || "0"}
-                        </p>
-                      </div>
-                    );
-                  })}
-                </ScrollFilter>
-              </div>
-            )} */}
-            {/* ---------- */}
-            {/* <SearchControl
-              options={{ float: 'right' }}
-              instanceRef={(searchControl) => {
-                if (searchControl) {
-                  searchControl.events.add('resultselect', handleSearchResult);
-                }
-              }}
-              onSearchChange={handleSearchChange}
-            /> */}
             {/* Yandex Search */}
             <div
               className={` absolute md:hidden ${!dressInfo?.yandexFullScreen
@@ -642,7 +686,7 @@ function YandexMapsDressMe() {
             </div>
           </Map>
         </YMaps>}
-        {languageDetector?.typeLang === 'ru' && <YMaps
+        {languageDetector?.typeLang === 'ru' && false && <YMaps
           query={{
             apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21",
             lang: 'ru',
@@ -723,7 +767,7 @@ function YandexMapsDressMe() {
               }}
             > */}
             {mapslist?.locations?.map((data, index) => (
-               <Placemark
+              <Placemark
                 onError={handleError}
                 className={"placemarkCLuster cursor-pointer "}
                 key={data?.id}
@@ -805,7 +849,7 @@ function YandexMapsDressMe() {
                     </button>
                   </li>
                   <li>
-                    { localStorage?.getItem("userAccess") ? (
+                    {localStorage?.getItem("userAccess") ? (
                       <NavLink
                         to="/my-order"
                         className="flex items-center bg-btnBgColor font-AeonikProMedium h-[52px] border rounded-lg border-searchBgColor px-5 mb-3 w-full"
@@ -920,7 +964,7 @@ function YandexMapsDressMe() {
                 >
                   <div className="flex items-center justify-center">
                     <span>
-                    <MenuCloseIcons colors={"#000"}/>
+                      <MenuCloseIcons colors={"#000"} />
                     </span>
                     <div className="not-italic font-AeonikProMedium text-sm leading-4 text-black tracking-[1%]">
                       Магазины
@@ -978,7 +1022,7 @@ function YandexMapsDressMe() {
           </Map>
         </YMaps>}
       </div>
-    </div>
+    </div >
   );
 }
 

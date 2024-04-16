@@ -4,7 +4,7 @@ import './productLocation.css';
 import AddCopyCheckedIcon from '../AddCopyCheckedIcon/AddCopyCheckedIcon';
 import 'leaflet/dist/leaflet.css';
 import L, { Icon } from 'leaflet'
-import {LocateControl} from './LocateControls';
+import { LocateControl } from './LocateControls';
 
 
 function ProductLocations({ locationText, data }) {
@@ -81,9 +81,9 @@ function ProductLocations({ locationText, data }) {
                 <Marker
                     position={[locationText?.latitude, locationText?.longitude]} icon={markerIconConst}
                 >
-    <LocateControl   />
-
+ 
                 </Marker>
+                <LocateControl />
             </MapContainer>
 
         </div>

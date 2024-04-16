@@ -15,13 +15,6 @@ function ProductLocationsShop({ locationText, data }) {
         tileRef.current.getContainer().style.setProperty("filter", `grayscale(1)`);
     }, [map]);
 
-
-    const addresRef = useRef();
-    const handleCopyText = () => {
-        navigator.clipboard.writeText(addresRef.current.innerText);
-    };
-
-
     const markerIconConst = data?.shop?.url_logo_photo ? L.icon({
         iconUrl: data?.shop?.url_logo_photo,
         iconRetinaUrl: data?.shop?.url_logo_photo,
