@@ -151,6 +151,7 @@ body {
   border-right: 3px solid #c2c2c2;
   border-radius: 8px 0px 0px 8px;
 }
+
 /* width: 100% */
 /* marketFilter */
 .ymapsName .ymaps-2-1-79-searchbox-input.ymaps-2-1-79-_focused {
@@ -452,6 +453,154 @@ body {
   pointer-events: none;
 
 }
-.group .ant-space-item{
+
+.group .ant-space-item {
   margin-left: 16px;
+}
+
+
+
+/* ----------------------------------------------------------- */
+.ymapsName .leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px !important;
+  z-index: 10 !important;
+}
+
+.ymapsName .leaflet-marker-icon {
+  background-color: white;
+  object-fit: contain;
+  border-radius: 50%;
+  overflow: hidden;
+  background-position: center center !important;
+  background-repeat: no-repeat;
+  background-size: 100% !important;
+  border: 2px solid #007dca;
+  z-index: 500 !important;
+}
+
+.ymapsName .leaflet-control-container .leaflet-top {
+  left: auto !important;
+  right: 12px !important;
+  top: 80px;
+}
+
+.leaflet-left .leaflet-control {
+  margin-left: 0 !important;
+
+}
+
+.ymapsName .leaflet-control-zoom {
+  /* height:  !important; */
+  padding: 0px !important;
+  border-radius: 8px;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center !important;
+  border: none !important;
+  --tw-gap-y: 10px;
+  /* This value corresponds to the spacing utility class in Tailwind CSS */
+  gap: var(--tw-gap-y);
+  right: 0 !important;
+  margin: 0 !important;
+  top: 300px;
+  border: 1px solid green !important;
+
+}
+
+.ymapsName .leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  box-shadow: none !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  top: 0px !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15),
+    0 2px 5px -3px rgba(0, 0, 0, 0.15) !important;
+
+}
+
+
+.ymapsName .leaflet-control-locate {
+  top: 350px;
+  right: 0px !important;
+  border: none !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+  background-color: white !important;
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15),
+    0 2px 5px -3px rgba(0, 0, 0, 0.15) !important;
+  margin: 0 !important;
+
+}
+
+.ymapsName .leaflet-bar-part {
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.custom-marker-cluster {
+  width: 45px !important;
+  height: 45px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.merkerOut {
+  z-index: 15 !important;
+}
+
+.newPopup .leaflet-popup-content-wrapper,
+.newPopup .leaflet-popup-tip {
+  width: auto;
+  background: #000;
+  color: #fff;
+}
+
+.fullScreenIconsForMobile {
+   z-index: 1000 !important;
+}
+.sortIconsForMobile {
+   z-index: 1000 !important;
+}
+
+@media (max-width: 767px) {
+  .ymapsName .leaflet-control-locate {
+    top: 250px;
+    right: 0px !important;
+    border: none !important;
+    border-radius: 8px !important;
+    overflow: hidden;
+    background-color: white !important;
+    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15),
+      0 2px 5px -3px rgba(0, 0, 0, 0.15) !important;
+    margin: 0 !important;
+
+  }
+
+  .ymapsName .leaflet-control-zoom {
+    /* height:  !important; */
+    padding: 0px !important;
+    border-radius: 8px;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center !important;
+    border: none !important;
+    --tw-gap-y: 10px;
+    /* This value corresponds to the spacing utility class in Tailwind CSS */
+    gap: var(--tw-gap-y);
+    right: 0 !important;
+    margin: 0 !important;
+    top: 200px;
+    border: 1px solid green !important;
+
+  }
 }
