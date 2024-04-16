@@ -47,8 +47,8 @@ import 'leaflet/dist/leaflet.css';
 import L, { Icon, divIcon } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import { LocateControl } from "../Home/Shop/ShoppingStoreOfficial/ShoppingStoreCategory/YandexLocationShop/ProductLocations/LocateControls";
-// import { LocateControl } from './LocateControls';
-import { addressPoints } from "./realworld";
+import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
+import 'leaflet-geosearch/dist/geosearch.css'; // Import CSS for styling
 
 function YandexMapsDressMe() {
   const [dressInfo, setDressInfo] = useContext(dressMainData);
@@ -57,6 +57,10 @@ function YandexMapsDressMe() {
   const [seasonDetector] = useContext(SaesonDetectorDress)
   const [locationIdDetector, setLocationIdDetector] = useContext(LocationIdDetector)
   const [mapslist, setMapslist] = useContext(MapsList);
+  const provider = new OpenStreetMapProvider();
+  const searchControl = new GeoSearchControl({
+    provider: provider,
+  });
 
 
   const url = "https://api.dressme.uz/api/main";
@@ -213,12 +217,12 @@ function YandexMapsDressMe() {
     if (!map) return;
     tileRef.current.getContainer().style.setProperty("filter", `grayscale(1)`);
   }, [map]);
- 
+
 
   const tileLayer = {
     url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
   }
-  
+
   return (
     <div className="h-fit w-full flex items-center justify-center overflow-hidden overflow-y-hidden">
       <div
@@ -334,13 +338,11 @@ function YandexMapsDressMe() {
             }
             }
           >
-
             <TileLayer {...tileLayer} ref={tileRef} />
-
             <ScaleControl imperial={false} />
             {mapslist?.locations?.map((data, index) => (
               data?.id && <Marker
-                className={"placemarkCLuster cursor-pointer border border-black"}
+                className={"placemarkCLuster cursor-pointer  "}
                 key={data?.id}
 
                 eventHandlers={{
@@ -367,6 +369,7 @@ function YandexMapsDressMe() {
 
               </Marker>
             ))}
+            {searchControl && <div className="searLeaflet">{searchControl}</div>}
 
             <LocateControl />
 
