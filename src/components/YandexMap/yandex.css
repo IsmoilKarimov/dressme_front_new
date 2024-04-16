@@ -505,8 +505,7 @@ body {
   right: 0 !important;
   margin: 0 !important;
   top: 300px;
-  border: 1px solid green !important;
-
+ 
 }
 
 .ymapsName .leaflet-control-zoom-in,
@@ -566,9 +565,16 @@ body {
 }
 
 .fullScreenIconsForMobile {
-   z-index: 1000 !important;
+  z-index: 1000 !important;
 }
+
 .sortIconsForMobile {
+  z-index: 1000 !important;
+}
+
+.searLeaflet {
+  width: 500px;
+  height: 100px;
    z-index: 1000 !important;
 }
 
@@ -600,7 +606,6 @@ body {
     right: 0 !important;
     margin: 0 !important;
     top: 200px;
-    border: 1px solid green !important;
-
+ 
   }
 }
