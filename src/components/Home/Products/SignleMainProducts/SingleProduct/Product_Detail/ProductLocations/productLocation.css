@@ -14,12 +14,21 @@
       background-size: 100% !important;
       border: 2px solid #007dca;
   }
-  
 
+
+
+  .mapRoot .leaflet-control-container .leaflet-top {
+      left: auto !important;
+      right: 12px !important;
+      top: 80px;
+   }
+
+  .leaflet-left .leaflet-control {
+      margin-left: 0 !important;
+  }
 
   .mapRoot .leaflet-control-zoom {
-      height: 105px !important;
-      width: 36px !important;
+      /* height:  !important; */
       padding: 0px !important;
       border-radius: 8px;
       display: flex !important;
@@ -30,6 +39,8 @@
       /* This value corresponds to the spacing utility class in Tailwind CSS */
       gap: var(--tw-gap-y);
       right: 0 !important;
+      margin: 0 !important;
+ 
   }
 
   .mapRoot .leaflet-control-zoom-in,
@@ -44,9 +55,27 @@
       border-radius: 8px !important;
       box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15),
           0 2px 5px -3px rgba(0, 0, 0, 0.15) !important;
+ 
   }
 
-  .mapRoot .leaflet-control-container .leaflet-top {
-      left: auto !important;
-      right: 12px !important;
+ 
+  .mapRoot .leaflet-control-locate {
+      top: 100px;
+      right: 0px !important;
+      border: none !important;
+      border-radius: 8px !important;
+      overflow: hidden;
+      background-color: white !important;
+      box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15),
+          0 2px 5px -3px rgba(0, 0, 0, 0.15) !important;
+           margin: 0 !important;
+
+  }
+
+  .leaflet-bar-part {
+      width: 36px !important;
+      height: 36px !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
   }

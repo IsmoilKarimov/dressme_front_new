@@ -3,6 +3,7 @@ import { MapContainer, Marker, Popup, TileLayer, ScaleControl, ZoomControl } fro
 import './productLocation.css';
 import 'leaflet/dist/leaflet.css';
 import L, { Icon } from 'leaflet'
+import { LocateControl } from './LocateControls';
 
 
 function ProductLocationsShopByMaps({ locationText, data }) {
@@ -50,7 +51,8 @@ function ProductLocationsShopByMaps({ locationText, data }) {
                 <Marker
                     position={[locationText?.latitude, locationText?.longitude]} icon={markerIconConst}
                 >
-                  
+                    <LocateControl />
+
                 </Marker>
             </MapContainer>
 
