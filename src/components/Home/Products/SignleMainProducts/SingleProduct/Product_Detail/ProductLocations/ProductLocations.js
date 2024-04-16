@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { MapContainer, Marker, Popup, TileLayer, ScaleControl, ZoomControl } from 'react-leaflet';
+import { MapContainer, Marker, Popup, TileLayer, ScaleControl, useMap } from 'react-leaflet';
 import './productLocation.css';
 import AddCopyCheckedIcon from '../AddCopyCheckedIcon/AddCopyCheckedIcon';
 import 'leaflet/dist/leaflet.css';
 import L, { Icon } from 'leaflet'
+import {LocateControl} from './LocateControls';
 
 
 function ProductLocations({ locationText, data }) {
@@ -23,8 +24,8 @@ function ProductLocations({ locationText, data }) {
     };
 
     useEffect(() => {
-         setPlaceMarkLocation([locationText?.latitude, locationText?.longitude])
-      }, [data, locationText])  
+        setPlaceMarkLocation([locationText?.latitude, locationText?.longitude])
+    }, [data, locationText])
 
     const markerIconConst = data?.product?.shop?.url_logo_photo ? L.icon({
         iconUrl: data?.product?.shop?.url_logo_photo,
@@ -40,6 +41,8 @@ function ProductLocations({ locationText, data }) {
     const handleClick = () => {
         window.open(`https://yandex.uz/maps/10335/tashkent/?ll=${placeMarkLocation[1]}%2C${placeMarkLocation[0]}&mode=search&sll=${placeMarkLocation[1]}%2C${placeMarkLocation[0]}&text=${placeMarkLocation[0]}%2C${placeMarkLocation[1]}&z=15`, "_blank")
     };
+
+
     return (
         <div className="w-full h-full mapRoot">
             <div className={`w-full flex items-center mb-3 mt-4`}>
@@ -68,6 +71,7 @@ function ProductLocations({ locationText, data }) {
                 center={[locationText?.latitude, locationText?.longitude]}
                 zoom={12}
                 whenReady={setMap}
+
             >
 
                 <TileLayer {...tileLayer} ref={tileRef} />
@@ -77,6 +81,7 @@ function ProductLocations({ locationText, data }) {
                 <Marker
                     position={[locationText?.latitude, locationText?.longitude]} icon={markerIconConst}
                 >
+    <LocateControl   />
 
                 </Marker>
             </MapContainer>
