@@ -60,7 +60,7 @@ function ProductLocations({ locationText, data }) {
   });
 
   return (
-    <div className="w-full h-full mapRoot z-[150]">
+    <div className="w-full h-full mapRoot z-[10]">
       <div className={`w-full flex items-center mb-3 mt-4`}>
         <div className="flex flex-col xs:flex-row xs:items-center gap-x-1 md:gap-x-[6px] ">
           {/* <span className="text-[#000] not-italic font-AeonikProMedium text-[14px] xs:text-base ">Адрес:</span> */}
