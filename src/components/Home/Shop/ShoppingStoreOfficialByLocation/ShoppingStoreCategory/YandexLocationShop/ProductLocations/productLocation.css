@@ -1,10 +1,10 @@
   .mapRoot .leaflet-container {
       width: 100%;
-      height: 400px; 
+      height: 400px;
       border-radius: 8px !important;
   }
 
-  .mapRoot .leaflet-marker-icon {
+  .mapRoot .leaflet-marker-pane img {
       background-color: white;
       object-fit: contain;
       border-radius: 50%;
@@ -43,6 +43,16 @@
       box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15),
           0 2px 5px -3px rgba(0, 0, 0, 0.15) !important;
   }
+
+  .mapRoot .leaflet-control-zoom-in,
+  .leaflet-control-zoom-out span {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      width: 22px;
+      height: 22px;
+  }
+
 
   .mapRoot .leaflet-control-container .leaflet-top {
       left: auto !important;

@@ -468,7 +468,7 @@ body {
   z-index: 10 !important;
 }
 
-.ymapsName .leaflet-marker-icon {
+.ymapsName .leaflet-marker-pane img {
   background-color: white;
   object-fit: contain;
   border-radius: 50%;
@@ -488,7 +488,6 @@ body {
 
 .leaflet-left .leaflet-control {
   margin-left: 0 !important;
-
 }
 
 .ymapsName .leaflet-control-zoom {
@@ -505,7 +504,7 @@ body {
   right: 0 !important;
   margin: 0 !important;
   top: 300px;
- 
+
 }
 
 .ymapsName .leaflet-control-zoom-in,
@@ -522,6 +521,16 @@ body {
     0 2px 5px -3px rgba(0, 0, 0, 0.15) !important;
 
 }
+
+.ymapsName .leaflet-control-zoom-in,
+.leaflet-control-zoom-out span {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 22px;
+  height: 22px;
+}
+
 
 
 .ymapsName .leaflet-control-locate {
@@ -575,7 +584,7 @@ body {
 .searLeaflet {
   width: 500px;
   height: 100px;
-   z-index: 1000 !important;
+  z-index: 1000 !important;
 }
 
 @media (max-width: 767px) {
@@ -606,6 +615,6 @@ body {
     right: 0 !important;
     margin: 0 !important;
     top: 200px;
- 
+
   }
 }
