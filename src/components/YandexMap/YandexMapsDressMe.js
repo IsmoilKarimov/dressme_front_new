@@ -213,7 +213,7 @@ function YandexMapsDressMe() {
         >
           <MenuCloseIcons colors="#000" />
         </button>
-        <div className="relative z-[218] !w-full sm:w-fit top-0 rounded-lg overflow-hidden  sm:px-[50px]">
+        <div className="relative z-[218] !w-full sm:w-fit top-0 rounded-lg overflow-hidden  xs:px-[50px]">
           <CarouselModalMarket getAllImgGallery={getAllImgGallery} />
         </div>
       </div>
