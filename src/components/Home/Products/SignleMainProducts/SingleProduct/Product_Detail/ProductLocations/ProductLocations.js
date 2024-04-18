@@ -34,23 +34,25 @@ function ProductLocations({ locationText, data }) {
 
   const markerIconConst = data?.product?.shop?.url_logo_photo
     ? L.icon({
-        iconUrl: data?.product?.shop?.url_logo_photo,
-        iconRetinaUrl: data?.product?.shop?.url_logo_photo,
-        iconAnchor: [5, 55],
-        popupAnchor: [10, -44],
-        iconSize: [45, 45],
-      })
+      iconUrl: data?.product?.shop?.url_logo_photo,
+      iconRetinaUrl: data?.product?.shop?.url_logo_photo,
+      iconAnchor: [5, 55],
+      popupAnchor: [10, -44],
+      iconSize: [45, 45],
+    })
     : null;
 
   const tileLayer = {
     url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
   };
   const handleClick = () => {
-    window.open(
-      `https://yandex.uz/maps/10335/tashkent/?ll=${placeMarkLocation[1]}%2C${placeMarkLocation[0]}&mode=search&sll=${placeMarkLocation[1]}%2C${placeMarkLocation[0]}&text=${placeMarkLocation[0]}%2C${placeMarkLocation[1]}&z=15`,
-      "_blank"
-    );
+    // window.open(
+    //   `https://yandex.uz/maps/10335/tashkent/?ll=${placeMarkLocation[1]}%2C${placeMarkLocation[0]}&mode=search&sll=${placeMarkLocation[1]}%2C${placeMarkLocation[0]}&text=${placeMarkLocation[0]}%2C${placeMarkLocation[1]}&z=15`,
+    //   "_blank"
+    // );
+    
   };
+  
 
   const [location, setLocation] = useState({
     latitude: locationText?.latitude,
@@ -62,11 +64,11 @@ function ProductLocations({ locationText, data }) {
       <div className={`w-full flex items-center mb-3 mt-4`}>
         <div className="flex flex-col xs:flex-row xs:items-center gap-x-1 md:gap-x-[6px] ">
           {/* <span className="text-[#000] not-italic font-AeonikProMedium text-[14px] xs:text-base ">Адрес:</span> */}
-          <div className="flex items-center">
+          <div className="flex items-center ">
             <button
               onClick={handleClick}
               ref={addresRef}
-              className="cursor-pointer  text-borderWinter not-italic font-AeonikProRegular text-[14px] xs:text-base "
+              className="    not-italic font-AeonikProRegular text-[14px] xs:text-base "
             >
               {locationText?.address}
             </button>
@@ -91,6 +93,7 @@ function ProductLocations({ locationText, data }) {
 
         <ScaleControl imperial={false} />
         <Marker
+          className="iconsForMarker"
           position={[location?.latitude, location?.longitude]}
           icon={markerIconConst}
         ></Marker>

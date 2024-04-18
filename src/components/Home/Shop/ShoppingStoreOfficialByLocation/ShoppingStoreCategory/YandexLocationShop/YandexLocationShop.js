@@ -39,9 +39,9 @@ function YandexLocationShop({ filteredData }) {
             top: 0,
         });
     }, []);
-    const handleClick = () => {
-        window.open(`https://yandex.uz/maps/10335/tashkent/?ll=${placeMarkLocation[1]}%2C${placeMarkLocation[0]}&mode=search&sll=${placeMarkLocation[1]}%2C${placeMarkLocation[0]}&text=${placeMarkLocation[0]}%2C${placeMarkLocation[1]}&z=15`, "_blank")
-    };
+    // const handleClick = () => {
+    //     window.open(`https://yandex.uz/maps/10335/tashkent/?ll=${placeMarkLocation[1]}%2C${placeMarkLocation[0]}&mode=search&sll=${placeMarkLocation[1]}%2C${placeMarkLocation[0]}&text=${placeMarkLocation[0]}%2C${placeMarkLocation[1]}&z=15`, "_blank")
+    // };
     return (
         <div className={`w-full `}>
             <div className={`w-full flex items-center mb-3 mt-4`}>
@@ -55,7 +55,7 @@ function YandexLocationShop({ filteredData }) {
                             {
                                 filteredData?.shop?.approved_shop_locations?.filter(e => e?.id === locationIdDetector?.locationIdForTest)?.map(item => {
                                     return (
-                                        <button onClick={handleClick} key={item?.id} className="text-sm  text-borderWinter font-AeonikbuttonroRegular ">
+                                        <button key={item?.id} className="text-sm    font-AeonikbuttonroRegular ">
                                             {item?.address}
                                         </button>
                                     )
