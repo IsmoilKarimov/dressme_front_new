@@ -764,7 +764,7 @@ const ProductDetails = ({ data, shopsData }) => {
                 </p>
               </article>
             </div>
-            <div className="w-1/2 flex items-center ">
+            <div className="w-1/2 flex items-center hidden">
               <article className="w-fit flex items-center">
                 <PaymeSystemIcons colors={"#000"} />
                 <div className="not-italic flex items-center   font-AeonikProMedium text-[14px] leading-4 text-black tracking-[1%] ml-2">
@@ -1723,7 +1723,7 @@ const ProductDetails = ({ data, shopsData }) => {
                 })}
               </article>
             </div>
-            <div className="w-full flex items-center">
+            <div className="w-full flex items-center hidden">
               <article className="w-fit flex items-center">
                 <PaymeSystemIcons colors={"#000"} />
                 <div className="not-italic flex items-center font-AeonikProRegular text-sm  text-black ml-[6px]">

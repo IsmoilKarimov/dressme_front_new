@@ -226,7 +226,7 @@ const TopHeader = () => {
               type="button"
               onClick={() =>
                 window.open(
-                  " https://dressme-dashboard-new.vercel.app",
+                  " https://seller.dressme.uz",
                   "_blank"
                 )
               }
