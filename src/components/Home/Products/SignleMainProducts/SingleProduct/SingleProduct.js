@@ -154,7 +154,11 @@ const SingleProduct = ({ breadShops, oncallProductName }) => {
       }
     });
   }, [dressInfo?.mainSubRegionId, dressInfo?.mainRegionId]);
-
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
   return (
     <main className="flex flex-col m-0 p-0 box-border">
       <ToastContainer />

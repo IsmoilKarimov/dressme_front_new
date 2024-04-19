@@ -35,11 +35,12 @@ export default function SingleMainProducts() {
     { label_uz: 'Mahsulotlar', label_ru: 'Продукты', url: '/product' },
     { label_uz: getproductName, label_ru: getproductName, url: `/product/${paramId?.product}` },
   ];
-   function oncallProductName(child) {
-     if (!getproductName) {
+  function oncallProductName(child) {
+    if (!getproductName) {
       setGetproductName(child)
     }
   }
+  
   return (
     <main className="w-full px-4 md:px-0">
       <SingleProduct breadShops={breadcrumbItems} oncallProductName={oncallProductName} getproductName={getproductName} setGetproductName={setGetproductName} />

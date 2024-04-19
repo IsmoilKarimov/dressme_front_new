@@ -101,7 +101,7 @@ const Footer = () => {
                         </li>
                         <li className="ss:mb-1 md:mb-0">
                           <Link
-                            to="https://dressme-dashboard-new.vercel.app/login-seller"
+                            to="https://seller.dressme.uz/login-seller"
                             className="flex items-center"
                           >
                             <HouseStatisticIcons colors={"#000"} />

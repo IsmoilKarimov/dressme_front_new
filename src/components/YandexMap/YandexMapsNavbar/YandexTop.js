@@ -179,7 +179,8 @@ const YandexTop = ({ onClick }) => {
         <button
           type="button"
           onClick={() =>
-            window.open(" https://dressme-dashboard-new.vercel.app", "_blank")
+            window.open(" https://seller.dressme.uz", "_blank")
+            
           }
           className="flex items-center h-full "
         >
