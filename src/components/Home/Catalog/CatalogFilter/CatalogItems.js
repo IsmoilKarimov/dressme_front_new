@@ -111,7 +111,7 @@ export default function CatalogItems() {
 
   const newId = paramId?.id?.replace(":", "");
   // languageDetector?.typeLang === 'ru' && data?.name_ru, languageDetector?.typeLang === 'uz' && data?.name_uz
-   useLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (languageDetector?.typeLang === "ru") {
       if (newId === "украшения-аксессуары") {
         setNewFilterParamasId(5);
@@ -213,7 +213,6 @@ export default function CatalogItems() {
   const typeFilter = String(seasonDetector?.type)?.split("");
   const seasonId = Number(typeFilter?.shift());
 
- 
   const apiUrl = `https://api.dressme.uz/api/main/category/${newFilterParamasId}`;
   // setDressInfo({ ...dressInfo, mainSearchName: searchMarketName });
   const headers = new Headers();
@@ -286,9 +285,8 @@ export default function CatalogItems() {
         setFilterData(res);
         setDressInfo({ ...dressInfo, filterDataProductList: res });
         setLoading(false);
-       })
+      })
       .catch((err) => {
- 
         setLoading(false);
         throw new Error(err || "something wrong");
       });
@@ -386,6 +384,12 @@ export default function CatalogItems() {
       window.removeEventListener("resize", updateDimension);
     };
   }, [screenSize]);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
 
   return (
     <main className="w-full h-full">
