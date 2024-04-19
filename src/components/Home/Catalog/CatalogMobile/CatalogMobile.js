@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { HomeMainDataContext } from "../../../../ContextHook/HomeMainData";
 import NewBreadCrump from "../../../Breadcrumbs/NewBreadCrump";
@@ -7,25 +7,39 @@ import { LanguageDetectorDress } from "../../../../language/LanguageItems";
 const CatalogMobile = () => {
   const [data] = useContext(HomeMainDataContext);
 
-  const [languageDetector, setLanguageDetector] = useContext(LanguageDetectorDress)
+  const [languageDetector, setLanguageDetector] = useContext(
+    LanguageDetectorDress
+  );
 
   const navigate = useNavigate();
 
   const goCatalogId = (id, nameru, nameuz) => {
-    if (languageDetector?.typeLang === 'ru') {
+    if (languageDetector?.typeLang === "ru") {
       if (id !== 5) {
-        navigate(`/categories/${nameru?.split(' ')?.join('-')?.toLowerCase()}`);
+        navigate(`/categories/${nameru?.split(" ")?.join("-")?.toLowerCase()}`);
       }
       if (id === 5) {
-        navigate(`/categories/${nameru?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+        navigate(
+          `/categories/${nameru
+            ?.split("/")
+            ?.map((item) => item.trim())
+            ?.join("-")
+            ?.toLowerCase()}`
+        );
       }
     }
-    if (languageDetector?.typeLang === 'uz') {
+    if (languageDetector?.typeLang === "uz") {
       if (id !== 5) {
-        navigate(`/categories/${nameuz?.split(' ')?.join('-')?.toLowerCase()}`);
+        navigate(`/categories/${nameuz?.split(" ")?.join("-")?.toLowerCase()}`);
       }
       if (id === 5) {
-        navigate(`/categories/${nameuz?.split('/')?.map(item => item.trim())?.join('-')?.toLowerCase()}`);
+        navigate(
+          `/categories/${nameuz
+            ?.split("/")
+            ?.map((item) => item.trim())
+            ?.join("-")
+            ?.toLowerCase()}`
+        );
       }
     }
   };
@@ -33,6 +47,12 @@ const CatalogMobile = () => {
     { label_uz: "Asosiy", label_ru: "Главная", url: "/" },
     { label_uz: "Kategoriya", label_ru: "категории", url: "/categories" },
   ];
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
 
   return (
     <main className="flex flex-col justify-center items-center m-0 p-0 box-border">
@@ -54,24 +74,35 @@ const CatalogMobile = () => {
                 className="w-[140px] ls:w-[150px] ll:w-[175px] h-fit flex flex-wrap gap-y-2 "
               >
                 <div
-                  onClick={() => goCatalogId(item?.id, languageDetector?.typeLang === 'ru' && item?.name_ru, languageDetector?.typeLang === 'uz' && item?.name_uz)}
+                  onClick={() =>
+                    goCatalogId(
+                      item?.id,
+                      languageDetector?.typeLang === "ru" && item?.name_ru,
+                      languageDetector?.typeLang === "uz" && item?.name_uz
+                    )
+                  }
                   className="w-full h-[145px] ls:h-[155px] ll:h-[180px] flex items-center overflow-hidden justify-center border border-skeltonColor bg-categoryModalBgColor rounded-[12px] cursor-pointer"
                 >
                   <img src={item?.url_photo} alt="" className=" h-full	" />
                 </div>
                 <button
-                  onClick={() => goCatalogId(item?.id, languageDetector?.typeLang === 'ru' && item?.name_ru, languageDetector?.typeLang === 'uz' && item?.name_uz)}
+                  onClick={() =>
+                    goCatalogId(
+                      item?.id,
+                      languageDetector?.typeLang === "ru" && item?.name_ru,
+                      languageDetector?.typeLang === "uz" && item?.name_uz
+                    )
+                  }
                   className="w-full h-8 text-catalogText leading-normal text-[12px] ll:text-[13px] not-italic font-AeonikProRegular flex items-center justify-center active:scale-95  active:opacity-70 border border-skeltonColor  rounded-[12px]"
                 >
-                  {languageDetector?.typeLang === 'ru' && item?.name_ru}
-                  {languageDetector?.typeLang === 'uz' && item?.name_uz}
+                  {languageDetector?.typeLang === "ru" && item?.name_ru}
+                  {languageDetector?.typeLang === "uz" && item?.name_uz}
                 </button>
               </figure>
             );
           })}
         </article>
       </section>
-
     </main>
   );
 };
