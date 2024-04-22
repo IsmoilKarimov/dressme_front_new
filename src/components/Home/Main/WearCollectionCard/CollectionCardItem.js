@@ -91,10 +91,7 @@ export const CollectionCardItem = ({
             languageDetector?.typeLang === "uz" && data?.name_uz
           );
           setcolorId(null);
-          setDressInfo({
-            ...dressInfo,
-            linkedFrom: "mainPageProductList",
-          });
+           
         }}
         style={{
           backgroundImage: `url("${selectedPhoto?.url_photo}")`,
