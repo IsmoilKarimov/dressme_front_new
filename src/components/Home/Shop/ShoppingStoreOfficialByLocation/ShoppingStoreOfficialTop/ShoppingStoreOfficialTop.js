@@ -36,7 +36,7 @@ const ShoppingStoreOfficialTop = ({
 
   const { t } = useTranslation("shops");
 
-  const [locationList, setLocationList] = useState([]);
+  const [locationList, setLocationList] = useState(filteredData?.shop?.approved_shop_locations);
   const [dressInfo, setDressInfo] = useContext(dressMainData);
   // const [selectLocation, setSelectLocation] = useState(
   //   locationIdDetector?.locationIdForTest
@@ -59,29 +59,39 @@ const ShoppingStoreOfficialTop = ({
   };
 
   const [checkedData, setCheckedData] = useState(false);
-  useEffect(() => {
-    setLocationList([]);
-    filteredData?.shop?.approved_shop_locations?.map((item) => {
-      if (locationList?.length === 0) {
-        setLocationList((locationList) => [...locationList, item]);
-      }
-      if (locationList?.length > 0 && !locationList?.includes(item)) {
-        setLocationList((locationList) => [...locationList, item]);
-      }
-    });
-  }, [filteredData?.shop?.approved_shop_locations]);
+  // useEffect(() => {
+  //   setLocationList([]);
+  //   filteredData?.shop?.approved_shop_locations?.map((item) => {
+  //     if (locationList?.length === 0) {
+  //       setLocationList((locationList) => [...locationList, item]);
+  //     }
+  //     if (locationList?.length > 0 && !locationList?.includes(item)) {
+  //       setLocationList((locationList) => [...locationList, item]);
+  //     }
+  //   });
+  // }, [filteredData?.shop?.approved_shop_locations]);
 
   const onChangeSelectLocation = (e) => {
-    // setSelectLocation(e?.target?.value);
-    setLocationIdDetector({
+     setLocationIdDetector({
       ...locationIdDetector,
       locationIdForTest: e?.target?.value,
     });
-    setDressInfo({
-      ...dressInfo,
-      locationIdParams: e?.target?.value,
-      productShowSelectedLocation: checkedData,
-    });
+    locationList?.map(item => {
+      if (item?.id === e?.target?.value) {
+        setDressInfo({
+          ...dressInfo,
+          locationIdParams: e?.target?.value,
+          productShowSelectedLocation: item,
+          linkedFrom: "mainPageShopsList",
+
+        });
+      }
+    })
+    // setDressInfo({
+    //   ...dressInfo,
+    //   locationIdParams: e?.target?.value,
+    //   productShowSelectedLocation: checkedData,
+    // });
   };
 
   const [searchMarketName, setSearchMarketName] = useState(

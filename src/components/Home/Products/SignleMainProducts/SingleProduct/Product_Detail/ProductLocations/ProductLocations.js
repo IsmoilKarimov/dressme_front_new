@@ -16,7 +16,7 @@ import { LocateControl } from "./LocateControls";
 function ProductLocations({ locationText, data }) {
   const [map, setMap] = useState(null);
   const tileRef = useRef(null);
- 
+
   useEffect(() => {
     if (!map) return;
     tileRef.current.getContainer().style.setProperty("filter", `grayscale(1)`);
@@ -35,7 +35,8 @@ function ProductLocations({ locationText, data }) {
       latitude: locationText?.latitude,
       longitude: locationText?.longitude,
     })
-   }, [data, locationText?.latitude, locationText?.longitude]);
+ 
+  }, [data, locationText?.latitude, locationText?.longitude]);
 
   const markerIconConst = data?.product?.shop?.url_logo_photo
     ? L.icon({
@@ -55,11 +56,7 @@ function ProductLocations({ locationText, data }) {
     //   `https://yandex.uz/maps/10335/tashkent/?ll=${placeMarkLocation[1]}%2C${placeMarkLocation[0]}&mode=search&sll=${placeMarkLocation[1]}%2C${placeMarkLocation[0]}&text=${placeMarkLocation[0]}%2C${placeMarkLocation[1]}&z=15`,
     //   "_blank"
     // );
-
   };
- 
-
-
   return (
     <div className="w-full h-full mapRoot z-[10]">
       <div className={`w-full flex items-center mb-3 mt-4`}>
@@ -90,9 +87,7 @@ function ProductLocations({ locationText, data }) {
         whenReady={setMap}
       >
         <TileLayer {...tileLayer} ref={tileRef} />
-        {/* <ZoomControl position={'topright'} /> */}
-
-        <ScaleControl imperial={false} />
+         <ScaleControl imperial={false} />
         <Marker
           className="iconsForMarker"
           position={[location?.latitude, location?.longitude]}
