@@ -75,6 +75,7 @@ export const DressMenu = ({ children }) => {
     // --- for Product showPage
     linkedFrom: "mainPageProductList",
     productShowSelectedLocation: {},
+    productShowSelectedLocation2: {},
     ProductList: [],
     searchProduct: "",
   });

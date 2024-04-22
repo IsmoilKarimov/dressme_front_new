@@ -59,20 +59,9 @@ const ShoppingStoreOfficialTop = ({
   };
 
   const [checkedData, setCheckedData] = useState(false);
-  // useEffect(() => {
-  //   setLocationList([]);
-  //   filteredData?.shop?.approved_shop_locations?.map((item) => {
-  //     if (locationList?.length === 0) {
-  //       setLocationList((locationList) => [...locationList, item]);
-  //     }
-  //     if (locationList?.length > 0 && !locationList?.includes(item)) {
-  //       setLocationList((locationList) => [...locationList, item]);
-  //     }
-  //   });
-  // }, [filteredData?.shop?.approved_shop_locations]);
-
+ 
   const onChangeSelectLocation = (e) => {
-     setLocationIdDetector({
+    setLocationIdDetector({
       ...locationIdDetector,
       locationIdForTest: e?.target?.value,
     });
@@ -81,8 +70,7 @@ const ShoppingStoreOfficialTop = ({
         setDressInfo({
           ...dressInfo,
           locationIdParams: e?.target?.value,
-          productShowSelectedLocation: item,
-          linkedFrom: "mainPageShopsList",
+          productShowSelectedLocation2: item,
 
         });
       }
@@ -332,9 +320,9 @@ const ShoppingStoreOfficialTop = ({
           </div>
           <div
             className={` ${clickButtons?.openTabComment === true ||
-                clickButtons?.openTabLocation === true
-                ? "md:hidden"
-                : "md:flex"
+              clickButtons?.openTabLocation === true
+              ? "md:hidden"
+              : "md:flex"
               } w-full hidden items-center justify-between  mt-[72px] mb-3`}
           >
             <div className="flex items-center gap-x-5">
@@ -451,9 +439,9 @@ const ShoppingStoreOfficialTop = ({
           </div>
           <div
             className={`${clickButtons?.openTabComment === true ||
-                clickButtons?.openTabLocation === true
-                ? "hidden"
-                : "flex"
+              clickButtons?.openTabLocation === true
+              ? "hidden"
+              : "flex"
               } w-full md:hidden items-center justify-between mt-3 mb-3 px-4 gap-x-2`}
           >
             <div className="flex search items-center bg-btnBgColor justify-between rounded-xl font-AeonikProMedium h-[38px] md:h-12 my-3 border border-searchBgColor ss:mt-3 w-full">
