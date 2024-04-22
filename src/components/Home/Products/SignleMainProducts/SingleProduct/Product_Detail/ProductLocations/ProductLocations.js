@@ -35,7 +35,7 @@ function ProductLocations({ locationText, data }) {
       latitude: locationText?.latitude,
       longitude: locationText?.longitude,
     })
- 
+
   }, [data, locationText?.latitude, locationText?.longitude]);
 
   const markerIconConst = data?.product?.shop?.url_logo_photo
@@ -82,12 +82,12 @@ function ProductLocations({ locationText, data }) {
       </div>
 
       <MapContainer
-        center={[location?.latitude, location?.longitude]}
-        zoom={12}
+        center={[41.311151,69.264974]}
+        zoom={11}
         whenReady={setMap}
       >
         <TileLayer {...tileLayer} ref={tileRef} />
-         <ScaleControl imperial={false} />
+        <ScaleControl imperial={false} />
         <Marker
           className="iconsForMarker"
           position={[location?.latitude, location?.longitude]}
