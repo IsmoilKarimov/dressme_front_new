@@ -26,13 +26,22 @@ function ProductLocationsShop({ locationText, data }) {
     const tileLayer = {
         url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
     }
-
-    return (
+    const [location, setLocation] = useState({
+        latitude: locationText?.latitude,
+        longitude: locationText?.longitude,
+    });
+    useEffect(() => {
+        setLocation({
+            latitude: locationText?.latitude,
+            longitude: locationText?.longitude,
+        })
+    }, [locationText?.latitude, locationText?.longitude]);
+     return (
         <div className="w-full h-full  mapRoot  ">
 
 
             <MapContainer
-                center={[locationText?.latitude, locationText?.longitude]}
+                center={[location?.latitude, location?.longitude]}
                 zoom={12}
                 whenReady={setMap}
             >
@@ -42,7 +51,7 @@ function ProductLocationsShop({ locationText, data }) {
 
                 <ScaleControl imperial={false} />
                 <Marker
-                    position={[locationText?.latitude, locationText?.longitude]} icon={markerIconConst}
+                    position={[location?.latitude, location?.longitude]} icon={markerIconConst}
                 >
                     <LocateControl />
 
