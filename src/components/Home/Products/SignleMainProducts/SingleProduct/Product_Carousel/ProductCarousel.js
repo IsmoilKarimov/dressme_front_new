@@ -1177,48 +1177,50 @@ const ProductCarousel = ({ show, data }) => {
                       data?.shop_location_id == selectedLocation?.id &&
                       selectedColor?.pivot?.id === data?.product_color_id
                     ) {
-                      return (
-                        <div
-                          key={data?.id}
-                          onClick={() => {
-                            setSelectedSize(data);
-                          }}
-                          className={`${
-                            data?.id === selectedSize?.id
-                              ? "border-fullBlue"
-                              : "border-[#dadada]"
-                          } w-[60px] !h-[39px] rounded-lg border hover:border-fullBlue`}
-                        >
-                          <Popover
-                            trigger="click"
-                            content={() => contentSize(data)}
-                            className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${
-                              data?.amount === "0"
-                                ? "bg-[#f6f6f9] text-[#d3d4dd]"
-                                : ""
-                            }`}
+                      if (data?.letter_size || data?.wear_size) {
+                        return (
+                          <div
+                            key={data?.id}
+                            onClick={() => {
+                              setSelectedSize(data);
+                            }}
+                            className={`${
+                              data?.id === selectedSize?.id
+                                ? "border-fullBlue"
+                                : "border-[#dadada]"
+                            } w-[60px] !h-[39px] rounded-lg border hover:border-fullBlue`}
                           >
-                            <p
-                              className={`w-full font-AeonikProMedium text-sm uppercase text-center ${
+                            <Popover
+                              trigger="click"
+                              content={() => contentSize(data)}
+                              className={`w-full !h-full cursor-pointer rounded-lg flex flex-col items-center justify-center ${
                                 data?.amount === "0"
-                                  ? "text-[#d3d4dd]"
-                                  : "text-black"
+                                  ? "bg-[#f6f6f9] text-[#d3d4dd]"
+                                  : ""
                               }`}
                             >
-                              {data?.letter_size}
-                            </p>
-                            <span
-                              className={`w-full text-center text-[10px] font-AeonikProRegular ${
-                                data?.amount === "0"
-                                  ? "text-[#d3d4dd]"
-                                  : "text-[#757575]"
-                              }`}
-                            >
-                              {data?.wear_size}
-                            </span>
-                          </Popover>
-                        </div>
-                      );
+                              <p
+                                className={`w-full font-AeonikProMedium text-sm uppercase text-center ${
+                                  data?.amount === "0"
+                                    ? "text-[#d3d4dd]"
+                                    : "text-black"
+                                }`}
+                              >
+                                {data?.letter_size}
+                              </p>
+                              <span
+                                className={`w-full text-center text-[10px] font-AeonikProRegular ${
+                                  data?.amount === "0"
+                                    ? "text-[#d3d4dd]"
+                                    : "text-[#757575]"
+                                }`}
+                              >
+                                {data?.wear_size}
+                              </span>
+                            </Popover>
+                          </div>
+                        );
+                      }
                     }
                   })
                 : null}
