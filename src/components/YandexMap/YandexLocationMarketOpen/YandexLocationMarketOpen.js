@@ -36,7 +36,7 @@ function YandexLocationMarketOpen({
   const openShoppingChild = () => {
     modalInfo?.locations?.map((item) => {
       if (item?.shop_id == dressInfo?.yandexGetMarketId) {
-         navigate(
+        navigate(
           `/shops_location/${item?.shop?.name
             ?.split(" ")
             ?.join("-")
@@ -249,11 +249,10 @@ function YandexLocationMarketOpen({
                                   />
                                   <div className="flex w-full opacity-80 absolute items-center justify-between px-5 text-sm font-AeonikProMedium left-0 right-0 bottom-3 md:bottom-6">
                                     <span
-                                      className={`${
-                                        newImgList?.length > 1
+                                      className={`${newImgList?.length > 1
                                           ? "flex"
                                           : "hidden"
-                                      } bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 items-center justify-center text-center`}
+                                        } bg-bgCard gap-x-[3px] rounded-[8px] px-3 py-1 items-center justify-center text-center`}
                                     >
                                       <p className="h-full w-full text-center pt-[4px]">
                                         {" "}
@@ -346,7 +345,9 @@ function YandexLocationMarketOpen({
                         setDressInfo({
                           ...dressInfo,
                           linkedFrom: "shopsFromLocation",
+ 
                         });
+
                       }}
                       className={` w-full h-[48px] bg-fullBlue active:scale-95 mt-4 mb-2 md:mb-0 md:mt-0  active:opacity-70 rounded-[12px] flex gap-x-3 items-center justify-center`}
                     >

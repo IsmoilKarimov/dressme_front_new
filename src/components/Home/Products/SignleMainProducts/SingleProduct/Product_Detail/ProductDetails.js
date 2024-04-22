@@ -292,8 +292,7 @@ const ProductDetails = ({ data, shopsData }) => {
   // Selected color ------------------
 
   const [selectedColor, setSelectedColor] = useState(data?.product?.colors[0]);
- 
-  useEffect(() => {
+   useEffect(() => {
     if (dressInfo?.linkedFrom === "mainPageShopsList") {
       data?.product?.locations?.map((item) => {
         if (item?.id == dressInfo?.productShowSelectedLocation?.id) {
@@ -303,7 +302,7 @@ const ProductDetails = ({ data, shopsData }) => {
       });
     } else if (dressInfo?.linkedFrom === "shopsFromLocation") {
       data?.product?.locations?.forEach((item) => {
-        if (item?.address == dressInfo?.productShowSelectedLocation?.address) {
+        if (item?.id == locationIdDetector?.locationIdForTest) {
           setSelectedLocation(item);
           setSelectedColor(data?.product?.colors[0]);
         }
@@ -329,8 +328,7 @@ const ProductDetails = ({ data, shopsData }) => {
       data?.product?.colors?.find((item) => item?.pivot?.id === id)
     );
   };
-
-  // Remove duplicates and select only first -----
+   // Remove duplicates and select only first -----
   let idMap = new Map();
   let uniqueArray = [];
 

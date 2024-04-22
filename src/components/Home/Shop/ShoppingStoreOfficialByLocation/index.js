@@ -315,7 +315,6 @@ const ShoppingStoreOfficialByLocation = () => {
     }
     setInitalParamsId(locationIdDetector?.locationIdForTest);
   }, [locationIdDetector?.locationIdForTest]);
-
   useEffect(() => {
     if (
       data?.getMainProductCard?.shops &&
@@ -387,6 +386,8 @@ const ShoppingStoreOfficialByLocation = () => {
       url: "/shops_location/:id",
     },
   ];
+ 
+ 
   return (
     <main className="max-w-[1280px] w-[100%] flex flex-col items-center justify-between m-auto">
       {loading ? (
