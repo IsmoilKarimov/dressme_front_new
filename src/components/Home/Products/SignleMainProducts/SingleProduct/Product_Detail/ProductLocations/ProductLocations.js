@@ -16,8 +16,7 @@ import { LocateControl } from "./LocateControls";
 function ProductLocations({ locationText, data }) {
   const [map, setMap] = useState(null);
   const tileRef = useRef(null);
-  const [placeMarkLocation, setPlaceMarkLocation] = useState([]);
-
+ 
   useEffect(() => {
     if (!map) return;
     tileRef.current.getContainer().style.setProperty("filter", `grayscale(1)`);
@@ -27,10 +26,16 @@ function ProductLocations({ locationText, data }) {
   const handleCopyText = () => {
     navigator.clipboard.writeText(addresRef.current.innerText);
   };
-
+  const [location, setLocation] = useState({
+    latitude: locationText?.latitude,
+    longitude: locationText?.longitude,
+  });
   useEffect(() => {
-    setPlaceMarkLocation([locationText?.latitude, locationText?.longitude]);
-  }, [data, locationText]);
+    setLocation({
+      latitude: locationText?.latitude,
+      longitude: locationText?.longitude,
+    })
+   }, [data, locationText?.latitude, locationText?.longitude]);
 
   const markerIconConst = data?.product?.shop?.url_logo_photo
     ? L.icon({
@@ -50,14 +55,10 @@ function ProductLocations({ locationText, data }) {
     //   `https://yandex.uz/maps/10335/tashkent/?ll=${placeMarkLocation[1]}%2C${placeMarkLocation[0]}&mode=search&sll=${placeMarkLocation[1]}%2C${placeMarkLocation[0]}&text=${placeMarkLocation[0]}%2C${placeMarkLocation[1]}&z=15`,
     //   "_blank"
     // );
-    
-  };
-  
 
-  const [location, setLocation] = useState({
-    latitude: locationText?.latitude,
-    longitude: locationText?.longitude,
-  });
+  };
+ 
+
 
   return (
     <div className="w-full h-full mapRoot z-[10]">

@@ -64,7 +64,7 @@ function YandexLocationShopFilter({ filteredData }) {
             {
                 filteredData?.shop?.approved_shop_locations?.filter(e => e?.id == locationIdDetector?.locationIdForTest)?.map((item, index) => {
                     return (
-                        <div className={"w-full h-[400px] "}>
+                        <div className={"w-full h-[400px] z-[10]"}>
                             <ProductLocationsShop locationText={item} data={filteredData} />
                         </div>
                     )
