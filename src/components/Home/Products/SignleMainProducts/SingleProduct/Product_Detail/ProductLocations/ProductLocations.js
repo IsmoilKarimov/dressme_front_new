@@ -59,27 +59,7 @@ function ProductLocations({ locationText, data }) {
   };
   return (
     <div className="w-full h-full mapRoot z-[10]">
-      <div className={`w-full flex items-center mb-3 mt-4`}>
-        <div className="flex flex-col xs:flex-row xs:items-center gap-x-1 md:gap-x-[6px] ">
-          {/* <span className="text-[#000] not-italic font-AeonikProMedium text-[14px] xs:text-base ">Адрес:</span> */}
-          <div className="flex items-center ">
-            <button
-              onClick={handleClick}
-              ref={addresRef}
-              className="    not-italic font-AeonikProRegular text-[14px] xs:text-base "
-            >
-              {locationText?.address}
-            </button>
-            <button
-              type="button"
-              onClick={handleCopyText}
-              className="cursor-pointer ml-[8px]"
-            >
-              <AddCopyCheckedIcon />
-            </button>
-          </div>
-        </div>
-      </div>
+
 
       <MapContainer
         center={[41.311151,69.264974]}
